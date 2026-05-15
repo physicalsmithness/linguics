@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Linguics &middot; housing prototype</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Linguics</h1>
+    <p class="tagline">Italian, atomised. Prototype housing.</p>
+    <nav id="strand-nav">
+      <button data-strand="grammar" class="active">Grammar</button>
+      <button data-strand="translation">Translation</button>
+      <button data-strand="buckets">Bucket tree (browse)</button>
+    </nav>
+  </header>
+
+  <main>
+    <div class="content">
+      <section id="strand-grammar" class="strand">
+        <h2>Grammar practice</h2>
+        <p class="note">Enter to mark. Enter again to advance.</p>
+        <div id="grammar-filter-bar" class="filter-bar"></div>
+        <div id="grammar-host">Loading...</div>
+      </section>
+
+      <section id="strand-translation" class="strand" hidden>
+        <h2>Translation practice</h2>
+        <p class="note">Enter to mark; Shift+Enter for a line break. Enter again to advance. AI marking is stubbed in this prototype.</p>
+        <div id="translation-filter-bar" class="filter-bar"></div>
+        <div id="translation-host">Loading...</div>
+      </section>
+
+      <section id="strand-buckets" class="strand" hidden>
+        <h2>Bucket tree</h2>
+        <p class="note">Browse the full taxonomy with descriptions. CEFR-importance bands shown as colour pips.</p>
+        <div id="buckets-host">Loading...</div>
+      </section>
+    </div>
+
+    <aside id="live-stats">
+      <div class="live-header">
+        <h3>Live stats</h3>
+        <div class="live-controls">
+          <label><input type="checkbox" id="live-only-touched"> only touched</label>
+        </div>
+      </div>
+      <div id="live-overview" class="live-overview"></div>
+      <div id="live-stats-content"></div>
+      <div class="legend">
+        <div class="legend-row">
+          <span class="legend-cell demo-green-full"></span>
+          <span class="legend-cell demo-green-half"></span>
+          <span>green: correct of attempted (intensity)</span>
+        </div>
+        <div class="legend-row">
+          <span class="legend-cell demo-blue-full"></span>
+          <span class="legend-cell demo-blue-half"></span>
+          <span>blue: correct of total (intensity)</span>
+        </div>
+        <div class="legend-row">
+          <span class="last-n" style="width:auto;flex:0 0 auto">
+            <span class="mark hit">&check;</span><span class="mark hit">&check;</span><span class="mark miss">&times;</span><span class="mark hit">&check;</span>
+          </span>
+          <span>last N events</span>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <footer>
+    <span id="user-cefr-host"></span>
+    <span id="content-status" class="muted"></span>
+    <span class="muted">prototype &middot; localStorage only</span>
+  </footer>
+
+  <script src="data/sample_buckets.js"></script>
+  <script src="data/sample_grammar_questions.js"></script>
+  <script src="data/sample_translation_items.js"></script>
+
+  <script src="js/norm.js"></script>
+  <script src="js/grammar_engine.js"></script>
+  <script src="js/translation_stub.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

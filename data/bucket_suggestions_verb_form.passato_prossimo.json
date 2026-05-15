@@ -1,0 +1,65 @@
+[
+  {
+    "proposed_id": "verb_form.passato_prossimo.auxiliary.person_agreement",
+    "proposed_parent_id": "verb_form.passato_prossimo.auxiliary",
+    "proposed_label": "Auxiliary in correct person/number for the subject",
+    "proposed_description": "The learner has chosen the right family (essere vs avere) but conjugated the auxiliary for the wrong person or number. Example: 'Marco hanno parlato' (right choice — avere; wrong number). Distinct from the auxiliary-choice buckets and from the underlying present-indicative bucket: this fires within a PP attempt so it surfaces in PP-tagged history.",
+    "rationale": "While authoring the 'choose the auxiliary' family I kept hitting cases where a learner could pick the right family but the wrong form. The tree currently treats this as a prerequisite (verb_form.present_indicative.avere) but the diagnostic value of seeing 'this is a PP-tagged person error' is high — it tells the reviewer the learner has the auxiliary-choice insight but stumbles on conjugation in compound tenses specifically. Worth its own bucket so PP-context errors are tagged distinctly from raw present-indicative gaps."
+  },
+  {
+    "proposed_id": "verb_form.passato_prossimo.adverb_placement",
+    "proposed_parent_id": "verb_form.passato_prossimo",
+    "proposed_label": "Adverb placement between auxiliary and participle",
+    "proposed_description": "Common adverbs (già, ancora, mai, sempre, appena, anche) sit between the auxiliary and the participle in PP: 'ho già mangiato', 'non ho ancora finito', 'sono sempre andato'. Anglophone learners often post-pose them ('ho mangiato già') or pre-pose them ('già ho mangiato').",
+    "rationale": "Came up authoring pp_neg_03 ('Marco non ha ancora mangiato') and trans_pp_en_it_13 ('Non ho ancora letto quel libro'). The existing 'negation' bucket only covers 'non'; the broader adverb-between-aux-and-participle pattern is a separate micro-skill with its own diagnostic value, and the 'mai' case is high-frequency."
+  },
+  {
+    "proposed_id": "verb_form.passato_prossimo.modal_auxiliary_inheritance",
+    "proposed_parent_id": "verb_form.passato_prossimo.auxiliary",
+    "proposed_label": "Modals (dovere/potere/volere) borrow the auxiliary of the dependent infinitive",
+    "proposed_description": "When a modal (dovere, potere, volere) governs an infinitive, it can take the auxiliary of that infinitive: 'sono dovuto andare' (because andare takes essere) vs 'ho dovuto mangiare' (because mangiare takes avere). Colloquial Italian increasingly tolerates 'ho dovuto andare' but written/formal usage observes inheritance. Significant B1-B2 skill, not covered.",
+    "rationale": "Touched at pp_reg_ere_05 (dovere) when noting the modal/auxiliary interaction. Worth a dedicated bucket because the rule is morphologically distinctive and the registers diverge — a learner getting it right at all signals real advancement."
+  },
+  {
+    "proposed_id": "verb_form.passato_prossimo.translation_mapping.en_simple_past",
+    "proposed_parent_id": "verb_form.passato_prossimo",
+    "proposed_label": "Mapping to English simple past when a definite past-time adverb is present",
+    "proposed_description": "Italian PP with a definite past-time adverb (ieri, l'anno scorso, due giorni fa) maps to English simple past, NOT present perfect. *'I have spoken yesterday' is ungrammatical in English. This is a translation-direction skill, fires only on it→en translations.",
+    "rationale": "Came up across multiple it→en translation items (trans_pp_it_en_01, trans_pp_it_en_15). It's not a grammar-of-Italian skill but it's a recurring, scoreable miss in the translation strand. Could live under a new top-level 'translation_mapping' branch, or under PP as I've nested it here."
+  },
+  {
+    "proposed_id": "verb_form.passato_prossimo.translation_mapping.en_present_perfect",
+    "proposed_parent_id": "verb_form.passato_prossimo",
+    "proposed_label": "Mapping to English present perfect for indefinite/continuing relevance",
+    "proposed_description": "PP without a definite past-time adverb, or with durative/up-to-now adverbs (mai, ancora, già), typically maps to English present perfect: 'Non ho mai visto un film così bello' → 'I have never seen such a beautiful film.' Complementary to the simple-past mapping bucket above.",
+    "rationale": "Came up in trans_pp_it_en_09 ('Non ho mai visto un film così bello'). Pairs with the simple-past mapping bucket and together they give a clean 2-way diagnostic for the most frequent translation-direction confusion."
+  },
+  {
+    "proposed_id": "verb_form.passato_prossimo.participle_form.irregular.conoscere_conosciuto",
+    "proposed_parent_id": "verb_form.passato_prossimo.participle_form.regular.ere_uto",
+    "proposed_label": "conoscere → conosciuto (regular -uto, orthographic -sciu-)",
+    "proposed_description": "Conoscere takes a regular -uto participle but the spelling needs -sciu- (not -sci-): conosciuto, not 'conosciuto' vs *'conoscuto'. Worth flagging because it's a high-frequency verb where the participle is technically regular but the orthography catches learners.",
+    "rationale": "I avoided featuring conoscere in the grammar batch because the spelling rule isn't quite captured by the existing 'ere_uto' bucket. Either add it as an explicit sub-bucket (as proposed) or expand the ere_uto description to flag the -sci-/-sciu- orthography."
+  },
+  {
+    "proposed_id": "verb_form.passato_prossimo.participle_form.irregular.stem_expansion_class",
+    "proposed_parent_id": "verb_form.passato_prossimo.participle_form.irregular",
+    "proposed_label": "Stem-expansion class (bere→bevuto, dire→detto, fare→fatto, porre→posto, tradurre→tradotto)",
+    "proposed_description": "Aggregate bucket grouping participles where the surface infinitive is a contracted form of an older Latin-stemmed verb, and the participle expands or re-exposes the older stem: bere/bevere → bevuto, fare/facere → fatto, dire/dicere → detto, porre/ponere → posto, tradurre/traducere → tradotto. Mostly a teacher-facing organising bucket: helps a learner see the pattern.",
+    "rationale": "While authoring pp_irr_bere_01 I noted that bere is morphologically a member of a recognisable class. Right now the leaf buckets (fare_fatto, dire_detto, bere_bevuto) are siblings; an aggregate would help curriculum design and let teachers say 'learn this whole class together'."
+  },
+  {
+    "proposed_id": "verb_form.passato_prossimo.participle_agreement.with_avere.preceding_partitive_ne",
+    "proposed_parent_id": "verb_form.passato_prossimo.participle_agreement.with_avere",
+    "proposed_label": "Preceding partitive 'ne': participle agrees with the implicit referent",
+    "proposed_description": "When the pronoun 'ne' (partitive) precedes the verb, the participle agrees with the gender/number of the implicit antecedent: 'Hai mangiato delle mele? Sì, ne ho mangiate tre' (ne refers to mele, fem pl → mangiate). Distinct from lo/la/li/le agreement and from the no-DOP default.",
+    "rationale": "I avoided introducing 'ne' in the current batch because the bucket tree doesn't have a home for the agreement rule it triggers. This is a high-value B2 skill — pairs naturally with the existing preceding_dop_* buckets."
+  },
+  {
+    "proposed_id": "verb_form.passato_prossimo.participle_agreement.with_essere.mixed_gender_default",
+    "proposed_parent_id": "verb_form.passato_prossimo.participle_agreement.with_essere",
+    "proposed_label": "Mixed-gender plural subject defaults to masculine plural",
+    "proposed_description": "A subject combining masculine and feminine referents takes masculine plural agreement on the participle: 'Marco e Anna sono andati al mare' (NOT 'andate', even though one referent is female). This rule trips up some modern learners on equity grounds.",
+    "rationale": "Came up in pp_agr_ess_mix_02 and trans_pp_it_en_02. I marked them under masculine_plural, but the mixed-gender case is its own diagnostic story — the learner who writes 'andate' isn't making a basic agreement error, they're applying a different (modern, inclusive-language) rule. Worth distinguishing."
+  }
+]

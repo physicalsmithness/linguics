@@ -1,0 +1,155 @@
+[
+  {
+    "proposed_id": "adjective_agreement.stem_changes.predictable.cio_ci",
+    "proposed_parent_id": "adjective_agreement.stem_changes.predictable",
+    "proposed_label": "-cio → -ci (masculine plural, lose unstressed -i)",
+    "proposed_description": "Adjectives ending in -cio drop the unstressed -i when forming the masculine plural: vecchio → vecchi (not vecchii), liscio → lisci. Reliable when the -i of -cio is unstressed.",
+    "proposed_cefr_importance": {"A1": "preview", "A2": "core", "B1": "core", "B2": "review", "C1": "review", "C2": "fluency"},
+    "proposed_prerequisites": ["adjective_agreement.o_class.masculine_plural"],
+    "proposed_attributes": {"transform": "-cio → -ci", "canonical_example": "vecchi", "common_miss": "vecchii (double i) or vecchichi (over-applying -chi)"},
+    "rationale": "Needed for items targeting common A1/A2 adjectives vecchio and liscio. The current tree has no place for this; the closest existing leaf is co_chi, which is wrong because there is no h insertion here."
+  },
+  {
+    "proposed_id": "adjective_agreement.stem_changes.predictable.gio_gi",
+    "proposed_parent_id": "adjective_agreement.stem_changes.predictable",
+    "proposed_label": "-gio → -gi (masculine plural, lose unstressed -i)",
+    "proposed_description": "Adjectives ending in -gio drop the unstressed -i in the masculine plural: grigio → grigi, saggio → saggi. Mirrors -cio → -ci.",
+    "proposed_cefr_importance": {"A1": "preview", "A2": "core", "B1": "core", "B2": "review", "C1": "review", "C2": "fluency"},
+    "proposed_prerequisites": ["adjective_agreement.o_class.masculine_plural"],
+    "proposed_attributes": {"transform": "-gio → -gi", "canonical_example": "grigi", "common_miss": "grigii (double i) or grighi (over-applying -ghi)"},
+    "rationale": "Same reasoning as cio_ci. Grigio is a high-frequency colour adjective, students hit this early."
+  },
+  {
+    "proposed_id": "adjective_agreement.stem_changes.predictable.cia_ce",
+    "proposed_parent_id": "adjective_agreement.stem_changes.predictable",
+    "proposed_label": "-cia → -ce (feminine plural, unstressed -i drops)",
+    "proposed_description": "Feminine plural of -cia adjectives drops the unstressed -i: liscia → lisce. The rule is sometimes stated as 'the -i is preserved only if stressed' (farmacia → farmacie keeps it because of stress, but farmacia is a noun). For adjectives the unstressed case dominates.",
+    "proposed_cefr_importance": {"A1": "preview", "A2": "core", "B1": "core", "B2": "review", "C1": "review", "C2": "fluency"},
+    "proposed_prerequisites": ["adjective_agreement.o_class.feminine_plural"],
+    "proposed_attributes": {"transform": "-cia → -ce", "canonical_example": "lisce", "common_miss": "liscie (over-preservation of i)"},
+    "rationale": "Required for any item testing feminine plural of vecchio (vecchie), liscio (lisce). Common at A2."
+  },
+  {
+    "proposed_id": "adjective_agreement.stem_changes.predictable.gia_ge",
+    "proposed_parent_id": "adjective_agreement.stem_changes.predictable",
+    "proposed_label": "-gia → -ge (feminine plural, unstressed -i drops)",
+    "proposed_description": "Feminine plural of -gia adjectives drops the unstressed -i: grigia → grige (note: most native speakers also accept grigie; this is a known wobble). Saggia → sagge.",
+    "proposed_cefr_importance": {"A1": "preview", "A2": "core", "B1": "core", "B2": "review", "C1": "review", "C2": "fluency"},
+    "proposed_prerequisites": ["adjective_agreement.o_class.feminine_plural"],
+    "proposed_attributes": {"transform": "-gia → -ge or -gie", "canonical_example": "grige / grigie (both accepted)", "common_miss": "grigia (no plural marking)"},
+    "rationale": "Companion to cia_ce. Worth flagging that this one has dual-form acceptance, so authoring needs care on must_not_include."
+  },
+  {
+    "proposed_id": "adjective_agreement.stem_changes.irregular.amico_amici",
+    "proposed_parent_id": "adjective_agreement.stem_changes.irregular",
+    "proposed_label": "amico → amici (irregular -ci despite penult stress)",
+    "proposed_description": "Despite penultimate stress (which would predict -chi), amico forms its masculine plural as amici with soft c. Word-specific irregular. Feminine plural is regular: amiche.",
+    "proposed_cefr_importance": {"A1": "preview", "A2": "core", "B1": "core", "B2": "fluency", "C1": "fluency", "C2": "fluency"},
+    "proposed_prerequisites": ["adjective_agreement.stem_changes.predictable.co_chi"],
+    "proposed_attributes": {"transform": "-co → -ci (irregular)", "canonical_example": "amici (gli amici italiani)", "common_miss": "amichi (over-applying the predictable rule)"},
+    "rationale": "Amico is one of the most common adjectives/nouns; it is also the canonical exception to the co_chi rule. Without this leaf the marker cannot distinguish 'forgot to apply -chi' from 'applied -chi where amico needs -ci'."
+  },
+  {
+    "proposed_id": "adjective_agreement.stem_changes.irregular.greco_greci",
+    "proposed_parent_id": "adjective_agreement.stem_changes.irregular",
+    "proposed_label": "greco → greci (irregular -ci)",
+    "proposed_description": "Greco takes -ci in the masculine plural (greci) despite stress that would predict -chi. Feminine plural is greche (regular).",
+    "proposed_cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "review"},
+    "proposed_prerequisites": ["adjective_agreement.stem_changes.predictable.co_chi"],
+    "proposed_attributes": {"transform": "-co → -ci (irregular)", "canonical_example": "greci", "common_miss": "grechi"},
+    "rationale": "Greco appears frequently in cultural/historical content from A2 onward."
+  },
+  {
+    "proposed_id": "adjective_agreement.stem_changes.irregular.antico_antichi",
+    "proposed_parent_id": "adjective_agreement.stem_changes.irregular",
+    "proposed_label": "antico → antichi (regular -chi where -ci might be expected)",
+    "proposed_description": "Antico takes -chi in the masculine plural (antichi) even though the stress is on the antepenult, which by the predictable rule (see stem_changes.harder.co_ci_vs_chi_stress) would suggest -ci. Counter-irregular: it follows the default rule despite stress. Useful for distinguishing rule knowledge from rote knowledge.",
+    "proposed_cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "preview", "B2": "core", "C1": "core", "C2": "review"},
+    "proposed_prerequisites": ["adjective_agreement.stem_changes.harder.co_ci_vs_chi_stress"],
+    "proposed_attributes": {"transform": "-co → -chi (despite antepenult stress)", "canonical_example": "antichi (i libri antichi)", "common_miss": "antici (over-applying the stress rule)"},
+    "rationale": "The classic counter-example to simpatico → simpatici. Worth a leaf because it inverts the stress rule and is high-frequency in cultural/historical contexts."
+  },
+  {
+    "proposed_id": "adjective_agreement.mixed_gender_plural_defaults_masculine",
+    "proposed_parent_id": "adjective_agreement",
+    "proposed_label": "Mixed-gender plural defaults to masculine",
+    "proposed_description": "When an adjective qualifies a mixed-gender plural noun phrase (e.g. 'ragazzi e ragazze'), the adjective takes the masculine plural form: 'i ragazzi e le ragazze italiani'. Cross-class rule; applies to o_class and e_class alike.",
+    "proposed_cefr_importance": {"A1": "preview", "A2": "core", "B1": "core", "B2": "review", "C1": "review", "C2": "fluency"},
+    "proposed_prerequisites": ["adjective_agreement.o_class.masculine_plural", "adjective_agreement.e_class.masculine_plural"],
+    "proposed_attributes": {"canonical_example": "i ragazzi e le ragazze sono italiani", "common_miss": "italiane (last-noun agreement) or italiani/e (avoidance)"},
+    "rationale": "A real-world common miss that the current tree has no leaf for. Cross-cuts both classes, so it sits at the top of adjective_agreement rather than under one class."
+  },
+  {
+    "proposed_id": "adjective_agreement.invariable",
+    "proposed_parent_id": "adjective_agreement",
+    "proposed_label": "Invariable adjectives (aggregate)",
+    "proposed_description": "Adjectives that do not change form for gender or number. Includes some colour terms borrowed from nouns (blu, rosa, viola, marrone, beige), compound colour expressions (verde scuro, blu marino), and a small set of fixed forms (pari, dispari, impari).",
+    "proposed_cefr_importance": {"A1": "preview", "A2": "core", "B1": "core", "B2": "review", "C1": "review", "C2": "fluency"},
+    "proposed_prerequisites": ["adjective_agreement"],
+    "proposed_attributes": {"is_aggregate": true},
+    "rationale": "Currently completely absent from the tree. Invariable colour adjectives are an early miss point (learners over-agree). Needs to be a sibling of o_class and e_class."
+  },
+  {
+    "proposed_id": "adjective_agreement.invariable.colour_from_noun",
+    "proposed_parent_id": "adjective_agreement.invariable",
+    "proposed_label": "Invariable colour adjectives derived from nouns",
+    "proposed_description": "Colours that derive from nouns and do not inflect: blu, rosa, viola, marrone, beige, fucsia, lilla, indaco. Arancione is variable in modern usage but historically invariable; treat as edge case. 'Le case rosa' not 'le case rose'.",
+    "proposed_cefr_importance": {"A1": "preview", "A2": "core", "B1": "core", "B2": "review", "C1": "review", "C2": "fluency"},
+    "proposed_prerequisites": [],
+    "proposed_attributes": {"members": ["blu", "rosa", "viola", "marrone", "beige", "fucsia", "lilla", "indaco"], "canonical_example": "le case rosa", "common_miss": "le case rose (over-applying class I)"},
+    "rationale": "Specifically diagnostic. Common A2 miss."
+  },
+  {
+    "proposed_id": "adjective_agreement.invariable.compound_colour",
+    "proposed_parent_id": "adjective_agreement.invariable",
+    "proposed_label": "Invariable compound colour expressions",
+    "proposed_description": "Two-word colour expressions are invariable as a unit: verde scuro, blu marino, giallo limone, rosso fuoco, azzurro cielo. 'Le pareti verde scuro' not 'verdi scure'.",
+    "proposed_cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
+    "proposed_prerequisites": ["adjective_agreement.invariable.colour_from_noun"],
+    "proposed_attributes": {"canonical_example": "le pareti verde scuro", "common_miss": "verdi scure (full agreement) or verde scure (half agreement)"},
+    "rationale": "Often missed at B1+. The invariability of compounds is the rule, not the exception."
+  },
+  {
+    "proposed_id": "adjective_agreement.invariable.pari_family",
+    "proposed_parent_id": "adjective_agreement.invariable",
+    "proposed_label": "pari, dispari, impari and similar invariables",
+    "proposed_description": "A small group of mathematically/structurally defined adjectives that do not inflect: pari (even, equal), dispari (odd, unequal), impari (uneven). 'I numeri pari', 'le squadre pari'.",
+    "proposed_cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
+    "proposed_prerequisites": [],
+    "proposed_attributes": {"members": ["pari", "dispari", "impari"], "canonical_example": "i numeri pari", "common_miss": "i numeri pari/parii"},
+    "rationale": "Small but real bucket. Comes up in maths and scheduling contexts."
+  },
+  {
+    "proposed_id": "adjective_agreement.position.semantic_shift.vecchio",
+    "proposed_parent_id": "adjective_agreement.position.semantic_shift",
+    "proposed_label": "vecchio: pre-noun (long-standing) vs post-noun (elderly)",
+    "proposed_description": "un vecchio amico = a long-standing friend; un amico vecchio = a friend who is elderly. The pre-noun reading is figurative/relational, the post-noun reading is literal/physical.",
+    "proposed_cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
+    "proposed_prerequisites": ["adjective_agreement.position.semantic_shift"],
+    "proposed_attributes": {"canonical_example": "un vecchio amico vs un amico vecchio"},
+    "rationale": "Re-proposed 2026-05-14 with item set attached. Grammar items adj_pos_shift_vecchio_01, _02, _03 forward-reference this leaf and demonstrate diagnostic coverage of both readings."
+  },
+  {
+    "proposed_id": "adjective_agreement.position.semantic_shift.grande",
+    "proposed_parent_id": "adjective_agreement.position.semantic_shift",
+    "proposed_label": "grande: pre-noun (great) vs post-noun (large)",
+    "proposed_description": "un grande uomo = a great man (figurative); un uomo grande = a tall/big man (literal).",
+    "proposed_cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
+    "proposed_prerequisites": ["adjective_agreement.position.semantic_shift"],
+    "proposed_attributes": {"canonical_example": "un grande uomo vs un uomo grande"},
+    "rationale": "Re-proposed 2026-05-14 with item set attached. Grammar items adj_pos_shift_grande_01, _02, _03 forward-reference this leaf. Note: the existing adj_pos_shift_02 and _03 (against the aggregate) cover similar ground and the architect may want to migrate those to point at this leaf when promoted."
+  },
+  {
+    "proposed_id": "adjective_agreement.position.semantic_shift.povero",
+    "proposed_parent_id": "adjective_agreement.position.semantic_shift",
+    "proposed_label": "povero: pre-noun (unfortunate) vs post-noun (impoverished)",
+    "proposed_description": "il povero ragazzo = the poor (unfortunate) boy; un ragazzo povero = a boy who has little money.",
+    "proposed_cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
+    "proposed_prerequisites": ["adjective_agreement.position.semantic_shift"],
+    "proposed_attributes": {"canonical_example": "il povero ragazzo vs un ragazzo povero"},
+    "rationale": "Re-proposed 2026-05-14 with item set attached. Grammar items adj_pos_shift_povero_01, _02, _03 forward-reference this leaf. The existing adj_pos_shift_05 (against the aggregate) covers similar ground and could migrate."
+  },
+  {
+    "_meta_note_for_architect": "The architecture chat should also fix a typo in adjective_agreement.e_class.feminine_plural.attributes.common_miss. The current string reads 'case grande (no number) or case grande (Class I confusion)'. The second 'case grande' should read 'case grandi' (the Class I confusion: a learner over-applying -i because they expect Class I rather than Class II)."
+  }
+]

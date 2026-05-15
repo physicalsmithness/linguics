@@ -1,0 +1,57 @@
+[
+  {
+    "$comment_status": "RESOLVED 2026-05-14 — see REPLY_TO_pronoun_chat_decisions.md (D3). The sibling bucket pronoun.ne.pronominal_idiomatic_verbs now exists in data/buckets/pronoun.json (lines 728-739) and items op_ne_motion_02 (fregarsene) and op_comb_mene_05 (starsene) have been rebucketed accordingly. op_comb_mene_06 (venirsene) stays in motion_andarsene because venirsene IS motion. Entry retained here for traceability.",
+    "proposed_id": "pronoun.ne.pronominal_idiomatic_verbs",
+    "proposed_parent_id": "pronoun.ne",
+    "proposed_label": "Pronominal idiomatic verbs with ne (starsene, fregarsene, intendersene, uscirsene)",
+    "proposed_description": "A class of lexicalised pronominal verbs where ne is part of the verb's lexical identity in a non-motion idiom. Distinct from motion_andarsene because the ne isn't about movement.",
+    "proposed_cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "preview", "B2": "core", "C1": "core", "C2": "review"},
+    "proposed_prerequisites": ["pronoun.combined.me_ne_family", "pronoun.reflexive"],
+    "proposed_attributes": {"verbs": ["starsene", "fregarsene", "intendersene", "uscirsene"], "canonical_example": "Me ne sto a casa. Non me ne frega niente."},
+    "rationale": "Ratified as a sibling rather than a rename. motion_andarsene now strictly for motion verbs (andarsene, venirsene); pronominal_idiomatic_verbs covers the non-motion family."
+  },
+  {
+    "$comment_status": "RESOLVED AND MIGRATED — sub-leaf exists in data/buckets/pronoun.json (lines 741-751). Migrated 2026-05-15: op_iop_verbs_iop_05 (the only PP piacere-family grammar item) now attributes to this sub-leaf. trans_op_en_it_07 (present tense) and trans_op_en_it_08 (imperfect) don't qualify because the new bucket is specifically for PP behaviour; they stay on the parent.",
+    "proposed_id": "pronoun.indirect_object.verbs_taking_iop.with_essere_in_pp",
+    "proposed_parent_id": "pronoun.indirect_object.verbs_taking_iop",
+    "proposed_label": "Piacere-family in passato prossimo: aux essere, participle agrees with grammatical subject",
+    "proposed_description": "Sub-leaf for the passato-prossimo behaviour of piacere/mancare/sembrare/bastare. Aux essere; participle agrees with the grammatical subject (the thing liked / missed), not with the IOP experiencer.",
+    "proposed_cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
+    "proposed_prerequisites": ["pronoun.indirect_object.verbs_taking_iop", "verb_form.passato_prossimo.auxiliary.essere_other_intransitive"],
+    "proposed_attributes": {"canonical_example": "A Marco è piaciuta la festa. Le sono mancate le sue amiche.", "common_miss": "Le ha piaciuto la festa (using avere)"},
+    "rationale": "Ratified. Migration of existing items into this leaf is a follow-up task for the next dispatch."
+  },
+  {
+    "$comment_status": "RESOLVED AND PARTIALLY MIGRATED — sub-leaf exists in data/buckets/pronoun.json (lines 753-763). Migrated 2026-05-15: op_spec_dislo_01 (La pizza, l'ho mangiata) and op_spec_dislo_04 (I biglietti, me li ha dati) now attribute to this sub-leaf — both are the canonical fronted-DO + clitic + PP-agreement pattern. op_spec_dislo_02 stays on the parent (IOP dislocation, no PP agreement applicable). op_spec_dislo_03 stays on the parent (cluster choice tested, not agreement). trans_op_it_en_03 stays on the parent (IOP dislocation). trans_op_it_en_17 stays on the parent (right-dislocation, not left-dislocation).",
+    "proposed_id": "pronoun.special.left_dislocation_with_pp_agreement",
+    "proposed_parent_id": "pronoun.special.pronoun_then_subject_noun",
+    "proposed_label": "Left-dislocation with participle agreement on resumed DOP",
+    "proposed_description": "Specifically the construction where a fronted DO is resumed by a clitic AND the participle in passato prossimo agrees with that fronted DO. Cross-cuts the pronoun tree and the passato_prossimo agreement bucket.",
+    "proposed_cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "preview", "B2": "core", "C1": "core", "C2": "review"},
+    "proposed_prerequisites": ["pronoun.special.pronoun_then_subject_noun", "verb_form.passato_prossimo.participle_agreement.with_avere.preceding_dop_la"],
+    "proposed_attributes": {"canonical_example": "La pizza, l'ho mangiata tutta. Le foto, le ho viste tutte."},
+    "rationale": "Ratified. Migration is a follow-up task."
+  },
+  {
+    "$comment_status": "RESOLVED AND MIGRATED — sub-leaf exists in data/buckets/pronoun.json. Migrated 2026-05-15: op_cil_idiom_03 (the farcela 1sg item) and trans_op_en_it_18 (the I-can't-manage farcela translation) now attribute to this sub-leaf. op_cil_idiom_01 (volerci), op_cil_idiom_02 (metterci), op_cil_idiom_04 (tenerci) stay on the parent because they're different idiomatic verbs.",
+    "proposed_id": "pronoun.ci_locative.idiomatic_verbs.farcela",
+    "proposed_parent_id": "pronoun.ci_locative.idiomatic_verbs",
+    "proposed_label": "farcela (with fixed ci + la, vowel change to ce la)",
+    "proposed_description": "Sub-leaf for farcela specifically. The fixed clitic pattern is ci + la → ce la (vowel change of ci), with la lexicalised.",
+    "proposed_cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "preview", "B2": "core", "C1": "core", "C2": "review"},
+    "proposed_prerequisites": ["pronoun.ci_locative.idiomatic_verbs", "pronoun.combined.vowel_changes"],
+    "proposed_attributes": {"canonical_example": "Non ce la faccio. Ce l'ho fatta!", "common_miss": "Non ci la faccio (no vowel change) / Non ce lo faccio (wrong DO clitic)"},
+    "rationale": "Ratified. Migration is a follow-up task."
+  },
+  {
+    "$comment_status": "PENDING — added per FEEDBACK_HOUSE_STYLE_pronoun_chat.md §2. Five items (op_comb_joined_01..05) already author against this proposed bucket. They will be runtime-warned but accepted until promotion.",
+    "proposed_id": "pronoun.combined.joined_when_should_be_separate",
+    "proposed_parent_id": "pronoun.combined",
+    "proposed_label": "Joining a pre-verb clitic cluster into one word",
+    "proposed_description": "Pre-verb clitic clusters (me lo, te ne, ce la, etc.) stay as two written words. The joined form (melo, tene, cela) is what learners write when over-generalising from the post-verb attached pattern (vedermelo, dammene). Distinct from the choice of cluster (which combined.glielo_family etc. handle) and from the IOP/DOP ordering (combined.order_iop_before_dop). The glielo-family clitics (glielo/gliela/glieli/gliele/gliene) are correctly one word and are not in scope.",
+    "proposed_cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
+    "proposed_prerequisites": ["pronoun.combined.vowel_changes"],
+    "proposed_attributes": {"common_miss": "melo, telo, celo, velo, mela, tela, cela, vela, mene, tene, cene, vene"},
+    "rationale": "Real-world miss observed on op_dop_dislocation_01 ('melo' written for 'me l''). Currently the tree treats this as 'didn't try' rather than as a specific known confusion. A dedicated bucket lets the marker show 'you joined the cluster' as the diagnostic, and lets the platform track this learner pattern across many questions."
+  }
+]

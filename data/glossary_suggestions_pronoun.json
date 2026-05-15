@@ -1,0 +1,169 @@
+{
+  "$comment": "Glossary terms used in pronoun-topic explanations that are not yet present in data/glossary.json. The project author reviews and merges accepted entries into the canonical glossary. Checked against glossary.json v1.",
+  "version": 1,
+  "suggestions": {
+    "vowel change": {
+      "short": "When mi/ti/ci/vi change to me/te/ce/ve before another clitic.",
+      "long": "In a clitic cluster, the final -i of the indirect-object pronouns mi, ti, ci, vi shifts to -e before any following clitic (DOP or ne): mi + lo becomes me lo; ti + ne becomes te ne. The same shift applies to the reflexive si in the cluster pattern (si + lo becomes se lo) and to existential/locative ci (ci + ne becomes ce ne). This is purely a writing/spelling rule; the pronunciation follows.",
+      "needed_for": "Used heavily in combined-pronoun and reflexive-plus-DOP explanations."
+    },
+    "consonant doubling": {
+      "short": "When a clitic attaches to a monosyllabic imperative (da', di', fa', va', sta'), the clitic's initial consonant doubles: dammi, dimmi, fammelo, vacci, stammi.",
+      "long": "The five tu imperatives da', di', fa', va', sta' double the initial consonant of the attaching clitic: da' + mi gives dammi (not dami), fa' + me + lo gives fammelo, va' + ci gives vacci. Exception: gli does not double (di' + gli gives digli, not diggli). The rule is graphic but reflects spoken Italian.",
+      "needed_for": "Used in position.post_imperative_consonant_doubling items."
+    },
+    "antecedent": {
+      "short": "The earlier noun phrase that a pronoun refers back to.",
+      "long": "When ne stands for 'three of them' or lo stands for 'it', the antecedent is the noun phrase the pronoun is pointing at: 'Hai delle mele? Sì, ne ho mangiate tre.' — antecedent is 'mele' (f.pl), which is why the participle is mangiate. The antecedent's gender and number control participle agreement on the verb."
+    },
+    "experiencer": {
+      "short": "The person who feels or undergoes the action of verbs like piacere, mancare, sembrare; surfaces as an IOP in Italian.",
+      "long": "In English we say 'I like pizza' (the experiencer is the subject). In Italian we say 'Mi piace la pizza' (the experiencer 'I' surfaces as the IOP 'mi'; the pizza is the grammatical subject and the verb agrees with it). The piacere-family verbs (piacere, mancare, sembrare, bastare, servire, occorrere) all follow this pattern."
+    },
+    "right-dislocation": {
+      "short": "Putting a topic at the END of the sentence with a clitic referring back to it earlier.",
+      "long": "Mirror of left-dislocation: 'L'ho mangiata, la pizza.' The clitic comes first, then the noun phrase is added at the end as a clarifier. Very common in spoken Italian; less marked in writing than left-dislocation."
+    },
+    "neuter lo": {
+      "short": "lo standing in for a whole clause or for a predicate, invariable regardless of gender: 'Lo so' = I know (it).",
+      "long": "When 'lo' resumes an entire clause ('Sai che piove?' 'Sì, lo so.') or a predicate adjective ('Sei stanca?' 'Lo sono.'), it stays as 'lo' regardless of the gender of the antecedent. Distinct from masculine-singular DOP lo, although the surface form is identical."
+    },
+    "modal verb": {
+      "short": "dovere, potere, volere, sapere followed by an infinitive: voglio vedere, devo andare.",
+      "long": "Italian's modal verbs (dovere, potere, volere, sapere + infinitive) interact with clitics specially: the clitic can sit before the modal ('lo voglio vedere') or attach to the infinitive ('voglio vederlo'). Both positions are correct; placement between the modal and the infinitive is forbidden."
+    },
+    "predicate": {
+      "short": "The part of the sentence that says something about the subject: in 'Maria is tired', the predicate is 'is tired'.",
+      "long": "When the predicate is replaced by 'lo' (neuter), the form is invariable: 'Sono stanca' becomes 'Lo sono'. Predicate adjectives, predicate nouns, and whole verb phrases can all be resumed this way."
+    },
+    "compound tense": {
+      "short": "A tense built from an auxiliary (avere or essere) plus a past participle: passato prossimo, trapassato, etc.",
+      "long": "Italian compound tenses pair an auxiliary in some form (present for passato prossimo, imperfect for trapassato) with the past participle. Clitics in compound tenses sit before the auxiliary ('l'ho visto'), not between auxiliary and participle."
+    },
+    "imperfect indicative": {
+      "short": "The 'background' past tense: io parlavo, lui andava. Used for habitual or ongoing past actions.",
+      "long": "Marks habitual, repeated, or ongoing past actions, descriptions, and background states. Contrasts with passato prossimo (single completed actions). 'Quando ero piccolo, parlavo solo italiano' uses imperfect for the ongoing childhood state."
+    },
+    "conditional": {
+      "short": "The 'would' form: parlerei, parleresti. Used for politeness, hypotheticals, and reported future-in-the-past.",
+      "long": "Present conditional (parlerei) and past conditional (avrei parlato). Used for politeness ('vorrei un caffè'), hypotheticals ('se potessi, andrei'), and to express what would happen. Clitics behave the same as in any finite tense (pre-verb)."
+    },
+    "trapassato prossimo": {
+      "short": "The 'had done' past tense: avevo parlato, ero andato.",
+      "long": "Formed with the imperfect of avere or essere plus a past participle. Used for actions completed before another past action: 'Quando sono arrivato, Marco se n'era già andato' (by the time I arrived, Marco had already left)."
+    },
+    "future": {
+      "short": "The future tense: parlerò, vedrò. Clitics behave the same as in present.",
+      "long": "Used for upcoming actions and for probability ('Saranno le tre' = 'it must be three o'clock'). Italian also uses the present indicative very commonly for near-future events. Clitics sit pre-verb just as in any finite tense."
+    },
+    "1sg": {
+      "short": "First-person singular (I; Italian io).",
+      "long": "Shorthand for 'first-person singular' in grammatical descriptions. Verb form for io, e.g. parlo, sono andato."
+    },
+    "2sg": {
+      "short": "Second-person singular (you informal; Italian tu).",
+      "long": "Shorthand for 'second-person singular' (informal). Verb form for tu, e.g. parli, sei andato. Distinct from formal Lei, which uses third-person-singular forms."
+    },
+    "1pl": {
+      "short": "First-person plural (we; Italian noi).",
+      "long": "Shorthand for 'first-person plural'. Verb form for noi, e.g. parliamo, siamo andati."
+    },
+    "2pl": {
+      "short": "Second-person plural (you all; Italian voi).",
+      "long": "Shorthand for 'second-person plural'. Verb form for voi, e.g. parlate, siete andati. Also used in modern Italian for formal-plural address (Loro is rare)."
+    },
+    "3pl": {
+      "short": "Third-person plural (they; Italian loro).",
+      "long": "Shorthand for 'third-person plural'. Verb form for loro, e.g. parlano, sono andati."
+    },
+    "DOP cluster": {
+      "short": "Two clitics where the second is a direct object pronoun: me lo, te la, glielo.",
+      "long": "A common shorthand. The first clitic is an IOP (or reflexive), the second is a DOP. The rules: IOP before DOP, vowel change of mi/ti/ci/vi to me/te/ce/ve, and gli/le become glie- and join the DOP into one word.",
+      "needed_for": "Useful shorthand in cluster items, though 'clitic cluster' already covers this."
+    },
+    "ne (partitive)": {
+      "short": "The clitic that means 'of them / some of it' after a quantity: ne ho tre.",
+      "long": "Partitive ne replaces a noun phrase with a quantity attached: 'Quanti libri hai?' 'Ne ho tre.' / 'Hai del vino?' 'Ne ho un po''. Triggers participle agreement in passato prossimo ('ne ho mangiate tre' if antecedent is f.pl). Distinct from pronominal ne (= di + topic), which does NOT trigger agreement.",
+      "needed_for": "Distinguishes the two ne functions in shorthand."
+    },
+    "ne (pronominal)": {
+      "short": "The clitic that stands for a di-phrase: parlare di → ne.",
+      "long": "Replaces a 'di + topic' complement: 'Parli del libro?' 'Sì, ne parlo.' / 'Pensi di Maria?' 'Sì, ne penso bene.' Does NOT trigger participle agreement (only partitive ne does). Used with verbs and adjectives that take a di-complement: parlare di, pensare di, essere sicuro di, avere bisogno di.",
+      "needed_for": "Distinguishes the two ne functions."
+    },
+    "ci (locative)": {
+      "short": "The clitic meaning 'there' or 'in/about it': ci vado, ci penso.",
+      "long": "Replaces a place phrase (a + place, in + place, da + place) or an a-complement (pensare a, credere a). Also appears in existentials (c'è / ci sono) and in idiomatic verbs (volerci, metterci, farcela, tenerci). Distinct from DOP/IOP/reflexive ci even though the form is the same.",
+      "needed_for": "Distinguishes the locative function from the personal-pronoun ci."
+    },
+    "pro-drop": {
+      "short": "Italian regularly omits the subject pronoun because the verb ending shows who's speaking.",
+      "long": "Italian, like Spanish and Latin, is a pro-drop language: 'parlo' alone means 'I speak' (the -o ending shows 1sg). Subject pronouns (io, tu, lui, lei) are used for emphasis, contrast, or disambiguation. The opposite of English, which obligatorily marks the subject."
+    },
+    "lexicalised": {
+      "short": "When a clitic (or clitic cluster) is built into the verb's identity rather than referring to anything: farcela, andarsene.",
+      "long": "Some Italian verbs incorporate clitics as part of their lexical form. The la in farcela doesn't refer to any antecedent; the ne in andarsene doesn't mean 'of them'. The clitics are fossilised parts of the verb. The reflexive component varies by person (me ne vado, te ne vai, se ne va), but the ne is fixed.",
+      "needed_for": "Used in explanations for farcela, andarsene, tenerci, volerci, fregarsene, starsene."
+    },
+    "pronominal verb": {
+      "short": "A verb that always carries built-in clitics: andarsene, farcela, fregarsene.",
+      "long": "Pronominal verbs are lexicalised forms with one or more clitics baked into the dictionary entry. Andarsene = andare + si + ne (to leave); farcela = fare + ci + la (to manage). The clitics vary the reflexive part with person but otherwise stay in place. Sometimes called 'verbi pronominali' or 'verbi procomplementari'.",
+      "needed_for": "Used in the ne.motion_andarsene cluster of items."
+    },
+    "reciprocal": {
+      "short": "Action done to each other, marked by the reflexive plural: 'ci vediamo' = we see each other.",
+      "long": "Italian uses the reflexive form (plural persons) to express reciprocal action. 'Si amano' can mean 'they love themselves' (reflexive) or 'they love each other' (reciprocal); context decides. The reciprocal reading is more common with plurals. The construction takes essere as auxiliary in compound tenses, like all reflexives."
+    },
+    "argument structure": {
+      "short": "The set of slots a verb opens up: subject, direct object, indirect object, prepositional complement.",
+      "long": "A verb's argument structure determines which pronouns it can take. Transitive verbs (vedere, mangiare) take a direct object → DOP. Verbs with 'a + person' (telefonare, parlare, dare) take an indirect object → IOP. Verbs with 'di + topic' (parlare di, pensare di) take a di-complement → pronominal ne. The argument structure is a lexical fact about the verb; it isn't always obvious from the English equivalent.",
+      "needed_for": "Used to explain DOP/IOP disambiguation: 'rispondere takes a + person, so the pronoun is IOP'."
+    },
+    "resumption": {
+      "short": "Following up a fronted noun phrase with a clitic that points back to it: 'La pizza, l'ho mangiata.'",
+      "long": "When a noun phrase is moved to the front of the sentence (or sometimes the end), Italian requires a clitic later in the sentence to fill the role it would normally have played. 'La pizza, l'ho mangiata' — la pizza is fronted, the clitic l' resumes it as the direct object of mangiare. Spoken Italian uses resumption far more readily than English; in writing it's marked but standard.",
+      "needed_for": "Used in left-dislocation and right-dislocation explanations.",
+      "aliases": ["resumed", "resumed by a clitic"]
+    },
+    "pre-verb position": {
+      "short": "The default slot for a clitic in finite tenses: immediately before the (auxiliary or finite) verb. 'Lo vedo'.",
+      "long": "In present, imperfect, passato prossimo, future, conditional, subjunctive, the clitic sits immediately before the verb (or before the auxiliary, in compound tenses). Negation, when present, goes outside: 'non lo vedo'. The pre-verb position is the unmarked one; everything else (attached, between) follows different rules.",
+      "needed_for": "Used as a positional shorthand in many position explanations."
+    },
+    "attached position": {
+      "short": "When the clitic attaches to the end of an infinitive, gerund, or tu/noi/voi imperative: 'vederlo', 'dammelo'.",
+      "long": "Infinitives drop their final -e and the clitic attaches as one written word. Gerunds attach in the same way. Tu/noi/voi positive imperatives attach the clitic. Monosyllabic tu imperatives (da', di', fa', va', sta') double the initial consonant of the attaching clitic. Formal Lei imperatives do NOT attach; they keep the clitic pre-verb.",
+      "needed_for": "Used as a positional shorthand."
+    },
+    "joined cluster": {
+      "short": "When two written words become one: vederlo (attached to infinitive), dammelo (attached to imperative).",
+      "long": "Clitics attaching to infinitives, gerunds, and tu/noi/voi imperatives join with the verb (and with each other) into a single written word. The cluster's vowel-change and ordering rules still apply: vedermelo, parlandogliene, fammelo. Glielo-family clusters (glielo, gliela, gliene) are always one word in any position. Other pre-verb clusters (me lo, te ne, ce la) stay as two words.",
+      "needed_for": "Distinguishes from the pre-verb separated form; key to the joined_when_should_be_separate diagnostic."
+    },
+    "separated cluster": {
+      "short": "A pre-verb clitic cluster written as two words: me lo dai, te ne ho parlato, ce la fai.",
+      "long": "Pre-verb clitic clusters in finite tenses stay as two separate words in Italian's standard spelling, even though they're pronounced together. Joining them into one word (melo, tene, cela) is a common over-generalisation from the post-verb attached pattern. Glielo-family clusters are the exception: they're always one word.",
+      "needed_for": "Pairs with 'joined cluster' for the joined_when_should_be_separate explanation."
+    },
+    "monosyllabic imperative": {
+      "short": "The five tu imperatives da', di', fa', va', sta' — they double the next consonant when a clitic attaches.",
+      "long": "Italian's five monosyllabic tu imperatives (from dare, dire, fare, andare, stare) drop the verb's full form and end in a vowel + apostrophe. When a clitic attaches, the initial consonant of the clitic doubles: dammi, dimmi, fammelo, vacci, stammi. The exception is gli, which doesn't double: digli, not diggli.",
+      "needed_for": "Used in position.post_imperative_consonant_doubling items."
+    },
+    "preceding-DOP rule": {
+      "short": "The rule that the past participle agrees with a preceding direct-object clitic in a compound tense: 'l'ho mangiata'.",
+      "long": "With avere as auxiliary, the past participle is invariable by default. But when a direct-object clitic (lo/la/li/le or partitive ne) comes before the auxiliary, the participle agrees with it in gender and number: 'Ho visto Anna' → 'L'ho vista' (f.sg agreement). The rule with 1/2-person DOPs (mi, ti, ci, vi) is optional: agreement feels register-marked.",
+      "needed_for": "Used in many participle-agreement explanations across the pronoun and passato_prossimo trees."
+    },
+    "negative imperative": {
+      "short": "Italian's 'don't do X' form: non + infinitive for tu, regular imperative for noi/voi/formal.",
+      "long": "The negative tu imperative uses non + infinitive ('non parlare!'), NOT the positive imperative form. Noi and voi use 'non' plus the regular imperative ('non parliamo!', 'non parlate!'). Formal Lei uses 'non' plus the subjunctive ('non parli!'). With clitics: the tu form has two valid positions (attached to the infinitive, or pre-verb).",
+      "needed_for": "Used in position.negative_imperative explanations."
+    },
+    "glie-cluster": {
+      "short": "The combined form when IOP gli/le meets a DOP or ne: gli/le + lo/la/li/le/ne → glielo/gliela/glieli/gliele/gliene.",
+      "long": "When the IOP gli (m.sg / m.pl in modern usage) or le (f.sg / formal Lei) combines with a DOP or with ne, both clitics fuse into a single word starting with glie-. The IOP gender disappears: glielo can be 'it to him' or 'it to her' or 'it to you formal'. Unlike other pre-verb clusters (me lo, te ne), glie-clusters are always one written word in any position.",
+      "needed_for": "Useful shorthand in cluster items; 'glielo-family' is the bucket name; 'glie-cluster' or 'glie-form' is the everyday name."
+    }
+  }
+}

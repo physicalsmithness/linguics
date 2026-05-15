@@ -1,0 +1,1200 @@
+[
+  {
+    "external_id": "trans_op_en_it_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Marco sees me at the bar every morning.",
+    "reference_translations": [
+      {"text": "Marco mi vede al bar ogni mattina.", "register": "neutral", "notes": "Standard. Clitic mi before the finite verb."},
+      {"text": "Mi vede al bar ogni mattina, Marco.", "register": "neutral", "notes": "Right-dislocated subject for emphasis; clitic still pre-verb."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 1,
+    "cefr_level_target": "A2",
+    "required_buckets": ["pronoun.direct_object.mi", "pronoun.position.pre_finite_verb"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "sees", "language": "en", "aspects": {"translation": {"reveal": "to see - vedere", "bucket": "vocabulary.it.vedere.translation"}}},
+      {"lemma": "bar", "language": "en", "aspects": {"translation": {"reveal": "bar - bar", "bucket": "vocabulary.it.bar.translation"}}},
+      {"lemma": "morning", "language": "en", "aspects": {"translation": {"reveal": "morning - mattina", "bucket": "vocabulary.it.mattina.translation"}}}
+    ],
+    "explanation": "Vedere is transitive (no preposition), so 'me' is the direct object. The 1sg DOP is mi, in pre-verb position. Stack: mi + vede. The 'at the bar' uses the articulated preposition al = a + il.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Anna saw him at the cinema yesterday.",
+    "reference_translations": [
+      {"text": "Anna l'ha visto al cinema ieri.", "register": "neutral", "notes": "Standard, with elision la→l' incorrect here; it's lo→l' before ha. Participle agrees m.sg → visto."},
+      {"text": "Ieri Anna l'ha visto al cinema.", "register": "neutral", "notes": "Fronted time adverbial."},
+      {"text": "Anna lo ha visto al cinema ieri.", "register": "neutral", "polarity": "negative", "notes": "WRONG in standard register: 'lo ha' must elide to 'l'ha'."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "required_buckets": ["pronoun.direct_object.lo", "pronoun.direct_object.elision_before_vowel", "pronoun.position.pre_finite_verb", "verb_form.passato_prossimo.participle_agreement.with_avere.preceding_dop_lo"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "saw", "language": "en", "aspects": {"translation": {"reveal": "to see - vedere", "bucket": "vocabulary.it.vedere.translation"}}},
+      {"lemma": "him", "language": "en", "aspects": {"translation": {"reveal": "(referring to 'him' as DOP)", "bucket": "vocabulary.it.dop_pronouns"}}},
+      {"lemma": "cinema", "language": "en", "aspects": {"translation": {"reveal": "cinema - cinema", "bucket": "vocabulary.it.cinema.translation"}}}
+    ],
+    "explanation": "Vedere is transitive, so 'him' is the direct object. The m.sg DOP is lo, which undergoes elision to l' before ho/ha/hai. With a preceding-DOP cluster the participle agrees: m.sg → visto. Stack: l' + ha + visto.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_03",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "We wait for you (informal) outside the bar.",
+    "reference_translations": [
+      {"text": "Ti aspettiamo fuori dal bar.", "register": "neutral", "notes": "Clitic ti before the verb. Aspettare is transitive in Italian (no preposition)."},
+      {"text": "Ti aspettiamo fuori al bar.", "register": "colloquial", "notes": "Common spoken variant; 'fuori al' is colloquial."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 1,
+    "cefr_level_target": "A2",
+    "required_buckets": ["pronoun.direct_object.ti", "pronoun.position.pre_finite_verb"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "wait", "language": "en", "aspects": {"translation": {"reveal": "to wait for - aspettare", "bucket": "vocabulary.it.aspettare.translation"}}}
+    ],
+    "explanation": "Italian aspettare is transitive: there's no preposition like English 'wait FOR'. The informal 2sg DOP is ti, in pre-verb position.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_04",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I'll call you tomorrow, ma'am. (formal)",
+    "reference_translations": [
+      {"text": "La chiamerò domani, signora.", "register": "formal", "notes": "Formal La (DOP). Capitalisation typical in writing; spoken is the same surface form."},
+      {"text": "La chiamo domani, signora.", "register": "formal", "notes": "Present-for-near-future is normal in Italian; both are acceptable."}
+    ],
+    "topic": "pronoun",
+    "register": "formal",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "required_buckets": ["pronoun.direct_object.formal_La", "pronoun.position.pre_finite_verb"],
+    "optional_buckets": ["pronoun.special.formal_lei_capitalisation"],
+    "vocab_help": [
+      {"lemma": "call", "language": "en", "aspects": {"translation": {"reveal": "to call - chiamare", "bucket": "vocabulary.it.chiamare.translation"}}}
+    ],
+    "explanation": "Italian's formal address uses a grammatically feminine pronoun (Lei) regardless of the addressee's gender. Chiamare is transitive, so the addressee is the direct object: the formal DOP is La (often capitalised in writing).",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_05",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I gave the book to Anna yesterday.",
+    "reference_translations": [
+      {"text": "Le ho dato il libro ieri.", "register": "neutral", "notes": "IOP le replaces 'a Anna'. With avere + post-verb DO (il libro), the participle is invariable: dato."},
+      {"text": "Ho dato il libro ad Anna ieri.", "register": "neutral", "notes": "Without the clitic; equally good. Note 'ad' before vowel."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "required_buckets": ["pronoun.indirect_object.le_fem", "pronoun.position.pre_finite_verb"],
+    "optional_buckets": ["verb_form.passato_prossimo.participle_agreement.with_avere.no_preceding_dop"],
+    "vocab_help": [
+      {"lemma": "gave", "language": "en", "aspects": {"translation": {"reveal": "to give - dare", "bucket": "vocabulary.it.dare.translation"}}},
+      {"lemma": "book", "language": "en", "aspects": {"translation": {"reveal": "book - libro", "bucket": "vocabulary.it.libro.translation"}}}
+    ],
+    "explanation": "Dare opens an a-phrase for the recipient: dare qualcosa a qualcuno. The person given to is the indirect object, so 'to Anna' becomes the IOP le (f.sg). The participle stays invariable because the DO (il libro) is post-verb and overt, so there's no preceding-DOP trigger.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_06",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Marco phones his mother every Sunday.",
+    "reference_translations": [
+      {"text": "Marco le telefona ogni domenica.", "register": "neutral", "notes": "Replacing 'his mother' with IOP le. Telefonare takes a + person, hence IOP."},
+      {"text": "Marco telefona a sua madre ogni domenica.", "register": "neutral", "notes": "Without the clitic; equally good."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "required_buckets": ["pronoun.indirect_object.le_fem"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "phones", "language": "en", "aspects": {"translation": {"reveal": "to phone - telefonare", "bucket": "vocabulary.it.telefonare.translation"}, "requires_iop": {"reveal": "telefonare a + person (IOP)", "bucket": "vocabulary.it.telefonare.requires_iop"}}},
+      {"lemma": "mother", "language": "en", "aspects": {"translation": {"reveal": "mother - madre", "bucket": "vocabulary.it.madre.translation"}}}
+    ],
+    "explanation": "Italian telefonare takes 'a + person' (you phone TO someone), not a plain direct object as in English. The person phoned is the indirect object, so 'his mother' becomes the f.sg IOP le.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_07",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I like Italian films.",
+    "reference_translations": [
+      {"text": "Mi piacciono i film italiani.", "register": "neutral", "notes": "Piacere: subject is 'i film', so plural verb. The English-style subject 'I' surfaces as IOP mi."},
+      {"text": "A me piacciono i film italiani.", "register": "neutral", "notes": "Emphatic with stressed a me. Both clitic and stressed forms can co-occur in contrast."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 1,
+    "cefr_level_target": "A2",
+    "required_buckets": ["pronoun.indirect_object.verbs_taking_iop", "pronoun.indirect_object.mi"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "like", "language": "en", "aspects": {"translation": {"reveal": "to like - piacere (inverted)", "bucket": "vocabulary.it.piacere.translation"}, "requires_iop": {"reveal": "experiencer is IOP, verb agrees with thing liked", "bucket": "vocabulary.it.piacere.requires_iop"}}},
+      {"lemma": "films", "language": "en", "aspects": {"translation": {"reveal": "film - film", "bucket": "vocabulary.it.film.translation"}}}
+    ],
+    "explanation": "Italian piacere inverts the English-style mapping: the thing liked is the grammatical subject and the experiencer is the IOP. 'I like X' is literally 'X is pleasing to me'. The 1sg IOP mi names the experiencer; the verb agrees with the Italian subject, here plural 'i film' → piacciono.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_08",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Anna missed her friends a lot when she was in Australia.",
+    "reference_translations": [
+      {"text": "Ad Anna mancavano molto le sue amiche quando era in Australia.", "register": "neutral", "notes": "Mancare inverts like piacere: 'her friends were missing to Anna'. Stressed 'ad Anna' to make the experiencer explicit."},
+      {"text": "Le mancavano molto le sue amiche quando era in Australia.", "register": "neutral", "notes": "With IOP le (referring to Anna)."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": ["pronoun.indirect_object.verbs_taking_iop", "pronoun.indirect_object.le_fem"],
+    "optional_buckets": ["verb_form.imperfect_indicative"],
+    "vocab_help": [
+      {"lemma": "missed", "language": "en", "aspects": {"translation": {"reveal": "to miss - mancare (inverted)", "bucket": "vocabulary.it.mancare.translation"}, "requires_iop": {"reveal": "the misser is IOP", "bucket": "vocabulary.it.mancare.requires_iop"}}},
+      {"lemma": "friends", "language": "en", "aspects": {"translation": {"reveal": "friend - amico/amica", "bucket": "vocabulary.it.amico.translation"}}}
+    ],
+    "explanation": "Mancare belongs to the piacere family: the one missed is the grammatical subject and the misser is the IOP. 'Anna missed her friends' is literally 'her friends were missing to Anna'. The IOP is f.sg le (or stressed 'ad Anna' for emphasis); the verb is imperfect mancavano, agreeing with the plural subject 'le sue amiche'.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_09",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Marco gets up at six every morning.",
+    "reference_translations": [
+      {"text": "Marco si alza alle sei ogni mattina.", "register": "neutral", "notes": "Reflexive si + alzarsi."},
+      {"text": "Marco si alza alle sei ogni giorno.", "register": "neutral", "notes": "Variant with 'every day'."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 1,
+    "cefr_level_target": "A2",
+    "required_buckets": ["pronoun.reflexive.si_sg"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "gets up", "language": "en", "aspects": {"translation": {"reveal": "to get up - alzarsi (reflexive)", "bucket": "vocabulary.it.alzarsi.translation"}}}
+    ],
+    "explanation": "Italian uses a reflexive verb for routine actions the subject does to itself. Getting up is alzarsi; 3sg → si alza. The clitic stays in pre-verb position.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_10",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Yesterday morning I got up late and missed the train.",
+    "reference_translations": [
+      {"text": "Ieri mattina mi sono alzato tardi e ho perso il treno.", "register": "neutral", "notes": "Masc speaker. Reflexive PP: aux essere + participle agrees with subject."},
+      {"text": "Ieri mattina mi sono alzata tardi e ho perso il treno.", "register": "neutral", "notes": "Fem speaker. Participle alzata."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "required_buckets": ["pronoun.reflexive.essere_in_compound", "pronoun.reflexive.mi", "verb_form.passato_prossimo.auxiliary.essere_reflexive", "verb_form.passato_prossimo.auxiliary.avere_default"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "got up", "language": "en", "aspects": {"translation": {"reveal": "to get up - alzarsi", "bucket": "vocabulary.it.alzarsi.translation"}}},
+      {"lemma": "missed", "language": "en", "aspects": {"translation": {"reveal": "to miss (a train) - perdere", "bucket": "vocabulary.it.perdere.translation"}}},
+      {"lemma": "train", "language": "en", "aspects": {"translation": {"reveal": "train - treno", "bucket": "vocabulary.it.treno.translation"}}}
+    ],
+    "explanation": "Two clauses with different auxiliaries. Alzarsi is reflexive → essere as auxiliary, with the participle agreeing with the subject (alzato/alzata for masc/fem speaker). Perdere is plain transitive → avere as auxiliary, participle invariable: perso.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_11",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Marco gave it (the book) to her yesterday.",
+    "reference_translations": [
+      {"text": "Marco gliel'ha dato ieri.", "register": "neutral", "notes": "le + lo → glielo, elided before ha. Participle agrees m.sg with preceding 'lo' → dato."},
+      {"text": "Marco glielo ha dato ieri.", "register": "neutral", "notes": "Unelided variant; less common in writing but acceptable."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": ["pronoun.combined.glielo_family", "verb_form.passato_prossimo.participle_agreement.with_avere.preceding_dop_lo"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "gave", "language": "en", "aspects": {"translation": {"reveal": "to give - dare", "bucket": "vocabulary.it.dare.translation"}}}
+    ],
+    "explanation": "When the IOP and a DOP meet, the IOP changes shape: gli/le combine with lo/la/li/le/ne into the glie-cluster. Here f.sg IOP le + m.sg DOP lo → glielo (one written word). Elision to gliel' before ha. The participle agrees with the preceding DOP: m.sg → dato.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_12",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Will you (informal) lend it to me?",
+    "reference_translations": [
+      {"text": "Me lo presti?", "register": "neutral", "notes": "Vowel change mi → me before lo. IOP first, DOP second."},
+      {"text": "Me lo puoi prestare?", "register": "neutral", "notes": "With modal; clitic cluster moves to the modal."},
+      {"text": "Puoi prestarmelo?", "register": "neutral", "notes": "With modal, cluster attached to the infinitive."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "required_buckets": ["pronoun.combined.vowel_changes", "pronoun.combined.order_iop_before_dop"],
+    "optional_buckets": ["pronoun.position.modal_plus_infinitive_either"],
+    "vocab_help": [
+      {"lemma": "lend", "language": "en", "aspects": {"translation": {"reveal": "to lend - prestare", "bucket": "vocabulary.it.prestare.translation"}}}
+    ],
+    "explanation": "Italian's clitic cluster puts the IOP first, then the DOP. When the IOP is mi, ti, ci, or vi, the i shifts to e before the DOP: mi + lo → me lo (separated, pre-verb) or attached to the infinitive as one word (prestarmelo).",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_13",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "How many brothers do you have? I have three.",
+    "reference_translations": [
+      {"text": "Quanti fratelli hai? Ne ho tre.", "register": "neutral", "notes": "Partitive ne required when the noun is dropped after a quantifier."},
+      {"text": "Quanti fratelli hai? Tre.", "register": "colloquial", "notes": "Very colloquial; the ne is omitted, but standard register requires it."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "required_buckets": ["pronoun.ne.partitive_quantity"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "brothers", "language": "en", "aspects": {"translation": {"reveal": "brother - fratello", "bucket": "vocabulary.it.fratello.translation"}}}
+    ],
+    "explanation": "When a noun gets dropped after a quantifier (a number, un po', molti), Italian requires the partitive ne to resume it. The number stays, the noun goes, ne does the work: 'Ho tre' alone isn't grammatical; standard is 'Ne ho tre'.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_14",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Have you eaten the apples? Yes, I ate three of them.",
+    "reference_translations": [
+      {"text": "Hai mangiato le mele? Sì, ne ho mangiate tre.", "register": "neutral", "notes": "Partitive ne triggers participle agreement with the implicit antecedent (le mele, f.pl) → mangiate."},
+      {"text": "Hai mangiato le mele? Sì, ne ho mangiato tre.", "register": "neutral", "polarity": "negative", "notes": "WRONG in standard register: agreement is expected with partitive ne."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": ["pronoun.ne.with_pp_agreement", "verb_form.passato_prossimo.participle_agreement.with_avere.preceding_partitive_ne"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "eaten", "language": "en", "aspects": {"translation": {"reveal": "to eat - mangiare", "bucket": "vocabulary.it.mangiare.translation"}}},
+      {"lemma": "apples", "language": "en", "aspects": {"translation": {"reveal": "apple - mela", "bucket": "vocabulary.it.mela.translation"}}}
+    ],
+    "explanation": "The partitive ne carries the gender and number of its antecedent (le mele, f.pl) through to participle agreement, exactly parallel to the preceding-DOP rule. Stack: ne + ho + mangiate (f.pl). The invariable 'ne ho mangiato' is the common error and is rejected.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_15",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "What do you think about my idea?",
+    "reference_translations": [
+      {"text": "Cosa ne pensi della mia idea?", "register": "neutral", "notes": "Slightly redundant: ne + 'della mia idea' both reference the same thing. Common in spoken Italian as a clarifying frame."},
+      {"text": "Cosa pensi della mia idea?", "register": "neutral", "notes": "Without ne. Both work; the redundant version is more colloquial."},
+      {"text": "Cosa ne pensi?", "register": "neutral", "notes": "Stock phrase; the di-phrase is implicit."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "required_buckets": ["pronoun.ne.pronominal_di"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "think", "language": "en", "aspects": {"translation": {"reveal": "to think (opinion) - pensare di", "bucket": "vocabulary.it.pensare.translation"}}},
+      {"lemma": "idea", "language": "en", "aspects": {"translation": {"reveal": "idea - idea", "bucket": "vocabulary.it.idea.translation"}}}
+    ],
+    "explanation": "Italian pensare DI means 'have an opinion about', distinct from pensare A (think of, daydream-style). When the di-phrase is pronominalised, the pronominal ne does the resumption. 'Cosa ne pensi?' is the stock conversational frame.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_16",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "We're going there on Saturday.",
+    "reference_translations": [
+      {"text": "Ci andiamo sabato.", "register": "neutral", "notes": "Locative ci replaces a location."},
+      {"text": "Sabato ci andiamo.", "register": "neutral", "notes": "Fronted time adverbial."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "required_buckets": ["pronoun.ci_locative.location"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "going", "language": "en", "aspects": {"translation": {"reveal": "to go - andare", "bucket": "vocabulary.it.andare.translation"}}}
+    ],
+    "explanation": "Italian replaces a where-phrase with the locative ci. In any finite tense the clitic sits in pre-verb position: ci + andiamo + sabato. The English 'there' is the same locative idea, just kept as a separate word.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_17",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "There are too many people in this room.",
+    "reference_translations": [
+      {"text": "Ci sono troppe persone in questa stanza.", "register": "neutral", "notes": "Plural existential."},
+      {"text": "C'è troppa gente in questa stanza.", "register": "neutral", "notes": "Using collective f.sg 'gente' instead; singular existential."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 1,
+    "cefr_level_target": "A2",
+    "required_buckets": ["pronoun.ci_locative.existential"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "people", "language": "en", "aspects": {"translation": {"reveal": "people - persone (f.pl) / gente (f.sg collective)", "bucket": "vocabulary.it.persona.translation"}}},
+      {"lemma": "room", "language": "en", "aspects": {"translation": {"reveal": "room - stanza", "bucket": "vocabulary.it.stanza.translation"}}}
+    ],
+    "explanation": "Italian's existential frame ('there is / there are') uses the existential ci plus essere, agreeing with the noun. Plural 'persone' → ci sono; singular collective 'gente' → c'è. Both renderings are everyday.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_18",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I can't manage to finish the work on time.",
+    "reference_translations": [
+      {"text": "Non ce la faccio a finire il lavoro in tempo.", "register": "neutral", "notes": "Farcela = to manage / make it. Fixed clitics ce + la."},
+      {"text": "Non riesco a finire il lavoro in tempo.", "register": "neutral", "notes": "Without the idiom: 'riuscire a' = to succeed in. Equivalent meaning."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": ["pronoun.ci_locative.idiomatic_verbs.farcela"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "manage", "language": "en", "aspects": {"translation": {"reveal": "to manage / make it - farcela (with ci+la)", "bucket": "vocabulary.it.farcela.translation"}}},
+      {"lemma": "work", "language": "en", "aspects": {"translation": {"reveal": "work - lavoro", "bucket": "vocabulary.it.lavoro.translation"}}}
+    ],
+    "explanation": "Italian has a small group of verbs where ci is lexicalised: farcela ('to manage / make it') is one. The ce + la travel with the verb as built-in clitics, regardless of whether anything specific is being referred to. The 1sg form is non ce la faccio. The alternative is riuscire a + infinitive.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_19",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Tell me the truth, please (informal).",
+    "reference_translations": [
+      {"text": "Dimmi la verità, per favore.", "register": "neutral", "notes": "Tu imperative di' + mi → dimmi (consonant doubling)."},
+      {"text": "Dimmi la verità, ti prego.", "register": "neutral", "notes": "Variant with 'ti prego' as a politeness marker."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": ["pronoun.position.post_imperative_consonant_doubling", "pronoun.position.post_imperative_tu_attached"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "tell", "language": "en", "aspects": {"translation": {"reveal": "to tell - dire", "bucket": "vocabulary.it.dire.translation"}}},
+      {"lemma": "truth", "language": "en", "aspects": {"translation": {"reveal": "truth - verità", "bucket": "vocabulary.it.verità.translation"}}}
+    ],
+    "explanation": "On a tu imperative the clitic takes the attached position. The five monosyllabic imperatives (da', di', fa', va', sta') trigger consonant doubling on the attaching clitic. Stack: di' + mi → dimmi (note the double -m-).",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_20",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Please give it (the book) to me, sir. (formal)",
+    "reference_translations": [
+      {"text": "Me lo dia, per favore, signore.", "register": "formal", "notes": "Formal Lei imp: clitic cluster pre-verb. dia = 3sg subjunctive of dare."},
+      {"text": "Me lo dia, signore, per favore.", "register": "formal", "notes": "Reordered politeness markers."}
+    ],
+    "topic": "pronoun",
+    "register": "formal",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": ["pronoun.position.formal_imperative_pre_verb", "pronoun.combined.vowel_changes", "pronoun.combined.order_iop_before_dop"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "give", "language": "en", "aspects": {"translation": {"reveal": "to give - dare", "bucket": "vocabulary.it.dare.translation"}}}
+    ],
+    "explanation": "Italian's formal address takes a different imperative pattern. The formal Lei imperative uses the subjunctive form (dia from dare) and keeps the clitic cluster in pre-verb position. Stack: me + lo + dia. The tu form would be 'dammelo' (attached, doubled).",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_21",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Don't tell him! (informal)",
+    "reference_translations": [
+      {"text": "Non dirglielo!", "register": "neutral", "notes": "Negative tu imp = non + inf. Clitic cluster glielo attached to infinitive dire (→ dir-)."},
+      {"text": "Non glielo dire!", "register": "neutral", "notes": "Pre-infinitive variant. Both correct."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": ["pronoun.position.negative_imperative", "pronoun.combined.glielo_family"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "tell", "language": "en", "aspects": {"translation": {"reveal": "to tell - dire", "bucket": "vocabulary.it.dire.translation"}}}
+    ],
+    "explanation": "The negative tu imperative uses non + infinitive (not the positive imperative form). The neuter lo resumes the 'it' (an implicit clause: the secret/news); combined with the IOP gli it gives the glielo cluster. Cluster has two positions: attached to the infinitive (non dirglielo) or pre-verb (non glielo dire).",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_22",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I'm leaving now.",
+    "reference_translations": [
+      {"text": "Me ne vado adesso.", "register": "neutral", "notes": "Andarsene: clitics me + ne with the verb."},
+      {"text": "Adesso me ne vado.", "register": "neutral", "notes": "Fronted adverb."},
+      {"text": "Me ne sto andando.", "register": "neutral", "notes": "Progressive: stare + gerundio. Clitics pre-stare."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": ["pronoun.ne.motion_andarsene", "pronoun.combined.me_ne_family"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "leaving", "language": "en", "aspects": {"translation": {"reveal": "to leave - andarsene (with reflexive si + ne)", "bucket": "vocabulary.it.andarsene.translation"}}}
+    ],
+    "explanation": "Italian for 'to leave' is often the pronominal verb andarsene, which carries a reflexive component plus ne (the 'from-here' part lexicalised). 1sg: mi shifts to me before ne. Stack: me + ne + vado.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_23",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I know (it / that).",
+    "reference_translations": [
+      {"text": "Lo so.", "register": "neutral", "notes": "Neuter lo replaces the clause. Stock response."},
+      {"text": "So.", "register": "neutral", "polarity": "negative", "notes": "WRONG (or at best very marked): the lo is obligatory as resumption."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "required_buckets": ["pronoun.special.lo_neutral"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "know", "language": "en", "aspects": {"translation": {"reveal": "to know (fact) - sapere", "bucket": "vocabulary.it.sapere.translation"}}}
+    ],
+    "explanation": "When 'it' refers back to a whole clause (a fact, a piece of information), Italian uses the neuter lo. The lo is obligatory with verbs like sapere, pensare, credere: 'So' alone isn't grammatical; 'Lo so' is.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_24",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I want to see her tomorrow.",
+    "reference_translations": [
+      {"text": "Voglio vederla domani.", "register": "neutral", "notes": "Clitic attached to infinitive."},
+      {"text": "La voglio vedere domani.", "register": "neutral", "notes": "Clitic pre-modal. Equally good."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "required_buckets": ["pronoun.position.modal_plus_infinitive_either", "pronoun.direct_object.la"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "see", "language": "en", "aspects": {"translation": {"reveal": "to see - vedere", "bucket": "vocabulary.it.vedere.translation"}}}
+    ],
+    "explanation": "With a modal verb plus an infinitive, the clitic has two valid positions: pre-verb before the modal (la voglio vedere) or attached to the infinitive (voglio vederla). Both are standard. Putting the clitic between modal and infinitive is forbidden.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_it_en_01",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Lo conosco da anni.",
+    "reference_translations": [
+      {"text": "I've known him for years.", "register": "neutral", "notes": "English present perfect maps to Italian present + 'da'."},
+      {"text": "I've known it for years.", "register": "neutral", "notes": "If 'lo' refers to a thing/topic rather than a person. Context-dependent."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "required_buckets": ["pronoun.direct_object.lo"],
+    "optional_buckets": ["verb_form.present_indicative.with_da_for_duration"],
+    "vocab_help": [
+      {"lemma": "conosco", "language": "it", "aspects": {"infinitive": {"reveal": "conoscere - to know (person)", "bucket": "vocabulary.it.conoscere.translation"}}}
+    ],
+    "explanation": "The Italian DOP lo can refer to a m.sg person ('him') or thing ('it'); only context decides. The 'da + time' construction for ongoing duration maps to the English present perfect: an Italian present plus da picks up what English needs the perfect to express.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_it_en_02",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Me lo dai, per favore?",
+    "reference_translations": [
+      {"text": "Will you give it to me, please?", "register": "neutral", "notes": "Standard rendering."},
+      {"text": "Can you give it to me, please?", "register": "neutral", "notes": "More polite English."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "required_buckets": ["pronoun.combined.order_iop_before_dop", "pronoun.combined.vowel_changes"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "dai", "language": "it", "aspects": {"infinitive": {"reveal": "dare - to give", "bucket": "vocabulary.it.dare.translation"}}}
+    ],
+    "explanation": "Italian's clitic cluster puts the IOP before the DOP. The IOP mi shifts to me before another clitic. Stack: me + lo + dai = 'will you give it to me'.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_it_en_03",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "A Marco gli ho parlato ieri sera.",
+    "reference_translations": [
+      {"text": "I spoke to Marco yesterday evening.", "register": "neutral", "notes": "Left-dislocation in the source (a Marco fronted + gli resuming) is usually flattened in English."},
+      {"text": "As for Marco, I spoke to him yesterday evening.", "register": "neutral", "notes": "Preserves the topicalisation."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": ["pronoun.special.pronoun_then_subject_noun", "pronoun.indirect_object.gli_masc"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "parlato", "language": "it", "aspects": {"infinitive": {"reveal": "parlare - to speak", "bucket": "vocabulary.it.parlare.translation"}}}
+    ],
+    "explanation": "The source uses Italian's left-dislocation construction: a fronted topic ('A Marco') resumed by a clitic ('gli'). This is very common in spoken Italian. English usually flattens it: the natural rendering is plain 'I spoke to Marco yesterday evening', though 'As for Marco,...' can preserve the topicalisation if the contrast matters.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_it_en_04",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Ce ne sono troppi.",
+    "reference_translations": [
+      {"text": "There are too many of them.", "register": "neutral", "notes": "Existential ci (→ ce before ne) + partitive ne + plural quantifier."},
+      {"text": "There's too many of them.", "register": "colloquial", "notes": "Spoken English."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": ["pronoun.combined.me_ne_family", "pronoun.ci_locative.existential", "pronoun.ne.partitive_quantity"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "troppi", "language": "it", "aspects": {"translation": {"reveal": "troppo - too much/many", "bucket": "vocabulary.it.troppo.translation"}}}
+    ],
+    "explanation": "Three pronoun rules fold into three words. The existential ci ('there are') meets the partitive ne ('of them'); ci shifts to ce before another clitic. The quantifier troppi agrees with the implicit antecedent. Stack: ce + ne + sono + troppi.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_it_en_05",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Glieli ho portati stamattina.",
+    "reference_translations": [
+      {"text": "I brought them to him this morning.", "register": "neutral", "notes": "OR 'to her' — the IOP gender is invisible in glieli."},
+      {"text": "I brought them to her this morning.", "register": "neutral", "notes": "Equally valid; context decides."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": ["pronoun.combined.glielo_family", "verb_form.passato_prossimo.participle_agreement.with_avere.preceding_dop_li"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "portati", "language": "it", "aspects": {"infinitive": {"reveal": "portare - to bring", "bucket": "vocabulary.it.portare.translation"}}}
+    ],
+    "explanation": "The IOP and DOP combine into the glie-cluster. Here IOP gli (or le, indistinguishable in the cluster) + m.pl DOP li → glieli (one word). The participle agrees with the preceding DOP: m.pl → portati. Stack: glieli + ho + portati.",
+    "examiner_note": "The IOP gender ambiguity (him vs her) is real and acceptable.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_it_en_06",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Ci penso io.",
+    "reference_translations": [
+      {"text": "I'll take care of it.", "register": "neutral", "notes": "Idiomatic 'pensarci' = to take care of."},
+      {"text": "Leave it to me.", "register": "neutral", "notes": "Equivalent idiom."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": ["pronoun.ci_locative.topic"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "penso", "language": "it", "aspects": {"infinitive": {"reveal": "pensare - to think (with ci = to take care of)", "bucket": "vocabulary.it.pensare.translation"}}}
+    ],
+    "explanation": "Italian has a small group of verbs where ci is lexicalised into an idiomatic meaning. Pensarci with this ci means 'to take care of', distinct from plain pensare ('to think'). The post-verb 'io' is a stressed subject for contrastive emphasis: 'I'll do it, not you'.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_it_en_07",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Mi sono accorto troppo tardi del mio errore.",
+    "reference_translations": [
+      {"text": "I realised my mistake too late.", "register": "neutral", "notes": "Accorgersi di qualcosa is reflexive + di."},
+      {"text": "I noticed my mistake too late.", "register": "neutral", "notes": "Alternative verb."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": ["pronoun.reflexive.mi", "pronoun.reflexive.essere_in_compound"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "accorto", "language": "it", "aspects": {"infinitive": {"reveal": "accorgersi - to realise / notice (reflexive)", "bucket": "vocabulary.it.accorgersi.translation"}}},
+      {"lemma": "errore", "language": "it", "aspects": {"translation": {"reveal": "errore - mistake", "bucket": "vocabulary.it.errore.translation"}}}
+    ],
+    "explanation": "Italian accorgersi is reflexive where English 'realise/notice' is plain transitive. The reflexive verb takes essere as auxiliary, and the participle agrees with the subject (accorto for masc speaker, accorta for fem). The thing realised takes 'di' → 'del mio errore'.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_it_en_08",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Non gliel'ho ancora detto.",
+    "reference_translations": [
+      {"text": "I haven't told him yet.", "register": "neutral", "notes": "OR 'told her'."},
+      {"text": "I still haven't told him.", "register": "neutral", "notes": "Variant emphasising delay."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": ["pronoun.combined.glielo_family", "pronoun.special.lo_neutral"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "detto", "language": "it", "aspects": {"infinitive": {"reveal": "dire - to tell", "bucket": "vocabulary.it.dire.translation"}}}
+    ],
+    "explanation": "The 'it' here refers back to a whole clause (the thing not yet told); that's neuter lo. Combined with the IOP gli or le it gives the glielo cluster (one word). Elision to gliel' before ho. Stack: non + gliel' + ho + ancora + detto.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_it_en_09",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Le piacciono molto i fiori.",
+    "reference_translations": [
+      {"text": "She likes flowers very much.", "register": "neutral", "notes": "Piacere inverted; IOP le = experiencer."},
+      {"text": "You (formal) like flowers very much.", "register": "neutral", "notes": "If Le is the formal-you addressee."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "required_buckets": ["pronoun.indirect_object.verbs_taking_iop", "pronoun.indirect_object.le_fem"],
+    "optional_buckets": ["pronoun.indirect_object.formal_Le"],
+    "vocab_help": [
+      {"lemma": "piacciono", "language": "it", "aspects": {"infinitive": {"reveal": "piacere - to please", "bucket": "vocabulary.it.piacere.translation"}}},
+      {"lemma": "fiori", "language": "it", "aspects": {"translation": {"reveal": "fiore - flower", "bucket": "vocabulary.it.fiore.translation"}}}
+    ],
+    "explanation": "Italian piacere inverts the English mapping: the thing liked is the grammatical subject and the experiencer is the IOP. Le has two grammatical readings: f.sg ('to her') or formal addressee ('to you formal'); context decides. The verb agrees with the plural subject 'i fiori' → piacciono.",
+    "examiner_note": "Ambiguity acknowledged; both renderings credited.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_it_en_10",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Marco si è lavato le mani prima di cena.",
+    "reference_translations": [
+      {"text": "Marco washed his hands before dinner.", "register": "neutral", "notes": "Reflexive in Italian; English uses possessive 'his'."},
+      {"text": "Marco washed his hands before having dinner.", "register": "neutral", "notes": "Variant with -ing."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "required_buckets": ["pronoun.reflexive.si_sg", "pronoun.reflexive.essere_in_compound"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "lavato", "language": "it", "aspects": {"infinitive": {"reveal": "lavarsi - to wash oneself", "bucket": "vocabulary.it.lavarsi.translation"}}},
+      {"lemma": "mani", "language": "it", "aspects": {"translation": {"reveal": "mano - hand", "bucket": "vocabulary.it.mano.translation"}}}
+    ],
+    "explanation": "Italian uses the reflexive lavarsi for washing-a-part-of-oneself, paired with the definite article ('le mani'), where English uses a plain transitive verb with a possessive ('his hands'). The reflexive takes essere as auxiliary; the participle agrees with the subject (m.sg → lavato).",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_it_en_11",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Dimmi, cosa ne pensi?",
+    "reference_translations": [
+      {"text": "Tell me, what do you think?", "register": "neutral", "notes": "Stock conversational frame."},
+      {"text": "Tell me, what do you think about it?", "register": "neutral", "notes": "Preserving the ne explicitly."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": ["pronoun.position.post_imperative_consonant_doubling", "pronoun.ne.pronominal_di"],
+    "optional_buckets": [],
+    "vocab_help": [],
+    "explanation": "Two pronoun moves in one short sentence. Tu imperative di' + mi triggers consonant doubling on the attached clitic → dimmi. The pensare DI construction is then pronominalised by ne ('what do you think about it').",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_it_en_12",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Si accomodi, prego.",
+    "reference_translations": [
+      {"text": "Please make yourself comfortable.", "register": "formal", "notes": "Formal Lei imperative."},
+      {"text": "Please take a seat.", "register": "formal", "notes": "Equivalent register-shift in English."}
+    ],
+    "topic": "pronoun",
+    "register": "formal",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": ["pronoun.position.formal_imperative_pre_verb", "pronoun.reflexive.si_sg"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "accomodi", "language": "it", "aspects": {"infinitive": {"reveal": "accomodarsi - to make oneself comfortable", "bucket": "vocabulary.it.accomodarsi.translation"}}}
+    ],
+    "explanation": "Italian's formal address takes a different imperative pattern from the informal one. The formal Lei imperative uses the subjunctive form (accomodi) and keeps the reflexive clitic in pre-verb position. The informal tu form 'accomodati' attaches it instead.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_it_en_13",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Ci vogliono tre ore per arrivare a Roma.",
+    "reference_translations": [
+      {"text": "It takes three hours to get to Rome.", "register": "neutral", "notes": "Volerci = it takes (time)."},
+      {"text": "You need three hours to get to Rome.", "register": "neutral", "notes": "Alternative English phrasing."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": ["pronoun.ci_locative.idiomatic_verbs"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "vogliono", "language": "it", "aspects": {"infinitive": {"reveal": "volerci - it takes (impersonal, with ci)", "bucket": "vocabulary.it.volerci.translation"}}}
+    ],
+    "explanation": "Italian has a small group of verbs with lexicalised ci. Volerci is impersonal ('it takes') and agrees with the noun: singular 'un'ora' → ci vuole, plural 'tre ore' → ci vogliono. No subject is filled in; the ci does the heavy lifting.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_25",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I've already told her about it.",
+    "reference_translations": [
+      {"text": "Gliene ho già parlato.", "register": "neutral", "notes": "le + ne → gliene. Parlare di → ne."},
+      {"text": "Le ho già parlato di questo.", "register": "neutral", "notes": "Without combining the clitics; equally good."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": ["pronoun.combined.glielo_family", "pronoun.ne.pronominal_di"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "told", "language": "en", "aspects": {"translation": {"reveal": "to tell about - parlare di", "bucket": "vocabulary.it.parlare.translation"}}}
+    ],
+    "explanation": "Two pronoun moves combine. Parlare DI pronominalises to the pronominal ne. When IOP le meets ne, the glie-cluster pattern applies: le + ne → gliene (one word). Stack: gliene + ho + già + parlato. The unmerged form 'le ho parlato di questo' is equally good.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_26",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "We saw each other at the conference last week.",
+    "reference_translations": [
+      {"text": "Ci siamo visti al convegno la settimana scorsa.", "register": "neutral", "notes": "Reciprocal ci. Masc.pl or mixed group → visti."},
+      {"text": "Ci siamo viste al convegno la settimana scorsa.", "register": "neutral", "notes": "All-female group → viste."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": ["pronoun.reflexive.ci", "pronoun.reflexive.essere_in_compound"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "saw", "language": "en", "aspects": {"translation": {"reveal": "to see (each other) - vedersi (reciprocal)", "bucket": "vocabulary.it.vedersi.translation"}}},
+      {"lemma": "conference", "language": "en", "aspects": {"translation": {"reveal": "conference - convegno", "bucket": "vocabulary.it.convegno.translation"}}}
+    ],
+    "explanation": "Italian uses the reflexive form to express reciprocal 'each other' actions. The reflexive ci (1pl) here means 'we [saw] each other'. Aux essere; participle agrees with the subject's gender: masc/mixed → visti, all-female → viste.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_27",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Anna wants me to call her this evening.",
+    "reference_translations": [
+      {"text": "Anna vuole che la chiami stasera.", "register": "neutral", "notes": "Italian uses a 'che' + subjunctive clause when subjects differ. La = DOP for Anna."},
+      {"text": "Anna vuole che io la chiami stasera.", "register": "neutral", "notes": "With explicit subject 'io' for emphasis."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": ["pronoun.direct_object.la", "pronoun.position.pre_finite_verb"],
+    "optional_buckets": ["verb_form.subjunctive.present"],
+    "vocab_help": [
+      {"lemma": "call", "language": "en", "aspects": {"translation": {"reveal": "to call - chiamare", "bucket": "vocabulary.it.chiamare.translation"}}}
+    ],
+    "explanation": "Italian doesn't have an 'X wants me to Y' frame: when the two verbs have different subjects, the structure is 'che + subjunctive'. Chiamare is transitive, so the f.sg DOP la stands in for Anna in the embedded clause. Stack: la + chiami (subjunctive).",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_28",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "He gave them (the keys) to me yesterday.",
+    "reference_translations": [
+      {"text": "Me le ha date ieri.", "register": "neutral", "notes": "mi → me before le. Participle agrees with preceding f.pl DOP → date."},
+      {"text": "Me le ha date lui ieri.", "register": "neutral", "notes": "With post-verb stressed subject 'lui' for emphasis."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": ["pronoun.combined.vowel_changes", "pronoun.direct_object.le", "verb_form.passato_prossimo.participle_agreement.with_avere.preceding_dop_le"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "keys", "language": "en", "aspects": {"translation": {"reveal": "key - chiave (f)", "bucket": "vocabulary.it.chiave.translation"}}}
+    ],
+    "explanation": "Italian's clitic cluster puts the IOP before the DOP. The IOP mi shifts to me before another clitic; the f.pl DOP is le (le chiavi). The participle agrees with the preceding f.pl DOP → date. Stack: me + le + ha + date.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_29",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Don't leave! (informal to one person)",
+    "reference_translations": [
+      {"text": "Non andartene!", "register": "neutral", "notes": "Negative tu imp with andarsene. Clitics te + ne attached to infinitive."},
+      {"text": "Non te ne andare!", "register": "neutral", "notes": "Pre-infinitive variant. Both correct."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": ["pronoun.position.negative_imperative", "pronoun.ne.motion_andarsene"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "leave", "language": "en", "aspects": {"translation": {"reveal": "to leave - andarsene", "bucket": "vocabulary.it.andarsene.translation"}}}
+    ],
+    "explanation": "The negative tu imperative uses non + infinitive. The pronominal verb andarsene carries reflexive ti (shifting to te before ne) plus ne. The cluster has two positions: attached to the infinitive (non andartene) or pre-verb (non te ne andare).",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_30",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "We've already eaten some of them (the cookies).",
+    "reference_translations": [
+      {"text": "Ne abbiamo già mangiati alcuni.", "register": "neutral", "notes": "Partitive ne + masculine plural antecedent (i biscotti) → participle mangiati."},
+      {"text": "Ne abbiamo mangiati già alcuni.", "register": "neutral", "notes": "Adverb placement variant."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": ["pronoun.ne.with_pp_agreement", "pronoun.ne.partitive_quantity", "verb_form.passato_prossimo.participle_agreement.with_avere.preceding_partitive_ne"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "eaten", "language": "en", "aspects": {"translation": {"reveal": "to eat - mangiare", "bucket": "vocabulary.it.mangiare.translation"}}},
+      {"lemma": "cookies", "language": "en", "aspects": {"translation": {"reveal": "cookie - biscotto (m)", "bucket": "vocabulary.it.biscotto.translation"}}}
+    ],
+    "explanation": "The partitive ne carries the antecedent's gender and number through to participle agreement. The implicit antecedent 'cookies' is i biscotti (m.pl) → mangiati. Stack: ne + abbiamo + già + mangiati + alcuni.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_it_en_14",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Glielo dirò appena lo vedo.",
+    "reference_translations": [
+      {"text": "I'll tell him as soon as I see him.", "register": "neutral", "notes": "OR 'her' for the IOP gli."},
+      {"text": "I'll tell her about it as soon as I see her.", "register": "neutral", "notes": "Reading glielo as 'it to her' explicitly."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": ["pronoun.combined.glielo_family", "pronoun.direct_object.lo"],
+    "optional_buckets": ["pronoun.special.lo_neutral"],
+    "vocab_help": [],
+    "explanation": "Two clitics in two clauses. In the main clause the cluster glielo combines IOP gli/le with neuter lo (the thing told). In the temporal clause 'as soon as I see him', the m.sg DOP lo stands for the person seen. The two lo's reference different things (a fact vs a person).",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_it_en_15",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Se ne sono andati senza salutare.",
+    "reference_translations": [
+      {"text": "They left without saying goodbye.", "register": "neutral", "notes": "Andarsene 3pl PP."},
+      {"text": "They went off without saying goodbye.", "register": "neutral", "notes": "Slightly more colloquial English."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": ["pronoun.ne.motion_andarsene", "pronoun.combined.me_ne_family"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "salutare", "language": "it", "aspects": {"translation": {"reveal": "to greet / say hello/goodbye - salutare", "bucket": "vocabulary.it.salutare.translation"}}}
+    ],
+    "explanation": "The pronominal verb andarsene carries reflexive si plus ne. 3pl: si shifts to se before ne. The reflexive triggers essere as auxiliary; the participle agrees with the (m.pl) subject → andati. Stack: se + ne + sono + andati.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_it_en_16",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Le posso parlare un momento?",
+    "reference_translations": [
+      {"text": "May I speak with you for a moment? (formal)", "register": "formal", "notes": "Le is formal IOP."},
+      {"text": "Can I speak with her for a moment?", "register": "neutral", "notes": "If Le refers to a third party (less likely without context)."}
+    ],
+    "topic": "pronoun",
+    "register": "formal",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": ["pronoun.indirect_object.formal_Le", "pronoun.position.modal_plus_infinitive_either"],
+    "optional_buckets": [],
+    "vocab_help": [],
+    "explanation": "Italian's formal address uses Le as the IOP for the addressee. Parlare takes 'a + person', so the addressee is the indirect object. With modal + infinitive, the clitic has two valid positions: pre-modal (Le posso parlare) or attached (posso parlarLe).",
+    "version": 1
+  },
+
+  {
+    "external_id": "trans_op_en_it_31",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Tell him about it (informal)!",
+    "reference_translations": [
+      {"text": "Digliene!", "register": "neutral", "notes": "Tu imp di' + gli + ne; gli does NOT double; cluster as one word."},
+      {"text": "Diglielo!", "register": "neutral", "notes": "Different reading: 'tell him IT (= the news/fact)' using neuter lo rather than ne. Context decides; both grammatical."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": ["pronoun.position.post_imperative_consonant_doubling", "pronoun.combined.glielo_family"],
+    "optional_buckets": [],
+    "vocab_help": [],
+    "explanation": "Two rules at once on a monosyllabic imperative. Di' normally triggers consonant doubling on the attached clitic, but the gli-exception applies: gli does NOT double. So di' + gli + ne → digliene (single -g- before gli). The English 'about it' suggests pronominal ne; if 'it' is read as a fact, neuter lo gives diglielo. Both grammatical; the marker credits either.",
+    "examiner_note": "Tests the gli-exception in an imperative cluster context. Both ne and neuter-lo readings are valid; the marker should credit either.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_32",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Please send it (the document) to me (formal).",
+    "reference_translations": [
+      {"text": "Me lo mandi, per favore.", "register": "formal", "notes": "Formal Lei imp + cluster pre-verb. Subjunctive form 'mandi'."},
+      {"text": "Me lo invii, per favore.", "register": "formal", "notes": "More formal verb (inviare); same pronoun pattern."}
+    ],
+    "topic": "pronoun",
+    "register": "formal",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": ["pronoun.position.formal_imperative_pre_verb", "pronoun.combined.vowel_changes"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "send", "language": "en", "aspects": {"translation": {"reveal": "to send - mandare / inviare", "bucket": "vocabulary.it.mandare.translation"}}}
+    ],
+    "explanation": "The formal Lei imperative uses the subjunctive form (mandi/invii) and keeps the clitic cluster in pre-verb position. The vowel change gives me (from mi) before lo. Stack: me + lo + mandi. The tu form would attach: 'mandamelo'.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_33",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I don't need any of them.",
+    "reference_translations": [
+      {"text": "Non ne ho bisogno di nessuno.", "register": "neutral", "notes": "Pronominal ne for 'di nessuno' (with avere bisogno di)."},
+      {"text": "Non me ne serve nessuno.", "register": "neutral", "notes": "Alternative with servire (piacere-family + ne)."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": ["pronoun.ci_vs_ne_disambiguation", "pronoun.ne.partitive_quantity"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "need", "language": "en", "aspects": {"translation": {"reveal": "to need - avere bisogno di / servire (IOP)", "bucket": "vocabulary.it.bisogno.translation"}}}
+    ],
+    "explanation": "Italian avere bisogno takes 'di + thing needed'. The pronominal ne resumes the di-phrase. With the negative quantifier nessuno the partitive sense surfaces too: 'none of them'. Servire is an alternative verb in the piacere family; both renderings work.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_34",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Marco took his shoes off before coming in.",
+    "reference_translations": [
+      {"text": "Marco si è tolto le scarpe prima di entrare.", "register": "neutral", "notes": "Reflexive togliersi + post-verb DO; participle agrees with subject (m.sg → tolto), not with the DO."},
+      {"text": "Marco si è levato le scarpe prima di entrare.", "register": "neutral", "notes": "Synonymous levarsi."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": ["pronoun.reflexive.si_sg", "pronoun.reflexive.essere_in_compound"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "took off", "language": "en", "aspects": {"translation": {"reveal": "to take off - togliersi / levarsi (reflexive)", "bucket": "vocabulary.it.togliersi.translation"}}},
+      {"lemma": "shoes", "language": "en", "aspects": {"translation": {"reveal": "shoe - scarpa (f)", "bucket": "vocabulary.it.scarpa.translation"}}}
+    ],
+    "explanation": "Italian uses a reflexive verb for taking off clothes: togliersi qualcosa. The reflexive triggers essere as auxiliary. When the direct object stays post-verb and overt (le scarpe), the participle agrees with the subject, not with the DO: Marco m.sg → tolto.",
+    "examiner_note": "Critical diagnostic: agreement is with subject when DO is post-verb, not with the DO. The opposite happens when the DO is replaced by a clitic and precedes (see op_refl_with_obj_06).",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_35",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Are you (informal) thinking about her? Yes, I'm thinking about her.",
+    "reference_translations": [
+      {"text": "Pensi a lei? Sì, ci penso.", "register": "neutral", "notes": "Pensare A → ci. Note: the source's 'about her' translates with ci, but with the stressed 'a lei' it would be more emphatic."},
+      {"text": "Stai pensando a lei? Sì, ci sto pensando.", "register": "neutral", "notes": "Progressive variant."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": ["pronoun.ci_locative.topic", "pronoun.special.stressed_forms"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "thinking", "language": "en", "aspects": {"translation": {"reveal": "to think (about) - pensare a", "bucket": "vocabulary.it.pensare.translation"}}}
+    ],
+    "explanation": "Italian pensare A ('think of, daydream about') is distinct from pensare DI ('have an opinion about'). The a-phrase pronominalises to ci, the di-phrase to ne. The question uses stressed 'a lei' for emphasis; the answer uses the clitic ci because the topic is already established. Stack: ci + penso.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_it_en_17",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Non gliel'ho ancora detta, la verità.",
+    "reference_translations": [
+      {"text": "I haven't told her the truth yet.", "register": "neutral", "notes": "Right-dislocated 'la verità' resumes through gliela. Participle 'detta' (f.sg) agrees with the antecedent."},
+      {"text": "I still haven't told him the truth.", "register": "neutral", "notes": "Or 'him' — the gli/le merger in glie- masks IOP gender."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": ["pronoun.combined.glielo_family", "pronoun.special.pronoun_then_subject_noun"],
+    "optional_buckets": ["verb_form.passato_prossimo.participle_agreement.with_avere.preceding_dop_la"],
+    "vocab_help": [],
+    "explanation": "Italian often puts the topic at the right end of the sentence; this is right-dislocation, the mirror of fronting. The right-dislocated 'la verità' is resumed by a clitic earlier in the sentence: f.sg IOP gli/le + f.sg DOP la → gliela (one word, elided to gliel'). Participle agrees with the preceding DOP → detta (f.sg).",
+    "examiner_note": "Tests dislocation-with-agreement in the it→en direction.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_it_en_18",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Stammi vicino, ti prego.",
+    "reference_translations": [
+      {"text": "Stay close to me, please. (informal)", "register": "neutral", "notes": "sta' + mi → stammi (doubling)."},
+      {"text": "Please stay near me. (informal)", "register": "neutral", "notes": "Alternative English ordering."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": ["pronoun.position.post_imperative_consonant_doubling"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "stammi", "language": "it", "aspects": {"infinitive": {"reveal": "stare - to stay (sta' tu imperative)", "bucket": "vocabulary.it.stare.translation"}}}
+    ],
+    "explanation": "Sta' is one of the five monosyllabic imperatives that trigger consonant doubling on an attached clitic. Stack: sta' + mi → stammi (double -m-). The 'ti prego' politeness phrase elsewhere uses ti as IOP with pregare.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_36",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I'm sure of it.",
+    "reference_translations": [
+      {"text": "Ne sono sicuro.", "register": "neutral", "notes": "Masc speaker. Essere sicuro DI → ne."},
+      {"text": "Ne sono sicura.", "register": "neutral", "notes": "Fem speaker."},
+      {"text": "Sono sicuro di questo.", "register": "neutral", "notes": "Without the clitic; both forms work."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "required_buckets": ["pronoun.ne.pronominal_di"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "sure", "language": "en", "aspects": {"translation": {"reveal": "sure - sicuro (essere sicuro DI)", "bucket": "vocabulary.it.sicuro.translation"}}}
+    ],
+    "explanation": "Italian's essere sicuro takes 'di + thing one is sure of'. The pronominal ne stands in for the di-complement, exactly as it does with verbal di-complements (parlare di, pensare di). The adjective itself agrees with the subject's gender: sicuro (masc) or sicura (fem).",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_37",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Don't worry about it (informal)!",
+    "reference_translations": [
+      {"text": "Non preoccupartene!", "register": "neutral", "notes": "Negative tu imp = non + inf. Cluster preoccup-ar-te-ne (reflexive ti → te before ne)."},
+      {"text": "Non te ne preoccupare!", "register": "neutral", "notes": "Pre-infinitive variant. Both correct."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": ["pronoun.position.negative_imperative", "pronoun.combined.me_ne_family", "pronoun.reflexive.ti"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "worry", "language": "en", "aspects": {"translation": {"reveal": "to worry - preoccuparsi (reflexive + di)", "bucket": "vocabulary.it.preoccuparsi.translation"}}}
+    ],
+    "explanation": "The verb is the reflexive preoccuparsi DI ('to worry about'); the di-phrase pronominalises to ne. The negative tu imperative uses non + infinitive. The reflexive ti shifts to te before ne. Cluster has two positions: attached to the infinitive (non preoccupartene) or pre-verb (non te ne preoccupare).",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_38",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "It's me she always calls, not him.",
+    "reference_translations": [
+      {"text": "Chiama sempre me, non lui.", "register": "neutral", "notes": "Stressed me post-verb for contrast; no clitic doubling."},
+      {"text": "È me che chiama sempre, non lui.", "register": "neutral", "notes": "Cleft variant ('it's me that...'). More marked but valid."}
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": ["pronoun.special.stressed_forms"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "calls", "language": "en", "aspects": {"translation": {"reveal": "to call - chiamare", "bucket": "vocabulary.it.chiamare.translation"}}}
+    ],
+    "explanation": "For strong contrastive emphasis, Italian uses the stressed pronoun post-verb. The clitic mi can't carry contrast; the stressed me in 'Chiama sempre me, non lui' does. No clitic doubling needed. The cleft 'È me che chiama...' is a more marked alternative.",
+    "version": 1
+  }
+]

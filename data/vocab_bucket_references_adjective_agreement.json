@@ -1,0 +1,866 @@
+{
+  "topic": "adjective_agreement",
+  "generated": "2026-05-15",
+  "source_files": [
+    "data/grammar_questions_adjective_agreement.json",
+    "data/translation_items_adjective_agreement.json"
+  ],
+  "summary": {
+    "unique_lemmas": 161,
+    "total_bucket_references": 260
+  },
+  "notes": [
+    "All buckets follow the pattern vocabulary.it.<lemma>.<aspect>.",
+    "Aspects used so far: 'translation' (every lemma) and 'gender' (every noun lemma where gender matters).",
+    "Adjective lemmas only carry 'translation' (gender is what the agreement test is testing, so it's deliberately not revealed).",
+    "Multi-word invariable colours (blu_marino, giallo_limone, rosso_fuoco, verde_acqua, verde_scuro) use underscored lemma names because the bucket separator is '.'.",
+    "Elided forms (sant') and surface forms (mele, mezza, begli) are NOT separate lemmas; their bucket points at the canonical lemma. The vocab_help carries them as separate entries only so the clickable-word matcher can find them.",
+    "The participle 'apprezzata' points at the verb 'apprezzare' (vocabulary.it.apprezzare.translation), not at 'apprezzata' itself."
+  ],
+  "all_bucket_references": [
+    "vocabulary.it.Rinascimento.translation",
+    "vocabulary.it.albero.gender",
+    "vocabulary.it.albero.translation",
+    "vocabulary.it.alto.translation",
+    "vocabulary.it.amico.gender",
+    "vocabulary.it.amico.translation",
+    "vocabulary.it.anno.gender",
+    "vocabulary.it.anno.translation",
+    "vocabulary.it.antico.translation",
+    "vocabulary.it.apprezzare.translation",
+    "vocabulary.it.bambina.gender",
+    "vocabulary.it.bambina.translation",
+    "vocabulary.it.bello.translation",
+    "vocabulary.it.bianco.translation",
+    "vocabulary.it.biblioteca.gender",
+    "vocabulary.it.biblioteca.translation",
+    "vocabulary.it.bicicletta.gender",
+    "vocabulary.it.bicicletta.translation",
+    "vocabulary.it.blu.translation",
+    "vocabulary.it.blu_marino.translation",
+    "vocabulary.it.bravo.translation",
+    "vocabulary.it.buono.translation",
+    "vocabulary.it.camicia.gender",
+    "vocabulary.it.camicia.translation",
+    "vocabulary.it.cantina.translation",
+    "vocabulary.it.capello.gender",
+    "vocabulary.it.capello.translation",
+    "vocabulary.it.carino.translation",
+    "vocabulary.it.caro.translation",
+    "vocabulary.it.casa.gender",
+    "vocabulary.it.casa.translation",
+    "vocabulary.it.cestino.translation",
+    "vocabulary.it.chiave.gender",
+    "vocabulary.it.chiave.translation",
+    "vocabulary.it.chiesa.gender",
+    "vocabulary.it.chiesa.translation",
+    "vocabulary.it.citta.gender",
+    "vocabulary.it.citta.translation",
+    "vocabulary.it.collega.gender",
+    "vocabulary.it.collega.translation",
+    "vocabulary.it.condottiero.gender",
+    "vocabulary.it.condottiero.translation",
+    "vocabulary.it.consiglio.gender",
+    "vocabulary.it.consiglio.translation",
+    "vocabulary.it.corridoio.gender",
+    "vocabulary.it.corridoio.translation",
+    "vocabulary.it.corridore.gender",
+    "vocabulary.it.corridore.translation",
+    "vocabulary.it.cucina.gender",
+    "vocabulary.it.cucina.translation",
+    "vocabulary.it.cugina.gender",
+    "vocabulary.it.cugino.translation",
+    "vocabulary.it.cuore.gender",
+    "vocabulary.it.cuore.translation",
+    "vocabulary.it.decisione.gender",
+    "vocabulary.it.decisione.translation",
+    "vocabulary.it.difficile.translation",
+    "vocabulary.it.dispari.translation",
+    "vocabulary.it.divano.gender",
+    "vocabulary.it.divano.translation",
+    "vocabulary.it.erba.gender",
+    "vocabulary.it.erba.translation",
+    "vocabulary.it.esercizio.gender",
+    "vocabulary.it.esercizio.translation",
+    "vocabulary.it.facile.translation",
+    "vocabulary.it.fantastico.translation",
+    "vocabulary.it.felice.translation",
+    "vocabulary.it.film.gender",
+    "vocabulary.it.film.translation",
+    "vocabulary.it.filosofo.gender",
+    "vocabulary.it.filosofo.translation",
+    "vocabulary.it.fiore.gender",
+    "vocabulary.it.fiore.translation",
+    "vocabulary.it.fiume.gender",
+    "vocabulary.it.fiume.translation",
+    "vocabulary.it.foto.gender",
+    "vocabulary.it.foto.translation",
+    "vocabulary.it.frase.gender",
+    "vocabulary.it.frase.translation",
+    "vocabulary.it.fratello.gender",
+    "vocabulary.it.fratello.translation",
+    "vocabulary.it.gatto.gender",
+    "vocabulary.it.gatto.translation",
+    "vocabulary.it.gemello.gender",
+    "vocabulary.it.gemello.translation",
+    "vocabulary.it.gentile.translation",
+    "vocabulary.it.giallo_limone.translation",
+    "vocabulary.it.giornata.gender",
+    "vocabulary.it.giornata.translation",
+    "vocabulary.it.giovane.translation",
+    "vocabulary.it.grande.translation",
+    "vocabulary.it.greco.translation",
+    "vocabulary.it.grigio.translation",
+    "vocabulary.it.guanto.gender",
+    "vocabulary.it.guanto.translation",
+    "vocabulary.it.impari.translation",
+    "vocabulary.it.importante.translation",
+    "vocabulary.it.inizio.gender",
+    "vocabulary.it.inizio.translation",
+    "vocabulary.it.intelligente.translation",
+    "vocabulary.it.interessante.translation",
+    "vocabulary.it.isola.gender",
+    "vocabulary.it.isola.translation",
+    "vocabulary.it.italiano.translation",
+    "vocabulary.it.largo.translation",
+    "vocabulary.it.lezione.gender",
+    "vocabulary.it.lezione.translation",
+    "vocabulary.it.libro.gender",
+    "vocabulary.it.libro.translation",
+    "vocabulary.it.liceo.gender",
+    "vocabulary.it.liceo.translation",
+    "vocabulary.it.lilla.translation",
+    "vocabulary.it.lingua.gender",
+    "vocabulary.it.lingua.translation",
+    "vocabulary.it.liscio.translation",
+    "vocabulary.it.lotta.gender",
+    "vocabulary.it.lotta.translation",
+    "vocabulary.it.lungo.translation",
+    "vocabulary.it.macchina.gender",
+    "vocabulary.it.macchina.translation",
+    "vocabulary.it.maglietta.gender",
+    "vocabulary.it.maglietta.translation",
+    "vocabulary.it.manoscritto.gender",
+    "vocabulary.it.manoscritto.translation",
+    "vocabulary.it.mela.gender",
+    "vocabulary.it.mela.translation",
+    "vocabulary.it.mezzo.translation",
+    "vocabulary.it.mobile.gender",
+    "vocabulary.it.mobile.translation",
+    "vocabulary.it.muro.gender",
+    "vocabulary.it.muro.translation",
+    "vocabulary.it.nero.translation",
+    "vocabulary.it.noioso.translation",
+    "vocabulary.it.nuovo.translation",
+    "vocabulary.it.nuvola.gender",
+    "vocabulary.it.nuvola.translation",
+    "vocabulary.it.occhio.gender",
+    "vocabulary.it.occhio.translation",
+    "vocabulary.it.opportunita.gender",
+    "vocabulary.it.opportunita.translation",
+    "vocabulary.it.ora.gender",
+    "vocabulary.it.ora.translation",
+    "vocabulary.it.orecchia.gender",
+    "vocabulary.it.orecchia.translation",
+    "vocabulary.it.panino.gender",
+    "vocabulary.it.panino.translation",
+    "vocabulary.it.pantaloni.gender",
+    "vocabulary.it.pantaloni.translation",
+    "vocabulary.it.parete.gender",
+    "vocabulary.it.parete.translation",
+    "vocabulary.it.pari.translation",
+    "vocabulary.it.parola.gender",
+    "vocabulary.it.parola.translation",
+    "vocabulary.it.passione.gender",
+    "vocabulary.it.passione.translation",
+    "vocabulary.it.pera.gender",
+    "vocabulary.it.pera.translation",
+    "vocabulary.it.persona.gender",
+    "vocabulary.it.persona.translation",
+    "vocabulary.it.pesante.translation",
+    "vocabulary.it.pianta.gender",
+    "vocabulary.it.pianta.translation",
+    "vocabulary.it.piccolo.translation",
+    "vocabulary.it.pittore.gender",
+    "vocabulary.it.pittore.translation",
+    "vocabulary.it.poco.translation",
+    "vocabulary.it.pomodoro.gender",
+    "vocabulary.it.pomodoro.translation",
+    "vocabulary.it.povero.translation",
+    "vocabulary.it.pratico.translation",
+    "vocabulary.it.prato.gender",
+    "vocabulary.it.prato.translation",
+    "vocabulary.it.problema.gender",
+    "vocabulary.it.problema.translation",
+    "vocabulary.it.professore.gender",
+    "vocabulary.it.professore.translation",
+    "vocabulary.it.progetto.gender",
+    "vocabulary.it.progetto.translation",
+    "vocabulary.it.quaderno.gender",
+    "vocabulary.it.quaderno.translation",
+    "vocabulary.it.quello.translation",
+    "vocabulary.it.racconto.gender",
+    "vocabulary.it.racconto.translation",
+    "vocabulary.it.ragazza.gender",
+    "vocabulary.it.ragazza.translation",
+    "vocabulary.it.ragazzo.gender",
+    "vocabulary.it.ragazzo.translation",
+    "vocabulary.it.reperto.gender",
+    "vocabulary.it.reperto.translation",
+    "vocabulary.it.roccia.gender",
+    "vocabulary.it.roccia.translation",
+    "vocabulary.it.rosa.translation",
+    "vocabulary.it.rosso.translation",
+    "vocabulary.it.rosso_fuoco.translation",
+    "vocabulary.it.sacco.gender",
+    "vocabulary.it.sacco.translation",
+    "vocabulary.it.saggio.translation",
+    "vocabulary.it.santo.translation",
+    "vocabulary.it.scarpa.gender",
+    "vocabulary.it.scarpa.translation",
+    "vocabulary.it.scrittore.gender",
+    "vocabulary.it.scrittore.translation",
+    "vocabulary.it.sedia.gender",
+    "vocabulary.it.sedia.translation",
+    "vocabulary.it.settimana.gender",
+    "vocabulary.it.settimana.translation",
+    "vocabulary.it.signora.gender",
+    "vocabulary.it.signora.translation",
+    "vocabulary.it.simpatico.translation",
+    "vocabulary.it.situazione.gender",
+    "vocabulary.it.situazione.translation",
+    "vocabulary.it.sorella.gender",
+    "vocabulary.it.sorella.translation",
+    "vocabulary.it.squadra.gender",
+    "vocabulary.it.squadra.translation",
+    "vocabulary.it.stanco.translation",
+    "vocabulary.it.strada.gender",
+    "vocabulary.it.strada.translation",
+    "vocabulary.it.studente.gender",
+    "vocabulary.it.studente.translation",
+    "vocabulary.it.successo.gender",
+    "vocabulary.it.successo.translation",
+    "vocabulary.it.tavola.gender",
+    "vocabulary.it.tavola.translation",
+    "vocabulary.it.tazza.gender",
+    "vocabulary.it.tazza.translation",
+    "vocabulary.it.tempio.gender",
+    "vocabulary.it.tempio.translation",
+    "vocabulary.it.tenda.gender",
+    "vocabulary.it.tenda.translation",
+    "vocabulary.it.tovaglia.gender",
+    "vocabulary.it.tovaglia.translation",
+    "vocabulary.it.tradizione.gender",
+    "vocabulary.it.tradizione.translation",
+    "vocabulary.it.uomo.gender",
+    "vocabulary.it.uomo.translation",
+    "vocabulary.it.utile.translation",
+    "vocabulary.it.vaso.gender",
+    "vocabulary.it.vaso.translation",
+    "vocabulary.it.vecchio.translation",
+    "vocabulary.it.verde.translation",
+    "vocabulary.it.verde_acqua.translation",
+    "vocabulary.it.verde_scuro.translation",
+    "vocabulary.it.vestito.gender",
+    "vocabulary.it.vestito.translation",
+    "vocabulary.it.vetrina.translation",
+    "vocabulary.it.viaggio.gender",
+    "vocabulary.it.viaggio.translation",
+    "vocabulary.it.vino.gender",
+    "vocabulary.it.vino.translation",
+    "vocabulary.it.viola.translation",
+    "vocabulary.it.volere.translation",
+    "vocabulary.it.yogurt.gender",
+    "vocabulary.it.yogurt.translation",
+    "vocabulary.it.zaino.gender",
+    "vocabulary.it.zaino.translation",
+    "vocabulary.it.zia.gender",
+    "vocabulary.it.zia.translation",
+    "vocabulary.it.zio.gender",
+    "vocabulary.it.zio.translation"
+  ],
+  "per_lemma_aspects": {
+    "Rinascimento": [
+      "translation"
+    ],
+    "albero": [
+      "gender",
+      "translation"
+    ],
+    "alto": [
+      "translation"
+    ],
+    "amico": [
+      "gender",
+      "translation"
+    ],
+    "anno": [
+      "gender",
+      "translation"
+    ],
+    "antico": [
+      "translation"
+    ],
+    "apprezzare": [
+      "translation"
+    ],
+    "bambina": [
+      "gender",
+      "translation"
+    ],
+    "bello": [
+      "translation"
+    ],
+    "bianco": [
+      "translation"
+    ],
+    "biblioteca": [
+      "gender",
+      "translation"
+    ],
+    "bicicletta": [
+      "gender",
+      "translation"
+    ],
+    "blu": [
+      "translation"
+    ],
+    "blu_marino": [
+      "translation"
+    ],
+    "bravo": [
+      "translation"
+    ],
+    "buono": [
+      "translation"
+    ],
+    "camicia": [
+      "gender",
+      "translation"
+    ],
+    "cantina": [
+      "translation"
+    ],
+    "capello": [
+      "gender",
+      "translation"
+    ],
+    "carino": [
+      "translation"
+    ],
+    "caro": [
+      "translation"
+    ],
+    "casa": [
+      "gender",
+      "translation"
+    ],
+    "cestino": [
+      "translation"
+    ],
+    "chiave": [
+      "gender",
+      "translation"
+    ],
+    "chiesa": [
+      "gender",
+      "translation"
+    ],
+    "citta": [
+      "gender",
+      "translation"
+    ],
+    "collega": [
+      "gender",
+      "translation"
+    ],
+    "condottiero": [
+      "gender",
+      "translation"
+    ],
+    "consiglio": [
+      "gender",
+      "translation"
+    ],
+    "corridoio": [
+      "gender",
+      "translation"
+    ],
+    "corridore": [
+      "gender",
+      "translation"
+    ],
+    "cucina": [
+      "gender",
+      "translation"
+    ],
+    "cugina": [
+      "gender"
+    ],
+    "cugino": [
+      "translation"
+    ],
+    "cuore": [
+      "gender",
+      "translation"
+    ],
+    "decisione": [
+      "gender",
+      "translation"
+    ],
+    "difficile": [
+      "translation"
+    ],
+    "dispari": [
+      "translation"
+    ],
+    "divano": [
+      "gender",
+      "translation"
+    ],
+    "erba": [
+      "gender",
+      "translation"
+    ],
+    "esercizio": [
+      "gender",
+      "translation"
+    ],
+    "facile": [
+      "translation"
+    ],
+    "fantastico": [
+      "translation"
+    ],
+    "felice": [
+      "translation"
+    ],
+    "film": [
+      "gender",
+      "translation"
+    ],
+    "filosofo": [
+      "gender",
+      "translation"
+    ],
+    "fiore": [
+      "gender",
+      "translation"
+    ],
+    "fiume": [
+      "gender",
+      "translation"
+    ],
+    "foto": [
+      "gender",
+      "translation"
+    ],
+    "frase": [
+      "gender",
+      "translation"
+    ],
+    "fratello": [
+      "gender",
+      "translation"
+    ],
+    "gatto": [
+      "gender",
+      "translation"
+    ],
+    "gemello": [
+      "gender",
+      "translation"
+    ],
+    "gentile": [
+      "translation"
+    ],
+    "giallo_limone": [
+      "translation"
+    ],
+    "giornata": [
+      "gender",
+      "translation"
+    ],
+    "giovane": [
+      "translation"
+    ],
+    "grande": [
+      "translation"
+    ],
+    "greco": [
+      "translation"
+    ],
+    "grigio": [
+      "translation"
+    ],
+    "guanto": [
+      "gender",
+      "translation"
+    ],
+    "impari": [
+      "translation"
+    ],
+    "importante": [
+      "translation"
+    ],
+    "inizio": [
+      "gender",
+      "translation"
+    ],
+    "intelligente": [
+      "translation"
+    ],
+    "interessante": [
+      "translation"
+    ],
+    "isola": [
+      "gender",
+      "translation"
+    ],
+    "italiano": [
+      "translation"
+    ],
+    "largo": [
+      "translation"
+    ],
+    "lezione": [
+      "gender",
+      "translation"
+    ],
+    "libro": [
+      "gender",
+      "translation"
+    ],
+    "liceo": [
+      "gender",
+      "translation"
+    ],
+    "lilla": [
+      "translation"
+    ],
+    "lingua": [
+      "gender",
+      "translation"
+    ],
+    "liscio": [
+      "translation"
+    ],
+    "lotta": [
+      "gender",
+      "translation"
+    ],
+    "lungo": [
+      "translation"
+    ],
+    "macchina": [
+      "gender",
+      "translation"
+    ],
+    "maglietta": [
+      "gender",
+      "translation"
+    ],
+    "manoscritto": [
+      "gender",
+      "translation"
+    ],
+    "mela": [
+      "gender",
+      "translation"
+    ],
+    "mezzo": [
+      "translation"
+    ],
+    "mobile": [
+      "gender",
+      "translation"
+    ],
+    "muro": [
+      "gender",
+      "translation"
+    ],
+    "nero": [
+      "translation"
+    ],
+    "noioso": [
+      "translation"
+    ],
+    "nuovo": [
+      "translation"
+    ],
+    "nuvola": [
+      "gender",
+      "translation"
+    ],
+    "occhio": [
+      "gender",
+      "translation"
+    ],
+    "opportunita": [
+      "gender",
+      "translation"
+    ],
+    "ora": [
+      "gender",
+      "translation"
+    ],
+    "orecchia": [
+      "gender",
+      "translation"
+    ],
+    "panino": [
+      "gender",
+      "translation"
+    ],
+    "pantaloni": [
+      "gender",
+      "translation"
+    ],
+    "parete": [
+      "gender",
+      "translation"
+    ],
+    "pari": [
+      "translation"
+    ],
+    "parola": [
+      "gender",
+      "translation"
+    ],
+    "passione": [
+      "gender",
+      "translation"
+    ],
+    "pera": [
+      "gender",
+      "translation"
+    ],
+    "persona": [
+      "gender",
+      "translation"
+    ],
+    "pesante": [
+      "translation"
+    ],
+    "pianta": [
+      "gender",
+      "translation"
+    ],
+    "piccolo": [
+      "translation"
+    ],
+    "pittore": [
+      "gender",
+      "translation"
+    ],
+    "poco": [
+      "translation"
+    ],
+    "pomodoro": [
+      "gender",
+      "translation"
+    ],
+    "povero": [
+      "translation"
+    ],
+    "pratico": [
+      "translation"
+    ],
+    "prato": [
+      "gender",
+      "translation"
+    ],
+    "problema": [
+      "gender",
+      "translation"
+    ],
+    "professore": [
+      "gender",
+      "translation"
+    ],
+    "progetto": [
+      "gender",
+      "translation"
+    ],
+    "quaderno": [
+      "gender",
+      "translation"
+    ],
+    "quello": [
+      "translation"
+    ],
+    "racconto": [
+      "gender",
+      "translation"
+    ],
+    "ragazza": [
+      "gender",
+      "translation"
+    ],
+    "ragazzo": [
+      "gender",
+      "translation"
+    ],
+    "reperto": [
+      "gender",
+      "translation"
+    ],
+    "roccia": [
+      "gender",
+      "translation"
+    ],
+    "rosa": [
+      "translation"
+    ],
+    "rosso": [
+      "translation"
+    ],
+    "rosso_fuoco": [
+      "translation"
+    ],
+    "sacco": [
+      "gender",
+      "translation"
+    ],
+    "saggio": [
+      "translation"
+    ],
+    "santo": [
+      "translation"
+    ],
+    "scarpa": [
+      "gender",
+      "translation"
+    ],
+    "scrittore": [
+      "gender",
+      "translation"
+    ],
+    "sedia": [
+      "gender",
+      "translation"
+    ],
+    "settimana": [
+      "gender",
+      "translation"
+    ],
+    "signora": [
+      "gender",
+      "translation"
+    ],
+    "simpatico": [
+      "translation"
+    ],
+    "situazione": [
+      "gender",
+      "translation"
+    ],
+    "sorella": [
+      "gender",
+      "translation"
+    ],
+    "squadra": [
+      "gender",
+      "translation"
+    ],
+    "stanco": [
+      "translation"
+    ],
+    "strada": [
+      "gender",
+      "translation"
+    ],
+    "studente": [
+      "gender",
+      "translation"
+    ],
+    "successo": [
+      "gender",
+      "translation"
+    ],
+    "tavola": [
+      "gender",
+      "translation"
+    ],
+    "tazza": [
+      "gender",
+      "translation"
+    ],
+    "tempio": [
+      "gender",
+      "translation"
+    ],
+    "tenda": [
+      "gender",
+      "translation"
+    ],
+    "tovaglia": [
+      "gender",
+      "translation"
+    ],
+    "tradizione": [
+      "gender",
+      "translation"
+    ],
+    "uomo": [
+      "gender",
+      "translation"
+    ],
+    "utile": [
+      "translation"
+    ],
+    "vaso": [
+      "gender",
+      "translation"
+    ],
+    "vecchio": [
+      "translation"
+    ],
+    "verde": [
+      "translation"
+    ],
+    "verde_acqua": [
+      "translation"
+    ],
+    "verde_scuro": [
+      "translation"
+    ],
+    "vestito": [
+      "gender",
+      "translation"
+    ],
+    "vetrina": [
+      "translation"
+    ],
+    "viaggio": [
+      "gender",
+      "translation"
+    ],
+    "vino": [
+      "gender",
+      "translation"
+    ],
+    "viola": [
+      "translation"
+    ],
+    "volere": [
+      "translation"
+    ],
+    "yogurt": [
+      "gender",
+      "translation"
+    ],
+    "zaino": [
+      "gender",
+      "translation"
+    ],
+    "zia": [
+      "gender",
+      "translation"
+    ],
+    "zio": [
+      "gender",
+      "translation"
+    ]
+  }
+}
