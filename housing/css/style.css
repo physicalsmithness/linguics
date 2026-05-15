@@ -9,6 +9,7 @@
   --accent-soft: #e8edf6;
   --green: #2e7d4f;
   --green-soft: #e3f1e8;
+  --green-vivid: #1f9d4a;       /* brighter green for outcome-right text */
   --blue: #4a89c7;
   --blue-soft: #e5eef6;
   --red: #b03030;       /* kept for the immediate result panel only */
@@ -142,6 +143,31 @@ main {
   margin: 14px 0 22px;
   line-height: 1.5;
 }
+/* When the prompt has multiple segments (English narration mixed with Italian
+   quoted content and/or a parenthesised cue), each segment is its own block. */
+.qcard .prompt .prompt-segment {
+  display: block;
+  margin: 0 0 6px;
+}
+.qcard .prompt .prompt-segment:last-child { margin-bottom: 0; }
+.qcard .prompt .prompt-italian {
+  /* Italian is the primary content: full body size, no italics. */
+  font-size: 18px;
+}
+.qcard .prompt .prompt-english {
+  /* English narration: italic and slightly muted, smaller than the Italian. */
+  font-style: italic;
+  font-size: 15px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.qcard .prompt .prompt-cue {
+  /* Parenthesised cues (a verb in citation form, etc.): smallest, muted. */
+  font-style: italic;
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 6px;
+}
 .qcard textarea, .qcard input[type=text] {
   width: 100%;
   padding: 11px 13px;
@@ -170,6 +196,13 @@ main {
   font-family: inherit;
 }
 .accent-bar button:hover { background: white; }
+.accent-bar .accent-hint {
+  color: var(--muted);
+  font-size: 12px;
+  font-style: italic;
+  margin-left: 4px;
+  align-self: center;
+}
 
 .intent-bar { margin-top: 10px; display: flex; gap: 8px; align-items: center; font-size: 13px; }
 .intent-bar label { color: var(--muted); }
@@ -354,7 +387,7 @@ main {
   font-size: 13px;
   margin-bottom: 4px;
 }
-.outcome-status.outcome-right { color: var(--green); }
+.outcome-status.outcome-right { color: var(--green-vivid); }
 .outcome-status.outcome-wrong { color: var(--red); }
 .outcome-status.outcome-partial { color: var(--amber); }
 .outcome-status.outcome-none { color: var(--muted); }

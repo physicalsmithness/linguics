@@ -390,6 +390,11 @@
           input.selectionStart = input.selectionEnd = Math.max(0, start + delta);
         }
       });
+      // Inline hint so users know about the apostrophe shortcut.
+      const hint = document.createElement("span");
+      hint.className = "accent-hint";
+      hint.textContent = "or type a' e' i' o' u' for à è ì ò ù  ·  e'' for é";
+      bar.appendChild(hint);
     }
     return bar;
   }
@@ -1092,15 +1097,82 @@
 
     // Build a lemma index from rich vocab_help entries
     const rich = (item.vocab_help || []).filter(e => e.lemma && e.aspects);
-    if (!rich.length) {
-      div.textContent = promptText;
-      return div;
-    }
     const lemmaMap = new Map();
     for (const e of rich) lemmaMap.set(e.lemma.toLowerCase(), e);
 
-    // Tokenise the prompt: words and non-words (whitespace, punctuation, parens)
-    const tokens = promptText.split(/(\s+|[\.,!?;:"'()\[\]_ ])/);
+    const segments = segmentPrompt(promptText);
+
+    // Single segment: render as a plain block, preserving lemma-click behaviour.
+    if (segments.length <= 1) {
+      renderTextWithLemmas(div, promptText, lemmaMap, item, vocabHelpsUsedRef);
+      return div;
+    }
+
+    // Multi-segment: each on its own line, styled by kind.
+    for (const seg of segments) {
+      const block = document.createElement("div");
+      block.className = "prompt-segment prompt-" + seg.kind;
+      if (seg.kind === "italian") {
+        renderTextWithLemmas(block, seg.text, lemmaMap, item, vocabHelpsUsedRef);
+      } else if (seg.kind === "cue") {
+        block.textContent = "(" + seg.text + ")";
+      } else {
+        block.textContent = seg.text;
+      }
+      div.appendChild(block);
+    }
+    return div;
+  }
+
+  // Tokenise prompt text into kind-tagged segments. Three kinds:
+  //   italian: text inside paired single or double quotes
+  //   cue:     text inside parentheses (typically a verb cue at the end)
+  //   english: everything else (narration, directives)
+  // Italian apostrophes inside a quoted segment (l'ho, c'è) are preserved by
+  // checking that a closing quote candidate is followed by whitespace or
+  // punctuation, not by a letter.
+  function segmentPrompt(text) {
+    const segments = [];
+    let buf = "";
+    let mode = "english";
+    const len = text.length;
+    for (let i = 0; i < len; i++) {
+      const c = text[i];
+      const prev = i > 0 ? text[i - 1] : " ";
+      const next = i < len - 1 ? text[i + 1] : "";
+      if (mode === "english" && (c === "'" || c === '"') && /\s|^/.test(prev) && /\S/.test(next)) {
+        if (buf.trim()) segments.push({ kind: "english", text: buf.trim() });
+        buf = ""; mode = "italian";
+        continue;
+      }
+      if (mode === "italian" && (c === "'" || c === '"') &&
+          /\S/.test(prev) && (!next || /[\s.,!?;:]/.test(next))) {
+        if (buf.trim()) segments.push({ kind: "italian", text: buf.trim() });
+        buf = ""; mode = "english";
+        continue;
+      }
+      if (mode === "english" && c === "(" && /\s|^/.test(prev)) {
+        if (buf.trim()) segments.push({ kind: "english", text: buf.trim() });
+        buf = ""; mode = "cue";
+        continue;
+      }
+      if (mode === "cue" && c === ")") {
+        if (buf.trim()) segments.push({ kind: "cue", text: buf.trim() });
+        buf = ""; mode = "english";
+        continue;
+      }
+      buf += c;
+    }
+    if (buf.trim()) segments.push({ kind: mode, text: buf.trim() });
+    return segments;
+  }
+
+  function renderTextWithLemmas(host, text, lemmaMap, item, vocabHelpsUsedRef) {
+    if (!lemmaMap.size) {
+      host.textContent = text;
+      return;
+    }
+    const tokens = text.split(/(\s+|[\.,!?;:"'()\[\]_])/);
     for (const tok of tokens) {
       if (!tok) continue;
       const cleaned = tok.toLowerCase().replace(/^['"]/, "").replace(/['"\.,!?;:]+$/g, "");
@@ -1114,12 +1186,11 @@
           e.stopPropagation();
           openAspectMenu(entry, vocabHelpsUsedRef, span);
         });
-        div.appendChild(span);
+        host.appendChild(span);
       } else {
-        div.appendChild(document.createTextNode(tok));
+        host.appendChild(document.createTextNode(tok));
       }
     }
-    return div;
   }
 
   function attachVocabSlashMenu(inputEl, item, vocabHelpsUsedRef) {

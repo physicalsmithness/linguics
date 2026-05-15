@@ -236,9 +236,18 @@ Don't use this for new content. The rich shape gives the learner more agency (on
 2. **Rule-light.** `any_phrases` should be 1-3 entries. `must_not_include` should be 1-3 diagnostic wrong forms. If your rule list balloons, split the markpoint or move to translation.
 3. **Buckets are real.** Every `bucket` must exist in the tree (or be proposed at the end with a registered parent).
 4. **CEFR appropriate.** A question marked target A1 should not require buckets that are `arcane` at A1. Use `cefr_importance` to check.
-5. **Prompt-writing**: the prompt must make the wanted form **unambiguous without revealing the topic**. Use time markers ("ieri" for past), subject + context, or "(infinitive)" parenthetical, rather than "(write in passato prossimo)" which gives the topic away.
+5. **Prompt-writing**: the prompt must make the wanted form **unambiguous without revealing the diagnostic rule**. Use time markers ("ieri" for past), subject + context, or "(infinitive)" parenthetical, rather than "(write in passato prossimo)" which gives the topic away. There's a sharp distinction here that has tripped up earlier dispatches:
+
+   **Naming the OUTPUT FORM is fine.** "Replace X with a clitic", "Form the past participle: parlare → ___", "Fill the auxiliary slot" all name the kind-of-thing the learner has to produce. The learner needs that scaffolding to know what's being asked for. These are not giveaways.
+
+   **Naming the DIAGNOSTIC RULE is wrong.** "Using prescriptive inheritance", "Apply the agreement rule with preceding DOP", "Use the imperfect for the background state" all name the rule the question is meant to test. A learner who knows the rule's name already knows the answer; a learner who doesn't know the rule's name can't answer at all. The question's diagnostic value collapses either way.
+
+   The bucket's `label` is for the engine and for review. It should not appear in the prompt under any circumstances.
+
    - Good: "Complete: 'Ieri Marco ____ con il direttore.' (parlare)"
+   - Good: "Loro ____ potuti partire in orario ieri. (potere)"  — the participle form already forces the diagnostic answer
    - Bad: "Conjugate parlare in the third-person passato prossimo: 'Ieri Marco ____ con il direttore.'"
+   - Bad: "Fill in the auxiliary using prescriptive inheritance: 'Loro ____ potuti partire ieri.' (potere + partire)"  — names the rule
    - Bad: a bare blank with no time marker or context: ambiguous about which tense.
 6. **No multi-clause sentences.** Grammar questions are short. One blank, one or two words (up to a 4-word noun phrase) to fill.
 7. **`explanation` always present**, even on items where the right answer feels obvious. The explanation appears in a "Why:" block after marking.
