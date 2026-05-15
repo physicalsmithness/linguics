@@ -1,0 +1,223 @@
+[
+  {
+    "id": "tense_choice",
+    "parent_id": "verb_form",
+    "language_code": "it",
+    "label": "Tense choice (diagnostic-only)",
+    "description": "Cross-cutting bucket family for items where the only diagnostic is choosing the right tense, not forming it. All items present fully-formed verbs and ask the learner to pick. Covers six contrast areas: imperfetto vs passato prossimo (cross-referenced from the imperfect.discrimination tree, not duplicated here), progressive vs simple, future vs present-for-future, conditional vs imperfetto in counterfactuals, indicative vs subjunctive, and trapassato vs imperfetto. Items dispatched to this topic deliberately do NOT cite formation buckets so the signal stays pure.",
+    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
+    "prerequisites": ["verb_form.passato_prossimo", "verb_form.imperfect"],
+    "attributes": {"is_aggregate": true, "topic_short": "tc", "is_cross_cutting": true, "cross_reference": "Items for imperfetto vs passato prossimo cite verb_form.imperfect.discrimination.* directly; no buckets duplicated here for that area."},
+    "active": true,
+    "version": 1
+  },
+
+  {
+    "id": "tense_choice.progressive_vs_simple",
+    "parent_id": "tense_choice",
+    "language_code": "it",
+    "label": "Progressive vs simple form (sto parlando vs parlo)",
+    "description": "Italian's progressive (stare + gerundio) is used more sparingly than English's 'be + -ing'. Most English progressives map to a simple Italian tense. The progressive in Italian is reserved for action genuinely-in-progress-right-now or a strongly-emphasised ongoing action. Over-using the progressive is a sleeper miss for English speakers.",
+    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
+    "prerequisites": [],
+    "attributes": {"is_aggregate": true},
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "tense_choice.progressive_vs_simple.present_progressive_vs_present",
+    "parent_id": "tense_choice.progressive_vs_simple",
+    "language_code": "it",
+    "label": "Present progressive (sto parlando) vs present (parlo)",
+    "description": "Italian usually expresses 'I'm doing X' with the simple present (parlo), reserving the progressive (sto parlando) for emphasis on right-now in-progress action. 'What are you doing?' is 'Che fai?' more often than 'Che stai facendo?'. Habits, dispositions, and ongoing states all use the simple present.",
+    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
+    "prerequisites": [],
+    "attributes": {"canonical_examples": ["Che fai? (default) vs Che stai facendo? (emphatic right-now)", "Mangio la pasta (habit) vs sto mangiando la pasta (right now)"], "common_miss": "over-applying the progressive for any English -ing form"},
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "tense_choice.progressive_vs_simple.past_progressive_vs_imperfetto",
+    "parent_id": "tense_choice.progressive_vs_simple",
+    "language_code": "it",
+    "label": "Past progressive (stavo parlando) vs imperfetto (parlavo)",
+    "description": "Italian usually expresses 'I was doing X' with the imperfetto (parlavo), reserving the past progressive (stavo parlando) for vivid emphasis on the right-then in-progress action. The imperfetto already carries the ongoing-action reading; the progressive is an intensifier, not the default.",
+    "cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "preview", "B2": "core", "C1": "review", "C2": "fluency"},
+    "prerequisites": ["verb_form.imperfect.usage.ongoing_descriptive"],
+    "attributes": {"canonical_examples": ["Mentre dormivo (default) vs mentre stavo dormendo (vivid emphasis)"], "common_miss": "over-applying the past progressive for any English 'was -ing'"},
+    "active": true,
+    "version": 1
+  },
+
+  {
+    "id": "tense_choice.future_vs_present",
+    "parent_id": "tense_choice",
+    "language_code": "it",
+    "label": "Future vs present-for-future (parlerò vs parlo)",
+    "description": "Italian uses the simple present for many near-future events, especially when a time adverb anchors the future reference ('parto domani'). The morphological future (parlerò) is used for less-certain, more-distant, or emphatically-projected futures, plus for probability ('saranno le tre' = 'it must be three o'clock').",
+    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "review", "C1": "review", "C2": "fluency"},
+    "prerequisites": [],
+    "attributes": {"is_aggregate": true},
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "tense_choice.future_vs_present.future_for_unambiguous_future",
+    "parent_id": "tense_choice.future_vs_present",
+    "language_code": "it",
+    "label": "Future for unambiguous future (parlerò)",
+    "description": "When the future is genuinely uncertain, emphatically projected, or distant ('one day I will speak Italian fluently'), Italian uses the morphological future. Also for probability or supposition: 'saranno le tre', 'avrà trent'anni'.",
+    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "review", "C1": "review", "C2": "fluency"},
+    "prerequisites": [],
+    "attributes": {"canonical_examples": ["Un giorno parlerò italiano fluentemente", "Saranno le tre (probability)"], "common_miss": "using present for cases where future is required (distant, uncertain, or probabilistic)"},
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "tense_choice.future_vs_present.present_for_near_future",
+    "parent_id": "tense_choice.future_vs_present",
+    "language_code": "it",
+    "label": "Present for near-future (parto domani)",
+    "description": "When a time adverb makes the future reference clear, Italian commonly uses the simple present: 'parto domani', 'arriviamo alle otto', 'l'anno prossimo cambio lavoro'. Doing this in English would feel wrong ('I leave tomorrow' is marked), but in Italian it's the default for definite near-future plans.",
+    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "review", "C1": "review", "C2": "fluency"},
+    "prerequisites": [],
+    "attributes": {"canonical_examples": ["Parto domani per Roma", "Arriviamo alle otto"], "common_miss": "over-applying the morphological future when a present-for-future is more natural"},
+    "active": true,
+    "version": 1
+  },
+
+  {
+    "id": "tense_choice.conditional_vs_imperfect_counterfactual",
+    "parent_id": "tense_choice",
+    "language_code": "it",
+    "label": "Conditional vs imperfetto in counterfactuals",
+    "description": "Counterfactual 'if X, then Y' sentences have a prescriptive form (subjunctive in the protasis + conditional in the apodosis: 'se avessi tempo, verrei') and a widespread colloquial form (imperfetto in both: 'se avevo tempo, venivo'). Both are heard in modern Italian. The prescriptive form is required in writing; the colloquial form is common in speech.",
+    "cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "preview", "B2": "core", "C1": "core", "C2": "review"},
+    "prerequisites": ["verb_form.imperfect.usage", "verb_form.passato_prossimo"],
+    "attributes": {"is_aggregate": true},
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "tense_choice.conditional_vs_imperfect_counterfactual.prescriptive_conditional",
+    "parent_id": "tense_choice.conditional_vs_imperfect_counterfactual",
+    "language_code": "it",
+    "label": "Prescriptive: subjunctive + conditional (se avessi tempo, verrei)",
+    "description": "The textbook counterfactual: imperfect subjunctive in the protasis (the 'se' clause), conditional in the apodosis. Used in writing and in careful speech. The learner who has internalised it should be able to produce it on demand.",
+    "cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "preview", "B2": "core", "C1": "core", "C2": "review"},
+    "prerequisites": [],
+    "attributes": {"canonical_example": "Se avessi tempo, verrei alla festa", "common_miss": "using present indicative + future ('se ho tempo, verrò') which is fine for a real condition but wrong for a counterfactual"},
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "tense_choice.conditional_vs_imperfect_counterfactual.colloquial_imperfect",
+    "parent_id": "tense_choice.conditional_vs_imperfect_counterfactual",
+    "language_code": "it",
+    "label": "Colloquial: imperfetto + imperfetto (se avevo tempo, venivo)",
+    "description": "Widespread spoken counterfactual: imperfetto in both protasis and apodosis. Prescriptively dispreferred but heard everywhere. Worth recognising for comprehension and being able to produce in informal contexts.",
+    "cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "arcane", "B2": "preview", "C1": "core", "C2": "review"},
+    "prerequisites": [],
+    "attributes": {"canonical_example": "Se avevo tempo, venivo alla festa", "common_miss": "treating the colloquial form as wrong when in fact it's accepted in speech"},
+    "active": true,
+    "version": 1
+  },
+
+  {
+    "id": "tense_choice.indicative_vs_subjunctive",
+    "parent_id": "tense_choice",
+    "language_code": "it",
+    "label": "Indicative vs subjunctive in subordinates",
+    "description": "Italian's subjunctive is triggered by certain matrix verbs and conjunctions. The diagnostic is whether the trigger forces the subjunctive or not. Modern colloquial Italian often uses indicative where prescriptive Italian wants subjunctive, especially after opinion verbs ('penso che è' instead of 'penso che sia'). Both registers are worth recognising.",
+    "cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "preview", "B2": "core", "C1": "core", "C2": "review"},
+    "prerequisites": ["verb_form.passato_prossimo"],
+    "attributes": {"is_aggregate": true},
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "tense_choice.indicative_vs_subjunctive.opinion_triggers",
+    "parent_id": "tense_choice.indicative_vs_subjunctive",
+    "language_code": "it",
+    "label": "Opinion verbs (penso che, credo che, mi sembra che)",
+    "description": "Verbs of personal opinion or belief prescriptively trigger the subjunctive in their complement clause. 'Penso che sia vero' (prescriptive) vs 'penso che è vero' (colloquial). Both are heard; the subjunctive is required in writing and signals more education in speech.",
+    "cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "preview", "B2": "core", "C1": "core", "C2": "review"},
+    "prerequisites": [],
+    "attributes": {"canonical_examples": ["Penso che sia vero", "Credo che lui abbia ragione", "Mi sembra che piova"], "common_miss": "using indicative ('penso che è'), accepted in speech but not in writing"},
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "tense_choice.indicative_vs_subjunctive.emotion_triggers",
+    "parent_id": "tense_choice.indicative_vs_subjunctive",
+    "language_code": "it",
+    "label": "Emotion verbs (sono contento che, mi dispiace che)",
+    "description": "Expressions of emotion or feeling about the subordinate clause's content trigger the subjunctive. 'Sono contento che tu sia qui' (not 'sei qui'). Less optional than opinion verbs; the indicative is heard but feels markedly wrong.",
+    "cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "preview", "B2": "core", "C1": "core", "C2": "review"},
+    "prerequisites": [],
+    "attributes": {"canonical_examples": ["Sono contento che tu sia qui", "Mi dispiace che lui non possa venire"], "common_miss": "using indicative ('sei qui'), more clearly wrong than after opinion verbs"},
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "tense_choice.indicative_vs_subjunctive.hypothetical_triggers",
+    "parent_id": "tense_choice.indicative_vs_subjunctive",
+    "language_code": "it",
+    "label": "Hypothetical conjunctions (sebbene, benché, prima che, affinché)",
+    "description": "Conjunctions introducing concession, time-before, or purpose require the subjunctive. The trigger is structural (the conjunction), not lexical. 'Sebbene piova, esco' (not 'piove'). Stronger than opinion triggers; almost no colloquial slippage here.",
+    "cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "arcane", "B2": "preview", "C1": "core", "C2": "core"},
+    "prerequisites": [],
+    "attributes": {"canonical_examples": ["Sebbene piova, esco", "Prima che tu parta, voglio dirti una cosa", "Affinché tutti capiscano"], "common_miss": "using indicative after these conjunctions, much rarer in speech than after opinion verbs"},
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "tense_choice.indicative_vs_subjunctive.negative_triggers",
+    "parent_id": "tense_choice.indicative_vs_subjunctive",
+    "language_code": "it",
+    "label": "Negation triggering subjunctive (non penso che, non è vero che)",
+    "description": "Negating a verb that doesn't ordinarily trigger the subjunctive can flip it. 'È vero che piove' (indicative) vs 'non è vero che piova' (subjunctive). Same with 'non penso che sia' vs the affirmative 'penso che' (which itself triggers subjunctive in prescriptive Italian). The diagnostic is whether the polarity has changed and whether the trigger applies under negation.",
+    "cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "arcane", "B2": "preview", "C1": "core", "C2": "review"},
+    "prerequisites": ["tense_choice.indicative_vs_subjunctive.opinion_triggers"],
+    "attributes": {"canonical_examples": ["È vero che piove vs non è vero che piova", "Non dico che sia tuo"], "common_miss": "keeping indicative under negation when subjunctive is now triggered"},
+    "active": true,
+    "version": 1
+  },
+
+  {
+    "id": "tense_choice.trapassato_vs_imperfect",
+    "parent_id": "tense_choice",
+    "language_code": "it",
+    "label": "Trapassato prossimo vs imperfetto (had done vs was doing)",
+    "description": "Both are past-of-past tenses but with different aspects. The trapassato (avevo mangiato) marks a completed event prior to another past event. The imperfetto (mangiavo) marks an ongoing action or state at the time of another past event. Picking between them when both are grammatically possible is the diagnostic.",
+    "cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "preview", "B2": "core", "C1": "review", "C2": "fluency"},
+    "prerequisites": ["verb_form.imperfect.usage", "verb_form.passato_prossimo"],
+    "attributes": {"is_aggregate": true},
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "tense_choice.trapassato_vs_imperfect.completed_prior_to_prior",
+    "parent_id": "tense_choice.trapassato_vs_imperfect",
+    "language_code": "it",
+    "label": "Trapassato for completed-prior-to-prior (quando sono arrivato, aveva già mangiato)",
+    "description": "When the second past event was already complete by the time of the first past reference point, Italian uses the trapassato: 'Quando sono arrivato, lui aveva già mangiato' (he had already eaten). The 'already' adverbs (già, appena, da poco) cue this strongly.",
+    "cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "preview", "B2": "core", "C1": "review", "C2": "fluency"},
+    "prerequisites": [],
+    "attributes": {"canonical_examples": ["Quando sono arrivato, aveva già mangiato", "Mi ha detto che era appena uscita"], "common_miss": "using imperfetto for a clearly-completed prior event ('mangiava' for 'had eaten')"},
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "tense_choice.trapassato_vs_imperfect.ongoing_background",
+    "parent_id": "tense_choice.trapassato_vs_imperfect",
+    "language_code": "it",
+    "label": "Imperfetto for ongoing background (mangiavo quando sei entrato)",
+    "description": "When the second past event was still ongoing at the time of the first past reference point, Italian uses the imperfetto: 'Mangiavo quando sei entrato' (I was eating when you came in). The 'while' or 'when -ing' adverbs (mentre, quando) cue this strongly.",
+    "cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "preview", "B2": "core", "C1": "review", "C2": "fluency"},
+    "prerequisites": [],
+    "attributes": {"canonical_examples": ["Mangiavo quando sei entrato", "Mentre dormivo, è suonato il telefono"], "common_miss": "using trapassato for an ongoing state ('avevo mangiato quando sei entrato' implies I'd finished, which usually isn't the intended reading)"},
+    "active": true,
+    "version": 1
+  }
+]

@@ -13,6 +13,7 @@
     <nav id="strand-nav">
       <button data-strand="grammar" class="active">Grammar</button>
       <button data-strand="translation">Translation</button>
+      <button data-strand="vocab">Vocab</button>
       <button data-strand="buckets">Bucket tree (browse)</button>
     </nav>
   </header>
@@ -31,6 +32,13 @@
         <p class="note">Enter to mark; Shift+Enter for a line break. Enter again to advance. AI marking is stubbed in this prototype.</p>
         <div id="translation-filter-bar" class="filter-bar"></div>
         <div id="translation-host">Loading...</div>
+      </section>
+
+      <section id="strand-vocab" class="strand" hidden>
+        <h2>Vocab practice</h2>
+        <p class="note">One word at a time. Enter to mark, Enter again to advance. Translation only for now; other aspects coming as subsections.</p>
+        <div id="vocab-filter-bar" class="filter-bar"></div>
+        <div id="vocab-host">Loading...</div>
       </section>
 
       <section id="strand-buckets" class="strand" hidden>

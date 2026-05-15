@@ -225,6 +225,16 @@ Five refinements proposed in `data/bucket_suggestions_pronoun.json`:
 - Several items have multiple markpoints (PP items combining pronoun selection with auxiliary/agreement diagnostics); they cross-reference the passato_prossimo tree.
 - Joined-cluster items (op_comb_joined_01..05) reference the pending joined-when-separate bucket and will warn at authoring-time load until that bucket is ratified.
 
+## Rev 3 conformance pass (2026-05-15)
+
+Two retroactive fixes for the Author Brief Rev 3 updates:
+
+**Lemma key conventions (§2)**: Five bucket-id references had stripped diacritics. Fixed three occurrences of `vocabulary.it.caffe.*` to `vocabulary.it.caffè.*` and two of `vocabulary.it.verita.translation` to `vocabulary.it.verità.translation`. The lemma key fields themselves already carried the diacritics; the violation was that the bucket-id slot stripped them. Now consistent.
+
+The other six §2 rules were already in compliance: no uppercase lemma keys; participle and inflected forms all point their bucket at the canonical infinitive or noun lemma; adjective lemmas carry only the translation aspect (no gender); no multi-word Italian invariables in scope; mixed-gender pairs aren't represented as collapsed lemmas (the closest case is the English "friends" lemma in trans_op_en_it_08 which displays `friend - amico/amica` but points to the amico bucket — judgement call, the rule is clearer on the Italian-side direction).
+
+**Friendly bucket labels in prose (§7)**: rewrote the hot-spot deep-dive, D3 resolution, migration results, and bucket-suggestions summary so each bucket reference leads with the friendly label (e.g. "the glielo-family bucket") and keeps the dot-separated id parenthetically in backticks for precision. The Cross-references section still lists external bucket ids in code-list format (allowed per §7 as data, and the ids are the action substance there).
+
 ## House-style revision pass (2026-05-14)
 
 All 216 grammar-question explanations and all 56 translation-item explanations have been revised to the project's four-beat house style: (1) lead with what Italian is doing in everyday terms, (2) name the relevant grammatical term explicitly when first introduced (no inline expansion), (3) use the term thereafter, (4) finish with the concrete working ("Stack: ..."). Each explanation is roughly 30-60 words.

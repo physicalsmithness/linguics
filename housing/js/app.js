@@ -238,8 +238,13 @@
         LL.glossary = buildGlossaryIndex(glossary);
       }
 
+      // Optional vocabulary frequency list (separate from the topic loop).
+      // Used by the vocab strand. Missing file means the vocab tab shows an
+      // empty state but everything else still works.
+      const vocab = await Foptional("../data/vocabulary_it_frequency.json");
+
       console.info("Loaded per topic:", perTopicCounts);
-      return { buckets, grammar, translation, perTopicCounts };
+      return { buckets, grammar, translation, perTopicCounts, vocab };
     } catch (e) {
       console.info("Real content fetch failed; using inline samples.", e.message || e);
       return null;
@@ -345,6 +350,7 @@
     if (name === "buckets") renderBucketsBrowse();
     if (name === "grammar") focusGrammarInput();
     if (name === "translation") focusTranslationInput();
+    if (name === "vocab") { renderVocab(); focusVocabInput(); }
   }
   document.querySelectorAll("nav#strand-nav button").forEach(b =>
     b.addEventListener("click", () => showStrand(b.dataset.strand)));
@@ -618,6 +624,309 @@
     setTimeout(() => textarea.focus(), 0);
   }
   function focusTranslationInput() { if (translationTextareaRef) translationTextareaRef.focus(); }
+
+  // ============================================================================
+  // Vocab strand: minimal translation-only practice.
+  // One word at a time. Direction toggle (IT→EN default, or EN→IT). Frequency-
+  // band filter. Each attempt fires events on the lemma's translation bucket
+  // and on the entry's frequency-band bucket so both signals accumulate.
+  // Richer aspects (gender, plural, conjugation, auxiliary) deferred; will
+  // come as learner-picked subsections, not random aspect picking.
+  // ============================================================================
+
+  let vocabEntries = [];
+  let vocabDeck = [];
+  let vocabIndex = 0;
+  let vocabFilter = { band: "", direction: "it_en" };
+  let vocabInputRef = null;
+
+  function filteredVocabEntries() {
+    return vocabEntries.filter(v => !vocabFilter.band || v.band === vocabFilter.band);
+  }
+
+  function ensureVocabDeck() {
+    if (!vocabDeck.length || vocabIndex >= vocabDeck.length) {
+      vocabDeck = shuffle(filteredVocabEntries());
+      vocabIndex = 0;
+    }
+  }
+
+  function bandFriendly(bandId) {
+    if (!bandId) return "";
+    return String(bandId).replace(/.*freq_/, "").replace(/_/g, "-");
+  }
+
+  function renderVocabFilterBar() {
+    const host = document.getElementById("vocab-filter-bar");
+    if (!host) return;
+    host.innerHTML = "";
+    if (!vocabEntries.length) return;
+
+    // Direction toggle
+    const dirLabel = document.createElement("label");
+    dirLabel.textContent = "Direction:";
+    host.appendChild(dirLabel);
+    const dirSel = document.createElement("select");
+    [["it_en", "Italian → English"], ["en_it", "English → Italian"]].forEach(([v, t]) => {
+      const o = document.createElement("option");
+      o.value = v; o.textContent = t;
+      if (vocabFilter.direction === v) o.selected = true;
+      dirSel.appendChild(o);
+    });
+    dirSel.addEventListener("change", () => {
+      vocabFilter.direction = dirSel.value;
+      renderVocab();
+    });
+    host.appendChild(dirSel);
+
+    // Frequency band filter
+    const bands = Array.from(new Set(vocabEntries.map(v => v.band).filter(Boolean))).sort();
+    if (bands.length) {
+      const bLabel = document.createElement("label");
+      bLabel.textContent = "Band:";
+      host.appendChild(bLabel);
+      const bSel = document.createElement("select");
+      const anyOpt = document.createElement("option");
+      anyOpt.value = ""; anyOpt.textContent = "any";
+      bSel.appendChild(anyOpt);
+      bands.forEach(b => {
+        const o = document.createElement("option");
+        o.value = b; o.textContent = bandFriendly(b);
+        if (vocabFilter.band === b) o.selected = true;
+        bSel.appendChild(o);
+      });
+      bSel.addEventListener("change", () => {
+        vocabFilter.band = bSel.value;
+        vocabDeck = []; vocabIndex = 0;
+        renderVocab();
+      });
+      host.appendChild(bSel);
+    }
+
+    // Count
+    const filtered = filteredVocabEntries();
+    const count = document.createElement("span");
+    count.className = "filter-count";
+    count.textContent = `${filtered.length} of ${vocabEntries.length}`;
+    host.appendChild(count);
+  }
+
+  function renderVocab() {
+    renderVocabFilterBar();
+    const host = document.getElementById("vocab-host");
+    if (!host) return;
+    host.innerHTML = "";
+    if (!vocabEntries.length) {
+      const msg = document.createElement("p");
+      msg.className = "muted";
+      msg.style.cssText = "padding:18px;font-style:italic";
+      msg.textContent = "No vocab entries loaded. Serve the project over http (e.g. python -m http.server) and reload to fetch the frequency list.";
+      host.appendChild(msg);
+      return;
+    }
+    ensureVocabDeck();
+    if (!vocabDeck.length) {
+      const msg = document.createElement("p");
+      msg.className = "muted";
+      msg.style.cssText = "padding:18px;font-style:italic";
+      msg.textContent = "No entries match the current filter. Loosen the band filter above.";
+      host.appendChild(msg);
+      return;
+    }
+    const entry = vocabDeck[vocabIndex];
+    const isItEn = vocabFilter.direction === "it_en";
+
+    const card = document.createElement("div");
+    card.className = "qcard";
+
+    const meta = document.createElement("div");
+    meta.className = "meta faint";
+    const friendly = bandFriendly(entry.band);
+    const bits = [];
+    if (entry.pos) bits.push(entry.pos);
+    if (friendly) bits.push("band " + friendly);
+    if (entry.rank) bits.push("rank " + entry.rank);
+    meta.textContent = bits.join(" · ");
+    card.appendChild(meta);
+
+    const prompt = document.createElement("div");
+    prompt.className = "prompt";
+    if (isItEn) {
+      const strong = document.createElement("strong");
+      strong.textContent = entry.lemma;
+      prompt.appendChild(document.createTextNode("What does "));
+      prompt.appendChild(strong);
+      prompt.appendChild(document.createTextNode(" mean?"));
+    } else {
+      const strong = document.createElement("strong");
+      strong.textContent = entry.translation_en;
+      prompt.appendChild(document.createTextNode("What's the Italian for "));
+      prompt.appendChild(strong);
+      prompt.appendChild(document.createTextNode("?"));
+    }
+    card.appendChild(prompt);
+
+    const input = document.createElement("input");
+    input.type = "text";
+    input.autocomplete = "off";
+    input.spellcheck = false;
+    input.placeholder = "Type your answer; press Enter to mark.";
+    card.appendChild(input);
+    vocabInputRef = input;
+
+    // Accent bar only when typing Italian (EN→IT direction). For IT→EN the
+    // answer is English and apostrophe-rewrite would corrupt "I've" style words.
+    if (!isItEn) {
+      card.appendChild(buildAccentBar(input, { rewriteApostrophes: true }));
+    }
+
+    const actions = document.createElement("div");
+    actions.className = "actions";
+    const markBtn = document.createElement("button");
+    markBtn.textContent = "Mark";
+    const nextBtn = document.createElement("button");
+    nextBtn.className = "secondary";
+    nextBtn.textContent = "Next";
+    actions.appendChild(markBtn);
+    actions.appendChild(nextBtn);
+    const helpHint = document.createElement("span");
+    helpHint.className = "kbd-hint";
+    helpHint.textContent = "Enter to mark · Enter again to advance";
+    actions.appendChild(helpHint);
+    card.appendChild(actions);
+
+    const resultHost = document.createElement("div");
+    card.appendChild(resultHost);
+
+    const doMark = () => {
+      const raw = input.value;
+      const result = markVocab(entry, raw, isItEn);
+      const syntheticItem = { id: "vocab_" + (entry.rank || entry.lemma) + "_" + (isItEn ? "ie" : "ei"), prompt: prompt.textContent };
+      const attempt = LL.store.recordAttempt("vocab", syntheticItem, raw, result);
+      recentlyChangedBuckets = new Set(attempt.events.map(e => e.bucket));
+      resultHost.innerHTML = "";
+      resultHost.appendChild(renderResult(result));
+      renderLiveStats();
+      nextBtn.focus();
+    };
+    const doNext = () => {
+      vocabIndex++;
+      if (vocabIndex >= vocabDeck.length) {
+        vocabDeck = shuffle(filteredVocabEntries());
+        vocabIndex = 0;
+      }
+      renderVocab();
+    };
+
+    markBtn.addEventListener("click", doMark);
+    nextBtn.addEventListener("click", doNext);
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        doMark();
+      }
+    });
+    nextBtn.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        doNext();
+      }
+    });
+
+    host.appendChild(card);
+    setTimeout(() => input.focus(), 0);
+  }
+
+  function focusVocabInput() { if (vocabInputRef) vocabInputRef.focus(); }
+
+  // Normalised compare for vocab translation answers. Accepts comma- or
+  // semicolon-separated alternatives in the target. Tolerates a leading
+  // "to " on verb infinitives. Case-insensitive, punctuation-stripped.
+  function vocabAcceptable(answer, target) {
+    const norm = s => String(s || "").trim().toLowerCase().replace(/[.,;!?"'()\[\]]/g, "").replace(/\s+/g, " ").trim();
+    const a = norm(answer);
+    if (!a) return false;
+    const alternatives = String(target || "").split(/[,;\/]/).map(norm).filter(Boolean);
+    for (const alt of alternatives) {
+      if (a === alt) return true;
+      // Allow learner to omit a leading "to" on verbs
+      if (alt.startsWith("to ") && a === alt.slice(3)) return true;
+      if (a.startsWith("to ") && alt === a.slice(3)) return true;
+    }
+    return false;
+  }
+
+  function markVocab(entry, raw, isItEn) {
+    const translationBucket = `vocabulary.it.${entry.lemma}.translation`;
+    const translationLabel = `${entry.lemma} (translation)`;
+    const trimmed = String(raw || "").trim();
+    const target = isItEn ? entry.translation_en : entry.lemma;
+    const result = {
+      score: 0,
+      max_score: 1,
+      raw_response: raw,
+      markpoints: []
+    };
+    if (!trimmed) {
+      result.markpoints.push({
+        bucket: translationBucket,
+        label: translationLabel,
+        attempted_credit: 0,
+        correctness_credit: null,
+        outcome: "not_attempted",
+        evidence: "no answer given",
+        expected: target
+      });
+      return result;
+    }
+    const ok = vocabAcceptable(raw, target);
+    if (ok) {
+      result.score = 1;
+      result.markpoints.push({
+        bucket: translationBucket,
+        label: translationLabel,
+        attempted_credit: 1,
+        correctness_credit: 1,
+        outcome: "hit",
+        evidence: "matched: " + raw,
+        expected: target
+      });
+      // Also fire on the frequency-band bucket so the band signal fills.
+      if (entry.band) {
+        result.markpoints.push({
+          bucket: entry.band,
+          label: "Frequency band " + bandFriendly(entry.band),
+          attempted_credit: 1,
+          correctness_credit: 1,
+          outcome: "hit",
+          evidence: "right on " + entry.lemma,
+          source: "band_rollup"
+        });
+      }
+    } else {
+      result.markpoints.push({
+        bucket: translationBucket,
+        label: translationLabel,
+        attempted_credit: 1,
+        correctness_credit: 0,
+        outcome: "miss",
+        evidence: "you wrote: " + raw,
+        expected: target
+      });
+      if (entry.band) {
+        result.markpoints.push({
+          bucket: entry.band,
+          label: "Frequency band " + bandFriendly(entry.band),
+          attempted_credit: 1,
+          correctness_credit: 0,
+          outcome: "miss",
+          evidence: "miss on " + entry.lemma,
+          source: "band_rollup"
+        });
+      }
+    }
+    return result;
+  }
 
   // ============================================================================
   // Vocab help: button bar + slash command, both call useVocabHelp().
@@ -954,9 +1263,22 @@
     if (!item || !item.vocab_help) return;
     if (!rawAnswer || !String(rawAnswer).trim()) return;
     const usedBuckets = new Set(vocabHelpsUsedRef.map(h => h.bucket));
+    // Collect any text that was visible to the learner before they answered:
+    // the grammar prompt, the translation source_text, plus any explicit cue
+    // text (e.g. "(grande)" cues in grammar items). A lemma that appears in
+    // ANY of this visible text was handed to the learner and so doesn't
+    // count as actively produced even if they then wrote it in their answer.
+    const visibleParts = [];
+    if (item.prompt) visibleParts.push(String(item.prompt));
+    if (item.source_text) visibleParts.push(String(item.source_text));
+    if (item.cue) visibleParts.push(String(item.cue));
+    const visibleText = visibleParts.join(" ");
     for (const entry of item.vocab_help) {
       if (!entry.aspects || !entry.lemma) continue;
       if (!lemmaProducedInAnswer(entry.lemma, rawAnswer)) continue;
+      // Skip if the lemma was visible in the prompt. The learner saw it; they
+      // didn't have to retrieve it from their own knowledge.
+      if (visibleText && lemmaProducedInAnswer(entry.lemma, visibleText)) continue;
       for (const [aspect, def] of Object.entries(entry.aspects)) {
         if (usedBuckets.has(def.bucket)) continue;
         result.markpoints.push({
@@ -1305,7 +1627,9 @@
     const cell = document.createElement("div");
     cell.className = "overview-cell";
     cell.title = friendlyOverviewTitle(root, stats);
-    cell.style.background = rwgColour(hasEvents ? stats.correctness : 0, hasEvents);
+    // Top-level cell carries no rolled-up background; the texture comes from
+    // the mini-cells and micro-dots inside. An overall colour would smooth
+    // over the very distribution we want to see.
     cell.addEventListener("click", () => setBucketFilter(root.id));
 
     const header = document.createElement("div");
@@ -1345,7 +1669,9 @@
     const mini = document.createElement("div");
     mini.className = "overview-mini";
     mini.title = friendlyOverviewTitle(node, stats);
-    mini.style.background = rwgColour(hasEvents ? stats.correctness : 0, hasEvents);
+    // Mid-level mini-cell also carries no rolled-up background; texture comes
+    // from the leaf dots inside. The rollup signal is preserved in the
+    // tooltip stats and in the hits/total meta if added.
     mini.addEventListener("click", (e) => {
       e.stopPropagation();
       setBucketFilter(node.id);
@@ -1643,6 +1969,7 @@
   renderTranslationFilterBar();
   renderGrammar();
   renderTranslation();
+  renderVocab();
   renderCefr();
   renderLiveStats();
   showStrand("grammar");
@@ -1655,19 +1982,26 @@
     bucketIndex = LL.store.indexBuckets(allBuckets);
     grammarQuestions = real.grammar;
     translationItems = real.translation;
+    if (real.vocab && Array.isArray(real.vocab)) {
+      vocabEntries = real.vocab;
+    }
     grammarIndex = 0;
     translationIndex = 0;
+    vocabIndex = 0;
     grammarDeck = [];      // force fresh shuffle on next render
     translationDeck = [];
+    vocabDeck = [];
     renderGrammarFilterBar();
     renderTranslationFilterBar();
     renderGrammar();
     renderTranslation();
+    renderVocab();
     renderLiveStats();
     const topicsDesc = real.perTopicCounts
       ? real.perTopicCounts.map(t => `${t.topic.split(".").pop()} ${t.grammar}/${t.translation}`).join(", ")
       : "";
-    setStatus(`Real content: ${grammarQuestions.length} grammar, ${translationItems.length} translation, ${allBuckets.length} buckets. ${topicsDesc ? "Per topic: " + topicsDesc : ""}`);
+    const vocabBit = vocabEntries.length ? `, ${vocabEntries.length} vocab` : "";
+    setStatus(`Real content: ${grammarQuestions.length} grammar, ${translationItems.length} translation${vocabBit}, ${allBuckets.length} buckets. ${topicsDesc ? "Per topic: " + topicsDesc : ""}`);
   });
 
 })();
