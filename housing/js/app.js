@@ -593,16 +593,43 @@
     const resultHost = document.createElement("div");
     card.appendChild(resultHost);
 
-    const doMark = () => {
+    const doMark = async () => {
       const raw = textarea.value;
       const intent = intentSel.value;
-      const result = LL.markTranslationStub(it, raw, intent);
+
+      // Use live AI marker when a Worker URL is configured; otherwise fall
+      // back to the substring-tells stub.
+      const markerUrl = (typeof LL.markerUrl === "function") ? LL.markerUrl() : "";
+      let result, costLine = null;
+      if (markerUrl) {
+        // Show a "marking..." indicator while the AI thinks
+        resultHost.innerHTML = '<div class="muted" style="padding:14px;font-style:italic">Marking via AI...</div>';
+        try {
+          const bucketContext = LL.buildBucketContext(it, bucketIndex.byId);
+          const payload = await LL.markTranslationLive(it, raw, intent, { bucketContext });
+          result = payload.result;
+          if (!result.raw_response) result.raw_response = raw;
+          // Build the cost line
+          const modelShort = (payload.model_used || "").split("/").pop() || "model";
+          costLine = document.createElement("div");
+          costLine.className = "marker-cost";
+          costLine.textContent = `${modelShort} · ${payload.usage.input_tokens} in, ${payload.usage.output_tokens} out · ${LL.formatCost(payload.cost_usd)}`;
+        } catch (e) {
+          // Fallback to stub on error so the learner still gets a result
+          resultHost.innerHTML = '<div class="muted" style="padding:8px;font-style:italic;color:#b03030">Live marker failed: ' + (e.message || e) + '. Falling back to stub.</div>';
+          result = LL.markTranslationStub(it, raw, intent);
+        }
+      } else {
+        result = LL.markTranslationStub(it, raw, intent);
+      }
+
       appendVocabHelpEvents(result, vocabHelpsUsed);
       appendActiveProductionHits(result, vocabHelpsUsed, it, raw);
       const attempt = LL.store.recordAttempt("translation", it, raw, result, intent);
       recentlyChangedBuckets = new Set(attempt.events.map(e => e.bucket));
       resultHost.innerHTML = "";
       resultHost.appendChild(renderResult(result));
+      if (costLine) resultHost.appendChild(costLine);
       renderLiveStats();
       next.focus();
     };
@@ -866,13 +893,15 @@
     const translationLabel = `${entry.lemma} (translation)`;
     const trimmed = String(raw || "").trim();
     const target = isItEn ? entry.translation_en : entry.lemma;
+    // renderResult expects result.overall.{marks_awarded,marks_possible,summary}
+    // not result.score/max_score, so use the canonical shape.
     const result = {
-      score: 0,
-      max_score: 1,
+      overall: { marks_awarded: 0, marks_possible: 1, summary: "" },
       raw_response: raw,
       markpoints: []
     };
     if (!trimmed) {
+      result.overall.summary = "Didn't try";
       result.markpoints.push({
         bucket: translationBucket,
         label: translationLabel,
@@ -886,7 +915,8 @@
     }
     const ok = vocabAcceptable(raw, target);
     if (ok) {
-      result.score = 1;
+      result.overall.marks_awarded = 1;
+      result.overall.summary = "Right";
       result.markpoints.push({
         bucket: translationBucket,
         label: translationLabel,
@@ -909,6 +939,7 @@
         });
       }
     } else {
+      result.overall.summary = "Wrong";
       result.markpoints.push({
         bucket: translationBucket,
         label: translationLabel,
@@ -2030,6 +2061,76 @@
     host.appendChild(sel);
   }
 
+  // -------------------- marker config (live AI marker) --------------------
+  function renderMarkerConfig() {
+    const host = document.getElementById("marker-config-host");
+    if (!host || !LL.markerUrl) return;
+    host.innerHTML = "";
+    const lbl = document.createElement("span");
+    lbl.className = "muted";
+    lbl.textContent = "AI marker: ";
+    host.appendChild(lbl);
+
+    // URL setting (compact)
+    const urlBtn = document.createElement("button");
+    urlBtn.type = "button";
+    urlBtn.className = "secondary";
+    urlBtn.style.cssText = "padding:2px 6px;font-size:11px";
+    const current = LL.markerUrl();
+    urlBtn.textContent = current ? "on" : "set URL";
+    urlBtn.title = current ? `Worker URL: ${current}` : "Click to configure the Worker URL";
+    urlBtn.addEventListener("click", () => {
+      const next = prompt("Worker URL (leave blank to disable live marker):", LL.markerUrl());
+      if (next === null) return;
+      LL.setMarkerUrl(next);
+      renderMarkerConfig();
+    });
+    host.appendChild(urlBtn);
+
+    // Model picker
+    if (current && LL.AVAILABLE_MODELS) {
+      const modelSel = document.createElement("select");
+      modelSel.style.cssText = "margin-left:6px;font-size:11px;padding:2px 4px";
+      LL.AVAILABLE_MODELS.forEach(m => {
+        const o = document.createElement("option");
+        o.value = m.id; o.textContent = m.label;
+        if (m.id === LL.markerModel()) o.selected = true;
+        modelSel.appendChild(o);
+      });
+      modelSel.addEventListener("change", () => {
+        LL.setMarkerModel(modelSel.value);
+      });
+      host.appendChild(modelSel);
+    }
+  }
+
+  // -------------------- session cost (live AI marker) --------------------
+  function renderSessionCost() {
+    const host = document.getElementById("session-cost-host");
+    if (!host || !LL.sessionCostUsd) return;
+    const cost = LL.sessionCostUsd();
+    if (cost <= 0) {
+      host.textContent = "";
+      return;
+    }
+    host.innerHTML = "";
+    const lbl = document.createElement("span");
+    lbl.textContent = "Session cost: " + LL.formatCost(cost);
+    host.appendChild(lbl);
+    const reset = document.createElement("button");
+    reset.type = "button";
+    reset.className = "secondary";
+    reset.style.cssText = "margin-left:6px;padding:1px 5px;font-size:11px";
+    reset.textContent = "reset";
+    reset.addEventListener("click", () => {
+      LL.resetSessionCost();
+    });
+    host.appendChild(reset);
+  }
+  if (typeof LL.markerUrl === "function") {
+    LL.onCostUpdate = function (_total) { renderSessionCost(); };
+  }
+
   // -------------------- only-touched checkbox --------------------
   document.getElementById("live-only-touched").addEventListener("change", () => {
     renderLiveStats();
@@ -2042,6 +2143,8 @@
   renderTranslation();
   renderVocab();
   renderCefr();
+  renderMarkerConfig();
+  renderSessionCost();
   renderLiveStats();
   showStrand("grammar");
   setStatus(`Inline samples (${grammarQuestions.length}G / ${translationItems.length}T / ${allBuckets.length}B). Serve via http to load real content.`);
@@ -2059,7 +2162,7 @@
     grammarIndex = 0;
     translationIndex = 0;
     vocabIndex = 0;
-    grammarDeck = [];      // force fresh shuffle on next render
+    grammarDeck = [];
     translationDeck = [];
     vocabDeck = [];
     renderGrammarFilterBar();

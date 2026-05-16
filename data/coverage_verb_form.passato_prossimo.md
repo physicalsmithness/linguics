@@ -4,6 +4,8 @@ Authored across two dispatches (initial + post-architecture-feedback revision). 
 
 **Totals**: 103 grammar questions, 50 translation items (24 en→it, 26 it→en).
 
+**Prompt-leak fix (2026-05-15)**: rewrote prompts on `pp_aux_modal_01..05` (stripped "using prescriptive inheritance" and the redundant agreement cue) and `pp_aux_amb_01..03` (stripped "(transitive use ...)" and "(intransitive, motion)" parentheticals that named the bucket diagnostic). The diagnostic survives via participle agreement and sentence structure; the parentheticals now carry only the infinitive cue.
+
 ## Bucket-to-item-count table
 
 Counts are "dedicated items" + "co-fires" where the bucket is one of several skills the item tests. A dedicated item is the one whose `subtopic` field names this bucket; co-fires happen when a bucket is a markpoint or `required_bucket` on an item whose primary focus is elsewhere.

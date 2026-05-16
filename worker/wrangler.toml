@@ -1,0 +1,11 @@
+name = "linguics-marker"
+main = "src/index.ts"
+compatibility_date = "2025-05-15"
+
+# Rate limiting: 60 requests per minute per IP. The Worker checks itself
+# (lightweight, no Durable Objects needed for this volume).
+# If you want stricter limits, change the constants in src/index.ts.
+
+# The OPENROUTER_API_KEY secret is set via:
+#   wrangler secret put OPENROUTER_API_KEY
+# (it prompts for the value; nothing is committed to disk)
