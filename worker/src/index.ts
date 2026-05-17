@@ -341,6 +341,13 @@ export default {
       return errorResp(413, "cost_cap_exceeded", `Estimated cost $${estCost.toFixed(4)} exceeds per-call cap of $${COST_CAP_PER_CALL_USD}. Try a cheaper model or a shorter bucket_context.`);
     }
 
+    // Diagnostic: confirm the secret is loaded. Prints to `wrangler tail` only.
+    if (!env.OPENROUTER_API_KEY) {
+      console.error("OPENROUTER_API_KEY is missing or empty in env");
+      return errorResp(500, "config_error", "OPENROUTER_API_KEY secret not loaded. Run `wrangler secret put OPENROUTER_API_KEY` from the worker/ directory and redeploy.");
+    }
+    console.log(`Calling OpenRouter; key length: ${env.OPENROUTER_API_KEY.length}; model: ${model}`);
+
     // Call OpenRouter
     let apiRes: Response;
     try {

@@ -28,13 +28,21 @@
   ];
 
   // Apostrophe-style accent input: e' -> è, e'' -> é, etc.
+  //
+  // The è' and È' rules are listed first because the live-rewriter fires on
+  // every keystroke. Typing "e''" in sequence is staged as e -> e' -> è -> è'
+  // (the second apostrophe is appended after è has already replaced e'). The
+  // è' rule then upgrades the grave to acute so the user gets é. Without this,
+  // typing e'' interactively gets stuck at è' because nothing matches that
+  // two-character sequence.
   const ACCENT_FROM_APOSTROPHE = [
+    [/è'/g, "é"], [/È'/g, "É"],
     [/e''/g, "é"], [/e'/g, "è"],
+    [/E''/g, "É"], [/E'/g, "È"],
     [/a'/g, "à"],
     [/i'/g, "ì"],
     [/o'/g, "ò"],
     [/u'/g, "ù"],
-    [/E''/g, "É"], [/E'/g, "È"],
     [/A'/g, "À"],
     [/I'/g, "Ì"],
     [/O'/g, "Ò"],

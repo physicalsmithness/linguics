@@ -17,3 +17,19 @@ venv/
 dist/
 build/
 *.log
+
+# Author-chat feedback and intermediate review artifacts.
+# These are useful while iterating but are chat-thread output rather than
+# project state, so they don't need to live in the public repo.
+FEEDBACK_*
+AUTHORING_FEEDBACK_*
+ARCHITECTURE_FEEDBACK_*
+REPLY_TO_*
+DECISIONS_FROM_*
+feedback_*
+Feedback_*
+
+# Wrangler / Cloudflare local state
+worker/.wrangler/
+worker/node_modules/
+.dev.vars
