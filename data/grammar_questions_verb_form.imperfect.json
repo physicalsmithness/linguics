@@ -1785,7 +1785,7 @@
         "bucket": "verb_form.imperfect.formation.irregular.stem_expansion.tradurre",
         "label": "1pl traducevamo (traduc- stem)",
         "any_phrases": ["traducevamo"],
-        "must_not_include": ["tradurrevamo", "tradurrevamo", "tradurevamo", "abbiamo tradotto", "traducemmo", "tradurremo", "traduciamo"]
+        "must_not_include": ["tradurrevamo", "tradurevamo", "abbiamo tradotto", "traducemmo", "tradurremo", "traduciamo"]
       }
     ],
     "vocab_help": [
@@ -5038,6 +5038,359 @@
     ],
     "explanation": "'Già prima della festa' (already before the party) anchors a state of prior acquaintance. The follow-up sentence reinforces: 'non vi siete conosciuti lì' (you didn't meet there) explicitly negates the first-meeting reading. Italian uses the imperfect conoscevi for 'had previously known'.",
     "examiner_note": "Two-sentence framing: the explicit denial of first-meeting in the second sentence locks in the imperfect reading.",
+    "version": 1
+  },
+  {
+    "external_id": "imp_isp_pres_01",
+    "language_code": "it",
+    "topic": "verb_form.imperfect",
+    "subtopic": "indirect_speech.reported_present",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Complete: 'Marco mi ha detto ieri sera che ____ molto stanco e voleva andare a dormire.' (essere, 3sg)",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.indirect_speech.reported_present",
+        "label": "Reported present-state becomes imperfect under past reporting (era)",
+        "any_phrases": ["era"],
+        "must_not_include": ["è", "è stato", "sarà", "fu"]
+      }
+    ],
+    "vocab_help": [
+      {"lemma": "essere", "language": "it", "aspects": {"translation": {"reveal": "essere - to be", "bucket": "vocabulary.it.essere.translation"}}},
+      {"lemma": "stanco", "language": "it", "aspects": {"translation": {"reveal": "stanco - tired", "bucket": "vocabulary.it.stanco.translation"}}},
+      {"lemma": "dormire", "language": "it", "aspects": {"translation": {"reveal": "dormire - to sleep", "bucket": "vocabulary.it.dormire.translation"}}}
+    ],
+    "explanation": "When someone in direct speech said 'sono stanco' (I'm tired) and you report it after the fact with a past reporting verb ('mi ha detto'), Italian shifts the embedded present to imperfect. So 'Marco ha detto: sono stanco' becomes 'Marco ha detto che era stanco'. The imperfect carries the past-perspective view of Marco's state at the time he spoke.",
+    "examiner_note": "Common miss: leaving the embedded clause in the present ('ha detto che è stanco'), which would describe a current state being reported, not a then-state.",
+    "version": 1
+  },
+  {
+    "external_id": "imp_isp_pres_02",
+    "language_code": "it",
+    "topic": "verb_form.imperfect",
+    "subtopic": "indirect_speech.reported_present",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Complete: 'I giornali hanno scritto che il presidente ____ in vacanza in Sardegna.' (essere, 3sg)",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.indirect_speech.reported_present",
+        "label": "Reported present-state from print/news source (era)",
+        "any_phrases": ["era"],
+        "must_not_include": ["è", "è stato", "sarà", "fu"]
+      }
+    ],
+    "vocab_help": [
+      {"lemma": "giornali", "language": "it", "aspects": {"translation": {"reveal": "giornale - newspaper (giornali = newspapers)", "bucket": "vocabulary.it.giornale.translation"}, "gender": {"reveal": "masculine (m)", "bucket": "vocabulary.it.giornale.gender"}}},
+      {"lemma": "presidente", "language": "it", "aspects": {"translation": {"reveal": "presidente - president", "bucket": "vocabulary.it.presidente.translation"}}},
+      {"lemma": "vacanza", "language": "it", "aspects": {"translation": {"reveal": "vacanza - holiday / vacation", "bucket": "vocabulary.it.vacanza.translation"}, "gender": {"reveal": "feminine (f)", "bucket": "vocabulary.it.vacanza.gender"}}}
+    ],
+    "explanation": "Newspapers reported (past reporting verb: hanno scritto) what was, at that earlier moment, a present state. Italian shifts the embedded present to imperfect: 'era in vacanza' rather than 'è in vacanza'. The shift signals the indirectness — what was true at the time of writing, not necessarily now.",
+    "version": 1
+  },
+  {
+    "external_id": "imp_isp_pres_03",
+    "language_code": "it",
+    "topic": "verb_form.imperfect",
+    "subtopic": "indirect_speech.reported_present",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "Complete: 'Mi hai chiesto stamattina se ____ qualcosa del licenziamento, e ti ho risposto di no.' (sapere, 1sg)",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.indirect_speech.reported_present",
+        "label": "Reported present-state of knowledge under past question (sapevo)",
+        "any_phrases": ["sapevo"],
+        "must_not_include": ["so", "ho saputo", "saprò", "saprei"]
+      }
+    ],
+    "vocab_help": [
+      {"lemma": "sapere", "language": "it", "aspects": {"translation": {"reveal": "sapere - to know", "bucket": "vocabulary.it.sapere.translation"}}},
+      {"lemma": "licenziamento", "language": "it", "aspects": {"translation": {"reveal": "licenziamento - dismissal / layoff", "bucket": "vocabulary.it.licenziamento.translation"}, "gender": {"reveal": "masculine (m)", "bucket": "vocabulary.it.licenziamento.gender"}}}
+    ],
+    "explanation": "The reported question is 'Sai qualcosa?' (do you know anything?); the past reporting verb ('mi hai chiesto') shifts the embedded 'sai' to imperfect: 'se sapevo qualcosa' (whether I knew anything at that point). Note that this is the state-of-knowing reading of sapere; the PP 'ho saputo' would shift to 'found out', which doesn't fit the asked-at-the-time framing.",
+    "examiner_note": "Indirect-speech interplay with the sapere modal discrimination: the indirect-speech rule wants imperfect (sapevo), and the sapere meaning here is also the state-of-knowing reading (also imperfect). Both rules align.",
+    "version": 1
+  },
+  {
+    "external_id": "imp_isp_pres_04",
+    "language_code": "it",
+    "topic": "verb_form.imperfect",
+    "subtopic": "indirect_speech.reported_present",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "Complete: 'Maria mi ha confermato che non ____ venire alla festa stasera.' (potere, 3sg)",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.indirect_speech.reported_present",
+        "label": "Reported present-ability/permission shifts to imperfect (poteva)",
+        "any_phrases": ["poteva"],
+        "must_not_include": ["può", "ha potuto", "potrà", "potrebbe"]
+      }
+    ],
+    "vocab_help": [
+      {"lemma": "potere", "language": "it", "aspects": {"translation": {"reveal": "potere - can / be able to", "bucket": "vocabulary.it.potere.translation"}}},
+      {"lemma": "confermare", "language": "it", "aspects": {"translation": {"reveal": "confermare - to confirm", "bucket": "vocabulary.it.confermare.translation"}}},
+      {"lemma": "festa", "language": "it", "aspects": {"translation": {"reveal": "festa - party", "bucket": "vocabulary.it.festa.translation"}, "gender": {"reveal": "feminine (f)", "bucket": "vocabulary.it.festa.gender"}}}
+    ],
+    "explanation": "Maria's direct words would have been 'non posso venire' (I can't come). Under the past reporting verb ('mi ha confermato'), Italian shifts the embedded present 'posso' to imperfect 'poteva'. The party is still in the future from the speaker's now, but the reporting moment locks the indirect form to imperfect.",
+    "examiner_note": "Mixed-time-frame item: the festa is future, but the reporting verb is past, so the embedded clause goes to imperfect regardless.",
+    "version": 1
+  },
+  {
+    "external_id": "imp_isp_int_01",
+    "language_code": "it",
+    "topic": "verb_form.imperfect",
+    "subtopic": "indirect_speech.reported_intention",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "Complete: 'Marco mi ha detto che ____ a casa presto stasera, ma è arrivato a mezzanotte.' (tornare, 3sg, in stile colloquiale)",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.indirect_speech.reported_intention",
+        "label": "Reported future intention in colloquial register (tornava)",
+        "any_phrases": ["tornava"],
+        "must_not_include": ["torna", "è tornato", "tornerà", "tornerebbe"]
+      }
+    ],
+    "vocab_help": [
+      {"lemma": "tornare", "language": "it", "aspects": {"translation": {"reveal": "tornare - to return / to come back", "bucket": "vocabulary.it.tornare.translation"}}},
+      {"lemma": "mezzanotte", "language": "it", "aspects": {"translation": {"reveal": "mezzanotte - midnight", "bucket": "vocabulary.it.mezzanotte.translation"}, "gender": {"reveal": "feminine (f)", "bucket": "vocabulary.it.mezzanotte.gender"}}}
+    ],
+    "explanation": "Marco's direct words would have been 'torno a casa presto' (I'm coming home early — present-as-future). Under past reporting, the colloquial imperfect carries the prospective reading: 'mi ha detto che tornava a casa presto'. The prescriptive alternative is the past conditional 'sarebbe tornato', but the imperfect is the colloquial choice and what this bucket tests.",
+    "examiner_note": "Past conditional sarebbe tornato is also right in formal writing but is a different topic (conditionals); this bucket tests the colloquial imperfect form.",
+    "version": 1
+  },
+  {
+    "external_id": "imp_isp_int_02",
+    "language_code": "it",
+    "topic": "verb_form.imperfect",
+    "subtopic": "indirect_speech.reported_intention",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "Complete: 'Mi avete avvisato che ____ partire fra poco. Quanto manca?' (dovere, 2pl)",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.indirect_speech.reported_intention",
+        "label": "Reported imminent-obligation in indirect speech (dovevate)",
+        "any_phrases": ["dovevate"],
+        "must_not_include": ["dovete", "avete dovuto", "dovrete", "dovreste"]
+      }
+    ],
+    "vocab_help": [
+      {"lemma": "dovere", "language": "it", "aspects": {"translation": {"reveal": "dovere - must / have to", "bucket": "vocabulary.it.dovere.translation"}}},
+      {"lemma": "avvisare", "language": "it", "aspects": {"translation": {"reveal": "avvisare - to warn / notify", "bucket": "vocabulary.it.avvisare.translation"}}},
+      {"lemma": "partire", "language": "it", "aspects": {"translation": {"reveal": "partire - to leave", "bucket": "vocabulary.it.partire.translation"}}}
+    ],
+    "explanation": "Direct speech would have been 'dobbiamo partire fra poco' (we have to leave soon). Under the past reporting verb 'mi avete avvisato', Italian shifts the embedded 'dobbiamo' to imperfect 'dovevate'. The departure is still upcoming from the speaker's now, but the reporting verb locks the embedded form to imperfect.",
+    "version": 1
+  },
+  {
+    "external_id": "imp_isp_int_03",
+    "language_code": "it",
+    "topic": "verb_form.imperfect",
+    "subtopic": "indirect_speech.reported_intention",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "Complete: 'Avevano annunciato che ____ per chiudere il negozio, ma sono ancora aperti.' (stare per, 3pl)",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.indirect_speech.reported_intention",
+        "label": "Reported 'stare per + infinitive' in indirect speech (stavano per)",
+        "any_phrases": ["stavano per"],
+        "must_not_include": ["stanno per", "sono stati per", "staranno per"]
+      }
+    ],
+    "vocab_help": [
+      {"lemma": "stare per", "language": "it", "aspects": {"translation": {"reveal": "stare per + infinitive - to be about to (do something)", "bucket": "vocabulary.it.stareper.translation"}}},
+      {"lemma": "chiudere", "language": "it", "aspects": {"translation": {"reveal": "chiudere - to close", "bucket": "vocabulary.it.chiudere.translation"}}},
+      {"lemma": "negozio", "language": "it", "aspects": {"translation": {"reveal": "negozio - shop / store", "bucket": "vocabulary.it.negozio.translation"}, "gender": {"reveal": "masculine (m)", "bucket": "vocabulary.it.negozio.gender"}}}
+    ],
+    "explanation": "Direct speech: 'stiamo per chiudere' (we're about to close). Under past reporting (avevano annunciato), the 'stare per' construction shifts to imperfect 'stavano per'. The imperfect of stare carries the same about-to reading as the present, transposed to the past viewpoint.",
+    "examiner_note": "'Stare per + infinitive' is one of Italian's clearest about-to-happen constructions. Worth testing in indirect-speech context for the prospective reading.",
+    "version": 1
+  },
+  {
+    "external_id": "imp_st_narr_01",
+    "language_code": "it",
+    "topic": "verb_form.imperfect",
+    "subtopic": "stylistic.narrative",
+    "difficulty": 4,
+    "cefr_level_target": "C1",
+    "prompt": "Complete in stile narrativo (storico/letterario): 'Il giorno dopo Garibaldi ____ per la Sicilia con i Mille.' (partire, 3sg)",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.stylistic.narrative",
+        "label": "Narrative imperfect for historical/literary narration (partiva)",
+        "any_phrases": ["partiva"],
+        "must_not_include": ["è partito", "partì", "parte", "partirà"]
+      }
+    ],
+    "vocab_help": [
+      {"lemma": "partire", "language": "it", "aspects": {"translation": {"reveal": "partire - to leave / to depart", "bucket": "vocabulary.it.partire.translation"}}},
+      {"lemma": "Sicilia", "language": "it", "aspects": {"translation": {"reveal": "Sicilia - Sicily", "bucket": "vocabulary.it.sicilia.translation"}}},
+      {"lemma": "Mille", "language": "it", "aspects": {"translation": {"reveal": "i Mille - the Thousand (Garibaldi's expedition force, 1860)", "bucket": "vocabulary.it.mille.translation"}}}
+    ],
+    "explanation": "The narrative imperfect is a stylistic choice used in historical writing, journalism, and literary fiction to recount discrete past events with an immersive 'in the moment' feel. It functionally substitutes for the passato remoto (partì) or passato prossimo (è partito), but adds a vivid, scene-painting quality. Here Garibaldi's departure is being narrated, and partiva places the reader inside the moment.",
+    "examiner_note": "C1+ stylistic. The prompt explicitly frames the register ('in stile narrativo') so the imperfect is what's wanted; without that framing the passato remoto or PP would also be right.",
+    "version": 1
+  },
+  {
+    "external_id": "imp_st_narr_02",
+    "language_code": "it",
+    "topic": "verb_form.imperfect",
+    "subtopic": "stylistic.narrative",
+    "difficulty": 4,
+    "cefr_level_target": "C1",
+    "prompt": "Complete (stile giornalistico): 'L'incidente ____ alle dieci di sera. La polizia arrivava poco dopo, e i soccorsi venivano sul posto.' (succedere, 3sg)",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.stylistic.narrative",
+        "label": "Narrative imperfect, news-style (succedeva)",
+        "any_phrases": ["succedeva"],
+        "must_not_include": ["è successo", "successe", "succede", "succederà"]
+      }
+    ],
+    "vocab_help": [
+      {"lemma": "succedere", "language": "it", "aspects": {"translation": {"reveal": "succedere - to happen", "bucket": "vocabulary.it.succedere.translation"}}},
+      {"lemma": "incidente", "language": "it", "aspects": {"translation": {"reveal": "incidente - accident", "bucket": "vocabulary.it.incidente.translation"}, "gender": {"reveal": "masculine (m)", "bucket": "vocabulary.it.incidente.gender"}}},
+      {"lemma": "soccorsi", "language": "it", "aspects": {"translation": {"reveal": "soccorsi - emergency services / rescuers", "bucket": "vocabulary.it.soccorsi.translation"}}}
+    ],
+    "explanation": "Newspaper reporting often uses the narrative imperfect to recount sequences of past events vividly. The chain 'succedeva... arrivava... venivano' creates a stretched-out, scene-by-scene effect that the PP or passato remoto wouldn't carry. The other two verbs (arrivava, venivano) are given in the narrative imperfect; this item tests the matching style choice for succedere.",
+    "examiner_note": "The register cue ('stile giornalistico') and the matching style of the other two verbs lock in the narrative imperfect.",
+    "version": 1
+  },
+  {
+    "external_id": "imp_st_cc_01",
+    "language_code": "it",
+    "topic": "verb_form.imperfect",
+    "subtopic": "stylistic.colloquial_counterfactual",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "Complete in stile colloquiale (parlato informale): 'Se ____ il treno, arrivavamo in tempo per la riunione.' (prendere, 1pl)",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.stylistic.colloquial_counterfactual",
+        "label": "Colloquial counterfactual: imperfect in protasis (prendevamo)",
+        "any_phrases": ["prendevamo"],
+        "must_not_include": ["prendiamo", "prenderemo", "prendessimo"]
+      }
+    ],
+    "vocab_help": [
+      {"lemma": "prendere", "language": "it", "aspects": {"translation": {"reveal": "prendere - to take (prendere il treno = to take the train)", "bucket": "vocabulary.it.prendere.translation"}}},
+      {"lemma": "treno", "language": "it", "aspects": {"translation": {"reveal": "treno - train", "bucket": "vocabulary.it.treno.translation"}, "gender": {"reveal": "masculine (m)", "bucket": "vocabulary.it.treno.gender"}}},
+      {"lemma": "riunione", "language": "it", "aspects": {"translation": {"reveal": "riunione - meeting", "bucket": "vocabulary.it.riunione.translation"}, "gender": {"reveal": "feminine (f)", "bucket": "vocabulary.it.riunione.gender"}}}
+    ],
+    "explanation": "In informal Italian, the imperfect indicative can stand in for both halves of a hypothetical conditional: the protasis (if-clause) and the apodosis (then-clause). The prescriptive form would be 'Se avessimo preso il treno, saremmo arrivati' (trapassato subjunctive + past conditional), but in everyday speech 'Se prendevamo il treno, arrivavamo' is widespread. The apodosis 'arrivavamo' is given; this item tests the matching protasis form.",
+    "examiner_note": "Prescriptively dispreferred in writing, but standard in speech. The matching imperfect 'arrivavamo' in the second clause is the register anchor.",
+    "version": 1
+  },
+  {
+    "external_id": "imp_st_cc_02",
+    "language_code": "it",
+    "topic": "verb_form.imperfect",
+    "subtopic": "stylistic.colloquial_counterfactual",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "Complete in stile colloquiale: 'Se lo ____ prima, te lo dicevo subito.' (sapere, 1sg)",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.stylistic.colloquial_counterfactual",
+        "label": "Colloquial counterfactual with sapere (sapevo)",
+        "any_phrases": ["sapevo"],
+        "must_not_include": ["so", "saprei", "saprò", "sapessi"]
+      }
+    ],
+    "vocab_help": [
+      {"lemma": "sapere", "language": "it", "aspects": {"translation": {"reveal": "sapere - to know", "bucket": "vocabulary.it.sapere.translation"}}}
+    ],
+    "explanation": "The colloquial counterfactual pattern with sapere. Prescriptive: 'Se l'avessi saputo prima, te l'avrei detto subito' (trapassato subjunctive + past conditional). Colloquial: 'Se lo sapevo prima, te lo dicevo subito' — both halves in plain imperfect. The diagnostic miss to avoid is 'sapessi' (imperfect subjunctive), which is the form for present hypothetical, not past counterfactual.",
+    "examiner_note": "'Sapessi' is the over-applied-formal-rule miss — it's right for present hypothetical ('se sapessi la verità, ti direi tutto'), but for past counterfactual the prescriptive form needs trapassato subjunctive (avessi saputo). In the colloquial frame this item tests, plain imperfect is what's wanted.",
+    "version": 1
+  },
+  {
+    "external_id": "imp_st_cc_03",
+    "language_code": "it",
+    "topic": "verb_form.imperfect",
+    "subtopic": "stylistic.colloquial_counterfactual",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "Complete in stile colloquiale: 'Se non ____ tanto al cellulare, avevamo finito i compiti prima.' (parlare, 2sg)",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.stylistic.colloquial_counterfactual",
+        "label": "Colloquial counterfactual: 2sg imperfect in protasis (parlavi)",
+        "any_phrases": ["parlavi"],
+        "must_not_include": ["parli", "parlerai", "parlassi", "parlerebbe"]
+      }
+    ],
+    "vocab_help": [
+      {"lemma": "parlare", "language": "it", "aspects": {"translation": {"reveal": "parlare - to speak / to talk", "bucket": "vocabulary.it.parlare.translation"}}},
+      {"lemma": "cellulare", "language": "it", "aspects": {"translation": {"reveal": "cellulare - mobile phone", "bucket": "vocabulary.it.cellulare.translation"}, "gender": {"reveal": "masculine (m)", "bucket": "vocabulary.it.cellulare.gender"}}},
+      {"lemma": "compiti", "language": "it", "aspects": {"translation": {"reveal": "compito - homework (compiti = homework)", "bucket": "vocabulary.it.compito.translation"}}}
+    ],
+    "explanation": "The same colloquial pattern with negation and a different person. Prescriptive form: 'Se non avessi parlato tanto al cellulare, avremmo finito i compiti prima' (trapassato subjunctive + past conditional). Colloquial: 'Se non parlavi tanto, avevamo finito prima' — both halves plain imperfect indicative. The avevamo in the apodosis is given as the register anchor.",
     "version": 1
   }
 ]

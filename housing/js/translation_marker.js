@@ -135,19 +135,73 @@
   };
 
   /**
+   * Direction-aware candidate filter.
+   *
+   * Not every bucket on an item is a candidate for attribution given the
+   * direction. For IT→EN translation, the learner doesn't produce Italian
+   * forms; they recognise the source. So adjective_agreement and the
+   * grammar-formation buckets aren't candidates. Only vocabulary buckets
+   * (the learner needs to know what each word means) and translation_mapping
+   * buckets (the learner has to map an Italian construct to an English
+   * equivalent) are candidates.
+   *
+   * For EN→IT, all buckets are candidates since the learner is producing
+   * Italian and the grammar-formation buckets are exactly what's being tested.
+   *
+   * The rule is intentionally simple. A bucket is keepable on IT→EN if:
+   *   - its id starts with "vocabulary." (vocab recognition / translation), OR
+   *   - it contains ".translation_mapping." (explicit cross-language mapping), OR
+   *   - it contains ".usage." (usage/comprehension buckets are bidirectional)
+   * Everything else is filtered out for IT→EN.
+   */
+  LL.isCandidateForDirection = function (bucketId, direction) {
+    if (direction === "en_it" || !direction) return true; // EN→IT (or unknown): keep all
+    if (direction === "it_en") {
+      if (bucketId.startsWith("vocabulary.")) return true;
+      if (bucketId.includes(".translation_mapping.")) return true;
+      if (bucketId.includes(".usage.")) return true;
+      return false;
+    }
+    return true;
+  };
+
+  LL.inferDirection = function (item) {
+    const src = (item.source_language || "").toLowerCase();
+    const tgt = (item.target_language || "").toLowerCase();
+    if (src === "it" && tgt === "en") return "it_en";
+    if (src === "en" && tgt === "it") return "en_it";
+    return "en_it"; // default assumption for legacy items without explicit fields
+  };
+
+  /**
    * Build the bucket_context object that the Worker uses to know what each
-   * bucket means. Takes the bucket index (id → bucket) and the item, returns
-   * a slim subset covering only the buckets the item references.
+   * bucket means. Takes the item and the bucket index (id → bucket), returns
+   * a slim subset covering only the buckets the item references AND that are
+   * direction-applicable.
    */
   LL.buildBucketContext = function (item, bucketById) {
     const ctx = {};
     if (!bucketById) return ctx;
+    const direction = LL.inferDirection(item);
     const ids = [].concat(item.required_buckets || [], item.optional_buckets || []);
     for (const id of ids) {
+      if (!LL.isCandidateForDirection(id, direction)) continue;
       const b = bucketById[id];
       if (b) ctx[id] = { label: b.label || id, description: b.description || "" };
     }
     return ctx;
+  };
+
+  /**
+   * For the stub's use: filter an item's required_buckets to the ones that
+   * are direction-applicable. The stub fires these as hits/misses depending
+   * on whether word-overlap is above threshold; with this filter applied,
+   * grammar buckets no longer fire on IT→EN items.
+   */
+  LL.candidateBucketIds = function (item) {
+    const direction = LL.inferDirection(item);
+    const ids = [].concat(item.required_buckets || [], item.optional_buckets || []);
+    return ids.filter(id => LL.isCandidateForDirection(id, direction));
   };
 
   /**

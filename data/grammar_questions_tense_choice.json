@@ -1,0 +1,963 @@
+[
+  {
+    "external_id": "tc_imp_pp_gen_01",
+    "language_code": "it",
+    "topic": "tense_choice",
+    "subtopic": "imperfect_vs_pp.general",
+    "difficulty": 1,
+    "cefr_level_target": "A2",
+    "prompt": "Complete: 'Da bambino _____ a calcio ogni domenica con i miei amici.' Choose: giocavo / ho giocato.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.discrimination.vs_passato_prossimo_general",
+        "label": "Imperfect for habitual past (giocavo)",
+        "any_phrases": ["giocavo"],
+        "must_not_include": ["ho giocato"]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "When you describe what you used to do regularly as a child, you're talking about a repeated past pattern, not one specific Sunday. Italian uses the imperfect indicative for habitual past actions. The cues 'ogni domenica' (every Sunday) and 'da bambino' (as a child) both point to a recurring habit spread over a whole period. Ho giocato (passato prossimo) would single out one particular game, which doesn't fit the routine the sentence is setting up.",
+    "version": 1
+  },
+  {
+    "external_id": "tc_imp_pp_gen_02",
+    "language_code": "it",
+    "topic": "tense_choice",
+    "subtopic": "imperfect_vs_pp.general",
+    "difficulty": 1,
+    "cefr_level_target": "A2",
+    "prompt": "Complete: 'Ieri sera _____ al cinema con Marco a vedere un film francese.' Choose: andavo / sono andato.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.discrimination.vs_passato_prossimo_general",
+        "label": "PP for single past event (sono andato)",
+        "any_phrases": ["sono andato", "sono andata"],
+        "must_not_include": ["andavo"]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "When you tell someone about one specific outing that happened on a specific evening, you're naming a single completed event. Italian uses the passato prossimo for one-off past actions. The cue 'ieri sera' (yesterday evening) pins the trip to a defined moment, exactly the territory the passato prossimo covers. Andavo (imperfect) would frame the cinema-going as ongoing or habitual, which the sentence doesn't intend.",
+    "version": 1
+  },
+  {
+    "external_id": "tc_imp_pp_gen_03",
+    "language_code": "it",
+    "topic": "tense_choice",
+    "subtopic": "imperfect_vs_pp.general",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Complete: 'Mentre _____ la cena, è arrivata Anna senza preavviso.' Choose: preparavo / ho preparato.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.discrimination.vs_passato_prossimo_general",
+        "label": "Imperfect for ongoing background (preparavo)",
+        "any_phrases": ["preparavo"],
+        "must_not_include": ["ho preparato"]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "preavviso",
+        "language": "it",
+        "aspects": {
+          "translation": {"reveal": "preavviso - notice / advance warning", "bucket": "vocabulary.it.preavviso.translation"},
+          "gender": {"reveal": "masculine (m)", "bucket": "vocabulary.it.preavviso.gender"}
+        }
+      }
+    ],
+    "explanation": "When one past action is unfolding and another past event drops into it, the unfolding one is the backdrop. Italian uses the imperfect indicative for the ongoing background and the passato prossimo for the event that interrupts it ('è arrivata'). The conjunction 'mentre' (while) is a strong cue for the imperfect on the verb it governs. Ho preparato would mark the cooking as a completed event, which doesn't fit the 'in the middle of doing it' reading.",
+    "version": 1
+  },
+  {
+    "external_id": "tc_imp_pp_gen_04",
+    "language_code": "it",
+    "topic": "tense_choice",
+    "subtopic": "imperfect_vs_pp.general",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Complete: 'Di solito _____ in autobus al lavoro, ma martedì scorso ho preso il treno.' Choose: andavo / sono andato.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.discrimination.vs_passato_prossimo_general",
+        "label": "Imperfect for habitual past, contrast with a PP exception (andavo)",
+        "any_phrases": ["andavo"],
+        "must_not_include": ["sono andato", "sono andata"]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "When you talk about what you usually did and then contrast it with one specific exception, the usual pattern lives in the imperfect indicative and the exception lives in the passato prossimo. The adverb 'di solito' (usually) is a textbook habitual cue, and the second clause's 'ho preso il treno' marks the one Tuesday that broke the habit. Sono andato would crash the two readings together by treating the routine as a single event.",
+    "version": 1
+  },
+  {
+    "external_id": "tc_imp_pp_gen_05",
+    "language_code": "it",
+    "topic": "tense_choice",
+    "subtopic": "imperfect_vs_pp.general",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Complete: 'Tutto era tranquillo, poi all'improvviso _____ qualcuno alla porta.' Choose: bussava / ha bussato.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.discrimination.vs_passato_prossimo_general",
+        "label": "PP for an abrupt punctual event (ha bussato)",
+        "any_phrases": ["ha bussato"],
+        "must_not_include": ["bussava"]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "all'improvviso",
+        "language": "it",
+        "aspects": {
+          "translation": {"reveal": "all'improvviso - suddenly", "bucket": "vocabulary.it.improvviso.translation"}
+        }
+      }
+    ],
+    "explanation": "When a quiet stretch of past time is broken by a sharp moment, the moment is a single completed event. Italian uses the passato prossimo for sharp punctual events. The adverb 'all'improvviso' (suddenly) is a textbook signal that the verb it modifies is a one-off happening, not a continuing background. Bussava would suggest someone was knocking continuously, which doesn't match the 'all of a sudden' framing.",
+    "version": 1
+  },
+  {
+    "external_id": "tc_imp_pp_gen_06",
+    "language_code": "it",
+    "topic": "tense_choice",
+    "subtopic": "imperfect_vs_pp.general",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Complete: 'L'estate scorsa _____ tre settimane in Sicilia: che vacanza!' Choose: passavo / ho passato.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.discrimination.vs_passato_prossimo_general",
+        "label": "PP for a bounded past stretch (ho passato)",
+        "any_phrases": ["ho passato"],
+        "must_not_include": ["passavo"]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "When a past activity has a defined start and end, it's a closed event, no matter how many days it covered. Italian uses the passato prossimo for past stretches that are over and bounded. 'L'estate scorsa' fixes the period and 'tre settimane' bounds the length; the whole holiday sits inside a finished frame. Passavo would suggest an open-ended or habitual span, which doesn't fit a one-off holiday in a named summer.",
+    "version": 1
+  },
+  {
+    "external_id": "tc_imp_pp_gen_07",
+    "language_code": "it",
+    "topic": "tense_choice",
+    "subtopic": "imperfect_vs_pp.general",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "Complete: 'Quella sera Maria _____ molto stanca: aveva lavorato dodici ore di fila.' Choose: era / è stata.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.discrimination.vs_passato_prossimo_general",
+        "label": "Imperfect for a past state (era stanca)",
+        "any_phrases": ["era"],
+        "must_not_include": ["è stata"]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "di fila",
+        "language": "it",
+        "aspects": {
+          "translation": {"reveal": "di fila - in a row / on the trot", "bucket": "vocabulary.it.fila.translation"}
+        }
+      }
+    ],
+    "explanation": "When you describe how someone felt at a past point, you're naming a state, not an event. Italian uses the imperfect indicative for past states and descriptions. The second clause ('aveva lavorato dodici ore di fila') explains the state's cause; both halves describe a condition rather than narrate a happening. È stata stanca would treat the tiredness as a closed event, which is dispreferred for stative descriptions.",
+    "version": 1
+  },
+  {
+    "external_id": "tc_imp_pp_gen_08",
+    "language_code": "it",
+    "topic": "tense_choice",
+    "subtopic": "imperfect_vs_pp.general",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "Complete: 'Ogni inverno _____ in montagna a sciare, ma l'anno scorso siamo restati a casa per il freddo.' Choose: andavamo / siamo andati.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.discrimination.vs_passato_prossimo_general",
+        "label": "Imperfect for habitual past contrasted with a PP exception (andavamo)",
+        "any_phrases": ["andavamo"],
+        "must_not_include": ["siamo andati", "siamo andate"]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "When you describe what your family used to do every winter and then flag a specific exception, the routine sits in the imperfect indicative and the exception sits in the passato prossimo. 'Ogni inverno' is a habitual cue; 'l'anno scorso siamo restati' singles out the year that broke the pattern. Siamo andati would collapse the routine into a single event, losing the recurring reading the first clause needs.",
+    "version": 1
+  },
+  {
+    "external_id": "tc_imp_pp_sap_01",
+    "language_code": "it",
+    "topic": "tense_choice",
+    "subtopic": "imperfect_vs_pp.modals.sapere",
+    "difficulty": 1,
+    "cefr_level_target": "A2",
+    "prompt": "Complete: 'Quando l'ho incontrata, _____ già che era incinta: me l'aveva detto sua sorella la settimana prima.' Choose: sapevo / ho saputo.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.discrimination.modals.sapere",
+        "label": "Imperfect of sapere for an ongoing state of knowledge (sapevo)",
+        "any_phrases": ["sapevo"],
+        "must_not_include": ["ho saputo"]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "incinta",
+        "language": "it",
+        "aspects": {
+          "translation": {"reveal": "incinta - pregnant", "bucket": "vocabulary.it.incinta.translation"}
+        }
+      }
+    ],
+    "explanation": "When you say you 'already knew' something at a past moment, you're describing a state you carried into that moment, not the moment of finding out. Italian's modal verb sapere flips meaning between the imperfect indicative (sapevo = knew, state) and the passato prossimo (ho saputo = found out, event). The cues 'già' and the prior-knowledge clause 'me l'aveva detto sua sorella la settimana prima' fix the state reading. Ho saputo would suggest the encounter itself was when you learnt the news, which the sentence rules out.",
+    "version": 1
+  },
+  {
+    "external_id": "tc_imp_pp_sap_02",
+    "language_code": "it",
+    "topic": "tense_choice",
+    "subtopic": "imperfect_vs_pp.modals.sapere",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Complete: '_____ la notizia della sua morte dal giornale di stamattina, e sono rimasto sconvolto.' Choose: Sapevo / Ho saputo.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.discrimination.modals.sapere",
+        "label": "PP of sapere for the event of learning (ho saputo)",
+        "any_phrases": ["ho saputo"],
+        "must_not_include": ["sapevo"]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "sconvolto",
+        "language": "it",
+        "aspects": {
+          "translation": {"reveal": "sconvolto - shocked / shaken", "bucket": "vocabulary.it.sconvolto.translation"}
+        }
+      }
+    ],
+    "explanation": "When you pinpoint the moment you found something out, you're naming a single event of learning, not a continuing state. Italian's modal verb sapere uses the passato prossimo (ho saputo) for the event-of-learning reading and the imperfect indicative for the prior-state reading. The cues 'dal giornale di stamattina' and the follow-on 'sono rimasto sconvolto' both fix the news as something that landed at a specific moment. Sapevo would mean you already knew, which contradicts the shock the second clause describes.",
+    "version": 1
+  },
+  {
+    "external_id": "tc_imp_pp_sap_03",
+    "language_code": "it",
+    "topic": "tense_choice",
+    "subtopic": "imperfect_vs_pp.modals.sapere",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Complete: 'Mia nonna _____ a memoria tutte le poesie di Leopardi, anche dopo i novant'anni.' Choose: sapeva / ha saputo.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.discrimination.modals.sapere",
+        "label": "Imperfect of sapere for ongoing knowledge / mastery (sapeva)",
+        "any_phrases": ["sapeva"],
+        "must_not_include": ["ha saputo"]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "a memoria",
+        "language": "it",
+        "aspects": {
+          "translation": {"reveal": "a memoria - by heart", "bucket": "vocabulary.it.memoria.translation"}
+        }
+      }
+    ],
+    "explanation": "When you say someone 'knew' a body of material in the long-haul sense, the reading is a continuing state of mastery, not the moment they picked it up. Italian's modal verb sapere uses the imperfect indicative for that ongoing-knowledge reading. The duration cue 'anche dopo i novant'anni' makes clear the knowledge ran across years. Ha saputo would mean she 'found out' the poems at some particular moment, which doesn't fit a lifelong familiarity.",
+    "version": 1
+  },
+  {
+    "external_id": "tc_imp_pp_sap_04",
+    "language_code": "it",
+    "topic": "tense_choice",
+    "subtopic": "imperfect_vs_pp.modals.sapere",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Complete: '_____ del divorzio solo ieri, mentre prendevo un caffè con Lucia.' Choose: Sapevo / Ho saputo.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.discrimination.modals.sapere",
+        "label": "PP of sapere for the moment of finding out (ho saputo)",
+        "any_phrases": ["ho saputo"],
+        "must_not_include": ["sapevo"]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "When you flag the exact moment you found something out, the verb names an event of learning. Italian's modal verb sapere uses the passato prossimo for that event reading and the imperfect indicative for the prior-state reading. The cue 'solo ieri' rules out any earlier knowledge, and 'mentre prendevo un caffè con Lucia' frames the coffee chat as the moment of discovery. Sapevo would suggest you'd been aware all along, contradicting 'solo ieri'.",
+    "version": 1
+  },
+  {
+    "external_id": "tc_imp_pp_sap_05",
+    "language_code": "it",
+    "topic": "tense_choice",
+    "subtopic": "imperfect_vs_pp.modals.sapere",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "Complete: 'Non _____ niente del progetto fino a quando Marco non me l'ha spiegato in dettaglio.' Choose: sapevo / ho saputo.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.discrimination.modals.sapere",
+        "label": "Imperfect of sapere for an ongoing state of not-knowing (non sapevo)",
+        "any_phrases": ["sapevo"],
+        "must_not_include": ["ho saputo"]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "When you say you 'knew nothing' across a stretch of past time before someone explained it, you're describing a sustained state of ignorance, not a single event. Italian's modal verb sapere uses the imperfect indicative for that ongoing-state reading, even under negation. The frame 'fino a quando...mi ha spiegato' bounds the not-knowing as a period that ran up to a later moment. Ho saputo would mean you 'didn't find out' at that moment, which doesn't fit the long stretch of prior ignorance the sentence sets up.",
+    "version": 1
+  },
+  {
+    "external_id": "tc_imp_pp_dov_01",
+    "language_code": "it",
+    "topic": "tense_choice",
+    "subtopic": "imperfect_vs_pp.modals.dovere",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Complete: '_____ studiare per l'esame, ma alla fine ho preferito uscire con gli amici.' Choose: Dovevo / Ho dovuto.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.discrimination.modals.dovere",
+        "label": "Imperfect of dovere for 'was supposed to' (dovevo)",
+        "any_phrases": ["dovevo"],
+        "must_not_include": ["ho dovuto"]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "When you describe an obligation that hung over you and then say you didn't act on it, the obligation stayed unresolved. Italian's modal verb dovere uses the imperfect indicative for the 'was supposed to' reading, where completion is left open or actively undone. The contrast 'ma alla fine ho preferito uscire' tells you the studying didn't actually happen. Ho dovuto studiare would commit to the studying having taken place, which the second clause overturns.",
+    "version": 1
+  },
+  {
+    "external_id": "tc_imp_pp_dov_02",
+    "language_code": "it",
+    "topic": "tense_choice",
+    "subtopic": "imperfect_vs_pp.modals.dovere",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Complete: 'Ieri _____ lavorare fino a mezzanotte per finire la relazione in tempo.' Choose: dovevo / ho dovuto.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.discrimination.modals.dovere",
+        "label": "PP of dovere for 'had to and did' (ho dovuto)",
+        "any_phrases": ["ho dovuto"],
+        "must_not_include": ["dovevo"]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "relazione",
+        "language": "it",
+        "aspects": {
+          "translation": {"reveal": "relazione - report / paper (here a work or study assignment)", "bucket": "vocabulary.it.relazione.translation"},
+          "gender": {"reveal": "feminine (f)", "bucket": "vocabulary.it.relazione.gender"}
+        }
+      }
+    ],
+    "explanation": "When an obligation kicked in and got carried out on a specific past day, the verb names a completed event. Italian's modal verb dovere uses the passato prossimo for the 'had to, and actually did' reading. The cue 'ieri' anchors the work to a particular day, and 'per finire la relazione in tempo' implies the deadline was met. Dovevo lavorare would leave open whether the work happened, which doesn't match a definite past day.",
+    "version": 1
+  },
+  {
+    "external_id": "tc_imp_pp_dov_03",
+    "language_code": "it",
+    "topic": "tense_choice",
+    "subtopic": "imperfect_vs_pp.modals.dovere",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Complete: 'Mio nonno stava male, così _____ accompagnarlo al pronto soccorso.' Choose: dovevo / ho dovuto.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.discrimination.modals.dovere",
+        "label": "PP of dovere for 'had to and did' (ho dovuto)",
+        "any_phrases": ["ho dovuto"],
+        "must_not_include": ["dovevo"]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "pronto soccorso",
+        "language": "it",
+        "aspects": {
+          "translation": {"reveal": "pronto soccorso - emergency room / A&E", "bucket": "vocabulary.it.pronto_soccorso.translation"}
+        }
+      }
+    ],
+    "explanation": "When a sudden situation forces you into action and the action gets carried out, the verb names a completed event. Italian's modal verb dovere uses the passato prossimo for the 'had to and did' reading. The chain 'mio nonno stava male, così...' makes the obligation a one-off response and implies the trip to A&E actually happened. Dovevo accompagnarlo would leave the trip open, which doesn't match an emergency that's been resolved in narration.",
+    "version": 1
+  },
+  {
+    "external_id": "tc_imp_pp_dov_04",
+    "language_code": "it",
+    "topic": "tense_choice",
+    "subtopic": "imperfect_vs_pp.modals.dovere",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "Complete: 'Anna _____ presentare la tesi alle dieci, ma è arrivata in ritardo e ha rimandato di un'ora.' Choose: doveva / ha dovuto.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.discrimination.modals.dovere",
+        "label": "Imperfect of dovere for a planned/expected obligation (doveva)",
+        "any_phrases": ["doveva"],
+        "must_not_include": ["ha dovuto"]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "When you describe a plan or arrangement that was on the books for a past moment, the verb names an expectation rather than a fulfilled event. Italian's modal verb dovere uses the imperfect indicative for that 'was supposed to' reading. The second clause ('è arrivata in ritardo e ha rimandato') tells you the scheduled action didn't happen at ten as planned. Ha dovuto presentare would commit to her having actually presented at ten, which the continuation overturns.",
+    "version": 1
+  },
+  {
+    "external_id": "tc_imp_pp_dov_05",
+    "language_code": "it",
+    "topic": "tense_choice",
+    "subtopic": "imperfect_vs_pp.modals.dovere",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "Complete: 'Per quel concorso _____ preparare una presentazione di trenta pagine in una sola settimana.' Choose: dovevo / ho dovuto.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.discrimination.modals.dovere",
+        "label": "PP of dovere for 'had to and did' (ho dovuto)",
+        "any_phrases": ["ho dovuto"],
+        "must_not_include": ["dovevo"]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "concorso",
+        "language": "it",
+        "aspects": {
+          "translation": {"reveal": "concorso - competitive exam / contest", "bucket": "vocabulary.it.concorso.translation"},
+          "gender": {"reveal": "masculine (m)", "bucket": "vocabulary.it.concorso.gender"}
+        }
+      }
+    ],
+    "explanation": "When you describe a closed past project that demanded a specific effort, the verb names the effort as something that got done. Italian's modal verb dovere uses the passato prossimo for the 'had to and did' reading. The cue 'per quel concorso...in una sola settimana' pins the work to a finished episode. Dovevo preparare would leave the preparation open, which doesn't fit a project the speaker is summarising in retrospect.",
+    "version": 1
+  },
+  {
+    "external_id": "tc_imp_pp_pot_01",
+    "language_code": "it",
+    "topic": "tense_choice",
+    "subtopic": "imperfect_vs_pp.modals.potere",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Complete: '_____ aiutarti con il trasloco, sai, ma non me l'hai chiesto.' Choose: Potevo / Ho potuto.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.discrimination.modals.potere",
+        "label": "Imperfect of potere for 'could have' (potevo)",
+        "any_phrases": ["potevo"],
+        "must_not_include": ["ho potuto"]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "trasloco",
+        "language": "it",
+        "aspects": {
+          "translation": {"reveal": "trasloco - move / house-move", "bucket": "vocabulary.it.trasloco.translation"},
+          "gender": {"reveal": "masculine (m)", "bucket": "vocabulary.it.trasloco.gender"}
+        }
+      }
+    ],
+    "explanation": "When you describe a past ability that was available but never got used, the verb names a potential, not a completed action. Italian's modal verb potere uses the imperfect indicative for the 'could have' reading, where the ability existed but the action didn't happen. The follow-up 'ma non me l'hai chiesto' confirms no help was actually given. Ho potuto aiutarti would mean you actually managed to help, contradicting the second clause.",
+    "version": 1
+  },
+  {
+    "external_id": "tc_imp_pp_pot_02",
+    "language_code": "it",
+    "topic": "tense_choice",
+    "subtopic": "imperfect_vs_pp.modals.potere",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Complete: 'Dopo molti tentativi, finalmente _____ parlare con il direttore in persona.' Choose: potevo / ho potuto.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.discrimination.modals.potere",
+        "label": "PP of potere for 'managed to' (ho potuto)",
+        "any_phrases": ["ho potuto"],
+        "must_not_include": ["potevo"]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "tentativo",
+        "language": "it",
+        "aspects": {
+          "translation": {"reveal": "tentativo - attempt", "bucket": "vocabulary.it.tentativo.translation"},
+          "gender": {"reveal": "masculine (m)", "bucket": "vocabulary.it.tentativo.gender"}
+        }
+      }
+    ],
+    "explanation": "When you describe getting something done against resistance and frame it as the moment of breakthrough, the verb names an achieved event. Italian's modal verb potere uses the passato prossimo for the 'managed to' reading, often with an against-odds nuance. The cues 'dopo molti tentativi' and 'finalmente' both flag the achievement as the point of the sentence. Potevo parlare would describe a standing possibility, which loses the 'finally got there' meaning the sentence is building toward.",
+    "version": 1
+  },
+  {
+    "external_id": "tc_imp_pp_pot_03",
+    "language_code": "it",
+    "topic": "tense_choice",
+    "subtopic": "imperfect_vs_pp.modals.potere",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Complete: 'Da giovane Anna _____ studiare per dieci ore di fila senza alcun problema.' Choose: poteva / ha potuto.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.discrimination.modals.potere",
+        "label": "Imperfect of potere for habitual past ability (poteva)",
+        "any_phrases": ["poteva"],
+        "must_not_include": ["ha potuto"]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "When you describe a general capacity that someone had across a past life-stage, the verb names a standing ability, not a specific success. Italian's modal verb potere uses the imperfect indicative for habitual past ability. The frame 'da giovane' marks the ability as something Anna routinely had across a long period. Ha potuto studiare would name one specific time she managed it, which doesn't match a description of her capacity in general.",
+    "version": 1
+  },
+  {
+    "external_id": "tc_imp_pp_pot_04",
+    "language_code": "it",
+    "topic": "tense_choice",
+    "subtopic": "imperfect_vs_pp.modals.potere",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "Complete: 'Solo grazie a un amico _____ visitare la mostra senza fare la fila.' Choose: potevo / ho potuto.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.discrimination.modals.potere",
+        "label": "PP of potere for 'managed to' (ho potuto)",
+        "any_phrases": ["ho potuto"],
+        "must_not_include": ["potevo"]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "mostra",
+        "language": "it",
+        "aspects": {
+          "translation": {"reveal": "mostra - exhibition / show", "bucket": "vocabulary.it.mostra.translation"},
+          "gender": {"reveal": "feminine (f)", "bucket": "vocabulary.it.mostra.gender"}
+        }
+      }
+    ],
+    "explanation": "When a particular bit of help makes a one-off success possible, the verb names that success as an event. Italian's modal verb potere uses the passato prossimo for the 'managed to' reading. The framing 'solo grazie a un amico' attributes the achievement to a specific intervention, and 'senza fare la fila' names the concrete benefit gained. Potevo visitare would describe a standing possibility, losing the 'managed thanks to a specific bit of luck' meaning.",
+    "version": 1
+  },
+  {
+    "external_id": "tc_imp_pp_pot_05",
+    "language_code": "it",
+    "topic": "tense_choice",
+    "subtopic": "imperfect_vs_pp.modals.potere",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "Complete: 'In quel periodo _____ vedere mia figlia solo nei weekend, per via del lavoro.' Choose: potevo / ho potuto.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.discrimination.modals.potere",
+        "label": "Imperfect of potere for a sustained past constraint (potevo)",
+        "any_phrases": ["potevo"],
+        "must_not_include": ["ho potuto"]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "per via di",
+        "language": "it",
+        "aspects": {
+          "translation": {"reveal": "per via di - because of / on account of", "bucket": "vocabulary.it.per_via_di.translation"}
+        }
+      }
+    ],
+    "explanation": "When you describe a stretch of past life in which a routine constraint shaped what you could and couldn't do, the verb names the standing limit, not a one-off success. Italian's modal verb potere uses the imperfect indicative for that habitual-constraint reading. 'In quel periodo' bounds the stretch and 'solo nei weekend' marks the pattern that ran through it. Ho potuto vedere would single out one specific weekend, which doesn't fit a recurring arrangement.",
+    "version": 1
+  },
+  {
+    "external_id": "tc_imp_pp_vol_01",
+    "language_code": "it",
+    "topic": "tense_choice",
+    "subtopic": "imperfect_vs_pp.modals.volere",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Complete: '_____ dirti una cosa importante, ma è arrivata gente e non sono riuscito a parlarti.' Choose: Volevo / Ho voluto.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.discrimination.modals.volere",
+        "label": "Imperfect of volere for 'wanted to' (volevo)",
+        "any_phrases": ["volevo"],
+        "must_not_include": ["ho voluto"]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "When you describe an intention that you held at a past moment but didn't follow through on, the verb names the wish, not the act. Italian's modal verb volere uses the imperfect indicative for the 'wanted to' reading, where the wanting stayed unfulfilled. The follow-up 'ma è arrivata gente e non sono riuscito' confirms the act never happened. Ho voluto dirti would carry the 'insisted on telling you' meaning, which clashes with the rest of the sentence.",
+    "version": 1
+  },
+  {
+    "external_id": "tc_imp_pp_vol_02",
+    "language_code": "it",
+    "topic": "tense_choice",
+    "subtopic": "imperfect_vs_pp.modals.volere",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Complete: 'Maria _____ confessare la verità ai genitori, anche se sapeva che si sarebbero arrabbiati.' Choose: voleva / ha voluto.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.discrimination.modals.volere",
+        "label": "PP of volere for 'insisted on' (ha voluto)",
+        "any_phrases": ["ha voluto"],
+        "must_not_include": ["voleva"]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "When someone pushed ahead with a hard decision despite knowing the cost, the verb names the act of insisting, not just the wish. Italian's modal verb volere uses the passato prossimo for the 'insisted on (and did)' reading. The clause 'anche se sapeva che si sarebbero arrabbiati' weighs against any 'just considering it' reading; it implies Maria went through with the confession. Voleva confessare would leave the confession open, losing the resolve the second clause sets up.",
+    "version": 1
+  },
+  {
+    "external_id": "tc_imp_pp_vol_03",
+    "language_code": "it",
+    "topic": "tense_choice",
+    "subtopic": "imperfect_vs_pp.modals.volere",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Complete: 'In quel momento Marco _____ chiamare sua madre, ma non aveva il telefono con sé.' Choose: voleva / ha voluto.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.discrimination.modals.volere",
+        "label": "Imperfect of volere for an unfulfilled impulse (voleva)",
+        "any_phrases": ["voleva"],
+        "must_not_include": ["ha voluto"]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "When someone had the urge to do something at a past moment but a practical obstacle blocked it, the verb names the urge, not the act. Italian's modal verb volere uses the imperfect indicative for an unfulfilled impulse. The obstacle 'ma non aveva il telefono con sé' makes clear the call didn't happen. Ha voluto chiamare would imply he went ahead and called, which the second clause rules out.",
+    "version": 1
+  },
+  {
+    "external_id": "tc_imp_pp_vol_04",
+    "language_code": "it",
+    "topic": "tense_choice",
+    "subtopic": "imperfect_vs_pp.modals.volere",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "Complete: 'Mio nonno _____ pagare il conto a tutti, nonostante avessimo insistito per dividere.' Choose: voleva / ha voluto.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.discrimination.modals.volere",
+        "label": "PP of volere for 'insisted on (and did)' (ha voluto)",
+        "any_phrases": ["ha voluto"],
+        "must_not_include": ["voleva"]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "conto",
+        "language": "it",
+        "aspects": {
+          "translation": {"reveal": "conto - bill / check", "bucket": "vocabulary.it.conto.translation"},
+          "gender": {"reveal": "masculine (m)", "bucket": "vocabulary.it.conto.gender"}
+        }
+      }
+    ],
+    "explanation": "When someone got their way against the protests of others, the verb names the act of insisting, not just the wish. Italian's modal verb volere uses the passato prossimo for that 'insisted on and got it done' reading. The clause 'nonostante avessimo insistito' establishes the protests and implies the grandfather overrode them. Voleva pagare would describe a standing wish, losing the moment of insistence the sentence is built around.",
+    "version": 1
+  },
+  {
+    "external_id": "tc_imp_pp_vol_05",
+    "language_code": "it",
+    "topic": "tense_choice",
+    "subtopic": "imperfect_vs_pp.modals.volere",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "Complete: 'Alla fine _____ essere io a guidare fino a casa, anche se ero stanchissima.' Choose: volevo / ho voluto.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.discrimination.modals.volere",
+        "label": "PP of volere for self-imposed insistence (ho voluto)",
+        "any_phrases": ["ho voluto"],
+        "must_not_include": ["volevo"]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "When you describe a decision you stuck to despite a reason against it, the verb names your act of insisting. Italian's modal verb volere uses the passato prossimo for the 'insisted on (and did)' reading, including the case where you insist against your own better interest. The cue 'alla fine' and the contrast 'anche se ero stanchissima' both fix the choice as resolved and acted on. Volevo essere would leave the driving open, which doesn't fit a sentence that's clearly settling what happened.",
+    "version": 1
+  },
+  {
+    "external_id": "tc_imp_pp_con_01",
+    "language_code": "it",
+    "topic": "tense_choice",
+    "subtopic": "imperfect_vs_pp.modals.conoscere",
+    "difficulty": 1,
+    "cefr_level_target": "A2",
+    "prompt": "Complete: '_____ già Anna prima del matrimonio: lavoravamo nello stesso ufficio da anni.' Choose: Conoscevo / Ho conosciuto.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.discrimination.modals.conoscere",
+        "label": "Imperfect of conoscere for an ongoing state of acquaintance (conoscevo)",
+        "any_phrases": ["conoscevo"],
+        "must_not_include": ["ho conosciuto"]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "When you say you 'knew' someone in the long-standing acquaintance sense, you're describing a relationship that ran across time. Italian's modal verb conoscere flips meaning between the imperfect indicative (conoscevo = was acquainted with) and the passato prossimo (ho conosciuto = met for the first time). The cues 'già' and 'lavoravamo nello stesso ufficio da anni' lock in the long acquaintance reading. Ho conosciuto would point to the moment of first meeting, which the years of shared office rule out.",
+    "version": 1
+  },
+  {
+    "external_id": "tc_imp_pp_con_02",
+    "language_code": "it",
+    "topic": "tense_choice",
+    "subtopic": "imperfect_vs_pp.modals.conoscere",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Complete: '_____ mio marito a una festa di compleanno una sera d'estate.' Choose: Conoscevo / Ho conosciuto.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.discrimination.modals.conoscere",
+        "label": "PP of conoscere for the event of first meeting (ho conosciuto)",
+        "any_phrases": ["ho conosciuto"],
+        "must_not_include": ["conoscevo"]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "When you describe the first time you met someone, you're naming a single event of meeting. Italian's modal verb conoscere uses the passato prossimo for the 'met for the first time' reading. The setting cues 'a una festa di compleanno' and 'una sera d'estate' frame the meeting as a defined moment. Conoscevo mio marito would mean you already knew him, which doesn't fit a sentence describing where you first crossed paths.",
+    "version": 1
+  },
+  {
+    "external_id": "tc_imp_pp_con_03",
+    "language_code": "it",
+    "topic": "tense_choice",
+    "subtopic": "imperfect_vs_pp.modals.conoscere",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Complete: 'Quando mi sono trasferita a Bologna, non _____ ancora nessuno in città.' Choose: conoscevo / ho conosciuto.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.discrimination.modals.conoscere",
+        "label": "Imperfect of conoscere for a past state of non-acquaintance (conoscevo)",
+        "any_phrases": ["conoscevo"],
+        "must_not_include": ["ho conosciuto"]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "trasferirsi",
+        "language": "it",
+        "aspects": {
+          "translation": {"reveal": "trasferirsi - to move / to relocate", "bucket": "vocabulary.it.trasferirsi.translation"}
+        }
+      }
+    ],
+    "explanation": "When you describe a state you were in at a past moment ('I didn't know anyone yet'), the verb names a continuing condition, not an event. Italian's modal verb conoscere uses the imperfect indicative for that state-of-acquaintance reading, including under negation. The cue 'ancora nessuno' tells you the state ran up to the moment in question without anyone having been met yet. Ho conosciuto would mean 'I didn't meet anyone', which would describe failing to meet people at a specific event, not the standing situation on arrival.",
+    "version": 1
+  },
+  {
+    "external_id": "tc_imp_pp_con_04",
+    "language_code": "it",
+    "topic": "tense_choice",
+    "subtopic": "imperfect_vs_pp.modals.conoscere",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Complete: 'Ieri sera, alla cena dei colleghi, _____ una persona davvero interessante.' Choose: conoscevamo / abbiamo conosciuto.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.discrimination.modals.conoscere",
+        "label": "PP of conoscere for the event of meeting (abbiamo conosciuto)",
+        "any_phrases": ["abbiamo conosciuto"],
+        "must_not_include": ["conoscevamo"]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "When you tell someone about meeting a new person at a specific event, the verb names a one-off introduction. Italian's modal verb conoscere uses the passato prossimo for the 'met for the first time' reading. The cues 'ieri sera' and 'alla cena dei colleghi' fix the encounter to a defined moment. Conoscevamo would mean you already knew the person, which clashes with the 'new acquaintance' nuance the sentence is building.",
+    "version": 1
+  },
+  {
+    "external_id": "tc_imp_pp_con_05",
+    "language_code": "it",
+    "topic": "tense_choice",
+    "subtopic": "imperfect_vs_pp.modals.conoscere",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "Complete: '_____ già la sua musica perché avevo letto un articolo su una rivista qualche mese prima.' Choose: Conoscevo / Ho conosciuto.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperfect.discrimination.modals.conoscere",
+        "label": "Imperfect of conoscere for prior familiarity (conoscevo)",
+        "any_phrases": ["conoscevo"],
+        "must_not_include": ["ho conosciuto"]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "rivista",
+        "language": "it",
+        "aspects": {
+          "translation": {"reveal": "rivista - magazine", "bucket": "vocabulary.it.rivista.translation"},
+          "gender": {"reveal": "feminine (f)", "bucket": "vocabulary.it.rivista.gender"}
+        }
+      }
+    ],
+    "explanation": "When you say you 'already knew' a body of work coming into a moment, you're describing a state of prior familiarity. Italian's modal verb conoscere uses the imperfect indicative for that standing-familiarity reading, even when the object is a creative output rather than a person. The cues 'già' and the explanatory 'perché avevo letto un articolo...qualche mese prima' anchor the familiarity in time. Ho conosciuto la sua musica would point to a moment of first encounter, which doesn't fit a sentence that's locating the familiarity earlier than the current scene.",
+    "version": 1
+  }
+]

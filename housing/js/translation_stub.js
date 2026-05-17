@@ -156,7 +156,16 @@
     // Leaving evidence / expected / explanation off makes each row clean.
     // The Notes block at the bottom of the result panel carries the one-time
     // "this is the stub, real AI would give per-skill detail" message.
-    const markpoints = (item.required_buckets || []).map(bid => ({
+    //
+    // Direction-aware filter (added 2026-05-17): for IT→EN items, source-
+    // language production buckets (adjective_agreement, grammar formation,
+    // pronoun forms) aren't candidates because the learner didn't have to
+    // produce Italian. Only vocab, translation_mapping, and usage buckets
+    // fire on IT→EN. EN→IT items keep all buckets as before.
+    const candidateIds = (typeof LL.candidateBucketIds === "function")
+      ? LL.candidateBucketIds(item)
+      : (item.required_buckets || []);
+    const markpoints = candidateIds.map(bid => ({
       bucket: bid,
       bucket_proposed: false,
       attempted_credit: attempted,

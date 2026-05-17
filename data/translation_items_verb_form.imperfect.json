@@ -1711,6 +1711,37 @@
     "version": 1
   },
   {
+    "external_id": "trans_imp_en_it_disc_pot_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Children under ten could enter the museum for free.",
+    "reference_translations": [
+      {"text": "I bambini sotto i dieci anni potevano entrare al museo gratuitamente.", "register": "neutral", "notes": "Standard. Imperfect potevano for the past permission-state."},
+      {"text": "I bambini sotto i dieci anni potevano entrare gratis al museo.", "register": "neutral", "notes": "Variant: 'gratis' (more colloquial than 'gratuitamente'); adverb position swapped."},
+      {"text": "Sotto i dieci anni si poteva entrare gratis al museo.", "register": "neutral", "notes": "Variant: impersonal 'si poteva' construction."},
+      {"text": "I bambini sotto i dieci anni sapevano entrare al museo gratuitamente.", "register": "neutral", "polarity": "negative", "notes": "WRONG: sapere is for skills (knowing how to do something). 'Knowing how to enter for free' isn't a skill; entering for free is a permission. Italian needs potere here."}
+    ],
+    "topic": "verb_form.imperfect",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "verb_form.imperfect.discrimination.modals.potere"
+    ],
+    "optional_buckets": [
+      "verb_form.imperfect.discrimination.modals.sapere"
+    ],
+    "vocab_help": [
+      {"lemma": "could", "language": "en", "aspects": {"translation": {"reveal": "could (permission / circumstantial ability) - potere; could (skill, e.g. languages) - sapere", "bucket": "vocabulary.it.potere.translation"}}},
+      {"lemma": "under", "language": "en", "aspects": {"translation": {"reveal": "under (in age expressions) - sotto i (sotto i dieci anni = under ten)", "bucket": "vocabulary.it.sotto.translation"}}},
+      {"lemma": "museum", "language": "en", "aspects": {"translation": {"reveal": "museum - museo", "bucket": "vocabulary.it.museo.translation"}, "gender": {"reveal": "masculine (m)", "bucket": "vocabulary.it.museo.gender"}}},
+      {"lemma": "for free", "language": "en", "aspects": {"translation": {"reveal": "for free - gratis / gratuitamente", "bucket": "vocabulary.it.gratis.translation"}}}
+    ],
+    "explanation": "A past permission-state — children under a certain age were allowed to enter for free — is the canonical potere reading. Italian uses the imperfect of potere for that sustained permission. The sapere alternative would be the skill reading ('knew how to enter for free'), which doesn't fit; entering for free isn't a skill anyone needs to learn. The mistake is the mirror of the language-skill case in sap_03.",
+    "examiner_note": "Cleanly potere, no sapere ambiguity, no counterfactual reading. The negative reference flags the sapere miss for symmetry with sap_03.",
+    "version": 1
+  },
+  {
     "external_id": "trans_imp_it_en_disc_pot_01",
     "source_lang": "it",
     "target_lang": "en",
@@ -1908,6 +1939,188 @@
       {"lemma": "childhood", "language": "en", "aspects": {"translation": {"reveal": "childhood - infanzia / da bambino/a", "bucket": "vocabulary.it.infanzia.translation"}}}
     ],
     "explanation": "English past perfect 'had known' for a sustained prior state maps to Italian imperfect conosceva. The 'since X' phrase fin dall'infanzia anchors the duration. Note the contrast with PP ha conosciuto (met for the first time), which doesn't fit.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_imp_en_it_isp_pres_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "She said she was tired and wanted to go home.",
+    "reference_translations": [
+      {"text": "Ha detto che era stanca e voleva andare a casa.", "register": "neutral", "notes": "Standard. Two imperfects for two reported present-states (was tired, wanted)."},
+      {"text": "Disse che era stanca e voleva andare a casa.", "register": "formal", "notes": "Variant with passato remoto reporting verb (literary register)."},
+      {"text": "Ha detto che è stanca e vuole andare a casa.", "register": "neutral", "polarity": "negative", "notes": "WRONG: leaves the embedded clauses in present tense. Indirect speech under past reporting requires the present-to-imperfect shift."}
+    ],
+    "topic": "verb_form.imperfect",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "verb_form.imperfect.indirect_speech.reported_present",
+      "verb_form.imperfect.formation.irregular.essere"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "tired", "language": "en", "aspects": {"translation": {"reveal": "tired - stanco / stanca", "bucket": "vocabulary.it.stanco.translation"}}},
+      {"lemma": "wanted", "language": "en", "aspects": {"translation": {"reveal": "to want - volere (here: imperfect voleva)", "bucket": "vocabulary.it.volere.translation"}}}
+    ],
+    "explanation": "Direct speech: 'Sono stanca e voglio andare a casa'. Under past reporting (ha detto), both embedded present verbs shift to imperfect: era + voleva. Note that the participle 'stanca' agrees in feminine singular with the female speaker.",
+    "examiner_note": "Diagnostic of the indirect-speech present→imperfect shift; the negative reference flags the leave-in-present miss.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_imp_it_en_isp_pres_01",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Mi ha detto che si chiamava Marco e che lavorava in banca.",
+    "reference_translations": [
+      {"text": "He told me his name was Marco and that he worked at a bank.", "register": "neutral", "notes": "Standard. Italian indirect-speech imperfects map to English simple past in indirect speech."},
+      {"text": "He told me he was called Marco and worked at a bank.", "register": "neutral", "notes": "Variant: 'was called' for 'si chiamava' (slightly more literal)."}
+    ],
+    "topic": "verb_form.imperfect",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "verb_form.imperfect.indirect_speech.reported_present"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "chiamava", "language": "it", "aspects": {"translation": {"reveal": "chiamarsi - to be called / be named", "bucket": "vocabulary.it.chiamarsi.translation"}}},
+      {"lemma": "lavorava", "language": "it", "aspects": {"translation": {"reveal": "lavorare - to work", "bucket": "vocabulary.it.lavorare.translation"}}},
+      {"lemma": "banca", "language": "it", "aspects": {"translation": {"reveal": "banca - bank", "bucket": "vocabulary.it.banca.translation"}, "gender": {"reveal": "feminine (f)", "bucket": "vocabulary.it.banca.gender"}}}
+    ],
+    "explanation": "The Italian imperfects in indirect speech don't translate to English past progressive ('was being called', 'was working') — they translate to simple past ('was', 'worked'). English's own indirect-speech rule already does the present-to-past shift; the tense in Italian and English aligns naturally for state descriptions.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_imp_en_it_isp_int_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "He said he was going to call back later.",
+    "reference_translations": [
+      {"text": "Ha detto che richiamava più tardi.", "register": "neutral", "notes": "Colloquial: imperfect 'richiamava' carries the prospective reading."},
+      {"text": "Ha detto che avrebbe richiamato più tardi.", "register": "neutral", "notes": "Prescriptive: past conditional 'avrebbe richiamato' is the standard written form for reported future intention."},
+      {"text": "Ha detto che stava per richiamare più tardi.", "register": "neutral", "notes": "Variant: 'stava per' makes the imminence explicit."}
+    ],
+    "topic": "verb_form.imperfect",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "verb_form.imperfect.indirect_speech.reported_intention"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "call back", "language": "en", "aspects": {"translation": {"reveal": "to call back - richiamare", "bucket": "vocabulary.it.richiamare.translation"}}},
+      {"lemma": "later", "language": "en", "aspects": {"translation": {"reveal": "later - più tardi", "bucket": "vocabulary.it.piutardi.translation"}}}
+    ],
+    "explanation": "English 'was going to call' (reported future intention) maps to Italian imperfect (richiamava, colloquial) or past conditional (avrebbe richiamato, prescriptive). The bucket tested here is the imperfect's prospective reading in indirect speech, so richiamava is the topic-relevant form.",
+    "examiner_note": "Both Italian renderings are accepted. Past conditional avrebbe richiamato is more frequent in writing; the imperfect is the spoken default.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_imp_it_en_isp_int_01",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Ha annunciato che stava per partire per Roma.",
+    "reference_translations": [
+      {"text": "He announced he was about to leave for Rome.", "register": "neutral", "notes": "Standard. 'Stare per' → 'to be about to'."},
+      {"text": "He announced that he was about to depart for Rome.", "register": "formal", "notes": "Variant: 'depart' for partire in formal register."}
+    ],
+    "topic": "verb_form.imperfect",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "verb_form.imperfect.indirect_speech.reported_intention"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "annunciato", "language": "it", "aspects": {"translation": {"reveal": "annunciare - to announce", "bucket": "vocabulary.it.annunciare.translation"}}},
+      {"lemma": "stava per", "language": "it", "aspects": {"translation": {"reveal": "stare per + infinitive - to be about to", "bucket": "vocabulary.it.stareper.translation"}}}
+    ],
+    "explanation": "'Stare per' in the imperfect carries the prospective 'was about to' reading under past reporting. English maps directly with 'was about to' + infinitive.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_imp_it_en_st_narr_01",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Quella sera il treno partiva con due ore di ritardo. I passeggeri aspettavano in silenzio sulla banchina.",
+    "reference_translations": [
+      {"text": "That evening the train left two hours late. The passengers waited in silence on the platform.", "register": "neutral", "notes": "Standard. Italian narrative imperfect → English simple past."},
+      {"text": "That evening the train was leaving two hours late. The passengers were waiting in silence on the platform.", "register": "neutral", "notes": "Variant: past progressive for the narrative-imperfect effect, though less common in English narration."}
+    ],
+    "topic": "verb_form.imperfect",
+    "register": "neutral",
+    "difficulty": 4,
+    "cefr_level_target": "C1",
+    "required_buckets": [
+      "verb_form.imperfect.stylistic.narrative"
+    ],
+    "optional_buckets": [
+      "verb_form.imperfect.usage.ongoing_descriptive"
+    ],
+    "vocab_help": [
+      {"lemma": "partiva", "language": "it", "aspects": {"translation": {"reveal": "partire - to leave (here: narrative imperfect)", "bucket": "vocabulary.it.partire.translation"}}},
+      {"lemma": "ritardo", "language": "it", "aspects": {"translation": {"reveal": "ritardo - delay (in ritardo = late)", "bucket": "vocabulary.it.ritardo.translation"}}},
+      {"lemma": "banchina", "language": "it", "aspects": {"translation": {"reveal": "banchina - platform", "bucket": "vocabulary.it.banchina.translation"}, "gender": {"reveal": "feminine (f)", "bucket": "vocabulary.it.banchina.gender"}}}
+    ],
+    "explanation": "Italian narrative imperfect (partiva used for a single train-departure event) doesn't have a direct English counterpart. English narration uses simple past for both the event and the surrounding scene. The vivid scene-painting effect of the Italian imperfect doesn't survive translation cleanly; English readers register the events without the in-the-moment flavour.",
+    "examiner_note": "A trickier translation because the stylistic effect is hard to render in English. Marker should credit the simple-past rendering as the natural choice and the past-progressive as a defensible alternative.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_imp_it_en_st_cc_01",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Se avevo tempo ti chiamavo, ma sono stato in riunione tutto il pomeriggio.",
+    "reference_translations": [
+      {"text": "If I'd had time I would have called you, but I was in a meeting all afternoon.", "register": "neutral", "notes": "Standard. Italian colloquial counterfactual (avevo + chiamavo, both imperfect) → English past perfect + past conditional."},
+      {"text": "If I had had time I would have called you, but I was in a meeting all afternoon.", "register": "formal", "notes": "Variant: explicit 'had had' for the past perfect."}
+    ],
+    "topic": "verb_form.imperfect",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "verb_form.imperfect.stylistic.colloquial_counterfactual"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "tempo", "language": "it", "aspects": {"translation": {"reveal": "tempo - time", "bucket": "vocabulary.it.tempo.translation"}, "gender": {"reveal": "masculine (m)", "bucket": "vocabulary.it.tempo.gender"}}},
+      {"lemma": "chiamavo", "language": "it", "aspects": {"translation": {"reveal": "chiamare - to call", "bucket": "vocabulary.it.chiamare.translation"}}},
+      {"lemma": "riunione", "language": "it", "aspects": {"translation": {"reveal": "riunione - meeting", "bucket": "vocabulary.it.riunione.translation"}, "gender": {"reveal": "feminine (f)", "bucket": "vocabulary.it.riunione.gender"}}}
+    ],
+    "explanation": "The Italian colloquial counterfactual uses plain imperfect indicative in both halves of a hypothetical that's prescriptively trapassato subjunctive + past conditional. English doesn't have this collapsed form, so the translation expands to the standard 'past perfect + past conditional' structure: 'If I'd had time, I would have called you'.",
+    "examiner_note": "Demonstrates that Italian's stylistic-counterfactual collapse doesn't have an English analogue; the translation must expand to the standard conditional structure.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_imp_en_it_st_cc_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "If you had told me earlier, I would have come.",
+    "reference_translations": [
+      {"text": "Se me lo dicevi prima, venivo.", "register": "neutral", "notes": "Colloquial counterfactual: both clauses in plain imperfect indicative. Standard in spoken Italian."},
+      {"text": "Se me l'avessi detto prima, sarei venuto.", "register": "formal", "notes": "Prescriptive: trapassato subjunctive (avessi detto) + past conditional (sarei venuto). Standard in writing."},
+      {"text": "Se me lo dicevi prima, sarei venuto.", "register": "neutral", "notes": "Variant: colloquial protasis + prescriptive apodosis. Heard but mixed-register."}
+    ],
+    "topic": "verb_form.imperfect",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "verb_form.imperfect.stylistic.colloquial_counterfactual"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {"lemma": "told", "language": "en", "aspects": {"translation": {"reveal": "to tell - dire (colloquial counterfactual imperfect: dicevi; prescriptive: avessi detto)", "bucket": "vocabulary.it.dire.translation"}}},
+      {"lemma": "would have come", "language": "en", "aspects": {"translation": {"reveal": "would have come - colloquial venivo / prescriptive sarei venuto", "bucket": "vocabulary.it.venire.translation"}}}
+    ],
+    "explanation": "English past counterfactual 'If you had X, I would have Y' has two natural Italian renderings. The colloquial form collapses both halves to imperfect indicative ('Se me lo dicevi prima, venivo') — what this bucket tests. The prescriptive form preserves the trapassato subjunctive + past conditional structure ('Se me l'avessi detto prima, sarei venuto'). Both are widely accepted; the colloquial form is the imperfect-topic skill.",
+    "examiner_note": "Marker should credit all three rendering patterns. The bucket attribution favours the colloquial imperfect form as the topic-specific skill.",
     "version": 1
   }
 ]
