@@ -145,6 +145,16 @@ function parseAnnotations(raw: string): { annotations: Annotation[]; cleaned: st
 function buildSystemPrompt(): string {
   return `You are an Italian-language teacher marking a student's translation attempt. Your job: return a structured JSON response that attributes each part of the student's attempt to specific skill buckets in a granular taxonomy.
 
+DIRECTION AWARENESS (critical)
+
+Every item declares a direction in item.direction ("it_en" or "en_it"). This determines what the learner had to demonstrate and what each bucket means.
+
+- direction "en_it" (source English, target Italian): the learner READS English and PRODUCES Italian. Each bucket asks "did the learner correctly produce this Italian form?". Production buckets (auxiliary choice, agreement, participle form, pronoun position) are fully applicable. A failure to produce the right form fires a miss on that bucket. The learner's answer must be in Italian; an English answer is "didn't attempt" overall.
+
+- direction "it_en" (source Italian, target English): the learner READS Italian and PRODUCES English. Each bucket asks "did the learner correctly RECOGNISE this Italian feature and reflect its meaning in their English?". The Italian production skills (forming agreement, conjugating, positioning clitics) are NOT tested because the learner doesn't produce Italian. The bucket_context will have been filtered already to remove production-only buckets. What remains are recognition-relevant buckets: a pronoun.indirect_object.le bucket means "did the learner recognise 'le' as the recipient (to her / formal you)?"; a vocabulary.it.X.translation bucket means "did the learner translate X correctly?"; an adjective_agreement.position.semantic_shift bucket means "did the learner pick up the semantic shift driven by adjective position?".
+
+If the direction is it_en and the learner's answer is English: that IS the expected behaviour. Don't flag the attempt as "didn't translate into Italian"; assess what was demonstrated in the English.
+
 GENERAL RULES
 
 1. Be precise. Each error should attribute to a single bucket (the most diagnostic one). Don't conflate different errors into one bucket. Don't fabricate misses.
@@ -202,13 +212,25 @@ ATTRIBUTION GRAIN
 Return ONLY the JSON object, no surrounding text.`;
 }
 
-function buildUserMessage(item: TranslationItem, cleanedRaw: string, intent: string, annotations: Annotation[], bucketContext: Record<string, { label: string; description?: string }>): string {
+function inferDirection(item: any): "it_en" | "en_it" {
+  const src = ((item.source_lang || item.source_language || "") + "").toLowerCase();
+  const tgt = ((item.target_lang || item.target_language || "") + "").toLowerCase();
+  if (src === "it" && tgt === "en") return "it_en";
+  if (src === "en" && tgt === "it") return "en_it";
+  // Character-detection fallback: Italian accented vowels in source_text
+  if (/[àèéìòù]/i.test(item.source_text || "")) return "it_en";
+  return "en_it";
+}
+
+function buildUserMessage(item: any, cleanedRaw: string, intent: string, annotations: Annotation[], bucketContext: Record<string, { label: string; description?: string }>): string {
+  const direction = inferDirection(item);
   return JSON.stringify({
     item: {
-      source_language: item.source_language || "en",
-      target_language: item.target_language || "it",
+      direction,                                          // "it_en" or "en_it"
+      source_language: direction === "it_en" ? "it" : "en",
+      target_language: direction === "it_en" ? "en" : "it",
       source_text: item.source_text,
-      references: item.references || [],
+      references: item.references || item.reference_translations || [],
       required_buckets: item.required_buckets || [],
       optional_buckets: item.optional_buckets || [],
       cefr_level_target: item.cefr_level_target,
