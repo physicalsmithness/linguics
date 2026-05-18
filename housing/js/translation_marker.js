@@ -156,21 +156,39 @@
    */
   LL.isCandidateForDirection = function (bucketId, direction) {
     if (direction === "en_it" || !direction) return true; // EN→IT (or unknown): keep all
-    if (direction === "it_en") {
-      if (bucketId.startsWith("vocabulary.")) return true;
-      if (bucketId.includes(".translation_mapping.")) return true;
-      if (bucketId.includes(".usage.")) return true;
-      return false;
+    if (direction !== "it_en") return true;
+    // For IT→EN, first consult the bucket's declared direction attribute when
+    // available. If absent, fall back to the prefix-based rule.
+    const bucketsById = LL.bucketsById || {};
+    const bucket = bucketsById[bucketId];
+    const declared = bucket && bucket.attributes && bucket.attributes.direction;
+    if (declared) {
+      // "production": only fires when learner produces Italian forms. Drop on IT→EN.
+      // "bidirectional" (default for explicit tags): fires in both directions. Keep.
+      // "recognition": only fires when learner reads Italian forms. Keep on IT→EN.
+      return declared !== "production";
     }
-    return true;
+    // Fallback prefix rule for buckets without an explicit direction tag.
+    if (bucketId.startsWith("vocabulary.")) return true;
+    if (bucketId.includes(".translation_mapping.")) return true;
+    if (bucketId.includes(".usage.")) return true;
+    return false;
   };
 
   LL.inferDirection = function (item) {
-    const src = (item.source_language || "").toLowerCase();
-    const tgt = (item.target_language || "").toLowerCase();
+    // Accept both naming conventions: the author chats use the short
+    // `source_lang`/`target_lang` form, my earlier design assumed the long
+    // form. Accept either.
+    const src = (item.source_lang || item.source_language || "").toLowerCase();
+    const tgt = (item.target_lang || item.target_language || "").toLowerCase();
     if (src === "it" && tgt === "en") return "it_en";
     if (src === "en" && tgt === "it") return "en_it";
-    return "en_it"; // default assumption for legacy items without explicit fields
+    // Final fallback: glance at the source_text for Italian-only characters.
+    // If the source contains accented Italian vowels (à è é ì ò ù) and the
+    // answer doesn't, the item is probably IT→EN.
+    const srcText = item.source_text || "";
+    if (/[àèéìòù]/i.test(srcText)) return "it_en";
+    return "en_it";
   };
 
   /**

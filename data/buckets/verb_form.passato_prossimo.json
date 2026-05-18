@@ -5,22 +5,45 @@
     "language_code": "it",
     "label": "Passato prossimo (compound past)",
     "description": "The most common past tense in spoken and written Italian. Formed with an auxiliary (essere or avere, conjugated in the present) plus the past participle of the main verb. Three dimensions of difficulty: auxiliary choice, participle form, and (when essere is used or DOPs precede avere) participle agreement.",
-    "cefr_importance": {"A1": "preview", "A2": "core", "B1": "core", "B2": "review", "C1": "review", "C2": "fluency"},
-    "prerequisites": ["verb_form.present_indicative.avere", "verb_form.present_indicative.essere"],
-    "attributes": {"is_aggregate": true, "topic_short": "pp"},
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.present_indicative.avere",
+      "verb_form.present_indicative.essere"
+    ],
+    "attributes": {
+      "is_aggregate": true,
+      "topic_short": "pp",
+      "direction": "bidirectional"
+    },
     "active": true,
     "version": 1
   },
-
   {
     "id": "verb_form.passato_prossimo.auxiliary",
     "parent_id": "verb_form.passato_prossimo",
     "language_code": "it",
     "label": "Auxiliary choice (essere vs avere)",
     "description": "Italian passato prossimo uses essere for certain verb classes (intransitive verbs of motion and change, reflexives, some others) and avere for transitive verbs and most other intransitives. Auxiliary choice determines whether the participle agrees with the subject.",
-    "cefr_importance": {"A1": "preview", "A2": "core", "B1": "core", "B2": "review", "C1": "review", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "review",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"is_aggregate": true},
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -30,9 +53,19 @@
     "language_code": "it",
     "label": "Avere (default for transitive and many intransitive verbs)",
     "description": "The default auxiliary. Used for all transitive verbs (ho mangiato la pasta), and for many intransitives that aren't motion, change, or reflexive. Examples: dormire (ho dormito), lavorare (ho lavorato), parlare (ho parlato).",
-    "cefr_importance": {"A1": "preview", "A2": "core", "B1": "core", "B2": "review", "C1": "review", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "review",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"common_miss": "using essere where avere is correct (sono mangiato la pasta)"},
+    "attributes": {
+      "common_miss": "using essere where avere is correct (sono mangiato la pasta)",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -42,9 +75,20 @@
     "language_code": "it",
     "label": "Essere with intransitive verbs of motion / change",
     "description": "Verbs of motion (andare, venire, partire, arrivare, uscire, entrare, salire, scendere, tornare) and change-of-state (nascere, morire, diventare, restare, stare in some senses) take essere as their auxiliary. The participle agrees with the subject.",
-    "cefr_importance": {"A1": "preview", "A2": "core", "B1": "core", "B2": "review", "C1": "review", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "review",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"canonical_example": "sono andato/a/i/e", "common_miss": "ho andato (default-avere over-application)"},
+    "attributes": {
+      "canonical_example": "sono andato/a/i/e",
+      "common_miss": "ho andato (default-avere over-application)",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -54,9 +98,21 @@
     "language_code": "it",
     "label": "Essere with reflexive verbs",
     "description": "All reflexive verbs take essere as their auxiliary: mi sono lavato, si è alzata, ci siamo divertiti. The participle agrees with the subject.",
-    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "review", "C1": "review", "C2": "fluency"},
-    "prerequisites": ["pronoun.reflexive"],
-    "attributes": {"canonical_example": "mi sono lavato"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "pronoun.reflexive"
+    ],
+    "attributes": {
+      "canonical_example": "mi sono lavato",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -66,9 +122,27 @@
     "language_code": "it",
     "label": "Essere with other intransitives (no motion/change)",
     "description": "A residual class of intransitives that take essere despite not being about motion or visible change: piacere (mi è piaciuto), bastare, occorrere, sembrare, mancare. Memorise.",
-    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
-    "prerequisites": ["verb_form.passato_prossimo.auxiliary.essere_motion_intransitive"],
-    "attributes": {"common_members": ["piacere", "bastare", "occorrere", "sembrare", "mancare"]},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.passato_prossimo.auxiliary.essere_motion_intransitive"
+    ],
+    "attributes": {
+      "common_members": [
+        "piacere",
+        "bastare",
+        "occorrere",
+        "sembrare",
+        "mancare"
+      ],
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -78,22 +152,50 @@
     "language_code": "it",
     "label": "Verbs that take either auxiliary, with meaning shift",
     "description": "A small set of verbs use avere when transitive and essere when intransitive, sometimes with different meanings. Examples: correre (ho corso il maratona / sono corso a casa), cambiare (ho cambiato lavoro / sono cambiato come persona), passare (ho passato l'esame / sono passato di qui).",
-    "cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "preview", "B2": "core", "C1": "core", "C2": "review"},
-    "prerequisites": ["verb_form.passato_prossimo.auxiliary.avere_default", "verb_form.passato_prossimo.auxiliary.essere_motion_intransitive"],
-    "attributes": {"common_members": ["correre", "cambiare", "passare", "saltare", "volare"]},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "core",
+      "C2": "review"
+    },
+    "prerequisites": [
+      "verb_form.passato_prossimo.auxiliary.avere_default",
+      "verb_form.passato_prossimo.auxiliary.essere_motion_intransitive"
+    ],
+    "attributes": {
+      "common_members": [
+        "correre",
+        "cambiare",
+        "passare",
+        "saltare",
+        "volare"
+      ],
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
-
   {
     "id": "verb_form.passato_prossimo.participle_form",
     "parent_id": "verb_form.passato_prossimo",
     "language_code": "it",
     "label": "Past participle form",
     "description": "The participle's surface form. Regular for most verbs (predictable from the infinitive), irregular for a substantial minority that need word-level memory.",
-    "cefr_importance": {"A1": "preview", "A2": "core", "B1": "core", "B2": "review", "C1": "review", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "review",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"is_aggregate": true},
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -103,9 +205,19 @@
     "language_code": "it",
     "label": "Regular participles by conjugation",
     "description": "Predictable from the infinitive ending: -are → -ato, -ere → -uto, -ire → -ito.",
-    "cefr_importance": {"A1": "preview", "A2": "core", "B1": "core", "B2": "review", "C1": "review", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "review",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"is_aggregate": true},
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -115,9 +227,20 @@
     "language_code": "it",
     "label": "-are → -ato",
     "description": "First-conjugation regular participle. Parlare → parlato, mangiare → mangiato, lavorare → lavorato.",
-    "cefr_importance": {"A1": "preview", "A2": "core", "B1": "review", "B2": "fluency", "C1": "fluency", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"transform": "-are → -ato", "canonical_example": "parlato"},
+    "attributes": {
+      "transform": "-are → -ato",
+      "canonical_example": "parlato",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -127,9 +250,20 @@
     "language_code": "it",
     "label": "-ere → -uto",
     "description": "Second-conjugation regular participle. Vendere → venduto, ricevere → ricevuto, credere → creduto. Many -ere verbs are irregular; this bucket fires for the regular ones only.",
-    "cefr_importance": {"A1": "preview", "A2": "core", "B1": "core", "B2": "review", "C1": "review", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "review",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"transform": "-ere → -uto", "canonical_example": "venduto"},
+    "attributes": {
+      "transform": "-ere → -uto",
+      "canonical_example": "venduto",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -139,22 +273,44 @@
     "language_code": "it",
     "label": "-ire → -ito",
     "description": "Third-conjugation regular participle. Dormire → dormito, finire → finito, partire → partito.",
-    "cefr_importance": {"A1": "preview", "A2": "core", "B1": "review", "B2": "fluency", "C1": "fluency", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"transform": "-ire → -ito", "canonical_example": "dormito"},
+    "attributes": {
+      "transform": "-ire → -ito",
+      "canonical_example": "dormito",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
-
   {
     "id": "verb_form.passato_prossimo.participle_form.irregular",
     "parent_id": "verb_form.passato_prossimo.participle_form",
     "language_code": "it",
     "label": "Irregular past participles",
     "description": "Word-by-word memorisation. A high-frequency cluster: most are -ere verbs but some are -ire. About 30 are essential.",
-    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "review"},
-    "prerequisites": ["verb_form.passato_prossimo.participle_form.regular"],
-    "attributes": {"is_aggregate": true},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "review"
+    },
+    "prerequisites": [
+      "verb_form.passato_prossimo.participle_form.regular"
+    ],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -164,9 +320,22 @@
     "language_code": "it",
     "label": "fare → fatto",
     "description": "High-frequency irregular. Aux: avere. Ho fatto.",
-    "cefr_importance": {"A1": "preview", "A2": "core", "B1": "core", "B2": "review", "C1": "fluency", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"infinitive": "fare", "participle": "fatto", "auxiliary": "avere", "common_miss": "fato"},
+    "attributes": {
+      "infinitive": "fare",
+      "participle": "fatto",
+      "auxiliary": "avere",
+      "common_miss": "fato",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -176,9 +345,22 @@
     "language_code": "it",
     "label": "dire → detto",
     "description": "Aux: avere. Ho detto.",
-    "cefr_importance": {"A1": "preview", "A2": "core", "B1": "core", "B2": "review", "C1": "fluency", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"infinitive": "dire", "participle": "detto", "auxiliary": "avere", "common_miss": "dito"},
+    "attributes": {
+      "infinitive": "dire",
+      "participle": "detto",
+      "auxiliary": "avere",
+      "common_miss": "dito",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -188,9 +370,22 @@
     "language_code": "it",
     "label": "prendere → preso",
     "description": "Aux: avere. Ho preso.",
-    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "review", "C1": "fluency", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"infinitive": "prendere", "participle": "preso", "auxiliary": "avere", "common_miss": "prenduto (over-applying -uto)"},
+    "attributes": {
+      "infinitive": "prendere",
+      "participle": "preso",
+      "auxiliary": "avere",
+      "common_miss": "prenduto (over-applying -uto)",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -200,9 +395,22 @@
     "language_code": "it",
     "label": "vedere → visto (also veduto, regular but rare)",
     "description": "Aux: avere. Ho visto. The regular form veduto is grammatically correct but archaic in most contexts.",
-    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "review", "C1": "fluency", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"infinitive": "vedere", "participle_primary": "visto", "participle_alt": "veduto", "auxiliary": "avere"},
+    "attributes": {
+      "infinitive": "vedere",
+      "participle_primary": "visto",
+      "participle_alt": "veduto",
+      "auxiliary": "avere",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -212,9 +420,22 @@
     "language_code": "it",
     "label": "scrivere → scritto",
     "description": "Aux: avere. Ho scritto.",
-    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "review", "C1": "fluency", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"infinitive": "scrivere", "participle": "scritto", "auxiliary": "avere", "common_miss": "scrivuto"},
+    "attributes": {
+      "infinitive": "scrivere",
+      "participle": "scritto",
+      "auxiliary": "avere",
+      "common_miss": "scrivuto",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -224,9 +445,22 @@
     "language_code": "it",
     "label": "leggere → letto",
     "description": "Aux: avere. Ho letto.",
-    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "review", "C1": "fluency", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"infinitive": "leggere", "participle": "letto", "auxiliary": "avere", "common_miss": "letto vs leggito"},
+    "attributes": {
+      "infinitive": "leggere",
+      "participle": "letto",
+      "auxiliary": "avere",
+      "common_miss": "letto vs leggito",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -236,9 +470,21 @@
     "language_code": "it",
     "label": "mettere → messo",
     "description": "Aux: avere. Ho messo.",
-    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "review", "C1": "fluency", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"infinitive": "mettere", "participle": "messo", "auxiliary": "avere"},
+    "attributes": {
+      "infinitive": "mettere",
+      "participle": "messo",
+      "auxiliary": "avere",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -248,9 +494,22 @@
     "language_code": "it",
     "label": "aprire → aperto",
     "description": "Aux: avere. Ho aperto. Note: -ire verb with irregular participle.",
-    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "review", "C1": "fluency", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"infinitive": "aprire", "participle": "aperto", "auxiliary": "avere", "common_miss": "aprito"},
+    "attributes": {
+      "infinitive": "aprire",
+      "participle": "aperto",
+      "auxiliary": "avere",
+      "common_miss": "aprito",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -260,9 +519,21 @@
     "language_code": "it",
     "label": "chiudere → chiuso",
     "description": "Aux: avere. Ho chiuso.",
-    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "review", "C1": "fluency", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"infinitive": "chiudere", "participle": "chiuso", "auxiliary": "avere"},
+    "attributes": {
+      "infinitive": "chiudere",
+      "participle": "chiuso",
+      "auxiliary": "avere",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -272,9 +543,23 @@
     "language_code": "it",
     "label": "nascere → nato (essere)",
     "description": "Aux: essere. Sono nato/a. Verb of change-of-state.",
-    "cefr_importance": {"A1": "preview", "A2": "core", "B1": "core", "B2": "review", "C1": "fluency", "C2": "fluency"},
-    "prerequisites": ["verb_form.passato_prossimo.auxiliary.essere_other_intransitive"],
-    "attributes": {"infinitive": "nascere", "participle": "nato", "auxiliary": "essere"},
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.passato_prossimo.auxiliary.essere_other_intransitive"
+    ],
+    "attributes": {
+      "infinitive": "nascere",
+      "participle": "nato",
+      "auxiliary": "essere",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -284,9 +569,23 @@
     "language_code": "it",
     "label": "morire → morto (essere)",
     "description": "Aux: essere. È morto/a. Verb of change-of-state.",
-    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "review", "C1": "fluency", "C2": "fluency"},
-    "prerequisites": ["verb_form.passato_prossimo.auxiliary.essere_other_intransitive"],
-    "attributes": {"infinitive": "morire", "participle": "morto", "auxiliary": "essere"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.passato_prossimo.auxiliary.essere_other_intransitive"
+    ],
+    "attributes": {
+      "infinitive": "morire",
+      "participle": "morto",
+      "auxiliary": "essere",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -296,9 +595,23 @@
     "language_code": "it",
     "label": "venire → venuto (essere)",
     "description": "Aux: essere. Sono venuto/a. The participle looks regular (-uto) but the stem changes from venire to venu-.",
-    "cefr_importance": {"A1": "preview", "A2": "core", "B1": "core", "B2": "review", "C1": "fluency", "C2": "fluency"},
-    "prerequisites": ["verb_form.passato_prossimo.auxiliary.essere_motion_intransitive"],
-    "attributes": {"infinitive": "venire", "participle": "venuto", "auxiliary": "essere"},
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.passato_prossimo.auxiliary.essere_motion_intransitive"
+    ],
+    "attributes": {
+      "infinitive": "venire",
+      "participle": "venuto",
+      "auxiliary": "essere",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -308,9 +621,24 @@
     "language_code": "it",
     "label": "essere → stato (and stare → stato)",
     "description": "Both essere and stare share the participle stato. Aux: essere (for both verbs in this tense). Sono stato/a in Italia. Sono stato/a male.",
-    "cefr_importance": {"A1": "preview", "A2": "core", "B1": "core", "B2": "review", "C1": "fluency", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"infinitive_alt": ["essere", "stare"], "participle": "stato", "auxiliary": "essere"},
+    "attributes": {
+      "infinitive_alt": [
+        "essere",
+        "stare"
+      ],
+      "participle": "stato",
+      "auxiliary": "essere",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -320,22 +648,45 @@
     "language_code": "it",
     "label": "bere → bevuto",
     "description": "Aux: avere. Ho bevuto. The stem expands (bere is itself contracted from bevere).",
-    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "review", "C1": "fluency", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"infinitive": "bere", "participle": "bevuto", "auxiliary": "avere"},
+    "attributes": {
+      "infinitive": "bere",
+      "participle": "bevuto",
+      "auxiliary": "avere",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
-
   {
     "id": "verb_form.passato_prossimo.participle_agreement",
     "parent_id": "verb_form.passato_prossimo",
     "language_code": "it",
     "label": "Past participle agreement",
     "description": "When essere is the auxiliary, the participle agrees with the subject in gender and number. When avere is the auxiliary, the participle is invariable unless a direct object pronoun (DOP) precedes the verb, in which case it agrees with the DOP.",
-    "cefr_importance": {"A1": "preview", "A2": "core", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
-    "prerequisites": ["verb_form.passato_prossimo.auxiliary"],
-    "attributes": {"is_aggregate": true},
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.passato_prossimo.auxiliary"
+    ],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -345,9 +696,21 @@
     "language_code": "it",
     "label": "Agreement with subject (essere auxiliary)",
     "description": "When essere is the auxiliary, the participle agrees with the subject's gender and number. -o (m sg), -a (f sg), -i (m pl), -e (f pl).",
-    "cefr_importance": {"A1": "preview", "A2": "core", "B1": "core", "B2": "review", "C1": "review", "C2": "fluency"},
-    "prerequisites": ["verb_form.passato_prossimo.auxiliary.essere_motion_intransitive"],
-    "attributes": {"is_aggregate": true},
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.passato_prossimo.auxiliary.essere_motion_intransitive"
+    ],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -357,9 +720,20 @@
     "language_code": "it",
     "label": "Masc sg subject (-o)",
     "description": "Lui è andato. Marco è arrivato.",
-    "cefr_importance": {"A1": "preview", "A2": "core", "B1": "core", "B2": "review", "C1": "fluency", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"ending": "-o", "canonical_example": "è andato"},
+    "attributes": {
+      "ending": "-o",
+      "canonical_example": "è andato",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -369,9 +743,23 @@
     "language_code": "it",
     "label": "Fem sg subject (-a)",
     "description": "Lei è andata. Maria è arrivata. Common miss: leaving the participle in -o.",
-    "cefr_importance": {"A1": "preview", "A2": "core", "B1": "core", "B2": "review", "C1": "fluency", "C2": "fluency"},
-    "prerequisites": ["verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular"],
-    "attributes": {"ending": "-a", "canonical_example": "è andata", "common_miss": "è andato (with fem subject)"},
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular"
+    ],
+    "attributes": {
+      "ending": "-a",
+      "canonical_example": "è andata",
+      "common_miss": "è andato (with fem subject)",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -381,9 +769,22 @@
     "language_code": "it",
     "label": "Masc pl subject (-i)",
     "description": "Loro sono andati. I ragazzi sono arrivati.",
-    "cefr_importance": {"A1": "preview", "A2": "core", "B1": "core", "B2": "review", "C1": "fluency", "C2": "fluency"},
-    "prerequisites": ["verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular"],
-    "attributes": {"ending": "-i", "canonical_example": "sono andati"},
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular"
+    ],
+    "attributes": {
+      "ending": "-i",
+      "canonical_example": "sono andati",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -393,22 +794,48 @@
     "language_code": "it",
     "label": "Fem pl subject (-e)",
     "description": "Loro sono andate. Le ragazze sono arrivate. The full feminine plural agreement is often the last to land.",
-    "cefr_importance": {"A1": "preview", "A2": "core", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
-    "prerequisites": ["verb_form.passato_prossimo.participle_agreement.with_essere.feminine_singular"],
-    "attributes": {"ending": "-e", "canonical_example": "sono andate", "common_miss": "sono andati (default masc plural with mixed or fem group)"},
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_singular"
+    ],
+    "attributes": {
+      "ending": "-e",
+      "canonical_example": "sono andate",
+      "common_miss": "sono andati (default masc plural with mixed or fem group)",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
-
   {
     "id": "verb_form.passato_prossimo.participle_agreement.with_avere",
     "parent_id": "verb_form.passato_prossimo.participle_agreement",
     "language_code": "it",
     "label": "Agreement with avere (default invariable, agrees with preceding DOP)",
     "description": "With avere as auxiliary, the participle is invariable by default (ends in -o regardless of subject). But when a direct object pronoun (DOP) precedes the verb, the participle agrees with the DOP: l'ho vista, li ho visti, le ho viste.",
-    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "preview", "B2": "core", "C1": "core", "C2": "review"},
-    "prerequisites": ["pronoun.direct_object", "verb_form.passato_prossimo.auxiliary.avere_default"],
-    "attributes": {"is_aggregate": true},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "core",
+      "C2": "review"
+    },
+    "prerequisites": [
+      "pronoun.direct_object",
+      "verb_form.passato_prossimo.auxiliary.avere_default"
+    ],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -418,9 +845,20 @@
     "language_code": "it",
     "label": "No preceding DOP: participle invariable",
     "description": "Default case. Ho mangiato la pasta (not mangiata, because la pasta follows). Ho visto Maria.",
-    "cefr_importance": {"A1": "preview", "A2": "core", "B1": "core", "B2": "review", "C1": "fluency", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"ending": "-o (invariable)", "common_miss": "agreeing with subject incorrectly (ho mangiata)"},
+    "attributes": {
+      "ending": "-o (invariable)",
+      "common_miss": "agreeing with subject incorrectly (ho mangiata)",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -430,9 +868,19 @@
     "language_code": "it",
     "label": "Preceding DOP lo: -o agreement",
     "description": "L'ho visto (= I saw him/it, masc sg). The l' is the elided lo.",
-    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"canonical_example": "l'ho visto"},
+    "attributes": {
+      "canonical_example": "l'ho visto",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -442,9 +890,22 @@
     "language_code": "it",
     "label": "Preceding DOP la: -a agreement",
     "description": "L'ho vista (= I saw her/it, fem sg). The participle agrees with the feminine DOP.",
-    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
-    "prerequisites": ["verb_form.passato_prossimo.participle_agreement.with_avere.preceding_dop_lo"],
-    "attributes": {"canonical_example": "l'ho vista", "common_miss": "l'ho visto (no agreement)"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.passato_prossimo.participle_agreement.with_avere.preceding_dop_lo"
+    ],
+    "attributes": {
+      "canonical_example": "l'ho vista",
+      "common_miss": "l'ho visto (no agreement)",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -454,9 +915,21 @@
     "language_code": "it",
     "label": "Preceding DOP li: -i agreement",
     "description": "Li ho visti (= I saw them, masc pl).",
-    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
-    "prerequisites": ["verb_form.passato_prossimo.participle_agreement.with_avere.preceding_dop_lo"],
-    "attributes": {"canonical_example": "li ho visti"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.passato_prossimo.participle_agreement.with_avere.preceding_dop_lo"
+    ],
+    "attributes": {
+      "canonical_example": "li ho visti",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -466,35 +939,71 @@
     "language_code": "it",
     "label": "Preceding DOP le: -e agreement",
     "description": "Le ho viste (= I saw them, fem pl).",
-    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
-    "prerequisites": ["verb_form.passato_prossimo.participle_agreement.with_avere.preceding_dop_li"],
-    "attributes": {"canonical_example": "le ho viste", "common_miss": "le ho visti or le ho visto"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.passato_prossimo.participle_agreement.with_avere.preceding_dop_li"
+    ],
+    "attributes": {
+      "canonical_example": "le ho viste",
+      "common_miss": "le ho visti or le ho visto",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
-
   {
     "id": "verb_form.passato_prossimo.negation",
     "parent_id": "verb_form.passato_prossimo",
     "language_code": "it",
     "label": "Negation",
     "description": "Negation in passato prossimo places non before the auxiliary, not between auxiliary and participle. Non ho mangiato (not ho non mangiato).",
-    "cefr_importance": {"A1": "preview", "A2": "core", "B1": "core", "B2": "review", "C1": "fluency", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"canonical_example": "non ho mangiato", "common_miss": "ho non mangiato (English-influenced placement)"},
+    "attributes": {
+      "canonical_example": "non ho mangiato",
+      "common_miss": "ho non mangiato (English-influenced placement)",
+      "direction": "bidirectional"
+    },
     "active": true,
     "version": 1
   },
-
   {
     "id": "verb_form.passato_prossimo.auxiliary.person_agreement",
     "parent_id": "verb_form.passato_prossimo.auxiliary",
     "language_code": "it",
     "label": "Auxiliary in correct person/number for the subject",
     "description": "Right family (essere or avere) but wrong person/number. Example: 'Marco hanno parlato' (right family is avere, wrong number). Distinguished from auxiliary-choice misses and from raw present-indicative gaps: this records the error in the PP context where it occurred.",
-    "cefr_importance": {"A1": "preview", "A2": "core", "B1": "core", "B2": "review", "C1": "fluency", "C2": "fluency"},
-    "prerequisites": ["verb_form.passato_prossimo.auxiliary.avere_default", "verb_form.passato_prossimo.auxiliary.essere_motion_intransitive"],
-    "attributes": {"canonical_example": "Marco ha parlato (not hanno parlato)", "common_miss": "Marco hanno parlato (wrong person on auxiliary)"},
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.passato_prossimo.auxiliary.avere_default",
+      "verb_form.passato_prossimo.auxiliary.essere_motion_intransitive"
+    ],
+    "attributes": {
+      "canonical_example": "Marco ha parlato (not hanno parlato)",
+      "common_miss": "Marco hanno parlato (wrong person on auxiliary)",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -504,9 +1013,28 @@
     "language_code": "it",
     "label": "Adverb between auxiliary and participle (già, ancora, mai, sempre, appena, anche)",
     "description": "Common adverbs sit between the auxiliary and the participle: ho già mangiato, non ho ancora finito, sono sempre andato. Anglophone learners often post-pose ('ho mangiato già') or pre-pose ('già ho mangiato') them.",
-    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"adverbs": ["già", "ancora", "mai", "sempre", "appena", "anche"], "canonical_example": "ho già mangiato", "common_miss": "ho mangiato già or già ho mangiato"},
+    "attributes": {
+      "adverbs": [
+        "già",
+        "ancora",
+        "mai",
+        "sempre",
+        "appena",
+        "anche"
+      ],
+      "canonical_example": "ho già mangiato",
+      "common_miss": "ho mangiato già or già ho mangiato",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -516,9 +1044,27 @@
     "language_code": "it",
     "label": "Modal verbs inherit the auxiliary of the dependent infinitive",
     "description": "Dovere/potere/volere can take the auxiliary of the infinitive they govern: 'sono dovuto andare' (because andare takes essere) vs 'ho dovuto mangiare' (because mangiare takes avere). Colloquial Italian increasingly tolerates 'ho dovuto andare'.",
-    "cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "preview", "B2": "core", "C1": "core", "C2": "review"},
-    "prerequisites": ["verb_form.passato_prossimo.auxiliary.avere_default", "verb_form.passato_prossimo.auxiliary.essere_motion_intransitive"],
-    "attributes": {"modals": ["dovere", "potere", "volere"], "canonical_example": "sono dovuto andare vs ho dovuto mangiare"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "core",
+      "C2": "review"
+    },
+    "prerequisites": [
+      "verb_form.passato_prossimo.auxiliary.avere_default",
+      "verb_form.passato_prossimo.auxiliary.essere_motion_intransitive"
+    ],
+    "attributes": {
+      "modals": [
+        "dovere",
+        "potere",
+        "volere"
+      ],
+      "canonical_example": "sono dovuto andare vs ho dovuto mangiare",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -528,9 +1074,25 @@
     "language_code": "it",
     "label": "Maps to English simple past with definite past-time adverb",
     "description": "Italian PP with ieri / l'anno scorso / due giorni fa / etc. maps to English simple past, not present perfect. *'I have spoken yesterday' is ungrammatical. Fires on it→en translation items only.",
-    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"trigger_adverbs": ["ieri", "l'anno scorso", "due giorni fa", "il mese scorso"], "canonical_example": "Ieri ho mangiato → I ate yesterday (not I have eaten yesterday)"},
+    "attributes": {
+      "trigger_adverbs": [
+        "ieri",
+        "l'anno scorso",
+        "due giorni fa",
+        "il mese scorso"
+      ],
+      "canonical_example": "Ieri ho mangiato → I ate yesterday (not I have eaten yesterday)",
+      "direction": "bidirectional"
+    },
     "active": true,
     "version": 1
   },
@@ -540,9 +1102,28 @@
     "language_code": "it",
     "label": "Maps to English present perfect when no definite past-time adverb",
     "description": "PP without a definite past-time adverb, or with durative/up-to-now adverbs (mai, ancora, già), typically maps to English present perfect: 'Non ho mai visto un film così bello' → 'I have never seen such a beautiful film.' Complement to en_simple_past.",
-    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
-    "prerequisites": ["verb_form.passato_prossimo.translation_mapping.en_simple_past"],
-    "attributes": {"trigger_adverbs": ["mai", "ancora", "già", "appena", "spesso"], "canonical_example": "Non ho mai visto → I have never seen"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.passato_prossimo.translation_mapping.en_simple_past"
+    ],
+    "attributes": {
+      "trigger_adverbs": [
+        "mai",
+        "ancora",
+        "già",
+        "appena",
+        "spesso"
+      ],
+      "canonical_example": "Non ho mai visto → I have never seen",
+      "direction": "bidirectional"
+    },
     "active": true,
     "version": 1
   },
@@ -552,9 +1133,22 @@
     "language_code": "it",
     "label": "Preceding partitive 'ne': agreement with implicit referent",
     "description": "When the partitive 'ne' precedes the verb, the participle agrees with the gender/number of the implicit antecedent: 'Hai mangiato delle mele? Sì, ne ho mangiate tre' (ne refers to mele, fem pl → mangiate).",
-    "cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "preview", "B2": "core", "C1": "core", "C2": "review"},
-    "prerequisites": ["verb_form.passato_prossimo.participle_agreement.with_avere.preceding_dop_le"],
-    "attributes": {"canonical_example": "ne ho mangiate tre", "common_miss": "ne ho mangiato tre (no agreement)"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "core",
+      "C2": "review"
+    },
+    "prerequisites": [
+      "verb_form.passato_prossimo.participle_agreement.with_avere.preceding_dop_le"
+    ],
+    "attributes": {
+      "canonical_example": "ne ho mangiate tre",
+      "common_miss": "ne ho mangiato tre (no agreement)",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -564,9 +1158,22 @@
     "language_code": "it",
     "label": "Mixed-gender plural subject → masculine plural participle",
     "description": "A mixed-gender subject takes masculine plural agreement on the participle: 'Marco e Anna sono andati al mare' (not 'andate', even though one referent is female).",
-    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
-    "prerequisites": ["verb_form.passato_prossimo.participle_agreement.with_essere.masculine_plural"],
-    "attributes": {"canonical_example": "Marco e Anna sono andati", "common_miss": "Marco e Anna sono andate (last-noun agreement)"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_plural"
+    ],
+    "attributes": {
+      "canonical_example": "Marco e Anna sono andati",
+      "common_miss": "Marco e Anna sono andate (last-noun agreement)",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   }

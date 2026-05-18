@@ -5,9 +5,20 @@
     "language_code": null,
     "label": "Vocabulary",
     "description": "Lexical knowledge. Sub-tree per language. Within each language, events are organised per lemma (one bucket per word) with aspects per lemma (translation, gender, plural, class, auxiliary). Per-word and per-aspect buckets are not pre-registered; the housing aggregates them dynamically under the language-level group as events come in.",
-    "cefr_importance": {"A1": "core", "A2": "core", "B1": "core", "B2": "core", "C1": "core", "C2": "core"},
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "core",
+      "B2": "core",
+      "C1": "core",
+      "C2": "core"
+    },
     "prerequisites": [],
-    "attributes": {"is_aggregate": true, "topic_short": "vocab"},
+    "attributes": {
+      "is_aggregate": true,
+      "topic_short": "vocab",
+      "direction": "bidirectional"
+    },
     "active": true,
     "version": 1
   },
@@ -17,9 +28,19 @@
     "language_code": "it",
     "label": "Italian vocabulary",
     "description": "Italian words a learner has met, with sub-buckets per aspect (translation, gender, plural, class, auxiliary, etc.). Buckets like `vocabulary.it.casa.translation` and `vocabulary.it.andare.auxiliary` fire here when the learner asks for vocab help or when the AI marker observes a vocab gap.",
-    "cefr_importance": {"A1": "core", "A2": "core", "B1": "core", "B2": "core", "C1": "core", "C2": "core"},
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "core",
+      "B2": "core",
+      "C1": "core",
+      "C2": "core"
+    },
     "prerequisites": [],
-    "attributes": {"is_aggregate": true},
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional"
+    },
     "active": true,
     "version": 1
   },
@@ -29,9 +50,19 @@
     "language_code": "en",
     "label": "English vocabulary",
     "description": "English words on the source side of EN to IT translations. Used when the source-side help is itself a vocabulary question (rare; English source words are usually known by the learner).",
-    "cefr_importance": {"A1": "review", "A2": "review", "B1": "review", "B2": "review", "C1": "review", "C2": "review"},
+    "cefr_importance": {
+      "A1": "review",
+      "A2": "review",
+      "B1": "review",
+      "B2": "review",
+      "C1": "review",
+      "C2": "review"
+    },
     "prerequisites": [],
-    "attributes": {"is_aggregate": true},
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional"
+    },
     "active": true,
     "version": 1
   }

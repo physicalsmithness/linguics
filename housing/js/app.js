@@ -10,6 +10,9 @@
   // Note: these are `let` so the fetch-loader can replace them with real content.
   let allBuckets = window.LL_BUCKETS || [];
   let bucketIndex = LL.store.indexBuckets(allBuckets);
+  // Expose for translation_marker.js to consult bucket.attributes.direction
+  // when filtering candidates by direction.
+  LL.bucketsById = bucketIndex.byId;
   let grammarQuestions = window.LL_GRAMMAR_QUESTIONS || [];
   let translationItems = window.LL_TRANSLATION_ITEMS || [];
   // Shuffled decks used for navigation; reshuffle on wrap.
@@ -878,8 +881,19 @@
     const norm = s => String(s || "").trim().toLowerCase().replace(/[.,;!?"'()\[\]]/g, "").replace(/\s+/g, " ").trim();
     const a = norm(answer);
     if (!a) return false;
-    const alternatives = String(target || "").split(/[,;\/]/).map(norm).filter(Boolean);
+    // Build the alternatives list. For each comma/semicolon-separated piece,
+    // produce both the full form and a bare form with parenthetical clarifiers
+    // stripped: "cousin (male)" yields both "cousin male" (after norm) AND
+    // "cousin" alone. Either is acceptable.
+    const pieces = String(target || "").split(/[,;\/]/).map(s => s.trim()).filter(Boolean);
+    const alternatives = new Set();
+    for (const p of pieces) {
+      alternatives.add(norm(p));
+      const bareNoParen = p.replace(/\([^)]*\)/g, "").trim();
+      if (bareNoParen) alternatives.add(norm(bareNoParen));
+    }
     for (const alt of alternatives) {
+      if (!alt) continue;
       if (a === alt) return true;
       // Allow learner to omit a leading "to" on verbs
       if (alt.startsWith("to ") && a === alt.slice(3)) return true;
@@ -2154,6 +2168,7 @@
     if (!real) return;
     allBuckets = real.buckets;
     bucketIndex = LL.store.indexBuckets(allBuckets);
+    LL.bucketsById = bucketIndex.byId;
     grammarQuestions = real.grammar;
     translationItems = real.translation;
     if (real.vocab && Array.isArray(real.vocab)) {

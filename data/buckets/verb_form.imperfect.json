@@ -5,22 +5,45 @@
     "language_code": "it",
     "label": "Imperfect (imperfetto)",
     "description": "The 'background' past tense. Formed by adding -av-/-ev-/-iv- + the imperfect endings to the verb stem. Used for habitual, ongoing, or descriptive past actions, contrasting with the passato prossimo's completed-event reading. Has a small irregular core (essere, plus a stem-expansion class with fare, dire, bere, porre, tradurre). Modal verbs (sapere, dovere, potere, volere, conoscere) shift meaning between imperfect and passato prossimo: the imperfect is the state, the passato is the event.",
-    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
-    "prerequisites": ["verb_form.present_indicative", "verb_form.passato_prossimo"],
-    "attributes": {"is_aggregate": true, "topic_short": "imp"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.present_indicative",
+      "verb_form.passato_prossimo"
+    ],
+    "attributes": {
+      "is_aggregate": true,
+      "topic_short": "imp",
+      "direction": "bidirectional"
+    },
     "active": true,
     "version": 1
   },
-
   {
     "id": "verb_form.imperfect.formation",
     "parent_id": "verb_form.imperfect",
     "language_code": "it",
     "label": "Formation",
     "description": "Imperfect formation is the most regular of Italian's past tenses. Stem (drop infinitive ending) + tense-class marker (-av- for -are, -ev- for -ere, -iv- for -ire) + the universal endings (-o, -i, -a, -amo, -ate, -ano). Only a small core of verbs is irregular: essere has a wholly distinct form (ero), and a stem-expansion class (fare, dire, bere, porre, tradurre) restores a longer Latin stem before the regular endings (facevo, dicevo, bevevo, ponevo, traducevo).",
-    "cefr_importance": {"A1": "arcane", "A2": "core", "B1": "core", "B2": "review", "C1": "review", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "review",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"is_aggregate": true},
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -30,9 +53,20 @@
     "language_code": "it",
     "label": "Regular -are: parlavo / parlavi / parlava / parlavamo / parlavate / parlavano",
     "description": "Stem + -av- + universal endings. Stress falls on the -av- in the singular and 3pl forms (parlAvo, parlAva, parlAvano) and shifts to the ending in 1pl/2pl (parlavAmo, parlavAte). The largest and most predictable class.",
-    "cefr_importance": {"A1": "arcane", "A2": "core", "B1": "core", "B2": "review", "C1": "review", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "review",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"canonical_example": "parlavo, mangiavate, lavoravano", "common_miss": "stress misplacement on 1pl/2pl"},
+    "attributes": {
+      "canonical_example": "parlavo, mangiavate, lavoravano",
+      "common_miss": "stress misplacement on 1pl/2pl",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -42,9 +76,20 @@
     "language_code": "it",
     "label": "Regular -ere: vedevo / vedevi / vedeva / vedevamo / vedevate / vedevano",
     "description": "Stem + -ev- + universal endings. Includes -ere verbs that are irregular elsewhere but regular in the imperfect (prendere becomes prendevo, scrivere becomes scrivevo, leggere becomes leggevo). The regularity of -ere in the imperfect is a feature worth flagging to learners surprised that prendere has no irregular imperfect.",
-    "cefr_importance": {"A1": "arcane", "A2": "core", "B1": "core", "B2": "review", "C1": "review", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "review",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"canonical_example": "vedevo, prendevamo, scrivevano", "common_miss": "assuming the participle-irregularity carries over (preso giving presevo) instead of using the regular stem"},
+    "attributes": {
+      "canonical_example": "vedevo, prendevamo, scrivevano",
+      "common_miss": "assuming the participle-irregularity carries over (preso giving presevo) instead of using the regular stem",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -54,9 +99,20 @@
     "language_code": "it",
     "label": "Regular -ire: dormivo / dormivi / dormiva / dormivamo / dormivate / dormivano",
     "description": "Stem + -iv- + universal endings. The -isc- pattern (capisco-style) does NOT apply to the imperfect: capire is capivo, not capiscevo. This is a high-frequency miss for learners who have internalised -isc- for the present tense.",
-    "cefr_importance": {"A1": "arcane", "A2": "core", "B1": "core", "B2": "review", "C1": "review", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "review",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"canonical_example": "dormivo, capivamo, finivano", "common_miss": "carrying -isc- into the imperfect (capiscevo for capivo)"},
+    "attributes": {
+      "canonical_example": "dormivo, capivamo, finivano",
+      "common_miss": "carrying -isc- into the imperfect (capiscevo for capivo)",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -66,9 +122,19 @@
     "language_code": "it",
     "label": "Irregular forms",
     "description": "Italian's imperfect has a remarkably small irregular set. Essere is wholly distinct (ero, eri, era, eravamo, eravate, erano). A stem-expansion class (fare, dire, bere, porre, tradurre and similar) reverts to the longer Latin infinitive stem before adding the regular -ev- and endings.",
-    "cefr_importance": {"A1": "arcane", "A2": "core", "B1": "core", "B2": "review", "C1": "review", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "review",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"is_aggregate": true},
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -78,9 +144,20 @@
     "language_code": "it",
     "label": "Essere: ero / eri / era / eravamo / eravate / erano",
     "description": "The most irregular imperfect in Italian. The stem ER- is wholly different from the present's es-/si-/è- forms. Worth memorising as a unit. High-frequency.",
-    "cefr_importance": {"A1": "arcane", "A2": "core", "B1": "core", "B2": "review", "C1": "review", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "review",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"canonical_example": "ero a casa, eravamo stanchi", "common_miss": "regular-ising to 'essevo' or carrying 'sono/sei' patterns over"},
+    "attributes": {
+      "canonical_example": "ero a casa, eravamo stanchi",
+      "common_miss": "regular-ising to 'essevo' or carrying 'sono/sei' patterns over",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -90,9 +167,22 @@
     "language_code": "it",
     "label": "Stem-expansion verbs (fare, dire, bere, porre, tradurre)",
     "description": "A small class of high-frequency verbs whose contracted modern infinitive opens out into the longer Latin stem before the imperfect endings. Fare uses fac-, dire uses dic-, bere uses bev-, porre uses pon-, tradurre uses traduc-. The same stem-expansion drives their past-participle irregularities (fatto, detto, bevuto, posto, tradotto).",
-    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
-    "prerequisites": ["verb_form.passato_prossimo.participle_form"],
-    "attributes": {"is_aggregate": true, "cross_reference": "verb_form.passato_prossimo (same expansion drives the participle)"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.passato_prossimo.participle_form"
+    ],
+    "attributes": {
+      "is_aggregate": true,
+      "cross_reference": "verb_form.passato_prossimo (same expansion drives the participle)",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -102,9 +192,20 @@
     "language_code": "it",
     "label": "Fare: facevo / facevi / faceva / facevamo / facevate / facevano",
     "description": "From the Latin stem fac-. Among the highest-frequency irregular imperfects. Maps to the imperfect participle pattern (also fac-: fatto in the participle).",
-    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"canonical_example": "facevo i compiti, facevamo una passeggiata", "common_miss": "using a regular stem (favo, faevo)"},
+    "attributes": {
+      "canonical_example": "facevo i compiti, facevamo una passeggiata",
+      "common_miss": "using a regular stem (favo, faevo)",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -114,9 +215,20 @@
     "language_code": "it",
     "label": "Dire: dicevo / dicevi / diceva / dicevamo / dicevate / dicevano",
     "description": "From the Latin stem dic-. Common in indirect speech ('ha detto che diceva...'). Same stem appears in the participle (detto).",
-    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"canonical_example": "diceva sempre la verità, dicevamo che...", "common_miss": "regular-ising to divo/dievo"},
+    "attributes": {
+      "canonical_example": "diceva sempre la verità, dicevamo che...",
+      "common_miss": "regular-ising to divo/dievo",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -126,9 +238,20 @@
     "language_code": "it",
     "label": "Bere: bevevo / bevevi / beveva / bevevamo / bevevate / bevevano",
     "description": "From the Latin stem bev-. Same stem in the participle (bevuto) and across most other tenses.",
-    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"canonical_example": "bevevamo il vino a cena", "common_miss": "regular-ising to bevvo"},
+    "attributes": {
+      "canonical_example": "bevevamo il vino a cena",
+      "common_miss": "regular-ising to bevvo",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -138,9 +261,20 @@
     "language_code": "it",
     "label": "Porre and -porre compounds: ponevo / componevo / opponevo / supponevo / proponevo",
     "description": "From the Latin stem pon-. Lower-frequency than fare/dire/bere but the same pattern. Compounds (comporre, opporre, supporre, proporre) all follow.",
-    "cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "preview", "B2": "core", "C1": "core", "C2": "review"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "core",
+      "C2": "review"
+    },
     "prerequisites": [],
-    "attributes": {"canonical_example": "proponevo sempre nuove idee", "common_miss": "regular-ising to porre giving porevo"},
+    "attributes": {
+      "canonical_example": "proponevo sempre nuove idee",
+      "common_miss": "regular-ising to porre giving porevo",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
@@ -150,22 +284,44 @@
     "language_code": "it",
     "label": "Tradurre and -durre compounds: traducevo / producevo / introducevo / riducevo",
     "description": "From the Latin stem traduc-/duc-. Compounds (produrre, introdurre, ridurre, sedurre, condurre) all follow.",
-    "cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "preview", "B2": "core", "C1": "core", "C2": "review"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "core",
+      "C2": "review"
+    },
     "prerequisites": [],
-    "attributes": {"canonical_example": "traducevamo dal latino", "common_miss": "regular-ising to tradurrevo or traducovo"},
+    "attributes": {
+      "canonical_example": "traducevamo dal latino",
+      "common_miss": "regular-ising to tradurrevo or traducovo",
+      "direction": "production"
+    },
     "active": true,
     "version": 1
   },
-
   {
     "id": "verb_form.imperfect.usage",
     "parent_id": "verb_form.imperfect",
     "language_code": "it",
     "label": "Usage (what imperfect is for)",
     "description": "Imperfect describes a past action without specifying its completion. Habitual ('I used to walk to school'), ongoing ('it was raining'), descriptive ('she was tall'), backgrounded relative to a foregrounded passato-prossimo event. Also has specific lexicalised uses: telling time and age in the past, weather descriptions, and a polite-request use ('volevo un caffè').",
-    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
-    "prerequisites": ["verb_form.imperfect.formation"],
-    "attributes": {"is_aggregate": true},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.imperfect.formation"
+    ],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional"
+    },
     "active": true,
     "version": 1
   },
@@ -175,9 +331,20 @@
     "language_code": "it",
     "label": "Habitual / repeated past ('used to', 'would')",
     "description": "Imperfect is the default for habitual past actions. Maps to English 'used to' and habitual 'would' ('When I lived in Rome, I would walk to the office every day'). Cued by adverbs like sempre, di solito, ogni giorno, da bambino.",
-    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"canonical_example": "Da bambino giocavo a calcio ogni domenica", "common_miss": "using passato prossimo for habituals (ho giocato instead of giocavo)"},
+    "attributes": {
+      "canonical_example": "Da bambino giocavo a calcio ogni domenica",
+      "common_miss": "using passato prossimo for habituals (ho giocato instead of giocavo)",
+      "direction": "bidirectional"
+    },
     "active": true,
     "version": 1
   },
@@ -187,9 +354,20 @@
     "language_code": "it",
     "label": "Ongoing or descriptive past ('was doing', 'was')",
     "description": "Imperfect describes an in-progress action or a state without endpoints. Maps to English past progressive ('was walking') and to stative descriptions ('he was tired', 'the house was big'). The aspectual contrast with passato prossimo is sharpest here: a state isn't an event.",
-    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"canonical_example": "Pioveva forte e la strada era deserta", "common_miss": "using passato prossimo for states (è stata stanca for the state, instead of era stanca)"},
+    "attributes": {
+      "canonical_example": "Pioveva forte e la strada era deserta",
+      "common_miss": "using passato prossimo for states (è stata stanca for the state, instead of era stanca)",
+      "direction": "bidirectional"
+    },
     "active": true,
     "version": 1
   },
@@ -199,9 +377,22 @@
     "language_code": "it",
     "label": "Background with a foregrounded passato prossimo event",
     "description": "Imperfect sets the scene; passato prossimo introduces the event that interrupts or punctuates it. 'Mentre studiavo, è suonato il telefono' (while I was studying, the phone rang). The two tenses share the sentence: imperfect for the ongoing context, PP for the discrete happening.",
-    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
-    "prerequisites": ["verb_form.imperfect.usage.ongoing_descriptive"],
-    "attributes": {"canonical_example": "Mentre dormivo, qualcuno ha bussato alla porta", "common_miss": "swapping the tenses (ho dormito mentre bussava)"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.imperfect.usage.ongoing_descriptive"
+    ],
+    "attributes": {
+      "canonical_example": "Mentre dormivo, qualcuno ha bussato alla porta",
+      "common_miss": "swapping the tenses (ho dormito mentre bussava)",
+      "direction": "bidirectional"
+    },
     "active": true,
     "version": 1
   },
@@ -211,9 +402,22 @@
     "language_code": "it",
     "label": "Duration in the past (da + time + imperfect)",
     "description": "To say how long a past action had been going on, Italian uses imperfect + da + time-phrase: 'Vivevo a Roma da tre anni quando ho incontrato Maria' (I had been living in Rome for three years when I met Maria). English maps to past perfect continuous; Italian uses imperfect + da.",
-    "cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "preview", "B2": "core", "C1": "core", "C2": "review"},
-    "prerequisites": ["verb_form.imperfect.usage.ongoing_descriptive"],
-    "attributes": {"canonical_example": "Aspettavo da venti minuti quando è arrivata", "common_miss": "using PP (ho aspettato da venti minuti) instead of imperfect"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "core",
+      "C2": "review"
+    },
+    "prerequisites": [
+      "verb_form.imperfect.usage.ongoing_descriptive"
+    ],
+    "attributes": {
+      "canonical_example": "Aspettavo da venti minuti quando è arrivata",
+      "common_miss": "using PP (ho aspettato da venti minuti) instead of imperfect",
+      "direction": "bidirectional"
+    },
     "active": true,
     "version": 1
   },
@@ -223,9 +427,24 @@
     "language_code": "it",
     "label": "Age, time of day, and weather in the past",
     "description": "Fixed-pattern uses: avevo X anni (I was X years old), erano le tre (it was three o'clock), faceva freddo / pioveva / nevicava (the weather was X). All take imperfect, never PP, because they describe states rather than events.",
-    "cefr_importance": {"A1": "arcane", "A2": "core", "B1": "core", "B2": "review", "C1": "review", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "review",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"canonical_examples": ["avevo dieci anni", "erano le otto di sera", "faceva freddo, pioveva"], "common_miss": "using PP (ho avuto dieci anni, ha fatto freddo) for these states"},
+    "attributes": {
+      "canonical_examples": [
+        "avevo dieci anni",
+        "erano le otto di sera",
+        "faceva freddo, pioveva"
+      ],
+      "common_miss": "using PP (ho avuto dieci anni, ha fatto freddo) for these states",
+      "direction": "bidirectional"
+    },
     "active": true,
     "version": 1
   },
@@ -235,22 +454,45 @@
     "language_code": "it",
     "label": "Polite imperfect (softening a request)",
     "description": "Italian uses the imperfect (especially of volere) to soften a present request. 'Volevo un caffè' (I'd like a coffee) is more polite than 'voglio un caffè'. Strictly speaking it's a present meaning expressed in the past tense; the politeness comes from the distancing effect.",
-    "cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "preview", "B2": "core", "C1": "review", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"canonical_example": "Volevo un caffè, per favore.", "common_miss": "missing the politeness reading and over-translating as 'I wanted'"},
+    "attributes": {
+      "canonical_example": "Volevo un caffè, per favore.",
+      "common_miss": "missing the politeness reading and over-translating as 'I wanted'",
+      "direction": "bidirectional"
+    },
     "active": true,
     "version": 1
   },
-
   {
     "id": "verb_form.imperfect.discrimination",
     "parent_id": "verb_form.imperfect",
     "language_code": "it",
     "label": "Imperfect vs passato prossimo (the key discrimination)",
     "description": "The main difficulty for learners. Imperfect for habits, states, and background; passato prossimo for completed events. Cued by adverbs (ieri = PP, sempre/di solito = imperfect; in genere = imperfect, l'altro giorno = PP). The modal verbs are a special case: imperfect and PP differ in meaning rather than just aspect.",
-    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
-    "prerequisites": ["verb_form.imperfect.usage", "verb_form.passato_prossimo"],
-    "attributes": {"is_aggregate": true},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.imperfect.usage",
+      "verb_form.passato_prossimo"
+    ],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional"
+    },
     "active": true,
     "version": 1
   },
@@ -260,9 +502,22 @@
     "language_code": "it",
     "label": "Choosing imperfect or PP (general aspect rule)",
     "description": "General-aspect discrimination not tied to a specific modal. Imperfect for ongoing or repeated, PP for single completed event. Adverb cues are reliable: sempre, di solito, ogni X, mentre, da X for imperfect; ieri, l'altro giorno, una volta, all'improvviso, una settimana fa for PP.",
-    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"canonical_examples": ["Andavo a scuola in autobus (habitual) vs Ieri sono andato a scuola in autobus (single event)"], "common_miss": "defaulting to PP for English past-tense verbs regardless of aspect"},
+    "attributes": {
+      "canonical_examples": [
+        "Andavo a scuola in autobus (habitual) vs Ieri sono andato a scuola in autobus (single event)"
+      ],
+      "common_miss": "defaulting to PP for English past-tense verbs regardless of aspect",
+      "direction": "bidirectional"
+    },
     "active": true,
     "version": 1
   },
@@ -272,9 +527,21 @@
     "language_code": "it",
     "label": "Modal verbs: imperfect vs PP shifts meaning",
     "description": "With sapere, dovere, potere, volere, conoscere, the imperfect and PP convey different meanings, not just different aspects. The imperfect is the state or disposition; the PP is the resulting event. This is one of the most diagnostically rich areas of Italian grammar and a sleeper for English-speaking learners.",
-    "cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
-    "prerequisites": ["verb_form.imperfect.discrimination.vs_passato_prossimo_general"],
-    "attributes": {"is_aggregate": true},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.imperfect.discrimination.vs_passato_prossimo_general"
+    ],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional"
+    },
     "active": true,
     "version": 1
   },
@@ -284,9 +551,23 @@
     "language_code": "it",
     "label": "Sapere: sapevo (I knew, state) vs ho saputo (I found out, event)",
     "description": "The cleanest case. Sapevo che era malato = I knew he was ill (state of knowledge). Ho saputo che era malato = I found out he was ill (the moment of learning). English glosses the two as 'knew' vs 'found out', not as 'knew' vs 'have known'.",
-    "cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"canonical_examples": ["Sapevo che veniva (I knew he was coming)", "Ho saputo che veniva (I found out he was coming)"], "common_miss": "using imperfect for the event-of-learning reading"},
+    "attributes": {
+      "canonical_examples": [
+        "Sapevo che veniva (I knew he was coming)",
+        "Ho saputo che veniva (I found out he was coming)"
+      ],
+      "common_miss": "using imperfect for the event-of-learning reading",
+      "direction": "bidirectional"
+    },
     "active": true,
     "version": 1
   },
@@ -296,9 +577,23 @@
     "language_code": "it",
     "label": "Dovere: dovevo (had to, was supposed to) vs ho dovuto (had to, and did)",
     "description": "Dovevo andare = I was supposed to go (open whether I went). Ho dovuto andare = I had to go (and I did). The imperfect leaves the action's completion ambiguous or unstated; the PP confirms it happened. Sentences with explicit follow-through usually take PP.",
-    "cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"canonical_examples": ["Dovevo studiare ma sono uscito (was supposed to, didn't)", "Ho dovuto studiare (had to, and did)"], "common_miss": "interchanging the two and missing the completion implication"},
+    "attributes": {
+      "canonical_examples": [
+        "Dovevo studiare ma sono uscito (was supposed to, didn't)",
+        "Ho dovuto studiare (had to, and did)"
+      ],
+      "common_miss": "interchanging the two and missing the completion implication",
+      "direction": "bidirectional"
+    },
     "active": true,
     "version": 1
   },
@@ -308,9 +603,23 @@
     "language_code": "it",
     "label": "Potere: potevo (could, was able to) vs ho potuto (was able to, and did)",
     "description": "Potevo andare = I could have gone / was able to go (didn't necessarily). Ho potuto andare = I was able to go (and I did). The PP form often carries an 'against odds' or 'finally managed' nuance ('ho potuto vederlo' = I managed to see him).",
-    "cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"canonical_examples": ["Potevo aiutarti (I could have helped you)", "Ho potuto aiutarti (I managed to help you)"], "common_miss": "defaulting to imperfect for both because English 'could' is ambiguous"},
+    "attributes": {
+      "canonical_examples": [
+        "Potevo aiutarti (I could have helped you)",
+        "Ho potuto aiutarti (I managed to help you)"
+      ],
+      "common_miss": "defaulting to imperfect for both because English 'could' is ambiguous",
+      "direction": "bidirectional"
+    },
     "active": true,
     "version": 1
   },
@@ -320,9 +629,23 @@
     "language_code": "it",
     "label": "Volere: volevo (wanted to) vs ho voluto (insisted on, got my way)",
     "description": "Volevo parlare = I wanted to speak (open whether I did). Ho voluto parlare = I insisted on speaking (and did). The PP form often carries a strong-will or insistence nuance.",
-    "cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"canonical_examples": ["Volevo dirti una cosa (I wanted to tell you something)", "Ho voluto dirgli la verità (I insisted on telling him the truth)"], "common_miss": "missing the insistence reading in the PP form"},
+    "attributes": {
+      "canonical_examples": [
+        "Volevo dirti una cosa (I wanted to tell you something)",
+        "Ho voluto dirgli la verità (I insisted on telling him the truth)"
+      ],
+      "common_miss": "missing the insistence reading in the PP form",
+      "direction": "bidirectional"
+    },
     "active": true,
     "version": 1
   },
@@ -332,22 +655,47 @@
     "language_code": "it",
     "label": "Conoscere: conoscevo (knew, was acquainted) vs ho conosciuto (met for the first time)",
     "description": "Conoscevo Maria = I knew Maria (was acquainted). Ho conosciuto Maria = I met Maria (the event of being introduced). This is one of the most pedagogically vivid imperfect/PP contrasts because it changes the verb's English equivalent entirely.",
-    "cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"canonical_examples": ["Conoscevo già Maria (I already knew Maria)", "Ho conosciuto Maria alla festa (I met Maria at the party)"], "common_miss": "translating PP as 'have known' instead of 'met'"},
+    "attributes": {
+      "canonical_examples": [
+        "Conoscevo già Maria (I already knew Maria)",
+        "Ho conosciuto Maria alla festa (I met Maria at the party)"
+      ],
+      "common_miss": "translating PP as 'have known' instead of 'met'",
+      "direction": "bidirectional"
+    },
     "active": true,
     "version": 1
   },
-
   {
     "id": "verb_form.imperfect.indirect_speech",
     "parent_id": "verb_form.imperfect",
     "language_code": "it",
     "label": "Imperfect in indirect speech",
     "description": "When the reporting verb is in a past tense, present-tense speech shifts to imperfect: 'Ha detto: vengo' becomes 'Ha detto che veniva'. English does the same ('he said he was coming'). High-frequency across reporting, narrative, and conversation.",
-    "cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
-    "prerequisites": ["verb_form.imperfect.usage.ongoing_descriptive"],
-    "attributes": {"is_aggregate": true},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.imperfect.usage.ongoing_descriptive"
+    ],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional"
+    },
     "active": true,
     "version": 1
   },
@@ -357,9 +705,20 @@
     "language_code": "it",
     "label": "Reported present-tense speech becomes imperfect",
     "description": "Direct: 'Sono stanco'. Indirect (with past reporting verb): 'Ha detto che era stanco'. The present 'sono stanco' shifts to imperfect 'era stanco'. The same shift applies to direct-speech progressives ('sto lavorando' becomes 'stava lavorando').",
-    "cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"canonical_example": "Mi ha detto che era stanco", "common_miss": "leaving the embedded clause in the present (ha detto che è stanco)"},
+    "attributes": {
+      "canonical_example": "Mi ha detto che era stanco",
+      "common_miss": "leaving the embedded clause in the present (ha detto che è stanco)",
+      "direction": "bidirectional"
+    },
     "active": true,
     "version": 1
   },
@@ -369,22 +728,44 @@
     "language_code": "it",
     "label": "Reported intention or future plan becomes imperfect (or imperfect of stare + per)",
     "description": "Direct: 'Vado al cinema'. Indirect: 'Ha detto che andava al cinema'. Direct: 'Sto per uscire'. Indirect: 'Ha detto che stava per uscire'. The imperfect carries the prospective reading of a past-tense report.",
-    "cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "preview", "B2": "core", "C1": "review", "C2": "fluency"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
     "prerequisites": [],
-    "attributes": {"canonical_example": "Ha detto che andava al cinema", "common_miss": "using future tense in the embedded clause (ha detto che andrà)"},
+    "attributes": {
+      "canonical_example": "Ha detto che andava al cinema",
+      "common_miss": "using future tense in the embedded clause (ha detto che andrà)",
+      "direction": "bidirectional"
+    },
     "active": true,
     "version": 1
   },
-
   {
     "id": "verb_form.imperfect.stylistic",
     "parent_id": "verb_form.imperfect",
     "language_code": "it",
     "label": "Stylistic and register uses",
     "description": "Higher-register or marked uses of the imperfect: the narrative imperfect (used for vivid storytelling, often as a stand-in for the passato remoto), and the colloquial counterfactual ('se avevi tempo, venivi' as an informal substitute for 'se avessi avuto tempo, saresti venuto').",
-    "cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "arcane", "B2": "preview", "C1": "core", "C2": "core"},
-    "prerequisites": ["verb_form.imperfect.usage"],
-    "attributes": {"is_aggregate": true},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "arcane",
+      "B2": "preview",
+      "C1": "core",
+      "C2": "core"
+    },
+    "prerequisites": [
+      "verb_form.imperfect.usage"
+    ],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional"
+    },
     "active": true,
     "version": 1
   },
@@ -394,9 +775,20 @@
     "language_code": "it",
     "label": "Narrative imperfect (vivid storytelling)",
     "description": "Imperfect used in literary or journalistic narration to recount discrete past events, lending an immersive 'in the moment' feel. 'Il treno partiva alle otto di sera; alle dieci arrivava a Milano.' Functionally substitutes for PP or passato remoto. Common in older fiction and in headlines.",
-    "cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "arcane", "B2": "preview", "C1": "core", "C2": "core"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "arcane",
+      "B2": "preview",
+      "C1": "core",
+      "C2": "core"
+    },
     "prerequisites": [],
-    "attributes": {"canonical_example": "Il giorno dopo partiva per Roma", "common_miss": "reading the imperfect as habitual when it's narrating a single event"},
+    "attributes": {
+      "canonical_example": "Il giorno dopo partiva per Roma",
+      "common_miss": "reading the imperfect as habitual when it's narrating a single event",
+      "direction": "bidirectional"
+    },
     "active": true,
     "version": 1
   },
@@ -406,9 +798,20 @@
     "language_code": "it",
     "label": "Colloquial counterfactual (substitute for subjunctive + conditional)",
     "description": "In informal Italian, the imperfect can replace both the imperfect-subjunctive protasis and the conditional apodosis of a hypothetical: 'Se avevi tempo, venivi con noi' instead of 'Se avessi avuto tempo, saresti venuto con noi'. Widespread in speech, prescriptively dispreferred in writing.",
-    "cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "arcane", "B2": "preview", "C1": "core", "C2": "review"},
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "arcane",
+      "B2": "preview",
+      "C1": "core",
+      "C2": "review"
+    },
     "prerequisites": [],
-    "attributes": {"canonical_example": "Se sapevo, te lo dicevo", "common_miss": "translating literally and missing the counterfactual reading"},
+    "attributes": {
+      "canonical_example": "Se sapevo, te lo dicevo",
+      "common_miss": "translating literally and missing the counterfactual reading",
+      "direction": "bidirectional"
+    },
     "active": true,
     "version": 1
   }

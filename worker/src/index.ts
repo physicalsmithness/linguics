@@ -342,11 +342,16 @@ export default {
     }
 
     // Diagnostic: confirm the secret is loaded. Prints to `wrangler tail` only.
-    if (!env.OPENROUTER_API_KEY) {
-      console.error("OPENROUTER_API_KEY is missing or empty in env");
+    // Trim the key: trailing newlines from `wrangler secret put` paste cause
+    // fetch() to silently strip the Authorization header (HTTP rejects header
+    // values with control characters), producing "Missing Authentication
+    // header" from OpenRouter.
+    const apiKey = (env.OPENROUTER_API_KEY || "").trim();
+    if (!apiKey) {
+      console.error("OPENROUTER_API_KEY is missing or empty after trim");
       return errorResp(500, "config_error", "OPENROUTER_API_KEY secret not loaded. Run `wrangler secret put OPENROUTER_API_KEY` from the worker/ directory and redeploy.");
     }
-    console.log(`Calling OpenRouter; key length: ${env.OPENROUTER_API_KEY.length}; model: ${model}`);
+    console.log(`Key prefix: ${apiKey.slice(0, 8)}, length: ${apiKey.length}; model: ${model}`);
 
     // Call OpenRouter
     let apiRes: Response;
@@ -354,7 +359,7 @@ export default {
       apiRes = await fetch("https://openrouter.ai/api/v1/chat/completions", {
         method: "POST",
         headers: {
-          "Authorization": `Bearer ${env.OPENROUTER_API_KEY}`,
+          "Authorization": `Bearer ${apiKey}`,
           "HTTP-Referer": "https://linguics.dev",
           "X-Title": "Linguics translation marker",
           "Content-Type": "application/json",
