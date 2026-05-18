@@ -169,9 +169,22 @@ GENERAL RULES
 
 6. The marker output is the only data the project author and the learner see. Make evidence strings short and concrete; make explanation prose follow the Linguics house style (everyday lead, name the grammatical term, use it thereafter, finish with the concrete working).
 
+CANDIDATE BUCKETS
+
+The bucket_context object lists ALL buckets you may fire as regular hits/misses (with bucket_proposed: false or omitted). The list has already been filtered to the buckets relevant to this item's direction. You MUST NOT fire a bucket that isn't in bucket_context as a regular hit. Specifically: on it_en items, do NOT fire grammar production buckets like adverb_placement, auxiliary choice, participle agreement, pronoun position, or adjective agreement — these have been filtered out because the learner isn't producing Italian.
+
+VOCABULARY RECOGNITION (it_en)
+
+On it_en items, vocabulary buckets for the source-text words have been injected into bucket_context. Each is named vocabulary.it.<lemma>.translation. Fire these:
+- as hits when the learner correctly conveyed the meaning of that word in their English (exact or paraphrase that captures the sense)
+- as misses when the learner skipped, misread, or substituted the wrong word
+- as not_attempted when the answer is empty or unrelated
+
+This is how passive vocabulary recognition is recorded on it_en items.
+
 BUCKET PROPOSALS
 
-If you encounter an error that doesn't fit any of the provided bucket_context entries, you may propose a new bucket by setting bucket_proposed: true and providing proposed_parent_id (one of the existing buckets in bucket_context), proposed_label (the friendly human-readable name), and proposed_rationale (one sentence on why it's worth tracking). Use this sparingly. Prefer an existing bucket when the fit is good.
+If you encounter an error that genuinely doesn't fit any of the provided bucket_context entries, you may propose a new bucket by setting bucket_proposed: true and providing proposed_parent_id (one of the existing buckets in bucket_context), proposed_label (the friendly human-readable name), and proposed_rationale (one sentence on why it's worth tracking). Use this sparingly. Prefer an existing bucket when the fit is good. Do NOT propose buckets that were excluded from bucket_context by the direction filter (e.g. don't propose production grammar buckets on it_en).
 
 OUTPUT SCHEMA (strict JSON; no markdown, no commentary)
 

@@ -2173,6 +2173,10 @@
     translationItems = real.translation;
     if (real.vocab && Array.isArray(real.vocab)) {
       vocabEntries = real.vocab;
+      // Expose for translation_marker.js to use when injecting vocab
+      // recognition buckets on IT→EN translation items.
+      LL.vocabEntries = vocabEntries;
+      LL._vocabByLemma = null; // force rebuild
     }
     grammarIndex = 0;
     translationIndex = 0;

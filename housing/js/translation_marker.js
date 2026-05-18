@@ -207,14 +207,48 @@
       const b = bucketById[id];
       if (b) ctx[id] = { label: b.label || id, description: b.description || "" };
     }
+    // For IT→EN items, inject vocabulary recognition buckets based on the
+    // source text. The chats authored these items without listing vocab
+    // buckets in required_buckets (they assumed vocab was production-only),
+    // but on IT→EN the learner is recognising source vocabulary and we want
+    // that signal. Match each significant word in the source_text against
+    // the known vocab list.
+    if (direction === "it_en" && Array.isArray(LL.vocabEntries) && LL.vocabEntries.length) {
+      const src = String(item.source_text || "").toLowerCase();
+      const tokens = src.split(/[\s,.!?;:"'()\[\]<>\/\\]+/).filter(t => t.length >= 3);
+      const byLemma = LL._vocabByLemma || (LL._vocabByLemma = (function() {
+        const m = new Map();
+        for (const e of LL.vocabEntries) {
+          if (e && e.lemma) m.set(String(e.lemma).toLowerCase(), e);
+        }
+        return m;
+      })());
+      for (const tok of tokens) {
+        let entry = byLemma.get(tok);
+        if (!entry && tok.length >= 4) {
+          for (const lemma of byLemma.keys()) {
+            if (lemma.length < 3) continue;
+            if (lemma.slice(0, 4) === tok.slice(0, 4) && Math.abs(lemma.length - tok.length) <= 3) {
+              entry = byLemma.get(lemma);
+              break;
+            }
+          }
+        }
+        if (!entry) continue;
+        const bid = `vocabulary.it.${entry.lemma}.translation`;
+        if (ctx[bid]) continue;
+        ctx[bid] = {
+          label: `${entry.lemma} (translation)`,
+          description: `Translation of Italian ${entry.lemma}${entry.translation_en ? ` (means: ${entry.translation_en})` : ""}.`
+        };
+      }
+    }
     return ctx;
   };
 
   /**
    * For the stub's use: filter an item's required_buckets to the ones that
-   * are direction-applicable. The stub fires these as hits/misses depending
-   * on whether word-overlap is above threshold; with this filter applied,
-   * grammar buckets no longer fire on IT→EN items.
+   * are direction-applicable.
    */
   LL.candidateBucketIds = function (item) {
     const direction = LL.inferDirection(item);
@@ -222,9 +256,6 @@
     return ids.filter(id => LL.isCandidateForDirection(id, direction));
   };
 
-  /**
-   * Format a cost amount for display. Uses cents under $1, dollars above.
-   */
   LL.formatCost = function (usd) {
     if (typeof usd !== "number" || !isFinite(usd)) return "$0";
     if (usd < 0.01) return "$" + usd.toFixed(4);
