@@ -1,0 +1,37 @@
+[
+  {
+    "proposed_term": "counterfactual",
+    "proposed_short": "A conditional sentence whose 'if' clause describes something that didn't happen or isn't the case: 'If I had time, I'd come' or 'If I had won the lottery, I would have travelled'.",
+    "proposed_long": "A counterfactual conditional is one whose protasis is contrary to fact: the speaker is signalling that the if-clause doesn't hold in the real world (or didn't, for past counterfactuals). Italian has two main formal counterfactual structures: present-counterfactual (imperfect subjunctive + present conditional, 'se avessi tempo, verrei') and past-counterfactual (pluperfect subjunctive + past conditional, 'se avessi avuto tempo, sarei venuto'). Colloquial Italian collapses both clauses to imperfect indicative ('se avevo tempo, venivo'), which is the stylistic variant tracked under the colloquial-counterfactual leaf. English's counterfactual scaffolding uses 'had + past participle' in the if-clause with 'would (have) + base/past participle' in the result clause.",
+    "proposed_aliases": ["counterfactual conditional", "contrary-to-fact conditional"],
+    "rationale": "Used throughout tense_choice's conditional-vs-imperfetto items. Distinct from the broader 'periodo ipotetico' label proposed by the imperfect dispatch: 'counterfactual' is the cross-linguistic concept; 'periodo ipotetico della irrealtà' is the Italian-grammar-tradition name."
+  },
+  {
+    "proposed_term": "future of probability",
+    "proposed_short": "Using Italian's morphological future to mark a guess about the present: 'Saranno le tre' = 'It must be three o'clock'.",
+    "proposed_long": "The future of probability is a use of Italian's morphological future where the speaker is hedging a present-time claim with uncertainty, rather than projecting into actual future time. Common patterns: time estimates ('saranno le tre' = 'it must be three'), age estimates ('avrà sessant'anni' = 'she must be about sixty'), and inference about the current state of an absent person ('starà dormendo' = 'he must be sleeping'). English uses 'must be' or 'will probably be' for the same effect. The construction is parallel to the future perfect of probability ('avrà finito' = 'he must have finished'), which projects the hedge into the past.",
+    "proposed_aliases": ["futuro di probabilità", "epistemic future"],
+    "rationale": "Used in tense_choice's future-vs-present items, specifically the future_for_unambiguous_future leaf where saranno/avrà type readings appear."
+  },
+  {
+    "proposed_term": "subjunctive trigger",
+    "proposed_short": "A verb or conjunction that forces the embedded clause into the subjunctive: penso che, sono contento che, sebbene, prima che.",
+    "proposed_long": "A subjunctive trigger is a lexical or structural element that takes the subjunctive in its complement. Italian's main categories are: opinion verbs (penso che, credo che, mi sembra che) which trigger present subjunctive prescriptively, with some colloquial slippage to indicative; emotion expressions (sono contento che, mi dispiace che, spero che, temo che) which trigger present subjunctive with very little slippage; concessive and purpose conjunctions (sebbene, benché, prima che, affinché, purché) which trigger subjunctive structurally with almost no slippage. Negation can flip an otherwise-indicative trigger into a subjunctive one (è vero che + indicative becomes non è vero che + subjunctive). The bucket-tree under tense_choice.indicative_vs_subjunctive organises items by trigger category.",
+    "proposed_aliases": ["trigger verb", "trigger conjunction"],
+    "rationale": "Used across tense_choice's indicative-vs-subjunctive items as the unifying name for opinion verbs, emotion expressions, hypothetical conjunctions, and the negation-flip cases."
+  },
+  {
+    "proposed_term": "concessive conjunction",
+    "proposed_short": "A conjunction that introduces a clause acknowledging a counter-fact: sebbene, benché, nonostante, anche se.",
+    "proposed_long": "A concessive conjunction frames a clause as 'although X' — granting that something is true while the main clause asserts something that contrasts with or overrides it. Italian's main concessive conjunctions are sebbene, benché, malgrado, nonostante, ancorché and anche se. Of these, sebbene, benché, malgrado, nonostante and ancorché require the subjunctive in their clause with almost no colloquial slippage; anche se is the exception and takes the indicative. The structural-trigger rule means the verb form depends on which conjunction is used, not on the speaker's epistemic stance.",
+    "proposed_aliases": ["concessive clause"],
+    "rationale": "Used in tense_choice's indicative-vs-subjunctive hypothetical-triggers items. Distinct from 'hypothetical conjunction' (a broader label that also covers prima che, affinché, purché, etc.)."
+  },
+  {
+    "proposed_term": "polarity flip",
+    "proposed_short": "When negating a verb that normally takes the indicative shifts the embedded clause to the subjunctive: 'è vero che piove' (indicative) becomes 'non è vero che piova' (subjunctive).",
+    "proposed_long": "A polarity flip is the rule that negating certain assertion-type matrix verbs forces the embedded clause from indicative to subjunctive. 'È vero che piove' asserts the rain as fact and uses the indicative; 'Non è vero che piova' denies it and uses the subjunctive. The same flip applies to 'dico che' (indicative) vs 'non dico che' (subjunctive), and to 'sapevo che' (indicative) vs 'non sapevo che' (subjunctive). With opinion verbs that already take the subjunctive in the affirmative ('penso che sia'), the negation reinforces rather than flips ('non penso che sia'). The flip is the structural reason the negative-triggers leaf is a distinct bucket from the opinion-triggers leaf.",
+    "proposed_aliases": ["negation-induced subjunctive"],
+    "rationale": "Used in tense_choice's indicative-vs-subjunctive negative_triggers items."
+  }
+]

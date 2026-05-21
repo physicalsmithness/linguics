@@ -108,6 +108,30 @@ The dispatch's example showed `auxiliary: null` and `conjugation_class: null` fo
 
 ---
 
+## 11. `translation_en` schema: separate answer-key from gloss
+
+**Originally written:** Smith reported (with screenshots) that the marker was rejecting correct answers like "soup" for `minestra` and "cousin" for `cugino`, because the canonical `translation_en` values were `"soup (light, broth-based)"` and `"cousin (male)"`. The marker did exact-string match against the whole thing, parentheticals and all.
+
+**Diagnosis:** the `translation_en` field was doing two jobs at once — (a) the canonical accepted-answer key for the marker, and (b) a human-readable disambiguating gloss for the reader. The mixed shape silently broke marking on ~189 entries (about 1 in 6).
+
+**Fix applied to the data (rank-1 to rank-1060 inclusive):** all parenthetical content has been stripped from `translation_en`. A new optional `gloss_en` string field has been added that holds the disambiguation. After this pass:
+- `translation_en` is a clean comma-separated list of accepted answer strings (still a string, not yet an array).
+- `gloss_en` is the human-readable disambiguator, never matched.
+
+Example before / after:
+```json
+// Before
+"translation_en": "soup (light, broth-based)",
+
+// After
+"translation_en": "soup",
+"gloss_en": "light, broth-based; thinner than zuppa; minestrone is a thicker vegetable variant",
+```
+
+**Marker still needs to accept comma-split alternatives.** Many `translation_en` values are still comma-separated strings like `"house, home"`, `"to take, to catch, to get"`, `"his, her, its, your"`. For the marker to accept any one of `house` or `home` (etc.), it MUST split `translation_en` on commas (and semicolons where they remain), trim, lowercase, and accept any element as a match.
+
+**Architecture ask:** (a) Add `gloss_en` to the canonical schema as an optional top-level string field. (b) Decide whether `translation_en` should be promoted to a proper array of strings (cleaner shape, but every entry needs touching) or remain a string that the marker splits on commas / semicolons (smaller change, but the data shape is implicit). (c) Confirm the marker behaviour: case-insensitive, whitespace-trimmed, comma-and-semicolon-split exact-match-on-any-element.
+
 ## Status snapshot (when this file was written)
 
 - Bands 1-100, 101-200, 201-300, 301-400, 401-500, 501-600, 601-700 are complete.
