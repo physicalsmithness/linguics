@@ -295,10 +295,30 @@
   //   70% mastery   → pale green   (mostly right recently)
   //   100% mastery  → deep green   (consolidated)
   // Linear interpolation between adjacent stops.
-  const RWG_RED        = [208,  72,  72];
-  const RWG_YELLOW     = [240, 220, 130]; // pale buttercream, not saturated mustard
-  const RWG_PALE_GREEN = [163, 210, 163];
-  const RWG_GREEN      = [ 25, 110,  58]; // deeper green at 100%
+  let RWG_RED        = [208,  72,  72];
+  let RWG_YELLOW     = [240, 220, 130];
+  let RWG_PALE_GREEN = [163, 210, 163];
+  let RWG_GREEN      = [ 25, 110,  58];
+
+  function rgbToHex(rgb) {
+    const h = (n) => n.toString(16).padStart(2, "0");
+    return "#" + h(rgb[0]) + h(rgb[1]) + h(rgb[2]);
+  }
+  function hexToRgb(hex) {
+    const m = /^#?([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(String(hex || "").trim());
+    if (!m) return null;
+    return [parseInt(m[1],16), parseInt(m[2],16), parseInt(m[3],16)];
+  }
+  function paletteAsJson() {
+    return JSON.stringify({
+      red:        rgbToHex(RWG_RED),
+      yellow:     rgbToHex(RWG_YELLOW),
+      paleGreen:  rgbToHex(RWG_PALE_GREEN),
+      green:      rgbToHex(RWG_GREEN),
+      yellowStop: vocabYellowStop,
+      baseline:   vocabUnattemptedBaseline
+    }, null, 2);
+  }
   // Untouched fill — a neutral that reads as "empty slot" against the cream
   // page bg (#fdfaf4). Slightly cooler / darker so the eye registers it as
   // distinct from the page background.
@@ -720,11 +740,23 @@
   let vocabEntries = [];
   let vocabDeck = [];
   let vocabIndex = 0;
-  let vocabFilter = { band: "", direction: "it_en" };
+  let vocabFilter = { band: "", direction: "it_en", theme: "", genderClass: "" };
+  let vocabExpandedThemes = new Set();
   let vocabInputRef = null;
 
   function filteredVocabEntries() {
-    return vocabEntries.filter(v => !vocabFilter.band || v.band === vocabFilter.band);
+    return vocabEntries.filter(v => {
+      if (vocabFilter.band && v.band !== vocabFilter.band) return false;
+      if (vocabFilter.theme) {
+        if (!Array.isArray(v.themes) || !v.themes.includes(vocabFilter.theme)) return false;
+      }
+      if (vocabFilter.genderClass) {
+        if (v.pos !== "noun") return false;
+        const cls = v.noun_class || (v.gender === "m" ? "unspecified_m" : v.gender === "f" ? "unspecified_f" : "unspecified");
+        if (cls !== vocabFilter.genderClass) return false;
+      }
+      return true;
+    });
   }
 
   function ensureVocabDeck() {
@@ -1125,7 +1157,27 @@
         const lemmaCount = lemmas.length;
         const dirFilter = c.directionFilter || "any";
 
-        // Header
+        cell.style.cursor = "pointer";
+        cell.addEventListener("click", (ev) => {
+          if (ev.target && ev.target.classList && ev.target.classList.contains("vocab-lemma-dot")) return;
+          if (axisKind === "themes") {
+            if (lemmaCount > VOCAB_CELL_DOT_THRESHOLD && !vocabExpandedThemes.has(c.key)) {
+              vocabExpandedThemes.add(c.key);
+              renderVocabAxes();
+              return;
+            }
+            vocabFilter.theme = c.key;
+            vocabFilter.genderClass = "";
+            vocabFilter.band = "";
+          } else if (axisKind === "gender") {
+            vocabFilter.genderClass = c.key;
+            vocabFilter.theme = "";
+            vocabFilter.band = "";
+          }
+          vocabDeck = []; vocabIndex = 0;
+          renderVocab();
+        });
+
         const head = document.createElement("div");
         head.className = "vocab-cell-head";
         const lbl = document.createElement("div");
@@ -1137,17 +1189,15 @@
         head.appendChild(meta);
         cell.appendChild(head);
 
-        if (lemmaCount > VOCAB_CELL_DOT_THRESHOLD) {
-          // Average mode: solid fill driven by aggregate events.
-          const events = eventsForLemmas(lemmas, { direction: dirFilter });
-          const wc = recencyWeightedCorrectness(events);
+        const forceDots = axisKind === "themes" && vocabExpandedThemes.has(c.key);
+        if (lemmaCount > VOCAB_CELL_DOT_THRESHOLD && !forceDots) {
+          const m = averageCorrectnessAcrossLemmas(lemmas, dirFilter);
           cell.classList.add("avg-mode");
-          cell.style.background = rwgColour(wc.correctness, wc.hasEvents);
-          const pct = wc.hasEvents ? Math.round(wc.correctness * 100) + "%" : "untouched";
-          meta.textContent = lemmaCount + " words - " + wc.nAttempted + " attempts - " + pct;
-          cell.title = c.label + "\n(averaged: " + lemmaCount + " lemmas) - " + pct;
+          cell.style.background = rwgColour(m.correctness, true);
+          const pct = Math.round(m.correctness * 100) + "%";
+          meta.textContent = lemmaCount + " words - " + m.touched + " touched - avg " + pct;
+          cell.title = c.label + " (averaged) - click to expand";
         } else {
-          // Word-by-word dots.
           cell.classList.add("dot-mode");
           const dots = document.createElement("div");
           dots.className = "vocab-cell-dots";
@@ -1167,7 +1217,7 @@
           }
           cell.appendChild(dots);
           meta.textContent = lemmaCount + " words - " + attempted + " touched";
-          cell.title = c.label + "\n" + lemmaCount + " lemmas - " + attempted + " touched";
+          cell.title = c.label;
         }
         grid.appendChild(cell);
       }
@@ -1231,40 +1281,109 @@
       return;
     }
 
-    // -------- header with tuning sliders --------
+    // -------- header: number inputs + palette pickers --------
     const header = document.createElement("div");
     header.className = "vocab-axes-header";
-    function buildSlider(labelText, getter, setter, min, max, step) {
+
+    function buildNumberInput(labelText, getter, setter, min, max, step) {
       const wrap = document.createElement("label");
-      wrap.className = "vocab-slider";
+      wrap.className = "vocab-numinput";
       const lbl = document.createElement("span");
-      lbl.className = "vocab-slider-label";
+      lbl.className = "vocab-input-label";
       lbl.textContent = labelText;
-      const slider = document.createElement("input");
-      slider.type = "range";
-      slider.min = String(min); slider.max = String(max); slider.step = String(step);
-      slider.value = String(getter());
-      const val = document.createElement("span");
-      val.className = "vocab-slider-value";
-      val.textContent = Number(getter()).toFixed(2);
-      slider.addEventListener("input", () => {
-        const v = parseFloat(slider.value);
-        setter(v);
-        val.textContent = v.toFixed(2);
-        renderVocabAxes();
+      const num = document.createElement("input");
+      num.type = "number";
+      num.min = String(min); num.max = String(max); num.step = String(step);
+      num.value = String(getter());
+      num.addEventListener("input", () => {
+        const v = parseFloat(num.value);
+        if (!isNaN(v)) { setter(v); renderVocabAxes(); }
       });
       wrap.appendChild(lbl);
-      wrap.appendChild(slider);
-      wrap.appendChild(val);
+      wrap.appendChild(num);
       return wrap;
     }
-    header.appendChild(buildSlider(
-      "Yellow stop", () => vocabYellowStop, (v) => { vocabYellowStop = v; }, 0.05, 0.6, 0.01
+    function buildColourInput(labelText, getter, setter) {
+      const wrap = document.createElement("label");
+      wrap.className = "vocab-colinput";
+      const lbl = document.createElement("span");
+      lbl.className = "vocab-input-label";
+      lbl.textContent = labelText;
+      const inp = document.createElement("input");
+      inp.type = "color";
+      inp.value = rgbToHex(getter());
+      inp.addEventListener("input", () => {
+        const rgb = hexToRgb(inp.value);
+        if (rgb) { setter(rgb); renderVocabAxes(); }
+      });
+      wrap.appendChild(lbl);
+      wrap.appendChild(inp);
+      return wrap;
+    }
+
+    header.appendChild(buildNumberInput(
+      "Yellow stop", () => vocabYellowStop, (v) => { vocabYellowStop = v; }, 0, 1, 0.01
     ));
-    header.appendChild(buildSlider(
+    header.appendChild(buildNumberInput(
       "Untouched baseline", () => vocabUnattemptedBaseline, (v) => { vocabUnattemptedBaseline = v; }, 0, 1, 0.01
     ));
+    header.appendChild(buildColourInput("0%",   () => RWG_RED,        (v) => { RWG_RED = v; }));
+    header.appendChild(buildColourInput("yel",  () => RWG_YELLOW,     (v) => { RWG_YELLOW = v; }));
+    header.appendChild(buildColourInput("pgr",  () => RWG_PALE_GREEN, (v) => { RWG_PALE_GREEN = v; }));
+    header.appendChild(buildColourInput("100%", () => RWG_GREEN,      (v) => { RWG_GREEN = v; }));
+
+    const report = document.createElement("button");
+    report.type = "button";
+    report.className = "vocab-palette-report";
+    report.textContent = "report palette";
+    report.title = "Print the current palette + stops to the console and copy as JSON.";
+    report.addEventListener("click", () => {
+      const txt = paletteAsJson();
+      console.log("LINGUICS PALETTE\n" + txt);
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(txt).then(() => {
+          report.textContent = "copied";
+          setTimeout(() => { report.textContent = "report palette"; }, 1500);
+        });
+      } else {
+        report.textContent = "see console";
+        setTimeout(() => { report.textContent = "report palette"; }, 1500);
+      }
+    });
+    header.appendChild(report);
+
+    if (vocabFilter.band || vocabFilter.theme || vocabFilter.genderClass) {
+      const filtRow = document.createElement("div");
+      filtRow.className = "vocab-filter-status";
+      const lbl = document.createElement("span");
+      lbl.className = "vocab-filter-status-label";
+      let descr = "Filtered: ";
+      if (vocabFilter.band) descr += "band " + bandFriendly(vocabFilter.band);
+      if (vocabFilter.theme) descr += "theme " + vocabFilter.theme;
+      if (vocabFilter.genderClass) descr += "gender-class " + (GENDER_CLASS_LABELS[vocabFilter.genderClass] || vocabFilter.genderClass);
+      lbl.textContent = descr;
+      filtRow.appendChild(lbl);
+      const back = document.createElement("button");
+      back.type = "button";
+      back.className = "vocab-back-all";
+      back.textContent = "Back to all";
+      back.addEventListener("click", () => {
+        vocabFilter.band = "";
+        vocabFilter.theme = "";
+        vocabFilter.genderClass = "";
+        vocabDeck = []; vocabIndex = 0;
+        renderVocab();
+      });
+      filtRow.appendChild(back);
+      header.appendChild(filtRow);
+    }
+
     host.appendChild(header);
+
+    // Direction-aware: the current vocab toggle drives which event variant
+    // (.active vs .passive) populates the heatmaps. EN->IT shows production
+    // signal; IT->EN shows recognition signal.
+    const activeDir = (vocabFilter && vocabFilter.direction === "it_en") ? "passive" : "active";
 
     // -------- frequency axis --------
     const freqAxis = document.createElement("div");
@@ -1313,13 +1432,12 @@
       const blockStart = bi * RANKS_PER_BLOCK + 1;
       const blockEnd = blockStart + RANKS_PER_BLOCK - 1;
       if (bi === focusBlockIdx) {
-        const grid = renderFocusedDotGrid(blockStart, byRank);
+        const grid = renderFocusedDotGrid(blockStart, byRank, activeDir);
         heatRow.appendChild(grid);
       } else {
-        // Width: nearer blocks get more space.
         const distance = Math.abs(bi - focusBlockIdx);
-        const width = distance === 1 ? 36 : distance === 2 ? 24 : 16;
-        const stripes = renderFlankingStripes(blockStart, blockEnd, byRank, width);
+        const cellSize = distance === 1 ? 5 : distance === 2 ? 4 : 3;
+        const stripes = renderFlankingStripes(blockStart, blockEnd, byRank, cellSize, activeDir);
         stripes.addEventListener("click", () => {
           window.__vocabFocusRankStart = blockStart;
           renderVocabAxes();
@@ -1343,7 +1461,8 @@
 
     host.appendChild(freqAxis);
 
-    // -------- gender axis (unchanged) --------
+    // -------- gender axis (production-only, hidden on IT->EN) --------
+    if (activeDir === "active") {
     if (typeof window.__vocabGenderHidden === "undefined") window.__vocabGenderHidden = false;
     const genderAxis = document.createElement("div");
     genderAxis.className = "vocab-axis vocab-axis-gender";
@@ -1376,11 +1495,12 @@
       for (const key of order) {
         const lemmas = gIdx[key];
         if (!lemmas || !lemmas.length) continue;
-        cells.push({ key, label: GENDER_CLASS_LABELS[key] || key, lemmas, directionFilter: "active" });
+        cells.push({ key, label: GENDER_CLASS_LABELS[key] || key, lemmas, directionFilter: activeDir, axis: "gender" });
       }
       genderAxis.appendChild(buildCellGroups([{ title: null, cells }], "gender"));
     }
     host.appendChild(genderAxis);
+    } // end if activeDir==="active"
 
     // -------- themes axis (unchanged for now) --------
     const themesAxis = document.createElement("div");
@@ -1413,7 +1533,7 @@
         for (const th of themes) {
           const lemmas = tIdx[th.id] || [];
           if (!lemmas.length) continue;
-          cells.push({ key: th.id, label: th.label || th.id, lemmas, directionFilter: "any" });
+          cells.push({ key: th.id, label: th.label || th.id, lemmas, directionFilter: activeDir, axis: "themes" });
         }
         if (cells.length) groups.push({ title: themeKindLabel(k), cells });
       }
@@ -1426,7 +1546,7 @@
   // grid of word-dots. 990 dots total. Each dot represents one rank position
   // (ranks blockStart..blockStart+989). Curated entries get coloured by their
   // events; gaps get a neutral "not yet curated" marker.
-  function renderFocusedDotGrid(blockStart, byRank) {
+  function renderFocusedDotGrid(blockStart, byRank, dirFilter) {
     const grid = document.createElement("div");
     grid.className = "freq-focused";
     for (let boxRow = 0; boxRow < 10; boxRow++) {
@@ -1443,13 +1563,20 @@
             dot.dataset.rank = rank;
             const entry = byRank.get(rank);
             if (entry) {
-              const events = eventsForLemmas([entry.lemma]);
+              const events = eventsForLemmas([entry.lemma], { direction: dirFilter || "any" });
               const wc = recencyWeightedCorrectness(events);
               dot.style.background = rwgColour(wc.correctness, wc.hasEvents);
               if (!wc.hasEvents) dot.classList.add("untouched");
               const pct = wc.hasEvents ? Math.round(wc.correctness * 100) + "%" : "untouched";
-              dot.title = entry.lemma + " (rank " + rank + ")\n" + pct + " - " + wc.nAttempted + " attempts";
+              dot.title = entry.lemma + " (rank " + rank + ")\n" + pct + " - " + wc.nAttempted + " attempts (click to focus its band)";
               dot.dataset.lemma = entry.lemma;
+              dot.style.cursor = "pointer";
+              dot.addEventListener("click", () => {
+                vocabFilter.band = entry.band || "";
+                vocabFilter.theme = ""; vocabFilter.genderClass = "";
+                vocabDeck = []; vocabIndex = 0;
+                renderVocab();
+              });
             } else {
               dot.classList.add("not-curated");
               dot.title = "rank " + rank + ": not curated yet";
@@ -1463,38 +1590,61 @@
     return grid;
   }
 
-  // Render a flanking 990-rank block as 11 horizontal stripes. Each stripe
-  // is 90 consecutive ranks averaged together. Clickable to swap focus.
-  function renderFlankingStripes(blockStart, blockEnd, byRank, widthPx) {
+  // Flanking block: 10 columns x 11 rows of cells (110 per 990-rank block).
+  // Each cell averages 9 consecutive ranks via baseline-diluted mean. Cell
+  // size shrinks for more distant blocks.
+  function renderFlankingStripes(blockStart, blockEnd, byRank, cellSize, dirFilter) {
+    const COLS = 10, ROWS = 11;
     const wrap = document.createElement("div");
     wrap.className = "freq-flanking";
-    wrap.style.width = widthPx + "px";
+    wrap.style.display = "grid";
+    wrap.style.gridTemplateColumns = "repeat(" + COLS + ", " + cellSize + "px)";
+    wrap.style.gridTemplateRows = "repeat(" + ROWS + ", " + cellSize + "px)";
+    wrap.style.gap = "1px";
     wrap.title = "ranks " + blockStart + "-" + blockEnd + " (click to focus)";
-    const STRIPES = 11;
     const span = blockEnd - blockStart + 1;
-    const perStripe = Math.ceil(span / STRIPES);
-    for (let i = 0; i < STRIPES; i++) {
-      const s = document.createElement("div");
-      s.className = "freq-stripe";
-      const sStart = blockStart + i * perStripe;
-      const sEnd = Math.min(blockEnd, sStart + perStripe - 1);
-      // Collect lemmas in this stripe's rank range.
-      const lemmas = [];
-      for (let r = sStart; r <= sEnd; r++) {
-        const e = byRank.get(r);
-        if (e) lemmas.push(e.lemma);
+    const perCell = Math.ceil(span / (COLS * ROWS));
+    for (let row = 0; row < ROWS; row++) {
+      for (let col = 0; col < COLS; col++) {
+        const cellIdx = row * COLS + col;
+        const cStart = blockStart + cellIdx * perCell;
+        const cEnd = Math.min(blockEnd, cStart + perCell - 1);
+        const lemmas = [];
+        for (let r = cStart; r <= cEnd; r++) {
+          const e = byRank.get(r);
+          if (e) lemmas.push(e.lemma);
+        }
+        const cell = document.createElement("div");
+        cell.className = "freq-flank-cell";
+        if (lemmas.length === 0) {
+          cell.style.background = rwgColour(0, false);
+        } else {
+          const m = averageCorrectnessAcrossLemmas(lemmas, dirFilter || "any");
+          cell.style.background = rwgColour(m.correctness, true);
+        }
+        cell.title = "ranks " + cStart + "-" + cEnd;
+        wrap.appendChild(cell);
       }
-      if (lemmas.length === 0) {
-        s.style.background = rwgColour(0, false);
-      } else {
-        const events = eventsForLemmas(lemmas);
-        const wc = recencyWeightedCorrectness(events);
-        s.style.background = rwgColour(wc.correctness, wc.hasEvents);
-      }
-      s.title = "ranks " + sStart + "-" + sEnd;
-      wrap.appendChild(s);
     }
     return wrap;
+  }
+
+  // Baseline-diluted mean across lemmas. Touched lemmas contribute their
+  // recency-weighted correctness; untouched lemmas contribute the baseline.
+  function averageCorrectnessAcrossLemmas(lemmas, dirFilter) {
+    let sum = 0;
+    let touched = 0;
+    for (const lemma of lemmas) {
+      const ev = eventsForLemmas([lemma], { direction: dirFilter || "any" });
+      const wc = recencyWeightedCorrectness(ev);
+      if (wc.hasEvents) { sum += wc.correctness; touched++; }
+      else { sum += vocabUnattemptedBaseline; }
+    }
+    return {
+      correctness: lemmas.length > 0 ? sum / lemmas.length : 0,
+      touched: touched,
+      total: lemmas.length
+    };
   }
 
 
@@ -1591,6 +1741,24 @@
               return { outcome: "partial", credit: 0.5, reason: "Spelling slip - i/e swap" };
             }
           }
+        }
+      }
+    }
+
+    // (c) Italian accent omission (EN->IT direction). If stripping all
+    // accents from the target makes it match the learner's answer, award 50%.
+    // Suppressed when the unaccented form collides with a different lemma.
+    if (!isItEn) {
+      const stripAccents = (s) => String(s)
+        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase();
+      const aStripped = stripAccents(a);
+      for (const alt of alternatives) {
+        if (!alt) continue;
+        const altStripped = stripAccents(alt);
+        if (aStripped === altStripped && a !== alt) {
+          if (collisionRisk) return { outcome: "miss", credit: 0, reason: "Spelling slip would change the word" };
+          return { outcome: "partial", credit: 0.5, reason: "Spelling slip - accent omitted" };
         }
       }
     }
@@ -1903,9 +2071,14 @@
     const len = text.length;
     for (let i = 0; i < len; i++) {
       const c = text[i];
-      const prev = i > 0 ? text[i - 1] : " ";
+      const prev = i > 0 ? text[i - 1] : "";
       const next = i < len - 1 ? text[i + 1] : "";
-      if (mode === "english" && (c === "'" || c === '"') && /\s|^/.test(prev) && /\S/.test(next)) {
+      const atStart = i === 0;
+      const prevIsSpaceLike = /\s/.test(prev);
+      // Open an italian segment only when the quote sits AT the start of input
+      // or directly after whitespace. Single-character prev means /^/ would
+      // match anywhere, so test atStart explicitly.
+      if (mode === "english" && (c === "'" || c === '"') && (atStart || prevIsSpaceLike) && /\S/.test(next)) {
         if (buf.trim()) segments.push({ kind: "english", text: buf.trim() });
         buf = ""; mode = "italian";
         continue;
@@ -1916,7 +2089,7 @@
         buf = ""; mode = "english";
         continue;
       }
-      if (mode === "english" && c === "(" && /\s|^/.test(prev)) {
+      if (mode === "english" && c === "(" && (atStart || prevIsSpaceLike)) {
         if (buf.trim()) segments.push({ kind: "english", text: buf.trim() });
         buf = ""; mode = "cue";
         continue;

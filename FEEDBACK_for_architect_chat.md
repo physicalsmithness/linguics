@@ -174,6 +174,28 @@ A non-trivial cluster of design choices the architect should think through with 
 
 8. **The vocab-authoring chat (the source of this feedback) is paused on inline themes-tagging** until the re-rank pass runs. Doing themes by hand on positions that will move is wasted work. After the re-rank pass, themes-tagging for ranks 1-500 (post-rerank) becomes worth resuming.
 
+## 13. Marker rejects valid synonyms (the `il`/`lo` problem)
+
+**Originally written** in response to a real learner failure: the vocab practice flow asked *"What's the Italian for 'the'?"*, the learner typed `il`, and the marker said *"No, it's lo."*
+
+This is wrong on multiple counts: `il` is the most common form of "the" in Italian (m sg, default before consonants); `lo` is the narrow special form before s+cons / z / gn / ps / x / y / i+vowel. Telling a learner `il` isn't "the" actively miseducates.
+
+The data shape exposes this because the curated JSON has multiple entries that all have `translation_en: "the"` — `il`, `la`, `lo` (article), `un`, `una`, `gli`, `i`, `le`, etc. The marker as currently behaved picks one entry per question and rejects all the others' lemmas.
+
+**Two complementary fixes:**
+
+**Data-side (Code can do now, partly already in the patch request):** add disambiguating context inside `translation_en` for function-word entries: `il` → `"the (m sg)"`; `lo` (article) → `"the (m sg, before s+cons / z / gn / ps / x / y / i+vowel)"`; `un` → `"a, an (m sg)"`; etc. This lets the marker render a more specific question, so only `il` matches `the (m sg)`.
+
+**Marker-side (the deeper fix, architect's call):** when picking a curated entry to ask about EN→IT, the marker should consider all entries with `translation_en` overlapping the chosen one, and treat any of their lemmas as correct answers. Conceptually: the marker generates a candidate-answer set from all curated entries with matching translation, not just the canonical entry.
+
+**Architecture asks:**
+
+1. Confirm the marker's intended behaviour for EN→IT direction: should it accept any curated lemma whose `translation_en` matches the gloss in the question?
+2. If yes: what's the matching rule — exact match on the bare translation_en, or substring match (so `il` matching against `"the (m sg)"` would work)?
+3. Decide whether to standardise the data-side gloss-disambiguation (the architect spec could require it for any entry whose translation_en collides with another entry's).
+
+This affects every function-word zone: articles, basic prepositions, basic pronouns. Outside function words the problem is much rarer (most content words have unambiguous-enough translations).
+
 ## Status snapshot (when this file was written)
 
 - Bands 1-100, 101-200, 201-300, 301-400, 401-500, 501-600, 601-700 are complete.
