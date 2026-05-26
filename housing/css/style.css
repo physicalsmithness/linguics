@@ -402,6 +402,16 @@ main {
 .outcome-status.outcome-partial { color: var(--amber); }
 .outcome-status.outcome-none { color: var(--muted); }
 
+/* Inline variant: sits beside the answer chip on the same row, not above. */
+.outcome-status-inline {
+  display: inline-block;
+  margin: 0 0 0 8px;
+  padding: 0;
+  font-size: 12.5px;
+  vertical-align: baseline;
+  letter-spacing: 0.01em;
+}
+
 .bucket-description {
   font-weight: normal;
   font-size: 11.5px;
@@ -698,4 +708,147 @@ footer {
 @media (max-width: 1080px) {
   main { grid-template-columns: 1fr; }
   #live-stats { border-left: 0; border-top: 1px solid var(--line); padding-left: 0; padding-top: 16px; position: static; max-height: none; }
+}
+
+/* ====================================================================
+   Vocab strand multi-axis right-hand panel (frequency / gender / themes)
+   ==================================================================== */
+#vocab-body {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+#vocab-host { flex: 1 1 0; min-width: 0; }
+#vocab-axes-host {
+  flex: 0 0 auto;
+  width: 540px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 4px;
+}
+
+.vocab-axis {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 10px 12px;
+  background: white;
+}
+.vocab-axis-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+.vocab-axis-name {
+  font-weight: 600;
+  color: var(--accent);
+}
+.vocab-axis-focus {
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+.vocab-heatmap {
+  display: flex;
+  align-items: stretch;
+  gap: 1px;
+  height: 220px;
+  background: var(--line); /* shows as thin separator between strips */
+  padding: 0;
+  overflow-x: auto;
+}
+.vocab-strip {
+  flex: 0 0 auto;
+  cursor: pointer;
+  transition: outline 0.12s ease, transform 0.12s ease;
+  outline: 0 solid transparent;
+}
+.vocab-strip.in-focus  { width: 22px; }
+.vocab-strip.out-focus { width: 4px; opacity: 0.85; }
+.vocab-strip:hover { outline: 2px solid var(--accent); outline-offset: -2px; z-index: 1; position: relative; }
+.vocab-strip.flash {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+  animation: vocab-strip-flash 0.7s ease-out;
+}
+@keyframes vocab-strip-flash {
+  0%   { box-shadow: 0 0 0 6px rgba(74,137,199,0.55); }
+  100% { box-shadow: 0 0 0 0   rgba(74,137,199,0);   }
+}
+
+.vocab-heatmap-ticks {
+  display: flex;
+  align-items: flex-start;
+  gap: 1px;
+  margin-top: 4px;
+  font-size: 10px;
+  color: var(--muted);
+  height: 14px;
+}
+.vocab-tick.in-focus  { width: 22px; text-align: right; padding-right: 2px; }
+.vocab-tick.out-focus { width: 4px; overflow: hidden; }
+
+.vocab-axis-gender, .vocab-axis-themes {
+  min-height: 48px;
+}
+.vocab-axis-toggle {
+  font-size: 11px;
+  padding: 1px 8px;
+  border: 1px solid var(--line);
+  background: white;
+  color: var(--muted);
+  border-radius: 3px;
+  cursor: pointer;
+}
+.vocab-axis-toggle:hover { background: var(--bg); }
+
+.vocab-cellgrid-host {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.vocab-cellgrid-section { }
+.vocab-cellgrid-title {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 600;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.vocab-cellgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 4px;
+}
+.vocab-cell {
+  border: 1px solid rgba(0,0,0,0.05);
+  border-radius: 3px;
+  padding: 5px 7px;
+  font-size: 11.5px;
+  cursor: default;
+  position: relative;
+  min-height: 36px;
+  transition: outline 0.12s ease;
+}
+.vocab-cell:hover { outline: 2px solid var(--accent); outline-offset: -2px; z-index: 1; }
+.vocab-cell-label { font-weight: 600; line-height: 1.2; }
+.vocab-cell-meta { font-size: 10px; color: rgba(0,0,0,0.55); margin-top: 1px; }
+.vocab-cell.flash {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+  animation: vocab-cell-flash 0.8s ease-out;
+}
+@keyframes vocab-cell-flash {
+  0%   { box-shadow: 0 0 0 8px rgba(74,137,199,0.55); }
+  100% { box-shadow: 0 0 0 0   rgba(74,137,199,0);   }
+}
+
+/* Vocab strand narrow: stack axes below the card */
+@media (max-width: 1200px) {
+  #vocab-body { flex-direction: column; }
+  #vocab-axes-host { width: 100%; }
 }

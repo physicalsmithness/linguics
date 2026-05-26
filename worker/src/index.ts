@@ -169,6 +169,13 @@ GENERAL RULES
 
 6. The marker output is the only data the project author and the learner see. Make evidence strings short and concrete; make explanation prose follow the Linguics house style (everyday lead, name the grammatical term, use it thereafter, finish with the concrete working).
 
+7. Required buckets are mandatory. Every bucket id in item.required_buckets MUST appear as a markpoint in your output, exactly once, citing that exact id. The outcome reflects what the learner demonstrated:
+   - hit (correctness=1) if the learner clearly got that skill right
+   - miss (correctness=0) if they got it wrong
+   - partial (correctness=0.5) if they were half-right
+   - not_attempted (attempted=0, correctness=null) if their answer doesn't engage with the skill at all (silent on it)
+   Do not silently drop a required bucket. If the item's diagnostic is tense choice and the required_bucket is tense_choice.progressive_vs_simple.present_progressive_vs_present, that bucket MUST appear in your markpoints — even when the learner got it right (fire as hit) — so the learner accumulates signal on it.
+
 CANDIDATE BUCKETS
 
 The bucket_context object lists ALL buckets you may fire as regular hits/misses (with bucket_proposed: false or omitted). The list has already been filtered to the buckets relevant to this item's direction. You MUST NOT fire a bucket that isn't in bucket_context as a regular hit. Specifically: on it_en items, do NOT fire grammar production buckets like adverb_placement, auxiliary choice, participle agreement, pronoun position, or adjective agreement — these have been filtered out because the learner isn't producing Italian.

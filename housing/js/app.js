@@ -253,8 +253,15 @@
       // empty state but everything else still works.
       const vocab = await Foptional("../data/vocabulary_it_frequency.json");
 
+      // Optional themes taxonomy (separate axis on the right-hand heatmap).
+      // Missing file means the themes axis is hidden; everything else works.
+      const themes = await Foptional("../data/vocab_themes.json");
+      if (themes) {
+        LL.themesTaxonomy = themes;
+      }
+
       console.info("Loaded per topic:", perTopicCounts);
-      return { buckets, grammar, translation, perTopicCounts, vocab };
+      return { buckets, grammar, translation, perTopicCounts, vocab, themes };
     } catch (e) {
       console.info("Real content fetch failed; using inline samples.", e.message || e);
       return null;
@@ -280,27 +287,36 @@
     return `rgb(${r}, ${g}, ${b})`;
   }
 
-  // Provisional colour scheme for the overview cells and nested coverage:
-  // - cream/bg when no events at all (untouched)
-  // - red at 0% correct, white at 30%, green at 100%, linearly interpolated
-  // The 30% midpoint and the red endpoint are placeholders; expect this to
-  // change once we have real-attempt data to calibrate.
-  const RWG_RED = [194, 65, 65];
-  const RWG_WHITE = [255, 255, 255];
-  const RWG_GREEN = [46, 125, 79];
-  const RWG_MIDPOINT = 0.3;
+  // Colour scheme for overview cells and dots (4-stop gradient):
+  //   untouched     → pale neutral cream (distinguishable from page --bg)
+  //   0% mastery    → red          (last attempt wrong, no recent rights)
+  //   30% mastery   → PALE yellow  (deliberately soft so it doesn't dominate
+  //                                  as colour transitions into green)
+  //   70% mastery   → pale green   (mostly right recently)
+  //   100% mastery  → deep green   (consolidated)
+  // Linear interpolation between adjacent stops.
+  const RWG_RED        = [208,  72,  72];
+  const RWG_YELLOW     = [240, 220, 130]; // pale buttercream, not saturated mustard
+  const RWG_PALE_GREEN = [163, 210, 163];
+  const RWG_GREEN      = [ 25, 110,  58]; // deeper green at 100%
+  // Untouched fill — a neutral that reads as "empty slot" against the cream
+  // page bg (#fdfaf4). Slightly cooler / darker so the eye registers it as
+  // distinct from the page background.
+  const RWG_UNATTEMPTED = "rgb(236, 229, 210)";
 
   function interpRGB(a, b, t) {
     return `rgb(${Math.round(a[0]+(b[0]-a[0])*t)}, ${Math.round(a[1]+(b[1]-a[1])*t)}, ${Math.round(a[2]+(b[2]-a[2])*t)})`;
   }
 
   function rwgColour(correctness, hasEvents) {
-    if (!hasEvents) return "var(--bg)";
+    if (!hasEvents) return RWG_UNATTEMPTED;
     const c = Math.max(0, Math.min(1, correctness));
-    if (c <= RWG_MIDPOINT) {
-      return interpRGB(RWG_RED, RWG_WHITE, c / RWG_MIDPOINT);
+    if (c <= 0.30) {
+      return interpRGB(RWG_RED, RWG_YELLOW, c / 0.30);
+    } else if (c <= 0.70) {
+      return interpRGB(RWG_YELLOW, RWG_PALE_GREEN, (c - 0.30) / 0.40);
     } else {
-      return interpRGB(RWG_WHITE, RWG_GREEN, (c - RWG_MIDPOINT) / (1 - RWG_MIDPOINT));
+      return interpRGB(RWG_PALE_GREEN, RWG_GREEN, (c - 0.70) / 0.30);
     }
   }
 
@@ -856,6 +872,11 @@
       resultHost.innerHTML = "";
       resultHost.appendChild(renderResult(result));
       renderLiveStats();
+      // Refresh the right-hand axes (frequency heatmap, gender, themes) so
+      // the cells containing this lemma re-colour immediately. Then flash
+      // every cell the lemma belongs to across all three axes.
+      renderVocabAxes();
+      flashAxisCellsFor(entry);
       nextBtn.focus();
     };
     const doNext = () => {
@@ -884,21 +905,460 @@
 
     host.appendChild(card);
     setTimeout(() => input.focus(), 0);
+    renderVocabAxes();
   }
 
   function focusVocabInput() { if (vocabInputRef) vocabInputRef.focus(); }
 
-  // Normalised compare for vocab translation answers. Accepts comma- or
-  // semicolon-separated alternatives in the target. Tolerates a leading
-  // "to " on verb infinitives. Case-insensitive, punctuation-stripped.
-  function vocabAcceptable(answer, target) {
+  // ============================================================================
+  // Vocab right-hand panel: multi-axis heatmap.
+  //
+  // Three axes ship over time:
+  //   - frequency (top, focused window of 10 bands forming a square; flanking
+  //                bands at narrow widths)
+  //   - gender   (middle, toggleable, nouns only)
+  //   - themes   (right, hierarchical with multi-membership)
+  //
+  // This pass: just the frequency axis. The gender + themes hosts are
+  // scaffolded as empty placeholders so they have a visible home and the
+  // layout already accommodates them.
+  // ============================================================================
+
+  // Default focus: bands 1-10 = ranks 1-1000. Tracked as the index (0-based)
+  // of the LEFTMOST focused band in the sorted band list.
+  let vocabFreqFocusStart = 0;
+  const VOCAB_FREQ_WINDOW = 10;
+
+  // Build a band -> [lemma] index lazily from vocabEntries.
+  let _bandLemmasCache = null;
+  let _bandLemmasCacheLen = -1;
+  function bandLemmasIndex() {
+    if (_bandLemmasCache && _bandLemmasCacheLen === vocabEntries.length) return _bandLemmasCache;
+    const idx = Object.create(null);
+    for (const v of vocabEntries) {
+      if (!v.band) continue;
+      (idx[v.band] = idx[v.band] || []).push(v.lemma);
+    }
+    _bandLemmasCache = idx;
+    _bandLemmasCacheLen = vocabEntries.length;
+    return idx;
+  }
+
+  // Generic events-by-lemma collector. `lemmas` is a list or Set of lemma
+  // strings. `opts.direction` filters to "active" / "passive" / "any" (default
+  // any). Used by all three axes - band, gender, themes - so they all share
+  // the same event-shape contract.
+  function eventsForLemmas(lemmas, opts) {
+    opts = opts || {};
+    const directionFilter = opts.direction || "any";
+    const lemmaSet = (lemmas instanceof Set) ? lemmas : new Set(lemmas);
+    if (lemmaSet.size === 0) return [];
+    const out = [];
+    for (const att of LL.state.attempts) {
+      for (const ev of att.events) {
+        const b = ev.bucket || "";
+        if (!b.startsWith("vocabulary.it.")) continue;
+        // bucket form: vocabulary.it.<lemma>.translation[.active|.passive]
+        const rest = b.slice("vocabulary.it.".length);
+        const dot = rest.indexOf(".");
+        if (dot < 0) continue;
+        const lemma = rest.slice(0, dot);
+        const tail = rest.slice(dot + 1);
+        if (!tail.startsWith("translation")) continue;
+        if (!lemmaSet.has(lemma)) continue;
+        if (directionFilter === "active" && !tail.endsWith(".active")) continue;
+        if (directionFilter === "passive" && !tail.endsWith(".passive")) continue;
+        out.push({ ev, timestamp: att.timestamp });
+      }
+    }
+    out.sort((a, b) => a.timestamp.localeCompare(b.timestamp));
+    return out;
+  }
+
+  // Convenience: frequency-band events. Active + passive both count toward
+  // band correctness (frequency is bidirectional).
+  function eventsForBand(bandId) {
+    return eventsForLemmas(bandLemmasIndex()[bandId] || []);
+  }
+
+  // Pre-sorted list of all band ids known from the loaded buckets and the
+  // curated entries. Sorted by band_lo ascending. Each band carries the lo/hi
+  // range used for labels.
+  let _bandListCache = null;
+  function bandList() {
+    if (_bandListCache) return _bandListCache;
+    const map = new Map();
+    // From bucket tree (authoritative if present).
+    for (const id in bucketIndex.byId) {
+      if (!id.startsWith("vocabulary.it.freq_")) continue;
+      const node = bucketIndex.byId[id];
+      const a = node.attributes || {};
+      const lo = a.band_lo, hi = a.band_hi;
+      if (typeof lo === "number" && typeof hi === "number") {
+        map.set(id, { id, lo, hi, label: node.label || `${lo}-${hi}` });
+      }
+    }
+    // Fall back to bands referenced from vocabEntries we haven't seen yet.
+    for (const v of vocabEntries) {
+      if (!v.band || map.has(v.band)) continue;
+      const m = /freq_(\d+)_(\d+)$/.exec(v.band);
+      if (!m) continue;
+      const lo = parseInt(m[1], 10), hi = parseInt(m[2], 10);
+      map.set(v.band, { id: v.band, lo, hi, label: `${lo}-${hi}` });
+    }
+    _bandListCache = Array.from(map.values()).sort((a, b) => a.lo - b.lo);
+    return _bandListCache;
+  }
+  function invalidateVocabCaches() {
+    _bandLemmasCache = null;
+    _bandLemmasCacheLen = -1;
+    _bandListCache = null;
+    _themeLemmasCache = null;
+    _genderClassLemmasCache = null;
+  }
+
+  // theme.id -> [lemma]
+  let _themeLemmasCache = null;
+  function themeLemmasIndex() {
+    if (_themeLemmasCache) return _themeLemmasCache;
+    const idx = Object.create(null);
+    for (const v of vocabEntries) {
+      const themes = v.themes;
+      if (!Array.isArray(themes)) continue;
+      for (const t of themes) {
+        (idx[t] = idx[t] || []).push(v.lemma);
+      }
+    }
+    _themeLemmasCache = idx;
+    return idx;
+  }
+
+  // noun_class -> [lemma] (nouns only)
+  let _genderClassLemmasCache = null;
+  function genderClassLemmasIndex() {
+    if (_genderClassLemmasCache) return _genderClassLemmasCache;
+    const idx = Object.create(null);
+    for (const v of vocabEntries) {
+      if (v.pos !== "noun") continue;
+      const cls = v.noun_class || (v.gender === "m" ? "unspecified_m" : v.gender === "f" ? "unspecified_f" : "unspecified");
+      (idx[cls] = idx[cls] || []).push(v.lemma);
+    }
+    _genderClassLemmasCache = idx;
+    return idx;
+  }
+
+  const GENDER_CLASS_LABELS = {
+    regular_o_masc:            "regular -o (m)",
+    regular_a_fem:             "regular -a (f)",
+    e_ambiguous:               "ends -e (gender varies)",
+    greek_ma_masc:             "greek -ma (m)",
+    ista_common_gender:        "-ista (common gender)",
+    irregular_gender:          "irregular gender",
+    gender_shift_plural:       "gender shifts in plural",
+    invariable_accented_final: "invariable (final accented)",
+    invariable_loanword:       "invariable loanword",
+    unspecified_m:             "uncategorised (m)",
+    unspecified_f:             "uncategorised (f)",
+    unspecified:               "uncategorised"
+  };
+
+  function themeKindLabel(kind) {
+    const tax = LL.themesTaxonomy;
+    if (tax && tax.kinds && tax.kinds[kind]) {
+      return tax.kinds[kind].split(":")[0].split(".")[0];
+    }
+    const labels = {
+      semantic_concrete:  "Concrete domains",
+      semantic_abstract:  "Abstract domains",
+      functional:         "Function words & grammar",
+      verb_subtype:       "Verb subtypes",
+      adjective_subtype:  "Adjective subtypes",
+      adverb_subtype:     "Adverb subtypes"
+    };
+    return labels[kind] || kind;
+  }
+
+  function buildCellGroups(groups, axisKind) {
+    const wrap = document.createElement("div");
+    wrap.className = "vocab-cellgrid-host";
+    for (const g of groups) {
+      const section = document.createElement("div");
+      section.className = "vocab-cellgrid-section";
+      if (g.title) {
+        const h = document.createElement("div");
+        h.className = "vocab-cellgrid-title";
+        h.textContent = g.title;
+        section.appendChild(h);
+      }
+      const grid = document.createElement("div");
+      grid.className = "vocab-cellgrid";
+      for (const c of g.cells) {
+        const cell = document.createElement("div");
+        cell.className = "vocab-cell";
+        cell.dataset.axis = axisKind;
+        cell.dataset.key = c.key;
+        const events = eventsForLemmas(c.lemmas, { direction: c.directionFilter || "any" });
+        const { correctness, hasEvents, nAttempted } = recencyWeightedCorrectness(events);
+        cell.style.background = rwgColour(correctness, hasEvents);
+
+        const lbl = document.createElement("div");
+        lbl.className = "vocab-cell-label";
+        lbl.textContent = c.label;
+        cell.appendChild(lbl);
+
+        const meta = document.createElement("div");
+        meta.className = "vocab-cell-meta";
+        const lemmaCount = (c.lemmas instanceof Set) ? c.lemmas.size : c.lemmas.length;
+        meta.textContent = lemmaCount + " - " + nAttempted;
+        cell.appendChild(meta);
+
+        const pct = hasEvents ? Math.round(correctness * 100) + "%" : "untouched";
+        cell.title = c.label + "\n" + lemmaCount + " lemmas - " + nAttempted + " attempts - " + pct;
+
+        grid.appendChild(cell);
+      }
+      section.appendChild(grid);
+      wrap.appendChild(section);
+    }
+    return wrap;
+  }
+
+  function flashAxisCellsFor(entry) {
+    if (!entry) return;
+    const selectors = [];
+    if (entry.band) {
+      selectors.push('.vocab-strip[data-band-id="' + cssEscape(entry.band) + '"]');
+    }
+    if (entry.pos === "noun") {
+      const cls = entry.noun_class || (entry.gender === "m" ? "unspecified_m" : entry.gender === "f" ? "unspecified_f" : "unspecified");
+      selectors.push('.vocab-cell[data-axis="gender"][data-key="' + cssEscape(cls) + '"]');
+    }
+    if (Array.isArray(entry.themes)) {
+      for (const t of entry.themes) {
+        selectors.push('.vocab-cell[data-axis="themes"][data-key="' + cssEscape(t) + '"]');
+      }
+    }
+    const host = document.getElementById("vocab-axes-host");
+    if (!host) return;
+    for (const sel of selectors) {
+      const els = host.querySelectorAll(sel);
+      els.forEach(el => {
+        el.classList.add("flash");
+        setTimeout(() => el.classList.remove("flash"), 800);
+      });
+    }
+  }
+  function cssEscape(s) {
+    return String(s).replace(/(["\\\]])/g, "\\$1");
+  }
+
+  function renderVocabAxes() {
+    const host = document.getElementById("vocab-axes-host");
+    if (!host) return;
+    host.innerHTML = "";
+
+    if (!vocabEntries.length) {
+      const empty = document.createElement("div");
+      empty.className = "muted";
+      empty.style.cssText = "padding:18px;font-style:italic;font-size:13px";
+      empty.textContent = "(heatmap appears once vocab data loads)";
+      host.appendChild(empty);
+      return;
+    }
+
+    const bands = bandList();
+    if (!bands.length) {
+      const empty = document.createElement("div");
+      empty.className = "muted";
+      empty.style.cssText = "padding:18px;font-style:italic;font-size:13px";
+      empty.textContent = "(no frequency bands found)";
+      host.appendChild(empty);
+      return;
+    }
+
+    // Clamp focus.
+    const maxStart = Math.max(0, bands.length - VOCAB_FREQ_WINDOW);
+    if (vocabFreqFocusStart > maxStart) vocabFreqFocusStart = maxStart;
+    if (vocabFreqFocusStart < 0) vocabFreqFocusStart = 0;
+    const focusStart = vocabFreqFocusStart;
+    const focusEnd = focusStart + VOCAB_FREQ_WINDOW; // exclusive
+
+    // Frequency axis ------------------------------------------------------
+    const freqAxis = document.createElement("div");
+    freqAxis.className = "vocab-axis vocab-axis-freq";
+
+    const freqTitleRow = document.createElement("div");
+    freqTitleRow.className = "vocab-axis-title";
+    const freqTitle = document.createElement("span");
+    freqTitle.className = "vocab-axis-name";
+    freqTitle.textContent = "Frequency";
+    freqTitleRow.appendChild(freqTitle);
+
+    const focusInfo = document.createElement("span");
+    focusInfo.className = "vocab-axis-focus";
+    const focusLo = bands[focusStart].lo;
+    const focusHi = bands[Math.min(focusEnd - 1, bands.length - 1)].hi;
+    focusInfo.textContent = `focused: ranks ${focusLo}–${focusHi}`;
+    freqTitleRow.appendChild(focusInfo);
+
+    freqAxis.appendChild(freqTitleRow);
+
+    // Heatmap strip row.
+    const heat = document.createElement("div");
+    heat.className = "vocab-heatmap";
+    bands.forEach((b, idx) => {
+      const inFocus = (idx >= focusStart && idx < focusEnd);
+      const strip = document.createElement("div");
+      strip.className = "vocab-strip " + (inFocus ? "in-focus" : "out-focus");
+      strip.dataset.bandId = b.id;
+      strip.dataset.idx = idx;
+
+      const events = eventsForBand(b.id);
+      const { correctness, hasEvents, nAttempted } = recencyWeightedCorrectness(events);
+      strip.style.background = rwgColour(correctness, hasEvents);
+
+      const lemmaCount = (bandLemmasIndex()[b.id] || []).length;
+      const pct = hasEvents ? Math.round(correctness * 100) + "%" : "untouched";
+      strip.title = `Ranks ${b.lo}–${b.hi}\n${lemmaCount} lemmas curated · ${nAttempted} attempts · ${pct}`;
+
+      strip.addEventListener("click", () => {
+        // Re-centre focus on the clicked band.
+        let newStart = idx - Math.floor(VOCAB_FREQ_WINDOW / 2);
+        if (newStart < 0) newStart = 0;
+        if (newStart > bands.length - VOCAB_FREQ_WINDOW) newStart = Math.max(0, bands.length - VOCAB_FREQ_WINDOW);
+        vocabFreqFocusStart = newStart;
+        renderVocabAxes();
+      });
+
+      heat.appendChild(strip);
+    });
+    freqAxis.appendChild(heat);
+
+    // Band-axis ticks under the strips (every 1000 = every 10 bands).
+    const ticks = document.createElement("div");
+    ticks.className = "vocab-heatmap-ticks";
+    bands.forEach((b, idx) => {
+      const inFocus = (idx >= focusStart && idx < focusEnd);
+      const t = document.createElement("div");
+      t.className = "vocab-tick " + (inFocus ? "in-focus" : "out-focus");
+      // Show a number every 1000 (= every 10 bands)
+      if ((idx + 1) % 10 === 0) {
+        t.textContent = String(b.hi);
+      }
+      ticks.appendChild(t);
+    });
+    freqAxis.appendChild(ticks);
+
+    host.appendChild(freqAxis);
+
+    // Gender axis ---------------------------------------------------------
+    if (typeof window.__vocabGenderHidden === "undefined") window.__vocabGenderHidden = false;
+    const genderAxis = document.createElement("div");
+    genderAxis.className = "vocab-axis vocab-axis-gender";
+    const genderTitle = document.createElement("div");
+    genderTitle.className = "vocab-axis-title";
+    const gName = document.createElement("span");
+    gName.className = "vocab-axis-name";
+    gName.textContent = "Gender (nouns, production)";
+    genderTitle.appendChild(gName);
+    const gToggle = document.createElement("button");
+    gToggle.className = "vocab-axis-toggle";
+    gToggle.type = "button";
+    gToggle.textContent = window.__vocabGenderHidden ? "show" : "hide";
+    gToggle.addEventListener("click", () => {
+      window.__vocabGenderHidden = !window.__vocabGenderHidden;
+      renderVocabAxes();
+    });
+    genderTitle.appendChild(gToggle);
+    genderAxis.appendChild(genderTitle);
+
+    if (!window.__vocabGenderHidden) {
+      const gIdx = genderClassLemmasIndex();
+      const order = [
+        "regular_o_masc", "regular_a_fem", "e_ambiguous",
+        "greek_ma_masc", "ista_common_gender",
+        "irregular_gender", "gender_shift_plural",
+        "invariable_accented_final", "invariable_loanword",
+        "unspecified_m", "unspecified_f", "unspecified"
+      ];
+      const cells = [];
+      for (const key of order) {
+        const lemmas = gIdx[key];
+        if (!lemmas || !lemmas.length) continue;
+        cells.push({
+          key,
+          label: GENDER_CLASS_LABELS[key] || key,
+          lemmas,
+          directionFilter: "active"
+        });
+      }
+      genderAxis.appendChild(buildCellGroups([{ title: null, cells }], "gender"));
+    }
+    host.appendChild(genderAxis);
+
+    // Themes axis ---------------------------------------------------------
+    const themesAxis = document.createElement("div");
+    themesAxis.className = "vocab-axis vocab-axis-themes";
+    const themesTitle = document.createElement("div");
+    themesTitle.className = "vocab-axis-title";
+    themesTitle.innerHTML = '<span class="vocab-axis-name">Themes</span>';
+    themesAxis.appendChild(themesTitle);
+
+    const tax = LL.themesTaxonomy;
+    const tIdx = themeLemmasIndex();
+    if (!tax || !Array.isArray(tax.themes)) {
+      const msg = document.createElement("div");
+      msg.className = "muted";
+      msg.style.cssText = "font-style:italic;font-size:12px;padding:6px";
+      msg.textContent = "(themes taxonomy not loaded)";
+      themesAxis.appendChild(msg);
+    } else {
+      const kindOrder = [];
+      const byKind = new Map();
+      for (const t of tax.themes) {
+        const k = t.kind || "other";
+        if (!byKind.has(k)) { byKind.set(k, []); kindOrder.push(k); }
+        byKind.get(k).push(t);
+      }
+      const groups = [];
+      for (const k of kindOrder) {
+        const themes = byKind.get(k) || [];
+        const cells = [];
+        for (const th of themes) {
+          const lemmas = tIdx[th.id] || [];
+          if (!lemmas.length) continue;
+          cells.push({
+            key: th.id,
+            label: th.label || th.id,
+            lemmas,
+            directionFilter: "any"
+          });
+        }
+        if (cells.length) {
+          groups.push({ title: themeKindLabel(k), cells });
+        }
+      }
+      themesAxis.appendChild(buildCellGroups(groups, "themes"));
+    }
+
+    host.appendChild(themesAxis);
+  }
+
+  // Vocab marker. Returns a judgment {outcome, credit, reason} rather than a
+  // bool, so we can express partial credit for near-misses:
+  //   * exact match -> hit / 1.0
+  //   * "to" missing on English infinitive -> hit / 0.9 ("roughly right")
+  //   * spelling slip (double letter dropped, or English I/E swap) -> partial / 0.5
+  //   * everything else -> miss / 0
+  //
+  // Spelling tolerance is suppressed when the learner's typed Italian
+  // collides with a known different lemma in our vocab (e.g. capello vs
+  // cappello). No external dictionary; collision check uses vocabEntries.
+  function vocabJudge(answer, target, isItEn, entry) {
     const norm = s => String(s || "").trim().toLowerCase().replace(/[.,;!?"'()\[\]]/g, "").replace(/\s+/g, " ").trim();
     const a = norm(answer);
-    if (!a) return false;
-    // Build the alternatives list. For each comma/semicolon-separated piece,
-    // produce both the full form and a bare form with parenthetical clarifiers
-    // stripped: "cousin (male)" yields both "cousin male" (after norm) AND
-    // "cousin" alone. Either is acceptable.
+    if (!a) return { outcome: "not_attempted", credit: 0, reason: null };
+
     const pieces = String(target || "").split(/[,;\/]/).map(s => s.trim()).filter(Boolean);
     const alternatives = new Set();
     for (const p of pieces) {
@@ -906,12 +1366,93 @@
       const bareNoParen = p.replace(/\([^)]*\)/g, "").trim();
       if (bareNoParen) alternatives.add(norm(bareNoParen));
     }
+
+    // 1) exact match
+    for (const alt of alternatives) {
+      if (alt && a === alt) return { outcome: "hit", credit: 1, reason: null };
+    }
+
+    // 2) "to" omission (English direction)
+    if (isItEn) {
+      for (const alt of alternatives) {
+        if (alt.startsWith("to ") && a === alt.slice(3)) {
+          return { outcome: "hit", credit: 0.9, reason: "Roughly right - 'to' missing on infinitive" };
+        }
+        if (a.startsWith("to ") && alt === a.slice(3)) {
+          return { outcome: "hit", credit: 1, reason: null };
+        }
+      }
+    } else {
+      // Going EN->IT: tolerate a stray "to" on the learner's side (still full credit)
+      for (const alt of alternatives) {
+        if (a.startsWith("to ") && alt === a.slice(3)) {
+          return { outcome: "hit", credit: 1, reason: null };
+        }
+      }
+    }
+
+    // 3) spelling tolerance with collision check
+    const collisionRisk = (!isItEn) && vocabLemmaCollision(a, entry);
+
+    // (a) Double-letter slip on either side: collapse all doubles in both
+    // strings and see if they're equal. This catches "aple"/"apple" and
+    // "cappello"/"capello" alike. Suppressed in Italian direction when the
+    // typo collides with a different known lemma.
+    const aCollapsed = a.replace(/(.)\1+/g, "$1");
     for (const alt of alternatives) {
       if (!alt) continue;
-      if (a === alt) return true;
-      // Allow learner to omit a leading "to" on verbs
-      if (alt.startsWith("to ") && a === alt.slice(3)) return true;
-      if (a.startsWith("to ") && alt === a.slice(3)) return true;
+      if (a === alt) continue; // exact already handled
+      const altCollapsed = alt.replace(/(.)\1+/g, "$1");
+      if (aCollapsed === altCollapsed) {
+        if (collisionRisk) return { outcome: "miss", credit: 0, reason: "Spelling slip would change the word" };
+        return { outcome: "partial", credit: 0.5, reason: "Spelling slip - double letter" };
+      }
+    }
+
+    // (b) English I/E confusion. English direction only. Two flavours:
+    //     - transposed pair: "recieve" vs "receive" (ie <-> ei)
+    //     - single swap:     "definately" vs "definitely" (i for e)
+    if (isItEn) {
+      // Transposition: every adjacent ie/ei pair, try swapping
+      for (let i = 0; i < a.length - 1; i++) {
+        const pair = a.slice(i, i + 2);
+        if (pair === "ie" || pair === "ei") {
+          const swapped = pair === "ie" ? "ei" : "ie";
+          const variant = a.slice(0, i) + swapped + a.slice(i + 2);
+          for (const alt of alternatives) {
+            if (alt && variant === alt) {
+              return { outcome: "partial", credit: 0.5, reason: "Spelling slip - i/e transposed" };
+            }
+          }
+        }
+      }
+      // Single-position swap
+      for (let i = 0; i < a.length; i++) {
+        const c = a[i];
+        if (c === "i" || c === "e") {
+          const swap = c === "i" ? "e" : "i";
+          const variant = a.slice(0, i) + swap + a.slice(i + 1);
+          for (const alt of alternatives) {
+            if (alt && variant === alt) {
+              return { outcome: "partial", credit: 0.5, reason: "Spelling slip - i/e swap" };
+            }
+          }
+        }
+      }
+    }
+
+    return { outcome: "miss", credit: 0, reason: null };
+  }
+
+  // Does the learner's typed Italian form match a known different lemma?
+  function vocabLemmaCollision(typed, entry) {
+    const t = String(typed || "").toLowerCase();
+    const cur = String((entry && entry.lemma) || "").toLowerCase();
+    if (!t || !cur) return false;
+    for (const v of vocabEntries) {
+      const lem = String(v.lemma || "").toLowerCase();
+      if (!lem) continue;
+      if (lem === t && lem !== cur) return true;
     }
     return false;
   }
@@ -948,7 +1489,7 @@
       });
       return result;
     }
-    const ok = vocabAcceptable(raw, target);
+    const judgment = vocabJudge(raw, target, isItEn, entry);
     // Build a clean list of acceptable alternatives for display. Strip
     // parenthetical clarifiers, split on commas/semicolons/slashes, dedupe.
     const acceptableList = (() => {
@@ -965,54 +1506,40 @@
       }
       return out;
     })();
-    if (ok) {
-      result.overall.marks_awarded = 1;
+    const credit = judgment.credit;
+    const outcome = judgment.outcome;
+    const reason = judgment.reason;
+    result.overall.marks_awarded = credit;
+    if (outcome === "hit" && credit >= 1) {
       result.overall.summary = "Right";
-      result.markpoints.push({
-        bucket: translationBucket,
-        label: translationLabel,
-        attempted_credit: 1,
-        correctness_credit: 1,
-        outcome: "hit",
-        evidence: "matched: " + raw,
-        expected: target,
-        alternatives: acceptableList
-      });
-      // Also fire on the frequency-band bucket so the band signal fills.
-      if (entry.band) {
-        result.markpoints.push({
-          bucket: entry.band,
-          label: "Frequency band " + bandFriendly(entry.band),
-          attempted_credit: 1,
-          correctness_credit: 1,
-          outcome: "hit",
-          evidence: "right on " + entry.lemma,
-          source: "band_rollup"
-        });
-      }
+    } else if (outcome === "hit") {
+      result.overall.summary = "Roughly right";
+    } else if (outcome === "partial") {
+      result.overall.summary = "Half right - spelling slip";
     } else {
       result.overall.summary = "Wrong";
+    }
+    result.markpoints.push({
+      bucket: translationBucket,
+      label: translationLabel,
+      attempted_credit: 1,
+      correctness_credit: credit,
+      outcome: outcome,
+      evidence: outcome === "hit" ? ("matched: " + raw) : ("you wrote: " + raw),
+      expected: target,
+      alternatives: acceptableList,
+      explanation: reason || undefined
+    });
+    if (entry.band) {
       result.markpoints.push({
-        bucket: translationBucket,
-        label: translationLabel,
+        bucket: entry.band,
+        label: "Frequency band " + bandFriendly(entry.band),
         attempted_credit: 1,
-        correctness_credit: 0,
-        outcome: "miss",
-        evidence: "you wrote: " + raw,
-        expected: target,
-        alternatives: acceptableList
+        correctness_credit: credit,
+        outcome: outcome,
+        evidence: (outcome === "hit" ? "right on " : outcome === "partial" ? "half on " : "miss on ") + entry.lemma,
+        source: "band_rollup"
       });
-      if (entry.band) {
-        result.markpoints.push({
-          bucket: entry.band,
-          label: "Frequency band " + bandFriendly(entry.band),
-          attempted_credit: 1,
-          correctness_credit: 0,
-          outcome: "miss",
-          evidence: "miss on " + entry.lemma,
-          source: "band_rollup"
-        });
-      }
     }
     return result;
   }
@@ -1552,13 +2079,20 @@
       const detail = document.createElement("div");
       detail.style.flex = "1";
 
-      // Friendly outcome word.
+      // Friendly outcome word. We build the badge here and place it INLINE on
+      // the answer line below (Matched: X / Right answer: Y) so the status
+      // sits next to the answer rather than floating above it. If there's
+      // nothing to sit next to (e.g. a hit with no evidence string), we fall
+      // back to a standalone badge on its own row.
       const friendly = friendlyOutcome(mp);
-      const status = document.createElement("div");
-      status.className = "outcome-status " + friendly.cls;
-      status.textContent = friendly.word;
-      status.title = `attempted=${mp.attempted_credit}, correctness=${mp.correctness_credit ?? "n/a"}, outcome=${mp.outcome}`;
-      detail.appendChild(status);
+      function buildStatusBadge() {
+        const status = document.createElement("span");
+        status.className = "outcome-status outcome-status-inline " + friendly.cls;
+        status.textContent = friendly.word;
+        status.title = `attempted=${mp.attempted_credit}, correctness=${mp.correctness_credit ?? "n/a"}, outcome=${mp.outcome}`;
+        return status;
+      }
+      let badgePlaced = false;
 
       // Comparison block: "You wrote: X / Right answer: Y" on a miss or
       // partial. Just "Right answer: Y" if they didn't attempt. Just
@@ -1581,14 +2115,38 @@
           const r2 = document.createElement("div");
           r2.className = "cmp-row";
           r2.innerHTML = `<span class="cmp-label">Right answer:</span> <span class="cmp-value cmp-correct">${escapeHtml(mp.expected)}</span>`;
+          r2.appendChild(document.createTextNode(" "));
+          r2.appendChild(buildStatusBadge());
+          badgePlaced = true;
           cmp.appendChild(r2);
+        } else if (hasEvidence) {
+          // miss with evidence but no expected — attach badge to the "You wrote" row.
+          const r1 = cmp.firstChild;
+          if (r1) {
+            r1.appendChild(document.createTextNode(" "));
+            r1.appendChild(buildStatusBadge());
+            badgePlaced = true;
+          }
         }
         detail.appendChild(cmp);
       } else if (mp.outcome === "hit" && hasEvidence) {
         const e = document.createElement("div");
         e.className = "evidence";
-        e.textContent = `Matched: ${evidenceText}`;
+        e.innerHTML = `Matched: <span class="cmp-value cmp-correct">${escapeHtml(evidenceText)}</span>`;
+        e.appendChild(document.createTextNode(" "));
+        e.appendChild(buildStatusBadge());
+        badgePlaced = true;
         detail.appendChild(e);
+      }
+
+      // Fallback: nothing to sit next to (e.g. hit with no evidence string).
+      // Drop a standalone badge so the learner still sees the outcome word.
+      if (!badgePlaced) {
+        const standalone = document.createElement("div");
+        standalone.className = "outcome-status " + friendly.cls;
+        standalone.textContent = friendly.word;
+        standalone.title = `attempted=${mp.attempted_credit}, correctness=${mp.correctness_credit ?? "n/a"}, outcome=${mp.outcome}`;
+        detail.insertBefore(standalone, detail.firstChild);
       }
 
       // Vocab markpoints carry an `alternatives` array of acceptable answers.
@@ -1732,6 +2290,55 @@
   }
 
   // Aggregate stats from descendant events.
+  //
+  // `correctness` is recency-weighted with an asymmetric look-back:
+  //
+  //   * Most recent attempt has weight 7. Each prior attempt has weight 3.
+  //   * If the most recent was WRONG, ALL priors contribute. A long history
+  //     of rights pulls you back above 0.3, moderating the downside of a
+  //     single recent miss.
+  //   * If the most recent was RIGHT, only the previous 3 priors contribute.
+  //     A weak history can't drag a recent right below ~0.44 (it bottoms out
+  //     when all 3 priors are wrong: 7 / (7 + 3×3) = 0.4375).
+  //
+  // Clean thresholds: right-then-wrong = 0.30 exactly, wrong-then-right = 0.70
+  // exactly. 4-rights-then-wrong sits at 0.632; 10-rights-then-wrong at 0.811;
+  // 10-wrongs-then-right at 0.438.
+  //
+  // All-time `attempted`, `correct`, `hits` are kept separately for reporting.
+  const MASTERY_W_LAST = 7;
+  const MASTERY_W_PRIOR = 3;
+  const MASTERY_LOOKBACK_IF_RIGHT = 3;
+
+  // Reusable kernel. `events` must already be sorted oldest -> newest and have
+  // the shape {ev, timestamp} that eventsForNode produces.
+  function recencyWeightedCorrectness(events) {
+    const attemptedEvents = events.filter(e => (e.ev.attempted_credit || 0) > 0);
+    if (attemptedEvents.length === 0) return { correctness: 0, hasEvents: false, nAttempted: 0 };
+
+    const last = attemptedEvents[attemptedEvents.length - 1].ev;
+    const lastCC = (last.correctness_credit !== null && last.correctness_credit !== undefined) ? last.correctness_credit : 0;
+    const lastAtt = last.attempted_credit || 1;
+    const lastFrac = lastCC / lastAtt;
+    const lastWasRight = lastFrac >= 0.5;
+
+    let priors = attemptedEvents.slice(0, -1);
+    if (lastWasRight && priors.length > MASTERY_LOOKBACK_IF_RIGHT) {
+      priors = priors.slice(-MASTERY_LOOKBACK_IF_RIGHT);
+    }
+
+    let wA = MASTERY_W_LAST * lastAtt;
+    let wC = MASTERY_W_LAST * lastCC;
+    for (const { ev } of priors) {
+      const pAtt = ev.attempted_credit || 0;
+      const pCC = (ev.correctness_credit !== null && ev.correctness_credit !== undefined) ? ev.correctness_credit : 0;
+      wA += MASTERY_W_PRIOR * pAtt;
+      wC += MASTERY_W_PRIOR * pCC;
+    }
+    const correctness = wA > 0 ? wC / wA : 0;
+    return { correctness, hasEvents: true, nAttempted: attemptedEvents.length };
+  }
+
   function aggregateNodeStats(node) {
     const events = eventsForNode(node);
     if (events.length === 0) return null;
@@ -1744,12 +2351,17 @@
     }
     const n = events.length;
     const attempted_rate = attempted / n;
-    const correctness = attempted > 0 ? correct / attempted : 0;
+
+    const { correctness } = recencyWeightedCorrectness(events);
+
+    // Keep the all-time ratio available too, for places that want it.
+    const correctness_alltime = attempted > 0 ? correct / attempted : 0;
     const hits = events.filter(e => e.ev.outcome === "hit").length;
     return {
       n, attempted, correct, hits,
       attempted_rate,
       correctness,
+      correctness_alltime,
       events
     };
   }
@@ -2249,6 +2861,7 @@
       vocabEntries = real.vocab;
       LL.vocabEntries = vocabEntries;
       LL._vocabByLemma = null;
+      invalidateVocabCaches();
     }
     grammarIndex = 0;
     translationIndex = 0;
