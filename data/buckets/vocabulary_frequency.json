@@ -256,5 +256,83 @@
     },
     "active": true,
     "version": 1
+  },
+  {
+    "id": "vocabulary.it.freq_1001_2000",
+    "parent_id": "vocabulary.it",
+    "language_code": "it",
+    "label": "Italian words 1001-2000",
+    "description": "Words 1001-2000 by merged-lemma frequency. Includes most basic function words demoted by source-merge methodology (il, di, e, che, non, a, in, per, con and most prepositions/conjunctions/articles got ranks here due to their absence from the ItWaC POS-tagged lemma list and NVdB's flat tier ranking). Also genuine 1001-2000 lemmas: vocabulary for refined writing, less-frequent verbs, regional and topic-specific words.",
+    "cefr_importance": {
+      "A1": "out_of_scope",
+      "A2": "out_of_scope",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "core",
+      "C2": "review"
+    },
+    "prerequisites": [
+      "vocabulary.it.freq_901_1000"
+    ],
+    "attributes": {
+      "is_aggregate": true,
+      "band_lo": 1001,
+      "band_hi": 2000,
+      "direction": "bidirectional"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "vocabulary.it.freq_2001_5000",
+    "parent_id": "vocabulary.it",
+    "language_code": "it",
+    "label": "Italian words 2001-5000",
+    "description": "Words 2001-5000. C1/C2 territory. After the re-rank pass, this band picked up function words (because of the source-merge artefact described above) and a long tail of less-common but useful lemmas (specific food items, regional places, technical vocabulary).",
+    "cefr_importance": {
+      "A1": "out_of_scope",
+      "A2": "out_of_scope",
+      "B1": "out_of_scope",
+      "B2": "stretch",
+      "C1": "core",
+      "C2": "core"
+    },
+    "prerequisites": [
+      "vocabulary.it.freq_1001_2000"
+    ],
+    "attributes": {
+      "is_aggregate": true,
+      "band_lo": 2001,
+      "band_hi": 5000,
+      "direction": "bidirectional"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "vocabulary.it.freq_5001_plus",
+    "parent_id": "vocabulary.it",
+    "language_code": "it",
+    "label": "Italian words 5001+",
+    "description": "Words beyond rank 5000 in the merged lemma list. Picked up after the re-rank pass: highly specific vocabulary, low-frequency reflexive verbs (innamorarsi, arrabbiarsi), and edge-case lemmas. C2 territory or beyond.",
+    "cefr_importance": {
+      "A1": "out_of_scope",
+      "A2": "out_of_scope",
+      "B1": "out_of_scope",
+      "B2": "out_of_scope",
+      "C1": "stretch",
+      "C2": "core"
+    },
+    "prerequisites": [
+      "vocabulary.it.freq_2001_5000"
+    ],
+    "attributes": {
+      "is_aggregate": true,
+      "band_lo": 5001,
+      "band_hi": 99999,
+      "direction": "bidirectional"
+    },
+    "active": true,
+    "version": 1
   }
 ]
