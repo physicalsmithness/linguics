@@ -196,6 +196,42 @@ The data shape exposes this because the curated JSON has multiple entries that a
 
 This affects every function-word zone: articles, basic prepositions, basic pronouns. Outside function words the problem is much rarer (most content words have unambiguous-enough translations).
 
+### Update 2026-05-26: a second related failure (`ma` / `però`), and the user's proposal
+
+**The scenario.** The marker rendered the prompt *"but, however"* (from `però`'s `translation_en: "but, however"` joined on commas) and asked for the Italian. The learner typed `ma`. The marker said wrong, expected `però`. The learner's reaction was that this felt unjust because the prompt visibly contains "but" and `ma` is literally "but"; but on reflection they recognised that `però` carries adversative weight beyond plain `ma`, and "but, however" together does point at `però` specifically. So the call wasn't baseless, but the all-or-nothing rejection felt off.
+
+This crystallised two distinct sub-cases the marker should handle:
+
+**Sub-case A: fully-equivalent lemmas (a tracking asymmetry the vocab chat initially missed).**
+
+For pools like `solo` / `soltanto` / `solamente` (the adverb "only"), `qui` / `qua`, `lì` / `là`, `eccetera` / `ecc.`, all members of the pool are interchangeable on the meaning axis. But the marker tracks mastery per item, and so the rule isn't *"either lemma counts as right"*, it's:
+
+- If the marker prompts for `soltanto` (EN to IT, "only") and the learner produces `solo`, the `solo` item fires full credit, and the `soltanto` item is left alone (neither fire nor miss).
+- For `soltanto` to advance, the learner must specifically produce `soltanto`.
+- Implication: a learner who habitually defaults to `solo` will see `soltanto` and `solamente` stagnate. The user pointed out they sometimes deliberately produce the alternative form to advance its item, which is the learner self-regulating around this asymmetry.
+- UI affordance worth considering: when an equivalent-but-non-prompted lemma fires, the learner should be able to see *"`soltanto` still hasn't been practised; try producing it specifically"*.
+
+The data-side support for this is an `equivalence_class` field (or similar) on each entry in the pool. Vocab chat will propose an initial list of class candidates after the architect rules on whether the field should exist.
+
+**Sub-case B: partial-equivalents like `ma` / `però`, where translations overlap but the lemmas aren't interchangeable.**
+
+This is the harder case. `ma` and `però` are NOT equivalence-class material — `però` is contrastively stronger and has syntactic positions `ma` doesn't share. So the all-or-nothing-on-the-prompted-item rule is wrong, but so is treating them as interchangeable.
+
+The vocab chat does not understand the marker's running-average / mastery-state mechanics well enough to design the partial-credit weighting itself. Passing the user's words intact rather than interpreting. The user said (paraphrasing very lightly for grammar; words in quotes are theirs):
+
+> "I tell you what: what about it fires on `ma` and gives the unattempted percentage. Whatever the unattempted percentage is, say the unattempted percentage is 20%. Fires that percentage. Not the same as not attempting, because average of last three will change which means the average will climb more slowly, given that it's the last three, so if you get the next one right, it's slightly reduced, and it needs an explanation."
+
+Context: the marker prompted for `però`, the learner gave `ma`. The proposal is that the `ma` item (not the `però` item) is the one that updates, and the fire credit is set to `ma`'s current "unattempted percentage" rather than to a flat full or flat 50%. The `però` item, like in sub-case A, is left alone. The learner needs an explanation surface so the partial doesn't read as arbitrary.
+
+The architect will know what "unattempted percentage" maps to in the running-state model (item-level slack? bucket-level? the complement of the last-three-average? something else?). Vocab chat is deliberately not guessing.
+
+**What the architect is being asked to decide**
+
+1. Should the marker have an explicit `equivalence_class` concept, with the asymmetric tracking rule above (fire on what the learner produced, leave the prompted item alone)?
+2. For partial-equivalents (overlapping `translation_en` but not in an equivalence class), should the marker fire on the learner-produced lemma at its current unattempted percentage, per the user's proposal? And what exactly is that percentage in the engine's state representation?
+3. Does the marker need an explanation surface for the partial-credit case (and probably the asymmetric-equivalent case too), and where does the explanation text come from — data, marker rule, or generated?
+4. Does the data shape need to migrate `translation_en` from comma-string to proper array so the marker can do set operations cleanly? (Architect previously sanctioned arrays "going forward only"; the back-migration becomes necessary if any of the above lands.)
+
 ## Status snapshot (when this file was written)
 
 - Bands 1-100, 101-200, 201-300, 301-400, 401-500, 501-600, 601-700 are complete.

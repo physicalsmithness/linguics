@@ -742,6 +742,7 @@
   let vocabIndex = 0;
   let vocabFilter = { band: "", direction: "it_en", theme: "", genderClass: "" };
   let vocabExpandedThemes = new Set();
+  let vocabExpandedGenders = new Set();
   let vocabInputRef = null;
 
   function filteredVocabEntries() {
@@ -978,6 +979,10 @@
   // of the LEFTMOST focused band in the sorted band list.
   let vocabFreqFocusStart = 0;
   const VOCAB_FREQ_WINDOW = 10;
+  // Height of the focused dot-grid in px; flanking blocks match this height.
+  // 10 rows of boxes x 3 dots x 9px + 9 row-gaps x 3px + 2 x 4px padding
+  // = 270 + 27 + 8 = 305 ... use 305.
+  const VOCAB_FOCUS_HEIGHT_PX = 305;
 
   // Build a band -> [lemma] index lazily from vocabEntries.
   let _bandLemmasCache = null;
@@ -1001,6 +1006,8 @@
   function eventsForLemmas(lemmas, opts) {
     opts = opts || {};
     const directionFilter = opts.direction || "any";
+    // aspect: "translation" (default), "gender", or "any"
+    const aspectFilter = opts.aspect || "translation";
     const lemmaSet = (lemmas instanceof Set) ? lemmas : new Set(lemmas);
     if (lemmaSet.size === 0) return [];
     const out = [];
@@ -1008,14 +1015,18 @@
       for (const ev of att.events) {
         const b = ev.bucket || "";
         if (!b.startsWith("vocabulary.it.")) continue;
-        // bucket form: vocabulary.it.<lemma>.translation[.active|.passive]
+        // bucket form: vocabulary.it.<lemma>.<aspect>[.active|.passive]
         const rest = b.slice("vocabulary.it.".length);
         const dot = rest.indexOf(".");
         if (dot < 0) continue;
         const lemma = rest.slice(0, dot);
         const tail = rest.slice(dot + 1);
-        if (!tail.startsWith("translation")) continue;
         if (!lemmaSet.has(lemma)) continue;
+        const isTranslation = tail.startsWith("translation");
+        const isGender = tail.startsWith("gender");
+        if (aspectFilter === "translation" && !isTranslation) continue;
+        if (aspectFilter === "gender" && !isGender) continue;
+        if (aspectFilter === "any" && !isTranslation && !isGender) continue;
         if (directionFilter === "active" && !tail.endsWith(".active")) continue;
         if (directionFilter === "passive" && !tail.endsWith(".passive")) continue;
         out.push({ ev, timestamp: att.timestamp });
@@ -1156,16 +1167,22 @@
         const lemmas = (c.lemmas instanceof Set) ? Array.from(c.lemmas) : c.lemmas;
         const lemmaCount = lemmas.length;
         const dirFilter = c.directionFilter || "any";
+        const aspect = c.aspect || "translation";
 
         cell.style.cursor = "pointer";
         cell.addEventListener("click", (ev) => {
           if (ev.target && ev.target.classList && ev.target.classList.contains("vocab-lemma-dot")) return;
-          if (axisKind === "themes") {
-            if (lemmaCount > VOCAB_CELL_DOT_THRESHOLD && !vocabExpandedThemes.has(c.key)) {
-              vocabExpandedThemes.add(c.key);
+          // Expand-on-first-click for cells in averaged mode (both themes
+          // and gender) when over the threshold.
+          if (lemmaCount > VOCAB_CELL_DOT_THRESHOLD) {
+            const expandSet = axisKind === "themes" ? vocabExpandedThemes : vocabExpandedGenders;
+            if (!expandSet.has(c.key)) {
+              expandSet.add(c.key);
               renderVocabAxes();
               return;
             }
+          }
+          if (axisKind === "themes") {
             vocabFilter.theme = c.key;
             vocabFilter.genderClass = "";
             vocabFilter.band = "";
@@ -1189,9 +1206,10 @@
         head.appendChild(meta);
         cell.appendChild(head);
 
-        const forceDots = axisKind === "themes" && vocabExpandedThemes.has(c.key);
+        const expandSet = axisKind === "themes" ? vocabExpandedThemes : (axisKind === "gender" ? vocabExpandedGenders : null);
+        const forceDots = expandSet && expandSet.has(c.key);
         if (lemmaCount > VOCAB_CELL_DOT_THRESHOLD && !forceDots) {
-          const m = averageCorrectnessAcrossLemmas(lemmas, dirFilter);
+          const m = averageCorrectnessAcrossLemmas(lemmas, dirFilter, aspect);
           cell.classList.add("avg-mode");
           cell.style.background = rwgColour(m.correctness, true);
           const pct = Math.round(m.correctness * 100) + "%";
@@ -1203,7 +1221,7 @@
           dots.className = "vocab-cell-dots";
           let attempted = 0;
           for (const lemma of lemmas) {
-            const events = eventsForLemmas([lemma], { direction: dirFilter });
+            const events = eventsForLemmas([lemma], { direction: dirFilter, aspect: aspect });
             const wc = recencyWeightedCorrectness(events);
             const dot = document.createElement("span");
             dot.className = "vocab-lemma-dot";
@@ -1230,26 +1248,18 @@
   function flashAxisCellsFor(entry) {
     if (!entry) return;
     const selectors = [];
-    // Frequency: flash the single dot in the focused dot-grid. Falls back to
-    // the old strip selector if the dot-grid isn't mounted (e.g. block not focused).
     if (entry.lemma) {
       selectors.push('.freq-dot[data-lemma="' + cssEscape(entry.lemma) + '"]');
     }
-    if (entry.band) {
-      selectors.push('.vocab-strip[data-band-id="' + cssEscape(entry.band) + '"]');
-    }
-    // Gender: flash the cell for the lemma's noun_class.
     if (entry.pos === "noun") {
       const cls = entry.noun_class || (entry.gender === "m" ? "unspecified_m" : entry.gender === "f" ? "unspecified_f" : "unspecified");
       selectors.push('.vocab-cell[data-axis="gender"][data-key="' + cssEscape(cls) + '"]');
     }
-    // Themes: flash each theme cell.
     if (Array.isArray(entry.themes)) {
       for (const t of entry.themes) {
         selectors.push('.vocab-cell[data-axis="themes"][data-key="' + cssEscape(t) + '"]');
       }
     }
-    // Individual lemma dots inside dot-mode cells (gender + themes)
     if (entry.lemma) {
       selectors.push('.vocab-lemma-dot[data-lemma="' + cssEscape(entry.lemma) + '"]');
     }
@@ -1260,6 +1270,18 @@
       els.forEach(el => {
         el.classList.add("flash");
         setTimeout(() => el.classList.remove("flash"), 800);
+      });
+    }
+    // Also flash any flanking-block cell whose rank range contains this entry's rank.
+    if (typeof entry.rank === "number") {
+      const flanks = host.querySelectorAll(".freq-flanking .freq-flank-cell");
+      flanks.forEach(cell => {
+        const s = parseInt(cell.dataset.rangeStart || "0", 10);
+        const e = parseInt(cell.dataset.rangeEnd || "0", 10);
+        if (entry.rank >= s && entry.rank <= e) {
+          cell.classList.add("flash");
+          setTimeout(() => cell.classList.remove("flash"), 800);
+        }
       });
     }
   }
@@ -1371,6 +1393,8 @@
         vocabFilter.band = "";
         vocabFilter.theme = "";
         vocabFilter.genderClass = "";
+        vocabExpandedThemes.clear();
+        vocabExpandedGenders.clear();
         vocabDeck = []; vocabIndex = 0;
         renderVocab();
       });
@@ -1436,8 +1460,7 @@
         heatRow.appendChild(grid);
       } else {
         const distance = Math.abs(bi - focusBlockIdx);
-        const cellSize = distance === 1 ? 5 : distance === 2 ? 4 : 3;
-        const stripes = renderFlankingStripes(blockStart, blockEnd, byRank, cellSize, activeDir);
+        const stripes = renderFlankingStripes(blockStart, blockEnd, byRank, distance, activeDir, VOCAB_FOCUS_HEIGHT_PX);
         stripes.addEventListener("click", () => {
           window.__vocabFocusRankStart = blockStart;
           renderVocabAxes();
@@ -1447,14 +1470,13 @@
     }
     freqAxis.appendChild(heatRow);
 
-    // Tick row underneath: show "1000", "2000", ... below block boundaries.
+    // Tick row: friendly approximate labels (~1000, ~2000, ...).
     const ticks = document.createElement("div");
     ticks.className = "freq-tick-row";
     for (let bi = 0; bi < totalBlocks; bi++) {
       const t = document.createElement("div");
       t.className = "freq-tick " + (bi === focusBlockIdx ? "focused" : "flanking");
-      const high = (bi + 1) * RANKS_PER_BLOCK;
-      t.textContent = String(high);
+      t.textContent = "~" + ((bi + 1) * 1000);
       ticks.appendChild(t);
     }
     freqAxis.appendChild(ticks);
@@ -1495,7 +1517,7 @@
       for (const key of order) {
         const lemmas = gIdx[key];
         if (!lemmas || !lemmas.length) continue;
-        cells.push({ key, label: GENDER_CLASS_LABELS[key] || key, lemmas, directionFilter: activeDir, axis: "gender" });
+        cells.push({ key, label: GENDER_CLASS_LABELS[key] || key, lemmas, directionFilter: activeDir, axis: "gender", aspect: "gender" });
       }
       genderAxis.appendChild(buildCellGroups([{ title: null, cells }], "gender"));
     }
@@ -1590,16 +1612,24 @@
     return grid;
   }
 
-  // Flanking block: 10 columns x 11 rows of cells (110 per 990-rank block).
-  // Each cell averages 9 consecutive ranks via baseline-diluted mean. Cell
-  // size shrinks for more distant blocks.
-  function renderFlankingStripes(blockStart, blockEnd, byRank, cellSize, dirFilter) {
-    const COLS = 10, ROWS = 11;
+  // Flanking block. Same HEIGHT as the focused block. 10 columns wide always.
+  //   Adjacent (within 2 of focus): 11 cells tall per column. Each cell ~ 9
+  //     consecutive lemmas averaged. So 110 cells of ~9 lemmas each.
+  //   Distant: 1 cell tall per column. Each cell ~ 100 consecutive lemmas
+  //     averaged. So 10 cells total, each a full-height vertical strip.
+  // Width tapers with distance so distant blocks read as narrower.
+  function renderFlankingStripes(blockStart, blockEnd, byRank, distance, dirFilter, focusedHeightPx) {
+    const COLS = 10;
+    const ROWS = distance <= 2 ? 11 : 1;
+    const colWidth = distance === 1 ? 5 : distance === 2 ? 4 : 3;
+    const rowHeight = focusedHeightPx / ROWS;
     const wrap = document.createElement("div");
     wrap.className = "freq-flanking";
+    wrap.dataset.blockStart = blockStart;
+    wrap.dataset.blockEnd = blockEnd;
     wrap.style.display = "grid";
-    wrap.style.gridTemplateColumns = "repeat(" + COLS + ", " + cellSize + "px)";
-    wrap.style.gridTemplateRows = "repeat(" + ROWS + ", " + cellSize + "px)";
+    wrap.style.gridTemplateColumns = "repeat(" + COLS + ", " + colWidth + "px)";
+    wrap.style.gridTemplateRows = "repeat(" + ROWS + ", " + rowHeight + "px)";
     wrap.style.gap = "1px";
     wrap.title = "ranks " + blockStart + "-" + blockEnd + " (click to focus)";
     const span = blockEnd - blockStart + 1;
@@ -1616,13 +1646,15 @@
         }
         const cell = document.createElement("div");
         cell.className = "freq-flank-cell";
+        cell.dataset.rangeStart = cStart;
+        cell.dataset.rangeEnd = cEnd;
         if (lemmas.length === 0) {
           cell.style.background = rwgColour(0, false);
         } else {
           const m = averageCorrectnessAcrossLemmas(lemmas, dirFilter || "any");
           cell.style.background = rwgColour(m.correctness, true);
         }
-        cell.title = "ranks " + cStart + "-" + cEnd;
+        cell.title = "ranks " + cStart + "-" + cEnd + " (~" + lemmas.length + " curated)";
         wrap.appendChild(cell);
       }
     }
@@ -1631,11 +1663,11 @@
 
   // Baseline-diluted mean across lemmas. Touched lemmas contribute their
   // recency-weighted correctness; untouched lemmas contribute the baseline.
-  function averageCorrectnessAcrossLemmas(lemmas, dirFilter) {
+  function averageCorrectnessAcrossLemmas(lemmas, dirFilter, aspect) {
     let sum = 0;
     let touched = 0;
     for (const lemma of lemmas) {
-      const ev = eventsForLemmas([lemma], { direction: dirFilter || "any" });
+      const ev = eventsForLemmas([lemma], { direction: dirFilter || "any", aspect: aspect || "translation" });
       const wc = recencyWeightedCorrectness(ev);
       if (wc.hasEvents) { sum += wc.correctness; touched++; }
       else { sum += vocabUnattemptedBaseline; }
@@ -1658,7 +1690,85 @@
   // Spelling tolerance is suppressed when the learner's typed Italian
   // collides with a known different lemma in our vocab (e.g. capello vs
   // cappello). No external dictionary; collision check uses vocabEntries.
+  // ---------- Italian article helpers ----------
+  function extractItalianArticle(raw) {
+    const s = String(raw || "").trim();
+    let m = /^(il|lo|la|i|gli|le|un|uno|una)\s+(.+)$/i.exec(s);
+    if (m) return { article: m[1].toLowerCase(), rest: m[2].trim() };
+    m = /^(l'|un')\s*([^\s]+.*)$/i.exec(s);
+    if (m) return { article: m[1].toLowerCase(), rest: m[2].trim() };
+    return null;
+  }
+  // Gender carried by an unambiguous article. l' returns null (ambiguous).
+  function articleGender(article) {
+    if (["il","lo","i","gli","un","uno"].includes(article)) return "m";
+    if (["la","le","una","un'"].includes(article)) return "f";
+    return null;
+  }
+  // Trailing "(m)" or "(f)" suffix - lets the learner declare gender even
+  // when their article was ambiguous (l') or absent.
+  function parseGenderSuffix(raw) {
+    const s = String(raw || "").trim();
+    const m = /\s*\(\s*([mf])\s*\)\s*$/i.exec(s);
+    if (!m) return { stripped: s, gender: null };
+    return { stripped: s.slice(0, m.index).trim(), gender: m[1].toLowerCase() };
+  }
+  // Expected article forms for a noun, by gender + phonology.
+  function expectedArticlesFor(lemma, gender) {
+    const w = String(lemma || "").toLowerCase();
+    if (!w || !gender) return null;
+    const c0 = w[0];
+    const c1 = w[1] || "";
+    const vowels = "aeiouàèéìòù";
+    const isVowel = (ch) => ch && vowels.indexOf(ch) >= 0;
+    const startsVowel = isVowel(c0);
+    const isSimpura = c0 === "s" && c1 && !isVowel(c1);
+    const isZ = c0 === "z";
+    const isXY = c0 === "x" || c0 === "y";
+    const isGn = c0 === "g" && c1 === "n";
+    const isPsPn = c0 === "p" && (c1 === "s" || c1 === "n");
+    const isIVowel = c0 === "i" && isVowel(c1);
+    const needsLoUno = isSimpura || isZ || isXY || isGn || isPsPn || isIVowel;
+    if (gender === "m") {
+      if (needsLoUno)   return { definite: ["lo"],  indefinite: ["uno"] };
+      if (startsVowel)  return { definite: ["l'"],  indefinite: ["un"]  };
+      return              { definite: ["il"],  indefinite: ["un"]  };
+    }
+    if (gender === "f") {
+      if (startsVowel)  return { definite: ["l'"],  indefinite: ["un'"] };
+      return              { definite: ["la"],  indefinite: ["una"] };
+    }
+    return null;
+  }
+
   function vocabJudge(answer, target, isItEn, entry) {
+    const norm = s => String(s || "").trim().toLowerCase().replace(/[.,;!?"'()\[\]]/g, "").replace(/\s+/g, " ").trim();
+    const a = norm(answer);
+    if (!a) return { outcome: "not_attempted", credit: 0, reason: null };
+
+    // EN->IT noun: split off optional "(m)/(f)" suffix and optional leading
+    // article, then judge translation on the BARE lemma. Attach articleInfo to
+    // the result so markVocab can fire gender + article-form side-markpoints.
+    if (!isItEn && entry && entry.pos === "noun" && entry.gender) {
+      const sfx = parseGenderSuffix(answer);
+      const extracted = extractItalianArticle(sfx.stripped);
+      const articleProvided = extracted ? extracted.article : null;
+      const bareLemma = extracted ? extracted.rest : sfx.stripped;
+      const articleInfo = {
+        articleProvided: articleProvided,
+        articleGenderSignal: articleProvided ? articleGender(articleProvided) : null,
+        explicitGender: sfx.gender,
+        expectedGender: entry.gender,
+        expectedArticles: expectedArticlesFor(entry.lemma, entry.gender)
+      };
+      const result = vocabJudgeCore(bareLemma || answer, target, isItEn, entry, null);
+      result.articleInfo = articleInfo;
+      return result;
+    }
+    return vocabJudgeCore(answer, target, isItEn, entry, null);
+  }
+
+  function vocabJudgeCore(answer, target, isItEn, entry) {
     const norm = s => String(s || "").trim().toLowerCase().replace(/[.,;!?"'()\[\]]/g, "").replace(/\s+/g, " ").trim();
     const a = norm(answer);
     if (!a) return { outcome: "not_attempted", credit: 0, reason: null };
@@ -1812,8 +1922,6 @@
       return result;
     }
     const judgment = vocabJudge(raw, target, isItEn, entry);
-    // Build a clean list of acceptable alternatives for display. Strip
-    // parenthetical clarifiers, split on commas/semicolons/slashes, dedupe.
     const acceptableList = (() => {
       const cleaned = String(target || "").replace(/\([^)]*\)/g, "");
       const seen = new Set();
@@ -1862,6 +1970,54 @@
         evidence: (outcome === "hit" ? "right on " : outcome === "partial" ? "half on " : "miss on ") + entry.lemma,
         source: "band_rollup"
       });
+    }
+    // EN->IT noun side-channels: gender + article-form markpoints.
+    //
+    // GENDER fires ONLY on an unambiguous signal:
+    //   - explicit "(m)" / "(f)" suffix in the answer, OR
+    //   - an article whose gender is unambiguous (il/lo/la/un/uno/una/...).
+    // Bare lemma alone, or an ambiguous article like l'amico, leaves gender
+    // silent (no markpoint at all). The learner chose not to demonstrate it.
+    //
+    // ARTICLE-FORM fires whenever an article was provided. It checks whether
+    // the article matches the expected forms for this lemma's actual gender
+    // and phonology (lo zaino, l'amico, un'arancia, etc.).
+    const ai = judgment.articleInfo;
+    if (ai && ai.expectedGender) {
+      const signal = ai.explicitGender || ai.articleGenderSignal;
+      if (signal !== null) {
+        const correct = (signal === ai.expectedGender);
+        result.markpoints.push({
+          bucket: "vocabulary.it." + entry.lemma + ".gender.active",
+          label: entry.lemma + " (gender, production)",
+          attempted_credit: 1,
+          correctness_credit: correct ? 1 : 0,
+          outcome: correct ? "hit" : "miss",
+          evidence: ai.articleProvided ? ("article " + ai.articleProvided) : ("marked (" + signal + ")"),
+          expected: "gender " + ai.expectedGender,
+          explanation: correct ? undefined : (entry.lemma + " is " + ai.expectedGender + ".")
+        });
+      }
+      if (ai.articleProvided && ai.expectedArticles) {
+        const expectedAll = ai.expectedArticles.definite.concat(ai.expectedArticles.indefinite);
+        const correct = expectedAll.indexOf(ai.articleProvided) >= 0;
+        let explanation;
+        if (!correct) {
+          explanation = "For " + entry.lemma + " (" + ai.expectedGender + "), use " +
+            ai.expectedArticles.definite[0] + " (definite) or " +
+            ai.expectedArticles.indefinite[0] + " (indefinite).";
+        }
+        result.markpoints.push({
+          bucket: "vocabulary.it." + entry.lemma + ".article_form.active",
+          label: entry.lemma + " (article form, production)",
+          attempted_credit: 1,
+          correctness_credit: correct ? 1 : 0,
+          outcome: correct ? "hit" : "miss",
+          evidence: "article " + ai.articleProvided,
+          expected: expectedAll.join(" or "),
+          explanation: explanation
+        });
+      }
     }
     return result;
   }

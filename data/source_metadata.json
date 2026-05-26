@@ -1,0 +1,22 @@
+{
+  "itwac": {
+    "total_tokens": 681124896,
+    "type": "raw_count",
+    "description": "ItWaC web corpus, lemma-aware (franfranz/Word_Frequency_Lists_ITA). Combined noun+verb+adjective files; auxiliaries and function words excluded by upstream preprocessing.",
+    "applies_to_pos": [
+      "noun",
+      "verb",
+      "adjective"
+    ]
+  },
+  "opensubs": {
+    "total_tokens": 241569888,
+    "type": "raw_count",
+    "description": "OpenSubtitles 2018 Italian (hermitdave/FrequencyWords it_50k.txt), wordform counts lemmatised via simplemma and aggregated per lemma."
+  },
+  "wordfreq": {
+    "total_tokens": null,
+    "type": "native_fraction",
+    "description": "wordfreq Python library, multi-corpus aggregate (Wikipedia + news + books + subtitles + web + Twitter). The freq_wordfreq value is the native fraction returned by wordfreq.word_frequency() summed across the lemma's surface forms. Multiply by 1e6 for frequency-per-million if useful."
+  }
+}

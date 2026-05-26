@@ -1,14 +1,15 @@
 # Italian vocabulary data files
 
-Three files sit side-by-side in `data/`. They share a subject (Italian word frequency) but answer different questions and are authoritative for different things. Don't merge them — they're useful precisely because they're separate.
+Four files sit side-by-side in `data/`. The CSVs and the JSON are editable sources; the `.db` is derived and gets rebuilt by `regenerate_db.py`.
 
 ## At a glance
 
-| File | Rows | Unit | Authoritative for | Source |
+| File | Rows | Unit | Authoritative for | Built from |
 |---|---|---|---|---|
-| `vocabulary_it_frequency_forms.csv` | 10,000 | **wordform** (surface string) | Frequency of the actual strings learners encounter | Auto-merged from 3 corpora |
-| `vocabulary_it_frequency_lemmas.csv` | 8,000 | **lemma** (+ POS, + gender for homographs) | Frequency-ranked vocabulary universe; coverage gaps; sanity checks on the curated file | Auto-merged from 3 corpora + 1 sanity-check source |
-| `vocabulary_it_frequency.json` | ~1,100 | **lemma** (curated entries) | Pedagogical content: glosses, themes, plural irregularities, notes, false-friend warnings | Hand-authored |
+| `vocabulary_it_frequency_forms.csv` | 10,000 | **wordform** | Strings learners actually encounter | 3 corpora merged + 4 per-register columns |
+| `vocabulary_it_frequency_lemmas.csv` | 18,000 | **lemma** (+ POS + gender for homographs) | Frequency-ranked vocabulary universe; coverage gaps; metadata sanity checks | 3 corpora merged + 1 sanity source + 4 per-register columns |
+| `vocabulary_it_frequency.json` | ~1,500 | **lemma** (curated) | Pedagogical content (glosses, themes, plurals, notes, false-friend warnings) | Hand-authored + thin gap-fill |
+| `linguics_italian.db` | — | SQLite | Queryable join of everything above plus bands, themes, coverage curve | Built from the other three by `regenerate_db.py` |
 
 ---
 
@@ -16,7 +17,7 @@ Three files sit side-by-side in `data/`. They share a subject (Italian word freq
 
 Top 10,000 Italian **wordforms** by frequency. A wordform is the literal string that appears in text: `casa` and `case` are two rows; `parla`, `parlato`, `parlando`, `parlerà` are four separate rows.
 
-Columns: `rank, word, avg_rank, sources_count, rank_hermitdave, rank_orgtre, rank_wordfreq`.
+Columns: `rank, word, avg_rank, sources_count, rank_hermitdave, rank_orgtre, rank_wordfreq, rank_lip, rank_news, rank_literature, rank_wikipedia`.
 
 Sources (all surface-form, no lemmatisation):
 - **hermitdave/FrequencyWords** — raw OpenSubtitles 2018 50k list
@@ -33,9 +34,22 @@ Each source is capped at top 30k; words missing from a source's top 30k are pena
 
 ## 2. `vocabulary_it_frequency_lemmas.csv` — lemmas
 
-Top 8,000 Italian **lemmas** (dictionary headwords), with POS, gender, auxiliary and adjective-class. A lemma is the citation form: infinitive for verbs (`parlare`), masculine singular for adjectives (`bello`), singular for nouns (`casa`). All of `parla`/`parlato`/`parlando` collapse into one row under the lemma `parlare`.
+Top 18,000 Italian **lemmas** (dictionary headwords), with POS, gender, auxiliary and adjective-class. A lemma is the citation form: infinitive for verbs (`parlare`), masculine singular for adjectives (`bello`), singular for nouns (`casa`). All of `parla`/`parlato`/`parlando` collapse into one row under the lemma `parlare`.
 
-Columns: `rank, lemma, pos, avg_rank, sources_count, rank_itwac, rank_opensubs, rank_wordfreq, gender, auxiliary, adj_class, nvdb_tier, notes`.
+Columns: `rank, lemma, pos, avg_rank, sources_count, rank_itwac, rank_opensubs, rank_wordfreq, gender, auxiliary, adj_class, nvdb_tier, notes, rank_lip, rank_news, rank_literature, rank_wikipedia`.
+
+### Per-register columns (added in brief C)
+
+Four extra rank columns drawn from register-specific corpora:
+
+| Column | Corpus | Notes |
+|---|---|---|
+| `rank_wikipedia` | Italian Wikipedia, October 2022 dump (via `adno/wikipedia-word-frequency-clean`) | Encyclopedic register |
+| `rank_news` | OPUS News-Commentary v16, Italian monolingual | News writing |
+| `rank_literature` | ~80 Italian Project Gutenberg books | Literary writing |
+| `rank_lip` | OPUS Europarl v8, Italian monolingual | **PROXY**: formal transcribed parliamentary speech, not strictly LIP. The actual LIP / BADIP corpus wasn't reachable at build time; this is the closest available stand-in. Swap when LIP becomes accessible. |
+
+All four were lemmatised via simplemma (same tool used for OpenSubtitles+wordfreq), then aggregated and ranked. They sit alongside the existing rank columns — the headline `rank` and `avg_rank` are unchanged.
 
 POS is one of: `noun, verb, adjective, adverb, preposition, pronoun, article, conjunction, interjection, numeral, determiner`.
 
@@ -105,15 +119,29 @@ For same-lemma/same-POS/same-gender sense homographs, options that aren't done h
 
 ## 3. `vocabulary_it_frequency.json` — curated entries
 
-Hand-authored vocabulary entries with the full pedagogical apparatus. ~1,100 entries, each with: `rank, lemma, pos, translation_en, themes, band, gender, plural, auxiliary, conjugation_class, adj_class, notes`. Homographs allowed (same `lemma`, distinct `pos` or `gender`).
+Hand-authored vocabulary entries with the full pedagogical apparatus. ~1,500 entries, each with: `rank, lemma, pos, translation_en, themes, band, gender, plural, auxiliary, conjugation_class, adj_class, noun_class, gloss_en, notes`. Homographs allowed (same `lemma`, distinct `pos` or `gender`).
 
 This is **the authoritative file for everything pedagogical**: glosses, themes, irregular plurals, conjugation classes, false-friend warnings, notes on register and usage. The `rank` field here was originally set from a different procedure; the lemma CSV exists in part so it can be re-ranked against a corpus-grounded source.
 
 ### Relationship to the lemma CSV
 
-- The lemma CSV's universe (~8,000) is a strict superset of the curated JSON (~1,100). Every JSON lemma should appear in the lemma CSV; mismatches are worth investigating (different lemmatisation choice, missing low-frequency lemma, etc.).
+- The lemma CSV's universe (~18,000) is a strict superset of the curated JSON (~1,500). Every JSON lemma should appear in the lemma CSV; mismatches are worth investigating (different lemmatisation choice, missing low-frequency lemma, etc.).
 - The curated JSON's `gender` and `auxiliary` are authoritative when they disagree with the lemma CSV — the CSV's gender/auxiliary are derived from automated lookups and heuristics.
 - The curated JSON's `rank` is the band/teaching order; the lemma CSV's `rank` is corpus-derived frequency. They will not match — they're answering different questions.
+
+---
+
+## 4. `linguics_italian.db` — SQLite
+
+Derived single-file database. Tables: `lemmas`, `forms`, `curated_entries`, `themes`, `bands`, `text_coverage_curve`. View: `vocab_view`. See `linguics_italian.db.SCHEMA.md` for column-by-column docs and example queries (coverage-at-rank, missing-translations, noun-class distribution).
+
+**Rebuilt by `regenerate_db.py`** (at project root). The CSVs and the JSON are authoritative; the DB is a derived view. After any edit to the source files, rerun the script:
+
+```
+python regenerate_db.py
+```
+
+The script writes atomically (`.db.tmp` then `os.replace`), so an interrupted build leaves the previous DB intact.
 
 ---
 
@@ -123,7 +151,11 @@ This is **the authoritative file for everything pedagogical**: glosses, themes, 
 - NVdB HTML files parsed with a simple regex; lemmas listed alphabetically within tier (no per-lemma frequency rank available — hence "sanity check, not ranker").
 - `simplemma` is a fast pure-Python lemmatiser; accurate on common forms, weaker on rare morphology. Its lemmatisation of `la`/`lo`/`le` collapses to `il` (treating them all as articles), which matches the lemma convention used in the curated JSON.
 - Morph-it! 0.4.8 is latin-1 encoded; ~505k inflected forms covering ~35k lemmas.
+- Italian Wikipedia frequencies: `adno/wikipedia-word-frequency-clean`, October 2022 dump (~850k wordforms, ~1B tokens).
+- News-Commentary: OPUS v16, ~2.5M tokens.
+- Europarl: OPUS v8, ~52M tokens — used as a `rank_lip` proxy until the real LIP/BADIP corpus is reachable.
+- Project Gutenberg Italian: 79 books, ~5.8M tokens — sample of canonical Italian literature.
 
 ## Regeneration
 
-Both auto-generated CSVs are produced by Python scripts living in the generator's working tree (not in this repo). Re-running them will overwrite the CSVs in place; the curated JSON is hand-edited and is never overwritten automatically.
+CSVs and the DB are produced by scripts living in the generator's working tree. Re-running them overwrites the CSVs and DB in place; the curated JSON is hand-edited and never overwritten automatically. All writes use atomic `.tmp` + `os.replace()` so OneDrive sync (or any other interruption) cannot leave a half-written file. **For this reason the canonical project location is now off-OneDrive at `C:\Claude (not on Gdrive, nor OneDrive)\Linguics\` — keep it there.**
