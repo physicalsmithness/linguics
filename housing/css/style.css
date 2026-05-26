@@ -719,14 +719,138 @@ footer {
   align-items: flex-start;
 }
 #vocab-host { flex: 1 1 0; min-width: 0; }
+/* When vocab strand is active, hide the live-stats aside entirely and let
+   the vocab-axes panel claim the whole right side. */
+body.strand-vocab-active main { grid-template-columns: 1fr; }
+body.strand-vocab-active #live-stats { display: none; }
+
 #vocab-axes-host {
-  flex: 0 0 auto;
-  width: 540px;
-  max-width: 100%;
+  flex: 1 1 auto;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 16px;
   padding-top: 4px;
+}
+
+/* Make the vocab strand a true two-column layout: card on left, axes on right. */
+#vocab-body { gap: 28px; }
+#vocab-host { flex: 0 0 460px; }
+
+/* Sliders header */
+.vocab-axes-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  padding: 8px 12px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  font-size: 12px;
+}
+.vocab-slider {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+.vocab-slider-label { color: var(--muted); }
+.vocab-slider-value {
+  display: inline-block;
+  min-width: 32px;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+  font-weight: 600;
+}
+.vocab-slider input[type="range"] {
+  width: 110px;
+}
+
+/* New focused dot-grid */
+.freq-heatmap-row {
+  display: flex;
+  align-items: stretch;
+  gap: 4px;
+  background: transparent;
+  padding: 0;
+}
+.freq-focused {
+  display: grid;
+  grid-template-columns: repeat(11, auto);
+  grid-template-rows: repeat(10, auto);
+  gap: 3px;
+  background: rgba(0,0,0,0.06);
+  padding: 3px;
+  border-radius: 3px;
+}
+.freq-focused-box {
+  display: grid;
+  grid-template-columns: repeat(3, 8px);
+  grid-template-rows: repeat(3, 8px);
+  gap: 1px;
+}
+.freq-dot {
+  width: 8px;
+  height: 8px;
+  background: rgb(236, 229, 210);
+  border-radius: 1px;
+  cursor: default;
+}
+.freq-dot.not-curated {
+  background: transparent;
+  border: 1px dashed rgba(0,0,0,0.1);
+  width: 6px;
+  height: 6px;
+}
+.freq-dot:hover {
+  outline: 2px solid var(--accent);
+  outline-offset: 0;
+  z-index: 1;
+  position: relative;
+}
+.freq-dot.flash {
+  outline: 2px solid var(--accent);
+  animation: vocab-cell-flash 0.8s ease-out;
+}
+
+/* Flanking stripe-blocks */
+.freq-flanking {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: rgba(0,0,0,0.06);
+  padding: 2px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: outline 0.12s ease;
+}
+.freq-flanking:hover { outline: 2px solid var(--accent); outline-offset: -2px; }
+.freq-stripe {
+  flex: 1 0 0;
+  min-height: 6px;
+}
+
+/* Tick row */
+.freq-tick-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  margin-top: 4px;
+  font-size: 9.5px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.freq-tick.focused {
+  flex: 0 0 auto;
+  /* width matches .freq-focused: 11 boxes of (3*8 + 2*1) + 10 gaps*3 + 2*3 padding = 11*26 + 30 + 6 = 322 */
+  width: 322px;
+  text-align: right;
+  padding-right: 2px;
+}
+.freq-tick.flanking {
+  flex: 0 0 auto;
+  text-align: center;
+  font-size: 8.5px;
 }
 
 .vocab-axis {
@@ -820,23 +944,59 @@ footer {
   letter-spacing: 0.03em;
 }
 .vocab-cellgrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: flex-start;
 }
 .vocab-cell {
-  border: 1px solid rgba(0,0,0,0.05);
+  border: 1px solid rgba(0,0,0,0.08);
   border-radius: 3px;
   padding: 5px 7px;
   font-size: 11.5px;
   cursor: default;
   position: relative;
-  min-height: 36px;
+  background: white;
   transition: outline 0.12s ease;
 }
+.vocab-cell.avg-mode {
+  min-height: 36px;
+  min-width: 120px;
+  max-width: 200px;
+  flex: 0 0 auto;
+}
+.vocab-cell.dot-mode {
+  background: white;
+  min-width: 96px;
+  flex: 0 0 auto;
+}
 .vocab-cell:hover { outline: 2px solid var(--accent); outline-offset: -2px; z-index: 1; }
+.vocab-cell-head { display: flex; flex-direction: column; }
 .vocab-cell-label { font-weight: 600; line-height: 1.2; }
 .vocab-cell-meta { font-size: 10px; color: rgba(0,0,0,0.55); margin-top: 1px; }
+.vocab-cell-dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  margin-top: 4px;
+  max-width: 132px;
+}
+.vocab-lemma-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 1px;
+  background: rgb(236, 229, 210);
+}
+.vocab-lemma-dot:hover {
+  outline: 2px solid var(--accent);
+  z-index: 1;
+  position: relative;
+}
+.vocab-lemma-dot.flash {
+  outline: 2px solid var(--accent);
+  animation: vocab-cell-flash 0.8s ease-out;
+}
 .vocab-cell.flash {
   outline: 2px solid var(--accent);
   outline-offset: -2px;

@@ -308,15 +308,30 @@
     return `rgb(${Math.round(a[0]+(b[0]-a[0])*t)}, ${Math.round(a[1]+(b[1]-a[1])*t)}, ${Math.round(a[2]+(b[2]-a[2])*t)})`;
   }
 
+  // Tunable gradient stops. yellowStop is where the gradient reaches pale
+  // yellow (default 0.2 per user spec). greenStop is where it reaches pale
+  // green (0.7). Both expressed as 0..1 correctness values.
+  let vocabYellowStop = 0.2;
+  const vocabGreenStop = 0.7;
+  // Unattempted baseline: when a cell has no events at all, treat it as
+  // having this correctness value for the purpose of colouring (so the cell
+  // is filled, not blank). Default 0.2 per user spec.
+  let vocabUnattemptedBaseline = 0.2;
+
   function rwgColour(correctness, hasEvents) {
-    if (!hasEvents) return RWG_UNATTEMPTED;
-    const c = Math.max(0, Math.min(1, correctness));
-    if (c <= 0.30) {
-      return interpRGB(RWG_RED, RWG_YELLOW, c / 0.30);
-    } else if (c <= 0.70) {
-      return interpRGB(RWG_YELLOW, RWG_PALE_GREEN, (c - 0.30) / 0.40);
+    const baseline = hasEvents ? Math.max(0, Math.min(1, correctness)) : vocabUnattemptedBaseline;
+    const c = baseline;
+    const yStop = vocabYellowStop;
+    const gStop = vocabGreenStop;
+    if (c <= yStop) {
+      const t = yStop > 0 ? c / yStop : 0;
+      return interpRGB(RWG_RED, RWG_YELLOW, t);
+    } else if (c <= gStop) {
+      const t = (gStop > yStop) ? (c - yStop) / (gStop - yStop) : 0;
+      return interpRGB(RWG_YELLOW, RWG_PALE_GREEN, t);
     } else {
-      return interpRGB(RWG_PALE_GREEN, RWG_GREEN, (c - 0.70) / 0.30);
+      const t = (gStop < 1) ? (c - gStop) / (1 - gStop) : 0;
+      return interpRGB(RWG_PALE_GREEN, RWG_GREEN, t);
     }
   }
 
@@ -373,6 +388,9 @@
     document.querySelectorAll(".strand").forEach(s => s.hidden = (s.id !== "strand-" + name));
     document.querySelectorAll("nav#strand-nav button").forEach(b =>
       b.classList.toggle("active", b.dataset.strand === name));
+    // Body class drives whether live-stats aside is visible. Vocab tab claims
+    // the whole right side for the multi-axis heatmap.
+    document.body.classList.toggle("strand-vocab-active", name === "vocab");
     if (name === "buckets") renderBucketsBrowse();
     if (name === "grammar") focusGrammarInput();
     if (name === "translation") focusTranslationInput();
@@ -1078,6 +1096,11 @@
     return labels[kind] || kind;
   }
 
+  // Threshold above which a cell averages rather than showing per-lemma dots.
+  // Per user: "over a hundred per category, then by all means we can take
+  // average values".
+  const VOCAB_CELL_DOT_THRESHOLD = 100;
+
   function buildCellGroups(groups, axisKind) {
     const wrap = document.createElement("div");
     wrap.className = "vocab-cellgrid-host";
@@ -1097,24 +1120,55 @@
         cell.className = "vocab-cell";
         cell.dataset.axis = axisKind;
         cell.dataset.key = c.key;
-        const events = eventsForLemmas(c.lemmas, { direction: c.directionFilter || "any" });
-        const { correctness, hasEvents, nAttempted } = recencyWeightedCorrectness(events);
-        cell.style.background = rwgColour(correctness, hasEvents);
 
+        const lemmas = (c.lemmas instanceof Set) ? Array.from(c.lemmas) : c.lemmas;
+        const lemmaCount = lemmas.length;
+        const dirFilter = c.directionFilter || "any";
+
+        // Header
+        const head = document.createElement("div");
+        head.className = "vocab-cell-head";
         const lbl = document.createElement("div");
         lbl.className = "vocab-cell-label";
         lbl.textContent = c.label;
-        cell.appendChild(lbl);
-
+        head.appendChild(lbl);
         const meta = document.createElement("div");
         meta.className = "vocab-cell-meta";
-        const lemmaCount = (c.lemmas instanceof Set) ? c.lemmas.size : c.lemmas.length;
-        meta.textContent = lemmaCount + " - " + nAttempted;
-        cell.appendChild(meta);
+        head.appendChild(meta);
+        cell.appendChild(head);
 
-        const pct = hasEvents ? Math.round(correctness * 100) + "%" : "untouched";
-        cell.title = c.label + "\n" + lemmaCount + " lemmas - " + nAttempted + " attempts - " + pct;
-
+        if (lemmaCount > VOCAB_CELL_DOT_THRESHOLD) {
+          // Average mode: solid fill driven by aggregate events.
+          const events = eventsForLemmas(lemmas, { direction: dirFilter });
+          const wc = recencyWeightedCorrectness(events);
+          cell.classList.add("avg-mode");
+          cell.style.background = rwgColour(wc.correctness, wc.hasEvents);
+          const pct = wc.hasEvents ? Math.round(wc.correctness * 100) + "%" : "untouched";
+          meta.textContent = lemmaCount + " words - " + wc.nAttempted + " attempts - " + pct;
+          cell.title = c.label + "\n(averaged: " + lemmaCount + " lemmas) - " + pct;
+        } else {
+          // Word-by-word dots.
+          cell.classList.add("dot-mode");
+          const dots = document.createElement("div");
+          dots.className = "vocab-cell-dots";
+          let attempted = 0;
+          for (const lemma of lemmas) {
+            const events = eventsForLemmas([lemma], { direction: dirFilter });
+            const wc = recencyWeightedCorrectness(events);
+            const dot = document.createElement("span");
+            dot.className = "vocab-lemma-dot";
+            dot.style.background = rwgColour(wc.correctness, wc.hasEvents);
+            if (!wc.hasEvents) dot.classList.add("untouched");
+            const pct = wc.hasEvents ? Math.round(wc.correctness * 100) + "%" : "untouched";
+            dot.title = lemma + " - " + pct;
+            dot.dataset.lemma = lemma;
+            if (wc.hasEvents) attempted++;
+            dots.appendChild(dot);
+          }
+          cell.appendChild(dots);
+          meta.textContent = lemmaCount + " words - " + attempted + " touched";
+          cell.title = c.label + "\n" + lemmaCount + " lemmas - " + attempted + " touched";
+        }
         grid.appendChild(cell);
       }
       section.appendChild(grid);
@@ -1126,17 +1180,28 @@
   function flashAxisCellsFor(entry) {
     if (!entry) return;
     const selectors = [];
+    // Frequency: flash the single dot in the focused dot-grid. Falls back to
+    // the old strip selector if the dot-grid isn't mounted (e.g. block not focused).
+    if (entry.lemma) {
+      selectors.push('.freq-dot[data-lemma="' + cssEscape(entry.lemma) + '"]');
+    }
     if (entry.band) {
       selectors.push('.vocab-strip[data-band-id="' + cssEscape(entry.band) + '"]');
     }
+    // Gender: flash the cell for the lemma's noun_class.
     if (entry.pos === "noun") {
       const cls = entry.noun_class || (entry.gender === "m" ? "unspecified_m" : entry.gender === "f" ? "unspecified_f" : "unspecified");
       selectors.push('.vocab-cell[data-axis="gender"][data-key="' + cssEscape(cls) + '"]');
     }
+    // Themes: flash each theme cell.
     if (Array.isArray(entry.themes)) {
       for (const t of entry.themes) {
         selectors.push('.vocab-cell[data-axis="themes"][data-key="' + cssEscape(t) + '"]');
       }
+    }
+    // Individual lemma dots inside dot-mode cells (gender + themes)
+    if (entry.lemma) {
+      selectors.push('.vocab-lemma-dot[data-lemma="' + cssEscape(entry.lemma) + '"]');
     }
     const host = document.getElementById("vocab-axes-host");
     if (!host) return;
@@ -1166,92 +1231,119 @@
       return;
     }
 
-    const bands = bandList();
-    if (!bands.length) {
-      const empty = document.createElement("div");
-      empty.className = "muted";
-      empty.style.cssText = "padding:18px;font-style:italic;font-size:13px";
-      empty.textContent = "(no frequency bands found)";
-      host.appendChild(empty);
-      return;
+    // -------- header with tuning sliders --------
+    const header = document.createElement("div");
+    header.className = "vocab-axes-header";
+    function buildSlider(labelText, getter, setter, min, max, step) {
+      const wrap = document.createElement("label");
+      wrap.className = "vocab-slider";
+      const lbl = document.createElement("span");
+      lbl.className = "vocab-slider-label";
+      lbl.textContent = labelText;
+      const slider = document.createElement("input");
+      slider.type = "range";
+      slider.min = String(min); slider.max = String(max); slider.step = String(step);
+      slider.value = String(getter());
+      const val = document.createElement("span");
+      val.className = "vocab-slider-value";
+      val.textContent = Number(getter()).toFixed(2);
+      slider.addEventListener("input", () => {
+        const v = parseFloat(slider.value);
+        setter(v);
+        val.textContent = v.toFixed(2);
+        renderVocabAxes();
+      });
+      wrap.appendChild(lbl);
+      wrap.appendChild(slider);
+      wrap.appendChild(val);
+      return wrap;
     }
+    header.appendChild(buildSlider(
+      "Yellow stop", () => vocabYellowStop, (v) => { vocabYellowStop = v; }, 0.05, 0.6, 0.01
+    ));
+    header.appendChild(buildSlider(
+      "Untouched baseline", () => vocabUnattemptedBaseline, (v) => { vocabUnattemptedBaseline = v; }, 0, 1, 0.01
+    ));
+    host.appendChild(header);
 
-    // Clamp focus.
-    const maxStart = Math.max(0, bands.length - VOCAB_FREQ_WINDOW);
-    if (vocabFreqFocusStart > maxStart) vocabFreqFocusStart = maxStart;
-    if (vocabFreqFocusStart < 0) vocabFreqFocusStart = 0;
-    const focusStart = vocabFreqFocusStart;
-    const focusEnd = focusStart + VOCAB_FREQ_WINDOW; // exclusive
-
-    // Frequency axis ------------------------------------------------------
+    // -------- frequency axis --------
     const freqAxis = document.createElement("div");
     freqAxis.className = "vocab-axis vocab-axis-freq";
 
-    const freqTitleRow = document.createElement("div");
-    freqTitleRow.className = "vocab-axis-title";
-    const freqTitle = document.createElement("span");
-    freqTitle.className = "vocab-axis-name";
-    freqTitle.textContent = "Frequency";
-    freqTitleRow.appendChild(freqTitle);
-
+    const freqTitle = document.createElement("div");
+    freqTitle.className = "vocab-axis-title";
+    const ft = document.createElement("span");
+    ft.className = "vocab-axis-name";
+    ft.textContent = "Frequency";
+    freqTitle.appendChild(ft);
     const focusInfo = document.createElement("span");
     focusInfo.className = "vocab-axis-focus";
-    const focusLo = bands[focusStart].lo;
-    const focusHi = bands[Math.min(focusEnd - 1, bands.length - 1)].hi;
-    focusInfo.textContent = `focused: ranks ${focusLo}–${focusHi}`;
-    freqTitleRow.appendChild(focusInfo);
+    // Focused range is rank focusRankStart..(focusRankStart+989)
+    if (typeof window.__vocabFocusRankStart === "undefined") window.__vocabFocusRankStart = 1;
+    const focusStart = window.__vocabFocusRankStart;
+    const focusEnd = focusStart + 989;
+    focusInfo.textContent = "focused: ranks " + focusStart + "-" + focusEnd;
+    freqTitle.appendChild(focusInfo);
+    freqAxis.appendChild(freqTitle);
 
-    freqAxis.appendChild(freqTitleRow);
-
-    // Heatmap strip row.
-    const heat = document.createElement("div");
-    heat.className = "vocab-heatmap";
-    bands.forEach((b, idx) => {
-      const inFocus = (idx >= focusStart && idx < focusEnd);
-      const strip = document.createElement("div");
-      strip.className = "vocab-strip " + (inFocus ? "in-focus" : "out-focus");
-      strip.dataset.bandId = b.id;
-      strip.dataset.idx = idx;
-
-      const events = eventsForBand(b.id);
-      const { correctness, hasEvents, nAttempted } = recencyWeightedCorrectness(events);
-      strip.style.background = rwgColour(correctness, hasEvents);
-
-      const lemmaCount = (bandLemmasIndex()[b.id] || []).length;
-      const pct = hasEvents ? Math.round(correctness * 100) + "%" : "untouched";
-      strip.title = `Ranks ${b.lo}–${b.hi}\n${lemmaCount} lemmas curated · ${nAttempted} attempts · ${pct}`;
-
-      strip.addEventListener("click", () => {
-        // Re-centre focus on the clicked band.
-        let newStart = idx - Math.floor(VOCAB_FREQ_WINDOW / 2);
-        if (newStart < 0) newStart = 0;
-        if (newStart > bands.length - VOCAB_FREQ_WINDOW) newStart = Math.max(0, bands.length - VOCAB_FREQ_WINDOW);
-        vocabFreqFocusStart = newStart;
-        renderVocabAxes();
-      });
-
-      heat.appendChild(strip);
-    });
-    freqAxis.appendChild(heat);
-
-    // Band-axis ticks under the strips (every 1000 = every 10 bands).
-    const ticks = document.createElement("div");
-    ticks.className = "vocab-heatmap-ticks";
-    bands.forEach((b, idx) => {
-      const inFocus = (idx >= focusStart && idx < focusEnd);
-      const t = document.createElement("div");
-      t.className = "vocab-tick " + (inFocus ? "in-focus" : "out-focus");
-      // Show a number every 1000 (= every 10 bands)
-      if ((idx + 1) % 10 === 0) {
-        t.textContent = String(b.hi);
+    // Build rank -> entry index from vocabEntries.
+    const byRank = new Map();
+    for (const v of vocabEntries) {
+      if (typeof v.rank === "number" && v.lemma) {
+        // Take the first entry per rank (homographs share ranks - we just
+        // colour by the first one's events for now).
+        if (!byRank.has(v.rank)) byRank.set(v.rank, v);
       }
+    }
+
+    // Determine total rank universe. Use max rank from buckets or entries.
+    let maxRank = 0;
+    for (const v of vocabEntries) if (typeof v.rank === "number" && v.rank > maxRank) maxRank = v.rank;
+    // Round up to nearest 990 boundary for clean block layout.
+    const RANKS_PER_BLOCK = 990;
+    const totalBlocks = Math.max(1, Math.ceil(Math.max(maxRank, 8000) / RANKS_PER_BLOCK));
+
+    // Which block contains the focus?
+    const focusBlockIdx = Math.floor((focusStart - 1) / RANKS_PER_BLOCK);
+
+    const heatRow = document.createElement("div");
+    heatRow.className = "freq-heatmap-row";
+
+    for (let bi = 0; bi < totalBlocks; bi++) {
+      const blockStart = bi * RANKS_PER_BLOCK + 1;
+      const blockEnd = blockStart + RANKS_PER_BLOCK - 1;
+      if (bi === focusBlockIdx) {
+        const grid = renderFocusedDotGrid(blockStart, byRank);
+        heatRow.appendChild(grid);
+      } else {
+        // Width: nearer blocks get more space.
+        const distance = Math.abs(bi - focusBlockIdx);
+        const width = distance === 1 ? 36 : distance === 2 ? 24 : 16;
+        const stripes = renderFlankingStripes(blockStart, blockEnd, byRank, width);
+        stripes.addEventListener("click", () => {
+          window.__vocabFocusRankStart = blockStart;
+          renderVocabAxes();
+        });
+        heatRow.appendChild(stripes);
+      }
+    }
+    freqAxis.appendChild(heatRow);
+
+    // Tick row underneath: show "1000", "2000", ... below block boundaries.
+    const ticks = document.createElement("div");
+    ticks.className = "freq-tick-row";
+    for (let bi = 0; bi < totalBlocks; bi++) {
+      const t = document.createElement("div");
+      t.className = "freq-tick " + (bi === focusBlockIdx ? "focused" : "flanking");
+      const high = (bi + 1) * RANKS_PER_BLOCK;
+      t.textContent = String(high);
       ticks.appendChild(t);
-    });
+    }
     freqAxis.appendChild(ticks);
 
     host.appendChild(freqAxis);
 
-    // Gender axis ---------------------------------------------------------
+    // -------- gender axis (unchanged) --------
     if (typeof window.__vocabGenderHidden === "undefined") window.__vocabGenderHidden = false;
     const genderAxis = document.createElement("div");
     genderAxis.className = "vocab-axis vocab-axis-gender";
@@ -1271,7 +1363,6 @@
     });
     genderTitle.appendChild(gToggle);
     genderAxis.appendChild(genderTitle);
-
     if (!window.__vocabGenderHidden) {
       const gIdx = genderClassLemmasIndex();
       const order = [
@@ -1285,18 +1376,13 @@
       for (const key of order) {
         const lemmas = gIdx[key];
         if (!lemmas || !lemmas.length) continue;
-        cells.push({
-          key,
-          label: GENDER_CLASS_LABELS[key] || key,
-          lemmas,
-          directionFilter: "active"
-        });
+        cells.push({ key, label: GENDER_CLASS_LABELS[key] || key, lemmas, directionFilter: "active" });
       }
       genderAxis.appendChild(buildCellGroups([{ title: null, cells }], "gender"));
     }
     host.appendChild(genderAxis);
 
-    // Themes axis ---------------------------------------------------------
+    // -------- themes axis (unchanged for now) --------
     const themesAxis = document.createElement("div");
     themesAxis.className = "vocab-axis vocab-axis-themes";
     const themesTitle = document.createElement("div");
@@ -1327,22 +1413,90 @@
         for (const th of themes) {
           const lemmas = tIdx[th.id] || [];
           if (!lemmas.length) continue;
-          cells.push({
-            key: th.id,
-            label: th.label || th.id,
-            lemmas,
-            directionFilter: "any"
-          });
+          cells.push({ key: th.id, label: th.label || th.id, lemmas, directionFilter: "any" });
         }
-        if (cells.length) {
-          groups.push({ title: themeKindLabel(k), cells });
-        }
+        if (cells.length) groups.push({ title: themeKindLabel(k), cells });
       }
       themesAxis.appendChild(buildCellGroups(groups, "themes"));
     }
-
     host.appendChild(themesAxis);
   }
+
+  // Render the focused dot-grid: 10 rows x 11 cols of "boxes", each box a 3x3
+  // grid of word-dots. 990 dots total. Each dot represents one rank position
+  // (ranks blockStart..blockStart+989). Curated entries get coloured by their
+  // events; gaps get a neutral "not yet curated" marker.
+  function renderFocusedDotGrid(blockStart, byRank) {
+    const grid = document.createElement("div");
+    grid.className = "freq-focused";
+    for (let boxRow = 0; boxRow < 10; boxRow++) {
+      for (let boxCol = 0; boxCol < 11; boxCol++) {
+        const box = document.createElement("div");
+        box.className = "freq-focused-box";
+        const boxIdx = boxRow * 11 + boxCol;  // 0..109
+        for (let r = 0; r < 3; r++) {
+          for (let c = 0; c < 3; c++) {
+            const slot = r * 3 + c; // 0..8
+            const rank = blockStart + boxIdx * 9 + slot;
+            const dot = document.createElement("div");
+            dot.className = "freq-dot";
+            dot.dataset.rank = rank;
+            const entry = byRank.get(rank);
+            if (entry) {
+              const events = eventsForLemmas([entry.lemma]);
+              const wc = recencyWeightedCorrectness(events);
+              dot.style.background = rwgColour(wc.correctness, wc.hasEvents);
+              if (!wc.hasEvents) dot.classList.add("untouched");
+              const pct = wc.hasEvents ? Math.round(wc.correctness * 100) + "%" : "untouched";
+              dot.title = entry.lemma + " (rank " + rank + ")\n" + pct + " - " + wc.nAttempted + " attempts";
+              dot.dataset.lemma = entry.lemma;
+            } else {
+              dot.classList.add("not-curated");
+              dot.title = "rank " + rank + ": not curated yet";
+            }
+            box.appendChild(dot);
+          }
+        }
+        grid.appendChild(box);
+      }
+    }
+    return grid;
+  }
+
+  // Render a flanking 990-rank block as 11 horizontal stripes. Each stripe
+  // is 90 consecutive ranks averaged together. Clickable to swap focus.
+  function renderFlankingStripes(blockStart, blockEnd, byRank, widthPx) {
+    const wrap = document.createElement("div");
+    wrap.className = "freq-flanking";
+    wrap.style.width = widthPx + "px";
+    wrap.title = "ranks " + blockStart + "-" + blockEnd + " (click to focus)";
+    const STRIPES = 11;
+    const span = blockEnd - blockStart + 1;
+    const perStripe = Math.ceil(span / STRIPES);
+    for (let i = 0; i < STRIPES; i++) {
+      const s = document.createElement("div");
+      s.className = "freq-stripe";
+      const sStart = blockStart + i * perStripe;
+      const sEnd = Math.min(blockEnd, sStart + perStripe - 1);
+      // Collect lemmas in this stripe's rank range.
+      const lemmas = [];
+      for (let r = sStart; r <= sEnd; r++) {
+        const e = byRank.get(r);
+        if (e) lemmas.push(e.lemma);
+      }
+      if (lemmas.length === 0) {
+        s.style.background = rwgColour(0, false);
+      } else {
+        const events = eventsForLemmas(lemmas);
+        const wc = recencyWeightedCorrectness(events);
+        s.style.background = rwgColour(wc.correctness, wc.hasEvents);
+      }
+      s.title = "ranks " + sStart + "-" + sEnd;
+      wrap.appendChild(s);
+    }
+    return wrap;
+  }
+
 
   // Vocab marker. Returns a judgment {outcome, credit, reason} rather than a
   // bool, so we can express partial credit for near-misses:
