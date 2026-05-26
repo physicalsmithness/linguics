@@ -474,7 +474,7 @@
     const doMark = () => {
       const raw = input.value;
       const result = LL.markGrammar(q, raw);
-      appendVocabHelpEvents(result, vocabHelpsUsed);
+      appendVocabHelpEvents(result, vocabHelpsUsed, q);
       appendActiveProductionHits(result, vocabHelpsUsed, q, raw);
       const attempt = LL.store.recordAttempt("grammar", q, raw, result);
       recentlyChangedBuckets = new Set(attempt.events.map(e => e.bucket));
@@ -612,6 +612,13 @@
           const payload = await LL.markTranslationLive(it, raw, intent, { bucketContext });
           result = payload.result;
           if (!result.raw_response) result.raw_response = raw;
+          // Belt-and-braces: post-process AI markpoints to resolve any base
+          // vocab translation ids to their .active/.passive variant. The AI
+          // sees variant ids in bucket_context already, but might shortcut.
+          if (typeof LL.resolveVocabInMarkpoints === "function" && typeof LL.inferDirection === "function") {
+            const direction = LL.inferDirection(it);
+            result.markpoints = LL.resolveVocabInMarkpoints(result.markpoints, direction);
+          }
           // Build the cost line
           const modelShort = (payload.model_used || "").split("/").pop() || "model";
           costLine = document.createElement("div");
@@ -626,7 +633,7 @@
         result = LL.markTranslationStub(it, raw, intent);
       }
 
-      appendVocabHelpEvents(result, vocabHelpsUsed);
+      appendVocabHelpEvents(result, vocabHelpsUsed, it);
       appendActiveProductionHits(result, vocabHelpsUsed, it, raw);
       const attempt = LL.store.recordAttempt("translation", it, raw, result, intent);
       recentlyChangedBuckets = new Set(attempt.events.map(e => e.bucket));
@@ -903,8 +910,15 @@
   }
 
   function markVocab(entry, raw, isItEn) {
-    const translationBucket = `vocabulary.it.${entry.lemma}.translation`;
-    const translationLabel = `${entry.lemma} (translation)`;
+    // Active/passive split: IT→EN tests passive recognition; EN→IT tests
+    // active production. The vocab tab's direction toggle drives the variant.
+    const direction = isItEn ? "it_en" : "en_it";
+    const baseBucket = `vocabulary.it.${entry.lemma}.translation`;
+    const translationBucket = (typeof LL.resolveVocabVariant === "function")
+      ? LL.resolveVocabVariant(baseBucket, direction)
+      : baseBucket;
+    const variantLabel = isItEn ? "translation, passive" : "translation, active";
+    const translationLabel = `${entry.lemma} (${variantLabel})`;
     const trimmed = String(raw || "").trim();
     const target = isItEn ? entry.translation_en : entry.lemma;
     // renderResult expects result.overall.{marks_awarded,marks_possible,summary}
@@ -1351,11 +1365,19 @@
   }
 
   // Append vocab help events to a marker result so they're recorded with the attempt.
-  function appendVocabHelpEvents(result, vocabHelpsUsedRef) {
+  // The variant (.active/.passive) is inferred from the surrounding item's direction
+  // when the helper is available.
+  function appendVocabHelpEvents(result, vocabHelpsUsedRef, item) {
     if (!vocabHelpsUsedRef.length) return;
+    const direction = (item && typeof LL.inferDirection === "function")
+      ? LL.inferDirection(item)
+      : "en_it";
+    const resolve = (typeof LL.resolveVocabVariant === "function")
+      ? (b) => LL.resolveVocabVariant(b, direction)
+      : (b) => b;
     for (const h of vocabHelpsUsedRef) {
       result.markpoints.push({
-        bucket: h.bucket,
+        bucket: resolve(h.bucket),
         label: h.label,
         attempted_credit: 1,
         correctness_credit: 0,
@@ -1389,6 +1411,15 @@
     if (item.source_text) visibleParts.push(String(item.source_text));
     if (item.cue) visibleParts.push(String(item.cue));
     const visibleText = visibleParts.join(" ");
+    // Active production hits fire only when the learner actually produced the
+    // lemma in their answer (with the prompt-visibility filter applied). For
+    // the active/passive variant: this path fires .active because the lemma
+    // was produced. Direction of the item provides the same answer (an item
+    // where the learner produces Italian is en_it = active).
+    const direction = (typeof LL.inferDirection === "function") ? LL.inferDirection(item) : "en_it";
+    const resolve = (typeof LL.resolveVocabVariant === "function")
+      ? (b) => LL.resolveVocabVariant(b, direction)
+      : (b) => b;
     for (const entry of item.vocab_help) {
       if (!entry.aspects || !entry.lemma) continue;
       if (!lemmaProducedInAnswer(entry.lemma, rawAnswer)) continue;
@@ -1396,9 +1427,10 @@
       // didn't have to retrieve it from their own knowledge.
       if (visibleText && lemmaProducedInAnswer(entry.lemma, visibleText)) continue;
       for (const [aspect, def] of Object.entries(entry.aspects)) {
-        if (usedBuckets.has(def.bucket)) continue;
+        const resolvedBucket = resolve(def.bucket);
+        if (usedBuckets.has(def.bucket) || usedBuckets.has(resolvedBucket)) continue;
         result.markpoints.push({
-          bucket: def.bucket,
+          bucket: resolvedBucket,
           label: `${entry.lemma} (${aspect})`,
           attempted_credit: 1,
           correctness_credit: 1,
@@ -2173,10 +2205,8 @@
     translationItems = real.translation;
     if (real.vocab && Array.isArray(real.vocab)) {
       vocabEntries = real.vocab;
-      // Expose for translation_marker.js to use when injecting vocab
-      // recognition buckets on IT→EN translation items.
       LL.vocabEntries = vocabEntries;
-      LL._vocabByLemma = null; // force rebuild
+      LL._vocabByLemma = null;
     }
     grammarIndex = 0;
     translationIndex = 0;

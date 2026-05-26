@@ -132,6 +132,48 @@ Example before / after:
 
 **Architecture ask:** (a) Add `gloss_en` to the canonical schema as an optional top-level string field. (b) Decide whether `translation_en` should be promoted to a proper array of strings (cleaner shape, but every entry needs touching) or remain a string that the marker splits on commas / semicolons (smaller change, but the data shape is implicit). (c) Confirm the marker behaviour: case-insensitive, whitespace-trimmed, comma-and-semicolon-split exact-match-on-any-element.
 
+## 12. There are now three vocabulary data files, not one
+
+The vocabulary data layer has expanded since this feedback file was first written. There are now (or about to be) three artefacts living side by side in `data/`, and the architect needs to decide how they relate, how they're presented to the learner, and which one is authoritative for what.
+
+**File 1: `data/vocabulary_it_frequency.json`** — the curated lemma file.
+
+About 1160 entries. Lemma-based, hand-authored, with full metadata: POS, gender, plural, auxiliary, conjugation_class, adj_class, themes (rank 501+ only so far), gloss_en, notes. This is the "deep" file. It's what the marker uses for AI-graded translation with named buckets (`vocabulary.it.essere.translation`, `vocabulary.it.casa.gender` etc.). Provisional ranks include gap-fill entries at 1001-1060 awaiting the re-rank pass.
+
+**File 2: `data/vocabulary_it_frequency_forms.csv`** — a merged form-level frequency list.
+
+10,000 rows. Produced by Claude Code by averaging three external sources (hermitdave, orgtre, wordfreq). Form-based (so `sono`, `è`, `ho`, `hai`, `abbiamo` all appear as separate rows; `casa` and `case` are separate rows). No POS, no gender, no themes. Useful for: "which surface strings does a learner most often encounter in actual Italian text?" Genuinely the best representation of that question available.
+
+**File 3: `data/vocabulary_it_frequency_lemmas.csv`** — a merged lemma-level frequency list. Coming.
+
+Target 8,000 rows. Will be produced by Code from lemma-native sources (ItWaC, LIF, De Mauro). Lemma-based, so `casa` covers casa+case in one row, `parlare` covers parla+parlato+parlando in one row. Schema includes POS, gender (for nouns), auxiliary (for verbs), adj_class (for adjectives), and preserves homograph splits where the sources allow.
+
+### How they're meant to relate
+
+- The **curated JSON** is the rich edit layer. It's where authoring happens, where themes and glosses live, where the marker reads bucket definitions from.
+- The **lemma CSV** is the frequency spine. It's authoritative for the rank ordering of the curated JSON (the re-rank pass will join curated lemmas to the lemma CSV and reassign ranks).
+- The **form CSV** is the surface-text view. It's authoritative for "what learners actually meet in subtitles / corpora," and informs which inflected forms are worth practising explicitly.
+
+### Architecture asks
+
+A non-trivial cluster of design choices the architect should think through with the user:
+
+1. **Which file does the marker / housing actually load at runtime?** Probably the curated JSON for the bucketed marking, plus the lemma CSV for frequency thresholds. The form CSV is more of a reference / authoring tool. Confirm.
+
+2. **How are the three layers exposed to the learner in the UI?** The user has talked about "spinning the cube" — viewing the same data by frequency, by theme, by POS. Now there's a fourth axis: by lemma vs by form. A learner might want to see all surface forms of `essere` ranked by frequency, or all lemmas in the top 500 grouped by theme. Decide which slices are first-class views and which are derived.
+
+3. **Cross-reference: materialised or computed at runtime?** A join from curated entry → lemma-CSV row → form-CSV rows of that lemma can either be precomputed and stored as a fourth file (`crosswalk.json`), or computed by the renderer on the fly. Materialised is simpler for the marker; computed is more flexible.
+
+4. **What's the source of truth for re-ranking the curated file?** Proposal: the lemma CSV. When it lands, run a mechanical pass that joins each curated lemma to its lemma-CSV row and rewrites the `rank` field. The provisional ranks (1001-1060) get absorbed naturally. Bands (the `band` field) get reassigned too. This is a one-time pipeline step.
+
+5. **Themes work was started in the curated file.** Ranks 501-1000 already have `themes` arrays; 1-500 are still untagged. After the re-rank pass, the bands shift, but the themes attach to the lemma, not the rank, so themes don't need to be redone — just the bands they're shown under change. Confirm this matches the architect's view.
+
+6. **The form CSV without POS / gender.** Adding gender to form-level rows is a 30%-coverage with noisy-flag job (`porta` is door OR 3sg-portare, `stato` is state OR past-participle). Decision was made NOT to do this on the form file. If the architect wants form-level gender for any reason (e.g. for noun-form practice), reopen.
+
+7. **What lives in the curated JSON that *should* be denormalised to the form/lemma CSVs?** For example, learners practising `sono` (form-level) might want to see "this is a form of `essere`, which is rank 5 in the lemma list and themed as auxiliary_verb." The architect should decide what level of denormalisation makes sense vs. what is computed at render time.
+
+8. **The vocab-authoring chat (the source of this feedback) is paused on inline themes-tagging** until the re-rank pass runs. Doing themes by hand on positions that will move is wasted work. After the re-rank pass, themes-tagging for ranks 1-500 (post-rerank) becomes worth resuming.
+
 ## Status snapshot (when this file was written)
 
 - Bands 1-100, 101-200, 201-300, 301-400, 401-500, 501-600, 601-700 are complete.

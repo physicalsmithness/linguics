@@ -192,6 +192,55 @@
   };
 
   /**
+   * Active/passive vocab variant resolution.
+   *
+   * The chat-authored items and bucket trees write base vocab translation
+   * ids like `vocabulary.it.casa.translation`. At runtime, the housing
+   * resolves these to either `.active` (the learner produced the lemma) or
+   * `.passive` (the learner recognised it in source), based on the item's
+   * direction. Gender buckets stay single-variant (production-only).
+   *
+   * Direction "en_it" → produce Italian → .active
+   * Direction "it_en" → recognise Italian → .passive
+   *
+   * Already-resolved variant ids pass through unchanged. Non-translation
+   * vocab buckets (gender, plural, etc.) pass through unchanged.
+   */
+  LL.resolveVocabVariant = function (bucketId, direction) {
+    if (typeof bucketId !== "string") return bucketId;
+    // Only translation-aspect vocab buckets get the active/passive split.
+    if (!/^vocabulary\.it\.[^.]+\.translation$/.test(bucketId)) return bucketId;
+    const variant = direction === "it_en" ? "passive" : "active";
+    return bucketId + "." + variant;
+  };
+
+  /**
+   * Resolve every vocab translation bucket id in an array to its variant.
+   * Non-vocab and non-translation ids pass through unchanged.
+   */
+  LL.resolveVocabBuckets = function (ids, direction) {
+    if (!Array.isArray(ids)) return ids;
+    return ids.map(id => LL.resolveVocabVariant(id, direction));
+  };
+
+  /**
+   * Post-process an AI marker response: resolve any base vocab translation
+   * bucket ids in markpoints to their direction-appropriate variant. Used
+   * when the AI proposes a bucket without the variant suffix (which can
+   * happen even though bucket_context contained the variant form, because
+   * the AI may shortcut).
+   */
+  LL.resolveVocabInMarkpoints = function (markpoints, direction) {
+    if (!Array.isArray(markpoints)) return markpoints;
+    return markpoints.map(mp => {
+      if (!mp || typeof mp !== "object") return mp;
+      const resolved = LL.resolveVocabVariant(mp.bucket, direction);
+      if (resolved === mp.bucket) return mp;
+      return Object.assign({}, mp, { bucket: resolved });
+    });
+  };
+
+  /**
    * Build the bucket_context object that the Worker uses to know what each
    * bucket means. Takes the item and the bucket index (id → bucket), returns
    * a slim subset covering only the buckets the item references AND that are
@@ -204,8 +253,12 @@
     const ids = [].concat(item.required_buckets || [], item.optional_buckets || []);
     for (const id of ids) {
       if (!LL.isCandidateForDirection(id, direction)) continue;
-      const b = bucketById[id];
-      if (b) ctx[id] = { label: b.label || id, description: b.description || "" };
+      const resolvedId = LL.resolveVocabVariant(id, direction);
+      // Look up label/description from the base id (the bucket tree only
+      // registers base vocab translation ids, not variants). The bucket_context
+      // key is the resolved-variant id so the AI fires the variant.
+      const b = bucketById[id] || bucketById[resolvedId];
+      if (b) ctx[resolvedId] = { label: b.label || resolvedId, description: b.description || "" };
     }
     // For IT→EN items, inject vocabulary recognition buckets based on the
     // source text. The chats authored these items without listing vocab
@@ -235,11 +288,12 @@
           }
         }
         if (!entry) continue;
-        const bid = `vocabulary.it.${entry.lemma}.translation`;
-        if (ctx[bid]) continue;
-        ctx[bid] = {
-          label: `${entry.lemma} (translation)`,
-          description: `Translation of Italian ${entry.lemma}${entry.translation_en ? ` (means: ${entry.translation_en})` : ""}.`
+        const baseBid = `vocabulary.it.${entry.lemma}.translation`;
+        const variantBid = LL.resolveVocabVariant(baseBid, direction);
+        if (ctx[variantBid]) continue;
+        ctx[variantBid] = {
+          label: `${entry.lemma} (translation, passive)`,
+          description: `Recognition of Italian ${entry.lemma}${entry.translation_en ? ` (means: ${entry.translation_en})` : ""}. Passive: learner is reading Italian here.`
         };
       }
     }
@@ -253,7 +307,9 @@
   LL.candidateBucketIds = function (item) {
     const direction = LL.inferDirection(item);
     const ids = [].concat(item.required_buckets || [], item.optional_buckets || []);
-    return ids.filter(id => LL.isCandidateForDirection(id, direction));
+    return ids
+      .filter(id => LL.isCandidateForDirection(id, direction))
+      .map(id => LL.resolveVocabVariant(id, direction));
   };
 
   LL.formatCost = function (usd) {
