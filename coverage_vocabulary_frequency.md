@@ -286,3 +286,78 @@ Themes can be refined entry-by-entry over time; the bulk-tagging gives every ent
 - `coverage_vocabulary_frequency.md` — this file
 
 End of coverage update.
+
+---
+
+## Update 2 — state after gap-fill, truncation recovery, enrichment, and Brief B (2026-05-26)
+
+The section above is preserved as the snapshot at the architect-ratification moment. Several subsequent passes have moved counts forward; this section is the current source of truth.
+
+### Headline numbers (current)
+
+- `data/vocabulary_it_frequency.json`: **1,476 entries** (was 1,146).
+- `data/vocabulary_it_frequency_lemmas.csv`: **18,000 lemmas** (was 7,626) — Code's Brief B extension landed.
+- `data/vocabulary_it_frequency_forms.csv`: 10,000 wordforms (unchanged).
+- `data/buckets/vocabulary_frequency.json`: 80 bands, all carrying `cefr_subbands` arrays (the user-designed 15-sub-level CEFR mapping replaced the older `cefr_importance` dict).
+- Distinct bands populated: 77 of 80. Max rank: 7,983. Entries in top 1000: 1,035 (above 1,000 because of the (lemma, pos, gender) splitting rule).
+
+### What happened between the previous update and this one
+
+**Gap-fill pass (Brief A).** Code ran a join from the lemma CSV (ranks ≤ 1000) against the curated file and added 458 thin entries — lemmas missing from the curated coverage but present in the merged frequency CSV. These carry a `notes: "thin entry from gap-fill pass — needs vocab-chat review..."` marker.
+
+**Truncation event.** Code's gap-fill write got cut off at rank 982 (`dichiarazione`, noun, theme array never finished). Diagnosed in retrospect as OneDrive sync interfering with large JSON writes (the same chat had already lost ~24KB tail off two markdown files earlier). Recovered by merging the truncated curated file with the pre-gap-fill backup, deduping on `(lemma, pos, gender)` and preferring richer entries. Net result: 1,476 entries.
+
+**OneDrive retired.** Project moved to `C:\Claude (not on Gdrive, nor OneDrive)\Linguics`. The new folder is the working tree from here on; OneDrive copy remains as an archival snapshot.
+
+**Brief B delivered.** Code's extension of the lemma CSV from 7,626 to 18,000 lemmas landed in the new folder. Columns unchanged from the 7,626-row schema (`rank, lemma, pos, avg_rank, sources_count, rank_itwac, rank_opensubs, rank_wordfreq, gender, auxiliary, adj_class, nvdb_tier, notes`).
+
+**Enrichment first pass on thin entries.** Bulk script (`enrich_thin.py`) refined themes from POS-default to lemma-specific where the vocab-chat lookup knew the word (107 entries), derived plurals for nouns with clean gender/ending patterns (127 entries), and set `conjugation_class` for regular verbs (55 entries). Two wrong-POS gap-fill entries (`voi` as noun, `buono` as adverb) were dropped and four others flagged for review.
+
+**Marker bug surfaced.** A learner answered `il` to "What's the Italian for 'the'?" and was told it was wrong (the marker had `lo`). Logged in `FEEDBACK_for_architect_chat.md` as item 13 and partially addressed in `PATCH_REQUEST_for_code.md` (data-side gloss disambiguation for function words). The deeper marker fix is the architect's call.
+
+### Current POS distribution
+
+| POS | Count |
+|---|---|
+| noun | 678 |
+| verb | 257 |
+| adjective | 196 |
+| adverb | 146 |
+| pronoun | 54 |
+| preposition | 44 |
+| conjunction | 34 |
+| interjection | 25 |
+| determiner | 20 |
+| numeral | 16 |
+| article | 6 |
+| **Total** | **1,476** |
+
+### Coverage / completeness signals
+
+- Themes: **94.9%** themed (1,400/1,476). The 76 untagged are thin entries where neither the lemma-specific lookup nor a POS-default fired confidently.
+- Nouns with `plural`: 630 / 678 (93%).
+- Verbs with `conjugation_class`: 239 / 257 (93%).
+- Thin gap-fill entries from Code awaiting full vocab-chat enrichment: **440**. (Some have had themes/plural/conjugation added by the bulk pass; what remains is entry-by-entry refinement of glosses, notes, theme nuance, and false-friend flagging.)
+
+### Outstanding work
+
+- Entry-by-entry enrichment of the 440 thin gap-fill entries (in progress, task #26).
+- Code's response to `PATCH_REQUEST_for_code.md`: (a) truncation patch for ranks 983-1000 if any remain missing post-recovery, (b) gloss-disambiguation pass on function words (`il` / `la` / `lo` / `un` / `una` / `gli` / `uno`).
+- Architect's decision on the synonym-marker behaviour (FEEDBACK item 13).
+- Code's Brief D (SQLite consolidation) — still pending.
+
+### Files (current)
+
+- `data/buckets/vocabulary_frequency.json` — 80 granular bands, each tagged with `cefr_subbands`.
+- `data/vocabulary_it_frequency.json` — 1,476 entries.
+- `data/vocabulary_it_frequency_lemmas.csv` — 18,000 lemmas (Brief B).
+- `data/vocabulary_it_frequency_forms.csv` — 10,000 wordforms.
+- `data/vocab_themes.json` — themes taxonomy registry.
+- `data/vocabulary_it_README.md` — Code-authored relationship doc (unchanged).
+- `FEEDBACK_for_architect_chat.md` — now includes item 13 on the `il`/`lo` synonym problem.
+- `REPLY_TO_vocab_chat_architecture.md` — architect's 12-point reply (carried forward from OneDrive after move).
+- `PATCH_REQUEST_for_code.md` — truncation patch + il/lo gloss-discrimination items.
+- `BRIEFS_for_code.md` — A done, B done, C and D pending.
+- `coverage_vocabulary_frequency.md` — this file.
+
+End of Update 2.
