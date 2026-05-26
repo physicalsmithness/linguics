@@ -162,4 +162,127 @@ The companion file `FEEDBACK_for_architect_chat.md` (also at the project root) c
 
 The architect can also expect items on `auxiliary: "either"` semantics, `adj_class: "invariable"`, Greek-origin noun classes, cross-band split consolidation logic, `null`-vs-sparse field convention, and the retroactive themes-tagging debt.
 
-End of coverage summary.
+---
+
+## Update — state after architect ratification and re-rank pass
+
+Everything below was added after the original coverage was written. Outstanding-work items listed above have either been completed, made obsolete, or carried forward; this section is the source of truth for the **current** state.
+
+### What changed at the data-layer
+
+**Three vocabulary data files now live in `data/`:**
+
+1. `data/vocabulary_it_frequency.json` — the curated lemma file (still the authoritative pedagogical layer). **1,146 entries** after re-rank, dedupe, and gap-fills.
+2. `data/vocabulary_it_frequency_forms.csv` — 10,000 wordforms by frequency, merged from hermitdave/orgtre/wordfreq. Provided by Claude Code. Surface-form view of "what learners encounter in text."
+3. `data/vocabulary_it_frequency_lemmas.csv` — 7,626 lemmas by frequency, merged from ItWaC / OpenSubs (lemmatised) / wordfreq (lemmatised), with NVdB as sanity-check on POS and gender. Provided by Claude Code (second iteration, after the first version's function-word penalty bug was fixed). Authoritative for the rank order of the curated file.
+4. `data/vocab_themes.json` — themes taxonomy as a standalone registry (76 themes across 6 kinds: semantic_concrete, semantic_abstract, functional, verb_subtype, adjective_subtype, adverb_subtype).
+5. `data/vocabulary_it_README.md` — Code-authored description of the three frequency files and how they relate.
+
+### Architect's 12-point reply (all applied)
+
+The architect chat ratified or refined every item in `FEEDBACK_for_architect_chat.md`. The substantive changes applied to the curated file:
+
+| Item | Decision applied |
+|---|---|
+| Splitting rule | Ratified. `(lemma, pos, gender)` is the unique key. Shared rank between splits. |
+| `themes` field | Required, single array. Taxonomy registered as `vocab_themes.json`. |
+| Re-rank pass | Sanctioned. Field name stays `rank` (provisional during authoring, stable downstream). |
+| CEFR labels | `stretch` and `out_of_scope` added to the canonical vocabulary. |
+| `auxiliary: "either"` split | Replaced with `modal_aux_inheritance` (3 modal verbs) and `aux_varies_by_transitivity` (18 verbs). |
+| `adj_class: "invariable"` | Ratified. |
+| `noun_class` field | New field added to all 587 noun entries (`regular_o_masc`, `regular_a_fem`, `e_ambiguous`, `greek_ma_masc`, `ista_common_gender`, `irregular_gender`, `gender_shift_plural`, `invariable_accented_final`, `invariable_loanword`). |
+| Cross-band split consolidation | 2 duplicates dropped during re-rank (`fine` f noun, `libreria` f noun) — both were cross-band duplicates from earlier authoring. |
+| `translation_en` → array | Going forward only. Existing comma-string entries remain. Marker side accepts comma-split alternatives. |
+| `null` vs sparse | Kept uniform with `null`. |
+| `translation_en` / `gloss_en` split | Done in an earlier pass (189 entries had parens stripped; `gloss_en` now carries the human disambiguator). |
+| Three-file layer | All three files in place, relationships documented in `vocabulary_it_README.md`. |
+
+### Re-rank pass results
+
+Ran the join from curated JSON → lemma CSV on `(lemma, pos, gender)` with fallbacks. Top of the re-ranked file now looks like a genuine Italian lemma-frequency list:
+
+```
+1  il      article       
+3  essere  verb          
+4  e       conjunction   
+5  di      preposition   
+6  la      article       
+9  avere   verb          
+10 che     pronoun       
+11 che     conjunction   
+11 un      article       
+12 a       preposition   
+13 non     adverb        
+14 in      preposition   
+14 lo      article       
+14 lo      pronoun       
+15 fare    verb          
+15 una     article       
+16 per     preposition   
+17 si      pronoun       
+18 potere  verb          
+```
+
+The first iteration of the lemma CSV had a function-word penalty bug (function words ranked at 2400+) which Code identified and fixed in the second iteration; the data above reflects the fixed version.
+
+**Unmatched after re-rank:** 86 curated entries didn't find a lemma-CSV row. Broken down:
+
+- **Reflexive verbs** (`lavarsi`, `vestirsi`, `divertirsi`, `arrabbiarsi`, etc.) — 16 entries. Patched in a follow-up pass by mapping `-rsi` lemma to its non-reflexive base verb (`lavarsi` → `lavare`) and inheriting the base's rank.
+- **Greeting interjections** (`grazie`, `prego`, `buongiorno`, `buonasera`, `buonanotte`, `arrivederci`, `ehi`) — not in any lemma source. Kept at pre-rerank ranks.
+- **Specific concrete nouns outside top 7,626 lemmas** (`comodino`, `cassettone`, `cerniera`, `dentifricio`, `felpa`, `forchetta`, `fornaio`, `fornello`, `giubbotto`, `impermeabile`, `lampadina`, `lavandino`, etc.) — niche but pedagogically useful; kept at pre-rerank ranks.
+- **`la` (article)** — simplemma collapses `la`/`lo`/`le` under `il` in the lemma CSV, so `la` as a separate entry doesn't match. Unmatched but `il` got rank 1 correctly.
+
+### Granular bands
+
+The original 10 bands (`freq_1_100` through `freq_901_1000`) have been extended to **80 bands** covering `freq_1_100` through `freq_7901_8000`, all 100-wide. This was a deliberate change from the originally-considered "lumped" extension (e.g., `freq_1001_2000`) — granular bands let the housing compute per-100-band statistics uniformly, which matches the planned learner-facing progress view.
+
+77 of the 80 bands are populated. Distribution skews toward the top (band 1-100 has 84 entries; the tail bands have 1-5 each).
+
+### POS distribution (post re-rank)
+
+Updated count, since the original POS table reflected the pre-re-rank state:
+
+| POS | Count |
+|---|---|
+| noun | ~580 |
+| verb | ~220 |
+| adjective | ~155 |
+| adverb | ~75 |
+| pronoun | ~30 |
+| determiner | ~21 |
+| preposition | 21 |
+| conjunction | 13 |
+| numeral | 11 |
+| article | 5 |
+| interjection | 14 |
+| **Total** | **1,146** |
+
+Interjection count grew (greetings added). Otherwise similar shape.
+
+### Themes coverage
+
+**100%.** All 1,146 entries carry a `themes` array. The pass that filled the remaining 431 used:
+- 200+ lemma-specific entries in a Python lookup table (verbs categorised by movement / communication / perception / cognition / emotion / state / action / routine / change / creation / destruction / existence / possession / speech_act / weather / inverted_subject; adjectives by size / quality / evaluation / nationality / temperature / distance / age; adverbs by time / place / manner / quantity / affirmation / negation; nouns by body / home / family / food / clothing / transport / nature / animals / time / emotions / communication / school / work / city / politics)
+- POS-based defaults for everything else (`adjective_quality` for unclassified adjectives, `verb_action_general` for unclassified verbs, `noun_abstract` for unclassified nouns, `adverb_manner` for unclassified adverbs)
+
+Themes can be refined entry-by-entry over time; the bulk-tagging gives every entry at least one defensible category so the renderer can group consistently.
+
+### Outstanding (genuinely small now)
+
+- `translation_en` array migration — a one-shot conversion of the existing comma-strings to JSON arrays. Optional; the marker handles comma-splitting.
+- The 86 unmatched entries (mostly greetings and niche concrete nouns) keep their pre-rerank `rank` field. If a more authoritative rank source becomes available, run a small patch script to nudge them.
+- Vocabulary practice questions, originally noted as "out of scope for the authoring chat." Still out of scope here; flagged for whoever does the practice-question authoring.
+
+### Files (final)
+
+- `data/buckets/vocabulary_frequency.json` — 80 granular bands (1-100 through 7901-8000)
+- `data/vocabulary_it_frequency.json` — 1,146 entries, lemma-CSV-anchored ranks, 100% themed, with `noun_class` and refined `auxiliary` semantics
+- `data/vocabulary_it_frequency_forms.csv` — 10,000 wordforms (Code-provided)
+- `data/vocabulary_it_frequency_lemmas.csv` — 7,626 lemmas with POS / gender / aux / adj_class / NVdB tier (Code-provided, function-word fix applied)
+- `data/vocab_themes.json` — themes taxonomy registry
+- `data/vocabulary_it_README.md` — Code-authored relationship doc
+- `FEEDBACK_for_architect_chat.md` — original asks plus architect ratification trail
+- `REPLY_TO_vocab_chat_architecture.md` — architect's 12-point reply (in project root)
+- `coverage_vocabulary_frequency.md` — this file
+
+End of coverage update.

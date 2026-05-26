@@ -208,6 +208,9 @@
 
       // 2. For each topic, fetch the bucket tree (required) and any content
       //    files (all optional; missing files don't fail the load).
+      // Some topics are buckets-only (no grammar / translation items). For
+      // those we skip the content fetches entirely to avoid the 404 noise.
+      const BUCKETS_ONLY_TOPICS = new Set(["vocabulary", "vocabulary_frequency"]);
       const buckets = [];
       const grammar = [];
       const translation = [];
@@ -221,17 +224,21 @@
         }
         for (const b of tree) buckets.push(b);
 
-        const g = await Foptional(`../data/grammar_questions_${topic}.json`);
-        if (g) for (const q of g) grammar.push(q);
-
-        const t = await Foptional(`../data/translation_items_${topic}.json`);
-        if (t) for (const it of t) translation.push(it);
+        const isBucketsOnly = BUCKETS_ONLY_TOPICS.has(topic);
+        let g = null, t = null;
+        if (!isBucketsOnly) {
+          g = await Foptional(`../data/grammar_questions_${topic}.json`);
+          if (g) for (const q of g) grammar.push(q);
+          t = await Foptional(`../data/translation_items_${topic}.json`);
+          if (t) for (const it of t) translation.push(it);
+        }
 
         perTopicCounts.push({
           topic,
           buckets: tree.length,
           grammar: g ? g.length : 0,
-          translation: t ? t.length : 0
+          translation: t ? t.length : 0,
+          bucketsOnly: isBucketsOnly
         });
       }
 
@@ -942,6 +949,22 @@
       return result;
     }
     const ok = vocabAcceptable(raw, target);
+    // Build a clean list of acceptable alternatives for display. Strip
+    // parenthetical clarifiers, split on commas/semicolons/slashes, dedupe.
+    const acceptableList = (() => {
+      const cleaned = String(target || "").replace(/\([^)]*\)/g, "");
+      const seen = new Set();
+      const out = [];
+      for (const piece of cleaned.split(/[,;\/]/)) {
+        const t = piece.trim();
+        if (!t) continue;
+        const k = t.toLowerCase();
+        if (seen.has(k)) continue;
+        seen.add(k);
+        out.push(t);
+      }
+      return out;
+    })();
     if (ok) {
       result.overall.marks_awarded = 1;
       result.overall.summary = "Right";
@@ -952,7 +975,8 @@
         correctness_credit: 1,
         outcome: "hit",
         evidence: "matched: " + raw,
-        expected: target
+        expected: target,
+        alternatives: acceptableList
       });
       // Also fire on the frequency-band bucket so the band signal fills.
       if (entry.band) {
@@ -975,7 +999,8 @@
         correctness_credit: 0,
         outcome: "miss",
         evidence: "you wrote: " + raw,
-        expected: target
+        expected: target,
+        alternatives: acceptableList
       });
       if (entry.band) {
         result.markpoints.push({
@@ -1566,6 +1591,22 @@
         detail.appendChild(e);
       }
 
+      // Vocab markpoints carry an `alternatives` array of acceptable answers.
+      // Surface them so the learner sees other acceptable forms even when they
+      // got the question right (didactic value: "also could have said ...").
+      if (Array.isArray(mp.alternatives) && mp.alternatives.length > 1) {
+        const other = mp.alternatives.filter(a => {
+          const ev = String(evidenceText || "").replace(/^matched: /i, "").trim().toLowerCase();
+          return a.trim().toLowerCase() !== ev;
+        });
+        if (other.length) {
+          const a = document.createElement("div");
+          a.className = "evidence vocab-alternatives";
+          a.innerHTML = `<span class="cmp-label">Also accepted:</span> <span class="cmp-value cmp-correct">${escapeHtml(other.join(", "))}</span>`;
+          detail.appendChild(a);
+        }
+      }
+
       if (mp.explanation) {
         const e = document.createElement("div");
         e.className = "evidence markpoint-explanation";
@@ -2114,7 +2155,8 @@
     host.innerHTML = "";
     const lbl = document.createElement("span");
     lbl.className = "muted";
-    lbl.textContent = "AI marker: ";
+    lbl.textContent = "Translation AI: ";
+    lbl.title = "AI marker is used only for the Translation strand. Grammar and Vocab use deterministic markers.";
     host.appendChild(lbl);
 
     // URL setting (compact)
@@ -2221,7 +2263,10 @@
     renderVocab();
     renderLiveStats();
     const topicsDesc = real.perTopicCounts
-      ? real.perTopicCounts.map(t => `${t.topic.split(".").pop()} ${t.grammar}/${t.translation}`).join(", ")
+      ? real.perTopicCounts
+          .filter(t => !t.bucketsOnly)
+          .map(t => `${t.topic.split(".").pop()} ${t.grammar}/${t.translation}`)
+          .join(", ")
       : "";
     const vocabBit = vocabEntries.length ? `, ${vocabEntries.length} vocab` : "";
     setStatus(`Real content: ${grammarQuestions.length} grammar, ${translationItems.length} translation${vocabBit}, ${allBuckets.length} buckets. ${topicsDesc ? "Per topic: " + topicsDesc : ""}`);
