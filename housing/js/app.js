@@ -747,6 +747,9 @@
 
   function filteredVocabEntries() {
     return vocabEntries.filter(v => {
+      // Skip entries with no curated English translation - they cannot be
+      // marked in either direction. The vocab chat is still backfilling these.
+      if (!v.translation_en || !String(v.translation_en).trim()) return false;
       if (vocabFilter.band && v.band !== vocabFilter.band) return false;
       if (vocabFilter.rankRange && typeof v.rank === "number") {
         if (v.rank < vocabFilter.rankRange.start || v.rank > vocabFilter.rankRange.end) return false;
@@ -1016,9 +1019,9 @@
   let vocabFreqFocusStart = 0;
   const VOCAB_FREQ_WINDOW = 10;
   // Height of the focused dot-grid in px; flanking blocks match this height.
-  // 10 rows of boxes x 3 dots x 9px + 9 row-gaps x 3px + 2 x 4px padding
-  // = 270 + 27 + 8 = 305 ... use 305.
-  const VOCAB_FOCUS_HEIGHT_PX = 305;
+  // 11 rows of boxes x 3 dots x 9px + 10 row-gaps x 3px + 2 x 4px padding
+  // = 297 + 30 + 8 = 335.
+  const VOCAB_FOCUS_HEIGHT_PX = 335;
 
   // Build a band -> [lemma] index lazily from vocabEntries.
   let _bandLemmasCache = null;
@@ -1631,13 +1634,18 @@
   // (ranks blockStart..blockStart+989). Curated entries get coloured by their
   // events; gaps get a neutral "not yet curated" marker.
   function renderFocusedDotGrid(blockStart, byRank, dirFilter) {
+    // 11 rows x 10 columns of boxes. We iterate DOM positions row-by-row
+    // (matching CSS grid's default row auto-flow), but compute boxIdx in
+    // column-major order so the ranks fill top-to-bottom first: ranks 1-9 in
+    // (col 0, row 0), ranks 10-18 directly below in (col 0, row 1), and
+    // ranks 91-99 end up at the bottom of column 0 (col 0, row 10).
     const grid = document.createElement("div");
     grid.className = "freq-focused";
-    for (let boxRow = 0; boxRow < 10; boxRow++) {
-      for (let boxCol = 0; boxCol < 11; boxCol++) {
+    for (let boxRow = 0; boxRow < 11; boxRow++) {
+      for (let boxCol = 0; boxCol < 10; boxCol++) {
         const box = document.createElement("div");
         box.className = "freq-focused-box";
-        const boxIdx = boxRow * 11 + boxCol;  // 0..109
+        const boxIdx = boxCol * 11 + boxRow;  // 0..109, column-major
         for (let r = 0; r < 3; r++) {
           for (let c = 0; c < 3; c++) {
             const slot = r * 3 + c; // 0..8
@@ -1806,7 +1814,7 @@
   }
 
   function vocabJudge(answer, target, isItEn, entry) {
-    const norm = s => String(s || "").trim().toLowerCase().replace(/[.,;!?"'()\[\]]/g, "").replace(/\s+/g, " ").trim();
+    const norm = s => String(s || "").trim().toLowerCase().replace(/[-.!?"'()\[\]]/g, "").replace(/\s+/g, " ").trim();
     const a = norm(answer);
     if (!a) return { outcome: "not_attempted", credit: 0, reason: null };
 
@@ -1833,7 +1841,7 @@
   }
 
   function vocabJudgeCore(answer, target, isItEn, entry) {
-    const norm = s => String(s || "").trim().toLowerCase().replace(/[.,;!?"'()\[\]]/g, "").replace(/\s+/g, " ").trim();
+    const norm = s => String(s || "").trim().toLowerCase().replace(/[-.!?"'()\[\]]/g, "").replace(/\s+/g, " ").trim();
     const a = norm(answer);
     if (!a) return { outcome: "not_attempted", credit: 0, reason: null };
 
@@ -1937,6 +1945,28 @@
       }
     }
 
+    // (d) Cross-sense (IT->EN): the learner's answer matches the translation
+    // of a different entry that shares this lemma (e.g. fisico-the-adjective
+    // means "physical" while fisico-the-noun means "physicist"). Give partial
+    // credit and explain which sense the learner gave. Skips the noisy
+    // requirement that the curator duplicate translations between homographs.
+    if (isItEn && entry && entry.lemma && Array.isArray(vocabEntries)) {
+      for (const v of vocabEntries) {
+        if (!v || !v.lemma || v.lemma !== entry.lemma) continue;
+        if ((v.translation_en || "") === (entry.translation_en || "") && (v.pos || "") === (entry.pos || "")) continue;
+        const altsForV = String(v.translation_en || "").split(/[,;\/]/).map(p => norm(p)).filter(Boolean);
+        for (const altV of altsForV) {
+          if (altV && a === altV) {
+            return {
+              outcome: "partial",
+              credit: 0.5,
+              reason: "That's the " + (v.pos || "other") + " sense of " + entry.lemma + " (\"" + v.translation_en + "\"). This entry asks the " + (entry.pos || "") + " sense (\"" + entry.translation_en + "\")."
+            };
+          }
+        }
+      }
+    }
+
     return { outcome: "miss", credit: 0, reason: null };
   }
 
@@ -1961,8 +1991,8 @@
     const translationBucket = (typeof LL.resolveVocabVariant === "function")
       ? LL.resolveVocabVariant(baseBucket, direction)
       : baseBucket;
-    const variantLabel = isItEn ? "translation, passive" : "translation, active";
-    const translationLabel = `${entry.lemma} (${variantLabel})`;
+    // Lemma + direction marker. "translation," is implicit on the vocab tab; drop it.
+    const translationLabel = entry.lemma + " (" + (isItEn ? "passive" : "active") + ")";
     const trimmed = String(raw || "").trim();
     const target = isItEn ? entry.translation_en : entry.lemma;
     // renderResult expects result.overall.{marks_awarded,marks_possible,summary}
@@ -2019,7 +2049,7 @@
       attempted_credit: 1,
       correctness_credit: credit,
       outcome: outcome,
-      evidence: outcome === "hit" ? ("matched: " + raw) : ("you wrote: " + raw),
+      evidence: raw,
       expected: target,
       alternatives: acceptableList,
       explanation: reason || undefined
@@ -2031,8 +2061,8 @@
         attempted_credit: 1,
         correctness_credit: credit,
         outcome: outcome,
-        evidence: (outcome === "hit" ? "right on " : outcome === "partial" ? "half on " : "miss on ") + entry.lemma,
-        source: "band_rollup"
+        source: "band_rollup",
+        suppress_display: true
       });
     }
     // EN->IT noun side-channels: gender + article-form markpoints.
@@ -2602,6 +2632,7 @@
     }
 
     for (const mp of (result.markpoints || [])) {
+      if (mp.suppress_display) continue;
       const row = document.createElement("div");
       const cls = mp.bucket_proposed ? "proposed" : (mp.outcome || "");
       row.className = "markpoint " + cls;
@@ -2652,7 +2683,12 @@
       if (wrongish && (hasEvidence || hasExpected)) {
         const cmp = document.createElement("div");
         cmp.className = "comparison";
-        if (hasEvidence && mp.outcome !== "not_attempted") {
+        // Skip the per-markpoint "You wrote" row when its evidence is just
+        // the raw response (we already show that once at the top of the panel).
+        const evTrim = String(evidenceText || "").trim();
+        const rawTrim = String(result.raw_response || "").trim();
+        const dupOfTopLevel = evTrim && rawTrim && evTrim.toLowerCase() === rawTrim.toLowerCase();
+        if (hasEvidence && mp.outcome !== "not_attempted" && !dupOfTopLevel) {
           const r1 = document.createElement("div");
           r1.className = "cmp-row";
           r1.innerHTML = `<span class="cmp-label">You wrote:</span> <span class="cmp-value cmp-learner">${escapeHtml(evidenceText)}</span>`;

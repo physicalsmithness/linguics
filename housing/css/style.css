@@ -828,8 +828,8 @@ body.strand-vocab-active #live-stats { display: none; }
 }
 .freq-focused {
   display: grid;
-  grid-template-columns: repeat(11, auto);
-  grid-template-rows: repeat(10, auto);
+  grid-template-columns: repeat(10, auto);
+  grid-template-rows: repeat(11, auto);
   /* Bigger horizontal gap than vertical so 3x3 blocks read as columns. */
   column-gap: 7px;
   row-gap: 3px;
@@ -892,8 +892,8 @@ body.strand-vocab-active #live-stats { display: none; }
 }
 .freq-tick.focused {
   flex: 0 0 auto;
-  /* width matches .freq-focused: 11 boxes of (3*9) + 10 column-gaps*7 + 2*4 padding = 297 + 70 + 8 = 375 */
-  width: 375px;
+  /* width matches .freq-focused: 10 boxes of (3*9) + 9 column-gaps*7 + 2*4 padding = 270 + 63 + 8 = 341 */
+  width: 341px;
   text-align: right;
   padding-right: 2px;
 }
