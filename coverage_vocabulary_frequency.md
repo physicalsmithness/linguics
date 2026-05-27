@@ -361,3 +361,119 @@ The section above is preserved as the snapshot at the architect-ratification mom
 - `coverage_vocabulary_frequency.md` — this file.
 
 End of Update 2.
+
+---
+
+## Update 3 — full-depth dictionary, bulk translations, hierarchical themes (2026-05-27)
+
+This section is the current source of truth.
+
+### Headline numbers
+
+- **`data/vocabulary_it_frequency.json`: 18,064 entries** covering ranks 1-18,000 of the merged-lemma frequency list (plus 64 (lemma, pos, gender) split rows).
+- **Translation coverage: 78%** (14,100 entries) — see breakdown by source below.
+- **Themes: 44% on specific themes** (7,966 entries), 56% on POS-default placeholders. Both rates are up sharply from Update 2 (which had ~12% specific).
+- `data/buckets/vocabulary_frequency.json`: **180 bands**, fully covering freq_1_100 through freq_17901_18000.
+- `data/vocabulary_it_frequency_lemmas.csv`: 18,000 lemmas with raw per-corpus counts AND ranks AND wordfreq fractions (Code's freq rebuild plus dedup); SUM-of-counts across all rows equals corpus total exactly per the homograph-dedup convention.
+- `data/linguics_italian.db`: SQLite with `lemmas`, `forms`, `curated_entries`, `themes`, `bands`, `sources` tables plus `lemma_frequencies` and `form_frequencies` long-format views.
+
+### What changed since Update 2
+
+**Lemma CSV count regression diagnosed and reverted.** Briefly during the freq-counts rebuild, the lemma CSV had been pruned from 18K to 9.3K rows. After the diagnostic brief (`BRIEF_for_code_freq_followups.md`), Code restored the full 18K and applied the option-1 homograph dedup (canonical row keeps full count, non-canonical splits zeroed). Sum-vs-total ratios for split-prone sources moved from 198%/190%/188%/177%/174% (over-count) to ~94%/95%/94%/85%/89% (the 5-15% deficit being the long tail outside top-N lemmatisation cutoff).
+
+**Thin fill to 18K.** Curated dictionary extended structurally from 1,496 to 18,064 entries, adding ~16,500 thin entries (lemma + pos + gender + band + POS-default themes + notes flag, translation_en null).
+
+**Hand-authored translations top-down.** Vocab chat hand-authored translations + themes + glosses + notes for ranks 1-1900 (~2,000 entries, including hand authoring during Update 2 phase). 20 corpus artefacts marked with `translation_en: "[skip]"`.
+
+**Bulk translation pipeline (Code).** Per `BRIEF_for_code_bulk_translations.md`, Code ran a pass over all entries lacking translations using Apertium IT-EN bidix (highest priority), Italian Wiktionary, and OMW. A new `translation_source` field records provenance:
+
+| translation_source | count |
+|---|---|
+| apertium | 6,444 |
+| wiktionary | 5,141 |
+| vocab_chat | 2,267 |
+| omw | 248 |
+| corpus_artefact | 20 |
+| null (still untranslated) | 3,944 |
+
+The 3,944 untranslated remainder is heavily concentrated at ranks 16,001-18,000 (1,715 of them), where lemmas are rare enough to have fallen off all three open dictionaries. Many are likely tokenisation noise or English-language leaks; subject to a future skip-marking pass.
+
+**Theme taxonomy bumped to v2 with sub-themes.** `data/vocab_themes.json` now has 112 themes including 31 sub-themes under the four largest categories:
+
+- food_drink → food_fruit / food_vegetable / food_meat_fish / food_dairy / food_grain_pasta / food_sweet / food_herb_spice / food_meal_type / drink_alcoholic / drink_nonalcoholic / food_utensil
+- animals → animals_pet / animals_farm / animals_wild_mammal / animals_bird / animals_sea_creature / animals_reptile_amphibian / animals_insect
+- science_technology → tech_computing / science_physics / science_chemistry / science_biology / science_math / science_astronomy / science_general
+- arts_entertainment → arts_music / arts_visual / arts_literature / arts_performing / arts_film_tv / arts_general
+
+Sub-themes are declared via `parent_id`. Convention: entries tagged with a child theme are ALSO tagged with the parent, so consumers can query top-level membership without walking the hierarchy.
+
+**LEMMA_THEMES expanded.** Vocab chat's hand-authored lemma-to-theme lookup went from ~640 to 2,850 entries, plus 1,247 lemmas tagged with sub-themes via `data/lemma_subthemes.json`. Code's bulk pass used the WordNet lexicographer-file → Linguics theme mapping at `data/wordnet_to_linguics_themes.json` to assign top-level themes for the long tail.
+
+**Marker-feedback to architect (item 13 update).** The `ma`/`però` learner-marker failure surfaced a broader question about how the marker should treat partial-equivalent and equivalence-class lemmas. The user's proposal — fire on the learner-produced lemma at its current "unattempted percentage" — is recorded verbatim in `FEEDBACK_for_architect_chat.md` for architect ratification. Three architect-asks: equivalence-class concept with asymmetric tracking, partial-credit weighting, explanation surface.
+
+**Two truncation events recovered.** During Update 3, the curated JSON hit two write-truncation events (debris bytes after the closing bracket; mid-string truncations). Both recovered cleanly. Suspected cause: bash sandbox / host-filesystem timing interaction with concurrent writes from Code's pipeline. Vocab chat's scripts use atomic tmp+fsync+rename throughout; Code reports the same. Worth keeping an eye on if a third event occurs.
+
+### Theme distribution (current)
+
+Top theme tags across all 18,064 entries:
+
+| Theme | Entries |
+|---|---|
+| noun_abstract (POS-default) | 4,990 |
+| adjective_quality (POS-default) | 4,047 |
+| verb_action_general (POS-default) | 1,765 |
+| people_general | 987 |
+| communication | 755 |
+| mental_state | 475 |
+| verb_communication | 415 |
+| verb_change | 390 |
+| food_drink | 388 |
+| arts_entertainment | 350 |
+| science_technology | 339 |
+| city_places | 311 |
+| animals | 274 |
+| shopping_money | 241 |
+| people_roles | 222 |
+| body | 224 |
+| verb_movement | 238 |
+| politics_society | 212 |
+| emotions | 197 |
+| science_chemistry | 182 |
+| time_general | 184 |
+
+The three POS-default themes still dominate raw counts because 56% of entries (mostly the long tail) carry only the placeholder. Concrete-noun themes show real coverage (food, people, places, animals, science, arts all in the 200-400 range).
+
+### Outstanding
+
+- **Theme refinement on the long tail.** The 56% on POS-default is the bulk-tail content the WordNet pass didn't cover or where the wordnet-to-theme mapping returned an empty array (noun.artifact / noun.act / noun.group → POS-default). Iterative passes on the high-frequency bands will refine these.
+
+- **Tail translations.** The 3,944 entries without translation_en are mostly rank 16,001-18,000. Future passes could: (a) mark obvious tokenisation noise as `[skip]`, (b) try a second wiktionary pass with looser matching, (c) accept that the very tail will always be patchy.
+
+- **Polysemy over-tagging audit.** Some lemmas (`lavoro`, `momento`, `forza`) ended up with science_physics themes via my LEMMA_THEMES lookup because the same word has multiple senses. A targeted audit can prune these.
+
+- **Marker-side decisions on FEEDBACK item 13.** The architect's call on equivalence-class behaviour, partial-credit weighting, and explanation surface is still outstanding.
+
+- **The il/lo gloss-discrimination work** in `PATCH_REQUEST_for_code.md` remains pending; separate, smaller job.
+
+### Files (current)
+
+- `data/buckets/vocabulary_frequency.json` — 180 bands with cefr_subbands, full 1-18000 coverage
+- `data/vocabulary_it_frequency.json` — 18,064 entries, 78% translated, 44% specifically themed, with translation_source provenance
+- `data/vocabulary_it_frequency_lemmas.csv` — 18,000 lemmas with rank + count + freq columns per corpus, homograph-deduped
+- `data/vocabulary_it_frequency_forms.csv` — 10,000 wordforms with rank + count + freq columns per corpus
+- `data/vocab_themes.json` — 112 themes, v2 schema with parent_id
+- `data/lemma_subthemes.json` — 1,247 hand-classified sub-theme assignments
+- `data/wordnet_to_linguics_themes.json` — Code's WordNet lex-file to theme mapping
+- `data/source_metadata.json` — per-corpus total_tokens and provenance
+- `data/linguics_italian.db` — SQLite consolidation with views
+- `data/linguics_italian.db.SCHEMA.md` — DB schema doc
+- `data/vocabulary_it_README.md` — relationship doc for the three frequency files
+- `FEEDBACK_for_architect_chat.md` — 13 items including ma/però update
+- `REPLY_TO_vocab_chat_architecture.md` — architect's 12-point reply
+- `BRIEFS_for_code.md` — original A-D briefs
+- `BRIEF_for_code_freq_followups.md` — E (lemma restore) and F (homograph dedup)
+- `BRIEF_for_code_bulk_translations.md` — bulk translation + WordNet theming brief
+- `PATCH_REQUEST_for_code.md` — il/lo glosses + truncation patch
+- `coverage_vocabulary_frequency.md` — this file
+
+End of Update 3.

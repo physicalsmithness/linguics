@@ -7,46 +7,55 @@
       "noun",
       "verb",
       "adjective"
-    ]
+    ],
+    "total_tokens_includes": "content_pos_only"
   },
   "opensubs": {
     "total_tokens": 241569888,
     "type": "raw_count",
-    "description": "OpenSubtitles 2018 Italian (hermitdave/FrequencyWords it_50k.txt), wordform counts lemmatised via simplemma and aggregated per lemma."
+    "description": "OpenSubtitles 2018 Italian (hermitdave/FrequencyWords it_50k.txt), wordform counts lemmatised via simplemma and aggregated per lemma.",
+    "total_tokens_includes": "alphabetic_wordforms_attempted"
   },
   "wordfreq": {
     "total_tokens": null,
     "type": "native_fraction",
-    "description": "wordfreq Python library, multi-corpus aggregate (Wikipedia + news + books + subtitles + web + Twitter). The freq_wordfreq value is the native fraction returned by wordfreq.word_frequency() summed across the lemma's surface forms. Multiply by 1e6 for frequency-per-million if useful."
+    "description": "wordfreq Python library, multi-corpus aggregate (Wikipedia + news + books + subtitles + web + Twitter). The freq_wordfreq value is the native fraction returned by wordfreq.word_frequency() summed across the lemma's surface forms. Multiply by 1e6 for frequency-per-million if useful.",
+    "total_tokens_includes": "native_fraction_no_count"
   },
   "hermitdave": {
     "total_tokens": 241736295,
     "type": "raw_count",
-    "description": "OpenSubtitles 2018 Italian, raw wordform counts (hermitdave/FrequencyWords it_50k.txt). Surface-form level — not lemmatised."
+    "description": "OpenSubtitles 2018 Italian, raw wordform counts (hermitdave/FrequencyWords it_50k.txt). Surface-form level — not lemmatised.",
+    "total_tokens_includes": "raw_wordforms_unfiltered"
   },
   "orgtre": {
     "total_tokens": 562506798,
     "type": "raw_count",
-    "description": "OpenSubtitles 2018 Italian, cleaned (orgtre/top-open-subtitles-sentences). Surface-form level — not lemmatised. Tokenisation differs slightly from hermitdave."
+    "description": "OpenSubtitles 2018 Italian, cleaned (orgtre/top-open-subtitles-sentences). Surface-form level — not lemmatised. Tokenisation differs slightly from hermitdave.",
+    "total_tokens_includes": "raw_wordforms_unfiltered"
   },
   "wikipedia": {
     "total_tokens": 518971790,
     "type": "raw_count",
-    "description": "Italian Wikipedia, October 2022 dump (adno/wikipedia-word-frequency-clean). Lemmatised per-form via simplemma and aggregated per lemma for the lemma CSV; raw wordform counts in the form CSV."
+    "description": "Italian Wikipedia, October 2022 dump (adno/wikipedia-word-frequency-clean). Lemmatised per-form via simplemma and aggregated per lemma for the lemma CSV; raw wordform counts in the form CSV.",
+    "total_tokens_includes": "alphabetic_wordforms_attempted"
   },
   "news": {
     "total_tokens": 2479394,
     "type": "raw_count",
-    "description": "OPUS News-Commentary v16, Italian monolingual. Lemmatised via simplemma."
+    "description": "OPUS News-Commentary v16, Italian monolingual. Lemmatised via simplemma.",
+    "total_tokens_includes": "alphabetic_wordforms_attempted"
   },
   "lip": {
     "total_tokens": 51939699,
     "type": "raw_count",
-    "description": "OPUS Europarl v8, Italian monolingual — PROXY for spoken Italian (formal transcribed parliamentary speech). The real LIP/BADIP corpus wasn't reachable at build time; swap when available."
+    "description": "OPUS Europarl v8, Italian monolingual — PROXY for spoken Italian (formal transcribed parliamentary speech). The real LIP/BADIP corpus wasn't reachable at build time; swap when available.",
+    "total_tokens_includes": "alphabetic_wordforms_attempted"
   },
   "literature": {
     "total_tokens": 5774685,
     "type": "raw_count",
-    "description": "Sample of Italian Project Gutenberg books (79 texts, classic literature). Lemmatised via simplemma."
+    "description": "Sample of Italian Project Gutenberg books (79 texts, classic literature). Lemmatised via simplemma.",
+    "total_tokens_includes": "alphabetic_wordforms_attempted"
   }
 }
