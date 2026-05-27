@@ -179,6 +179,8 @@ CREATE TABLE IF NOT EXISTS curated_entries (
     lemma               TEXT NOT NULL,
     pos                 TEXT NOT NULL,
     translation_en      TEXT,
+    translation_source  TEXT,    -- vocab_chat / apertium / wiktionary / omw /
+                                  -- corpus_artefact / NULL (untranslated)
     band                TEXT,
     gender              TEXT,
     plural              TEXT,
@@ -254,6 +256,7 @@ SELECT
     l.merged_rank,
     l.nvdb_tier,
     c.translation_en,
+    c.translation_source,
     c.band,
     c.themes,
     c.notes           AS curated_notes,
@@ -500,16 +503,17 @@ def load_curated(con: sqlite3.Connection, lemma_lookup: dict[tuple[str, str, str
         cur.execute(
             """
             INSERT INTO curated_entries (
-                rank, lemma, pos, translation_en, band, gender, plural,
-                auxiliary, conjugation_class, adj_class, noun_class,
-                themes, gloss_en, notes, lemma_id
-            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+                rank, lemma, pos, translation_en, translation_source, band,
+                gender, plural, auxiliary, conjugation_class, adj_class,
+                noun_class, themes, gloss_en, notes, lemma_id
+            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
             """,
             (
                 e.get("rank"),
                 e["lemma"],
                 e["pos"],
                 e.get("translation_en"),
+                e.get("translation_source"),
                 e.get("band"),
                 gender,
                 e.get("plural"),

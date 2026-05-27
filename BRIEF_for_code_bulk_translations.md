@@ -117,9 +117,99 @@ Doesn't affect Code's own work since you can see the host filesystem freshly. Ju
 
 ---
 
+## Extension: theme assignment via WordNet semantic domains (added in this brief)
+
+While you're already touching every untranslated entry, please also assign a `themes` array using the same OMW / WordNet pass that gives you the translation. The vocab chat has hand-authored themes for ~3,500 of the 18,064 entries; the rest are mostly on POS-default placeholders (`noun_abstract`, `verb_action_general`, etc.) that don't partition meaningfully.
+
+### How the theme system is structured
+
+The taxonomy lives in `data/vocab_themes.json` (version 2). 112 themes total, organised as:
+
+- **Top-level themes**: the original 81 from v1 (body, food_drink, animals, science_technology, arts_entertainment, work_business, ...). Use these wherever a wordnet lexicographer file maps cleanly.
+- **Sub-themes (31, new in v2)**: children of food_drink, animals, science_technology, arts_entertainment, declared via `parent_id`. Examples:
+  - food_drink → food_fruit, food_vegetable, food_meat_fish, food_dairy, food_grain_pasta, food_sweet, food_herb_spice, food_meal_type, drink_alcoholic, drink_nonalcoholic, food_utensil
+  - animals → animals_pet, animals_farm, animals_wild_mammal, animals_bird, animals_sea_creature, animals_reptile_amphibian, animals_insect
+  - science_technology → tech_computing, science_physics, science_chemistry, science_biology, science_math, science_astronomy, science_general
+  - arts_entertainment → arts_music, arts_visual, arts_literature, arts_performing, arts_film_tv, arts_general
+
+**Convention**: entries tagged with a child theme are ALSO tagged with the parent. So `mela` (apple) gets `['food_drink', 'food_fruit']`, not just `['food_fruit']`. Consumers asking "show me food vocabulary" then check for `food_drink` membership without walking the hierarchy.
+
+### WordNet → top-level theme mapping (vocab chat will supply)
+
+The vocab chat will produce a `data/wordnet_to_linguics_themes.json` mapping like:
+
+```json
+{
+  "noun.animal":       ["animals"],
+  "noun.body":         ["body"],
+  "noun.food":         ["food_drink"],
+  "noun.plant":        ["plants"],
+  "noun.artifact":     [],
+  "noun.act":          [],
+  "noun.attribute":    ["noun_abstract"],
+  "noun.communication":["communication"],
+  "noun.event":        ["noun_abstract"],
+  "noun.feeling":      ["emotions"],
+  "noun.cognition":    ["mental_state"],
+  "noun.location":     ["city_places"],
+  "noun.motive":       ["mental_state"],
+  "noun.object":       [],
+  "noun.person":       ["people_general"],
+  "noun.phenomenon":   ["nature"],
+  "noun.possession":   ["shopping_money"],
+  "noun.process":      ["science_general"],
+  "noun.quantity":     ["noun_abstract"],
+  "noun.relation":     ["noun_abstract"],
+  "noun.shape":        ["noun_abstract"],
+  "noun.state":        ["noun_abstract"],
+  "noun.substance":    ["science_chemistry"],
+  "noun.time":         ["time_general"],
+  "verb.body":         ["verb_routine"],
+  "verb.change":       ["verb_change"],
+  "verb.cognition":    ["verb_cognition"],
+  "verb.communication":["verb_communication"],
+  "verb.competition":  ["verb_action_general"],
+  "verb.consumption":  ["verb_routine"],
+  "verb.contact":      ["verb_action_general"],
+  "verb.creation":     ["verb_creation"],
+  "verb.emotion":      ["verb_emotion"],
+  "verb.motion":       ["verb_movement"],
+  "verb.perception":   ["verb_perception"],
+  "verb.possession":   ["verb_possession"],
+  "verb.social":       ["verb_action_general"],
+  "verb.stative":      ["verb_state"],
+  "verb.weather":      ["verb_weather"]
+}
+```
+
+If the wordnet lookup returns multiple lexicographer files for a lemma, union the theme arrays.
+
+### Sub-themes from WordNet hypernyms (best-effort)
+
+WordNet's lexicographer files give top-level themes cleanly. Sub-themes are harder because they need a sub-domain hierarchy. The vocab chat has already hand-authored the lemma-to-sub-theme mappings for ~700 common content lemmas in the four sub-themed categories. Those go in `data/lemma_subthemes.json` (vocab chat will supply this alongside the wordnet mapping).
+
+For lemmas Code's WordNet lookup tags with `animals` and which appear in `data/lemma_subthemes.json` under `animals_*`, Code should also add the matching sub-theme. For lemmas not in `lemma_subthemes.json`, just tag with the parent theme (no sub-theme assignment) — the vocab chat will fill these in over time.
+
+### Theme preservation rules
+
+- **Hand-authored themes**: entries where `themes` is non-empty AND non-POS-default-only — leave alone (vocab chat work). You can recognise these by `set(themes) != {pos_default}`.
+- **POS-default-only themes**: entries where `themes == ['noun_abstract']` or `['verb_action_general']` etc. — replace with the WordNet-derived themes (with the parent+child convention).
+- **Empty `themes`**: same as POS-default — replace.
+
+Don't add a `theme_source` field; we'll just use the presence of specific themes as the signal of "themed". A separate `translation_source` field handles translations.
+
+### Two files vocab chat needs to provide before you start
+
+1. `data/wordnet_to_linguics_themes.json` — the lexicographer-file → theme-array mapping above.
+2. `data/lemma_subthemes.json` — for the ~700 lemmas where vocab chat has already classified the sub-theme, a flat dict `{lemma: [sub_theme]}`. Code merges these in when the parent theme matches.
+
+The vocab chat will write these files. Ping when ready, or generate them yourself from the existing `LEMMA_THEMES` table in `outputs/extend_lemma_themes_v2.py` (the vocab chat can produce a JSON export of that on request).
+
+---
+
 ## Out of scope here
 
-- Theme refinement on the bulk-pulled entries — vocab chat will do this in passes after.
+- Theme refinement BEYOND wordnet-derived top-level + the hand-authored sub-theme table — vocab chat will do this entry-by-entry over time on the high-value bands.
 - The `[skip]` entries — leave alone, just mark `translation_source: "corpus_artefact"`.
 - The bands file extension (it currently goes to 8000; vocab chat will extend the bucket registry to 18000 in a separate step).
 - The marker-side equivalence-class / partial-credit work — still pending architect's decision on FEEDBACK item 13.

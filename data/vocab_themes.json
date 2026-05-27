@@ -1,6 +1,6 @@
 {
-  "version": 1,
-  "description": "Themes taxonomy for Linguics vocabulary entries. Every vocab entry carries a `themes` array; values are drawn from this registry. Themes mix semantic categories (food_drink, colours, days_of_week) with grammatical-functional ones (function_word, modal_verb, verb_movement). Consumers can partition by prefix where useful (verb_*, pronoun_*, adjective_*, adverb_*, determiner_*).",
+  "version": 2,
+  "description": "Themes taxonomy for Linguics vocabulary entries. Every vocab entry carries a `themes` array; values are drawn from this registry. Themes mix semantic categories (food_drink, colours, days_of_week) with grammatical-functional ones (function_word, modal_verb, verb_movement). Consumers can partition by prefix where useful (verb_*, pronoun_*, adjective_*, adverb_*, determiner_*). Themes may have a `parent_id` indicating a parent theme; convention is that entries tagged with a child theme are ALSO tagged with its parent, so a 'show me food vocabulary' query can simply check for 'food_drink' membership without walking the hierarchy. Consumers wanting finer slices use the child theme directly.",
   "kinds": {
     "semantic_concrete": "Real-world domains: people, places, things, time, sensations",
     "semantic_abstract": "Abstract domains: emotions, mental_state, noun_abstract, etc.",
@@ -90,6 +90,41 @@
     {"id": "adverb_manner", "kind": "adverb_subtype", "label": "Manner adverbs"},
     {"id": "adverb_quantity", "kind": "adverb_subtype", "label": "Quantity adverbs"},
     {"id": "adverb_affirmation", "kind": "adverb_subtype", "label": "Affirmation adverbs (sì)"},
-    {"id": "adverb_negation", "kind": "adverb_subtype", "label": "Negation adverbs (non)"}
+    {"id": "adverb_negation", "kind": "adverb_subtype", "label": "Negation adverbs (non)"},
+
+    {"id": "food_fruit", "kind": "semantic_concrete", "label": "Fruit", "parent_id": "food_drink"},
+    {"id": "food_vegetable", "kind": "semantic_concrete", "label": "Vegetables", "parent_id": "food_drink"},
+    {"id": "food_meat_fish", "kind": "semantic_concrete", "label": "Meat, fish, and seafood", "parent_id": "food_drink"},
+    {"id": "food_dairy", "kind": "semantic_concrete", "label": "Dairy products and eggs", "parent_id": "food_drink"},
+    {"id": "food_grain_pasta", "kind": "semantic_concrete", "label": "Grains, bread, pasta", "parent_id": "food_drink"},
+    {"id": "food_sweet", "kind": "semantic_concrete", "label": "Sweets, desserts, baked treats", "parent_id": "food_drink"},
+    {"id": "food_herb_spice", "kind": "semantic_concrete", "label": "Herbs, spices, condiments", "parent_id": "food_drink"},
+    {"id": "food_meal_type", "kind": "semantic_concrete", "label": "Meal types and courses", "parent_id": "food_drink"},
+    {"id": "drink_alcoholic", "kind": "semantic_concrete", "label": "Alcoholic drinks", "parent_id": "food_drink"},
+    {"id": "drink_nonalcoholic", "kind": "semantic_concrete", "label": "Non-alcoholic drinks", "parent_id": "food_drink"},
+    {"id": "food_utensil", "kind": "semantic_concrete", "label": "Kitchen and table utensils", "parent_id": "food_drink"},
+
+    {"id": "animals_pet", "kind": "semantic_concrete", "label": "Pets and companion animals", "parent_id": "animals"},
+    {"id": "animals_farm", "kind": "semantic_concrete", "label": "Farm animals and livestock", "parent_id": "animals"},
+    {"id": "animals_wild_mammal", "kind": "semantic_concrete", "label": "Wild mammals", "parent_id": "animals"},
+    {"id": "animals_bird", "kind": "semantic_concrete", "label": "Birds", "parent_id": "animals"},
+    {"id": "animals_sea_creature", "kind": "semantic_concrete", "label": "Sea creatures (fish, marine mammals, shellfish)", "parent_id": "animals"},
+    {"id": "animals_reptile_amphibian", "kind": "semantic_concrete", "label": "Reptiles and amphibians", "parent_id": "animals"},
+    {"id": "animals_insect", "kind": "semantic_concrete", "label": "Insects and other arthropods", "parent_id": "animals"},
+
+    {"id": "tech_computing", "kind": "semantic_concrete", "label": "Computing and digital tech", "parent_id": "science_technology"},
+    {"id": "science_physics", "kind": "semantic_concrete", "label": "Physics", "parent_id": "science_technology"},
+    {"id": "science_chemistry", "kind": "semantic_concrete", "label": "Chemistry", "parent_id": "science_technology"},
+    {"id": "science_biology", "kind": "semantic_concrete", "label": "Biology and life sciences", "parent_id": "science_technology"},
+    {"id": "science_math", "kind": "semantic_concrete", "label": "Mathematics", "parent_id": "science_technology"},
+    {"id": "science_astronomy", "kind": "semantic_concrete", "label": "Astronomy and earth sciences", "parent_id": "science_technology"},
+    {"id": "science_general", "kind": "semantic_concrete", "label": "General science terms", "parent_id": "science_technology"},
+
+    {"id": "arts_music", "kind": "semantic_concrete", "label": "Music", "parent_id": "arts_entertainment"},
+    {"id": "arts_visual", "kind": "semantic_concrete", "label": "Visual arts (painting, sculpture, photography)", "parent_id": "arts_entertainment"},
+    {"id": "arts_literature", "kind": "semantic_concrete", "label": "Literature and writing", "parent_id": "arts_entertainment"},
+    {"id": "arts_performing", "kind": "semantic_concrete", "label": "Theatre and dance", "parent_id": "arts_entertainment"},
+    {"id": "arts_film_tv", "kind": "semantic_concrete", "label": "Film and television", "parent_id": "arts_entertainment"},
+    {"id": "arts_general", "kind": "semantic_concrete", "label": "General arts terms", "parent_id": "arts_entertainment"}
   ]
 }

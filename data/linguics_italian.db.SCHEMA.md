@@ -53,9 +53,20 @@ Per-corpus metadata. Use `total_tokens` to convert counts into fractions or fpm.
 | `type` | TEXT | `raw_count` or `native_fraction` |
 | `description` | TEXT | provenance + caveats |
 
-### `curated_entries` (1,496 rows)
+### `curated_entries` (~18,000 rows)
 
 One row per entry in `vocabulary_it_frequency.json`. `lemma_id` is the best-match into `lemmas` (by lemma + pos + gender, falling back to lemma + pos). `rank` here is the curated pedagogical ordering, NOT `lemmas.merged_rank`.
+
+`translation_source` records provenance for `translation_en`:
+
+| value | meaning |
+|---|---|
+| `vocab_chat` | hand-authored by the vocab-authoring chat |
+| `apertium` | bulk-pulled from the Apertium eng-ita bilingual dictionary |
+| `wiktionary` | bulk-pulled from the Italian Wiktionary (kaikki dump) |
+| `omw` | bulk-pulled from Open Multilingual WordNet (NLTK) |
+| `corpus_artefact` | `translation_en = "[skip]"` — corpus tokenisation noise, intentionally not translated |
+| `NULL` | no translation yet (no source matched, vocab chat to attend) |
 
 ### `themes` (81 rows)
 
