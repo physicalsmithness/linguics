@@ -232,6 +232,37 @@ The architect will know what "unattempted percentage" maps to in the running-sta
 3. Does the marker need an explanation surface for the partial-credit case (and probably the asymmetric-equivalent case too), and where does the explanation text come from — data, marker rule, or generated?
 4. Does the data shape need to migrate `translation_en` from comma-string to proper array so the marker can do set operations cleanly? (Architect previously sanctioned arrays "going forward only"; the back-migration becomes necessary if any of the above lands.)
 
+### Update 2026-05-27 (second update): the IT→EN direction has the same problem
+
+A second real learner failure surfaced this. The marker rendered *"What does fortunato mean?"* (IT→EN, asking about the noun entry at rank 2964). The learner typed `lucky`. Marker said wrong because that entry's translation_en (from Wiktionary's bulk pull) was `'a male given name, a surname originating as a patronymic'`.
+
+The user pointed out that the framing of this fix is wrong if it lives only at the data layer. The deeper issue is the marker's behaviour: when it asks "what does X mean", it picks ONE entry and only accepts that entry's translation_en. The learner has no way to know which entry was picked, and naturally gives the most familiar sense.
+
+**The rule the marker should follow (symmetric to the il/lo case)**
+
+For IT→EN direction:
+
+> When the marker asks "what does <lemma> mean", it should accept any translation_en value drawn from ANY entry whose `lemma` matches, regardless of which entry was selected to drive the question rendering. The question rendering can show the lemma, optionally a POS hint or gloss disambiguator, but the acceptance set is the UNION of all matching entries' translation_en values.
+
+This is symmetric to the EN→IT rule the architect was asked to consider in the original item 13 (accept any lemma whose translation_en matches the prompt's gloss). Together they make the marker robust to lemmas with multi-entry / multi-POS splits.
+
+**Per-entry mastery tracking**
+
+The asymmetric-equivalence-class rule the user proposed earlier (fire on the lemma the learner produced, leave the prompted item untouched) applies here too. If the marker is asking about the `fortunato (noun)` entry and the learner answers `lucky`, that answer matches `fortunato (adjective)`'s translation. The fire credit should go to the adjective entry's mastery state, not the noun's. The noun entry doesn't advance; the learner can practise the noun specifically if they want.
+
+**Implication for data shape**
+
+A defensive cleanup of proper-noun pollution helps (we just did one), but the marker rule above is the proper fix. With the rule in place, even a noisy multi-entry lemma works correctly because all valid senses across all entries are accepted. The data side becomes a quality issue rather than a correctness issue.
+
+**Combined architecture-ask now reads:**
+
+1. The marker should treat translation acceptance as a UNION across all entries whose lemma matches (IT→EN) OR whose translation_en matches the prompt's gloss (EN→IT).
+2. Per-entry mastery tracking is asymmetric: the entry that fires is the one the learner's answer actually matches, not necessarily the one the question was rendered from.
+3. Partial credit (the `ma`/`però` case) applies when the learner's answer matches some but not all of a multi-gloss entry's translation_en; weighted at the entry's current "unattempted percentage" per the user's verbatim proposal above.
+4. Equivalence-class concept (the `solo`/`soltanto`/`solamente` case) is the explicit-data version of the union acceptance rule, for lemmas the architect wants to mark as truly interchangeable.
+
+All four belong together; they're aspects of the same underlying "marker should be tolerant of polysemy and synonymy" decision.
+
 ## Status snapshot (when this file was written)
 
 - Bands 1-100, 101-200, 201-300, 301-400, 401-500, 501-600, 601-700 are complete.

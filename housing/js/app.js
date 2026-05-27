@@ -904,6 +904,18 @@
     meta.textContent = bits.join(" · ");
     card.appendChild(meta);
 
+    // If this lemma has multiple curated entries (homographs across POS or
+    // sense), disambiguate the prompt by stating the POS we are asking about.
+    // Saves the learner from having to guess which sense of "fisico" we mean.
+    const sameLemmaCount = vocabEntries.filter(v =>
+      v && v.lemma === entry.lemma && v.translation_en && String(v.translation_en).trim()
+    ).length;
+    const showPos = sameLemmaCount > 1 && entry.pos;
+    // "as a noun" / "as an adjective" — pick the article by initial vowel.
+    const posPhrase = showPos
+      ? "as " + (/^[aeiou]/i.test(entry.pos) ? "an" : "a") + " " + entry.pos
+      : "";
+
     const prompt = document.createElement("div");
     prompt.className = "prompt";
     if (isItEn) {
@@ -911,13 +923,29 @@
       strong.textContent = entry.lemma;
       prompt.appendChild(document.createTextNode("What does "));
       prompt.appendChild(strong);
-      prompt.appendChild(document.createTextNode(" mean?"));
+      if (showPos) {
+        prompt.appendChild(document.createTextNode(" mean ("));
+        const posEm = document.createElement("em");
+        posEm.textContent = posPhrase;
+        prompt.appendChild(posEm);
+        prompt.appendChild(document.createTextNode(")?"));
+      } else {
+        prompt.appendChild(document.createTextNode(" mean?"));
+      }
     } else {
       const strong = document.createElement("strong");
       strong.textContent = entry.translation_en;
       prompt.appendChild(document.createTextNode("What's the Italian for "));
       prompt.appendChild(strong);
-      prompt.appendChild(document.createTextNode("?"));
+      if (showPos) {
+        prompt.appendChild(document.createTextNode(" ("));
+        const posEm = document.createElement("em");
+        posEm.textContent = posPhrase;
+        prompt.appendChild(posEm);
+        prompt.appendChild(document.createTextNode(")?"));
+      } else {
+        prompt.appendChild(document.createTextNode("?"));
+      }
     }
     card.appendChild(prompt);
 
@@ -1945,11 +1973,11 @@
       }
     }
 
-    // (d) Cross-sense (IT->EN): the learner's answer matches the translation
-    // of a different entry that shares this lemma (e.g. fisico-the-adjective
-    // means "physical" while fisico-the-noun means "physicist"). Give partial
-    // credit and explain which sense the learner gave. Skips the noisy
-    // requirement that the curator duplicate translations between homographs.
+    // (d) Cross-sense (IT->EN): the prompt "What does X mean?" doesn't specify
+    // which POS/sense, so any valid sense of the lemma is a hit. We surface
+    // the other sense in the explanation as bonus info rather than docking
+    // credit. The vocab curator doesn't need to duplicate translations
+    // between homograph entries to make this work.
     if (isItEn && entry && entry.lemma && Array.isArray(vocabEntries)) {
       for (const v of vocabEntries) {
         if (!v || !v.lemma || v.lemma !== entry.lemma) continue;
@@ -1958,9 +1986,9 @@
         for (const altV of altsForV) {
           if (altV && a === altV) {
             return {
-              outcome: "partial",
-              credit: 0.5,
-              reason: "That's the " + (v.pos || "other") + " sense of " + entry.lemma + " (\"" + v.translation_en + "\"). This entry asks the " + (entry.pos || "") + " sense (\"" + entry.translation_en + "\")."
+              outcome: "hit",
+              credit: 1,
+              reason: "Right - that's the " + (v.pos || "other") + " sense (\"" + v.translation_en + "\"). " + entry.lemma + " can also be a " + (entry.pos || "") + " meaning \"" + entry.translation_en + "\"."
             };
           }
         }
