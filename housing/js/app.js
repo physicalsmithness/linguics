@@ -740,7 +740,7 @@
   let vocabEntries = [];
   let vocabDeck = [];
   let vocabIndex = 0;
-  let vocabFilter = { band: "", direction: "it_en", theme: "", genderClass: "" };
+  let vocabFilter = { band: "", direction: "it_en", theme: "", genderClass: "", rankRange: null };
   let vocabExpandedThemes = new Set();
   let vocabExpandedGenders = new Set();
   let vocabInputRef = null;
@@ -748,6 +748,9 @@
   function filteredVocabEntries() {
     return vocabEntries.filter(v => {
       if (vocabFilter.band && v.band !== vocabFilter.band) return false;
+      if (vocabFilter.rankRange && typeof v.rank === "number") {
+        if (v.rank < vocabFilter.rankRange.start || v.rank > vocabFilter.rankRange.end) return false;
+      }
       if (vocabFilter.theme) {
         if (!Array.isArray(v.themes) || !v.themes.includes(vocabFilter.theme)) return false;
       }
@@ -762,9 +765,42 @@
 
   function ensureVocabDeck() {
     if (!vocabDeck.length || vocabIndex >= vocabDeck.length) {
-      vocabDeck = shuffle(filteredVocabEntries());
+      vocabDeck = weightedVocabShuffle(filteredVocabEntries());
       vocabIndex = 0;
     }
+  }
+
+  // Score-weighted, without-replacement shuffle. Weight = 1.1 - score, where
+  // score is the lemma's current recency-weighted correctness in the active
+  // direction. Untouched lemmas score 0 and get max weight 1.1; fully known
+  // lemmas (score 1.0) get min weight 0.1, an 11x ratio. The user explicitly
+  // chose this formula.
+  function weightedVocabShuffle(entries) {
+    const pool = entries.slice();
+    if (pool.length <= 1) return pool;
+    const activeDir = (vocabFilter && vocabFilter.direction === "it_en") ? "passive" : "active";
+    const weights = pool.map(e => {
+      const events = eventsForLemmas([e.lemma], { direction: activeDir, aspect: "translation" });
+      const wc = recencyWeightedCorrectness(events);
+      const score = wc.hasEvents ? wc.correctness : 0;
+      return Math.max(0.05, 1.1 - score);
+    });
+    const out = [];
+    while (pool.length > 0) {
+      let total = 0;
+      for (const w of weights) total += w;
+      let r = Math.random() * total;
+      let idx = 0;
+      for (; idx < weights.length; idx++) {
+        r -= weights[idx];
+        if (r <= 0) break;
+      }
+      if (idx >= weights.length) idx = weights.length - 1;
+      out.push(pool[idx]);
+      pool.splice(idx, 1);
+      weights.splice(idx, 1);
+    }
+    return out;
   }
 
   function bandFriendly(bandId) {
@@ -933,7 +969,7 @@
     const doNext = () => {
       vocabIndex++;
       if (vocabIndex >= vocabDeck.length) {
-        vocabDeck = shuffle(filteredVocabEntries());
+        vocabDeck = weightedVocabShuffle(filteredVocabEntries());
         vocabIndex = 0;
       }
       renderVocab();
@@ -1374,13 +1410,14 @@
     });
     header.appendChild(report);
 
-    if (vocabFilter.band || vocabFilter.theme || vocabFilter.genderClass) {
+    if (vocabFilter.band || vocabFilter.theme || vocabFilter.genderClass || vocabFilter.rankRange) {
       const filtRow = document.createElement("div");
       filtRow.className = "vocab-filter-status";
       const lbl = document.createElement("span");
       lbl.className = "vocab-filter-status-label";
       let descr = "Filtered: ";
       if (vocabFilter.band) descr += "band " + bandFriendly(vocabFilter.band);
+      if (vocabFilter.rankRange) descr += "ranks " + vocabFilter.rankRange.start + "-" + vocabFilter.rankRange.end;
       if (vocabFilter.theme) descr += "theme " + vocabFilter.theme;
       if (vocabFilter.genderClass) descr += "gender-class " + (GENDER_CLASS_LABELS[vocabFilter.genderClass] || vocabFilter.genderClass);
       lbl.textContent = descr;
@@ -1393,6 +1430,7 @@
         vocabFilter.band = "";
         vocabFilter.theme = "";
         vocabFilter.genderClass = "";
+        vocabFilter.rankRange = null;
         vocabExpandedThemes.clear();
         vocabExpandedGenders.clear();
         vocabDeck = []; vocabIndex = 0;
@@ -1417,15 +1455,17 @@
     freqTitle.className = "vocab-axis-title";
     const ft = document.createElement("span");
     ft.className = "vocab-axis-name";
-    ft.textContent = "Frequency";
-    freqTitle.appendChild(ft);
-    const focusInfo = document.createElement("span");
-    focusInfo.className = "vocab-axis-focus";
-    // Focused range is rank focusRankStart..(focusRankStart+989)
     if (typeof window.__vocabFocusRankStart === "undefined") window.__vocabFocusRankStart = 1;
     const focusStart = window.__vocabFocusRankStart;
     const focusEnd = focusStart + 989;
-    focusInfo.textContent = "focused: ranks " + focusStart + "-" + focusEnd;
+    const isTopThousand = focusStart === 1;
+    ft.textContent = isTopThousand
+      ? "Most frequently used Italian words"
+      : ("Italian words by frequency, ranks " + focusStart + "-" + focusEnd);
+    freqTitle.appendChild(ft);
+    const focusInfo = document.createElement("span");
+    focusInfo.className = "vocab-axis-focus";
+    focusInfo.textContent = "(ranks " + focusStart + "-" + focusEnd + ")";
     freqTitle.appendChild(focusInfo);
     freqAxis.appendChild(freqTitle);
 
@@ -1449,37 +1489,59 @@
     // Which block contains the focus?
     const focusBlockIdx = Math.floor((focusStart - 1) / RANKS_PER_BLOCK);
 
+    // Render each block alongside its tick label inside a column wrapper so
+    // the labels naturally centre under their blocks.
     const heatRow = document.createElement("div");
     heatRow.className = "freq-heatmap-row";
 
     for (let bi = 0; bi < totalBlocks; bi++) {
       const blockStart = bi * RANKS_PER_BLOCK + 1;
       const blockEnd = blockStart + RANKS_PER_BLOCK - 1;
+      const distance = bi === focusBlockIdx ? 0 : Math.abs(bi - focusBlockIdx);
+
+      const col = document.createElement("div");
+      col.className = "freq-block-col";
+
+      let block;
       if (bi === focusBlockIdx) {
-        const grid = renderFocusedDotGrid(blockStart, byRank, activeDir);
-        heatRow.appendChild(grid);
+        block = renderFocusedDotGrid(blockStart, byRank, activeDir);
       } else {
-        const distance = Math.abs(bi - focusBlockIdx);
-        const stripes = renderFlankingStripes(blockStart, blockEnd, byRank, distance, activeDir, VOCAB_FOCUS_HEIGHT_PX);
-        stripes.addEventListener("click", () => {
+        block = renderFlankingStripes(blockStart, blockEnd, byRank, distance, activeDir, VOCAB_FOCUS_HEIGHT_PX);
+        // Block-level click: filter deck to this thousand-range AND refocus.
+        block.addEventListener("click", (ev) => {
+          if (ev.target && ev.target.classList.contains("freq-flank-cell")) return; // cell handles its own
           window.__vocabFocusRankStart = blockStart;
-          renderVocabAxes();
+          vocabFilter.rankRange = { start: blockStart, end: blockEnd };
+          vocabFilter.band = ""; vocabFilter.theme = ""; vocabFilter.genderClass = "";
+          vocabDeck = []; vocabIndex = 0;
+          renderVocab();
         });
-        heatRow.appendChild(stripes);
+        // Cell-level click: narrower filter to this cell's range.
+        block.addEventListener("click", (ev) => {
+          const t = ev.target;
+          if (!t || !t.classList || !t.classList.contains("freq-flank-cell")) return;
+          ev.stopPropagation();
+          const s = parseInt(t.dataset.rangeStart || "0", 10);
+          const e = parseInt(t.dataset.rangeEnd || "0", 10);
+          window.__vocabFocusRankStart = blockStart; // also refocus
+          vocabFilter.rankRange = { start: s, end: e };
+          vocabFilter.band = ""; vocabFilter.theme = ""; vocabFilter.genderClass = "";
+          vocabDeck = []; vocabIndex = 0;
+          renderVocab();
+        });
       }
+      col.appendChild(block);
+
+      // Tick label - short form for distant blocks so they fit the narrow strips.
+      const tick = document.createElement("div");
+      tick.className = "freq-tick " + (bi === focusBlockIdx ? "focused" : "flanking");
+      const thousand = bi + 1;
+      tick.textContent = (distance > 2) ? (thousand + "k") : ("~" + (thousand * 1000));
+      col.appendChild(tick);
+
+      heatRow.appendChild(col);
     }
     freqAxis.appendChild(heatRow);
-
-    // Tick row: friendly approximate labels (~1000, ~2000, ...).
-    const ticks = document.createElement("div");
-    ticks.className = "freq-tick-row";
-    for (let bi = 0; bi < totalBlocks; bi++) {
-      const t = document.createElement("div");
-      t.className = "freq-tick " + (bi === focusBlockIdx ? "focused" : "flanking");
-      t.textContent = "~" + ((bi + 1) * 1000);
-      ticks.appendChild(t);
-    }
-    freqAxis.appendChild(ticks);
 
     host.appendChild(freqAxis);
 
