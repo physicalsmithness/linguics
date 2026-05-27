@@ -296,7 +296,7 @@
   //   100% mastery  → deep green   (consolidated)
   // Linear interpolation between adjacent stops.
   let RWG_RED        = [208,  72,  72];
-  let RWG_YELLOW     = [240, 220, 130];
+  let RWG_YELLOW     = [240, 233, 204];
   let RWG_PALE_GREEN = [163, 210, 163];
   let RWG_GREEN      = [ 25, 110,  58];
 
@@ -1612,17 +1612,19 @@
     return grid;
   }
 
-  // Flanking block. Same HEIGHT as the focused block. 10 columns wide always.
-  //   Adjacent (within 2 of focus): 11 cells tall per column. Each cell ~ 9
-  //     consecutive lemmas averaged. So 110 cells of ~9 lemmas each.
-  //   Distant: 1 cell tall per column. Each cell ~ 100 consecutive lemmas
-  //     averaged. So 10 cells total, each a full-height vertical strip.
-  // Width tapers with distance so distant blocks read as narrower.
+  // Flanking block layout. All cells share the same row height as the
+  // focused-grid row (focusedHeightPx / 11), so cells across blocks look
+  // visually consistent.
+  //   Adjacent (within 2): 10 columns x 11 rows = 110 cells, ~9 lemmas/cell.
+  //   Distant (further):    1 column x 10 rows = 10 cells, ~100 lemmas/cell.
+  //     Narrow tall strip; same cell height as the adjacent blocks; slightly
+  //     shorter overall (10 rows vs 11) but visually balanced.
   function renderFlankingStripes(blockStart, blockEnd, byRank, distance, dirFilter, focusedHeightPx) {
-    const COLS = 10;
-    const ROWS = distance <= 2 ? 11 : 1;
-    const colWidth = distance === 1 ? 5 : distance === 2 ? 4 : 3;
-    const rowHeight = focusedHeightPx / ROWS;
+    const adjacent = distance <= 2;
+    const COLS = adjacent ? 10 : 1;
+    const ROWS = adjacent ? 11 : 10;
+    const colWidth = distance === 1 ? 5 : distance === 2 ? 4 : 5;
+    const rowHeight = focusedHeightPx / 11; // consistent across all flanking blocks
     const wrap = document.createElement("div");
     wrap.className = "freq-flanking";
     wrap.dataset.blockStart = blockStart;
