@@ -19,6 +19,7 @@ from __future__ import annotations
 import csv
 import json
 import os
+import re
 import sqlite3
 import sys
 from pathlib import Path
@@ -189,7 +190,9 @@ CREATE TABLE IF NOT EXISTS curated_entries (
     gloss_en            TEXT,
     notes               TEXT,
     lemma_id            INTEGER,
-    FOREIGN KEY (band) REFERENCES bands(id),
+    -- band is a label, not a strict FK: the bands file may not yet enumerate
+    -- every band a curated entry references. Use the missing-band auto-fill
+    -- in load_curated() to keep the JOIN useful.
     FOREIGN KEY (lemma_id) REFERENCES lemmas(id)
 );
 CREATE INDEX IF NOT EXISTS idx_curated_lemma ON curated_entries (lemma, pos);
@@ -439,12 +442,51 @@ def load_bands(con: sqlite3.Connection) -> None:
     print(f"  bands: {len(bands)} rows")
 
 
+_BAND_RE = re.compile(r"^vocabulary\.it\.freq_(\d+)_(\d+)$")
+
+
+def _autofill_missing_bands(con: sqlite3.Connection, band_ids_needed: set[str]) -> int:
+    """For any band id referenced by a curated entry but absent from the
+    bands table, insert a minimal placeholder row so consumers can still
+    JOIN. Returns how many we created."""
+    cur = con.cursor()
+    existing = {r[0] for r in cur.execute("SELECT id FROM bands").fetchall()}
+    missing = band_ids_needed - existing
+    n = 0
+    for bid in sorted(missing):
+        m = _BAND_RE.match(bid)
+        if not m:
+            continue
+        lo, hi = int(m.group(1)), int(m.group(2))
+        cur.execute(
+            "INSERT INTO bands (id, language_code, label, band_lo, band_hi, attributes, active, version) VALUES (?,?,?,?,?,?,?,?)",
+            (
+                bid,
+                "it",
+                f"Words {lo}-{hi}",
+                lo,
+                hi,
+                json.dumps({"is_aggregate": True, "band_lo": lo, "band_hi": hi, "autofilled": True}),
+                1,
+                1,
+            ),
+        )
+        n += 1
+    return n
+
+
 def load_curated(con: sqlite3.Connection, lemma_lookup: dict[tuple[str, str, str | None], int]) -> None:
     path = DATA_DIR / "vocabulary_it_frequency.json"
     if not path.exists():
         return
     with path.open(encoding="utf-8") as f:
         entries = json.load(f)
+    # Auto-fill any missing bands the curated entries reference, so the
+    # informal JOIN (curated.band -> bands.id) is well-formed.
+    bands_needed = {e["band"] for e in entries if e.get("band")}
+    n_autofilled = _autofill_missing_bands(con, bands_needed)
+    if n_autofilled:
+        print(f"  bands: auto-filled {n_autofilled} placeholder band rows")
     cur = con.cursor()
     for e in entries:
         gender = e.get("gender")

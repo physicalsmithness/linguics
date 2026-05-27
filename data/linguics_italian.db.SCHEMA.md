@@ -23,14 +23,16 @@ One row per `(lemma, pos, gender)` triple from `vocabulary_it_frequency_lemmas.c
 | `sources_count` | INTEGER | 0..3 (ItWaC, OpenSubs, wordfreq) |
 | `rank_itwac`, `rank_opensubs`, `rank_wordfreq` | INTEGER | per-corpus ranks |
 | `rank_lip`, `rank_news`, `rank_literature`, `rank_wikipedia` | INTEGER | per-register ranks |
-| **`count_itwac`** | INTEGER | raw lemma count in ItWaC |
-| **`count_opensubs`** | INTEGER | raw lemma count in OpenSubtitles (lemmatised) |
-| **`freq_wordfreq`** | REAL | native wordfreq fraction (e.g. 0.0389 = 3.89% of corpus); no raw count because wordfreq is a multi-corpus aggregate |
-| **`count_lip`** | INTEGER | raw lemma count in Europarl (LIP proxy) |
-| **`count_news`** | INTEGER | raw lemma count in News-Commentary |
-| **`count_literature`** | INTEGER | raw lemma count in Gutenberg Italian sample |
-| **`count_wikipedia`** | INTEGER | raw lemma count in itwiki Oct-2022 dump |
+| **`count_itwac`** | INTEGER | raw lemma count in ItWaC (POS-aware upstream — not deduped) |
+| **`count_opensubs`** | INTEGER | raw lemma count in OpenSubtitles (lemmatised; deduped — see split-row note below) |
+| **`freq_wordfreq`** | REAL | native wordfreq fraction (e.g. 0.0389 = 3.89% of corpus); no raw count because wordfreq is a multi-corpus aggregate (deduped) |
+| **`count_lip`** | INTEGER | raw lemma count in Europarl (LIP proxy) (deduped) |
+| **`count_news`** | INTEGER | raw lemma count in News-Commentary (deduped) |
+| **`count_literature`** | INTEGER | raw lemma count in Gutenberg Italian sample (deduped) |
+| **`count_wikipedia`** | INTEGER | raw lemma count in itwiki Oct-2022 dump (deduped) |
 | `notes` | TEXT | |
+
+**Split-row attribution rule.** For surface forms that resolve to multiple `(lemma, pos, gender)` split rows (e.g. `il` article/pronoun/noun, `che` pronoun/conjunction/verb/noun/adjective), each per-corpus count is attributed in full to the row with the **lowest `merged_rank`** in the group and **zero** on the rest. Sum the column to recover the corpus total (modulo the long-tail outside the top-N cutoff). This applies to `count_opensubs`, `count_lip`, `count_news`, `count_literature`, `count_wikipedia` and `freq_wordfreq`. It does **not** apply to `count_itwac`, which is already POS-aware via the upstream franfranz files.
 
 UNIQUE (lemma, pos, gender). Indexes on lemma, pos, merged_rank, nvdb_tier.
 

@@ -44,6 +44,8 @@ Per-source columns come in pairs: `rank_X` (1-indexed rank in that corpus) and `
 
 The companion file `data/source_metadata.json` carries `total_tokens` per corpus. To convert a count into a fraction: `count_X / sources[X].total_tokens`. Coverage calculations are exact, not interpolated.
 
+**Split-row attribution rule.** For surface forms that resolve to multiple `(lemma, pos, gender)` split rows, each per-corpus count is attributed in full to the row with the **lowest `merged_rank`** in the group and **zero** on the rest. Sum the column to recover the corpus total (modulo the long-tail outside the top-N cutoff). This applies to `count_opensubs`, `count_lip`, `count_news`, `count_literature`, `count_wikipedia` and `freq_wordfreq`. It does **not** apply to `count_itwac` (already POS-aware upstream). The rank columns are unaffected — every split row keeps its own rank.
+
 ### Per-register columns (added in brief C)
 
 Four extra rank columns drawn from register-specific corpora:
