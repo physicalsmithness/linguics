@@ -18,5 +18,35 @@
     "total_tokens": null,
     "type": "native_fraction",
     "description": "wordfreq Python library, multi-corpus aggregate (Wikipedia + news + books + subtitles + web + Twitter). The freq_wordfreq value is the native fraction returned by wordfreq.word_frequency() summed across the lemma's surface forms. Multiply by 1e6 for frequency-per-million if useful."
+  },
+  "hermitdave": {
+    "total_tokens": 241736295,
+    "type": "raw_count",
+    "description": "OpenSubtitles 2018 Italian, raw wordform counts (hermitdave/FrequencyWords it_50k.txt). Surface-form level — not lemmatised."
+  },
+  "orgtre": {
+    "total_tokens": 562506798,
+    "type": "raw_count",
+    "description": "OpenSubtitles 2018 Italian, cleaned (orgtre/top-open-subtitles-sentences). Surface-form level — not lemmatised. Tokenisation differs slightly from hermitdave."
+  },
+  "wikipedia": {
+    "total_tokens": 518971790,
+    "type": "raw_count",
+    "description": "Italian Wikipedia, October 2022 dump (adno/wikipedia-word-frequency-clean). Lemmatised per-form via simplemma and aggregated per lemma for the lemma CSV; raw wordform counts in the form CSV."
+  },
+  "news": {
+    "total_tokens": 2479394,
+    "type": "raw_count",
+    "description": "OPUS News-Commentary v16, Italian monolingual. Lemmatised via simplemma."
+  },
+  "lip": {
+    "total_tokens": 51939699,
+    "type": "raw_count",
+    "description": "OPUS Europarl v8, Italian monolingual — PROXY for spoken Italian (formal transcribed parliamentary speech). The real LIP/BADIP corpus wasn't reachable at build time; swap when available."
+  },
+  "literature": {
+    "total_tokens": 5774685,
+    "type": "raw_count",
+    "description": "Sample of Italian Project Gutenberg books (79 texts, classic literature). Lemmatised via simplemma."
   }
 }

@@ -17,7 +17,9 @@ Four files sit side-by-side in `data/`. The CSVs and the JSON are editable sourc
 
 Top 10,000 Italian **wordforms** by frequency. A wordform is the literal string that appears in text: `casa` and `case` are two rows; `parla`, `parlato`, `parlando`, `parlerà` are four separate rows.
 
-Columns: `rank, word, avg_rank, sources_count, rank_hermitdave, rank_orgtre, rank_wordfreq, rank_lip, rank_news, rank_literature, rank_wikipedia`.
+Columns: `rank, word, avg_rank, sources_count, rank_hermitdave, rank_orgtre, rank_wordfreq, count_hermitdave, count_orgtre, freq_wordfreq, rank_lip, count_lip, rank_news, count_news, rank_literature, count_literature, rank_wikipedia, count_wikipedia`.
+
+Per-source columns come in pairs: `rank_X` (1-indexed rank) and `count_X` (raw token count in that corpus). The exception is `wordfreq`, which exposes only `freq_wordfreq` (a native fraction — wordfreq is a multi-corpus aggregate with no shared token total). To convert a count to a fraction, divide by the corpus's `total_tokens` in `data/source_metadata.json`.
 
 Sources (all surface-form, no lemmatisation):
 - **hermitdave/FrequencyWords** — raw OpenSubtitles 2018 50k list
@@ -36,7 +38,11 @@ Each source is capped at top 30k; words missing from a source's top 30k are pena
 
 Top 18,000 Italian **lemmas** (dictionary headwords), with POS, gender, auxiliary and adjective-class. A lemma is the citation form: infinitive for verbs (`parlare`), masculine singular for adjectives (`bello`), singular for nouns (`casa`). All of `parla`/`parlato`/`parlando` collapse into one row under the lemma `parlare`.
 
-Columns: `rank, lemma, pos, avg_rank, sources_count, rank_itwac, rank_opensubs, rank_wordfreq, gender, auxiliary, adj_class, nvdb_tier, notes, rank_lip, rank_news, rank_literature, rank_wikipedia`.
+Columns: `rank, lemma, pos, avg_rank, sources_count, rank_itwac, rank_opensubs, rank_wordfreq, count_itwac, count_opensubs, freq_wordfreq, gender, auxiliary, adj_class, nvdb_tier, notes, rank_lip, count_lip, rank_news, count_news, rank_literature, count_literature, rank_wikipedia, count_wikipedia`.
+
+Per-source columns come in pairs: `rank_X` (1-indexed rank in that corpus) and `count_X` (raw token count of the lemma in that corpus). `wordfreq` is the exception — it gives a native fraction (`freq_wordfreq`) instead of a count, because it's a multi-corpus aggregate. `count_itwac` is NULL for non-{noun, verb, adjective} POS because the franfranz ItWaC files exclude function words and auxiliaries.
+
+The companion file `data/source_metadata.json` carries `total_tokens` per corpus. To convert a count into a fraction: `count_X / sources[X].total_tokens`. Coverage calculations are exact, not interpolated.
 
 ### Per-register columns (added in brief C)
 

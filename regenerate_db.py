@@ -99,6 +99,15 @@ CREATE TABLE IF NOT EXISTS lemmas (
     rank_news       INTEGER,
     rank_literature INTEGER,
     rank_wikipedia  INTEGER,
+    -- Raw counts where available (wordfreq is a fractional aggregate, so
+    -- freq_wordfreq carries the native wordfreq.word_frequency() value).
+    count_itwac        INTEGER,
+    count_opensubs     INTEGER,
+    freq_wordfreq      REAL,
+    count_lip          INTEGER,
+    count_news         INTEGER,
+    count_literature   INTEGER,
+    count_wikipedia    INTEGER,
     notes           TEXT,
     UNIQUE (lemma, pos, gender)
 );
@@ -121,11 +130,27 @@ CREATE TABLE IF NOT EXISTS forms (
     rank_news       INTEGER,
     rank_literature INTEGER,
     rank_wikipedia  INTEGER,
+    count_hermitdave   INTEGER,
+    count_orgtre       INTEGER,
+    freq_wordfreq      REAL,
+    count_lip          INTEGER,
+    count_news         INTEGER,
+    count_literature   INTEGER,
+    count_wikipedia    INTEGER,
     FOREIGN KEY (lemma_id) REFERENCES lemmas(id)
 );
 CREATE INDEX IF NOT EXISTS idx_forms_form  ON forms (form);
 CREATE INDEX IF NOT EXISTS idx_forms_rank  ON forms (merged_rank);
 CREATE INDEX IF NOT EXISTS idx_forms_lemma ON forms (lemma_id);
+
+-- Per-source corpus metadata: total tokens (corpus size) and a description.
+-- Use total_tokens to convert count_<source> into a fraction or fpm.
+CREATE TABLE IF NOT EXISTS sources (
+    name          TEXT PRIMARY KEY,
+    total_tokens  INTEGER,         -- nullable for wordfreq (native fraction)
+    type          TEXT,            -- 'raw_count' | 'native_fraction'
+    description   TEXT
+);
 
 CREATE TABLE IF NOT EXISTS themes (
     id    TEXT PRIMARY KEY,
@@ -170,12 +195,45 @@ CREATE TABLE IF NOT EXISTS curated_entries (
 CREATE INDEX IF NOT EXISTS idx_curated_lemma ON curated_entries (lemma, pos);
 CREATE INDEX IF NOT EXISTS idx_curated_band  ON curated_entries (band);
 
-CREATE TABLE IF NOT EXISTS text_coverage_curve (
-    register             TEXT NOT NULL,
-    rank                 INTEGER NOT NULL,
-    cumulative_coverage  REAL NOT NULL,
-    PRIMARY KEY (register, rank)
-);
+-- Long-format view that unpivots the per-source count/freq columns. Useful
+-- for SQL aggregates: "sum count_X for register R over a known-lemma set".
+CREATE VIEW IF NOT EXISTS lemma_frequencies AS
+  SELECT id AS lemma_id, lemma, pos, gender, 'itwac'      AS source,
+         count_itwac      AS count, NULL AS freq, rank_itwac      AS rank FROM lemmas WHERE count_itwac      IS NOT NULL
+UNION ALL
+  SELECT id, lemma, pos, gender, 'opensubs',
+         count_opensubs,   NULL,                       rank_opensubs   FROM lemmas WHERE count_opensubs   IS NOT NULL
+UNION ALL
+  SELECT id, lemma, pos, gender, 'wordfreq',
+         NULL,             freq_wordfreq,             rank_wordfreq   FROM lemmas WHERE freq_wordfreq    IS NOT NULL
+UNION ALL
+  SELECT id, lemma, pos, gender, 'lip',
+         count_lip,        NULL,                       rank_lip        FROM lemmas WHERE count_lip        IS NOT NULL
+UNION ALL
+  SELECT id, lemma, pos, gender, 'news',
+         count_news,       NULL,                       rank_news       FROM lemmas WHERE count_news       IS NOT NULL
+UNION ALL
+  SELECT id, lemma, pos, gender, 'literature',
+         count_literature, NULL,                       rank_literature FROM lemmas WHERE count_literature IS NOT NULL
+UNION ALL
+  SELECT id, lemma, pos, gender, 'wikipedia',
+         count_wikipedia,  NULL,                       rank_wikipedia  FROM lemmas WHERE count_wikipedia  IS NOT NULL;
+
+CREATE VIEW IF NOT EXISTS form_frequencies AS
+  SELECT id AS form_id, form, 'hermitdave' AS source,
+         count_hermitdave AS count, NULL AS freq, rank_hermitdave AS rank FROM forms WHERE count_hermitdave IS NOT NULL
+UNION ALL
+  SELECT id, form, 'orgtre',     count_orgtre,    NULL,             rank_orgtre     FROM forms WHERE count_orgtre    IS NOT NULL
+UNION ALL
+  SELECT id, form, 'wordfreq',   NULL,            freq_wordfreq,    rank_wordfreq   FROM forms WHERE freq_wordfreq   IS NOT NULL
+UNION ALL
+  SELECT id, form, 'lip',        count_lip,       NULL,             rank_lip        FROM forms WHERE count_lip       IS NOT NULL
+UNION ALL
+  SELECT id, form, 'news',       count_news,      NULL,             rank_news       FROM forms WHERE count_news      IS NOT NULL
+UNION ALL
+  SELECT id, form, 'literature', count_literature, NULL,            rank_literature FROM forms WHERE count_literature IS NOT NULL
+UNION ALL
+  SELECT id, form, 'wikipedia',  count_wikipedia, NULL,             rank_wikipedia  FROM forms WHERE count_wikipedia IS NOT NULL;
 
 -- View: lemmas + curated for the vocab chat's common query.
 -- Join policy:
@@ -226,8 +284,11 @@ def load_lemmas(con: sqlite3.Connection) -> dict[tuple[str, str, str | None], in
                 lemma, pos, gender, plural, auxiliary, conjugation_class,
                 adj_class, noun_class, nvdb_tier, merged_rank, avg_rank,
                 sources_count, rank_itwac, rank_opensubs, rank_wordfreq,
-                rank_lip, rank_news, rank_literature, rank_wikipedia, notes
-            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+                rank_lip, rank_news, rank_literature, rank_wikipedia,
+                count_itwac, count_opensubs, freq_wordfreq,
+                count_lip, count_news, count_literature, count_wikipedia,
+                notes
+            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
             """,
             (
                 r["lemma"],
@@ -249,6 +310,13 @@ def load_lemmas(con: sqlite3.Connection) -> dict[tuple[str, str, str | None], in
                 _intnull(r.get("rank_news")),
                 _intnull(r.get("rank_literature")),
                 _intnull(r.get("rank_wikipedia")),
+                _intnull(r.get("count_itwac")),
+                _intnull(r.get("count_opensubs")),
+                _floatnull(r.get("freq_wordfreq")),
+                _intnull(r.get("count_lip")),
+                _intnull(r.get("count_news")),
+                _intnull(r.get("count_literature")),
+                _intnull(r.get("count_wikipedia")),
                 _strnull(r.get("notes")),
             ),
         )
@@ -291,8 +359,10 @@ def load_forms(con: sqlite3.Connection, lemma_lookup: dict[tuple[str, str, str |
                 INSERT INTO forms (
                     form, lemma_id, merged_rank, avg_rank, sources_count,
                     rank_hermitdave, rank_orgtre, rank_wordfreq,
-                    rank_lip, rank_news, rank_literature, rank_wikipedia
-                ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
+                    rank_lip, rank_news, rank_literature, rank_wikipedia,
+                    count_hermitdave, count_orgtre, freq_wordfreq,
+                    count_lip, count_news, count_literature, count_wikipedia
+                ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
                 """,
                 (
                     r["word"],
@@ -307,6 +377,13 @@ def load_forms(con: sqlite3.Connection, lemma_lookup: dict[tuple[str, str, str |
                     _intnull(r.get("rank_news")),
                     _intnull(r.get("rank_literature")),
                     _intnull(r.get("rank_wikipedia")),
+                    _intnull(r.get("count_hermitdave")),
+                    _intnull(r.get("count_orgtre")),
+                    _floatnull(r.get("freq_wordfreq")),
+                    _intnull(r.get("count_lip")),
+                    _intnull(r.get("count_news")),
+                    _intnull(r.get("count_literature")),
+                    _intnull(r.get("count_wikipedia")),
                 ),
             )
             n += 1
@@ -407,23 +484,21 @@ def load_curated(con: sqlite3.Connection, lemma_lookup: dict[tuple[str, str, str
     print(f"  curated_entries: {len(entries)} rows")
 
 
-def load_coverage_curve(con: sqlite3.Connection) -> None:
-    path = DATA_DIR / "text_coverage_curve.json"
+def load_sources(con: sqlite3.Connection) -> None:
+    """Load per-source corpus metadata from data/source_metadata.json."""
+    path = DATA_DIR / "source_metadata.json"
     if not path.exists():
-        print("  text_coverage_curve.json missing; skipping (run compute_coverage_curves.py)")
+        print("  source_metadata.json missing; skipping")
         return
     with path.open(encoding="utf-8") as f:
-        data = json.load(f)
+        meta = json.load(f)
     cur = con.cursor()
-    n = 0
-    for register, curve in data.items():
-        for rank, cov in curve.items():
-            cur.execute(
-                "INSERT OR REPLACE INTO text_coverage_curve (register, rank, cumulative_coverage) VALUES (?,?,?)",
-                (register, int(rank), float(cov)),
-            )
-            n += 1
-    print(f"  text_coverage_curve: {n} rows")
+    for name, info in meta.items():
+        cur.execute(
+            "INSERT OR REPLACE INTO sources (name, total_tokens, type, description) VALUES (?,?,?,?)",
+            (name, info.get("total_tokens"), info.get("type"), info.get("description")),
+        )
+    print(f"  sources: {len(meta)} rows")
 
 
 def main() -> int:
@@ -449,8 +524,8 @@ def main() -> int:
     load_bands(con)
     print("Loading curated entries...")
     load_curated(con, lemma_lookup)
-    print("Loading coverage curve...")
-    load_coverage_curve(con)
+    print("Loading sources metadata...")
+    load_sources(con)
 
     con.commit()
     # Compact + checkpoint
