@@ -740,16 +740,63 @@
   let vocabEntries = [];
   let vocabDeck = [];
   let vocabIndex = 0;
-  let vocabFilter = { band: "", direction: "it_en", theme: "", genderClass: "", rankRange: null };
+  let vocabFilter = {
+    band: "",
+    direction: "it_en",
+    theme: "",
+    genderClass: "",
+    rankRange: null,
+    drillLevel: null,   // null | "thousand" | "hundred" | "ten"
+    topN: 0,            // 0 = all; else max rank to include in scope
+    subBand: ""         // "" | "A1-core" | "A1-secure" | ... | "C1-stretch"
+  };
+  // CEFR sub-band rank ranges from the vocab chat's mapping (deliberately
+  // overlapping at boundaries: A1-stretch and A2-core both cover 801-1000).
+  const VOCAB_SUBBANDS = [
+    { id: "A1-core",    start: 1,     end: 500 },
+    { id: "A1-secure",  start: 501,   end: 800 },
+    { id: "A1-stretch", start: 801,   end: 1000 },
+    { id: "A2-core",    start: 801,   end: 1300 },
+    { id: "A2-secure",  start: 1301,  end: 1700 },
+    { id: "A2-stretch", start: 1701,  end: 2000 },
+    { id: "B1-core",    start: 1701,  end: 2500 },
+    { id: "B1-secure",  start: 2501,  end: 3200 },
+    { id: "B1-stretch", start: 3201,  end: 4000 },
+    { id: "B2-core",    start: 3201,  end: 5000 },
+    { id: "B2-secure",  start: 5001,  end: 6500 },
+    { id: "B2-stretch", start: 6501,  end: 8000 },
+    { id: "C1-core",    start: 6501,  end: 9000 },
+    { id: "C1-secure",  start: 9001,  end: 11000 },
+    { id: "C1-stretch", start: 11001, end: 13000 }
+  ];
+  function vocabSubbandRange(id) {
+    return VOCAB_SUBBANDS.find(s => s.id === id) || null;
+  }
   let vocabExpandedThemes = new Set();
   let vocabExpandedGenders = new Set();
   let vocabInputRef = null;
 
-  function filteredVocabEntries() {
+  // Universe of entries currently "in scope" — only the cumulative caps apply
+  // (top-N and sub-band). Used by the axes so they only show in-scope cells.
+  function vocabEntriesInScope() {
+    const sub = vocabFilter.subBand ? vocabSubbandRange(vocabFilter.subBand) : null;
     return vocabEntries.filter(v => {
-      // Skip entries with no curated English translation - they cannot be
-      // marked in either direction. The vocab chat is still backfilling these.
-      if (!v.translation_en || !String(v.translation_en).trim()) return false;
+      const t = v.translation_en;
+      if (!t || !String(t).trim()) return false;
+      // [skip] convention from the vocab chat: tokenisation artefacts, foreign
+      // words, wrong-POS entries are flagged for the marker to ignore.
+      if (String(t).trim() === "[skip]") return false;
+      if (vocabFilter.topN && typeof v.rank === "number" && v.rank > vocabFilter.topN) return false;
+      if (sub && typeof v.rank === "number") {
+        if (v.rank < sub.start || v.rank > sub.end) return false;
+      }
+      return true;
+    });
+  }
+
+  // The deck-ready set: in-scope entries with the remaining filters applied.
+  function filteredVocabEntries() {
+    return vocabEntriesInScope().filter(v => {
       if (vocabFilter.band && v.band !== vocabFilter.band) return false;
       if (vocabFilter.rankRange && typeof v.rank === "number") {
         if (v.rank < vocabFilter.rankRange.start || v.rank > vocabFilter.rankRange.end) return false;
@@ -830,33 +877,70 @@
     });
     dirSel.addEventListener("change", () => {
       vocabFilter.direction = dirSel.value;
+      // Reshuffle so the next card isn't the same lemma in reverse
+      // (otherwise the learner can peek at the answer by toggling direction).
+      vocabDeck = []; vocabIndex = 0;
       renderVocab();
     });
     host.appendChild(dirSel);
 
-    // Frequency band filter
-    const bands = Array.from(new Set(vocabEntries.map(v => v.band).filter(Boolean))).sort();
-    if (bands.length) {
-      const bLabel = document.createElement("label");
-      bLabel.textContent = "Band:";
-      host.appendChild(bLabel);
-      const bSel = document.createElement("select");
-      const anyOpt = document.createElement("option");
-      anyOpt.value = ""; anyOpt.textContent = "any";
-      bSel.appendChild(anyOpt);
-      bands.forEach(b => {
-        const o = document.createElement("option");
-        o.value = b; o.textContent = bandFriendly(b);
-        if (vocabFilter.band === b) o.selected = true;
-        bSel.appendChild(o);
-      });
-      bSel.addEventListener("change", () => {
-        vocabFilter.band = bSel.value;
-        vocabDeck = []; vocabIndex = 0;
-        renderVocab();
-      });
-      host.appendChild(bSel);
-    }
+    // Top-N cutoff: restricts the entire universe (axes + deck).
+    const topLbl = document.createElement("label");
+    topLbl.className = "filter-bar-topn-label";
+    topLbl.textContent = "Restrict to:";
+    host.appendChild(topLbl);
+    const topSel = document.createElement("select");
+    topSel.className = "filter-bar-topn";
+    // Cumulative CEFR cuts at the END of each sub-band, derived from
+    // VOCAB_SUBBANDS so the two stay in sync. Each option means "all
+    // lemmas with rank <= this sub-band's end", which lets the learner
+    // dial scope sub-band by sub-band rather than level by level.
+    // The Sub-band dropdown (below) handles "only this one sub-band".
+    const topOptions = [[0, "all (~14k curated)"]];
+    VOCAB_SUBBANDS.forEach(s => {
+      topOptions.push([s.end, "≤ " + s.id + " (1-" + s.end + ")"]);
+    });
+    topOptions.forEach(([val, label]) => {
+      const o = document.createElement("option");
+      o.value = String(val);
+      o.textContent = label;
+      if (vocabFilter.topN === val) o.selected = true;
+      topSel.appendChild(o);
+    });
+    topSel.addEventListener("change", () => {
+      vocabFilter.topN = parseInt(topSel.value, 10) || 0;
+      invalidateVocabCaches();
+      vocabDeck = []; vocabIndex = 0;
+      renderVocab();
+    });
+    host.appendChild(topSel);
+
+    // Sub-band dropdown — pick a specific CEFR sub-band (overlapping ranges
+    // per the vocab chat's mapping). Coexists with the cumulative top-N.
+    const subLbl = document.createElement("label");
+    subLbl.className = "filter-bar-topn-label";
+    subLbl.textContent = "Sub-band:";
+    host.appendChild(subLbl);
+    const subSel = document.createElement("select");
+    subSel.className = "filter-bar-topn";
+    const anyOpt = document.createElement("option");
+    anyOpt.value = ""; anyOpt.textContent = "any";
+    if (!vocabFilter.subBand) anyOpt.selected = true;
+    subSel.appendChild(anyOpt);
+    VOCAB_SUBBANDS.forEach(s => {
+      const o = document.createElement("option");
+      o.value = s.id;
+      o.textContent = s.id + " (" + s.start + "-" + s.end + ")";
+      if (vocabFilter.subBand === s.id) o.selected = true;
+      subSel.appendChild(o);
+    });
+    subSel.addEventListener("change", () => {
+      vocabFilter.subBand = subSel.value;
+      invalidateVocabCaches();
+      vocabDeck = []; vocabIndex = 0;
+      renderVocab();
+    });
+    host.appendChild(subSel);
 
     // Count
     const filtered = filteredVocabEntries();
@@ -1055,14 +1139,15 @@
   let _bandLemmasCache = null;
   let _bandLemmasCacheLen = -1;
   function bandLemmasIndex() {
-    if (_bandLemmasCache && _bandLemmasCacheLen === vocabEntries.length) return _bandLemmasCache;
+    const scoped = vocabEntriesInScope();
+    if (_bandLemmasCache && _bandLemmasCacheLen === scoped.length) return _bandLemmasCache;
     const idx = Object.create(null);
-    for (const v of vocabEntries) {
+    for (const v of scoped) {
       if (!v.band) continue;
       (idx[v.band] = idx[v.band] || []).push(v.lemma);
     }
     _bandLemmasCache = idx;
-    _bandLemmasCacheLen = vocabEntries.length;
+    _bandLemmasCacheLen = scoped.length;
     return idx;
   }
 
@@ -1148,30 +1233,27 @@
   // theme.id -> [lemma]
   let _themeLemmasCache = null;
   function themeLemmasIndex() {
-    if (_themeLemmasCache) return _themeLemmasCache;
+    // Note: not memoised because topN may change between calls.
     const idx = Object.create(null);
-    for (const v of vocabEntries) {
+    for (const v of vocabEntriesInScope()) {
       const themes = v.themes;
       if (!Array.isArray(themes)) continue;
       for (const t of themes) {
         (idx[t] = idx[t] || []).push(v.lemma);
       }
     }
-    _themeLemmasCache = idx;
     return idx;
   }
 
   // noun_class -> [lemma] (nouns only)
   let _genderClassLemmasCache = null;
   function genderClassLemmasIndex() {
-    if (_genderClassLemmasCache) return _genderClassLemmasCache;
     const idx = Object.create(null);
-    for (const v of vocabEntries) {
+    for (const v of vocabEntriesInScope()) {
       if (v.pos !== "noun") continue;
       const cls = v.noun_class || (v.gender === "m" ? "unspecified_m" : v.gender === "f" ? "unspecified_f" : "unspecified");
       (idx[cls] = idx[cls] || []).push(v.lemma);
     }
-    _genderClassLemmasCache = idx;
     return idx;
   }
 
@@ -1237,6 +1319,12 @@
         const aspect = c.aspect || "translation";
 
         cell.style.cursor = "pointer";
+        // Mark the cell as active if it currently matches the filter, so CSS
+        // can highlight it.
+        const isActiveThemes = axisKind === "themes" && vocabFilter.theme === c.key;
+        const isActiveGender = axisKind === "gender" && vocabFilter.genderClass === c.key;
+        if (isActiveThemes || isActiveGender) cell.classList.add("filter-active");
+
         cell.addEventListener("click", (ev) => {
           if (ev.target && ev.target.classList && ev.target.classList.contains("vocab-lemma-dot")) return;
           // Expand-on-first-click for cells in averaged mode (both themes
@@ -1249,14 +1337,12 @@
               return;
             }
           }
+          // Toggle: clicking the active filter clears it. Additive: setting
+          // theme doesn't clear gender or rank filters.
           if (axisKind === "themes") {
-            vocabFilter.theme = c.key;
-            vocabFilter.genderClass = "";
-            vocabFilter.band = "";
+            vocabFilter.theme = vocabFilter.theme === c.key ? "" : c.key;
           } else if (axisKind === "gender") {
-            vocabFilter.genderClass = c.key;
-            vocabFilter.theme = "";
-            vocabFilter.band = "";
+            vocabFilter.genderClass = vocabFilter.genderClass === c.key ? "" : c.key;
           }
           vocabDeck = []; vocabIndex = 0;
           renderVocab();
@@ -1462,6 +1548,8 @@
         vocabFilter.theme = "";
         vocabFilter.genderClass = "";
         vocabFilter.rankRange = null;
+        vocabFilter.drillLevel = null;
+        // topN is preserved - it's set via the dropdown, not via cells.
         vocabExpandedThemes.clear();
         vocabExpandedGenders.clear();
         vocabDeck = []; vocabIndex = 0;
@@ -1540,23 +1628,22 @@
         block = renderFlankingStripes(blockStart, blockEnd, byRank, distance, activeDir, VOCAB_FOCUS_HEIGHT_PX);
         // Block-level click: filter deck to this thousand-range AND refocus.
         block.addEventListener("click", (ev) => {
-          if (ev.target && ev.target.classList.contains("freq-flank-cell")) return; // cell handles its own
+          if (ev.target && ev.target.classList.contains("freq-flank-cell")) return;
           window.__vocabFocusRankStart = blockStart;
           vocabFilter.rankRange = { start: blockStart, end: blockEnd };
-          vocabFilter.band = ""; vocabFilter.theme = ""; vocabFilter.genderClass = "";
+          vocabFilter.drillLevel = "thousand";
           vocabDeck = []; vocabIndex = 0;
           renderVocab();
         });
-        // Cell-level click: narrower filter to this cell's range.
         block.addEventListener("click", (ev) => {
           const t = ev.target;
           if (!t || !t.classList || !t.classList.contains("freq-flank-cell")) return;
           ev.stopPropagation();
           const s = parseInt(t.dataset.rangeStart || "0", 10);
           const e = parseInt(t.dataset.rangeEnd || "0", 10);
-          window.__vocabFocusRankStart = blockStart; // also refocus
+          window.__vocabFocusRankStart = blockStart;
           vocabFilter.rankRange = { start: s, end: e };
-          vocabFilter.band = ""; vocabFilter.theme = ""; vocabFilter.genderClass = "";
+          vocabFilter.drillLevel = "ten";
           vocabDeck = []; vocabIndex = 0;
           renderVocab();
         });
@@ -1573,6 +1660,21 @@
       heatRow.appendChild(col);
     }
     freqAxis.appendChild(heatRow);
+
+    // Apply drill-level highlighting to the focused block.
+    if (vocabFilter.drillLevel && vocabFilter.rankRange) {
+      const focusBlockStart = bands[focusStart] ? bands[focusStart].lo : 1;
+      const rr = vocabFilter.rankRange;
+      // Highlight matching dots' parent boxes for the hundred/ten levels.
+      const allDots = freqAxis.querySelectorAll(".freq-dot");
+      allDots.forEach(d => {
+        const r = parseInt(d.dataset.rank || "0", 10);
+        if (r >= rr.start && r <= rr.end) {
+          const box = d.parentElement;
+          if (box) box.classList.add("drill-" + vocabFilter.drillLevel);
+        }
+      });
+    }
 
     host.appendChild(freqAxis);
 
@@ -1688,14 +1790,13 @@
               dot.style.background = rwgColour(wc.correctness, wc.hasEvents);
               if (!wc.hasEvents) dot.classList.add("untouched");
               const pct = wc.hasEvents ? Math.round(wc.correctness * 100) + "%" : "untouched";
-              dot.title = entry.lemma + " (rank " + rank + ")\n" + pct + " - " + wc.nAttempted + " attempts (click to focus its band)";
+              const nextDrill = nextDrillLevelFor(rank);
+              const drillHint = nextDrill.hint;
+              dot.title = entry.lemma + " (rank " + rank + ")\n" + pct + " - " + wc.nAttempted + " attempts" + (drillHint ? "\n(click to " + drillHint + ")" : "");
               dot.dataset.lemma = entry.lemma;
-              dot.style.cursor = "pointer";
+              if (nextDrill.action) dot.style.cursor = "pointer";
               dot.addEventListener("click", () => {
-                vocabFilter.band = entry.band || "";
-                vocabFilter.theme = ""; vocabFilter.genderClass = "";
-                vocabDeck = []; vocabIndex = 0;
-                renderVocab();
+                drillDownFromRank(rank);
               });
             } else {
               dot.classList.add("not-curated");
@@ -1759,6 +1860,79 @@
       }
     }
     return wrap;
+  }
+
+  // Drill-down helpers. The interaction model: first click anywhere sets the
+  // filter to the THOUSAND (1000-block) containing that rank. Second click
+  // drills to the HUNDRED (a 99-rank column of the focused block). Third
+  // click drills to the TEN (a 9-rank box). After ten, no further drill.
+  function rankToBlockStart(rank) {
+    return Math.floor((rank - 1) / 990) * 990 + 1;
+  }
+  function rankToColumnRange(rank) {
+    // Column-major fill: 11 box-rows per column, 9 dots per box. Column 0
+    // holds ranks block_start..block_start+98.
+    const blockStart = rankToBlockStart(rank);
+    const offset = rank - blockStart;             // 0..989
+    const col = Math.floor(offset / 99);          // 0..9
+    const start = blockStart + col * 99;
+    return { start: start, end: start + 98 };
+  }
+  function rankToBoxRange(rank) {
+    const blockStart = rankToBlockStart(rank);
+    const offset = rank - blockStart;             // 0..989
+    const boxIdx = Math.floor(offset / 9);        // 0..109
+    const start = blockStart + boxIdx * 9;
+    return { start: start, end: start + 8 };
+  }
+  function nextDrillLevelFor(rank) {
+    const lvl = vocabFilter.drillLevel;
+    const rr = vocabFilter.rankRange;
+    const thousand = rankToBlockStart(rank);
+    const inSameThousand = rr && rr.start === thousand && rr.end === thousand + 989;
+    // If no filter, or filter is for a different thousand, the next action is
+    // to set this thousand as the filter.
+    if (!lvl || !inSameThousand) {
+      return { action: "thousand", hint: "filter this thousand" };
+    }
+    if (lvl === "thousand") {
+      return { action: "hundred", hint: "filter this hundred" };
+    }
+    if (lvl === "hundred") {
+      // Make sure we're still inside the active hundred before drilling further.
+      const col = rankToColumnRange(rank);
+      const inSameHundred = rr && rr.start === col.start && rr.end === col.end;
+      if (inSameHundred) {
+        return { action: "ten", hint: "filter this ten" };
+      }
+      // Clicked in a different column - drill to that hundred instead.
+      return { action: "hundred", hint: "filter this hundred" };
+    }
+    // Already at ten. Allow clicking another box to switch the active ten.
+    const box = rankToBoxRange(rank);
+    const inSameTen = rr && rr.start === box.start && rr.end === box.end;
+    if (inSameTen) {
+      return { action: null, hint: null };
+    }
+    return { action: "ten", hint: "filter this ten" };
+  }
+  function drillDownFromRank(rank) {
+    const next = nextDrillLevelFor(rank);
+    if (!next.action) return;
+    if (next.action === "thousand") {
+      const start = rankToBlockStart(rank);
+      vocabFilter.rankRange = { start: start, end: start + 989 };
+      vocabFilter.drillLevel = "thousand";
+      window.__vocabFocusRankStart = start;
+    } else if (next.action === "hundred") {
+      vocabFilter.rankRange = rankToColumnRange(rank);
+      vocabFilter.drillLevel = "hundred";
+    } else if (next.action === "ten") {
+      vocabFilter.rankRange = rankToBoxRange(rank);
+      vocabFilter.drillLevel = "ten";
+    }
+    vocabDeck = []; vocabIndex = 0;
+    renderVocab();
   }
 
   // Baseline-diluted mean across lemmas. Touched lemmas contribute their
@@ -2326,7 +2500,16 @@
       if (seg.kind === "italian") {
         renderTextWithLemmas(block, seg.text, lemmaMap, item, vocabHelpsUsedRef);
       } else if (seg.kind === "cue") {
-        block.textContent = "(" + seg.text + ")";
+        // Render as "Use: <word>" with a label span so CSS can style the
+        // "Use:" prefix muted and the cue word prominent.
+        const labelSpan = document.createElement("span");
+        labelSpan.className = "prompt-cue-label";
+        labelSpan.textContent = "Use ";
+        const valSpan = document.createElement("span");
+        valSpan.className = "prompt-cue-word";
+        valSpan.textContent = seg.text;
+        block.appendChild(labelSpan);
+        block.appendChild(valSpan);
       } else {
         block.textContent = seg.text;
       }

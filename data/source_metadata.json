@@ -8,13 +8,31 @@
       "verb",
       "adjective"
     ],
-    "total_tokens_includes": "content_pos_only"
+    "total_tokens_includes": "content_pos_only",
+    "total_tokens_raw": 681124896,
+    "total_tokens_learner": 669057472,
+    "excludable_breakdown": {
+      "proper_nouns": 566979,
+      "foreign_words": 5833252,
+      "numerals_and_acronyms": 326454,
+      "phantom_upstream_lemmas": 3509920,
+      "tokeniser_fixable": 1830819
+    }
   },
   "opensubs": {
     "total_tokens": 241569888,
     "type": "raw_count",
     "description": "OpenSubtitles 2018 Italian (hermitdave/FrequencyWords it_50k.txt), wordform counts lemmatised via simplemma and aggregated per lemma.",
-    "total_tokens_includes": "alphabetic_wordforms_attempted"
+    "total_tokens_includes": "alphabetic_wordforms_attempted",
+    "total_tokens_raw": 241569888,
+    "total_tokens_learner": 232135163,
+    "excludable_breakdown": {
+      "proper_nouns": 3586686,
+      "foreign_words": 979596,
+      "numerals_and_acronyms": 94545,
+      "phantom_upstream_lemmas": 158961,
+      "tokeniser_fixable": 4614937
+    }
   },
   "wordfreq": {
     "total_tokens": null,
@@ -26,36 +44,90 @@
     "total_tokens": 241736295,
     "type": "raw_count",
     "description": "OpenSubtitles 2018 Italian, raw wordform counts (hermitdave/FrequencyWords it_50k.txt). Surface-form level — not lemmatised.",
-    "total_tokens_includes": "raw_wordforms_unfiltered"
+    "total_tokens_includes": "raw_wordforms_unfiltered",
+    "total_tokens_raw": 241736295,
+    "total_tokens_learner": 232301570,
+    "excludable_breakdown": {
+      "proper_nouns": 3586686,
+      "foreign_words": 979596,
+      "numerals_and_acronyms": 94545,
+      "phantom_upstream_lemmas": 158961,
+      "tokeniser_fixable": 4614937
+    }
   },
   "orgtre": {
     "total_tokens": 562506798,
     "type": "raw_count",
     "description": "OpenSubtitles 2018 Italian, cleaned (orgtre/top-open-subtitles-sentences). Surface-form level — not lemmatised. Tokenisation differs slightly from hermitdave.",
-    "total_tokens_includes": "raw_wordforms_unfiltered"
+    "total_tokens_includes": "raw_wordforms_unfiltered",
+    "total_tokens_raw": 562506798,
+    "total_tokens_learner": 540590540,
+    "excludable_breakdown": {
+      "proper_nouns": 8573031,
+      "foreign_words": 1877164,
+      "numerals_and_acronyms": 193941,
+      "phantom_upstream_lemmas": 371003,
+      "tokeniser_fixable": 10901119
+    }
   },
   "wikipedia": {
     "total_tokens": 518971790,
     "type": "raw_count",
     "description": "Italian Wikipedia, October 2022 dump (adno/wikipedia-word-frequency-clean). Lemmatised per-form via simplemma and aggregated per lemma for the lemma CSV; raw wordform counts in the form CSV.",
-    "total_tokens_includes": "alphabetic_wordforms_attempted"
+    "total_tokens_includes": "alphabetic_wordforms_attempted",
+    "total_tokens_raw": 518971790,
+    "total_tokens_learner": 499641322,
+    "excludable_breakdown": {
+      "proper_nouns": 8526633,
+      "foreign_words": 7991789,
+      "numerals_and_acronyms": 1166800,
+      "phantom_upstream_lemmas": 83951,
+      "tokeniser_fixable": 1561295
+    }
   },
   "news": {
     "total_tokens": 2479394,
     "type": "raw_count",
     "description": "OPUS News-Commentary v16, Italian monolingual. Lemmatised via simplemma.",
-    "total_tokens_includes": "alphabetic_wordforms_attempted"
+    "total_tokens_includes": "alphabetic_wordforms_attempted",
+    "total_tokens_raw": 2479394,
+    "total_tokens_learner": 2419101,
+    "excludable_breakdown": {
+      "proper_nouns": 17167,
+      "foreign_words": 18116,
+      "numerals_and_acronyms": 6094,
+      "phantom_upstream_lemmas": 728,
+      "tokeniser_fixable": 18188
+    }
   },
   "lip": {
     "total_tokens": 51939699,
     "type": "raw_count",
     "description": "OPUS Europarl v8, Italian monolingual — PROXY for spoken Italian (formal transcribed parliamentary speech). The real LIP/BADIP corpus wasn't reachable at build time; swap when available.",
-    "total_tokens_includes": "alphabetic_wordforms_attempted"
+    "total_tokens_includes": "alphabetic_wordforms_attempted",
+    "total_tokens_raw": 51939699,
+    "total_tokens_learner": 50295477,
+    "excludable_breakdown": {
+      "proper_nouns": 171623,
+      "foreign_words": 81830,
+      "numerals_and_acronyms": 29806,
+      "phantom_upstream_lemmas": 15004,
+      "tokeniser_fixable": 1345959
+    }
   },
   "literature": {
     "total_tokens": 5774685,
     "type": "raw_count",
     "description": "Sample of Italian Project Gutenberg books (79 texts, classic literature). Lemmatised via simplemma.",
-    "total_tokens_includes": "alphabetic_wordforms_attempted"
+    "total_tokens_includes": "alphabetic_wordforms_attempted",
+    "total_tokens_raw": 5774685,
+    "total_tokens_learner": 5529624,
+    "excludable_breakdown": {
+      "proper_nouns": 36987,
+      "foreign_words": 35103,
+      "numerals_and_acronyms": 8875,
+      "phantom_upstream_lemmas": 5871,
+      "tokeniser_fixable": 158225
+    }
   }
 }
