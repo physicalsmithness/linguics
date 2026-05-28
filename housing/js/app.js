@@ -7,6 +7,36 @@
   const LL = window.LL || (window.LL = {});
 
   LL.state = LL.store.loadState();
+
+  // Migration 2026-05-28: drop legacy-shape vocab events.
+  //
+  // The bucket-id shape for vocab events changed to include POS (always) and
+  // gender (for gender-split lemmas). Old shape `vocabulary.it.<lemma>.<aspect>`
+  // can't be reattributed to a specific entry, so we drop those events. The
+  // heatmap goes blank for vocab and re-fills as the learner practises under
+  // the new shape. Idempotent: legacy events were filtered out the first time
+  // this code ran, subsequent loads find none and the migration is a no-op.
+  (function migrateLegacyVocabEvents() {
+    const parse = LL.parseVocabBucketId;
+    if (typeof parse !== "function") return;
+    let dropped = 0;
+    for (const att of LL.state.attempts || []) {
+      if (!Array.isArray(att.events)) continue;
+      const before = att.events.length;
+      att.events = att.events.filter(ev => {
+        const parsed = parse(ev.bucket);
+        if (!parsed) return true;              // non-vocab event, keep
+        if (parsed.pos) return true;           // new shape, keep
+        return false;                          // legacy shape, drop
+      });
+      dropped += before - att.events.length;
+    }
+    if (dropped > 0) {
+      LL.store.saveState(LL.state);
+      console.log("[Linguics] Migrated vocab event history:", dropped, "legacy-shape events dropped. Vocab heatmap will re-fill as you practise.");
+    }
+  })();
+
   // Note: these are `let` so the fetch-loader can replace them with real content.
   let allBuckets = window.LL_BUCKETS || [];
   let bucketIndex = LL.store.indexBuckets(allBuckets);
@@ -988,13 +1018,49 @@
     meta.textContent = bits.join(" · ");
     card.appendChild(meta);
 
-    // If this lemma has multiple curated entries (homographs across POS or
-    // sense), disambiguate the prompt by stating the POS we are asking about.
+    // If this lemma has multiple curated entries WITH DIFFERENT POS values
+    // (homographs across POS), disambiguate the prompt by stating the POS.
     // Saves the learner from having to guess which sense of "fisico" we mean.
-    const sameLemmaCount = vocabEntries.filter(v =>
+    //
+    // Same-POS-different-gender splits (fine.f vs fine.m) get article-prepend
+    // in IT->EN: "What does la fine mean?" not "What does fine mean?".
+    const sameLemmaSiblings = vocabEntries.filter(v =>
       v && v.lemma === entry.lemma && v.translation_en && String(v.translation_en).trim()
-    ).length;
-    const showPos = sameLemmaCount > 1 && entry.pos;
+    );
+    const distinctPosCount = new Set(
+      sameLemmaSiblings.map(v => v.pos || "")
+    ).size;
+    const showPos = distinctPosCount > 1 && entry.pos;
+    // Article-prepend triggers when the lemma is part of a gender-split set
+    // (same lemma + same POS but multiple genders), the direction is IT->EN,
+    // and this entry has a definable gender. The article hard-disambiguates.
+    const isGenderSplitHere = (typeof LL.isGenderSplit === "function") &&
+      LL.isGenderSplit(entry.lemma, entry.pos);
+    const showArticle = isItEn && isGenderSplitHere && entry.pos === "noun" && entry.gender;
+    let articleForDisplay = "";
+    let displayedLemma = entry.lemma;
+    if (showArticle) {
+      const arts = expectedArticlesFor(entry.lemma, entry.gender);
+      if (arts && arts.definite && arts.definite[0]) {
+        articleForDisplay = arts.definite[0];
+        // Article ending in "'" concatenates with no space (l'amico); otherwise space.
+        displayedLemma = articleForDisplay.endsWith("'")
+          ? articleForDisplay + entry.lemma
+          : articleForDisplay + " " + entry.lemma;
+      }
+    }
+    // Regime for marker semantics ruling 2026-05-28:
+    //   hard = POS-in-parens (different meaning across sister entries) OR
+    //          article-prepend on gender-split noun in IT->EN.
+    //   soft = parenthetical clarifier on the gloss (same meaning, different form);
+    //          detected by presence of "(...)" in translation_en (EN->IT direction).
+    //   none = ambiguous prompt with no clarifier.
+    let promptRegime = "none";
+    if (showPos || showArticle) {
+      promptRegime = "hard";
+    } else if (!isItEn && entry.translation_en && /\(/.test(String(entry.translation_en))) {
+      promptRegime = "soft";
+    }
     // "as a noun" / "as an adjective" — pick the article by initial vowel.
     const posPhrase = showPos
       ? "as " + (/^[aeiou]/i.test(entry.pos) ? "an" : "a") + " " + entry.pos
@@ -1004,7 +1070,7 @@
     prompt.className = "prompt";
     if (isItEn) {
       const strong = document.createElement("strong");
-      strong.textContent = entry.lemma;
+      strong.textContent = displayedLemma;
       prompt.appendChild(document.createTextNode("What does "));
       prompt.appendChild(strong);
       if (showPos) {
@@ -1067,7 +1133,7 @@
 
     const doMark = () => {
       const raw = input.value;
-      const result = markVocab(entry, raw, isItEn);
+      const result = markVocab(entry, raw, isItEn, promptRegime);
       const syntheticItem = { id: "vocab_" + (entry.rank || entry.lemma) + "_" + (isItEn ? "ie" : "ei"), prompt: prompt.textContent };
       const attempt = LL.store.recordAttempt("vocab", syntheticItem, raw, result);
       recentlyChangedBuckets = new Set(attempt.events.map(e => e.bucket));
@@ -1163,24 +1229,18 @@
     const lemmaSet = (lemmas instanceof Set) ? lemmas : new Set(lemmas);
     if (lemmaSet.size === 0) return [];
     const out = [];
+    // Uses LL.parseVocabBucketId so the parser handles both shapes:
+    //   new: vocabulary.it.<lemma>.<pos>[.<gender>].<aspect>[.<dir>]
+    //   legacy: vocabulary.it.<lemma>.<aspect>[.<dir>]  (until migrated)
+    const parse = LL.parseVocabBucketId || function () { return null; };
     for (const att of LL.state.attempts) {
       for (const ev of att.events) {
-        const b = ev.bucket || "";
-        if (!b.startsWith("vocabulary.it.")) continue;
-        // bucket form: vocabulary.it.<lemma>.<aspect>[.active|.passive]
-        const rest = b.slice("vocabulary.it.".length);
-        const dot = rest.indexOf(".");
-        if (dot < 0) continue;
-        const lemma = rest.slice(0, dot);
-        const tail = rest.slice(dot + 1);
-        if (!lemmaSet.has(lemma)) continue;
-        const isTranslation = tail.startsWith("translation");
-        const isGender = tail.startsWith("gender");
-        if (aspectFilter === "translation" && !isTranslation) continue;
-        if (aspectFilter === "gender" && !isGender) continue;
-        if (aspectFilter === "any" && !isTranslation && !isGender) continue;
-        if (directionFilter === "active" && !tail.endsWith(".active")) continue;
-        if (directionFilter === "passive" && !tail.endsWith(".passive")) continue;
+        const parsed = parse(ev.bucket);
+        if (!parsed) continue;
+        if (!lemmaSet.has(parsed.lemma)) continue;
+        if (aspectFilter !== "any" && parsed.aspect !== aspectFilter) continue;
+        if (directionFilter === "active"  && parsed.direction !== "active")  continue;
+        if (directionFilter === "passive" && parsed.direction !== "passive") continue;
         out.push({ ev, timestamp: att.timestamp });
       }
     }
@@ -2015,7 +2075,7 @@
     return null;
   }
 
-  function vocabJudge(answer, target, isItEn, entry) {
+  function vocabJudge(answer, target, isItEn, entry, regime) {
     const norm = s => String(s || "").trim().toLowerCase().replace(/[-.!?"'()\[\]]/g, "").replace(/\s+/g, " ").trim();
     const a = norm(answer);
     if (!a) return { outcome: "not_attempted", credit: 0, reason: null };
@@ -2035,14 +2095,14 @@
         expectedGender: entry.gender,
         expectedArticles: expectedArticlesFor(entry.lemma, entry.gender)
       };
-      const result = vocabJudgeCore(bareLemma || answer, target, isItEn, entry, null);
+      const result = vocabJudgeCore(bareLemma || answer, target, isItEn, entry, regime);
       result.articleInfo = articleInfo;
       return result;
     }
-    return vocabJudgeCore(answer, target, isItEn, entry, null);
+    return vocabJudgeCore(answer, target, isItEn, entry, regime);
   }
 
-  function vocabJudgeCore(answer, target, isItEn, entry) {
+  function vocabJudgeCore(answer, target, isItEn, entry, regime) {
     const norm = s => String(s || "").trim().toLowerCase().replace(/[-.!?"'()\[\]]/g, "").replace(/\s+/g, " ").trim();
     const a = norm(answer);
     if (!a) return { outcome: "not_attempted", credit: 0, reason: null };
@@ -2147,11 +2207,20 @@
       }
     }
 
-    // (d) Cross-sense (IT->EN): the prompt "What does X mean?" doesn't specify
-    // which POS/sense, so any valid sense of the lemma is a hit. We surface
-    // the other sense in the explanation as bonus info rather than docking
-    // credit. The vocab curator doesn't need to duplicate translations
-    // between homograph entries to make this work.
+    // (d) Cross-sense match (IT->EN). The learner's answer matches a SISTER
+    // entry's translation (different POS or different sense of the same lemma).
+    // Behaviour depends on the regime:
+    //
+    //   * hard regime  (e.g. "as a noun" in parens): the prompt named one entry
+    //     whose sister has DIFFERENT MEANING. Giving the other sense is wrong.
+    //     Fire MISS on the asked-for entry; the sister is untouched.
+    //
+    //   * soft / none: sister has SAME or related meaning. Asymmetric forward:
+    //     fire HIT on the SISTER's bucket; asked-for is untouched. The deck
+    //     keeps wanting to surface the asked-for so its mastery climbs later.
+    //
+    // matchedSister carries the sister entry so markVocab can fire on its
+    // bucket (soft/none) or surface its name in the info note (hard).
     if (isItEn && entry && entry.lemma && Array.isArray(vocabEntries)) {
       for (const v of vocabEntries) {
         if (!v || !v.lemma || v.lemma !== entry.lemma) continue;
@@ -2159,12 +2228,125 @@
         const altsForV = String(v.translation_en || "").split(/[,;\/]/).map(p => norm(p)).filter(Boolean);
         for (const altV of altsForV) {
           if (altV && a === altV) {
+            // Pick the most informative descriptor for the sister-vs-asked
+            // contrast. If POS differs, lead with POS; if POS is the same and
+            // only gender differs, lead with gender; if both differ, combine.
+            const posDiffers = (v.pos || "") !== (entry.pos || "");
+            const genderDiffers = (v.gender || "") !== (entry.gender || "");
+            const genderWord = (g) => g === "m" ? "masculine" : g === "f" ? "feminine" : g;
+            const describe = (e) => {
+              const parts = [];
+              if (posDiffers && e.pos) parts.push(e.pos);
+              if (genderDiffers && !posDiffers && e.gender) parts.push(genderWord(e.gender));
+              if (posDiffers && genderDiffers && e.gender) parts.push("(" + genderWord(e.gender) + ")");
+              const desc = parts.length ? parts.join(" ") : (e.pos || "other");
+              return desc + " sense (\"" + (e.translation_en || "") + "\")";
+            };
+            const askedSense = describe(entry);
+            const matchedSense = describe(v);
+            if (regime === "hard") {
+              return {
+                outcome: "miss",
+                credit: 0,
+                reason: "You gave the " + matchedSense + ". This prompt was asking about the " + askedSense + ".",
+                matchedSister: { entry: v, regime: "hard" }
+              };
+            }
+            // soft / none: asymmetric forward to the matched sister entry.
             return {
               outcome: "hit",
               credit: 1,
-              reason: "Right - that's the " + (v.pos || "other") + " sense (\"" + v.translation_en + "\"). " + entry.lemma + " can also be a " + (entry.pos || "") + " meaning \"" + entry.translation_en + "\"."
+              reason: "Right - that's the " + matchedSense + ". " + entry.lemma + " can also be a " + askedSense + ".",
+              matchedSister: { entry: v, regime: regime || "none" }
             };
           }
+        }
+      }
+    }
+
+    // (e) Cross-lemma overlap (EN->IT). Per architect's §4 ruling 2026-05-28:
+    // when the learner's typed Italian matches a DIFFERENT lemma whose
+    // translation_en overlaps the asked-for's translation_en, fire the
+    // supplied lemma at credit = |overlap| / |target.translation_en|.
+    // Asked-for is untouched (asymmetric forward).
+    //
+    //   * Skip under hard regime — the prompt bound the answer.
+    //   * Zero overlap → no fire here; falls through to the miss return.
+    //   * Full overlap (truly interchangeable, e.g. solo/soltanto for "only")
+    //     gives credit = 1.0, which renders as a full Right.
+    //
+    // The cleaned-element set strips parens and splits on ,;/ as elsewhere.
+    if (!isItEn && regime !== "hard" && entry && entry.translation_en && Array.isArray(vocabEntries)) {
+      const elementsOf = (s) => {
+        // Strip parens FIRST so disambiguators like "(m sg, before s+cons / z)"
+        // don't split on their own commas / slashes and inflate the sense
+        // count. Then split on ,;/ as the canonical sense separators.
+        const cleaned = String(s || "").replace(/\([^)]*\)/g, "");
+        const set = new Set();
+        for (const piece of cleaned.split(/[,;\/]/)) {
+          const trimmed = piece.trim();
+          if (trimmed) set.add(norm(trimmed));
+        }
+        return set;
+      };
+      const targetSenses = elementsOf(entry.translation_en);
+      if (targetSenses.size > 0) {
+        // Collect all candidate entries whose lemma matches the learner's
+        // typed answer AND whose translation shares at least one sense with
+        // the asked-for. Per architect's §9 tiebreaker (2026-05-28): pick
+        // the entry with the smallest cleaned-element set (most specific);
+        // tiebreak by lowest merged_rank, then lowest rank as final fallback.
+        // The asked-for entry doesn't get special privilege.
+        const candidates = [];
+        for (const v of vocabEntries) {
+          if (!v || !v.lemma) continue;
+          if (v === entry) continue;
+          if (norm(v.lemma) !== a) continue;
+          const suppliedSenses = elementsOf(v.translation_en || "");
+          if (suppliedSenses.size === 0) continue;
+          let overlapCount = 0;
+          for (const s of suppliedSenses) if (targetSenses.has(s)) overlapCount++;
+          if (overlapCount === 0) continue;
+          candidates.push({ v, suppliedSenses, overlapCount });
+        }
+        if (candidates.length > 0) {
+          candidates.sort((x, y) => {
+            const sx = x.suppliedSenses.size, sy = y.suppliedSenses.size;
+            if (sx !== sy) return sx - sy;
+            const rx = x.v.merged_rank || x.v.rank || 9e9;
+            const ry = y.v.merged_rank || y.v.rank || 9e9;
+            return rx - ry;
+          });
+          const winner = candidates[0];
+          const v = winner.v;
+          const overlapCount = winner.overlapCount;
+          const credit = overlapCount / targetSenses.size;
+          const outcome = credit >= 1 ? "hit" : "partial";
+          const askedSensesList = Array.from(targetSenses).join(", ");
+          // Per architect §7 ruling 2026-05-28: when both entries share an
+          // equivalence_class id (e.g. solo/soltanto/solamente in "only_adv"),
+          // they are truly interchangeable — change the info-note wording from
+          // "X covers Y too" to the interchangeable-class nudge.
+          const sharedClass = !!(entry.equivalence_class &&
+            v.equivalence_class === entry.equivalence_class);
+          let reason;
+          if (sharedClass) {
+            reason = "\"" + v.lemma + "\" and \"" + entry.lemma + "\" are interchangeable for \"" +
+              askedSensesList + "\". " + entry.lemma + " still hasn't been practised specifically; " +
+              "try producing it next time.";
+          } else if (credit >= 1) {
+            reason = "Right - \"" + v.lemma + "\" covers \"" + askedSensesList + "\" too. " +
+              entry.lemma + " is the asked-about lemma.";
+          } else {
+            reason = "Partial - \"" + v.lemma + "\" covers part of \"" + askedSensesList + "\". " +
+              entry.lemma + " carries the fuller sense.";
+          }
+          return {
+            outcome: outcome,
+            credit: credit,
+            reason: reason,
+            matchedSister: { entry: v, regime: regime || "none" }
+          };
         }
       }
     }
@@ -2185,16 +2367,27 @@
     return false;
   }
 
-  function markVocab(entry, raw, isItEn) {
+  function markVocab(entry, raw, isItEn, regime) {
     // Active/passive split: IT→EN tests passive recognition; EN→IT tests
     // active production. The vocab tab's direction toggle drives the variant.
+    // The bucket id is built per-entry (POS + gender-when-needed) so
+    // gender-split lemmas like fine.f vs fine.m track separately.
+    //
+    // `regime` is "hard" | "soft" | "none" per the marker semantics ruling.
+    // For step 2 it's plumbed through and stashed on the result for downstream
+    // code; behaviour stays permissive-by-default until step 3 branches on it.
     const direction = isItEn ? "it_en" : "en_it";
-    const baseBucket = `vocabulary.it.${entry.lemma}.translation`;
-    const translationBucket = (typeof LL.resolveVocabVariant === "function")
-      ? LL.resolveVocabVariant(baseBucket, direction)
-      : baseBucket;
-    // Lemma + direction marker. "translation," is implicit on the vocab tab; drop it.
-    const translationLabel = entry.lemma + " (" + (isItEn ? "passive" : "active") + ")";
+    regime = regime || "none";
+    // Default: the markpoint fires on the asked-for entry. The cross-sense
+    // path can flip `markedEntry` to a sister (soft/none regime, asymmetric
+    // forward to the matched sister). For hard regime, asked-for stays.
+    let markedEntry = entry;
+    const translationBucketFor = (e) => (typeof LL.entryBucketId === "function")
+      ? LL.entryBucketId(e, "translation", { direction })
+      : `vocabulary.it.${e.lemma}.translation.${isItEn ? "passive" : "active"}`;
+    const translationLabelFor = (e) => e.lemma + " (" + (isItEn ? "passive" : "active") + ")";
+    let translationBucket = translationBucketFor(markedEntry);
+    let translationLabel = translationLabelFor(markedEntry);
     const trimmed = String(raw || "").trim();
     const target = isItEn ? entry.translation_en : entry.lemma;
     // renderResult expects result.overall.{marks_awarded,marks_possible,summary}
@@ -2202,7 +2395,8 @@
     const result = {
       overall: { marks_awarded: 0, marks_possible: 1, summary: "" },
       raw_response: raw,
-      markpoints: []
+      markpoints: [],
+      regime: regime
     };
     if (!trimmed) {
       result.overall.summary = "Didn't try";
@@ -2217,7 +2411,15 @@
       });
       return result;
     }
-    const judgment = vocabJudge(raw, target, isItEn, entry);
+    const judgment = vocabJudge(raw, target, isItEn, entry, regime);
+    // Asymmetric tracking on cross-sense matches:
+    //   soft/none → fire on the matched sister (asked-for untouched)
+    //   hard       → fire miss on the asked-for entry (sister untouched)
+    if (judgment.matchedSister && judgment.matchedSister.regime !== "hard") {
+      markedEntry = judgment.matchedSister.entry;
+      translationBucket = translationBucketFor(markedEntry);
+      translationLabel = translationLabelFor(markedEntry);
+    }
     const acceptableList = (() => {
       const cleaned = String(target || "").replace(/\([^)]*\)/g, "");
       const seen = new Set();
@@ -2256,10 +2458,10 @@
       alternatives: acceptableList,
       explanation: reason || undefined
     });
-    if (entry.band) {
+    if (markedEntry.band) {
       result.markpoints.push({
-        bucket: entry.band,
-        label: "Frequency band " + bandFriendly(entry.band),
+        bucket: markedEntry.band,
+        label: "Frequency band " + bandFriendly(markedEntry.band),
         attempted_credit: 1,
         correctness_credit: credit,
         outcome: outcome,
@@ -2280,11 +2482,20 @@
     // and phonology (lo zaino, l'amico, un'arancia, etc.).
     const ai = judgment.articleInfo;
     if (ai && ai.expectedGender) {
+      // Build the gender and article_form bucket ids via the per-entry
+      // resolver so they carry POS (and gender-qualifier for gender-split
+      // lemmas like fine.f vs fine.m).
+      const genderBucket = (typeof LL.entryBucketId === "function")
+        ? LL.entryBucketId(entry, "gender", {})
+        : "vocabulary.it." + entry.lemma + ".gender.active";
+      const articleFormBucket = (typeof LL.entryBucketId === "function")
+        ? LL.entryBucketId(entry, "article_form", {})
+        : "vocabulary.it." + entry.lemma + ".article_form.active";
       const signal = ai.explicitGender || ai.articleGenderSignal;
       if (signal !== null) {
         const correct = (signal === ai.expectedGender);
         result.markpoints.push({
-          bucket: "vocabulary.it." + entry.lemma + ".gender.active",
+          bucket: genderBucket,
           label: entry.lemma + " (gender, production)",
           attempted_credit: 1,
           correctness_credit: correct ? 1 : 0,
@@ -2304,7 +2515,7 @@
             ai.expectedArticles.indefinite[0] + " (indefinite).";
         }
         result.markpoints.push({
-          bucket: "vocabulary.it." + entry.lemma + ".article_form.active",
+          bucket: articleFormBucket,
           label: entry.lemma + " (article form, production)",
           attempted_credit: 1,
           correctness_credit: correct ? 1 : 0,
@@ -3655,6 +3866,8 @@
       vocabEntries = real.vocab;
       LL.vocabEntries = vocabEntries;
       LL._vocabByLemma = null;
+      // Index entries so the resolver knows which lemmas are gender-split.
+      if (typeof LL.indexEntries === "function") LL.indexEntries(vocabEntries);
       invalidateVocabCaches();
     }
     grammarIndex = 0;

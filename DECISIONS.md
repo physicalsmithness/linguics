@@ -322,3 +322,183 @@ Codified in AUTHOR_BRIEF.md §7 (new in Revision 3), with worked examples.
 **Why:** The project author flagged that bucket id strings like `verb_form.imperfect.discrimination.modals.sapere` and `pronoun.combined.glielo_family` are dense and jargon-heavy. Reading reports full of them is friction. The bucket `label` field exists for human readability; the id is the engine's identifier. Using the id when speaking to a human elides the affordance the label provides.
 
 **How to apply:** Across all chats, all documents, all prose. Memory should reflect this so the project agent applies it too. Chats with revisions in flight should be told, but the rule applies to all subsequent communication regardless.
+
+---
+
+## 2026-05-26: Housing-chat tactical calls (retro-ratified)
+
+Between roughly 2026-05-13 and 2026-05-26, the housing chat made several architecture-flavoured calls in flight while implementing the heatmap, the vocab tab, the live AI marker, and various engine fixes. The architect chat was effectively dormant during this period and the housing chat carried the load. These calls are now retro-ratified as canonical.
+
+### Vocab translation bucket: .active / .passive direction variants
+
+Vocab translation buckets carry a direction suffix indicating which skill the event evidences. `vocabulary.it.<lemma>.translation.active` records active production (the learner produced the Italian word from their own knowledge); `vocabulary.it.<lemma>.translation.passive` records passive recognition (the learner translated the Italian into English). Gender, article-form, and other vocab aspect buckets stay single-axis (production-only) because recognition of gender or article-choice isn't a meaningful demonstration of those skills.
+
+**Why:** Active and passive vocabulary are distinct skills. Conflating them in a single bucket hides the asymmetry that most learners read in one direction far more than they can produce in the other. The split lets the heatmap show both signals independently.
+
+**Implication:** The housing's marker logic infers direction from the item and the answer source (translation prompt vs grammar item where the lemma was cued vs translation item where the lemma was retrieved) and fires the appropriate variant.
+
+### Grammar bucket attribute: direction (production_only / bidirectional / recognition_only)
+
+Each grammar bucket in the canonical bucket trees (adjective_agreement, verb_form.passato_prossimo, verb_form.imperfect, pronoun, tense_choice) carries an `attributes.direction` field with one of three values. The translation-marker filter uses this to decide which buckets are even candidates for firing on a given item: a `production_only` bucket like `pronoun.combined.glielo_family` is dropped from the candidate set on an IT→EN item because nothing about the learner producing English demonstrates that they can produce the combined clitic cluster in Italian.
+
+**Why:** Without this, IT→EN translation attempts kept firing Italian grammar buckets that the learner had no opportunity to demonstrate, inflating mastery scores and obscuring the actual skill being practised.
+
+**Implication:** Future grammar bucket additions must carry the `direction` attribute. Default is `bidirectional` (covers most cases like translation_mapping or usage); `production_only` for form / agreement / position rules; `recognition_only` is rare and case-by-case.
+
+### Recency-weighted mastery: asymmetric 7/3 formula
+
+A bucket's mastery is computed from its events with the most recent event weighted at 7 and each prior event weighted at 3. If the most recent event was wrong, all prior events contribute (a long history of rights can lift the mastery back above 0.3). If the most recent was right, only the previous three priors contribute (a weak history can't drag a recent right below ~0.44).
+
+**Why:** The formula reflects two pedagogical intuitions: a recent miss matters more than past hits (so mastery dips when you forget), and a recent hit shouldn't be dragged down indefinitely by an old miss-streak (so mastery climbs as you re-learn). The asymmetry between the two cases captures the directionality.
+
+**Implication:** Mastery is recomputed on demand from event history; no pre-aggregated value is stored. The colour gradient on the heatmap reads off this number.
+
+### Article-form bucket on EN→IT noun marking
+
+When a learner types a noun in EN→IT with a definite or indefinite article (e.g. `il padre` instead of `padre`), the article is parsed and assessed against the expected phonological form for the lemma's gender and number. A separate bucket `vocabulary.it.<lemma>.article_form.active` records whether the article-choice was correct. The translation hit fires independently if the noun itself is right.
+
+**Why:** A learner who writes `il zaino` has the gender right (zaino is masculine) but the wrong phonological form (should be `lo zaino` because of the s-impura cluster). Conflating gender and article-form would lose this distinction.
+
+**Implication:** The expected-article logic (lo before s-impura / z / gn / ps / x / y / i+vowel; l' before vowel; il elsewhere for masculine; la before consonant and l' before vowel for feminine) lives in the housing as `expectedArticlesFor(lemma, gender)`.
+
+### Vocab-help slash-command UX
+
+In any prompt, the learner can type `/` to surface a small popup menu offering help on each lemma in the prompt for which the vocab data has an aspect available (translation, gender, plural, conjugation, etc.). Selecting a help reveals the answer for that aspect and records a miss event against the corresponding bucket.
+
+**Why:** Distinguishes "I knew the rule but didn't know the word" (vocab miss + grammar hit) from "I didn't know what the question was asking" (everything misses). The slash command is keyboard-friendly so the learner doesn't have to leave the input field.
+
+**Implication:** Helps are only meaningful where the answer doesn't directly test that aspect (no `plural` help on a question whose answer is the plural; no `auxiliary` help on a question whose answer is the auxiliary). The brief codifies the rule.
+
+### Weighted deck for vocab: weight = 1.1 - score
+
+When the vocab deck refills, each entry's weight is computed as `1.1 - own_mastery`. Untouched entries get weight 1.1 (the maximum); fully-known entries get weight 0.1. Selection is weighted-random without replacement, so every entry surfaces before any repeat, but the unmastered ones surface sooner.
+
+**Why:** Spaced-repetition lite. The 11:1 ratio favouring unknowns is enough to make the deck feel like it's targeting weak spots without being so aggressive that known words never recur (some recurrence keeps mastery honest).
+
+### Cross-sense IT→EN full credit (SUPERSEDED 2026-05-27)
+
+Original ruling: when the learner gives a different sense's translation in IT→EN (e.g. `lucky` when asked about the noun `fortunato`), the asked-for entry fires HIT at full credit with an info note about the other sense. Superseded today by the asymmetric tracking and hard-disambig rules below: the asked-for entry now fires MISS in the hard-disambig case (where POS-in-parens or article-on-gender-split has named the specific sense being asked about); the matched sister entry stays untouched. In soft-disambig and no-disambig cases the matched entry fires hit instead.
+
+---
+
+## 2026-05-27: Marker semantics, the four-part ruling
+
+Triggered by FEEDBACK_for_architect_chat.md item 13 with two updates (ma/però case, fortunato case) and ARCHITECTURE_FEEDBACK_vocab_layer_2026-05-27.md §3. Full ruling in `inter_chat/Architecture_Vocab_marker_semantics.md` v1; the housing-side implementation note is in `inter_chat/Architecture_Housing_marker_semantics.md` v1.
+
+### Union acceptance for the marker
+
+When the marker asks about a lemma (IT→EN), it accepts any translation_en element from any entry whose lemma matches the prompt. When the marker asks for a translation (EN→IT), it accepts any lemma whose translation_en contains the prompt gloss as an element. The acceptance set is a union across matching entries, not a single canonical entry's value.
+
+**Why:** Resolves the il/lo problem (typing `il` when asked for "the" should hit because il is a valid translation of "the") and the fortunato problem (typing `lucky` when asked about fortunato should hit because lucky is a valid sense of fortunato).
+
+**Implication:** Subject to the hard/soft disambiguation discipline below. Hard disambig collapses the union to a single asked-for entry.
+
+### Asymmetric per-entry mastery tracking
+
+Hits fire forward to the matched entry. Misses fire backward to the asked-for entry.
+
+If the learner's answer matches a different entry from the one the question was rendered from, the matched entry's mastery advances; the asked-for entry stays untouched. If the learner's answer matches no entry in the union, the asked-for entry fires miss; no sister entry is touched.
+
+**Why:** Per-entry tracking is honest only if the entry whose mastery advances actually corresponds to what the learner demonstrated. Crediting the asked-for entry for an answer the learner didn't give to that entry inflates its mastery; firing miss on a sister that happened to match a wrong-sense answer penalises a skill the learner wasn't being tested on.
+
+**Implication:** Requires the bucket-id shape to actually distinguish per-entry (see POS-included bucket-id ruling below). Also overturns the housing's previous cross-sense full-credit implementation.
+
+### Hard / soft disambiguation regime
+
+The marker has three regimes that determine whether union acceptance applies.
+
+**Hard regime:** the prompt names a specific entry whose sister entries have different meaning. POS-in-parens for POS-distinguished lemmas ("What does fisico mean (as a noun)?"). Article-on-gender-split noun in IT→EN ("What does la fine mean?"). Under hard regime, no union acceptance and no cross-sense credit. The asked-for entry is the only one that fires. Hit if matched, miss if not.
+
+**Soft regime:** the prompt hints at one form whose sister forms have same meaning. Gloss disambiguation for collisions ("What's the Italian for 'the (m sg, before s+cons)'?"). Under soft regime, union acceptance applies: the matched entry fires; asked-for stays untouched if different.
+
+**No-disambig regime:** ambiguous prompt with no clarifier. Full union acceptance plus asymmetric tracking plus partial credit per the overlap formula.
+
+**Why:** The discipline is "same meaning across sister entries → soft; different meaning → hard". Hard disambig is the marker's way of saying "I'm specifically asking about THIS sense, give me THIS sense"; rewarding a sibling-sense answer there miseducates.
+
+### Partial credit on cross-lemma matches: overlap-over-target
+
+When the supplied answer matches a different entry from the asked-for target in a no-disambig or soft-disambig regime, partial credit fires on the supplied entry per the formula:
+
+```
+credit = |overlap(supplied.translation_en, target.translation_en)| / |target.translation_en|
+```
+
+Target sets the denominator. No floor. If overlap is zero, the supplied entry doesn't fire at all; the target fires miss per the miss-asymmetry rule.
+
+**Why:** Captures partial demonstration cleanly. Stateless (doesn't depend on the learner's existing mastery state, unlike earlier proposals). The target sets the denominator because the prompt is the thing being addressed; how well the answer covered what was asked is the meaningful metric.
+
+**Implication:** Translation_en values are now load-bearing for partial credit. Accurate, comma-correct values matter.
+
+### Equivalence-class field
+
+Optional `equivalence_class` string id on entries. Members of the same class are fully interchangeable lemmas (`solo`/`soltanto`/`solamente` for "only"; `qui`/`qua`; `lì`/`là`; `eccetera`/`ecc.`). Marker behaviour for class members: matched entry fires at full credit, asked-for stays untouched, info note nudges the learner to practise the asked-for entry specifically.
+
+**Why:** Under union acceptance plus the overlap formula, truly-interchangeable lemmas already get 100% credit on cross-class hits because their translation_en values are identical. So the field is not load-bearing for marker correctness. It exists to gate the wording of the info note (truly-interchangeable nudge vs near-equivalent nuance note) and to enable class-aware visualisation in the heatmap.
+
+**How to apply:** Vocab chat populates where the lemmas are unambiguously interchangeable; null elsewhere. Don't populate for near-equivalents like `ma`/`però`; those are partial-credit cases.
+
+### POS-included bucket-id shape for vocab buckets
+
+Bucket-id shape for vocab is `vocabulary.it.<lemma>.<pos>[.<gender>].translation.<direction>`. Gender is included only when needed for disambiguation (when a lemma has multiple entries of the same POS distinguished by gender). POS is always included even for lemmas with one entry, so that any entry newly split later doesn't silently change its bucket id and lose history.
+
+Same shape for `.gender`, `.article_form`, and any future vocab aspect buckets.
+
+**Why:** Per-entry mastery tracking requires bucket ids that distinguish entries. The unique entry key is `(lemma, pos, gender)` per FEEDBACK item 1; the bucket id reflects that.
+
+**Implication:** Housing migration required. Drop the old vocab event history (same pattern as the earlier .active/.passive split migration). Existing aggregate-bucket roll-ups (`vocabulary.it`, `vocabulary.it.freq_X_Y`, themes) keep working because they aggregate over per-entry buckets via prefix match.
+
+### Article-prepending for gender-split nouns in IT→EN
+
+When rendering an IT→EN prompt for an entry that is part of a gender-split lemma (same lemma + same POS + multiple entries differing by gender), the prompt prepends the appropriate article. "What does la fine mean?" or "What does il fine mean?". The article hard-disambiguates the sense.
+
+**Why:** Gender-split nouns have different meanings (`fine` f "end" vs `fine` m "aim"). Without disambiguation, IT→EN against the bare lemma is ambiguous and the asymmetric tracking + union acceptance handle it gracefully (any sense accepted, matched entry advances). With disambiguation, the prompt commits to one specific sense, hard regime applies, wrong-sense answers are pure misses on the asked-for entry. The pedagogical signal is stronger.
+
+---
+
+## 2026-05-27: Other vocab-layer open questions
+
+Triggered by ARCHITECTURE_FEEDBACK_vocab_layer_2026-05-27.md §6 questions 2 through 8. Full ruling in `inter_chat/Architecture_Vocab_other_open_questions.md` v1.
+
+### Parent + child theme tagging
+
+Entries tagged with a sub-theme (`food_fruit`) also carry the parent (`food_drink`). Storage cost is trivial; consumer queries don't need to walk the hierarchy.
+
+### Sub-themes for body, city_places, transport, people_roles
+
+All four ratified. Cleavages per the vocab chat's proposal (head_parts / limbs / organs for body; civic / religious / commercial for city_places; vehicles / infrastructure / actions for transport; profession / official / service / creative / religious / military_law / education / medical for people_roles), with the vocab chat's judgement on exact cuts.
+
+### POS-default themes kept visible to learners
+
+Categories like `verb_action_general` and `noun_abstract` stay visible in theme-filtered browsing. The vagueness concern (an 800-entry "Action verbs (general)" theme is not pedagogically meaningful) is outweighed by the navigation value (the learner can drill into the theme by frequency band).
+
+**Why:** Explicit user override of the architect chat's initial lean (which had been to hide them). User's reasoning: "What they can do is to filter them by their frequency, and that is perfectly fine, so I wouldn't be hiding them."
+
+### [skip] marker as marker contract
+
+The marker considers only entries where `translation_en` is non-null AND `translation_en != "[skip]"`. `[skip]` entries (tokenisation noise, English leak-throughs, proper-noun-only entries, wrong-POS artefacts) plus null-translation entries (the 3,944 untranslated-tail entries) are excluded from question selection.
+
+**Why:** Formalises the convention the vocab chat has been applying. Marker correctness depends on it.
+
+### Polysemy over-tagging accepted as informational
+
+Lemma-themes lookup is keyed on lemma only, so polysemes get all senses' themes (`lavoro` carries both `work_business` and `science_physics`). Accepted as-is. Revisit if learners complain about a theme being polluted by off-topic entries.
+
+### noun_class enum
+
+Nine classes ratified: `regular_o_masc`, `regular_a_fem`, `e_ambiguous`, `greek_ma_masc`, `ista_common_gender`, `irregular_gender`, `gender_shift_plural`, `invariable_accented_final`, `invariable_loanword`. Implicit tenth: `null` (or omit) for non-nouns. Extensions case-by-case if new recurring families emerge.
+
+### Plural definite article gap-fill (i, gli, le)
+
+Vocab chat asked to add three new entries (`i`, `gli`, `le` as articles) with the article gloss-disambiguation pattern from PATCH_REQUEST_for_code.md item 2. The three plural articles are absent from the curated JSON (simplemma collapses them upstream during the initial lemmatisation) but they're among the most common words in Italian and need to exist as askable entries.
+
+---
+
+## 2026-05-27: Inter-chat communication protocol
+
+All inter-chat communication goes through shared versioned files in `inter_chat/`. Filename pattern `<ChatA>_<ChatB>_<topic>.md` with chat names alphabetical. Versioning lives inside the file as `## v1, date, Chat` section headers, with the filename stable across versions. Status header at top (OPEN / CLOSED). Every chat checks for new versions on relevant open threads at the start of each turn and summarises in chat alongside any write. No paste-blurbs.
+
+Full convention documented in `INTER_CHAT_PROTOCOL.md` at the project root. The `inter_chat/` directory is gitignored.
+
+**Why:** The previous convention (separate REPLY_TO_*, NOTE_TO_*, FEEDBACK_*, etc. files at the project root, with paste-blurb instructions to the user) proliferated files and made conversation history hard to follow. The shared-file-per-pair-per-topic model gives each topic a single thread with versioned turn-taking, the user routes between chats but stays in the loop via in-chat summaries, and the project root stays clean for substantive docs.
+
+**How to apply:** Every chat reads `INTER_CHAT_PROTOCOL.md` once when first routed. The architect chat's session memory carries the rule; other chats pick it up when the user routes them. Legacy files (REPLY_TO_*, NOTE_TO_*, FEEDBACK_*, BRIEF_for_*, DISPATCH_*, ARCHITECTURE_FEEDBACK_*, DECISIONS_FROM_*, REQUEST_to_*, PATCH_REQUEST_for_code*) at the project root are grandfathered and stay as the historical record.

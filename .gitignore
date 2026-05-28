@@ -18,14 +18,23 @@ dist/
 build/
 *.log
 
-# Author-chat feedback and intermediate review artifacts.
-# These are useful while iterating but are chat-thread output rather than
-# project state, so they don't need to live in the public repo.
+# Inter-chat communication (per INTER_CHAT_PROTOCOL.md).
+# All inter-chat threads live in inter_chat/ as shared versioned files.
+inter_chat/
+
+# Legacy chat-thread artifacts from before the inter_chat/ convention.
+# Kept ignored so historical chat output doesn't land in the public repo.
 FEEDBACK_*
 AUTHORING_FEEDBACK_*
 ARCHITECTURE_FEEDBACK_*
 REPLY_TO_*
+NOTE_TO_*
+DISPATCH_*
 DECISIONS_FROM_*
+BRIEF_for_code_*
+BRIEFS_for_code*
+PATCH_REQUEST_for_code*
+REQUEST_to_code_*
 feedback_*
 Feedback_*
 

@@ -192,43 +192,184 @@
   };
 
   /**
-   * Active/passive vocab variant resolution.
+   * Vocab bucket-id resolution (per-entry tracking).
    *
-   * The chat-authored items and bucket trees write base vocab translation
-   * ids like `vocabulary.it.casa.translation`. At runtime, the housing
-   * resolves these to either `.active` (the learner produced the lemma) or
-   * `.passive` (the learner recognised it in source), based on the item's
-   * direction. Gender buckets stay single-variant (production-only).
+   * Bucket-id shape, as ruled by architecture chat 2026-05-28:
    *
-   * Direction "en_it" → produce Italian → .active
-   * Direction "it_en" → recognise Italian → .passive
+   *   vocabulary.it.<lemma>.<pos>[.<gender>].<aspect>[.<direction>]
    *
-   * Already-resolved variant ids pass through unchanged. Non-translation
-   * vocab buckets (gender, plural, etc.) pass through unchanged.
+   * - <pos> is always present so that any lemma later split by POS keeps
+   *   its history pinned to the originally-asked entry.
+   * - <gender> is only present when this entry's lemma has multiple entries
+   *   with the same POS distinguished by gender (e.g. `fine` f vs m). For
+   *   single-gender lemmas it is omitted.
+   * - <aspect> ∈ { translation, gender, article_form } (extensible).
+   * - <direction> is the active/passive suffix, applied to translation only.
+   *   Direction "en_it" → .active (learner produced Italian);
+   *   Direction "it_en" → .passive (learner recognised Italian).
+   *   Gender and article_form aspects fire only on EN→IT noun marking, so
+   *   they don't carry a direction suffix (always production).
+   *
+   * Lemma sanitisation: dots in lemmas (e.g. `ecc.`) are replaced with
+   * underscores inside the bucket id so the dot-segmented parser doesn't
+   * split a lemma into two segments. The original lemma stays untouched in
+   * the entry's data.
    */
-  LL.resolveVocabVariant = function (bucketId, direction) {
+
+  // -------- Entry indexing --------
+
+  /**
+   * Index a list of vocab entries so the resolver can answer "what POS and
+   * gender does this lemma have, and is its lemma part of a gender-split
+   * group?". Call once on load (and again if vocab data refreshes).
+   */
+  LL.indexEntries = function (entries) {
+    LL.entriesById = {};
+    LL.entriesByLemma = {};
+    LL.lemmaGenderSplit = {};  // lemma → Set of POS values that are gender-split
+    if (!Array.isArray(entries)) return;
+    // Group by (lemma, pos) to detect gender-split sets.
+    const byLP = new Map();
+    for (const e of entries) {
+      if (!e || !e.lemma) continue;
+      const key = e.lemma + "|" + (e.pos || "");
+      let list = byLP.get(key);
+      if (!list) { list = []; byLP.set(key, list); }
+      list.push(e);
+      // Lemma index
+      let lemmaList = LL.entriesByLemma[e.lemma];
+      if (!lemmaList) { lemmaList = []; LL.entriesByLemma[e.lemma] = lemmaList; }
+      lemmaList.push(e);
+    }
+    // For each (lemma, pos) group with >1 entries differing by gender,
+    // mark this (lemma, pos) as gender-split.
+    for (const [key, list] of byLP.entries()) {
+      if (list.length < 2) continue;
+      const genders = new Set(list.map(e => e.gender || ""));
+      if (genders.size < 2) continue;
+      const [lemma, pos] = key.split("|");
+      if (!LL.lemmaGenderSplit[lemma]) LL.lemmaGenderSplit[lemma] = new Set();
+      LL.lemmaGenderSplit[lemma].add(pos);
+      // Also index each entry by (lemma, pos, gender) triple.
+      for (const e of list) {
+        const id = lemma + "|" + pos + "|" + (e.gender || "");
+        LL.entriesById[id] = e;
+      }
+    }
+  };
+
+  /**
+   * True if this (lemma, pos) pair is part of a gender-split group, i.e.
+   * multiple entries share the lemma + POS but differ by gender. When true,
+   * the bucket id must include the gender qualifier to keep entries
+   * separately tracked.
+   */
+  LL.isGenderSplit = function (lemma, pos) {
+    const set = LL.lemmaGenderSplit && LL.lemmaGenderSplit[lemma];
+    return !!(set && set.has(pos || ""));
+  };
+
+  // -------- Bucket id construction --------
+
+  function sanitiseLemma(lemma) {
+    return String(lemma || "").replace(/\./g, "_");
+  }
+
+  /**
+   * Canonical bucket-id builder. Takes an entry, an aspect, and options.
+   * Returns the full resolved bucket id per the shape rule.
+   *
+   * @param {object} entry  Curated entry with .lemma, .pos, .gender
+   * @param {string} aspect One of "translation", "gender", "article_form"
+   * @param {object} opts   { direction: "en_it" | "it_en" }
+   */
+  LL.entryBucketId = function (entry, aspect, opts) {
+    if (!entry || !entry.lemma) return "";
+    const lemma = sanitiseLemma(entry.lemma);
+    const pos = entry.pos || "unknown";
+    const parts = ["vocabulary", "it", lemma, pos];
+    if (LL.isGenderSplit(entry.lemma, pos) && entry.gender) {
+      parts.push(entry.gender);
+    }
+    parts.push(aspect);
+    if (aspect === "translation") {
+      const direction = (opts && opts.direction) === "it_en" ? "passive" : "active";
+      parts.push(direction);
+    } else if (aspect === "gender" || aspect === "article_form") {
+      // Gender and article_form are production-only; always .active.
+      parts.push("active");
+    }
+    return parts.join(".");
+  };
+
+  /**
+   * Resolve a base-form bucket id (e.g. `vocabulary.it.casa.translation`)
+   * into the per-entry shape. Used for chat-authored references and
+   * AI-marker proposals that come in without POS/gender/direction segments.
+   *
+   * If `opts.entry` is provided, use it directly. Otherwise look up by
+   * lemma; if the lookup is ambiguous (multi-entry lemma), fall back to
+   * the entry with the lowest merged_rank.
+   *
+   * If the bucket id is not a vocab id, or is already resolved (has more
+   * than 4 segments after vocabulary.it.), pass through unchanged.
+   */
+  LL.resolveVocabVariant = function (bucketId, direction, opts) {
     if (typeof bucketId !== "string") return bucketId;
-    // Only translation-aspect vocab buckets get the active/passive split.
-    if (!/^vocabulary\.it\.[^.]+\.translation$/.test(bucketId)) return bucketId;
-    const variant = direction === "it_en" ? "passive" : "active";
-    return bucketId + "." + variant;
+    if (!bucketId.startsWith("vocabulary.it.")) return bucketId;
+    // Don't double-resolve. The base shape we accept is exactly
+    // `vocabulary.it.<lemma>.<aspect>` (4 dot-segments). Anything longer is
+    // either already resolved or doesn't fit our pattern; leave alone.
+    const segs = bucketId.split(".");
+    if (segs.length !== 4) return bucketId;
+    const [, , lemmaSeg, aspectSeg] = segs;
+    // Validate aspect
+    if (aspectSeg !== "translation" && aspectSeg !== "gender" && aspectSeg !== "article_form") {
+      return bucketId;
+    }
+    // Find the entry: opts.entry, else lookup by lemma, else give up.
+    let entry = (opts && opts.entry) || null;
+    if (!entry) {
+      const list = LL.entriesByLemma && LL.entriesByLemma[lemmaSeg];
+      if (list && list.length === 1) {
+        entry = list[0];
+      } else if (list && list.length > 1) {
+        // Multi-entry lemma without specific entry context: pick the
+        // lowest merged_rank as the best-guess canonical. Imperfect but
+        // it's the only deterministic fallback. Authoring chats can
+        // explicitly disambiguate via .pos[.gender] in their bucket
+        // references if they want to bypass this.
+        entry = list.slice().sort((a, b) => {
+          return (a.merged_rank || a.rank || 9e9) - (b.merged_rank || b.rank || 9e9);
+        })[0];
+      }
+    }
+    if (!entry) {
+      // No matching entry — return the base id with the direction suffix
+      // for translation so old code that just wants .active/.passive still
+      // gets something. Other aspects pass through unchanged.
+      if (aspectSeg === "translation") {
+        const variant = direction === "it_en" ? "passive" : "active";
+        return bucketId + "." + variant;
+      }
+      return bucketId;
+    }
+    return LL.entryBucketId(entry, aspectSeg, { direction: direction });
   };
 
   /**
-   * Resolve every vocab translation bucket id in an array to its variant.
-   * Non-vocab and non-translation ids pass through unchanged.
+   * Resolve every vocab bucket id in an array to the per-entry shape.
+   * Non-vocab ids pass through unchanged.
    */
-  LL.resolveVocabBuckets = function (ids, direction) {
+  LL.resolveVocabBuckets = function (ids, direction, opts) {
     if (!Array.isArray(ids)) return ids;
-    return ids.map(id => LL.resolveVocabVariant(id, direction));
+    return ids.map(id => LL.resolveVocabVariant(id, direction, opts));
   };
 
   /**
-   * Post-process an AI marker response: resolve any base vocab translation
-   * bucket ids in markpoints to their direction-appropriate variant. Used
-   * when the AI proposes a bucket without the variant suffix (which can
-   * happen even though bucket_context contained the variant form, because
-   * the AI may shortcut).
+   * Post-process an AI marker response: resolve any base-form vocab bucket
+   * ids in markpoints to the per-entry shape. Used when the AI shortcuts
+   * a base id even though bucket_context offered the resolved variant.
    */
   LL.resolveVocabInMarkpoints = function (markpoints, direction) {
     if (!Array.isArray(markpoints)) return markpoints;
@@ -238,6 +379,46 @@
       if (resolved === mp.bucket) return mp;
       return Object.assign({}, mp, { bucket: resolved });
     });
+  };
+
+  /**
+   * Parse a vocab event's bucket id and extract its lemma. Tolerant of
+   * both the old shape (vocabulary.it.<lemma>.<aspect>...) and the new
+   * shape (vocabulary.it.<lemma>.<pos>[.<gender>].<aspect>...). Returns
+   * `{ lemma, pos, gender, aspect, direction }` or null if not a vocab id.
+   *
+   * The lemma is desantised (underscores back to dots if the original lemma
+   * was `ecc.`-style) by checking against the entry index. If the index
+   * isn't loaded yet, returns the sanitised form.
+   */
+  LL.parseVocabBucketId = function (bucketId) {
+    if (typeof bucketId !== "string") return null;
+    if (!bucketId.startsWith("vocabulary.it.")) return null;
+    const rest = bucketId.slice("vocabulary.it.".length);
+    const segs = rest.split(".");
+    if (segs.length < 2) return null;
+    // The aspect is recognised by name; everything before it is
+    // lemma/pos/gender; everything after is direction (or empty).
+    const ASPECTS = ["translation", "gender", "article_form"];
+    let aspectIdx = -1;
+    for (let i = 0; i < segs.length; i++) {
+      if (ASPECTS.indexOf(segs[i]) >= 0) { aspectIdx = i; break; }
+    }
+    if (aspectIdx < 0) return null;
+    const prefix = segs.slice(0, aspectIdx);
+    const aspect = segs[aspectIdx];
+    const suffix = segs.slice(aspectIdx + 1);
+    // Prefix segments: [lemma], [lemma, pos], or [lemma, pos, gender]
+    let lemma = prefix[0] || "";
+    let pos = prefix[1] || null;
+    let gender = prefix[2] || null;
+    // Desanitise lemma if possible
+    if (LL.entriesByLemma && !LL.entriesByLemma[lemma]) {
+      const dotted = lemma.replace(/_/g, ".");
+      if (LL.entriesByLemma[dotted]) lemma = dotted;
+    }
+    const direction = suffix[0] || null;
+    return { lemma, pos, gender, aspect, direction };
   };
 
   /**
