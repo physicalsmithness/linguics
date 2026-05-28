@@ -1,5 +1,16 @@
 [
   {
+    "$comment_status": "PENDING — added per Architecture_PronounAuthor_prompt_and_granularity.md (v1). Needed for items where a clitic-cluster markpoint splits off the verb form as a separate markpoint and the verb is accepted in either present or future. Per the architect's hint, this is the union of verb_form.present_indicative.dare and verb_form.future_simple.dare for the bucket attribution.",
+    "proposed_id": "verb_form.present_or_future.dare",
+    "proposed_parent_id": "verb_form",
+    "proposed_label": "dare: present indicative or future simple (either accepted)",
+    "proposed_description": "A union bucket for items where both 'dai/dà/danno' (present) and 'darai/darà/daranno' (future) are accepted as the correct verb form, because the question is testing pronoun cluster placement rather than tense choice. Existing per-verb-per-tense buckets handle the singular cases; this leaf is for the disjunction.",
+    "proposed_cefr_importance": {"A1": "preview", "A2": "core", "B1": "core", "B2": "review", "C1": "review", "C2": "fluency"},
+    "proposed_prerequisites": ["verb_form.present_indicative", "verb_form.future_simple"],
+    "proposed_attributes": {"canonical_example": "Me lo dai? / Me lo darai?", "verbs": ["dare"], "common_miss": "wrong tense (passato remoto), wrong person"},
+    "rationale": "Used in op_comb_glielo_10 and op_comb_order_01 after splitting per AUTHOR_BRIEF §2 criterion 8. The architect hinted at this shape; opening a thread to ratify or rename."
+  },
+  {
     "$comment_status": "RESOLVED 2026-05-14 — see REPLY_TO_pronoun_chat_decisions.md (D3). The sibling bucket pronoun.ne.pronominal_idiomatic_verbs now exists in data/buckets/pronoun.json (lines 728-739) and items op_ne_motion_02 (fregarsene) and op_comb_mene_05 (starsene) have been rebucketed accordingly. op_comb_mene_06 (venirsene) stays in motion_andarsene because venirsene IS motion. Entry retained here for traceability.",
     "proposed_id": "pronoun.ne.pronominal_idiomatic_verbs",
     "proposed_parent_id": "pronoun.ne",

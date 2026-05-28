@@ -516,6 +516,7 @@
     }
     const q = grammarDeck[grammarIndex % grammarDeck.length];
     const vocabHelpsUsed = [];
+    const isMcq = q.type === "mcq" && Array.isArray(q.choices) && q.choices.length > 0;
 
     const card = document.createElement("div");
     card.className = "qcard";
@@ -533,46 +534,101 @@
 
     card.appendChild(renderPromptElement(q.prompt, q, vocabHelpsUsed));
 
-    const input = document.createElement("input");
-    input.type = "text";
-    const hasHelps = q.vocab_help && q.vocab_help.length;
-    input.placeholder = hasHelps
-      ? "Type your answer; / for vocab help; Enter to mark."
-      : "Type your answer; press Enter to mark.";
-    input.autocomplete = "off";
-    card.appendChild(input);
-    grammarInputRef = input;
-    // Grammar answers are typed in the question's language_code (usually 'it').
-    // Apostrophe-rewrite only makes sense when the target is Italian.
-    card.appendChild(buildAccentBar(input, { rewriteApostrophes: (q.language_code || "it") === "it" }));
+    // Branch on item type: free-text vs multiple-choice.
+    let input = null, selectedChoiceIdx = null, choiceButtons = [];
+    if (isMcq) {
+      // MCQ rendering: choices as clickable buttons. The substring-based
+      // grammar marker can't reliably score short MCQ options (a 2-letter
+      // pronoun choice like "lo" substring-matches "lui"), so MCQ items
+      // are scored by direct index comparison against q.answer_index.
+      const choicesHost = document.createElement("div");
+      choicesHost.className = "mcq-choices";
+      q.choices.forEach((choiceText, idx) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "mcq-choice";
+        btn.textContent = choiceText;
+        btn.addEventListener("click", () => {
+          selectedChoiceIdx = idx;
+          choiceButtons.forEach((b, j) => b.classList.toggle("selected", j === idx));
+        });
+        choiceButtons.push(btn);
+        choicesHost.appendChild(btn);
+      });
+      card.appendChild(choicesHost);
+      // MCQ items don't render vocab-help / accent-bar / slash-menu.
+      // Decision (Bug 1a, 2026-05-28): on a forced-choice item the learner
+      // is picking between fully-rendered choices, not retrieving a word
+      // from memory. Vocab help would only obscure the diagnostic.
+      grammarInputRef = null;
+    } else {
+      // Free-text rendering: text input + accent bar + vocab help.
+      input = document.createElement("input");
+      input.type = "text";
+      const hasHelps = q.vocab_help && q.vocab_help.length;
+      input.placeholder = hasHelps
+        ? "Type your answer; / for vocab help; Enter to mark."
+        : "Type your answer; press Enter to mark.";
+      input.autocomplete = "off";
+      card.appendChild(input);
+      grammarInputRef = input;
+      // Grammar answers are typed in the question's language_code (usually 'it').
+      // Apostrophe-rewrite only makes sense when the target is Italian.
+      card.appendChild(buildAccentBar(input, { rewriteApostrophes: (q.language_code || "it") === "it" }));
 
-    const helpBar = buildVocabHelpBar(q, vocabHelpsUsed);
-    if (helpBar) card.appendChild(helpBar);
-    attachVocabSlashMenu(input, q, vocabHelpsUsed);
+      const helpBar = buildVocabHelpBar(q, vocabHelpsUsed);
+      if (helpBar) card.appendChild(helpBar);
+      attachVocabSlashMenu(input, q, vocabHelpsUsed);
+    }
 
     const actions = document.createElement("div");
     actions.className = "actions";
     const mark = document.createElement("button"); mark.textContent = "Mark";
     const next = document.createElement("button"); next.className = "secondary"; next.textContent = "Next";
     const hint = document.createElement("span"); hint.className = "kbd-hint";
-    hint.textContent = "Enter to mark · Enter again to advance";
+    hint.textContent = isMcq
+      ? "Click a choice, then Mark. Enter to mark. Enter again to advance."
+      : "Enter to mark · Enter again to advance";
     actions.appendChild(mark); actions.appendChild(next); actions.appendChild(hint);
     card.appendChild(actions);
 
     const resultHost = document.createElement("div");
     card.appendChild(resultHost);
 
+    // `marked` flag drives the second-Enter-advances behaviour even when
+    // focus didn't move to the Next button (Bug 2, 2026-05-28).
+    let marked = false;
+
     const doMark = () => {
-      const raw = input.value;
-      const result = LL.markGrammar(q, raw);
-      appendVocabHelpEvents(result, vocabHelpsUsed, q);
-      appendActiveProductionHits(result, vocabHelpsUsed, q, raw);
-      const attempt = LL.store.recordAttempt("grammar", q, raw, result);
+      let result;
+      if (isMcq) {
+        if (selectedChoiceIdx === null) {
+          // No choice picked yet; nudge but don't record an attempt.
+          resultHost.innerHTML = "";
+          const nudge = document.createElement("div");
+          nudge.className = "muted";
+          nudge.style.cssText = "padding:10px;font-style:italic";
+          nudge.textContent = "Pick one of the choices above, then press Mark or Enter.";
+          resultHost.appendChild(nudge);
+          return;
+        }
+        result = buildMcqResult(q, selectedChoiceIdx);
+      } else {
+        const raw = input.value;
+        result = LL.markGrammar(q, raw);
+        appendVocabHelpEvents(result, vocabHelpsUsed, q);
+        appendActiveProductionHits(result, vocabHelpsUsed, q, raw);
+      }
+      const rawForRecord = isMcq ? q.choices[selectedChoiceIdx] : input.value;
+      const attempt = LL.store.recordAttempt("grammar", q, rawForRecord, result);
       recentlyChangedBuckets = new Set(attempt.events.map(e => e.bucket));
       resultHost.innerHTML = "";
       resultHost.appendChild(renderResult(result));
       renderLiveStats();
-      next.focus();
+      marked = true;
+      // Deferring focus past the current event-loop tick is more reliable
+      // across browsers than calling synchronously inside a keydown handler.
+      setTimeout(() => next.focus(), 0);
     };
     const doNext = () => {
       grammarIndex++;
@@ -586,15 +642,66 @@
     mark.addEventListener("click", doMark);
     next.addEventListener("click", doNext);
 
-    input.addEventListener("keydown", e => {
-      if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); doMark(); }
-    });
+    if (input) {
+      input.addEventListener("keydown", e => {
+        if (e.key === "Enter" && !e.shiftKey) {
+          e.preventDefault();
+          // Bug 2 fix: if we've already marked, advance instead of re-marking.
+          // This makes second-Enter-advances robust against focus quirks.
+          if (marked) doNext();
+          else doMark();
+        }
+      });
+    }
     next.addEventListener("keydown", e => {
       if (e.key === "Enter") { e.preventDefault(); doNext(); }
     });
 
     host.appendChild(card);
-    setTimeout(() => input.focus(), 0);
+    if (input) setTimeout(() => input.focus(), 0);
+    else if (choiceButtons.length) setTimeout(() => choiceButtons[0].focus(), 0);
+  }
+
+  // MCQ scorer: builds a result with the same shape as markGrammar so the
+  // renderResult pipeline doesn't care which marker produced it.
+  function buildMcqResult(q, pickedIdx) {
+    const possible = q.marks || 1;
+    const correct = pickedIdx === q.answer_index;
+    const points = Array.isArray(q.markpoints) ? q.markpoints : [];
+    const choice = q.choices[pickedIdx];
+    const expectedChoice = q.choices[q.answer_index];
+    const mpResults = [];
+    let awarded = 0;
+    for (const mp of points) {
+      const credit = (typeof mp.credit === "number") ? mp.credit : 1;
+      mpResults.push({
+        bucket: mp.bucket,
+        label: mp.label || "",
+        credit_weight: credit,
+        attempted_credit: 1,
+        correctness_credit: correct ? 1 : 0,
+        outcome: correct ? "hit" : "miss",
+        evidence: choice,
+        expected: expectedChoice
+      });
+      if (correct) awarded += credit;
+    }
+    if (awarded > possible) awarded = possible;
+    return {
+      raw_response: choice,
+      overall: {
+        attempted_overall: 1,
+        correctness_overall: correct ? 1 : 0,
+        marks_awarded: awarded,
+        marks_possible: possible,
+        status: correct ? "hit" : "miss",
+        summary: correct ? "Right" : ("Wrong - correct was \"" + expectedChoice + "\""),
+        explanation: q.explanation || null,
+        examiner_note: q.examiner_note || null
+      },
+      markpoints: mpResults,
+      orthography: []
+    };
   }
   function focusGrammarInput() { if (grammarInputRef) grammarInputRef.focus(); }
 

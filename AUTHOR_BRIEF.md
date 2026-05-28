@@ -1,6 +1,6 @@
 # Author Brief: producing grammar questions and translation items
 
-**Revision 3** (2026-05-15). Updated after the adjective chat's vocab-reference audit. Two additions: §2 now has explicit "Lemma key conventions" (diacritics, capitalisation, multi-word forms, inflected/elided surface forms, participle handling, the adjective-lemma carve-out), and §7 is new on communication style with the project author (use friendly bucket labels, not the dot-separated ids, in any prose written for a human reader). See [DECISIONS.md](./DECISIONS.md) for the change log; the Revision 2 (2026-05-13) and earlier guidance still applies.
+**Revision 4** (2026-05-28). Five new criteria in §2 quality criteria (8 through 12): one-markpoint-per-skill, slot-count-matches-surface, implicit-cue must_not_include, register-conditional items state register, prompts not glossary-wrapped. Plus an external_id decoder note in §1. See [DECISIONS.md](./DECISIONS.md) for the change log. **Revision 3** (2026-05-15) added "Lemma key conventions" to §2 and §7 on friendly-bucket-label communication style. Revision 2 (2026-05-13) and earlier guidance still applies.
 
 This document briefs a fresh chat to produce content for Linguics (Italian language-learning project). The chat receives this brief, the relevant bucket tree, the topic name, and any topic-specific notes.
 
@@ -43,6 +43,8 @@ C. **A coverage target.** Aim for several questions per active leaf bucket, with
 D. **CEFR is a steer, not a gate.** The dispatcher may say "this batch should feel weighted toward A2-B1" but you should not narrow content to one band. Cover the whole tree. Tag each item with `cefr_level_target` so the runtime can filter. If a leaf bucket is `arcane` at every level, it gets one or two items at most; if `core` at the target level, it gets the heaviest coverage.
 
 E. **Any topic-specific notes** the dispatcher attaches (canonical resources, references to consult, special instructions).
+
+F. **External ID convention.** Use the pattern `<type>_<topic>_<direction?>_<subtopic>_<ordinal>` where `type` is `trans` for translation items and the topic_short otherwise (`aa`, `pp`, `op`, `imp`, `tc`, `op_comb_glielo_10` etc.). `direction` (`en_it` / `it_en`) appears only on translation items. `subtopic` is the structural label with dots replaced by underscores (`discrimination.modals.sapere` → `disc_sap`). Ordinal is two-digit zero-padded (`01`, `02`, ...). Examples: `pp_aux_modal_01`, `trans_imp_en_it_disc_sap_03`, `op_comb_glielo_10`.
 
 ---
 
@@ -251,6 +253,24 @@ Don't use this for new content. The rich shape gives the learner more agency (on
    - Bad: a bare blank with no time marker or context: ambiguous about which tense.
 6. **No multi-clause sentences.** Grammar questions are short. One blank, one or two words (up to a 4-word noun phrase) to fill.
 7. **`explanation` always present**, even on items where the right answer feels obvious. The explanation appears in a "Why:" block after marking.
+
+8. **One markpoint per skill being tested.** If the right answer combines two distinct skills (e.g. a clitic-cluster choice AND a verb conjugation, an auxiliary choice AND a participle agreement, a preposition choice AND an article-elision), author them as separate markpoints, each pointing at the bucket that captures that one skill. Do NOT bundle them under a single markpoint whose `any_phrases` is the whole composite string. The reason is diagnostic decomposition: a learner who gets the cluster right but the verb form wrong should see a hit on the cluster bucket and a miss on the verb-form bucket, not a single "Wrong" with the full right answer shown.
+
+   The substring grammar engine handles this cleanly because each markpoint matches a substring independently. For the gliene-question item ("how do you say 'Will you give some to him?'"), the right authoring is:
+   - markpoint A: `any_phrases: ["Gliene", "gliene"]` (case-handled by the engine; either capitalisation acceptable), `bucket: pronoun.combined.glielo_family`, `must_not_include: ["Gli ne", "Glie ne", "Ne gli"]`, label "gliene cluster"
+   - markpoint B: `any_phrases: ["dai", "darai"]`, `bucket: verb_form.present_or_future.dare`, label "dare in present or future"
+
+   Total marks become 2; a learner producing "Gliene darei?" hits A (1.0) and misses B (0.0) for a score of 1/2 with clean per-skill attribution.
+
+   Rule of thumb: if the markpoint's `label` joins two concepts with "with" or "+" ("gliene in question with dare", "auxiliary with participle agreement"), it's almost certainly too coarse and should split into two markpoints.
+
+9. **Slot count must match the most-contracted accepted form.** If the prompt's blank pattern uses N slots ("____ ____ ha dato"), every form in `any_phrases` must produce exactly N surface words when typed in. If accepted forms span different surface-word counts (e.g. "me lo" = 2 words vs "me l'" = 1 word with elision), use a single combined slot and accept all forms within it. Mismatched slot counts force the learner into wrong typography to match what they were expecting and break the substring marker.
+
+10. **Implicit-cue discrimination items must catch wrong-tense (and wrong-family) attempts.** If the prompt deliberately omits a tense marker (no "ieri" / "domani" / etc.) to test rule-internalisation rather than cue-spotting, include the most plausible wrong-tense forms in `must_not_include` so a "tried present" or "tried future" attempt records as a miss against the discrimination bucket rather than silently passing through.
+
+11. **Register-conditional items state their register.** If the answer depends on register (literary vs colloquial, formal vs casual, narrative vs reportage), state the register in the prompt ("in stile narrativo", "in casual speech", "formal address"). Without the cue, the item tests the learner's ability to read context for register signals rather than the underlying skill, which is a different diagnostic.
+
+12. **Prompts are not glossary-wrapped; explanations are.** The housing's renderer wraps technical grammatical terms (DOP, IOP, gerund, clitic, periodo ipotetico, etc.) in glossary tooltips inside explanations, but NOT inside prompts. If you use a technical term in a prompt, the learner sees it as opaque text; introduce it inline ("a small pronoun" rather than "a clitic") or save it for the explanation. The reverse asymmetry: explanations CAN use technical terms freely because the glossary surfacing makes them learnable.
 
 ---
 
