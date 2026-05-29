@@ -6,6 +6,17 @@ Authored as a single dispatch against the diagnostic-only tense_choice topic. Br
 
 The dispatch is unusual in two ways. First, every item presents two fully-formed verbs and asks the learner to pick; no formation buckets are cited and none fire. Second, the imperfetto-vs-PP cluster cites buckets on the existing imperfect tree (`verb_form.imperfect.discrimination.*`) rather than creating duplicates under the new tense_choice tree; the other five contrast areas cite the new `tense_choice.*` buckets.
 
+## Post-dispatch updates (2026-05-28)
+
+After the initial dispatch closed, Architecture ruled on all six points in `inter_chat/Architecture_TenseChoiceAuthor_dispatch_outputs.md` (now CLOSED). Material outcomes affecting this file:
+
+- **Point 2 (marker policy on multi-register items): asymmetric per-bucket tracking confirmed.** `trans_tc_cf_coll_en_it_01` has been refactored to put BOTH register buckets in `required_buckets` (no more required + optional split). The marker fires whichever register's bucket matches the learner's answer; the other stays untouched. Item credit is full per attempt. Item version bumped to 2.
+- **Point 5 (glossary): all 5 proposed terms accepted.** Will land in canonical `data/glossary.json` at the next merge pass.
+- **Point 6 (cross-tree citation pattern): acknowledged**, with a downstream housing thread pending on the runtime's per-topic miss-filtering behaviour.
+- **Points 1, 3, 4: ruled or confirmed**, no action on the tense_choice dispatch.
+
+Separately, the ImperfectAuthor chat ran in parallel and authored 37 grammar + 21 translation items in the same `verb_form.imperfect.discrimination.*` leaves (id prefix `imp_disc_*` / `trans_imp_disc_*`). Project author ruled **Pattern B**: both dispatches coexist in the shared buckets, no retroactive deletion. Combined coverage on each modal-discrimination leaf now sits at 16-17 items; the general-aspect leaf at 31. Thread `inter_chat/ImperfectAuthor_TenseChoiceAuthor_cross_tree_citations.md` is CLOSED.
+
 ## Bucket-to-item-count table
 
 Counts are dedicated items per leaf, plus co-fires inside grammar items where another bucket is the primary marker target (there are no co-fires in this dispatch because each item attributes to exactly one bucket). Translation items count once each per `required_bucket`.
@@ -101,7 +112,7 @@ These items have a diagnostic call that is debatable and worth the project autho
 
 - **tc_cf_coll_03** (B2): the source uses direct-speech quotation marks inside the prompt and asks the learner to pick the colloquial form inside quoted speech. The quotation framing is a strong register cue, but learners who read past the quotation marks might miss the implicit register switch. Worth a usability check; if learners systematically miss this style of cue, the framing convention should be revisited.
 
-- **trans_tc_cf_coll_en_it_01** (B2): the translation item accepts both the colloquial form ("Se sapevo prima, venivo subito ad aiutare") and the prescriptive form ("Se l'avessi saputo prima, sarei venuto subito ad aiutare") as `required_buckets`-clearing answers, with a negative anchor against mixing the two within one sentence. The marker should attribute correctly in both cases. If the marker's policy on multi-register acceptance isn't clear, this item is the test case.
+- **trans_tc_cf_coll_en_it_01** (B2) — RESOLVED 2026-05-28. Architecture ruled asymmetric per-bucket tracking: both register buckets sit in `required_buckets`, the marker fires whichever the learner matches, the other stays untouched, item credit is full per attempt. Item refactored to version 2; the previous required + optional shape is gone.
 
 - **tc_trap_compl_05** (C1) "Solo dopo molti anni scoprì che la sorella aveva bruciato il manoscritto...": the trapassato is clearly right here, but the bucket "completed prior to prior" depends on the reading that the burning is a single completed event. A learner who reads it as "the sister was in the habit of burning manuscripts" could justify imperfetto bruciava on aspect grounds. The single-completed-event reading is overwhelmingly preferred by native speakers, but the item is at the genuine edge of the bucket's scope.
 
@@ -144,7 +155,7 @@ Terms not proposed because the existing glossary v2 already covers them: subjunc
 
 ## Notes for the next dispatch
 
-1. **Marker behaviour on the "both registers acceptable" pattern.** `trans_tc_cf_coll_en_it_01` is the dispatch's test case. If the marker treats the colloquial and prescriptive forms as both `required_buckets`-clearing on this item, the convention scales. If not, the item or the marker policy needs adjusting.
+1. **Marker behaviour on the "both registers acceptable" pattern — RESOLVED 2026-05-28.** Architecture ruled asymmetric per-bucket tracking (both buckets in `required_buckets`, marker fires whichever the learner matches). The convention scales: future dispatches should put each register bucket directly into `required_buckets` rather than using the required + optional split.
 
 2. **Sequence-of-tenses bucket.** The subjunctive items in this batch use the correct sequence-of-tenses (present subjunctive after present matrix, imperfect or past subjunctive after past matrix) but the bucket doesn't track sequence-of-tenses misses. A future dispatch on subjunctive formation (rather than indicative-vs-subjunctive choice) should consider whether sequence-of-tenses deserves its own leaf.
 

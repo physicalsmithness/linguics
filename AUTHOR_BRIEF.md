@@ -264,9 +264,18 @@ Don't use this for new content. The rich shape gives the learner more agency (on
 
    Rule of thumb: if the markpoint's `label` joins two concepts with "with" or "+" ("gliene in question with dare", "auxiliary with participle agreement"), it's almost certainly too coarse and should split into two markpoints.
 
-9. **Slot count must match the most-contracted accepted form.** If the prompt's blank pattern uses N slots ("____ ____ ha dato"), every form in `any_phrases` must produce exactly N surface words when typed in. If accepted forms span different surface-word counts (e.g. "me lo" = 2 words vs "me l'" = 1 word with elision), use a single combined slot and accept all forms within it. Mismatched slot counts force the learner into wrong typography to match what they were expecting and break the substring marker.
+9. **Prefer a single combined slot.** Multiple slots leak structural information about the answer (a 2-slot blank tells the learner the answer is a compound form; a 1-slot blank tells them it's a single word). Use a single combined slot whenever the answer's form-family is what the item is testing OR whenever accepted forms span different surface-word counts (e.g. "me lo" = 2 words vs "me l'" = 1 word with elision). Only use multiple slots when the slots are in genuinely different positions of the sentence (different verbs / different phrases) AND each slot's word count is structurally fixed by something other than the answer being tested. The substring marker doesn't need fixed-width slots; it matches on content regardless of how the prompt visualises the blank.
 
-10. **Implicit-cue discrimination items must catch wrong-tense (and wrong-family) attempts.** If the prompt deliberately omits a tense marker (no "ieri" / "domani" / etc.) to test rule-internalisation rather than cue-spotting, include the most plausible wrong-tense forms in `must_not_include` so a "tried present" or "tried future" attempt records as a miss against the discrimination bucket rather than silently passing through.
+10. **Items must not be tense-ambiguous; once unambiguous, catch wrong-tense attempts.** Two-part rule.
+
+   **10a (item-authoring discipline).** Every grammar item must be unambiguous about which tense is wanted. A sentence like "Mia nonna ____ molto generosa" without surrounding context is NOT a valid item: both `è` (present, "is generous") and `era` (imperfect, "was generous") are legitimate readings. Such an item must either:
+
+   - **Be rewritten** to pin the tense via discourse context. Add a prior sentence that establishes past time ("Mia nonna è morta quando ero piccolo. ____ molto generosa."), or add explicit framing ("In quel periodo, mia nonna ____ molto generosa."), or use a context that excludes present ("Quando andavamo in vacanza da lei, mia nonna ____ molto generosa con noi.").
+   - **OR accept all legitimate tenses** as valid answers. If you genuinely mean "the item is about whether the learner can produce ANY valid form of essere here", then `è` and `era` both go in `any_phrases` and the item is no longer a discrimination item.
+
+   Don't ship items where the sentence could legitimately take a tense the item doesn't accept; that's a content bug.
+
+   **10b (marker discipline, once 10a is satisfied).** When discourse context unambiguously pins past tense and the item is testing a discrimination between two past tenses (typically imperfect vs PP), include the plausible wrong-tense forms in `must_not_include`. So a learner who reaches for the wrong past tense (or present, or future — all wrong by context) records a miss correctly attributed to the discrimination bucket rather than falling through to a silent miss with no bucket attribution.
 
 11. **Register-conditional items state their register.** If the answer depends on register (literary vs colloquial, formal vs casual, narrative vs reportage), state the register in the prompt ("in stile narrativo", "in casual speech", "formal address"). Without the cue, the item tests the learner's ability to read context for register signals rather than the underlying skill, which is a different diagnostic.
 

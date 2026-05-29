@@ -6,6 +6,8 @@ Authored across two dispatches (initial + post-architecture-feedback revision). 
 
 **Prompt-leak fix (2026-05-15)**: rewrote prompts on `pp_aux_modal_01..05` (stripped "using prescriptive inheritance" and the redundant agreement cue) and `pp_aux_amb_01..03` (stripped "(transitive use ...)" and "(intransitive, motion)" parentheticals that named the bucket diagnostic). The diagnostic survives via participle agreement and sentence structure; the parentheticals now carry only the infinitive cue.
 
+**Slot-count collapse (2026-05-28)**: collapsed all 6 multi-slot prompts to single slot per AUTHOR_BRIEF §2 criterion 9 (multi-slot blanks cue compound-form-family). Affected items: `pp_aux_refl_05` (was 2-slot for `sono divertiti`) and `pp_adv_pos_01..05` (were 2-slot for auxiliary+adverb or adverb+participle pairings). Markpoints unchanged — substring matching handles the new format.
+
 ## Bucket-to-item-count table
 
 Counts are "dedicated items" + "co-fires" where the bucket is one of several skills the item tests. A dedicated item is the one whose `subtopic` field names this bucket; co-fires happen when a bucket is a markpoint or `required_bucket` on an item whose primary focus is elsewhere.

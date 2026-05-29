@@ -1107,12 +1107,12 @@
       {
         "text": "Se sapevo prima, venivo subito ad aiutare.",
         "register": "informal",
-        "notes": "Colloquial counterfactual: imperfetto in both clauses. Fits the chatty register."
+        "notes": "Colloquial counterfactual: imperfetto in both clauses. Fits the chatty register. Fires the colloquial_imperfect bucket as a hit; prescriptive_conditional stays untouched (asymmetric tracking per Architecture's marker ruling, 2026-05-28)."
       },
       {
         "text": "Se l'avessi saputo prima, sarei venuto subito ad aiutare.",
         "register": "informal",
-        "notes": "Prescriptive form, also acceptable. Slightly more formal in tone."
+        "notes": "Prescriptive form, also acceptable in this informal context. Fires the prescriptive_conditional bucket as a hit; colloquial_imperfect stays untouched. Item credit is full either way; the two buckets are first-class peers."
       },
       {
         "text": "Se sapevo prima, sarei venuto subito ad aiutare.",
@@ -1126,14 +1126,13 @@
     "difficulty": 3,
     "cefr_level_target": "B2",
     "required_buckets": [
-      "tense_choice.conditional_vs_imperfect_counterfactual.colloquial_imperfect"
-    ],
-    "optional_buckets": [
+      "tense_choice.conditional_vs_imperfect_counterfactual.colloquial_imperfect",
       "tense_choice.conditional_vs_imperfect_counterfactual.prescriptive_conditional"
     ],
+    "optional_buckets": [],
     "vocab_help": [],
-    "explanation": "When a counterfactual appears in casual, friend-to-friend speech, Italian widely uses the imperfetto in both clauses. The informal-chat register cue licenses the colloquial form; the prescriptive form remains technically correct but feels stiff. The two forms should not be mixed within the same sentence.",
-    "version": 1
+    "explanation": "When a counterfactual appears in casual, friend-to-friend speech, Italian widely uses the imperfetto in both clauses. The informal-chat register cue licenses the colloquial form; the prescriptive form remains technically correct but feels stiff. Either is accepted on this item, with the marker firing whichever register's bucket matches the learner's choice. The two forms should not be mixed within the same sentence.",
+    "version": 2
   },
   {
     "external_id": "trans_tc_cf_coll_it_en_01",

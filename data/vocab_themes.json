@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "description": "Themes taxonomy for Linguics vocabulary entries. Every vocab entry carries a `themes` array; values are drawn from this registry. Themes mix semantic categories (food_drink, colours, days_of_week) with grammatical-functional ones (function_word, modal_verb, verb_movement). Consumers can partition by prefix where useful (verb_*, pronoun_*, adjective_*, adverb_*, determiner_*). Themes may have a `parent_id` indicating a parent theme; convention is that entries tagged with a child theme are ALSO tagged with its parent, so a 'show me food vocabulary' query can simply check for 'food_drink' membership without walking the hierarchy. Consumers wanting finer slices use the child theme directly.",
   "kinds": {
     "semantic_concrete": "Real-world domains: people, places, things, time, sensations",
@@ -125,6 +125,47 @@
     {"id": "arts_literature", "kind": "semantic_concrete", "label": "Literature and writing", "parent_id": "arts_entertainment"},
     {"id": "arts_performing", "kind": "semantic_concrete", "label": "Theatre and dance", "parent_id": "arts_entertainment"},
     {"id": "arts_film_tv", "kind": "semantic_concrete", "label": "Film and television", "parent_id": "arts_entertainment"},
-    {"id": "arts_general", "kind": "semantic_concrete", "label": "General arts terms", "parent_id": "arts_entertainment"}
+    {"id": "arts_general", "kind": "semantic_concrete", "label": "General arts terms", "parent_id": "arts_entertainment"},
+
+    {"id": "body_head", "kind": "semantic_concrete", "label": "Head and facial features", "parent_id": "body"},
+    {"id": "body_limbs", "kind": "semantic_concrete", "label": "Arms, hands, legs, feet, joints", "parent_id": "body"},
+    {"id": "body_torso", "kind": "semantic_concrete", "label": "Trunk, neck, chest, back, belly", "parent_id": "body"},
+    {"id": "body_internal", "kind": "semantic_concrete", "label": "Organs, bones, muscles, nerves, vessels", "parent_id": "body"},
+    {"id": "body_surface", "kind": "semantic_concrete", "label": "Skin, hair, body fluids", "parent_id": "body"},
+    {"id": "body_animal_part", "kind": "semantic_concrete", "label": "Animal-specific body parts", "parent_id": "body"},
+
+    {"id": "places_commerce", "kind": "semantic_concrete", "label": "Shops, restaurants, hotels, markets, business venues", "parent_id": "city_places"},
+    {"id": "places_civic", "kind": "semantic_concrete", "label": "Government buildings, courts, police, embassies", "parent_id": "city_places"},
+    {"id": "places_education", "kind": "semantic_concrete", "label": "Schools, universities, libraries, institutes", "parent_id": "city_places"},
+    {"id": "places_health", "kind": "semantic_concrete", "label": "Hospitals, clinics, pharmacies", "parent_id": "city_places"},
+    {"id": "places_culture", "kind": "semantic_concrete", "label": "Museums, theatres, cinemas, monuments, heritage sites", "parent_id": "city_places"},
+    {"id": "places_religious", "kind": "semantic_concrete", "label": "Churches, cathedrals, temples, parishes", "parent_id": "city_places"},
+    {"id": "places_transit", "kind": "semantic_concrete", "label": "Stations, airports, ports, terminals", "parent_id": "city_places"},
+    {"id": "places_outdoor", "kind": "semantic_concrete", "label": "Parks, gardens, beaches, squares, streets, the open urban fabric", "parent_id": "city_places"},
+
+    {"id": "transport_land", "kind": "semantic_concrete", "label": "Road and rail vehicles", "parent_id": "transport"},
+    {"id": "transport_water", "kind": "semantic_concrete", "label": "Watercraft", "parent_id": "transport"},
+    {"id": "transport_air", "kind": "semantic_concrete", "label": "Aircraft", "parent_id": "transport"},
+    {"id": "transport_part", "kind": "semantic_concrete", "label": "Components of vehicles", "parent_id": "transport"},
+    {"id": "transport_infrastructure", "kind": "semantic_concrete", "label": "Roads, rails, bridges, tunnels, parking", "parent_id": "transport"},
+    {"id": "transport_journey", "kind": "semantic_concrete", "label": "Travel concepts: routes, departures, arrivals, stages", "parent_id": "transport"},
+    {"id": "transport_document", "kind": "semantic_concrete", "label": "Tickets, licences, paperwork, fares, fines", "parent_id": "transport"},
+
+    {"id": "roles_political", "kind": "semantic_concrete", "label": "Political and government roles", "parent_id": "people_roles"},
+    {"id": "roles_legal", "kind": "semantic_concrete", "label": "Legal professions", "parent_id": "people_roles"},
+    {"id": "roles_security", "kind": "semantic_concrete", "label": "Military, police, guards, firefighters", "parent_id": "people_roles"},
+    {"id": "roles_education", "kind": "semantic_concrete", "label": "Teachers, professors, students", "parent_id": "people_roles"},
+    {"id": "roles_medical", "kind": "semantic_concrete", "label": "Medical professionals", "parent_id": "people_roles"},
+    {"id": "roles_religious", "kind": "semantic_concrete", "label": "Religious roles", "parent_id": "people_roles"},
+    {"id": "roles_arts_media", "kind": "semantic_concrete", "label": "Creative and media professions", "parent_id": "people_roles"},
+    {"id": "roles_business", "kind": "semantic_concrete", "label": "Corporate and administrative roles", "parent_id": "people_roles"},
+    {"id": "roles_trade_service", "kind": "semantic_concrete", "label": "Skilled manual trades and service work", "parent_id": "people_roles"},
+    {"id": "roles_technical_science", "kind": "semantic_concrete", "label": "Engineers, scientists, technicians", "parent_id": "people_roles"},
+    {"id": "roles_sports", "kind": "semantic_concrete", "label": "Athletes, coaches, players", "parent_id": "people_roles"},
+    {"id": "roles_status_general", "kind": "semantic_concrete", "label": "Non-occupational social roles (citizen, resident, guest, tourist)", "parent_id": "people_roles"},
+
+    {"id": "personal_care", "kind": "semantic_concrete", "label": "Personal-care objects (grooming, hygiene, cosmetics)"},
+    {"id": "geography_admin", "kind": "semantic_concrete", "label": "Administrative geography (countries, regions, districts, neighbourhoods)"},
+    {"id": "direction", "kind": "semantic_concrete", "label": "Cardinal points and directional terms"}
   ]
 }
