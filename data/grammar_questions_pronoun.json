@@ -2071,11 +2071,10 @@
     "cefr_level_target": "B2",
     "prompt": "Complete: 'Non ____ niente!' (= I don't care at all, from fregarsene, 1sg)",
     "type": "short",
-    "marks": 2,
+    "marks": 1,
     "prompt_supplies_base_form": false,
     "markpoints": [
-      {"order_index": 0, "credit": 1.0, "bucket": "pronoun.ne.pronominal_idiomatic_verbs", "label": "fregarsene 1sg cluster (me + ne)", "any_phrases": ["me ne", "Me ne"], "must_not_include": ["mi ne", "ne mi"]},
-      {"order_index": 1, "credit": 1.0, "bucket": "verb_form.present_indicative.regular.are", "label": "fregare 3sg present (frega — verb agrees with 'niente')", "any_phrases": ["frega"], "must_not_include": ["fregare", "fregato"]}
+      {"order_index": 0, "credit": 1.0, "bucket": "pronoun.ne.pronominal_idiomatic_verbs", "label": "fregarsene 1sg (me ne frega)", "any_phrases": ["me ne frega", "Me ne frega"], "must_not_include": ["mi ne frega", "ne mi frega"]}
     ],
     "vocab_help": [
       {"lemma": "frega", "language": "it", "aspects": {"infinitive": {"reveal": "fregarsene - to not care (colloquial)", "bucket": "vocabulary.it.fregarsene.translation"}}}
@@ -3306,11 +3305,12 @@
     "cefr_level_target": "B2",
     "prompt": "Disambiguate: pick the form that uses ci as a direct-object pronoun ('us'). 'Marco said hello to us at the station.'",
     "type": "mcq",
-    "marks": 1,
+    "marks": 2,
     "choices": ["Marco ci ha salutati alla stazione.", "Marco ci è andato alla stazione.", "Marco ci è ci alla stazione.", "Marco ne ha salutati alla stazione."],
     "answer_index": 0,
     "markpoints": [
-      {"order_index": 0, "credit": 1.0, "bucket": "pronoun.direct_object.ci_us", "label": "ci as DOP, with PP agreement", "any_phrases": ["Marco ci ha salutati"], "must_not_include": ["Marco ci è andato", "Marco ne ha salutati"]}
+      {"order_index": 0, "credit": 1.0, "bucket": "pronoun.direct_object.ci_us", "label": "ci as DOP (vs locative ci or ne)", "any_phrases": ["ci ha"], "must_not_include": ["ci è", "ne ha"]},
+      {"order_index": 1, "credit": 1.0, "bucket": "verb_form.passato_prossimo.participle_agreement.with_avere.preceding_dop_mi_ti_ci_vi", "label": "Participle m.pl agreement with preceding 1pl DOP ci", "any_phrases": ["salutati"], "must_not_include": ["salutato", "salutata", "salutate"]}
     ],
     "vocab_help": [
       {"lemma": "salutati", "language": "it", "aspects": {"infinitive": {"reveal": "salutare - to greet", "bucket": "vocabulary.it.salutare.translation"}}}
@@ -3328,10 +3328,11 @@
     "cefr_level_target": "B2",
     "prompt": "Complete in passato prossimo: 'Ragazze, vi ho viste ieri al parco.' Now in the negative: '____.' (informal: I didn't see you all, addressing women)",
     "type": "short",
-    "marks": 1,
+    "marks": 2,
     "prompt_supplies_base_form": false,
     "markpoints": [
-      {"order_index": 0, "credit": 1.0, "bucket": "pronoun.direct_object.vi_you", "label": "DOP vi in PP with optional fem.pl agreement (invariable also credited)", "any_phrases": ["Non vi ho viste", "non vi ho viste", "Non vi ho visto", "non vi ho visto"], "must_not_include": ["Non ho viste vi", "Non vi ho visti", "Non vi ho vista"]}
+      {"order_index": 0, "credit": 1.0, "bucket": "pronoun.direct_object.vi_you", "label": "DOP 2pl vi, pre-aux", "any_phrases": ["vi ho", "Non vi ho"], "must_not_include": ["ho vi", "voi ho"]},
+      {"order_index": 1, "credit": 1.0, "bucket": "verb_form.passato_prossimo.participle_agreement.with_avere.preceding_dop_mi_ti_ci_vi", "label": "Participle ending: agreement with vi is optional (viste/visto both credited)", "any_phrases": ["viste", "visto"], "must_not_include": ["visti", "vista"]}
     ],
     "vocab_help": [],
     "explanation": "The 2pl DOP vi sits pre-aux. Participle agreement with the 1/2-person DOPs (mi, ti, ci, vi) is optional in modern Italian: the agreed form (viste, f.pl matching ragazze) feels more typical in narrative or literary register; the invariable visto is everyday. Both are credited; wrong-gender forms are not.",

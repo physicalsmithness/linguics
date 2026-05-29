@@ -227,6 +227,7 @@
     LL.entriesById = {};
     LL.entriesByLemma = {};
     LL.lemmaGenderSplit = {};  // lemma → Set of POS values that are gender-split
+    LL.lemmaNumberSplit = {};  // lemma → Set of "<pos>|<gender>" keys that are number-split
     if (!Array.isArray(entries)) return;
     // Group by (lemma, pos) to detect gender-split sets.
     const byLP = new Map();
@@ -256,6 +257,30 @@
         LL.entriesById[id] = e;
       }
     }
+    // For (lemma, pos, gender) groups with >1 entries differing by number,
+    // mark as number-split. Canonical case: le.pronoun.f.sg vs le.pronoun.f.pl.
+    const byLPG = new Map();
+    for (const e of entries) {
+      if (!e || !e.lemma) continue;
+      const key = e.lemma + "|" + (e.pos || "") + "|" + (e.gender || "");
+      let list = byLPG.get(key);
+      if (!list) { list = []; byLPG.set(key, list); }
+      list.push(e);
+    }
+    for (const [key, list] of byLPG.entries()) {
+      if (list.length < 2) continue;
+      const numbers = new Set(list.map(e => e.number || ""));
+      if (numbers.size < 2) continue;
+      const [lemma, pos, gender] = key.split("|");
+      const splitKey = pos + "|" + gender;
+      if (!LL.lemmaNumberSplit[lemma]) LL.lemmaNumberSplit[lemma] = new Set();
+      LL.lemmaNumberSplit[lemma].add(splitKey);
+    }
+  };
+
+  LL.isNumberSplit = function (lemma, pos, gender) {
+    const set = LL.lemmaNumberSplit && LL.lemmaNumberSplit[lemma];
+    return !!(set && set.has((pos || "") + "|" + (gender || "")));
   };
 
   /**
@@ -290,6 +315,13 @@
     const parts = ["vocabulary", "it", lemma, pos];
     if (LL.isGenderSplit(entry.lemma, pos) && entry.gender) {
       parts.push(entry.gender);
+    }
+    // Vocab marker semantics v4 (2026-05-29): when the (lemma, pos, gender)
+    // triple doesn't disambiguate the entry but `number` does, include the
+    // number segment. Canonical case: le.pronoun.f.sg (IOP) vs le.pronoun.f.pl
+    // (DOP). Only inserted when this lemma is part of a number-split set.
+    if (LL.isNumberSplit && LL.isNumberSplit(entry.lemma, pos, entry.gender) && entry.number) {
+      parts.push(entry.number);
     }
     parts.push(aspect);
     if (aspect === "translation") {
@@ -408,17 +440,35 @@
     const prefix = segs.slice(0, aspectIdx);
     const aspect = segs[aspectIdx];
     const suffix = segs.slice(aspectIdx + 1);
-    // Prefix segments: [lemma], [lemma, pos], or [lemma, pos, gender]
+    // Prefix segments (in order):
+    //   [lemma]                          legacy, pre-2026-05-28
+    //   [lemma, pos]                     ungendered entries
+    //   [lemma, pos, gender]             gender-split lemmas
+    //   [lemma, pos, gender, number]     number-split within a (lemma,pos,gender)
+    // The gender slot is recognised by being in {m, f, mf, ambiguous}; anything
+    // else in that slot is treated as a number qualifier (sg | pl).
     let lemma = prefix[0] || "";
     let pos = prefix[1] || null;
-    let gender = prefix[2] || null;
+    let gender = null;
+    let number = null;
+    const GENDERS = new Set(["m", "f", "mf", "ambiguous"]);
+    const NUMBERS = new Set(["sg", "pl"]);
+    if (prefix.length >= 3) {
+      const seg2 = prefix[2];
+      if (GENDERS.has(seg2)) gender = seg2;
+      else if (NUMBERS.has(seg2)) number = seg2;
+    }
+    if (prefix.length >= 4) {
+      const seg3 = prefix[3];
+      if (NUMBERS.has(seg3)) number = seg3;
+    }
     // Desanitise lemma if possible
     if (LL.entriesByLemma && !LL.entriesByLemma[lemma]) {
       const dotted = lemma.replace(/_/g, ".");
       if (LL.entriesByLemma[dotted]) lemma = dotted;
     }
     const direction = suffix[0] || null;
-    return { lemma, pos, gender, aspect, direction };
+    return { lemma, pos, gender, number, aspect, direction };
   };
 
   /**

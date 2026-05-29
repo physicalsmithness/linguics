@@ -1315,7 +1315,8 @@
     "difficulty": 2,
     "cefr_level_target": "B1",
     "required_buckets": [
-      "verb_form.imperfect.usage.polite"
+      "verb_form.imperfect.usage.polite",
+      "verb_form.condizionale.present.polite_use"
     ],
     "optional_buckets": [],
     "vocab_help": [
@@ -1371,7 +1372,8 @@
     "difficulty": 3,
     "cefr_level_target": "B2",
     "required_buckets": [
-      "verb_form.imperfect.usage.polite"
+      "verb_form.imperfect.usage.polite",
+      "verb_form.condizionale.present.polite_use"
     ],
     "optional_buckets": [
       "verb_form.imperfect.discrimination.modals.volere"
@@ -2000,7 +2002,7 @@
     "source_text": "He said he was going to call back later.",
     "reference_translations": [
       {"text": "Ha detto che richiamava più tardi.", "register": "neutral", "notes": "Colloquial: imperfect 'richiamava' carries the prospective reading."},
-      {"text": "Ha detto che avrebbe richiamato più tardi.", "register": "neutral", "notes": "Prescriptive: past conditional 'avrebbe richiamato' is the standard written form for reported future intention."},
+      {"text": "Ha detto che avrebbe richiamato più tardi.", "register": "formal", "notes": "Prescriptive: past conditional 'avrebbe richiamato' is the standard written form for reported future intention."},
       {"text": "Ha detto che stava per richiamare più tardi.", "register": "neutral", "notes": "Variant: 'stava per' makes the imminence explicit."}
     ],
     "topic": "verb_form.imperfect",
@@ -2008,7 +2010,8 @@
     "difficulty": 3,
     "cefr_level_target": "B2",
     "required_buckets": [
-      "verb_form.imperfect.indirect_speech.reported_intention"
+      "verb_form.imperfect.indirect_speech.reported_intention",
+      "verb_form.condizionale.past.indirect_speech_reported_intention"
     ],
     "optional_buckets": [],
     "vocab_help": [
@@ -2112,7 +2115,9 @@
     "difficulty": 3,
     "cefr_level_target": "B2",
     "required_buckets": [
-      "verb_form.imperfect.stylistic.colloquial_counterfactual"
+      "verb_form.imperfect.stylistic.colloquial_counterfactual",
+      "verb_form.congiuntivo.trapassato.counterfactual_protasis",
+      "verb_form.condizionale.past.counterfactual_apodosis"
     ],
     "optional_buckets": [],
     "vocab_help": [
@@ -2120,6 +2125,11 @@
       {"lemma": "would have come", "language": "en", "aspects": {"translation": {"reveal": "would have come - colloquial venivo / prescriptive sarei venuto", "bucket": "vocabulary.it.venire.translation"}}}
     ],
     "explanation": "English past counterfactual 'If you had X, I would have Y' has two natural Italian renderings. The colloquial form collapses both halves to imperfect indicative ('Se me lo dicevi prima, venivo') — what this bucket tests. The prescriptive form preserves the trapassato subjunctive + past conditional structure ('Se me l'avessi detto prima, sarei venuto'). Both are widely accepted; the colloquial form is the imperfect-topic skill.",
+    "examiner_note": "Marker should credit all three rendering patterns. The bucket attribution favours the colloquial imperfect form as the topic-specific skill.",
+    "version": 1
+  }
+]
+essi detto prima, sarei venuto'). Both are widely accepted; the colloquial form is the imperfect-topic skill.",
     "examiner_note": "Marker should credit all three rendering patterns. The bucket attribution favours the colloquial imperfect form as the topic-specific skill.",
     "version": 1
   }

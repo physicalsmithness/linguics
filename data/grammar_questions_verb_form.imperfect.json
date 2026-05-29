@@ -2526,14 +2526,22 @@
     "markpoints": [
       {
         "order_index": 0,
-        "credit": 1.0,
+        "credit": 0.5,
         "bucket": "verb_form.imperfect.usage.background_with_pp",
-        "label": "Background imperfect 1pl (cenavamo)",
-        "any_phrases": ["cenavamo"],
+        "label": "Discrimination: imperfect for background (any imperfect form counts)",
+        "any_phrases": ["cenavo", "cenavi", "cenava", "cenavamo", "cenavate", "cenavano"],
         "must_not_include": ["abbiamo cenato", "cenammo", "ceniamo"]
       },
       {
         "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.imperfect.formation.regular_are",
+        "label": "Form: 1pl imperfect of cenare (cenavamo)",
+        "any_phrases": ["cenavamo"],
+        "must_not_include": ["cenavo", "cenavi", "cenava", "cenavate", "cenavano"]
+      },
+      {
+        "order_index": 2,
         "credit": 0.5,
         "bucket": "verb_form.imperfect.usage.background_with_pp",
         "label": "Discrimination: PP for foregrounded event (any PP form counts)",
@@ -2541,7 +2549,7 @@
         "must_not_include": ["bussava", "bussò", "busserà", "bussa"]
       },
       {
-        "order_index": 2,
+        "order_index": 3,
         "credit": 0.5,
         "bucket": "verb_form.passato_prossimo.auxiliary.avere_default",
         "label": "Form: PP with avere auxiliary (ha bussato; bussare is transitive-like)",
@@ -2681,14 +2689,22 @@
     "markpoints": [
       {
         "order_index": 0,
-        "credit": 1.0,
+        "credit": 0.5,
         "bucket": "verb_form.imperfect.usage.background_with_pp",
-        "label": "Background imperfect 1sg (camminavo)",
-        "any_phrases": ["camminavo"],
+        "label": "Discrimination: imperfect for background (any imperfect form counts)",
+        "any_phrases": ["camminavo", "camminavi", "camminava", "camminavamo", "camminavate", "camminavano"],
         "must_not_include": ["ho camminato", "camminai", "cammino"]
       },
       {
         "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.imperfect.formation.regular_are",
+        "label": "Form: 1sg imperfect of camminare (camminavo)",
+        "any_phrases": ["camminavo"],
+        "must_not_include": ["camminavi", "camminava", "camminavamo", "camminavate", "camminavano"]
+      },
+      {
+        "order_index": 2,
         "credit": 0.5,
         "bucket": "verb_form.imperfect.usage.background_with_pp",
         "label": "Discrimination: PP for foregrounded event (any PP form counts)",
@@ -2696,7 +2712,7 @@
         "must_not_include": ["incontravo", "incontrai", "incontro"]
       },
       {
-        "order_index": 2,
+        "order_index": 3,
         "credit": 0.5,
         "bucket": "verb_form.passato_prossimo.auxiliary.avere_default",
         "label": "Form: PP with avere auxiliary (transitive incontrare)",
@@ -2812,14 +2828,22 @@
     "markpoints": [
       {
         "order_index": 0,
-        "credit": 1.0,
+        "credit": 0.5,
         "bucket": "verb_form.imperfect.usage.background_with_pp",
-        "label": "Parallel background imperfect 3pl (guardavano)",
-        "any_phrases": ["guardavano"],
+        "label": "Discrimination: imperfect for parallel background (any imperfect form counts)",
+        "any_phrases": ["guardavo", "guardavi", "guardava", "guardavamo", "guardavate", "guardavano"],
         "must_not_include": ["hanno guardato", "guardarono", "guardano"]
       },
       {
         "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.imperfect.formation.regular_are",
+        "label": "Form: 3pl imperfect of guardare (guardavano)",
+        "any_phrases": ["guardavano"],
+        "must_not_include": ["guardavo", "guardavi", "guardava", "guardavamo", "guardavate"]
+      },
+      {
+        "order_index": 2,
         "credit": 0.5,
         "bucket": "verb_form.imperfect.usage.background_with_pp",
         "label": "Discrimination: PP for foregrounded event (any PP form counts)",
@@ -2827,7 +2851,7 @@
         "must_not_include": ["saltava", "salta", "salterà"]
       },
       {
-        "order_index": 2,
+        "order_index": 3,
         "credit": 0.5,
         "bucket": "verb_form.passato_prossimo.auxiliary.essere_motion_intransitive",
         "label": "Form: PP with essere + f.sg agreement (è saltata la corrente)",
@@ -3988,11 +4012,19 @@
     "markpoints": [
       {
         "order_index": 0,
-        "credit": 1.0,
+        "credit": 0.5,
         "bucket": "verb_form.imperfect.discrimination.modals.sapere",
-        "label": "PP of sapere = found out (ho saputo)",
-        "any_phrases": ["ho saputo"],
+        "label": "Discrimination: PP for event-of-learning (any PP form counts)",
+        "any_phrases": ["ho saputo", "ho sapeto", "ho sapputo"],
         "must_not_include": ["sapevo", "seppi", "so", "saprò"]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.passato_prossimo.participle_form.irregular.saputo",
+        "label": "Form: irregular participle saputo (not sapeto)",
+        "any_phrases": ["ho saputo"],
+        "must_not_include": ["ho sapeto", "ho sapputo"]
       }
     ],
     "vocab_help": [
@@ -4071,11 +4103,19 @@
     "markpoints": [
       {
         "order_index": 0,
-        "credit": 1.0,
+        "credit": 0.5,
         "bucket": "verb_form.imperfect.discrimination.modals.sapere",
-        "label": "PP of sapere = found out (ho saputo), 'solo questa mattina' cue",
-        "any_phrases": ["ho saputo"],
+        "label": "Discrimination: PP for event-of-learning (any PP form counts)",
+        "any_phrases": ["ho saputo", "ho sapeto", "ho sapputo"],
         "must_not_include": ["sapevo", "seppi", "so", "saprò"]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.passato_prossimo.participle_form.irregular.saputo",
+        "label": "Form: irregular participle saputo (not sapeto)",
+        "any_phrases": ["ho saputo"],
+        "must_not_include": ["ho sapeto", "ho sapputo"]
       }
     ],
     "vocab_help": [
@@ -4236,11 +4276,19 @@
     "markpoints": [
       {
         "order_index": 0,
-        "credit": 1.0,
+        "credit": 0.5,
         "bucket": "verb_form.imperfect.discrimination.modals.dovere",
-        "label": "PP of dovere = had to (and did) (ho dovuto)",
-        "any_phrases": ["ho dovuto", "sono dovuto", "sono dovuta"],
+        "label": "Discrimination: PP for had-to-and-did (any PP form counts)",
+        "any_phrases": ["ho dovuto", "sono dovuto", "sono dovuta", "sono dovuti", "sono dovute"],
         "must_not_include": ["dovevo", "dovetti", "devo", "dovrò"]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.passato_prossimo.modal_auxiliary_inheritance",
+        "label": "Form: modal+motion infinitive can take avere or essere with agreement (ho dovuto / sono dovuto/a andare)",
+        "any_phrases": ["ho dovuto", "sono dovuto", "sono dovuta"],
+        "must_not_include": []
       }
     ],
     "vocab_help": [
@@ -4318,11 +4366,19 @@
     "markpoints": [
       {
         "order_index": 0,
-        "credit": 1.0,
+        "credit": 0.5,
         "bucket": "verb_form.imperfect.discrimination.modals.dovere",
-        "label": "PP of dovere = had to (and did) (ho dovuto)",
-        "any_phrases": ["ho dovuto"],
+        "label": "Discrimination: PP for had-to-and-did (any PP form counts)",
+        "any_phrases": ["ho dovuto", "sono dovuto", "sono dovuta"],
         "must_not_include": ["dovevo", "dovetti", "devo", "dovrò"]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.passato_prossimo.auxiliary.avere_default",
+        "label": "Form: PP with avere (lavorare is avere-taking, no essere inheritance)",
+        "any_phrases": ["ho dovuto"],
+        "must_not_include": ["sono dovuto", "sono dovuta"]
       }
     ],
     "vocab_help": [
@@ -4359,11 +4415,19 @@
     "markpoints": [
       {
         "order_index": 0,
-        "credit": 1.0,
+        "credit": 0.5,
         "bucket": "verb_form.imperfect.discrimination.modals.dovere",
-        "label": "PP of dovere with completion (ho dovuto)",
-        "any_phrases": ["ho dovuto"],
+        "label": "Discrimination: PP for had-to-and-did (any PP form counts)",
+        "any_phrases": ["ho dovuto", "sono dovuto", "sono dovuta"],
         "must_not_include": ["dovevo", "dovetti", "devo", "dovrò"]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.passato_prossimo.auxiliary.avere_default",
+        "label": "Form: PP with avere (finire is avere-taking, no essere inheritance)",
+        "any_phrases": ["ho dovuto"],
+        "must_not_include": ["sono dovuto", "sono dovuta"]
       }
     ],
     "vocab_help": [
@@ -4449,11 +4513,19 @@
     "markpoints": [
       {
         "order_index": 0,
-        "credit": 1.0,
+        "credit": 0.5,
         "bucket": "verb_form.imperfect.discrimination.modals.potere",
-        "label": "PP of potere = managed to (with against-odds nuance) (ho potuto)",
-        "any_phrases": ["ho potuto"],
+        "label": "Discrimination: PP for managed-to (any PP form counts)",
+        "any_phrases": ["ho potuto", "sono potuto", "sono potuta"],
         "must_not_include": ["potevo", "potei", "posso", "potrò", "potrei"]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.passato_prossimo.auxiliary.avere_default",
+        "label": "Form: PP with avere (vedere is transitive, no essere inheritance)",
+        "any_phrases": ["ho potuto"],
+        "must_not_include": ["sono potuto", "sono potuta"]
       }
     ],
     "vocab_help": [
@@ -4537,11 +4609,19 @@
     "markpoints": [
       {
         "order_index": 0,
-        "credit": 1.0,
+        "credit": 0.5,
         "bucket": "verb_form.imperfect.discrimination.modals.potere",
-        "label": "PP of potere = managed to / could-and-did (abbiamo potuto)",
-        "any_phrases": ["abbiamo potuto"],
+        "label": "Discrimination: PP for managed-to, 1pl (any PP form counts)",
+        "any_phrases": ["abbiamo potuto", "siamo potuti", "siamo potute"],
         "must_not_include": ["potevamo", "potemmo", "possiamo", "potremo", "potremmo"]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.passato_prossimo.auxiliary.avere_default",
+        "label": "Form: PP with avere (comprare is transitive, no essere inheritance)",
+        "any_phrases": ["abbiamo potuto"],
+        "must_not_include": ["siamo potuti", "siamo potute"]
       }
     ],
     "vocab_help": [
@@ -4672,11 +4752,19 @@
     "markpoints": [
       {
         "order_index": 0,
-        "credit": 1.0,
+        "credit": 0.5,
         "bucket": "verb_form.imperfect.discrimination.modals.volere",
-        "label": "PP of volere = insisted on (got my way) (ho voluto)",
-        "any_phrases": ["ho voluto"],
+        "label": "Discrimination: PP for insisted-and-got-way (any PP form counts)",
+        "any_phrases": ["ho voluto", "sono voluto", "sono voluta"],
         "must_not_include": ["volevo", "volli", "voglio", "vorrò", "vorrei"]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.passato_prossimo.modal_auxiliary_inheritance",
+        "label": "Form: modal+change-of-state infinitive (diventare) — avere or essere with agreement both accepted",
+        "any_phrases": ["ho voluto", "sono voluto", "sono voluta"],
+        "must_not_include": []
       }
     ],
     "vocab_help": [
@@ -4760,11 +4848,19 @@
     "markpoints": [
       {
         "order_index": 0,
-        "credit": 1.0,
+        "credit": 0.5,
         "bucket": "verb_form.imperfect.discrimination.modals.volere",
-        "label": "PP of volere = insisted on (got his way) (ha voluto)",
-        "any_phrases": ["ha voluto"],
+        "label": "Discrimination: PP for insisted-and-got-way, 3sg (any PP form counts)",
+        "any_phrases": ["ha voluto", "è voluto", "è voluta"],
         "must_not_include": ["voleva", "volle", "vuole", "vorrà", "vorrebbe"]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.passato_prossimo.auxiliary.avere_default",
+        "label": "Form: PP with avere (vedere is transitive, no essere inheritance)",
+        "any_phrases": ["ha voluto"],
+        "must_not_include": ["è voluto", "è voluta"]
       }
     ],
     "vocab_help": [
@@ -4882,11 +4978,19 @@
     "markpoints": [
       {
         "order_index": 0,
-        "credit": 1.0,
+        "credit": 0.5,
         "bucket": "verb_form.imperfect.discrimination.modals.conoscere",
-        "label": "PP of conoscere = met for the first time (ho conosciuto)",
-        "any_phrases": ["ho conosciuto"],
+        "label": "Discrimination: PP for first-meeting event (any PP form counts)",
+        "any_phrases": ["ho conosciuto", "ho conoscuto", "ho conoscito"],
         "must_not_include": ["conoscevo", "conobbi", "conosco", "conoscerò"]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.passato_prossimo.participle_form.irregular.conosciuto",
+        "label": "Form: irregular participle conosciuto (not conoscuto / conoscito)",
+        "any_phrases": ["ho conosciuto"],
+        "must_not_include": ["ho conoscuto", "ho conoscito"]
       }
     ],
     "vocab_help": [
@@ -4972,11 +5076,19 @@
     "markpoints": [
       {
         "order_index": 0,
-        "credit": 1.0,
+        "credit": 0.5,
         "bucket": "verb_form.imperfect.discrimination.modals.conoscere",
-        "label": "PP of conoscere = met for the first time (ho conosciuto)",
-        "any_phrases": ["ho conosciuto"],
+        "label": "Discrimination: PP for first-meeting event (any PP form counts)",
+        "any_phrases": ["ho conosciuto", "ho conoscuto", "ho conoscito"],
         "must_not_include": ["conoscevo", "conobbi", "conosco", "conoscerò"]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.passato_prossimo.participle_form.irregular.conosciuto",
+        "label": "Form: irregular participle conosciuto (not conoscuto / conoscito)",
+        "any_phrases": ["ho conosciuto"],
+        "must_not_include": ["ho conoscuto", "ho conoscito"]
       }
     ],
     "vocab_help": [

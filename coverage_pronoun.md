@@ -241,6 +241,48 @@ All 216 grammar-question explanations and all 56 translation-item explanations h
 
 The 22+ cluster items with pre-verb separated forms now have the joined-cluster wrong forms added to `must_not_include`: melo, telo, celo, velo, mela, tela, cela, vela, mene, tene, cene, vene (where applicable to the specific cluster). This converts a "didn't try" verdict into a specific diagnostic miss.
 
+## Architecture-thread pass (2026-05-28)
+
+Two inter_chat threads from the architect chat landed on the same batch on 2026-05-28 and have both now closed.
+
+### Prompt-leak audit (criterion 5)
+
+Architecture audited the batch against the brief's prompt-leak rule (naming the diagnostic rule in the prompt rather than naming the output form). Twelve items had hard leaks of two shapes, both fixed:
+
+Shape A was a rule-naming parenthetical at the end of the prompt. Three items: `op_comb_glielo_10` (`(gliene in question)` → `(use dare)`), `op_pos_formal_03` (`(combined pronouns + dare)` → `(use dare)`), and `op_pos_formal_04` (`(combined cluster + PP agreement)` → `(note the participle ending)`). Each leak rewritten to cue an output form (which verb to use, or where to look in the answer) rather than to name the diagnostic.
+
+Shape B was a rule-naming "Complete with the X" prefix. Nine items: the neuter lo, partitive pronoun, reflexive, piacere-family pattern, resumptive pronoun (×2), negative quantifier, and two double-leak compounds (resumptive cluster + agreement, neuter lo + cluster). Each leak rewritten to a bare `Complete:` with the surrounding context doing the cueing work. The four `Complete with the direct-object pronoun for 'X'` items stayed as soft borderline cases per the architect's distinction (these name an output form, not the rule).
+
+### Markpoint granularity (criterion 8, new this revision)
+
+The brief gained criterion 8 mid-revision: one markpoint per skill being tested. An item whose right answer combines two distinct skills (e.g. a clitic-cluster choice AND a verb conjugation) should be authored as separate markpoints. The substring engine matches each markpoint independently, so per-skill attribution is clean.
+
+Nine markpoint splits applied across the batch. The worked example was `op_comb_glielo_10` ("Will you give some to him?" with answer "gliene dai" or "gliene darai") — split into a gliene-cluster markpoint and a dare-in-present-or-future markpoint. The eight similar splits followed the same shape: cluster (or partitive) on the pronoun bucket plus the verb form on a `verb_form.*` bucket. Items split: `op_comb_glielo_10`, `op_comb_order_01` (MCQ), `op_ne_pp_03` (MCQ), `op_ne_pp_04` (MCQ), `op_ne_motion_01` (3 markpoints: cluster + trapassato + participle), `op_dop_nonelide_03` (MCQ), `op_refl_with_obj_06`, `op_dop_ci_us_03` (CAT3, MCQ), `op_dop_vi_you_03` (CAT3).
+
+One split was reverted on Architecture's amendment: `op_ne_motion_02` (fregarsene) had been split into cluster + verb form, but per the architect's read of lexicalised pronominal idioms, the verb conjugation isn't separately diagnostic from the idiom. Reverted to a single markpoint on the cluster bucket with `me ne frega` in `any_phrases`. Same principle applies to other non-motion pronominal idioms (`starsene`, `intendersene`, `infischiarsene`, `pensarsene`, `volercene`) — none of the other items in this batch needed reverts. `op_ne_motion_01` (andarsene in trapassato) stays as three markpoints because andarsene is motion not non-motion idiom, and the trapassato auxiliary plus participle are separately diagnostic verb-form skills.
+
+Two new buckets proposed and pending ratification in `data/bucket_suggestions_pronoun.json`:
+
+The dare-in-present-or-future union bucket (`verb_form.present_or_future.dare`) for items where both tenses are accepted because the item is testing cluster placement rather than tense choice. Used by `op_comb_glielo_10` and `op_comb_order_01`.
+
+The 1/2-person-DOP optional-agreement bucket (`verb_form.passato_prossimo.participle_agreement.with_avere.preceding_dop_mi_ti_ci_vi`) for the diagnostic where the participle agreement with mi, ti, ci, or vi is optional in modern Italian (both agreed and invariable forms credit). Used by `op_dop_ci_us_03` and `op_dop_vi_you_03`.
+
+The categories Architecture asked about (position items where the verb is fixed by the prompt, vowel-change clusters as single skill, imperative-doubling items, reflexive clusters) all turned out to be single-skill items by the criterion 8 framing — the bundle is anchoring, not skill-bundling.
+
+### Slot-count collapse (criterion 9, new this revision)
+
+The brief also gained criterion 9: prefer a single combined slot for any blank. Multiple slots leak structural information about the answer's form-family. Twenty-nine multi-slot items audited; twenty-two collapsed to single slot, seven kept multi-slot.
+
+The 22 collapsed are cluster items where the answer's surface word count varies depending on form (joined "melo" vs separated "me lo" vs elided "me l'"). The single-slot template accepts all valid variants via `any_phrases`, and the joined form stays in `must_not_include` as the joined-when-separate diagnostic. Notable: the two `op_comb_joined_*` items had explicit `(two words)` cues in the prompt that themselves leaked the answer's form-family; the cues were dropped alongside the slot collapse.
+
+The 7 kept multi-slot are split between four genuinely structural cases (`op_iop_verbs_iop_05`, `op_refl_essere_02`, `op_refl_essere_03`, `op_spec_stressed_01` — two distinct sentence positions with fixed-form contents in each) and three MCQ items where slot count is purely visual scaffolding for the choice text (`op_ne_pp_03`, `op_ne_pp_04`, `op_ne_pp_05`).
+
+The elided-variant follow-up (adding "me l'" alongside "me lo" in any_phrases on collapsed items where the verb after the cluster starts with a vowel) is light in practice: most collapsed items have consonant-initial verbs after the cluster, and the few with vowel-initial verbs (`op_spec_dislo_03`, `op_comb_order_04`, `op_refl_with_obj_06`, `op_ne_motion_01`) already had both elided and unelided forms in `any_phrases`.
+
+### Closed thread state
+
+Both threads (`Architecture_PronounAuthor_prompt_and_granularity.md` v4 and `Architecture_PronounAuthor_slot_count_collapse.md` v3) are now CLOSED. Two bucket proposals remain pending ratification: the dare union bucket and the 1/2-person-DOP optional-agreement bucket. Item counts unchanged: 216 grammar, 56 translation.
+
 ## Pacing notes for the next dispatcher
 
 The angle-based audit approach worked well a second time on the house-style pass. Recommend the next dispatcher use the rule-by-rule frame from the start: count distinct angles, not items. A rule like "the gli-exception to consonant doubling" needs three or four angles even though it has only one underlying fact, because the angles are where learners stumble in different ways.

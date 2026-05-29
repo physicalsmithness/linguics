@@ -123,3 +123,83 @@ In the grammar file (`verb_form.passato_prossimo.*` buckets appear in 5 items, a
 - `verb_form.passato_prossimo.auxiliary.essere_motion_intransitive` — 1 occurrence (bg_08: saltata)
 
 In translation items (`required_buckets`), PP-tree references appear in several items as supplementary skill-tracking. These don't break the discrimination/form separation principle because the AI marker can attribute correctly based on the actual answer.
+
+---
+
+## Update 2026-05-28: criterion 10 audit + two-markpoint retrofits
+
+Following architecture chat rulings on `Architecture_ImperfectAuthor_other_open_questions.md` (v3 introducing criterion 10) and `Architecture_ImperfectAuthor_two_markpoint_pattern.md` (v2 accepting the two-markpoint convention with three extensions), the following changes have been applied to the items in this batch.
+
+### Criterion 10 fixes (4 items rewritten + 1 must_not_include addition)
+
+- `imp_disc_gen_05` prompt prepended with "Negli anni Novanta," (architecture's suggested fix). Explanation and examiner_note updated to describe a period-frame rather than implicit-cue diagnostic.
+- `imp_disc_gen_08` prompt prepended with "Da bambino," to pin the habit in a past period.
+- `imp_disc_gen_11` prompt prepended with "Quel giorno," to pin a single past day.
+- `imp_disc_pot_02` prompt prepended with "Ieri," because the original allowed a present-tense reading of "finalmente posso vedere... dopo mesi di attesa".
+- `imp_disc_gen_01` `must_not_include` extended with "ho" so a bare-present attempt records as a miss against the discrimination bucket.
+
+All other items in the batch already complied with 10a (past-pinning) and 10b (present-tense in must_not_include) as authored.
+
+### Two-markpoint retrofits (16 items now multi-markpoint)
+
+Per the architecture ruling, items where the form is separately diagnostic get split into discrimination + form markpoints, each at credit 0.5.
+
+**5 background-with-pp items, both blanks split where present (bg_03, bg_06, bg_08 also got the symmetric retrofit on their imperfect blank per Q3 ruling):**
+
+- `imp_use_bg_03`: 4 markpoints (imp discrim + imp form for cenavamo; PP discrim + PP form for ha bussato).
+- `imp_use_bg_04`: 2 markpoints (PP discrim + PP form only; no imperfect blank in this item).
+- `imp_use_bg_06`: 4 markpoints (imp discrim + imp form for camminavo; PP discrim + PP form for ho incontrato).
+- `imp_use_bg_07`: 2 markpoints (PP discrim + PP form only; no imperfect blank).
+- `imp_use_bg_08`: 4 markpoints (imp discrim + imp form for guardavano; PP discrim + PP form for è saltata).
+
+**11 modal-discrimination items, PP-answer items split** (per the rule of thumb in the v2 ruling: form is separately diagnostic when the verb involves an irregular participle, stress-shift, stem-expansion, vowel-change, or syncope):
+
+- Irregular participle (saputo, conosciuto):
+  - `imp_disc_sap_01`, `imp_disc_sap_03` — split against `verb_form.passato_prossimo.participle_form.irregular.saputo` for the form markpoint.
+  - `imp_disc_con_02`, `imp_disc_con_04` — split against `verb_form.passato_prossimo.participle_form.irregular.conosciuto`.
+
+- Modal auxiliary inheritance (when the infinitive triggers essere):
+  - `imp_disc_dov_02` (dovere + andare, motion intransitive) — form markpoint cites `verb_form.passato_prossimo.modal_auxiliary_inheritance`.
+  - `imp_disc_vol_02` (volere + diventare, change-of-state) — same.
+
+- Modal + transitive/avere-taking infinitive (form markpoint cites `auxiliary.avere_default`; must_not catches the essere-inheritance over-generalisation):
+  - `imp_disc_dov_04` (dovere + lavorare), `imp_disc_dov_05` (dovere + finire), `imp_disc_pot_02` (potere + vedere), `imp_disc_pot_04` (potere + comprare), `imp_disc_vol_04` (volere + vedere).
+
+**Modal-discrimination items NOT split** (form is straightforwardly regular, not separately diagnostic): all imperfect-answer items (sapevo, sapevano, sapeva, sapevi, dovevo, dovevamo, potevo, poteva, volevo, voleva, volevano, conoscevo, conosceva, conoscevi). 14 of the 25 modal items remain single-markpoint.
+
+### Forward-referenced PP-tree buckets
+
+The retrofits introduce three PP-tree bucket references that may not yet exist in `data/buckets/verb_form.passato_prossimo.json`:
+
+- `verb_form.passato_prossimo.participle_form.irregular.saputo`
+- `verb_form.passato_prossimo.participle_form.irregular.conosciuto`
+- `verb_form.passato_prossimo.modal_auxiliary_inheritance`
+
+These are forward-references per the brief's "warn at authoring, strict-reject at production" convention. Flagged here so the next PP-tree audit can ratify or rename them. The other PP-tree references used (`auxiliary.avere_default`, `auxiliary.essere_motion_intransitive`) already exist.
+
+### Marks/credit accounting
+
+All edits preserve `marks` totals (sum of markpoint credits = `marks` field per item). Validated programmatically: 0 mismatches across all 121 grammar items. 16 items now have multi-markpoint structures; the remaining 105 use single-markpoint as before.
+
+### Dual-register convention applied to 4 translation items
+
+Per the architecture chat's ruling (surfaced via `ImperfectAuthor_TenseChoiceAuthor_cross_tree_citations.md` v3): translation items accepting multiple register variants put ALL acceptable-register buckets in `required_buckets`. The marker fires whichever register the learner's answer matches; the others stay untouched. Items affected:
+
+- `trans_imp_en_it_use_pol_01` ("I'd like an espresso") — added `verb_form.condizionale.present.polite_use` alongside the imperfect-polite bucket (volevo / vorrei both accepted).
+- `trans_imp_en_it_use_pol_02` ("Excuse me, I wanted to ask you a question") — same conditional-polite addition.
+- `trans_imp_en_it_isp_int_01` ("He said he was going to call back later") — added `verb_form.condizionale.past.indirect_speech_reported_intention` alongside the imperfect prospective bucket (richiamava / avrebbe richiamato both accepted).
+- `trans_imp_en_it_st_cc_01` ("If you had told me earlier, I would have come") — added `verb_form.congiuntivo.trapassato.counterfactual_protasis` and `verb_form.condizionale.past.counterfactual_apodosis` for the prescriptive variant alongside the colloquial-imperfect bucket.
+
+These add four forward-referenced bucket paths to non-imperfect trees (condizionale, congiuntivo) that don't yet exist:
+- `verb_form.condizionale.present.polite_use`
+- `verb_form.condizionale.past.indirect_speech_reported_intention`
+- `verb_form.congiuntivo.trapassato.counterfactual_protasis`
+- `verb_form.condizionale.past.counterfactual_apodosis`
+
+Flagged for the conditional and subjunctive dispatches when they happen; per the brief's policy, forward-references warn at authoring and strict-reject at production.
+
+### Open thread state at this snapshot
+
+- `Architecture_ImperfectAuthor_two_markpoint_pattern.md`: CLOSED. Two-markpoint convention accepted, retrofits applied.
+- `Architecture_ImperfectAuthor_other_open_questions.md`: OPEN, v4 audit submitted, awaiting architect close-out.
+- `ImperfectAuthor_TenseChoiceAuthor_cross_tree_citations.md`: CLOSED. Pattern B confirmed both sides; both chats' items coexist in the discrimination buckets.

@@ -1,6 +1,6 @@
 # Author Brief: producing grammar questions and translation items
 
-**Revision 4** (2026-05-28). Five new criteria in §2 quality criteria (8 through 12): one-markpoint-per-skill, slot-count-matches-surface, implicit-cue must_not_include, register-conditional items state register, prompts not glossary-wrapped. Plus an external_id decoder note in §1. See [DECISIONS.md](./DECISIONS.md) for the change log. **Revision 3** (2026-05-15) added "Lemma key conventions" to §2 and §7 on friendly-bucket-label communication style. Revision 2 (2026-05-13) and earlier guidance still applies.
+**Revision 5** (2026-05-29). §2 lemma key conventions extended: a new rule 8 adds `number` (sg | pl) as an optional fourth discriminator on the unique key, in the same shape as `gender`. Triggered by the `le` clitic pronoun case (f-sg-indirect vs f-pl-direct sharing the rest of the key). Bucket-id shape extends in parallel: `vocabulary.it.<lemma>.<pos>[.<gender>][.<number>].<aspect>[.<direction>]`. **Revision 4** (2026-05-28) added §2 criteria 8-12 (one-markpoint-per-skill, slot-count-matches-surface, implicit-cue must_not_include, register-conditional items state register, prompts not glossary-wrapped) plus §1 external_id decoder. **Revision 3** (2026-05-15) added "Lemma key conventions" to §2 and §7 on friendly-bucket-label communication style. Revision 2 (2026-05-13) and earlier guidance still applies. See [DECISIONS.md](./DECISIONS.md) for the full change log.
 
 This document briefs a fresh chat to produce content for Linguics (Italian language-learning project). The chat receives this brief, the relevant bucket tree, the topic name, and any topic-specific notes.
 
@@ -196,6 +196,8 @@ The shape:
 6. **Adjective lemmas don't carry a `gender` aspect.** Adjective items test agreement, and the adjective's own stem-gender doesn't reveal the answer (the answer depends on the noun). Adjective lemmas carry `translation` only. Compare with noun lemmas which carry both `translation` and `gender` when both are diagnostically meaningful.
 
 7. **Nouns of mixed-gender pairs go in separately.** `cugino` (m) and `cugina` (f) are separate lemmas, each with their own `translation` and `gender` aspects. Don't collapse them; the diagnostic at stake is different ("did the learner know the m form?" vs "the f form?"). Same for `ragazzo / ragazza`, `signore / signora`, etc.
+
+8. **The unique-key triple-or-quadruple is `(lemma, pos, gender, number)`.** Originally ratified as `(lemma, pos, gender)`. Extended on 2026-05-29 to optionally include `number` (sg | pl) when needed for disambiguation, in the same shape as `gender` (added only when needed). Most entries don't need `number` and it stays unset / omitted from the bucket id. The canonical case for needing it: the Italian clitic pronoun `le` serves both the feminine-singular indirect-object sense ("le dico") and the feminine-plural direct-object sense ("le vedo"); these are two distinct entries that share `(lemma=le, pos=pronoun, gender=f)` and must be discriminated by `number`. Bucket-id shape correspondingly extends to `vocabulary.it.<lemma>.<pos>[.<gender>][.<number>].<aspect>[.<direction>]`, each optional segment included only when needed for that lemma's set of entries.
 
 **Canonical aspect names**: use these. The UI maps them to readable button labels.
 

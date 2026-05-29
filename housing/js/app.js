@@ -221,14 +221,31 @@
   // is served over http (e.g. `python -m http.server` from the project root).
   // Falls back silently to the inline samples if fetch fails (file://).
   async function tryLoadRealContent() {
+    // Defensive JSON parser. Trailing NUL bytes (and stray CRLFs) on some
+    // chat-edited JSON files have been observed causing JSON.parse to throw
+    // and the page to silently fall back to inline samples. We trim the
+    // trailing junk and warn so we can track whether NULs are still being
+    // produced upstream. See inter_chat/Architecture_Housing_atomic_write_nul_padding.md.
+    const parseJson = async (path, response) => {
+      const raw = await response.text();
+      const trimmed = raw.replace(/[\x00\r\n\s]+$/, "");
+      if (trimmed.length !== raw.length) {
+        const dropped = raw.length - trimmed.length;
+        const nulCount = (raw.match(/\x00/g) || []).length;
+        console.warn(`[Linguics] ${path}: stripped ${dropped} trailing bytes before parse (${nulCount} NULs).`);
+      }
+      return JSON.parse(trimmed);
+    };
     const F = async (path) => {
       const r = await fetch(path);
       if (!r.ok) throw new Error(`${path}: ${r.status}`);
-      return r.json();
+      return parseJson(path, r);
     };
     const Foptional = async (path) => {
-      try { const r = await fetch(path); return r.ok ? await r.json() : null; }
-      catch (e) { return null; }
+      try {
+        const r = await fetch(path);
+        return r.ok ? await parseJson(path, r) : null;
+      } catch (e) { return null; }
     };
     try {
       // 1. Load the manifest listing known topics
@@ -552,10 +569,36 @@
           selectedChoiceIdx = idx;
           choiceButtons.forEach((b, j) => b.classList.toggle("selected", j === idx));
         });
+        // Intercept Enter on a focused choice button: pressing Enter should
+        // fire Mark (or Next, post-mark), not re-fire the button's default
+        // click (which would just re-select the same choice).
+        btn.addEventListener("keydown", e => {
+          if (e.key === "Enter" && !e.shiftKey) {
+            e.preventDefault();
+            if (marked) doNext();
+            else doMark();
+          }
+        });
         choiceButtons.push(btn);
         choicesHost.appendChild(btn);
       });
       card.appendChild(choicesHost);
+      // Card-level keydown for MCQ: number keys 1-N select the corresponding
+      // choice and move focus to it. Faster than clicking when the learner
+      // wants to keep their hands on the keyboard.
+      card.addEventListener("keydown", e => {
+        if (!/^[1-9]$/.test(e.key)) return;
+        const idx = parseInt(e.key, 10) - 1;
+        if (idx < 0 || idx >= choiceButtons.length) return;
+        // Ignore number keys typed inside any future text input on the card
+        // (none today, but keeps the listener defensive).
+        const tag = (e.target && e.target.tagName) || "";
+        if (tag === "INPUT" || tag === "TEXTAREA") return;
+        e.preventDefault();
+        selectedChoiceIdx = idx;
+        choiceButtons.forEach((b, j) => b.classList.toggle("selected", j === idx));
+        choiceButtons[idx].focus();
+      });
       // MCQ items don't render vocab-help / accent-bar / slash-menu.
       // Decision (Bug 1a, 2026-05-28): on a forced-choice item the learner
       // is picking between fully-rendered choices, not retrieving a word
@@ -587,7 +630,7 @@
     const next = document.createElement("button"); next.className = "secondary"; next.textContent = "Next";
     const hint = document.createElement("span"); hint.className = "kbd-hint";
     hint.textContent = isMcq
-      ? "Click a choice, then Mark. Enter to mark. Enter again to advance."
+      ? "Click a choice or press 1-" + q.choices.length + ". Enter to mark. Enter again to advance."
       : "Enter to mark · Enter again to advance";
     actions.appendChild(mark); actions.appendChild(next); actions.appendChild(hint);
     card.appendChild(actions);
@@ -967,7 +1010,10 @@
     if (pool.length <= 1) return pool;
     const activeDir = (vocabFilter && vocabFilter.direction === "it_en") ? "passive" : "active";
     const weights = pool.map(e => {
-      const events = eventsForLemmas([e.lemma], { direction: activeDir, aspect: "translation" });
+      // Per-entry weights so multi-entry lemmas don't share a single score.
+      // A miss on presto.interjection should only demote that entry's weight,
+      // not also demote presto.adverb and presto.adjective.
+      const events = eventsForEntry(e, { direction: activeDir, aspect: "translation" });
       const wc = recencyWeightedCorrectness(events);
       const score = wc.hasEvents ? wc.correctness : 0;
       return Math.max(0.05, 1.1 - score);
@@ -1345,6 +1391,46 @@
         const parsed = parse(ev.bucket);
         if (!parsed) continue;
         if (!lemmaSet.has(parsed.lemma)) continue;
+        if (aspectFilter !== "any" && parsed.aspect !== aspectFilter) continue;
+        if (directionFilter === "active"  && parsed.direction !== "active")  continue;
+        if (directionFilter === "passive" && parsed.direction !== "passive") continue;
+        out.push({ ev, timestamp: att.timestamp });
+      }
+    }
+    out.sort((a, b) => a.timestamp.localeCompare(b.timestamp));
+    return out;
+  }
+
+  // Per-entry events: filters by (lemma, pos, gender, number) so multi-entry
+  // lemmas (e.g. presto.adverb / presto.interjection / presto.adjective) keep
+  // their events distinct in the heatmap and deck-weight scoring. Without this,
+  // a miss on presto.interjection would light up adjacent ranks for the other
+  // two presto entries because eventsForLemmas filters on lemma alone.
+  function eventsForEntry(entry, opts) {
+    opts = opts || {};
+    const directionFilter = opts.direction || "any";
+    const aspectFilter = opts.aspect || "translation";
+    if (!entry || !entry.lemma) return [];
+    const targetPos = entry.pos || null;
+    const targetGender = entry.gender || null;
+    const targetNumber = entry.number || null;  // Vocab v4 ruling (le.f.sg vs le.f.pl)
+    const out = [];
+    const parse = LL.parseVocabBucketId || function () { return null; };
+    for (const att of LL.state.attempts) {
+      for (const ev of att.events) {
+        const parsed = parse(ev.bucket);
+        if (!parsed) continue;
+        if (parsed.lemma !== entry.lemma) continue;
+        // POS must match when both sides carry it. Legacy events with no POS
+        // were dropped by the 2026-05-28 migration; if any still slip through
+        // (parsed.pos null), treat as non-match for safety.
+        if (targetPos && parsed.pos !== targetPos) continue;
+        // Gender qualifier present in bucket only on gender-split lemmas, so
+        // skip the gender check when either side is absent.
+        if (targetGender && parsed.gender && parsed.gender !== targetGender) continue;
+        // Number qualifier present in bucket only when needed for disambiguation;
+        // skip the check when either side is absent (forward-compat for v4 ruling).
+        if (targetNumber && parsed.number && parsed.number !== targetNumber) continue;
         if (aspectFilter !== "any" && parsed.aspect !== aspectFilter) continue;
         if (directionFilter === "active"  && parsed.direction !== "active")  continue;
         if (directionFilter === "passive" && parsed.direction !== "passive") continue;
@@ -1952,7 +2038,7 @@
             dot.dataset.rank = rank;
             const entry = byRank.get(rank);
             if (entry) {
-              const events = eventsForLemmas([entry.lemma], { direction: dirFilter || "any" });
+              const events = eventsForEntry(entry, { direction: dirFilter || "any" });
               const wc = recencyWeightedCorrectness(events);
               dot.style.background = rwgColour(wc.correctness, wc.hasEvents);
               if (!wc.hasEvents) dot.classList.add("untouched");
@@ -2803,11 +2889,34 @@
     const lemmaMap = new Map();
     for (const e of rich) lemmaMap.set(e.lemma.toLowerCase(), e);
 
+    // MCQ items: skip the EN/IT segmenter. The choice text is rendered
+    // separately as buttons, so the prompt is typically a short question
+    // that doesn't benefit from segmentation and can mis-split if the
+    // author baked choice markers into the prompt text (see inter_chat/
+    // Architecture_Housing_mcq_segmenter_fallback.md).
+    //
+    // NOTE on wrapping: `.qcard .prompt` is a flex column. Appending
+    // inline content (text nodes, spans) DIRECTLY to it would make each
+    // token an anonymous flex item, breaking each word onto its own row.
+    // We wrap inline content in a single child div so the flex container
+    // sees one child; the child renders text inline as normal.
+    // (See inter_chat/Architecture_Housing_segmenter_quote_anchoring.md.)
+    if (item && item.type === "mcq") {
+      const inlineBlock = document.createElement("div");
+      inlineBlock.className = "prompt-inline";
+      renderTextWithLemmas(inlineBlock, promptText, lemmaMap, item, vocabHelpsUsedRef);
+      div.appendChild(inlineBlock);
+      return div;
+    }
+
     const segments = segmentPrompt(promptText);
 
     // Single segment: render as a plain block, preserving lemma-click behaviour.
     if (segments.length <= 1) {
-      renderTextWithLemmas(div, promptText, lemmaMap, item, vocabHelpsUsedRef);
+      const inlineBlock = document.createElement("div");
+      inlineBlock.className = "prompt-inline";
+      renderTextWithLemmas(inlineBlock, promptText, lemmaMap, item, vocabHelpsUsedRef);
+      div.appendChild(inlineBlock);
       return div;
     }
 
@@ -3543,7 +3652,16 @@
     // Top-level cell carries no rolled-up background; the texture comes from
     // the mini-cells and micro-dots inside. An overall colour would smooth
     // over the very distribution we want to see.
-    cell.addEventListener("click", () => setBucketFilter(root.id));
+    cell.addEventListener("click", () => {
+      // Issue 6 (2026-05-29): the vocabulary top-level tile is most useful as
+      // a jump to the Vocab tab, where the proper three-axis heatmap lives.
+      // For all other topics, click filters the deck to that topic.
+      if (root.id === "vocabulary" || root.id === "vocabulary.it") {
+        showStrand("vocab");
+      } else {
+        setBucketFilter(root.id);
+      }
+    });
 
     const header = document.createElement("div");
     header.className = "overview-header";
@@ -3553,7 +3671,9 @@
     header.appendChild(lbl);
     const meta = document.createElement("div");
     meta.className = "overview-meta";
-    meta.textContent = hasEvents ? `${stats.hits}/${stats.n}` : "";
+    // Always show the hits/events count, even at 0/0, so the user can tell
+    // "no progress yet" from "this tile is broken" (Issue 4, 2026-05-29).
+    meta.textContent = hasEvents ? `${stats.hits}/${stats.n}` : "0/0";
     header.appendChild(meta);
     cell.appendChild(header);
 
@@ -3618,9 +3738,11 @@
     let summary = "";
     if (stats) {
       const pct = Math.round(stats.correctness * 100);
-      summary = `\n${stats.hits} right of ${stats.n} (${pct}%)`;
+      // The visible tile reads "hits / events". Spell out both so the
+      // semantic isn't mysterious (Issue 3, 2026-05-29).
+      summary = `\n${stats.hits} hits / ${stats.n} events (${pct}% recency-weighted)`;
     } else {
-      summary = "\nNo events yet";
+      summary = "\nNo events yet (0/0)";
     }
     const desc = node.description ? "\n\n" + node.description : "";
     return label + summary + desc + "\n\nClick to filter the deck to this.";
@@ -3694,7 +3816,9 @@
     const row = document.createElement("div");
     row.className = "live-bucket-row " + (hasChildren ? "aggregate" : "leaf");
     if (hasEvents && recentlyChangedBuckets.has(node.id)) row.classList.add("fresh");
-    row.title = node.id + (node.description ? "\n\n" + node.description : "");
+    // Friendly label in the tooltip (DECISIONS.md 2026-05-15); fall back to id
+    // only when the bucket has no label. The dotted id is engine-facing.
+    row.title = (node.label || node.id) + (node.description ? "\n\n" + node.description : "");
 
     const chev = document.createElement("span");
     chev.className = "chev";
@@ -3992,11 +4116,14 @@
     const topicsDesc = real.perTopicCounts
       ? real.perTopicCounts
           .filter(t => !t.bucketsOnly)
-          .map(t => `${t.topic.split(".").pop()} ${t.grammar}/${t.translation}`)
+          .map(t => `${t.topic.split(".").pop()} ${t.grammar}G+${t.translation}T`)
           .join(", ")
       : "";
     const vocabBit = vocabEntries.length ? `, ${vocabEntries.length} vocab` : "";
-    setStatus(`Real content: ${grammarQuestions.length} grammar, ${translationItems.length} translation${vocabBit}, ${allBuckets.length} buckets. ${topicsDesc ? "Per topic: " + topicsDesc : ""}`);
+    // Item counts per topic (grammar items + translation items). Separate
+    // from the live-stats topic-tile counts in the right panel, which are
+    // hits/events (Issue 7, 2026-05-29).
+    setStatus(`Real content: ${grammarQuestions.length} grammar, ${translationItems.length} translation${vocabBit}, ${allBuckets.length} buckets. ${topicsDesc ? "Item counts per topic: " + topicsDesc : ""}`);
   });
 
 })();

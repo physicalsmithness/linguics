@@ -502,3 +502,67 @@ Full convention documented in `INTER_CHAT_PROTOCOL.md` at the project root. The 
 **Why:** The previous convention (separate REPLY_TO_*, NOTE_TO_*, FEEDBACK_*, etc. files at the project root, with paste-blurb instructions to the user) proliferated files and made conversation history hard to follow. The shared-file-per-pair-per-topic model gives each topic a single thread with versioned turn-taking, the user routes between chats but stays in the loop via in-chat summaries, and the project root stays clean for substantive docs.
 
 **How to apply:** Every chat reads `INTER_CHAT_PROTOCOL.md` once when first routed. The architect chat's session memory carries the rule; other chats pick it up when the user routes them. Legacy files (REPLY_TO_*, NOTE_TO_*, FEEDBACK_*, BRIEF_for_*, DISPATCH_*, ARCHITECTURE_FEEDBACK_*, DECISIONS_FROM_*, REQUEST_to_*, PATCH_REQUEST_for_code*) at the project root are grandfathered and stay as the historical record.
+
+---
+
+## 2026-05-29: Unique-key extension to include number
+
+The vocab unique-key rule from the v1 ratification was `(lemma, pos, gender)`. Extended today to `(lemma, pos, gender, number)`, with `number` optional and added only when needed for disambiguation (same convention as gender).
+
+Bucket-id shape extends in parallel: `vocabulary.it.<lemma>.<pos>[.<gender>][.<number>].<aspect>[.<direction>]`. Each optional segment is included only when needed for that lemma's set of entries.
+
+**Why:** The Italian clitic pronoun `le` serves both the feminine-singular indirect-object sense ("le dico" = I say to her) and the feminine-plural direct-object sense ("le vedo" = I see them, feminine plural). Both share `(lemma=le, pos=pronoun, gender=f)` so the v1 unique key collapses them, but they're pedagogically distinct entries with different translations and different usage rules. Adding `number` as an optional fourth discriminator is the natural extension; the field is already implicitly meaningful for many entries (nouns carry it via the singular/plural pair pattern) and making it explicit when needed for splitting is cheap.
+
+**How to apply:** Vocab chat adds the two `le` entries discriminated by number. Future similar cases (any clitic or noun where same lemma+pos+gender splits by number into distinct senses) use the same shape. Housing updates `resolveVocabVariant` to include number in the bucket id when present on the entry. Other curator chats follow the extended convention when authoring vocab entries.
+
+**Captured in:** AUTHOR_BRIEF.md §2 lemma key conventions rule 8 (Revision 5). Ratified in inter_chat/Architecture_Vocab_marker_semantics.md v4 with worked examples.
+
+---
+
+## 2026-05-29: Clitic pronoun gap-fill
+
+Four clitic pronoun entries added to complete the disambiguation convention from earlier this month:
+
+- `la (pronoun, f, sg)` — direct object "her, it"
+- `gli (pronoun, m)` — indirect object "to him, to them"
+- `le (pronoun, f, sg)` — indirect object "to her"
+- `le (pronoun, f, pl)` — direct object "them" (feminine plural)
+
+The `(direct object)` / `(indirect object)` clarifier from marker_semantics §7 explicitly covers clitic pronouns and couldn't be applied to half the family without these entries. The two `le` entries are the canonical motivating case for the unique-key extension above.
+
+**Why:** Previously the only clitic-pronoun entries in the data were `lo (pronoun)` and `il (pronoun)` (which was an obsolete sense flagged for deletion). The feminine direct, the masculine and feminine indirect were missing. The marker rendering can't ask EN→IT about "her" or "to him" without entries to render.
+
+**How to apply:** Vocab chat adds the four entries with `[clitic-pronoun-gap-fill]` notes, translation_source `vocab_chat`, provisional ranks in the top 50. Re-rank pipeline resolves precisely later.
+
+---
+
+## 2026-05-29: Loro split into pronoun + determiner
+
+`loro` previously existed only as `pronoun` ("they, them; their"). Split into two entries: `loro (pronoun)` keeps "they, them"; new `loro (determiner)` carries "their".
+
+Same shape as the other possessives (`mio`, `tuo`, `suo`, `nostro`, `vostro`) which already have det+pronoun splits per the recent disambiguation patch. The "their" sense was a determiner; stuffing it into the pronoun entry violated the split-by-pos rule.
+
+**Why:** Consistency with the rest of the possessive family. The `(determiner)` / `(pronoun)` clarifier convention from marker_semantics §7 only works if both entries exist as separate rows.
+
+**How to apply:** Vocab chat splits in the same pass as the clitic pronoun gap-fill.
+
+---
+
+## 2026-05-29: Hard-disambig mechanism for true homographs — no new mechanism, v1 ruling stands
+
+Confirmed during the marker_semantics v4 round. True homographs (same lemma + pos + gender + number, distinct meanings — `ala` wing-of-bird vs wing-of-building, `gusto` taste-as-sense vs taste-as-pleasure) stay collapsed at the unique key. The marker handles them via union acceptance + asymmetric tracking; the `gloss_en` field carries the dual-sense reveal text.
+
+No `sense_id` or other arbitrary discriminator is added. If a future case arises where two distinct entries share all of (lemma, pos, gender, number) AND we want them tracked separately for some pedagogical reason, reopen at that point. Not anticipated.
+
+**Why:** The number-extension above covers the cases (like `le`) where disambiguation is genuinely available. True homographs where no morphological discriminator exists are rare; over-engineering for them would add a sense_id field that's almost always null. YAGNI.
+
+---
+
+## 2026-05-29: `un'` elided indefinite article entry added
+
+Completes the indefinite-article set (un / uno / una / un'), parallel to the recent plural-definite addition (i / gli / le).
+
+`un'` is the elided feminine singular indefinite article before a vowel ("un'amica"). Translation_en: `"a, an (f sg, before vowel)"`. `[elided-article-gap-fill]` notes pattern.
+
+**Why:** The marker rendering can't ask EN→IT about the elided article without an entry to render. Same reasoning as i/gli/le.
+

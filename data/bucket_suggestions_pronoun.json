@@ -1,5 +1,16 @@
 [
   {
+    "$comment_status": "PENDING — added per Architecture_PronounAuthor_prompt_and_granularity.md (v3 amendment + CAT3 splits). Needed for the 1/2-person DOP optional-agreement diagnostic on items where the participle ending is in the answer slot. Used by op_dop_ci_us_03 and op_dop_vi_you_03 after the CAT3 splits.",
+    "proposed_id": "verb_form.passato_prossimo.participle_agreement.with_avere.preceding_dop_mi_ti_ci_vi",
+    "proposed_parent_id": "verb_form.passato_prossimo.participle_agreement.with_avere",
+    "proposed_label": "Optional participle agreement with preceding 1st/2nd-person DOP (mi, ti, ci, vi)",
+    "proposed_description": "With avere as auxiliary, the participle's agreement with a preceding 1st-person or 2nd-person DOP (mi, ti, ci, vi) is OPTIONAL in modern Italian. Agreement (e.g. 'Vi ho viste') is more typical in narrative/literary register; the invariable m.sg default ('Vi ho visto') is everyday. Both credit. Wrong-gender/number forms (e.g. 'visti' for f.pl ragazze) do not.",
+    "proposed_cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "preview", "B2": "core", "C1": "core", "C2": "review"},
+    "proposed_prerequisites": ["verb_form.passato_prossimo.participle_agreement.with_avere"],
+    "proposed_attributes": {"canonical_example": "Vi ho viste / Vi ho visto (both accepted); Ci hanno salutati / Ci hanno salutato (both accepted).", "common_miss": "Wrong gender or number agreement, not the invariable form"},
+    "rationale": "Used in op_dop_ci_us_03 and op_dop_vi_you_03 after CAT3 splits per Architecture v3. The existing preceding_dop_lo/la/li/le buckets cover the 3rd-person DOPs (where agreement is required); this leaf covers the 1/2-person DOPs (where agreement is optional)."
+  },
+  {
     "$comment_status": "PENDING — added per Architecture_PronounAuthor_prompt_and_granularity.md (v1). Needed for items where a clitic-cluster markpoint splits off the verb form as a separate markpoint and the verb is accepted in either present or future. Per the architect's hint, this is the union of verb_form.present_indicative.dare and verb_form.future_simple.dare for the bucket attribution.",
     "proposed_id": "verb_form.present_or_future.dare",
     "proposed_parent_id": "verb_form",
