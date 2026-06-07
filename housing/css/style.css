@@ -1188,3 +1188,20 @@ body.strand-vocab-active #live-stats { display: none; }
   color: var(--muted, #555);
   font-style: italic;
 }
+
+/* Phrase-level note from a graded any_phrases match (e.g. "tolerated but
+   standard is sagge"). Italic muted, smaller than the explanation, sits
+   close to the matched/evidence line.
+   See inter_chat/Architecture_Housing_engine_graded_any_phrases.md. */
+.markpoint-phrase-note {
+  font-size: 13px;
+  font-style: italic;
+  color: var(--muted, #6a6a6a);
+  margin-top: 2px;
+}
+.markpoint-phrase-note .cmp-label {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+}

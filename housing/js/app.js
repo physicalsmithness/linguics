@@ -3414,6 +3414,18 @@
         }
       }
 
+      // Phrase-level note from a graded any_phrases entry. Set by
+      // grammar_engine when an object-form phrase carried a `.note` and got
+      // matched (e.g. "tolerated but standard is sagge"). Distinct from
+      // mp.explanation (which is the question-level didactic note); rendered
+      // as a small italic line so the learner sees the form-choice annotation.
+      if (mp.phrase_note) {
+        const pn = document.createElement("div");
+        pn.className = "evidence markpoint-phrase-note";
+        pn.innerHTML = '<span class="cmp-label">Note:</span> ' + escapeHtml(mp.phrase_note);
+        detail.appendChild(pn);
+      }
+
       if (mp.explanation) {
         const e = document.createElement("div");
         e.className = "evidence markpoint-explanation";

@@ -48,37 +48,65 @@
         correctness_credit: null,
         outcome: "not_attempted",
         evidence: null,
-        expected: (mp.any_phrases && mp.any_phrases[0]) || null
+        expected: (mp.any_phrases && mp.any_phrases[0])
+          ? ((typeof mp.any_phrases[0] === "object" && mp.any_phrases[0].phrase)
+              ? mp.any_phrases[0].phrase
+              : mp.any_phrases[0])
+          : null
       };
 
-      // 1. Try strict positive match
-      if (Array.isArray(mp.any_phrases) && LL.includesAny(normed, mp.any_phrases)) {
+      // Helper: extract the matchable string from an entry that may be a
+      // bare string OR an object { phrase, credit?, note? }.
+      const phraseStr = (e) => (typeof e === "object" && e && e.phrase) ? e.phrase : e;
+
+      // 1. Try strict positive match. Uses findMatchingPhrase so object-form
+      // entries carrying per-phrase credit / note are honoured (see
+      // inter_chat/Architecture_Housing_engine_graded_any_phrases.md).
+      const matched = Array.isArray(mp.any_phrases)
+        ? LL.findMatchingPhrase(normed, mp.any_phrases)
+        : null;
+      if (matched !== null) {
+        const phraseCredit = (typeof matched === "object" && typeof matched.credit === "number")
+          ? matched.credit
+          : 1;
+        const matchedStr = phraseStr(matched);
         result.attempted_credit = 1;
-        result.correctness_credit = 1;
-        result.outcome = "hit";
-        for (const p of mp.any_phrases) {
-          if (LL.includesNeedle(normed, p)) { result.evidence = p; break; }
+        result.correctness_credit = phraseCredit;
+        result.outcome = phraseCredit >= 1 ? "hit" : "partial";
+        result.evidence = matchedStr;
+        if (typeof matched === "object" && matched.note) {
+          result.phrase_note = matched.note;
         }
-        awarded += credit;
+        awarded += credit * phraseCredit;
       }
-      // 2. Try accent-folded fallback (typo tolerance)
+      // 2. Try accent-folded fallback (typo tolerance). Same object-form
+      // handling: object entries get unwrapped to their .phrase string before
+      // accent-folding, and per-phrase credit is honoured on a folded hit.
       else if (Array.isArray(mp.any_phrases)) {
         let foldedHit = null;
         for (const p of mp.any_phrases) {
-          const pFolded = LL.foldAccents(LL.norm(p));
+          const ps = phraseStr(p);
+          const pFolded = LL.foldAccents(LL.norm(ps));
           if (pFolded && normedFolded.indexOf(pFolded) !== -1) { foldedHit = p; break; }
         }
         if (foldedHit) {
           // The right idea but wrong accents. Credit the main markpoint,
-          // flag an orthography miss separately.
+          // flag an orthography miss separately. Per-phrase credit honoured.
+          const phraseCredit = (typeof foldedHit === "object" && typeof foldedHit.credit === "number")
+            ? foldedHit.credit
+            : 1;
+          const foldedStr = phraseStr(foldedHit);
           result.attempted_credit = 1;
-          result.correctness_credit = 1;
-          result.outcome = "hit";
-          result.evidence = foldedHit + " (accents off)";
-          awarded += credit;
+          result.correctness_credit = phraseCredit;
+          result.outcome = phraseCredit >= 1 ? "hit" : "partial";
+          result.evidence = foldedStr + " (accents off)";
+          if (typeof foldedHit === "object" && foldedHit.note) {
+            result.phrase_note = foldedHit.note;
+          }
+          awarded += credit * phraseCredit;
           orthographyHits.push({
             bucket: "orthography.accent.italian",
-            evidence: foldedHit
+            evidence: foldedStr
           });
         }
         // 3. Wrong-attempt: must_not_include phrases present

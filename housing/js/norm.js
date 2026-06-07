@@ -103,12 +103,31 @@
     return haystackNorm.indexOf(n) !== -1;
   }
 
-  function includesAny(haystackNorm, anyArr) {
-    if (!Array.isArray(anyArr)) return false;
+  // Phrase entries in an any_phrases array can be either:
+  //   - a bare string: matched as a substring of the (normed) haystack
+  //   - an object { phrase, credit?, note? }: phrase is the matchable string,
+  //     credit is per-phrase credit weight (default 1, may be fractional),
+  //     note is an optional pedagogical annotation surfaced in the result panel.
+  //
+  // findMatchingPhrase returns the MATCHED ENTRY (the original object or string)
+  // so the caller can read per-phrase credit / note off it. Returns null on no
+  // match. Use this when graded credit matters; includesAny stays for the
+  // boolean-only callers.
+  function findMatchingPhrase(haystackNorm, anyArr) {
+    if (!Array.isArray(anyArr)) return null;
     for (const phrase of anyArr) {
-      if (includesNeedle(haystackNorm, phrase)) return true;
+      const phraseStr = (typeof phrase === "object" && phrase && phrase.phrase)
+        ? phrase.phrase
+        : phrase;
+      if (includesNeedle(haystackNorm, phraseStr)) {
+        return phrase;
+      }
     }
-    return false;
+    return null;
+  }
+
+  function includesAny(haystackNorm, anyArr) {
+    return findMatchingPhrase(haystackNorm, anyArr) !== null;
   }
 
   LL.norm = norm;
@@ -117,4 +136,5 @@
   LL.normaliseAccentInput = normaliseAccentInput;
   LL.includesNeedle = includesNeedle;
   LL.includesAny = includesAny;
+  LL.findMatchingPhrase = findMatchingPhrase;
 })();
