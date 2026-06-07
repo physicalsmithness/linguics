@@ -1,13 +1,13 @@
 {
   "topic": "adjective_agreement",
-  "generated": "2026-05-28 (v3: regenerated in canonical folder per AdjectiveAuthor_Architecture_vocab_audit_v3_request.md)",
+  "generated": "2026-05-28 (v3.1: regenerated after adj_pos_shift_*_03 prompt rewrites; liceo and situazione dropped because they're no longer in any prompt)",
   "source_files": [
     "data/grammar_questions_adjective_agreement.json",
     "data/translation_items_adjective_agreement.json"
   ],
   "summary": {
-    "unique_lemmas": 160,
-    "total_bucket_references": 263
+    "unique_lemmas": 158,
+    "total_bucket_references": 259
   },
   "notes": [
     "All buckets follow the pattern vocabulary.it.<lemma>.<aspect>.",
@@ -18,7 +18,8 @@
     "Past participles point at the infinitive (apprezzata -> vocabulary.it.apprezzare.translation).",
     "v2 → v3 changes: diacritics restored in lemma keys (città was citta; opportunità was opportunita); proper-noun key lowercased (rinascimento was Rinascimento; reveal text keeps capitalisation); gender aspect added to cantina, cestino, vetrina (previously had translation only); cugina's translation bucket points at cugina.translation (was cross-pointing at cugino.translation — that cross-pointer is the reason cugino appeared in v1; with the pointer removed, cugino has no source-data reference and is correctly absent from this audit).",
     "On cugino: the lemma is NOT referenced in any source-data vocab_help entry or markpoint bucket. The only mention is in the reveal text of cugina ('cugina - cousin (f); cugino is the m'). Per the audit's derive-from-source design, cugino is correctly absent. If the architect wants cugino exposed as a bucket reference, this requires either (a) a new item that uses cugino, or (b) a 'lemma family' convention added to the brief whereby a partner lemma is exposed even when only one partner appears in source. Both options are out of scope for the regenerate alone; flagging here for the architect's call.",
-    "Deliberate single-aspect entries (translation only, no gender) on noun lemmas where gender is not diagnostic for the target item: rinascimento (in adj_pos_shift_grande_03; the article 'del' already exposes m.sg, so a gender aspect would be redundant and the brief rule 'include only aspects that are diagnostically meaningful AND that a learner at the target level might not know' applies)."
+    "Deliberate single-aspect entries (translation only, no gender) on noun lemmas where gender is not diagnostic for the target item: rinascimento (in adj_pos_shift_grande_03; the article 'del' already exposes m.sg, so a gender aspect would be redundant and the brief rule 'include only aspects that are diagnostically meaningful AND that a learner at the target level might not know' applies).",
+    "v3 → v3.1: liceo (was in vecchio_03 vocab_help) and situazione (was in povero_03 vocab_help) removed because the prompt rewrites for adj_pos_shift_vecchio_03 and adj_pos_shift_povero_03 no longer reference those words. Both lemmas had only one source-data reference each, so they drop from the audit entirely. Net: 160 lemmas → 158, 263 refs → 259."
   ],
   "all_bucket_references": [
     "vocabulary.it.albero.gender",
@@ -131,8 +132,6 @@
     "vocabulary.it.lezione.translation",
     "vocabulary.it.libro.gender",
     "vocabulary.it.libro.translation",
-    "vocabulary.it.liceo.gender",
-    "vocabulary.it.liceo.translation",
     "vocabulary.it.lilla.translation",
     "vocabulary.it.lingua.gender",
     "vocabulary.it.lingua.translation",
@@ -232,8 +231,6 @@
     "vocabulary.it.signora.gender",
     "vocabulary.it.signora.translation",
     "vocabulary.it.simpatico.translation",
-    "vocabulary.it.situazione.gender",
-    "vocabulary.it.situazione.translation",
     "vocabulary.it.sorella.gender",
     "vocabulary.it.sorella.translation",
     "vocabulary.it.squadra.gender",
@@ -534,10 +531,6 @@
       "gender",
       "translation"
     ],
-    "liceo": [
-      "gender",
-      "translation"
-    ],
     "lilla": [
       "translation"
     ],
@@ -755,10 +748,6 @@
       "translation"
     ],
     "simpatico": [
-      "translation"
-    ],
-    "situazione": [
-      "gender",
       "translation"
     ],
     "sorella": [

@@ -1155,3 +1155,36 @@ body.strand-vocab-active #live-stats { display: none; }
   border-color: var(--accent);
   font-weight: 500;
 }
+
+/* Usage notes block in the vocab result panel (rendered from the curated
+   entry's `usage_notes` array). Sits beneath the markpoint rows; styled
+   distinctly from the canonical Right answer so the learner reads it
+   as supplementary information, not as additional correct answers.
+   See inter_chat/Architecture_Housing_usage_notes_rendering.md. */
+.result-usage-notes {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-left: 3px solid var(--accent-soft, #d5dff0);
+  background: var(--cream, #faf7ef);
+  border-radius: 3px;
+}
+.result-usage-head {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted, #6a6a6a);
+  margin-bottom: 6px;
+  letter-spacing: 0.02em;
+}
+.result-usage-line {
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 2px 0 2px 4px;
+}
+.result-usage-line .cmp-sense {
+  color: var(--text, #1f1f1f);
+  font-weight: 500;
+}
+.result-usage-line .cmp-usage {
+  color: var(--muted, #555);
+  font-style: italic;
+}

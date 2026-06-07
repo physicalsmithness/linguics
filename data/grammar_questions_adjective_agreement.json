@@ -1703,7 +1703,7 @@
     "subtopic": "position.post_noun_default",
     "difficulty": 1,
     "cefr_level_target": "A1",
-    "prompt": "Which is right in Italian? a) la macchina rossa b) la rossa macchina",
+    "prompt": "Which is right in Italian?",
     "type": "mcq",
     "marks": 1,
     "choices": ["la macchina rossa", "la rossa macchina"],
@@ -1796,7 +1796,7 @@
       {"lemma": "piccolo", "language": "it", "aspects": {"translation": {"reveal": "piccolo - small, little", "bucket": "vocabulary.it.piccolo.translation"}}},
       {"lemma": "casa", "language": "it", "aspects": {"translation": {"reveal": "casa - house", "bucket": "vocabulary.it.casa.translation"}, "gender": {"reveal": "feminine (f)", "bucket": "vocabulary.it.casa.gender"}}}
     ],
-    "explanation": "A small set of common adjectives — piccolo, grande, buono, bello, vecchio, nuovo — sit before the noun by default, in canonical pre-noun position. Una piccola casa is the unmarked order. Una casa piccola is also grammatical but marked, emphasising literal size.",
+    "explanation": "Both orderings are grammatical. Piccolo belongs to a small set — bello, buono, grande, nuovo, vecchio, giovane, bravo, lungo, breve — that sit before the noun by default, in canonical pre-noun position. Una piccola casa is the unmarked everyday order, no special emphasis. Una casa piccola is also grammatical but marked, specifically emphasising size ('small as opposed to large'). For the default reading, use the pre-noun order: una piccola casa.",
     "examiner_note": "If the learner writes 'una casa piccola' they have not made a grammar error, but they have missed the unmarked canonical position. Mark wrong but explain.",
     "version": 1  },
   {
@@ -1816,7 +1816,7 @@
       {"lemma": "nuovo", "language": "it", "aspects": {"translation": {"reveal": "nuovo - new", "bucket": "vocabulary.it.nuovo.translation"}}},
       {"lemma": "casa", "language": "it", "aspects": {"translation": {"reveal": "casa - house", "bucket": "vocabulary.it.casa.translation"}, "gender": {"reveal": "feminine (f)", "bucket": "vocabulary.it.casa.gender"}}}
     ],
-    "explanation": "Nuovo belongs to the canonical pre-noun set in its relational sense (a different/another house). Una nuova casa: the speaker has a new one, but it could be any age. Una casa nuova would emphasise 'brand-new' physically, a different reading.",
+    "explanation": "Both orderings are grammatical and carry different meanings. Una nuova casa (pre-noun) is the relational reading: 'a new house' meaning 'a different one' (the speaker has changed houses, regardless of the building's age). Una casa nuova (post-noun) is the literal reading: 'a brand-new house', emphasising recent construction. For 'I have a new house' in the everyday relational sense, the pre-noun position is canonical.",
     "examiner_note": "Open uncertainty: 'una casa nuova' is also good Italian. Reviewer to decide whether to relax must_not_include.",
     "version": 1  },
   {
@@ -1826,7 +1826,7 @@
     "subtopic": "position.pre_noun_canonical",
     "difficulty": 3,
     "cefr_level_target": "B1",
-    "prompt": "Which is the most natural Italian for 'a young student'? a) un giovane studente b) uno studente giovane",
+    "prompt": "Which is the most natural Italian for 'a young student'?",
     "type": "mcq",
     "marks": 1,
     "choices": ["un giovane studente", "uno studente giovane"],
@@ -1838,7 +1838,7 @@
       {"lemma": "giovane", "language": "it", "aspects": {"translation": {"reveal": "giovane - young", "bucket": "vocabulary.it.giovane.translation"}}},
       {"lemma": "studente", "language": "it", "aspects": {"translation": {"reveal": "studente - student", "bucket": "vocabulary.it.studente.translation"}, "gender": {"reveal": "masculine (m); studentessa is the f", "bucket": "vocabulary.it.studente.gender"}}}
     ],
-    "explanation": "Giovane belongs to the canonical pre-noun set for typical age/size adjectives. Un giovane studente is the unmarked order. Uno studente giovane is also grammatical but marked.",
+    "explanation": "Both orderings are grammatical. Giovane belongs to the canonical pre-noun set for typical age/size adjectives: un giovane studente is the unmarked everyday order. Uno studente giovane is also grammatical but marked, with slightly more emphasis on the young-ness of the student. For the default reading, use the pre-noun position.",
     "version": 1  },
   {
     "external_id": "adj_pos_pre_04",
@@ -1876,7 +1876,7 @@
       {"lemma": "bravo", "language": "it", "aspects": {"translation": {"reveal": "bravo - good, skilled", "bucket": "vocabulary.it.bravo.translation"}}},
       {"lemma": "studente", "language": "it", "aspects": {"translation": {"reveal": "studente - student", "bucket": "vocabulary.it.studente.translation"}, "gender": {"reveal": "masculine (m); studentessa is the f", "bucket": "vocabulary.it.studente.gender"}}}
     ],
-    "explanation": "Bravo belongs to the canonical pre-noun set. Un bravo studente is the unmarked order, conveying overall good qualities (skilled, well-behaved). Uno studente bravo is also acceptable but less common.",
+    "explanation": "Both orderings are grammatical. Bravo belongs to the canonical pre-noun set: un bravo studente is the unmarked order, conveying overall good qualities (skilled, well-behaved). Post-noun, uno studente bravo, is also acceptable but less common, with slightly more emphasis on the skill aspect specifically. The pre-noun position is the everyday default.",
     "version": 1  },
 
   {
@@ -3729,19 +3729,18 @@
     "subtopic": "position.semantic_shift.vecchio",
     "difficulty": 3,
     "cefr_level_target": "B2",
-    "prompt": "Complete: 'Sergio è il mio ____ amico: ci conosciamo dal liceo.' (vecchio)",
+    "prompt": "Place the adjective for 'a long-standing friend of mine (since school days)': un mio ____ amico or un mio amico ____ ? (vecchio)",
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
     "markpoints": [
-      {"order_index": 0, "credit": 1.0, "bucket": "adjective_agreement.position.semantic_shift.vecchio", "label": "pre-noun vecchio (relational) in context", "any_phrases": ["vecchio"], "must_not_include": ["vecchia", "vecchie", "vecchi"]}
+      {"order_index": 0, "credit": 1.0, "bucket": "adjective_agreement.position.semantic_shift.vecchio", "label": "vecchio pre-noun = long-standing (in context)", "any_phrases": ["un mio vecchio amico"], "must_not_include": ["un mio amico vecchio"]}
     ],
     "vocab_help": [
       {"lemma": "vecchio", "language": "it", "aspects": {"translation": {"reveal": "vecchio - old (pre-noun: long-standing)", "bucket": "vocabulary.it.vecchio.translation"}}},
-      {"lemma": "amico", "language": "it", "aspects": {"translation": {"reveal": "amico - friend", "bucket": "vocabulary.it.amico.translation"}, "gender": {"reveal": "masculine (m)", "bucket": "vocabulary.it.amico.gender"}}},
-      {"lemma": "liceo", "language": "it", "aspects": {"translation": {"reveal": "liceo - high school", "bucket": "vocabulary.it.liceo.translation"}, "gender": {"reveal": "masculine (m)", "bucket": "vocabulary.it.liceo.gender"}}}
+      {"lemma": "amico", "language": "it", "aspects": {"translation": {"reveal": "amico - friend", "bucket": "vocabulary.it.amico.translation"}, "gender": {"reveal": "masculine (m)", "bucket": "vocabulary.it.amico.gender"}}}
     ],
-    "explanation": "The clause 'ci conosciamo dal liceo' (we've known each other since high school) signals the long-standing-friendship reading. Vecchio in pre-noun position carries that relational sense, regardless of age.",
+    "explanation": "Vecchio in pre-noun position carries the relational reading: long-standing, of many years. Un mio vecchio amico = 'an old friend of mine' in the sense of long acquaintance, regardless of their age. The post-noun ordering 'un mio amico vecchio' would shift to the literal reading: a friend who is elderly in age.",
     "version": 1
   },
 
@@ -3798,19 +3797,19 @@
     "subtopic": "position.semantic_shift.grande",
     "difficulty": 4,
     "cefr_level_target": "B2",
-    "prompt": "Complete: 'Leonardo era un ____ pittore del Rinascimento, ricordato da tutti.' (grande)",
+    "prompt": "Place the adjective for 'a great painter of the Rinascimento (celebrated for artistic stature)': un ____ pittore del Rinascimento or un pittore ____ del Rinascimento? (grande)",
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
     "markpoints": [
-      {"order_index": 0, "credit": 1.0, "bucket": "adjective_agreement.position.semantic_shift.grande", "label": "pre-noun grande (figurative) in historical context", "any_phrases": ["grande", "gran"], "must_not_include": ["grandi", "granda"]}
+      {"order_index": 0, "credit": 1.0, "bucket": "adjective_agreement.position.semantic_shift.grande", "label": "grande pre-noun = great figurative (in historical context)", "any_phrases": ["un grande pittore", {"phrase": "un gran pittore", "credit": 1.0, "note": "shortened gran allomorph also accepted"}], "must_not_include": ["un pittore grande", "un pittore gran"]}
     ],
     "vocab_help": [
       {"lemma": "grande", "language": "it", "aspects": {"translation": {"reveal": "grande - big, great (pre-noun: great figurative)", "bucket": "vocabulary.it.grande.translation"}}},
       {"lemma": "pittore", "language": "it", "aspects": {"translation": {"reveal": "pittore - painter", "bucket": "vocabulary.it.pittore.translation"}, "gender": {"reveal": "masculine (m); pittrice is the f", "bucket": "vocabulary.it.pittore.gender"}}},
       {"lemma": "Rinascimento", "language": "it", "aspects": {"translation": {"reveal": "Rinascimento - Renaissance", "bucket": "vocabulary.it.rinascimento.translation"}}}
     ],
-    "explanation": "Speaking of a famous historical figure ('ricordato da tutti') selects the figurative pre-noun reading: grande = great in stature. Both grande and the shortened gran are acceptable; gran is the allomorph used before some consonants.",
+    "explanation": "Grande in pre-noun position carries the figurative reading: great in stature, importance, achievement. Un grande pittore = a painter recognised for artistic stature, not physical size. The shortened gran allomorph also works pre-noun. The post-noun ordering 'un pittore grande' would shift to the literal physical reading.",
     "version": 1
   },
 
@@ -3866,19 +3865,18 @@
     "subtopic": "position.semantic_shift.povero",
     "difficulty": 4,
     "cefr_level_target": "B2",
-    "prompt": "Complete: 'Il ____ uomo non sapeva dove andare. Era una situazione triste e disorientante.' (povero)",
+    "prompt": "Place the adjective in the empathetic sense ('the unfortunate man', not 'the man with little money'; the situation is sad and disorienting): il ____ uomo or l'uomo ____ ? (povero)",
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
     "markpoints": [
-      {"order_index": 0, "credit": 1.0, "bucket": "adjective_agreement.position.semantic_shift.povero", "label": "pre-noun povero (unfortunate) in empathetic context", "any_phrases": ["povero"], "must_not_include": ["povera", "poveri", "povere"]}
+      {"order_index": 0, "credit": 1.0, "bucket": "adjective_agreement.position.semantic_shift.povero", "label": "povero pre-noun = unfortunate (in empathetic context)", "any_phrases": ["il povero uomo"], "must_not_include": ["l'uomo povero"]}
     ],
     "vocab_help": [
       {"lemma": "povero", "language": "it", "aspects": {"translation": {"reveal": "povero - poor (pre-noun: unfortunate)", "bucket": "vocabulary.it.povero.translation"}}},
-      {"lemma": "uomo", "language": "it", "aspects": {"translation": {"reveal": "uomo - man", "bucket": "vocabulary.it.uomo.translation"}, "gender": {"reveal": "masculine (m); irregular plural uomini", "bucket": "vocabulary.it.uomo.gender"}}},
-      {"lemma": "situazione", "language": "it", "aspects": {"translation": {"reveal": "situazione - situation", "bucket": "vocabulary.it.situazione.translation"}, "gender": {"reveal": "feminine (f)", "bucket": "vocabulary.it.situazione.gender"}}}
+      {"lemma": "uomo", "language": "it", "aspects": {"translation": {"reveal": "uomo - man", "bucket": "vocabulary.it.uomo.translation"}, "gender": {"reveal": "masculine (m); irregular plural uomini", "bucket": "vocabulary.it.uomo.gender"}}}
     ],
-    "explanation": "The clause 'era una situazione triste e disorientante' (a sad and disorienting situation) selects the empathetic reading: povero in pre-noun position means 'unfortunate', not 'penniless'.",
+    "explanation": "Povero in pre-noun position carries the empathetic reading: unfortunate, to be pitied. Il povero uomo = 'the poor man' in the sympathetic sense. The post-noun ordering 'l'uomo povero' would shift to the literal reading: the man with little money — a different meaning, and the wrong one for this empathetic context.",
     "version": 1
   },
 

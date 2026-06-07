@@ -29,7 +29,12 @@ def atomic_write_json(path: Path | str, data, indent: int = 2) -> None:
     path = Path(path)
 
     def body(f):
-        _json.dump(data, f, ensure_ascii=False, indent=indent)
+        # Serialise to a string so we can defensively rstrip any trailing NUL
+        # bytes before writing. See Architecture_Housing_atomic_write_nul_padding.md
+        # for the recurring data-integrity issue this guards against.
+        text = _json.dumps(data, ensure_ascii=False, indent=indent)
+        text = text.rstrip("\x00")
+        f.write(text)
 
     _write_then_replace(path, body)
 

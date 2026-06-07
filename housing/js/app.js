@@ -2300,12 +2300,21 @@
     const a = norm(answer);
     if (!a) return { outcome: "not_attempted", credit: 0, reason: null };
 
-    const pieces = String(target || "").split(/[,;\/]/).map(s => s.trim()).filter(Boolean);
+    // Strip parens and square brackets BEFORE splitting on ,;/.
+    // Without this order, a parenthetical containing those delimiters
+    // (e.g. "the (m pl, before s+cons / z / gn / ps / x / y / i+vowel)")
+    // shatters into garbage tokens that neither match the user's bare
+    // answer nor recover via the per-piece paren-strip.
+    // Parens: disambiguators that should not be in the matching set.
+    // Square brackets: usage hints / editorial flags that should not match either.
+    // See inter_chat/Architecture_Housing_translation_cleaning.md.
+    const cleanedTarget = String(target || "")
+      .replace(/\([^)]*\)/g, "")
+      .replace(/\[[^\]]*\]/g, "");
+    const pieces = cleanedTarget.split(/[,;\/]/).map(s => s.trim()).filter(Boolean);
     const alternatives = new Set();
     for (const p of pieces) {
       alternatives.add(norm(p));
-      const bareNoParen = p.replace(/\([^)]*\)/g, "").trim();
-      if (bareNoParen) alternatives.add(norm(bareNoParen));
     }
 
     // 1) exact match
@@ -2471,10 +2480,13 @@
     // The cleaned-element set strips parens and splits on ,;/ as elsewhere.
     if (!isItEn && regime !== "hard" && entry && entry.translation_en && Array.isArray(vocabEntries)) {
       const elementsOf = (s) => {
-        // Strip parens FIRST so disambiguators like "(m sg, before s+cons / z)"
-        // don't split on their own commas / slashes and inflate the sense
-        // count. Then split on ,;/ as the canonical sense separators.
-        const cleaned = String(s || "").replace(/\([^)]*\)/g, "");
+        // Strip parens AND square brackets FIRST so disambiguators (parens)
+        // and usage hints / editorial flags (brackets) don't split on their
+        // own commas / slashes and inflate the sense count. Then split on
+        // ,;/ as the canonical sense separators.
+        const cleaned = String(s || "")
+          .replace(/\([^)]*\)/g, "")
+          .replace(/\[[^\]]*\]/g, "");
         const set = new Set();
         for (const piece of cleaned.split(/[,;\/]/)) {
           const trimmed = piece.trim();
@@ -2589,7 +2601,14 @@
       overall: { marks_awarded: 0, marks_possible: 1, summary: "" },
       raw_response: raw,
       markpoints: [],
-      regime: regime
+      regime: regime,
+      // Display-only usage information from the curated entry. Strict
+      // display-only: renderResult surfaces it as a separate "Usage:" block;
+      // the marker does NOT add this to the matchable answer set.
+      // See inter_chat/Architecture_Housing_usage_notes_rendering.md.
+      usage_notes: (entry && Array.isArray(entry.usage_notes) && entry.usage_notes.length > 0)
+        ? entry.usage_notes
+        : null
     };
     if (!trimmed) {
       result.overall.summary = "Didn't try";
@@ -2614,7 +2633,12 @@
       translationLabel = translationLabelFor(markedEntry);
     }
     const acceptableList = (() => {
-      const cleaned = String(target || "").replace(/\([^)]*\)/g, "");
+      // Strip parens AND square brackets so the "Right answer" display
+      // doesn't leak disambiguators or editorial flags to the learner.
+      // See inter_chat/Architecture_Housing_translation_cleaning.md.
+      const cleaned = String(target || "")
+        .replace(/\([^)]*\)/g, "")
+        .replace(/\[[^\]]*\]/g, "");
       const seen = new Set();
       const out = [];
       for (const piece of cleaned.split(/[,;\/]/)) {
@@ -2627,6 +2651,10 @@
       }
       return out;
     })();
+    // Cleaned-and-rejoined display form, used as the markpoint's `expected`
+    // value so the result panel shows e.g. "the" not "the (m pl, before
+    // s+cons / z / gn / ps / x / y / i+vowel)".
+    const cleanedExpected = acceptableList.join(", ");
     const credit = judgment.credit;
     const outcome = judgment.outcome;
     const reason = judgment.reason;
@@ -2647,7 +2675,7 @@
       correctness_credit: credit,
       outcome: outcome,
       evidence: raw,
-      expected: target,
+      expected: cleanedExpected || target,
       alternatives: acceptableList,
       explanation: reason || undefined
     });
@@ -3395,6 +3423,49 @@
 
       row.appendChild(detail);
       root.appendChild(row);
+    }
+    // Usage notes (vocab-side, from the curated entry's `usage_notes` array).
+    // Rendered as a separate visual block beneath the markpoint rows so the
+    // learner sees these as supplementary, not as additional correct answers.
+    // Two object shapes:
+    //   - preposition-structured: { applies_to_sense, preposition, preposition_meaning? }
+    //   - free-form text:        { applies_to_sense, text }
+    if (Array.isArray(result.usage_notes) && result.usage_notes.length > 0) {
+      // Build lines first; only attach the block (with its "Usage:" header)
+      // if at least one note had a recognised shape. Avoids a bare header
+      // when all notes were skipped as unrecognised.
+      const lines = [];
+      for (const note of result.usage_notes) {
+        if (!note || typeof note !== "object") continue;
+        const sense = String(note.applies_to_sense || "").trim();
+        let detailStr;
+        if (note.preposition) {
+          const prep = String(note.preposition).trim();
+          const meaning = note.preposition_meaning
+            ? " ('" + String(note.preposition_meaning).trim() + "')"
+            : "";
+          detailStr = "with " + prep + meaning;
+        } else if (note.text) {
+          detailStr = String(note.text).trim();
+        } else {
+          continue; // shape we don't recognise; skip rather than render junk
+        }
+        const line = document.createElement("div");
+        line.className = "result-usage-line";
+        line.innerHTML = '<span class="cmp-value cmp-sense">' + escapeHtml(sense) +
+          '</span> &mdash; <span class="cmp-value cmp-usage">' + escapeHtml(detailStr) + '</span>';
+        lines.push(line);
+      }
+      if (lines.length > 0) {
+        const block = document.createElement("div");
+        block.className = "result-usage-notes";
+        const head = document.createElement("div");
+        head.className = "result-usage-head";
+        head.textContent = "Usage:";
+        block.appendChild(head);
+        for (const ln of lines) block.appendChild(ln);
+        root.appendChild(block);
+      }
     }
     if (result.overall.explanation) {
       const ex = document.createElement("div");
