@@ -1790,14 +1790,14 @@
     "type": "short",
     "marks": 1,
     "markpoints": [
-      {"order_index": 0, "credit": 1.0, "bucket": "adjective_agreement.position.pre_noun_canonical", "label": "piccola canonical pre-noun", "any_phrases": ["una piccola casa"], "must_not_include": ["una casa piccola"]}
+      {"order_index": 0, "credit": 1.0, "bucket": "adjective_agreement.position.pre_noun_canonical", "label": "piccola canonical pre-noun", "any_phrases": ["una piccola casa", {"phrase": "una casa piccola", "credit": 0.7, "note": "grammatical but marked; pre-noun is the unmarked everyday order for piccolo"}]}
     ],
     "vocab_help": [
       {"lemma": "piccolo", "language": "it", "aspects": {"translation": {"reveal": "piccolo - small, little", "bucket": "vocabulary.it.piccolo.translation"}}},
       {"lemma": "casa", "language": "it", "aspects": {"translation": {"reveal": "casa - house", "bucket": "vocabulary.it.casa.translation"}, "gender": {"reveal": "feminine (f)", "bucket": "vocabulary.it.casa.gender"}}}
     ],
     "explanation": "Both orderings are grammatical. Piccolo belongs to a small set — bello, buono, grande, nuovo, vecchio, giovane, bravo, lungo, breve — that sit before the noun by default, in canonical pre-noun position. Una piccola casa is the unmarked everyday order, no special emphasis. Una casa piccola is also grammatical but marked, specifically emphasising size ('small as opposed to large'). For the default reading, use the pre-noun order: una piccola casa.",
-    "examiner_note": "If the learner writes 'una casa piccola' they have not made a grammar error, but they have missed the unmarked canonical position. Mark wrong but explain.",
+    "examiner_note": "'Una casa piccola' is grammatical Italian but marked; the marker awards 0.7 credit for it via the graded any_phrases entry. The 1.0-credit canonical answer is the pre-noun order.",
     "version": 1  },
   {
     "external_id": "adj_pos_pre_02",
@@ -1810,14 +1810,14 @@
     "type": "short",
     "marks": 1,
     "markpoints": [
-      {"order_index": 0, "credit": 1.0, "bucket": "adjective_agreement.position.pre_noun_canonical", "label": "nuovo canonical pre-noun", "any_phrases": ["una nuova casa"], "must_not_include": ["una casa nuova"]}
+      {"order_index": 0, "credit": 1.0, "bucket": "adjective_agreement.position.pre_noun_canonical", "label": "nuovo canonical pre-noun", "any_phrases": ["una nuova casa", {"phrase": "una casa nuova", "credit": 0.7, "note": "grammatical, but carries the literal 'brand-new' reading; pre-noun is the canonical relational reading"}]}
     ],
     "vocab_help": [
       {"lemma": "nuovo", "language": "it", "aspects": {"translation": {"reveal": "nuovo - new", "bucket": "vocabulary.it.nuovo.translation"}}},
       {"lemma": "casa", "language": "it", "aspects": {"translation": {"reveal": "casa - house", "bucket": "vocabulary.it.casa.translation"}, "gender": {"reveal": "feminine (f)", "bucket": "vocabulary.it.casa.gender"}}}
     ],
     "explanation": "Both orderings are grammatical and carry different meanings. Una nuova casa (pre-noun) is the relational reading: 'a new house' meaning 'a different one' (the speaker has changed houses, regardless of the building's age). Una casa nuova (post-noun) is the literal reading: 'a brand-new house', emphasising recent construction. For 'I have a new house' in the everyday relational sense, the pre-noun position is canonical.",
-    "examiner_note": "Open uncertainty: 'una casa nuova' is also good Italian. Reviewer to decide whether to relax must_not_include.",
+    "examiner_note": "'Una casa nuova' is grammatical Italian carrying the literal 'brand-new' reading; the marker awards 0.7 credit for it via the graded any_phrases entry. The 1.0-credit canonical answer is the pre-noun relational reading.",
     "version": 1  },
   {
     "external_id": "adj_pos_pre_03",
@@ -1832,7 +1832,7 @@
     "choices": ["un giovane studente", "uno studente giovane"],
     "answer_index": 0,
     "markpoints": [
-      {"order_index": 0, "credit": 1.0, "bucket": "adjective_agreement.position.pre_noun_canonical", "label": "giovane canonical pre-noun", "any_phrases": ["un giovane studente"], "must_not_include": ["uno studente giovane"]}
+      {"order_index": 0, "credit": 1.0, "bucket": "adjective_agreement.position.pre_noun_canonical", "label": "giovane canonical pre-noun", "any_phrases": ["un giovane studente", {"phrase": "uno studente giovane", "credit": 0.7, "note": "grammatical but marked; pre-noun is the unmarked order for giovane"}]}
     ],
     "vocab_help": [
       {"lemma": "giovane", "language": "it", "aspects": {"translation": {"reveal": "giovane - young", "bucket": "vocabulary.it.giovane.translation"}}},
@@ -1870,7 +1870,7 @@
     "type": "short",
     "marks": 1,
     "markpoints": [
-      {"order_index": 0, "credit": 1.0, "bucket": "adjective_agreement.position.pre_noun_canonical", "label": "bravo canonical pre-noun", "any_phrases": ["un bravo studente"], "must_not_include": ["un studente bravo", "uno studente bravo"]}
+      {"order_index": 0, "credit": 1.0, "bucket": "adjective_agreement.position.pre_noun_canonical", "label": "bravo canonical pre-noun", "any_phrases": ["un bravo studente", {"phrase": "uno studente bravo", "credit": 0.7, "note": "grammatical but less common; pre-noun is the canonical order for bravo"}]}
     ],
     "vocab_help": [
       {"lemma": "bravo", "language": "it", "aspects": {"translation": {"reveal": "bravo - good, skilled", "bucket": "vocabulary.it.bravo.translation"}}},
@@ -1908,10 +1908,11 @@
     "subtopic": "position.semantic_shift.grande",
     "difficulty": 3,
     "cefr_level_target": "B1",
-    "prompt": "Place the adjective for 'a great man (great in achievements)': un ____ uomo or un uomo ____ ? (grande)",
-    "type": "short",
+    "prompt": "Which phrase means 'a great man (great in achievements)'?",
+    "type": "mcq",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "choices": ["un grande uomo", "un uomo grande"],
+    "answer_index": 0,
     "markpoints": [
       {"order_index": 0, "credit": 1.0, "bucket": "adjective_agreement.position.semantic_shift.grande", "label": "grande: pre-noun figurative", "any_phrases": ["un grande uomo"], "must_not_include": ["un uomo grande"]}
     ],
@@ -1929,10 +1930,11 @@
     "subtopic": "position.semantic_shift.grande",
     "difficulty": 3,
     "cefr_level_target": "B1",
-    "prompt": "Place the adjective for 'a tall man (physically large)': un ____ uomo or un uomo ____ ? (grande)",
-    "type": "short",
+    "prompt": "Which phrase means 'a tall man (physically large)'?",
+    "type": "mcq",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "choices": ["un grande uomo", "un uomo grande"],
+    "answer_index": 1,
     "markpoints": [
       {"order_index": 0, "credit": 1.0, "bucket": "adjective_agreement.position.semantic_shift.grande", "label": "grande: post-noun literal", "any_phrases": ["un uomo grande"], "must_not_include": ["un grande uomo"]}
     ],
@@ -1972,10 +1974,11 @@
     "subtopic": "position.semantic_shift.povero",
     "difficulty": 4,
     "cefr_level_target": "B2",
-    "prompt": "Place the adjective: 'the poor (unfortunate) boy' = il ____ ragazzo or il ragazzo ____ ? (povero)",
-    "type": "short",
+    "prompt": "Which phrase means 'the poor (unfortunate) boy'?",
+    "type": "mcq",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "choices": ["il povero ragazzo", "il ragazzo povero"],
+    "answer_index": 0,
     "markpoints": [
       {"order_index": 0, "credit": 1.0, "bucket": "adjective_agreement.position.semantic_shift.povero", "label": "povero: pre-noun figurative (unfortunate)", "any_phrases": ["il povero ragazzo"], "must_not_include": ["il ragazzo povero"]}
     ],
@@ -3729,10 +3732,11 @@
     "subtopic": "position.semantic_shift.vecchio",
     "difficulty": 3,
     "cefr_level_target": "B2",
-    "prompt": "Place the adjective for 'a long-standing friend of mine (since school days)': un mio ____ amico or un mio amico ____ ? (vecchio)",
-    "type": "short",
+    "prompt": "Which phrase means 'a long-standing friend of mine (you've known each other since school)'?",
+    "type": "mcq",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "choices": ["un mio vecchio amico", "un mio amico vecchio"],
+    "answer_index": 0,
     "markpoints": [
       {"order_index": 0, "credit": 1.0, "bucket": "adjective_agreement.position.semantic_shift.vecchio", "label": "vecchio pre-noun = long-standing (in context)", "any_phrases": ["un mio vecchio amico"], "must_not_include": ["un mio amico vecchio"]}
     ],
@@ -3797,12 +3801,13 @@
     "subtopic": "position.semantic_shift.grande",
     "difficulty": 4,
     "cefr_level_target": "B2",
-    "prompt": "Place the adjective for 'a great painter of the Rinascimento (celebrated for artistic stature)': un ____ pittore del Rinascimento or un pittore ____ del Rinascimento? (grande)",
-    "type": "short",
+    "prompt": "Which phrase means 'a great painter of the Rinascimento (celebrated for artistic stature)'?",
+    "type": "mcq",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "choices": ["un grande pittore del Rinascimento", "un pittore grande del Rinascimento"],
+    "answer_index": 0,
     "markpoints": [
-      {"order_index": 0, "credit": 1.0, "bucket": "adjective_agreement.position.semantic_shift.grande", "label": "grande pre-noun = great figurative (in historical context)", "any_phrases": ["un grande pittore", {"phrase": "un gran pittore", "credit": 1.0, "note": "shortened gran allomorph also accepted"}], "must_not_include": ["un pittore grande", "un pittore gran"]}
+      {"order_index": 0, "credit": 1.0, "bucket": "adjective_agreement.position.semantic_shift.grande", "label": "grande pre-noun = great figurative (in historical context)", "any_phrases": ["un grande pittore del Rinascimento"], "must_not_include": ["un pittore grande del Rinascimento"]}
     ],
     "vocab_help": [
       {"lemma": "grande", "language": "it", "aspects": {"translation": {"reveal": "grande - big, great (pre-noun: great figurative)", "bucket": "vocabulary.it.grande.translation"}}},
@@ -3865,10 +3870,11 @@
     "subtopic": "position.semantic_shift.povero",
     "difficulty": 4,
     "cefr_level_target": "B2",
-    "prompt": "Place the adjective in the empathetic sense ('the unfortunate man', not 'the man with little money'; the situation is sad and disorienting): il ____ uomo or l'uomo ____ ? (povero)",
-    "type": "short",
+    "prompt": "Which phrase means 'the unfortunate man' (empathetic sense, not financially poor)?",
+    "type": "mcq",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "choices": ["il povero uomo", "l'uomo povero"],
+    "answer_index": 0,
     "markpoints": [
       {"order_index": 0, "credit": 1.0, "bucket": "adjective_agreement.position.semantic_shift.povero", "label": "povero pre-noun = unfortunate (in empathetic context)", "any_phrases": ["il povero uomo"], "must_not_include": ["l'uomo povero"]}
     ],

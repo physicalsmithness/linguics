@@ -566,3 +566,69 @@ Completes the indefinite-article set (un / uno / una / un'), parallel to the rec
 
 **Why:** The marker rendering can't ask EN→IT about the elided article without an entry to render. Same reasoning as i/gli/le.
 
+---
+
+## 2026-06-07: Cue chip discipline — chips name the surface, not the rule
+
+AUTHOR_BRIEF criterion 13 added (Revision 6). Cue chips on grammar items must name the surface morphology of the wanted answer (tense, mood, person, number, gender, cluster shape) and must NOT name the structural rule that produces the answer.
+
+Surfacing case: the negative-imperative item "Don't give it to me!" had a chip reading "Use: informal, infinitive form for negative tu". The chip named "infinitive", which IS the rule the item is supposed to test for B2 negative imperatives (non + infinitive). Right shape: "Use: informal, negative form for tu (with cluster)" — same disambiguation work without naming the rule.
+
+Self-audit task added to OPEN_QUESTIONS.md: each author chat, on next opening, audits its batch for chip texts containing rule names and rewrites to name the surface only.
+
+**Why:** The chip is the load-bearing instruction; if it names the rule the item is testing, the item stops testing the rule and starts testing vocab + inflection. Surfaced by a real learner-affecting case (the user identified the leak immediately on live test).
+
+**How to apply:** When authoring or auditing a chip, check whether the chip text contains the name of the rule under test (infinitive, subjunctive, conditional, gerund, past participle, periphrastic constructions). If yes, rewrite to name the surface instead. If the rule name is the only sensible cue, move the item to a different bucket where the rule is given and the application is the test.
+
+---
+
+## 2026-06-07: Bucket-name leak — hybrid Option A + C ruling
+
+Sibling pattern to the chip-text leak from criterion 13. When the BUCKET an item points at IS the rule (e.g. `usage.polite`, `usage.habitual`, `usage.background_with_pp`, `discrimination.modals.sapere`, `stylistic.colloquial_counterfactual`), the bucket-name shown in pre-answer surfaces (chip, breadcrumb, focused-practice header, in-flight cell tooltip) leaks the rule even when the chip text is clean.
+
+**Ruling**: hybrid Option A + Option C. Surfaced via ImperfectAuthor's chip_suppression v1.
+
+**Option A**: per-item `info_display: "suppress"` field on the item. Housing substitutes a topic-root generic label ("Imperfect drill", "Pronoun drill", etc.) in pre-answer surfaces; bucket name reappears post-answer with the explanation. Default-visible / opt-out-to-suppress so most items work unchanged.
+
+**Option C**: rewrite the item as a constrained translation with explicit alternative-exclusion ("translate using a tense other than the conditional"). Makes the bucket-name leak harmless because the prompt has already opened the question of choice. Narrower skill being tested, but pedagogically natural for cases like the polite items.
+
+**When to prefer C over A**: when the item recasts naturally as a constrained translation without becoming baroque. The polite-imperfect items are the canonical case: "translate 'I would like a coffee' using a tense other than the conditional" works cleanly. Most habitual / age-time-weather / discrimination items don't recast naturally; A is the fallback for those.
+
+**Option B (parallel display_label field) rejected**. Adds parallel maintenance and removes pre-answer educational scaffolding without compensating benefit.
+
+**Implementation**:
+
+- Authoring side: `info_display: "suppress"` is now a recognised optional field on grammar items. AUTHOR_BRIEF Rev 7 will document.
+- Housing side: thread `Architecture_Housing_info_display_suppress.md` v1 asks housing to honour the field with topic-root generic labels.
+- ImperfectAuthor will apply: 3 items recast (C), 15-17 items get the suppress flag (A) across `usage.*` `discrimination.modals.*` `stylistic.*` buckets.
+
+**Why:** The chip-text-leak criterion (13) addresses chip authoring but doesn't catch the bucket-name leak. Per ImperfectAuthor's audit, the bucket-name leak affects most usage and stylistic buckets and some discrimination buckets. Hybrid handling preserves educational scaffolding (post-answer reveal) while suppressing the pre-answer leak.
+
+**How to apply:** When authoring or auditing an item whose bucket name describes a rule (vs a surface property like tense or POS), choose: recast as constrained translation if natural (C), otherwise set `info_display: "suppress"` (A). Default-visible behaviour is unchanged for items where the bucket name names a surface category.
+
+---
+
+## 2026-06-07: pos_shift items — MCQ shape ruling
+
+Six adjective_agreement position-shift items (`adj_pos_shift_02/03/05`, `adj_pos_shift_vecchio_03`, `adj_pos_shift_grande_03`, `adj_pos_shift_povero_03`) converted from two-slot scaffold ("X ____ Y or X Y ____") to MCQ.
+
+Smith ruled (c) MCQ directly. AdjectiveAuthor applied the conversion: prompt rewritten to "Which phrase means '...?'" with two choices showing the two orderings; markpoints retained with `any_phrases` matching the right-ordering noun phrase and `must_not_include` carrying the wrong ordering. One simplification: `adj_pos_shift_grande_03` dropped the gran allomorph from its `any_phrases` because MCQ doesn't offer a typing path for it (the gran allomorph belongs in a dedicated `special.grande_prenominal` item, not in this position-discrimination item).
+
+**Why:** The two-slot scaffolding pattern violated §2.9 strictly (slots not in genuinely different sentence positions — same noun phrase). MCQ is the natural shape for "which ordering" tests and matches the two pre-existing MCQ items in the bucket (`adj_pos_shift_01` and `_04`). Conversion produces consistency across the bucket plus simpler marking.
+
+**How to apply:** Future position-discrimination items within a single noun phrase should use MCQ from the start. Two-slot scaffolding is reserved for items where the two slots are in genuinely different sentence positions (different verbs, different clauses) per §2.9.
+
+---
+
+## 2026-06-07: vocab bucket-id <pos>-extension migration — architect-side batch script
+
+Rev 5 of AUTHOR_BRIEF extended the bucket-id shape to `vocabulary.it.<lemma>.<pos>[.<gender>][.<number>].<aspect>[.<direction>]`. Existing batches reference vocab buckets in the older `vocabulary.it.<lemma>.<aspect>` shape.
+
+**Ruling**: architect writes a batch script (Option (b) from AdjectiveAuthor's audit). Uses `data/vocabulary_it_frequency.json` as the canonical lemma → POS lookup. Walks every batch JSON's bucket fields, rewrites references with a single-POS lemma, flags ambiguous lemmas (multi-POS like `italiano` adj/noun) for per-batch author resolution rather than guessing.
+
+Dry-run delivered as a per-batch sibling thread before commit so authors can spot-check.
+
+**Why:** Per-chat migration would duplicate work and risk inter-chat inconsistency. Lazy on-read transformation hides the convention from new author chats. Batch script with one source of truth is the durable shape.
+
+**How to apply:** Architect schedules the dry-run sweep within the next 1-2 architect passes. Until then, the marker's existing defensive code path (verified in stats_panel work) tolerates both old and new bucket shapes; items work today, migration is hygiene.
+

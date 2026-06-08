@@ -6,6 +6,11 @@
   "use strict";
   const LL = window.LL || (window.LL = {});
 
+  // Build identifier. Bump when shipping a deploy worth distinguishing in
+  // diagnostics. Surfaced in the page footer so two tabs on different builds
+  // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
+  const LL_BUILD = "2026-06-08-r2";
+
   LL.state = LL.store.loadState();
 
   // Migration 2026-05-28: drop legacy-shape vocab events.
@@ -105,12 +110,95 @@
     renderTranslation();
   }
 
+  // Topic-root → generic label for the info_display: "suppress" flag.
+  // See inter_chat/Architecture_Housing_info_display_suppress.md.
+  // When an item carries that flag, pre-answer surfaces substitute the generic
+  // label here in place of the bucket-specific label, preventing the bucket
+  // name from leaking the rule under test. New topics: add entries here; the
+  // fallback uses a transformed dotted-id and warns once.
+  const TOPIC_GENERIC_LABELS = {
+    "verb_form.imperfect":        "Imperfect drill",
+    "verb_form.passato_prossimo": "Passato prossimo drill",
+    "pronoun":                    "Pronoun drill",
+    "adjective_agreement":        "Adjective agreement drill",
+    "tense_choice":               "Tense choice drill",
+    "vocabulary":                 "Vocab drill"
+  };
+  const _topicGenericWarnedFor = new Set();
+  function topicGenericLabel(bucketIdOrItem) {
+    if (!bucketIdOrItem) return "Drill";
+    // Accept either a bucket id string OR an item with .topic / .markpoints[].bucket.
+    let id = "";
+    if (typeof bucketIdOrItem === "string") {
+      id = bucketIdOrItem;
+    } else if (bucketIdOrItem.topic) {
+      id = String(bucketIdOrItem.topic);
+    } else if (Array.isArray(bucketIdOrItem.markpoints) && bucketIdOrItem.markpoints[0] && typeof bucketIdOrItem.markpoints[0].bucket === "string") {
+      id = bucketIdOrItem.markpoints[0].bucket;
+    } else {
+      return "Drill";
+    }
+    // Match the longest known prefix.
+    let best = null;
+    for (const key in TOPIC_GENERIC_LABELS) {
+      if (id === key || id.startsWith(key + ".")) {
+        if (!best || key.length > best.length) best = key;
+      }
+    }
+    if (best) return TOPIC_GENERIC_LABELS[best];
+    // Fallback: transform first dotted segment. Warn once per topic.
+    const head = id.split(".")[0] || "drill";
+    if (!_topicGenericWarnedFor.has(head)) {
+      _topicGenericWarnedFor.add(head);
+      console.warn("[Linguics] No TOPIC_GENERIC_LABELS entry for topic root \"" + head + "\"; using fallback label.");
+    }
+    const friendly = head.replace(/_/g, " ");
+    return friendly.charAt(0).toUpperCase() + friendly.slice(1) + " drill";
+  }
+
+  // True when the item carries the suppress flag. Use at pre-answer surfaces.
+  function shouldSuppressBucketName(item) {
+    return !!(item && item.info_display === "suppress");
+  }
+
+  // Global hint for the live stats panel: when a grammar/translation item is
+  // in flight (rendered but unmarked) with info_display: "suppress", any
+  // panel tooltip for the same bucket should use the generic label too.
+  // Cleared when the item is marked or the strand re-renders.
+  LL.inFlightSuppress = null;
+  function setInFlightSuppress(item) {
+    if (item && shouldSuppressBucketName(item)) {
+      LL.inFlightSuppress = {
+        topicLabel: topicGenericLabel(item),
+        buckets: new Set(
+          (Array.isArray(item.markpoints) ? item.markpoints : [])
+            .map(mp => mp && mp.bucket)
+            .filter(b => typeof b === "string")
+        )
+      };
+    } else {
+      LL.inFlightSuppress = null;
+    }
+  }
+  function clearInFlightSuppress() { LL.inFlightSuppress = null; }
+
   function buildBucketFilterBanner(filter) {
     if (!filter.bucketPath) return null;
     const banner = document.createElement("div");
     banner.className = "bucket-filter-banner";
     const node = bucketIndex.byId[filter.bucketPath];
-    const label = node ? (node.label || node.id) : filter.bucketPath;
+    let label = node ? (node.label || node.id) : filter.bucketPath;
+    // Honour info_display: "suppress" — if the in-flight item shares this
+    // bucket (or descends from it), show the topic-generic label instead.
+    if (LL.inFlightSuppress) {
+      const buckets = LL.inFlightSuppress.buckets;
+      const filterPath = filter.bucketPath;
+      let touches = false;
+      buckets.forEach(b => {
+        if (b === filterPath || b.startsWith(filterPath + ".")) touches = true;
+      });
+      if (touches) label = LL.inFlightSuppress.topicLabel;
+    }
     banner.innerHTML = `Drilled into: <strong>${escapeHtml(label)}</strong>`;
     banner.title = filter.bucketPath;
     const clearBtn = document.createElement("button");
@@ -236,16 +324,76 @@
       }
       return JSON.parse(trimmed);
     };
+    // Diagnostic logger for fetch failures. Captures enough context to
+    // distinguish stale-cache, network-blip, extension-block, and parse-fail
+    // from each other after the fact. See inter_chat/
+    // Architecture_Housing_cache_busting_and_data_load_messaging.md.
+    const logFetchFailure = (kind, path, info) => {
+      const ctx = {
+        kind: kind,                       // "fetch_error" | "http_error" | "parse_error"
+        path: path,
+        build: LL_BUILD,
+        ts: new Date().toISOString(),
+        ua: (typeof navigator !== "undefined" && navigator.userAgent) || "(no ua)",
+        online: (typeof navigator !== "undefined") ? navigator.onLine : null,
+        connType: (typeof navigator !== "undefined" && navigator.connection && navigator.connection.effectiveType) || null,
+        localStorageKeys: (function () {
+          try { return Object.keys(localStorage); } catch (e) { return null; }
+        })(),
+      };
+      Object.assign(ctx, info || {});
+      console.error("[Linguics] data fetch failure:", ctx);
+    };
     const F = async (path) => {
-      const r = await fetch(path);
-      if (!r.ok) throw new Error(`${path}: ${r.status}`);
-      return parseJson(path, r);
+      let r;
+      try {
+        r = await fetch(path);
+      } catch (e) {
+        logFetchFailure("fetch_error", path, { error: String(e) });
+        throw new Error(`${path}: network error: ${e && e.message ? e.message : e}`);
+      }
+      if (!r.ok) {
+        logFetchFailure("http_error", path, {
+          status: r.status,
+          statusText: r.statusText,
+          cacheControl: r.headers.get("cache-control"),
+          etag: r.headers.get("etag"),
+          contentType: r.headers.get("content-type"),
+        });
+        throw new Error(`${path}: ${r.status}`);
+      }
+      try {
+        return await parseJson(path, r);
+      } catch (e) {
+        logFetchFailure("parse_error", path, {
+          status: r.status,
+          contentType: r.headers.get("content-type"),
+          error: String(e),
+        });
+        throw e;
+      }
     };
     const Foptional = async (path) => {
       try {
         const r = await fetch(path);
-        return r.ok ? await parseJson(path, r) : null;
-      } catch (e) { return null; }
+        if (!r.ok) {
+          logFetchFailure("http_error", path, {
+            status: r.status,
+            statusText: r.statusText,
+            optional: true,
+          });
+          return null;
+        }
+        try {
+          return await parseJson(path, r);
+        } catch (e) {
+          logFetchFailure("parse_error", path, { optional: true, error: String(e) });
+          return null;
+        }
+      } catch (e) {
+        logFetchFailure("fetch_error", path, { optional: true, error: String(e) });
+        return null;
+      }
     };
     try {
       // 1. Load the manifest listing known topics
@@ -310,9 +458,47 @@
       console.info("Loaded per topic:", perTopicCounts);
       return { buckets, grammar, translation, perTopicCounts, vocab, themes };
     } catch (e) {
-      console.info("Real content fetch failed; using inline samples.", e.message || e);
+      console.error("[Linguics] Real content fetch failed; using inline samples. Cause:", e && e.message || e);
+      showLoadFailureBanner(e && e.message ? e.message : String(e));
       return null;
     }
+  }
+
+  // Surface a fetch-failure banner inline on the page. End-user friendly text;
+  // no jargon. A single Refresh button retries. The banner persists until the
+  // next successful load (which clears it) or the user dismisses (× button).
+  // See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
+  function showLoadFailureBanner(detailForTitle) {
+    const host = document.getElementById("load-failure-banner");
+    if (!host) return;
+    host.innerHTML = "";
+    host.hidden = false;
+    const msg = document.createElement("span");
+    msg.className = "load-failure-msg";
+    msg.textContent = "Couldn\u2019t load the latest exercises. Refresh to try again.";
+    host.appendChild(msg);
+    const reloadBtn = document.createElement("button");
+    reloadBtn.type = "button";
+    reloadBtn.className = "load-failure-reload";
+    reloadBtn.textContent = "Refresh";
+    reloadBtn.addEventListener("click", () => location.reload());
+    host.appendChild(reloadBtn);
+    const dismiss = document.createElement("button");
+    dismiss.type = "button";
+    dismiss.className = "load-failure-dismiss";
+    dismiss.textContent = "\u00d7";
+    dismiss.title = "Dismiss";
+    dismiss.addEventListener("click", () => { host.hidden = true; });
+    host.appendChild(dismiss);
+    // Detail tucked into a title attribute so curious users / developers can
+    // hover for technical context without it being shoved at the learner.
+    if (detailForTitle) {
+      host.title = "Details: " + detailForTitle;
+    }
+  }
+  function clearLoadFailureBanner() {
+    const host = document.getElementById("load-failure-banner");
+    if (host) { host.hidden = true; host.innerHTML = ""; }
   }
 
   function setStatus(text) {
@@ -514,6 +700,76 @@
   let grammarIndex = 0;
   let grammarInputRef = null;
 
+  // Extract a chip lemma from a grammar item's prompt cue (parenthetical at
+  // the end of the prompt). Used by the second-chance prompt to detect when
+  // the learner's answer has no stem overlap with the named target lemma.
+  // See inter_chat/Architecture_Housing_second_chance_on_chip_mismatch.md.
+  //
+  // Returns the lemma string when extractable, else null:
+  //   "(studiare, 1sg)"      -> "studiare"
+  //   "(grande)"              -> "grande"
+  //   "(to him + it)"         -> null   (multi-word; not a single lemma)
+  //   "(see ref)"             -> null   (multi-word)
+  function extractChipLemma(promptText) {
+    const m = String(promptText || "").match(/\(([^)]+)\)\s*$/);
+    if (!m) return null;
+    const cueText = m[1];
+    const first = (cueText.split(",")[0] || "").trim();
+    if (!first) return null;
+    if (/\s/.test(first)) return null;            // single word only
+    if (/[.,;:!?"'\/+]/.test(first)) return null; // no punctuation (diacritics OK)
+    return first;
+  }
+
+  // Stem-overlap test: returns true if the learner's answer doesn't share a
+  // 3-character prefix with the chip lemma. The mismatch is the trigger for
+  // the second-chance prompt.
+  function chipStemMismatch(answer, lemma) {
+    const norm = (s) => String(s || "").toLowerCase().trim();
+    const a = norm(answer);
+    const l = norm(lemma);
+    if (!a || !l) return false;
+    const PREFIX = 3;
+    return a.slice(0, PREFIX) !== l.slice(0, PREFIX);
+  }
+
+  // Render an inline second-chance prompt beneath the input. Buttons + keys:
+  //   Yes, mark it / Enter   -> onConfirm()
+  //   Let me try again / Esc -> onRetry()
+  // Removes itself on either action. Tone is gentle ("Is that your final
+  // answer?"), not chiding.
+  function showSecondChancePrompt(host, chipLemma, onConfirm, onRetry) {
+    const existing = host.querySelector(".second-chance-prompt");
+    if (existing) existing.remove();
+    const banner = document.createElement("div");
+    banner.className = "second-chance-prompt";
+    banner.tabIndex = -1;
+    const msg = document.createElement("span");
+    msg.className = "second-chance-msg";
+    msg.innerHTML = "Is that your final answer? Remember, you\u2019re supposed to use <strong>" +
+      escapeHtml(chipLemma) + "</strong>.";
+    banner.appendChild(msg);
+    const yes = document.createElement("button");
+    yes.type = "button";
+    yes.className = "second-chance-confirm";
+    yes.textContent = "Yes, mark it";
+    yes.addEventListener("click", () => { banner.remove(); onConfirm(); });
+    banner.appendChild(yes);
+    const no = document.createElement("button");
+    no.type = "button";
+    no.className = "second-chance-retry";
+    no.textContent = "Let me try again";
+    no.addEventListener("click", () => { banner.remove(); onRetry(); });
+    banner.appendChild(no);
+    banner.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") { e.preventDefault(); banner.remove(); onConfirm(); }
+      else if (e.key === "Escape") { e.preventDefault(); banner.remove(); onRetry(); }
+    });
+    host.appendChild(banner);
+    // Focus the confirm button so Enter has a default; Esc still retries.
+    setTimeout(() => yes.focus(), 0);
+  }
+
   function renderGrammar() {
     const host = document.getElementById("grammar-host");
     host.innerHTML = "";
@@ -534,6 +790,9 @@
     const q = grammarDeck[grammarIndex % grammarDeck.length];
     const vocabHelpsUsed = [];
     const isMcq = q.type === "mcq" && Array.isArray(q.choices) && q.choices.length > 0;
+    // Pre-answer suppression hint for the live stats panel. Cleared when the
+    // item is marked. See inter_chat/Architecture_Housing_info_display_suppress.md.
+    setInFlightSuppress(q);
 
     const card = document.createElement("div");
     card.className = "qcard";
@@ -642,6 +901,26 @@
     // focus didn't move to the Next button (Bug 2, 2026-05-28).
     let marked = false;
 
+    // Per-item flag: second-chance prompt fires at most once per item render.
+    // A learner who answers wrong, gets the prompt, confirms or edits, then
+    // gets it wrong again is not re-prompted.
+    let secondChanceShown = false;
+
+    const commitResult = (result, rawForRecord) => {
+      const attempt = LL.store.recordAttempt("grammar", q, rawForRecord, result);
+      recentlyChangedBuckets = new Set(attempt.events.map(e => e.bucket));
+      // Post-answer surfaces are unaffected by info_display: "suppress",
+      // so clear the in-flight hint before re-rendering the live panel.
+      clearInFlightSuppress();
+      resultHost.innerHTML = "";
+      resultHost.appendChild(renderResult(result));
+      renderLiveStats();
+      marked = true;
+      // Deferring focus past the current event-loop tick is more reliable
+      // across browsers than calling synchronously inside a keydown handler.
+      setTimeout(() => next.focus(), 0);
+    };
+
     const doMark = () => {
       let result;
       if (isMcq) {
@@ -663,15 +942,37 @@
         appendActiveProductionHits(result, vocabHelpsUsed, q, raw);
       }
       const rawForRecord = isMcq ? q.choices[selectedChoiceIdx] : input.value;
-      const attempt = LL.store.recordAttempt("grammar", q, rawForRecord, result);
-      recentlyChangedBuckets = new Set(attempt.events.map(e => e.bucket));
-      resultHost.innerHTML = "";
-      resultHost.appendChild(renderResult(result));
-      renderLiveStats();
-      marked = true;
-      // Deferring focus past the current event-loop tick is more reliable
-      // across browsers than calling synchronously inside a keydown handler.
-      setTimeout(() => next.focus(), 0);
+
+      // Second-chance guard (see inter_chat/Architecture_Housing_second_chance_on_chip_mismatch.md).
+      // Triggers only when:
+      //   - the item is short-answer (not MCQ),
+      //   - we haven't already prompted this item,
+      //   - the outcome is a clean miss (zero marks),
+      //   - no must_not_include / hint matched (the learner's specific wrong
+      //     form isn't a recognised wrong; they may have answered a different
+      //     question than the one asked), AND
+      //   - the chip has an extractable lemma AND the answer's stem doesn't
+      //     overlap the lemma's stem.
+      if (!isMcq && !secondChanceShown) {
+        const isCleanMiss = result.overall.marks_awarded === 0
+          && Array.isArray(result.markpoints)
+          && result.markpoints.every(mp => mp.outcome === "miss" || mp.outcome === "not_attempted");
+        const hadRecognisedWrong = Array.isArray(result.markpoints)
+          && result.markpoints.some(mp => mp.evidence && /\(wrong form\)/.test(String(mp.evidence)));
+        const chipLemma = extractChipLemma(q.prompt);
+        if (isCleanMiss && !hadRecognisedWrong && chipLemma && chipStemMismatch(rawForRecord, chipLemma)) {
+          secondChanceShown = true;
+          showSecondChancePrompt(
+            resultHost,
+            chipLemma,
+            () => commitResult(result, rawForRecord),         // confirm: mark as wrong
+            () => { setTimeout(() => input.focus(), 0); }      // retry: cancel mark, return focus
+          );
+          return;
+        }
+      }
+
+      commitResult(result, rawForRecord);
     };
     const doNext = () => {
       grammarIndex++;
@@ -771,6 +1072,7 @@
     }
     const it = translationDeck[translationIndex % translationDeck.length];
     const vocabHelpsUsed = [];
+    setInFlightSuppress(it);
 
     const card = document.createElement("div");
     card.className = "qcard";
@@ -1297,7 +1599,7 @@
       // the cells containing this lemma re-colour immediately. Then flash
       // every cell the lemma belongs to across all three axes.
       renderVocabAxes();
-      flashAxisCellsFor(entry);
+      flashAxisCellsFor(entry, result.overall && result.overall.marks_awarded >= result.overall.marks_possible);
       nextBtn.focus();
     };
     const doNext = () => {
@@ -1651,44 +1953,72 @@
     return wrap;
   }
 
-  function flashAxisCellsFor(entry) {
+  // Fire the success/feedback animation on the axes cells that correspond to
+  // the entry just answered. Targeting is by:
+  //   - freq-dot:   matched by data-rank (UNIQUE per cell). The previous
+  //                 lemma-only selector fired on every dot sharing a lemma,
+  //                 which lit up adjacent ranks for multi-entry lemmas like
+  //                 presto.adverb @ 429 vs presto.interjection @ 430.
+  //   - gender / theme cells (and their inner per-lemma dots): keyed by axis
+  //                 attribute. One cell per group; safe to match all that
+  //                 contain the lemma.
+  //   - flanking cells: matched by rank range membership.
+  //
+  // `isHit` (boolean) drives the visual: hits get the richer success pulse
+  // (.flash-hit), other outcomes get the neutral .flash. See inter_chat/
+  // Architecture_Housing_vocab_success_animation.md.
+  function flashAxisCellsFor(entry, isHit) {
     if (!entry) return;
-    const selectors = [];
-    if (entry.lemma) {
-      selectors.push('.freq-dot[data-lemma="' + cssEscape(entry.lemma) + '"]');
-    }
-    if (entry.pos === "noun") {
-      const cls = entry.noun_class || (entry.gender === "m" ? "unspecified_m" : entry.gender === "f" ? "unspecified_f" : "unspecified");
-      selectors.push('.vocab-cell[data-axis="gender"][data-key="' + cssEscape(cls) + '"]');
-    }
-    if (Array.isArray(entry.themes)) {
-      for (const t of entry.themes) {
-        selectors.push('.vocab-cell[data-axis="themes"][data-key="' + cssEscape(t) + '"]');
-      }
-    }
-    if (entry.lemma) {
-      selectors.push('.vocab-lemma-dot[data-lemma="' + cssEscape(entry.lemma) + '"]');
-    }
     const host = document.getElementById("vocab-axes-host");
     if (!host) return;
-    for (const sel of selectors) {
-      const els = host.querySelectorAll(sel);
-      els.forEach(el => {
-        el.classList.add("flash");
-        setTimeout(() => el.classList.remove("flash"), 800);
-      });
+    const flashClass = isHit ? "flash-hit" : "flash";
+    const FLASH_MS = isHit ? 900 : 800;
+
+    const targets = [];
+
+    // Focused-grid dot: rank-specific, exactly one match.
+    if (typeof entry.rank === "number") {
+      const dot = host.querySelector('.freq-dot[data-rank="' + entry.rank + '"]');
+      if (dot) targets.push(dot);
     }
-    // Also flash any flanking-block cell whose rank range contains this entry's rank.
+    // Gender axis cell (nouns only).
+    if (entry.pos === "noun") {
+      const cls = entry.noun_class || (entry.gender === "m" ? "unspecified_m" : entry.gender === "f" ? "unspecified_f" : "unspecified");
+      const gCell = host.querySelector('.vocab-cell[data-axis="gender"][data-key="' + cssEscape(cls) + '"]');
+      if (gCell) targets.push(gCell);
+    }
+    // Theme axis cells.
+    if (Array.isArray(entry.themes)) {
+      for (const t of entry.themes) {
+        const tCell = host.querySelector('.vocab-cell[data-axis="themes"][data-key="' + cssEscape(t) + '"]');
+        if (tCell) targets.push(tCell);
+      }
+    }
+    // Inner per-lemma dots inside theme/gender cells (these are legitimately
+    // lemma-keyed since each cell has at most one dot per lemma).
+    if (entry.lemma) {
+      const lemmaDots = host.querySelectorAll('.vocab-lemma-dot[data-lemma="' + cssEscape(entry.lemma) + '"]');
+      lemmaDots.forEach(el => targets.push(el));
+    }
+    // Flanking-block cells whose rank range contains this entry's rank.
     if (typeof entry.rank === "number") {
       const flanks = host.querySelectorAll(".freq-flanking .freq-flank-cell");
       flanks.forEach(cell => {
         const s = parseInt(cell.dataset.rangeStart || "0", 10);
         const e = parseInt(cell.dataset.rangeEnd || "0", 10);
-        if (entry.rank >= s && entry.rank <= e) {
-          cell.classList.add("flash");
-          setTimeout(() => cell.classList.remove("flash"), 800);
-        }
+        if (entry.rank >= s && entry.rank <= e) targets.push(cell);
       });
+    }
+
+    for (const el of targets) {
+      // Remove any existing flash class first so a quick succession of marks
+      // re-triggers cleanly (re-adding the same class doesn't restart the
+      // animation in CSS).
+      el.classList.remove("flash", "flash-hit");
+      // Force a reflow so the removal takes effect before re-adding.
+      void el.offsetWidth;
+      el.classList.add(flashClass);
+      setTimeout(() => el.classList.remove(flashClass), FLASH_MS);
     }
   }
   function cssEscape(s) {
@@ -2076,7 +2406,15 @@
     const COLS = adjacent ? 10 : 1;
     const ROWS = adjacent ? 11 : 10;
     const colWidth = distance === 1 ? 5 : distance === 2 ? 4 : 5;
-    const rowHeight = focusedHeightPx / 11; // consistent across all flanking blocks
+    // Per-block-shape row-height calibration so each flanking block totals
+    // exactly focusedHeightPx, matching the focused 1-1000 grid's bounds.
+    // Without this the adjacent block (11 rows + 10 × 1px gap + 8px padding)
+    // ran ~18px taller than focused, and the distant block (10 rows) ran
+    // shorter — symptom flagged in
+    // inter_chat/Architecture_Housing_frequency_heatmap_layout.md.
+    const GAP_PX = 1;
+    const PAD_PX = 8; // 2 × 4px padding from CSS .freq-flanking
+    const rowHeight = (focusedHeightPx - PAD_PX - (ROWS - 1) * GAP_PX) / ROWS;
     const wrap = document.createElement("div");
     wrap.className = "freq-flanking";
     wrap.dataset.blockStart = blockStart;
@@ -2084,7 +2422,7 @@
     wrap.style.display = "grid";
     wrap.style.gridTemplateColumns = "repeat(" + COLS + ", " + colWidth + "px)";
     wrap.style.gridTemplateRows = "repeat(" + ROWS + ", " + rowHeight + "px)";
-    wrap.style.gap = "1px";
+    wrap.style.gap = GAP_PX + "px";
     wrap.title = "ranks " + blockStart + "-" + blockEnd + " (click to focus)";
     const span = blockEnd - blockStart + 1;
     const perCell = Math.ceil(span / (COLS * ROWS));
@@ -3582,6 +3920,10 @@
     const prefix = node.id + ".";
     for (const att of LL.state.attempts) {
       for (const ev of att.events) {
+        // Defensive: skip events with non-string buckets so stale localStorage
+        // events from older revisions don't throw TypeError here. See
+        // inter_chat/Architecture_Housing_eventsForNode_TypeError_and_state_hygiene.md.
+        if (typeof ev.bucket !== "string") continue;
         if (seen.has(ev.bucket)) continue;
         if (ev.bucket.startsWith(prefix)) {
           out.push({ ev, timestamp: att.timestamp });
@@ -3839,6 +4181,9 @@
     const byLemma = new Map();   // lemma -> { hits, n, attempts }
     for (const att of LL.state.attempts) {
       for (const ev of att.events) {
+        // Defensive: skip non-string buckets (see inter_chat/
+        // Architecture_Housing_eventsForNode_TypeError_and_state_hygiene.md).
+        if (typeof ev.bucket !== "string") continue;
         if (!ev.bucket.startsWith(prefix)) continue;
         // Lemma is the next segment after node.id
         const after = ev.bucket.slice(prefix.length);
@@ -3901,7 +4246,19 @@
     if (hasEvents && recentlyChangedBuckets.has(node.id)) row.classList.add("fresh");
     // Friendly label in the tooltip (DECISIONS.md 2026-05-15); fall back to id
     // only when the bucket has no label. The dotted id is engine-facing.
-    row.title = (node.label || node.id) + (node.description ? "\n\n" + node.description : "");
+    // Honour info_display: "suppress" by using the topic-generic label when
+    // the in-flight item touches this node (see inter_chat/
+    // Architecture_Housing_info_display_suppress.md).
+    let tooltipLabel = node.label || node.id;
+    if (LL.inFlightSuppress) {
+      const buckets = LL.inFlightSuppress.buckets;
+      let touches = false;
+      buckets.forEach(b => {
+        if (b === node.id || b.startsWith(node.id + ".") || node.id.startsWith(b + ".")) touches = true;
+      });
+      if (touches) tooltipLabel = LL.inFlightSuppress.topicLabel;
+    }
+    row.title = tooltipLabel + (node.description ? "\n\n" + node.description : "");
 
     const chev = document.createElement("span");
     chev.className = "chev";
@@ -4156,6 +4513,13 @@
   });
 
   // -------------------- bootstrap --------------------
+  // Render the build identifier in the footer. Useful for spotting cross-tab
+  // version mismatches at a glance.
+  (function () {
+    const el = document.getElementById("build-version");
+    if (el) el.textContent = "build " + LL_BUILD;
+  })();
+
   renderGrammarFilterBar();
   renderTranslationFilterBar();
   renderGrammar();
@@ -4171,6 +4535,7 @@
   // Try to upgrade to real content
   tryLoadRealContent().then(real => {
     if (!real) return;
+    clearLoadFailureBanner();
     allBuckets = real.buckets;
     bucketIndex = LL.store.indexBuckets(allBuckets);
     LL.bucketsById = bucketIndex.byId;

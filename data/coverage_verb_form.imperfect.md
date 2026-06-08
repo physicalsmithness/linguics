@@ -201,5 +201,33 @@ Flagged for the conditional and subjunctive dispatches when they happen; per the
 ### Open thread state at this snapshot
 
 - `Architecture_ImperfectAuthor_two_markpoint_pattern.md`: CLOSED. Two-markpoint convention accepted, retrofits applied.
-- `Architecture_ImperfectAuthor_other_open_questions.md`: OPEN, v4 audit submitted, awaiting architect close-out.
+- `Architecture_ImperfectAuthor_other_open_questions.md`: CLOSED at v5.
 - `ImperfectAuthor_TenseChoiceAuthor_cross_tree_citations.md`: CLOSED. Pattern B confirmed both sides; both chats' items coexist in the discrimination buckets.
+- `Architecture_ImperfectAuthor_chip_suppression.md`: OPEN, v3 implementation reported.
+
+### Chip-suppression hybrid A+C applied (2026-06-07)
+
+Per the architect's v2 ruling on `Architecture_ImperfectAuthor_chip_suppression.md`:
+
+**Option C (item recast as constrained translation, 3 items):**
+
+- `imp_use_pol_01`, `imp_use_pol_02`, `imp_use_pol_03` deleted from `grammar_questions_verb_form.imperfect.json`.
+- Replaced by `trans_imp_en_it_use_pol_03`, `_04`, `_05` in `translation_items_verb_form.imperfect.json`. Each has the "use a tense other than the conditional" constraint embedded in `source_text`. The conditional variants (vorrei, potrei) are listed as `polarity: "negative"` reference translations.
+
+**Option A (info_display: "suppress" flag, 25 items):**
+
+- 8 background_with_pp items (`imp_use_bg_01..08`)
+- 7 age_time_weather items (`imp_use_atw_01..07`)
+- 5 modals.sapere items (`imp_disc_sap_01..05`)
+- 3 colloquial_counterfactual items (`imp_st_cc_01..03`)
+- 2 narrative items (`imp_st_narr_01..02`)
+
+The flag is display-only; engine behaviour (marking, bucket attribution, must_not_include) is unchanged. Housing will substitute a generic label (e.g. "Imperfect drill") for the bucket name pre-answer; the bucket name appears with the explanation post-answer. Housing's rendering of the flag depends on the parallel `Architecture_Housing_info_display_suppress.md` thread the architect is opening.
+
+### Totals post-chip_suppression
+
+- Grammar items: **118** (was 121, minus 3 polite items recast as translation)
+- Translation items: **54** (was 51, plus 3 polite items recast)
+- Items carrying `info_display: "suppress"`: **25**
+
+Validated programmatically: 0 mark/credit mismatches; JSON parses on both files.

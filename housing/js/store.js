@@ -14,7 +14,26 @@
       const raw = localStorage.getItem(LS_KEY);
       if (!raw) return defaultState();
       const parsed = JSON.parse(raw);
-      return Object.assign(defaultState(), parsed);
+      const merged = Object.assign(defaultState(), parsed);
+      // State hygiene: drop events whose bucket field isn't a non-empty string.
+      // Bad events accumulated from older code revisions or partial migrations
+      // cause downstream renderers to throw TypeError. Log the count so we can
+      // spot recurrence. See inter_chat/
+      // Architecture_Housing_eventsForNode_TypeError_and_state_hygiene.md.
+      let droppedEventCount = 0;
+      for (const att of (merged.attempts || [])) {
+        if (!Array.isArray(att.events)) { att.events = []; continue; }
+        const before = att.events.length;
+        att.events = att.events.filter(ev =>
+          ev && typeof ev.bucket === "string" && ev.bucket.length > 0
+        );
+        droppedEventCount += before - att.events.length;
+      }
+      if (droppedEventCount > 0) {
+        console.warn("[Linguics] State hygiene: dropped " + droppedEventCount +
+          " malformed event(s) from loaded state (events without a valid bucket field).");
+      }
+      return merged;
     } catch (e) {
       console.warn("Could not parse localStorage state", e);
       return defaultState();
@@ -49,7 +68,12 @@
   // --- attempts ---
   function recordAttempt(strand, item_or_question, raw, result, intent) {
     const state = LL.state;
-    const events = (result.markpoints || []).map(mp => ({
+    // Build events from markpoints, then filter out any that lack a valid
+    // bucket string. Prevents bad events from accumulating in localStorage
+    // and surfaces the upstream cause (a markpoint missing .bucket) via
+    // console.warn. See inter_chat/
+    // Architecture_Housing_eventsForNode_TypeError_and_state_hygiene.md.
+    const rawEvents = (result.markpoints || []).map(mp => ({
       bucket: mp.bucket,
       attempted_credit: mp.attempted_credit,
       correctness_credit: mp.correctness_credit,
@@ -58,6 +82,13 @@
       source: strand === "grammar" ? "engine" : "ai_stub",
       bucket_proposed: !!mp.bucket_proposed
     }));
+    const events = rawEvents.filter(ev => {
+      if (typeof ev.bucket !== "string" || ev.bucket.length === 0) {
+        console.warn("[Linguics] recordAttempt: skipping event with bad bucket field", ev);
+        return false;
+      }
+      return true;
+    });
     // accent slips (grammar only)
     if (result.orthography) {
       for (const o of result.orthography) {

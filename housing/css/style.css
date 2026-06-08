@@ -162,26 +162,37 @@ main {
   order: 0;
 }
 /* Cue ("Use quello") sits ABOVE the prompt and is visually prominent —
-   it's a constraint on how to answer, not a footnote. */
+   it's a constraint on how to answer, not a footnote. Bumped 2026-06-07
+   per inter_chat/Architecture_Housing_chip_prominence.md: the chip is
+   load-bearing instruction, easy to miss at quiet sizes. Now larger,
+   semi-bold, with a one-shot fade/scale-in pulse on first render so the
+   eye catches it before the prompt or input. */
 .qcard .prompt .prompt-cue {
   order: -1;
-  font-size: 18px;
-  margin: 0 0 12px;
-  padding: 4px 0;
+  font-size: 22px;
+  margin: 0 0 14px;
+  padding: 6px 0;
   color: var(--ink);
   border-bottom: 1px dashed var(--line);
+  animation: cue-attention-pulse 480ms ease-out 1;
 }
 .qcard .prompt .prompt-cue .prompt-cue-label {
   color: var(--muted);
   font-style: italic;
-  margin-right: 4px;
+  margin-right: 6px;
+  font-size: 18px;
 }
 .qcard .prompt .prompt-cue .prompt-cue-word {
-  font-weight: 600;
+  font-weight: 700;
   color: var(--accent);
   background: var(--accent-soft);
-  padding: 1px 8px;
-  border-radius: 3px;
+  padding: 2px 10px;
+  border-radius: 4px;
+}
+@keyframes cue-attention-pulse {
+  0%   { opacity: 0; transform: translateY(-4px) scale(0.97); }
+  60%  { opacity: 1; transform: translateY(0)    scale(1.04); }
+  100% { opacity: 1; transform: translateY(0)    scale(1); }
 }
 .qcard textarea, .qcard input[type=text] {
   width: 100%;
@@ -1204,4 +1215,135 @@ body.strand-vocab-active #live-stats { display: none; }
   font-weight: 600;
   font-size: 12px;
   letter-spacing: 0.02em;
+}
+
+/* Load-failure banner. Shows above the content when a required data file
+   failed to load. End-user friendly text; no jargon. Inline Refresh +
+   dismiss. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md. */
+.load-failure-banner {
+  margin: 12px auto;
+  max-width: 1200px;
+  padding: 10px 14px;
+  background: #fff4e0;
+  border: 1px solid #e6b96a;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+}
+.load-failure-banner[hidden] { display: none; }
+.load-failure-banner .load-failure-msg {
+  flex: 1;
+  color: #5a3d10;
+}
+.load-failure-banner .load-failure-reload {
+  background: #c87618;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+}
+.load-failure-banner .load-failure-reload:hover {
+  background: #a85f0d;
+}
+.load-failure-banner .load-failure-dismiss {
+  background: transparent;
+  color: #8a7a55;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  padding: 0 4px;
+  font-family: inherit;
+}
+.load-failure-banner .load-failure-dismiss:hover { color: #5a3d10; }
+
+#build-version { font-size: 11px; font-style: italic; opacity: 0.7; }
+
+/* Second-chance prompt — inline beneath the input on a chip-stem-mismatch
+   wrong answer. Kind tone, never chiding. Enter confirms, Esc retries.
+   See inter_chat/Architecture_Housing_second_chance_on_chip_mismatch.md. */
+.second-chance-prompt {
+  margin: 10px 0;
+  padding: 12px 14px;
+  background: #fff8e6;
+  border: 1px solid #e6c878;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  outline: none;
+}
+.second-chance-msg {
+  flex: 1;
+  color: #5a3d10;
+  line-height: 1.4;
+}
+.second-chance-msg strong {
+  color: var(--accent);
+  font-weight: 700;
+}
+.second-chance-confirm,
+.second-chance-retry {
+  border: 1px solid #c87618;
+  border-radius: 3px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  background: white;
+  color: #5a3d10;
+}
+.second-chance-confirm {
+  background: #c87618;
+  color: white;
+}
+.second-chance-confirm:hover { background: #a85f0d; }
+.second-chance-retry:hover { background: #fff4e0; }
+
+/* Vocab success animation — richer treatment for hits.
+   The neutral .flash is kept for non-hit feedback. The new .flash-hit adds
+   a colour pulse + brief scale bounce + an expanding green ring outside the
+   cell. The z-index lift ensures the outline/ring isn't covered by adjacent
+   dots in the dense focused grid (which was the "partial borders" symptom).
+   See inter_chat/Architecture_Housing_vocab_success_animation.md. */
+.freq-dot.flash,
+.freq-dot.flash-hit,
+.vocab-lemma-dot.flash,
+.vocab-lemma-dot.flash-hit,
+.vocab-cell.flash,
+.vocab-cell.flash-hit,
+.freq-flank-cell.flash,
+.freq-flank-cell.flash-hit {
+  position: relative;
+  z-index: 3;
+}
+.freq-dot.flash-hit,
+.vocab-lemma-dot.flash-hit {
+  outline: 2px solid #1b8a4a;
+  animation: vocab-success-pulse 900ms cubic-bezier(.2,.7,.3,1.2) 1;
+}
+.vocab-cell.flash-hit,
+.freq-flank-cell.flash-hit {
+  outline: 2px solid #1b8a4a;
+  outline-offset: -2px;
+  animation: vocab-success-pulse-cell 900ms cubic-bezier(.2,.7,.3,1.2) 1;
+}
+@keyframes vocab-success-pulse {
+  0%   { transform: scale(1);    box-shadow: 0 0 0 0  rgba(27,138,74,0.65); }
+  30%  { transform: scale(1.45); box-shadow: 0 0 0 5px rgba(27,138,74,0.55); }
+  60%  { transform: scale(1.10); box-shadow: 0 0 0 9px rgba(27,138,74,0.25); }
+  100% { transform: scale(1);    box-shadow: 0 0 0 12px rgba(27,138,74,0);   }
+}
+@keyframes vocab-success-pulse-cell {
+  0%   { box-shadow: 0 0 0 0   rgba(27,138,74,0.65); }
+  35%  { box-shadow: 0 0 0 8px rgba(27,138,74,0.55); }
+  100% { box-shadow: 0 0 0 14px rgba(27,138,74,0);   }
 }

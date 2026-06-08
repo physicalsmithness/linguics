@@ -1,6 +1,6 @@
 # Author Brief: producing grammar questions and translation items
 
-**Revision 5** (2026-05-29). §2 lemma key conventions extended: a new rule 8 adds `number` (sg | pl) as an optional fourth discriminator on the unique key, in the same shape as `gender`. Triggered by the `le` clitic pronoun case (f-sg-indirect vs f-pl-direct sharing the rest of the key). Bucket-id shape extends in parallel: `vocabulary.it.<lemma>.<pos>[.<gender>][.<number>].<aspect>[.<direction>]`. **Revision 4** (2026-05-28) added §2 criteria 8-12 (one-markpoint-per-skill, slot-count-matches-surface, implicit-cue must_not_include, register-conditional items state register, prompts not glossary-wrapped) plus §1 external_id decoder. **Revision 3** (2026-05-15) added "Lemma key conventions" to §2 and §7 on friendly-bucket-label communication style. Revision 2 (2026-05-13) and earlier guidance still applies. See [DECISIONS.md](./DECISIONS.md) for the full change log.
+**Revision 6** (2026-06-07). §2 adds criterion 13 on cue chip discipline: chips name the surface morphology of the wanted answer, not the structural rule. Triggered by the negative-imperative item "Don't give it to me!" whose chip leaked "infinitive form for negative tu", naming the very rule the item is supposed to test. Self-audit on next opening: look in your batch for chip texts containing rule names (infinitive, subjunctive, conditional, gerund, etc.) and rewrite to name the surface only. **Revision 5** (2026-05-29). §2 lemma key conventions extended: a new rule 8 adds `number` (sg | pl) as an optional fourth discriminator on the unique key, in the same shape as `gender`. Triggered by the `le` clitic pronoun case (f-sg-indirect vs f-pl-direct sharing the rest of the key). Bucket-id shape extends in parallel: `vocabulary.it.<lemma>.<pos>[.<gender>][.<number>].<aspect>[.<direction>]`. **Revision 4** (2026-05-28) added §2 criteria 8-12 (one-markpoint-per-skill, slot-count-matches-surface, implicit-cue must_not_include, register-conditional items state register, prompts not glossary-wrapped) plus §1 external_id decoder. **Revision 3** (2026-05-15) added "Lemma key conventions" to §2 and §7 on friendly-bucket-label communication style. Revision 2 (2026-05-13) and earlier guidance still applies. See [DECISIONS.md](./DECISIONS.md) for the full change log.
 
 This document briefs a fresh chat to produce content for Linguics (Italian language-learning project). The chat receives this brief, the relevant bucket tree, the topic name, and any topic-specific notes.
 
@@ -282,6 +282,21 @@ Don't use this for new content. The rich shape gives the learner more agency (on
 11. **Register-conditional items state their register.** If the answer depends on register (literary vs colloquial, formal vs casual, narrative vs reportage), state the register in the prompt ("in stile narrativo", "in casual speech", "formal address"). Without the cue, the item tests the learner's ability to read context for register signals rather than the underlying skill, which is a different diagnostic.
 
 12. **Prompts are not glossary-wrapped; explanations are.** The housing's renderer wraps technical grammatical terms (DOP, IOP, gerund, clitic, periodo ipotetico, etc.) in glossary tooltips inside explanations, but NOT inside prompts. If you use a technical term in a prompt, the learner sees it as opaque text; introduce it inline ("a small pronoun" rather than "a clitic") or save it for the explanation. The reverse asymmetry: explanations CAN use technical terms freely because the glossary surfacing makes them learnable.
+
+13. **Cue chips name the surface, not the rule.** The `Use: ...` cue chip on a grammar item should name the surface morphology of the wanted answer (tense, mood, person, number, gender, cluster shape) but should NOT name the structural rule that produces the answer. Naming the rule leaks the answer-shape and reduces the item to a vocab-or-conjugation drill instead of a rule-application drill.
+
+   **Wrong (leaks the rule):** `Use: informal, infinitive form for negative tu` on a "Don't give it to me!" item. This tells the learner that negative tu imperative is non + infinitive — which IS the rule under test for B2 negative-imperative items. With the rule named, the learner just has to know dare = give and attach the cluster.
+
+   **Right (names the surface only):** `Use: informal, negative form for tu (with cluster)`. Same disambiguation work (tu vs Lei, negative, attach a cluster) without naming that the answer involves the infinitive. The learner still has to know that "negative tu" → "non + infinitive" to produce the right answer; that's the load-bearing rule and the chip preserves it as the test.
+
+   **Other right shapes:**
+   - `Use: studiare, 1sg` (names lemma + person; the inflection rule is for the learner to apply)
+   - `Use: grande` (names just the lemma; the position and apocope rules are for the learner to apply)
+   - `Use: to him + it` (names the meaning of the cluster; the formation rule glielo is for the learner to apply)
+
+   Rule of thumb: if the chip text uses the name of the rule the item is supposed to be testing (infinitive, subjunctive, past participle agreement, periphrastic future), it's leaking. Rewrite to name what shape the learner is producing (verb form, person, number, gender, cluster) without naming the rule. If the rule name is the only natural way to describe the cue, the item probably belongs in a different bucket (one where the rule is given and the application is the test).
+
+   When auditing existing items in your batch, look for chip texts containing the words: infinitive, subjunctive, conditional, gerund, past participle, conditional perfect, future perfect, present perfect, imperfect indicative, passato remoto, congiuntivo, condizionale, gerundio. Any of these named in a chip should make you stop and ask whether the chip is naming what's being tested or just describing what the answer looks like.
 
 ---
 

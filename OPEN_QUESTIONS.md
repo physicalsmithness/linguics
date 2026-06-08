@@ -404,3 +404,34 @@ If the attempt-level intent is `sense` and a segment is unflagged, does the AI t
 **Likely resolution**: no, to keep the two layers independent.
 
 **Trigger**: when the marker prompt is being written.
+
+---
+
+## Architect-side: vocab bucket-id <pos>-extension batch script (added 2026-06-07)
+
+Per DECISIONS.md 2026-06-07 ruling on the AdjectiveAuthor brief Rev 6 audit Q2, architect chat owns writing a batch script that walks every grammar batch JSON, looks up each `vocabulary.it.<lemma>.<aspect>` bucket reference in `data/vocabulary_it_frequency.json`, and rewrites with the new shape `vocabulary.it.<lemma>.<pos>[.<gender>][.<number>].<aspect>[.<direction>]`. Auto-rewrites single-POS lemmas; flags multi-POS lemmas for per-batch author resolution.
+
+**Schedule**: dry-run delivered as a per-batch sibling thread before commit. Target 1-2 architect passes from now.
+
+**Trigger**: architect chat opens a dedicated pass for this task. Or surfaces naturally when a new dispatch needs the new shape from the start.
+
+---
+
+## Cue chip self-audit across all author batches (added 2026-06-07)
+
+AUTHOR_BRIEF criterion 13 (Revision 6) introduces the discipline: cue chips name the surface morphology of the wanted answer, not the structural rule that produces the answer. Existing batches were authored before this discipline existed and may have leaks like the negative-imperative item ("Use: informal, infinitive form for negative tu" — "infinitive" names the rule under test).
+
+Each author chat on next opening should audit its own batch:
+
+- **PronounAuthor**: pronoun cluster items, imperatives with clusters. Likely candidates for rule-leak chips.
+- **ImperfectAuthor**: imperfect-tense items. Check chips don't say "imperfect" when imperfect is what's being chosen.
+- **PassatoAuthor**: PP items. Check chips don't say "passato prossimo" or "past participle" when those are the test.
+- **TenseChoiceAuthor**: tense-choice items inherently name tense in the chip; the audit here is whether the chip names tense as a label vs as a rule (the former is fine for discrimination items, the latter is leak).
+- **AdjectiveAuthor**: adjective agreement items. Generally less affected because agreement isn't a "rule named" pattern, but check anyway.
+
+Self-audit task. Each chat reports back on its inter_chat status note when done.
+
+**Options**: not applicable — this is an audit task, not a decision.
+
+**Trigger**: each author chat, on next opening (whichever order Smith brings them up).
+
