@@ -1,0 +1,77 @@
+# Coverage: present indicative, formation branch
+
+**Dispatch:** PresentFormation (formation branch only; usage and discrimination left as stubs for later dispatches).
+**Author:** PresentFormationAuthor
+**Date:** 2026-06-08
+**Brief revision applied:** AUTHOR_BRIEF Rev 7.
+
+**Totals:** 91 grammar questions + 32 translation items (EN→IT only), of which **28 grammar items carry `info_display: "suppress"`** (see chip-suppression section). Every active formation leaf is covered; no zero-coverage leaves. No new buckets were needed (the dispatch tree already had a leaf for every formation distinction I authored against), so `bucket_suggestions_verb_form.present_indicative.json` is empty. Three glossary terms are proposed.
+
+All translation items are EN→IT, because the formation buckets are `direction: "production"` and the marker drops production-only buckets on IT→EN items: only when the learner *produces* the Italian present form does a formation bucket fire.
+
+---
+
+## Coverage by leaf
+
+The "G" column counts grammar markpoints landing on the leaf; "T" counts translation items naming it as a required bucket. Friendly labels below; the engine id is `verb_form.present_indicative.formation.<short>`.
+
+| G | T | Leaf (short) | What it tests |
+|--:|--:|---|---|
+| 6 | 2 | regular_are | First-conjugation endings, all six persons; the 3pl -ano stress trap |
+| 6 | 2 | regular_ere | Second-conjugation endings; the 3sg -e and the 3pl -ono vs -ano slip |
+| 5 | 1 | regular_ire | Plain third conjugation; guards against spurious -isc- |
+| 9 | 3 | ire_isc *(hot)* | The -isc- four corners AND the noi/voi sleeper where -isc- must NOT appear |
+| 5 | 1 | orthographic.care_gare | h-insertion in 2sg/1pl (cerchi, paghiamo); plus an over-application guard (cerco, no h) |
+| 5 | 1 | orthographic.ciare_giare | i-drop in 2sg/1pl (cominci, mangiamo); plus the i-kept guard (mangio) |
+| 3 | 1 | orthographic.iare_stress | studi (unstressed merges) vs invii / scii (stressed kept) |
+| 6 | 2 | irregular.essere *(hot)* | Suppletive paradigm; the è-vs-e accent trap; 1sg=3pl sono |
+| 6 | 3 | irregular.avere *(hot)* | Silent-h forms (ho/hai/ha/hanno) and the no-h forms (abbiamo/avete) |
+| 9 | 3 | irregular.monosyllabic_core *(hot)* | vado, do/dà, sto, so, faccio across persons; the dà accent |
+| 3 | 1 | irregular.dire | dic- stem; the contracted 2pl dite |
+| 3 | 1 | irregular.bere | bev- stem expansion across the paradigm |
+| 6 | 2 | irregular.go_verbs | -g- insert in 1sg/3pl (vengo, salgono) and its absence in noi (veniamo) |
+| 6 | 2 | irregular.dittongo | u→e / e→ie / o→uo shifts in stressed forms and their reversion in noi |
+| 7 | 4 | modal_verbs *(hot)* | devo, posso, puoi, può, voglio, vogliono, dobbiamo; the può accent |
+| 6 | 3 | reflexive_assembly *(hot)* | Pronoun-plus-verb agreement (mi chiamo … si lavano) across all persons |
+
+CEFR spread (item target level): grammar 45 × A1, 36 × A2, 10 × B1; translation 17 × A1, 13 × A2, 2 × B1. This matches the dispatch's steer: the present is the base tense, so the bulk sits at A1–A2 core, with the subtle edges (iare_stress, the lower-frequency go/dittongo members, sedere/morire/rimanere) carried at B1.
+
+### How the hot spots were weighted
+
+- **The -isc- sleeper.** Of the nine -isc- grammar items, three deliberately test the **noi/voi** forms where the insert must NOT appear (capiamo, finite, preferiamo), with the over-extended wrong forms (capisciamo, finiscite, preferisciamo) in `must_not_include`. The other six test the four-corner -isc- forms. This is the "produces the change" vs "must not over-apply the change" pairing the dispatch asked for.
+- **go_verbs and dittongo** likewise pair the change-applies forms (vengo, escono) with the reverting forms (veniamo, usciamo, sediamo), since "esciamo for usciamo" and "vengiamo for veniamo" are the high-frequency misses.
+- **Accent traps** are authored as spelling-meaning errors: è / dà / può are accepted, and the bare or wrong-accent forms (e, da, puo, pò) sit in `must_not_include`. Same for avere's silent h (ho accepted, o rejected). An `examiner_note` flags each accent-bearing item as load-bearing.
+- **The 3pl cross-class confusion** (-ano vs -ono) is tested in both directions: -are items reject -ono (lavorono) and -ere/-ire items reject -ano (prendano, partano).
+
+---
+
+## Items flagged uncertain (for the project author to rule on)
+
+1. **debbo / devo (dovere 1sg), and debbono / devono (3pl).** Item `pres_irr_modal_dovere_1sg_01` accepts both `devo` and `debbo` at full credit (debbo carried as a graded `any_phrases` object with a register note). Both are fully standard; debbo is more formal/literary and now somewhat dated in speech. I did **not** add a separate debbo item or accept debbo on the 3pl item (which only tests devono → dobbiamo is 1pl, so this is moot there). **Ruling wanted:** is full credit for debbo the house policy, or should debbo be graded below 1.0, or excluded as too dated for an A1 learner?
+
+2. **bicicletta / bici.** `trans_pres_en_it_mono_01` accepts both the full `bicicletta` and the clipped `bici` in references; the vocab_help reveals "bici / bicicletta". The formation skill (vado) is unaffected either way, so I left both. Flag only if you want clipped colloquial forms excluded from reference translations as a matter of policy.
+
+3. **siedo / seggo (sedere 1sg).** I authored only `siedo`. The alternative `seggo` exists but is markedly literary/archaic; I judged it out of scope for an A2–B1 formation drill and did not add it to `any_phrases`. Flag if you want it accepted as a graded variant.
+
+4. **Subject-pronoun-dropped vs included in translation references.** Throughout, I gave both the pro-drop form (the natural default) and the subject-pronoun-included form as neutral reference translations. The AI marker should credit either. No ruling needed unless you want a single canonical reference per item.
+
+---
+
+## Chip suppression (`info_display: "suppress"`)
+
+A class of formation buckets has a name that, if shown in the pre-answer breadcrumb / info chip, leaks the very per-verb class membership the item is testing: the -isc- bucket tells the learner the verb takes -isc-, the -go bucket tells them it inserts -g-, the dittongo bucket tells them the stem vowel shifts, the non-isc -ire bucket tells them it does *not* take -isc-, and the orthographic buckets name the spelling rule to apply. This is the bucket-name-leak pattern the ImperfectAuthor surfaced (`Architecture_ImperfectAuthor_chip_suppression.md`), with the leak-vs-trap refinement worked out in `inter_chat/Architecture_PresentFormationAuthor_breadcrumb_leak.md` (Architecture ruling v2, **CLOSED**).
+
+The flag is applied **per item, not per leaf**, using a leak-vs-trap test: suppress where the breadcrumb hands over the answer (the change-applies forms — capisco, vengo, esco, cerchi, mangi, invii); leave visible where the *same* breadcrumb tempts a wrong answer the `must_not_include` already catches (the reverting / over-extension forms — capiamo, veniamo, usciamo, cerco, mangio, studi). The flag is display-only; engine marking is unchanged.
+
+**28 grammar items suppressed**, by leaf: ire_isc 6, regular_ire 3, go_verbs 5, dittongo 4, care_gare 4, ciare_giare 4, iare_stress 2. The 11 reverting / guard items stay visible. iare_stress splits 2-suppressed (invii, scii: answer keeps the i, so naming the rule is a leak) / 1-visible (studi: answer drops the i, so the rule-name tempts the catchable *studii*). Full item lists are in the thread's v3 section.
+
+This convention is now **criterion 15 in AUTHOR_BRIEF Revision 8** (Architecture, 2026-06-08), so later dispatches inherit it.
+
+---
+
+## Notes for later dispatches
+
+- **PresentUsage** (the `verb_form.present_indicative.usage` stub) will own: habitual / gnomic / now readings, present-for-near-future, historic present, polite/performative uses, impersonal `si`, and the `stare + gerundio` progressive (which cross-references the gerundio tree). None authored here.
+- **TenseChoice** owns the three discrimination stubs (vs imperfect / future / passato prossimo). The `vs_future` leaf forward-references `verb_form.future`, which does not exist yet (FutureAuthor dispatch is next); that reference is intentional.
+- **Cross-tree stems.** bere's bev- and dire's dic- present stems are the same expansions that drive their imperfect and participles; the imperfect tree already has the parallel branch. I mention the connection in the bere/dire explanations but author only the present forms here.
+- **Reflexive scope.** Reflexive items fix the subject and test the present-tense pronoun-plus-verb assembly only. Clitic attachment to infinitives / gerunds / imperatives belongs to the pronoun tree, not here.

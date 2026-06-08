@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-06-08-r2";
+  const LL_BUILD = "2026-06-08-r3";
 
   LL.state = LL.store.loadState();
 
@@ -2660,6 +2660,37 @@
       if (alt && a === alt) return { outcome: "hit", credit: 1, reason: null };
     }
 
+    // 1b) Leading English article tolerance (IT->EN direction).
+    // Mirror of the EN->IT side (which already accepts a leading Italian article
+    // via parseGenderSuffix / extractItalianArticle) and of the "to " infinitive
+    // leniency below. Strip a leading "the / a / an " from BOTH the learner's
+    // answer and each target alternative, then compare. Guard against emptying
+    // the string (a bare "the" answer should not match an empty target).
+    // See inter_chat/Architecture_Housing_english_article_tolerance.md.
+    if (isItEn) {
+      const stripEnArticle = s => String(s || "").replace(/^(the|a|an)\s+/i, "").trim();
+      const aStripped = stripEnArticle(a);
+      if (aStripped && aStripped !== a) {
+        // Learner had the article; target may or may not.
+        for (const alt of alternatives) {
+          if (!alt) continue;
+          const altStripped = stripEnArticle(alt);
+          if (altStripped && aStripped === altStripped) {
+            return { outcome: "hit", credit: 1, reason: null };
+          }
+        }
+      } else {
+        // Learner had no article; target may have one (rare but possible).
+        for (const alt of alternatives) {
+          if (!alt) continue;
+          const altStripped = stripEnArticle(alt);
+          if (altStripped && altStripped !== alt && a === altStripped) {
+            return { outcome: "hit", credit: 1, reason: null };
+          }
+        }
+      }
+    }
+
     // 2) "to" omission (English direction)
     if (isItEn) {
       for (const alt of alternatives) {
@@ -4059,13 +4090,80 @@
     return out;
   }
 
+  // Category derivation from a top-level bucket id. Data-driven so future
+  // verb_form.future / .condizionale slot in automatically.
+  // See inter_chat/Architecture_Housing_stats_panel_structure.md.
+  function overviewCategoryFor(rootId) {
+    if (!rootId) return null;
+    if (rootId === "tense_choice" || rootId.startsWith("verb_form.")) return "Verbs";
+    if (rootId.startsWith("adjective_agreement")) return "Adjectives";
+    if (rootId.startsWith("pronoun")) return "Pronouns";
+    if (rootId.startsWith("vocabulary")) return null;  // suppressed per ask 4
+    return "Other";
+  }
+  // Across-category order. Verbs first (bulk), then Adjectives, then Pronouns.
+  const OVERVIEW_CATEGORY_ORDER = ["Verbs", "Adjectives", "Pronouns", "Other"];
+  // Within-Verbs curriculum sequence. Other categories use manifest order.
+  const VERBS_CURRICULUM_ORDER = [
+    "verb_form.present_indicative",
+    "verb_form.passato_prossimo",
+    "verb_form.imperfect",
+    "verb_form.future",
+    "verb_form.condizionale",
+    "tense_choice"
+  ];
+
   function renderLiveOverview() {
     const host = document.getElementById("live-overview");
     if (!host) return;
     host.innerHTML = "";
+
+    // Bucket roots by category (vocabulary roots are suppressed).
+    const byCategory = new Map();
     for (const root of bucketIndex.roots) {
-      host.appendChild(renderOverviewCell(root));
+      const cat = overviewCategoryFor(root.id);
+      if (!cat) continue;
+      if (!byCategory.has(cat)) byCategory.set(cat, []);
+      byCategory.get(cat).push(root);
     }
+    // Sort Verbs by curriculum sequence; others by manifest order (already in).
+    const verbsList = byCategory.get("Verbs") || [];
+    verbsList.sort((a, b) => {
+      const ia = VERBS_CURRICULUM_ORDER.indexOf(a.id);
+      const ib = VERBS_CURRICULUM_ORDER.indexOf(b.id);
+      const ra = ia >= 0 ? ia : 999;
+      const rb = ib >= 0 ? ib : 999;
+      return ra - rb;
+    });
+
+    // Render category by category.
+    for (const cat of OVERVIEW_CATEGORY_ORDER) {
+      const roots = byCategory.get(cat);
+      if (!roots || roots.length === 0) continue;
+      const header = document.createElement("div");
+      header.className = "overview-category-header";
+      header.textContent = cat;
+      host.appendChild(header);
+      const group = document.createElement("div");
+      group.className = "overview-category-group";
+      for (const root of roots) {
+        group.appendChild(renderOverviewCell(root));
+      }
+      host.appendChild(group);
+    }
+
+    // Vocab footer link: not embedded as a tile, but a single line below
+    // the grammar panel pointing to the Vocab tab where the proper
+    // three-axis heatmap lives. Per ask 4.
+    const footer = document.createElement("div");
+    footer.className = "overview-vocab-footer";
+    const link = document.createElement("button");
+    link.type = "button";
+    link.className = "overview-vocab-link";
+    link.textContent = "Vocabulary: open the Vocab tab \u2192";
+    link.addEventListener("click", () => showStrand("vocab"));
+    footer.appendChild(link);
+    host.appendChild(footer);
   }
 
   function renderOverviewCell(root) {
@@ -4096,9 +4194,14 @@
     header.appendChild(lbl);
     const meta = document.createElement("div");
     meta.className = "overview-meta";
-    // Always show the hits/events count, even at 0/0, so the user can tell
-    // "no progress yet" from "this tile is broken" (Issue 4, 2026-05-29).
-    meta.textContent = hasEvents ? `${stats.hits}/${stats.n}` : "0/0";
+    // Switched 2026-06-08 (per inter_chat/Architecture_Housing_stats_panel_structure.md):
+    // headline is "buckets touched / buckets total", which matches the visible
+    // texture (one cell per leaf) and is self-explanatory. Raw hits/events
+    // count stays accessible on hover via friendlyOverviewTitle.
+    const leaves = getLeavesUnder(root);
+    const touchedLeafCount = leaves.filter(l => !!aggregateNodeStats(l)).length;
+    meta.textContent = touchedLeafCount + " / " + leaves.length;
+    meta.title = "buckets practised";
     header.appendChild(meta);
     cell.appendChild(header);
 
@@ -4564,14 +4667,22 @@
     const topicsDesc = real.perTopicCounts
       ? real.perTopicCounts
           .filter(t => !t.bucketsOnly)
-          .map(t => `${t.topic.split(".").pop()} ${t.grammar}G+${t.translation}T`)
+          .map(t => {
+            // Friendly label rather than the dotted-tail. Look up the topic
+            // root in bucketIndex (the chat-authored label field) and fall
+            // back to the dotted tail only when absent. See inter_chat/
+            // Architecture_Housing_stats_panel_structure.md.
+            const rootNode = bucketIndex.byId[t.topic];
+            const friendly = (rootNode && rootNode.label) || t.topic.split(".").pop();
+            return `${friendly} (${t.grammar}G + ${t.translation}T)`;
+          })
           .join(", ")
       : "";
     const vocabBit = vocabEntries.length ? `, ${vocabEntries.length} vocab` : "";
-    // Item counts per topic (grammar items + translation items). Separate
-    // from the live-stats topic-tile counts in the right panel, which are
-    // hits/events (Issue 7, 2026-05-29).
-    setStatus(`Real content: ${grammarQuestions.length} grammar, ${translationItems.length} translation${vocabBit}, ${allBuckets.length} buckets. ${topicsDesc ? "Item counts per topic: " + topicsDesc : ""}`);
+    // Per-topic CONTENT INVENTORY (grammar items + translation items shipped).
+    // The right-hand stats panel shows PROGRESS (buckets practised / total).
+    // Two surfaces, two distinct measurements, each labelled.
+    setStatus(`Real content: ${grammarQuestions.length} grammar, ${translationItems.length} translation${vocabBit}, ${allBuckets.length} buckets. ${topicsDesc ? "Items per topic: " + topicsDesc : ""}`);
   });
 
 })();

@@ -991,3 +991,29 @@ For translation items, a `major` edit is usually a reference-translation change;
 The PreIB engine is JavaScript, browser-only, normalisation-and-substring-matching. Most of `engine.js`'s `norm()`, `markShortLong()`, `markMCQ()`, `markNumeric()` can be lifted as-is into `static/js/grammar_engine.js`. The `markPoints` JSON shape from PreIB is the same as `grammar_markpoints` here; the only additions are `bucket` and `label` per markpoint.
 
 The PreIB normalisation has a few items (US/GB spelling fold, contraction expansion) that are English-specific. Those run on English-side text; Italian-side text uses an Italian-specific extension (elision, accent fallback, optional article-contraction expansion).
+
+## 15. Misconception aggregation
+
+**The gap.** The buckets (§4) track *skills*: a miss records "you failed `ire_isc`." They do not record *how*. The "how" is a **misconception**, an error pattern, and it is a different shape from a skill: one misconception spans many buckets (over-extending a stem change appears in `ire_isc`, `go_verbs`, `dittongo`) and one bucket can be failed by several misconceptions. Misconceptions are orthogonal to the skill tree, the way themes are orthogonal to the frequency axis on the vocab side, which is why they cannot be read off the bucket stats.
+
+**The model.** A misconception is an aggregable tag attached at the point of detection, riding along with a bucket miss but aggregating on its own axis.
+
+- Registry: `data/misconceptions.json`, a shallow two-level tree (family > specific) of error-pattern types with ids, friendly labels, descriptions, and a `cross_kind` flag per family. Global, architecture-owned, authors propose additions via `misconception_suggestions_<topic>.json`. Same governance as the glossary and themes registries.
+- Tagging: a grammar item's `must_not_include` entry, in object form `{ "phrase": "...", "misconception": "<id>" }`, carries the tag. The engine already reads object-form `must_not_include` entries (from the graded-credit work), so no new detection plumbing is needed. When the tagged wrong form fires, the housing records the usual bucket miss AND a misconception event.
+- The tag is the abstraction above the surface forms: capisciamo / finisciamo / preferisciamo are three wrong strings pointing up to one misconception (`stem_change.isc_over_extension`). The collapse from many wrong strings to ~20 misconceptions is where the aggregation power comes from.
+
+**Orthogonality and the cross-kind prize.** A misconception event always rides on a bucket miss but aggregates independently. The high-value families carry `cross_kind: true` (agreement, accent/silent-letter, regularisation, word-order, register, auxiliary-choice). These recur across different *kinds* of grammar (an agreement error spans adjectives, participles, articles, pronouns, and subject-verb), so the same misconception observed across kinds is the marquee analytic payoff: "you don't have a verbs problem, you systematically drop accents everywhere." The registry seeds the cross-kind families now (some reserved and unpopulated) so they fill in as each topic comes online.
+
+**Separate drill-down view, not inline.** Misconception aggregation lives in its own stats view, reached by drill-down, never surfaced during question-answering. Two consequences: (1) tagging carries no leak risk (criterion 15 does not apply, because the misconception is never shown pre-answer), so the data can be as technical as we like; (2) the view is an analysis tool for the learner's reflection and for authors/teachers to find interesting cross-kind patterns, not a live nudge.
+
+**Aggregation and decay.** Misconception events roll up the family tree (specific to family) and reuse the recency-weighted mastery and decay logic of §5.3: a misconception you have stopped making visibly fades. Views: a misconception heatmap parallel to the skill heatmap; a "top recurring errors" summary (the actionable payoff); cross-links both ways (from a misconception, which skills it appears in; from a miss, which misconception). A specific is flagged "observed cross-kind" when its events span more than one topic-kind.
+
+**Bootstrapping.** Every bucket already carries a `common_miss` prose attribute (regular_are: "stressing the 3pl on the penult"). Those are misconception descriptions already authored across all the trees; the registry is seeded partly by harvesting and formalising them.
+
+**Phasing.**
+
+- Phase 1 (foundational): registry + the `misconception` field on object-form `must_not_include` + housing records misconception events. Seeded from present-indicative formation plus the general families.
+- Phase 2: the separate drill-down misconception stats view (heatmap, top-errors, cross-links), populated as events accrue.
+- Phase 3: authors retro-tag existing `must_not_include` entries across all batches; the AI marker emits a `misconception` tag from the registry on translation-item misses, with a propose-new path routed to review, same as bucket proposals.
+
+Marking is unaffected throughout: `misconception` is an optional tag, untagged items behave exactly as now, and a "no idea / blank" miss simply carries no misconception.

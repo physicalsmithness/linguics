@@ -407,6 +407,24 @@ If the attempt-level intent is `sense` and a segment is unflagged, does the AI t
 
 ---
 
+## Word stress as a vocabulary dimension
+
+Italian word stress is a per-word property that is only partly predictable (`pArlano` versus the learner's mis-stressed `parlAno`; antepenult vs penult vs final stress; truncated-final written accents like `città`, `caffè`, `perché`). It behaves like gender: a fact attached to a lemma, not derivable from a single rule, and individually testable. Smith's steer (2026-06-08) is that this belongs in the **vocab layer as its own section, parallel to gender**, with its own heatmap axis, rather than as a grammar-formation bucket.
+
+Consequence already applied: the present-formation tree gets **no** `stress_3pl` leaf; the 3pl antepenult-stress warning is folded into each regular formation leaf's `common_miss` attribute instead. The fuller stress tracking lives in vocab when it is built.
+
+**Options for the vocab dimension** (to scope later with the vocab chat):
+
+- A per-lemma `stress` field (stressed-syllable index, or a category: antepenult / penult / final / truncated-accent) plus a heatmap axis like the gender axis.
+- Tested via a dedicated prompt shape (mark the stressed syllable, or type the word with the correct written accent where one exists).
+- Restrictable by the same obviousness ladder gender uses (regular penult default = predictable; antepenult and final = irregular).
+
+**Likely resolution**: add it as a vocab axis once the vocab chat has bandwidth; endorsed in principle, not yet scoped.
+
+**Trigger**: when tense-formation testing surfaces stress errors that have nowhere to be recorded, or when the vocab axis work has spare capacity.
+
+---
+
 ## Architect-side: vocab bucket-id <pos>-extension batch script (added 2026-06-07)
 
 Per DECISIONS.md 2026-06-07 ruling on the AdjectiveAuthor brief Rev 6 audit Q2, architect chat owns writing a batch script that walks every grammar batch JSON, looks up each `vocabulary.it.<lemma>.<aspect>` bucket reference in `data/vocabulary_it_frequency.json`, and rewrites with the new shape `vocabulary.it.<lemma>.<pos>[.<gender>][.<number>].<aspect>[.<direction>]`. Auto-rewrites single-POS lemmas; flags multi-POS lemmas for per-batch author resolution.
@@ -414,6 +432,22 @@ Per DECISIONS.md 2026-06-07 ruling on the AdjectiveAuthor brief Rev 6 audit Q2, 
 **Schedule**: dry-run delivered as a per-batch sibling thread before commit. Target 1-2 architect passes from now.
 
 **Trigger**: architect chat opens a dedicated pass for this task. Or surfaces naturally when a new dispatch needs the new shape from the start.
+
+---
+
+## Misconception aggregation: open parts (added 2026-06-08)
+
+The model is settled and seeded (DESIGN §15, `data/misconceptions.json`, v1 with 7 populated + 4 reserved cross-kind families). Open parts, to resolve as Phase 2/3 approach:
+
+- **Storage**: misconception events as a projection of the existing miss-event log (the miss event records the `misconception` id), not a separate store. *Lean: projection*, so the misconception axis is a query over the activity log, no new event store.
+- **Multiple misconceptions per miss**: can one wrong form embody two (over-extended AND accent-omitted)? *Lean: allow `misconception` to be a string or an array; most are single.*
+- **Mastery / decay direction**: misconceptions are inverted skills (you want them to fade). Reuse the §5.3 recency-weighted logic but on frequency-of-occurrence rather than correctness; a misconception not made recently fades. Exact formula TBD.
+- **Drill-down view shape (Phase 2)**: a heatmap parallel to the skill heatmap, a "top recurring errors" summary, and cross-links, as a separate stats view never shown inline. Exact layout TBD with housing.
+- **"Observed cross-kind" detection**: flag a specific when its events span more than one topic-kind (e.g. an `agreement.*` specific firing from both adjective and participle items). How to derive a topic's "kind" (leading namespace) and surface the flag, TBD.
+- **AI-marker emission (Phase 3)**: the AI emits a `misconception` id from the registry on translation-item misses, with a propose-new path routed to review (same as the bucket-suggestion path). Deferred to Phase 3.
+- **Vocab misconceptions**: the `false_friend` family and gender-pattern errors join from the vocab side. Deferred; grammar-first.
+
+**Trigger**: Phase 1 (author `must_not_include` tagging + housing event recording) begins once present-indicative formation stabilises (PresentFormationAuthor v3 + batch review + manifest wiring). Phase 2 (the view) follows once events accrue.
 
 ---
 

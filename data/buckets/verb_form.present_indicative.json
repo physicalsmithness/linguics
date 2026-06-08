@@ -1,0 +1,579 @@
+[
+  {
+    "id": "verb_form.present_indicative",
+    "parent_id": "verb_form",
+    "language_code": "it",
+    "label": "Present indicative (presente indicativo)",
+    "description": "Italian's base tense and the first one learners meet. Stem (drop the -are/-ere/-ire ending) plus the present endings, which differ by conjugation class. Covers far more ground than the English present: habitual action, general truth, action happening now (Italian often needs no separate progressive), near-certain future ('Parto domani'), and historic/narrative present. The regular system is learnable quickly, but the high-frequency core is heavily irregular (essere, avere, andare, fare, the modals), and several orthographic and stem-changing classes complicate the singular and 3pl forms. Every later tense's stem and person-system trace back here, which is why this is the structural root of the verb-form trees.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "topic_short": "pres",
+      "direction": "bidirectional"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.present_indicative.formation",
+    "parent_id": "verb_form.present_indicative",
+    "language_code": "it",
+    "label": "Formation",
+    "description": "Building the present-tense form. Three regular classes (-are, -ere, -ire), with -ire split into a plain pattern (dormo) and the larger -isc- inserting pattern (capisco). On top sit orthographic adjustments that keep spelling consistent with sound (-care/-gare add h, -ciare/-giare drop the i), a heavily irregular high-frequency core (essere, avere, the contracted monosyllables, the -go verbs, the stem-vowel/dittongo shifts), the three modal verbs, and the assembly of reflexive forms (pronoun plus verb). This branch is what the PresentFormation dispatch authors; usage and discrimination are separate branches left as stubs.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.present_indicative.formation.regular_are",
+    "parent_id": "verb_form.present_indicative.formation",
+    "language_code": "it",
+    "label": "Regular -are: parlo / parli / parla / parliamo / parlate / parlano",
+    "description": "Stem plus -o, -i, -a, -iamo, -ate, -ano. The largest and most predictable class. Stress sits on the stem in the singular and 3pl (PARlo, PARla, PARlano) and shifts to the ending in 1pl/2pl (parLIAmo, parLAte). The 3pl PARlano keeps the stem stress, giving the antepenultimate pattern learners routinely mis-stress as parLAno.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "parlo, lavoriamo, mangiano",
+      "common_miss": "stressing the 3pl on the penult (parlAno) instead of the antepenult (pArlano)",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.present_indicative.formation.regular_ere",
+    "parent_id": "verb_form.present_indicative.formation",
+    "language_code": "it",
+    "label": "Regular -ere: prendo / prendi / prende / prendiamo / prendete / prendono",
+    "description": "Stem plus -o, -i, -e, -iamo, -ete, -ono. The 3sg is -e (prende) and the 3pl is -ono (prendono), the two places -ere diverges from -are. Many -ere verbs are irregular in the passato remoto or participle yet perfectly regular in the present (scrivere, leggere, vivere). The 3pl prendono carries antepenultimate stress (PRENdono).",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "prendo, scriviamo, leggono",
+      "common_miss": "using -ano for the 3pl (prendano) by analogy with -are, instead of -ono",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.present_indicative.formation.regular_ire",
+    "parent_id": "verb_form.present_indicative.formation",
+    "language_code": "it",
+    "label": "Regular -ire (non-isc): dormo / dormi / dorme / dormiamo / dormite / dormono",
+    "description": "The smaller of the two -ire patterns. Stem plus -o, -i, -e, -iamo, -ite, -ono, sharing singular and 3pl endings with -ere and differing only in the 2pl (-ite, not -ete). Common members: dormire, partire, sentire, aprire, seguire, offrire. There is no reliable rule for which -ire verbs take this pattern versus the -isc- pattern; it is learned verb by verb.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "dormo, partiamo, sentono",
+      "common_miss": "inserting -isc- where it does not belong (dormisco for dormo)",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.present_indicative.formation.ire_isc",
+    "parent_id": "verb_form.present_indicative.formation",
+    "language_code": "it",
+    "label": "-ire with -isc-: capisco / capisci / capisce / capiamo / capite / capiscono",
+    "description": "The larger -ire pattern inserts -isc- between stem and ending in the three singular persons and the 3pl, but NOT in the 1pl/2pl (capiamo, capite have no -isc-). This boot-shaped distribution (the four corner forms take -isc-, the two we/you-plural forms do not) is the defining difficulty. High-frequency members: capire, finire, preferire, pulire, costruire, spedire. The -isc- is purely a present-tense phenomenon; it vanishes in every other tense (imperfetto capivo, futuro capiro).",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "capisco, finisci, preferiscono; but capiamo, finite",
+      "common_miss": "carrying -isc- into the 1pl/2pl (capiscamo, capiscite) where it does not belong",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.present_indicative.formation.orthographic",
+    "parent_id": "verb_form.present_indicative.formation",
+    "language_code": "it",
+    "label": "Orthographic adjustments",
+    "description": "Spelling changes that keep the written form consistent with the spoken sound across the -i endings. -care and -gare insert an h to keep the hard c/g (cerco, cerchi); -ciare and -giare drop the redundant i (comincio, cominci); -iare verbs keep or drop the i depending on whether it is stressed (studi vs invii). All are -are verbs; the adjustments only surface in the 2sg and 1pl, where the ending begins with -i.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.present_indicative.formation.regular_are"
+    ],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.present_indicative.formation.orthographic.care_gare",
+    "parent_id": "verb_form.present_indicative.formation.orthographic",
+    "language_code": "it",
+    "label": "-care / -gare add h: cerco / cerchi, pago / paghi",
+    "description": "Verbs in -care and -gare insert an h before the 2sg -i and 1pl -iamo endings so the hard /k/ and /g/ are preserved in spelling: cercare gives cerchi, cerchiamo; pagare gives paghi, paghiamo. Without the h, the c/g would be read soft. All other persons are regular (cerco, cerca, cercate, cercano).",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "cerchi, paghiamo, giochi, spieghi",
+      "common_miss": "omitting the h (ceri, pagiamo), which changes the consonant sound",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.present_indicative.formation.orthographic.ciare_giare",
+    "parent_id": "verb_form.present_indicative.formation.orthographic",
+    "language_code": "it",
+    "label": "-ciare / -giare drop the i: comincio / cominci, mangio / mangi",
+    "description": "Verbs in -ciare and -giare drop the stem i before an ending that already begins with i, avoiding a double i: cominciare gives cominci (not comincii), cominciamo (not cominciiamo); mangiare gives mangi, mangiamo. The stem i was only there to soften the c/g in the infinitive; once the ending supplies an i, it is redundant.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "cominci, mangiamo, lasci, viaggi",
+      "common_miss": "keeping the double i (mangii, comincii)",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.present_indicative.formation.orthographic.iare_stress",
+    "parent_id": "verb_form.present_indicative.formation.orthographic",
+    "language_code": "it",
+    "label": "-iare i-retention by stress: studio / studi, but invio / invii",
+    "description": "For -iare verbs (not -ciare/-giare), whether the stem i survives in the 2sg depends on stress. When the i is unstressed it merges with the ending's i and only one is written: studiare gives studi. When the i is stressed it is kept and the ending's i added too, giving a written double i: inviare gives invii, sciare gives scii. A subtle, lower-frequency rule that mostly bites in the 2sg.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "studi, but invii, scii, spii",
+      "common_miss": "writing studii (unstressed i should merge) or invi (stressed i should be kept)",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.present_indicative.formation.irregular",
+    "parent_id": "verb_form.present_indicative.formation",
+    "language_code": "it",
+    "label": "Irregular core",
+    "description": "Unlike the imperfect, the Italian present has a large, high-frequency irregular core, because the most-used verbs are the most irregular. This branch covers essere and avere (the two most frequent verbs), the heavily contracted monosyllabic group (andare, dare, stare, sapere, fare), the contracted dire, the stem-expanding bere, the -go class (vengo, tengo, salgo), and the stem-vowel/dittongo shifts (esco, siedo, muoio). The modal verbs and reflexive assembly sit in their own sibling branches.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.present_indicative.formation.irregular.essere",
+    "parent_id": "verb_form.present_indicative.formation.irregular",
+    "language_code": "it",
+    "label": "essere: sono / sei / è / siamo / siete / sono",
+    "description": "The most irregular and most frequent verb, with wholly suppletive forms and 1sg and 3pl sharing 'sono'. The 3sg 'è' carries a written grave accent distinguishing it from the conjunction 'e' (and); omitting the accent is both a spelling and a meaning error. Essere is the auxiliary for many compound tenses, so its present underpins the passato prossimo.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "sono, sei, è, siamo, siete, sono",
+      "common_miss": "writing 'e' for 'è' (3sg), or confusing 1sg and 3pl 'sono'",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.present_indicative.formation.irregular.avere",
+    "parent_id": "verb_form.present_indicative.formation.irregular",
+    "language_code": "it",
+    "label": "avere: ho / hai / ha / abbiamo / avete / hanno",
+    "description": "The second auxiliary and second most frequent verb. The singular forms and 3pl carry a silent written h (ho, hai, ha, hanno) that has no sound but is obligatory and distinguishes them from o (or), ai (to the), a (to), anno (year). The 1pl abbiamo and 2pl avete have no h. Avere is the default compound-tense auxiliary, so its present underpins the passato prossimo.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "ho, hai, ha, abbiamo, avete, hanno",
+      "common_miss": "dropping the silent h (o, ai, a, anno), each of which is a different real word",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.present_indicative.formation.irregular.monosyllabic_core",
+    "parent_id": "verb_form.present_indicative.formation.irregular",
+    "language_code": "it",
+    "label": "Contracted core: andare/vado, dare/do, stare/sto, sapere/so, fare/faccio",
+    "description": "A cluster of very high-frequency verbs with heavily contracted, often monosyllabic 1sg forms and irregular paradigms: andare (vado, vai, va, andiamo, andate, vanno), dare (do, dai, dà, diamo, date, danno), stare (sto, stai, sta, stiamo, state, stanno), sapere (so, sai, sa, sappiamo, sapete, sanno), fare (faccio, fai, fa, facciamo, fate, fanno). Note the written accent on 3sg 'dà' (distinguishing it from the preposition 'da'). Learned as whole paradigms, not by rule.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "vado, fai, sta, diamo, sanno, faccio",
+      "common_miss": "regularising the 1sg (sapo for so, ando for vado) or dropping the accent on 'dà'",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.present_indicative.formation.irregular.dire",
+    "parent_id": "verb_form.present_indicative.formation.irregular",
+    "language_code": "it",
+    "label": "dire: dico / dici / dice / diciamo / dite / dicono",
+    "description": "Dire restores the Latin stem dic- in most forms (dico, dici, dice, diciamo, dicono) but keeps a contracted 2pl 'dite' (not dicete). The same dic- stem drives its imperfect (dicevo) and its irregular participle (detto). Its own leaf because the dic-/di- alternation plus the contracted 2pl is a distinct pattern.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "dico, dici, diciamo, dite, dicono",
+      "common_miss": "regularising the 2pl to dicete instead of dite",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.present_indicative.formation.irregular.bere",
+    "parent_id": "verb_form.present_indicative.formation.irregular",
+    "language_code": "it",
+    "label": "bere: bevo / bevi / beve / beviamo / bevete / bevono",
+    "description": "Bere expands to the longer Latin stem bev- throughout the present (bevo, bevi, beve, beviamo, bevete, bevono), then takes regular -ere endings. The same bev- expansion drives the imperfect (bevevo) and participle (bevuto). The infinitive bere is the contracted form; the conjugation reveals the underlying bev-.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "bevo, bevi, beviamo, bevono",
+      "common_miss": "conjugating from the contracted infinitive (bero, bei) instead of the bev- stem",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.present_indicative.formation.irregular.go_verbs",
+    "parent_id": "verb_form.present_indicative.formation.irregular",
+    "language_code": "it",
+    "label": "-go verbs: venire/vengo, tenere/tengo, salire/salgo, rimanere/rimango",
+    "description": "A class whose 1sg and 3pl take an inserted -g- before the ending, while the other persons follow a regular or dittongo pattern: venire (vengo, vieni, viene, veniamo, venite, vengono), tenere (tengo, tieni, tiene, teniamo, tenete, tengono), salire (salgo, sali, sale, saliamo, salite, salgono), rimanere (rimango ... rimangono), porre (pongo ... pongono), valere (valgo). The -g- appears only in the two forms whose ending starts with o (1sg -o, 3pl -ono).",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "vengo, tengo, salgo, rimango, pongo",
+      "common_miss": "omitting the -g- (veno, teno) or carrying it into the wrong persons (vengiamo)",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.present_indicative.formation.irregular.dittongo",
+    "parent_id": "verb_form.present_indicative.formation.irregular",
+    "language_code": "it",
+    "label": "Stem-vowel / dittongo shifts: uscire/esco, sedere/siedo, morire/muoio",
+    "description": "Verbs whose stressed stem vowel changes (often diphthongising) in the forms where stress falls on the stem, then reverts in the stress-on-ending 1pl/2pl: uscire (esco, esci, esce, usciamo, uscite, escono), sedere (siedo, siedi, siede, sediamo, sedete, siedono), morire (muoio, muori, muore, moriamo, morite, muoiono). The 1pl/2pl show the plain stem (usciamo, sediamo) because stress moves to the ending there.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "esco, escono, siedo, muoio; but usciamo, sediamo",
+      "common_miss": "keeping the diphthong in 1pl/2pl (esciamo for usciamo) or losing it in the singular (uscio for esco)",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.present_indicative.formation.modal_verbs",
+    "parent_id": "verb_form.present_indicative.formation",
+    "language_code": "it",
+    "label": "Modal verbs: dovere/devo, potere/posso, volere/voglio",
+    "description": "The three modals share heavily irregular present paradigms and recur as a behaviour (modal + infinitive), so they get their own formation leaf rather than sitting among the other irregulars. dovere (devo, devi, deve, dobbiamo, dovete, devono), potere (posso, puoi, può, possiamo, potete, possono), volere (voglio, vuoi, vuole, vogliamo, volete, vogliono). Note 3sg 'può' carries a written accent. Each is suppletive enough to be learned as a whole paradigm.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "devo, puoi, può, vogliamo, vogliono",
+      "common_miss": "regularising (poto for posso, volo for voglio) or dropping the accent on 'può'",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.present_indicative.formation.reflexive_assembly",
+    "parent_id": "verb_form.present_indicative.formation",
+    "language_code": "it",
+    "label": "Reflexive assembly: mi lavo / ti lavi / si lava / ci laviamo / vi lavate / si lavano",
+    "description": "Building a reflexive present: the reflexive pronoun (mi, ti, si, ci, vi, si) agreeing with the subject, placed before the conjugated verb, which itself takes ordinary present endings. The skill is the pronoun-plus-verb assembly and agreement; the verb conjugation is whatever its class dictates. Very high frequency at A1 (mi chiamo, mi alzo, si chiama). The pronoun precedes the verb in finite clauses; attachment to infinitives, gerunds, and imperatives is a separate pronoun-tree matter.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "mi chiamo, ti svegli, si lava, ci alziamo",
+      "common_miss": "wrong reflexive pronoun for the person (mi lavi), or omitting the pronoun (lavo for mi lavo)",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.present_indicative.usage",
+    "parent_id": "verb_form.present_indicative",
+    "language_code": "it",
+    "label": "Usage",
+    "description": "STUB. When the present form is the right choice and what it conveys: habitual action, general and gnomic truths, action happening now (Italian often uses the plain present where English uses the progressive), the present-for-near-future ('Domani parto'), historic/narrative present, polite and performative uses, and the stare + gerundio progressive (which cross-references the gerundio tree). Impersonal 'si' constructions (si dice, si mangia) also live here rather than in formation. Left at stub level for a later PresentUsage dispatch; no usage leaves are authored in the PresentFormation dispatch.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.present_indicative.discrimination",
+    "parent_id": "verb_form.present_indicative",
+    "language_code": "it",
+    "label": "Discrimination",
+    "description": "STUB. Choosing the present over a competing tense where both are formally possible. Three contrasts have stub leaves so other trees and the tense-choice dispatch can cite them: present vs imperfect, present vs future, present vs passato prossimo. Items that test these contrasts are authored by the TenseChoice dispatch (and any cross-cutting tense-choice work), not by the PresentFormation author; these buckets are the structural home for those items, kept here so cross-tree prerequisites and citations resolve.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.present_indicative.discrimination.vs_imperfect",
+    "parent_id": "verb_form.present_indicative.discrimination",
+    "language_code": "it",
+    "label": "Present vs imperfect",
+    "description": "STUB. Distinguishing a present-time state or habit from a past-time one, the mirror of the imperfect tree's own discrimination branch. Authored by TenseChoice; this leaf is its structural home.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.imperfect"
+    ],
+    "attributes": {
+      "direction": "bidirectional",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.present_indicative.discrimination.vs_future",
+    "parent_id": "verb_form.present_indicative.discrimination",
+    "language_code": "it",
+    "label": "Present vs future (present-for-future)",
+    "description": "STUB. When Italian uses the plain present for a scheduled or near-certain future ('Parto domani') versus when the morphological future is preferred. Authored by TenseChoice; this leaf is its structural home. The prerequisite future tree does not exist yet (the FutureAuthor dispatch is next); the forward reference is intentional.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.future"
+    ],
+    "attributes": {
+      "direction": "bidirectional",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.present_indicative.discrimination.vs_passato_prossimo",
+    "parent_id": "verb_form.present_indicative.discrimination",
+    "language_code": "it",
+    "label": "Present vs passato prossimo",
+    "description": "STUB. Choosing the present for an ongoing situation versus the passato prossimo for a completed one, including the 'da + time' case where Italian uses the present ('Vivo qui da due anni') against an English perfect. Authored by TenseChoice; this leaf is its structural home.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.passato_prossimo"
+    ],
+    "attributes": {
+      "direction": "bidirectional",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  }
+]

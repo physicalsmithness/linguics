@@ -1347,3 +1347,46 @@ body.strand-vocab-active #live-stats { display: none; }
   35%  { box-shadow: 0 0 0 8px rgba(27,138,74,0.55); }
   100% { box-shadow: 0 0 0 14px rgba(27,138,74,0);   }
 }
+
+/* Stats panel category structure — small headers above grouped topic tiles.
+   Verbs first (curriculum: present → passato → imperfect → future →
+   condizionale → tense_choice), then Adjectives, then Pronouns.
+   See inter_chat/Architecture_Housing_stats_panel_structure.md. */
+.overview-category-header {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted, #6a6a6a);
+  margin: 14px 0 6px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid var(--line, #e3e0d8);
+}
+.overview-category-header:first-child {
+  margin-top: 4px;
+}
+.overview-category-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.overview-vocab-footer {
+  margin-top: 16px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line, #e3e0d8);
+  text-align: center;
+}
+.overview-vocab-link {
+  background: transparent;
+  border: 1px solid var(--accent, #4a89c7);
+  color: var(--accent, #4a89c7);
+  padding: 6px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+}
+.overview-vocab-link:hover {
+  background: var(--accent-soft, #e8f0fb);
+}

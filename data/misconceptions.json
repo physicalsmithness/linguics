@@ -1,0 +1,191 @@
+{
+  "version": 1,
+  "description": "Misconception registry for Linguics. A misconception is an ERROR PATTERN, the structured abstraction above a set of surface wrong-forms (capisciamo, finisciamo, preferisciamo all embody one misconception: stem_change.isc_over_extension). Misconceptions are ORTHOGONAL to the skill buckets: one misconception spans many buckets (over-extending a stem change appears in ire_isc, go_verbs, dittongo), and one bucket can be failed by several misconceptions. They are tagged at the point of detection: a grammar item's must_not_include entry (in object form) carries an optional `misconception` field naming an id from this registry; when that wrong form fires, the housing records the usual bucket miss AND a misconception event. Misconception events aggregate on their own axis, surfaced in a SEPARATE drill-down stats view (never inline during questions, so tagging carries no leak risk). The marquee long-term value is the CROSS-KIND families (agreement, accent, regularisation): the same misconception observed across adjectives, participles, articles, pronouns, and verbs. Governance mirrors the glossary and themes registries: architecture-owned and canonical; authors tag against it and propose additions via misconception_suggestions_<topic>.json; architecture ratifies. This v1 seed is populated from the present-indicative formation work plus the general families; it is designed to grow as every topic comes online. Many specifics here can be bootstrapped from the `common_miss` prose attributes already authored across the bucket trees.",
+  "families": {
+    "agreement": {
+      "label": "Agreement",
+      "description": "Wrong gender, number, or person where two elements must agree. The flagship cross-kind family: will be populated by adjectives (rossa/rosso), past participles (andata/andato), articles (il/la), pronouns (lo/la), demonstratives, and subject-verb agreement.",
+      "cross_kind": true
+    },
+    "regularisation": {
+      "label": "Regularisation",
+      "description": "Treating an irregular form as if it followed the regular pattern. Cross-kind: irregular verbs, irregular plurals, irregular comparatives.",
+      "cross_kind": true
+    },
+    "orthography": {
+      "label": "Orthography (sound-preserving spelling)",
+      "description": "Spelling adjustments whose job is to keep the written form consistent with the sound. Cross-kind: verb endings (cerco/cerchi), plural spelling, and similar.",
+      "cross_kind": true
+    },
+    "accent_silent_letter": {
+      "label": "Accents and silent letters",
+      "description": "Written accents and silent letters that are obligatory and often meaning-bearing. Cross-kind: appears anywhere accented or h-bearing forms occur.",
+      "cross_kind": true
+    },
+    "stress": {
+      "label": "Word stress",
+      "description": "Misplaced spoken or written stress. Cross-kind, and links to the proposed word-stress vocabulary dimension (see OPEN_QUESTIONS).",
+      "cross_kind": true
+    },
+    "stem_change": {
+      "label": "Stem change (over / under application)",
+      "description": "Over-applying or under-applying a conditioned stem change. Mostly verb morphology, but the over/under-application shape recurs elsewhere.",
+      "cross_kind": false
+    },
+    "conjugation_class": {
+      "label": "Conjugation-class confusion",
+      "description": "Applying one conjugation class's ending or pattern to a verb of another class.",
+      "cross_kind": false
+    },
+    "word_order": {
+      "label": "Word order",
+      "description": "Reserved cross-kind family (adjective position, clitic position, etc.). No specifics seeded yet; populated as those topics come online.",
+      "cross_kind": true
+    },
+    "register": {
+      "label": "Register",
+      "description": "Reserved cross-kind family (formal/informal mismatch). No specifics seeded yet.",
+      "cross_kind": true
+    },
+    "false_friend": {
+      "label": "False friend",
+      "description": "Reserved cross-kind (vocab) family. No specifics seeded yet; populated by the vocab side later.",
+      "cross_kind": true
+    },
+    "auxiliary_choice": {
+      "label": "Auxiliary choice",
+      "description": "Reserved cross-tense family (essere vs avere). No specifics seeded yet; will be populated by the passato prossimo / compound-tense work.",
+      "cross_kind": true
+    }
+  },
+  "misconceptions": [
+    {
+      "id": "agreement.reflexive_pronoun_person",
+      "family": "agreement",
+      "label": "Reflexive pronoun wrong for the subject",
+      "description": "Using a reflexive pronoun that doesn't agree with the subject's person (mi lavi for ti lavi). A subject-agreement error; the first foothold of the agreement family on the verb side.",
+      "examples": ["mi lavi (for ti lavi)", "si lavo (for mi lavo)"],
+      "topics": ["verb_form.present_indicative"]
+    },
+    {
+      "id": "regularisation.irregular_verb",
+      "family": "regularisation",
+      "label": "Irregular verb regularised",
+      "description": "Conjugating an irregular verb as if it were regular, ignoring the suppletive or contracted paradigm. Recurs in every tense.",
+      "examples": ["sapo (for so)", "volo (for voglio)", "ando (for vado)", "poto (for posso)"],
+      "topics": ["verb_form.present_indicative"]
+    },
+    {
+      "id": "stem_change.isc_over_extension",
+      "family": "stem_change",
+      "label": "-isc- added in noi/voi",
+      "description": "Over-extending the -isc- infix into the 1pl/2pl, where it never appears, by analogy with the singular and 3pl.",
+      "examples": ["capisciamo (for capiamo)", "finisciamo (for finiamo)", "preferisciamo (for preferiamo)"],
+      "topics": ["verb_form.present_indicative"]
+    },
+    {
+      "id": "stem_change.isc_under_application",
+      "family": "stem_change",
+      "label": "-isc- omitted where required",
+      "description": "Failing to insert -isc- in the singular or 3pl of an -isc- verb.",
+      "examples": ["capo / capio (for capisco)", "finono (for finiscono)"],
+      "topics": ["verb_form.present_indicative"]
+    },
+    {
+      "id": "stem_change.g_over_extension",
+      "family": "stem_change",
+      "label": "-g- inserted in the wrong person",
+      "description": "Carrying the inserted -g- of a -go verb into a person that should not have it (the 1pl/2pl, or a regular-stem form).",
+      "examples": ["vengiamo (for veniamo)", "tengiamo (for teniamo)"],
+      "topics": ["verb_form.present_indicative"]
+    },
+    {
+      "id": "stem_change.g_under_application",
+      "family": "stem_change",
+      "label": "-g- omitted where required",
+      "description": "Failing to insert the -g- in the 1sg/3pl of a -go verb.",
+      "examples": ["veno (for vengo)", "teno (for tengo)", "salgono written as salono"],
+      "topics": ["verb_form.present_indicative"]
+    },
+    {
+      "id": "stem_change.dittongo_over_extension",
+      "family": "stem_change",
+      "label": "Diphthong kept in noi/voi",
+      "description": "Keeping the stressed-stem diphthong in the 1pl/2pl, where stress moves to the ending and the plain stem returns.",
+      "examples": ["esciamo (for usciamo)", "siediamo (for sediamo)"],
+      "topics": ["verb_form.present_indicative"]
+    },
+    {
+      "id": "stem_change.dittongo_under_application",
+      "family": "stem_change",
+      "label": "Diphthong lost in the singular",
+      "description": "Failing to diphthongise the stressed stem vowel in the singular or 3pl.",
+      "examples": ["uscio (for esco)", "sedo (for siedo)", "morio (for muoio)"],
+      "topics": ["verb_form.present_indicative"]
+    },
+    {
+      "id": "conjugation_class.ano_for_ono",
+      "family": "conjugation_class",
+      "label": "-ano 3pl on an -ere/-ire verb",
+      "description": "Using the -are 3pl ending -ano on an -ere or -ire verb, which takes -ono.",
+      "examples": ["prendano (for prendono)", "dormano (for dormono)"],
+      "topics": ["verb_form.present_indicative"]
+    },
+    {
+      "id": "conjugation_class.ono_for_ano",
+      "family": "conjugation_class",
+      "label": "-ono 3pl on an -are verb",
+      "description": "Using the -ere/-ire 3pl ending -ono on an -are verb, which takes -ano.",
+      "examples": ["parlono (for parlano)", "mangiono (for mangiano)"],
+      "topics": ["verb_form.present_indicative"]
+    },
+    {
+      "id": "orthography.omitted_h_hard_cg",
+      "family": "orthography",
+      "label": "h omitted on -care/-gare",
+      "description": "Dropping the h that -care/-gare verbs insert before -i endings to keep the c/g hard, which changes the consonant sound.",
+      "examples": ["ceri (for cerchi)", "pagiamo (for paghiamo)", "giochi written as gioci"],
+      "topics": ["verb_form.present_indicative"]
+    },
+    {
+      "id": "orthography.double_i_retained",
+      "family": "orthography",
+      "label": "Redundant i kept on -ciare/-giare",
+      "description": "Keeping the stem i of a -ciare/-giare verb before an ending that already begins with i, producing a wrong double i.",
+      "examples": ["mangii (for mangi)", "comincii (for cominci)"],
+      "topics": ["verb_form.present_indicative"]
+    },
+    {
+      "id": "orthography.i_retention_error",
+      "family": "orthography",
+      "label": "Wrong i-retention on -iare by stress",
+      "description": "Mishandling the stress-governed i of -iare verbs: keeping it when unstressed (studii) or dropping it when stressed (invi).",
+      "examples": ["studii (for studi)", "invi (for invii)"],
+      "topics": ["verb_form.present_indicative"]
+    },
+    {
+      "id": "accent_silent_letter.silent_h_omitted",
+      "family": "accent_silent_letter",
+      "label": "Silent h dropped on avere",
+      "description": "Dropping the obligatory silent h on the present forms of avere, producing a different real word (o, ai, a, anno).",
+      "examples": ["o (for ho)", "a (for ha)", "anno (for hanno)"],
+      "topics": ["verb_form.present_indicative"]
+    },
+    {
+      "id": "accent_silent_letter.accent_omitted",
+      "family": "accent_silent_letter",
+      "label": "Written accent omitted",
+      "description": "Omitting an obligatory written accent, often producing a different word (e for è) or an unmarked vowel (puo for può, da for dà). Strongly cross-cutting.",
+      "examples": ["e (for è)", "puo (for può)", "da (for dà)"],
+      "topics": ["verb_form.present_indicative"]
+    },
+    {
+      "id": "stress.antepenult_3pl",
+      "family": "stress",
+      "label": "3pl stressed on the penult",
+      "description": "Misplacing the 3pl stress onto the penult (parlAno) instead of the antepenult (pArlano). Prosodic; links to the proposed word-stress vocab dimension.",
+      "examples": ["parlAno (for pArlano)", "prendOno mis-stressed"],
+      "topics": ["verb_form.present_indicative"]
+    }
+  ]
+}

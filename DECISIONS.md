@@ -505,6 +505,16 @@ Full convention documented in `INTER_CHAT_PROTOCOL.md` at the project root. The 
 
 ---
 
+## 2026-06-08: Bucket-name breadcrumb leak and the leak-vs-trap test (criterion 15)
+
+A bucket-name breadcrumb shown pre-answer leaks the diagnostic when it names a verb-class membership or rule-output that the item tests and the learner cannot derive from the prompt cue. Authors set `info_display: "suppress"` on such items; the housing substitutes a generic topic-root label pre-answer and reveals the real bucket name post-answer. The decision is **per item, not per bucket**, governed by the leak-vs-trap test: suppress when the breadcrumb hands over a non-derivable class the item tests; leave visible when it only restates the cue, or when naming the class tempts a wrong answer the item's `must_not_include` is built to catch (the over-extension / reverting case). Codified as AUTHOR_BRIEF criterion 15 (Revision 8).
+
+**Why:** Surfaced by PresentFormationAuthor on the -isc- / -go / dittongo formation leaves, where class membership is learned verb-by-verb so the breadcrumb genuinely leaks on the rule-applies forms (capisco), but the same breadcrumb is productive tension rather than a leak on the noi/voi reverting forms (capiamo, which it tempts toward the catchable capisciamo). The chip-suppression ruling (ImperfectAuthor thread) had promised this as a Rev 7 addendum to criterion 13; it was never written down, so PresentFormationAuthor re-derived it. This closes that gap. The leak-vs-trap refinement (per-item, not per-leaf) is the new substance beyond the original Option-A suppress mechanism.
+
+**How to apply:** Authors apply the test per item when a leaf's breadcrumb names a non-derivable class. The housing honours `info_display: "suppress"` in the bucket-filter banner and live-panel tooltips (thread `Architecture_Housing_info_display_suppress.md`, CLOSED v2). Marking is unaffected.
+
+---
+
 ## 2026-05-29: Unique-key extension to include number
 
 The vocab unique-key rule from the v1 ratification was `(lemma, pos, gender)`. Extended today to `(lemma, pos, gender, number)`, with `number` optional and added only when needed for disambiguation (same convention as gender).
