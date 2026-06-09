@@ -1,0 +1,299 @@
+{
+  "$schema_note": "Misconception suggestions harvested by MisconceptionAnalyst from common_miss in data/buckets/pronoun.json. FOLDED per thread v2: paradigm_confusion and clitic_cluster are now ratified families; clitic sandhi moved out of orthography into clitic_cluster (ruling E); transfer adopted as overlay tag (B). Governance: analyst proposes, architecture ratifies specifics.",
+  "topic": "pronoun",
+  "source_bucket_count_with_common_miss": 36,
+  "proposed_family_actions": [
+    {
+      "family": "register",
+      "action": "populate_reserved (approved v2)",
+      "note": "tu/Lei mismatch."
+    },
+    {
+      "family": "word_order",
+      "action": "add_specifics (approved v2)",
+      "note": "clitic position and cluster order."
+    },
+    {
+      "family": "paradigm_confusion",
+      "action": "use_ratified_family (v2 C)",
+      "note": "Adopted as cross_kind, separate from conjugation_class: real-form-wrong-selection vs malformed-by-wrong-pattern. Three specifics below."
+    },
+    {
+      "family": "transfer",
+      "action": "use_ratified_family (v2 B)",
+      "note": "Overlay tag; misconception field may be a string or array, so transfer co-tags with the structural family."
+    },
+    {
+      "family": "clitic_cluster",
+      "action": "use_ratified_family (v2 E)",
+      "note": "New narrow cross_kind:false family for clitic-attachment morphophonology, moved out of orthography."
+    },
+    {
+      "family": "gemination",
+      "action": "PROPOSE_NEW_FAMILY_TENTATIVE (pass 2)",
+      "proposed_definition": {
+        "label": "Geminate simplification",
+        "description": "Failing to write an obligatory double consonant (a phonemic geminate). Not sound-preserving spelling, so it does not belong in orthography after the v2 E tightening; proposed as its own cross_kind family. Surfaces on enclitic imperatives (dammi) and in verb morphology (vorra' double-r, parlassi double-s, parlammo).",
+        "cross_kind": true
+      },
+      "note": "Raised here because the pronoun enclitic-doubling miss (dami for dammi) and several pass-2 verb misses share it. See v3."
+    }
+  ],
+  "proposed_misconceptions": [
+    {
+      "$status": "PENDING (folded per thread v2)",
+      "proposed_id": "agreement.clitic_gender_number",
+      "family": "agreement",
+      "proposed_label": "Object clitic in the wrong gender or number",
+      "proposed_description": "Choosing a clitic of the wrong gender/number for its referent, where function (DOP/IOP) is correct.",
+      "examples": [
+        "li (for le, fem pl)",
+        "la (for le, gender slip on an IOP)"
+      ],
+      "harvested_from": [
+        "pronoun.direct_object.le",
+        "pronoun.indirect_object.le_fem"
+      ],
+      "cross_kind_note": "CROSS-KIND agreement.",
+      "rationale": "Function right, gender/number wrong; distinct from dop_iop."
+    },
+    {
+      "$status": "PENDING (folded per thread v2)",
+      "proposed_id": "paradigm_confusion.dop_iop",
+      "family": "paradigm_confusion",
+      "proposed_label": "Direct- and indirect-object clitic confused",
+      "proposed_description": "Using a DOP where an IOP is required or vice versa (li for gli): a real word, wrong role.",
+      "examples": [
+        "li ho detto (for gli ho detto)",
+        "gli vedo (for li vedo)"
+      ],
+      "harvested_from": [
+        "pronoun.direct_object.li",
+        "pronoun.indirect_object.gli_masc",
+        "pronoun.indirect_object.le_fem",
+        "pronoun.indirect_object.gli_them"
+      ],
+      "cross_kind_note": "paradigm_confusion ratified v2 C.",
+      "rationale": "The classic case confusion."
+    },
+    {
+      "$status": "PENDING (folded per thread v2)",
+      "proposed_id": "paradigm_confusion.clitic_vs_stressed",
+      "family": "paradigm_confusion",
+      "proposed_label": "Clitic and stressed pronoun confused",
+      "proposed_description": "Using a stressed pronoun where the unmarked clitic is wanted, or a clitic where emphasis needs the stressed form; also article/subject pronoun for an object clitic.",
+      "examples": [
+        "Marco vede me (for Marco mi vede)",
+        "lui / il (for lo)",
+        "Mi piace (where 'a me piace' emphasis is wanted)"
+      ],
+      "harvested_from": [
+        "pronoun.direct_object.mi",
+        "pronoun.direct_object.lo",
+        "pronoun.indirect_object.gli_masc",
+        "pronoun.special.stressed_forms"
+      ],
+      "cross_kind_note": "The 'me for mi' direction also co-tags transfer.",
+      "rationale": "Bidirectional, one confusion."
+    },
+    {
+      "$status": "PENDING (folded per thread v2)",
+      "proposed_id": "paradigm_confusion.ci_vs_ne",
+      "family": "paradigm_confusion",
+      "proposed_label": "ci and ne confused (a- vs di-)",
+      "proposed_description": "Choosing ci for a di-referent or ne for an a-referent, mis-mapping the preposition the clitic stands in for.",
+      "examples": [
+        "ne penso (for ci penso, 'pensare a')"
+      ],
+      "harvested_from": [
+        "pronoun.ci_vs_ne_disambiguation"
+      ],
+      "cross_kind_note": "",
+      "rationale": "Distinct from clitic omission: pronominalises, but picks the wrong particle."
+    },
+    {
+      "$status": "PENDING (folded per thread v2)",
+      "proposed_id": "word_order.clitic_position",
+      "family": "word_order",
+      "proposed_label": "Clitic in the wrong position relative to the verb",
+      "proposed_description": "Misplacing a clitic: after a finite verb, detached from an infinitive/gerund/imperative that requires attachment, or attached to a formal Lei imperative where it must precede.",
+      "examples": [
+        "Vedo lo (for Lo vedo)",
+        "Voglio lo vedere (for Voglio vederlo)",
+        "Vedendo lo (for vedendolo)",
+        "Dicami (for Mi dica)"
+      ],
+      "harvested_from": [
+        "pronoun.position.pre_finite_verb",
+        "pronoun.position.post_infinitive_attached",
+        "pronoun.position.modal_plus_infinitive_either",
+        "pronoun.position.post_gerund_attached",
+        "pronoun.position.post_imperative_tu_attached",
+        "pronoun.position.formal_imperative_pre_verb"
+      ],
+      "cross_kind_note": "CROSS-KIND word_order; post-finite case co-tags transfer.",
+      "rationale": "One position misconception; the host is the conditioning context."
+    },
+    {
+      "$status": "PENDING (folded per thread v2)",
+      "proposed_id": "word_order.clitic_cluster_order",
+      "family": "word_order",
+      "proposed_label": "Clitic cluster in the wrong internal order",
+      "proposed_description": "Ordering a two-clitic cluster wrongly, chiefly DOP before IOP.",
+      "examples": [
+        "Lo mi dai? (for Me lo dai?)"
+      ],
+      "harvested_from": [
+        "pronoun.combined.order_iop_before_dop"
+      ],
+      "cross_kind_note": "",
+      "rationale": "Order within the cluster; distinct from cluster form (clitic_cluster) and placement (clitic_position)."
+    },
+    {
+      "$status": "PENDING (folded per thread v2)",
+      "proposed_id": "clitic_cluster.form_change",
+      "family": "clitic_cluster",
+      "proposed_label": "Clitic cluster fails its obligatory form change",
+      "proposed_description": "Not applying the obligatory changes when clitics combine: mi/ti/ci/vi to me/te/ce/ve before lo/la/li/le/ne, and gli/le + lo/la to glielo/gliela (written attached).",
+      "examples": [
+        "mi lo dai (for me lo dai)",
+        "Mi le lavo (for me le lavo)",
+        "gli lo dico / le lo dico (for glielo dico)"
+      ],
+      "harvested_from": [
+        "pronoun.combined.vowel_changes",
+        "pronoun.reflexive.with_object",
+        "pronoun.combined.glielo_family"
+      ],
+      "cross_kind_note": "Moved out of orthography into the new clitic_cluster family per ruling E.",
+      "rationale": "The mi->me change and the glie- fusion are one cluster-sandhi phenomenon."
+    },
+    {
+      "$status": "PENDING (folded per thread v2)",
+      "proposed_id": "gemination.enclitic_doubling",
+      "family": "gemination",
+      "proposed_label": "Consonant not doubled on a monosyllabic imperative + clitic",
+      "proposed_description": "Failing to double the initial consonant of a clitic attached to a monosyllabic tu imperative (dammi, dimmelo, fammelo).",
+      "examples": [
+        "dami (for dammi)",
+        "dimmilo (for dimmelo)",
+        "dami lo (for dammelo)"
+      ],
+      "harvested_from": [
+        "pronoun.position.post_imperative_consonant_doubling"
+      ],
+      "cross_kind_note": "Moved out of orthography: gemination is sound-changing, not sound-preserving spelling (per v2 E logic). Proposed under the new tentative gemination family; pairs with the pass-2 verb geminates.",
+      "rationale": "Clitic-triggered gemination; flagged for the gemination family decision in v3."
+    },
+    {
+      "$status": "PENDING (folded per thread v2)",
+      "proposed_id": "orthography.failed_elision",
+      "family": "orthography",
+      "proposed_label": "Clitic not elided before a vowel",
+      "proposed_description": "Failing to elide lo/la to l' before a vowel, or eliding wrongly.",
+      "examples": [
+        "lo ho visto (for l'ho visto)",
+        "li' (incorrect elision of li)"
+      ],
+      "harvested_from": [
+        "pronoun.direct_object.elision_before_vowel",
+        "pronoun.direct_object.li"
+      ],
+      "cross_kind_note": "Stays in orthography (elision is a spelling reflex). CROSS-KIND-IN-WAITING with articles.",
+      "rationale": "Sound-/spelling-level adjustment."
+    },
+    {
+      "$status": "PENDING (folded per thread v2)",
+      "proposed_id": "register.tu_lei_mismatch",
+      "family": "register",
+      "proposed_label": "tu and Lei forms mixed",
+      "proposed_description": "Mixing the informal tu system with the formal Lei system: an informal clitic for the formal La, or an informal imperative where the formal (subjunctive-based) one is required.",
+      "examples": [
+        "ti ringrazio, signor Bianchi (for La ringrazio)",
+        "Dicami (for the formal Mi dica)",
+        "Non mi parla (register slip in a negative imperative)"
+      ],
+      "harvested_from": [
+        "pronoun.direct_object.formal_La",
+        "pronoun.position.formal_imperative_pre_verb",
+        "pronoun.position.negative_imperative"
+      ],
+      "cross_kind_note": "First register specifics. Dicami co-tags word_order.clitic_position.",
+      "rationale": "Opens the register family."
+    },
+    {
+      "$status": "PENDING (folded per thread v2)",
+      "proposed_id": "transfer.clitic_omission",
+      "family": "transfer",
+      "proposed_label": "Required clitic omitted (English has no equivalent)",
+      "proposed_description": "Failing to use a clitic Italian requires because English expresses the meaning without one: partitive/pronominal ne, locative/topic/existential ci, neuter lo, lexicalised clusters (farcela).",
+      "examples": [
+        "Ho tre (for Ne ho tre)",
+        "Vado la' (for Ci vado)",
+        "E' un problema (for C'e' un problema)",
+        "Penso a questo (for Ci penso)",
+        "So questo (for Lo so)",
+        "Non lo faccio (for Non ce la faccio)"
+      ],
+      "harvested_from": [
+        "pronoun.ne.partitive_quantity",
+        "pronoun.ne.pronominal_di",
+        "pronoun.ci_locative.location",
+        "pronoun.ci_locative.existential",
+        "pronoun.ci_locative.topic",
+        "pronoun.special.lo_neutral",
+        "pronoun.ci_locative.idiomatic_verbs.farcela"
+      ],
+      "cross_kind_note": "transfer ratified v2 B as overlay tag.",
+      "rationale": "Largest single cluster in this tree; one cause (L1 lacks the construction)."
+    },
+    {
+      "$status": "PENDING (folded per thread v2)",
+      "proposed_id": "transfer.calque_argument_structure",
+      "family": "transfer",
+      "proposed_label": "English argument structure calqued",
+      "proposed_description": "Mapping English subject/object roles or prepositions onto Italian, especially experiencer verbs (piacere) and overly literal prepositional phrases.",
+      "examples": [
+        "Io piaccio la pizza (for Mi piace la pizza)",
+        "Parliamo di esso (for Ne parliamo)"
+      ],
+      "harvested_from": [
+        "pronoun.indirect_object.verbs_taking_iop",
+        "pronoun.ne.pronominal_di"
+      ],
+      "cross_kind_note": "",
+      "rationale": "Whole argument frame wrong, not just a missing clitic."
+    }
+  ],
+  "cross_referenced_into_other_trees": [
+    {
+      "proposed_id": "auxiliary_choice.avere_for_essere",
+      "defined_in": "misconception_suggestions_verb_form.passato_prossimo.json",
+      "buckets": [
+        "pronoun.reflexive.essere_in_compound",
+        "pronoun.indirect_object.verbs_taking_iop.with_essere_in_pp"
+      ]
+    },
+    {
+      "proposed_id": "agreement.participle_preceding_dop",
+      "defined_in": "misconception_suggestions_verb_form.passato_prossimo.json",
+      "buckets": [
+        "pronoun.ne.with_pp_agreement",
+        "pronoun.special.left_dislocation_with_pp_agreement"
+      ]
+    },
+    {
+      "proposed_id": "agreement.participle_essere_subject",
+      "defined_in": "misconception_suggestions_verb_form.passato_prossimo.json",
+      "buckets": [
+        "pronoun.indirect_object.verbs_taking_iop.with_essere_in_pp"
+      ]
+    }
+  ],
+  "intentional_non_mappings": [
+    {
+      "bucket": "pronoun.special.pronoun_then_subject_noun",
+      "reason": "common_miss says '(none specific; the construction is optional)'. No error pattern to tag."
+    }
+  ]
+}

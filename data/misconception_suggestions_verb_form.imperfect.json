@@ -1,0 +1,158 @@
+{
+  "$schema_note": "Misconception suggestions harvested by MisconceptionAnalyst from common_miss prose in data/buckets/verb_form.imperfect.json. PENDING architecture ratification into data/misconceptions.json. Pass 2 (formation + usage trees). Many misses REUSE specifics defined in pass 1 or the v1 registry (cross-tense/cross-kind reuse is the point); only genuinely new specifics are defined here, the rest listed under reuses_existing. Thread: inter_chat/Architecture_MisconceptionAnalyst_registry_harvest.md (see v2).",
+  "topic": "verb_form.imperfect",
+  "source_bucket_count_with_common_miss": 25,
+  "proposed_family_actions": [
+    {
+      "family": "discrimination",
+      "action": "add_specifics",
+      "note": "Imperfect usage/discrimination buckets supply the aspect arm of the discrimination family proposed in tense_choice."
+    },
+    {
+      "family": "stress",
+      "action": "add_specific",
+      "note": "First non-3pl stress specific."
+    }
+  ],
+  "proposed_misconceptions": [
+    {
+      "$status": "PENDING",
+      "proposed_id": "discrimination.pp_for_imperfect",
+      "family": "discrimination",
+      "proposed_label": "Passato prossimo used where the imperfect's aspect is required",
+      "proposed_description": "Choosing the passato prossimo for a context the imperfect owns: habitual action, ongoing state/description, duration, and age/time/weather states. The dominant aspect error of the past tenses.",
+      "examples": [
+        "ho giocato for giocavo (habitual)",
+        "e' stata stanca for era stanca (state)",
+        "ho aspettato da venti minuti for aspettavo",
+        "ho avuto dieci anni / ha fatto freddo for avevo/faceva"
+      ],
+      "harvested_from": [
+        "verb_form.imperfect.usage.habitual",
+        "verb_form.imperfect.usage.ongoing_descriptive",
+        "verb_form.imperfect.usage.duration",
+        "verb_form.imperfect.usage.age_time_weather",
+        "verb_form.imperfect.discrimination.vs_passato_prossimo_general"
+      ],
+      "cross_kind_note": "Often transfer-driven (English simple past flattens the aspect); candidate co-tag with transfer.",
+      "rationale": "Five buckets, one aspect-selection pattern."
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "discrimination.aspect_swap_background",
+      "family": "discrimination",
+      "proposed_label": "Background and foreground tenses swapped",
+      "proposed_description": "Reversing the imperfect-background / passato-prossimo-event pairing, putting the completed event in the imperfect and the ongoing frame in the passato prossimo.",
+      "examples": [
+        "ho dormito mentre bussava (for dormivo mentre ha bussato / bussava)"
+      ],
+      "harvested_from": [
+        "verb_form.imperfect.usage.background_with_pp"
+      ],
+      "cross_kind_note": "",
+      "rationale": "The two-clause background/event contrast."
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "discrimination.modal_stative_aspect",
+      "family": "discrimination",
+      "proposed_label": "Modal/stative verb: wrong past tense for the intended reading",
+      "proposed_description": "Missing the meaning shift that aspect forces on modal and stative verbs (sapere, dovere, potere, volere, conoscere): the imperfect = ongoing state/ability, the passato prossimo = a bounded event (found out, managed, insisted, met).",
+      "examples": [
+        "imperfect sapevo for the event 'seppi/ho saputo' (found out)",
+        "conobbi/ho conosciuto = 'met', not 'knew'",
+        "volevo (wish) vs ho voluto (insisted)"
+      ],
+      "harvested_from": [
+        "verb_form.imperfect.discrimination.modals.sapere",
+        "verb_form.imperfect.discrimination.modals.dovere",
+        "verb_form.imperfect.discrimination.modals.potere",
+        "verb_form.imperfect.discrimination.modals.volere",
+        "verb_form.imperfect.discrimination.modals.conoscere",
+        "verb_form.imperfect.usage.polite"
+      ],
+      "cross_kind_note": "",
+      "rationale": "The five modal/stative buckets plus the polite-imperfect reading collapse to one lexical-aspect pattern."
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "discrimination.sequence_of_tenses",
+      "family": "discrimination",
+      "proposed_label": "Embedded-clause tense not back-shifted in reported speech",
+      "proposed_description": "Failing to back-shift the embedded clause after a past reporting verb: leaving the present, or using the future where the conditional (future-in-the-past) is required.",
+      "examples": [
+        "ha detto che e' stanco (for che era stanco)",
+        "ha detto che andra' (for che sarebbe andato)"
+      ],
+      "harvested_from": [
+        "verb_form.imperfect.indirect_speech.reported_present",
+        "verb_form.imperfect.indirect_speech.reported_intention"
+      ],
+      "cross_kind_note": "Cross-tense sequence rule; will recur with the subjunctive's sequence of tenses.",
+      "rationale": "Reported-speech back-shift, both the present and intention cases."
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "discrimination.narrative_imperfect_reading",
+      "family": "discrimination",
+      "proposed_label": "Narrative imperfect misread as habitual",
+      "proposed_description": "On the comprehension side, reading a single-event narrative imperfect as if it were habitual/repeated.",
+      "examples": [
+        "reading 'moriva' (narrative) as 'used to die' rather than the single dramatic event"
+      ],
+      "harvested_from": [
+        "verb_form.imperfect.stylistic.narrative"
+      ],
+      "cross_kind_note": "Reading-direction (interpretation) rather than production; flagged for architecture as the discrimination family's interpretation arm.",
+      "rationale": "Distinct enough to keep separate from pp_for_imperfect."
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "stress.thematic_1pl_2pl",
+      "family": "stress",
+      "proposed_label": "1pl/2pl stress misplaced",
+      "proposed_description": "Mis-stressing the 1pl/2pl, where the stress falls on the ending, by analogy with the stem-stressed singular.",
+      "examples": [
+        "mis-stressed imperfect 1pl/2pl (parlaVAmo region)"
+      ],
+      "harvested_from": [
+        "verb_form.imperfect.formation.regular_are"
+      ],
+      "cross_kind_note": "Cross-tense with the present 1pl/2pl stress; links to stress.antepenult_3pl as the other prosodic specific.",
+      "rationale": "Opens a non-3pl stress specific."
+    }
+  ],
+  "reuses_existing": [
+    {
+      "ref_id": "regularisation.irregular_verb",
+      "defined_in": "data/misconceptions.json (v1 seed)",
+      "buckets": [
+        "verb_form.imperfect.formation.regular_ere",
+        "verb_form.imperfect.formation.irregular.essere",
+        "verb_form.imperfect.formation.irregular.stem_expansion.fare",
+        "verb_form.imperfect.formation.irregular.stem_expansion.dire",
+        "verb_form.imperfect.formation.irregular.stem_expansion.bere",
+        "verb_form.imperfect.formation.irregular.stem_expansion.porre",
+        "verb_form.imperfect.formation.irregular.stem_expansion.tradurre"
+      ],
+      "note": "Regularising the irregular imperfect stem (essevo, favo, divo, bevvo, porevo, traducovo). regular_ere's 'presevo' is a wrong-base variant (participle stem) of the same family. The v1 seed's description already says this recurs in every tense; this is that reuse."
+    },
+    {
+      "ref_id": "stem_change.isc_over_extension",
+      "defined_in": "data/misconceptions.json (v1 seed) — PROPOSED GENERALISATION",
+      "buckets": [
+        "verb_form.imperfect.formation.regular_ire"
+      ],
+      "note": "capiscevo for capivo = carrying -isc- into the imperfect. The v1 specific is scoped to the present noi/voi; see thread decision C: generalise it to 'wherever -isc- does not belong' (any tense/person) rather than mint a sibling. Tagged here on that assumption."
+    },
+    {
+      "ref_id": "discrimination.counterfactual_construction",
+      "defined_in": "misconception_suggestions_tense_choice.json",
+      "buckets": [
+        "verb_form.imperfect.stylistic.colloquial_counterfactual"
+      ],
+      "note": "Translating literally and missing the counterfactual reading is the same selection pattern defined in tense_choice."
+    }
+  ],
+  "intentional_non_mappings": []
+}

@@ -1,0 +1,168 @@
+{
+  "$schema_note": "Misconception suggestions harvested by MisconceptionAnalyst from common_miss prose in data/buckets/verb_form.passato_prossimo.json. PENDING architecture ratification into data/misconceptions.json. Governance mirrors bucket_suggestions_<topic>.json. Thread: inter_chat/Architecture_MisconceptionAnalyst_registry_harvest.md.",
+  "topic": "verb_form.passato_prossimo",
+  "source_bucket_count_with_common_miss": 18,
+  "proposed_family_actions": [
+    {
+      "family": "auxiliary_choice",
+      "action": "populate_reserved",
+      "note": "auxiliary_choice is a reserved cross-tense family with no specifics seeded. The passato prossimo work gives it its first foothold, as DESIGN §15 anticipated."
+    }
+  ],
+  "proposed_misconceptions": [
+    {
+      "$status": "PENDING",
+      "proposed_id": "auxiliary_choice.avere_for_essere",
+      "family": "auxiliary_choice",
+      "proposed_label": "avere used where essere is required",
+      "proposed_description": "Selecting avere as the compound-tense auxiliary for a verb that takes essere: motion/change intransitives, reflexives, and the piacere family.",
+      "examples": [
+        "ho andato (for sono andato)",
+        "Mi ho lavato (for mi sono lavato)",
+        "Le ha piaciuto (for le è piaciuto)"
+      ],
+      "harvested_from": [
+        "verb_form.passato_prossimo.auxiliary.essere_motion_intransitive",
+        "pronoun.reflexive.essere_in_compound",
+        "pronoun.indirect_object.verbs_taking_iop.with_essere_in_pp"
+      ],
+      "cross_kind_note": "CROSS-TENSE and CROSS-KIND: harvested from both the passato tree and the pronoun tree (reflexives, piacere). The default-avere over-extension recurs in every compound tense.",
+      "rationale": "The dominant auxiliary error. Default-avere over-application; the reflexive and piacere cases are sub-instances, not separate misconceptions."
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "auxiliary_choice.essere_for_avere",
+      "family": "auxiliary_choice",
+      "proposed_label": "essere used where avere is required",
+      "proposed_description": "Selecting essere for a transitive or avere-taking verb, the rarer reverse of the default-avere error, often a hyper-correction.",
+      "examples": [
+        "sono mangiato la pasta (for ho mangiato la pasta)"
+      ],
+      "harvested_from": [
+        "verb_form.passato_prossimo.auxiliary.avere_default"
+      ],
+      "cross_kind_note": "Cross-tense; pairs with avere_for_essere.",
+      "rationale": "Kept as its own specific because direction matters analytically: over-using essere is a different learner state from defaulting to avere."
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "regularisation.irregular_participle",
+      "family": "regularisation",
+      "proposed_label": "Irregular past participle regularised",
+      "proposed_description": "Forming an irregular past participle by the regular -ato/-uto/-ito rule instead of the suppletive/contracted form.",
+      "examples": [
+        "fato (for fatto)",
+        "dito (for detto)",
+        "prenduto (for preso)",
+        "scrivuto (for scritto)",
+        "leggito (for letto)",
+        "aprito (for aperto)"
+      ],
+      "harvested_from": [
+        "verb_form.passato_prossimo.participle_form.irregular.fare_fatto",
+        "verb_form.passato_prossimo.participle_form.irregular.dire_detto",
+        "verb_form.passato_prossimo.participle_form.irregular.prendere_preso",
+        "verb_form.passato_prossimo.participle_form.irregular.scrivere_scritto",
+        "verb_form.passato_prossimo.participle_form.irregular.leggere_letto",
+        "verb_form.passato_prossimo.participle_form.irregular.aprire_aperto"
+      ],
+      "cross_kind_note": "CROSS-TENSE sibling of regularisation.irregular_verb: the same regularising impulse, on participles. Recurs in every compound tense.",
+      "rationale": "One misconception over many verbs (fato, dito, prenduto all point up to it), exactly the surface-to-pattern collapse DESIGN §15 wants."
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "agreement.participle_essere_subject",
+      "family": "agreement",
+      "proposed_label": "essere-participle fails to agree with the subject",
+      "proposed_description": "With essere as auxiliary, leaving the participle in the masculine-singular default instead of agreeing in gender and number with the subject.",
+      "examples": [
+        "è andato (for è andata)",
+        "sono andati (for a feminine group, sono andate)"
+      ],
+      "harvested_from": [
+        "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_singular",
+        "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_plural"
+      ],
+      "cross_kind_note": "CROSS-KIND agreement: same agreement engine as adjective-noun agreement; the participle behaves like a predicate adjective.",
+      "rationale": "Core participle-agreement miss on the essere side."
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "agreement.participle_preceding_dop",
+      "family": "agreement",
+      "proposed_label": "avere-participle fails to agree with a preceding direct-object clitic",
+      "proposed_description": "With avere as auxiliary and a preceding 3rd-person DOP (lo/la/li/le) or partitive ne, leaving the participle invariable instead of agreeing with that object.",
+      "examples": [
+        "l'ho visto (for l'ho vista)",
+        "le ho visti / le ho visto (for le ho viste)",
+        "ne ho mangiato tre (for ne ho mangiate tre)"
+      ],
+      "harvested_from": [
+        "verb_form.passato_prossimo.participle_agreement.with_avere.preceding_dop_la",
+        "verb_form.passato_prossimo.participle_agreement.with_avere.preceding_dop_le",
+        "verb_form.passato_prossimo.participle_agreement.with_avere.preceding_partitive_ne",
+        "pronoun.ne.with_pp_agreement",
+        "pronoun.special.left_dislocation_with_pp_agreement"
+      ],
+      "cross_kind_note": "CROSS-KIND: harvested from both the passato tree and the pronoun tree (ne, left-dislocation). The 1st/2nd-person optional case (preceding_dop_mi_ti_ci_vi) should NOT be tagged when the invariable form is the everyday default.",
+      "rationale": "Single agreement pattern straddling the verb and pronoun trees; a clean cross-kind exemplar."
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "agreement.participle_overagreement",
+      "family": "agreement",
+      "proposed_label": "avere-participle wrongly agreed with the subject",
+      "proposed_description": "Agreeing the participle with the subject when avere is the auxiliary and there is no preceding DOP, where it must stay invariable. The over-application (hyper-correction) error.",
+      "examples": [
+        "ho mangiata (for ho mangiato, female speaker)"
+      ],
+      "harvested_from": [
+        "verb_form.passato_prossimo.participle_agreement.with_avere.no_preceding_dop"
+      ],
+      "cross_kind_note": "Inverse of agreement.participle_preceding_dop: agreement supplied where it is barred. Mirrors regularisation.invariable_adjective's over-application shape.",
+      "rationale": "Distinct learner state: knows agreement exists, applies it too widely. Worth its own tag for the drill-down."
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "agreement.auxiliary_person",
+      "family": "agreement",
+      "proposed_label": "Auxiliary in the wrong person/number for the subject",
+      "proposed_description": "Conjugating the compound-tense auxiliary for the wrong person or number relative to the subject (subject-verb agreement failure on the auxiliary).",
+      "examples": [
+        "Marco hanno parlato (for Marco ha parlato)"
+      ],
+      "harvested_from": [
+        "verb_form.passato_prossimo.auxiliary.person_agreement"
+      ],
+      "cross_kind_note": "CROSS-KIND subject-verb agreement: same shape as person errors in simple tenses and the seed agreement.reflexive_pronoun_person.",
+      "rationale": "A subject-verb agreement error that lands on the auxiliary; belongs with agreement, not auxiliary_choice (which is about essere-vs-avere, not person)."
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "word_order.adverb_aux_participle",
+      "family": "word_order",
+      "proposed_label": "Adverb or negation misplaced around aux + participle",
+      "proposed_description": "Breaking the fixed aux-then-participle block: putting negation or a frequency/time adverb (già, ancora, mai, sempre, appena) outside the slot between auxiliary and participle.",
+      "examples": [
+        "ho non mangiato (for non ho mangiato)",
+        "ho mangiato già (for ho già mangiato)"
+      ],
+      "harvested_from": [
+        "verb_form.passato_prossimo.negation",
+        "verb_form.passato_prossimo.adverb_placement"
+      ],
+      "cross_kind_note": "word_order family (alongside adjective and clitic position). The negation case overlaps the proposed transfer family; candidate co-tag.",
+      "rationale": "Both misses are the same structural fact: the aux+participle is a unit and the adverb/negator sits inside it."
+    }
+  ],
+  "cross_referenced_into_other_trees": [
+    {
+      "proposed_id": "agreement.mixed_gender_default",
+      "defined_in": "misconception_suggestions_adjective_agreement.json",
+      "passato_buckets_added": [
+        "verb_form.passato_prossimo.participle_agreement.with_essere.mixed_gender_default"
+      ],
+      "note": "Marco e Anna sono andate (for andati) is the SAME last-noun-attraction misconception as the adjective italiane/italiani case. One shared cross-kind specific, tagged from both trees."
+    }
+  ]
+}

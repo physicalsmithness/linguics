@@ -1,0 +1,50 @@
+{
+  "$schema_note": "Pass-2 harvest by MisconceptionAnalyst from common_miss in data/buckets/verb_form.trapassato_prossimo.json. PENDING ratification. Uses families ratified in thread v2; new specifics defined here, reused ones under reuses_existing. Thread: inter_chat/Architecture_MisconceptionAnalyst_registry_harvest.md.",
+  "topic": "verb_form.trapassato_prossimo",
+  "source_bucket_count_with_common_miss": 2,
+  "proposed_family_actions": [
+    {
+      "family": "auxiliary_choice",
+      "action": "add_specific",
+      "note": "Wrong TENSE of the auxiliary (vs the essere/avere choice). Confirms auxiliary_choice covers auxiliary-form errors, not only essere-vs-avere (v3 decision E)."
+    }
+  ],
+  "proposed_misconceptions": [
+    {
+      "$status": "PENDING",
+      "proposed_id": "auxiliary_choice.wrong_auxiliary_tense",
+      "family": "auxiliary_choice",
+      "proposed_label": "Wrong tense of the auxiliary in a compound tense",
+      "proposed_description": "Using the wrong tense of the (correct) auxiliary: the present 'ho/sono' where the trapassato needs the imperfect 'avevo/ero', or a different past where another compound tense needs its specific auxiliary tense.",
+      "examples": [
+        "ho parlato (for avevo parlato)",
+        "sono andato (for ero andato)"
+      ],
+      "harvested_from": [
+        "verb_form.trapassato_prossimo.formation.avere",
+        "verb_form.trapassato_prossimo.formation.essere"
+      ],
+      "cross_kind_note": "Cross-tense: also the trapassato remoto (avevo for ebbi). Distinct from avere_for_essere (which is the essere/avere choice).",
+      "rationale": "Third auxiliary_choice specific: which FORM of the auxiliary, not which auxiliary."
+    }
+  ],
+  "reuses_existing": [
+    {
+      "ref_id": "auxiliary_choice.avere_for_essere",
+      "defined_in": "misconception_suggestions_verb_form.passato_prossimo.json",
+      "buckets": [
+        "verb_form.trapassato_prossimo.formation.essere"
+      ],
+      "note": "the bucket also notes 'wrong auxiliary' (essere/avere choice)."
+    },
+    {
+      "ref_id": "agreement.participle_essere_subject",
+      "defined_in": "misconception_suggestions_verb_form.passato_prossimo.json",
+      "buckets": [
+        "verb_form.trapassato_prossimo.formation.essere"
+      ],
+      "note": "ero andato for a feminine subject (andata)."
+    }
+  ],
+  "intentional_non_mappings": []
+}

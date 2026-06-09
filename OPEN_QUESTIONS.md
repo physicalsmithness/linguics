@@ -465,6 +465,24 @@ Each author chat on next opening should audit its own batch:
 
 Self-audit task. Each chat reports back on its inter_chat status note when done.
 
+---
+
+## Tense-choice items should declare their candidate tenses (added 2026-06-08)
+
+Smith's note, raised while sequencing the formation trees: when we reach the tense-USE phase, a tense-choice item will need to record which tenses are the legitimate options in that choice, "a tick alongside saying which tenses can be used in the choice."
+
+The design implication: a tense-choice item (the kind TenseChoice authors, where the learner picks the contextually-right tense) carries a `candidate_tenses` set, the legitimate options for that context, alongside the single right answer. Surfaced to the learner as a small set of ticks (these tenses were in play; this one was right), and recorded so the stats can show, per choice-context, which tense was chosen against which options.
+
+Why it matters:
+
+- It makes the choice space explicit (the learner sees they were choosing among, say, present / passato prossimo / imperfect, not guessing in a vacuum).
+- It feeds the misconception axis cleanly: choosing the wrong tense from a known candidate set is a recordable pattern (e.g. "consistently picks passato prossimo where imperfect was right"), which is exactly a cross-kind discrimination misconception.
+- It gives the discrimination stub buckets (present.discrimination.vs_imperfect, future.discrimination.vs_present, condizionale.discrimination.vs_imperfect_counterfactual, and the tense_choice tree) a consistent item shape.
+
+**Scope**: usage / tense-choice phase only. Does NOT affect the formation dispatches now in progress (formation items test a single form, no candidate set). Resolve the `candidate_tenses` field shape and the tick UI when the first TenseChoice / usage dispatch is scoped.
+
+**Trigger**: when the usage / tense-choice phase begins (after the formation trees are done).
+
 **Options**: not applicable — this is an audit task, not a decision.
 
 **Trigger**: each author chat, on next opening (whichever order Smith brings them up).

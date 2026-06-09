@@ -1,0 +1,143 @@
+{
+  "$schema_note": "Pass-2 harvest by MisconceptionAnalyst from common_miss in data/buckets/verb_form.future.json. PENDING ratification. Uses families ratified in thread v2; new specifics defined here, reused ones under reuses_existing. Thread: inter_chat/Architecture_MisconceptionAnalyst_registry_harvest.md.",
+  "topic": "verb_form.future",
+  "source_bucket_count_with_common_miss": 10,
+  "proposed_family_actions": [
+    {
+      "family": "stem_change",
+      "action": "add_specifics",
+      "note": "Future/conditional stem changes (the -are→-er shift and syncope) are conditioned stem changes; they fit stem_change's over/under shape."
+    },
+    {
+      "family": "gemination",
+      "action": "PROPOSE_NEW_FAMILY_TENTATIVE",
+      "note": "See pronoun file and v3 for the gemination family proposal; the syncopated-future double-r lands here."
+    }
+  ],
+  "proposed_misconceptions": [
+    {
+      "$status": "PENDING",
+      "proposed_id": "stem_change.future_are_to_e",
+      "family": "stem_change",
+      "proposed_label": "-are→-er future/conditional stem shift mishandled",
+      "proposed_description": "Failing to shift the -are theme vowel to -er- in the future/conditional stem, or over-applying that shift to verbs (dare/stare/fare) that keep -ar-.",
+      "examples": [
+        "parlarò (for parlerò)",
+        "derò/ferò/sterò (for darò/farò/starò)"
+      ],
+      "harvested_from": [
+        "verb_form.future.formation.regular_are",
+        "verb_form.future.formation.irregular.dare_stare_fare"
+      ],
+      "cross_kind_note": "Cross-tense: identical in the conditional (parlarei, derei).",
+      "rationale": "Both directions of the same conditioned shift."
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "stem_change.future_syncope_over_extension",
+      "family": "stem_change",
+      "proposed_label": "Future/conditional stem over-syncopated",
+      "proposed_description": "Syncopating a regular stem by false analogy with the irregular syncopated futures.",
+      "examples": [
+        "scrivrò (for scriverò)"
+      ],
+      "harvested_from": [
+        "verb_form.future.formation.regular_ere"
+      ],
+      "cross_kind_note": "Over-application twin of future_syncope_under_application.",
+      "rationale": "Mirrors the present-tense over/under stem-change pairs."
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "stem_change.future_syncope_under_application",
+      "family": "stem_change",
+      "proposed_label": "Irregular future/conditional stem not syncopated",
+      "proposed_description": "Keeping the theme vowel where the irregular future/conditional stem syncopates (avr-, andr-, potr-).",
+      "examples": [
+        "avero/andero/potero (for avrò/andrò/potrò)"
+      ],
+      "harvested_from": [
+        "verb_form.future.formation.irregular.syncopated"
+      ],
+      "cross_kind_note": "Cross-tense: conditional averei/poterei.",
+      "rationale": "Under-application twin."
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "gemination.geminate_simplified",
+      "family": "gemination",
+      "proposed_label": "Obligatory double consonant written single",
+      "proposed_description": "Writing a single consonant where Italian has a phonemic geminate: the assimilated -rr- of syncopated futures/conditionals, the -ss- of the imperfect subjunctive, the -mm-/-mm of passato-remoto/conditional 1pl.",
+      "examples": [
+        "vorò/verò/terò (for vorrò/verrò/terrò)"
+      ],
+      "harvested_from": [
+        "verb_form.future.formation.irregular.double_r"
+      ],
+      "cross_kind_note": "New tentative gemination family (v2 E moved gemination out of orthography). Cross-kind: also conditional vorei, congiuntivo parlasi, passato_remoto parlamo, and the enclitic dammi.",
+      "rationale": "Geminates are phonemic, so single-spelling is a sound error, not sound-preserving spelling."
+    }
+  ],
+  "reuses_existing": [
+    {
+      "ref_id": "stem_change.isc_over_extension",
+      "defined_in": "data/misconceptions.json (v1 seed) — generalised per v3 decision C",
+      "buckets": [
+        "verb_form.future.formation.regular_ire"
+      ],
+      "note": "capiscirò: -isc- carried into the future."
+    },
+    {
+      "ref_id": "orthography.omitted_h_hard_cg",
+      "defined_in": "data/misconceptions.json (v1 seed)",
+      "buckets": [
+        "verb_form.future.formation.orthographic.care_gare"
+      ],
+      "note": "cercerò: same hard-c/g h-rule, in the future stem."
+    },
+    {
+      "ref_id": "orthography.double_i_retained",
+      "defined_in": "data/misconceptions.json (v1 seed)",
+      "buckets": [
+        "verb_form.future.formation.orthographic.ciare_giare"
+      ],
+      "note": "comincierò: same redundant-i rule."
+    },
+    {
+      "ref_id": "accent_silent_letter.accent_omitted",
+      "defined_in": "data/misconceptions.json (v1 seed)",
+      "buckets": [
+        "verb_form.future.formation.regular_are",
+        "verb_form.future.formation.regular_ere",
+        "verb_form.future.formation.regular_ire",
+        "verb_form.future.formation.irregular.essere"
+      ],
+      "note": "Dropping the obligatory 1sg/3sg future accent (parlerò, sarà). Heavy cross-tense reuse of the existing accent specific."
+    },
+    {
+      "ref_id": "regularisation.irregular_verb",
+      "defined_in": "data/misconceptions.json (v1 seed)",
+      "buckets": [
+        "verb_form.future.formation.irregular.essere"
+      ],
+      "note": "esserò/essrò: building from the infinitive instead of the suppletive sar- stem."
+    },
+    {
+      "ref_id": "auxiliary_choice.avere_for_essere",
+      "defined_in": "misconception_suggestions_verb_form.passato_prossimo.json",
+      "buckets": [
+        "verb_form.future.formation.future_anteriore"
+      ],
+      "note": "future anteriore: wrong auxiliary (either direction)."
+    },
+    {
+      "ref_id": "agreement.participle_essere_subject",
+      "defined_in": "misconception_suggestions_verb_form.passato_prossimo.json",
+      "buckets": [
+        "verb_form.future.formation.future_anteriore"
+      ],
+      "note": "sarò andato for a feminine subject (andata)."
+    }
+  ],
+  "intentional_non_mappings": []
+}

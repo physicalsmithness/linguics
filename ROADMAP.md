@@ -112,3 +112,40 @@ The risky milestone is 3 (the AI marker). Two specific risks:
 2. The AI's bucket-attribution is noisy, with the same conceptual miss being put in different buckets across attempts. The mitigation is the hybrid bucket rule (DESIGN.md §4): only the parent group's namespace is open for invention.
 
 Both can be measured during Milestone 3 and fed back into the marker's prompt.
+
+---
+
+## Verb-form content build (added 2026-06-08)
+
+The milestones above are the infrastructure roadmap (housing, marker, stats, AI), largely built. This section is the CONTENT roadmap for the verb system: which tenses and moods, in what order.
+
+**Strategy.** Formation first (the forms), then usage (when to use them), tense-choice last. Each tense is one tree with a formation branch (deepened and authored now) plus usage and discrimination stubs (deepened later). Compound tenses ride inside their parent-tense tree (futuro anteriore in future, condizionale passato in conditional, the subjunctive compounds in congiuntivo); the standalone pluperfect (trapassato prossimo), the subjunctive, and the past historic are their own trees. CEFR levels per `CEFR_GROUNDING.md`. Cue and breadcrumb discipline per AUTHOR_BRIEF criteria 13-15 and the Rev 9 cue-economy note.
+
+### Formation phase: COMPLETE (all trees built)
+
+- present_indicative: live (authored, in manifest)
+- passato_prossimo: live (pre-existing)
+- imperfect: live (pre-existing)
+- future: live (authored, in manifest)
+- condizionale: live (authored, in manifest)
+- gerundio: live (authored, in manifest)
+- trapassato_prossimo (pluperfect): tree + dispatch ready, not yet launched
+- congiuntivo (subjunctive, three waves: presente, imperfetto, compounds): tree + dispatch ready, not yet launched
+- passato_remoto (past historic): tree + dispatch ready, not yet launched
+- imperativo (imperative mood): tree + dispatch ready, not yet launched
+
+So four formation dispatches remain to launch (trapassato, imperativo, congiuntivo, passato_remoto); the other six verb trees are live.
+
+Non-finite / edge forms accounted for, not separate formation trees: the past participle lives in the passato_prossimo tree; the present participle (parlante) is rare and adjectival; the infinitive's present is the citation form (no formation to test) and its past (avere parlato) is a minor compound, so the infinitive is a usage-phase topic (its constructions: prepositions, modals, causative fare, perception verbs) rather than a formation gap.
+
+### Usage + tense-choice phase: NEXT
+
+After the remaining formation batches land and are reviewed:
+
+- Usage dispatches per tense (the `.usage` stubs): habitual / progressive / future-of-probability / polite conditional / subjunctive triggers and sequence-of-tenses / etc.
+- TenseChoice work: deepen the `.discrimination` stubs across all trees (present vs imperfect, future vs present, indicative vs subjunctive, pluperfect vs simple past, passato remoto vs passato prossimo), carrying the `candidate_tenses` tick (see OPEN_QUESTIONS).
+- The gerund's adverbial usage and the stare + gerundio progressive across tenses.
+
+### Cross-cutting: misconception aggregation
+
+Independent of the tense build. Registry seeded (`data/misconceptions.json`, DESIGN §15). A dedicated cross-cutting MisconceptionAnalyst chat (proposes suggestions, architect ratifies) bootstraps from the `common_miss` attributes and the `must_not_include` forms, and later mines learner miss-events for cross-kind patterns. Phase 1 is launchable now; the aggregation view is a later housing build.

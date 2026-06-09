@@ -1,0 +1,114 @@
+{
+  "$schema_note": "Pass-2 harvest by MisconceptionAnalyst from common_miss in data/buckets/verb_form.condizionale.json. PENDING ratification. Uses families ratified in thread v2; new specifics defined here, reused ones under reuses_existing. Thread: inter_chat/Architecture_MisconceptionAnalyst_registry_harvest.md.",
+  "topic": "verb_form.condizionale",
+  "source_bucket_count_with_common_miss": 10,
+  "proposed_family_actions": [
+    {
+      "family": "paradigm_confusion",
+      "action": "add_specific",
+      "note": "The -emmo/-emo conditional/future 1pl minimal pair is real-word-wrong-selection, the paradigm_confusion shape (ratified v2 C)."
+    }
+  ],
+  "proposed_misconceptions": [
+    {
+      "$status": "PENDING",
+      "proposed_id": "paradigm_confusion.future_for_conditional_1pl",
+      "family": "paradigm_confusion",
+      "proposed_label": "Future 1pl written for the conditional 1pl",
+      "proposed_description": "Writing the single-m future 1pl (-emo) where the double-m conditional (-emmo) is required, the two differing only by the geminate.",
+      "examples": [
+        "parleremo (for parleremmo)",
+        "prenderemo (for prenderemmo)",
+        "avremo (for avremmo)",
+        "saremo (for saremmo)"
+      ],
+      "harvested_from": [
+        "verb_form.condizionale.formation.regular_are",
+        "verb_form.condizionale.formation.regular_ere",
+        "verb_form.condizionale.formation.regular_ire",
+        "verb_form.condizionale.formation.orthographic.care_gare",
+        "verb_form.condizionale.formation.orthographic.ciare_giare",
+        "verb_form.condizionale.formation.irregular.syncopated",
+        "verb_form.condizionale.formation.irregular.essere"
+      ],
+      "cross_kind_note": "Selecting a valid but wrong-tense form (paradigm_confusion), with a gemination component. The dominant conditional formation miss, in 7 of 10 buckets.",
+      "rationale": "Primary tag paradigm_confusion; gemination.geminate_simplified is a candidate co-tag via the -mm- contrast."
+    }
+  ],
+  "reuses_existing": [
+    {
+      "ref_id": "stem_change.future_are_to_e",
+      "defined_in": "misconception_suggestions_verb_form.future.json",
+      "buckets": [
+        "verb_form.condizionale.formation.regular_are",
+        "verb_form.condizionale.formation.irregular.dare_stare_fare"
+      ],
+      "note": "parlarei; derei/ferei: same -are→-er shift mishandling."
+    },
+    {
+      "ref_id": "stem_change.isc_over_extension",
+      "defined_in": "data/misconceptions.json (v1 seed) — generalised",
+      "buckets": [
+        "verb_form.condizionale.formation.regular_ire"
+      ],
+      "note": "capiscirei."
+    },
+    {
+      "ref_id": "stem_change.future_syncope_under_application",
+      "defined_in": "misconception_suggestions_verb_form.future.json",
+      "buckets": [
+        "verb_form.condizionale.formation.irregular.syncopated"
+      ],
+      "note": "averei/poterei."
+    },
+    {
+      "ref_id": "gemination.geminate_simplified",
+      "defined_in": "misconception_suggestions_verb_form.future.json",
+      "buckets": [
+        "verb_form.condizionale.formation.irregular.double_r"
+      ],
+      "note": "vorei/verei."
+    },
+    {
+      "ref_id": "orthography.omitted_h_hard_cg",
+      "defined_in": "data/misconceptions.json (v1 seed)",
+      "buckets": [
+        "verb_form.condizionale.formation.orthographic.care_gare"
+      ],
+      "note": "cercerei."
+    },
+    {
+      "ref_id": "orthography.double_i_retained",
+      "defined_in": "data/misconceptions.json (v1 seed)",
+      "buckets": [
+        "verb_form.condizionale.formation.orthographic.ciare_giare"
+      ],
+      "note": "comincierei."
+    },
+    {
+      "ref_id": "regularisation.irregular_verb",
+      "defined_in": "data/misconceptions.json (v1 seed)",
+      "buckets": [
+        "verb_form.condizionale.formation.irregular.essere"
+      ],
+      "note": "esserei from the infinitive."
+    },
+    {
+      "ref_id": "auxiliary_choice.avere_for_essere",
+      "defined_in": "misconception_suggestions_verb_form.passato_prossimo.json",
+      "buckets": [
+        "verb_form.condizionale.formation.condizionale_passato"
+      ],
+      "note": "wrong auxiliary."
+    },
+    {
+      "ref_id": "agreement.participle_essere_subject",
+      "defined_in": "misconception_suggestions_verb_form.passato_prossimo.json",
+      "buckets": [
+        "verb_form.condizionale.formation.condizionale_passato"
+      ],
+      "note": "sarei andato for andata."
+    }
+  ],
+  "intentional_non_mappings": []
+}

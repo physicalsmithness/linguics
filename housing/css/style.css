@@ -1390,3 +1390,22 @@ body.strand-vocab-active #live-stats { display: none; }
 .overview-vocab-link:hover {
   background: var(--accent-soft, #e8f0fb);
 }
+
+/* Stats panel layout fix 2026-06-08 — the original .overview-cell used
+   flex: 1 1 195px for a wrap-row layout (basis=width). After the
+   category-grouping refactor put cells inside a flex-direction:column
+   group, the same basis became a min-HEIGHT, so each tile reserved
+   195px even with one short row of content. Override to size by
+   content. Also reroute the outer container to column flow so
+   headers and groups stack vertically rather than competing for row
+   space. See inter_chat/Architecture_Housing_grammar_view_space_and_scroll.md. */
+.live-overview {
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+.overview-category-group .overview-cell {
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}

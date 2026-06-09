@@ -1,0 +1,405 @@
+[
+  {
+    "id": "verb_form.congiuntivo",
+    "parent_id": "verb_form",
+    "language_code": "it",
+    "label": "Subjunctive (congiuntivo)",
+    "description": "The subjunctive mood, the form Italian uses in subordinate clauses after expressions of opinion, doubt, will, emotion, and certain conjunctions. Four forms: presente (che io parli), imperfetto (che io parlassi), passato (che io abbia parlato), and trapassato (che io avessi parlato). Two big simplifiers: the irregular present subjunctive is almost all built from the 1sg present indicative (vengo gives venga, faccio gives faccia), and the imperfect subjunctive is highly regular with the same essere / stem-expansion irregulars as the imperfect indicative. The compound forms reuse the passato prossimo's participle machinery with a subjunctive auxiliary. The present subjunctive is introduced at B1 and consolidated at B2; the imperfect and compound subjunctives are B2; full command is B2-C1. This tree is authored in three waves: presente, then imperfetto, then the two compounds.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.present_indicative",
+      "verb_form.imperfect",
+      "verb_form.passato_prossimo"
+    ],
+    "attributes": {
+      "is_aggregate": true,
+      "topic_short": "cong",
+      "direction": "bidirectional"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.congiuntivo.formation",
+    "parent_id": "verb_form.congiuntivo",
+    "language_code": "it",
+    "label": "Formation",
+    "description": "Building the four subjunctive forms. The present (regular -i / -a endings, the -isc- class, orthographic adjustments, the large from-the-1sg-present irregular group, and the five suppletive irregulars sia / abbia / sappia / dia / stia); the imperfect (regular -assi / -essi / -issi plus essere fossi and the stem-expansion irregulars); and the two compounds (passato with the present subjunctive of the auxiliary, trapassato with the imperfect subjunctive of the auxiliary). This branch is what the Congiuntivo dispatch authors, in three waves; usage and discrimination are separate stubs.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.congiuntivo.formation.presente",
+    "parent_id": "verb_form.congiuntivo.formation",
+    "language_code": "it",
+    "label": "Present subjunctive",
+    "description": "The present subjunctive. Endings: -are takes -i (parli, parli, parli, parliamo, parliate, parlino); -ere and -ire take -a (prenda / dorma ... prendano / dormano). The three singular persons are identical (che io parli, che tu parli, che lui parli), which is why subject pronouns or context are needed to disambiguate. The 1pl is -iamo throughout, shared with the present indicative. Wave 1 of the dispatch.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.congiuntivo.formation.presente.regular_are",
+    "parent_id": "verb_form.congiuntivo.formation.presente",
+    "language_code": "it",
+    "label": "Regular -are: parli / parli / parli / parliamo / parliate / parlino",
+    "description": "The -are class takes -i in the three singular persons (all identical: parli), -iamo in the 1pl, -iate in the 2pl, and -ino in the 3pl (parlino). The all-identical singular is the defining feature; the 3pl -ino is a common slip (parlano, which is the indicative).",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "che io parli, che loro parlino, che noi parliamo",
+      "common_miss": "using the indicative 3pl -ano (parlano) instead of the subjunctive -ino (parlino); or an indicative singular (parla)",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.congiuntivo.formation.presente.regular_ere_ire",
+    "parent_id": "verb_form.congiuntivo.formation.presente",
+    "language_code": "it",
+    "label": "Regular -ere / -ire: prenda / dorma ... prendano / dormano",
+    "description": "Both -ere and -ire take -a in the three singular persons (prenda, dorma), -iamo in the 1pl, -iate in the 2pl, -ano in the 3pl (prendano, dormano). One ending set for both classes. The singular -a coincides with the indicative 3sg, so context or the subordinating trigger marks it as subjunctive.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "che io prenda, che loro dormano, che noi prendiamo",
+      "common_miss": "using -i (the -are subjunctive ending) on an -ere/-ire verb (prendi); or the indicative 3pl -ono (prendono) for -ano",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.congiuntivo.formation.presente.ire_isc",
+    "parent_id": "verb_form.congiuntivo.formation.presente",
+    "language_code": "it",
+    "label": "-ire with -isc-: capisca / capisca / capisca / capiamo / capiate / capiscano",
+    "description": "The -isc- -ire class inserts -isc- in the three singular persons and the 3pl (capisca, capiscano), but not in the 1pl/2pl (capiamo, capiate), exactly the boot-shaped distribution of the present indicative. Members are the same verbs that take -isc- in the present (capire, finire, preferire).",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "che io capisca, che loro finiscano, che noi capiamo",
+      "common_miss": "carrying -isc- into the 1pl/2pl (capiscamo) or omitting it in the singular (capa)",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.congiuntivo.formation.presente.orthographic",
+    "parent_id": "verb_form.congiuntivo.formation.presente",
+    "language_code": "it",
+    "label": "Orthographic: -care/-gare add h (cerchi), -ciare/-giare drop i (cominci)",
+    "description": "The same spelling adjustments as the present indicative, surfacing because the -are subjunctive ending is -i: -care and -gare insert an h (cercare gives cerchi, cerchino; pagare gives paghi, paghino), and -ciare and -giare drop the redundant i (cominciare gives cominci, comincino; mangiare gives mangi, mangino).",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "che io cerchi, che loro paghino, che io cominci",
+      "common_miss": "omitting the h (ceri) or keeping the redundant i (comincii)",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.congiuntivo.formation.presente.irregular_from_1sg",
+    "parent_id": "verb_form.congiuntivo.formation.presente",
+    "language_code": "it",
+    "label": "Irregular from the 1sg present: vengo gives venga, faccio gives faccia, vado gives vada",
+    "description": "The large and learnable irregular group: take the 1sg present indicative, drop the -o, add the subjunctive ending. venire (vengo) gives venga / vengano; fare (faccio) gives faccia / facciano; andare (vado) gives vada / vadano; uscire (esco) gives esca / escano; potere (posso) gives possa / possano; volere (voglio) gives voglia / vogliano; dire (dico) gives dica / dicano; tenere (tengo) gives tenga; dovere (devo) gives debba / deva. If a learner knows the 1sg present, they can derive the present subjunctive. The three singular persons are again identical.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "che io venga, che loro facciano, che lui vada, che io possa",
+      "common_miss": "building from the infinitive instead of the 1sg present (venga written as vena); wrong 3pl (vengono, the indicative, for vengano)",
+      "direction": "production",
+      "cross_reference": "verb_form.present_indicative"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.congiuntivo.formation.presente.irregular_suppletive",
+    "parent_id": "verb_form.congiuntivo.formation.presente",
+    "language_code": "it",
+    "label": "Suppletive irregulars: sia, abbia, sappia, dia, stia",
+    "description": "Five very high-frequency verbs whose present subjunctive is NOT derivable from the 1sg present indicative and must be learned outright: essere gives sia (sia, sia, sia, siamo, siate, siano); avere gives abbia (abbia ... abbiano); sapere gives sappia; dare gives dia; stare gives stia. sia and abbia are also the auxiliaries for the congiuntivo passato, so they are the most important forms in the whole tree.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "che io sia, che loro abbiano, che lui sappia, che io stia",
+      "common_miss": "deriving from the 1sg present (sono gives wrong sona instead of sia; ho gives wrong abba instead of abbia)",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.congiuntivo.formation.imperfetto",
+    "parent_id": "verb_form.congiuntivo.formation",
+    "language_code": "it",
+    "label": "Imperfect subjunctive",
+    "description": "The imperfect subjunctive, highly regular: -are gives -assi / -assi / -asse / -assimo / -aste / -assero (parlassi); -ere gives -essi (prendessi); -ire gives -issi (dormissi). The irregular set is small: essere gives fossi, and a stem-expansion group (fare gives facessi, dare gives dessi, stare gives stessi, dire gives dicessi, bere gives bevessi) uses the same expanded stem as the imperfect indicative. Wave 2 of the dispatch.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.congiuntivo.formation.imperfetto.regular",
+    "parent_id": "verb_form.congiuntivo.formation.imperfetto",
+    "language_code": "it",
+    "label": "Regular: parlassi / prendessi / dormissi",
+    "description": "Stem plus the class vowel plus -ssi / -ssi / -sse / -ssimo / -ste / -ssero: parlassi, parlassi, parlasse, parlassimo, parlaste, parlassero (and prendessi, dormissi). The 1sg and 2sg are identical (parlassi), like the present subjunctive's identical singulars. The double s is obligatory; a single s (parlasi) is the common spelling miss.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "che io parlassi, che lui prendesse, che loro dormissero",
+      "common_miss": "single s (parlasi) for the double-s (parlassi); wrong class vowel (parlessi)",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.congiuntivo.formation.imperfetto.irregular",
+    "parent_id": "verb_form.congiuntivo.formation.imperfetto",
+    "language_code": "it",
+    "label": "Irregular: essere fossi; stem-expansion facessi / dessi / stessi / dicessi / bevessi",
+    "description": "essere is fossi, fossi, fosse, fossimo, foste, fossero. The stem-expansion verbs restore the longer stem, the same one as the imperfect indicative: fare gives facessi (cf. facevo), dire gives dicessi, bere gives bevessi, plus the contracted dare gives dessi and stare gives stessi. If a learner knows the imperfect indicative stem, the imperfect subjunctive uses the same stem with -ssi endings.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "che io fossi, che lui facesse, che loro dessero",
+      "common_miss": "regularising the stem (facessi written as farei-style faressi; dessi as dassi)",
+      "direction": "production",
+      "cross_reference": "verb_form.imperfect"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.congiuntivo.formation.passato",
+    "parent_id": "verb_form.congiuntivo.formation",
+    "language_code": "it",
+    "label": "Congiuntivo passato (compound): che io abbia parlato, che lei sia andata",
+    "description": "The compound past subjunctive: the PRESENT subjunctive of the auxiliary (abbia or sia) plus the past participle (che io abbia parlato, che lei sia andata). Used in a subjunctive-triggering subordinate clause whose action is past relative to a present main clause ('Penso che sia gia partito'). Reuses the passato prossimo's auxiliary choice and participle agreement (with sia the participle agrees with the subject). Wave 3 of the dispatch. B2.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "arcane",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.congiuntivo.formation.presente",
+      "verb_form.passato_prossimo"
+    ],
+    "attributes": {
+      "canonical_example": "che io abbia parlato, che lei sia andata, che loro siano arrivati",
+      "common_miss": "using the indicative auxiliary (ha parlato) instead of the subjunctive (abbia parlato); participle not agreeing with sia",
+      "direction": "production",
+      "cross_reference": "verb_form.passato_prossimo"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.congiuntivo.formation.trapassato",
+    "parent_id": "verb_form.congiuntivo.formation",
+    "language_code": "it",
+    "label": "Congiuntivo trapassato (compound): che io avessi parlato, che lei fosse andata",
+    "description": "The compound pluperfect subjunctive: the IMPERFECT subjunctive of the auxiliary (avessi or fossi) plus the past participle (che io avessi parlato, che lei fosse andata). Used in the protasis of an impossible/past counterfactual ('Se avessi saputo, sarei venuto') and in subjunctive subordinates past relative to a past main clause ('Pensavo che fosse gia partito'). Reuses the passato prossimo's participle machinery. Wave 3 of the dispatch. B2-C1.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "arcane",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.congiuntivo.formation.imperfetto",
+      "verb_form.passato_prossimo"
+    ],
+    "attributes": {
+      "canonical_example": "che io avessi parlato, che lei fosse andata, che loro fossero arrivati",
+      "common_miss": "using the imperfect indicative auxiliary (aveva parlato) instead of the imperfect subjunctive (avessi parlato); participle not agreeing with fosse",
+      "direction": "production",
+      "cross_reference": "verb_form.passato_prossimo"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.congiuntivo.usage",
+    "parent_id": "verb_form.congiuntivo",
+    "language_code": "it",
+    "label": "Usage",
+    "description": "STUB. When the subjunctive is required and which of its four tenses to use: the triggers (verbs of opinion / doubt / will / emotion, impersonal expressions like e importante che, conjunctions like benche / affinche / prima che, relative superlatives, indefinite antecedents), and the sequence-of-tenses rule (concordanza dei tempi) that selects presente / passato / imperfetto / trapassato by the main-clause tense and the time relationship. Left at stub level for a later CongiuntivoUsage dispatch; the indicative-vs-subjunctive choice itself is the tense_choice tree's territory. No usage leaves are authored in the formation dispatch.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "core",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.congiuntivo.discrimination",
+    "parent_id": "verb_form.congiuntivo",
+    "language_code": "it",
+    "label": "Discrimination",
+    "description": "STUB. Choosing the subjunctive over the indicative where a subordinate clause could take either (penso che sia, subjunctive of opinion, versus so che e, indicative of fact). The stub leaf below is its structural home, paired with the tense_choice tree's indicative_vs_subjunctive buckets. Authored by TenseChoice; these buckets exist so cross-tree citations resolve.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.congiuntivo.discrimination.vs_indicative",
+    "parent_id": "verb_form.congiuntivo.discrimination",
+    "language_code": "it",
+    "label": "Subjunctive vs indicative",
+    "description": "STUB. When a subordinate clause takes the subjunctive (opinion, doubt, will, emotion, certain conjunctions) versus the indicative (fact, certainty, so che / e vero che). Mirrors the tense_choice tree's indicative_vs_subjunctive. Authored by TenseChoice; this leaf is its structural home.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.present_indicative"
+    ],
+    "attributes": {
+      "direction": "bidirectional",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  }
+]

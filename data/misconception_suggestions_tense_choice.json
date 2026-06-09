@@ -1,0 +1,108 @@
+{
+  "$schema_note": "Misconception suggestions harvested by MisconceptionAnalyst from common_miss prose in data/buckets/tense_choice.json. PENDING architecture ratification into data/misconceptions.json. Pass 2 (formation + usage trees). Many misses REUSE specifics defined in pass 1 or the v1 registry (cross-tense/cross-kind reuse is the point); only genuinely new specifics are defined here, the rest listed under reuses_existing. Thread: inter_chat/Architecture_MisconceptionAnalyst_registry_harvest.md (see v2).",
+  "topic": "tense_choice",
+  "source_bucket_count_with_common_miss": 12,
+  "proposed_family_actions": [
+    {
+      "family": "discrimination",
+      "action": "PROPOSE_NEW_FAMILY",
+      "proposed_definition": {
+        "label": "Tense / aspect / mood selection",
+        "description": "Choosing the wrong tense, aspect, or mood where the chosen form would itself be correctly built. The selection counterpart to the formation families (which are about mis-building a form). Cross-kind: aspect, sequence-of-tenses, and mood-trigger selection recur across every tense pairing. OPEN_QUESTIONS already anticipated tense choice as a cross-kind discrimination misconception.",
+        "cross_kind": true
+      },
+      "note": "The headline pass-2 proposal. ~30 misses across the tense_choice and imperfect-usage/discrimination trees collapse here. Distinct from the formation families and from transfer (though many discrimination errors are transfer-driven and could co-tag)."
+    }
+  ],
+  "proposed_misconceptions": [
+    {
+      "$status": "PENDING",
+      "proposed_id": "discrimination.progressive_overuse",
+      "family": "discrimination",
+      "proposed_label": "Progressive over-used for the simple tense",
+      "proposed_description": "Using the stare + gerundio progressive where the simple present/imperfect is the natural choice, typically by mapping every English -ing form onto a progressive.",
+      "examples": [
+        "sto mangiando for the habitual mangio",
+        "stavo mangiando for the descriptive mangiavo"
+      ],
+      "harvested_from": [
+        "tense_choice.progressive_vs_simple.present_progressive_vs_present",
+        "tense_choice.progressive_vs_simple.past_progressive_vs_imperfetto"
+      ],
+      "cross_kind_note": "Co-tags with transfer (English -ing).",
+      "rationale": "One pattern over both the present and past progressive buckets."
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "discrimination.future_present_mismatch",
+      "family": "discrimination",
+      "proposed_label": "Future vs present-for-future mismatch",
+      "proposed_description": "Choosing the morphological future where a present-for-future is natural, or the present where the future is required (distant, uncertain, probabilistic).",
+      "examples": [
+        "present where future required (distant/uncertain)",
+        "morphological future where present-for-future is more natural"
+      ],
+      "harvested_from": [
+        "tense_choice.future_vs_present.future_for_unambiguous_future",
+        "tense_choice.future_vs_present.present_for_near_future"
+      ],
+      "cross_kind_note": "",
+      "rationale": "Bidirectional selection error; one specific, both directions."
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "discrimination.counterfactual_construction",
+      "family": "discrimination",
+      "proposed_label": "Wrong tense/mood combination for a counterfactual",
+      "proposed_description": "Mis-selecting the verb forms of a counterfactual conditional: using present indicative + future (a real-condition pattern) for a counterfactual, or judging the accepted colloquial double-imperfect as wrong.",
+      "examples": [
+        "se ho tempo, verro' (real-condition pattern) for a counterfactual",
+        "treating the colloquial imperfect counterfactual as an error"
+      ],
+      "harvested_from": [
+        "tense_choice.conditional_vs_imperfect_counterfactual.prescriptive_conditional",
+        "tense_choice.conditional_vs_imperfect_counterfactual.colloquial_imperfect"
+      ],
+      "cross_kind_note": "Also harvested from imperfect.stylistic.colloquial_counterfactual (cross-ref below).",
+      "rationale": "Construction-level selection across conditional + imperfect-subjunctive."
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "discrimination.indicative_for_subjunctive_choice",
+      "family": "discrimination",
+      "proposed_label": "Indicative chosen where a trigger requires the subjunctive",
+      "proposed_description": "Leaving the verb in the indicative after a trigger that requires the subjunctive (opinion, emotion, hypothetical conjunctions, negation). The SELECTION error, distinct from mis-forming the subjunctive (see mood.indicative_for_subjunctive_form).",
+      "examples": [
+        "penso che e' (for penso che sia)",
+        "sono contento che sei qui (for che tu sia qui)"
+      ],
+      "harvested_from": [
+        "tense_choice.indicative_vs_subjunctive.opinion_triggers",
+        "tense_choice.indicative_vs_subjunctive.emotion_triggers",
+        "tense_choice.indicative_vs_subjunctive.hypothetical_triggers",
+        "tense_choice.indicative_vs_subjunctive.negative_triggers"
+      ],
+      "cross_kind_note": "FLAGGED PAIR: choice (here) vs form (mood.indicative_for_subjunctive_form in congiuntivo). Same surface, different diagnosis; keep both so the drill-down can separate 'didn't know it was triggered' from 'couldn't build it'.",
+      "rationale": "Four trigger buckets, one selection pattern."
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "discrimination.trapassato_imperfect_choice",
+      "family": "discrimination",
+      "proposed_label": "Trapassato vs imperfect mis-selected",
+      "proposed_description": "Using the imperfect for a clearly completed prior-to-prior event, or the trapassato for an ongoing background state.",
+      "examples": [
+        "mangiava for 'had eaten'",
+        "avevo mangiato quando sei entrato (implies finished) where ongoing was meant"
+      ],
+      "harvested_from": [
+        "tense_choice.trapassato_vs_imperfect.completed_prior_to_prior",
+        "tense_choice.trapassato_vs_imperfect.ongoing_background"
+      ],
+      "cross_kind_note": "",
+      "rationale": "Aspect selection between two past tenses."
+    }
+  ],
+  "reuses_existing": [],
+  "intentional_non_mappings": []
+}

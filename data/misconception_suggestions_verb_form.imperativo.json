@@ -1,0 +1,71 @@
+{
+  "$schema_note": "Pass-2 harvest by MisconceptionAnalyst from common_miss in data/buckets/verb_form.imperativo.json. PENDING ratification. Uses families ratified in thread v2; new specifics defined here, reused ones under reuses_existing. Thread: inter_chat/Architecture_MisconceptionAnalyst_registry_harvest.md.",
+  "topic": "verb_form.imperativo",
+  "source_bucket_count_with_common_miss": 4,
+  "proposed_family_actions": [
+    {
+      "family": "paradigm_confusion",
+      "action": "add_specific",
+      "note": "Using a valid but wrong present-tense cell as the imperative."
+    },
+    {
+      "family": "transfer",
+      "action": "add_specific (tentative)",
+      "note": "English-style negation of a finite imperative."
+    }
+  ],
+  "proposed_misconceptions": [
+    {
+      "$status": "PENDING",
+      "proposed_id": "paradigm_confusion.wrong_person_as_imperative",
+      "family": "paradigm_confusion",
+      "proposed_label": "Wrong present-tense cell used as the imperative",
+      "proposed_description": "Using a valid present-indicative person as the tu imperative: the 2sg -i for the -are imperative (which is the 3sg -a), or the wrong vowel on -ere/-ire.",
+      "examples": [
+        "parli! (for parla!)",
+        "prenda! (for prendi!)"
+      ],
+      "harvested_from": [
+        "verb_form.imperativo.formation.informal_affirmative"
+      ],
+      "cross_kind_note": "Real-form-wrong-role (paradigm_confusion), not a malformed word.",
+      "rationale": "The -are imperative = 3sg present, a notorious cell confusion."
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "transfer.negative_imperative_finite",
+      "family": "transfer",
+      "proposed_label": "Finite form negated instead of non + infinitive",
+      "proposed_description": "Negating the positive tu imperative directly (English 'don't speak') instead of the Italian non + infinitive.",
+      "examples": [
+        "non parla! (for non parlare!)"
+      ],
+      "harvested_from": [
+        "verb_form.imperativo.formation.informal_negative"
+      ],
+      "cross_kind_note": "transfer overlay (v2 B); the error mirrors English negating a finite verb.",
+      "rationale": "Italian's tu negative imperative is suppletive (non + infinitive)."
+    }
+  ],
+  "reuses_existing": [
+    {
+      "ref_id": "regularisation.irregular_verb",
+      "defined_in": "data/misconceptions.json (v1 seed)",
+      "buckets": [
+        "verb_form.imperativo.formation.irregular_tu",
+        "verb_form.imperativo.formation.formal"
+      ],
+      "note": "va for va'/vai; building the irregular formal imperative from the infinitive."
+    },
+    {
+      "ref_id": "mood.indicative_for_subjunctive_form",
+      "defined_in": "misconception_suggestions_verb_form.congiuntivo.json",
+      "buckets": [
+        "verb_form.imperativo.formation.irregular_tu",
+        "verb_form.imperativo.formation.formal"
+      ],
+      "note": "sei! for sii! and the formal Lei imperative use the (subjunctive-based) form; using the indicative is the same mood-form error."
+    }
+  ],
+  "intentional_non_mappings": []
+}

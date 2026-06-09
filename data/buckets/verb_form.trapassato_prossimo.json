@@ -1,0 +1,169 @@
+[
+  {
+    "id": "verb_form.trapassato_prossimo",
+    "parent_id": "verb_form",
+    "language_code": "it",
+    "label": "Pluperfect (trapassato prossimo)",
+    "description": "The 'past before the past'. Formed exactly like the passato prossimo but with the auxiliary in the IMPERFECT instead of the present: avevo parlato (I had spoken), ero andato/a (I had gone). That single change, present auxiliary becomes imperfect auxiliary, is the whole of what is new here; auxiliary choice (avere vs essere), participle form, and participle agreement with essere are all identical to the passato prossimo and are inherited, not re-taught. Used for an action completed before another past moment ('Quando sono arrivato, lui era gia partito'). A B1 topic. This tree is deliberately thin and leans heavily on the passato prossimo (for the participle and agreement) and the imperfect (for the auxiliary's conjugation).",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.imperfect",
+      "verb_form.passato_prossimo"
+    ],
+    "attributes": {
+      "is_aggregate": true,
+      "topic_short": "tpp",
+      "direction": "bidirectional"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.trapassato_prossimo.formation",
+    "parent_id": "verb_form.trapassato_prossimo",
+    "language_code": "it",
+    "label": "Formation",
+    "description": "Building the pluperfect: the imperfect of the auxiliary plus the past participle. Two leaves by auxiliary: avere (avevo + participle, no agreement unless a preceding direct-object pronoun) and essere (ero + participle, agreeing with the subject). The distinguishing skill from the passato prossimo is using the imperfect auxiliary (avevo, not ho); everything else (which auxiliary, which participle, agreement) follows the passato prossimo's rules and is cross-referenced there. The auxiliary's own imperfect conjugation (avevo, ero) is owned by the imperfect tree.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.trapassato_prossimo.formation.avere",
+    "parent_id": "verb_form.trapassato_prossimo.formation",
+    "language_code": "it",
+    "label": "avere auxiliary: avevo + participle (avevo parlato, aveva finito)",
+    "description": "The pluperfect of avere-verbs: the imperfect of avere (avevo, avevi, aveva, avevamo, avevate, avevano) plus the past participle. The participle does not agree with the subject (avevo parlato, lei aveva mangiato), except with a preceding direct-object pronoun (le avevo viste), which is the passato prossimo's rule inherited. The defining skill and miss: use the imperfect auxiliary (avevo parlato), not the present (ho parlato, which would be a passato prossimo). Participle form (regular and irregular) is cross-referenced to the passato prossimo tree.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "avevo parlato, aveva finito, avevano fatto",
+      "common_miss": "using the present auxiliary (ho parlato) instead of the imperfect (avevo parlato); or a wrong imperfect-of-avere form",
+      "direction": "production",
+      "cross_reference": "verb_form.passato_prossimo"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.trapassato_prossimo.formation.essere",
+    "parent_id": "verb_form.trapassato_prossimo.formation",
+    "language_code": "it",
+    "label": "essere auxiliary: ero + participle, agreeing (ero andato/a, eravamo arrivati)",
+    "description": "The pluperfect of essere-verbs: the imperfect of essere (ero, eri, era, eravamo, eravate, erano) plus the past participle agreeing with the subject in gender and number (ero andato / andata, eravamo arrivati / arrivate). Auxiliary choice (which verbs take essere) and participle agreement are the passato prossimo's rules inherited; the distinguishing skill is the imperfect auxiliary (ero andato), not the present (sono andato, a passato prossimo). The essere imperfect conjugation is owned by the imperfect tree.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "ero andato, era partita, eravamo arrivati, erano uscite",
+      "common_miss": "present auxiliary (sono andato) for the imperfect (ero andato); participle not agreeing (ero andato for a feminine subject who needs andata); wrong auxiliary",
+      "direction": "production",
+      "cross_reference": "verb_form.passato_prossimo"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.trapassato_prossimo.usage",
+    "parent_id": "verb_form.trapassato_prossimo",
+    "language_code": "it",
+    "label": "Usage",
+    "description": "STUB. When the pluperfect is the right choice: an action completed before another past point ('Quando sono arrivato, lui era gia partito'; 'Avevo gia mangiato quando mi hai chiamato'), and the backshift in reported speech ('Disse che era gia partito'). Left at stub level for a later TrapassatoUsage dispatch; no usage leaves are authored in the formation dispatch.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.trapassato_prossimo.discrimination",
+    "parent_id": "verb_form.trapassato_prossimo",
+    "language_code": "it",
+    "label": "Discrimination",
+    "description": "STUB. Choosing the pluperfect over a competing past where both are formally possible: the past-before-past (era partito) versus a simple past (the passato prossimo e partito or the imperfect partiva) when the sequence-of-events reading is at stake. The stub leaf below is its structural home, paired with the tense_choice tree's trapassato_vs_imperfect buckets. Authored by TenseChoice; these buckets exist so cross-tree citations resolve.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.trapassato_prossimo.discrimination.vs_imperfect_pp",
+    "parent_id": "verb_form.trapassato_prossimo.discrimination",
+    "language_code": "it",
+    "label": "Pluperfect vs imperfect / passato prossimo",
+    "description": "STUB. When a past event needs the past-before-past reading (era gia partito) rather than a plain past (e partito / partiva). Mirrors the tense_choice tree's trapassato_vs_imperfect. Authored by TenseChoice; this leaf is its structural home.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.imperfect",
+      "verb_form.passato_prossimo"
+    ],
+    "attributes": {
+      "direction": "bidirectional",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  }
+]

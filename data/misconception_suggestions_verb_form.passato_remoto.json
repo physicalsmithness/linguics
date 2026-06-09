@@ -1,0 +1,77 @@
+{
+  "$schema_note": "Pass-2 harvest by MisconceptionAnalyst from common_miss in data/buckets/verb_form.passato_remoto.json. PENDING ratification. Uses families ratified in thread v2; new specifics defined here, reused ones under reuses_existing. Thread: inter_chat/Architecture_MisconceptionAnalyst_registry_harvest.md.",
+  "topic": "verb_form.passato_remoto",
+  "source_bucket_count_with_common_miss": 6,
+  "proposed_family_actions": [
+    {
+      "family": "stem_change",
+      "action": "add_specific",
+      "note": "The rhizotonic strong-stem / arrhizotonic alternation of the passato remoto."
+    }
+  ],
+  "proposed_misconceptions": [
+    {
+      "$status": "PENDING",
+      "proposed_id": "stem_change.passato_remoto_strong_over_extension",
+      "family": "stem_change",
+      "proposed_label": "Strong passato-remoto stem used in the weak persons",
+      "proposed_description": "Carrying the strong (rhizotonic) stem into the 2sg/1pl/2pl, which take the regular weak stem and endings.",
+      "examples": [
+        "presesti (for prendesti)",
+        "fecesti (for facesti)"
+      ],
+      "harvested_from": [
+        "verb_form.passato_remoto.formation.irregular_strong_ere",
+        "verb_form.passato_remoto.formation.irregular_suppletive"
+      ],
+      "cross_kind_note": "Over-application shape, like the present stem-change over-extensions; the inverse (regularising the strong persons, prendei for presi) maps to regularisation.irregular_verb.",
+      "rationale": "The 1-3-3 strong / 2-4-5-6 weak alternation."
+    }
+  ],
+  "reuses_existing": [
+    {
+      "ref_id": "accent_silent_letter.accent_omitted",
+      "defined_in": "data/misconceptions.json (v1 seed)",
+      "buckets": [
+        "verb_form.passato_remoto.formation.regular_are",
+        "verb_form.passato_remoto.formation.regular_ire"
+      ],
+      "note": "parlo for parlò, dormi for dormì: dropping the obligatory final-stress accent."
+    },
+    {
+      "ref_id": "gemination.geminate_simplified",
+      "defined_in": "misconception_suggestions_verb_form.future.json",
+      "buckets": [
+        "verb_form.passato_remoto.formation.regular_are"
+      ],
+      "note": "parlamo for parlammo (single m)."
+    },
+    {
+      "ref_id": "stem_change.isc_over_extension",
+      "defined_in": "data/misconceptions.json (v1 seed) — generalised",
+      "buckets": [
+        "verb_form.passato_remoto.formation.regular_ire"
+      ],
+      "note": "capiscii: -isc- into the passato remoto."
+    },
+    {
+      "ref_id": "regularisation.irregular_verb",
+      "defined_in": "data/misconceptions.json (v1 seed)",
+      "buckets": [
+        "verb_form.passato_remoto.formation.regular_ere",
+        "verb_form.passato_remoto.formation.irregular_strong_ere",
+        "verb_form.passato_remoto.formation.irregular_suppletive"
+      ],
+      "note": "prendei for presi, avei for ebbi, facei for feci: regularising the strong/suppletive passato remoto."
+    },
+    {
+      "ref_id": "auxiliary_choice.wrong_auxiliary_tense",
+      "defined_in": "misconception_suggestions_verb_form.trapassato_prossimo.json",
+      "buckets": [
+        "verb_form.passato_remoto.formation.trapassato_remoto"
+      ],
+      "note": "avevo parlato (pluperfect) for ebbi parlato: wrong tense of the auxiliary."
+    }
+  ],
+  "intentional_non_mappings": []
+}

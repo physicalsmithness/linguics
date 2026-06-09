@@ -1,0 +1,163 @@
+{
+  "$schema_note": "Misconception suggestions harvested by MisconceptionAnalyst from common_miss in data/buckets/adjective_agreement.json. FOLDED per inter_chat/Architecture_MisconceptionAnalyst_registry_harvest.md v2: the two cross-kind orthography pairs are tagged into the EXISTING verb specifics (no sibling ids) per ruling A. Governance: analyst proposes, architecture ratifies.",
+  "topic": "adjective_agreement",
+  "source_bucket_count_with_common_miss": 25,
+  "proposed_family_actions": [
+    {
+      "family": "word_order",
+      "action": "populate_reserved (approved v2)",
+      "note": "adjective position is word_order's first specific."
+    }
+  ],
+  "proposed_misconceptions": [
+    {
+      "$status": "PENDING (folded per thread v2)",
+      "proposed_id": "agreement.adjective_noun",
+      "family": "agreement",
+      "proposed_label": "Adjective fails to agree with its noun",
+      "proposed_description": "Leaving an adjective in the wrong gender or number for the noun it modifies, where the adjective is of the right inflection class.",
+      "examples": [
+        "casa rosso (for rossa)",
+        "case rossi (for rosse)",
+        "libri grande (for grandi)",
+        "grigia (for grige/grigie, no plural marking)"
+      ],
+      "harvested_from": [
+        "adjective_agreement.o_class.masculine_plural",
+        "adjective_agreement.o_class.feminine_singular",
+        "adjective_agreement.o_class.feminine_plural",
+        "adjective_agreement.e_class.masculine_plural",
+        "adjective_agreement.e_class.feminine_plural",
+        "adjective_agreement.stem_changes.predictable.gia_ge"
+      ],
+      "cross_kind_note": "Flagship agreement family; co-occurs with participle and clitic agreement.",
+      "rationale": "Pure agreement-value error; kept distinct from regularisation.adjective_class."
+    },
+    {
+      "$status": "PENDING (folded per thread v2)",
+      "proposed_id": "agreement.mixed_gender_default",
+      "family": "agreement",
+      "proposed_label": "Mixed-gender plural not defaulted to masculine",
+      "proposed_description": "With a mixed-gender plural group, agreeing with the nearest noun instead of using the masculine-plural default.",
+      "examples": [
+        "i ragazzi e le ragazze sono italiane (for italiani)"
+      ],
+      "harvested_from": [
+        "adjective_agreement.mixed_gender_plural_defaults_masculine"
+      ],
+      "cross_kind_note": "CROSS-KIND: identical pattern in passato participle agreement (sono andate for andati). ONE shared specific, tagged from both trees.",
+      "rationale": "First cross-kind instance harvested."
+    },
+    {
+      "$status": "PENDING (folded per thread v2)",
+      "proposed_id": "agreement.prenominal_allomorph",
+      "family": "agreement",
+      "proposed_label": "Wrong allomorph of a pre-nominal form (bello/buono/quello)",
+      "proposed_description": "Selecting the wrong allomorph of an adjective that inflects like an article before the noun, choosing by the following sound.",
+      "examples": [
+        "bello libro (for bel libro)",
+        "buono libro (for buon libro)"
+      ],
+      "harvested_from": [
+        "adjective_agreement.special.bello",
+        "adjective_agreement.special.buono"
+      ],
+      "cross_kind_note": "CROSS-KIND-IN-WAITING: same sound-conditioned selection as the articles (il/lo/l').",
+      "rationale": "Bridge specific into the article tree later."
+    },
+    {
+      "$status": "PENDING (folded per thread v2)",
+      "proposed_id": "regularisation.adjective_class",
+      "family": "regularisation",
+      "proposed_label": "Class II (-e) adjective inflected as Class I (-o/-a)",
+      "proposed_description": "Treating an -e-class adjective (grande) as if it took the dominant -o/-a Class I pattern.",
+      "examples": [
+        "un libro grando (for grande)",
+        "una casa granda (for grande)"
+      ],
+      "harvested_from": [
+        "adjective_agreement.e_class.masculine_singular",
+        "adjective_agreement.e_class.feminine_singular"
+      ],
+      "cross_kind_note": "Same regularisation shape as regularisation.irregular_verb / irregular_participle.",
+      "rationale": "Wrong class altogether, not a gender/number mis-value."
+    },
+    {
+      "$status": "PENDING (folded per thread v2)",
+      "proposed_id": "regularisation.invariable_adjective",
+      "family": "regularisation",
+      "proposed_label": "Invariable adjective wrongly inflected",
+      "proposed_description": "Inflecting an adjective that should stay invariable: noun-derived colours (rosa, viola) and compound colour expressions (verde scuro).",
+      "examples": [
+        "le case rose (for rosa)",
+        "le pareti verdi scure / verde scure (for verde scuro)"
+      ],
+      "harvested_from": [
+        "adjective_agreement.invariable.colour_from_noun",
+        "adjective_agreement.invariable.compound_colour"
+      ],
+      "cross_kind_note": "Over-application of the agreement rule (kept per ruling D).",
+      "rationale": "Mirror of regularisation.irregular_*: an invariable wrongly made to agree."
+    },
+    {
+      "$status": "PENDING (folded per thread v2)",
+      "proposed_id": "orthography.cg_plural_stress_misapplied",
+      "family": "orthography",
+      "proposed_label": "Wrong -chi/-ci (or -ghi/-gi) by stress or irregularity",
+      "proposed_description": "Misapplying the -co plural split (-chi hard vs -ci soft, by stress and lexical irregularity): over-applying one where the other is required.",
+      "examples": [
+        "simpatichi (for simpatici)",
+        "amichi (for amici)",
+        "grechi (for greci)",
+        "antici (for antichi)"
+      ],
+      "harvested_from": [
+        "adjective_agreement.stem_changes.harder.co_ci_vs_chi_stress",
+        "adjective_agreement.stem_changes.irregular.amico_amici",
+        "adjective_agreement.stem_changes.irregular.greco_greci",
+        "adjective_agreement.stem_changes.irregular.antico_antichi"
+      ],
+      "cross_kind_note": "No existing verb equivalent (this is the which-way-does-the-rule-go error), so kept as a new specific (not affected by ruling A).",
+      "rationale": "Distinct from the unified omitted_h specific: here the rule's direction is the question."
+    },
+    {
+      "$status": "PENDING (folded per thread v2)",
+      "proposed_id": "word_order.adjective_position",
+      "family": "word_order",
+      "proposed_label": "Adjective placed before the noun where post-nominal is default",
+      "proposed_description": "Fronting a descriptive adjective on the English pattern, where Italian's unmarked order is post-nominal.",
+      "examples": [
+        "la rossa casa (for la casa rossa)"
+      ],
+      "harvested_from": [
+        "adjective_agreement.position.post_noun_default"
+      ],
+      "cross_kind_note": "First word_order specific. Co-tags with transfer (English order) now that transfer is an overlay tag (v2 B).",
+      "rationale": "Opens the word_order family."
+    }
+  ],
+  "reuses_existing": [
+    {
+      "ref_id": "orthography.omitted_h_hard_cg",
+      "defined_in": "data/misconceptions.json (v1 seed; description to be broadened to kind-neutral per v2 A)",
+      "buckets": [
+        "adjective_agreement.stem_changes.predictable.co_chi",
+        "adjective_agreement.stem_changes.predictable.ca_che",
+        "adjective_agreement.stem_changes.predictable.go_ghi",
+        "adjective_agreement.stem_changes.predictable.ga_ghe"
+      ],
+      "note": "bianci/lungi = the SAME hard-c/g h-rule as the verb cerchi. Unified per ruling A; tagged into the existing specific, no sibling created."
+    },
+    {
+      "ref_id": "orthography.double_i_retained",
+      "defined_in": "data/misconceptions.json (v1 seed; to be broadened per v2 A)",
+      "buckets": [
+        "adjective_agreement.stem_changes.predictable.cio_ci",
+        "adjective_agreement.stem_changes.predictable.gio_gi",
+        "adjective_agreement.stem_changes.predictable.cia_ce"
+      ],
+      "note": "vecchii/grigii/liscie = the SAME redundant-i rule as the verb mangii. Unified per ruling A."
+    }
+  ],
+  "intentional_non_mappings": []
+}

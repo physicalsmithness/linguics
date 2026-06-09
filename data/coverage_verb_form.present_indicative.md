@@ -69,6 +69,10 @@ This convention is now **criterion 15 in AUTHOR_BRIEF Revision 8** (Architecture
 
 ---
 
+## Cue economy (person dropped where the subject is supplied)
+
+Per `inter_chat/Architecture_PresentFormationAuthor_cue_person_redundancy.md` (CLOSED) and AUTHOR_BRIEF criterion 13 cue-economy note (Rev 9): the cue parenthetical names the person only when the prompt does not already supply the subject. **75 items** drop the person (67 with an explicit subject pronoun, 8 with an unambiguous nominal subject); **16 pro-drop items** keep it (no surface subject, so the person is the only thing fixing the wanted form). The verb stays in every cue; marking is unaffected (the cue is not matched). Three kept-cued items lean on the cue to exclude a competing reading (aprire 2pl, cominciare 2sg, svegliarsi 2sg); see the thread.
+
 ## Notes for later dispatches
 
 - **PresentUsage** (the `verb_form.present_indicative.usage` stub) will own: habitual / gnomic / now readings, present-for-near-future, historic present, polite/performative uses, impersonal `si`, and the `stare + gerundio` progressive (which cross-references the gerundio tree). None authored here.

@@ -1,0 +1,125 @@
+{
+  "$schema_note": "Pass-2 harvest by MisconceptionAnalyst from common_miss in data/buckets/verb_form.congiuntivo.json. PENDING ratification. Uses families ratified in thread v2; new specifics defined here, reused ones under reuses_existing. Thread: inter_chat/Architecture_MisconceptionAnalyst_registry_harvest.md.",
+  "topic": "verb_form.congiuntivo",
+  "source_bucket_count_with_common_miss": 10,
+  "proposed_family_actions": [
+    {
+      "family": "mood",
+      "action": "PROPOSE_NEW_FAMILY_TENTATIVE",
+      "proposed_definition": {
+        "label": "Mood form",
+        "description": "Producing the form of the wrong mood: building the indicative where the subjunctive (or subjunctive-based imperative) is required. The FORMATION counterpart to discrimination.indicative_for_subjunctive_choice (which is the SELECTION error). Distinct from conjugation_class: the class is right, the mood is wrong.",
+        "cross_kind": false
+      },
+      "note": "Flagged as the pass-2 family question. Subjunctive importance justifies a dedicated family; alternative is paradigm_confusion. Architecture's call (v3)."
+    },
+    {
+      "family": "conjugation_class",
+      "action": "add_specific",
+      "note": "Cross-class theme-vowel borrowing."
+    }
+  ],
+  "proposed_misconceptions": [
+    {
+      "$status": "PENDING",
+      "proposed_id": "mood.indicative_for_subjunctive_form",
+      "family": "mood",
+      "proposed_label": "Indicative form built where the subjunctive is required",
+      "proposed_description": "Producing the indicative ending/auxiliary when the subjunctive is called for: -ano for -ino, indicative 3pl for the subjunctive 3pl, present/imperfect indicative auxiliary for the subjunctive one.",
+      "examples": [
+        "parlano/parla (for parlino)",
+        "vengono (for vengano)",
+        "ha parlato (for abbia parlato)",
+        "aveva parlato (for avessi parlato)"
+      ],
+      "harvested_from": [
+        "verb_form.congiuntivo.formation.presente.regular_are",
+        "verb_form.congiuntivo.formation.presente.regular_ere_ire",
+        "verb_form.congiuntivo.formation.presente.irregular_from_1sg",
+        "verb_form.congiuntivo.formation.passato",
+        "verb_form.congiuntivo.formation.trapassato"
+      ],
+      "cross_kind_note": "FLAGGED PAIR with discrimination.indicative_for_subjunctive_choice: form here, selection there. Also the home for the imperative 'sei! for sii!' and formal-imperative misses (cross-ref from imperativo).",
+      "rationale": "One mood-form pattern across present, passato and trapassato subjunctive."
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "conjugation_class.wrong_theme_vowel",
+      "family": "conjugation_class",
+      "proposed_label": "Another class's theme vowel borrowed",
+      "proposed_description": "Using one conjugation class's theme vowel/ending on a verb of another class (beyond the existing 3pl -ano/-ono specifics).",
+      "examples": [
+        "prendi (the -are subjunctive ending on an -ere verb)",
+        "parlessi (the -ere imperfect-subjunctive vowel on an -are verb, for parlassi)"
+      ],
+      "harvested_from": [
+        "verb_form.congiuntivo.formation.presente.regular_ere_ire",
+        "verb_form.congiuntivo.formation.imperfetto.regular"
+      ],
+      "cross_kind_note": "Extends conjugation_class beyond the 3pl specifics.",
+      "rationale": "Class-vowel borrowing, distinct from the mood-form error."
+    }
+  ],
+  "reuses_existing": [
+    {
+      "ref_id": "stem_change.isc_over_extension",
+      "defined_in": "data/misconceptions.json (v1 seed) — generalised",
+      "buckets": [
+        "verb_form.congiuntivo.formation.presente.ire_isc"
+      ],
+      "note": "capiscamo: -isc- into the subjunctive 1pl/2pl."
+    },
+    {
+      "ref_id": "stem_change.isc_under_application",
+      "defined_in": "data/misconceptions.json (v1 seed)",
+      "buckets": [
+        "verb_form.congiuntivo.formation.presente.ire_isc"
+      ],
+      "note": "capa: -isc- omitted in the singular."
+    },
+    {
+      "ref_id": "orthography.omitted_h_hard_cg",
+      "defined_in": "data/misconceptions.json (v1 seed)",
+      "buckets": [
+        "verb_form.congiuntivo.formation.presente.orthographic"
+      ],
+      "note": "ceri."
+    },
+    {
+      "ref_id": "orthography.double_i_retained",
+      "defined_in": "data/misconceptions.json (v1 seed)",
+      "buckets": [
+        "verb_form.congiuntivo.formation.presente.orthographic"
+      ],
+      "note": "comincii."
+    },
+    {
+      "ref_id": "gemination.geminate_simplified",
+      "defined_in": "misconception_suggestions_verb_form.future.json",
+      "buckets": [
+        "verb_form.congiuntivo.formation.imperfetto.regular"
+      ],
+      "note": "parlasi for parlassi (single s)."
+    },
+    {
+      "ref_id": "regularisation.irregular_verb",
+      "defined_in": "data/misconceptions.json (v1 seed)",
+      "buckets": [
+        "verb_form.congiuntivo.formation.presente.irregular_from_1sg",
+        "verb_form.congiuntivo.formation.presente.irregular_suppletive",
+        "verb_form.congiuntivo.formation.imperfetto.irregular"
+      ],
+      "note": "vena/sona/abba/faressi/dassi: deriving wrongly or regularising the irregular subjunctive stem."
+    },
+    {
+      "ref_id": "agreement.participle_essere_subject",
+      "defined_in": "misconception_suggestions_verb_form.passato_prossimo.json",
+      "buckets": [
+        "verb_form.congiuntivo.formation.passato",
+        "verb_form.congiuntivo.formation.trapassato"
+      ],
+      "note": "participle not agreeing with sia/fosse."
+    }
+  ],
+  "intentional_non_mappings": []
+}

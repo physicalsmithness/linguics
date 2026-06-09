@@ -1,0 +1,215 @@
+[
+  {
+    "id": "verb_form.imperativo",
+    "parent_id": "verb_form",
+    "language_code": "it",
+    "label": "Imperative (imperativo)",
+    "description": "The command mood. Informal (tu, noi, voi) and formal (Lei, Loro), affirmative and negative. Four things make it tricky and worth atomising: the tu affirmative of -are verbs is -a (parla!, not parli!) while -ere/-ire take -i (prendi!, dormi!); the negative tu is non + the INFINITIVE (non parlare!), not non + the positive imperative; a closed set of irregular tu forms is apocopated (va', da', fa', sta', di'); and the formal Lei imperative IS the present subjunctive (parli!, venga!, faccia!). The noi and voi forms equal the present indicative (parliamo!, parlate!). Clitic attachment to the imperative (dammi!, non dirlo!) is the pronoun tree's territory and is cross-referenced, not re-tested here. The informal imperative is A2; the formal is B1.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.present_indicative"
+    ],
+    "attributes": {
+      "is_aggregate": true,
+      "topic_short": "impv",
+      "direction": "bidirectional"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.imperativo.formation",
+    "parent_id": "verb_form.imperativo",
+    "language_code": "it",
+    "label": "Formation",
+    "description": "Building the imperative: the informal affirmative (tu / noi / voi), the informal negative (the non + infinitive tu rule), the apocopated irregular tu forms, and the formal Lei (which borrows the present subjunctive). This branch is what the Imperativo dispatch authors; usage and the register choice are stubs. Clitic placement and consonant doubling (dammi, fallo) belong to the pronoun tree and are cross-referenced.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.imperativo.formation.informal_affirmative",
+    "parent_id": "verb_form.imperativo.formation",
+    "language_code": "it",
+    "label": "Informal affirmative: parla! / prendi! / dormi!, parliamo!, parlate!",
+    "description": "The positive tu / noi / voi imperative. The tu form is the one to watch: -are takes -a (parla!, guarda!, mangia!), while -ere and -ire take -i (prendi!, dormi!, finisci! with the -isc-). The noi form equals the present indicative noi (parliamo! = let's speak) and the voi form equals the present indicative voi (parlate!). So the only genuinely new form is the -are tu -a, which differs from the present indicative tu (parli).",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "parla!, prendi!, dormi!, finisci!, parliamo!, parlate!",
+      "common_miss": "using the present indicative tu -i for the -are imperative (parli! for parla!); or the wrong vowel on -ere/-ire (prenda! for prendi!)",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.imperativo.formation.informal_negative",
+    "parent_id": "verb_form.imperativo.formation",
+    "language_code": "it",
+    "label": "Informal negative: non + infinitive for tu (non parlare!); non + positive for noi/voi",
+    "description": "The negative informal imperative. The tu form is non + the INFINITIVE (non parlare!, non prendere!, non dormire!), NOT non + the positive imperative. The noi and voi forms are simply non + their affirmative (non parliamo!, non parlate!). The tu non+infinitive rule is the defining skill and the classic miss (learners write non parla! by negating the positive form).",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "non parlare!, non prendere!, non dormire!, non parliamo!, non parlate!",
+      "common_miss": "negating the positive tu form (non parla!) instead of using non + infinitive (non parlare!)",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.imperativo.formation.irregular_tu",
+    "parent_id": "verb_form.imperativo.formation",
+    "language_code": "it",
+    "label": "Apocopated / irregular tu: va', da', fa', sta', di'; sii, abbi",
+    "description": "A closed set of irregular tu imperatives. Five are apocopated (truncated) monosyllables with an apostrophe: andare gives va' (also vai), dare gives da' (also dai), fare gives fa' (also fai), stare gives sta' (also stai), dire gives di' (di' has no long alternative). essere gives sii and avere gives abbi. These short forms are also what trigger consonant doubling when a clitic attaches (da' + mi = dammi, fa' + lo = fallo, di' + mi = dimmi), though the doubling itself is scored in the pronoun tree.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "va'!, da'!, fa'!, sta'!, di'!, sii!, abbi!",
+      "common_miss": "regularising (va instead of va' / vai; fa instead of fa' / fai); using the indicative for essere/avere (sei! for sii!)",
+      "direction": "production",
+      "cross_reference": "pronoun"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.imperativo.formation.formal",
+    "parent_id": "verb_form.imperativo.formation",
+    "language_code": "it",
+    "label": "Formal Lei (= present subjunctive): parli! / prenda! / venga! / faccia!",
+    "description": "The formal (Lei) imperative borrows the present subjunctive form: parlare gives parli!, prendere gives prenda!, dormire gives dorma!, and the irregulars follow the subjunctive (venire gives venga!, fare gives faccia!, andare gives vada!, essere gives sia!, avere gives abbia!). The very formal Loro imperative uses the 3pl subjunctive (parlino!, prendano!) but is largely archaic. With the formal imperative, clitics go BEFORE the verb (mi dica!), unlike the informal enclitic (dimmi!); that placement is the pronoun tree's. Cross-references the congiuntivo tree, since the form IS the present subjunctive.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.congiuntivo"
+    ],
+    "attributes": {
+      "canonical_example": "parli!, prenda!, venga!, faccia!, sia!, abbia!",
+      "common_miss": "using the informal/indicative form for Lei (parla! or parli-as-indicative confusion); building the irregular from the infinitive instead of the subjunctive",
+      "direction": "production",
+      "cross_reference": "verb_form.congiuntivo"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.imperativo.usage",
+    "parent_id": "verb_form.imperativo",
+    "language_code": "it",
+    "label": "Usage",
+    "description": "STUB. What the imperative does and its variants: giving commands, instructions, directions, and invitations (Vieni con me!); the softened imperative; the infinitive-as-impersonal-imperative of recipes and public signs (Mescolare bene; Non fumare); and the politeness gradient between tu and Lei. Left at stub level for a later ImperativoUsage dispatch; no usage leaves are authored in the formation dispatch.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.imperativo.discrimination",
+    "parent_id": "verb_form.imperativo",
+    "language_code": "it",
+    "label": "Discrimination",
+    "description": "STUB. Choosing the informal (tu) versus the formal (Lei) imperative for the social context, a register choice. The stub leaf below is its structural home, related to the cross-cutting register family. Authored by TenseChoice / a register pass; this bucket exists so cross-tree citations resolve.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.imperativo.discrimination.register_informal_vs_formal",
+    "parent_id": "verb_form.imperativo.discrimination",
+    "language_code": "it",
+    "label": "Informal (tu) vs formal (Lei) imperative",
+    "description": "STUB. When the social context calls for the informal tu imperative (parla!) versus the formal Lei imperative (parli!). A register choice driven by the addressee. Authored later; this leaf is its structural home.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.congiuntivo"
+    ],
+    "attributes": {
+      "direction": "bidirectional",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  }
+]

@@ -1,0 +1,261 @@
+[
+  {
+    "id": "verb_form.passato_remoto",
+    "parent_id": "verb_form",
+    "language_code": "it",
+    "label": "Past historic (passato remoto)",
+    "description": "The remote past, the simple (non-compound) past used for completed events in literary narrative, formal writing, and much southern Italian speech, where the north would use the passato prossimo. Famous for its irregularity: regular -are and -ire are tidy (parlai, dormii), but a huge class of -ere verbs follows the 1-3-3 'strong stem' pattern, irregular in the 1sg / 3sg / 3pl and regular in the 2sg / 1pl / 2pl (presi, prendesti, prese, prendemmo, prendeste, presero). A handful are wholly suppletive (fui, ebbi, feci). Recognition (reading it) is the primary real-world skill at B2; active production is C1. Its rare compound, the trapassato remoto, sits here too.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "arcane",
+      "B2": "preview",
+      "C1": "core",
+      "C2": "review"
+    },
+    "prerequisites": [
+      "verb_form.passato_prossimo"
+    ],
+    "attributes": {
+      "is_aggregate": true,
+      "topic_short": "prem",
+      "direction": "bidirectional"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.passato_remoto.formation",
+    "parent_id": "verb_form.passato_remoto",
+    "language_code": "it",
+    "label": "Formation",
+    "description": "Building the passato remoto. The regular classes (-are -ai/-asti/-o/-ammo/-aste/-arono; -ere with the dual -ei/-etti endings; -ire -ii/-isti/-i/-immo/-iste/-irono), the large 1-3-3 strong-stem irregular -ere class (presi / prese / presero with regular middle persons), the suppletive irregulars (essere fui, avere ebbi, fare feci, dare diedi, stare stetti, dire dissi), and the rare compound trapassato remoto. This branch is what the PassatoRemoto dispatch authors; usage and discrimination are stubs.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "arcane",
+      "B2": "preview",
+      "C1": "core",
+      "C2": "review"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.passato_remoto.formation.regular_are",
+    "parent_id": "verb_form.passato_remoto.formation",
+    "language_code": "it",
+    "label": "Regular -are: parlai / parlasti / parlò / parlammo / parlaste / parlarono",
+    "description": "The -are class is regular and tidy: -ai, -asti, -ò, -ammo, -aste, -arono. The 3sg -ò carries a written accent (parlò). The 1pl -ammo has a double m (parlammo), distinct from the present 1pl parliamo.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "arcane",
+      "B2": "preview",
+      "C1": "core",
+      "C2": "review"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "parlai, parlò, parlarono, mangiammo",
+      "common_miss": "dropping the 3sg accent (parlo), or single-m 1pl (parlamo)",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.passato_remoto.formation.regular_ere",
+    "parent_id": "verb_form.passato_remoto.formation",
+    "language_code": "it",
+    "label": "Regular -ere (dual forms): credei / credetti ... credé / credette",
+    "description": "Regular -ere verbs take EITHER of two accepted endings in the 1sg, 3sg, and 3pl: -ei / -é / -erono OR -etti / -ette / -ettero (credei or credetti; credé or credette; crederono or credettero). The 2sg, 1pl, 2pl are single-form (credesti, credemmo, credeste). Both patterns are standard; accept both. The 3sg -é carries a written accent.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "arcane",
+      "B2": "preview",
+      "C1": "core",
+      "C2": "review"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "credei / credetti, credé / credette, vendei / vendetti",
+      "common_miss": "treating an irregular strong-stem -ere verb (prendere) as if it took these regular endings (prendei for presi)",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.passato_remoto.formation.regular_ire",
+    "parent_id": "verb_form.passato_remoto.formation",
+    "language_code": "it",
+    "label": "Regular -ire: dormii / dormisti / dormì / dormimmo / dormiste / dormirono",
+    "description": "The -ire class is regular: -ii, -isti, -ì, -immo, -iste, -irono. The 1sg has a double i (dormii) and the 3sg a written accent (dormì). No -isc-. The 1pl -immo has a double m.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "arcane",
+      "B2": "preview",
+      "C1": "core",
+      "C2": "review"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "dormii, dormì, dormirono, capii, finimmo",
+      "common_miss": "single i in 1sg (dormi), dropping the 3sg accent (dormi), or inserting -isc- (capiscii)",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.passato_remoto.formation.irregular_strong_ere",
+    "parent_id": "verb_form.passato_remoto.formation",
+    "language_code": "it",
+    "label": "Strong 1-3-3 -ere: presi / prendesti / prese / prendemmo / prendeste / presero",
+    "description": "The defining difficulty of the passato remoto. A large class of -ere verbs has an irregular 'strong' stem in the 1sg, 3sg, and 3pl only (endings -i, -e, -ero on the strong stem), while the 2sg, 1pl, 2pl are perfectly regular. prendere: presi, prendesti, prese, prendemmo, prendeste, presero. Others: scrivere (scrissi, scrisse, scrissero), vedere (vidi, vide, videro), mettere (misi, mise, misero), chiedere (chiesi, chiese, chiesero), leggere (lessi, lesse, lessero), vivere (vissi, visse, vissero), venire (venni, venne, vennero). The 1-3-3 / regular-middle alternation is the whole skill: a learner must know the strong stem AND that it only appears in three persons.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "arcane",
+      "B2": "preview",
+      "C1": "core",
+      "C2": "review"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "presi, prese, presero; scrissi, scrisse; vidi, vide; but prendesti, prendemmo",
+      "common_miss": "using the strong stem in the regular middle persons (presesti for prendesti); or regularising the strong persons (prendei for presi)",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.passato_remoto.formation.irregular_suppletive",
+    "parent_id": "verb_form.passato_remoto.formation",
+    "language_code": "it",
+    "label": "Suppletive: essere fui, avere ebbi, fare feci, dare diedi, stare stetti, dire dissi",
+    "description": "The wholly irregular high-frequency verbs. essere: fui, fosti, fu, fummo, foste, furono (fully suppletive across all six). avere: ebbi, avesti, ebbe, avemmo, aveste, ebbero (1-3-3 strong: ebbi / ebbe / ebbero). fare: feci, facesti, fece, facemmo, faceste, fecero. dare: diedi (or detti), desti, diede (or dette), demmo, deste, diedero. stare: stetti, stesti, stette, stemmo, steste, stettero. dire: dissi, dicesti, disse, dicemmo, diceste, dissero. fui and ebbi are also the trapassato remoto auxiliaries.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "arcane",
+      "B2": "preview",
+      "C1": "core",
+      "C2": "review"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "fui, fu, furono; ebbi, ebbe; feci, fece; stetti, dissi",
+      "common_miss": "regularising (avei for ebbi, facei for feci); using the strong stem in middle persons (fecesti is wrong, it's facesti)",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.passato_remoto.formation.trapassato_remoto",
+    "parent_id": "verb_form.passato_remoto.formation",
+    "language_code": "it",
+    "label": "Trapassato remoto (compound, rare): ebbi parlato, fui andato",
+    "description": "The remote pluperfect: the passato remoto of the auxiliary (ebbi or fui) plus the past participle. Used only in a subordinate clause after a temporal conjunction (dopo che, quando, appena) whose main clause is itself in the passato remoto ('Appena ebbe finito, usci'). Highly literary and rare; recognition only for most learners. Reuses the passato prossimo's participle machinery. C1-C2.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "arcane",
+      "B2": "arcane",
+      "C1": "preview",
+      "C2": "review"
+    },
+    "prerequisites": [
+      "verb_form.passato_remoto.formation.irregular_suppletive",
+      "verb_form.passato_prossimo"
+    ],
+    "attributes": {
+      "canonical_example": "ebbi parlato, fui andato, ebbero finito",
+      "common_miss": "using a different past of the auxiliary (avevo parlato, the pluperfect) instead of the passato remoto (ebbi parlato)",
+      "direction": "production",
+      "cross_reference": "verb_form.passato_prossimo"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.passato_remoto.usage",
+    "parent_id": "verb_form.passato_remoto",
+    "language_code": "it",
+    "label": "Usage",
+    "description": "STUB. When the passato remoto is used: completed past events in literary narrative and formal written Italian, the default spoken past in much of the south, and historical / biographical statement ('Dante nacque nel 1265'). The dominant real-world skill is RECOGNITION (reading it in literature and understanding it maps to a simple completed past), more than production. Left at stub level for a later PassatoRemotoUsage dispatch; no usage leaves are authored in the formation dispatch.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "arcane",
+      "B2": "core",
+      "C1": "core",
+      "C2": "review"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.passato_remoto.discrimination",
+    "parent_id": "verb_form.passato_remoto",
+    "language_code": "it",
+    "label": "Discrimination",
+    "description": "STUB. Choosing the passato remoto over the passato prossimo for a completed past, a choice governed by register and region (literary / formal / southern remote past versus everyday northern passato prossimo) more than by a hard grammatical rule. The stub leaf below is its structural home. Authored by TenseChoice; this bucket exists so cross-tree citations resolve.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "arcane",
+      "B2": "preview",
+      "C1": "core",
+      "C2": "review"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.passato_remoto.discrimination.vs_passato_prossimo",
+    "parent_id": "verb_form.passato_remoto.discrimination",
+    "language_code": "it",
+    "label": "Passato remoto vs passato prossimo",
+    "description": "STUB. When a completed past takes the passato remoto (literary, formal, distant, southern) versus the passato prossimo (everyday, recent, northern). A register / regional choice rather than a strict rule. Authored by TenseChoice; this leaf is its structural home.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "arcane",
+      "B2": "preview",
+      "C1": "core",
+      "C2": "review"
+    },
+    "prerequisites": [
+      "verb_form.passato_prossimo"
+    ],
+    "attributes": {
+      "direction": "bidirectional",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  }
+]

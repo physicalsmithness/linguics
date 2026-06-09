@@ -1,0 +1,400 @@
+[
+  {
+    "id": "verb_form.condizionale",
+    "parent_id": "verb_form",
+    "language_code": "it",
+    "label": "Conditional (condizionale)",
+    "description": "The conditional. Its great simplifier: it is built on the SAME stem as the future (parler-, avr-, sar-, vorr-), just with a different set of endings (-ei, -esti, -ebbe, -emmo, -este, -ebbero). So a learner who knows the future stems already knows the conditional stems; only the endings are new. Used for politeness (vorrei un caffè, potresti aiutarmi), for the apodosis of an if-clause (se avessi tempo, verrei), for advice (dovresti riposare), and for reported future-in-the-past and unconfirmed news. The simple conditional is a B1 topic; the compound conditional (condizionale passato: avrei finito) is B1-B2 and sits here too.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.present_indicative",
+      "verb_form.future"
+    ],
+    "attributes": {
+      "is_aggregate": true,
+      "topic_short": "cond",
+      "direction": "bidirectional"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.condizionale.formation",
+    "parent_id": "verb_form.condizionale",
+    "language_code": "it",
+    "label": "Formation",
+    "description": "Building the conditional: the future stem plus the conditional endings (-ei, -esti, -ebbe, -emmo, -este, -ebbero). Every stem decision is identical to the future (the -are a-to-e shift, the orthographic h-insertion and i-drop, the syncopated and double-r irregulars, the dare/stare/fare exception that keeps -ar-); only the endings change. The signature conditional spelling is the doubled consonants: the 1pl -emmo (two m's, against the future's single-m -emo) and the 3sg/3pl -ebbe / -ebbero. This branch is what the ConditionalFormation dispatch authors; usage and discrimination are separate stubs.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.condizionale.formation.regular_are",
+    "parent_id": "verb_form.condizionale.formation",
+    "language_code": "it",
+    "label": "Regular -are: parlerei / parleresti / parlerebbe / parleremmo / parlereste / parlerebbero",
+    "description": "The -are class shifts a to e (the same stem as the future, parler-) and adds the conditional endings. The high-value miss is the 1pl: the conditional is parleremmo with a DOUBLE m, against the future parleremo with a single m. That one-letter difference is the classic future/conditional confusion and worth heavy targeting.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "parlerei, lavorerebbe, mangerebbero",
+      "common_miss": "single-m 1pl (parleremo, which is the future) instead of the double-m conditional (parleremmo); or keeping the -are a (parlarei)",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.condizionale.formation.regular_ere",
+    "parent_id": "verb_form.condizionale.formation",
+    "language_code": "it",
+    "label": "Regular -ere: prenderei / prenderesti / prenderebbe / prenderemmo / prendereste / prenderebbero",
+    "description": "The -ere class drops the infinitive -e to give the stem prender- (same as the future) and adds the conditional endings. Same double-m 1pl (prenderemmo) and double-b 3sg/3pl (prenderebbe, prenderebbero) as every conditional.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "prenderei, scriverebbe, leggerebbero",
+      "common_miss": "single-m 1pl (prenderemo, the future) for the double-m conditional (prenderemmo)",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.condizionale.formation.regular_ire",
+    "parent_id": "verb_form.condizionale.formation",
+    "language_code": "it",
+    "label": "Regular -ire: dormirei / dormiresti / dormirebbe / dormiremmo / dormireste / dormirebbero",
+    "description": "The -ire class keeps the i to give the stem dormir- (same as the future) and adds the conditional endings. No -isc- ever (capire gives capirei). Same double-m 1pl and double-b 3sg/3pl.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "dormirei, capirebbe, partiremmo",
+      "common_miss": "inserting -isc- (capiscirei), or single-m 1pl (dormiremo, the future)",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.condizionale.formation.orthographic",
+    "parent_id": "verb_form.condizionale.formation",
+    "language_code": "it",
+    "label": "Orthographic adjustments",
+    "description": "Identical to the future: -care/-gare add an h to keep the hard c/g (cercherei, pagherei) and -ciare/-giare drop the redundant i (comincerei, mangerei), across all six persons. Plain -iare keeps its i (studierei). If the learner has the future orthographic stems, the conditional ones are the same stem with conditional endings.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.condizionale.formation.regular_are"
+    ],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.condizionale.formation.orthographic.care_gare",
+    "parent_id": "verb_form.condizionale.formation.orthographic",
+    "language_code": "it",
+    "label": "-care / -gare add h: cercherei, pagherei",
+    "description": "Verbs in -care and -gare insert an h to keep the hard /k/ and /g/ before the front-vowel conditional stem: cercare gives cercherei throughout, pagare gives pagherei. Same stem as the future, conditional endings.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "cercherei, pagheremmo, giocherebbe",
+      "common_miss": "omitting the h (cercerei), or single-m 1pl (cercheremo)",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.condizionale.formation.orthographic.ciare_giare",
+    "parent_id": "verb_form.condizionale.formation.orthographic",
+    "language_code": "it",
+    "label": "-ciare / -giare drop the i: comincerei, mangerei",
+    "description": "Verbs in -ciare and -giare drop the redundant stem i before the conditional stem: cominciare gives comincerei, mangiare gives mangerei. Same stem as the future, conditional endings.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "comincerei, mangeremmo, lascerebbe",
+      "common_miss": "keeping the redundant i (comincierei), or single-m 1pl",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.condizionale.formation.irregular",
+    "parent_id": "verb_form.condizionale.formation",
+    "language_code": "it",
+    "label": "Irregular stems (same as the future)",
+    "description": "The conditional irregular stems are EXACTLY the future irregular stems, with conditional endings. The same four patterns: syncopated (avrei, andrei, dovrei, potrei, saprei, vedrei), assimilated double-r (vorrei, verrei, terrei, rimarrei, berrei), the unique essere (sarei), and dare/stare/fare keeping -ar- (darei, starei, farei). Teaching point: there is nothing new to learn here beyond the endings if the future stems are known. The same single-r-vs-double-r trap applies (vorrei not vorei).",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.condizionale.formation.irregular.syncopated",
+    "parent_id": "verb_form.condizionale.formation.irregular",
+    "language_code": "it",
+    "label": "Syncopated stems: avrei, andrei, dovrei, potrei, saprei, vedrei",
+    "description": "The syncopated future stems (theme vowel dropped) plus conditional endings: avere gives avrei, avresti, avrebbe, avremmo, avreste, avrebbero; andare gives andrei; dovere gives dovrei; potere gives potrei; sapere gives saprei; vedere gives vedrei. avrei is also the auxiliary for the condizionale passato.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "avrei, andresti, dovrebbe, potremmo, saprebbero",
+      "common_miss": "keeping the theme vowel (averei, poterei), or single-m 1pl (avremo, the future)",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.condizionale.formation.irregular.double_r",
+    "parent_id": "verb_form.condizionale.formation.irregular",
+    "language_code": "it",
+    "label": "Assimilated double-r stems: vorrei, verrei, terrei, rimarrei, berrei",
+    "description": "The double-r future stems plus conditional endings: volere gives vorrei, venire gives verrei, tenere gives terrei, rimanere gives rimarrei, bere gives berrei. vorrei (I would like) is the single most frequent conditional form a learner meets, so this leaf is high-value. The signature miss is a single r (vorei, verei).",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "vorrei, verresti, terrebbe, rimarremmo, berrebbero",
+      "common_miss": "single r (vorei, verei) instead of the assimilated -rr-",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.condizionale.formation.irregular.essere",
+    "parent_id": "verb_form.condizionale.formation.irregular",
+    "language_code": "it",
+    "label": "essere: sarei / saresti / sarebbe / saremmo / sareste / sarebbero",
+    "description": "Essere takes the unique future stem sar- plus the conditional endings: sarei, saresti, sarebbe, saremmo, sareste, sarebbero. Its own leaf because the stem is suppletive, and because sarei is the essere-auxiliary for the condizionale passato.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "sarei, saresti, sarebbe, saremmo, sarebbero",
+      "common_miss": "building from the infinitive (esserei), or single-m 1pl (saremo, the future)",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.condizionale.formation.irregular.dare_stare_fare",
+    "parent_id": "verb_form.condizionale.formation.irregular",
+    "language_code": "it",
+    "label": "dare / stare / fare keep -ar-: darei, starei, farei",
+    "description": "As in the future, these three keep -ar- against the usual a-to-e shift: dare gives darei, stare gives starei, fare gives farei (plus the conditional endings). The temptation is to shift (derei, ferei); the right forms keep the a.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "darei, staresti, farebbe, faremmo",
+      "common_miss": "applying the a-to-e shift (derei, ferei) instead of keeping -ar-",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.condizionale.formation.condizionale_passato",
+    "parent_id": "verb_form.condizionale.formation",
+    "language_code": "it",
+    "label": "Condizionale passato (compound): avrei finito, sarei andato/a",
+    "description": "The compound conditional: the conditional of the auxiliary (avere or essere) plus the past participle: avrei finito (I would have finished), sarei andato/a (I would have gone). Used for the counterfactual past ('Sarei venuto se avessi potuto') and, importantly in Italian, for the reported future-in-the-past ('Ha detto che sarebbe venuto', he said he would come, where English uses 'would' but Italian uses the compound conditional). Reuses the auxiliary-choice and participle-agreement machinery of the passato prossimo, so items cross-reference those buckets. B1-B2.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "core",
+      "B2": "review",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.condizionale.formation.irregular",
+      "verb_form.passato_prossimo"
+    ],
+    "attributes": {
+      "canonical_example": "avrei finito, saresti partito, saremmo arrivati",
+      "common_miss": "wrong auxiliary, or participle not agreeing with essere (sarei andato for a feminine subject who needs andata)",
+      "direction": "production",
+      "cross_reference": "verb_form.passato_prossimo"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.condizionale.usage",
+    "parent_id": "verb_form.condizionale",
+    "language_code": "it",
+    "label": "Usage",
+    "description": "STUB. When the conditional is the right choice and what it conveys: politeness and softened requests (vorrei, potresti, mi piacerebbe), the apodosis (main clause) of a hypothetical period (se avessi tempo, verrei), advice and opinion (dovresti, sarebbe meglio), the reported future-in-the-past (ha detto che sarebbe venuto), and unconfirmed or attributed news (il presidente sarebbe arrivato ieri). Left at stub level for a later ConditionalUsage dispatch; no usage leaves are authored in the ConditionalFormation dispatch.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.condizionale.discrimination",
+    "parent_id": "verb_form.condizionale",
+    "language_code": "it",
+    "label": "Discrimination",
+    "description": "STUB. Choosing the conditional over a competing form. The main contrast is the counterfactual one: the prescriptive conditional-in-the-apodosis (se avessi tempo, verrei) versus the colloquial imperfect-for-conditional (se avevo tempo, venivo). The stub leaf below is its structural home, paired with the tense_choice tree's counterfactual buckets. Items are authored by TenseChoice, not the ConditionalFormation author; these buckets exist so cross-tree citations resolve.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.condizionale.discrimination.vs_imperfect_counterfactual",
+    "parent_id": "verb_form.condizionale.discrimination",
+    "language_code": "it",
+    "label": "Conditional vs imperfect in counterfactuals",
+    "description": "STUB. The prescriptive conditional in the main clause of an if-sentence (verrei) versus the colloquial spoken imperfect (venivo). Mirrors the tense_choice tree's conditional_vs_imperfect_counterfactual. Authored by TenseChoice; this leaf is its structural home.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.imperfect"
+    ],
+    "attributes": {
+      "direction": "bidirectional",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  }
+]

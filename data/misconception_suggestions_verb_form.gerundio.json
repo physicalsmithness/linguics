@@ -1,0 +1,95 @@
+{
+  "$schema_note": "Pass-2 harvest by MisconceptionAnalyst from common_miss in data/buckets/verb_form.gerundio.json. PENDING ratification. Uses families ratified in thread v2; new specifics defined here, reused ones under reuses_existing. Thread: inter_chat/Architecture_MisconceptionAnalyst_registry_harvest.md.",
+  "topic": "verb_form.gerundio",
+  "source_bucket_count_with_common_miss": 5,
+  "proposed_family_actions": [
+    {
+      "family": "conjugation_class",
+      "action": "add_specific",
+      "note": "Wrong-class gerund ending."
+    },
+    {
+      "family": "transfer",
+      "action": "add_specific (tentative)",
+      "note": "Non-finite construction calque (sto + infinitive)."
+    }
+  ],
+  "proposed_misconceptions": [
+    {
+      "$status": "PENDING",
+      "proposed_id": "conjugation_class.gerund_ando_endo",
+      "family": "conjugation_class",
+      "proposed_label": "Wrong-class gerund ending (-ando/-endo)",
+      "proposed_description": "Using -endo on an -are verb or -ando on an -ere/-ire verb (and the malformed -iendo).",
+      "examples": [
+        "parlendo (for parlando)",
+        "prendando (for prendendo)",
+        "capiendo (for prendendo-pattern -endo)"
+      ],
+      "harvested_from": [
+        "verb_form.gerundio.formation.regular_ando",
+        "verb_form.gerundio.formation.regular_endo"
+      ],
+      "cross_kind_note": "Same wrong-class-ending shape as the -ano/-ono 3pl specifics.",
+      "rationale": "Gerund-ending class confusion."
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "transfer.construction_nonfinite",
+      "family": "transfer",
+      "proposed_label": "Infinitive used where a non-finite Italian form is required",
+      "proposed_description": "Calquing an English structure by pairing stare with an infinitive instead of a gerund (the progressive), an L1-driven construction error.",
+      "examples": [
+        "sto parlare (for sto parlando)"
+      ],
+      "harvested_from": [
+        "verb_form.gerundio.formation.progressive_assembly"
+      ],
+      "cross_kind_note": "transfer overlay (v2 B). The stare-person error in this bucket maps separately to agreement.auxiliary_person.",
+      "rationale": "English 'I am to speak'-style mapping."
+    }
+  ],
+  "reuses_existing": [
+    {
+      "ref_id": "stem_change.isc_over_extension",
+      "defined_in": "data/misconceptions.json (v1 seed) — generalised",
+      "buckets": [
+        "verb_form.gerundio.formation.regular_endo"
+      ],
+      "note": "capiscendo."
+    },
+    {
+      "ref_id": "regularisation.irregular_verb",
+      "defined_in": "data/misconceptions.json (v1 seed)",
+      "buckets": [
+        "verb_form.gerundio.formation.irregular"
+      ],
+      "note": "farendo/berendo from the contracted infinitive."
+    },
+    {
+      "ref_id": "agreement.auxiliary_person",
+      "defined_in": "misconception_suggestions_verb_form.passato_prossimo.json",
+      "buckets": [
+        "verb_form.gerundio.formation.progressive_assembly"
+      ],
+      "note": "sto/stai confusion: wrong person of the auxiliary stare."
+    },
+    {
+      "ref_id": "auxiliary_choice.avere_for_essere",
+      "defined_in": "misconception_suggestions_verb_form.passato_prossimo.json",
+      "buckets": [
+        "verb_form.gerundio.formation.gerundio_passato"
+      ],
+      "note": "wrong auxiliary."
+    },
+    {
+      "ref_id": "agreement.participle_essere_subject",
+      "defined_in": "misconception_suggestions_verb_form.passato_prossimo.json",
+      "buckets": [
+        "verb_form.gerundio.formation.gerundio_passato"
+      ],
+      "note": "essendo andato for andata."
+    }
+  ],
+  "intentional_non_mappings": []
+}

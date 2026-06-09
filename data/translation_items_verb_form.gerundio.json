@@ -1,0 +1,765 @@
+[
+  {
+    "external_id": "trans_ger_en_it_prog_endo_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Right now I am reading an important article.",
+    "reference_translations": [
+      {
+        "text": "In questo momento sto leggendo un articolo importante.",
+        "register": "neutral",
+        "notes": "Standard present progressive. 'In questo momento' renders 'right now'."
+      },
+      {
+        "text": "Adesso sto leggendo un articolo importante.",
+        "register": "neutral",
+        "notes": "Adesso is an equally natural rendering of 'right now'."
+      },
+      {
+        "text": "In questo momento sono leggendo un articolo importante.",
+        "register": "neutral",
+        "polarity": "negative",
+        "notes": "WRONG: the progressive is built with stare, not essere. Guards against the sono/sto substitution."
+      }
+    ],
+    "topic": "verb_form.gerundio",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "verb_form.gerundio.formation.progressive_assembly",
+      "verb_form.gerundio.formation.regular_endo"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "reading",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to read - leggere",
+            "bucket": "vocabulary.it.leggere.translation"
+          }
+        }
+      },
+      {
+        "lemma": "article",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "article - articolo",
+            "bucket": "vocabulary.it.articolo.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "English's 'am reading' is a present progressive, and Italian builds it the same way: stare conjugated plus the gerund. For io that is sto, and leggere's gerund is leggendo, so sto leggendo. Use stare, never essere (not 'sono leggendo'). 'In questo momento' or 'adesso' carries 'right now'.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_ger_en_it_prog_ando_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "The children are playing in the garden.",
+    "reference_translations": [
+      {
+        "text": "I bambini stanno giocando in giardino.",
+        "register": "neutral",
+        "notes": "Standard. 'Are playing' is the present progressive; stare 3pl is stanno."
+      },
+      {
+        "text": "I bambini giocano in giardino.",
+        "register": "neutral",
+        "notes": "Acceptable: Italian often uses the plain present where English uses the progressive. Credit, but the item targets the progressive build."
+      },
+      {
+        "text": "I bambini stanno giocare in giardino.",
+        "register": "neutral",
+        "polarity": "negative",
+        "notes": "WRONG: stare must be followed by the gerund, not the infinitive. Guards against 'stanno giocare'."
+      }
+    ],
+    "topic": "verb_form.gerundio",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "verb_form.gerundio.formation.progressive_assembly",
+      "verb_form.gerundio.formation.regular_ando"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "playing",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to play - giocare",
+            "bucket": "vocabulary.it.giocare.translation"
+          }
+        }
+      },
+      {
+        "lemma": "garden",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "garden - giardino",
+            "bucket": "vocabulary.it.giardino.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Are playing' is the present progressive: stare plus the gerund. The subject 'i bambini' is third-person plural, so stare is stanno, and giocare's gerund is giocando: stanno giocando. The hard c of giocare is kept (giocando). Note Italian could also use the plain present (giocano) here, since it leans on the simple present far more than English does.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_ger_en_it_prog_ando_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "We are working on a new project this week.",
+    "reference_translations": [
+      {
+        "text": "Questa settimana stiamo lavorando a un nuovo progetto.",
+        "register": "neutral",
+        "notes": "Standard. Stare 1pl is stiamo; lavorare's gerund is lavorando."
+      },
+      {
+        "text": "Stiamo lavorando a un nuovo progetto questa settimana.",
+        "register": "neutral",
+        "notes": "Time phrase at the end; equally natural."
+      }
+    ],
+    "topic": "verb_form.gerundio",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "verb_form.gerundio.formation.progressive_assembly",
+      "verb_form.gerundio.formation.regular_ando"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "working",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to work - lavorare",
+            "bucket": "vocabulary.it.lavorare.translation"
+          }
+        }
+      },
+      {
+        "lemma": "project",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "project - progetto",
+            "bucket": "vocabulary.it.progetto.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Are working' is the present progressive: stare plus the gerund. For noi, stare is stiamo, and lavorare gives lavorando: stiamo lavorando. The preposition after lavorare is a (lavorare a un progetto).",
+    "version": 1
+  },
+  {
+    "external_id": "trans_ger_en_it_prog_endo_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I am writing an email to the director.",
+    "reference_translations": [
+      {
+        "text": "Sto scrivendo un'email al direttore.",
+        "register": "neutral",
+        "notes": "Standard. Scrivere's gerund is scrivendo; a + il = al."
+      },
+      {
+        "text": "Sto scrivendo una mail al direttore.",
+        "register": "neutral",
+        "notes": "'Mail' is the common everyday borrowing; equally acceptable."
+      }
+    ],
+    "topic": "verb_form.gerundio",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "verb_form.gerundio.formation.progressive_assembly",
+      "verb_form.gerundio.formation.regular_endo"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "writing",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to write - scrivere",
+            "bucket": "vocabulary.it.scrivere.translation"
+          }
+        }
+      },
+      {
+        "lemma": "director",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "director - direttore",
+            "bucket": "vocabulary.it.direttore.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Am writing' is the present progressive: sto plus the gerund of scrivere, which is scrivendo (an -ere verb, ending -endo). So sto scrivendo. The articulated preposition a + il gives al direttore.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_ger_en_it_prog_endo_03",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Quiet, please: the baby is sleeping.",
+    "reference_translations": [
+      {
+        "text": "Silenzio, per favore: il bambino sta dormendo.",
+        "register": "neutral",
+        "notes": "Standard. Stare 3sg is sta; dormire (an -ire verb) gives dormendo."
+      },
+      {
+        "text": "Silenzio, per favore: il bambino dorme.",
+        "register": "neutral",
+        "notes": "Plain present, also natural in Italian. Credit; the item targets the progressive."
+      }
+    ],
+    "topic": "verb_form.gerundio",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "verb_form.gerundio.formation.progressive_assembly",
+      "verb_form.gerundio.formation.regular_endo"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "sleeping",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to sleep - dormire",
+            "bucket": "vocabulary.it.dormire.translation"
+          }
+        }
+      },
+      {
+        "lemma": "baby",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "baby - bambino",
+            "bucket": "vocabulary.it.bambino.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Is sleeping' is the present progressive. For 'il bambino' (3sg) stare is sta, and dormire, an -ire verb, takes -endo just like the -ere verbs: dormendo. So sta dormendo. There is no -iendo (not dormiendo).",
+    "version": 1
+  },
+  {
+    "external_id": "trans_ger_en_it_prog_irr_fare_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Be quiet, grandma is making a speech.",
+    "reference_translations": [
+      {
+        "text": "Zitti, la nonna sta facendo un discorso.",
+        "register": "neutral",
+        "notes": "Standard. Fare's gerund is the stem-expanded facendo (fac-)."
+      },
+      {
+        "text": "Fate silenzio, la nonna sta facendo un discorso.",
+        "register": "neutral",
+        "notes": "'Fate silenzio' is a softer way to say 'be quiet'; equally fine."
+      },
+      {
+        "text": "Zitti, la nonna sta farendo un discorso.",
+        "register": "neutral",
+        "polarity": "negative",
+        "notes": "WRONG: fare's gerund is built on the expanded stem fac- (facendo), not on the short infinitive (farendo)."
+      }
+    ],
+    "topic": "verb_form.gerundio",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "verb_form.gerundio.formation.progressive_assembly",
+      "verb_form.gerundio.formation.irregular"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "making",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to make / to do - fare",
+            "bucket": "vocabulary.it.fare.translation"
+          }
+        }
+      },
+      {
+        "lemma": "speech",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "speech - discorso",
+            "bucket": "vocabulary.it.discorso.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Is making' is the present progressive with an irregular gerund. Stare for la nonna is sta, and fare's gerund expands the stem to fac- (the same stem as the imperfect facevo): facendo. So sta facendo. Building the gerund from the short infinitive (farendo) is the slip.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_ger_en_it_prog_irr_bere_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Be careful, you are drinking too much coffee.",
+    "reference_translations": [
+      {
+        "text": "Attento, stai bevendo troppo caffè.",
+        "register": "neutral",
+        "notes": "Standard. Bere's gerund is the stem-expanded bevendo (bev-)."
+      },
+      {
+        "text": "Attenta, stai bevendo troppo caffè.",
+        "register": "neutral",
+        "notes": "Feminine addressee variant (attenta); the verb forms are unchanged."
+      },
+      {
+        "text": "Attento, stai berendo troppo caffè.",
+        "register": "neutral",
+        "polarity": "negative",
+        "notes": "WRONG: bere's gerund uses the expanded stem bev- (bevendo), not the short infinitive (berendo)."
+      }
+    ],
+    "topic": "verb_form.gerundio",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "verb_form.gerundio.formation.progressive_assembly",
+      "verb_form.gerundio.formation.irregular"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "drinking",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to drink - bere",
+            "bucket": "vocabulary.it.bere.translation"
+          }
+        }
+      },
+      {
+        "lemma": "coffee",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "coffee - caffè",
+            "bucket": "vocabulary.it.caffè.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Are drinking' is the present progressive with an irregular gerund. Stare for tu is stai, and bere's gerund restores the stem bev- (as in the imperfect bevevo): bevendo. So stai bevendo. The short infinitive bere hides the v; the gerund brings it back.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_ger_en_it_prog_irr_dire_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "He is telling everyone the same thing.",
+    "reference_translations": [
+      {
+        "text": "Sta dicendo a tutti la stessa cosa.",
+        "register": "neutral",
+        "notes": "Standard present progressive. Dire's gerund is the stem-expanded dicendo (dic-)."
+      },
+      {
+        "text": "Dice a tutti la stessa cosa.",
+        "register": "neutral",
+        "notes": "Plain present, also natural in Italian; credit, but the item targets the progressive build."
+      },
+      {
+        "text": "Sta direndo a tutti la stessa cosa.",
+        "register": "neutral",
+        "polarity": "negative",
+        "notes": "WRONG: dire's gerund uses the expanded stem dic- (dicendo), not the short infinitive (direndo)."
+      }
+    ],
+    "topic": "verb_form.gerundio",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "verb_form.gerundio.formation.progressive_assembly",
+      "verb_form.gerundio.formation.irregular"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "telling",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to say / to tell - dire",
+            "bucket": "vocabulary.it.dire.translation"
+          }
+        }
+      },
+      {
+        "lemma": "thing",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "thing - cosa",
+            "bucket": "vocabulary.it.cosa.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Is telling' is the present progressive with an irregular gerund. Dire expands its stem to dic- (the same stem as the imperfect dicevo), giving dicendo, so sta dicendo. Building the gerund from the short infinitive (direndo) is the slip. Italian could also use the plain present (dice) here.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_ger_en_it_prog_past_endo_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "When you called, I was reading the newspaper.",
+    "reference_translations": [
+      {
+        "text": "Quando hai chiamato, stavo leggendo il giornale.",
+        "register": "neutral",
+        "notes": "Standard past progressive. Stare in the imperfect (stavo) plus the gerund."
+      },
+      {
+        "text": "Quando hai chiamato, leggevo il giornale.",
+        "register": "neutral",
+        "notes": "The plain imperfect (leggevo) is also natural for an ongoing past action; credit, but the item targets the past progressive build."
+      },
+      {
+        "text": "Quando hai chiamato, sto leggendo il giornale.",
+        "register": "neutral",
+        "polarity": "negative",
+        "notes": "WRONG tense: the context is past, so stare must be in the imperfect (stavo), not the present (sto)."
+      }
+    ],
+    "topic": "verb_form.gerundio",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "verb_form.gerundio.formation.progressive_assembly",
+      "verb_form.gerundio.formation.regular_endo"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "reading",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to read - leggere",
+            "bucket": "vocabulary.it.leggere.translation"
+          }
+        }
+      },
+      {
+        "lemma": "newspaper",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "newspaper - giornale",
+            "bucket": "vocabulary.it.giornale.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Was reading' is a past progressive: the action was ongoing when something interrupted it. The progressive moves into the past by putting stare in the imperfect, stavo, while the gerund stays the same: stavo leggendo. The gerund never carries tense; only stare does. Italian could also use the plain imperfect (leggevo) here.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_ger_en_it_prog_past_ando_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "They were eating when I arrived.",
+    "reference_translations": [
+      {
+        "text": "Stavano mangiando quando sono arrivato.",
+        "register": "neutral",
+        "notes": "Past progressive, 3pl: stavano plus the gerund mangiando."
+      },
+      {
+        "text": "Stavano mangiando quando sono arrivata.",
+        "register": "neutral",
+        "notes": "Feminine speaker variant (arrivata); the progressive is unchanged."
+      }
+    ],
+    "topic": "verb_form.gerundio",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "verb_form.gerundio.formation.progressive_assembly",
+      "verb_form.gerundio.formation.regular_ando"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "eating",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to eat - mangiare",
+            "bucket": "vocabulary.it.mangiare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Were eating' is the past progressive. For 'they' stare in the imperfect is stavano, and mangiare's gerund is mangiando: stavano mangiando. The interrupting event ('when I arrived') is in the passato prossimo (sono arrivato/a), so the ongoing past and the completed past sit side by side.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_ger_en_it_prog_endo_04",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Right now they are building a new bridge.",
+    "reference_translations": [
+      {
+        "text": "In questo momento stanno costruendo un nuovo ponte.",
+        "register": "neutral",
+        "notes": "Standard. Costruire (an -ire verb) gives the gerund costruendo, with no -isc-."
+      },
+      {
+        "text": "Adesso stanno costruendo un nuovo ponte.",
+        "register": "neutral",
+        "notes": "Adesso for 'right now'; equally natural."
+      },
+      {
+        "text": "In questo momento stanno costruiscendo un nuovo ponte.",
+        "register": "neutral",
+        "polarity": "negative",
+        "notes": "WRONG: costruire takes -isc- in the present (costruisco) but the gerund drops it: costruendo, not costruiscendo."
+      }
+    ],
+    "topic": "verb_form.gerundio",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "verb_form.gerundio.formation.progressive_assembly",
+      "verb_form.gerundio.formation.regular_endo"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "building",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to build - costruire",
+            "bucket": "vocabulary.it.costruire.translation"
+          }
+        }
+      },
+      {
+        "lemma": "bridge",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "bridge - ponte",
+            "bucket": "vocabulary.it.ponte.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Are building' is the present progressive. Stare 3pl is stanno, and costruire, although it takes -isc- in the present (io costruisco), drops the -isc- in the gerund: costruendo. So stanno costruendo. The gerund of an -ire verb is just the plain stem plus -endo.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_ger_en_it_gerpass_avere_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Having finished his homework, he went out to play.",
+    "reference_translations": [
+      {
+        "text": "Avendo finito i compiti, è uscito a giocare.",
+        "register": "neutral",
+        "notes": "Standard compound gerund. Finire takes avere here (direct object i compiti), so the auxiliary is avendo; the participle finito is invariable with avere."
+      },
+      {
+        "text": "Avendo finito i compiti, uscì a giocare.",
+        "register": "literary",
+        "notes": "Same structure with the passato remoto in the main clause; narrative register."
+      },
+      {
+        "text": "Essendo finito i compiti, è uscito a giocare.",
+        "register": "neutral",
+        "polarity": "negative",
+        "notes": "WRONG: finire with a direct object takes avere (avendo finito), not essere."
+      }
+    ],
+    "topic": "verb_form.gerundio",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "verb_form.gerundio.formation.gerundio_passato",
+      "verb_form.passato_prossimo.participle_form.regular.ire_ito"
+    ],
+    "optional_buckets": [
+      "verb_form.passato_prossimo.auxiliary.avere_default"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "finished",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to finish - finire",
+            "bucket": "vocabulary.it.finire.translation"
+          }
+        }
+      },
+      {
+        "lemma": "homework",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "homework - compiti",
+            "bucket": "vocabulary.it.compito.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Having finished' is the compound gerund (gerundio passato): the gerund of the auxiliary plus the past participle, marking an action completed before the main one. Finire has a direct object (i compiti), so it takes avere, and the auxiliary's gerund is avendo: avendo finito. With avere the participle stays invariable (finito).",
+    "version": 1
+  },
+  {
+    "external_id": "trans_ger_en_it_gerpass_essere_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Having left early, Maria avoided the traffic.",
+    "reference_translations": [
+      {
+        "text": "Essendo partita presto, Maria ha evitato il traffico.",
+        "register": "neutral",
+        "notes": "Compound gerund of a motion verb: essendo plus the participle, which agrees with the feminine subject Maria (partita)."
+      },
+      {
+        "text": "Essendo uscita presto, Maria ha evitato il traffico.",
+        "register": "neutral",
+        "notes": "Uscire ('to go out / leave') is an equally good rendering of 'left'; same essere agreement (uscita)."
+      },
+      {
+        "text": "Essendo partito presto, Maria ha evitato il traffico.",
+        "register": "neutral",
+        "polarity": "negative",
+        "notes": "WRONG agreement: with essendo the participle agrees with the subject; Maria is feminine, so partita, not partito."
+      }
+    ],
+    "topic": "verb_form.gerundio",
+    "register": "neutral",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "verb_form.gerundio.formation.gerundio_passato",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_singular"
+    ],
+    "optional_buckets": [
+      "verb_form.passato_prossimo.auxiliary.essere_motion_intransitive"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "left",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to leave / to depart - partire",
+            "bucket": "vocabulary.it.partire.translation"
+          }
+        }
+      },
+      {
+        "lemma": "traffic",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "traffic - traffico",
+            "bucket": "vocabulary.it.traffico.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Having left' is the compound gerund of a motion verb. Motion verbs take essere, so the auxiliary's gerund is essendo, and because the auxiliary is essere the participle agrees with the subject. Maria is feminine singular, so the participle is partita: essendo partita. Leaving it masculine (essendo partito) misses the agreement.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_ger_en_it_prog_ando_03",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "What are you doing? I am cooking dinner.",
+    "reference_translations": [
+      {
+        "text": "Cosa stai facendo? Sto cucinando la cena.",
+        "register": "neutral",
+        "notes": "Two short progressives: fare gives the irregular facendo, cucinare the regular cucinando."
+      },
+      {
+        "text": "Che cosa stai facendo? Sto cucinando la cena.",
+        "register": "neutral",
+        "notes": "'Che cosa' is an equally common way to ask 'what'."
+      }
+    ],
+    "topic": "verb_form.gerundio",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "verb_form.gerundio.formation.progressive_assembly",
+      "verb_form.gerundio.formation.regular_ando",
+      "verb_form.gerundio.formation.irregular"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "doing",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to do / to make - fare",
+            "bucket": "vocabulary.it.fare.translation"
+          }
+        }
+      },
+      {
+        "lemma": "cooking",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to cook - cucinare",
+            "bucket": "vocabulary.it.cucinare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Two present progressives side by side. 'Are doing' uses fare, whose gerund is the irregular facendo (stem fac-): stai facendo. 'Am cooking' uses cucinare, a regular -are verb: sto cucinando. Both are stare plus the gerund; only the gerund of fare is irregular.",
+    "version": 1
+  }
+]

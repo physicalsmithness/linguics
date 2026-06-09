@@ -1,0 +1,399 @@
+[
+  {
+    "id": "verb_form.future",
+    "parent_id": "verb_form",
+    "language_code": "it",
+    "label": "Future (futuro semplice)",
+    "description": "The simple future. Built from the infinitive (drop the final -e) plus one set of endings shared by all three conjugations: -ò, -ai, -à, -emo, -ete, -anno. The -are class changes its theme vowel a to e (parlare gives parlerò, not parlarò). Used for prediction and scheduling ('Domani pioverà'), and for supposition about the present ('Sarà a casa', he's probably home). The form is largely regular, but a closed set of very high-frequency verbs has irregular contracted stems (avrò, andrò, sarò, vorrò, verrò), and these are the core difficulty. The compound future (futuro anteriore: avrò finito) sits here too. The simple future is an A2 topic; the irregular stems and the future-of-probability are consolidated through A2-B1.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.present_indicative"
+    ],
+    "attributes": {
+      "is_aggregate": true,
+      "topic_short": "fut",
+      "direction": "bidirectional"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.future.formation",
+    "parent_id": "verb_form.future",
+    "language_code": "it",
+    "label": "Formation",
+    "description": "Building the future. The stem is the infinitive minus its final -e, with the -are theme vowel shifting a to e; the endings (-ò, -ai, -à, -emo, -ete, -anno) are the same for every verb. On top sit the orthographic adjustments (-care/-gare add h, -ciare/-giare drop the i) that surface across the whole future stem, the closed irregular-stem set (syncopated avrò/andrò, double-r vorrò/verrò, the unique sarò, and the dare/stare/fare verbs that keep -ar-), and the compound futuro anteriore. This branch is what the FutureFormation dispatch authors; usage and discrimination are separate stubs.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.future.formation.regular_are",
+    "parent_id": "verb_form.future.formation",
+    "language_code": "it",
+    "label": "Regular -are: parlerò / parlerai / parlerà / parleremo / parlerete / parleranno",
+    "description": "The -are class shifts its theme vowel a to e before the endings: parlare gives the stem parler-, then parlerò, parlerai, parlerà, parleremo, parlerete, parleranno. The a-to-e shift is the defining feature and the commonest learner slip (parlarò). The 1sg -ò and 3sg -à carry obligatory written accents.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "parlerò, lavorerai, mangeranno",
+      "common_miss": "keeping the -are a (parlarò) instead of shifting to e, or dropping the accent on parlerò / parlerà",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.future.formation.regular_ere",
+    "parent_id": "verb_form.future.formation",
+    "language_code": "it",
+    "label": "Regular -ere: prenderò / prenderai / prenderà / prenderemo / prenderete / prenderanno",
+    "description": "The -ere class drops the final -e of the infinitive and adds the endings, keeping the e: prendere gives prender-, then prenderò, prenderai, prenderà, prenderemo, prenderete, prenderanno. No theme-vowel shift (unlike -are). Many -ere verbs that are irregular elsewhere are regular in the future, but several high-frequency ones are NOT (vedere gives vedrò, not vederò) and live in the irregular branch.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "prenderò, scriverai, leggeranno",
+      "common_miss": "dropping the accent on the 1sg/3sg, or syncopating a regular -ere verb by false analogy (scrivrò for scriverò)",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.future.formation.regular_ire",
+    "parent_id": "verb_form.future.formation",
+    "language_code": "it",
+    "label": "Regular -ire: dormirò / dormirai / dormirà / dormiremo / dormirete / dormiranno",
+    "description": "The -ire class drops the final -e and adds the endings, keeping the i: dormire gives dormir-, then dormirò, dormirai, dormirà, dormiremo, dormirete, dormiranno. The -isc- of the present (capisco) does NOT appear in the future: capire is capirò, not capiscirò. Venire and a few others are irregular (verrò) and live in the irregular branch.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "dormirò, capirai, partiranno",
+      "common_miss": "carrying -isc- into the future (capiscirò for capirò), or dropping the 1sg/3sg accent",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.future.formation.orthographic",
+    "parent_id": "verb_form.future.formation",
+    "language_code": "it",
+    "label": "Orthographic adjustments",
+    "description": "Spelling changes that keep the written stem consistent with sound across the whole future. -care and -gare insert an h to keep the hard c/g (cercare gives cercherò, pagare gives pagherò); -ciare and -giare drop the redundant i (cominciare gives comincerò, mangiare gives mangerò). Plain -iare verbs keep their i throughout the future (studiare gives studierò, inviare gives invierò), so they need no special bucket here, just a watch for wrongly dropping it (studerò). Unlike the present, where these only surfaced in the 2sg/1pl, in the future the adjustment runs across all six persons because the whole stem carries the -er-.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.future.formation.regular_are"
+    ],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.future.formation.orthographic.care_gare",
+    "parent_id": "verb_form.future.formation.orthographic",
+    "language_code": "it",
+    "label": "-care / -gare add h: cercherò, pagherò",
+    "description": "Verbs in -care and -gare insert an h after the c/g and before the future -er- to keep the hard /k/ and /g/: cercare gives cercherò, cercherai, cercherà and so on; pagare gives pagherò throughout. The h appears in every person of the future (not just 2sg/1pl as in the present), because the whole future stem has the front-vowel -e-.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "cercherò, pagheremo, giocherai, spiegheranno",
+      "common_miss": "omitting the h (cercerò, pageremo), which softens the consonant",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.future.formation.orthographic.ciare_giare",
+    "parent_id": "verb_form.future.formation.orthographic",
+    "language_code": "it",
+    "label": "-ciare / -giare drop the i: comincerò, mangerò",
+    "description": "Verbs in -ciare and -giare drop the stem i before the future -er-, since the i was only there to soften the c/g in the infinitive and the -e- of the future already does that: cominciare gives comincerò (not comincierò), mangiare gives mangerò (not mangierò). Runs across all six persons.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "comincerò, mangeremo, lascerai, viaggeranno",
+      "common_miss": "keeping the redundant i (comincierò, mangierò)",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.future.formation.irregular",
+    "parent_id": "verb_form.future.formation",
+    "language_code": "it",
+    "label": "Irregular stems",
+    "description": "The future's irregularity is in the STEM only; the endings stay regular for every verb. The irregular set is closed and very high-frequency, and falls into clean patterns: syncopated stems that drop the theme vowel (avere gives avr-, andare gives andr-), assimilated double-r stems (volere gives vorr-, venire gives verr-), the unique essere (sar-), and the dare/stare/fare group that keeps -ar- against the usual a-to-e shift. Because the endings never change, mastering the future irregulars is mastering the stems.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.future.formation.irregular.syncopated",
+    "parent_id": "verb_form.future.formation.irregular",
+    "language_code": "it",
+    "label": "Syncopated stems (drop the theme vowel): avrò, andrò, dovrò, potrò, saprò, vedrò",
+    "description": "A group whose stem drops the theme vowel, leaving the root directly before -r- plus the endings: avere gives avr- (avrò, avrai, avrà, avremo, avrete, avranno), andare gives andr-, dovere gives dovr-, potere gives potr-, sapere gives sapr-, vedere gives vedr-, vivere gives vivr-, cadere gives cadr-. avrò is also the auxiliary for the futuro anteriore, so it is especially high-frequency.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "avrò, andrai, dovrà, potremo, sapranno, vedrò",
+      "common_miss": "keeping the theme vowel (avero, andero, potero) instead of syncopating to avr-, andr-, potr-",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.future.formation.irregular.double_r",
+    "parent_id": "verb_form.future.formation.irregular",
+    "language_code": "it",
+    "label": "Assimilated double-r stems: vorrò, verrò, terrò, rimarrò, berrò",
+    "description": "A group where the syncope produces a consonant cluster that assimilates to a double r: volere gives vorr- (vorrò, vorrai, vorrà, vorremo, vorrete, vorranno), venire gives verr-, tenere gives terr-, rimanere gives rimarr-, bere gives berr-. The defining feature is the -rr-; writing a single r (vorò, verò) is the classic miss.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "core",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "vorrò, verrai, terrà, rimarremo, berranno",
+      "common_miss": "writing a single r (vorò, verò, terò) instead of the assimilated -rr-",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.future.formation.irregular.essere",
+    "parent_id": "verb_form.future.formation.irregular",
+    "language_code": "it",
+    "label": "essere: sarò / sarai / sarà / saremo / sarete / saranno",
+    "description": "Essere takes the unique future stem sar- (not predictable from the infinitive), then the regular endings: sarò, sarai, sarà, saremo, sarete, saranno. Its own leaf because the stem is suppletive rather than a syncope or assimilation, and because sarò is the essere-auxiliary for the futuro anteriore. The 3sg sarà carries the obligatory accent (and distinguishes itself from nothing in particular, but the accent is still required).",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "sarò, sarai, sarà, saremo, sarete, saranno",
+      "common_miss": "building from the infinitive (esserò, essrò) instead of the sar- stem, or dropping the accent on sarà",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.future.formation.irregular.dare_stare_fare",
+    "parent_id": "verb_form.future.formation.irregular",
+    "language_code": "it",
+    "label": "dare / stare / fare keep -ar-: darò, starò, farò",
+    "description": "These three verbs resist the usual -are a-to-e shift and keep -ar- in the future: dare gives darò, darai, darà, daremo, darete, daranno; stare gives starò; fare gives farò. They are the exception learners trip on, because every other -are verb shifts a to e, so the temptation is to write derò / ferò. Note fare's future is farò, built on the short fa- root, not the fac- stem of its present.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "darò, starai, farà, faremo, staranno",
+      "common_miss": "applying the a-to-e shift (derò, ferò, sterò) instead of keeping -ar-",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.future.formation.future_anteriore",
+    "parent_id": "verb_form.future.formation",
+    "language_code": "it",
+    "label": "Futuro anteriore (compound): avrò finito, sarò andato/a",
+    "description": "The compound future, built from the future of the auxiliary (avere or essere) plus the past participle: avrò finito (I will have finished), sarò andato/a (I will have gone). Used for an action completed before another future point ('Quando arriverai, avrò gia finito') and for supposition about a completed past ('Sarà gia partito', he's probably already left). It reuses the auxiliary-choice and participle-agreement machinery of the passato prossimo, so items here cross-reference those buckets. A B1-B2 topic, lighter than the simple future.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "core",
+      "B2": "review",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.future.formation.irregular",
+      "verb_form.passato_prossimo"
+    ],
+    "attributes": {
+      "canonical_example": "avrò finito, sarai partito, saremo arrivati",
+      "common_miss": "wrong auxiliary, or participle not agreeing with essere (sarò andato for a feminine subject who needs andata)",
+      "direction": "production",
+      "cross_reference": "verb_form.passato_prossimo"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.future.usage",
+    "parent_id": "verb_form.future",
+    "language_code": "it",
+    "label": "Usage",
+    "description": "STUB. When the future is the right choice and what it conveys: prediction and scheduling ('Partiremo domani'), promises and intentions, mild commands ('Farai i compiti'), and the future-of-probability / supposition about the present ('Saranno le tre', it must be about three o'clock; 'Avra fame', he's probably hungry). The present-for-future overlap (Italian often uses the plain present for a scheduled future) is a discrimination matter and lives in the discrimination branch and in tense_choice. Left at stub level for a later FutureUsage dispatch; no usage leaves are authored in the FutureFormation dispatch.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.future.discrimination",
+    "parent_id": "verb_form.future",
+    "language_code": "it",
+    "label": "Discrimination",
+    "description": "STUB. Choosing the morphological future over a competing option where both are possible. The main contrast is future vs the present-for-future ('Parto domani' vs 'Partirò domani'); the stub leaf below is its structural home, mirroring the present tree's discrimination.vs_future. The future-of-probability reading is a usage of the future, not a tense-choice, so it lives under usage rather than here. Items that test these contrasts are authored by the TenseChoice dispatch, not the FutureFormation author; these buckets exist so cross-tree citations resolve.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.future.discrimination.vs_present",
+    "parent_id": "verb_form.future.discrimination",
+    "language_code": "it",
+    "label": "Future vs present-for-future",
+    "description": "STUB. When Italian uses the morphological future versus the plain present for a scheduled or near-certain future event. The mirror of the present tree's discrimination.vs_future. Authored by TenseChoice; this leaf is its structural home.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.present_indicative"
+    ],
+    "attributes": {
+      "direction": "bidirectional",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  }
+]

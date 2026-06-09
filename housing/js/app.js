@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-06-08-r3";
+  const LL_BUILD = "2026-06-08-r5";
 
   LL.state = LL.store.loadState();
 
@@ -918,7 +918,7 @@
       marked = true;
       // Deferring focus past the current event-loop tick is more reliable
       // across browsers than calling synchronously inside a keydown handler.
-      setTimeout(() => next.focus(), 0);
+      setTimeout(() => next.focus({ preventScroll: true }), 0);
     };
 
     const doMark = () => {
@@ -943,17 +943,24 @@
       }
       const rawForRecord = isMcq ? q.choices[selectedChoiceIdx] : input.value;
 
-      // Second-chance guard (see inter_chat/Architecture_Housing_second_chance_on_chip_mismatch.md).
+      // Second-chance guard (see inter_chat/Architecture_Housing_second_chance_on_chip_mismatch.md
+      // for the introduction; narrowed 2026-06-08 per
+      // inter_chat/Architecture_Housing_second_chance_narrowing.md).
       // Triggers only when:
       //   - the item is short-answer (not MCQ),
       //   - we haven't already prompted this item,
+      //   - the item is NOT a conjugation drill that hands the learner the
+      //     base form via the cue (prompt_supplies_base_form): on those, a
+      //     wrong answer is a form / spelling error of the cued verb, not a
+      //     cue misread, and the marker should just record it. The whole
+      //     present-formation batch (and future / conditional to come) ships
+      //     with this flag set.
       //   - the outcome is a clean miss (zero marks),
-      //   - no must_not_include / hint matched (the learner's specific wrong
-      //     form isn't a recognised wrong; they may have answered a different
-      //     question than the one asked), AND
+      //   - no must_not_include matched (catalogued wrong forms are known
+      //     errors the item was built to catch; no rescue),
       //   - the chip has an extractable lemma AND the answer's stem doesn't
-      //     overlap the lemma's stem.
-      if (!isMcq && !secondChanceShown) {
+      //     overlap the lemma's stem (the cue-misread signal).
+      if (!isMcq && !secondChanceShown && !q.prompt_supplies_base_form) {
         const isCleanMiss = result.overall.marks_awarded === 0
           && Array.isArray(result.markpoints)
           && result.markpoints.every(mp => mp.outcome === "miss" || mp.outcome === "not_attempted");
@@ -1184,7 +1191,7 @@
       resultHost.appendChild(renderResult(result));
       if (costLine) resultHost.appendChild(costLine);
       renderLiveStats();
-      next.focus();
+      next.focus({ preventScroll: true });
     };
     const doNext = () => {
       translationIndex++;
@@ -4198,10 +4205,21 @@
     // headline is "buckets touched / buckets total", which matches the visible
     // texture (one cell per leaf) and is self-explanatory. Raw hits/events
     // count stays accessible on hover via friendlyOverviewTitle.
-    const leaves = getLeavesUnder(root);
+    //
+    // Stub leaves (`stub: true` on the bucket tree) are placeholders for
+    // future content (e.g. PresentUsage / TenseChoice slots) that current
+    // items never touch. Excluding them from the denominator keeps the
+    // headline aligned with what's practiceable right now; once those
+    // buckets get real content, the flag drops and they enter the count
+    // naturally. See inter_chat/Architecture_Housing_grammar_view_space_and_scroll.md.
+    const allLeaves = getLeavesUnder(root);
+    const leaves = allLeaves.filter(l => !l.stub);
     const touchedLeafCount = leaves.filter(l => !!aggregateNodeStats(l)).length;
     meta.textContent = touchedLeafCount + " / " + leaves.length;
-    meta.title = "buckets practised";
+    const stubCount = allLeaves.length - leaves.length;
+    meta.title = "buckets practised" + (stubCount > 0
+      ? " (excludes " + stubCount + " stub leaves not yet content-filled)"
+      : "");
     header.appendChild(meta);
     cell.appendChild(header);
 
@@ -4316,8 +4334,13 @@
   }
 
   function scrollToFreshBuckets() {
+    // Post-Mark auto-scroll: only nudge if the fresh row is OUTSIDE the
+    // viewport (block: "nearest"). When the live panel is already visible
+    // — the common case during normal practice — this becomes a no-op so
+    // the page doesn't jump and the user sees the cell update in place.
+    // See inter_chat/Architecture_Housing_grammar_view_space_and_scroll.md.
     const fresh = document.querySelector("#live-stats-content .live-bucket-row.fresh");
-    if (fresh) fresh.scrollIntoView({ behavior: "smooth", block: "center" });
+    if (fresh) fresh.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
 
   function scrollToBucket(bucketId) {
