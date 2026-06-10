@@ -642,3 +642,21 @@ Dry-run delivered as a per-batch sibling thread before commit so authors can spo
 
 **How to apply:** Architect schedules the dry-run sweep within the next 1-2 architect passes. Until then, the marker's existing defensive code path (verified in stats_panel work) tolerates both old and new bucket shapes; items work today, migration is hygiene.
 
+## 2026-06-09: Discrimination items suppress their breadcrumb by default
+
+Any item in a `.discrimination` bucket (or in the tense_choice tree) carries `info_display: "suppress"`. The breadcrumb on a discrimination item names the contrast being tested ("imperfect vs passato prossimo", "indicative vs subjunctive"); showing it pre-answer tips the learner that a tense choice is in play, when they should detect that from the sentence's context. The generic topic-root label shows pre-answer; the contrast name reveals post-answer. Codified as a clarification to AUTHOR_BRIEF criterion 15 (Revision 10).
+
+**Why:** A discrimination item's validity depends on the learner recognising, unprompted, that a tense choice is required (a real reader gets no label). Naming the contrast pre-answer is the same leak criterion 15 forbids, applied to the selection axis rather than the form axis. Generalises a per-category ruling (the ImperfectAuthor chip_suppression v4 close-out) into a project-wide default so TenseChoice and every tree's discrimination buckets inherit it without re-deciding.
+
+**How to apply:** Authors set `info_display: "suppress"` on every discrimination / tense-choice item. Housing already honours the flag (Architecture_Housing_info_display_suppress, CLOSED). ImperfectAuthor extends it to its ~32 remaining discrimination items (chip_suppression v4); TenseChoice applies it from the start.
+
+---
+## 2026-06-09: Misconception registry ratified to 17 families / 67 specifics
+
+The MisconceptionAnalyst harvest of all 179 `common_miss` buckets (12 suggestion files) is ratified into `data/misconceptions.json`. 51 distinct new specifics added (deduped from cross-tense proposals), joining the 16 seeds for 67 total. Six seed entries gained cross-tense / cross-kind topic coverage; three descriptions broadened (orthography.omitted_h_hard_cg and double_i_retained to kind-neutral so they tag noun/adjective plurals as well as verb endings; stem_change.isc_over_extension to the plain-stem tenses; the auxiliary_choice family widened to "wrong auxiliary OR wrong tense of the auxiliary"). Every family referenced across the 12 files resolves to the ratified 17; no 18th surfaced, so the harvest family structure is treated as final, additive only if a later recognition / tense-choice pass surfaces a new one.
+
+**Why:** The registry is the canonical error-pattern axis (DESIGN §15), orthogonal to the skill buckets. Ratifying now gives authors stable canonical ids to tag `must_not_include` against. Deduping cross-tense proposals keeps one entry per error pattern with a `topics` span, which is what makes the cross-kind drill-down meaningful: regularisation.irregular_verb across eight tenses is one pattern, not eight rows.
+
+**How to apply:** Phase-3 tagging. MisconceptionAnalyst supplies per-topic tag-lists (`harvested_from` to canonical id); architect coordinates each author tagging its `must_not_include` entries (multiple ids per entry allowed), bundled with that author's next touch. The misconception drill-down view is a later housing build.
+
+---
