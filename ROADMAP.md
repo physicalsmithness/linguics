@@ -121,7 +121,7 @@ The milestones above are the infrastructure roadmap (housing, marker, stats, AI)
 
 **Strategy.** Formation first (the forms), then usage (when to use them), tense-choice last. Each tense is one tree with a formation branch (deepened and authored now) plus usage and discrimination stubs (deepened later). Compound tenses ride inside their parent-tense tree (futuro anteriore in future, condizionale passato in conditional, the subjunctive compounds in congiuntivo); the standalone pluperfect (trapassato prossimo), the subjunctive, and the past historic are their own trees. CEFR levels per `CEFR_GROUNDING.md`. Cue and breadcrumb discipline per AUTHOR_BRIEF criteria 13-15 and the Rev 9 cue-economy note.
 
-### Formation phase: COMPLETE (all trees built)
+### Formation phase: all trees built; launch + authoring ongoing
 
 - present_indicative: live (authored, in manifest)
 - passato_prossimo: live (pre-existing)
@@ -129,12 +129,12 @@ The milestones above are the infrastructure roadmap (housing, marker, stats, AI)
 - future: live (authored, in manifest)
 - condizionale: live (authored, in manifest)
 - gerundio: live (authored, in manifest)
-- trapassato_prossimo (pluperfect): tree + dispatch ready, not yet launched
-- congiuntivo (subjunctive, three waves: presente, imperfetto, compounds): tree + dispatch ready, not yet launched
-- passato_remoto (past historic): tree + dispatch ready, not yet launched
-- imperativo (imperative mood): tree + dispatch ready, not yet launched
+- congiuntivo (subjunctive, three waves: presente, imperfetto, compounds): LAUNCHED 2026-06-09, batch authoring in progress (not yet returned / wired to manifest)
+- passato_remoto (past historic): LAUNCHED 2026-06-09, batch authoring in progress (not yet returned / wired to manifest)
+- trapassato_prossimo (pluperfect): tree + dispatch ready, NOT yet launched
+- imperativo (imperative mood): tree + dispatch ready, NOT yet launched
 
-So four formation dispatches remain to launch (trapassato, imperativo, congiuntivo, passato_remoto); the other six verb trees are live.
+So two formation dispatches remain to launch (trapassato, imperativo); congiuntivo and passato_remoto are launched and authoring; the six earlier trees are live in the manifest. When the congiuntivo / passato_remoto batches return they get reviewed and wired (as future / condizionale / gerundio were).
 
 Non-finite / edge forms accounted for, not separate formation trees: the past participle lives in the passato_prossimo tree; the present participle (parlante) is rare and adjectival; the infinitive's present is the citation form (no formation to test) and its past (avere parlato) is a minor compound, so the infinitive is a usage-phase topic (its constructions: prepositions, modals, causative fare, perception verbs) rather than a formation gap.
 
