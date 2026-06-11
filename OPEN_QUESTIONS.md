@@ -467,7 +467,9 @@ Self-audit task. Each chat reports back on its inter_chat status note when done.
 
 ---
 
-## Tense-choice items should declare their candidate tenses (added 2026-06-08)
+## Tense-choice items should declare their candidate tenses (added 2026-06-08; RESOLVED 2026-06-09)
+
+> **RESOLVED 2026-06-09.** Field shape and display ruled in DECISIONS.md (`candidate_tenses` array + `correct_tense`, controlled tense-tag vocabulary, candidates shown post-answer only, marking unchanged). Carried by the TenseChoice wave-2 dispatch and AUTHOR_BRIEF criterion 16. Housing tick-UI requested via inter_chat. Original note kept below for context.
 
 Smith's note, raised while sequencing the formation trees: when we reach the tense-USE phase, a tense-choice item will need to record which tenses are the legitimate options in that choice, "a tick alongside saying which tenses can be used in the choice."
 

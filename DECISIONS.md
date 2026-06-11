@@ -660,3 +660,30 @@ The MisconceptionAnalyst harvest of all 179 `common_miss` buckets (12 suggestion
 **How to apply:** Phase-3 tagging. MisconceptionAnalyst supplies per-topic tag-lists (`harvested_from` to canonical id); architect coordinates each author tagging its `must_not_include` entries (multiple ids per entry allowed), bundled with that author's next touch. The misconception drill-down view is a later housing build.
 
 ---
+## 2026-06-09: candidate_tenses on tense-choice / discrimination items
+
+Resolves the open question raised 2026-06-08. An item where the learner picks the contextually-correct tense among formally-possible options (every `tense_choice` item, and any item citing a `.discrimination.*` bucket) carries two new item-level fields:
+
+- `candidate_tenses`: an array of two or more controlled tense-tags, the legitimate options in play for that context.
+- `correct_tense`: exactly one member of `candidate_tenses`, the option the context demands. The correct surface form still lives in the markpoint `any_phrases`; `correct_tense` is the tense-level label that drives the post-answer tick and the per-context stats.
+
+Controlled tense-tag vocabulary: present, passato_prossimo, imperfect, trapassato_prossimo, passato_remoto, future, futuro_anteriore, condizionale, condizionale_passato, congiuntivo_presente, congiuntivo_imperfetto, congiuntivo_passato, congiuntivo_trapassato, imperativo, gerundio, infinito. Each maps to its `verb_form` topic for stats linkage.
+
+Display (Housing): the candidate set is shown ONLY post-answer. Showing it pre-answer would tip the learner that a choice is in play, which criterion 15's discrimination-suppress forbids, so these items also carry `info_display: "suppress"`. Post-answer, the candidates render as a small chip row with `correct_tense` ticked; if the learner's answer matched a tense-identifiable `must_not_include` entry, that chip is marked as the chosen-wrong tense. Recorded per attempt (`correct_tense`, and chosen tense where derivable) to feed the per-context discrimination stats and the misconception drill-down.
+
+Marking is unchanged: the engine scores the surface form via `any_phrases` / `must_not_include`. The two new fields are display + stats metadata only.
+
+**Why:** makes the choice space explicit, gives every discrimination bucket a uniform item shape, and feeds the discrimination misconception axis (choosing passato prossimo where imperfect was right is a recordable cross-context pattern). Surfacing candidates only post-answer keeps it consistent with discrimination-suppress.
+
+**How to apply:** required on `tense_choice` items and on any item citing a `.discrimination.*` bucket; optional on usage items that have a genuine candidate set. The TenseChoice wave-2 dispatch carries the convention; Housing renders the post-answer tick row and records correct / chosen for stats (a Housing thread covers the UI).
+
+---
+## 2026-06-09: tense_choice tree is the canonical home for cross-tense contrasts
+
+When the usage / tense-choice phase opened, two parallel homes existed for the same contrasts: the built `tense_choice` tree (progressive/simple, future/present, counterfactual, indicative/subjunctive, trapassato/imperfetto) and a set of per-tree `verb_form.<tense>.discrimination.*` stubs whose descriptions claimed to be "the structural home." Ruled: the `tense_choice` tree is canonical. Extended it with three gap areas (`present_vs_imperfect`, `present_vs_passato_prossimo`, `passato_remoto_vs_passato_prossimo`). Deprecated the nine duplicate per-tree discrimination stubs to cross-reference pointers (`attributes.deprecated_authoring_target` + `cross_reference`). The imperfetto/PP area stays in `verb_form.imperfect.discrimination` (built deep with five modal contrasts, wave-1 authored), cross-referenced. The imperative's informal-vs-formal stays on the imperativo tree, since it is a register choice, not a tense choice.
+
+**Why:** A two-tense contrast has no natural owner between its two tenses; the per-tree approach actually duplicated a contrast under both tenses (present-vs-future appeared under both the present and the future stub). The tense_choice tree gives one coherent diagnostic page, matches the dispatch's cross-cutting framing, and is less churn since it is already built deep. Keeping imp/PP where it is avoids discarding the five-modal structure already authored there.
+
+**How to apply:** The TenseChoice wave-2 dispatch authors all contrasts into `tense_choice.*` (imp/PP excepted, already done). The deprecated per-tree stubs are not authoring targets and must not be cited. `candidate_tenses` (criterion 16) applies to all tense_choice items.
+
+---

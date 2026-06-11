@@ -455,5 +455,194 @@
     },
     "active": true,
     "version": 1
+  },
+  {
+    "id": "tense_choice.present_vs_imperfect",
+    "parent_id": "tense_choice",
+    "language_code": "it",
+    "label": "Present vs imperfect",
+    "description": "Choosing the present or the imperfect where the frame could read either way. Marginal as a direct choice; the cue is whether the routine/description sits in present time or past time.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "tense_choice.present_vs_imperfect.habitual_frame",
+    "parent_id": "tense_choice.present_vs_imperfect",
+    "language_code": "it",
+    "label": "Present vs imperfect habitual",
+    "description": "Present for a current routine (ogni giorno passa di qui) vs imperfetto for a past routine (ogni giorno passava di qui). The cue is the time frame, not the verb.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "stub": true,
+      "canonical_example": "ogni giorno passa di qui / passava di qui"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "tense_choice.present_vs_passato_prossimo",
+    "parent_id": "tense_choice",
+    "language_code": "it",
+    "label": "Present vs passato prossimo",
+    "description": "Choosing the present or the passato prossimo where English would reach for a perfect. The classic trap is the durative da construction, where Italian uses the present for an action ongoing since a past point.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "tense_choice.present_vs_passato_prossimo.da_durative_present",
+    "parent_id": "tense_choice.present_vs_passato_prossimo",
+    "language_code": "it",
+    "label": "Present with da for ongoing-since",
+    "description": "Italian uses the PRESENT (not the perfect) for an action continuing from a past point: Studio italiano da due anni. English 'I have studied' tempts the passato prossimo.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "stub": true,
+      "canonical_example": "Vivo qui da dieci anni (not ho vissuto)"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "tense_choice.present_vs_passato_prossimo.completed_event",
+    "parent_id": "tense_choice.present_vs_passato_prossimo",
+    "language_code": "it",
+    "label": "Passato prossimo for a completed event",
+    "description": "A finished, bounded event takes the passato prossimo, not the present: Ieri ho mangiato. The counterweight to the durative present.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "stub": true,
+      "canonical_example": "Ho finito il libro ieri"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "tense_choice.passato_remoto_vs_passato_prossimo",
+    "parent_id": "tense_choice",
+    "language_code": "it",
+    "label": "Passato remoto vs passato prossimo",
+    "description": "Choosing between the passato remoto and the passato prossimo for a completed past event. Largely a register and regional choice rather than a strict aspectual rule.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "core",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "tense_choice.passato_remoto_vs_passato_prossimo.narrative_literary",
+    "parent_id": "tense_choice.passato_remoto_vs_passato_prossimo",
+    "language_code": "it",
+    "label": "Passato remoto for literary / historical narration",
+    "description": "The passato remoto is the default narrative past in writing, literature, history (and southern speech): Dante nacque nel 1265. Detached from present relevance.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "core",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "stub": true,
+      "canonical_example": "Il re morì e il regno cadde"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "tense_choice.passato_remoto_vs_passato_prossimo.spoken_recent",
+    "parent_id": "tense_choice.passato_remoto_vs_passato_prossimo",
+    "language_code": "it",
+    "label": "Passato prossimo for spoken / present-relevant past",
+    "description": "Everyday speech (especially northern / standard) uses the passato prossimo for past events, including remote ones, when conversational or present-relevant: Sono nato nel 1990.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "core",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "stub": true,
+      "canonical_example": "Ieri ho visto Marco"
+    },
+    "active": true,
+    "version": 1
   }
 ]
