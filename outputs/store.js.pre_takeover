@@ -113,22 +113,6 @@
       events,
       timestamp: new Date().toISOString()
     };
-    // candidate_tenses metadata (AUTHOR_BRIEF criterion 16, Phase 1; see
-    // inter_chat/Architecture_Housing_candidate_tenses_tick.md). Recorded when
-    // the item declares its candidate set, to feed per-context discrimination
-    // stats. Phase 1 stores correct_tense + whether the learner got the item
-    // right; chosen-wrong-tense attribution is Phase 2 (needs tense-tagged
-    // must_not_include entries).
-    if (Array.isArray(item_or_question.candidate_tenses)
-        && item_or_question.candidate_tenses.length >= 2
-        && item_or_question.correct_tense) {
-      attempt.tense_meta = {
-        candidate_tenses: item_or_question.candidate_tenses.slice(),
-        correct_tense: item_or_question.correct_tense,
-        was_right: result.overall.marks_possible > 0
-          && result.overall.marks_awarded >= result.overall.marks_possible
-      };
-    }
     state.attempts.push(attempt);
 
     // Track any bucket proposals that came through

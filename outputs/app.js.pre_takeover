@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-09-r1";
+  const LL_BUILD = "2026-06-08-r5";
 
   LL.state = LL.store.loadState();
 
@@ -914,8 +914,6 @@
       clearInFlightSuppress();
       resultHost.innerHTML = "";
       resultHost.appendChild(renderResult(result));
-      const tenseRow = renderCandidateTensesRow(q);
-      if (tenseRow) resultHost.appendChild(tenseRow);
       renderLiveStats();
       marked = true;
       // Deferring focus past the current event-loop tick is more reliable
@@ -1191,8 +1189,6 @@
       recentlyChangedBuckets = new Set(attempt.events.map(e => e.bucket));
       resultHost.innerHTML = "";
       resultHost.appendChild(renderResult(result));
-      const tenseRowT = renderCandidateTensesRow(it);
-      if (tenseRowT) resultHost.appendChild(tenseRowT);
       if (costLine) resultHost.appendChild(costLine);
       renderLiveStats();
       next.focus({ preventScroll: true });
@@ -3646,63 +3642,6 @@
   }
 
   // -------------------- result panel --------------------
-  // Controlled tense-tag vocabulary (AUTHOR_BRIEF criterion 16 / DECISIONS
-  // 2026-06-09). Friendly labels follow the verb_form tree names.
-  const TENSE_TAG_LABELS = {
-    present: "Present",
-    passato_prossimo: "Passato prossimo",
-    imperfect: "Imperfect",
-    trapassato_prossimo: "Pluperfect",
-    passato_remoto: "Past historic",
-    future: "Future",
-    futuro_anteriore: "Future perfect",
-    condizionale: "Conditional",
-    condizionale_passato: "Past conditional",
-    congiuntivo_presente: "Present subjunctive",
-    congiuntivo_imperfetto: "Imperfect subjunctive",
-    congiuntivo_passato: "Past subjunctive",
-    congiuntivo_trapassato: "Pluperfect subjunctive",
-    imperativo: "Imperative",
-    gerundio: "Gerund",
-    infinito: "Infinitive"
-  };
-  const _tenseTagWarnedFor = new Set();
-  function tenseTagLabel(tag) {
-    if (TENSE_TAG_LABELS[tag]) return TENSE_TAG_LABELS[tag];
-    if (!_tenseTagWarnedFor.has(tag)) {
-      _tenseTagWarnedFor.add(tag);
-      console.warn("[Linguics] Tense tag \"" + tag + "\" is not in the controlled vocabulary (criterion 16); using fallback label.");
-    }
-    const s = String(tag).replace(/_/g, " ");
-    return s.charAt(0).toUpperCase() + s.slice(1);
-  }
-
-  // Post-answer candidate-tenses row, Phase 1 (see inter_chat/
-  // Architecture_Housing_candidate_tenses_tick.md). Rendered ONLY after Mark:
-  // pre-answer these items carry info_display:"suppress" and nothing shows.
-  // Phase 2 (marking the chosen-wrong tense) waits on tense-tagged
-  // must_not_include entries; do not build yet.
-  function renderCandidateTensesRow(q) {
-    if (!q || !Array.isArray(q.candidate_tenses) || q.candidate_tenses.length < 2) return null;
-    const row = document.createElement("div");
-    row.className = "tense-candidates";
-    const lbl = document.createElement("span");
-    lbl.className = "tense-candidates-label";
-    lbl.textContent = "Tenses in play:";
-    row.appendChild(lbl);
-    for (const tag of q.candidate_tenses) {
-      const chip = document.createElement("span");
-      const isCorrect = tag === q.correct_tense;
-      chip.className = "tense-chip" + (isCorrect ? " correct" : "");
-      chip.textContent = (isCorrect ? "\u2713 " : "") + tenseTagLabel(tag);
-      chip.title = isCorrect
-        ? "The tense the context demanded"
-        : "A legitimate option in this context";
-      row.appendChild(chip);
-    }
-    return row;
-  }
-
   function renderResult(result) {
     const root = document.createElement("div");
     root.className = "result";
@@ -4172,21 +4111,12 @@
   // Across-category order. Verbs first (bulk), then Adjectives, then Pronouns.
   const OVERVIEW_CATEGORY_ORDER = ["Verbs", "Adjectives", "Pronouns", "Other"];
   // Within-Verbs curriculum sequence. Other categories use manifest order.
-  // Full intended curriculum order (CEFR-grounded, see CEFR_GROUNDING.md and
-  // inter_chat/Architecture_Housing_curriculum_order_new_trees.md). Trees not
-  // yet in the manifest are listed ahead of time and slot in when they land;
-  // unknown ids keep the index-999 fallback.
   const VERBS_CURRICULUM_ORDER = [
     "verb_form.present_indicative",
     "verb_form.passato_prossimo",
     "verb_form.imperfect",
-    "verb_form.trapassato_prossimo",
     "verb_form.future",
     "verb_form.condizionale",
-    "verb_form.imperativo",
-    "verb_form.congiuntivo",
-    "verb_form.passato_remoto",
-    "verb_form.gerundio",
     "tense_choice"
   ];
 
