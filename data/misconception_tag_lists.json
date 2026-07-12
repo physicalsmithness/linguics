@@ -1,0 +1,1223 @@
+{
+  "$note": "Phase-3 misconception tag-lists, produced by MisconceptionAnalyst from the harvested_from provenance in the misconception_suggestions_*.json files. For each topic, each bucket's verbatim common_miss is paired with the canonical misconception id(s) an author should attach to the matching must_not_include entry (object form {phrase, misconception}). Where an entry lists more than one id, all apply (a must_not_include entry may carry an array of ids per thread v5). Registry basis: 17 families / 67 misconceptions (thread v5). See inter_chat/Architecture_MisconceptionAnalyst_registry_harvest.md.",
+  "generated": "2026-06-09",
+  "registry_basis": "data/misconceptions.json (17 families / 67 misconceptions)",
+  "present_indicative_note": "verb_form.present_indicative's 16 common_miss buckets are already the v1 registry seeds (present-tense specifics); its bucket->id tag-list can be generated on request but was outside this harvest.",
+  "topics": {
+    "adjective_agreement": [
+      {
+        "bucket": "adjective_agreement.o_class.masculine_plural",
+        "common_miss": "libri rosso (no agreement)",
+        "misconception_ids": [
+          "agreement.adjective_noun"
+        ]
+      },
+      {
+        "bucket": "adjective_agreement.o_class.feminine_singular",
+        "common_miss": "casa rosso",
+        "misconception_ids": [
+          "agreement.adjective_noun"
+        ]
+      },
+      {
+        "bucket": "adjective_agreement.o_class.feminine_plural",
+        "common_miss": "case rossi (wrong gender)",
+        "misconception_ids": [
+          "agreement.adjective_noun"
+        ]
+      },
+      {
+        "bucket": "adjective_agreement.e_class.masculine_singular",
+        "common_miss": "un libro grando",
+        "misconception_ids": [
+          "regularisation.adjective_class"
+        ]
+      },
+      {
+        "bucket": "adjective_agreement.e_class.masculine_plural",
+        "common_miss": "libri grande (no number)",
+        "misconception_ids": [
+          "agreement.adjective_noun"
+        ]
+      },
+      {
+        "bucket": "adjective_agreement.e_class.feminine_singular",
+        "common_miss": "una casa granda",
+        "misconception_ids": [
+          "regularisation.adjective_class"
+        ]
+      },
+      {
+        "bucket": "adjective_agreement.e_class.feminine_plural",
+        "common_miss": "case grande (no -i marking for Class II plural)",
+        "misconception_ids": [
+          "agreement.adjective_noun"
+        ]
+      },
+      {
+        "bucket": "adjective_agreement.stem_changes.predictable.co_chi",
+        "common_miss": "bianci (sound shift to soft c)",
+        "misconception_ids": [
+          "orthography.omitted_h_hard_cg"
+        ]
+      },
+      {
+        "bucket": "adjective_agreement.stem_changes.predictable.ca_che",
+        "common_miss": "bianci",
+        "misconception_ids": [
+          "orthography.omitted_h_hard_cg"
+        ]
+      },
+      {
+        "bucket": "adjective_agreement.stem_changes.predictable.go_ghi",
+        "common_miss": "lungi (soft g)",
+        "misconception_ids": [
+          "orthography.omitted_h_hard_cg"
+        ]
+      },
+      {
+        "bucket": "adjective_agreement.stem_changes.predictable.ga_ghe",
+        "common_miss": "lunge",
+        "misconception_ids": [
+          "orthography.omitted_h_hard_cg"
+        ]
+      },
+      {
+        "bucket": "adjective_agreement.stem_changes.harder.co_ci_vs_chi_stress",
+        "common_miss": "simpatichi (over-applying -chi)",
+        "misconception_ids": [
+          "orthography.cg_plural_stress_misapplied"
+        ]
+      },
+      {
+        "bucket": "adjective_agreement.position.post_noun_default",
+        "common_miss": "la rossa casa (English-style fronting)",
+        "misconception_ids": [
+          "word_order.adjective_position"
+        ],
+        "note": "transfer is a valid secondary co-tag (English fronting)."
+      },
+      {
+        "bucket": "adjective_agreement.special.bello",
+        "common_miss": "bello libro (wrong allomorph)",
+        "misconception_ids": [
+          "agreement.prenominal_allomorph"
+        ]
+      },
+      {
+        "bucket": "adjective_agreement.special.buono",
+        "common_miss": "buono libro (wrong allomorph)",
+        "misconception_ids": [
+          "agreement.prenominal_allomorph"
+        ]
+      },
+      {
+        "bucket": "adjective_agreement.stem_changes.predictable.cio_ci",
+        "common_miss": "vecchii (double i) or vecchichi (over-applying -chi)",
+        "misconception_ids": [
+          "orthography.double_i_retained"
+        ]
+      },
+      {
+        "bucket": "adjective_agreement.stem_changes.predictable.gio_gi",
+        "common_miss": "grigii (double i) or grighi (over-applying -ghi)",
+        "misconception_ids": [
+          "orthography.double_i_retained"
+        ]
+      },
+      {
+        "bucket": "adjective_agreement.stem_changes.predictable.cia_ce",
+        "common_miss": "liscie (over-preservation of i)",
+        "misconception_ids": [
+          "orthography.double_i_retained"
+        ]
+      },
+      {
+        "bucket": "adjective_agreement.stem_changes.predictable.gia_ge",
+        "common_miss": "grigia (no plural marking)",
+        "misconception_ids": [
+          "agreement.adjective_noun"
+        ]
+      },
+      {
+        "bucket": "adjective_agreement.stem_changes.irregular.amico_amici",
+        "common_miss": "amichi (over-applying the predictable rule)",
+        "misconception_ids": [
+          "orthography.cg_plural_stress_misapplied"
+        ]
+      },
+      {
+        "bucket": "adjective_agreement.stem_changes.irregular.greco_greci",
+        "common_miss": "grechi",
+        "misconception_ids": [
+          "orthography.cg_plural_stress_misapplied"
+        ]
+      },
+      {
+        "bucket": "adjective_agreement.stem_changes.irregular.antico_antichi",
+        "common_miss": "antici (over-applying the stress rule)",
+        "misconception_ids": [
+          "orthography.cg_plural_stress_misapplied"
+        ]
+      },
+      {
+        "bucket": "adjective_agreement.mixed_gender_plural_defaults_masculine",
+        "common_miss": "italiane (last-noun agreement)",
+        "misconception_ids": [
+          "agreement.mixed_gender_default"
+        ]
+      },
+      {
+        "bucket": "adjective_agreement.invariable.colour_from_noun",
+        "common_miss": "le case rose (over-applying Class I)",
+        "misconception_ids": [
+          "regularisation.invariable_adjective"
+        ]
+      },
+      {
+        "bucket": "adjective_agreement.invariable.compound_colour",
+        "common_miss": "verdi scure (full agreement) or verde scure (half agreement)",
+        "misconception_ids": [
+          "regularisation.invariable_adjective"
+        ]
+      }
+    ],
+    "pronoun": [
+      {
+        "bucket": "pronoun.direct_object.mi",
+        "common_miss": "Marco vede me (using stressed pronoun instead)",
+        "misconception_ids": [
+          "paradigm_confusion.clitic_vs_stressed"
+        ]
+      },
+      {
+        "bucket": "pronoun.direct_object.lo",
+        "common_miss": "il/lui (using article or stressed)",
+        "misconception_ids": [
+          "paradigm_confusion.clitic_vs_stressed"
+        ]
+      },
+      {
+        "bucket": "pronoun.direct_object.li",
+        "common_miss": "gli (confusion with IOP) or li' (incorrect elision)",
+        "misconception_ids": [
+          "paradigm_confusion.dop_iop",
+          "orthography.failed_elision"
+        ]
+      },
+      {
+        "bucket": "pronoun.direct_object.le",
+        "common_miss": "li (gender confusion)",
+        "misconception_ids": [
+          "agreement.clitic_gender_number"
+        ]
+      },
+      {
+        "bucket": "pronoun.direct_object.formal_La",
+        "common_miss": "ti (mixing tu and Lei)",
+        "misconception_ids": [
+          "register.tu_lei_mismatch"
+        ]
+      },
+      {
+        "bucket": "pronoun.direct_object.elision_before_vowel",
+        "common_miss": "lo ho visto (failure to elide)",
+        "misconception_ids": [
+          "orthography.failed_elision"
+        ]
+      },
+      {
+        "bucket": "pronoun.indirect_object.gli_masc",
+        "common_miss": "li (DOP) or lui (stressed)",
+        "misconception_ids": [
+          "paradigm_confusion.dop_iop",
+          "paradigm_confusion.clitic_vs_stressed"
+        ]
+      },
+      {
+        "bucket": "pronoun.indirect_object.le_fem",
+        "common_miss": "li / la / lei",
+        "misconception_ids": [
+          "agreement.clitic_gender_number",
+          "paradigm_confusion.dop_iop"
+        ]
+      },
+      {
+        "bucket": "pronoun.indirect_object.gli_them",
+        "common_miss": "li (DOP, wrong)",
+        "misconception_ids": [
+          "paradigm_confusion.dop_iop"
+        ]
+      },
+      {
+        "bucket": "pronoun.indirect_object.verbs_taking_iop",
+        "common_miss": "Io piaccio la pizza (English-style mapping)",
+        "misconception_ids": [
+          "transfer.calque_argument_structure"
+        ]
+      },
+      {
+        "bucket": "pronoun.reflexive.essere_in_compound",
+        "common_miss": "Mi ho lavato (using avere)",
+        "misconception_ids": [
+          "auxiliary_choice.avere_for_essere"
+        ]
+      },
+      {
+        "bucket": "pronoun.reflexive.with_object",
+        "common_miss": "Mi le lavo (no vowel change)",
+        "misconception_ids": [
+          "clitic_cluster.form_change"
+        ]
+      },
+      {
+        "bucket": "pronoun.combined.order_iop_before_dop",
+        "common_miss": "Lo mi dai? (wrong order)",
+        "misconception_ids": [
+          "word_order.clitic_cluster_order"
+        ]
+      },
+      {
+        "bucket": "pronoun.combined.vowel_changes",
+        "common_miss": "mi lo (no change)",
+        "misconception_ids": [
+          "clitic_cluster.form_change"
+        ]
+      },
+      {
+        "bucket": "pronoun.combined.glielo_family",
+        "common_miss": "gli lo dico (not attached) or le lo dico (no glie- transform)",
+        "misconception_ids": [
+          "clitic_cluster.form_change"
+        ]
+      },
+      {
+        "bucket": "pronoun.ne.partitive_quantity",
+        "common_miss": "Ho tre (omitting ne)",
+        "misconception_ids": [
+          "transfer.clitic_omission"
+        ]
+      },
+      {
+        "bucket": "pronoun.ne.pronominal_di",
+        "common_miss": "Parliamo di esso (overly literal)",
+        "misconception_ids": [
+          "transfer.clitic_omission",
+          "transfer.calque_argument_structure"
+        ]
+      },
+      {
+        "bucket": "pronoun.ne.with_pp_agreement",
+        "common_miss": "Ne ho mangiato tre (no agreement)",
+        "misconception_ids": [
+          "agreement.participle_preceding_dop"
+        ]
+      },
+      {
+        "bucket": "pronoun.ci_locative.location",
+        "common_miss": "Vado là (overly literal)",
+        "misconception_ids": [
+          "transfer.clitic_omission"
+        ]
+      },
+      {
+        "bucket": "pronoun.ci_locative.existential",
+        "common_miss": "È un problema (no existential ci)",
+        "misconception_ids": [
+          "transfer.clitic_omission"
+        ]
+      },
+      {
+        "bucket": "pronoun.ci_locative.topic",
+        "common_miss": "Penso a questo (overly literal)",
+        "misconception_ids": [
+          "transfer.clitic_omission"
+        ]
+      },
+      {
+        "bucket": "pronoun.ci_vs_ne_disambiguation",
+        "common_miss": "ne penso (wrong preposition mapping)",
+        "misconception_ids": [
+          "paradigm_confusion.ci_vs_ne"
+        ]
+      },
+      {
+        "bucket": "pronoun.position.pre_finite_verb",
+        "common_miss": "Vedo lo (English-style post-position)",
+        "misconception_ids": [
+          "word_order.clitic_position"
+        ],
+        "note": "transfer secondary co-tag for the post-finite-verb (English order) case."
+      },
+      {
+        "bucket": "pronoun.position.post_infinitive_attached",
+        "common_miss": "Voglio lo vedere (separated) or vedere lo (separated)",
+        "misconception_ids": [
+          "word_order.clitic_position"
+        ],
+        "note": "transfer secondary co-tag for the post-finite-verb (English order) case."
+      },
+      {
+        "bucket": "pronoun.position.modal_plus_infinitive_either",
+        "common_miss": "Voglio lo vedere (separated, wrong)",
+        "misconception_ids": [
+          "word_order.clitic_position"
+        ],
+        "note": "transfer secondary co-tag for the post-finite-verb (English order) case."
+      },
+      {
+        "bucket": "pronoun.position.post_gerund_attached",
+        "common_miss": "Vedendo lo (separated)",
+        "misconception_ids": [
+          "word_order.clitic_position"
+        ],
+        "note": "transfer secondary co-tag for the post-finite-verb (English order) case."
+      },
+      {
+        "bucket": "pronoun.position.post_imperative_tu_attached",
+        "common_miss": "Mi dì! / Lo dammi! (separated or wrong)",
+        "misconception_ids": [
+          "word_order.clitic_position"
+        ],
+        "note": "transfer secondary co-tag for the post-finite-verb (English order) case."
+      },
+      {
+        "bucket": "pronoun.position.post_imperative_consonant_doubling",
+        "common_miss": "dami / dimmilo / dami lo (single consonant or wrong cluster)",
+        "misconception_ids": [
+          "gemination.enclitic_doubling"
+        ]
+      },
+      {
+        "bucket": "pronoun.position.negative_imperative",
+        "common_miss": "Non mi parla (mixing register)",
+        "misconception_ids": [
+          "register.tu_lei_mismatch"
+        ]
+      },
+      {
+        "bucket": "pronoun.position.formal_imperative_pre_verb",
+        "common_miss": "Dicami! (attached, mixing registers)",
+        "misconception_ids": [
+          "word_order.clitic_position",
+          "register.tu_lei_mismatch"
+        ],
+        "note": "transfer secondary co-tag for the post-finite-verb (English order) case."
+      },
+      {
+        "bucket": "pronoun.special.lo_neutral",
+        "common_miss": "So questo / Sì sono (omitting lo)",
+        "misconception_ids": [
+          "transfer.clitic_omission"
+        ]
+      },
+      {
+        "bucket": "pronoun.special.stressed_forms",
+        "common_miss": "Mi piace (when emphasis is wanted)",
+        "misconception_ids": [
+          "paradigm_confusion.clitic_vs_stressed"
+        ]
+      },
+      {
+        "bucket": "pronoun.indirect_object.verbs_taking_iop.with_essere_in_pp",
+        "common_miss": "Le ha piaciuto i fiori (using avere) or Le sono piaciuto (no agreement with grammatical subject)",
+        "misconception_ids": [
+          "auxiliary_choice.avere_for_essere",
+          "agreement.participle_essere_subject"
+        ]
+      },
+      {
+        "bucket": "pronoun.special.left_dislocation_with_pp_agreement",
+        "common_miss": "La pizza, l'ho mangiato (agreement missed)",
+        "misconception_ids": [
+          "agreement.participle_preceding_dop"
+        ]
+      },
+      {
+        "bucket": "pronoun.ci_locative.idiomatic_verbs.farcela",
+        "common_miss": "Non lo faccio (omitting the ci+la cluster)",
+        "misconception_ids": [
+          "transfer.clitic_omission"
+        ]
+      },
+      {
+        "bucket": "pronoun.special.pronoun_then_subject_noun",
+        "common_miss": "(none specific; the construction is optional)",
+        "misconception_ids": [],
+        "note": "INTENTIONAL NON-MAPPING (common_miss carries no taggable error pattern)"
+      }
+    ],
+    "tense_choice": [
+      {
+        "bucket": "tense_choice.progressive_vs_simple.present_progressive_vs_present",
+        "common_miss": "over-applying the progressive for any English -ing form",
+        "misconception_ids": [
+          "discrimination.progressive_overuse"
+        ]
+      },
+      {
+        "bucket": "tense_choice.progressive_vs_simple.past_progressive_vs_imperfetto",
+        "common_miss": "over-applying the past progressive for any English 'was -ing'",
+        "misconception_ids": [
+          "discrimination.progressive_overuse"
+        ]
+      },
+      {
+        "bucket": "tense_choice.future_vs_present.future_for_unambiguous_future",
+        "common_miss": "using present for cases where future is required (distant, uncertain, or probabilistic)",
+        "misconception_ids": [
+          "discrimination.future_present_mismatch"
+        ]
+      },
+      {
+        "bucket": "tense_choice.future_vs_present.present_for_near_future",
+        "common_miss": "over-applying the morphological future when a present-for-future is more natural",
+        "misconception_ids": [
+          "discrimination.future_present_mismatch"
+        ]
+      },
+      {
+        "bucket": "tense_choice.conditional_vs_imperfect_counterfactual.prescriptive_conditional",
+        "common_miss": "using present indicative + future ('se ho tempo, verrò') which is fine for a real condition but wrong for a counterfactual",
+        "misconception_ids": [
+          "discrimination.counterfactual_construction"
+        ]
+      },
+      {
+        "bucket": "tense_choice.conditional_vs_imperfect_counterfactual.colloquial_imperfect",
+        "common_miss": "treating the colloquial form as wrong when in fact it's accepted in speech",
+        "misconception_ids": [
+          "discrimination.counterfactual_construction"
+        ]
+      },
+      {
+        "bucket": "tense_choice.indicative_vs_subjunctive.opinion_triggers",
+        "common_miss": "using indicative ('penso che è'), accepted in speech but not in writing",
+        "misconception_ids": [
+          "discrimination.indicative_for_subjunctive_choice"
+        ]
+      },
+      {
+        "bucket": "tense_choice.indicative_vs_subjunctive.emotion_triggers",
+        "common_miss": "using indicative ('sei qui'), more clearly wrong than after opinion verbs",
+        "misconception_ids": [
+          "discrimination.indicative_for_subjunctive_choice"
+        ]
+      },
+      {
+        "bucket": "tense_choice.indicative_vs_subjunctive.hypothetical_triggers",
+        "common_miss": "using indicative after these conjunctions, much rarer in speech than after opinion verbs",
+        "misconception_ids": [
+          "discrimination.indicative_for_subjunctive_choice"
+        ]
+      },
+      {
+        "bucket": "tense_choice.indicative_vs_subjunctive.negative_triggers",
+        "common_miss": "keeping indicative under negation when subjunctive is now triggered",
+        "misconception_ids": [
+          "discrimination.indicative_for_subjunctive_choice"
+        ]
+      },
+      {
+        "bucket": "tense_choice.trapassato_vs_imperfect.completed_prior_to_prior",
+        "common_miss": "using imperfetto for a clearly-completed prior event ('mangiava' for 'had eaten')",
+        "misconception_ids": [
+          "discrimination.trapassato_imperfect_choice"
+        ]
+      },
+      {
+        "bucket": "tense_choice.trapassato_vs_imperfect.ongoing_background",
+        "common_miss": "using trapassato for an ongoing state ('avevo mangiato quando sei entrato' implies I'd finished, which usually isn't the intended reading)",
+        "misconception_ids": [
+          "discrimination.trapassato_imperfect_choice"
+        ]
+      }
+    ],
+    "verb_form.condizionale": [
+      {
+        "bucket": "verb_form.condizionale.formation.regular_are",
+        "common_miss": "single-m 1pl (parleremo, which is the future) instead of the double-m conditional (parleremmo); or keeping the -are a (parlarei)",
+        "misconception_ids": [
+          "paradigm_confusion.future_for_conditional_1pl",
+          "stem_change.future_are_to_e"
+        ],
+        "note": "co-tag gemination.geminate_simplified at item level (the -emmo/-emo surface is a geminate contrast); paradigm_confusion is primary."
+      },
+      {
+        "bucket": "verb_form.condizionale.formation.regular_ere",
+        "common_miss": "single-m 1pl (prenderemo, the future) for the double-m conditional (prenderemmo)",
+        "misconception_ids": [
+          "paradigm_confusion.future_for_conditional_1pl"
+        ],
+        "note": "co-tag gemination.geminate_simplified at item level (the -emmo/-emo surface is a geminate contrast); paradigm_confusion is primary."
+      },
+      {
+        "bucket": "verb_form.condizionale.formation.regular_ire",
+        "common_miss": "inserting -isc- (capiscirei), or single-m 1pl (dormiremo, the future)",
+        "misconception_ids": [
+          "paradigm_confusion.future_for_conditional_1pl",
+          "stem_change.isc_over_extension"
+        ],
+        "note": "co-tag gemination.geminate_simplified at item level (the -emmo/-emo surface is a geminate contrast); paradigm_confusion is primary."
+      },
+      {
+        "bucket": "verb_form.condizionale.formation.orthographic.care_gare",
+        "common_miss": "omitting the h (cercerei), or single-m 1pl (cercheremo)",
+        "misconception_ids": [
+          "paradigm_confusion.future_for_conditional_1pl",
+          "orthography.omitted_h_hard_cg"
+        ],
+        "note": "co-tag gemination.geminate_simplified at item level (the -emmo/-emo surface is a geminate contrast); paradigm_confusion is primary."
+      },
+      {
+        "bucket": "verb_form.condizionale.formation.orthographic.ciare_giare",
+        "common_miss": "keeping the redundant i (comincierei), or single-m 1pl",
+        "misconception_ids": [
+          "paradigm_confusion.future_for_conditional_1pl",
+          "orthography.double_i_retained"
+        ],
+        "note": "co-tag gemination.geminate_simplified at item level (the -emmo/-emo surface is a geminate contrast); paradigm_confusion is primary."
+      },
+      {
+        "bucket": "verb_form.condizionale.formation.irregular.syncopated",
+        "common_miss": "keeping the theme vowel (averei, poterei), or single-m 1pl (avremo, the future)",
+        "misconception_ids": [
+          "paradigm_confusion.future_for_conditional_1pl",
+          "stem_change.future_syncope_under_application"
+        ],
+        "note": "co-tag gemination.geminate_simplified at item level (the -emmo/-emo surface is a geminate contrast); paradigm_confusion is primary."
+      },
+      {
+        "bucket": "verb_form.condizionale.formation.irregular.double_r",
+        "common_miss": "single r (vorei, verei) instead of the assimilated -rr-",
+        "misconception_ids": [
+          "gemination.geminate_simplified"
+        ]
+      },
+      {
+        "bucket": "verb_form.condizionale.formation.irregular.essere",
+        "common_miss": "building from the infinitive (esserei), or single-m 1pl (saremo, the future)",
+        "misconception_ids": [
+          "paradigm_confusion.future_for_conditional_1pl",
+          "regularisation.irregular_verb"
+        ],
+        "note": "co-tag gemination.geminate_simplified at item level (the -emmo/-emo surface is a geminate contrast); paradigm_confusion is primary."
+      },
+      {
+        "bucket": "verb_form.condizionale.formation.irregular.dare_stare_fare",
+        "common_miss": "applying the a-to-e shift (derei, ferei) instead of keeping -ar-",
+        "misconception_ids": [
+          "stem_change.future_are_to_e"
+        ]
+      },
+      {
+        "bucket": "verb_form.condizionale.formation.condizionale_passato",
+        "common_miss": "wrong auxiliary, or participle not agreeing with essere (sarei andato for a feminine subject who needs andata)",
+        "misconception_ids": [
+          "auxiliary_choice.avere_for_essere",
+          "agreement.participle_essere_subject"
+        ]
+      }
+    ],
+    "verb_form.congiuntivo": [
+      {
+        "bucket": "verb_form.congiuntivo.formation.presente.regular_are",
+        "common_miss": "using the indicative 3pl -ano (parlano) instead of the subjunctive -ino (parlino); or an indicative singular (parla)",
+        "misconception_ids": [
+          "mood.indicative_for_subjunctive_form"
+        ]
+      },
+      {
+        "bucket": "verb_form.congiuntivo.formation.presente.regular_ere_ire",
+        "common_miss": "using -i (the -are subjunctive ending) on an -ere/-ire verb (prendi); or the indicative 3pl -ono (prendono) for -ano",
+        "misconception_ids": [
+          "mood.indicative_for_subjunctive_form",
+          "conjugation_class.wrong_theme_vowel"
+        ]
+      },
+      {
+        "bucket": "verb_form.congiuntivo.formation.presente.ire_isc",
+        "common_miss": "carrying -isc- into the 1pl/2pl (capiscamo) or omitting it in the singular (capa)",
+        "misconception_ids": [
+          "stem_change.isc_over_extension",
+          "stem_change.isc_under_application"
+        ]
+      },
+      {
+        "bucket": "verb_form.congiuntivo.formation.presente.orthographic",
+        "common_miss": "omitting the h (ceri) or keeping the redundant i (comincii)",
+        "misconception_ids": [
+          "orthography.omitted_h_hard_cg",
+          "orthography.double_i_retained"
+        ]
+      },
+      {
+        "bucket": "verb_form.congiuntivo.formation.presente.irregular_from_1sg",
+        "common_miss": "building from the infinitive instead of the 1sg present (venga written as vena); wrong 3pl (vengono, the indicative, for vengano)",
+        "misconception_ids": [
+          "mood.indicative_for_subjunctive_form",
+          "regularisation.irregular_verb"
+        ]
+      },
+      {
+        "bucket": "verb_form.congiuntivo.formation.presente.irregular_suppletive",
+        "common_miss": "deriving from the 1sg present (sono gives wrong sona instead of sia; ho gives wrong abba instead of abbia)",
+        "misconception_ids": [
+          "regularisation.irregular_verb"
+        ]
+      },
+      {
+        "bucket": "verb_form.congiuntivo.formation.imperfetto.regular",
+        "common_miss": "single s (parlasi) for the double-s (parlassi); wrong class vowel (parlessi)",
+        "misconception_ids": [
+          "conjugation_class.wrong_theme_vowel",
+          "gemination.geminate_simplified"
+        ]
+      },
+      {
+        "bucket": "verb_form.congiuntivo.formation.imperfetto.irregular",
+        "common_miss": "regularising the stem (facessi written as farei-style faressi; dessi as dassi)",
+        "misconception_ids": [
+          "regularisation.irregular_verb"
+        ]
+      },
+      {
+        "bucket": "verb_form.congiuntivo.formation.passato",
+        "common_miss": "using the indicative auxiliary (ha parlato) instead of the subjunctive (abbia parlato); participle not agreeing with sia",
+        "misconception_ids": [
+          "mood.indicative_for_subjunctive_form",
+          "agreement.participle_essere_subject"
+        ]
+      },
+      {
+        "bucket": "verb_form.congiuntivo.formation.trapassato",
+        "common_miss": "using the imperfect indicative auxiliary (aveva parlato) instead of the imperfect subjunctive (avessi parlato); participle not agreeing with fosse",
+        "misconception_ids": [
+          "mood.indicative_for_subjunctive_form",
+          "agreement.participle_essere_subject"
+        ]
+      }
+    ],
+    "verb_form.future": [
+      {
+        "bucket": "verb_form.future.formation.regular_are",
+        "common_miss": "keeping the -are a (parlarò) instead of shifting to e, or dropping the accent on parlerò / parlerà",
+        "misconception_ids": [
+          "stem_change.future_are_to_e",
+          "accent_silent_letter.accent_omitted"
+        ]
+      },
+      {
+        "bucket": "verb_form.future.formation.regular_ere",
+        "common_miss": "dropping the accent on the 1sg/3sg, or syncopating a regular -ere verb by false analogy (scrivrò for scriverò)",
+        "misconception_ids": [
+          "stem_change.future_syncope_over_extension",
+          "accent_silent_letter.accent_omitted"
+        ]
+      },
+      {
+        "bucket": "verb_form.future.formation.regular_ire",
+        "common_miss": "carrying -isc- into the future (capiscirò for capirò), or dropping the 1sg/3sg accent",
+        "misconception_ids": [
+          "stem_change.isc_over_extension",
+          "accent_silent_letter.accent_omitted"
+        ]
+      },
+      {
+        "bucket": "verb_form.future.formation.orthographic.care_gare",
+        "common_miss": "omitting the h (cercerò, pageremo), which softens the consonant",
+        "misconception_ids": [
+          "orthography.omitted_h_hard_cg"
+        ]
+      },
+      {
+        "bucket": "verb_form.future.formation.orthographic.ciare_giare",
+        "common_miss": "keeping the redundant i (comincierò, mangierò)",
+        "misconception_ids": [
+          "orthography.double_i_retained"
+        ]
+      },
+      {
+        "bucket": "verb_form.future.formation.irregular.syncopated",
+        "common_miss": "keeping the theme vowel (avero, andero, potero) instead of syncopating to avr-, andr-, potr-",
+        "misconception_ids": [
+          "stem_change.future_syncope_under_application"
+        ]
+      },
+      {
+        "bucket": "verb_form.future.formation.irregular.double_r",
+        "common_miss": "writing a single r (vorò, verò, terò) instead of the assimilated -rr-",
+        "misconception_ids": [
+          "gemination.geminate_simplified"
+        ]
+      },
+      {
+        "bucket": "verb_form.future.formation.irregular.essere",
+        "common_miss": "building from the infinitive (esserò, essrò) instead of the sar- stem, or dropping the accent on sarà",
+        "misconception_ids": [
+          "accent_silent_letter.accent_omitted",
+          "regularisation.irregular_verb"
+        ]
+      },
+      {
+        "bucket": "verb_form.future.formation.irregular.dare_stare_fare",
+        "common_miss": "applying the a-to-e shift (derò, ferò, sterò) instead of keeping -ar-",
+        "misconception_ids": [
+          "stem_change.future_are_to_e"
+        ]
+      },
+      {
+        "bucket": "verb_form.future.formation.future_anteriore",
+        "common_miss": "wrong auxiliary, or participle not agreeing with essere (sarò andato for a feminine subject who needs andata)",
+        "misconception_ids": [
+          "auxiliary_choice.avere_for_essere",
+          "agreement.participle_essere_subject"
+        ]
+      }
+    ],
+    "verb_form.gerundio": [
+      {
+        "bucket": "verb_form.gerundio.formation.regular_ando",
+        "common_miss": "using -endo on an -are verb (parlendo)",
+        "misconception_ids": [
+          "conjugation_class.gerund_ando_endo"
+        ]
+      },
+      {
+        "bucket": "verb_form.gerundio.formation.regular_endo",
+        "common_miss": "carrying -isc- (capiscendo), writing -iendo (capiendo), or using -ando on an -ere/-ire verb (prendando)",
+        "misconception_ids": [
+          "conjugation_class.gerund_ando_endo",
+          "stem_change.isc_over_extension"
+        ]
+      },
+      {
+        "bucket": "verb_form.gerundio.formation.irregular",
+        "common_miss": "building from the contracted infinitive (facendo written as farendo, bevendo as berendo)",
+        "misconception_ids": [
+          "regularisation.irregular_verb"
+        ]
+      },
+      {
+        "bucket": "verb_form.gerundio.formation.progressive_assembly",
+        "common_miss": "wrong stare form for the person (sto / stai confusion), or pairing with an infinitive instead of a gerund (sto parlare)",
+        "misconception_ids": [
+          "transfer.construction_nonfinite",
+          "agreement.auxiliary_person"
+        ],
+        "note": "the stare-person half of this bucket also tags agreement.auxiliary_person."
+      },
+      {
+        "bucket": "verb_form.gerundio.formation.gerundio_passato",
+        "common_miss": "wrong auxiliary, or participle not agreeing with essendo (essendo andato for a feminine subject who needs andata)",
+        "misconception_ids": [
+          "auxiliary_choice.avere_for_essere",
+          "agreement.participle_essere_subject"
+        ]
+      }
+    ],
+    "verb_form.imperativo": [
+      {
+        "bucket": "verb_form.imperativo.formation.informal_affirmative",
+        "common_miss": "using the present indicative tu -i for the -are imperative (parli! for parla!); or the wrong vowel on -ere/-ire (prenda! for prendi!)",
+        "misconception_ids": [
+          "paradigm_confusion.wrong_person_as_imperative"
+        ]
+      },
+      {
+        "bucket": "verb_form.imperativo.formation.informal_negative",
+        "common_miss": "negating the positive tu form (non parla!) instead of using non + infinitive (non parlare!)",
+        "misconception_ids": [
+          "transfer.negative_imperative_finite"
+        ]
+      },
+      {
+        "bucket": "verb_form.imperativo.formation.irregular_tu",
+        "common_miss": "regularising (va instead of va' / vai; fa instead of fa' / fai); using the indicative for essere/avere (sei! for sii!)",
+        "misconception_ids": [
+          "regularisation.irregular_verb",
+          "mood.indicative_for_subjunctive_form"
+        ]
+      },
+      {
+        "bucket": "verb_form.imperativo.formation.formal",
+        "common_miss": "using the informal/indicative form for Lei (parla! or parli-as-indicative confusion); building the irregular from the infinitive instead of the subjunctive",
+        "misconception_ids": [
+          "regularisation.irregular_verb",
+          "mood.indicative_for_subjunctive_form"
+        ]
+      }
+    ],
+    "verb_form.imperfect": [
+      {
+        "bucket": "verb_form.imperfect.formation.regular_are",
+        "common_miss": "stress misplacement on 1pl/2pl",
+        "misconception_ids": [
+          "stress.thematic_1pl_2pl"
+        ]
+      },
+      {
+        "bucket": "verb_form.imperfect.formation.regular_ere",
+        "common_miss": "assuming the participle-irregularity carries over (preso giving presevo) instead of using the regular stem",
+        "misconception_ids": [
+          "regularisation.irregular_verb"
+        ]
+      },
+      {
+        "bucket": "verb_form.imperfect.formation.regular_ire",
+        "common_miss": "carrying -isc- into the imperfect (capiscevo for capivo)",
+        "misconception_ids": [
+          "stem_change.isc_over_extension"
+        ]
+      },
+      {
+        "bucket": "verb_form.imperfect.formation.irregular.essere",
+        "common_miss": "regular-ising to 'essevo' or carrying 'sono/sei' patterns over",
+        "misconception_ids": [
+          "regularisation.irregular_verb"
+        ]
+      },
+      {
+        "bucket": "verb_form.imperfect.formation.irregular.stem_expansion.fare",
+        "common_miss": "using a regular stem (favo, faevo)",
+        "misconception_ids": [
+          "regularisation.irregular_verb"
+        ]
+      },
+      {
+        "bucket": "verb_form.imperfect.formation.irregular.stem_expansion.dire",
+        "common_miss": "regular-ising to divo/dievo",
+        "misconception_ids": [
+          "regularisation.irregular_verb"
+        ]
+      },
+      {
+        "bucket": "verb_form.imperfect.formation.irregular.stem_expansion.bere",
+        "common_miss": "regular-ising to bevvo",
+        "misconception_ids": [
+          "regularisation.irregular_verb"
+        ]
+      },
+      {
+        "bucket": "verb_form.imperfect.formation.irregular.stem_expansion.porre",
+        "common_miss": "regular-ising to porre giving porevo",
+        "misconception_ids": [
+          "regularisation.irregular_verb"
+        ]
+      },
+      {
+        "bucket": "verb_form.imperfect.formation.irregular.stem_expansion.tradurre",
+        "common_miss": "regular-ising to tradurrevo or traducovo",
+        "misconception_ids": [
+          "regularisation.irregular_verb"
+        ]
+      },
+      {
+        "bucket": "verb_form.imperfect.usage.habitual",
+        "common_miss": "using passato prossimo for habituals (ho giocato instead of giocavo)",
+        "misconception_ids": [
+          "discrimination.pp_for_imperfect"
+        ]
+      },
+      {
+        "bucket": "verb_form.imperfect.usage.ongoing_descriptive",
+        "common_miss": "using passato prossimo for states (è stata stanca for the state, instead of era stanca)",
+        "misconception_ids": [
+          "discrimination.pp_for_imperfect"
+        ]
+      },
+      {
+        "bucket": "verb_form.imperfect.usage.background_with_pp",
+        "common_miss": "swapping the tenses (ho dormito mentre bussava)",
+        "misconception_ids": [
+          "discrimination.aspect_swap_background"
+        ]
+      },
+      {
+        "bucket": "verb_form.imperfect.usage.duration",
+        "common_miss": "using PP (ho aspettato da venti minuti) instead of imperfect",
+        "misconception_ids": [
+          "discrimination.pp_for_imperfect"
+        ]
+      },
+      {
+        "bucket": "verb_form.imperfect.usage.age_time_weather",
+        "common_miss": "using PP (ho avuto dieci anni, ha fatto freddo) for these states",
+        "misconception_ids": [
+          "discrimination.pp_for_imperfect"
+        ]
+      },
+      {
+        "bucket": "verb_form.imperfect.usage.polite",
+        "common_miss": "missing the politeness reading and over-translating as 'I wanted'",
+        "misconception_ids": [
+          "discrimination.modal_stative_aspect"
+        ]
+      },
+      {
+        "bucket": "verb_form.imperfect.discrimination.vs_passato_prossimo_general",
+        "common_miss": "defaulting to PP for English past-tense verbs regardless of aspect",
+        "misconception_ids": [
+          "discrimination.pp_for_imperfect"
+        ]
+      },
+      {
+        "bucket": "verb_form.imperfect.discrimination.modals.sapere",
+        "common_miss": "using imperfect for the event-of-learning reading",
+        "misconception_ids": [
+          "discrimination.modal_stative_aspect"
+        ]
+      },
+      {
+        "bucket": "verb_form.imperfect.discrimination.modals.dovere",
+        "common_miss": "interchanging the two and missing the completion implication",
+        "misconception_ids": [
+          "discrimination.modal_stative_aspect"
+        ]
+      },
+      {
+        "bucket": "verb_form.imperfect.discrimination.modals.potere",
+        "common_miss": "defaulting to imperfect for both because English 'could' is ambiguous",
+        "misconception_ids": [
+          "discrimination.modal_stative_aspect"
+        ]
+      },
+      {
+        "bucket": "verb_form.imperfect.discrimination.modals.volere",
+        "common_miss": "missing the insistence reading in the PP form",
+        "misconception_ids": [
+          "discrimination.modal_stative_aspect"
+        ]
+      },
+      {
+        "bucket": "verb_form.imperfect.discrimination.modals.conoscere",
+        "common_miss": "translating PP as 'have known' instead of 'met'",
+        "misconception_ids": [
+          "discrimination.modal_stative_aspect"
+        ]
+      },
+      {
+        "bucket": "verb_form.imperfect.indirect_speech.reported_present",
+        "common_miss": "leaving the embedded clause in the present (ha detto che è stanco)",
+        "misconception_ids": [
+          "discrimination.sequence_of_tenses"
+        ]
+      },
+      {
+        "bucket": "verb_form.imperfect.indirect_speech.reported_intention",
+        "common_miss": "using future tense in the embedded clause (ha detto che andrà)",
+        "misconception_ids": [
+          "discrimination.sequence_of_tenses"
+        ]
+      },
+      {
+        "bucket": "verb_form.imperfect.stylistic.narrative",
+        "common_miss": "reading the imperfect as habitual when it's narrating a single event",
+        "misconception_ids": [
+          "discrimination.narrative_imperfect_reading"
+        ]
+      },
+      {
+        "bucket": "verb_form.imperfect.stylistic.colloquial_counterfactual",
+        "common_miss": "translating literally and missing the counterfactual reading",
+        "misconception_ids": [
+          "discrimination.counterfactual_construction"
+        ]
+      }
+    ],
+    "verb_form.passato_prossimo": [
+      {
+        "bucket": "verb_form.passato_prossimo.auxiliary.avere_default",
+        "common_miss": "using essere where avere is correct (sono mangiato la pasta)",
+        "misconception_ids": [
+          "auxiliary_choice.essere_for_avere"
+        ]
+      },
+      {
+        "bucket": "verb_form.passato_prossimo.auxiliary.essere_motion_intransitive",
+        "common_miss": "ho andato (default-avere over-application)",
+        "misconception_ids": [
+          "auxiliary_choice.avere_for_essere"
+        ]
+      },
+      {
+        "bucket": "verb_form.passato_prossimo.participle_form.irregular.fare_fatto",
+        "common_miss": "fato",
+        "misconception_ids": [
+          "regularisation.irregular_participle"
+        ]
+      },
+      {
+        "bucket": "verb_form.passato_prossimo.participle_form.irregular.dire_detto",
+        "common_miss": "dito",
+        "misconception_ids": [
+          "regularisation.irregular_participle"
+        ]
+      },
+      {
+        "bucket": "verb_form.passato_prossimo.participle_form.irregular.prendere_preso",
+        "common_miss": "prenduto (over-applying -uto)",
+        "misconception_ids": [
+          "regularisation.irregular_participle"
+        ]
+      },
+      {
+        "bucket": "verb_form.passato_prossimo.participle_form.irregular.scrivere_scritto",
+        "common_miss": "scrivuto",
+        "misconception_ids": [
+          "regularisation.irregular_participle"
+        ]
+      },
+      {
+        "bucket": "verb_form.passato_prossimo.participle_form.irregular.leggere_letto",
+        "common_miss": "letto vs leggito",
+        "misconception_ids": [
+          "regularisation.irregular_participle"
+        ]
+      },
+      {
+        "bucket": "verb_form.passato_prossimo.participle_form.irregular.aprire_aperto",
+        "common_miss": "aprito",
+        "misconception_ids": [
+          "regularisation.irregular_participle"
+        ]
+      },
+      {
+        "bucket": "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_singular",
+        "common_miss": "è andato (with fem subject)",
+        "misconception_ids": [
+          "agreement.participle_essere_subject"
+        ]
+      },
+      {
+        "bucket": "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_plural",
+        "common_miss": "sono andati (default masc plural with mixed or fem group)",
+        "misconception_ids": [
+          "agreement.participle_essere_subject"
+        ]
+      },
+      {
+        "bucket": "verb_form.passato_prossimo.participle_agreement.with_avere.no_preceding_dop",
+        "common_miss": "agreeing with subject incorrectly (ho mangiata)",
+        "misconception_ids": [
+          "agreement.participle_overagreement"
+        ]
+      },
+      {
+        "bucket": "verb_form.passato_prossimo.participle_agreement.with_avere.preceding_dop_la",
+        "common_miss": "l'ho visto (no agreement)",
+        "misconception_ids": [
+          "agreement.participle_preceding_dop"
+        ]
+      },
+      {
+        "bucket": "verb_form.passato_prossimo.participle_agreement.with_avere.preceding_dop_le",
+        "common_miss": "le ho visti or le ho visto",
+        "misconception_ids": [
+          "agreement.participle_preceding_dop"
+        ]
+      },
+      {
+        "bucket": "verb_form.passato_prossimo.negation",
+        "common_miss": "ho non mangiato (English-influenced placement)",
+        "misconception_ids": [
+          "word_order.adverb_aux_participle"
+        ]
+      },
+      {
+        "bucket": "verb_form.passato_prossimo.auxiliary.person_agreement",
+        "common_miss": "Marco hanno parlato (wrong person on auxiliary)",
+        "misconception_ids": [
+          "agreement.auxiliary_person"
+        ]
+      },
+      {
+        "bucket": "verb_form.passato_prossimo.adverb_placement",
+        "common_miss": "ho mangiato già or già ho mangiato",
+        "misconception_ids": [
+          "word_order.adverb_aux_participle"
+        ]
+      },
+      {
+        "bucket": "verb_form.passato_prossimo.participle_agreement.with_avere.preceding_partitive_ne",
+        "common_miss": "ne ho mangiato tre (no agreement)",
+        "misconception_ids": [
+          "agreement.participle_preceding_dop"
+        ]
+      },
+      {
+        "bucket": "verb_form.passato_prossimo.participle_agreement.with_essere.mixed_gender_default",
+        "common_miss": "Marco e Anna sono andate (last-noun agreement)",
+        "misconception_ids": [
+          "agreement.mixed_gender_default"
+        ]
+      }
+    ],
+    "verb_form.passato_remoto": [
+      {
+        "bucket": "verb_form.passato_remoto.formation.regular_are",
+        "common_miss": "dropping the 3sg accent (parlo), or single-m 1pl (parlamo)",
+        "misconception_ids": [
+          "accent_silent_letter.accent_omitted",
+          "gemination.geminate_simplified"
+        ]
+      },
+      {
+        "bucket": "verb_form.passato_remoto.formation.regular_ere",
+        "common_miss": "treating an irregular strong-stem -ere verb (prendere) as if it took these regular endings (prendei for presi)",
+        "misconception_ids": [
+          "regularisation.irregular_verb"
+        ]
+      },
+      {
+        "bucket": "verb_form.passato_remoto.formation.regular_ire",
+        "common_miss": "single i in 1sg (dormi), dropping the 3sg accent (dormi), or inserting -isc- (capiscii)",
+        "misconception_ids": [
+          "accent_silent_letter.accent_omitted",
+          "stem_change.isc_over_extension"
+        ]
+      },
+      {
+        "bucket": "verb_form.passato_remoto.formation.irregular_strong_ere",
+        "common_miss": "using the strong stem in the regular middle persons (presesti for prendesti); or regularising the strong persons (prendei for presi)",
+        "misconception_ids": [
+          "stem_change.passato_remoto_strong_over_extension",
+          "regularisation.irregular_verb"
+        ]
+      },
+      {
+        "bucket": "verb_form.passato_remoto.formation.irregular_suppletive",
+        "common_miss": "regularising (avei for ebbi, facei for feci); using the strong stem in middle persons (fecesti is wrong, it's facesti)",
+        "misconception_ids": [
+          "stem_change.passato_remoto_strong_over_extension",
+          "regularisation.irregular_verb"
+        ]
+      },
+      {
+        "bucket": "verb_form.passato_remoto.formation.trapassato_remoto",
+        "common_miss": "using a different past of the auxiliary (avevo parlato, the pluperfect) instead of the passato remoto (ebbi parlato)",
+        "misconception_ids": [
+          "auxiliary_choice.wrong_auxiliary_tense"
+        ]
+      }
+    ],
+    "verb_form.trapassato_prossimo": [
+      {
+        "bucket": "verb_form.trapassato_prossimo.formation.avere",
+        "common_miss": "using the present auxiliary (ho parlato) instead of the imperfect (avevo parlato); or a wrong imperfect-of-avere form",
+        "misconception_ids": [
+          "auxiliary_choice.wrong_auxiliary_tense"
+        ]
+      },
+      {
+        "bucket": "verb_form.trapassato_prossimo.formation.essere",
+        "common_miss": "present auxiliary (sono andato) for the imperfect (ero andato); participle not agreeing (ero andato for a feminine subject who needs andata); wrong auxiliary",
+        "misconception_ids": [
+          "auxiliary_choice.wrong_auxiliary_tense",
+          "auxiliary_choice.avere_for_essere",
+          "agreement.participle_essere_subject"
+        ]
+      }
+    ]
+  }
+}

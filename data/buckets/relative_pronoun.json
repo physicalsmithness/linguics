@@ -1,0 +1,376 @@
+[
+  {
+    "id": "relative_pronoun",
+    "parent_id": null,
+    "language_code": "it",
+    "label": "Relative pronouns",
+    "description": "Words that join a clause to a noun: who, which, that, whose, what. Italian picks the relative by its grammatical role and whether a preposition precedes it.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional",
+      "topic_short": "rel"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "relative_pronoun.che",
+    "parent_id": "relative_pronoun",
+    "language_code": "it",
+    "label": "che (who, which, that)",
+    "description": "The all-purpose invariable relative for a subject or a direct object, with no preposition.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "relative_pronoun.che.subject",
+    "parent_id": "relative_pronoun.che",
+    "language_code": "it",
+    "label": "che as subject",
+    "description": "che standing for the subject of its clause.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "Il ragazzo che parla e' mio fratello",
+      "common_miss": "il quale where plain che suffices"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "relative_pronoun.che.direct_object",
+    "parent_id": "relative_pronoun.che",
+    "language_code": "it",
+    "label": "che as direct object",
+    "description": "che standing for the direct object of its clause.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "Il libro che leggo e' bello",
+      "common_miss": "cui for a direct object"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "relative_pronoun.cui",
+    "parent_id": "relative_pronoun",
+    "language_code": "it",
+    "label": "cui (after a preposition; whose)",
+    "description": "The invariable relative used after a preposition, and in il cui for possession.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "relative_pronoun.cui.with_preposition",
+    "parent_id": "relative_pronoun.cui",
+    "language_code": "it",
+    "label": "preposition + cui",
+    "description": "a cui, di cui, con cui, per cui and the rest: cui after any preposition.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "La persona a cui parlo",
+      "common_miss": "che used after a preposition"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "relative_pronoun.cui.possessive",
+    "parent_id": "relative_pronoun.cui",
+    "language_code": "it",
+    "label": "il cui (whose)",
+    "description": "cui between article and noun to mean whose; the article agrees with the thing possessed.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "Lo scrittore il cui libro ho letto",
+      "common_miss": "di cui for possession; wrong article agreement"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "relative_pronoun.il_quale",
+    "parent_id": "relative_pronoun",
+    "language_code": "it",
+    "label": "il quale (agreeing relative)",
+    "description": "The gender and number agreeing relative (il quale, la quale, i quali, le quali), a formal alternative used for clarity or after prepositions.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "core",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "relative_pronoun.il_quale.for_clarity",
+    "parent_id": "relative_pronoun.il_quale",
+    "language_code": "it",
+    "label": "il quale to disambiguate",
+    "description": "il quale chosen over che/cui when che would be ambiguous about which noun it refers to.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "core",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "La sorella di Marco, la quale abita a Roma",
+      "common_miss": "che leaving the reference ambiguous"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "relative_pronoun.il_quale.after_preposition",
+    "parent_id": "relative_pronoun.il_quale",
+    "language_code": "it",
+    "label": "preposition + il quale",
+    "description": "al quale, del quale, sul quale: the articulated preposition plus the agreeing relative.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "core",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "L'uomo al quale ho scritto",
+      "common_miss": "wrong agreement of quale"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "relative_pronoun.chi",
+    "parent_id": "relative_pronoun",
+    "language_code": "it",
+    "label": "chi (the one who, whoever)",
+    "description": "The indefinite relative with no antecedent, meaning the person who or whoever; always takes a singular verb.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "Chi dorme non piglia pesci",
+      "common_miss": "che for chi; plural verb after chi"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "relative_pronoun.neuter",
+    "parent_id": "relative_pronoun",
+    "language_code": "it",
+    "label": "quello che / cio che (what)",
+    "description": "The neuter relative meaning what or that which: quello che, quel che, cio che.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "Non capisco quello che dici",
+      "common_miss": "bare che for 'what'"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "relative_pronoun.dove",
+    "parent_id": "relative_pronoun",
+    "language_code": "it",
+    "label": "dove (relative where)",
+    "description": "dove used as a relative of place, standing for in/at which.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "La citta dove vivo",
+      "common_miss": "che for a place instead of dove/in cui"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "relative_pronoun.discrimination",
+    "parent_id": "relative_pronoun",
+    "language_code": "it",
+    "label": "Choosing the right relative",
+    "description": "Picking che, cui or il quale by role and whether a preposition is present. Homed here; tense_choice-style choice buckets.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "relative_pronoun.discrimination.che_vs_cui",
+    "parent_id": "relative_pronoun.discrimination",
+    "language_code": "it",
+    "label": "che vs cui",
+    "description": "Whether a preposition precedes decides cui; otherwise che.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "relative_pronoun.discrimination.che_vs_il_quale",
+    "parent_id": "relative_pronoun.discrimination",
+    "language_code": "it",
+    "label": "che vs il quale",
+    "description": "Plain che versus the agreeing il quale for clarity or formality.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "core",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  }
+]

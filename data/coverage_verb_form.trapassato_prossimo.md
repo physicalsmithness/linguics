@@ -69,7 +69,7 @@ But I want to flag this rather than silently decide it, because it depends on so
 
 So the call hinges on what the breadcrumb actually surfaces. I have left the flag off per the dispatch; if the breadcrumb shows the full label, treat this as a request to set `info_display: "suppress"` tree-wide, and I will add the flag on a follow-up. This is the single biggest open point in the batch.
 
-**Update 2026-06-11 (PluperfectAuthor):** confirmed the breadcrumb renders the full friendly label, so the stored labels do leak `avevo` / `ero` on every item. Escalated to Architecture in `inter_chat/Architecture_PluperfectAuthor_breadcrumb_label_leak.md`, recommending the two leaf labels be shortened at source ("avere auxiliary" / "essere auxiliary") rather than suppressing tree-wide. Awaiting their ruling; suppress is the agreed fallback.
+**Update 2026-07-12 (PluperfectAuthor):** confirmed the breadcrumb renders the full friendly label, so the stored labels do leak `avevo` / `ero` on every item. Escalated to Architecture in `inter_chat/Architecture_PluperfectAuthor_breadcrumb_label_leak.md`, recommending the two leaf labels be shortened at source ("avere auxiliary" / "essere auxiliary") rather than suppressing tree-wide. Awaiting their ruling; suppress is the agreed fallback.
 
 ## Items flagged uncertain
 

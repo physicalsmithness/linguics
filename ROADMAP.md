@@ -146,6 +146,12 @@ After the remaining formation batches land and are reviewed:
 - TenseChoice work: deepen the `.discrimination` stubs across all trees (present vs imperfect, future vs present, indicative vs subjunctive, pluperfect vs simple past, passato remoto vs passato prossimo), carrying the `candidate_tenses` tick (see OPEN_QUESTIONS).
 - The gerund's adverbial usage and the stare + gerundio progressive across tenses.
 
+### New non-verb grammar topics (added 2026-06-10)
+
+- `relative_pronoun`: tree (16 nodes) + dispatch ready to launch. che / cui / il quale / chi / neuter / dove + discrimination.
+- `preposition`: tree (17 nodes) + dispatch ready to launch. Simple, articulated, a usage-weighted branch (place, time, motion, means, verb-governed, di, da) + discrimination.
+- Present usage: `verb_form.present_indicative.usage` deepened (4 leaves) + dispatch ready. Light branch; the present's choice-based uses live in tense_choice. The meatier usage dispatches (future-of-probability, polite/reported conditional, subjunctive triggers) are the next usage prep.
+
 ### Cross-cutting: misconception aggregation
 
 Independent of the tense build. Registry seeded (`data/misconceptions.json`, DESIGN §15). A dedicated cross-cutting MisconceptionAnalyst chat (proposes suggestions, architect ratifies) bootstraps from the `common_miss` attributes and the `must_not_include` forms, and later mines learner miss-events for cross-kind patterns. Registry RATIFIED 2026-06-09 (17 families / 67 specifics, from the full common_miss harvest). Phase-3 per-topic tagging of `must_not_include` is next (analyst supplies tag-lists, architect coordinates authors). The aggregation drill-down view is a later housing build.

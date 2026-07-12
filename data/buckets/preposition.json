@@ -1,0 +1,402 @@
+[
+  {
+    "id": "preposition",
+    "parent_id": null,
+    "language_code": "it",
+    "label": "Prepositions",
+    "description": "The little joining words (di, a, da, in, con, su, per, tra/fra), their contracted forms with the article, and the hard part: which one to use for place, time, motion and after particular verbs.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional",
+      "topic_short": "prep"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "preposition.simple",
+    "parent_id": "preposition",
+    "language_code": "it",
+    "label": "Simple prepositions",
+    "description": "The eight simple prepositions and their base meanings.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "preposition.simple.forms",
+    "parent_id": "preposition.simple",
+    "language_code": "it",
+    "label": "The eight forms",
+    "description": "di, a, da, in, con, su, per, tra/fra and what each broadly does.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "di, a, da, in, con, su, per, tra/fra",
+      "common_miss": "tra vs fra confusion; omitting a needed preposition"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "preposition.articulated",
+    "parent_id": "preposition",
+    "language_code": "it",
+    "label": "Articulated prepositions",
+    "description": "Preposition fused with the definite article (del, al, dal, nel, sul, and the rest).",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "preposition.articulated.formation",
+    "parent_id": "preposition.articulated",
+    "language_code": "it",
+    "label": "Combining preposition + article",
+    "description": "di+il=del, a+la=alla, in+i=nei, su+lo=sullo: forming the contracted preposition, with the article agreeing.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "adjective_agreement"
+    ],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "di+il=del, a+la=alla, in+i=nei",
+      "common_miss": "leaving them separate (di il); wrong article agreement"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "preposition.articulated.di_partitive",
+    "parent_id": "preposition.articulated",
+    "language_code": "it",
+    "label": "del / della as 'some'",
+    "description": "The articulated di used as a partitive to mean some or any.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "Vorrei del pane",
+      "common_miss": "un po' di forced everywhere; omitting the partitive"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "preposition.usage",
+    "parent_id": "preposition",
+    "language_code": "it",
+    "label": "Choosing the right preposition",
+    "description": "Which preposition a context calls for. This is where learners actually struggle.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "preposition.usage.place",
+    "parent_id": "preposition.usage",
+    "language_code": "it",
+    "label": "Prepositions of place",
+    "description": "a with towns, in with countries/regions and enclosed spaces, da with a person's place.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "a Roma, in Italia, da Marco",
+      "common_miss": "in Roma; a Italia"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "preposition.usage.time",
+    "parent_id": "preposition.usage",
+    "language_code": "it",
+    "label": "Prepositions of time",
+    "description": "a with clock times, di with parts of the day, in/a with months, da for since, per for duration, fra/tra for in (future).",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "alle tre, di mattina, da lunedi, per due ore, fra un'ora",
+      "common_miss": "wrong time preposition"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "preposition.usage.motion",
+    "parent_id": "preposition.usage",
+    "language_code": "it",
+    "label": "Motion: destination and origin",
+    "description": "a/in for where you are going, da for where you come from or through whom.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "Vado a scuola; Vengo da Roma",
+      "common_miss": "da for destination; a for origin"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "preposition.usage.means_manner",
+    "parent_id": "preposition.usage",
+    "language_code": "it",
+    "label": "Means and manner",
+    "description": "in for vehicles, a for on-foot, con for accompaniment or instrument.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "in treno, a piedi, con calma",
+      "common_miss": "con treno; in piedi for 'on foot'"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "preposition.usage.verb_governed",
+    "parent_id": "preposition.usage",
+    "language_code": "it",
+    "label": "Verb + preposition",
+    "description": "Verbs that fix a preposition before an infinitive or object (cominciare a, finire di, pensare a, parlare di).",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "Comincio a capire; Finisco di mangiare",
+      "common_miss": "wrong or missing preposition after the verb"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "preposition.usage.di_uses",
+    "parent_id": "preposition.usage",
+    "language_code": "it",
+    "label": "Uses of di",
+    "description": "Possession, material, topic and comparison with di.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "il libro di Anna, di legno, parlare di, piu di me",
+      "common_miss": "da for possession; che in comparisons where di is needed"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "preposition.usage.da_special",
+    "parent_id": "preposition.usage",
+    "language_code": "it",
+    "label": "Special uses of da",
+    "description": "Purpose (qualcosa da fare), the passive agent (dipinto da), at someone's (da Marco), and 'as a child' (da bambino).",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "core",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "qualcosa da mangiare; da bambino",
+      "common_miss": "di or per where da is required"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "preposition.discrimination",
+    "parent_id": "preposition",
+    "language_code": "it",
+    "label": "Choosing between prepositions",
+    "description": "Head-to-head preposition choices. Homed here; tense_choice-style buckets.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "preposition.discrimination.a_vs_in_place",
+    "parent_id": "preposition.discrimination",
+    "language_code": "it",
+    "label": "a vs in for places",
+    "description": "Town versus country/region and enclosed space.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "preposition.discrimination.di_vs_da",
+    "parent_id": "preposition.discrimination",
+    "language_code": "it",
+    "label": "di vs da",
+    "description": "Possession/origin/material versus source, agent and purpose.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  }
+]

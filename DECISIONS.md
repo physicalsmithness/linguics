@@ -687,3 +687,18 @@ When the usage / tense-choice phase opened, two parallel homes existed for the s
 **How to apply:** The TenseChoice wave-2 dispatch authors all contrasts into `tense_choice.*` (imp/PP excepted, already done). The deprecated per-tree stubs are not authoring targets and must not be cited. `candidate_tenses` (criterion 16) applies to all tense_choice items.
 
 ---
+## 2026-06-10: Relative pronouns and prepositions as new grammar trees; present usage scaffolded
+
+Two new grammar topics scaffolded as their own trees, plus the present's usage branch deepened, to open parallel authoring.
+
+- `relative_pronoun` (16 nodes): che (subject/object), cui (preposition + cui, il cui possessive), il quale (clarity, after preposition), chi, the neuter quello che / cio che, relative dove, and a discrimination branch (che vs cui, che vs il quale). Given its OWN tree, not folded under `pronoun`, because relatives are not clitics and warrant their own stats page and dispatch.
+- `preposition` (17 nodes): simple forms, articulated (formation + di-partitive), a usage branch weighted with place, time, motion, means/manner, verb-governed, di-uses and da-special, plus a discrimination branch. Usage is where the difficulty sits, so the tree is usage-heavy.
+- `verb_form.present_indicative.usage`: four single-tense-use leaves (general/habitual, ongoing-now, states/facts, instructions). Deliberately light: the present's choice-based uses (near-future, da-durative, historical present) live in the tense_choice tree, cross-referenced on the usage aggregate.
+
+Dispatches written for all three. Relative-pronoun and preposition discrimination items are choice items that suppress their breadcrumb (criterion 15) but do NOT carry `candidate_tenses` (that field is tenses only).
+
+**Why:** parallelises grammar authoring beyond verbs; relative pronouns and prepositions are high-value gaps with no prior tree. Present usage is the first usage dispatch, kept honest about its thinness.
+
+**How to apply:** launch the three author chats from their dispatch packets; batches return, architect reviews and wires to the manifest (present usage merges into the present-indicative topic files). New topics appear in the welcome screen's parts list automatically once wired (data-driven).
+
+---

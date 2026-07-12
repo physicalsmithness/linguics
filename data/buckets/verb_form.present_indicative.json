@@ -463,7 +463,7 @@
     "parent_id": "verb_form.present_indicative",
     "language_code": "it",
     "label": "Usage",
-    "description": "STUB. When the present form is the right choice and what it conveys: habitual action, general and gnomic truths, action happening now (Italian often uses the plain present where English uses the progressive), the present-for-near-future ('Domani parto'), historic/narrative present, polite and performative uses, and the stare + gerundio progressive (which cross-references the gerundio tree). Impersonal 'si' constructions (si dice, si mangia) also live here rather than in formation. Left at stub level for a later PresentUsage dispatch; no usage leaves are authored in the PresentFormation dispatch.",
+    "description": "STUB. When the present form is the right choice and what it conveys: habitual action, general and gnomic truths, action happening now (Italian often uses the plain present where English uses the progressive), the present-for-near-future ('Domani parto'), historic/narrative present, polite and performative uses, and the stare + gerundio progressive (which cross-references the gerundio tree). Impersonal 'si' constructions (si dice, si mangia) also live here rather than in formation. Left at stub level for a later PresentUsage dispatch; no usage leaves are authored in the PresentFormation dispatch. Note: the choice-based present uses (near-future, da-durative-since, historical present) live in the tense_choice tree, not here; this branch is the single-tense uses.",
     "cefr_importance": {
       "A1": "core",
       "A2": "core",
@@ -578,6 +578,104 @@
       "stub": true,
       "cross_reference": "tense_choice.present_vs_passato_prossimo",
       "deprecated_authoring_target": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.present_indicative.usage.general_habitual",
+    "parent_id": "verb_form.present_indicative.usage",
+    "language_code": "it",
+    "label": "Habitual and general truths",
+    "description": "The present for routines and things always true.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "Lavoro a Milano; L'acqua bolle a cento gradi",
+      "common_miss": "progressive or future where the plain present is wanted",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.present_indicative.usage.ongoing_now",
+    "parent_id": "verb_form.present_indicative.usage",
+    "language_code": "it",
+    "label": "Happening now",
+    "description": "The present for what is going on at the moment (Italian uses it far more than the English progressive).",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "Leggo un libro",
+      "common_miss": "over-reaching for stare + gerundio",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.present_indicative.usage.states_facts",
+    "parent_id": "verb_form.present_indicative.usage",
+    "language_code": "it",
+    "label": "States and facts",
+    "description": "The present for states of being, knowing and having.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "Ho fame; So la risposta; Sono stanco",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.present_indicative.usage.instructions",
+    "parent_id": "verb_form.present_indicative.usage",
+    "language_code": "it",
+    "label": "Instructions and directions",
+    "description": "The present (and the si-impersonal) for recipes, directions and general instructions.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "Si aggiunge il sale; Giri a destra",
+      "stub": true
     },
     "active": true,
     "version": 1
