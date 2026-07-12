@@ -49,10 +49,31 @@
     [/U'/g, "Ù"]
   ];
 
+  // Apocopated tu-imperatives whose trailing apostrophe is an apocope marker,
+  // NOT an accent shortcut: va' da' fa' sta' di'. Word-start anchored so a
+  // mid-word coincidence isn't caught. See inter_chat/
+  // Architecture_Housing_marker_match_at_and_apocope.md.
+  // Apocopated tu-imperatives whose trailing apostrophe is an apocope marker,
+  // NOT an accent shortcut: va' da' fa' sta' di'. Word-start anchored so a
+  // mid-word coincidence isn't caught. See inter_chat/
+  // Architecture_Housing_marker_match_at_and_apocope.md.
+  const APOCOPE_IMPERATIVES = /(^|[^a-zà-ùA-ZÀ-Ù])(va'|da'|fa'|sta'|di')/gi;
+  // Private-use sentinel that never appears in learner input; swapped in for the
+  // apocope apostrophe so the accent rules (which key off ') skip it, then
+  // restored. One char in, one char out, so overall length is preserved and the
+  // caller's caret-delta maths is unaffected.
+  const APOCOPE_MARK = String.fromCharCode(0xE000);
+
   function normaliseAccentInput(s) {
     if (s == null) return "";
     let t = String(s);
+    // Tradeoff: the apostrophe shortcut can no longer produce da-grave / di-grave
+    // for these exact spellings; those stay typeable via the accent bar.
+    t = t.replace(APOCOPE_IMPERATIVES, function (m, pre, word) {
+      return pre + word.slice(0, -1) + APOCOPE_MARK;
+    });
     for (const [re, repl] of ACCENT_FROM_APOSTROPHE) t = t.replace(re, repl);
+    t = t.split(APOCOPE_MARK).join("'");
     return t;
   }
 
@@ -97,10 +118,37 @@
     return foldAccents(norm(s));
   }
 
-  function includesNeedle(haystackNorm, needle) {
-    const n = norm(needle);
+  // Boundary-aware occurrence test. Both args are already normalised (space-
+  // separated, no apostrophes/punctuation). matchAt:
+  //   "end"   phrase must end at a word boundary (end-of-string or a space)
+  //   "start" phrase must start at a word boundary
+  //   "word"  both
+  //   anything else / undefined -> plain substring (back-compat default)
+  // This is what makes short answers safe when a correct form is a prefix of a
+  // wrong one (abbi inside abbia, sta inside stai). See inter_chat/
+  // Architecture_Housing_marker_match_at_and_apocope.md.
+  function occursAt(haystack, n, matchAt) {
     if (!n) return false;
-    return haystackNorm.indexOf(n) !== -1;
+    if (matchAt !== "end" && matchAt !== "start" && matchAt !== "word") {
+      return haystack.indexOf(n) !== -1;
+    }
+    let from = 0;
+    for (;;) {
+      const idx = haystack.indexOf(n, from);
+      if (idx === -1) return false;
+      const startOk = idx === 0 || haystack[idx - 1] === " ";
+      const endPos = idx + n.length;
+      const endOk = endPos >= haystack.length || haystack[endPos] === " ";
+      if ((matchAt === "end" && endOk) ||
+          (matchAt === "start" && startOk) ||
+          (matchAt === "word" && startOk && endOk)) return true;
+      from = idx + 1;
+    }
+  }
+
+  function includesNeedle(haystackNorm, needle, matchAt) {
+    const n = norm(needle);
+    return occursAt(haystackNorm, n, matchAt);
   }
 
   // Phrase entries in an any_phrases array can be either:
@@ -116,10 +164,10 @@
   function findMatchingPhrase(haystackNorm, anyArr) {
     if (!Array.isArray(anyArr)) return null;
     for (const phrase of anyArr) {
-      const phraseStr = (typeof phrase === "object" && phrase && phrase.phrase)
-        ? phrase.phrase
-        : phrase;
-      if (includesNeedle(haystackNorm, phraseStr)) {
+      const isObj = typeof phrase === "object" && phrase;
+      const phraseStr = (isObj && phrase.phrase) ? phrase.phrase : phrase;
+      const matchAt = isObj ? phrase.match_at : undefined;
+      if (includesNeedle(haystackNorm, phraseStr, matchAt)) {
         return phrase;
       }
     }
@@ -134,6 +182,7 @@
   LL.normAccentFolded = normAccentFolded;
   LL.foldAccents = foldAccents;
   LL.normaliseAccentInput = normaliseAccentInput;
+  LL.occursAt = occursAt;
   LL.includesNeedle = includesNeedle;
   LL.includesAny = includesAny;
   LL.findMatchingPhrase = findMatchingPhrase;

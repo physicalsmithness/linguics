@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-09-r2";
+  const LL_BUILD = "2026-07-13-r2";
   // Touch-first device (no hover, coarse pointer): tap interactions replace
   // keyboard ones. Computed once; used for tap-to-mark on MCQ.
   const TOUCH_FIRST = !!(window.matchMedia
@@ -88,13 +88,47 @@
     return bucketId === ancestorId || bucketId.startsWith(ancestorId + ".");
   }
 
+  const CEFR_ORDER = ["A1", "A2", "B1", "B2", "C1", "C2"];
+  function cefrIndex(level) { return CEFR_ORDER.indexOf(level); }
+
+  // A "clause" is { topics?: string[], bucketPaths?: string[] }. An item matches
+  // a clause when its topic is in topics (if given) AND at least one of its
+  // buckets sits under one of bucketPaths (if given). The composed entry-screen
+  // selection matches an item if it matches ANY clause, so parts are OR-ed:
+  // "Verbs + Pronouns together" works because a verb item satisfies the verbs
+  // clause and is not excluded by the pronoun clause's bucketPaths.
+  function itemMatchesClause(q, clause) {
+    if (clause.topics && clause.topics.length && !clause.topics.includes(q.topic)) return false;
+    if (clause.bucketPaths && clause.bucketPaths.length) {
+      const buckets = getItemBuckets(q);
+      if (!buckets.some(b => clause.bucketPaths.some(pp => bucketUnder(b, pp)))) return false;
+    }
+    return true;
+  }
+
+  // Extended filter. Back-compat: the in-session bars set scalar topic / cefr /
+  // bucketPath and behave exactly as before. The entry screen sets filter.clauses
+  // (OR-ed structured parts) and/or filter.cefrRange ([minIdx, maxIdx] over
+  // CEFR_ORDER). See inter_chat/Architecture_Housing_welcome_entry_screen.md.
   function applyFilter(arr, filter) {
+    const hasClauses = Array.isArray(filter.clauses) && filter.clauses.length > 0;
+    const range = (Array.isArray(filter.cefrRange) && filter.cefrRange.length === 2)
+      ? filter.cefrRange : null;
     return arr.filter(q => {
-      if (filter.topic && q.topic !== filter.topic) return false;
-      if (filter.cefr && q.cefr_level_target !== filter.cefr) return false;
-      if (filter.bucketPath) {
-        const buckets = getItemBuckets(q);
-        if (!buckets.some(b => bucketUnder(b, filter.bucketPath))) return false;
+      if (range) {
+        const ci = cefrIndex(q.cefr_level_target);
+        if (ci < range[0] || ci > range[1]) return false;
+      } else if (filter.cefr && q.cefr_level_target !== filter.cefr) {
+        return false;
+      }
+      if (hasClauses) {
+        if (!filter.clauses.some(c => itemMatchesClause(q, c))) return false;
+      } else {
+        if (filter.topic && q.topic !== filter.topic) return false;
+        if (filter.bucketPath) {
+          const buckets = getItemBuckets(q);
+          if (!buckets.some(b => bucketUnder(b, filter.bucketPath))) return false;
+        }
       }
       return true;
     });
@@ -265,6 +299,7 @@
     }
     tSel.addEventListener("change", () => {
       filterObj.topic = tSel.value;
+      filterObj.clauses = null; filterObj.cefrRange = null;  // in-session edit reverts to scalar
       onChange();
     });
     bar.appendChild(tSel);
@@ -285,6 +320,7 @@
     }
     cSel.addEventListener("change", () => {
       filterObj.cefr = cSel.value;
+      filterObj.clauses = null; filterObj.cefrRange = null;  // in-session edit reverts to scalar
       onChange();
     });
     bar.appendChild(cSel);
@@ -654,6 +690,7 @@
 
   // -------------------- nav --------------------
   function showStrand(name) {
+    hideEntry();
     document.querySelectorAll(".strand").forEach(s => s.hidden = (s.id !== "strand-" + name));
     document.querySelectorAll("nav#strand-nav button").forEach(b =>
       b.classList.toggle("active", b.dataset.strand === name));
@@ -4754,6 +4791,509 @@
     renderLiveStats();
   });
 
+  // ==================== entry / welcome screen ====================
+  // Data-driven part + tense derivation. Reuses the same namespace categoriser
+  // (overviewCategoryFor), the live topic list (uniqueValues), the curriculum
+  // order (VERBS_CURRICULUM_ORDER) and the pronoun bucket-tree children, so new
+  // trees appear automatically as they land in the manifest. No hardcoded lists.
+  const TENSE_LABELS = {
+    "verb_form.present_indicative": "Present",
+    "verb_form.passato_prossimo":   "Passato prossimo",
+    "verb_form.imperfect":          "Imperfect",
+    "verb_form.trapassato_prossimo":"Trapassato prossimo",
+    "verb_form.future":             "Future",
+    "verb_form.condizionale":       "Conditional",
+    "verb_form.imperativo":         "Imperative",
+    "verb_form.congiuntivo":        "Subjunctive",
+    "verb_form.passato_remoto":     "Passato remoto",
+    "verb_form.gerundio":           "Gerund",
+    "tense_choice":                 "Tense choice"
+  };
+  function prettifyId(id) {
+    return String(id).split(".").pop().replace(/_/g, " ").replace(/^./, c => c.toUpperCase());
+  }
+  function tenseLabel(topic) { return TENSE_LABELS[topic] || prettifyId(topic); }
+  function verbCurriculumRank(topic) {
+    const i = VERBS_CURRICULUM_ORDER.indexOf(topic);
+    return i === -1 ? 999 : i;
+  }
+
+  // Returns the ordered part structure for the grammar config panel.
+  function deriveEntryParts(grammarItems, bucketById) {
+    const topics = uniqueValues(grammarItems, "topic");
+    const formationTopics = topics.filter(t => t.startsWith("verb_form."))
+      .sort((a, b) => verbCurriculumRank(a) - verbCurriculumRank(b));
+    const usageTopics = topics.filter(t => t === "tense_choice");
+
+    const pronounKinds = [];
+    if (topics.includes("pronoun") && bucketById) {
+      for (const id of Object.keys(bucketById)) {
+        const b = bucketById[id];
+        if (b && b.parent_id === "pronoun") {
+          pronounKinds.push({ bucketPath: b.id, label: b.label || prettifyId(b.id) });
+        }
+      }
+    }
+
+    const parts = [];
+    if (formationTopics.length || usageTopics.length) {
+      parts.push({
+        id: "verbs", label: "Verbs", kind: "verbs",
+        formationTenses: formationTopics.map(tp => ({ topic: tp, label: tenseLabel(tp) })),
+        usageTenses: usageTopics.map(tp => ({ topic: tp, label: tenseLabel(tp) }))
+      });
+    }
+    if (topics.includes("pronoun")) {
+      parts.push({ id: "pronouns", label: "Pronouns", kind: "pronouns", topic: "pronoun", kinds: pronounKinds });
+    }
+    if (topics.includes("adjective_agreement")) {
+      parts.push({ id: "adjectives", label: "Adjectives", kind: "adjectives", topic: "adjective_agreement" });
+    }
+    return parts;
+  }
+  LL.deriveEntryParts = deriveEntryParts;  // exposed for tests
+
+  // ---- entry-screen state ----
+  let entrySel = null;
+  function defaultEntrySel() {
+    return {
+      strand: null,
+      grammar: {
+        verbMode: "form",                       // "form" | "use"
+        verbs:      { on: false, tenses: {} },  // tenses: { "<topic>": true }
+        pronouns:   { on: false, kinds: {} },   // kinds:  { "pronoun.<kind>": true }
+        adjectives: { on: false }
+      },
+      vocab: { direction: "it_en", subBand: "" },
+      translation: { grammarPoint: "" },
+      cefrRange: null                            // [minIdx, maxIdx] over CEFR_ORDER; set by the level strip (phase 1b)
+    };
+  }
+
+  function currentEntryParts() {
+    const byId = (typeof bucketIndex !== "undefined" && bucketIndex) ? bucketIndex.byId : (LL.bucketsById || null);
+    return deriveEntryParts(grammarQuestions, byId);
+  }
+
+  // small chip factory
+  function entryChip(label, active, onClick, opts) {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "entry-chip" + (active ? " active" : "");
+    b.textContent = label;
+    if (opts && opts.title) b.title = opts.title;
+    b.addEventListener("click", e => { e.preventDefault(); onClick(); });
+    return b;
+  }
+
+  function showEntry() {
+    if (!entrySel) entrySel = defaultEntrySel();
+    document.body.classList.add("entry-active");
+    const es = document.getElementById("entry-screen");
+    if (es) es.hidden = false;
+    renderEntryScreen();
+  }
+  function hideEntry() {
+    document.body.classList.remove("entry-active");
+    const es = document.getElementById("entry-screen");
+    if (es) es.hidden = true;
+  }
+  LL.showEntry = showEntry;
+
+  function renderEntryScreen() {
+    const host = document.getElementById("entry-screen");
+    if (!host) return;
+    if (!entrySel) entrySel = defaultEntrySel();
+    host.innerHTML = "";
+
+    const col = document.createElement("div");
+    col.className = "entry-col";
+    renderQuickStarts(col);
+
+    // greeting
+    const h = document.createElement("h2");
+    h.className = "entry-greeting";
+    h.textContent = "What would you like to practise?";
+    const sub = document.createElement("p");
+    sub.className = "entry-subhead";
+    sub.textContent = "Pick one to begin.";
+    col.appendChild(h);
+    col.appendChild(sub);
+
+    // strand cards
+    const cards = document.createElement("div");
+    cards.className = "entry-cards";
+    const STRANDS = [
+      { id: "grammar",     label: "Grammar",     desc: "verb endings, genders, word order", badge: "G" },
+      { id: "translation", label: "Translation", desc: "whole sentences, both ways",         badge: "T" },
+      { id: "vocab",       label: "Vocab",       desc: "words, meanings, genders",           badge: "V" }
+    ];
+    for (const s of STRANDS) {
+      const card = document.createElement("button");
+      card.type = "button";
+      card.className = "entry-card" + (entrySel.strand === s.id ? " selected" : "");
+      const badge = document.createElement("span");
+      badge.className = "entry-card-badge badge-" + s.id;
+      badge.textContent = s.badge;
+      const txt = document.createElement("span");
+      txt.className = "entry-card-text";
+      const nm = document.createElement("span");
+      nm.className = "entry-card-name";
+      nm.textContent = s.label;
+      const ds = document.createElement("span");
+      ds.className = "entry-card-desc";
+      ds.textContent = s.desc;
+      txt.appendChild(nm); txt.appendChild(ds);
+      card.appendChild(badge); card.appendChild(txt);
+      card.addEventListener("click", () => { entrySel.strand = s.id; renderEntryScreen(); });
+      cards.appendChild(card);
+    }
+    col.appendChild(cards);
+
+    // selected strand's config panel
+    if (entrySel.strand) {
+      const panel = document.createElement("div");
+      panel.className = "entry-config";
+      if (entrySel.strand === "grammar")      renderGrammarConfig(panel);
+      else if (entrySel.strand === "vocab")   renderVocabConfig(panel);
+      else                                    renderTranslationConfig(panel);
+      col.appendChild(panel);
+    }
+
+    host.appendChild(col);
+  }
+
+  // ---- grammar config (fully wired) ----
+  function renderGrammarConfig(panel) {
+    const parts = currentEntryParts();
+    const g = entrySel.grammar;
+
+    const head = document.createElement("h3");
+    head.className = "entry-config-head";
+    head.textContent = "Which part?";
+    const hint = document.createElement("p");
+    hint.className = "entry-config-hint";
+    hint.textContent = "tick any, open one to drill in";
+    panel.appendChild(head);
+    panel.appendChild(hint);
+
+    for (const part of parts) {
+      const row = document.createElement("div");
+      row.className = "entry-part";
+
+      const sel = part.kind === "verbs" ? g.verbs : (part.kind === "pronouns" ? g.pronouns : g.adjectives);
+
+      const tickWrap = document.createElement("button");
+      tickWrap.type = "button";
+      tickWrap.className = "entry-part-tick" + (sel.on ? " on" : "");
+      tickWrap.innerHTML = '<span class="tickbox"></span><span class="entry-part-label">' + part.label + '</span>';
+      tickWrap.addEventListener("click", () => { sel.on = !sel.on; renderEntryScreen(); });
+      row.appendChild(tickWrap);
+
+      // drill-in (only when ticked)
+      if (sel.on && part.kind === "verbs") {
+        const drill = document.createElement("div");
+        drill.className = "entry-drill";
+        // Form / Use toggle
+        const modeRow = document.createElement("div");
+        modeRow.className = "entry-chip-row";
+        modeRow.appendChild(entryChip("Form them", g.verbMode === "form",
+          () => { g.verbMode = "form"; renderEntryScreen(); },
+          { title: "Produce the verb form" }));
+        modeRow.appendChild(entryChip("Use them", g.verbMode === "use",
+          () => { g.verbMode = "use"; renderEntryScreen(); },
+          { title: "Choose the right tense in context" }));
+        drill.appendChild(modeRow);
+
+        const tenseList = g.verbMode === "use" ? part.usageTenses : part.formationTenses;
+        if (tenseList.length) {
+          const tr = document.createElement("div");
+          tr.className = "entry-chip-row";
+          tr.appendChild(entryChip("All", Object.keys(g.verbs.tenses).filter(k => g.verbs.tenses[k]).length === 0,
+            () => { g.verbs.tenses = {}; renderEntryScreen(); }));
+          for (const tn of tenseList) {
+            tr.appendChild(entryChip(tn.label, !!g.verbs.tenses[tn.topic],
+              () => { g.verbs.tenses[tn.topic] = !g.verbs.tenses[tn.topic]; renderEntryScreen(); }));
+          }
+          drill.appendChild(tr);
+        }
+        row.appendChild(drill);
+      }
+      if (sel.on && part.kind === "pronouns" && part.kinds.length) {
+        const drill = document.createElement("div");
+        drill.className = "entry-drill";
+        const kr = document.createElement("div");
+        kr.className = "entry-chip-row";
+        kr.appendChild(entryChip("All", Object.keys(g.pronouns.kinds).filter(k => g.pronouns.kinds[k]).length === 0,
+          () => { g.pronouns.kinds = {}; renderEntryScreen(); }));
+        for (const k of part.kinds) {
+          kr.appendChild(entryChip(k.label, !!g.pronouns.kinds[k.bucketPath],
+            () => { g.pronouns.kinds[k.bucketPath] = !g.pronouns.kinds[k.bucketPath]; renderEntryScreen(); }));
+        }
+        drill.appendChild(kr);
+        row.appendChild(drill);
+      }
+      panel.appendChild(row);
+    }
+
+    renderLevelStrip(panel, "grammar");
+    appendStart(panel, () => startGrammarSession());
+  }
+
+  function buildGrammarClauses() {
+    const g = entrySel.grammar;
+    const parts = currentEntryParts();
+    const clauses = [];
+    if (g.verbs.on) {
+      const chosen = Object.keys(g.verbs.tenses).filter(k => g.verbs.tenses[k]);
+      let topics;
+      if (g.verbMode === "use") {
+        const usage = (parts.find(p => p.id === "verbs") || {}).usageTenses || [];
+        topics = chosen.length ? chosen : usage.map(x => x.topic);
+      } else {
+        const formation = (parts.find(p => p.id === "verbs") || {}).formationTenses || [];
+        topics = chosen.length ? chosen : formation.map(x => x.topic);
+      }
+      if (topics.length) clauses.push({ topics });
+    }
+    if (g.pronouns.on) {
+      const kinds = Object.keys(g.pronouns.kinds).filter(k => g.pronouns.kinds[k]);
+      clauses.push({ topics: ["pronoun"], bucketPaths: kinds });
+    }
+    if (g.adjectives.on) clauses.push({ topics: ["adjective_agreement"] });
+    return clauses;
+  }
+  function composeGrammarFilter() {
+    const clauses = buildGrammarClauses();
+    grammarFilter.clauses = clauses.length ? clauses : null;
+    grammarFilter.cefrRange = entrySel.cefrRange || null;
+    grammarFilter.topic = ""; grammarFilter.cefr = ""; grammarFilter.bucketPath = "";
+    grammarDeck = []; grammarIndex = 0;
+  }
+
+  function startGrammarSession() {
+    composeGrammarFilter();
+    saveLastSession("grammar");
+    renderGrammarFilterBar();
+    renderGrammar();
+    showStrand("grammar");
+  }
+
+  // ---- vocab config (direction + frequency band, via existing vocabFilter) ----
+  function renderVocabConfig(panel) {
+    const v = entrySel.vocab;
+    const head = document.createElement("h3");
+    head.className = "entry-config-head";
+    head.textContent = "See which side?";
+    panel.appendChild(head);
+
+    const dirRow = document.createElement("div");
+    dirRow.className = "entry-chip-row";
+    dirRow.appendChild(entryChip("See Italian", v.direction === "it_en", () => { v.direction = "it_en"; renderEntryScreen(); },
+      { title: "Recall the English" }));
+    dirRow.appendChild(entryChip("See English", v.direction === "en_it", () => { v.direction = "en_it"; renderEntryScreen(); },
+      { title: "Recall the Italian" }));
+    panel.appendChild(dirRow);
+
+    const h2 = document.createElement("h3");
+    h2.className = "entry-config-head";
+    h2.textContent = "How common?";
+    panel.appendChild(h2);
+    const bandRow = document.createElement("div");
+    bandRow.className = "entry-chip-row";
+    bandRow.appendChild(entryChip("All", !v.subBand, () => { v.subBand = ""; renderEntryScreen(); }));
+    for (const sb of VOCAB_SUBBANDS) {
+      bandRow.appendChild(entryChip(sb.id, v.subBand === sb.id, () => { v.subBand = sb.id; renderEntryScreen(); }));
+    }
+    panel.appendChild(bandRow);
+
+    appendStart(panel, () => startVocabSession());
+  }
+  function startVocabSession() {
+    const v = entrySel.vocab;
+    vocabFilter.direction = v.direction;
+    vocabFilter.subBand = v.subBand || "";
+    if (typeof vocabDeck !== "undefined") { vocabDeck = []; }
+    if (typeof vocabIndex !== "undefined") { vocabIndex = 0; }
+    saveLastSession("vocab");
+    renderVocab();
+    showStrand("vocab");
+  }
+
+  // ---- translation config (grammar-point narrowing when available; else just start) ----
+  function renderTranslationConfig(panel) {
+    const topics = uniqueValues(translationItems, "topic");
+    const head = document.createElement("h3");
+    head.className = "entry-config-head";
+    head.textContent = "Whole sentences, both ways.";
+    panel.appendChild(head);
+
+    if (topics.length) {
+      const hint = document.createElement("p");
+      hint.className = "entry-config-hint";
+      hint.textContent = "narrow to a grammar point, or just start";
+      panel.appendChild(hint);
+      const row = document.createElement("div");
+      row.className = "entry-chip-row";
+      row.appendChild(entryChip("Any", !entrySel.translation.grammarPoint,
+        () => { entrySel.translation.grammarPoint = ""; renderEntryScreen(); }));
+      for (const tp of topics) {
+        row.appendChild(entryChip(tenseLabel(tp), entrySel.translation.grammarPoint === tp,
+          () => { entrySel.translation.grammarPoint = tp; renderEntryScreen(); }));
+      }
+      panel.appendChild(row);
+    }
+    renderLevelStrip(panel, "translation");
+    appendStart(panel, () => startTranslationSession());
+  }
+  function startTranslationSession() {
+    const gp = entrySel.translation.grammarPoint;
+    translationFilter.clauses = gp ? [{ topics: [gp] }] : null;
+    translationFilter.cefrRange = entrySel.cefrRange || null;
+    translationFilter.topic = ""; translationFilter.cefr = ""; translationFilter.bucketPath = "";
+    translationDeck = []; translationIndex = 0;
+    saveLastSession("translation");
+    renderTranslationFilterBar();
+    renderTranslation();
+    showStrand("translation");
+  }
+
+  // ---- level strip (grammar + translation): availability counts per CEFR band ----
+  const _levelCountCache = {};
+  function levelCountsFor(strand) {
+    let clauses, pool;
+    if (strand === "grammar") { clauses = buildGrammarClauses(); pool = grammarQuestions; }
+    else { const gp = entrySel.translation.grammarPoint; clauses = gp ? [{ topics: [gp] }] : []; pool = translationItems; }
+    // pool.length in the signature invalidates the cache when real content loads.
+    const sig = strand + "|" + pool.length + "|" + JSON.stringify(clauses);
+    if (_levelCountCache[sig]) return _levelCountCache[sig];
+    const filtered = applyFilter(pool, { clauses: clauses.length ? clauses : null });
+    const counts = [0, 0, 0, 0, 0, 0];
+    for (const q of filtered) { const i = cefrIndex(q.cefr_level_target); if (i >= 0) counts[i]++; }
+    _levelCountCache[sig] = counts;
+    return counts;
+  }
+  function onLevelTap(i) {
+    const r = entrySel.cefrRange;
+    if (!r) entrySel.cefrRange = [i, i];
+    else if (r[0] === r[1] && r[0] === i) entrySel.cefrRange = null;               // tap same single -> clear
+    else if (r[0] === r[1]) entrySel.cefrRange = [Math.min(r[0], i), Math.max(r[0], i)];  // second tap -> bracket
+    else entrySel.cefrRange = [i, i];                                              // tap while ranged -> new single
+  }
+  function renderLevelStrip(panel, strand) {
+    // Hidden on a true first run (no history yet), per architect ruling.
+    if (!LL.state || !Array.isArray(LL.state.attempts) || LL.state.attempts.length === 0) return;
+    const counts = levelCountsFor(strand);
+    const total = counts.reduce((a, b) => a + b, 0);
+    if (total === 0) return;
+    const max = Math.max.apply(null, counts);
+    const head = document.createElement("h3");
+    head.className = "entry-config-head";
+    head.textContent = "Focus on a level?";
+    panel.appendChild(head);
+    const strip = document.createElement("div");
+    strip.className = "entry-level-strip";
+    CEFR_ORDER.forEach((lvl, i) => {
+      const cell = document.createElement("button");
+      cell.type = "button";
+      const empty = counts[i] === 0;
+      const inRange = entrySel.cefrRange && i >= entrySel.cefrRange[0] && i <= entrySel.cefrRange[1];
+      cell.className = "entry-level-cell" + (inRange ? " sel" : "") + (empty ? " empty" : "");
+      const alpha = (max > 0 && counts[i] > 0) ? (0.15 + 0.85 * (counts[i] / max)) : 0;
+      if (!inRange && alpha > 0) cell.style.background = "rgba(58,79,138," + alpha.toFixed(2) + ")";
+      if (!inRange && alpha > 0.55) cell.style.color = "#fff";
+      cell.innerHTML = '<span class="lvl-name">' + lvl + '</span><span class="lvl-count">' + counts[i] + '</span>';
+      if (empty) cell.disabled = true;
+      else cell.addEventListener("click", () => { onLevelTap(i); renderEntryScreen(); });
+      strip.appendChild(cell);
+    });
+    panel.appendChild(strip);
+  }
+
+  // ---- quick-start shortcuts + resume/mistakes persistence (phase 1) ----
+  function missStats() {
+    const buckets = new Set(); let n = 0;
+    for (const a of (LL.state.attempts || [])) {
+      for (const e of (a.events || [])) {
+        if (e.outcome === "miss") { n++; buckets.add(e.bucket); }
+      }
+    }
+    return { n, distinct: buckets.size };
+  }
+  function saveLastSession(strand) {
+    if (!LL.state) return;
+    LL.state.last_session = { strand, sel: JSON.parse(JSON.stringify(entrySel)) };
+    try { LL.store.saveState(LL.state); } catch (e) { /* localStorage may be unavailable */ }
+  }
+  function resumeLastSession() {
+    const ls = LL.state && LL.state.last_session;
+    if (!ls) return;
+    entrySel = JSON.parse(JSON.stringify(ls.sel));
+    if (ls.strand === "grammar") startGrammarSession();
+    else if (ls.strand === "vocab") startVocabSession();
+    else startTranslationSession();
+  }
+  function startMistakesSession() {
+    const stats = LL.store.allBucketStats();
+    const weak = Object.values(stats)
+      .filter(s => s.n > 0 && s.correctness < 1)
+      .sort((a, b) => a.combined - b.combined)
+      .map(s => s.bucket)
+      .slice(0, 10);
+    const clause = weak.length ? [{ bucketPaths: weak }] : null;
+    // Prefer grammar items touching the weak buckets; fall back to all grammar
+    // if none match (e.g. the misses are all vocab-side in this early build).
+    const test = applyFilter(grammarQuestions, { clauses: clause });
+    grammarFilter.clauses = test.length ? clause : null;
+    grammarFilter.cefrRange = null;
+    grammarFilter.topic = ""; grammarFilter.cefr = ""; grammarFilter.bucketPath = "";
+    grammarDeck = []; grammarIndex = 0;
+    renderGrammarFilterBar();
+    renderGrammar();
+    showStrand("grammar");
+  }
+  function renderQuickStarts(col) {
+    const ls = LL.state && LL.state.last_session;
+    const ms = missStats();
+    const showMistakes = ms.n >= 12 && ms.distinct >= 3;
+    if (!ls && !showMistakes) return;
+    const wrap = document.createElement("div");
+    wrap.className = "entry-quickstarts";
+    if (showMistakes) {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "entry-quick entry-quick-mistakes";
+      b.innerHTML = '<span class="quick-title">Practise your mistakes</span>' +
+        '<span class="quick-sub">the words and rules you most often miss</span>';
+      b.addEventListener("click", () => startMistakesSession());
+      wrap.appendChild(b);
+    }
+    if (ls) {
+      const names = { grammar: "Grammar", translation: "Translation", vocab: "Vocab" };
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "entry-quick entry-quick-resume";
+      b.innerHTML = '<span class="quick-title">Carry on where you left off</span>' +
+        '<span class="quick-sub">' + (names[ls.strand] || "last session") + '</span>';
+      b.addEventListener("click", () => resumeLastSession());
+      wrap.appendChild(b);
+    }
+    col.appendChild(wrap);
+  }
+
+  function appendStart(panel, onStart) {
+    const wrap = document.createElement("div");
+    wrap.className = "entry-start-wrap";
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "entry-start";
+    b.textContent = "Start";
+    b.addEventListener("click", onStart);
+    wrap.appendChild(b);
+    panel.appendChild(wrap);
+  }
+
+
   // -------------------- bootstrap --------------------
   // Render the build identifier in the footer. Useful for spotting cross-tab
   // version mismatches at a glance.
@@ -4771,7 +5311,7 @@
   renderMarkerConfig();
   renderSessionCost();
   renderLiveStats();
-  showStrand("grammar");
+  showEntry();  // land on the welcome / session builder, not straight into a strand
   setStatus(`Inline samples (${grammarQuestions.length}G / ${translationItems.length}T / ${allBuckets.length}B). Serve via http to load real content.`);
 
   // Try to upgrade to real content
@@ -4821,6 +5361,7 @@
     // Per-topic CONTENT INVENTORY (grammar items + translation items shipped).
     // The right-hand stats panel shows PROGRESS (buckets practised / total).
     // Two surfaces, two distinct measurements, each labelled.
+    if (document.body.classList.contains("entry-active")) showEntry();  // refresh derived parts from real content
     setStatus(`Real content: ${grammarQuestions.length} grammar, ${translationItems.length} translation${vocabBit}, ${allBuckets.length} buckets. ${topicsDesc ? "Items per topic: " + topicsDesc : ""}`);
   });
 

@@ -2,7 +2,7 @@
   "$note": "Phase-3 misconception tag-lists, produced by MisconceptionAnalyst from the harvested_from provenance in the misconception_suggestions_*.json files. For each topic, each bucket's verbatim common_miss is paired with the canonical misconception id(s) an author should attach to the matching must_not_include entry (object form {phrase, misconception}). Where an entry lists more than one id, all apply (a must_not_include entry may carry an array of ids per thread v5). Registry basis: 17 families / 67 misconceptions (thread v5). See inter_chat/Architecture_MisconceptionAnalyst_registry_harvest.md.",
   "generated": "2026-06-09",
   "registry_basis": "data/misconceptions.json (17 families / 67 misconceptions)",
-  "present_indicative_note": "verb_form.present_indicative's 16 common_miss buckets are already the v1 registry seeds (present-tense specifics); its bucket->id tag-list can be generated on request but was outside this harvest.",
+  "present_indicative_note": "INCLUDED as topics['verb_form.present_indicative'] (added 2026-07-12, thread v8): 18 buckets (16 formation matched to v1 seeds + 2 usage mapped to the discrimination axis). Note: stem_change.isc_under_application is a v1 seed with no 1:1 present bucket.",
   "topics": {
     "adjective_agreement": [
       {
@@ -1216,6 +1216,149 @@
           "auxiliary_choice.wrong_auxiliary_tense",
           "auxiliary_choice.avere_for_essere",
           "agreement.participle_essere_subject"
+        ]
+      }
+    ],
+    "verb_form.present_indicative": [
+      {
+        "bucket": "verb_form.present_indicative.formation.regular_are",
+        "common_miss": "stressing the 3pl on the penult (parlAno) instead of the antepenult (pArlano)",
+        "misconception_ids": [
+          "stress.antepenult_3pl"
+        ]
+      },
+      {
+        "bucket": "verb_form.present_indicative.formation.regular_ere",
+        "common_miss": "using -ano for the 3pl (prendano) by analogy with -are, instead of -ono",
+        "misconception_ids": [
+          "conjugation_class.ano_for_ono"
+        ]
+      },
+      {
+        "bucket": "verb_form.present_indicative.formation.regular_ire",
+        "common_miss": "inserting -isc- where it does not belong (dormisco for dormo)",
+        "misconception_ids": [
+          "stem_change.isc_over_extension"
+        ],
+        "note": "over-extending -isc- onto a plain -ire verb; covered by the broadened isc_over_extension (infix bleeding beyond its home)."
+      },
+      {
+        "bucket": "verb_form.present_indicative.formation.ire_isc",
+        "common_miss": "carrying -isc- into the 1pl/2pl (capiscamo, capiscite) where it does not belong",
+        "misconception_ids": [
+          "stem_change.isc_over_extension"
+        ],
+        "note": "the classic 1pl/2pl over-extension."
+      },
+      {
+        "bucket": "verb_form.present_indicative.formation.orthographic.care_gare",
+        "common_miss": "omitting the h (ceri, pagiamo), which changes the consonant sound",
+        "misconception_ids": [
+          "orthography.omitted_h_hard_cg"
+        ]
+      },
+      {
+        "bucket": "verb_form.present_indicative.formation.orthographic.ciare_giare",
+        "common_miss": "keeping the double i (mangii, comincii)",
+        "misconception_ids": [
+          "orthography.double_i_retained"
+        ]
+      },
+      {
+        "bucket": "verb_form.present_indicative.formation.orthographic.iare_stress",
+        "common_miss": "writing studii (unstressed i should merge) or invi (stressed i should be kept)",
+        "misconception_ids": [
+          "orthography.i_retention_error"
+        ]
+      },
+      {
+        "bucket": "verb_form.present_indicative.formation.irregular.essere",
+        "common_miss": "writing 'e' for 'è' (3sg), or confusing 1sg and 3pl 'sono'",
+        "misconception_ids": [
+          "accent_silent_letter.accent_omitted"
+        ],
+        "note": "primary tag is the e/è accent; the sono 1sg/3pl homograph confusion has no dedicated seed (flag if worth one)."
+      },
+      {
+        "bucket": "verb_form.present_indicative.formation.irregular.avere",
+        "common_miss": "dropping the silent h (o, ai, a, anno), each of which is a different real word",
+        "misconception_ids": [
+          "accent_silent_letter.silent_h_omitted"
+        ]
+      },
+      {
+        "bucket": "verb_form.present_indicative.formation.irregular.monosyllabic_core",
+        "common_miss": "regularising the 1sg (sapo for so, ando for vado) or dropping the accent on 'dà'",
+        "misconception_ids": [
+          "regularisation.irregular_verb",
+          "accent_silent_letter.accent_omitted"
+        ],
+        "note": "sapo/ando = regularisation; dà = accent."
+      },
+      {
+        "bucket": "verb_form.present_indicative.formation.irregular.dire",
+        "common_miss": "regularising the 2pl to dicete instead of dite",
+        "misconception_ids": [
+          "regularisation.irregular_verb"
+        ]
+      },
+      {
+        "bucket": "verb_form.present_indicative.formation.irregular.bere",
+        "common_miss": "conjugating from the contracted infinitive (bero, bei) instead of the bev- stem",
+        "misconception_ids": [
+          "regularisation.irregular_verb"
+        ]
+      },
+      {
+        "bucket": "verb_form.present_indicative.formation.irregular.go_verbs",
+        "common_miss": "omitting the -g- (veno, teno) or carrying it into the wrong persons (vengiamo)",
+        "misconception_ids": [
+          "stem_change.g_under_application",
+          "stem_change.g_over_extension"
+        ],
+        "note": "veno/teno = under-application; vengiamo = over-extension."
+      },
+      {
+        "bucket": "verb_form.present_indicative.formation.irregular.dittongo",
+        "common_miss": "keeping the diphthong in 1pl/2pl (esciamo for usciamo) or losing it in the singular (uscio for esco)",
+        "misconception_ids": [
+          "stem_change.dittongo_over_extension",
+          "stem_change.dittongo_under_application"
+        ],
+        "note": "esciamo = over-extension; uscio = under-application."
+      },
+      {
+        "bucket": "verb_form.present_indicative.formation.modal_verbs",
+        "common_miss": "regularising (poto for posso, volo for voglio) or dropping the accent on 'può'",
+        "misconception_ids": [
+          "regularisation.irregular_verb",
+          "accent_silent_letter.accent_omitted"
+        ],
+        "note": "poto/volo = regularisation; può = accent."
+      },
+      {
+        "bucket": "verb_form.present_indicative.formation.reflexive_assembly",
+        "common_miss": "wrong reflexive pronoun for the person (mi lavi), or omitting the pronoun (lavo for mi lavo)",
+        "misconception_ids": [
+          "agreement.reflexive_pronoun_person",
+          "transfer.clitic_omission"
+        ],
+        "note": "mi lavi = wrong reflexive person (the agreement seed); lavo-for-mi-lavo = omitting the required reflexive clitic (transfer)."
+      },
+      {
+        "bucket": "verb_form.present_indicative.usage.general_habitual",
+        "common_miss": "progressive or future where the plain present is wanted",
+        "misconception_ids": [
+          "discrimination.progressive_overuse",
+          "discrimination.future_present_mismatch"
+        ],
+        "note": "usage bucket; discrimination-axis, same specifics as the tense_choice tree."
+      },
+      {
+        "bucket": "verb_form.present_indicative.usage.ongoing_now",
+        "common_miss": "over-reaching for stare + gerundio",
+        "misconception_ids": [
+          "discrimination.progressive_overuse"
         ]
       }
     ]

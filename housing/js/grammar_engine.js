@@ -87,7 +87,11 @@
         for (const p of mp.any_phrases) {
           const ps = phraseStr(p);
           const pFolded = LL.foldAccents(LL.norm(ps));
-          if (pFolded && normedFolded.indexOf(pFolded) !== -1) { foldedHit = p; break; }
+          // Honour match_at in the folded fallback too, else an end-anchored
+          // needle (abbi) still substring-matches a longer wrong form (abbia)
+          // here and gets wrongly credited as "accents off".
+          const mAt = (typeof p === "object" && p) ? p.match_at : undefined;
+          if (pFolded && LL.occursAt(normedFolded, pFolded, mAt)) { foldedHit = p; break; }
         }
         if (foldedHit) {
           // The right idea but wrong accents. Credit the main markpoint,
@@ -115,7 +119,9 @@
           result.correctness_credit = 0;
           result.outcome = "miss";
           for (const p of mp.must_not_include) {
-            if (LL.includesNeedle(normed, p)) { result.evidence = p + " (wrong form)"; break; }
+            const ps = phraseStr(p);
+            const mAt = (typeof p === "object" && p) ? p.match_at : undefined;
+            if (LL.includesNeedle(normed, ps, mAt)) { result.evidence = ps + " (wrong form)"; break; }
           }
         }
         // 4. Attempted-hints, if any
