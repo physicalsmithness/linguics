@@ -702,3 +702,23 @@ Dispatches written for all three. Relative-pronoun and preposition discriminatio
 **How to apply:** launch the three author chats from their dispatch packets; batches return, architect reviews and wires to the manifest (present usage merges into the present-indicative topic files). New topics appear in the welcome screen's parts list automatically once wired (data-driven).
 
 ---
+## 2026-07-12: Standard-variant credit policy (secondary form = 0.9)
+
+For a lemma with more than one standard form, a secondary standard variant (less common, register-marked, or dated but still current) is accepted at credit 0.9 with a register or frequency note. Dual 1.0 is reserved for forms in genuinely equal current use. Archaic or obsolete variants are rejected or scored low.
+
+**Why:** two near-identical dovere decisions (subjunctive deva vs debba; present debbo vs devo) were being made per-tree and risked diverging. One criterion (is the variant secondary?) settles them consistently: deva 0.9 and debbo 0.9 both fall out of the rule, so the trees agree without special-casing.
+
+**How to apply:** authors grade a secondary standard variant at 0.9 with a note; the architect ratifies borderline cases. Existing deva (congiuntivo) and debbo (present) already conform, no change.
+
+---
+## 2026-07-12: Leaf labels stay terse; worked examples go in description (breadcrumb hygiene)
+
+A bucket leaf's `label` renders as the pre-answer breadcrumb, so a label that packs the canonical worked example hands the learner the answer. Labels name the class only (e.g. "avere auxiliary", "Apocopated / irregular tu"); the worked example lives in `description` / `canonical_example`. Applied to the trapassato formation leaves (2) and imperativo formation leaves (4), whose labels had embedded avevo/ero and parla/va' examples.
+
+This is distinct from the criterion-15 suppress case: suppress is for a terse label that legitimately names a non-derivable class the item tests (keep the label, hide it pre-answer); this rule is for labels that are merely over-long and embed the answer (shorten the label, no suppression needed). After shortening, most leaves need no suppression at all; only the genuinely non-derivable class (apocopated tu) keeps suppress.
+
+**Why:** heads off the breadcrumb leak at authoring time rather than papering over it with tree-wide suppression. Codified as AUTHOR_BRIEF criterion 15 addendum (Rev 12).
+
+**How to apply:** authors keep labels terse; the leak-vs-trap suppress test (criterion 15) then applies only to the residual cases where a terse label still names a non-derivable class.
+
+---
