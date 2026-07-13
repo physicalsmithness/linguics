@@ -1,0 +1,261 @@
+[
+  {
+    "id": "noun",
+    "parent_id": null,
+    "language_code": "it",
+    "label": "Nouns (gender and plural)",
+    "description": "A noun's gender (which drives every article and adjective around it) and how it forms its plural, including the spelling shifts and the irregulars.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "review",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional",
+      "topic_short": "noun"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "noun.gender",
+    "parent_id": "noun",
+    "language_code": "it",
+    "label": "Gender",
+    "description": "Masculine or feminine, and how to tell.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "review",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "noun.gender.regular",
+    "parent_id": "noun.gender",
+    "language_code": "it",
+    "label": "-o masculine, -a feminine",
+    "description": "The default pattern: -o nouns are masculine, -a nouns feminine.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "review",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "il libro (m), la casa (f)",
+      "common_miss": "la libro; il casa"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "noun.gender.e_ending",
+    "parent_id": "noun.gender",
+    "language_code": "it",
+    "label": "-e nouns (gender to learn)",
+    "description": "Nouns ending in -e can be either gender; it has to be learned per word (and shows in the article).",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "il fiore (m), la notte (f), il pane (m), la chiave (f)",
+      "common_miss": "assuming every -e noun is feminine"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "noun.gender.irregular",
+    "parent_id": "noun.gender",
+    "language_code": "it",
+    "label": "Irregular gender",
+    "description": "Exceptions to the -o/-a rule: la mano, il problema and the Greek -ma nouns, feminine -o (la foto, la radio), masculine -a.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "la mano, il problema, il tema, la foto",
+      "common_miss": "la problema; il mano; la tema"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "noun.plural",
+    "parent_id": "noun",
+    "language_code": "it",
+    "label": "Plural",
+    "description": "Forming the plural, with its spelling shifts and irregulars.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "review",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "noun.plural.regular",
+    "parent_id": "noun.plural",
+    "language_code": "it",
+    "label": "Regular plurals",
+    "description": "-o and -e to -i, -a to -e.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "review",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "libro->libri, fiore->fiori, casa->case",
+      "common_miss": "libros; casas; casi"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "noun.plural.spelling",
+    "parent_id": "noun.plural",
+    "language_code": "it",
+    "label": "Spelling shifts in the plural",
+    "description": "-co/-go and -ca/-ga add or drop the h to keep the sound; -cia/-gia and -io follow their own rules.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "amico->amici, ago->aghi, amica->amiche, spiaggia->spiagge",
+      "common_miss": "amicos; banco->banci; amica->amici"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "noun.plural.invariable",
+    "parent_id": "noun.plural",
+    "language_code": "it",
+    "label": "Invariable nouns",
+    "description": "Nouns that do not change in the plural: accented finals, foreign words, single-syllable, and -i endings.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "la citta->le citta, il film->i film, la crisi->le crisi",
+      "common_miss": "le citta's; i films italianised"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "noun.plural.irregular",
+    "parent_id": "noun.plural",
+    "language_code": "it",
+    "label": "Irregular plurals",
+    "description": "Suppletive plurals and the masculine-singular to feminine-plural switchers.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "uomo->uomini, uovo->uova (f pl), braccio->braccia",
+      "common_miss": "uomos; braccio->bracci for the body part"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "noun.plural.compound",
+    "parent_id": "noun.plural",
+    "language_code": "it",
+    "label": "Plural of compound nouns",
+    "description": "Which part of a compound noun takes the plural.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "core",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "capolavoro->capolavori, cassaforte->casseforti",
+      "common_miss": "capolavoro->capilavori"
+    },
+    "active": true,
+    "version": 1
+  }
+]

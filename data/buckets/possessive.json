@@ -1,0 +1,142 @@
+[
+  {
+    "id": "possessive",
+    "parent_id": null,
+    "language_code": "it",
+    "label": "Possessives",
+    "description": "mio, tuo, suo and the rest: the possessive plus its article, agreeing with the thing owned, and the family-noun exception.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional",
+      "topic_short": "poss"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "possessive.adjective",
+    "parent_id": "possessive",
+    "language_code": "it",
+    "label": "Possessive adjectives",
+    "description": "Possessive + article before a noun.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "possessive.adjective.forms",
+    "parent_id": "possessive.adjective",
+    "language_code": "it",
+    "label": "Possessive + article, agreeing",
+    "description": "The possessive takes the definite article and agrees with the thing owned, not the owner.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "il mio libro, la mia casa, i miei amici, le sue sorelle",
+      "common_miss": "mio libro (no article); il mio casa (agreement); suo for the owner's gender"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "possessive.adjective.family_exception",
+    "parent_id": "possessive.adjective",
+    "language_code": "it",
+    "label": "Family nouns drop the article",
+    "description": "A singular, unmodified family noun takes no article; the article returns in the plural or when the noun is modified.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "mia madre, mio fratello; ma la mia mamma, i miei fratelli",
+      "common_miss": "la mia madre; il mio fratello"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "possessive.pronoun",
+    "parent_id": "possessive",
+    "language_code": "it",
+    "label": "Possessive pronouns",
+    "description": "The possessive used on its own (with the article) to mean mine, yours, and so on.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "Questo e il mio; Il tuo dov'e?",
+      "common_miss": "dropping the article on the standalone possessive"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "possessive.discrimination",
+    "parent_id": "possessive",
+    "language_code": "it",
+    "label": "suo: his, her, your (formal)",
+    "description": "suo agrees with the thing owned, so context resolves whether it is his, her or your (formal).",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  }
+]

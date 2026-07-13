@@ -1,0 +1,211 @@
+[
+  {
+    "id": "article",
+    "parent_id": null,
+    "language_code": "it",
+    "label": "Articles",
+    "description": "The definite (il, lo, la, i, gli, le) and indefinite (un, uno, una) articles: choosing the right form for the sound that follows, and knowing when Italian uses or drops the article where English would not.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "review",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional",
+      "topic_short": "art"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "article.definite",
+    "parent_id": "article",
+    "language_code": "it",
+    "label": "Definite article",
+    "description": "il / lo / l' / la / i / gli / le.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "review",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "article.definite.forms",
+    "parent_id": "article.definite",
+    "language_code": "it",
+    "label": "Choosing the definite form",
+    "description": "The form depends on gender, number and the sound the noun starts with: lo/gli before s+consonant, z, gn, ps, x, y; l' before a vowel; il/i otherwise.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "review",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "il libro, lo studente, l'amico, gli zii, le case",
+      "common_miss": "il studente; i zii; il amico"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "article.definite.usage_omission",
+    "parent_id": "article.definite",
+    "language_code": "it",
+    "label": "Using and omitting the definite article",
+    "description": "Italian uses the definite article where English drops it (general nouns, languages, days as habits, possessives) and drops it where English keeps it (in + country as destination, some fixed phrases).",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "Mi piace il caffe; Parlo italiano; Vado in Italia",
+      "common_miss": "Amo caffe; il lunedi scorso vs di lunedi"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "article.indefinite",
+    "parent_id": "article",
+    "language_code": "it",
+    "label": "Indefinite article",
+    "description": "un / uno / una / un'.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "review",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "article.indefinite.forms",
+    "parent_id": "article.indefinite",
+    "language_code": "it",
+    "label": "Choosing the indefinite form",
+    "description": "uno before s+consonant, z, gn, ps; un' before a feminine vowel; un before a masculine vowel or consonant; una before a feminine consonant.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "review",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "un libro, uno studente, una casa, un'amica",
+      "common_miss": "un studente; una amica; un'amico"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "article.indefinite.usage",
+    "parent_id": "article.indefinite",
+    "language_code": "it",
+    "label": "Using and omitting the indefinite article",
+    "description": "Italian drops the indefinite article before an unmodified profession or role after essere.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "Sono medico (not sono un medico); ma Sono un bravo medico",
+      "common_miss": "Sono un medico for the bare profession"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "article.discrimination",
+    "parent_id": "article",
+    "language_code": "it",
+    "label": "Article choices",
+    "description": "Head-to-head article decisions. Homed here.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "article.discrimination.with_or_without",
+    "parent_id": "article.discrimination",
+    "language_code": "it",
+    "label": "With or without the article",
+    "description": "Whether a context takes the article at all (con o senza articolo).",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  }
+]

@@ -731,3 +731,12 @@ Every grammar item's explanation carries a plain English translation of the comp
 **How to apply:** new grammar items carry it from authoring; existing items gain it on their next touch, bundled with each author's other next-touch work (misconception tagging, the trigger audit, and so on). A dedicated retrofit sweep is available if the coverage needs to move faster than next-touch.
 
 ---
+## 2026-07-13: A1 noun-phrase topics scaffolded (article, noun, possessive, demonstrative)
+
+Following the OnlineItalianClub coverage cross-reference (`REFERENCE_coverage_vs_onlineitalianclub.md`), which showed our coverage is verb-deep but missing the A1 noun phrase, four new grammar trees plus dispatches: `article` (9 nodes), `noun` (gender + plural, 11), `possessive` (6), `demonstrative` (5). Discrimination stubs included where a real choice exists (with/without article, suo ambiguity, questo vs quello). The noun plural-spelling and gender misses tag to the existing orthography and agreement misconceptions in the Phase-3 pass.
+
+**Why:** a coherent A1-to-C2 offering needs the noun-phrase basics. A beginner on Linguics today can conjugate the trapassato but cannot practise "the/a", noun plurals, possessives, or "this/that." These are the highest-value gaps, ahead of more verb depth or the advanced C1-C2 items.
+
+**How to apply:** launch the four author chats from their dispatch packets when the author-chat bridge is stable; batches return, architect reviews and wires to the manifest; they then appear in the welcome screen's parts list automatically (data-driven).
+
+---

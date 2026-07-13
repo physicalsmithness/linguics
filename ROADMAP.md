@@ -152,6 +152,17 @@ After the remaining formation batches land and are reviewed:
 - `preposition`: tree (17 nodes) + dispatch ready to launch. Simple, articulated, a usage-weighted branch (place, time, motion, means, verb-governed, di, da) + discrimination.
 - Present usage: `verb_form.present_indicative.usage` deepened (4 leaves) + dispatch ready. Light branch; the present's choice-based uses live in tense_choice. The meatier usage dispatches (future-of-probability, polite/reported conditional, subjunctive triggers) are the next usage prep.
 
+### Noun-phrase topics (added 2026-07-13, from the OnlineItalianClub coverage cross-reference)
+
+Coverage is verb-deep but the A1 noun phrase was missing. Scaffolded as trees + dispatches, ready to launch:
+
+- `article` (definite / indefinite forms + usage/omission)
+- `noun` (gender + plural, with the spelling shifts and irregulars)
+- `possessive` (possessive + article, family exception, pronouns)
+- `demonstrative` (questo / quello, quello inflecting like the article)
+
+Next tranche from the same cross-reference, not yet scaffolded: c'e / ci sono (esserci), the piacere construction, comparatives and superlatives, adverbs, the passive, the si-constructions, reported speech, and idiomatic pronominal verbs. Full analysis in `REFERENCE_coverage_vs_onlineitalianclub.md`.
+
 ### Cross-cutting: misconception aggregation
 
 Independent of the tense build. Registry seeded (`data/misconceptions.json`, DESIGN §15). A dedicated cross-cutting MisconceptionAnalyst chat (proposes suggestions, architect ratifies) bootstraps from the `common_miss` attributes and the `must_not_include` forms, and later mines learner miss-events for cross-kind patterns. Registry RATIFIED 2026-06-09 (17 families / 67 specifics, from the full common_miss harvest). Phase-3 per-topic tagging of `must_not_include` is next (analyst supplies tag-lists, architect coordinates authors). The aggregation drill-down view is a later housing build.
