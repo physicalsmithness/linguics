@@ -722,3 +722,12 @@ This is distinct from the criterion-15 suppress case: suppress is for a terse la
 **How to apply:** authors keep labels terse; the leak-vs-trap suppress test (criterion 15) then applies only to the residual cases where a terse label still names a non-derivable class.
 
 ---
+## 2026-07-13: Grammar item explanations include an English translation of the sentence
+
+Every grammar item's explanation carries a plain English translation of the completed correct sentence, placed early (opening gloss, or the sentence quoted then translated in parentheses), before the grammar working. Fragment prompts gloss the target instead ("me lo = it to me"). Codified as AUTHOR_BRIEF criterion 17 (Rev 13).
+
+**Why:** a learner who cannot fully parse the Italian sentence cannot use the grammar explanation. The translation gives the meaning first, so the "why" that follows lands. It sits alongside the existing four-beat explanation style, not instead of it.
+
+**How to apply:** new grammar items carry it from authoring; existing items gain it on their next touch, bundled with each author's other next-touch work (misconception tagging, the trigger audit, and so on). A dedicated retrofit sweep is available if the coverage needs to move faster than next-touch.
+
+---
