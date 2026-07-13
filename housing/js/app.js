@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-13-r2";
+  const LL_BUILD = "2026-07-13-r3";
   // Touch-first device (no hover, coarse pointer): tap interactions replace
   // keyboard ones. Computed once; used for tap-to-mark on MCQ.
   const TOUCH_FIRST = !!(window.matchMedia
@@ -976,6 +976,18 @@
       resultHost.appendChild(renderResult(result));
       const tenseRow = renderCandidateTensesRow(q);
       if (tenseRow) resultHost.appendChild(tenseRow);
+      if (TOUCH_FIRST) {
+        const jump = document.createElement("button");
+        jump.type = "button";
+        jump.className = "grammar-updated-hint";
+        jump.innerHTML = 'Grammar progress updated <span aria-hidden="true">\u2193</span>';
+        jump.addEventListener("click", () => {
+          const fresh = document.querySelector("#live-stats-content .live-bucket-row.fresh")
+            || document.getElementById("live-stats");
+          if (fresh) fresh.scrollIntoView({ behavior: "smooth", block: "center" });
+        });
+        resultHost.appendChild(jump);
+      }
       renderLiveStats();
       marked = true;
       next.textContent = "Next";
@@ -4487,6 +4499,7 @@
   }
 
   function scrollToFreshBuckets() {
+    if (TOUCH_FIRST) return;  // phones: keep the answer + explanation in view; the inline hint invites a look
     // Post-Mark auto-scroll: only nudge if the fresh row is OUTSIDE the
     // viewport (block: "nearest"). When the live panel is already visible
     // — the common case during normal practice — this becomes a no-op so
@@ -4986,7 +4999,9 @@
       const tickWrap = document.createElement("button");
       tickWrap.type = "button";
       tickWrap.className = "entry-part-tick" + (sel.on ? " on" : "");
-      tickWrap.innerHTML = '<span class="tickbox"></span><span class="entry-part-label">' + part.label + '</span>';
+      const hasDrill = part.kind === "verbs" || (part.kind === "pronouns" && part.kinds && part.kinds.length);
+      tickWrap.innerHTML = '<span class="tickbox"></span><span class="entry-part-label">' + part.label + '</span>'
+        + (hasDrill ? '<span class="entry-part-caret" aria-hidden="true">' + (sel.on ? "\u25be" : "\u25b8") + '</span>' : '');
       tickWrap.addEventListener("click", () => { sel.on = !sel.on; renderEntryScreen(); });
       row.appendChild(tickWrap);
 
@@ -5199,9 +5214,12 @@
       const empty = counts[i] === 0;
       const inRange = entrySel.cefrRange && i >= entrySel.cefrRange[0] && i <= entrySel.cefrRange[1];
       cell.className = "entry-level-cell" + (inRange ? " sel" : "") + (empty ? " empty" : "");
+      // Density fill (availability) is always applied; SELECTION is signalled by a
+      // contrasting ring + check in .sel, never by the same blue, so a max-density
+      // cell can no longer be mistaken for a selected one.
       const alpha = (max > 0 && counts[i] > 0) ? (0.15 + 0.85 * (counts[i] / max)) : 0;
-      if (!inRange && alpha > 0) cell.style.background = "rgba(58,79,138," + alpha.toFixed(2) + ")";
-      if (!inRange && alpha > 0.55) cell.style.color = "#fff";
+      if (alpha > 0) cell.style.background = "rgba(58,79,138," + alpha.toFixed(2) + ")";
+      if (alpha > 0.55) cell.style.color = "#fff";
       cell.innerHTML = '<span class="lvl-name">' + lvl + '</span><span class="lvl-count">' + counts[i] + '</span>';
       if (empty) cell.disabled = true;
       else cell.addEventListener("click", () => { onLevelTap(i); renderEntryScreen(); });
