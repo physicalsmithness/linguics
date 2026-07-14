@@ -721,7 +721,8 @@
         "bucket": "preposition.usage.verb_governed.object_governed",
         "label": "avere bisogno di",
         "any_phrases": [
-          "di aiuto"
+          "di aiuto",
+          "d'aiuto"
         ],
         "must_not_include": [
           "per aiuto"
@@ -754,7 +755,7 @@
       }
     ],
     "explanation": "'I need help right away.' Avere bisogno marks what is needed with di: ho bisogno di aiuto. Because English 'I need help' has no preposition at all, the commonest miss is simply dropping the di; per aiuto (from 'need for help') is the other reach. The di is part of the construction, not optional.",
-    "version": 2,
+    "version": 3,
     "examiner_note": "attempted_hints ['aiuto'] catches the dropped-di answer ('Ho bisogno aiuto') as attempted; the positive phrase is checked first so the correct answer is unaffected."
   },
   {
@@ -775,7 +776,8 @@
         "bucket": "preposition.usage.verb_governed.object_governed",
         "label": "innamorarsi di",
         "any_phrases": [
-          "di una"
+          "di una",
+          "d'una"
         ],
         "must_not_include": [
           "con una",
@@ -806,7 +808,7 @@
       }
     ],
     "explanation": "'Marco fell in love with an English girl.' English says in love WITH, so con is the magnetic wrong answer; Italian's governed preposition is di: innamorarsi di qualcuno. This is the clearest case of the per-verb rule beating translation instinct.",
-    "version": 2
+    "version": 3
   },
   {
     "external_id": "prep_vg_obj_05",
@@ -826,7 +828,12 @@
         "bucket": "preposition.usage.verb_governed.object_governed",
         "label": "pensare di + opinion",
         "any_phrases": [
-          "del nuovo"
+          "del nuovo",
+          {
+            "phrase": "di il nuovo",
+            "credit": 1.0,
+            "note": "uncontracted: credits the di-choice; the missing contraction is markpoint B's miss"
+          }
         ],
         "must_not_include": [
           "al nuovo",
@@ -861,8 +868,8 @@
       }
     ],
     "explanation": "'What do you think of the new teacher?' Asking for an opinion flips pensare into its di construction: pensare di qualcuno/qualcosa. Then di meets the article il and contracts: di + il = del, giving del nuovo professore. Compare prep_vg_obj_01: thinking OF someone (having them in mind) is pensare a; thinking something OF them (opinion) is pensare di.",
-    "version": 2,
-    "examiner_note": "Two markpoints, per one-markpoint-per-skill: A credits the di-choice (misses to verb_governed if al appears), B credits the contraction regardless of which preposition was chosen (al nuovo is wrongly chosen but correctly contracted, so it hits B while missing A). Uncontracted di il / a il misses B."
+    "version": 3,
+    "examiner_note": "Two markpoints, per one-markpoint-per-skill: A credits the di-choice even uncontracted (di il nuovo hits A, misses B), mirroring prep_pl_06; al nuovo misses A but hits B (wrongly chosen, correctly contracted). Uncontracted a il misses both."
   },
   {
     "external_id": "prep_pl_01",
@@ -1016,7 +1023,10 @@
           "in biblioteca"
         ],
         "must_not_include": [
-          "a biblioteca"
+          {
+            "phrase": "a biblioteca",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -1043,7 +1053,7 @@
       }
     ],
     "explanation": "'The kids are at the library.' Familiar enclosed spaces take bare in, no article: in biblioteca, in ufficio, in chiesa, in banca. English 'at the library' invites an article or an a; the idiomatic pattern is the bare in.",
-    "version": 1
+    "version": 2
   },
   {
     "external_id": "prep_pl_05",
@@ -1267,18 +1277,18 @@
         }
       },
       {
-        "lemma": "comincia",
+        "lemma": "finisce",
         "language": "it",
         "aspects": {
           "translation": {
-            "reveal": "cominciare - to begin, to start",
-            "bucket": "vocabulary.it.cominciare.translation"
+            "reveal": "finire - to finish",
+            "bucket": "vocabulary.it.finire.translation"
           }
         }
       }
     ],
     "explanation": "'The lesson finishes at nine.' Clock times take a plus the article, contracted: a + le = alle, so alle nove. The article is not optional; bare 'a nove' and uncontracted 'a le nove' are the two halves of the same miss.",
-    "version": 2,
+    "version": 3,
     "examiner_note": "Frame uses finire, not cominciare: 'comincia dalle nove' is producible colloquial Italian and dalle nove contains alle nove, which the positive-first engine would false-credit (superstring hazard, cf. the PresentUsageAuthor thread)."
   },
   {
@@ -1344,13 +1354,23 @@
           "di mattina",
           {
             "phrase": "la mattina",
+            "match_at": "word",
             "credit": 1.0,
-            "note": "article instead of di; equally idiomatic for habitual time"
+            "note": "article instead of di; equally idiomatic for habitual time. Word-anchored so alla/nella mattina cannot contain it."
+          },
+          {
+            "phrase": "alla mattina",
+            "credit": 0.9,
+            "note": "regional (northern) but widespread; standard forms are di mattina / la mattina"
           }
         ],
         "must_not_include": [
           "in mattina",
-          "a mattina"
+          "nella mattina",
+          {
+            "phrase": "a mattina",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -1367,7 +1387,7 @@
       }
     ],
     "explanation": "'I study better in the morning.' Parts of the day take di: di mattina, di sera, di notte. (Plain la mattina works too for a habit.) English 'in the morning' pulls toward in, which Italian does not use here.",
-    "version": 1
+    "version": 2
   },
   {
     "external_id": "prep_t_04",
@@ -1397,18 +1417,18 @@
     ],
     "vocab_help": [
       {
-        "lemma": "chiudono",
+        "lemma": "compleanno",
         "language": "it",
         "aspects": {
           "translation": {
-            "reveal": "chiudere - to close",
-            "bucket": "vocabulary.it.chiudere.translation"
+            "reveal": "compleanno - birthday",
+            "bucket": "vocabulary.it.compleanno.translation"
           }
         }
       }
     ],
     "explanation": "'My birthday is in June.' Months take a or in, both fully standard: a giugno and in giugno. Di belongs to parts of the day, not months; di giugno on its own is the misapplied pattern.",
-    "version": 2,
+    "version": 3,
     "examiner_note": "Frame avoids verbs of closing/opening: 'chiudono da giugno' (since June) is a plausible learner product and da giugno contains a giugno (superstring hazard)."
   },
   {
@@ -1669,10 +1689,10 @@
     "subtopic": "usage.motion",
     "difficulty": 2,
     "cefr_level_target": "B1",
-    "prompt": "Complete: 'Il volo arriva ____ alle sei.' (Madrid)",
+    "prompt": "Translate the ending: 'The flight from Madrid arrives at six.' → 'Il volo ____ arriva alle sei.'",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "prompt_supplies_base_form": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -1683,6 +1703,10 @@
           "da Madrid"
         ],
         "must_not_include": [
+          {
+            "phrase": "a Madrid",
+            "match_at": "word"
+          },
           "di Madrid"
         ]
       }
@@ -1700,7 +1724,8 @@
       }
     ],
     "explanation": "'The flight arrives from Madrid at six.' Coming FROM somewhere takes da: arrivare da, venire da. The near-miss is di, which marks belonging rather than motion: sono di Madrid says Madrid is my hometown, vengo da Madrid says that is where I have just travelled from.",
-    "version": 1
+    "version": 2,
+    "examiner_note": "English anchor pins the origin reading; unanchored, 'arriva a Madrid alle sei' was fully correct Italian falling through unmatched (review finding 1). must_not 'a Madrid' is word-anchored so the correct 'da Madrid' cannot contain it."
   },
   {
     "external_id": "prep_mo_04",
@@ -1750,10 +1775,10 @@
     "subtopic": "usage.motion",
     "difficulty": 3,
     "cefr_level_target": "B1",
-    "prompt": "Complete: 'Domani mattina partiamo ____ .' (Parigi)",
+    "prompt": "Translate the ending: 'Tomorrow morning we leave for Paris.' → 'Domani mattina partiamo ____ .'",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "prompt_supplies_base_form": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -1764,8 +1789,12 @@
           "per Parigi"
         ],
         "must_not_include": [
-          "a Parigi",
-          "in Parigi"
+          {
+            "phrase": "a Parigi",
+            "match_at": "word"
+          },
+          "in Parigi",
+          "da Parigi"
         ]
       }
     ],
@@ -1782,7 +1811,8 @@
       }
     ],
     "explanation": "'Tomorrow morning we leave for Paris.' Partire marks its destination with per: partire per Parigi, exactly like English 'leave for'. The general go-to preposition a (vado a Parigi) does not follow partire; this is a verb-fixed exception inside the motion system.",
-    "version": 1
+    "version": 2,
+    "examiner_note": "Unanchored, 'partiamo da Parigi' was correct Italian that substring-matched must_not 'a Parigi' (false diagnostic, review finding 2). The anchor makes da wrong; word-anchoring stops the containment."
   },
   {
     "external_id": "prep_mm_01",
@@ -1874,7 +1904,10 @@
           "con la chiave"
         ],
         "must_not_include": [
-          "a chiave",
+          {
+            "phrase": "a chiave",
+            "match_at": "word"
+          },
           "della chiave"
         ]
       }
@@ -1892,7 +1925,7 @@
       }
     ],
     "explanation": "'I open the door with the key.' An instrument in the hand takes con: con la chiave, con il coltello. The lookalike a chiave belongs to the fixed idiom chiudere a chiave (to lock); outside that idiom the tool preposition is con.",
-    "version": 1
+    "version": 2
   },
   {
     "external_id": "prep_mm_04",
@@ -1974,8 +2007,8 @@
         }
       }
     ],
-    "explanation": "'Maria goes to university by bike.' The bicycle counts as a vehicle, so in bicicletta, despite the temptation to treat riding as foot-powered and reach for a. Only piedi takes a; everything with wheels or wings takes in.",
-    "version": 1
+    "explanation": "'Maria goes to university by bike.' The bicycle counts as a vehicle, so in bicicletta, despite the temptation to treat riding as foot-powered and reach for a. Among everyday means only piedi takes a (plus fixed idioms like a cavallo); everything with wheels or wings takes in.",
+    "version": 2
   },
   {
     "external_id": "prep_di_01",
@@ -2630,7 +2663,10 @@
           "in macchina"
         ],
         "must_not_include": [
-          "a macchina",
+          {
+            "phrase": "a macchina",
+            "match_at": "word"
+          },
           "su macchina"
         ]
       }
@@ -2648,7 +2684,7 @@
       }
     ],
     "explanation": "'Wait for me in the car, I'll be right back.' In is the inside preposition: in macchina, in casa, in borsa. Here it is bare because macchina is one of the familiar-space nouns that skip the article.",
-    "version": 1
+    "version": 2
   },
   {
     "external_id": "prep_sf_06",
@@ -3048,8 +3084,8 @@
         }
       }
     ],
-    "explanation": "'I'm leaving with my friends tomorrow.' The trick: con does not contract in modern Italian, so con gli amici stays two words (only col survives as an optional relic). Nor do per, tra and fra. Knowing which five prepositions fuse (di, a, da, in, su) includes knowing which three do not.",
-    "version": 1,
+    "explanation": "'I'm leaving with my friends tomorrow.' The trick: con does not contract in modern Italian, so con gli amici stays two words (only col and coi survive as optional relics). Nor do per, tra and fra. Knowing which five prepositions fuse (di, a, da, in, su) includes knowing which three do not.",
+    "version": 2,
     "examiner_note": "The dated forms cogli/colle are deliberately not in any_phrases; per the standard-variant policy they are obsolete rather than secondary. They fall through unmatched rather than being punished."
   },
   {
@@ -3073,8 +3109,8 @@
           "del pane",
           {
             "phrase": "un po' di pane",
-            "credit": 1.0,
-            "note": "equally correct; the partitive del is the target pattern but un po' di is not wrong"
+            "credit": 0.9,
+            "note": "fully correct Italian; 0.9 because the partitive rendering is the drilled pattern here (0.9-for-dodges policy question raised with Architecture, batch-review thread v3)"
           }
         ],
         "must_not_include": [
@@ -3096,7 +3132,7 @@
       }
     ],
     "explanation": "'I'd like some bread, please.' Some is the articulated di: del pane, literally 'of the bread'. Un po' di pane also works, but leaning on un po' everywhere is the recorded habit this bucket watches for; the partitive del is the native default.",
-    "version": 2
+    "version": 3
   },
   {
     "external_id": "prep_pt_02",
@@ -3116,7 +3152,17 @@
         "bucket": "preposition.articulated.di_partitive",
         "label": "delle = some (f pl)",
         "any_phrases": [
-          "delle fragole"
+          "delle fragole",
+          {
+            "phrase": "un po' di fragole",
+            "credit": 0.9,
+            "note": "fully correct Italian; 0.9 because the partitive rendering is the drilled pattern here (0.9-for-dodges policy question raised with Architecture, batch-review thread v3)"
+          },
+          {
+            "phrase": "alcune fragole",
+            "credit": 0.9,
+            "note": "fully correct Italian; 0.9 because the partitive rendering is the drilled pattern here (0.9-for-dodges policy question raised with Architecture, batch-review thread v3)"
+          }
         ],
         "must_not_include": [
           "dei fragole",
@@ -3137,7 +3183,7 @@
       }
     ],
     "explanation": "'I bought some strawberries for dinner.' The partitive agrees like the article inside it: fragole is feminine plural, so delle fragole. Dei fragole gets the some-idea right but the agreement wrong; bare di fragole drops the article the partitive is made of.",
-    "version": 2
+    "version": 3
   },
   {
     "external_id": "prep_pt_03",
@@ -3157,7 +3203,17 @@
         "bucket": "preposition.articulated.di_partitive",
         "label": "dei = some (m pl)",
         "any_phrases": [
-          "dei biscotti"
+          "dei biscotti",
+          {
+            "phrase": "un po' di biscotti",
+            "credit": 0.9,
+            "note": "fully correct Italian; 0.9 because the partitive rendering is the drilled pattern here (0.9-for-dodges policy question raised with Architecture, batch-review thread v3)"
+          },
+          {
+            "phrase": "alcuni biscotti",
+            "credit": 0.9,
+            "note": "fully correct Italian; 0.9 because the partitive rendering is the drilled pattern here (0.9-for-dodges policy question raised with Architecture, batch-review thread v3)"
+          }
         ],
         "must_not_include": [
           "delle biscotti",
@@ -3178,7 +3234,7 @@
       }
     ],
     "explanation": "'There are some biscuits on the table.' Masculine plural: dei biscotti. The partitive is just di + the noun's own article, so the whole definite-article system (il/lo/la/i/gli/le) rides along inside it.",
-    "version": 2
+    "version": 3
   },
   {
     "external_id": "prep_pt_04",
@@ -3198,7 +3254,12 @@
         "bucket": "preposition.articulated.di_partitive",
         "label": "degli = some (before vowel)",
         "any_phrases": [
-          "degli uccelli"
+          "degli uccelli",
+          {
+            "phrase": "alcuni uccelli",
+            "credit": 0.9,
+            "note": "fully correct Italian; 0.9 because the partitive rendering is the drilled pattern here (0.9-for-dodges policy question raised with Architecture, batch-review thread v3)"
+          }
         ],
         "must_not_include": [
           "dei uccelli"
@@ -3228,7 +3289,7 @@
       }
     ],
     "explanation": "'We saw some birds in the garden.' Uccelli starts with a vowel, so its article is gli and the partitive is degli uccelli. Dei uccelli is the agreement miss: the some-form must track the noun's article exactly, including the vowel rule.",
-    "version": 2
+    "version": 3
   },
   {
     "external_id": "prep_disc_ai_01",

@@ -1,0 +1,1625 @@
+[
+  {
+    "external_id": "neg_nonpos_01",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "core.non_position",
+    "difficulty": 1,
+    "cefr_level_target": "A1",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "prompt": "Rendi negativa la frase: 'Lo vedo.' → '____.'",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.core.non_position",
+        "label": "non before the clitic",
+        "any_phrases": [
+          {
+            "phrase": "non lo vedo",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "lo non vedo",
+            "match_at": "word",
+            "note": "the clitic lo cannot sit before non: non comes first, then the clitic-verb block"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "vedere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "to see - vedere",
+            "bucket": "vocabulary.it.vedere.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'I don't see it': Non lo vedo. Non goes at the front of the verb group, before any small object word (a clitic) such as lo. Nothing slips between them, so 'lo non vedo' is impossible.",
+    "version": 1
+  },
+  {
+    "external_id": "neg_nonpos_02",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "core.non_position",
+    "difficulty": 1,
+    "cefr_level_target": "A1",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "prompt": "Rendi negativa la frase: 'Mi piace.' → '____.'",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.core.non_position",
+        "label": "non before the clitic",
+        "any_phrases": [
+          {
+            "phrase": "non mi piace",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "mi non piace",
+            "match_at": "word",
+            "note": "non precedes the clitic mi, not the other way round"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "piacere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "to be pleasing - piacere",
+            "bucket": "vocabulary.it.piacere.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'I don't like it': Non mi piace. The small word mi belongs to the verb group, so non sits in front of the whole block: non + mi + piace.",
+    "version": 1
+  },
+  {
+    "external_id": "neg_nonpos_03",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "core.non_position",
+    "difficulty": 1,
+    "cefr_level_target": "A1",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "prompt": "Rendi negativa la frase: 'Ti chiamo stasera.' → '____ stasera.'",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.core.non_position",
+        "label": "non before the clitic",
+        "any_phrases": [
+          {
+            "phrase": "non ti chiamo",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "ti non chiamo",
+            "match_at": "word",
+            "note": "non goes before the clitic ti, not after it"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "chiamare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "to call - chiamare",
+            "bucket": "vocabulary.it.chiamare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'I'm not calling you tonight': Non ti chiamo stasera. Non leads the verb group and the clitic ti stays tucked just after it.",
+    "version": 1
+  },
+  {
+    "external_id": "neg_nonpos_04",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "core.non_position",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "prompt": "Rendi negativa la frase: 'Me lo dai.' → '____.'",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.core.non_position",
+        "label": "non before the clitic cluster",
+        "any_phrases": [
+          {
+            "phrase": "non me lo dai",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "me lo non dai",
+            "match_at": "word",
+            "note": "non goes before the whole cluster me lo, not between it and the verb"
+          },
+          {
+            "phrase": "me non lo dai",
+            "match_at": "word",
+            "note": "non cannot split the cluster me lo"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'You're not giving it to me': Non me lo dai. When two little words cluster (me lo), non still leads: it sits in front of the entire cluster-plus-verb block.",
+    "examiner_note": "Tests that non precedes the full clitic cluster, not just the verb.",
+    "version": 1
+  },
+  {
+    "external_id": "neg_nonpos_05",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "core.non_position",
+    "difficulty": 1,
+    "cefr_level_target": "A1",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "prompt": "Rendi negativa la frase: 'Io capisco.' → '____.'",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.core.non_position",
+        "label": "non after the subject, before the verb",
+        "any_phrases": [
+          {
+            "phrase": "io non capisco",
+            "match_at": "word"
+          },
+          {
+            "phrase": "non capisco",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "non io capisco",
+            "match_at": "word",
+            "note": "non goes after the subject and directly before the verb, not before the subject pronoun"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "capire",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "to understand - capire",
+            "bucket": "vocabulary.it.capire.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'I don't understand': (Io) non capisco. If a subject pronoun is present it comes first, then non, then the verb. Italian often drops io, so Non capisco alone is equally correct.",
+    "version": 1
+  },
+  {
+    "external_id": "neg_nonpos_06",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "core.non_position",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "prompt": "Rendi negativa la frase: 'Mi sveglio presto.' → '____ presto.'",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.core.non_position",
+        "label": "non before the reflexive clitic",
+        "any_phrases": [
+          {
+            "phrase": "non mi sveglio",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "mi non sveglio",
+            "match_at": "word",
+            "note": "the reflexive mi behaves like any clitic: non goes in front of it"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "svegliarsi",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "to wake up - svegliarsi",
+            "bucket": "vocabulary.it.svegliarsi.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'I don't wake up early': Non mi sveglio presto. A reflexive verb keeps its little word (mi) with the verb, and non leads the block just the same.",
+    "version": 1
+  },
+  {
+    "external_id": "neg_concord_01",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "core.concord",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "prompt": "Di’ che nessuno è venuto alla festa, cominciando con Non: '____ alla festa.'",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.core.concord",
+        "label": "Double negation is the norm",
+        "any_phrases": [
+          {
+            "phrase": "non è venuto nessuno",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "è venuto nessuno",
+            "match_at": "word",
+            "note": "postverbal nessuno still needs non before the verb: Italian double negation is the norm, not an error"
+          },
+          {
+            "phrase": "non nessuno",
+            "match_at": "word",
+            "note": "moved in front of the verb nessuno would DROP non (Nessuno è venuto); you can't have both in front"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'Nobody came to the party': Non è venuto nessuno. When the negative word follows the verb, Italian insists on non as well, one negation marked twice. Flip nessuno to the front and the non disappears: Nessuno è venuto.",
+    "version": 1
+  },
+  {
+    "external_id": "neg_concord_02",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "core.concord",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "prompt": "Rispondi al negativo: 'Che cosa hai visto?' → '____.'",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.core.concord",
+        "label": "Double negation is the norm",
+        "any_phrases": [
+          {
+            "phrase": "non ho visto niente",
+            "match_at": "word"
+          },
+          {
+            "phrase": "non ho visto nulla",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "ho visto niente",
+            "match_at": "word",
+            "note": "postverbal niente keeps non: non ho visto niente"
+          },
+          {
+            "phrase": "non ho visto qualcosa",
+            "match_at": "word",
+            "note": "English 'anything' becomes niente/nulla here, not qualcosa"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'I didn't see anything / I saw nothing': Non ho visto niente (or nulla). English marks one negative ('didn't') and switches to 'anything'; Italian keeps non AND uses the negative word niente.",
+    "examiner_note": "niente and nulla are interchangeable here; both accepted. qualcosa guard catches the English 'anything' calque.",
+    "version": 1
+  },
+  {
+    "external_id": "neg_concord_03",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "core.concord",
+    "difficulty": 3,
+    "cefr_level_target": "A2",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "prompt": "Comincia la frase con Nessuno: 'Non è venuto nessuno.' → '____.'",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.core.concord",
+        "label": "Preverbal negative drops non",
+        "any_phrases": [
+          {
+            "phrase": "nessuno è venuto",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "nessuno non è venuto",
+            "match_at": "word",
+            "note": "once nessuno is in front of the verb, non is dropped: a preverbal negative carries the negation by itself"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'Nobody came': Nessuno è venuto. This is the mirror of Non è venuto nessuno. When the negative word moves ahead of the verb it does the negating alone, so non drops out. Keeping both (nessuno non...) is the classic over-correction.",
+    "examiner_note": "The preverbal-drop trap: this is the direction learners most often get wrong by keeping non.",
+    "version": 1
+  },
+  {
+    "external_id": "neg_concord_04",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "core.concord",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "prompt": "Comincia la frase con Niente: 'Non è cambiato niente.' → '____.'",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.core.concord",
+        "label": "Preverbal negative drops non",
+        "any_phrases": [
+          {
+            "phrase": "niente è cambiato",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "niente non è cambiato",
+            "match_at": "word",
+            "note": "a preverbal niente drops non, exactly like preverbal nessuno"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "cambiare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "to change - cambiare",
+            "bucket": "vocabulary.it.cambiare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Nothing has changed': Niente è cambiato. Same rule as nessuno: a negative word placed before the verb negates on its own, so non is not added.",
+    "version": 1
+  },
+  {
+    "external_id": "neg_concord_05",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "core.concord",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "prompt": "Di’ che non conosci nessuno qui: '____ qui.'",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.core.concord",
+        "label": "Double negation is the norm",
+        "any_phrases": [
+          {
+            "phrase": "non conosco nessuno",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "conosco nessuno",
+            "match_at": "word",
+            "note": "postverbal nessuno needs non in front of the verb"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "conoscere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "to know (a person/place) - conoscere",
+            "bucket": "vocabulary.it.conoscere.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'I don't know anyone here': Non conosco nessuno qui. Present tense, same concord rule: postverbal nessuno keeps non.",
+    "version": 1
+  },
+  {
+    "external_id": "neg_concord_06",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "core.concord",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "prompt": "Rispondi al negativo: 'Che cosa vuoi?' → '____.'",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.core.concord",
+        "label": "Double negation is the norm",
+        "any_phrases": [
+          {
+            "phrase": "non voglio niente",
+            "match_at": "word"
+          },
+          {
+            "phrase": "non voglio nulla",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "voglio niente",
+            "match_at": "word",
+            "note": "postverbal niente keeps non"
+          },
+          {
+            "phrase": "non voglio qualcosa",
+            "match_at": "word",
+            "note": "'I don't want anything' is non voglio niente/nulla, not qualcosa"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'I don't want anything / I want nothing': Non voglio niente (or nulla). The English 'anything' after a negative maps to niente/nulla in Italian, with non kept.",
+    "version": 1
+  },
+  {
+    "external_id": "neg_bip_01",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "core.bipartite",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "prompt": "Di’ che non bevi mai il caffè: '____ il caffè.'",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.core.bipartite",
+        "label": "non ... mai frame",
+        "any_phrases": [
+          {
+            "phrase": "non bevo mai",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "bevo mai",
+            "match_at": "word",
+            "note": "the frame is two-part: non is still needed alongside mai"
+          },
+          {
+            "phrase": "mai bevo",
+            "match_at": "word",
+            "note": "Italian keeps non before the verb and mai after it, not mai in front"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "bere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "to drink - bere",
+            "bucket": "vocabulary.it.bere.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'I never drink coffee': Non bevo mai il caffè. 'Never' is a two-part frame in Italian: non before the verb, mai after it. Both halves are required.",
+    "version": 1
+  },
+  {
+    "external_id": "neg_bip_02",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "core.bipartite",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "prompt": "Rispondi: 'Mangi la carne?' → 'No, ____ la carne.'",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.core.bipartite",
+        "label": "non ... mai frame",
+        "any_phrases": [
+          {
+            "phrase": "non mangio mai",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "mangio mai",
+            "match_at": "word",
+            "note": "non is still required: non mangio mai"
+          },
+          {
+            "phrase": "mai mangio",
+            "match_at": "word",
+            "note": "mai follows the verb; non leads"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'I never eat meat': Non mangio mai la carne. Keep the non ... mai frame around the verb.",
+    "version": 1
+  },
+  {
+    "external_id": "neg_bip_03",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "core.bipartite",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "prompt": "Di’ che hai smesso di fumare (no longer): '____.'",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.core.bipartite",
+        "label": "non ... più (no longer)",
+        "any_phrases": [
+          {
+            "phrase": "non fumo più",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "fumo più",
+            "match_at": "word",
+            "note": "the frame needs non: non fumo più"
+          },
+          {
+            "phrase": "non fumo ancora",
+            "match_at": "word",
+            "note": "ancora would mean 'not yet' (still haven't started); 'no longer' is più"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "fumare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "to smoke - fumare",
+            "bucket": "vocabulary.it.fumare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'I don't smoke anymore': Non fumo più. non ... più means 'no longer / not anymore' (something that used to be true has stopped). Don't confuse it with non ... ancora, 'not yet'.",
+    "examiner_note": "The più-vs-ancora meaning pair: ancora guard catches the crossed meaning.",
+    "version": 1
+  },
+  {
+    "external_id": "neg_bip_04",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "core.bipartite",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "prompt": "Di’ che la cena non è ancora pronta (not yet): 'La cena ____ pronta.'",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.core.bipartite",
+        "label": "non ... ancora (not yet)",
+        "any_phrases": [
+          {
+            "phrase": "non è ancora",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "è ancora",
+            "match_at": "word",
+            "note": "the frame needs non: non è ancora pronta"
+          },
+          {
+            "phrase": "non è più",
+            "match_at": "word",
+            "note": "più would mean 'no longer ready'; 'not yet' is ancora"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "pronto",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "ready - pronto",
+            "bucket": "vocabulary.it.pronto.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Dinner isn't ready yet': La cena non è ancora pronta. non ... ancora means 'not yet' (still waiting for something to happen). Its partner non ... più means the opposite, 'no longer'.",
+    "examiner_note": "Mirror of neg_bip_03; the più guard catches the crossed meaning in this direction.",
+    "version": 1
+  },
+  {
+    "external_id": "neg_bip_05",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "core.bipartite",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "prompt": "Rafforza la negazione (not at all): 'Sei stanco?' → 'No, ____ stanco.'",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.core.bipartite",
+        "label": "non ... affatto / per niente (not at all)",
+        "any_phrases": [
+          {
+            "phrase": "non sono affatto",
+            "match_at": "word"
+          },
+          {
+            "phrase": "non sono per niente",
+            "match_at": "word"
+          },
+          {
+            "phrase": "non sono per nulla",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "sono affatto",
+            "match_at": "word",
+            "note": "affatto only means 'at all' inside the negative frame; non is required"
+          },
+          {
+            "phrase": "non sono niente",
+            "match_at": "word",
+            "note": "'not at all' is per niente (with per) or affatto; bare niente here would mean 'I'm nothing'"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "stanco",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "tired - stanco",
+            "bucket": "vocabulary.it.stanco.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'I'm not tired at all': Non sono affatto stanco (or non sono per niente stanco). affatto and per niente intensify the negation to 'at all'; both still ride on non.",
+    "version": 1
+  },
+  {
+    "external_id": "neg_bip_06",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "core.bipartite",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "prompt": "Di’ che non hai più fame (no longer hungry): '____ fame.'",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.core.bipartite",
+        "label": "non ... più (no longer)",
+        "any_phrases": [
+          {
+            "phrase": "non ho più",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "ho più fame",
+            "match_at": "word",
+            "note": "non is required: non ho più fame"
+          },
+          {
+            "phrase": "non ho ancora fame",
+            "match_at": "word",
+            "note": "ancora would mean 'not hungry yet'; 'no longer hungry' is più"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'I'm not hungry anymore': Non ho più fame. Here ho ... fame is the fixed way to say 'be hungry', and non ... più wraps it to mean the hunger has stopped.",
+    "version": 1
+  },
+  {
+    "external_id": "neg_resp_01",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "responses",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "prompt": "Rispondi che vale anche per te: 'Non mangio la carne.' → '____!'",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.responses",
+        "label": "neanch'io echo to a negative",
+        "any_phrases": [
+          {
+            "phrase": "neanch'io",
+            "match_at": "word"
+          },
+          {
+            "phrase": "neanche io",
+            "match_at": "word"
+          },
+          {
+            "phrase": "nemmeno io",
+            "match_at": "word"
+          },
+          {
+            "phrase": "neppure io",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "anch'io",
+            "match_at": "word",
+            "note": "'me too' after a negative must become 'me neither': neanch'io, not anch'io"
+          },
+          {
+            "phrase": "anche io",
+            "match_at": "word",
+            "note": "echoing a negative needs neanche/nemmeno/neppure, not anche"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'I don't eat meat.' - 'Me neither!': Neanch'io! To agree WITH a negative you echo it with neanche/nemmeno/neppure (all interchangeable), never with anche. Before io, neanche elides to neanch'io.",
+    "examiner_note": "The planted miss is anch'io (agreeing to a negative with the positive echo).",
+    "version": 1
+  },
+  {
+    "external_id": "neg_resp_02",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "responses",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "prompt": "Rispondi che è così anche per te: 'Non mi piace il pesce.' → '____.'",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.responses",
+        "label": "Neanche a me (piacere echo)",
+        "any_phrases": [
+          {
+            "phrase": "neanche a me",
+            "match_at": "word"
+          },
+          {
+            "phrase": "nemmeno a me",
+            "match_at": "word"
+          },
+          {
+            "phrase": "neppure a me",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "anche a me",
+            "match_at": "word",
+            "note": "agreeing with a negative liking needs neanche a me, not anche a me"
+          },
+          {
+            "phrase": "neanch'io",
+            "match_at": "word",
+            "note": "piacere takes an indirect object: the echo is Neanche a me, not Neanch'io"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'I don't like fish.' - 'Me neither.': Neanche a me. Because piacere works with an indirect object (a me = to me), its echo is Neanche a me, not Neanch'io. Same neanche/nemmeno/neppure choice.",
+    "examiner_note": "Cross-ref piacere.usage.agreeing_responses (Mi piace -> A me si / Anche a me; Non mi piace -> Neanche a me). Two guards: the positive echo, and the wrong-frame neanch'io.",
+    "version": 1
+  },
+  {
+    "external_id": "neg_resp_03",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "responses",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "prompt": "Di’ che non hai nemmeno un euro (not even): '____ un euro.'",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.responses",
+        "label": "non ... nemmeno (not even)",
+        "any_phrases": [
+          {
+            "phrase": "non ho nemmeno",
+            "match_at": "word"
+          },
+          {
+            "phrase": "non ho neanche",
+            "match_at": "word"
+          },
+          {
+            "phrase": "non ho neppure",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "ho nemmeno",
+            "match_at": "word",
+            "note": "'not even' still needs non before the verb: non ho nemmeno"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'I don't have even one euro': Non ho nemmeno un euro. Beyond echo answers, neanche/nemmeno/neppure also mean 'not even', and inside a sentence they keep non in front of the verb.",
+    "version": 1
+  },
+  {
+    "external_id": "neg_resp_04",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "responses",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "prompt": "Rispondi per il tuo gruppo (io e i miei amici): 'Non capiamo niente.' → '____.'",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.responses",
+        "label": "neanche noi echo",
+        "any_phrases": [
+          {
+            "phrase": "neanche noi",
+            "match_at": "word"
+          },
+          {
+            "phrase": "nemmeno noi",
+            "match_at": "word"
+          },
+          {
+            "phrase": "neppure noi",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "anche noi",
+            "match_at": "word",
+            "note": "echoing a negative needs neanche noi, not anche noi"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'We don't understand anything.' - 'Us neither.': Neanche noi. The echo agrees in person with the group answering (io e i miei amici = noi), and stays negative with neanche.",
+    "examiner_note": "Person recovery: the compound subject io e i miei amici maps to noi.",
+    "version": 1
+  },
+  {
+    "external_id": "neg_restr_01",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "restrictive",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "prompt": "Riscrivi con 'solo' senza cambiare il senso: 'Non ho che dieci euro.' → 'Ho ____ dieci euro.'",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.restrictive",
+        "label": "non ... che = only",
+        "any_phrases": [
+          {
+            "phrase": "solo",
+            "match_at": "word"
+          },
+          {
+            "phrase": "soltanto",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "non",
+            "match_at": "word",
+            "note": "non ... che is not a real negation: it means 'only', so the plain sentence keeps no non"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'I only have ten euros': Non ho che dieci euro = Ho solo dieci euro. The frame non ... che looks negative but means 'only'. Reading it as a real negation ('I don't have ten euros') is the classic trap.",
+    "examiner_note": "Suppressed: the breadcrumb 'non ... che = only' would hand over that che means solo, which is the recognition being tested.",
+    "version": 1
+  },
+  {
+    "external_id": "neg_restr_02",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "restrictive",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "prompt": "Riscrivi con non ... che: 'Bevo solo acqua.' → '____ acqua.'",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.restrictive",
+        "label": "non ... che = only",
+        "any_phrases": [
+          {
+            "phrase": "non bevo che",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "non bevo",
+            "match_at": "word",
+            "note": "without che this becomes a real negation ('I don't drink water'); che is what turns it into 'only'"
+          },
+          {
+            "phrase": "bevo che",
+            "match_at": "word",
+            "note": "the frame needs non: non bevo che acqua"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'I only drink water': Non bevo che acqua. To build 'only' with this frame, wrap non ... che around the verb. Drop the che and you have flipped the meaning to a plain negative.",
+    "version": 1
+  },
+  {
+    "external_id": "neg_restr_03",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "restrictive",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "prompt": "Riscrivi con non ... che: 'Parla solo italiano.' → '____ italiano.'",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.restrictive",
+        "label": "non ... che = only",
+        "any_phrases": [
+          {
+            "phrase": "non parla che",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "non parla",
+            "match_at": "word",
+            "note": "without che this says 'doesn't speak Italian'; che makes it 'speaks only Italian'"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'He only speaks Italian': Non parla che italiano. Same restrictive frame; the che is load-bearing for the 'only' meaning.",
+    "version": 1
+  },
+  {
+    "external_id": "neg_restr_04",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "restrictive",
+    "difficulty": 4,
+    "cefr_level_target": "C1",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "prompt": "Vero o falso: in 'Non fa che piangere', la persona non piange. (vero/falso)",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.restrictive",
+        "label": "non ... che = only (recognition)",
+        "any_phrases": [
+          {
+            "phrase": "falso",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "vero",
+            "match_at": "word",
+            "note": "non fa che piangere means 'does nothing but cry', i.e. cries constantly, so 'she doesn't cry' is false"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "False. 'Non fa che piangere' = 'she does nothing but cry' (she cries all the time). non ... che is restrictive ('only / nothing but'), not a real negation, so the person very much does cry.",
+    "examiner_note": "Suppressed recognition item: the breadcrumb naming 'only' would give away that this is not a real negation.",
+    "version": 1
+  },
+  {
+    "external_id": "neg_finche_01",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "pleonastic.finche_flip",
+    "difficulty": 4,
+    "cefr_level_target": "C1",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "prompt": "'Aspetto qui finché non arrivi.' Il 'non' è una vera negazione? (sì/no)",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.pleonastic.finche_flip",
+        "label": "finché non (pleonastic)",
+        "any_phrases": [
+          {
+            "phrase": "no",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "sì",
+            "match_at": "word",
+            "note": "after finché the non is pleonastic: it does not negate. The sentence means 'I'll wait here until you arrive'"
+          },
+          {
+            "phrase": "si",
+            "match_at": "word",
+            "note": "see above: the answer is no"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "No. 'Aspetto qui finché non arrivi' = 'I'll wait here until you arrive.' After finché the non is pleonastic (empty): it marks the boundary point in time, it does not make the clause negative. 'Until you don't arrive' is a mistranslation.",
+    "examiner_note": "Suppressed discrimination: naming the pleonastic-non contrast pre-answer tips the classification.",
+    "version": 1
+  },
+  {
+    "external_id": "neg_finche_02",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "pleonastic.finche_flip",
+    "difficulty": 4,
+    "cefr_level_target": "C1",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "prompt": "'Studiavo finché mi sono addormentato' e 'Studiavo finché non mi sono addormentato' hanno lo stesso significato? (sì/no)",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.pleonastic.finche_flip",
+        "label": "finché (non) optional under 'until'",
+        "any_phrases": [
+          {
+            "phrase": "sì",
+            "match_at": "word"
+          },
+          {
+            "phrase": "si",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "no",
+            "match_at": "word",
+            "note": "under the 'until' reading the non is optional and changes nothing: both mean 'I studied until I fell asleep'"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "Yes. Both mean 'I studied until I fell asleep.' In the 'until' reading, the pleonastic non after finché is optional and carries no meaning, so adding or dropping it leaves the sentence identical.",
+    "examiner_note": "Suppressed discrimination.",
+    "version": 1
+  },
+  {
+    "external_id": "neg_finche_03",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "pleonastic.finche_flip",
+    "difficulty": 5,
+    "cefr_level_target": "C1",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "prompt": "Quale frase dice che stava bene PRIMA di trasferirsi a Roma? A: 'Sono stato bene finché ho abitato a Roma.' B: 'Sono stato bene finché non ho abitato a Roma.' (A/B)",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.pleonastic.finche_flip",
+        "label": "finché vs finché non meaning flip",
+        "any_phrases": [
+          {
+            "phrase": "B",
+            "match_at": "word"
+          },
+          {
+            "phrase": "b",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "A",
+            "match_at": "word",
+            "note": "A ('finché ho abitato') means he was well AS LONG AS he lived in Rome; adding non flips it to 'UNTIL he lived in Rome', i.e. before moving there"
+          },
+          {
+            "phrase": "a",
+            "match_at": "word",
+            "note": "see above: the answer is B"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "B. Here two readings collide. 'finché ho abitato a Roma' = 'as long as I lived in Rome' (well DURING). Add non and it flips: 'finché non ho abitato a Roma' = 'until I lived in Rome' (well BEFORE moving). So the 'before' meaning is B.",
+    "examiner_note": "The hard truth-condition flip: the same finché takes opposite meanings with vs without non under the 'as long as' reading. Suppressed.",
+    "version": 1
+  },
+  {
+    "external_id": "neg_ameno_01",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "pleonastic.a_meno_che",
+    "difficulty": 4,
+    "cefr_level_target": "C1",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "prompt": "Completa (unless it rains): 'Vengo, a meno che ____.' (piovere)",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.pleonastic.a_meno_che",
+        "label": "a meno che non + subjunctive",
+        "any_phrases": [
+          {
+            "phrase": "non piova",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "piova",
+            "match_at": "word",
+            "note": "a meno che takes a pleonastic non before the verb: a meno che non piova"
+          },
+          {
+            "phrase": "non piove",
+            "match_at": "word",
+            "note": "the clause needs the subjunctive piova, not the indicative piove"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "piovere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "to rain - piovere",
+            "bucket": "vocabulary.it.piovere.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'I'll come, unless it rains': Vengo, a meno che non piova. a meno che carries a pleonastic non (it does NOT mean 'unless it does not rain') and governs the subjunctive, so piova, not piove.",
+    "examiner_note": "Primary diagnostic is the pleonastic non; the subjunctive form is a prerequisite skill (cross-ref verb_form.congiuntivo). Bundled in one markpoint because the answer is a fused two-word frame; flagged in coverage.",
+    "version": 1
+  },
+  {
+    "external_id": "neg_ameno_02",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "pleonastic.a_meno_che",
+    "difficulty": 4,
+    "cefr_level_target": "C1",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "prompt": "Completa (unless you're busy): 'Ci vediamo alle otto, a meno che tu ____ occupato.' (essere)",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.pleonastic.a_meno_che",
+        "label": "a meno che non + subjunctive",
+        "any_phrases": [
+          {
+            "phrase": "non sia",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "sia",
+            "match_at": "word",
+            "note": "a meno che needs the pleonastic non: a meno che tu non sia occupato"
+          },
+          {
+            "phrase": "non sei",
+            "match_at": "word",
+            "note": "subjunctive sia is required after a meno che, not the indicative sei"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'We'll meet at eight, unless you're busy': ...a meno che tu non sia occupato. Again the non is pleonastic and the verb is subjunctive (sia).",
+    "version": 1
+  },
+  {
+    "external_id": "neg_ameno_03",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "pleonastic.a_meno_che",
+    "difficulty": 5,
+    "cefr_level_target": "C1",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "prompt": "Aggiungi il 'non' pleonastico dove va: 'Il film era più bello di quanto ____ immaginassi.'",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.pleonastic.a_meno_che",
+        "label": "comparative pleonastic non",
+        "any_phrases": [
+          {
+            "phrase": "non",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": []
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'The film was better than I imagined': Il film era più bello di quanto non immaginassi. In a comparative with di quanto + subjunctive, Italian can insert a pleonastic non that does not negate: 'than I imagined', not 'than I did not imagine'.",
+    "examiner_note": "Single-word answer 'non', word-anchored (crit 18: non would otherwise embed in nonna/nonostante). The comparative pleonastic shares the a_meno_che leaf per the tree.",
+    "version": 1
+  },
+  {
+    "external_id": "neg_mica_01",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "mica",
+    "difficulty": 4,
+    "cefr_level_target": "C1",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "prompt": "In 'Mica sono stupida!', 'mica' vale come...? A) non (Non sono affatto stupida) B) forse (A/B)",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.mica",
+        "label": "preverbal mica replaces non",
+        "any_phrases": [
+          {
+            "phrase": "A",
+            "match_at": "word"
+          },
+          {
+            "phrase": "a",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "B",
+            "match_at": "word",
+            "note": "before the verb, mica replaces non and negates emphatically: 'Mica sono stupida' = 'I'm not stupid at all'"
+          },
+          {
+            "phrase": "b",
+            "match_at": "word",
+            "note": "see above: the answer is A"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "A. Placed before the verb, mica stands in for non and negates emphatically: 'Mica sono stupida!' = 'Non sono affatto stupida!' ('I'm not stupid at all!'). It is colloquial reinforcement, not a maybe.",
+    "examiner_note": "Suppressed: the breadcrumb would name the position-meaning rule under test.",
+    "version": 1
+  },
+  {
+    "external_id": "neg_mica_02",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "mica",
+    "difficulty": 5,
+    "cefr_level_target": "C1",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "prompt": "'Mica hai visto mia madre?' Chi parla sta...? A) chiedendo con esitazione (per caso l'hai vista?) B) negando con forza (A/B)",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.mica",
+        "label": "mica in a question (supposition)",
+        "any_phrases": [
+          {
+            "phrase": "A",
+            "match_at": "word"
+          },
+          {
+            "phrase": "a",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "B",
+            "match_at": "word",
+            "note": "in a question mica softens to a tentative supposition: 'You haven't by any chance seen my mother?'"
+          },
+          {
+            "phrase": "b",
+            "match_at": "word",
+            "note": "see above: the answer is A"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "A. In a question, mica softens the ask into a tentative supposition: 'Mica hai visto mia madre?' = 'You haven't by any chance seen my mother?' (roughly per caso). It is not a forceful denial here.",
+    "examiner_note": "Suppressed; third of mica's three position-meaning pairings.",
+    "version": 1
+  },
+  {
+    "external_id": "neg_mica_03",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "mica",
+    "difficulty": 4,
+    "cefr_level_target": "C1",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "prompt": "Rafforza la negazione con 'mica' (I didn't say that!): 'Non ho detto questo.' → 'Non ho ____ detto questo.'",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.mica",
+        "label": "mica reinforcing non (postverbal)",
+        "any_phrases": [
+          {
+            "phrase": "mica",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": []
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'I didn't say that (at all)!': Non ho mica detto questo! After the verb (here after the auxiliary), mica reinforces the non already there, adding an indignant 'not at all'.",
+    "examiner_note": "Prompt already names mica, so the breadcrumb leaks nothing: left visible.",
+    "version": 1
+  },
+  {
+    "external_id": "neg_mica_04",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "mica",
+    "difficulty": 4,
+    "cefr_level_target": "C1",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "prompt": "Quale è corretto? A) Mica sono stupida. B) Non mica sono stupida. (A/B)",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.mica",
+        "label": "preverbal mica does not co-occur with non",
+        "any_phrases": [
+          {
+            "phrase": "A",
+            "match_at": "word"
+          },
+          {
+            "phrase": "a",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "B",
+            "match_at": "word",
+            "note": "when mica stands before the verb it REPLACES non; you don't use both, so 'Non mica sono' is wrong"
+          },
+          {
+            "phrase": "b",
+            "match_at": "word",
+            "note": "see above: the answer is A"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "A. Preverbal mica already replaces non, so you never stack them: 'Mica sono stupida' is right, 'Non mica sono stupida' is not. (After the verb it is the opposite: there mica joins non, as in Non ho mica detto.)",
+    "examiner_note": "Catches the common miss 'preverbal mica WITH non'. Suppressed.",
+    "version": 1
+  }
+]

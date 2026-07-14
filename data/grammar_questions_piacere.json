@@ -23,7 +23,8 @@
     "must_not_include": [
      "piace",
      "piacere"
-    ]
+    ],
+    "match_at": "word"
    }
   ],
   "vocab_help": [
@@ -66,7 +67,7 @@
     "must_not_include": [
      "piacciono"
     ],
-    "match_at": "end"
+    "match_at": "word"
    }
   ],
   "vocab_help": [
@@ -113,7 +114,8 @@
     "must_not_include": [
      "piace",
      "piacere"
-    ]
+    ],
+    "match_at": "word"
    }
   ],
   "vocab_help": [
@@ -156,7 +158,7 @@
     "must_not_include": [
      "piacciono"
     ],
-    "match_at": "end"
+    "match_at": "word"
    }
   ],
   "vocab_help": [
@@ -202,7 +204,8 @@
     "must_not_include": [
      "piace",
      "piacere"
-    ]
+    ],
+    "match_at": "word"
    }
   ],
   "vocab_help": [
@@ -223,6 +226,380 @@
   ],
   "explanation": "'A Sara piacciono le lingue straniere' means 'Sara likes foreign languages.' The liked thing 'le lingue straniere' is plural, so the verb is plural piacciono. Sara sits in the a-phrase (a Sara) as the experiencer and does not affect the verb.",
   "examiner_note": "'lingue' shown as the plural surface form; the gender aspect is safe here because agreement in this leaf tests number, not gender.",
+  "version": 1
+ },
+ {
+  "external_id": "pia_agree_01",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "usage.agreeing_responses",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "prompt": "'Mi piace il gelato.' '____!' (me too)",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.usage.agreeing_responses",
+    "label": "Anche a me, not anch'io",
+    "any_phrases": [
+     "anche a me"
+    ],
+    "must_not_include": [
+     "anch'io",
+     "anchio",
+     "anch io"
+    ],
+    "match_at": "word"
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "gelato",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "gelato - ice cream",
+      "bucket": "vocabulary.it.gelato.translation"
+     },
+     "gender": {
+      "reveal": "masculine (m)",
+      "bucket": "vocabulary.it.gelato.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "'Mi piace il gelato.' 'Anche a me!' means 'I like ice cream.' 'Me too!' Because the liker is an indirect object (a me), agreeing keeps the a-phrase: anche a me. English 'me too' tempts 'anch'io', but that would make you the thing being liked.",
+  "examiner_note": "'anch'io' is the English-shaped trap and is caught. Apostrophe and spaced variants included.",
+  "version": 1
+ },
+ {
+  "external_id": "pia_agree_02",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "usage.agreeing_responses",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "prompt": "'Non mi piacciono i cavoli.' '____.' (me neither)",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.usage.agreeing_responses",
+    "label": "Neanche a me",
+    "any_phrases": [
+     "neanche a me"
+    ],
+    "must_not_include": [
+     "neanch'io",
+     "anche a me",
+     "neanche io"
+    ],
+    "match_at": "word"
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "cavoli",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "cavolo - cabbage",
+      "bucket": "vocabulary.it.cavolo.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "'Non mi piacciono i cavoli.' 'Neanche a me.' means 'I don't like cabbage.' 'Me neither.' To agree with a negative, Italian uses neanche a me (or nemmeno a me), still keeping the a-phrase. Answering 'anche a me' would agree with the wrong polarity.",
+  "examiner_note": "Correct 'neanche a me' contains 'anche a me' as a substring, but positive-match-wins credits it first; 'anche a me' in must_not only fires on a bare (wrong-polarity) reply.",
+  "version": 1
+ },
+ {
+  "external_id": "pia_agree_03",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "usage.agreeing_responses",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "prompt": "'A me non piace il pesce.' '____!' (I do like it)",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.usage.agreeing_responses",
+    "label": "A me sì (contrast)",
+    "any_phrases": [
+     "a me sì"
+    ],
+    "must_not_include": [
+     "io sì",
+     "a me piace sì"
+    ],
+    "match_at": "word"
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "pesce",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "pesce - fish",
+      "bucket": "vocabulary.it.pesce.translation"
+     },
+     "gender": {
+      "reveal": "masculine (m)",
+      "bucket": "vocabulary.it.pesce.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "'A me non piace il pesce.' 'A me sì!' means 'I don't like fish.' 'I do!' To disagree, Italian keeps the a-phrase and adds sì or no: a me sì. The verb is not repeated; the stressed a me plus sì carries the whole reply.",
+  "version": 1
+ },
+ {
+  "external_id": "pia_agree_04",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "usage.agreeing_responses",
+  "difficulty": 1,
+  "cefr_level_target": "A2",
+  "prompt": "Mi piace molto la pizza. E ____? (and you? informal)",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.usage.agreeing_responses",
+    "label": "Turning the question back with a te",
+    "any_phrases": [
+     "a te"
+    ],
+    "must_not_include": [
+     "tu"
+    ],
+    "match_at": "word"
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "pizza",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "pizza - pizza",
+      "bucket": "vocabulary.it.pizza.translation"
+     },
+     "gender": {
+      "reveal": "feminine (f)",
+      "bucket": "vocabulary.it.pizza.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "'Mi piace molto la pizza. E a te?' means 'I really like pizza. And you?' To turn the question back, Italian uses the stressed a te, matching the a-phrase logic of the construction. 'E tu?' would treat 'you' as the subject, which piacere does not do.",
+  "version": 1
+ },
+ {
+  "external_id": "pia_aphr_01",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "form.experiencer_a_phrase",
+  "difficulty": 2,
+  "cefr_level_target": "A1",
+  "prompt": "____ piace il calcio. (Marco likes football)",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.form.experiencer_a_phrase",
+    "label": "Named experiencer takes a",
+    "any_phrases": [
+     "a marco"
+    ],
+    "must_not_include": [
+     "marco"
+    ],
+    "match_at": "word"
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "calcio",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "calcio - football",
+      "bucket": "vocabulary.it.calcio.translation"
+     },
+     "gender": {
+      "reveal": "masculine (m)",
+      "bucket": "vocabulary.it.calcio.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "'A Marco piace il calcio' means 'Marco likes football.' A named liker is marked with a: a Marco. Drop it and you get 'Marco piace il calcio', which flips the meaning to 'people like Marco', with Marco now the thing that pleases.",
+  "examiner_note": "must_not_include 'marco' fires only when the a is dropped (the correct 'a marco' is credited first by positive-match-wins, so it is never flagged).",
+  "version": 1
+ },
+ {
+  "external_id": "pia_aphr_02",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "form.experiencer_a_phrase",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "prompt": "A me piace il caffè, ____ no. (but not to her)",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.form.experiencer_a_phrase",
+    "label": "Stressed pronoun in the a-phrase",
+    "any_phrases": [
+     "a lei"
+    ],
+    "must_not_include": [
+     "le no",
+     "gli no"
+    ],
+    "match_at": "word"
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "caffè",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "caffè - coffee",
+      "bucket": "vocabulary.it.caffè.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "'A me piace il caffè, a lei no' means 'I like coffee, she doesn't.' For contrast, Italian uses the stressed a-phrase (a lei), not the small clitic le. The clitic cannot stand alone or carry this kind of emphasis.",
+  "version": 1
+ },
+ {
+  "external_id": "pia_aphr_03",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "form.experiencer_a_phrase",
+  "difficulty": 3,
+  "cefr_level_target": "A2",
+  "prompt": "Questo quadro? ____ molto! (say it with the stress on 'me', standard Italian)",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.form.experiencer_a_phrase",
+    "label": "Stressed a me (not doubled)",
+    "any_phrases": [
+     {
+      "phrase": "a me piace",
+      "credit": 1.0
+     },
+     {
+      "phrase": "a me mi piace",
+      "credit": 0.5,
+      "note": "heard everywhere in speech, but standard Italian uses either 'mi piace' or 'a me piace', not both at once"
+     }
+    ],
+    "must_not_include": [
+     "a me mi piaccio"
+    ],
+    "match_at": "word"
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "quadro",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "quadro - painting, picture",
+      "bucket": "vocabulary.it.quadro.translation"
+     },
+     "gender": {
+      "reveal": "masculine (m)",
+      "bucket": "vocabulary.it.quadro.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "'A me piace molto!' means 'I really like it!' To stress who is doing the liking, Italian fronts the stressed a-phrase: a me piace. The doubled 'a me mi piace' is everywhere in speech but redundant in careful Italian, so it takes half credit here. Plain 'mi piace' is the other standard option, without the extra emphasis this prompt asked for.",
+  "examiner_note": "Graded any_phrases carries the 0.5 doubling ruling. Plain 'mi piace' is deliberately not accepted because the prompt requests the stressed person form; noted in coverage. 'a me piace' is not a substring of 'a me mi piace', so the graded entry is reachable.",
+  "version": 1
+ },
+ {
+  "external_id": "pia_aphr_04",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "form.experiencer_a_phrase",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "prompt": "____ non piacciono i gatti. (my mother doesn't like cats)",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.form.experiencer_a_phrase",
+    "label": "Named experiencer takes a",
+    "any_phrases": [
+     "a mia madre"
+    ],
+    "must_not_include": [
+     "mia madre non"
+    ],
+    "match_at": "word"
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "gatti",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "gatto - cat",
+      "bucket": "vocabulary.it.gatto.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "'A mia madre non piacciono i gatti' means 'My mother doesn't like cats.' The named liker takes a: a mia madre. The negation non sits before the verb, and the verb is plural (piacciono) because the liked thing, the cats, is plural.",
   "version": 1
  },
  {
@@ -252,7 +629,8 @@
     "must_not_include": [
      "le",
      "la"
-    ]
+    ],
+    "match_at": "word"
    }
   ],
   "vocab_help": [
@@ -299,7 +677,8 @@
     "must_not_include": [
      "gli",
      "glieli"
-    ]
+    ],
+    "match_at": "word"
    }
   ],
   "vocab_help": [
@@ -342,7 +721,8 @@
     "must_not_include": [
      "ti",
      "vi"
-    ]
+    ],
+    "match_at": "word"
    }
   ],
   "vocab_help": [
@@ -389,7 +769,8 @@
     "must_not_include": [
      "ci",
      "gli"
-    ]
+    ],
+    "match_at": "word"
    }
   ],
   "vocab_help": [
@@ -409,6 +790,315 @@
    }
   ],
   "explanation": "'Vi piace la pizza?' means 'Do you all like pizza?' Talking to more than one person (voi), the experiencer clitic is vi, the 'to you all' form. Ci would mean 'to us', which is not who is being addressed here.",
+  "version": 1
+ },
+ {
+  "external_id": "pia_disp_01",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "usage.dispiacere",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "prompt": "'____, non posso venire.' (I'm sorry)",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.usage.dispiacere",
+    "label": "Mi dispiace = I'm sorry",
+    "any_phrases": [
+     "mi dispiace"
+    ],
+    "must_not_include": [
+     "mi scuse",
+     "sono spiacente di non"
+    ],
+    "match_at": "word"
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "venire",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "venire - to come",
+      "bucket": "vocabulary.it.venire.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "'Mi dispiace, non posso venire' means 'I'm sorry, I can't come.' Dispiacere looks like 'displease' but the everyday sense is 'to be sorry'. It runs on the same frame as piacere: literally 'it is displeasing to me', so mi dispiace.",
+  "version": 1
+ },
+ {
+  "external_id": "pia_disp_02",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "usage.dispiacere",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "prompt": "How to say 'I don't like fish': '____ il pesce.'",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.usage.dispiacere",
+    "label": "Dislike is non mi piace, not dispiacere",
+    "any_phrases": [
+     "non mi piace"
+    ],
+    "must_not_include": [
+     "dispiace"
+    ],
+    "match_at": "word"
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "pesce",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "pesce - fish",
+      "bucket": "vocabulary.it.pesce.translation"
+     },
+     "gender": {
+      "reveal": "masculine (m)",
+      "bucket": "vocabulary.it.pesce.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "'Non mi piace il pesce' means 'I don't like fish.' To say you dislike something, Italian negates piacere: non mi piace. Using 'mi dispiace il pesce' is the classic false-friend slip; that would say the fish makes you sorry.",
+  "examiner_note": "must_not_include 'dispiace' catches the false-friend production; 'dispiace' is not a substring of the correct 'non mi piace'.",
+  "version": 1
+ },
+ {
+  "external_id": "pia_disp_03",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "usage.dispiacere",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "prompt": "Ask politely 'Would you mind closing the window?': '____ chiudere la finestra?'",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.usage.dispiacere",
+    "label": "Ti dispiace + infinitive = polite request",
+    "any_phrases": [
+     "ti dispiace"
+    ],
+    "must_not_include": [
+     "ti piace"
+    ],
+    "match_at": "word"
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "finestra",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "finestra - window",
+      "bucket": "vocabulary.it.finestra.translation"
+     },
+     "gender": {
+      "reveal": "feminine (f)",
+      "bucket": "vocabulary.it.finestra.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "'Ti dispiace chiudere la finestra?' means 'Would you mind closing the window?' Ti dispiace plus an infinitive is a soft, polite request: literally 'does it bother you to...'. 'Ti piace chiudere la finestra?' would ask whether you enjoy closing windows.",
+  "version": 1
+ },
+ {
+  "external_id": "pia_fam_01",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "usage.family_verbs",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "prompt": "Say 'I miss you' to a friend: '____.'",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.usage.family_verbs",
+    "label": "Mi manchi (mancare flips like piacere)",
+    "any_phrases": [
+     "mi manchi"
+    ],
+    "must_not_include": [
+     "ti manco",
+     "mi manca",
+     "io manco"
+    ],
+    "match_at": "word"
+   }
+  ],
+  "vocab_help": [],
+  "explanation": "'Mi manchi' means 'I miss you.' Mancare works like piacere: 'you' are the subject (you are missing from me), so the verb is manchi and 'to me' is mi. The tempting 'ti manco' actually means 'you miss me', the opposite direction.",
+  "examiner_note": "mancare's direction flip is the sharpest test of the construction (dispatch hot-spot 8); 'ti manco' is caught.",
+  "version": 1
+ },
+ {
+  "external_id": "pia_fam_02",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "usage.family_verbs",
+  "difficulty": 2,
+  "cefr_level_target": "B1",
+  "prompt": "Per la torta ____ due uova. (I need two eggs)",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.usage.family_verbs",
+    "label": "Mi servono (servire, plural liked thing)",
+    "any_phrases": [
+     "mi servono"
+    ],
+    "must_not_include": [
+     "mi serve",
+     "io servo",
+     "ho bisogno"
+    ],
+    "match_at": "word"
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "uova",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "uovo - egg",
+      "bucket": "vocabulary.it.uovo.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "'Per la torta mi servono due uova' means 'For the cake I need two eggs.' Servire runs on the piacere frame: what is needed is the subject, so with a plural thing (due uova) the verb is plural servono, and 'to me' is mi. 'Mi serve' would be for a single thing.",
+  "version": 1
+ },
+ {
+  "external_id": "pia_fam_03",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "usage.family_verbs",
+  "difficulty": 2,
+  "cefr_level_target": "B1",
+  "prompt": "____ la storia romana? (are you interested in Roman history)",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.usage.family_verbs",
+    "label": "Ti interessa (interessare)",
+    "any_phrases": [
+     "ti interessa"
+    ],
+    "must_not_include": [
+     "tu interessi",
+     "sei interessata la",
+     "sei interessato la"
+    ],
+    "match_at": "word"
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "storia",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "storia - history, story",
+      "bucket": "vocabulary.it.storia.translation"
+     },
+     "gender": {
+      "reveal": "feminine (f)",
+      "bucket": "vocabulary.it.storia.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "'Ti interessa la storia romana?' means 'Are you interested in Roman history?' Interessare follows piacere: the topic is the subject (singular storia, so interessa), and the interested person is the indirect object ti. Italian frames interest as something a topic does to you.",
+  "version": 1
+ },
+ {
+  "external_id": "pia_fam_04",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "usage.family_verbs",
+  "difficulty": 2,
+  "cefr_level_target": "B1",
+  "prompt": "____ una buona idea. (it seems a good idea to me)",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.usage.family_verbs",
+    "label": "Mi sembra (sembrare)",
+    "any_phrases": [
+     "mi sembra"
+    ],
+    "must_not_include": [
+     "io sembro",
+     "mi sembrano"
+    ],
+    "match_at": "word"
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "idea",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "idea - idea",
+      "bucket": "vocabulary.it.idea.translation"
+     },
+     "gender": {
+      "reveal": "feminine (f)",
+      "bucket": "vocabulary.it.idea.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "'Mi sembra una buona idea' means 'It seems a good idea to me.' Sembrare uses the same frame: the thing that seems is the subject (una buona idea, singular, so sembra) and the person it seems to is the indirect object mi.",
   "version": 1
  },
  {
@@ -435,7 +1125,8 @@
     "must_not_include": [
      "piaccio",
      "io piace"
-    ]
+    ],
+    "match_at": "word"
    }
   ],
   "vocab_help": [
@@ -478,7 +1169,8 @@
     "must_not_include": [
      "piacciamo",
      "noi piac"
-    ]
+    ],
+    "match_at": "word"
    }
   ],
   "vocab_help": [
@@ -521,7 +1213,8 @@
     "must_not_include": [
      "piaci",
      "tu piace"
-    ]
+    ],
+    "match_at": "word"
    }
   ],
   "vocab_help": [
@@ -568,7 +1261,7 @@
     "must_not_include": [
      "piacciono"
     ],
-    "match_at": "end"
+    "match_at": "word"
    }
   ],
   "vocab_help": [
@@ -622,7 +1315,7 @@
      "piacciono",
      "piacciamo"
     ],
-    "match_at": "end"
+    "match_at": "word"
    }
   ],
   "vocab_help": [
@@ -664,7 +1357,7 @@
     "must_not_include": [
      "piacciono"
     ],
-    "match_at": "end"
+    "match_at": "word"
    }
   ],
   "vocab_help": [
@@ -712,12 +1405,16 @@
     "bucket": "piacere.form.past",
     "label": "Essere as auxiliary",
     "any_phrases": [
-     "è piaciut"
+     "è",
+     "sono"
     ],
     "must_not_include": [
-     "ha piaciut",
-     "ho piaciut"
-    ]
+     "ha",
+     "hanno",
+     "hai",
+     "ho"
+    ],
+    "match_at": "word"
    },
    {
     "order_index": 1,
@@ -731,7 +1428,8 @@
      "piaciuta",
      "piaciuti",
      "piaciute"
-    ]
+    ],
+    "match_at": "word"
    }
   ],
   "vocab_help": [
@@ -769,12 +1467,16 @@
     "bucket": "piacere.form.past",
     "label": "Essere as auxiliary",
     "any_phrases": [
-     "è piaciut"
+     "è",
+     "sono"
     ],
     "must_not_include": [
-     "ha piaciut",
-     "hai piaciut"
-    ]
+     "ha",
+     "hanno",
+     "hai",
+     "ho"
+    ],
+    "match_at": "word"
    },
    {
     "order_index": 1,
@@ -788,7 +1490,8 @@
      "piaciuto",
      "piaciute",
      "piaciuti"
-    ]
+    ],
+    "match_at": "word"
    }
   ],
   "vocab_help": [
@@ -826,13 +1529,16 @@
     "bucket": "piacere.form.past",
     "label": "Essere as auxiliary",
     "any_phrases": [
-     "sono piaciut"
+     "è",
+     "sono"
     ],
     "must_not_include": [
-     "ho piaciut",
-     "hanno piaciut",
-     "ha piaciut"
-    ]
+     "ha",
+     "hanno",
+     "hai",
+     "ho"
+    ],
+    "match_at": "word"
    },
    {
     "order_index": 1,
@@ -846,7 +1552,8 @@
      "piaciuti",
      "piaciuto",
      "piaciuta"
-    ]
+    ],
+    "match_at": "word"
    }
   ],
   "vocab_help": [
@@ -884,13 +1591,16 @@
     "bucket": "piacere.form.past",
     "label": "Essere as auxiliary",
     "any_phrases": [
-     "sono piaciut"
+     "è",
+     "sono"
     ],
     "must_not_include": [
-     "hai piaciut",
-     "ha piaciut",
-     "hanno piaciut"
-    ]
+     "ha",
+     "hanno",
+     "hai",
+     "ho"
+    ],
+    "match_at": "word"
    },
    {
     "order_index": 1,
@@ -904,7 +1614,8 @@
      "piaciute",
      "piaciuto",
      "piaciuta"
-    ]
+    ],
+    "match_at": "word"
    }
   ],
   "vocab_help": [
@@ -941,12 +1652,16 @@
     "bucket": "piacere.form.past",
     "label": "Essere as auxiliary",
     "any_phrases": [
-     "è piaciut"
+     "è",
+     "sono"
     ],
     "must_not_include": [
-     "ha piaciut",
-     "hai piaciut"
-    ]
+     "ha",
+     "hanno",
+     "hai",
+     "ho"
+    ],
+    "match_at": "word"
    },
    {
     "order_index": 1,
@@ -960,7 +1675,8 @@
      "piaciuta",
      "piaciuti",
      "piaciute"
-    ]
+    ],
+    "match_at": "word"
    }
   ],
   "vocab_help": [
@@ -977,6 +1693,105 @@
   ],
   "explanation": "'Il libro che ti ho regalato ti è piaciuto?' means 'Did you like the book I gave you?' Even next to 'ho regalato' (which uses avere), piacere keeps its own auxiliary essere: ti è piaciuto. The participle agrees with 'il libro', masculine singular, so piaciuto.",
   "examiner_note": "Adjacent avere (ho regalato) baits the avere miss on piacere; the essere markpoint catches 'ha piaciuto'.",
+  "version": 1
+ },
+ {
+  "external_id": "pia_people_01",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "usage.liking_people",
+  "difficulty": 2,
+  "cefr_level_target": "B1",
+  "prompt": "Say 'I like you' to a friend: '____.'",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.usage.liking_people",
+    "label": "Mi piaci (liking a person)",
+    "any_phrases": [
+     "mi piaci"
+    ],
+    "must_not_include": [
+     "mi piace",
+     "ti piaccio",
+     "mi piaccio"
+    ],
+    "match_at": "word"
+   }
+  ],
+  "vocab_help": [],
+  "explanation": "'Mi piaci' means 'I like you.' When the thing liked is a person, the verb conjugates for that person: 'you' are the subject, so piacere becomes piaci, and 'to me' is mi. 'Mi piace' (it pleases me) would be for a thing, and 'ti piaccio' flips it to 'you like me'.",
+  "examiner_note": "'mi piace' is not a substring of 'mi piaci' (differ at the last letter), so the correct answer is safe while the thing-form miss is caught.",
+  "version": 1
+ },
+ {
+  "external_id": "pia_people_02",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "usage.liking_people",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "prompt": "Ask 'Do you like me?' to a friend: '____?'",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.usage.liking_people",
+    "label": "Ti piaccio? (am I liked by you)",
+    "any_phrases": [
+     "ti piaccio"
+    ],
+    "must_not_include": [
+     "mi piaci",
+     "ti piace"
+    ],
+    "match_at": "word"
+   }
+  ],
+  "vocab_help": [],
+  "explanation": "'Ti piaccio?' means 'Do you like me?' Here 'I' am the thing liked, so the verb takes the io form piaccio ('I am pleasing'), and 'to you' is ti. It is the mirror of mi piaci: swap who likes and who is liked and both small pronouns and the verb ending change.",
+  "version": 1
+ },
+ {
+  "external_id": "pia_people_03",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "usage.liking_people",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "prompt": "'She likes you,' I reckon: 'Secondo me ____.'",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.usage.liking_people",
+    "label": "Le piaci (she likes you)",
+    "any_phrases": [
+     "le piaci"
+    ],
+    "must_not_include": [
+     "le piace",
+     "ti piace",
+     "la piaci"
+    ],
+    "match_at": "word"
+   }
+  ],
+  "vocab_help": [],
+  "explanation": "'Secondo me le piaci' means 'I think she likes you.' 'You' are what pleases her, so the verb is piaci (agreeing with you), and 'to her' is le. 'Le piace' would mean 'she likes it', pointing at a thing rather than at you.",
   "version": 1
  }
 ]

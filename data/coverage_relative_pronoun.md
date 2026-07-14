@@ -1,6 +1,6 @@
 # Coverage: Relative pronouns (`relative_pronoun`)
 
-Authored by RelativePronounAuthor against AUTHOR_BRIEF **Revision 13** (criterion 17 English glosses included throughout, terse-label rule respected) and DISPATCH_relative_pronoun.md. Counts below are grepped from the shipped files, not from memory of batches.
+Authored by RelativePronounAuthor against AUTHOR_BRIEF **Revision 13**, reconciled the same day to **Revision 16** (see 'Rev 15/16 reconciliation' below) (criterion 17 English glosses included throughout, terse-label rule respected) and DISPATCH_relative_pronoun.md. Counts below are grepped from the shipped files, not from memory of batches.
 
 ## Bucket-to-item counts
 
@@ -34,6 +34,17 @@ Engine semantics: `any_phrases` is checked BEFORE `must_not_include` (positive m
 
 Verified by a Python harness mirroring `norm()` + `occursAt()` + the marking order: 42 attack/regression cases (da cui, dalla quale, di cui, alla cui, delle cui, perché, full-clause attempts, plus spot-checks on untouched items), all passing.
 
+## Rev 15/16 reconciliation (same day; batch was authored against Rev 13)
+
+The brief moved twice after this batch shipped. Self-audit against both, all changes re-verified by the harness (66 regression cases + mechanical superstring sweep):
+
+- **Criterion 18 (superstring safety).** The plausible-attempt standard is wider than the first pass's must_not_include-based audit and surfaced two real exposures: `chi` embeds in a plausible near-right *chiunque* (now anchored; chiunque falls to a silent miss rather than credit or a harsh wrong-flag) and `dice` embeds rightward in *diceva/dicevano* (now anchored). Anchoring was then made uniform across the batch (bullet above).
+- **Criterion 10a fallout on `rel_chi_04`.** Auditing dice/diceva exposed a tense ambiguity: without a time frame, "Chi diceva queste cose..." was a legitimate reading the item did not accept. The prompt now carries *oggi* to pin the present, and the imperfect forms sit in must_not_include per 10b.
+- **Criterion 19 (accent as morpheme).** No answer in this batch has an accent-stripped twin that is a plausible alternative answer, so no `accent_load_bearing` flags. One alignment fix: the neuter items had been explicitly accepting `cio che` at full credit, which silently bypassed the engine's accent-fold rescue and lost the orthography-miss record. `cio che` is delisted; the folded path now credits it while recording the accent slip, per criterion 19's non-load-bearing verdict.
+- **Residual sweep output, by design:** word-anchored `che` still matches inside attempts like *tutto che* / *cosa che*, where che is a standalone word. Word-level containment is the same engine philosophy that credits full-clause answers; not blockable by anchoring and not treated as an exposure. Implausible-attempt containments (anche, checché, dovevo) are closed by the uniform anchoring.
+- **Rev 14 house techniques** were not retrofitted; noted for the next relative_pronoun dispatch.
+- The seven-batch retro-audit that accompanied Rev 15 did not include relative_pronoun (file mtimes show no external edits); this section is the equivalent audit, done author-side.
+
 ## Authoring decisions worth review
 
 - **dove / in cui / nella quale cross-credited at 1.0** on dove items (all standard for place); the leaf's diagnostic guard is che-for-place. Conversely the in-cui grammar item uses a manner antecedent (il modo) so dove is a catchable wrong answer, not a valid alternative.
@@ -42,7 +53,7 @@ Verified by a Python harness mirroring `norm()` + `occursAt()` + the marking ord
 - **Neuter items pick matrix verbs (piacere etc.) where `cosa` is ungrammatical**, so the indirect-question reading is a catchable miss, except the translation item, where `cosa hai detto` after capire is fully correct and is a positive reference.
 - **`rel_disc_cheilq_02` marks a stylistic miss**: il quale where plain che is natural is caught as wrong per the dispatch ("do not push learners toward il quale"), with the explanation stating explicitly that it is stiffness, not ungrammaticality.
 - **info_display: suppress on 40/42 items** (grepped, correcting an earlier from-memory count of 37/41): wherever the blank IS the relative, the breadcrumb names the answer, and all discrimination items per criterion 15. The two visible items are the chi singular-verb pair `rel_chi_03` / `rel_chi_04` (blank is the verb) — kept visible since the chi-label tempts nothing and restates what the sentence shows.
-- **13 phrases across 12 items carry `match_at: "word"`** (grepped): a cui ×2, alla quale ×2, i cui, il cui ×2, il quale, la cui, la quale ×3, le cui — every phrase with a containing wrong form, including the clarity items where della/alla quale are conceivable attempts.
+- **Uniform anchoring policy (supersedes the selective first pass): every any_phrase in the batch carries `match_at: "word"`** - 63 phrase entries across all 42 items (grepped) - plus the four short closed-class must_not_include forms che/cui/chi/cosa (44 entries), which could otherwise false-fire inside longer words. Word-anchoring a whole-word answer is zero-cost (it can never reject a legitimate word-bounded attempt) and keeps mechanical criterion-18 sweeps clean.
 
 ## Items flagged uncertain
 

@@ -1,0 +1,658 @@
+[
+  {
+    "external_id": "trans_neg_en_it_nonpos_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I don't understand.",
+    "reference_translations": [
+      {
+        "text": "Non capisco.",
+        "register": "neutral",
+        "notes": "Standard; subject io normally dropped."
+      },
+      {
+        "text": "Io non capisco.",
+        "register": "neutral",
+        "notes": "With subject pronoun for emphasis; non still directly before the verb."
+      }
+    ],
+    "topic": "negation",
+    "register": "neutral",
+    "difficulty": 1,
+    "cefr_level_target": "A1",
+    "required_buckets": [
+      "negation.core.non_position"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "understand",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to understand - capire",
+            "bucket": "vocabulary.it.capire.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Non goes directly before the verb: Non capisco. Italian usually drops the subject pronoun.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_neg_en_it_nonpos_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I don't like it.",
+    "reference_translations": [
+      {
+        "text": "Non mi piace.",
+        "register": "neutral",
+        "notes": "Standard; non precedes the clitic mi."
+      },
+      {
+        "text": "Mi non piace.",
+        "register": "neutral",
+        "notes": "WRONG: non must come before the clitic mi, not after.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "negation",
+    "register": "neutral",
+    "difficulty": 1,
+    "cefr_level_target": "A1",
+    "required_buckets": [
+      "negation.core.non_position"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "like",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to be pleasing - piacere",
+            "bucket": "vocabulary.it.piacere.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'I don't like it': Non mi piace. Non leads the verb group and sits before the small word mi, never after it.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_neg_en_it_concord_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I didn't see anyone at the station.",
+    "reference_translations": [
+      {
+        "text": "Non ho visto nessuno alla stazione.",
+        "register": "neutral",
+        "notes": "Standard; postverbal nessuno keeps non."
+      },
+      {
+        "text": "Ho visto nessuno alla stazione.",
+        "register": "neutral",
+        "notes": "WRONG: postverbal nessuno still needs non before the verb.",
+        "polarity": "negative"
+      },
+      {
+        "text": "Non ho visto qualcuno alla stazione.",
+        "register": "neutral",
+        "notes": "WRONG: 'anyone' after a negative is nessuno, not qualcuno.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "negation",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "negation.core.concord"
+    ],
+    "optional_buckets": [
+      "verb_form.passato_prossimo.participle_form.regular.are_ato"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "station",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "station - stazione",
+            "bucket": "vocabulary.it.stazione.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'I didn't see anyone': Non ho visto nessuno. Italian double-marks the negative (non + nessuno) where English uses one negative plus 'anyone'.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_neg_en_it_concord_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Nobody called me yesterday.",
+    "reference_translations": [
+      {
+        "text": "Nessuno mi ha chiamato ieri.",
+        "register": "neutral",
+        "notes": "Standard; preverbal nessuno, so no non."
+      },
+      {
+        "text": "Nessuno non mi ha chiamato ieri.",
+        "register": "neutral",
+        "notes": "WRONG: a preverbal negative drops non.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "negation",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "negation.core.concord"
+    ],
+    "optional_buckets": [
+      "verb_form.passato_prossimo"
+    ],
+    "vocab_help": [],
+    "explanation": "'Nobody called me': Nessuno mi ha chiamato. When the negative word leads the sentence it negates alone, so there is no non. Adding one (nessuno non...) is the over-correction.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_neg_en_it_concord_03",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I don't want anything.",
+    "reference_translations": [
+      {
+        "text": "Non voglio niente.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "Non voglio nulla.",
+        "register": "neutral",
+        "notes": "Equally correct; nulla = niente."
+      },
+      {
+        "text": "Non voglio qualcosa.",
+        "register": "neutral",
+        "notes": "WRONG: 'anything' after a negative is niente/nulla, not qualcosa.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "negation",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "negation.core.concord"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [],
+    "explanation": "'I don't want anything / I want nothing': Non voglio niente (or nulla). Keep non and use the negative word; don't calque 'anything' as qualcosa.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_neg_it_en_concord_04",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Non c'è niente da fare.",
+    "reference_translations": [
+      {
+        "text": "There's nothing to do.",
+        "register": "neutral",
+        "notes": "Standard; also 'There's nothing to be done.'"
+      },
+      {
+        "text": "There isn't anything to do.",
+        "register": "neutral",
+        "notes": "Natural alternative with 'anything'."
+      }
+    ],
+    "topic": "negation",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "negation.core.concord"
+    ],
+    "optional_buckets": [
+      "existential.form.negative"
+    ],
+    "vocab_help": [],
+    "explanation": "'Non c'e niente da fare' = 'There's nothing to do' (idiomatically also 'nothing to be done'). Italian keeps non alongside niente; English renders it with a single negative.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_neg_en_it_bip_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I never drink coffee in the evening.",
+    "reference_translations": [
+      {
+        "text": "Non bevo mai il caffè la sera.",
+        "register": "neutral",
+        "notes": "Standard non ... mai frame."
+      },
+      {
+        "text": "Mai bevo il caffè la sera.",
+        "register": "neutral",
+        "notes": "Marked/poetic order; the neutral sentence keeps non before the verb.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "negation",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "negation.core.bipartite"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "coffee",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "coffee - caffè",
+            "bucket": "vocabulary.it.caffè.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'I never drink coffee': Non bevo mai il caffè. 'Never' is the two-part frame non ... mai wrapped around the verb.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_neg_en_it_bip_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "He doesn't work here anymore.",
+    "reference_translations": [
+      {
+        "text": "Non lavora più qui.",
+        "register": "neutral",
+        "notes": "Standard; più = 'anymore / no longer'."
+      },
+      {
+        "text": "Non lavora ancora qui.",
+        "register": "neutral",
+        "notes": "WRONG: ancora means 'not yet', reversing the meaning.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "negation",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "negation.core.bipartite"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [],
+    "explanation": "'He doesn't work here anymore': Non lavora più qui. non ... più = 'no longer / not anymore'. Its partner non ... ancora ('not yet') would flip the sense.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_neg_en_it_bip_03",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Dinner isn't ready yet.",
+    "reference_translations": [
+      {
+        "text": "La cena non è ancora pronta.",
+        "register": "neutral",
+        "notes": "Standard; ancora = 'yet'."
+      },
+      {
+        "text": "La cena non è più pronta.",
+        "register": "neutral",
+        "notes": "WRONG: più would mean 'no longer ready'.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "negation",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "negation.core.bipartite"
+    ],
+    "optional_buckets": [
+      "adjective_agreement.o_class.feminine_singular"
+    ],
+    "vocab_help": [],
+    "explanation": "'Dinner isn't ready yet': La cena non è ancora pronta. non ... ancora = 'not yet'. Don't swap in più, which means 'no longer'.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_neg_it_en_bip_04",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Non fumo più.",
+    "reference_translations": [
+      {
+        "text": "I don't smoke anymore.",
+        "register": "neutral",
+        "notes": "Standard; più here = 'anymore', not 'more'."
+      },
+      {
+        "text": "I no longer smoke.",
+        "register": "neutral",
+        "notes": "Equally good."
+      },
+      {
+        "text": "I don't smoke more.",
+        "register": "neutral",
+        "notes": "WRONG: più in a negative frame means 'anymore / no longer', not comparative 'more'.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "negation",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "negation.core.bipartite"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [],
+    "explanation": "'Non fumo più' = 'I don't smoke anymore.' Inside the negative frame, più means 'anymore / no longer'; reading it as comparative 'more' is the trap.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_neg_en_it_resp_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I don't like fish. Me neither.",
+    "reference_translations": [
+      {
+        "text": "Non mi piace il pesce. Neanche a me.",
+        "register": "neutral",
+        "notes": "Standard; piacere echo takes a me."
+      },
+      {
+        "text": "Non mi piace il pesce. Nemmeno a me.",
+        "register": "neutral",
+        "notes": "nemmeno / neppure equally fine."
+      },
+      {
+        "text": "Non mi piace il pesce. Anche a me.",
+        "register": "neutral",
+        "notes": "WRONG: agreeing with a negative needs neanche a me, not anche a me.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "negation",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "negation.responses"
+    ],
+    "optional_buckets": [
+      "piacere.usage.agreeing_responses"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "fish",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "fish - pesce",
+            "bucket": "vocabulary.it.pesce.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Me neither' after a piacere sentence is Neanche a me (with a me, because piacere takes an indirect object). Echoing a negative with anche is the classic slip.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_neg_it_en_resp_02",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Non ci sono mai stato. — Neanch'io.",
+    "reference_translations": [
+      {
+        "text": "I've never been there. — Me neither.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "I have never been there. — Nor have I.",
+        "register": "neutral",
+        "notes": "More formal echo."
+      }
+    ],
+    "topic": "negation",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "negation.responses"
+    ],
+    "optional_buckets": [
+      "negation.core.bipartite"
+    ],
+    "vocab_help": [],
+    "explanation": "'Neanch'io' echoes a negative statement: 'Me neither / Nor have I.' The non ... mai in the first clause is the standard 'never' frame.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_neg_en_it_resp_03",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I don't have even one euro.",
+    "reference_translations": [
+      {
+        "text": "Non ho nemmeno un euro.",
+        "register": "neutral",
+        "notes": "Standard; nemmeno = 'not even'."
+      },
+      {
+        "text": "Non ho neanche un euro.",
+        "register": "neutral",
+        "notes": "neanche / neppure equally fine."
+      }
+    ],
+    "topic": "negation",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "negation.responses"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [],
+    "explanation": "'I don't have even one euro': Non ho nemmeno un euro. Used inside a clause, neanche/nemmeno/neppure mean 'not even' and keep non before the verb.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_neg_en_it_restr_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I only have ten euros.",
+    "reference_translations": [
+      {
+        "text": "Ho solo dieci euro.",
+        "register": "neutral",
+        "notes": "Most natural everyday rendering."
+      },
+      {
+        "text": "Non ho che dieci euro.",
+        "register": "neutral",
+        "notes": "Restrictive frame non ... che = 'only'; slightly more formal/literary."
+      },
+      {
+        "text": "Non ho dieci euro.",
+        "register": "neutral",
+        "notes": "WRONG: without che this is a real negation ('I don't have ten euros').",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "negation",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "negation.restrictive"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [],
+    "explanation": "'I only have ten euros' can be Ho solo dieci euro or, with the restrictive frame, Non ho che dieci euro. The che is what makes non ... che mean 'only' rather than a plain negative.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_neg_it_en_restr_02",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Non fa che lamentarsi.",
+    "reference_translations": [
+      {
+        "text": "He does nothing but complain.",
+        "register": "neutral",
+        "notes": "Standard reading of non ... che."
+      },
+      {
+        "text": "He only complains.",
+        "register": "neutral",
+        "notes": "Equally good; 'all he does is complain.'"
+      },
+      {
+        "text": "He doesn't complain.",
+        "register": "neutral",
+        "notes": "WRONG: misreads the restrictive non ... che as a real negation.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "negation",
+    "register": "neutral",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "negation.restrictive"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [],
+    "explanation": "'Non fa che lamentarsi' = 'He does nothing but complain / He only complains.' The frame non ... che is restrictive ('only'), so the person definitely does complain.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_neg_en_it_ameno_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I'll come tomorrow, unless it rains.",
+    "reference_translations": [
+      {
+        "text": "Vengo domani, a meno che non piova.",
+        "register": "neutral",
+        "notes": "Standard; pleonastic non + subjunctive."
+      },
+      {
+        "text": "Verrò domani, a meno che non piova.",
+        "register": "neutral",
+        "notes": "Future verrò equally fine."
+      },
+      {
+        "text": "Vengo domani, a meno che piova.",
+        "register": "neutral",
+        "notes": "WRONG: a meno che requires the pleonastic non.",
+        "polarity": "negative"
+      },
+      {
+        "text": "Vengo domani, a meno che non piove.",
+        "register": "neutral",
+        "notes": "WRONG: needs the subjunctive piova, not indicative piove.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "negation",
+    "register": "neutral",
+    "difficulty": 4,
+    "cefr_level_target": "C1",
+    "required_buckets": [
+      "negation.pleonastic.a_meno_che"
+    ],
+    "optional_buckets": [
+      "verb_form.congiuntivo"
+    ],
+    "vocab_help": [],
+    "explanation": "'Unless it rains': a meno che non piova. The non is pleonastic (it does not mean 'unless it does NOT rain'), and a meno che governs the subjunctive.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_neg_it_en_finche_01",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Aspetta qui finché non torno.",
+    "reference_translations": [
+      {
+        "text": "Wait here until I get back.",
+        "register": "neutral",
+        "notes": "Standard; the non is pleonastic."
+      },
+      {
+        "text": "Wait here until I come back.",
+        "register": "neutral",
+        "notes": "Equally good."
+      },
+      {
+        "text": "Wait here until I don't come back.",
+        "register": "neutral",
+        "notes": "WRONG: the pleonastic non after finché does not negate.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "negation",
+    "register": "neutral",
+    "difficulty": 4,
+    "cefr_level_target": "C1",
+    "required_buckets": [
+      "negation.pleonastic.finche_flip"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [],
+    "explanation": "'Aspetta qui finché non torno' = 'Wait here until I get back.' After finché the non is pleonastic and carries no negative meaning; 'until I don't return' is a mistranslation.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_neg_en_it_mica_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I didn't say that at all!",
+    "reference_translations": [
+      {
+        "text": "Non ho mica detto questo!",
+        "register": "neutral",
+        "notes": "Colloquial; mica reinforces non after the auxiliary."
+      },
+      {
+        "text": "Non l'ho mica detto!",
+        "register": "neutral",
+        "notes": "With the clitic; equally natural."
+      },
+      {
+        "text": "Non ho detto questo per niente!",
+        "register": "neutral",
+        "notes": "Alternative intensifier without mica."
+      }
+    ],
+    "topic": "negation",
+    "register": "colloquial",
+    "difficulty": 4,
+    "cefr_level_target": "C1",
+    "required_buckets": [
+      "negation.mica"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [],
+    "explanation": "'I didn't say that at all!': Non ho mica detto questo! After the verb (here after the auxiliary ho), mica reinforces non with a colloquial, slightly indignant 'at all'.",
+    "version": 1
+  }
+]

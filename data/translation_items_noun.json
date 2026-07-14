@@ -1,0 +1,1227 @@
+[
+  {
+    "external_id": "trans_noun_en_it_gen_reg_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "The house is big and the book is new.",
+    "reference_translations": [
+      {
+        "text": "La casa è grande e il libro è nuovo.",
+        "register": "neutral",
+        "notes": "Standard. grande is invariable in gender; nuovo agrees masculine with libro."
+      },
+      {
+        "text": "La casa è grande e il libro è nuovo, come vedi.",
+        "register": "neutral",
+        "notes": "Padding aside, same core."
+      },
+      {
+        "text": "Il casa è grande e la libro è nuovo.",
+        "register": "neutral",
+        "notes": "WRONG genders: casa is feminine (la), libro masculine (il).",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "noun",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A1",
+    "required_buckets": [
+      "noun.gender.regular"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "house",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "house - casa",
+            "bucket": "vocabulary.it.casa.translation"
+          }
+        }
+      },
+      {
+        "lemma": "book",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "book - libro",
+            "bucket": "vocabulary.it.libro.translation"
+          }
+        }
+      },
+      {
+        "lemma": "big",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "big - grande",
+            "bucket": "vocabulary.it.grande.translation"
+          }
+        }
+      },
+      {
+        "lemma": "new",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "new - nuovo",
+            "bucket": "vocabulary.it.nuovo.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'The house is big and the book is new' becomes 'La casa è grande e il libro è nuovo.' Casa is feminine (la casa) and libro masculine (il libro); the endings -a and -o set the default gender and the articles follow.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_noun_en_it_gen_e_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "The flower on the table is red.",
+    "reference_translations": [
+      {
+        "text": "Il fiore sul tavolo è rosso.",
+        "register": "neutral",
+        "notes": "Standard. fiore is masculine, so il fiore and rosso."
+      },
+      {
+        "text": "La fiore sul tavolo è rossa.",
+        "register": "neutral",
+        "notes": "WRONG: fiore is masculine, not feminine.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "noun",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "noun.gender.e_ending"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "flower",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "flower - fiore",
+            "bucket": "vocabulary.it.fiore.translation"
+          }
+        }
+      },
+      {
+        "lemma": "table",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "table - tavolo",
+            "bucket": "vocabulary.it.tavolo.translation"
+          }
+        }
+      },
+      {
+        "lemma": "red",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "red - rosso",
+            "bucket": "vocabulary.it.rosso.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'The flower on the table is red' becomes 'Il fiore sul tavolo è rosso.' Fiore ends in -e, and its gender must be learned: it is masculine, so il fiore and rosso (not la / rossa).",
+    "version": 1
+  },
+  {
+    "external_id": "trans_noun_it_en_gen_e_01",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "La notte è lunga in inverno.",
+    "reference_translations": [
+      {
+        "text": "The night is long in winter.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "Nights are long in winter.",
+        "register": "neutral",
+        "notes": "Acceptable generalising rendering."
+      }
+    ],
+    "topic": "noun",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "noun.gender.e_ending"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "notte",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "notte - night",
+            "bucket": "vocabulary.it.notte.translation"
+          }
+        }
+      },
+      {
+        "lemma": "lunga",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "lungo - long",
+            "bucket": "vocabulary.it.lunga.translation"
+          }
+        }
+      },
+      {
+        "lemma": "inverno",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "inverno - winter",
+            "bucket": "vocabulary.it.inverno.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'La notte è lunga in inverno' means 'The night is long in winter.' Notte is a feminine -e noun (la notte), and lunga shows the feminine agreement.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_noun_en_it_gen_irr_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "The problem is serious but the program works.",
+    "reference_translations": [
+      {
+        "text": "Il problema è serio ma il programma funziona.",
+        "register": "neutral",
+        "notes": "Standard. Both are masculine Greek -ma nouns."
+      },
+      {
+        "text": "La problema è seria ma la programma funziona.",
+        "register": "neutral",
+        "notes": "WRONG: problema and programma are masculine despite -a.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "noun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "noun.gender.irregular"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "problem",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "problem - problema",
+            "bucket": "vocabulary.it.problema.translation"
+          }
+        }
+      },
+      {
+        "lemma": "program",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "program - programma",
+            "bucket": "vocabulary.it.programma.translation"
+          }
+        }
+      },
+      {
+        "lemma": "serious",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "serious - serio",
+            "bucket": "vocabulary.it.serio.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'The problem is serious but the program works' becomes 'Il problema è serio ma il programma funziona.' Problema and programma end in -a but are masculine (the Greek -ma group), so il problema, il programma, and serio agrees masculine.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_noun_en_it_gen_irr_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I hurt my hand at work.",
+    "reference_translations": [
+      {
+        "text": "Mi sono fatto male alla mano al lavoro.",
+        "register": "neutral",
+        "notes": "Male speaker. mano is feminine, so a + la = alla mano."
+      },
+      {
+        "text": "Mi sono fatta male alla mano al lavoro.",
+        "register": "neutral",
+        "notes": "Female speaker; participle fatta."
+      },
+      {
+        "text": "Mi sono fatto male al mano al lavoro.",
+        "register": "neutral",
+        "notes": "WRONG: mano is feminine, so alla, not al.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "noun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "noun.gender.irregular"
+    ],
+    "optional_buckets": [
+      "preposition.articulated.alla"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "hand",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "hand - mano",
+            "bucket": "vocabulary.it.mano.translation"
+          }
+        }
+      },
+      {
+        "lemma": "work",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "work - lavoro",
+            "bucket": "vocabulary.it.lavoro.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'I hurt my hand at work' becomes 'Mi sono fatto/a male alla mano al lavoro.' Mano ends in -o but is feminine, so the articulated preposition is alla (a + la), not al; the feminine surfaces on the little words around the noun.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_noun_it_en_gen_irr_03",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Ti mando la foto domani.",
+    "reference_translations": [
+      {
+        "text": "I'll send you the photo tomorrow.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "I'm sending you the photo tomorrow.",
+        "register": "neutral",
+        "notes": "Present-for-future also fine."
+      }
+    ],
+    "topic": "noun",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "noun.gender.irregular"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "mando",
+        "language": "it",
+        "aspects": {
+          "infinitive": {
+            "reveal": "mandare - to send",
+            "bucket": "vocabulary.it.mandare.translation"
+          }
+        }
+      },
+      {
+        "lemma": "foto",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "foto - photo",
+            "bucket": "vocabulary.it.foto.translation"
+          }
+        }
+      },
+      {
+        "lemma": "domani",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "domani - tomorrow",
+            "bucket": "vocabulary.it.domani.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Ti mando la foto domani' means 'I'll send you the photo tomorrow.' Foto is feminine (short for fotografia), hence la foto even though it ends in -o.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_noun_en_it_plur_reg_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "The books are on the tables.",
+    "reference_translations": [
+      {
+        "text": "I libri sono sui tavoli.",
+        "register": "neutral",
+        "notes": "Standard. -o to -i on both nouns; su + i = sui."
+      },
+      {
+        "text": "I libros sono sui tavolos.",
+        "register": "neutral",
+        "notes": "WRONG: English -s; Italian is libri, tavoli.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "noun",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "noun.plural.regular"
+    ],
+    "optional_buckets": [
+      "preposition.articulated.sui"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "book",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "book - libro",
+            "bucket": "vocabulary.it.libro.translation"
+          }
+        }
+      },
+      {
+        "lemma": "table",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "table - tavolo",
+            "bucket": "vocabulary.it.tavolo.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'The books are on the tables' becomes 'I libri sono sui tavoli.' Both libro and tavolo are masculine -o nouns, so the plural is -i: libri, tavoli.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_noun_en_it_plur_reg_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "My sisters have three cats.",
+    "reference_translations": [
+      {
+        "text": "Le mie sorelle hanno tre gatti.",
+        "register": "neutral",
+        "notes": "Standard. sorella to sorelle (-a/-e), gatto to gatti (-o/-i)."
+      },
+      {
+        "text": "Le mie sorelli hanno tre gatte.",
+        "register": "neutral",
+        "notes": "WRONG: sorella is feminine, plural sorelle, not sorelli.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "noun",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "noun.plural.regular"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "sister",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "sister - sorella",
+            "bucket": "vocabulary.it.sorella.translation"
+          }
+        }
+      },
+      {
+        "lemma": "cat",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "cat - gatto",
+            "bucket": "vocabulary.it.gatto.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'My sisters have three cats' becomes 'Le mie sorelle hanno tre gatti.' Feminine sorella takes -e (sorelle); masculine gatto takes -i (gatti): the two regular endings side by side.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_noun_it_en_plur_reg_01",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Le case nuove sono care.",
+    "reference_translations": [
+      {
+        "text": "The new houses are expensive.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "New houses are expensive.",
+        "register": "neutral",
+        "notes": "Article-less generic reading, acceptable."
+      }
+    ],
+    "topic": "noun",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "noun.plural.regular"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "case",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "casa - houses",
+            "bucket": "vocabulary.it.case.translation"
+          }
+        }
+      },
+      {
+        "lemma": "nuove",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "nuovo - new",
+            "bucket": "vocabulary.it.nuove.translation"
+          }
+        }
+      },
+      {
+        "lemma": "care",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "caro - expensive",
+            "bucket": "vocabulary.it.care.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Le case nuove sono care' means 'The new houses are expensive.' Casa to case is the -a to -e plural, and nuove and care agree feminine plural.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_noun_en_it_plur_sp_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I bought two kilos of oranges.",
+    "reference_translations": [
+      {
+        "text": "Ho comprato due chili di arance.",
+        "register": "neutral",
+        "notes": "Standard. chilo to chili; arancia to arance (i dropped)."
+      },
+      {
+        "text": "Ho comprato due chili di arancie.",
+        "register": "neutral",
+        "notes": "WRONG: consonant before -cia, so the i is dropped: arance.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "noun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "noun.plural.spelling"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "comprato",
+        "language": "it",
+        "aspects": {
+          "infinitive": {
+            "reveal": "comprare - to buy",
+            "bucket": "vocabulary.it.comprare.translation"
+          }
+        }
+      },
+      {
+        "lemma": "kilo",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "kilo - chilo",
+            "bucket": "vocabulary.it.chilo.translation"
+          }
+        }
+      },
+      {
+        "lemma": "orange",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "orange - arancia",
+            "bucket": "vocabulary.it.arancia.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'I bought two kilos of oranges' becomes 'Ho comprato due chili di arance.' Arancia has a consonant before the -cia, so the plural drops the i: arance, not arancie.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_noun_en_it_plur_sp_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "My friends are Greek.",
+    "reference_translations": [
+      {
+        "text": "I miei amici sono greci.",
+        "register": "neutral",
+        "notes": "Standard. Both keep the soft sound: amici, greci."
+      },
+      {
+        "text": "I miei amichi sono grechi.",
+        "register": "neutral",
+        "notes": "WRONG: no h here; amico to amici, greco to greci.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "noun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "noun.plural.spelling"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "friend",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "friend - amico",
+            "bucket": "vocabulary.it.amico.translation"
+          }
+        }
+      },
+      {
+        "lemma": "Greek",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "Greek - greco",
+            "bucket": "vocabulary.it.greco.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'My friends are Greek' becomes 'I miei amici sono greci.' Amico and greco both take the soft -ci plural (no h): amici, greci.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_noun_it_en_plur_sp_03",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Le spiagge italiane sono belle.",
+    "reference_translations": [
+      {
+        "text": "Italian beaches are beautiful.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "The Italian beaches are beautiful.",
+        "register": "neutral",
+        "notes": "With article, also fine."
+      }
+    ],
+    "topic": "noun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "noun.plural.spelling"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "spiagge",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "spiaggia - beaches",
+            "bucket": "vocabulary.it.spiagge.translation"
+          }
+        }
+      },
+      {
+        "lemma": "italiane",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "italiano - Italian",
+            "bucket": "vocabulary.it.italiane.translation"
+          }
+        }
+      },
+      {
+        "lemma": "belle",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "bello - beautiful",
+            "bucket": "vocabulary.it.belle.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Le spiagge italiane sono belle' means 'Italian beaches are beautiful.' Spiaggia has a consonant before -gia, so the plural drops the i: spiagge.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_noun_en_it_plur_sp_04",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "The lakes in the mountains are cold.",
+    "reference_translations": [
+      {
+        "text": "I laghi in montagna sono freddi.",
+        "register": "neutral",
+        "notes": "Standard. lago to laghi keeps the hard g with h."
+      },
+      {
+        "text": "I lagi in montagna sono freddi.",
+        "register": "neutral",
+        "notes": "WRONG: without h the g goes soft; the plural is laghi.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "noun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "noun.plural.spelling"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "lake",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "lake - lago",
+            "bucket": "vocabulary.it.lago.translation"
+          }
+        }
+      },
+      {
+        "lemma": "mountain",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "mountain - montagna",
+            "bucket": "vocabulary.it.montagna.translation"
+          }
+        }
+      },
+      {
+        "lemma": "cold",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "cold - freddo",
+            "bucket": "vocabulary.it.freddo.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'The lakes in the mountains are cold' becomes 'I laghi in montagna sono freddi.' Lago adds an h to keep the hard g: laghi.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_noun_en_it_plur_inv_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Italian cities are beautiful.",
+    "reference_translations": [
+      {
+        "text": "Le città italiane sono belle.",
+        "register": "neutral",
+        "notes": "Standard. città is invariable; the article and adjective carry the plural."
+      },
+      {
+        "text": "Le cittàs italiane sono belle.",
+        "register": "neutral",
+        "notes": "WRONG: accented finals never add -s; città stays città.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "noun",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "noun.plural.invariable"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "city",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "city - città",
+            "bucket": "vocabulary.it.città.translation"
+          }
+        }
+      },
+      {
+        "lemma": "beautiful",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "beautiful - bello",
+            "bucket": "vocabulary.it.bello.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Italian cities are beautiful' becomes 'Le città italiane sono belle.' Città has a stressed accented final and does not change; only le and belle show the plural.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_noun_it_en_plur_inv_02",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Ho visto due bei film ieri sera.",
+    "reference_translations": [
+      {
+        "text": "I saw two good films last night.",
+        "register": "neutral",
+        "notes": "Standard. film is invariable in Italian."
+      },
+      {
+        "text": "I watched two good films last night.",
+        "register": "neutral",
+        "notes": "watch/see both fine."
+      }
+    ],
+    "topic": "noun",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "noun.plural.invariable"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "visto",
+        "language": "it",
+        "aspects": {
+          "infinitive": {
+            "reveal": "vedere - to see",
+            "bucket": "vocabulary.it.vedere.translation"
+          }
+        }
+      },
+      {
+        "lemma": "film",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "film - film",
+            "bucket": "vocabulary.it.film.translation"
+          }
+        }
+      },
+      {
+        "lemma": "bei",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "bello - nice",
+            "bucket": "vocabulary.it.bei.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Ho visto due bei film ieri sera' means 'I saw two good films last night.' Film is a borrowed word and stays the same in the plural: due film, not due filmi.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_noun_en_it_plur_irr_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "We ate eggs for breakfast.",
+    "reference_translations": [
+      {
+        "text": "Abbiamo mangiato le uova a colazione.",
+        "register": "neutral",
+        "notes": "Standard. uovo to uova (masculine to feminine plural)."
+      },
+      {
+        "text": "Abbiamo mangiato gli uovi a colazione.",
+        "register": "neutral",
+        "notes": "WRONG: the plural is le uova, not gli uovi.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "noun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "noun.plural.irregular"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "egg",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "egg - uovo",
+            "bucket": "vocabulary.it.uovo.translation"
+          }
+        }
+      },
+      {
+        "lemma": "breakfast",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "breakfast - colazione",
+            "bucket": "vocabulary.it.colazione.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'We ate eggs for breakfast' becomes 'Abbiamo mangiato le uova a colazione.' Uovo is masculine but its plural is the feminine uova, so le uova.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_noun_en_it_plur_irr_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "She has strong hands.",
+    "reference_translations": [
+      {
+        "text": "Ha le mani forti.",
+        "register": "neutral",
+        "notes": "Standard, subject dropped. mano to mani, feminine."
+      },
+      {
+        "text": "Lei ha le mani forti.",
+        "register": "neutral",
+        "notes": "Subject pronoun kept."
+      },
+      {
+        "text": "Ha i mani forti.",
+        "register": "neutral",
+        "notes": "WRONG: mani is feminine, so le mani, not i mani.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "noun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "noun.plural.irregular"
+    ],
+    "optional_buckets": [
+      "noun.gender.irregular"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "hand",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "hand - mano",
+            "bucket": "vocabulary.it.mano.translation"
+          }
+        }
+      },
+      {
+        "lemma": "strong",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "strong - forte",
+            "bucket": "vocabulary.it.forte.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'She has strong hands' becomes 'Ha le mani forti.' Mano is feminine and its plural is the irregular mani; the article le confirms the feminine.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_noun_it_en_plur_irr_03",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Mi fanno male le braccia.",
+    "reference_translations": [
+      {
+        "text": "My arms hurt.",
+        "register": "neutral",
+        "notes": "Standard, body sense."
+      },
+      {
+        "text": "My arms are hurting.",
+        "register": "neutral",
+        "notes": "Progressive, also fine."
+      }
+    ],
+    "topic": "noun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "noun.plural.irregular"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "braccia",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "braccio - arms",
+            "bucket": "vocabulary.it.braccia.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Mi fanno male le braccia' means 'My arms hurt.' For the body, braccio takes the feminine plural braccia (le braccia), distinct from the mechanical bracci.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_noun_en_it_plur_irr_04",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "There are many men in the square.",
+    "reference_translations": [
+      {
+        "text": "Ci sono molti uomini in piazza.",
+        "register": "neutral",
+        "notes": "Standard. uomo to uomini (suppletive)."
+      },
+      {
+        "text": "Ci sono molti uomi in piazza.",
+        "register": "neutral",
+        "notes": "WRONG: the plural is uomini, not uomi.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "noun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "noun.plural.irregular"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "man",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "man - uomo",
+            "bucket": "vocabulary.it.uomo.translation"
+          }
+        }
+      },
+      {
+        "lemma": "square",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "square - piazza",
+            "bucket": "vocabulary.it.piazza.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'There are many men in the square' becomes 'Ci sono molti uomini in piazza.' Uomo has the suppletive plural uomini, so molti uomini.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_noun_en_it_plur_comp_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I need two keyrings.",
+    "reference_translations": [
+      {
+        "text": "Mi servono due portachiavi.",
+        "register": "neutral",
+        "notes": "Standard. portachiavi is invariable (the noun part chiavi is already plural)."
+      },
+      {
+        "text": "Mi servono due portachiavii.",
+        "register": "neutral",
+        "notes": "WRONG: portachiavi cannot pluralise; it is invariable.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "noun",
+    "register": "neutral",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "noun.plural.compound"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "keyring",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "keyring - portachiavi",
+            "bucket": "vocabulary.it.portachiavi.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'I need two keyrings' becomes 'Mi servono due portachiavi.' Portachiavi (porta + chiavi) already contains a plural noun, so the compound is invariable: due portachiavi.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_noun_it_en_plur_sp_05",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Ho due amici a Roma.",
+    "reference_translations": [
+      {
+        "text": "I have two friends in Rome.",
+        "register": "neutral",
+        "notes": "Standard."
+      }
+    ],
+    "topic": "noun",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "noun.plural.spelling"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "amici",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "amico - friends",
+            "bucket": "vocabulary.it.amici.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Ho due amici a Roma' means 'I have two friends in Rome.' Amico takes the soft -ci plural, amici (no h).",
+    "version": 1
+  },
+  {
+    "external_id": "trans_noun_it_en_gen_e_02",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Il pane è fresco e la chiave è sul tavolo.",
+    "reference_translations": [
+      {
+        "text": "The bread is fresh and the key is on the table.",
+        "register": "neutral",
+        "notes": "Standard."
+      }
+    ],
+    "topic": "noun",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "noun.gender.e_ending"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "pane",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "pane - bread",
+            "bucket": "vocabulary.it.pane.translation"
+          }
+        }
+      },
+      {
+        "lemma": "chiave",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "chiave - key",
+            "bucket": "vocabulary.it.chiave.translation"
+          }
+        }
+      },
+      {
+        "lemma": "fresco",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "fresco - fresh",
+            "bucket": "vocabulary.it.fresco.translation"
+          }
+        }
+      },
+      {
+        "lemma": "tavolo",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "tavolo - table",
+            "bucket": "vocabulary.it.tavolo.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Il pane è fresco e la chiave è sul tavolo' means 'The bread is fresh and the key is on the table.' Two -e nouns of opposite gender: il pane (m) and la chiave (f), each shown by its article.",
+    "version": 1
+  }
+]

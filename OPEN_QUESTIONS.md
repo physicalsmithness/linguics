@@ -489,7 +489,7 @@ Why it matters:
 
 **Trigger**: each author chat, on next opening (whichever order Smith brings them up).
 
-## New grammar topics surfaced by the OIC deep drill (2026-07-14, awaiting Smith's pick)
+## New grammar topics surfaced by the OIC deep drill (RESOLVED 2026-07-14: all four scaffolded same-day; negation via NegationAuthor's ratified carve-out, then indefinite, connective, word_formation on Smith's "and the others" go-ahead. The deferred trio, cleft / tu-Lei register / consonanti doppie, stays deferred. Trees + dispatches live; see DECISIONS.)
 
 The deep exercise drill (REFERENCE_oic_exercise_drill.md) surfaced topics with no Linguics tree that the index-level pass had underweighted. Candidates, in the architect's priority order:
 

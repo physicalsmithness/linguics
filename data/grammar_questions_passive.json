@@ -1,0 +1,1478 @@
+[
+  {
+    "external_id": "pas_ess_01",
+    "language_code": "it",
+    "topic": "passive",
+    "subtopic": "formation.essere",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Riscrivi al passivo, al presente: 'Spediscono la lettera ogni giorno.' -> 'La lettera ____ ogni giorno.'",
+    "type": "short",
+    "marks": 2,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.formation.essere",
+        "label": "Essere/venire as passive auxiliary",
+        "any_phrases": [
+          "è",
+          "viene"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "ha",
+            "match_at": "word"
+          },
+          {
+            "phrase": "hanno",
+            "match_at": "word"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 1.0,
+        "bucket": "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_singular",
+        "label": "Agreement fem sing (-a)",
+        "any_phrases": [
+          "spedita"
+        ],
+        "must_not_include": [
+          "spedito",
+          "spedite",
+          "spediti"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "lettera",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "lettera - letter",
+            "bucket": "vocabulary.it.lettera.translation"
+          }
+        }
+      },
+      {
+        "lemma": "spediscono",
+        "language": "it",
+        "aspects": {
+          "infinitive": {
+            "reveal": "spedire - to send",
+            "bucket": "vocabulary.it.spedire.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'La lettera è spedita (o viene spedita) ogni giorno' means 'The letter is sent every day.' The passive turns the object into the subject: Italian builds it from essere (or the more dynamic venire) plus the past participle, which agrees with the new subject like an adjective. Lettera is feminine singular, so the participle takes -a: spedita. Working: è / viene spedita.",
+    "examiner_note": "Two markpoints per criterion 8: voice (essere-not-avere) and agreement are separate skills. Both è and viene take full credit (simple tense, no forcing context).",
+    "version": 1
+  },
+  {
+    "external_id": "pas_ess_02",
+    "language_code": "it",
+    "topic": "passive",
+    "subtopic": "formation.essere",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Riscrivi al passivo, al presente: 'Il cliente paga il conto.' -> 'Il conto ____ dal cliente.'",
+    "type": "short",
+    "marks": 1,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.formation.essere",
+        "label": "Essere/venire as passive auxiliary",
+        "any_phrases": [
+          "è pagato",
+          "viene pagato"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "ha",
+            "match_at": "word"
+          },
+          {
+            "phrase": "hanno",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "conto",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "conto - bill, account",
+            "bucket": "vocabulary.it.conto.translation"
+          }
+        }
+      },
+      {
+        "lemma": "cliente",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "cliente - customer",
+            "bucket": "vocabulary.it.cliente.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Il conto è pagato (o viene pagato) dal cliente' means 'The bill is paid by the customer.' The affected thing (il conto) becomes the subject and the verb becomes essere, or the more dynamic venire, plus the past participle. Conto is masculine singular, so the participle stays -o: pagato. The doer returns after da: dal cliente. Working: è / viene pagato.",
+    "examiner_note": "Single markpoint: masculine-singular agreement is the default -o, so agreement is not separately tested here; the point is essere/venire over avere. Breadcrumb only restates the named task (passivo), so left visible.",
+    "version": 1
+  },
+  {
+    "external_id": "pas_ess_03",
+    "language_code": "it",
+    "topic": "passive",
+    "subtopic": "formation.essere",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Riscrivi al passivo, al presente: 'Puliscono le stanze ogni mattina.' -> 'Le stanze ____ ogni mattina.'",
+    "type": "short",
+    "marks": 2,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.formation.essere",
+        "label": "Essere/venire as passive auxiliary",
+        "any_phrases": [
+          "sono",
+          "vengono"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "ha",
+            "match_at": "word"
+          },
+          {
+            "phrase": "hanno",
+            "match_at": "word"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 1.0,
+        "bucket": "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_plural",
+        "label": "Agreement fem plural (-e)",
+        "any_phrases": [
+          "pulite"
+        ],
+        "must_not_include": [
+          "puliti",
+          "pulito",
+          "pulita"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "stanze",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "stanza - room",
+            "bucket": "vocabulary.it.stanza.translation"
+          }
+        }
+      },
+      {
+        "lemma": "puliscono",
+        "language": "it",
+        "aspects": {
+          "infinitive": {
+            "reveal": "pulire - to clean",
+            "bucket": "vocabulary.it.pulire.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Le stanze sono pulite (o vengono pulite) ogni mattina' means 'The rooms are cleaned every morning.' In the passive the subject is now le stanze, feminine plural, and the participle agrees with it like an adjective, taking -e: pulite. The finite verb is the plural essere (sono) or venire (vengono). Working: sono / vengono pulite.",
+    "examiner_note": "Voice markpoint accepts sono and vengono (both full credit). Agreement markpoint catches the masculine-default puliti and the singular forms.",
+    "version": 1
+  },
+  {
+    "external_id": "pas_ess_04",
+    "language_code": "it",
+    "topic": "passive",
+    "subtopic": "formation.essere",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Riscrivi al passivo, al passato prossimo: 'A Napoli hanno inventato la pizza.' -> 'La pizza ____ a Napoli.'",
+    "type": "short",
+    "marks": 2,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.formation.essere",
+        "label": "Essere as passive auxiliary (compound)",
+        "any_phrases": [
+          "è"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "ha",
+            "match_at": "word"
+          },
+          {
+            "phrase": "hanno",
+            "match_at": "word"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 1.0,
+        "bucket": "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_singular",
+        "label": "Double participle agreement fem sing",
+        "any_phrases": [
+          "stata inventata"
+        ],
+        "must_not_include": [
+          "stato inventato",
+          "stata inventato",
+          "stato inventata"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "pizza",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "pizza - pizza",
+            "bucket": "vocabulary.it.pizza.translation"
+          }
+        }
+      },
+      {
+        "lemma": "inventato",
+        "language": "it",
+        "aspects": {
+          "infinitive": {
+            "reveal": "inventare - to invent",
+            "bucket": "vocabulary.it.inventare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'La pizza è stata inventata a Napoli' means 'Pizza was invented in Naples.' In a compound tense the passive stacks two participles: essere itself becomes stato/stata, then the main participle follows, and both agree with the subject. Pizza is feminine singular, so both go to -a: è stata inventata. The avere of the active version disappears. Working: è stata inventata.",
+    "examiner_note": "Voice markpoint is the bare auxiliary è (present of essere), agreement markpoint is the whole participle stack so both stata and inventata must be feminine. must_not_include catches every mixed-gender combination.",
+    "version": 1
+  },
+  {
+    "external_id": "pas_ess_05",
+    "language_code": "it",
+    "topic": "passive",
+    "subtopic": "formation.essere",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Riscrivi al passivo, al passato prossimo: 'Hanno costruito le chiese nel Medioevo.' -> 'Le chiese ____ nel Medioevo.'",
+    "type": "short",
+    "marks": 2,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.formation.essere",
+        "label": "Essere as passive auxiliary (compound)",
+        "any_phrases": [
+          "sono"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "ha",
+            "match_at": "word"
+          },
+          {
+            "phrase": "hanno",
+            "match_at": "word"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 1.0,
+        "bucket": "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_plural",
+        "label": "Double participle agreement fem plural",
+        "any_phrases": [
+          "state costruite"
+        ],
+        "must_not_include": [
+          "stati costruiti",
+          "state costruiti",
+          "stati costruite",
+          "stato costruito"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "chiese",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "chiesa - church",
+            "bucket": "vocabulary.it.chiesa.translation"
+          }
+        }
+      },
+      {
+        "lemma": "costruito",
+        "language": "it",
+        "aspects": {
+          "infinitive": {
+            "reveal": "costruire - to build",
+            "bucket": "vocabulary.it.costruire.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Le chiese sono state costruite nel Medioevo' means 'The churches were built in the Middle Ages.' The compound passive stacks essere's own participle (state) before the main one (costruite), and both agree with the feminine-plural subject in -e. The finite auxiliary is the plural sono. Working: sono state costruite.",
+    "version": 1
+  },
+  {
+    "external_id": "pas_ess_06",
+    "language_code": "it",
+    "topic": "passive",
+    "subtopic": "formation.essere",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Riscrivi al passivo, al futuro: 'Costruiranno il ponte l'anno prossimo.' -> 'Il ponte ____ l'anno prossimo.'",
+    "type": "short",
+    "marks": 1,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.formation.essere",
+        "label": "Essere as passive auxiliary (future)",
+        "any_phrases": [
+          "sarà costruito",
+          "verrà costruito"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "avrà",
+            "match_at": "word"
+          },
+          "è costruito"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "ponte",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "ponte - bridge",
+            "bucket": "vocabulary.it.ponte.translation"
+          }
+        }
+      },
+      {
+        "lemma": "costruiranno",
+        "language": "it",
+        "aspects": {
+          "infinitive": {
+            "reveal": "costruire - to build",
+            "bucket": "vocabulary.it.costruire.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Il ponte sarà costruito (o verrà costruito) l'anno prossimo' means 'The bridge will be built next year.' The passive can sit in any tense: put essere (or venire) into the future and add the participle. Ponte is masculine singular, so the participle stays -o: sarà / verrà costruito. Working: sarà costruito.",
+    "examiner_note": "Tense pinned to future by 'l'anno prossimo' (criterion 10a); must_not_include catches the present 'è costruito' (wrong tense) and the avere future 'avrà'. Both sarà and verrà credited.",
+    "version": 1
+  },
+  {
+    "external_id": "pas_ess_07",
+    "language_code": "it",
+    "topic": "passive",
+    "subtopic": "formation.essere",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Riscrivi al passivo, all'imperfetto: 'Ogni domenica celebravano la messa in latino.' -> 'Ogni domenica la messa ____ in latino.'",
+    "type": "short",
+    "marks": 2,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.formation.essere",
+        "label": "Essere/venire as passive auxiliary (imperfect)",
+        "any_phrases": [
+          "era",
+          "veniva"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "aveva",
+            "match_at": "word"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 1.0,
+        "bucket": "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_singular",
+        "label": "Agreement fem sing (-a)",
+        "any_phrases": [
+          "celebrata"
+        ],
+        "must_not_include": [
+          "celebrato",
+          "celebrate",
+          "celebrati"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "messa",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "messa - mass",
+            "bucket": "vocabulary.it.messa.translation"
+          }
+        }
+      },
+      {
+        "lemma": "celebravano",
+        "language": "it",
+        "aspects": {
+          "infinitive": {
+            "reveal": "celebrare - to celebrate",
+            "bucket": "vocabulary.it.celebrare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Ogni domenica la messa era celebrata (o veniva celebrata) in latino' means 'Every Sunday mass was celebrated in Latin.' A repeated past action wants the imperfect, so the auxiliary goes to the imperfect: era or the dynamic veniva. Messa is feminine singular, so the participle is celebrata. Working: era / veniva celebrata.",
+    "examiner_note": "Habitual 'ogni domenica' pins the imperfect. veniva is idiomatic for a recurring process and is credited alongside era.",
+    "version": 1
+  },
+  {
+    "external_id": "pas_ess_08",
+    "language_code": "it",
+    "topic": "passive",
+    "subtopic": "formation.essere",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Riscrivi al passivo, al passato prossimo: 'Ieri hanno firmato i documenti.' -> 'Ieri i documenti ____.'",
+    "type": "short",
+    "marks": 2,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.formation.essere",
+        "label": "Essere as passive auxiliary (compound)",
+        "any_phrases": [
+          "sono"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "ha",
+            "match_at": "word"
+          },
+          {
+            "phrase": "hanno",
+            "match_at": "word"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 1.0,
+        "bucket": "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_plural",
+        "label": "Double participle agreement masc plural",
+        "any_phrases": [
+          "stati firmati"
+        ],
+        "must_not_include": [
+          "state firmate",
+          "stati firmate",
+          "state firmati",
+          "stato firmato"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "documenti",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "documento - document",
+            "bucket": "vocabulary.it.documento.translation"
+          }
+        }
+      },
+      {
+        "lemma": "firmato",
+        "language": "it",
+        "aspects": {
+          "infinitive": {
+            "reveal": "firmare - to sign",
+            "bucket": "vocabulary.it.firmare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Ieri i documenti sono stati firmati' means 'Yesterday the documents were signed.' In the compound passive both participles agree with the subject: documenti is masculine plural, so essere's participle and the main participle both take -i, stati firmati, after the plural auxiliary sono. Working: sono stati firmati.",
+    "version": 1
+  },
+  {
+    "external_id": "pas_ven_01",
+    "language_code": "it",
+    "topic": "passive",
+    "subtopic": "formation.venire",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Riscrivi al passivo, al presente: 'Fanno il pane ogni mattina.' -> 'Il pane ____ ogni mattina.'",
+    "type": "short",
+    "marks": 1,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.formation.venire",
+        "label": "Venire (or essere) as passive auxiliary",
+        "any_phrases": [
+          "viene fatto",
+          "è fatto"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "ha",
+            "match_at": "word"
+          },
+          {
+            "phrase": "fa",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "pane",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "pane - bread",
+            "bucket": "vocabulary.it.pane.translation"
+          }
+        }
+      },
+      {
+        "lemma": "fanno",
+        "language": "it",
+        "aspects": {
+          "infinitive": {
+            "reveal": "fare - to make, do",
+            "bucket": "vocabulary.it.fare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Il pane viene fatto ogni mattina' means 'Bread is made every morning.' In a simple tense the passive auxiliary can be venire instead of essere, and venire adds a sense of an action happening rather than a state: viene fatto (is made, gets made) over è fatto. Pane is masculine singular, so the participle stays -o. Working: viene / è fatto.",
+    "examiner_note": "A recurring-process frame slightly favours venire; per the dispatch ruling è fatto is not penalised and takes full credit.",
+    "version": 1
+  },
+  {
+    "external_id": "pas_ven_02",
+    "language_code": "it",
+    "topic": "passive",
+    "subtopic": "formation.venire",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Riscrivi al passivo, al passato prossimo: 'Ieri hanno arrestato il ladro.' -> 'Ieri il ladro ____.'",
+    "type": "short",
+    "marks": 1,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.formation.venire",
+        "label": "No compound passive with venire",
+        "any_phrases": [
+          "è stato arrestato",
+          "fu arrestato"
+        ],
+        "must_not_include": [
+          "è venuto arrestato",
+          "venuto arrestato",
+          {
+            "phrase": "ha",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "ladro",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "ladro - thief",
+            "bucket": "vocabulary.it.ladro.translation"
+          }
+        }
+      },
+      {
+        "lemma": "arrestato",
+        "language": "it",
+        "aspects": {
+          "infinitive": {
+            "reveal": "arrestare - to arrest",
+            "bucket": "vocabulary.it.arrestare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Ieri il ladro è stato arrestato' means 'Yesterday the thief was arrested.' Venire only works as the passive auxiliary in simple tenses. In a compound tense like the passato prossimo it is impossible: there is no 'è venuto arrestato'. You fall back to essere: è stato arrestato. Working: è stato arrestato.",
+    "examiner_note": "Tests the venire compound-tense restriction; the correct answer uses essere. Breadcrumb left visible because naming venire tempts exactly the catchable 'è venuto arrestato' error (leak-vs-trap, criterion 15). The passato-remoto 'fu arrestato' is also credited.",
+    "version": 1
+  },
+  {
+    "external_id": "pas_ven_03",
+    "language_code": "it",
+    "topic": "passive",
+    "subtopic": "formation.venire",
+    "difficulty": 5,
+    "cefr_level_target": "C1",
+    "prompt": "Riscrivi al passivo, al passato remoto (stile narrativo): 'Chiusero la porta alle otto.' -> 'La porta ____ alle otto.'",
+    "type": "short",
+    "marks": 2,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.formation.venire",
+        "label": "Venire/essere passive (simple past)",
+        "any_phrases": [
+          "venne",
+          "fu"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "ha",
+            "match_at": "word"
+          },
+          {
+            "phrase": "è",
+            "match_at": "word"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 1.0,
+        "bucket": "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_singular",
+        "label": "Agreement fem sing (-a)",
+        "any_phrases": [
+          "chiusa"
+        ],
+        "must_not_include": [
+          "chiuso",
+          "chiuse",
+          "chiusi"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "porta",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "porta - door",
+            "bucket": "vocabulary.it.porta.translation"
+          }
+        }
+      },
+      {
+        "lemma": "chiusero",
+        "language": "it",
+        "aspects": {
+          "infinitive": {
+            "reveal": "chiudere - to close",
+            "bucket": "vocabulary.it.chiudere.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'La porta venne chiusa (o fu chiusa) alle otto' means 'The door was closed at eight.' The passato remoto is a simple tense, so venire is available: venne chiusa, a shade more dynamic than the essere version fu chiusa. Porta is feminine singular, so the participle is chiusa. Working: venne / fu chiusa.",
+    "examiner_note": "Register cued as narrative (criterion 11) to license the passato remoto. Both venne and fu credited. must_not_include's bare 'è' catches a present-tense slip.",
+    "version": 1
+  },
+  {
+    "external_id": "pas_ven_04",
+    "language_code": "it",
+    "topic": "passive",
+    "subtopic": "formation.venire",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Completa con la forma dinamica (l'azione che si ripete, non lo stato): 'Il negozio ____ alle venti ogni sera.' (chiudere)",
+    "type": "short",
+    "marks": 1,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.formation.venire",
+        "label": "Venire for the action, not the state",
+        "any_phrases": [
+          "viene chiuso"
+        ],
+        "must_not_include": [
+          "è chiuso",
+          {
+            "phrase": "ha",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "negozio",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "negozio - shop",
+            "bucket": "vocabulary.it.negozio.translation"
+          }
+        }
+      },
+      {
+        "lemma": "chiudere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "chiudere - to close",
+            "bucket": "vocabulary.it.chiudere.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Il negozio viene chiuso alle venti ogni sera' means 'The shop is closed (gets closed) at eight every evening.' Here the meaning is a repeated action, someone closing the shop, not the resulting state. Venire captures the action (viene chiuso); è chiuso would describe the state of being shut, a different meaning. Working: viene chiuso.",
+    "examiner_note": "The prompt cues the dynamic-action reading in plain words (not the rule), so è chiuso is a meaning miss and sits in must_not_include with a note. Tests the venire/essere nuance (B2).",
+    "version": 1
+  },
+  {
+    "external_id": "pas_ven_05",
+    "language_code": "it",
+    "topic": "passive",
+    "subtopic": "formation.venire",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Riscrivi al passivo, al presente: 'Pagano le tasse ogni anno.' -> 'Le tasse ____ ogni anno.'",
+    "type": "short",
+    "marks": 2,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.formation.venire",
+        "label": "Venire/essere as passive auxiliary (plural)",
+        "any_phrases": [
+          "vengono",
+          "sono"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "ha",
+            "match_at": "word"
+          },
+          {
+            "phrase": "hanno",
+            "match_at": "word"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 1.0,
+        "bucket": "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_plural",
+        "label": "Agreement fem plural (-e)",
+        "any_phrases": [
+          "pagate"
+        ],
+        "must_not_include": [
+          "pagati",
+          "pagato",
+          "pagata"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "tasse",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "tassa - tax",
+            "bucket": "vocabulary.it.tassa.translation"
+          }
+        }
+      },
+      {
+        "lemma": "pagano",
+        "language": "it",
+        "aspects": {
+          "infinitive": {
+            "reveal": "pagare - to pay",
+            "bucket": "vocabulary.it.pagare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Le tasse vengono pagate (o sono pagate) ogni anno' means 'Taxes are paid every year.' The recurring-process sense makes venire natural, and the plural finite form is vengono. Tasse is feminine plural, so the participle is pagate. The essere version sono pagate is equally correct. Working: vengono / sono pagate.",
+    "version": 1
+  },
+  {
+    "external_id": "pas_and_01",
+    "language_code": "en",
+    "topic": "passive",
+    "subtopic": "formation.andare",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "'Questo modulo va compilato a mano' vuol dire: 'This form ____ filled in by hand.'",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.formation.andare",
+        "label": "andare + participle = obligation",
+        "any_phrases": [
+          "must be",
+          "has to be",
+          "needs to be",
+          "should be"
+        ],
+        "must_not_include": [
+          "goes",
+          "is going"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "modulo",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "modulo - form",
+            "bucket": "vocabulary.it.modulo.translation"
+          }
+        }
+      },
+      {
+        "lemma": "compilato",
+        "language": "it",
+        "aspects": {
+          "infinitive": {
+            "reveal": "compilare - to fill in",
+            "bucket": "vocabulary.it.compilare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Questo modulo va compilato a mano' means 'This form must be filled in by hand.' Andare followed by a past participle does not mean physical motion here: it expresses obligation, that something must or has to be done. So va compilato = must be filled in, not 'goes filled'. The reading to avoid is treating va as 'goes'.",
+    "examiner_note": "Recognition item (it->en): the answer is the English obligation phrasing. must_not_include catches the literal-motion misreading. Breadcrumb suppressed since the label states the answer (obligation).",
+    "version": 1
+  },
+  {
+    "external_id": "pas_and_02",
+    "language_code": "it",
+    "topic": "passive",
+    "subtopic": "formation.andare",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Completa esprimendo obbligo con andare (l'idea: devono essere prese): 'Le medicine ____ a stomaco pieno.' (prendere, con andare)",
+    "type": "short",
+    "marks": 2,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.formation.andare",
+        "label": "andare = obligation (vanno)",
+        "any_phrases": [
+          "vanno"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "sono",
+            "match_at": "word"
+          },
+          {
+            "phrase": "hanno",
+            "match_at": "word"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 1.0,
+        "bucket": "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_plural",
+        "label": "Agreement fem plural (-e)",
+        "any_phrases": [
+          "prese"
+        ],
+        "must_not_include": [
+          "presi",
+          "preso",
+          "presa"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "medicine",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "medicina - medicine",
+            "bucket": "vocabulary.it.medicina.translation"
+          }
+        }
+      },
+      {
+        "lemma": "prendere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "prendere - to take",
+            "bucket": "vocabulary.it.prendere.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Le medicine vanno prese a stomaco pieno' means 'The medicines must be taken on a full stomach.' Andare plus a participle expresses obligation, so vanno prese = must be taken. It agrees like any passive: medicine is feminine plural, giving prese, after the plural vanno. Working: vanno prese.",
+    "examiner_note": "Cue names the construction (andare) as an output form, which is allowed (criterion 13). The equally-correct 'devono essere prese' is a cue miss, not credited and deliberately not in must_not_include. Two markpoints: the obligation-auxiliary and the agreement.",
+    "version": 1
+  },
+  {
+    "external_id": "pas_and_03",
+    "language_code": "it",
+    "topic": "passive",
+    "subtopic": "formation.andare",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Completa esprimendo obbligo con andare: 'Il modulo ____ in stampatello.' (compilare, con andare)",
+    "type": "short",
+    "marks": 1,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.formation.andare",
+        "label": "andare = obligation (va)",
+        "any_phrases": [
+          "va compilato"
+        ],
+        "must_not_include": [
+          "è compilato",
+          {
+            "phrase": "deve",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "modulo",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "modulo - form",
+            "bucket": "vocabulary.it.modulo.translation"
+          }
+        }
+      },
+      {
+        "lemma": "compilato",
+        "language": "it",
+        "aspects": {
+          "infinitive": {
+            "reveal": "compilare - to fill in",
+            "bucket": "vocabulary.it.compilare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Il modulo va compilato in stampatello' means 'The form must be filled in in block capitals.' Andare plus the participle carries the sense of necessity: va compilato = must be filled in. Modulo is masculine singular, so the participle stays -o. Working: va compilato.",
+    "examiner_note": "must_not_include catches the state reading 'è compilato' (is filled in) and the periphrastic 'deve...' start, since the item asks specifically for the andare construction named in the cue.",
+    "version": 1
+  },
+  {
+    "external_id": "pas_and_04",
+    "language_code": "it",
+    "topic": "passive",
+    "subtopic": "formation.andare",
+    "difficulty": 5,
+    "cefr_level_target": "C1",
+    "prompt": "Completa con l'espressione di perdita: 'Il pacco ____ durante il trasloco.' (perdere)",
+    "type": "short",
+    "marks": 1,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.formation.andare",
+        "label": "andare perso = got lost",
+        "any_phrases": [
+          "è andato perso",
+          "andò perso",
+          "è andato perduto"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "ha",
+            "match_at": "word"
+          },
+          "è perso",
+          "è perduto"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "pacco",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "pacco - parcel",
+            "bucket": "vocabulary.it.pacco.translation"
+          }
+        }
+      },
+      {
+        "lemma": "perdere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "perdere - to lose",
+            "bucket": "vocabulary.it.perdere.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Il pacco è andato perso durante il trasloco' means 'The parcel got lost during the move.' With a small set of verbs (perdere, smarrire) andare plus the participle does not mean obligation but loss: andare perso = to get lost. It behaves like a real motion verb here, taking essere in the compound and agreeing (pacco masculine, andato perso). Working: è andato perso.",
+    "examiner_note": "This is the lexical loss sense of andare + participle, distinct from the obligation sense. must_not_include catches the plain state 'è perso' and the avere version. See bucket_suggestions: the andare leaf conflates obligation and loss.",
+    "version": 1
+  },
+  {
+    "external_id": "pas_and_05",
+    "language_code": "en",
+    "topic": "passive",
+    "subtopic": "formation.andare",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "'Questa lettera va spedita subito' vuol dire: 'This letter ____ sent immediately.'",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.formation.andare",
+        "label": "andare + participle = obligation",
+        "any_phrases": [
+          "must be",
+          "has to be",
+          "needs to be",
+          "should be"
+        ],
+        "must_not_include": [
+          "goes",
+          "is going",
+          "is being"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "lettera",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "lettera - letter",
+            "bucket": "vocabulary.it.lettera.translation"
+          }
+        }
+      },
+      {
+        "lemma": "spedita",
+        "language": "it",
+        "aspects": {
+          "infinitive": {
+            "reveal": "spedire - to send",
+            "bucket": "vocabulary.it.spedire.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Questa lettera va spedita subito' means 'This letter must be sent immediately.' Again andare plus a participle is obligation, not motion: va spedita = must be sent, not 'goes sent'. Reading va as 'goes' is the trap this item guards against.",
+    "examiner_note": "Second recognition angle (it->en) with a different verb; must_not_include catches both the 'goes' motion reading and a mistaken progressive 'is being'.",
+    "version": 1
+  },
+  {
+    "external_id": "pas_agt_01",
+    "language_code": "it",
+    "topic": "passive",
+    "subtopic": "formation.agent_da",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Completa con la preposizione dell'agente: 'Il ritratto è stato dipinto ____ Caravaggio.'",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.formation.agent_da",
+        "label": "Agent introduced by da",
+        "any_phrases": [
+          {
+            "phrase": "da",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "di",
+            "match_at": "word"
+          },
+          {
+            "phrase": "per",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "ritratto",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "ritratto - portrait",
+            "bucket": "vocabulary.it.ritratto.translation"
+          }
+        }
+      },
+      {
+        "lemma": "dipinto",
+        "language": "it",
+        "aspects": {
+          "infinitive": {
+            "reveal": "dipingere - to paint",
+            "bucket": "vocabulary.it.dipingere.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Il ritratto è stato dipinto da Caravaggio' means 'The portrait was painted by Caravaggio.' When the passive still names who did the action, that doer is the agent, and Italian introduces it with da, never di (which would sound possessive, 'of Caravaggio') and never per. Working: da Caravaggio.",
+    "examiner_note": "'da' word-anchored so it does not substring-match inside dal/dalla. must_not_include catches the di calque and the per calque (from English 'by' via Spanish por). Breadcrumb suppressed: the label names da, which is the answer.",
+    "version": 1
+  },
+  {
+    "external_id": "pas_agt_02",
+    "language_code": "it",
+    "topic": "passive",
+    "subtopic": "formation.agent_da",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Completa con la preposizione articolata dell'agente: 'La decisione è stata presa ____ direttore.'",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.formation.agent_da",
+        "label": "Agent da + article (dal)",
+        "any_phrases": [
+          {
+            "phrase": "dal",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "del",
+            "match_at": "word"
+          },
+          {
+            "phrase": "dallo",
+            "match_at": "word"
+          },
+          {
+            "phrase": "per",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "decisione",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "decisione - decision",
+            "bucket": "vocabulary.it.decisione.translation"
+          }
+        }
+      },
+      {
+        "lemma": "direttore",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "direttore - director",
+            "bucket": "vocabulary.it.direttore.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'La decisione è stata presa dal direttore' means 'The decision was taken by the director.' When the agent has an article, da fuses with it: da + il = dal. The trap is del (di + il), which reads as 'of the director', a possessive, not the doer. Working: dal direttore.",
+    "examiner_note": "Tests the da + article contraction. must_not_include catches del (the di calque) and dallo (wrong contraction before a plain consonant).",
+    "version": 1
+  },
+  {
+    "external_id": "pas_agt_03",
+    "language_code": "it",
+    "topic": "passive",
+    "subtopic": "formation.agent_da",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Completa con la preposizione articolata dell'agente: 'Il progetto sarà approvato ____ commissione.'",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.formation.agent_da",
+        "label": "Agent da + article (dalla)",
+        "any_phrases": [
+          {
+            "phrase": "dalla",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "della",
+            "match_at": "word"
+          },
+          {
+            "phrase": "per la",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "progetto",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "progetto - project",
+            "bucket": "vocabulary.it.progetto.translation"
+          }
+        }
+      },
+      {
+        "lemma": "approvato",
+        "language": "it",
+        "aspects": {
+          "infinitive": {
+            "reveal": "approvare - to approve",
+            "bucket": "vocabulary.it.approvare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Il progetto sarà approvato dalla commissione' means 'The project will be approved by the committee.' Da fuses with a feminine article too: da + la = dalla. The possessive-looking della (di + la) is the miss to avoid; it would mean 'of the committee'. Working: dalla commissione.",
+    "examiner_note": "Feminine contraction. must_not_include catches della (di calque) and the per calque.",
+    "version": 1
+  },
+  {
+    "external_id": "pas_agt_04",
+    "language_code": "it",
+    "topic": "passive",
+    "subtopic": "formation.agent_da",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "prompt": "Completa con la preposizione dell'agente: 'I fiori sono stati mandati ____ Marco.'",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.formation.agent_da",
+        "label": "Agent introduced by da",
+        "any_phrases": [
+          {
+            "phrase": "da",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "per",
+            "match_at": "word"
+          },
+          {
+            "phrase": "di",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "fiori",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "fiore - flower",
+            "bucket": "vocabulary.it.fiore.translation"
+          }
+        }
+      },
+      {
+        "lemma": "mandati",
+        "language": "it",
+        "aspects": {
+          "infinitive": {
+            "reveal": "mandare - to send",
+            "bucket": "vocabulary.it.mandare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'I fiori sono stati mandati da Marco' means 'The flowers were sent by Marco.' The agent is introduced by da. English 'by' tempts per (reinforced by Spanish por), but per would mean 'for Marco' or 'through Marco', not the sender. Working: da Marco.",
+    "examiner_note": "Foregrounds the per calque as the primary trap; 'da' word-anchored. Lower band (A2) since the agent is a bare name with no contraction.",
+    "version": 1
+  },
+  {
+    "external_id": "pas_agt_05",
+    "language_code": "it",
+    "topic": "passive",
+    "subtopic": "formation.agent_da",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Completa con la preposizione articolata dell'agente: 'La legge è stata approvata ____ deputati.'",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.formation.agent_da",
+        "label": "Agent da + article (dai)",
+        "any_phrases": [
+          {
+            "phrase": "dai",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "dei",
+            "match_at": "word"
+          },
+          {
+            "phrase": "per i",
+            "match_at": "word"
+          },
+          {
+            "phrase": "da i",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "legge",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "legge - law",
+            "bucket": "vocabulary.it.legge.translation"
+          }
+        }
+      },
+      {
+        "lemma": "deputati",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "deputato - member of parliament",
+            "bucket": "vocabulary.it.deputato.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'La legge è stata approvata dai deputati' means 'The law was passed by the members of parliament.' Before a masculine plural, da + i = dai (written as one word, not da i). The possessive dei (di + i) is the miss to avoid. Working: dai deputati.",
+    "examiner_note": "Plural masculine contraction. must_not_include catches dei (di calque), the per calque, and the un-fused 'da i'.",
+    "version": 1
+  }
+]

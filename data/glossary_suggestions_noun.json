@@ -1,0 +1,21 @@
+{
+ "$comment": "Glossary terms used in noun explanations not yet in data/glossary.json. Project author (Architecture) reviews and merges into glossary.json; NounAuthor does not touch glossary.json directly. Checked against glossary.json v-current (108 terms): 'agreement', 'invariable', 'articulated preposition' already exist and are reused, not re-proposed.",
+ "version": 1,
+ "suggestions": {
+  "gender": {
+   "short": "Whether a noun is masculine or feminine. In Italian every noun has one, and it drives the article and any adjective around it: il libro (m), la casa (f).",
+   "long": "Gender is a fixed property of each noun, not a statement about meaning. The ending is a strong hint (-o usually masculine, -a usually feminine) but not a rule: -e nouns go either way and must be learned per word (il fiore, la notte), and there are outright exceptions (la mano, il problema). Gender matters because it is copied onto the words that accompany the noun: articles (il/la), adjectives (rosso/rossa), and past participles all agree with it.",
+   "needed_for": "The four-beat term in every noun.gender explanation; the whole gender sub-tree turns on it."
+  },
+  "suppletive plural": {
+   "short": "A plural whose stem changes, not just its ending: uomo becomes uomini, not 'uomi'.",
+   "long": "Most Italian plurals just swap the final vowel (libro/libri, casa/case). A suppletive plural instead changes the body of the word, so it cannot be derived by rule and has to be memorised. Uomo/uomini is the clearest case; the masculine-to-feminine switchers (uovo/uova, braccio/braccia, paio/paia) are a related irregular set where the gender flips in the plural as well.",
+   "needed_for": "noun.plural.irregular explanations (uomo, uovo, paio)."
+  },
+  "clipped word": {
+   "short": "A word shortened from a longer one, keeping the original's gender and staying invariable: foto (from fotografia), moto, bici, auto.",
+   "long": "A clipped word is an abbreviation that has become the everyday form. Two things carry over from the full word: its gender (la fotografia so la foto, even though foto ends in -o) and, because the ending is now a stump, its refusal to change in the plural (le foto, le moto). Clipping explains why several common -o nouns are feminine and invariable at once.",
+   "needed_for": "noun.gender.irregular (foto, radio) and noun.plural.invariable (foto) explanations."
+  }
+ }
+}

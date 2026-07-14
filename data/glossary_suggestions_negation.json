@@ -1,0 +1,26 @@
+{
+  "$comment": "Glossary terms used in negation-topic explanations that are not yet in data/glossary.json. Architecture reviews and merges accepted entries into the canonical glossary. Checked against glossary.json (clitic and subjunctive already present; not re-proposed).",
+  "version": 1,
+  "suggestions": {
+    "negative concord": {
+      "short": "Italian's rule that a negative sentence keeps non AND a negative word (nessuno, niente, mai) together, unless the negative word comes before the verb.",
+      "long": "Where English marks a negative once ('I didn't see anyone'), standard Italian marks it twice: non before the verb and the negative word after it (Non ho visto nessuno). This is not a double-negative error but the required pattern, called negative concord. The one exception: when the negative word is moved in front of the verb it carries the negation alone and non is dropped (Nessuno è venuto).",
+      "needed_for": "Used across the core.concord items and the concord translation guards."
+    },
+    "pleonastic non": {
+      "short": "A non that is grammatically required but does NOT negate: after finché, a meno che, prima che, and in some comparatives.",
+      "long": "Some Italian subordinators pull in a non that carries no negative meaning, an 'expletive' or pleonastic non. 'Aspetto finché non arrivi' means 'I'll wait until you arrive', not 'until you don't arrive'. It appears after finché (optional), a meno che (obligatory), prima che, and in comparatives of inequality (più bello di quanto non pensassi). Reading it as a real negation is the classic trap.",
+      "needed_for": "Used in the pleonastic.finche_flip and pleonastic.a_meno_che items."
+    },
+    "bipartite negation": {
+      "short": "A two-part negative frame wrapped around the verb: non ... mai, non ... più, non ... ancora, non ... affatto.",
+      "long": "Beyond plain non, Italian negates with two-part frames: non before the verb and a second element after it. non ... mai = never, non ... più = no longer/anymore, non ... ancora = not yet, non ... affatto / per niente = not at all. Both halves are obligatory in simple tenses; in compound tenses the second element sits between auxiliary and participle (that placement is taught with the passato prossimo).",
+      "needed_for": "Used across the core.bipartite items."
+    },
+    "restrictive non ... che": {
+      "short": "The frame non ... che meaning 'only', not a real negation: Non ho che dieci euro = I only have ten euros.",
+      "long": "non ... che looks negative but is restrictive: it means 'only / nothing but'. 'Non fa che lamentarsi' = 'he does nothing but complain' (he complains constantly), and 'Non ho che dieci euro' = 'I only have ten euros'. The che is load-bearing; drop it and the sentence becomes a genuine negation. Equivalent to solo/soltanto but more formal.",
+      "needed_for": "Used in the restrictive items and the restrictive translation guards."
+    }
+  }
+}

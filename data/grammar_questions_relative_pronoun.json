@@ -18,12 +18,21 @@
     "bucket": "relative_pronoun.che.subject",
     "label": "che as subject",
     "any_phrases": [
-     "che"
+     {
+      "phrase": "che",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "chi",
+     {
+      "phrase": "chi",
+      "match_at": "word"
+     },
      "il quale",
-     "cui"
+     {
+      "phrase": "cui",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -82,12 +91,21 @@
     "bucket": "relative_pronoun.che.subject",
     "label": "che as subject",
     "any_phrases": [
-     "che"
+     {
+      "phrase": "che",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "chi",
+     {
+      "phrase": "chi",
+      "match_at": "word"
+     },
      "la quale",
-     "cui"
+     {
+      "phrase": "cui",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -135,12 +153,21 @@
     "bucket": "relative_pronoun.che.subject",
     "label": "che as subject, plural antecedent",
     "any_phrases": [
-     "che"
+     {
+      "phrase": "che",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "chi",
+     {
+      "phrase": "chi",
+      "match_at": "word"
+     },
      "le quali",
-     "cui"
+     {
+      "phrase": "cui",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -199,12 +226,21 @@
     "bucket": "relative_pronoun.che.subject",
     "label": "che as subject, thing antecedent",
     "any_phrases": [
-     "che"
+     {
+      "phrase": "che",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "chi",
+     {
+      "phrase": "chi",
+      "match_at": "word"
+     },
      "il quale",
-     "cui"
+     {
+      "phrase": "cui",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -262,12 +298,21 @@
     "bucket": "relative_pronoun.che.direct_object",
     "label": "che as direct object",
     "any_phrases": [
-     "che"
+     {
+      "phrase": "che",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "cui",
+     {
+      "phrase": "cui",
+      "match_at": "word"
+     },
      "il quale",
-     "chi"
+     {
+      "phrase": "chi",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -316,11 +361,20 @@
     "bucket": "relative_pronoun.che.direct_object",
     "label": "che as direct object",
     "any_phrases": [
-     "che"
+     {
+      "phrase": "che",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "cui",
-     "chi"
+     {
+      "phrase": "cui",
+      "match_at": "word"
+     },
+     {
+      "phrase": "chi",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -368,10 +422,16 @@
     "bucket": "relative_pronoun.che.direct_object",
     "label": "che as direct object, plural antecedent",
     "any_phrases": [
-     "che"
+     {
+      "phrase": "che",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "cui",
+     {
+      "phrase": "cui",
+      "match_at": "word"
+     },
      "le quali"
     ]
    }
@@ -430,11 +490,20 @@
     "bucket": "relative_pronoun.che.direct_object",
     "label": "che as direct object, person antecedent",
     "any_phrases": [
-     "che"
+     {
+      "phrase": "che",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "cui",
-     "chi",
+     {
+      "phrase": "cui",
+      "match_at": "word"
+     },
+     {
+      "phrase": "chi",
+      "match_at": "word"
+     },
      "il quale"
     ]
    }
@@ -493,12 +562,24 @@
     "bucket": "relative_pronoun.cui.with_preposition",
     "label": "di + cui",
     "any_phrases": [
-     "di cui",
-     "del quale"
+     {
+      "phrase": "di cui",
+      "match_at": "word"
+     },
+     {
+      "phrase": "del quale",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "che",
-     "cui"
+     {
+      "phrase": "che",
+      "match_at": "word"
+     },
+     {
+      "phrase": "cui",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -557,12 +638,24 @@
     "bucket": "relative_pronoun.cui.with_preposition",
     "label": "con + cui",
     "any_phrases": [
-     "con cui",
-     "con il quale",
-     "col quale"
+     {
+      "phrase": "con cui",
+      "match_at": "word"
+     },
+     {
+      "phrase": "con il quale",
+      "match_at": "word"
+     },
+     {
+      "phrase": "col quale",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "che"
+     {
+      "phrase": "che",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -623,7 +716,10 @@
     ],
     "must_not_include": [
      "da cui",
-     "che"
+     {
+      "phrase": "che",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -682,12 +778,21 @@
     "bucket": "relative_pronoun.cui.with_preposition",
     "label": "per + cui",
     "any_phrases": [
-     "per cui",
-     "per il quale"
+     {
+      "phrase": "per cui",
+      "match_at": "word"
+     },
+     {
+      "phrase": "per il quale",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
      "perché",
-     "che"
+     {
+      "phrase": "che",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -745,11 +850,20 @@
     "bucket": "relative_pronoun.cui.with_preposition",
     "label": "in + cui",
     "any_phrases": [
-     "in cui",
-     "nel quale"
+     {
+      "phrase": "in cui",
+      "match_at": "word"
+     },
+     {
+      "phrase": "nel quale",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "che",
+     {
+      "phrase": "che",
+      "match_at": "word"
+     },
      "dove"
     ]
    }
@@ -799,11 +913,20 @@
     "bucket": "relative_pronoun.cui.with_preposition",
     "label": "su + cui",
     "any_phrases": [
-     "su cui",
-     "sulla quale"
+     {
+      "phrase": "su cui",
+      "match_at": "word"
+     },
+     {
+      "phrase": "sulla quale",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "che",
+     {
+      "phrase": "che",
+      "match_at": "word"
+     },
      "a cui"
     ]
    }
@@ -1227,8 +1350,14 @@
     ],
     "must_not_include": [
      "il quale",
-     "che",
-     "cui"
+     {
+      "phrase": "che",
+      "match_at": "word"
+     },
+     {
+      "phrase": "cui",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -1294,7 +1423,10 @@
     ],
     "must_not_include": [
      "la quale",
-     "che"
+     {
+      "phrase": "che",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -1359,7 +1491,10 @@
     ],
     "must_not_include": [
      "il quale",
-     "che"
+     {
+      "phrase": "che",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -1417,7 +1552,10 @@
     "bucket": "relative_pronoun.il_quale.after_preposition",
     "label": "per la quale, f sg",
     "any_phrases": [
-     "per la quale"
+     {
+      "phrase": "per la quale",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
      "per il quale",
@@ -1485,7 +1623,10 @@
     "bucket": "relative_pronoun.il_quale.after_preposition",
     "label": "con i quali, m pl",
     "any_phrases": [
-     "con i quali"
+     {
+      "phrase": "con i quali",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
      "con il quale",
@@ -1615,7 +1756,10 @@
     "bucket": "relative_pronoun.il_quale.after_preposition",
     "label": "dei quali, articulated di + m pl",
     "any_phrases": [
-     "dei quali"
+     {
+      "phrase": "dei quali",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
      "del quale",
@@ -1678,10 +1822,16 @@
     "bucket": "relative_pronoun.chi",
     "label": "chi with no antecedent",
     "any_phrases": [
-     "chi"
+     {
+      "phrase": "chi",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "che",
+     {
+      "phrase": "che",
+      "match_at": "word"
+     },
      "quello che"
     ]
    }
@@ -1719,7 +1869,7 @@
    }
   ],
   "explanation": "'Chi studia ogni giorno impara in fretta' means 'Whoever studies every day learns quickly.' When there is no noun to lean on, no 'the person' spelled out, Italian uses the antecedent-less relative chi: it means 'the one who / whoever' all by itself. Che always needs a noun in front of it; chi never has one.",
-  "examiner_note": "quello che for a person is marginal here; bare che is flatly wrong. The che guard catches both (substring).",
+  "examiner_note": "quello che for a person is marginal here; bare che is flatly wrong (the che guard catches both by substring). chi is word-anchored per criterion 18: a near-right 'chiunque' attempt (which embeds 'chi') falls to a silent miss rather than being credited or harshly wrong-flagged.",
   "version": 1
  },
  {
@@ -1741,10 +1891,16 @@
     "bucket": "relative_pronoun.chi",
     "label": "chi in proverb",
     "any_phrases": [
-     "chi"
+     {
+      "phrase": "chi",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "che"
+     {
+      "phrase": "che",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -1801,7 +1957,10 @@
     "bucket": "relative_pronoun.chi",
     "label": "chi takes singular verb",
     "any_phrases": [
-     "vuole"
+     {
+      "phrase": "vuole",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
      "vogliono",
@@ -1842,7 +2001,7 @@
   "subtopic": "chi",
   "difficulty": 3,
   "cefr_level_target": "B2",
-  "prompt": "Complete: 'Chi ____ queste cose non capisce niente. (dire)'",
+  "prompt": "Complete: 'Chi ____ queste cose oggi non capisce niente. (dire)'",
   "type": "short",
   "marks": 1,
   "prompt_supplies_base_form": true,
@@ -1853,10 +2012,15 @@
     "bucket": "relative_pronoun.chi",
     "label": "chi takes singular verb, irregular dire",
     "any_phrases": [
-     "dice"
+     {
+      "phrase": "dice",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "dicono"
+     "dicono",
+     "diceva",
+     "dicevano"
     ]
    }
   ],
@@ -1892,8 +2056,9 @@
     }
    }
   ],
-  "explanation": "'Chi dice queste cose non capisce niente' means 'Anyone who says these things understands nothing.' Chi is always third-person singular, so dire gives dice. The meaning is naturally plural, 'people who say this', which is precisely why the plural dicono keeps tempting learners; chi refuses it.",
-  "version": 1
+  "explanation": "'Chi dice queste cose oggi non capisce niente' means 'Anyone who says these things today understands nothing.' Chi is always third-person singular, so dire gives dice. The meaning is naturally plural, 'people who say this', which is precisely why the plural dicono keeps tempting learners; chi refuses it. Oggi keeps the whole sentence in the present.",
+  "version": 1,
+  "examiner_note": "dice is word-anchored per criterion 18 ('dice' embeds rightward in diceva/dicevano). 'oggi' pins the tense per criterion 10a (without it, 'Chi diceva queste cose...' was a legitimate reading the item did not accept); the imperfect forms now sit in must_not_include per 10b."
  },
  {
   "external_id": "rel_neut_01",
@@ -1914,14 +2079,28 @@
     "bucket": "relative_pronoun.neuter",
     "label": "quello che / ciò che for 'what'",
     "any_phrases": [
-     "quello che",
-     "quel che",
-     "ciò che",
-     "cio che"
+     {
+      "phrase": "quello che",
+      "match_at": "word"
+     },
+     {
+      "phrase": "quel che",
+      "match_at": "word"
+     },
+     {
+      "phrase": "ciò che",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "che",
-     "cosa"
+     {
+      "phrase": "che",
+      "match_at": "word"
+     },
+     {
+      "phrase": "cosa",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -1948,7 +2127,7 @@
    }
   ],
   "explanation": "'Mi piace quello che hai fatto' means 'I like what you did.' English 'what' smuggles in a hidden phrase, 'the thing that', and Italian spells the whole thing out: quello che (or its more formal twin ciò che, or clipped quel che). A bare che cannot mean 'what'; it needs quello in front to supply the missing 'thing'.",
-  "examiner_note": "cosa would build an indirect question, ungrammatical after piacere; the matrix verb was chosen so cosa is a catchable wrong answer rather than a valid alternative.",
+  "examiner_note": "cosa would build an indirect question, ungrammatical after piacere; the matrix verb was chosen so cosa is a catchable wrong answer rather than a valid alternative. 'cio che' is deliberately NOT listed: the accent-folded fallback credits it while recording the orthography miss (Rev 16 criterion 19, non-load-bearing case), which an explicit listing would silently bypass.",
   "version": 1
  },
  {
@@ -1970,14 +2149,28 @@
     "bucket": "relative_pronoun.neuter",
     "label": "neuter relative as subject of the sentence",
     "any_phrases": [
-     "quello che",
-     "quel che",
-     "ciò che",
-     "cio che"
+     {
+      "phrase": "quello che",
+      "match_at": "word"
+     },
+     {
+      "phrase": "quel che",
+      "match_at": "word"
+     },
+     {
+      "phrase": "ciò che",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "che",
-     "cosa"
+     {
+      "phrase": "che",
+      "match_at": "word"
+     },
+     {
+      "phrase": "cosa",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -2025,14 +2218,28 @@
     "bucket": "relative_pronoun.neuter",
     "label": "neuter relative after tutto",
     "any_phrases": [
-     "quello che",
-     "quel che",
-     "ciò che",
-     "cio che"
+     {
+      "phrase": "quello che",
+      "match_at": "word"
+     },
+     {
+      "phrase": "quel che",
+      "match_at": "word"
+     },
+     {
+      "phrase": "ciò che",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "che",
-     "cosa"
+     {
+      "phrase": "che",
+      "match_at": "word"
+     },
+     {
+      "phrase": "cosa",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -2081,15 +2288,32 @@
     "bucket": "relative_pronoun.neuter",
     "label": "ciò che / quello che as formal subject",
     "any_phrases": [
-     "quello che",
-     "quel che",
-     "ciò che",
-     "cio che"
+     {
+      "phrase": "quello che",
+      "match_at": "word"
+     },
+     {
+      "phrase": "quel che",
+      "match_at": "word"
+     },
+     {
+      "phrase": "ciò che",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "che",
-     "cosa",
-     "chi"
+     {
+      "phrase": "che",
+      "match_at": "word"
+     },
+     {
+      "phrase": "cosa",
+      "match_at": "word"
+     },
+     {
+      "phrase": "chi",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -2147,12 +2371,24 @@
     "bucket": "relative_pronoun.dove",
     "label": "relative dove for place",
     "any_phrases": [
-     "dove",
-     "in cui",
-     "nella quale"
+     {
+      "phrase": "dove",
+      "match_at": "word"
+     },
+     {
+      "phrase": "in cui",
+      "match_at": "word"
+     },
+     {
+      "phrase": "nella quale",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "che"
+     {
+      "phrase": "che",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -2211,12 +2447,24 @@
     "bucket": "relative_pronoun.dove",
     "label": "relative dove for place",
     "any_phrases": [
-     "dove",
-     "in cui",
-     "nel quale"
+     {
+      "phrase": "dove",
+      "match_at": "word"
+     },
+     {
+      "phrase": "in cui",
+      "match_at": "word"
+     },
+     {
+      "phrase": "nel quale",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "che"
+     {
+      "phrase": "che",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -2274,12 +2522,24 @@
     "bucket": "relative_pronoun.dove",
     "label": "relative dove for place",
     "any_phrases": [
-     "dove",
-     "in cui",
-     "nel quale"
+     {
+      "phrase": "dove",
+      "match_at": "word"
+     },
+     {
+      "phrase": "in cui",
+      "match_at": "word"
+     },
+     {
+      "phrase": "nel quale",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "che"
+     {
+      "phrase": "che",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -2337,10 +2597,16 @@
     "bucket": "relative_pronoun.discrimination.che_vs_cui",
     "label": "che chosen: direct object, no preposition",
     "any_phrases": [
-     "che"
+     {
+      "phrase": "che",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "cui"
+     {
+      "phrase": "cui",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -2394,7 +2660,10 @@
      }
     ],
     "must_not_include": [
-     "che",
+     {
+      "phrase": "che",
+      "match_at": "word"
+     },
      "da cui"
     ]
    }
@@ -2453,10 +2722,16 @@
     "bucket": "relative_pronoun.discrimination.che_vs_cui",
     "label": "per cui chosen: tifare per",
     "any_phrases": [
-     "per cui"
+     {
+      "phrase": "per cui",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "che"
+     {
+      "phrase": "che",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -2520,7 +2795,10 @@
      }
     ],
     "must_not_include": [
-     "che"
+     {
+      "phrase": "che",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -2578,7 +2856,10 @@
     "bucket": "relative_pronoun.discrimination.che_vs_il_quale",
     "label": "che chosen: no ambiguity, plain che is natural",
     "any_phrases": [
-     "che"
+     {
+      "phrase": "che",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
      "il quale"

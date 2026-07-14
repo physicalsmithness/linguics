@@ -1,0 +1,26 @@
+[
+  {
+    "proposed_id": "possessive.discrimination.suo",
+    "proposed_parent_id": "possessive.discrimination",
+    "proposed_label": "suo/sua: his, her, your (formal)",
+    "proposed_description": "The third-person possessive suo agrees with the thing owned, not the owner, so context alone decides whether it means his, her, its or your (formal, Lei). Comprehension items resolve the owner from context; production items check that the learner reaches for suo regardless of the owner's gender.",
+    "proposed_cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "proposed_prerequisites": [
+      "possessive.adjective.forms"
+    ],
+    "proposed_attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "il suo cane (his or her dog); i Suoi documenti (your documents, formal)",
+      "common_miss": "sua for a male owner / suo for a female owner (agreeing with the owner instead of the noun)"
+    },
+    "rationale": "The dispatch names discrimination.suo as the intended leaf, but the tree currently carries only the possessive.discrimination aggregate marked stub:true with no child. I cite this leaf on 5 grammar + 8 translation items, so it needs to exist for the markpoints to resolve. NOTE for Architecture: this is a REFERENT discrimination (his/her/formal), not a tense/mood choice, so criterion 16's candidate_tenses/correct_tense do not map; I have applied info_display:suppress (criterion 15) but omitted candidate_tenses. Raised in inter_chat/Architecture_PossessiveAuthor_edge_patterns.md."
+  }
+]

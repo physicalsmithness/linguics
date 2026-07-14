@@ -831,4 +831,22 @@ Housing shipped the flag same-night (markpoint-scoped, fold-gating verified). Sc
 **How to apply:** PassatoRemotoAuthor works the retrofit thread on next touch; everyone else authors new collision items with the flag from the start per criterion 19.
 
 ---
+## 2026-07-14: Existential batch accepted; Opus 4.8 calibration verdict is a pass
+
+ExistentialAuthor's batch (43 grammar + 21 translation), the deliberate first-batch calibration for Opus 4.8 authoring, is accepted with every uncertain blessed and zero corrections required. Marks of quality worth recording: uniform criterion-18 word-anchoring across all items; a mid-session self-reconciliation from Rev 13 to Rev 15 when the brief moved under them; the OIC traps folded with deliberate departures NAMED per the techniques section; the suppression mandate correctly EXTENDED by the leak test (36/43); the calque caught translation-side with negative anchors after correctly reasoning that a bare-è catch is unsafe; and a stay-in-role manifest flag instead of a touch. Architect actions: existential wired into the manifest (17 topics), the two glossary terms merged with the requested alias (glossary v4). Verdict: Opus 4.8 is cleared for the author seats without extra review overhead; the remaining dispatches go out at normal cadence.
+
+**Why:** the calibration question was whether the model holds the brief's discipline unprompted; extending a mandate correctly by its own reasoning is stronger evidence than compliance.
+
+**How to apply:** dispatch the rest at will; the existential batch's coverage doc is the reference exemplar alongside the relative-pronoun one.
+
+---
+## 2026-07-14: Indefinites, connectives and word formation scaffolded (the OIC candidates complete)
+
+On Smith's go-ahead the remaining three candidates are live: indefinite (13 nodes, ind), connective (14 nodes, conn), word_formation (9 nodes incl. a relational-adjectives stub, wf), each with a dispatch carrying its OIC idea bank. Boundary rulings of substance: (1) indefinites own the negative indefinites AS WORDS, negation keeps the word order (both sides now exist; cross-cited). (2) The two-sided mood contract with tense_choice: connective owns connector-choice items where the verb form is GIVEN; tense_choice owns mood-choice items where the connector is given; mirrors formation-supplies-the-trigger. (3) Finché stays wholly with negation; the connective time leaf cites it. (4) tutto + article lives in indefinites, citing article.definite (no article-tree leaf existed). (5) word_formation owns PRODUCING intensifier-prefixed forms; comparison keeps CLASSIFYING them as absolute superlatives. (6) Relational adjectives stubbed for later. The deferred trio (cleft, tu/Lei register, consonanti doppie) stays deferred.
+
+**Why:** the drill supplied the material and the fired-up author seats supply the demand; the boundary rulings keep one bucket per skill across five tree seams.
+
+**How to apply:** fire IndefiniteAuthor, ConnectiveAuthor, WordFormationAuthor on their dispatches; none enters the manifest until content lands.
+
+---
 

@@ -439,10 +439,10 @@
     "external_id": "trans_prep_en_it_mo_01",
     "source_lang": "en",
     "target_lang": "it",
-    "source_text": "The train from Naples arrives at ten.",
+    "source_text": "The train that comes from Naples arrives at ten.",
     "reference_translations": [
       {
-        "text": "Il treno da Napoli arriva alle dieci.",
+        "text": "Il treno che viene da Napoli arriva alle dieci.",
         "register": "neutral",
         "notes": "Standard."
       },
@@ -452,10 +452,10 @@
         "notes": "Station-announcement register; the da is the same."
       },
       {
-        "text": "Il treno di Napoli arriva alle dieci.",
+        "text": "Il treno che viene di Napoli arriva alle dieci.",
         "register": "neutral",
-        "notes": "WRONG as an origin statement: di would make it the Naples train by identity, not the one coming from there. Anti-anchor for the di/da line.",
-        "polarity": "negative"
+        "polarity": "negative",
+        "notes": "WRONG: venire takes da for origin; di marks identity/belonging, never the source of movement. Anti-anchor."
       }
     ],
     "topic": "preposition",
@@ -479,8 +479,8 @@
         }
       }
     ],
-    "explanation": "Origin is da: il treno da Napoli. And the clock time rides along as alle dieci; two preposition systems in one short sentence.",
-    "version": 1
+    "explanation": "Origin with venire is da: viene da Napoli. And the clock time rides along as alle dieci; two preposition systems in one short sentence. (The bare noun-phrase 'il treno di Napoli' is attested colloquially, which is why the frame uses the verb: after venire the di form is unambiguously wrong.)",
+    "version": 2
   },
   {
     "external_id": "trans_prep_en_it_mo_02",
@@ -918,9 +918,9 @@
         "notes": "Standard; two contractions."
       },
       {
-        "text": "Le chiavi sono sul tavolo di cucina.",
+        "text": "Le chiavi sono sul tavolo da cucina.",
         "register": "neutral",
-        "notes": "di cucina as a type-label rather than della as belonging; both heard."
+        "notes": "da cucina as the type-label (purpose da, like camera da letto); della cucina in ref 1 marks belonging. Both natural."
       },
       {
         "text": "Le chiavi sono su il tavolo della cucina.",
@@ -966,7 +966,7 @@
       }
     ],
     "explanation": "Two contractions in sequence: su + il = sul tavolo, di + la = della cucina. Translation is where the formation drill has to fire un-cued.",
-    "version": 1
+    "version": 2
   },
   {
     "external_id": "trans_prep_it_en_da_01",

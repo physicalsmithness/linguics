@@ -1,0 +1,1218 @@
+[
+  {
+    "external_id": "trans_poss_en_it_forms_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "This is my house.",
+    "reference_translations": [
+      {
+        "text": "Questa è la mia casa.",
+        "register": "neutral",
+        "notes": "Standard. Both article and possessive are feminine singular."
+      },
+      {
+        "text": "Questa è mia casa.",
+        "register": "neutral",
+        "notes": "WRONG: casa is not a family noun, so the article is required: la mia casa.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "possessive",
+    "register": "neutral",
+    "difficulty": 1,
+    "cefr_level_target": "A1",
+    "required_buckets": [
+      "possessive.adjective.forms"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "house",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "house - casa",
+            "bucket": "vocabulary.it.casa.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.casa.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "Casa is feminine singular, so the possessive adjective and its definite article agree: la mia casa. Casa is not a family noun, so the article stays.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_poss_en_it_forms_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Marco loves his car.",
+    "reference_translations": [
+      {
+        "text": "Marco ama la sua macchina.",
+        "register": "neutral",
+        "notes": "Standard. sua agrees with macchina (f), not with Marco."
+      },
+      {
+        "text": "Marco ama il suo macchina.",
+        "register": "neutral",
+        "notes": "WRONG: suo must agree with macchina (feminine), giving la sua, not il suo.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "possessive",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "possessive.adjective.forms"
+    ],
+    "optional_buckets": [
+      "possessive.discrimination.suo"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "car",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "car - macchina",
+            "bucket": "vocabulary.it.macchina.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.macchina.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "Suo agrees with the thing owned, not the owner: macchina is feminine, so la sua macchina, even though Marco is male.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_poss_it_en_forms_03",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "I miei amici sono molto simpatici.",
+    "reference_translations": [
+      {
+        "text": "My friends are very nice.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "My friends are really likeable.",
+        "register": "neutral",
+        "notes": "Natural variant of simpatici."
+      }
+    ],
+    "topic": "possessive",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "possessive.adjective.forms"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "amici",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "amico - friend (male)",
+            "bucket": "vocabulary.it.amico.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.amico.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "I miei is the masculine plural of mio with its article; simpatici agrees with the masculine plural amici.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_poss_en_it_forms_04",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Their house is very big.",
+    "reference_translations": [
+      {
+        "text": "La loro casa è molto grande.",
+        "register": "neutral",
+        "notes": "Standard. loro is invariable; the article agrees with casa."
+      }
+    ],
+    "topic": "possessive",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "possessive.adjective.forms"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "house",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "house - casa",
+            "bucket": "vocabulary.it.casa.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.casa.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "Loro is invariable, so it never inflects; the article agrees with casa (feminine singular): la loro casa.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_poss_en_it_forms_05",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Where are your keys?",
+    "reference_translations": [
+      {
+        "text": "Dove sono le tue chiavi?",
+        "register": "neutral",
+        "notes": "Standard, informal singular addressee."
+      },
+      {
+        "text": "Dove sono le Sue chiavi?",
+        "register": "formal",
+        "notes": "Formal addressee (Lei); Suo capitalised."
+      }
+    ],
+    "topic": "possessive",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "possessive.adjective.forms"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "keys",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "key - chiave",
+            "bucket": "vocabulary.it.chiave.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.chiave.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "Chiavi is feminine plural, so le tue: article and possessive both feminine plural.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_poss_it_en_forms_06",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Anna cerca il suo cane.",
+    "reference_translations": [
+      {
+        "text": "Anna is looking for her dog.",
+        "register": "neutral",
+        "notes": "Standard; owner Anna, so 'her'."
+      },
+      {
+        "text": "Anna is looking for his dog.",
+        "register": "neutral",
+        "notes": "Also possible if the dog belongs to a male mentioned earlier; Italian suo is identical either way."
+      }
+    ],
+    "topic": "possessive",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "possessive.adjective.forms"
+    ],
+    "optional_buckets": [
+      "possessive.discrimination.suo"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "cane",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "cane - dog",
+            "bucket": "vocabulary.it.cane.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.cane.gender"
+          }
+        }
+      },
+      {
+        "lemma": "cerca",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "cercare - to look for",
+            "bucket": "vocabulary.it.cercare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Il suo agrees with cane (masculine); with Anna as owner the natural reading is 'her dog'. Italian suo would look identical for a male owner.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_poss_en_it_forms_07",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "A friend of mine works here.",
+    "reference_translations": [
+      {
+        "text": "Un mio amico lavora qui.",
+        "register": "neutral",
+        "notes": "Standard: indefinite article + possessive."
+      },
+      {
+        "text": "Una mia amica lavora qui.",
+        "register": "neutral",
+        "notes": "If the friend is female: una mia amica."
+      }
+    ],
+    "topic": "possessive",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "possessive.adjective.forms"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "friend",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "friend (male) - amico",
+            "bucket": "vocabulary.it.amico.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.amico.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "Indefinite article + possessive: un mio amico, 'a friend of mine'. The possessive sits between un and amico.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_poss_en_it_fam_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "My mother works in Rome.",
+    "reference_translations": [
+      {
+        "text": "Mia madre lavora a Roma.",
+        "register": "neutral",
+        "notes": "Standard: singular family noun, no article."
+      },
+      {
+        "text": "La mia madre lavora a Roma.",
+        "register": "neutral",
+        "notes": "WRONG: a singular, unmodified family noun drops the article.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "possessive",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "possessive.adjective.family_exception"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "mother",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "mother - madre",
+            "bucket": "vocabulary.it.madre.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.madre.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "Madre is a singular family noun, so no article: mia madre. La mia madre is the classic error.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_poss_en_it_fam_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "My brother is a doctor.",
+    "reference_translations": [
+      {
+        "text": "Mio fratello fa il medico.",
+        "register": "neutral",
+        "notes": "Standard; fare il + profession is idiomatic."
+      },
+      {
+        "text": "Mio fratello è medico.",
+        "register": "neutral",
+        "notes": "Also fine: essere + profession without article."
+      },
+      {
+        "text": "Il mio fratello fa il medico.",
+        "register": "neutral",
+        "notes": "WRONG: the possessive's article drops before the family noun fratello.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "possessive",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "possessive.adjective.family_exception"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "brother",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "brother - fratello",
+            "bucket": "vocabulary.it.fratello.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.fratello.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "Mio fratello drops the article (singular family noun). 'Fa il medico' states a profession; that article belongs to medico, not to the possessive.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_poss_en_it_fam_03",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "My brothers live abroad.",
+    "reference_translations": [
+      {
+        "text": "I miei fratelli vivono all'estero.",
+        "register": "neutral",
+        "notes": "Standard: plural restores the article."
+      },
+      {
+        "text": "Miei fratelli vivono all'estero.",
+        "register": "neutral",
+        "notes": "WRONG: the family exception is singular only; the plural takes the article.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "possessive",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "possessive.adjective.family_exception"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "brothers",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "brother - fratello",
+            "bucket": "vocabulary.it.fratello.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.fratello.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "In the plural the exception lapses: i miei fratelli, article restored.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_poss_en_it_fam_04",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "His sister speaks French.",
+    "reference_translations": [
+      {
+        "text": "Sua sorella parla francese.",
+        "register": "neutral",
+        "notes": "Standard: singular family noun, no article; sua = his."
+      },
+      {
+        "text": "La sua sorella parla francese.",
+        "register": "neutral",
+        "notes": "WRONG: sorella is a singular family noun and drops the article.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "possessive",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "possessive.adjective.family_exception"
+    ],
+    "optional_buckets": [
+      "possessive.discrimination.suo"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "sister",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "sister - sorella",
+            "bucket": "vocabulary.it.sorella.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.sorella.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "Sorella is a singular family noun, so sua sorella with no article. Sua is 'his' here, agreeing with sorella (feminine).",
+    "version": 1
+  },
+  {
+    "external_id": "trans_poss_en_it_fam_05",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Their father is an engineer.",
+    "reference_translations": [
+      {
+        "text": "Il loro padre fa l'ingegnere.",
+        "register": "neutral",
+        "notes": "Standard; loro keeps the article."
+      },
+      {
+        "text": "Loro padre fa l'ingegnere.",
+        "register": "neutral",
+        "notes": "WRONG: with loro the article never drops, even for a singular relative.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "possessive",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "possessive.adjective.family_exception"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "father",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "father - padre",
+            "bucket": "vocabulary.it.padre.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.padre.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "With loro the article never drops, even for a singular family noun: il loro padre.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_poss_en_it_fam_06",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "My little sister is called Sofia.",
+    "reference_translations": [
+      {
+        "text": "La mia sorellina si chiama Sofia.",
+        "register": "neutral",
+        "notes": "Standard: the diminutive is altered, so the article returns."
+      },
+      {
+        "text": "Mia sorellina si chiama Sofia.",
+        "register": "neutral",
+        "notes": "WRONG: the diminutive sorellina counts as altered and takes the article.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "possessive",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "possessive.adjective.family_exception"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "little sister",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "little sister - sorellina",
+            "bucket": "vocabulary.it.sorellina.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.sorellina.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "The diminutive sorellina counts as altered, so the article returns: la mia sorellina, unlike bare mia sorella.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_poss_it_en_fam_07",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Nostra zia abita a Napoli.",
+    "reference_translations": [
+      {
+        "text": "Our aunt lives in Naples.",
+        "register": "neutral",
+        "notes": "Standard."
+      }
+    ],
+    "topic": "possessive",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "possessive.adjective.family_exception"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "zia",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "zia - aunt",
+            "bucket": "vocabulary.it.zia.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.zia.gender"
+          }
+        }
+      },
+      {
+        "lemma": "abita",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "abitare - to live",
+            "bucket": "vocabulary.it.abitare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Nostra zia drops the article (singular family noun); in English, 'our aunt'.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_poss_en_it_pron_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "My car is old, yours is new.",
+    "reference_translations": [
+      {
+        "text": "La mia macchina è vecchia, la tua è nuova.",
+        "register": "neutral",
+        "notes": "Standard; la tua stands alone with its article."
+      },
+      {
+        "text": "La mia macchina è vecchia, tua è nuova.",
+        "register": "neutral",
+        "notes": "WRONG: the standalone possessive keeps the article: la tua.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "possessive",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "possessive.pronoun"
+    ],
+    "optional_buckets": [
+      "possessive.adjective.forms"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "car",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "car - macchina",
+            "bucket": "vocabulary.it.macchina.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.macchina.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "Standalone la tua keeps the article and agrees with the understood macchina (feminine singular).",
+    "version": 1
+  },
+  {
+    "external_id": "trans_poss_en_it_pron_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Your book is here, mine is at home.",
+    "reference_translations": [
+      {
+        "text": "Il tuo libro è qui, il mio è a casa.",
+        "register": "neutral",
+        "notes": "Standard; il mio stands alone with its article."
+      }
+    ],
+    "topic": "possessive",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "possessive.pronoun"
+    ],
+    "optional_buckets": [
+      "possessive.adjective.forms"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "book",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "book - libro",
+            "bucket": "vocabulary.it.libro.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.libro.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "Il mio stands alone for 'mine', keeping its article and agreeing with libro (masculine singular).",
+    "version": 1
+  },
+  {
+    "external_id": "trans_poss_it_en_pron_03",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "I nostri sono arrivati, i vostri no.",
+    "reference_translations": [
+      {
+        "text": "Ours have arrived, yours haven't.",
+        "register": "neutral",
+        "notes": "Standard; the noun is understood from context."
+      }
+    ],
+    "topic": "possessive",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "possessive.pronoun"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "arrivati",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "arrivare - to arrive",
+            "bucket": "vocabulary.it.arrivare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "I nostri and i vostri are standalone possessives with the article; the noun is recovered from context.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_poss_en_it_pron_04",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Their seats are free, ours are taken.",
+    "reference_translations": [
+      {
+        "text": "I loro posti sono liberi, i nostri sono occupati.",
+        "register": "neutral",
+        "notes": "Standard; i nostri stands alone, i loro shows loro invariable."
+      }
+    ],
+    "topic": "possessive",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "possessive.pronoun"
+    ],
+    "optional_buckets": [
+      "possessive.adjective.forms"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "seats",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "seat - posto",
+            "bucket": "vocabulary.it.posto.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.posto.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "I nostri stands alone for 'ours', article kept; i loro shows loro invariable with its article.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_poss_it_en_disc_suo_01",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Marco parla con sua madre.",
+    "reference_translations": [
+      {
+        "text": "Marco is talking to his mother.",
+        "register": "neutral",
+        "notes": "Standard; owner Marco, so 'his'."
+      }
+    ],
+    "topic": "possessive",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "possessive.discrimination.suo"
+    ],
+    "optional_buckets": [
+      "possessive.adjective.family_exception"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "madre",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "madre - mother",
+            "bucket": "vocabulary.it.madre.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.madre.gender"
+          }
+        }
+      },
+      {
+        "lemma": "parla",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "parlare - to speak",
+            "bucket": "vocabulary.it.parlare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Suo here is 'his' (owner Marco); sua agrees with madre (feminine). Sua madre drops the article (family noun).",
+    "version": 1
+  },
+  {
+    "external_id": "trans_poss_it_en_disc_suo_02",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Giulia invita suo fratello alla festa.",
+    "reference_translations": [
+      {
+        "text": "Giulia invites her brother to the party.",
+        "register": "neutral",
+        "notes": "Standard; owner Giulia, so 'her', though suo is masculine."
+      }
+    ],
+    "topic": "possessive",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "possessive.discrimination.suo"
+    ],
+    "optional_buckets": [
+      "possessive.adjective.family_exception"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "fratello",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "fratello - brother",
+            "bucket": "vocabulary.it.fratello.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.fratello.gender"
+          }
+        }
+      },
+      {
+        "lemma": "festa",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "festa - party",
+            "bucket": "vocabulary.it.festa.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.festa.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "Suo agrees with fratello (masculine), so suo not sua; the owner Giulia makes it 'her brother'. Suo fratello drops the article.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_poss_it_en_disc_suo_03",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Il direttore ha perso le sue chiavi.",
+    "reference_translations": [
+      {
+        "text": "The director lost his keys.",
+        "register": "neutral",
+        "notes": "If the director is male."
+      },
+      {
+        "text": "The director lost her keys.",
+        "register": "neutral",
+        "notes": "Equally correct: the director's gender is unspecified, and suo carries no owner-gender."
+      }
+    ],
+    "topic": "possessive",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "possessive.discrimination.suo"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "direttore",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "direttore - director",
+            "bucket": "vocabulary.it.direttore.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.direttore.gender"
+          }
+        }
+      },
+      {
+        "lemma": "chiavi",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "chiave - key",
+            "bucket": "vocabulary.it.chiave.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.chiave.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "Le sue agrees with chiavi (feminine plural); the owner's gender is unspecified, so 'his' or 'her keys' are both correct. Italian suo carries no owner-gender.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_poss_it_en_disc_suo_04",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Laura adora i suoi gatti.",
+    "reference_translations": [
+      {
+        "text": "Laura adores her cats.",
+        "register": "neutral",
+        "notes": "Standard; owner Laura, so 'her', though suoi is masculine plural."
+      }
+    ],
+    "topic": "possessive",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "possessive.discrimination.suo"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "gatti",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "gatto - cat",
+            "bucket": "vocabulary.it.gatto.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.gatto.gender"
+          }
+        }
+      },
+      {
+        "lemma": "adora",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "adorare - to adore",
+            "bucket": "vocabulary.it.adorare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "I suoi agrees with gatti (masculine plural); owner Laura, so 'her cats'. Suoi is 'her' here.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_poss_en_it_disc_suo_05",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "She is looking for her husband.",
+    "reference_translations": [
+      {
+        "text": "Cerca suo marito.",
+        "register": "neutral",
+        "notes": "Standard; subject pronoun dropped, natural Italian."
+      },
+      {
+        "text": "Lei cerca suo marito.",
+        "register": "neutral",
+        "notes": "Subject pronoun kept for emphasis."
+      },
+      {
+        "text": "Cerca il suo marito.",
+        "register": "neutral",
+        "notes": "WRONG: marito is a singular family noun, so no article.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "possessive",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "possessive.discrimination.suo"
+    ],
+    "optional_buckets": [
+      "possessive.adjective.family_exception"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "husband",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "husband - marito",
+            "bucket": "vocabulary.it.marito.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.marito.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "Her -> suo, agreeing with marito (masculine). Marito is a singular family noun, so suo marito, no article.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_poss_en_it_disc_suo_06",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "He loves his sisters.",
+    "reference_translations": [
+      {
+        "text": "Ama le sue sorelle.",
+        "register": "neutral",
+        "notes": "Standard; subject pronoun dropped."
+      },
+      {
+        "text": "Lui ama le sue sorelle.",
+        "register": "neutral",
+        "notes": "Subject pronoun kept."
+      },
+      {
+        "text": "Ama sue sorelle.",
+        "register": "neutral",
+        "notes": "WRONG: the plural family noun restores the article: le sue sorelle.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "possessive",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "possessive.discrimination.suo"
+    ],
+    "optional_buckets": [
+      "possessive.adjective.family_exception"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "sisters",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "sister - sorella",
+            "bucket": "vocabulary.it.sorella.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.sorella.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "His -> sue, agreeing with sorelle (feminine plural). Plural restores the article: le sue sorelle.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_poss_it_en_disc_suo_07",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Signora Neri, ecco il Suo posto.",
+    "reference_translations": [
+      {
+        "text": "Mrs Neri, here is your seat.",
+        "register": "neutral",
+        "notes": "Standard; capitalised Suo is the formal 'your'."
+      }
+    ],
+    "topic": "possessive",
+    "register": "formal",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "possessive.discrimination.suo"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "posto",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "posto - seat, place",
+            "bucket": "vocabulary.it.posto.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.posto.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "Capitalised Suo is the formal 'your' (Lei); il Suo posto agrees with posto (masculine singular).",
+    "version": 1
+  },
+  {
+    "external_id": "trans_poss_it_en_disc_suo_08",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Paolo e sua moglie vivono a Firenze.",
+    "reference_translations": [
+      {
+        "text": "Paolo and his wife live in Florence.",
+        "register": "neutral",
+        "notes": "Standard; owner Paolo, so 'his'."
+      }
+    ],
+    "topic": "possessive",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "possessive.discrimination.suo"
+    ],
+    "optional_buckets": [
+      "possessive.adjective.family_exception"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "moglie",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "moglie - wife",
+            "bucket": "vocabulary.it.moglie.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.moglie.gender"
+          }
+        }
+      },
+      {
+        "lemma": "vivono",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "vivere - to live",
+            "bucket": "vocabulary.it.vivere.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Sua agrees with moglie (feminine); owner Paolo, so 'his wife'. Sua moglie drops the article (family noun).",
+    "version": 1
+  }
+]

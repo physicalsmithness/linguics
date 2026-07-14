@@ -1,0 +1,2960 @@
+[
+  {
+    "external_id": "noun_gen_reg_01",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "gender.regular",
+    "difficulty": 1,
+    "cefr_level_target": "A1",
+    "prompt": "Completa con l'articolo giusto: 'Metti ____ libro sul tavolo.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.gender.regular",
+        "label": "masculine -o takes il/un",
+        "any_phrases": [
+          {
+            "phrase": "il",
+            "match_at": "word"
+          },
+          {
+            "phrase": "un",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "la",
+            "match_at": "word"
+          },
+          {
+            "phrase": "una",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "libro",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "libro - book",
+            "bucket": "vocabulary.it.libro.translation"
+          }
+        }
+      },
+      {
+        "lemma": "tavolo",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "tavolo - table",
+            "bucket": "vocabulary.it.tavolo.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Metti il libro sul tavolo' means 'Put the book on the table.' A noun's gender decides the words around it. Libro ends in -o, and the default rule is that -o nouns are masculine, so the article is il (or un for 'a'), never la. The ending points the way here; only the exceptions have to be memorised.",
+    "examiner_note": "Either definite il or indefinite un is masculine and credited; feminine la/una is the diagnostic miss. Articles anchored match_at word so 'un' does not match inside 'una'.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_gen_reg_02",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "gender.regular",
+    "difficulty": 1,
+    "cefr_level_target": "A1",
+    "prompt": "Completa con l'articolo giusto: 'Ho comprato ____ casa nuova.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.gender.regular",
+        "label": "feminine -a takes la/una",
+        "any_phrases": [
+          {
+            "phrase": "la",
+            "match_at": "word"
+          },
+          {
+            "phrase": "una",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "il",
+            "match_at": "word"
+          },
+          {
+            "phrase": "un",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "casa",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "casa - house",
+            "bucket": "vocabulary.it.casa.translation"
+          }
+        }
+      },
+      {
+        "lemma": "nuova",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "nuovo - new",
+            "bucket": "vocabulary.it.nuova.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Ho comprato una casa nuova' means 'I bought a new house.' Casa ends in -a, and the default rule makes -a nouns feminine, so the article is una (or la for 'the'). The feminine also shows on the adjective: casa nuova, not casa nuovo.",
+    "examiner_note": "Both feminine articles credited; masculine il/un is the miss.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_gen_reg_03",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "gender.regular",
+    "difficulty": 1,
+    "cefr_level_target": "A1",
+    "prompt": "Completa con la forma giusta di 'buono': 'La pizza napoletana è molto ____.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.gender.regular",
+        "label": "feminine noun forces -a adjective",
+        "any_phrases": [
+          {
+            "phrase": "buona",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "buono",
+            "match_at": "word"
+          },
+          {
+            "phrase": "buoni",
+            "match_at": "word"
+          },
+          {
+            "phrase": "buone",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "pizza",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "pizza - pizza",
+            "bucket": "vocabulary.it.pizza.translation"
+          }
+        }
+      },
+      {
+        "lemma": "buona",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "buono - good",
+            "bucket": "vocabulary.it.buona.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'La pizza napoletana è molto buona' means 'Neapolitan pizza is very good.' Pizza is feminine (it ends in -a), and an adjective must copy the noun's gender and number, a link called agreement. Feminine singular, so buono becomes buona.",
+    "examiner_note": "Gender is tested through predicate-adjective agreement; the feminine noun is the diagnostic. Citation buono is revealed, so producing buona still requires knowing pizza is feminine.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_gen_reg_04",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "gender.regular",
+    "difficulty": 1,
+    "cefr_level_target": "A1",
+    "prompt": "Completa con l'articolo giusto: 'Conosci ____ ragazzo di Anna?'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.gender.regular",
+        "label": "masculine -o takes il/un",
+        "any_phrases": [
+          {
+            "phrase": "il",
+            "match_at": "word"
+          },
+          {
+            "phrase": "un",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "la",
+            "match_at": "word"
+          },
+          {
+            "phrase": "una",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "ragazzo",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "ragazzo - boy",
+            "bucket": "vocabulary.it.ragazzo.translation"
+          }
+        }
+      },
+      {
+        "lemma": "conosci",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "conoscere - you know",
+            "bucket": "vocabulary.it.conosci.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Conosci il ragazzo di Anna?' means 'Do you know Anna's boyfriend?' Ragazzo ends in -o, so by the default rule it is masculine and takes il (or un). The feminine la ragazza would be a different person (Anna's girlfriend), so the article carries real meaning.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_gen_e_01",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "gender.e_ending",
+    "difficulty": 1,
+    "cefr_level_target": "A2",
+    "prompt": "Completa con l'articolo giusto: 'Che profumo ha ____ fiore!'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.gender.e_ending",
+        "label": "fiore is masculine",
+        "any_phrases": [
+          {
+            "phrase": "il",
+            "match_at": "word"
+          },
+          {
+            "phrase": "un",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "la",
+            "match_at": "word"
+          },
+          {
+            "phrase": "una",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "fiore",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "fiore - flower",
+            "bucket": "vocabulary.it.fiore.translation"
+          }
+        }
+      },
+      {
+        "lemma": "profumo",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "profumo - scent",
+            "bucket": "vocabulary.it.profumo.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Che profumo ha il fiore!' means 'What a scent the flower has!' Nouns ending in -e can be either gender, and there is no rule that settles it: fiore happens to be masculine, so il fiore, un fiore. The trap is assuming every -e noun is feminine.",
+    "examiner_note": "-e gender is pure lexical learning; the article is the only tell. Feminine la/una is the diagnostic miss.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_gen_e_02",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "gender.e_ending",
+    "difficulty": 1,
+    "cefr_level_target": "A2",
+    "prompt": "Completa con l'articolo giusto: '____ notte porta consiglio.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.gender.e_ending",
+        "label": "notte is feminine",
+        "any_phrases": [
+          {
+            "phrase": "la",
+            "match_at": "word"
+          },
+          {
+            "phrase": "una",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "il",
+            "match_at": "word"
+          },
+          {
+            "phrase": "un",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "notte",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "notte - night",
+            "bucket": "vocabulary.it.notte.translation"
+          }
+        }
+      },
+      {
+        "lemma": "consiglio",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "consiglio - advice",
+            "bucket": "vocabulary.it.consiglio.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'La notte porta consiglio' is a proverb, literally 'The night brings counsel' (English: sleep on it). Notte ends in -e but is feminine, so la notte, una notte. Nothing in the ending tells you this; it has to be learned with the word.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_gen_e_03",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "gender.e_ending",
+    "difficulty": 1,
+    "cefr_level_target": "A2",
+    "prompt": "Completa con l'articolo giusto: 'Dov'è ____ pane che ho comprato?'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.gender.e_ending",
+        "label": "pane is masculine",
+        "any_phrases": [
+          {
+            "phrase": "il",
+            "match_at": "word"
+          },
+          {
+            "phrase": "un",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "la",
+            "match_at": "word"
+          },
+          {
+            "phrase": "una",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "pane",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "pane - bread",
+            "bucket": "vocabulary.it.pane.translation"
+          }
+        }
+      },
+      {
+        "lemma": "comprato",
+        "language": "it",
+        "aspects": {
+          "infinitive": {
+            "reveal": "comprare - to buy",
+            "bucket": "vocabulary.it.comprare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Dov'è il pane che ho comprato?' means 'Where is the bread I bought?' Pane is an -e noun and is masculine: il pane, un pane. Learners often guess feminine for -e nouns, but bread is one of the common masculine ones.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_gen_e_04",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "gender.e_ending",
+    "difficulty": 1,
+    "cefr_level_target": "A2",
+    "prompt": "Completa con l'articolo giusto: 'Non trovo più ____ chiave della macchina.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.gender.e_ending",
+        "label": "chiave is feminine",
+        "any_phrases": [
+          {
+            "phrase": "la",
+            "match_at": "word"
+          },
+          {
+            "phrase": "una",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "il",
+            "match_at": "word"
+          },
+          {
+            "phrase": "un",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "chiave",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "chiave - key",
+            "bucket": "vocabulary.it.chiave.translation"
+          }
+        }
+      },
+      {
+        "lemma": "macchina",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "macchina - car",
+            "bucket": "vocabulary.it.macchina.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Non trovo più la chiave della macchina' means 'I can't find the car key any more.' Chiave ends in -e and is feminine: la chiave, una chiave. Pair it with il pane above to see that the same ending goes both ways.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_gen_e_05",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "gender.e_ending",
+    "difficulty": 1,
+    "cefr_level_target": "A2",
+    "prompt": "Completa con l'articolo giusto: 'Abbiamo attraversato ____ fiume a piedi.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.gender.e_ending",
+        "label": "fiume is masculine",
+        "any_phrases": [
+          {
+            "phrase": "il",
+            "match_at": "word"
+          },
+          {
+            "phrase": "un",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "la",
+            "match_at": "word"
+          },
+          {
+            "phrase": "una",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "fiume",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "fiume - river",
+            "bucket": "vocabulary.it.fiume.translation"
+          }
+        }
+      },
+      {
+        "lemma": "attraversato",
+        "language": "it",
+        "aspects": {
+          "infinitive": {
+            "reveal": "attraversare - to cross",
+            "bucket": "vocabulary.it.attraversare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Abbiamo attraversato il fiume a piedi' means 'We crossed the river on foot.' Fiume is a masculine -e noun: il fiume, un fiume.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_gen_e_06",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "gender.e_ending",
+    "difficulty": 1,
+    "cefr_level_target": "A2",
+    "prompt": "Completa con l'articolo giusto: '____ nave parte dal porto alle otto.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.gender.e_ending",
+        "label": "nave is feminine",
+        "any_phrases": [
+          {
+            "phrase": "la",
+            "match_at": "word"
+          },
+          {
+            "phrase": "una",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "il",
+            "match_at": "word"
+          },
+          {
+            "phrase": "un",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "nave",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "nave - ship",
+            "bucket": "vocabulary.it.nave.translation"
+          }
+        }
+      },
+      {
+        "lemma": "porto",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "porto - port",
+            "bucket": "vocabulary.it.porto.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'La nave parte dal porto alle otto' means 'The ship leaves the port at eight.' Nave ends in -e and is feminine: la nave, una nave.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_gen_e_07",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "gender.e_ending",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "prompt": "Completa con l'articolo giusto: 'Non riesco a ricordare ____ nome di quel ristorante.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.gender.e_ending",
+        "label": "nome is masculine",
+        "any_phrases": [
+          {
+            "phrase": "il",
+            "match_at": "word"
+          },
+          {
+            "phrase": "un",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "la",
+            "match_at": "word"
+          },
+          {
+            "phrase": "una",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "nome",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "nome - name",
+            "bucket": "vocabulary.it.nome.translation"
+          }
+        }
+      },
+      {
+        "lemma": "ristorante",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "ristorante - restaurant",
+            "bucket": "vocabulary.it.ristorante.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Non riesco a ricordare il nome di quel ristorante' means 'I can't remember the name of that restaurant.' Nome is a masculine -e noun: il nome, un nome. (Quel points at ristorante, not at the blank.)",
+    "version": 1
+  },
+  {
+    "external_id": "noun_gen_e_08",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "gender.e_ending",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "prompt": "Completa con l'articolo giusto: 'Roma è ____ capitale d'Italia.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.gender.e_ending",
+        "label": "la capitale = capital city (f)",
+        "any_phrases": [
+          {
+            "phrase": "la",
+            "match_at": "word"
+          },
+          {
+            "phrase": "una",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "il",
+            "match_at": "word"
+          },
+          {
+            "phrase": "un",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "capitale",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "capitale - capital",
+            "bucket": "vocabulary.it.capitale.translation"
+          }
+        }
+      },
+      {
+        "lemma": "Italia",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "Italia - Italy",
+            "bucket": "vocabulary.it.italia.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Roma è la capitale d'Italia' means 'Rome is the capital of Italy.' In the sense 'capital city' capitale is feminine: la capitale. The same spelling is masculine when it means money (see the next item), so meaning, not spelling, fixes the gender.",
+    "examiner_note": "Same-surface opposite pair with noun_gen_e_09 (il capitale = financial capital). Meaning conditions the gender.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_gen_e_09",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "gender.e_ending",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Completa con l'articolo giusto: 'In economia, ____ capitale è il denaro che si investe.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.gender.e_ending",
+        "label": "il capitale = money/funds (m)",
+        "any_phrases": [
+          {
+            "phrase": "il",
+            "match_at": "word"
+          },
+          {
+            "phrase": "un",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "la",
+            "match_at": "word"
+          },
+          {
+            "phrase": "una",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "capitale",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "capitale - capital",
+            "bucket": "vocabulary.it.capitale.translation"
+          }
+        }
+      },
+      {
+        "lemma": "denaro",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "denaro - money",
+            "bucket": "vocabulary.it.denaro.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'In economia, il capitale è il denaro che si investe' means 'In economics, capital is the money you invest.' In the financial sense capitale is masculine: il capitale. Compare la capitale (a capital city) in the previous item: one spelling, two genders, split by meaning.",
+    "examiner_note": "Same-surface opposite pair with noun_gen_e_08. The sentence forces the financial reading, hence masculine.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_gen_irr_01",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "gender.irregular",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Completa con l'articolo giusto: '____ problema di matematica è difficile.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.gender.irregular",
+        "label": "problema is masculine (-ma)",
+        "any_phrases": [
+          {
+            "phrase": "il",
+            "match_at": "word"
+          },
+          {
+            "phrase": "un",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "la",
+            "match_at": "word"
+          },
+          {
+            "phrase": "una",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "problema",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "problema - problem",
+            "bucket": "vocabulary.it.problema.translation"
+          }
+        }
+      },
+      {
+        "lemma": "matematica",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "matematica - maths",
+            "bucket": "vocabulary.it.matematica.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Il problema di matematica è difficile' means 'The maths problem is difficult.' Problema ends in -a but is masculine: il problema. It belongs to a set of nouns from Greek ending in -ma (problema, programma, tema, sistema) that are all masculine. The common miss, la problema, applies the -a rule that these words break.",
+    "examiner_note": "Breadcrumb suppressed: naming 'irregular gender' would tell the learner the -a ending is a trap.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_gen_irr_02",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "gender.irregular",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Completa con l'articolo giusto: 'Ho registrato ____ programma di ieri sera.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.gender.irregular",
+        "label": "programma is masculine (-ma)",
+        "any_phrases": [
+          {
+            "phrase": "il",
+            "match_at": "word"
+          },
+          {
+            "phrase": "un",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "la",
+            "match_at": "word"
+          },
+          {
+            "phrase": "una",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "programma",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "programma - programme",
+            "bucket": "vocabulary.it.programma.translation"
+          }
+        }
+      },
+      {
+        "lemma": "registrato",
+        "language": "it",
+        "aspects": {
+          "infinitive": {
+            "reveal": "registrare - to record",
+            "bucket": "vocabulary.it.registrare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Ho registrato il programma di ieri sera' means 'I recorded last night's programme.' Programma is another Greek -ma noun: masculine, il programma, despite the -a ending.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_gen_irr_03",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "gender.irregular",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Completa con l'articolo giusto: '____ tema dell'esame era molto attuale.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.gender.irregular",
+        "label": "tema is masculine (-ma)",
+        "any_phrases": [
+          {
+            "phrase": "il",
+            "match_at": "word"
+          },
+          {
+            "phrase": "un",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "la",
+            "match_at": "word"
+          },
+          {
+            "phrase": "una",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "tema",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "tema - theme",
+            "bucket": "vocabulary.it.tema.translation"
+          }
+        }
+      },
+      {
+        "lemma": "esame",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "esame - exam",
+            "bucket": "vocabulary.it.esame.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Il tema dell'esame era molto attuale' means 'The exam topic was very current.' Tema (theme, topic, essay) is masculine, il tema, like the other -ma nouns. Attuale ends in -e and is invariable in gender, so it gives nothing away.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_gen_irr_04",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "gender.irregular",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Completa con l'articolo giusto: 'Marco ha alzato ____ mano per rispondere.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.gender.irregular",
+        "label": "mano is feminine (-o)",
+        "any_phrases": [
+          {
+            "phrase": "la",
+            "match_at": "word"
+          },
+          {
+            "phrase": "una",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "il",
+            "match_at": "word"
+          },
+          {
+            "phrase": "un",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "mano",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "mano - hand",
+            "bucket": "vocabulary.it.mano.translation"
+          }
+        }
+      },
+      {
+        "lemma": "alzato",
+        "language": "it",
+        "aspects": {
+          "infinitive": {
+            "reveal": "alzare - to raise",
+            "bucket": "vocabulary.it.alzare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Marco ha alzato la mano per rispondere' means 'Marco raised his hand to answer.' Mano ends in -o but is feminine: la mano, una mano. It is the classic exception to '-o means masculine', and its plural is also irregular (le mani).",
+    "examiner_note": "Breadcrumb suppressed for the same reason as the -ma items.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_gen_irr_05",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "gender.irregular",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Completa con l'articolo giusto: 'Ti mando ____ foto appena posso.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.gender.irregular",
+        "label": "foto is feminine (-o)",
+        "any_phrases": [
+          {
+            "phrase": "la",
+            "match_at": "word"
+          },
+          {
+            "phrase": "una",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "il",
+            "match_at": "word"
+          },
+          {
+            "phrase": "un",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "foto",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "foto - photo",
+            "bucket": "vocabulary.it.foto.translation"
+          }
+        }
+      },
+      {
+        "lemma": "mando",
+        "language": "it",
+        "aspects": {
+          "infinitive": {
+            "reveal": "mandare - to send",
+            "bucket": "vocabulary.it.mandare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Ti mando la foto appena posso' means 'I'll send you the photo as soon as I can.' Foto is feminine, la foto, because it is short for la fotografia: the clipped word keeps the gender of the full one, even though it now ends in -o.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_gen_irr_06",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "gender.irregular",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Completa con l'articolo giusto: '____ radio in cucina non funziona.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.gender.irregular",
+        "label": "radio is feminine (-o)",
+        "any_phrases": [
+          {
+            "phrase": "la",
+            "match_at": "word"
+          },
+          {
+            "phrase": "una",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "il",
+            "match_at": "word"
+          },
+          {
+            "phrase": "un",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "radio",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "radio - radio",
+            "bucket": "vocabulary.it.radio.translation"
+          }
+        }
+      },
+      {
+        "lemma": "cucina",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "cucina - kitchen",
+            "bucket": "vocabulary.it.cucina.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'La radio in cucina non funziona' means 'The radio in the kitchen doesn't work.' Radio is feminine, la radio, another -o noun that breaks the masculine rule (like foto and moto, both clipped feminines).",
+    "version": 1
+  },
+  {
+    "external_id": "noun_gen_irr_07",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "gender.irregular",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Completa con l'articolo giusto: 'Leopardi è ____ poeta che preferisco.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.gender.irregular",
+        "label": "poeta is masculine (-a, person)",
+        "any_phrases": [
+          {
+            "phrase": "il",
+            "match_at": "word"
+          },
+          {
+            "phrase": "un",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "la",
+            "match_at": "word"
+          },
+          {
+            "phrase": "una",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "poeta",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "poeta - poet",
+            "bucket": "vocabulary.it.poeta.translation"
+          }
+        }
+      },
+      {
+        "lemma": "preferisco",
+        "language": "it",
+        "aspects": {
+          "infinitive": {
+            "reveal": "preferire - to prefer",
+            "bucket": "vocabulary.it.preferire.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Leopardi è il poeta che preferisco' means 'Leopardi is the poet I prefer.' Poeta ends in -a but names a male person and is masculine: il poeta. Its feminine counterpart is a different word, la poetessa, so here the -a does not signal feminine.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_plur_reg_01",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "plural.regular",
+    "difficulty": 1,
+    "cefr_level_target": "A1",
+    "prompt": "Metti al plurale: 'Un libro, due ____.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.plural.regular",
+        "label": "-o to -i",
+        "any_phrases": [
+          {
+            "phrase": "libri",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "libros",
+            "match_at": "word"
+          },
+          {
+            "phrase": "libre",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "libro",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "libro - book",
+            "bucket": "vocabulary.it.libro.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Un libro, due libri' means 'one book, two books.' Masculine -o nouns form the plural by changing -o to -i: libro to libri. Italian never adds an English -s.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_plur_reg_02",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "plural.regular",
+    "difficulty": 1,
+    "cefr_level_target": "A1",
+    "prompt": "Metti al plurale: 'Una casa, tre ____.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.plural.regular",
+        "label": "-a to -e",
+        "any_phrases": [
+          {
+            "phrase": "case",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "casi",
+            "match_at": "word"
+          },
+          {
+            "phrase": "casas",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "casa",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "casa - house",
+            "bucket": "vocabulary.it.casa.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Una casa, tre case' means 'one house, three houses.' Feminine -a nouns form the plural by changing -a to -e: casa to case. Watch the trap of -a to -i (casi), which is the masculine pattern.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_plur_reg_03",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "plural.regular",
+    "difficulty": 1,
+    "cefr_level_target": "A1",
+    "prompt": "Metti al plurale: 'Un fiore, molti ____.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.plural.regular",
+        "label": "-e to -i",
+        "any_phrases": [
+          {
+            "phrase": "fiori",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "fiores",
+            "match_at": "word"
+          },
+          {
+            "phrase": "fiore",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "fiore",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "fiore - flower",
+            "bucket": "vocabulary.it.fiore.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Un fiore, molti fiori' means 'one flower, many flowers.' Nouns ending in -e (either gender) form the plural in -i: fiore to fiori. So -o and -e both go to -i, while only -a goes to -e.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_plur_reg_04",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "plural.regular",
+    "difficulty": 1,
+    "cefr_level_target": "A1",
+    "prompt": "Metti al plurale: 'Uno studente, venti ____.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.plural.regular",
+        "label": "-e to -i",
+        "any_phrases": [
+          {
+            "phrase": "studenti",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "studentes",
+            "match_at": "word"
+          },
+          {
+            "phrase": "studente",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "studente",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "studente - student",
+            "bucket": "vocabulary.it.studente.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Uno studente, venti studenti' means 'one student, twenty students.' Studente ends in -e, so the plural is -i: studenti. The word is masculine, but -e nouns take -i whatever their gender.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_plur_reg_05",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "plural.regular",
+    "difficulty": 1,
+    "cefr_level_target": "A1",
+    "prompt": "Metti al plurale: 'Una ragazza, due ____.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.plural.regular",
+        "label": "-a to -e",
+        "any_phrases": [
+          {
+            "phrase": "ragazze",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "ragazzi",
+            "match_at": "word"
+          },
+          {
+            "phrase": "ragazzas",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "ragazza",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "ragazza - girl",
+            "bucket": "vocabulary.it.ragazza.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Una ragazza, due ragazze' means 'one girl, two girls.' Feminine -a to -e: ragazze. Ragazzi would be the plural of the masculine ragazzo (boys), so the ending also carries the gender.",
+    "examiner_note": "ragazzi is a real word (boys); here it is the diagnostic miss for the feminine plural.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_plur_reg_06",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "plural.regular",
+    "difficulty": 1,
+    "cefr_level_target": "A1",
+    "prompt": "Metti al plurale: 'Un cane, tanti ____.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.plural.regular",
+        "label": "-e to -i",
+        "any_phrases": [
+          {
+            "phrase": "cani",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "canes",
+            "match_at": "word"
+          },
+          {
+            "phrase": "cane",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "cane",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "cane - dog",
+            "bucket": "vocabulary.it.cane.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Un cane, tanti cani' means 'one dog, many dogs.' Cane ends in -e, so the plural is cani. (Cani, not canes: the English -s never appears.)",
+    "version": 1
+  },
+  {
+    "external_id": "noun_plur_sp_01",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "plural.spelling",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "prompt": "Metti al plurale: 'Un amico, molti ____.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.plural.spelling",
+        "label": "-co to -ci (soft c kept)",
+        "any_phrases": [
+          {
+            "phrase": "amici",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "amichi",
+            "match_at": "word"
+          },
+          {
+            "phrase": "amicos",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "amico",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "amico - friend",
+            "bucket": "vocabulary.it.amico.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Un amico, molti amici' means 'one friend, many friends.' Here -co becomes -ci and the c stays soft: amici. The tempting amichi would add an h to keep a hard sound, but amico does not want it. This is the exception planted in an otherwise regular set.",
+    "examiner_note": "VISIBLE: breadcrumb tempts the catchable over-extension amichi (h kept). Naive -o/-i already gives the right amici.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_plur_sp_02",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "plural.spelling",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "prompt": "Metti al plurale: 'Un medico, molti ____.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.plural.spelling",
+        "label": "-co to -ci (soft c kept)",
+        "any_phrases": [
+          {
+            "phrase": "medici",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "medichi",
+            "match_at": "word"
+          },
+          {
+            "phrase": "medicos",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "medico",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "medico - doctor",
+            "bucket": "vocabulary.it.medico.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Un medico, molti medici' means 'one doctor, many doctors.' Like amico, medico keeps the soft c: medici, not medichi. Words stressed on the third-from-last syllable usually drop into the soft -ci plural.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_plur_sp_03",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "plural.spelling",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "prompt": "Metti al plurale: 'Un ago, due ____.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.plural.spelling",
+        "label": "-go to -ghi (h keeps hard g)",
+        "any_phrases": [
+          {
+            "phrase": "aghi",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "agi",
+            "match_at": "word"
+          },
+          {
+            "phrase": "agos",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "ago",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "ago - needle",
+            "bucket": "vocabulary.it.ago.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Un ago, due aghi' means 'one needle, two needles.' To keep the hard g sound, -go adds an h: aghi. Without it, agi would be read with a soft g (like 'gee'), so the h protects the pronunciation.",
+    "examiner_note": "SUPPRESS: naming 'spelling shift' would hand that an h is needed; the naive agi is wrong.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_plur_sp_04",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "plural.spelling",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "prompt": "Metti al plurale: 'Un fuoco, due ____.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.plural.spelling",
+        "label": "-co to -chi (h keeps hard c)",
+        "any_phrases": [
+          {
+            "phrase": "fuochi",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "fuoci",
+            "match_at": "word"
+          },
+          {
+            "phrase": "fuocos",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "fuoco",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "fuoco - fire",
+            "bucket": "vocabulary.it.fuoco.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Un fuoco, due fuochi' means 'one fire, two fires.' Fuoco keeps the hard c with an h: fuochi. Compare amico to amici: whether the h appears depends on where the word is stressed, and fuoco (stressed on the last-but-one syllable) keeps it.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_plur_sp_05",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "plural.spelling",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "prompt": "Metti al plurale: 'Un'amica, due ____.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.plural.spelling",
+        "label": "feminine -ca to -che (h kept)",
+        "any_phrases": [
+          {
+            "phrase": "amiche",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "amice",
+            "match_at": "word"
+          },
+          {
+            "phrase": "amicas",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "amica",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "amica - friend (female)",
+            "bucket": "vocabulary.it.amica.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Un'amica, due amiche' means 'one female friend, two female friends.' Feminine -ca always adds an h to keep the hard sound: amiche. Note the split with the masculine amico to amici (no h): same root, opposite behaviour, because the feminine keeps the hard c and the masculine here does not.",
+    "examiner_note": "SUPPRESS: naive amice is wrong (soft c); breadcrumb would hand the h-rule.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_plur_sp_06",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "plural.spelling",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "prompt": "Metti al plurale: 'Una barca, tre ____.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.plural.spelling",
+        "label": "feminine -ca to -che (h kept)",
+        "any_phrases": [
+          {
+            "phrase": "barche",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "barce",
+            "match_at": "word"
+          },
+          {
+            "phrase": "barcas",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "barca",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "barca - boat",
+            "bucket": "vocabulary.it.barca.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Una barca, tre barche' means 'one boat, three boats.' Feminine -ca to -che: the h keeps the hard c. All -ca and -ga feminine nouns behave this way (amiche, barche, righe, colleghe).",
+    "version": 1
+  },
+  {
+    "external_id": "noun_plur_sp_07",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "plural.spelling",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Metti al plurale: 'Una camicia, due ____.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.plural.spelling",
+        "label": "-cia keeps i (vowel before c)",
+        "any_phrases": [
+          {
+            "phrase": "camicie",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "camice",
+            "match_at": "word"
+          },
+          {
+            "phrase": "camicias",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "camicia",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "camicia - shirt",
+            "bucket": "vocabulary.it.camicia.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Una camicia, due camicie' means 'one shirt, two shirts.' When a vowel comes before the -cia (cami-c-ia), the i is kept in the plural: camicie. Dropping it would give camice, which is a different word (a lab coat).",
+    "examiner_note": "VISIBLE: naive -a/-e already gives the correct camicie; the trap is dropping the i (camice).",
+    "version": 1
+  },
+  {
+    "external_id": "noun_plur_sp_08",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "plural.spelling",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Metti al plurale: 'Un'arancia, due ____.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.plural.spelling",
+        "label": "-cia drops i (consonant before c)",
+        "any_phrases": [
+          {
+            "phrase": "arance",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "arancie",
+            "match_at": "word"
+          },
+          {
+            "phrase": "arancias",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "arancia",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "arancia - orange",
+            "bucket": "vocabulary.it.arancia.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Un'arancia, due arance' means 'one orange, two oranges.' When a consonant comes before the -cia (aran-c-ia), the i is dropped: arance. So camicie keeps the i (vowel before) but arance loses it (consonant before): the letter before the c decides.",
+    "examiner_note": "SUPPRESS: naive -a/-e gives the wrong arancie; the i-drop is the hidden rule.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_plur_sp_09",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "plural.spelling",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Metti al plurale: 'Una pioggia, molte ____.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.plural.spelling",
+        "label": "-gia drops i (consonant before g)",
+        "any_phrases": [
+          {
+            "phrase": "piogge",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "pioggie",
+            "match_at": "word"
+          },
+          {
+            "phrase": "pioggias",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "pioggia",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "pioggia - rain",
+            "bucket": "vocabulary.it.pioggia.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Una pioggia, molte piogge' means 'one rain, many rains (rainfalls).' A consonant comes before the -gia (piog-g-ia), so the i drops: piogge. Same rule as arance, on the g side.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_plur_sp_10",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "plural.spelling",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "prompt": "Metti al plurale: 'Un figlio, due ____.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.plural.spelling",
+        "label": "unstressed -io to single -i",
+        "any_phrases": [
+          {
+            "phrase": "figli",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "figlii",
+            "match_at": "word"
+          },
+          {
+            "phrase": "figlios",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "figlio",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "figlio - son",
+            "bucket": "vocabulary.it.figlio.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Un figlio, due figli' means 'one son, two sons.' The -io here is unstressed, so the two i's merge into one: figli, not figlii. Most -io nouns behave this way (occhio to occhi, foglio to fogli).",
+    "examiner_note": "VISIBLE: naive -o/-i gives the right figli; the trap is the doubled figlii. 'figli' anchored word so it cannot match inside figlii.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_plur_sp_11",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "plural.spelling",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Metti al plurale: 'Uno zio, due ____.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.plural.spelling",
+        "label": "stressed -io to -ii",
+        "any_phrases": [
+          {
+            "phrase": "zii",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "zi",
+            "match_at": "word"
+          },
+          {
+            "phrase": "zio",
+            "match_at": "word"
+          },
+          {
+            "phrase": "zios",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "zio",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "zio - uncle",
+            "bucket": "vocabulary.it.zio.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Uno zio, due zii' means 'one uncle, two uncles.' Here the i of -io is stressed (zìo), so it is kept and the plural has two i's: zii. Compare figli, where the i was unstressed and merged. Stress decides one i or two.",
+    "examiner_note": "VISIBLE: the figlio/zio contrast is the lesson. 'zi' anchored word catches the single-i under-form without clipping the correct zii.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_plur_inv_01",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "plural.invariable",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "prompt": "Metti al plurale: 'Una città, due ____.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.plural.invariable",
+        "label": "accented final -> invariable",
+        "any_phrases": [
+          {
+            "phrase": "città",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "cittàs",
+            "match_at": "word"
+          },
+          {
+            "phrase": "cittade",
+            "match_at": "word"
+          },
+          {
+            "phrase": "cittadi",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "città",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "città - city",
+            "bucket": "vocabulary.it.città.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Una città, due città' means 'one city, two cities.' Nouns with a stressed, accented final vowel do not change in the plural: la città, le città. The accent marks the stress that blocks any ending change.",
+    "examiner_note": "Missing-accent 'citta' is credited by the accent-folded fallback as a slip, not a miss. SUPPRESS: breadcrumb names invariability, which is the answer.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_plur_inv_02",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "plural.invariable",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "prompt": "Metti al plurale: 'Un film, molti ____.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.plural.invariable",
+        "label": "foreign word -> invariable",
+        "any_phrases": [
+          {
+            "phrase": "film",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "filmi",
+            "match_at": "word"
+          },
+          {
+            "phrase": "films",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "film",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "film - film",
+            "bucket": "vocabulary.it.film.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Un film, molti film' means 'one film, many films.' Words borrowed from other languages stay unchanged: il film, i film. Italian marks the plural with the article (i) and leaves the noun alone; films and filmi are both wrong.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_plur_inv_03",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "plural.invariable",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "prompt": "Metti al plurale: 'Un re, tre ____.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.plural.invariable",
+        "label": "one-syllable -> invariable",
+        "any_phrases": [
+          {
+            "phrase": "re",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "rei",
+            "match_at": "word"
+          },
+          {
+            "phrase": "res",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "re",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "re - king",
+            "bucket": "vocabulary.it.re.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Un re, tre re' means 'one king, three kings.' Single-syllable nouns do not change: il re, i re. There is nothing to add an ending to without turning it into a different word.",
+    "examiner_note": "'re' anchored word so it only matches the whole answer, not the 're' inside 'tre'.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_plur_inv_04",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "plural.invariable",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "prompt": "Metti al plurale: 'Una crisi, due ____.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.plural.invariable",
+        "label": "-i ending -> invariable",
+        "any_phrases": [
+          {
+            "phrase": "crisi",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "crisis",
+            "match_at": "word"
+          },
+          {
+            "phrase": "crise",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "crisi",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "crisi - crisis",
+            "bucket": "vocabulary.it.crisi.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Una crisi, due crisi' means 'one crisis, two crises.' Nouns already ending in -i (crisi, analisi, tesi) are the same in singular and plural: la crisi, le crisi. They look plural already, so they stay put.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_plur_inv_05",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "plural.invariable",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "prompt": "Metti al plurale: 'Un caffè, due ____.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.plural.invariable",
+        "label": "accented final -> invariable",
+        "any_phrases": [
+          {
+            "phrase": "caffè",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "caffès",
+            "match_at": "word"
+          },
+          {
+            "phrase": "caffei",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "caffè",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "caffè - coffee",
+            "bucket": "vocabulary.it.caffè.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Un caffè, due caffè' means 'one coffee, two coffees.' Like città, the stressed accented final vowel blocks any change: il caffè, i caffè. You would order 'due caffè', never 'due caffè-s'.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_plur_inv_06",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "plural.invariable",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "prompt": "Metti al plurale: 'Una foto, tante ____.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.plural.invariable",
+        "label": "clipped word -> invariable",
+        "any_phrases": [
+          {
+            "phrase": "foto",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "fotos",
+            "match_at": "word"
+          },
+          {
+            "phrase": "foti",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "foto",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "foto - photo",
+            "bucket": "vocabulary.it.foto.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Una foto, tante foto' means 'one photo, many photos.' Foto is a shortened form of fotografia, and clipped words do not change: la foto, le foto. (It is also feminine for the same reason, keeping fotografia's gender.)",
+    "version": 1
+  },
+  {
+    "external_id": "noun_plur_irr_01",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "plural.irregular",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Metti al plurale: 'Un uomo, molti ____.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.plural.irregular",
+        "label": "uomo -> uomini (suppletive)",
+        "any_phrases": [
+          {
+            "phrase": "uomini",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "uomi",
+            "match_at": "word"
+          },
+          {
+            "phrase": "uomos",
+            "match_at": "word"
+          },
+          {
+            "phrase": "omini",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "uomo",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "uomo - man",
+            "bucket": "vocabulary.it.uomo.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Un uomo, molti uomini' means 'one man, many men.' Uomo has a suppletive plural, uomini: the stem itself changes, not just the ending. It has to be memorised, like English man to men.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_plur_irr_02",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "plural.irregular",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Metti al plurale: 'Un uovo, sei ____.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.plural.irregular",
+        "label": "uovo (m) -> uova (f pl)",
+        "any_phrases": [
+          {
+            "phrase": "uova",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "uovi",
+            "match_at": "word"
+          },
+          {
+            "phrase": "uovos",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "uovo",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "uovo - egg",
+            "bucket": "vocabulary.it.uovo.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Un uovo, sei uova' means 'one egg, six eggs.' Uovo is masculine in the singular but takes a feminine plural in -a: le uova. A small group of nouns switches gender this way in the plural.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_plur_irr_03",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "plural.irregular",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Metti al plurale (parte del corpo): 'Un braccio, due ____.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.plural.irregular",
+        "label": "braccio -> braccia (body, f pl)",
+        "any_phrases": [
+          {
+            "phrase": "braccia",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "bracci",
+            "match_at": "word"
+          },
+          {
+            "phrase": "braccios",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "braccio",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "braccio - arm",
+            "bucket": "vocabulary.it.braccio.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Un braccio, due braccia' means 'one arm, two arms.' For the parts of the body, braccio takes the feminine plural braccia. The regular-looking bracci exists too, but it means mechanical arms (of a crane, a record player), not the body's, as the next item shows.",
+    "examiner_note": "VISIBLE: meaning (parte del corpo) conditions the answer, not the breadcrumb. Same-surface opposite pair with noun_plur_irr_04.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_plur_irr_04",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "plural.irregular",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Metti al plurale (di una macchina): 'Un braccio, due ____.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.plural.irregular",
+        "label": "braccio -> bracci (mechanical, m pl)",
+        "any_phrases": [
+          {
+            "phrase": "bracci",
+            "match_at": "end"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "braccia",
+            "match_at": "word"
+          },
+          {
+            "phrase": "braccios",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "braccio",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "braccio - arm",
+            "bucket": "vocabulary.it.braccio.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Un braccio, due bracci' means 'one arm, two arms' of a machine. When braccio means a mechanical arm, the plural is the regular masculine bracci; the feminine braccia is reserved for the body. One word, two plurals, split by meaning.",
+    "examiner_note": "VISIBLE, pair with irr_03. 'bracci' is a prefix of 'braccia', so it is anchored match_at end: without it, a learner typing the wrong 'braccia' would false-match the 'bracci' phrase and be wrongly credited.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_plur_irr_05",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "plural.irregular",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Metti al plurale: 'Una mano ha cinque ____.' (dito)",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.plural.irregular",
+        "label": "dito -> dita (f pl)",
+        "any_phrases": [
+          {
+            "phrase": "dita",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "ditos",
+            "match_at": "word"
+          },
+          {
+            "phrase": "ditas",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "dito",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "dito - finger",
+            "bucket": "vocabulary.it.dito.translation"
+          }
+        }
+      },
+      {
+        "lemma": "mano",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "mano - hand",
+            "bucket": "vocabulary.it.mano.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Una mano ha cinque dita' means 'a hand has five fingers.' Dito is masculine but takes the feminine plural dita for fingers taken together. (The rarer diti exists for fingers considered one by one.)",
+    "examiner_note": "Standard collective plural is dita; diti is a defensible technical variant, deliberately not in must_not so it falls to a generic miss rather than being branded a clear error. SUPPRESS.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_plur_irr_06",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "plural.irregular",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Metti al plurale: 'Un paio di scarpe, due ____ di scarpe.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.plural.irregular",
+        "label": "paio -> paia (f pl)",
+        "any_phrases": [
+          {
+            "phrase": "paia",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "paii",
+            "match_at": "word"
+          },
+          {
+            "phrase": "pai",
+            "match_at": "word"
+          },
+          {
+            "phrase": "paios",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "paio",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "paio - pair",
+            "bucket": "vocabulary.it.paio.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Un paio di scarpe, due paia di scarpe' means 'one pair of shoes, two pairs of shoes.' Paio is masculine singular but takes the feminine plural paia, like uovo to uova. The regular-looking pai and paii are both wrong.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_plur_comp_01",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "plural.compound",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Metti al plurale: 'Un capolavoro, molti ____.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.plural.compound",
+        "label": "noun+noun: final element only",
+        "any_phrases": [
+          {
+            "phrase": "capolavori",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "capilavori",
+            "match_at": "word"
+          },
+          {
+            "phrase": "capolavoros",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "capolavoro",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "capolavoro - masterpiece",
+            "bucket": "vocabulary.it.capolavoro.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Un capolavoro, molti capolavori' means 'one masterpiece, many masterpieces.' Capolavoro (capo + lavoro) has fused into a single word, so only the final element takes the plural: capolavori. The tempting capilavori, pluralising capo as well, is wrong here.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_plur_comp_02",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "plural.compound",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Metti al plurale: 'Un asciugamano, tre ____.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.plural.compound",
+        "label": "verb+noun: the noun pluralises",
+        "any_phrases": [
+          {
+            "phrase": "asciugamani",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "asciugamanos",
+            "match_at": "word"
+          },
+          {
+            "phrase": "asciugimani",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "asciugamano",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "asciugamano - towel",
+            "bucket": "vocabulary.it.asciugamano.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Un asciugamano, tre asciugamani' means 'one towel, three towels.' Asciugamano is asciuga (wipes) + mano (hand); the verb part is fixed and the noun part takes the plural: asciugamani. The verb never changes.",
+    "version": 1
+  },
+  {
+    "external_id": "noun_plur_comp_03",
+    "language_code": "it",
+    "topic": "noun",
+    "subtopic": "plural.compound",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Metti al plurale: 'Un portachiavi, due ____.'",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "noun.plural.compound",
+        "label": "verb+plural-noun: invariable",
+        "any_phrases": [
+          {
+            "phrase": "portachiavi",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "portachiavii",
+            "match_at": "word"
+          },
+          {
+            "phrase": "portichiavi",
+            "match_at": "word"
+          },
+          {
+            "phrase": "portachiave",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "portachiavi",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "portachiavi - keyring",
+            "bucket": "vocabulary.it.portachiavi.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Un portachiavi, due portachiavi' means 'one keyring, two keyrings.' Portachiavi is porta (carries) + chiavi (keys), and because the noun part is already plural (chiavi), the whole word cannot change: it is invariable, il portachiavi, i portachiavi.",
+    "examiner_note": "Contrast with asciugamani: there the noun part was singular (mano) and could pluralise; here it is already plural (chiavi), so the compound is frozen.",
+    "version": 1
+  }
+]

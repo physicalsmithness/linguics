@@ -1,0 +1,27 @@
+[
+ {
+  "proposed_id": "demonstrative.discrimination.questo_vs_quello",
+  "proposed_parent_id": "demonstrative.discrimination",
+  "proposed_label": "this vs that (near / far)",
+  "proposed_description": "Choosing questo (near the speaker) or quello (further away) from distance cues in the sentence (qui/adesso vs laggiù/in fondo/all'orizzonte).",
+  "proposed_cefr_importance": {
+   "A1": "preview",
+   "A2": "core",
+   "B1": "review",
+   "B2": "review",
+   "C1": "fluency",
+   "C2": "fluency"
+  },
+  "proposed_prerequisites": [
+   "demonstrative.questo",
+   "demonstrative.quello"
+  ],
+  "proposed_attributes": {
+   "is_aggregate": false,
+   "direction": "bidirectional",
+   "stub": true,
+   "canonical_example": "questo caffè (qui) vs quel palazzo (in fondo alla via)"
+  },
+  "rationale": "The tree has demonstrative.discrimination as an aggregate stub but no leaf to hang items on. The dispatch names this exact id ('discrimination.questo_vs_quello'). I authored 5 grammar + touch of translation against it; a concrete leaf is needed so the markpoints resolve at production load rather than staying on the aggregate."
+ }
+]

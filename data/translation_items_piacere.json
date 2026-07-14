@@ -82,6 +82,89 @@
   "version": 1
  },
  {
+  "external_id": "trans_pia_en_it_agree_02",
+  "source_lang": "en",
+  "target_lang": "it",
+  "source_text": "I don't like cabbage. Me neither.",
+  "reference_translations": [
+   {
+    "text": "Non mi piace il cavolo. Neanche a me.",
+    "register": "neutral",
+    "notes": "Singular cabbage; negative agreement neanche a me."
+   },
+   {
+    "text": "Non mi piacciono i cavoli. Neanche a me.",
+    "register": "neutral",
+    "notes": "Plural cavoli also idiomatic."
+   }
+  ],
+  "topic": "piacere",
+  "register": "neutral",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "required_buckets": [
+   "piacere.usage.agreeing_responses"
+  ],
+  "optional_buckets": [],
+  "vocab_help": [
+   {
+    "lemma": "cabbage",
+    "language": "en",
+    "aspects": {
+     "translation": {
+      "reveal": "cabbage - cavolo",
+      "bucket": "vocabulary.it.cavolo.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "'I don't like cabbage. Me neither.' becomes 'Non mi piace il cavolo. Neanche a me.' Agreeing with a negative keeps the a-phrase and uses neanche (or nemmeno) a me, never anch'io.",
+  "version": 1
+ },
+ {
+  "external_id": "trans_pia_en_it_aphr_01",
+  "source_lang": "en",
+  "target_lang": "it",
+  "source_text": "Marco likes football.",
+  "reference_translations": [
+   {
+    "text": "A Marco piace il calcio.",
+    "register": "neutral",
+    "notes": "Named experiencer takes a; singular liked thing gives piace."
+   },
+   {
+    "text": "Marco piace il calcio.",
+    "register": "neutral",
+    "polarity": "negative",
+    "notes": "WRONG: without a, this means 'people like Marco'. Anti-anchor for the dropped preposition."
+   }
+  ],
+  "topic": "piacere",
+  "register": "neutral",
+  "difficulty": 2,
+  "cefr_level_target": "A1",
+  "required_buckets": [
+   "piacere.form.experiencer_a_phrase"
+  ],
+  "optional_buckets": [
+   "piacere.form.agreement"
+  ],
+  "vocab_help": [
+   {
+    "lemma": "football",
+    "language": "en",
+    "aspects": {
+     "translation": {
+      "reveal": "football - calcio",
+      "bucket": "vocabulary.it.calcio.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "'Marco likes football' becomes 'A Marco piace il calcio.' A named liker is introduced with a (a Marco). Drop the a and the sentence says people like Marco instead.",
+  "version": 1
+ },
+ {
   "external_id": "trans_pia_en_it_clit_01",
   "source_lang": "en",
   "target_lang": "it",
@@ -121,6 +204,76 @@
    }
   ],
   "explanation": "'She likes jazz' becomes 'Le piace il jazz.' The liker 'she' is the indirect object le ('to her'); the liked thing (il jazz) is singular, so the verb is piace. Do not confuse le (to her) with gli (to him).",
+  "version": 1
+ },
+ {
+  "external_id": "trans_pia_en_it_disp_02",
+  "source_lang": "en",
+  "target_lang": "it",
+  "source_text": "Would you mind closing the door?",
+  "reference_translations": [
+   {
+    "text": "Ti dispiace chiudere la porta?",
+    "register": "neutral",
+    "notes": "Informal polite request: ti dispiace + infinitive."
+   },
+   {
+    "text": "Le dispiace chiudere la porta?",
+    "register": "formal",
+    "notes": "Formal address with Le."
+   }
+  ],
+  "topic": "piacere",
+  "register": "neutral",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "required_buckets": [
+   "piacere.usage.dispiacere"
+  ],
+  "optional_buckets": [],
+  "vocab_help": [
+   {
+    "lemma": "door",
+    "language": "en",
+    "aspects": {
+     "translation": {
+      "reveal": "door - porta",
+      "bucket": "vocabulary.it.porta.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "'Would you mind closing the door?' becomes 'Ti dispiace chiudere la porta?' A request built on dispiacere plus an infinitive is the polite 'would you mind'; the formal version swaps ti for Le.",
+  "version": 1
+ },
+ {
+  "external_id": "trans_pia_en_it_fam_01",
+  "source_lang": "en",
+  "target_lang": "it",
+  "source_text": "I miss you.",
+  "reference_translations": [
+   {
+    "text": "Mi manchi.",
+    "register": "neutral",
+    "notes": "You are the subject (manchi); mi is 'to me'. Literally 'you are missing to me'."
+   },
+   {
+    "text": "Ti manco.",
+    "register": "neutral",
+    "polarity": "negative",
+    "notes": "WRONG for 'I miss you': this means 'you miss me'. Anti-anchor for the direction flip."
+   }
+  ],
+  "topic": "piacere",
+  "register": "neutral",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "required_buckets": [
+   "piacere.usage.family_verbs"
+  ],
+  "optional_buckets": [],
+  "vocab_help": [],
+  "explanation": "'I miss you' becomes 'Mi manchi.' Mancare flips like piacere: you are the one missing (manchi), and mi marks the person doing the missing. 'Ti manco' would say you miss me.",
   "version": 1
  },
  {
@@ -434,6 +587,219 @@
    }
   ],
   "explanation": "'I didn't like the shoes' becomes 'Le scarpe non mi sono piaciute.' Piacere uses essere in the past, so the auxiliary is sono, and the participle agrees with the liked thing (le scarpe, feminine plural): piaciute.",
+  "version": 1
+ },
+ {
+  "external_id": "trans_pia_it_en_agree_01",
+  "source_lang": "it",
+  "target_lang": "en",
+  "source_text": "Mi piace il gelato. Anche a me!",
+  "reference_translations": [
+   {
+    "text": "I like ice cream. Me too!",
+    "register": "neutral",
+    "notes": "Anche a me is the idiomatic agreement, rendered 'me too'."
+   }
+  ],
+  "topic": "piacere",
+  "register": "neutral",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "required_buckets": [
+   "piacere.usage.agreeing_responses"
+  ],
+  "optional_buckets": [],
+  "vocab_help": [
+   {
+    "lemma": "gelato",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "gelato - ice cream",
+      "bucket": "vocabulary.it.gelato.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "'Mi piace il gelato. Anche a me!' means 'I like ice cream. Me too!' Reading it correctly means recognising that anche a me, literally 'also to me', is how Italian says 'me too' for likes.",
+  "version": 1
+ },
+ {
+  "external_id": "trans_pia_it_en_disp_01",
+  "source_lang": "it",
+  "target_lang": "en",
+  "source_text": "Questo vino non mi dispiace.",
+  "reference_translations": [
+   {
+    "text": "I quite like this wine.",
+    "register": "neutral",
+    "notes": "Litotes: 'not displeasing' is mild approval, not indifference."
+   },
+   {
+    "text": "I don't mind this wine.",
+    "register": "neutral",
+    "notes": "Acceptable understatement rendering."
+   }
+  ],
+  "topic": "piacere",
+  "register": "neutral",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "required_buckets": [
+   "piacere.usage.dispiacere"
+  ],
+  "optional_buckets": [],
+  "vocab_help": [
+   {
+    "lemma": "vino",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "vino - wine",
+      "bucket": "vocabulary.it.vino.translation"
+     },
+     "gender": {
+      "reveal": "masculine (m)",
+      "bucket": "vocabulary.it.vino.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "'Questo vino non mi dispiace' means 'I quite like this wine.' Non mi dispiace is understatement: saying it does not displease you is a mild way of saying you rather like it, not that you feel neutral about it.",
+  "version": 1
+ },
+ {
+  "external_id": "trans_pia_it_en_fam_02",
+  "source_lang": "it",
+  "target_lang": "en",
+  "source_text": "Mi mancano i miei amici.",
+  "reference_translations": [
+   {
+    "text": "I miss my friends.",
+    "register": "neutral",
+    "notes": "Plural subject (i miei amici) gives mancano; mi is the experiencer."
+   }
+  ],
+  "topic": "piacere",
+  "register": "neutral",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "required_buckets": [
+   "piacere.usage.family_verbs"
+  ],
+  "optional_buckets": [],
+  "vocab_help": [
+   {
+    "lemma": "amici",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "amico - friend",
+      "bucket": "vocabulary.it.amico.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "'Mi mancano i miei amici' means 'I miss my friends.' My friends are the subject, so the verb is plural mancano, and mi is the one who misses them. English makes 'I' the subject; Italian makes the missed people the subject.",
+  "version": 1
+ },
+ {
+  "external_id": "trans_pia_it_en_flip_01",
+  "source_lang": "it",
+  "target_lang": "en",
+  "source_text": "A Giulia piacciono i cani.",
+  "reference_translations": [
+   {
+    "text": "Giulia likes dogs.",
+    "register": "neutral",
+    "notes": "Reading the flip: Giulia is the liker in the a-phrase, i cani the plural subject."
+   }
+  ],
+  "topic": "piacere",
+  "register": "neutral",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "required_buckets": [
+   "piacere.usage.subject_flip"
+  ],
+  "optional_buckets": [
+   "piacere.form.agreement"
+  ],
+  "vocab_help": [
+   {
+    "lemma": "cani",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "cane - dog",
+      "bucket": "vocabulary.it.cane.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "'A Giulia piacciono i cani' means 'Giulia likes dogs.' Reading it correctly means seeing that Giulia, in the a-phrase, is the liker, and the dogs are the grammatical subject driving the plural piacciono.",
+  "version": 1
+ },
+ {
+  "external_id": "trans_pia_it_en_people_01",
+  "source_lang": "it",
+  "target_lang": "en",
+  "source_text": "Mi piaci.",
+  "reference_translations": [
+   {
+    "text": "I like you.",
+    "register": "neutral",
+    "notes": "The subject is 'you' (piaci); mi is 'to me'. Reads as 'you please me'."
+   },
+   {
+    "text": "You please me.",
+    "register": "neutral",
+    "notes": "Literal gloss; acceptable."
+   }
+  ],
+  "topic": "piacere",
+  "register": "neutral",
+  "difficulty": 2,
+  "cefr_level_target": "B1",
+  "required_buckets": [
+   "piacere.usage.liking_people"
+  ],
+  "optional_buckets": [
+   "piacere.usage.subject_flip"
+  ],
+  "vocab_help": [],
+  "explanation": "'Mi piaci' means 'I like you.' The trap is reading it as 'you like me': the verb ending piaci agrees with you (the one who pleases), and mi is the person pleased. A pure recognition win once the flip is internalised.",
+  "version": 1
+ },
+ {
+  "external_id": "trans_pia_it_en_people_02",
+  "source_lang": "it",
+  "target_lang": "en",
+  "source_text": "Secondo me, tu gli piaci.",
+  "reference_translations": [
+   {
+    "text": "I think he likes you.",
+    "register": "neutral",
+    "notes": "gli = to him; tu (you) is the subject that pleases him."
+   },
+   {
+    "text": "In my opinion, he likes you.",
+    "register": "neutral",
+    "notes": "Same content, different opener."
+   }
+  ],
+  "topic": "piacere",
+  "register": "neutral",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "required_buckets": [
+   "piacere.usage.liking_people"
+  ],
+  "optional_buckets": [
+   "piacere.form.experiencer_clitic"
+  ],
+  "vocab_help": [],
+  "explanation": "'Secondo me, tu gli piaci' means 'I think he likes you.' You are the subject (piaci agrees with tu) and gli is 'to him', so the liking runs from him to you, the reverse of the English word order.",
   "version": 1
  }
 ]

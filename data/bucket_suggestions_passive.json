@@ -1,0 +1,46 @@
+[
+  {
+    "proposed_id": "passive.formation.andare.obligation",
+    "proposed_parent_id": "passive.formation.andare",
+    "proposed_label": "andare + participle: must be done",
+    "proposed_description": "The productive obligation sense: il modulo va compilato, le medicine vanno prese. Present-tense va/vanno plus a participle, meaning something must be done.",
+    "proposed_cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "core",
+      "C2": "fluency"
+    },
+    "proposed_prerequisites": [
+      "passive.formation.essere"
+    ],
+    "proposed_attributes": {
+      "canonical_example": "Il modulo va compilato in stampatello.",
+      "direction": "bidirectional"
+    },
+    "rationale": "The single andare leaf conflates two constructions that behave differently and mislead in different ways: the productive obligation sense (va compilato, present tense, the common_miss is reading va as motion) and the fixed lexical loss sense below. I authored 4 obligation items and 1 loss item against the parent; they already cite passive.formation.andare so nothing strict-rejects, but separate histories would let the obligation drill and the loss idiom accrue distinct diagnostics. Prefixes pas_and_ (obligation) and pas_and_loss_ would make later migration mechanical. Low priority; flagged for Architecture, not needed for this batch to load."
+  },
+  {
+    "proposed_id": "passive.formation.andare.loss",
+    "proposed_parent_id": "passive.formation.andare",
+    "proposed_label": "andare perso: got lost",
+    "proposed_description": "The lexical loss sense with a small verb set (perdere, smarrire): il pacco è andato perso. Compound tense, essere auxiliary, real agreement; not obligation.",
+    "proposed_cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "arcane",
+      "B2": "preview",
+      "C1": "core",
+      "C2": "fluency"
+    },
+    "proposed_prerequisites": [
+      "passive.formation.andare.obligation"
+    ],
+    "proposed_attributes": {
+      "canonical_example": "Il pacco è andato perso durante il trasloco.",
+      "direction": "bidirectional"
+    },
+    "rationale": "Splits the loss idiom (andare perso/smarrito) off from obligation. It takes essere in the compound and behaves like a motion verb, unlike the present-tense obligation va/vanno, so a learner's miss on one says nothing about the other. See rationale on the obligation sibling."
+  }
+]
