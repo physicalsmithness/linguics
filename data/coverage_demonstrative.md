@@ -1,7 +1,8 @@
 # Coverage: demonstratives
 
-**Author seat:** DemonstrativeAuthor · **Delivered:** 2026-07-14 · **Brief:** AUTHOR_BRIEF rev16
-**Files:** `grammar_questions_demonstrative.json` (44), `translation_items_demonstrative.json` (20), `bucket_suggestions_demonstrative.json` (1)
+**Author seat:** DemonstrativeAuthor · **Delivered:** 2026-07-14 · **Reconciled to AUTHOR_BRIEF Rev 19:** 2026-07-15
+**Files:** `grammar_questions_demonstrative.json` (44), `translation_items_demonstrative.json` (20), `bucket_suggestions_demonstrative.json` (1, now consumed)
+**Thread (the contract, per Rev 18):** `inter_chat/Architecture_DemonstrativeAuthor_dispatch_outputs.md` — one ask open at v4 (relabel the discrimination leaf); this doc is the record.
 
 Topic short `dem`. questo (this, near) and quello (that, far): their agreement, the fact that quello inflects like the definite article, the standing-alone pronoun forms, and choosing by distance.
 
@@ -12,7 +13,7 @@ Topic short `dem`. questo (this, near) and quello (that, far): their agreement, 
 | questo (this, near) | 11 | 3 |
 | quello (that, far) | 20 | 11 |
 | Demonstrative pronouns | 8 | 8 |
-| this vs that (near / far) *(proposed leaf)* | 5 | 1 (+2 optional) |
+| this vs that (near / far) | 5 | 1 (+2 optional) |
 | **Total** | **44** | **20** |
 
 Translation split 10 EN→IT / 10 IT→EN. CEFR weighting: grammar A1 2 / A2 17 / B1 23 / B2 2; translation A1 1 / A2 6 / B1 10 / B2 3. Weighted at A2–B1 as the bucket CEFR importances ask, with a light B2 seam on ciò.
@@ -23,23 +24,30 @@ Translation split 10 EN→IT / 10 IT→EN. CEFR weighting: grammar A1 2 / A2 17 
 
 **questo** is the easy branch (plain -o/-a/-i/-e agreement plus quest' elision), so it is lighter, with two planted gender traps (questo problema, -a but masculine; questa mano, -o but feminine) so the learner cannot read agreement off the visible ending.
 
-**Demonstrative pronouns** test the one thing that actually diverges from the adjective: standing alone, quello keeps its FULL form (quello / quella / quelli / quelle), never the reduced quel / quei / quegli. The sharpest item is quelli-vs-quei/quegli as a bare pronoun. ciò (neuter "that which / what") sits here too, accepting quello che as its everyday twin.
+**Demonstrative pronouns** test the one thing that actually diverges from the adjective: standing alone, quello keeps its FULL form (quello / quella / quelli / quelle), never the reduced quel / quei / quegli. The sharpest item is quelli-vs-quei/quegli as a bare pronoun. ciò (neuter "that which / what") sits here too; the cue names ciò, and `quello che` is accepted at **0.9 with a steering note** (Rev 17 iv, 0.9-for-dodges: correct Italian that sidesteps the drilled pattern).
 
-**this vs that (near / far)** is a stub: 5 context-only items where an adverbial (adesso / qui vs in fondo / laggiù / all'orizzonte) forces the choice. All are `info_display: "suppress"` (crit 15) and carry no base-form cue, so the item does not tip that a near/far choice is in play.
+**this vs that (near / far)** is a stub: 5 context-only items where an adverbial (adesso / qui vs in fondo / laggiù / all'orizzonte) forces the choice. Per Rev 19's recoverability condition these are `info_display: "show"`, not suppressed: the candidate set is lexical (questo vs quello) and nothing in "Prendi ____ penna" reveals it, so suppression would have made them guessing games. They carry `candidate_forms` + `correct_form` (Rev 17 iii) with the item-specific competing surfaces, so the post-answer tick names what could actually have filled the blank. No item in this batch is suppressed.
 
 ## Flagged / needs Architecture
 
-1. **Proposed bucket `demonstrative.discrimination.questo_vs_quello`** (leaf under the existing aggregate stub `demonstrative.discrimination`). The dispatch names this exact id; the tree only had the aggregate. 5 grammar + 1 translation required + 2 optional forward-reference it. Registration needed so it resolves at production load. See `bucket_suggestions_demonstrative.json` and the inter_chat thread.
-2. **Non-tense discrimination has no candidate-set field.** Crit 16's `candidate_tenses` is tense-only, so the near/far items cannot declare their candidate set the way tense_choice items do. Right now the choice is carried by context + `must_not_include` alone. Flagged to Architecture: is an analogous `candidate_forms` (or similar) wanted for non-tense discriminations, or is context-only correct here?
-3. **quello kept as ONE leaf**, mirroring the `article.definite.forms` precedent (the project homes "choosing the form" in a single atom and captures the specific slip in `must_not_include`, not in per-environment sub-buckets). If finer per-environment diagnostics on quello are ever wanted, that is a bucket-split decision for Architecture and should move in step with any equivalent split on the article tree.
-4. **ciò homed in `demonstrative.pronoun`** as the tree groups it ("questo and quello standing alone, and neuter ciò"). If ciò later deserves its own leaf for a cleaner diagnostic, flag; I did not split it unilaterally (staying in role).
+1. ~~Register `demonstrative.discrimination.questo_vs_quello`~~ — **DONE** (thread v2, registered verbatim; aggregate stub cleared, all forward refs resolve against the live registry).
+2. ~~Non-tense discrimination has no candidate-set field~~ — **RULED** (thread v2 / Rev 17 iii): general `candidate_forms` + `correct_form`; retrofitted to all 5 items. Housing tick extension still pending, so context-only behaviour is unchanged until it ships.
+3. **OPEN — the registered leaf label names the rule, not the candidate forms.** The leaf carries my v1 label **"this vs that (near / far)"** (registered verbatim). That was harmless while the items were suppressed; now they are shown, the visible breadcrumb states the near/far rule, which is the diagnostic these items test (criterion 13 applied to labels). Rev 19 asks for the candidate-forms shape, so this should read **"questo / quello"**, with the near/far explanation living in `description` where it only surfaces post-answer. Parent aggregate `demonstrative.discrimination` has the same label. Registry is architecture-owned; raised at thread v4.
+4. **Awaiting ratification — the 0.9-for-dodges reading on ciò.** The cue names ciò, so I treat `quello che` as a dodge (0.9 + steering note) rather than a co-equal standard variant. If Architecture considers ciò and quello che co-equal, restore both to 1.0.
+5. **quello kept as ONE leaf** (blessed, thread v2), mirroring `article.definite.forms`. If the article tree is ever split by phonological environment, quello moves in step.
+6. **ciò homed in `demonstrative.pronoun`** (blessed, thread v2) as the leaf description groups it.
 
 ## Engine note (marker safety)
 
-Every demonstrative markpoint phrase (both `any_phrases` and `must_not_include`) is `match_at: "word"` anchored. This is load-bearing, not cosmetic: `norm()` folds the apostrophe to a space **and strips it**, so `quell'` normalises to `quell`, a prefix of quello / quella / quelle / quelli. Unanchored, a learner writing the miss "quello amico" would have satisfied a bare "quell'" answer; likewise "cioè" (→ cioe) embeds the ciò (→ cio) answer. Both are now rejected. Verified by an audit pass that asserts, per markpoint, that no declared miss and no sibling demonstrative form is ever positively credited, and that every correct form self-credits (10 behavioural spot-checks incl. quello amico=miss, cioè=miss, full-form quello=miss).
+Every demonstrative markpoint phrase (both `any_phrases` and `must_not_include`) is `match_at: "word"` anchored. This is load-bearing, not cosmetic: `norm()` folds the apostrophe to a space **and strips it**, so `quell'` normalises to `quell`, a prefix of quello / quella / quelle / quelli. Unanchored, a learner writing the miss "quello amico" would have satisfied a bare `quell'` answer; likewise `cioè` (→ cioe) embeds the `ciò` (→ cio) answer. Both are rejected.
+
+Audited in all three criterion-18 directions across the batch, by simulating the live `norm()`:
+- no `any_phrase` credits a declared miss or any sibling demonstrative form (directions 1 and 2);
+- **no `must_not_include` entry fires on a plausible correct attempt** (direction 3, Rev 17 ii), tested against both the bare form and form-plus-following-noun, with elided forms joined;
+- every correct form self-credits. 10 behavioural spot-checks incl. quello amico = miss, cioè = miss, full-form quello = miss.
 
 ## Notes for the next dispatch
 
-- Once the discrimination leaf is registered, nothing else blocks these items.
+- Nothing blocks these items; the only open ask is cosmetic-but-diagnostic (flag 3, the leaf label).
 - Deferred by scope (core + light C1): the C2 register tail — costui / costoro, medesimo / sottoscritto, literary questi / quegli as subject, bureaucratic register. A short top-up batch can add these tagged C2 if wanted.
-- Room to grow the discrimination stub once the candidate-set question (flag 2) is settled.
+- Room to grow the discrimination stub now that the candidate-set shape is settled.

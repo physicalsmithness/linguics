@@ -23,10 +23,16 @@
         "bucket": "reported_speech.tense_shift.no_shift",
         "label": "Present kept after a present reporter",
         "any_phrases": [
-          "è"
+          {
+            "phrase": "è",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
-          "era"
+          {
+            "phrase": "era",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -76,8 +82,14 @@
           }
         ],
         "must_not_include": [
-          "arrivava",
-          "arriverà"
+          {
+            "phrase": "arrivava",
+            "match_at": "word"
+          },
+          {
+            "phrase": "arriverà",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -121,10 +133,16 @@
         "bucket": "reported_speech.tense_shift.no_shift",
         "label": "Present kept after a present reporter",
         "any_phrases": [
-          "hanno"
+          {
+            "phrase": "hanno",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
-          "avevano"
+          {
+            "phrase": "avevano",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -171,10 +189,16 @@
         "bucket": "reported_speech.tense_shift.no_shift",
         "label": "Passato prossimo kept after a present reporter",
         "any_phrases": [
-          "ha"
+          {
+            "phrase": "ha",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
-          "aveva"
+          {
+            "phrase": "aveva",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -218,11 +242,20 @@
         "bucket": "reported_speech.tense_shift.no_shift",
         "label": "Future kept after a present reporter",
         "any_phrases": [
-          "verrà"
+          {
+            "phrase": "verrà",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
-          "sarebbe venuto",
-          "verrebbe"
+          {
+            "phrase": "sarebbe venuto",
+            "match_at": "word"
+          },
+          {
+            "phrase": "verrebbe",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -261,12 +294,24 @@
         "bucket": "reported_speech.commands",
         "label": "Command reported with di + infinitive",
         "any_phrases": [
-          "di venire"
+          {
+            "phrase": "di venire",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
-          "che vengo",
-          "che venga",
-          "venire"
+          {
+            "phrase": "che vengo",
+            "match_at": "word"
+          },
+          {
+            "phrase": "che venga",
+            "match_at": "word"
+          },
+          {
+            "phrase": "venire",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -305,12 +350,24 @@
         "bucket": "reported_speech.commands",
         "label": "Negative command reported with di non + infinitive",
         "any_phrases": [
-          "di non fumare"
+          {
+            "phrase": "di non fumare",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
-          "che non fuma",
-          "che non fumi",
-          "di non fumi"
+          {
+            "phrase": "che non fuma",
+            "match_at": "word"
+          },
+          {
+            "phrase": "che non fumi",
+            "match_at": "word"
+          },
+          {
+            "phrase": "di non fumi",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -348,12 +405,24 @@
         "bucket": "reported_speech.commands",
         "label": "Command reported with di + infinitive",
         "any_phrases": [
-          "di aspettare"
+          {
+            "phrase": "di aspettare",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
-          "che aspettiamo",
-          "che aspettate",
-          "aspettare fuori"
+          {
+            "phrase": "che aspettiamo",
+            "match_at": "word"
+          },
+          {
+            "phrase": "che aspettate",
+            "match_at": "word"
+          },
+          {
+            "phrase": "aspettare fuori",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -392,12 +461,24 @@
         "bucket": "reported_speech.commands",
         "label": "Negative reflexive command with di non + infinitive",
         "any_phrases": [
-          "di non preoccuparsi"
+          {
+            "phrase": "di non preoccuparsi",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
-          "che non si preoccupi",
-          "di non preoccuparti",
-          "di non ti preoccupare"
+          {
+            "phrase": "che non si preoccupi",
+            "match_at": "word"
+          },
+          {
+            "phrase": "di non preoccuparti",
+            "match_at": "word"
+          },
+          {
+            "phrase": "di non ti preoccupare",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -436,12 +517,24 @@
         "bucket": "reported_speech.commands",
         "label": "Command reported with di + infinitive",
         "any_phrases": [
-          "di finire"
+          {
+            "phrase": "di finire",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
-          "che finiamo",
-          "che finiate",
-          "finire il lavoro"
+          {
+            "phrase": "che finiamo",
+            "match_at": "word"
+          },
+          {
+            "phrase": "che finiate",
+            "match_at": "word"
+          },
+          {
+            "phrase": "finire il lavoro",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -480,12 +573,24 @@
         "bucket": "reported_speech.questions",
         "label": "Yes/no question reported with se",
         "any_phrases": [
-          "se vengo"
+          {
+            "phrase": "se vengo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
-          "che vengo",
-          "se vieni",
-          "vengo"
+          {
+            "phrase": "che vengo",
+            "match_at": "word"
+          },
+          {
+            "phrase": "se vieni",
+            "match_at": "word"
+          },
+          {
+            "phrase": "vengo",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -530,9 +635,18 @@
           }
         ],
         "must_not_include": [
-          "dove abiti",
-          "se dove abita",
-          "che dove abita"
+          {
+            "phrase": "dove abiti",
+            "match_at": "word"
+          },
+          {
+            "phrase": "se dove abita",
+            "match_at": "word"
+          },
+          {
+            "phrase": "che dove abita",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -571,12 +685,24 @@
         "bucket": "reported_speech.questions",
         "label": "Wh-question keeps its question word",
         "any_phrases": [
-          "perché piango"
+          {
+            "phrase": "perché piango",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
-          "perché piangi",
-          "se perché",
-          "che piango"
+          {
+            "phrase": "perché piangi",
+            "match_at": "word"
+          },
+          {
+            "phrase": "se perché",
+            "match_at": "word"
+          },
+          {
+            "phrase": "che piango",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -614,12 +740,24 @@
         "bucket": "reported_speech.questions",
         "label": "Yes/no question reported with se",
         "any_phrases": [
-          "se sono"
+          {
+            "phrase": "se sono",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
-          "che sono",
-          "se sei",
-          "sono pronto"
+          {
+            "phrase": "che sono",
+            "match_at": "word"
+          },
+          {
+            "phrase": "se sei",
+            "match_at": "word"
+          },
+          {
+            "phrase": "sono pronto",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -664,9 +802,18 @@
           }
         ],
         "must_not_include": [
-          "quando partite",
-          "se quando partiamo",
-          "che partiamo"
+          {
+            "phrase": "quando partite",
+            "match_at": "word"
+          },
+          {
+            "phrase": "se quando partiamo",
+            "match_at": "word"
+          },
+          {
+            "phrase": "che partiamo",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -711,21 +858,27 @@
         "bucket": "reported_speech.tense_shift.future_to_past_conditional",
         "label": "Quoted future becomes the past conditional",
         "any_phrases": [
-          "sarebbe venuto",
+          {
+            "phrase": "sarebbe venuto",
+            "match_at": "word"
+          },
           {
             "phrase": "veniva",
             "credit": 0.5,
-            "note": "common in speech; the standard written form is the past conditional, sarebbe venuto"
+            "note": "common in speech; the standard written form is the past conditional, sarebbe venuto",
+            "match_at": "word"
           }
         ],
         "must_not_include": [
           {
             "phrase": "verrebbe",
-            "note": "English says 'would come', but Italian reports a past speaker's future with the PAST conditional: sarebbe venuto"
+            "note": "English says 'would come', but Italian reports a past speaker's future with the PAST conditional: sarebbe venuto",
+            "match_at": "word"
           },
           {
             "phrase": "verrà",
-            "note": "after a past reporting verb the future shifts back"
+            "note": "after a past reporting verb the future shifts back",
+            "match_at": "word"
           }
         ]
       },
@@ -735,21 +888,27 @@
         "bucket": "verb_form.imperfect.indirect_speech.reported_intention",
         "label": "Reporting a past speaker's intention",
         "any_phrases": [
-          "sarebbe venuto",
+          {
+            "phrase": "sarebbe venuto",
+            "match_at": "word"
+          },
           {
             "phrase": "veniva",
             "credit": 0.5,
-            "note": "common in speech; the standard written form is the past conditional, sarebbe venuto"
+            "note": "common in speech; the standard written form is the past conditional, sarebbe venuto",
+            "match_at": "word"
           }
         ],
         "must_not_include": [
           {
             "phrase": "verrebbe",
-            "note": "the present conditional is the English-driven calque"
+            "note": "the present conditional is the English-driven calque",
+            "match_at": "word"
           },
           {
             "phrase": "verrà",
-            "note": "the future does not survive a past reporting verb"
+            "note": "the future does not survive a past reporting verb",
+            "match_at": "word"
           }
         ]
       }
@@ -796,21 +955,27 @@
         "bucket": "reported_speech.tense_shift.future_to_past_conditional",
         "label": "Quoted future becomes the past conditional",
         "any_phrases": [
-          "avrebbe telefonato",
+          {
+            "phrase": "avrebbe telefonato",
+            "match_at": "word"
+          },
           {
             "phrase": "telefonava",
             "credit": 0.5,
-            "note": "common in speech; the standard written form is the past conditional, avrebbe telefonato"
+            "note": "common in speech; the standard written form is the past conditional, avrebbe telefonato",
+            "match_at": "word"
           }
         ],
         "must_not_include": [
           {
             "phrase": "telefonerebbe",
-            "note": "the present conditional is the English-driven calque; Italian reports a past speaker's future with the PAST conditional"
+            "note": "the present conditional is the English-driven calque; Italian reports a past speaker's future with the PAST conditional",
+            "match_at": "word"
           },
           {
             "phrase": "telefonerà",
-            "note": "after a past reporting verb the future shifts back"
+            "note": "after a past reporting verb the future shifts back",
+            "match_at": "word"
           }
         ]
       },
@@ -820,21 +985,27 @@
         "bucket": "verb_form.imperfect.indirect_speech.reported_intention",
         "label": "Reporting a past speaker's intention",
         "any_phrases": [
-          "avrebbe telefonato",
+          {
+            "phrase": "avrebbe telefonato",
+            "match_at": "word"
+          },
           {
             "phrase": "telefonava",
             "credit": 0.5,
-            "note": "common in speech; the standard written form is the past conditional, avrebbe telefonato"
+            "note": "common in speech; the standard written form is the past conditional, avrebbe telefonato",
+            "match_at": "word"
           }
         ],
         "must_not_include": [
           {
             "phrase": "telefonerebbe",
-            "note": "the present conditional is the English-driven calque"
+            "note": "the present conditional is the English-driven calque",
+            "match_at": "word"
           },
           {
             "phrase": "telefonerà",
-            "note": "the future does not survive a past reporting verb"
+            "note": "the future does not survive a past reporting verb",
+            "match_at": "word"
           }
         ]
       }
@@ -881,26 +1052,33 @@
         "bucket": "reported_speech.tense_shift.future_to_past_conditional",
         "label": "Quoted future becomes the past conditional",
         "any_phrases": [
-          "sarebbe partita",
+          {
+            "phrase": "sarebbe partita",
+            "match_at": "word"
+          },
           {
             "phrase": "sarebbe partito",
             "credit": 0.8,
-            "note": "the past conditional is right; with essere the participle agrees with Anna, so partita"
+            "note": "the past conditional is right; with essere the participle agrees with Anna, so partita",
+            "match_at": "word"
           },
           {
             "phrase": "partiva",
             "credit": 0.5,
-            "note": "common in speech; the standard written form is the past conditional, sarebbe partita"
+            "note": "common in speech; the standard written form is the past conditional, sarebbe partita",
+            "match_at": "word"
           }
         ],
         "must_not_include": [
           {
             "phrase": "partirebbe",
-            "note": "the present conditional is the English-driven calque; Italian uses the PAST conditional here"
+            "note": "the present conditional is the English-driven calque; Italian uses the PAST conditional here",
+            "match_at": "word"
           },
           {
             "phrase": "partirà",
-            "note": "after a past reporting verb the future shifts back"
+            "note": "after a past reporting verb the future shifts back",
+            "match_at": "word"
           }
         ]
       },
@@ -910,26 +1088,33 @@
         "bucket": "verb_form.imperfect.indirect_speech.reported_intention",
         "label": "Reporting a past speaker's intention",
         "any_phrases": [
-          "sarebbe partita",
+          {
+            "phrase": "sarebbe partita",
+            "match_at": "word"
+          },
           {
             "phrase": "sarebbe partito",
             "credit": 0.8,
-            "note": "the shift is right; the participle should agree with Anna"
+            "note": "the shift is right; the participle should agree with Anna",
+            "match_at": "word"
           },
           {
             "phrase": "partiva",
             "credit": 0.5,
-            "note": "common in speech; the standard written form is the past conditional"
+            "note": "common in speech; the standard written form is the past conditional",
+            "match_at": "word"
           }
         ],
         "must_not_include": [
           {
             "phrase": "partirebbe",
-            "note": "the present conditional is the English-driven calque"
+            "note": "the present conditional is the English-driven calque",
+            "match_at": "word"
           },
           {
             "phrase": "partirà",
-            "note": "the future does not survive a past reporting verb"
+            "note": "the future does not survive a past reporting verb",
+            "match_at": "word"
           }
         ]
       }
@@ -980,21 +1165,27 @@
         "bucket": "reported_speech.tense_shift.future_to_past_conditional",
         "label": "Quoted future becomes the past conditional",
         "any_phrases": [
-          "avrebbe firmato",
+          {
+            "phrase": "avrebbe firmato",
+            "match_at": "word"
+          },
           {
             "phrase": "firmava",
             "credit": 0.5,
-            "note": "common in speech; the standard written form is the past conditional, avrebbe firmato"
+            "note": "common in speech; the standard written form is the past conditional, avrebbe firmato",
+            "match_at": "word"
           }
         ],
         "must_not_include": [
           {
             "phrase": "firmerebbe",
-            "note": "the present conditional is the English-driven calque; Italian uses the PAST conditional"
+            "note": "the present conditional is the English-driven calque; Italian uses the PAST conditional",
+            "match_at": "word"
           },
           {
             "phrase": "firmerà",
-            "note": "after a past reporting verb the future shifts back"
+            "note": "after a past reporting verb the future shifts back",
+            "match_at": "word"
           }
         ]
       },
@@ -1004,21 +1195,27 @@
         "bucket": "verb_form.imperfect.indirect_speech.reported_intention",
         "label": "Reporting a past speaker's intention",
         "any_phrases": [
-          "avrebbe firmato",
+          {
+            "phrase": "avrebbe firmato",
+            "match_at": "word"
+          },
           {
             "phrase": "firmava",
             "credit": 0.5,
-            "note": "common in speech; the standard written form is the past conditional"
+            "note": "common in speech; the standard written form is the past conditional",
+            "match_at": "word"
           }
         ],
         "must_not_include": [
           {
             "phrase": "firmerebbe",
-            "note": "the present conditional is the English-driven calque"
+            "note": "the present conditional is the English-driven calque",
+            "match_at": "word"
           },
           {
             "phrase": "firmerà",
-            "note": "the future does not survive a past reporting verb"
+            "note": "the future does not survive a past reporting verb",
+            "match_at": "word"
           }
         ]
       }
@@ -1065,21 +1262,27 @@
         "bucket": "reported_speech.tense_shift.future_to_past_conditional",
         "label": "Quoted future becomes the past conditional",
         "any_phrases": [
-          "sarebbe riuscito",
+          {
+            "phrase": "sarebbe riuscito",
+            "match_at": "word"
+          },
           {
             "phrase": "riusciva",
             "credit": 0.5,
-            "note": "common in speech; the standard written form is the past conditional, sarebbe riuscito"
+            "note": "common in speech; the standard written form is the past conditional, sarebbe riuscito",
+            "match_at": "word"
           }
         ],
         "must_not_include": [
           {
             "phrase": "riuscirebbe",
-            "note": "the present conditional is the English-driven calque; Italian uses the PAST conditional"
+            "note": "the present conditional is the English-driven calque; Italian uses the PAST conditional",
+            "match_at": "word"
           },
           {
             "phrase": "riuscirà",
-            "note": "after a past reporting verb the future shifts back"
+            "note": "after a past reporting verb the future shifts back",
+            "match_at": "word"
           }
         ]
       },
@@ -1089,21 +1292,27 @@
         "bucket": "verb_form.imperfect.indirect_speech.reported_intention",
         "label": "Reporting a past speaker's intention",
         "any_phrases": [
-          "sarebbe riuscito",
+          {
+            "phrase": "sarebbe riuscito",
+            "match_at": "word"
+          },
           {
             "phrase": "riusciva",
             "credit": 0.5,
-            "note": "common in speech; the standard written form is the past conditional"
+            "note": "common in speech; the standard written form is the past conditional",
+            "match_at": "word"
           }
         ],
         "must_not_include": [
           {
             "phrase": "riuscirebbe",
-            "note": "the present conditional is the English-driven calque"
+            "note": "the present conditional is the English-driven calque",
+            "match_at": "word"
           },
           {
             "phrase": "riuscirà",
-            "note": "the future does not survive a past reporting verb"
+            "note": "the future does not survive a past reporting verb",
+            "match_at": "word"
           }
         ]
       }
@@ -1153,21 +1362,27 @@
         "bucket": "reported_speech.tense_shift.future_to_past_conditional",
         "label": "Quoted future becomes the past conditional",
         "any_phrases": [
-          "sarebbero arrivati",
+          {
+            "phrase": "sarebbero arrivati",
+            "match_at": "word"
+          },
           {
             "phrase": "arrivavano",
             "credit": 0.5,
-            "note": "common in speech; the standard written form is the past conditional, sarebbero arrivati"
+            "note": "common in speech; the standard written form is the past conditional, sarebbero arrivati",
+            "match_at": "word"
           }
         ],
         "must_not_include": [
           {
             "phrase": "arriverebbero",
-            "note": "the present conditional is the English-driven calque; Italian uses the PAST conditional"
+            "note": "the present conditional is the English-driven calque; Italian uses the PAST conditional",
+            "match_at": "word"
           },
           {
             "phrase": "arriveranno",
-            "note": "after a past reporting verb the future shifts back"
+            "note": "after a past reporting verb the future shifts back",
+            "match_at": "word"
           }
         ]
       },
@@ -1177,21 +1392,27 @@
         "bucket": "verb_form.imperfect.indirect_speech.reported_intention",
         "label": "Reporting a past speaker's intention",
         "any_phrases": [
-          "sarebbero arrivati",
+          {
+            "phrase": "sarebbero arrivati",
+            "match_at": "word"
+          },
           {
             "phrase": "arrivavano",
             "credit": 0.5,
-            "note": "common in speech; the standard written form is the past conditional"
+            "note": "common in speech; the standard written form is the past conditional",
+            "match_at": "word"
           }
         ],
         "must_not_include": [
           {
             "phrase": "arriverebbero",
-            "note": "the present conditional is the English-driven calque"
+            "note": "the present conditional is the English-driven calque",
+            "match_at": "word"
           },
           {
             "phrase": "arriveranno",
-            "note": "the future does not survive a past reporting verb"
+            "note": "the future does not survive a past reporting verb",
+            "match_at": "word"
           }
         ]
       }
@@ -1241,21 +1462,27 @@
         "bucket": "reported_speech.tense_shift.future_to_past_conditional",
         "label": "Quoted future becomes the past conditional",
         "any_phrases": [
-          "avrebbe potuto",
+          {
+            "phrase": "avrebbe potuto",
+            "match_at": "word"
+          },
           {
             "phrase": "poteva",
             "credit": 0.5,
-            "note": "common in speech; the standard written form is the past conditional, avrebbe potuto"
+            "note": "common in speech; the standard written form is the past conditional, avrebbe potuto",
+            "match_at": "word"
           }
         ],
         "must_not_include": [
           {
             "phrase": "potrebbe",
-            "note": "English 'would be able to' invites the present conditional; Italian uses the PAST conditional here"
+            "note": "English 'would be able to' invites the present conditional; Italian uses the PAST conditional here",
+            "match_at": "word"
           },
           {
             "phrase": "potrà",
-            "note": "after a past reporting verb the future shifts back"
+            "note": "after a past reporting verb the future shifts back",
+            "match_at": "word"
           }
         ]
       },
@@ -1265,21 +1492,27 @@
         "bucket": "verb_form.imperfect.indirect_speech.reported_intention",
         "label": "Reporting a past speaker's intention",
         "any_phrases": [
-          "avrebbe potuto",
+          {
+            "phrase": "avrebbe potuto",
+            "match_at": "word"
+          },
           {
             "phrase": "poteva",
             "credit": 0.5,
-            "note": "common in speech; the standard written form is the past conditional"
+            "note": "common in speech; the standard written form is the past conditional",
+            "match_at": "word"
           }
         ],
         "must_not_include": [
           {
             "phrase": "potrebbe",
-            "note": "the present conditional is the English-driven calque"
+            "note": "the present conditional is the English-driven calque",
+            "match_at": "word"
           },
           {
             "phrase": "potrà",
-            "note": "the future does not survive a past reporting verb"
+            "note": "the future does not survive a past reporting verb",
+            "match_at": "word"
           }
         ]
       }
@@ -1324,12 +1557,16 @@
         "bucket": "reported_speech.tense_shift.present_to_imperfect",
         "label": "Quoted present becomes the imperfect",
         "any_phrases": [
-          "era"
+          {
+            "phrase": "era",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
             "phrase": "è",
-            "note": "the present would report the tiredness as still true, but by this morning it had passed"
+            "note": "the present would report the tiredness as still true, but by this morning it had passed",
+            "match_at": "word"
           }
         ]
       },
@@ -1339,12 +1576,16 @@
         "bucket": "verb_form.imperfect.indirect_speech.reported_present",
         "label": "Imperfect reporting a quoted present",
         "any_phrases": [
-          "era"
+          {
+            "phrase": "era",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
             "phrase": "è",
-            "note": "the reported state no longer holds, so the imperfect is required"
+            "note": "the reported state no longer holds, so the imperfect is required",
+            "match_at": "word"
           }
         ]
       }
@@ -1389,12 +1630,16 @@
         "bucket": "reported_speech.tense_shift.present_to_imperfect",
         "label": "Quoted present becomes the imperfect",
         "any_phrases": [
-          "aveva"
+          {
+            "phrase": "aveva",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
             "phrase": "ha",
-            "note": "he has since eaten, so the hunger no longer holds and the present cannot report it"
+            "note": "he has since eaten, so the hunger no longer holds and the present cannot report it",
+            "match_at": "word"
           }
         ]
       },
@@ -1404,12 +1649,16 @@
         "bucket": "verb_form.imperfect.indirect_speech.reported_present",
         "label": "Imperfect reporting a quoted present",
         "any_phrases": [
-          "aveva"
+          {
+            "phrase": "aveva",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
             "phrase": "ha",
-            "note": "the reported state no longer holds, so the imperfect is required"
+            "note": "the reported state no longer holds, so the imperfect is required",
+            "match_at": "word"
           }
         ]
       }
@@ -1458,12 +1707,16 @@
         "bucket": "reported_speech.tense_shift.present_to_imperfect",
         "label": "Quoted present becomes the imperfect",
         "any_phrases": [
-          "abitava"
+          {
+            "phrase": "abitava",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
             "phrase": "abita",
-            "note": "she lives in Milan now, so the present would report the wrong city"
+            "note": "she lives in Milan now, so the present would report the wrong city",
+            "match_at": "word"
           }
         ]
       },
@@ -1473,12 +1726,16 @@
         "bucket": "verb_form.imperfect.indirect_speech.reported_present",
         "label": "Imperfect reporting a quoted present",
         "any_phrases": [
-          "abitava"
+          {
+            "phrase": "abitava",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
             "phrase": "abita",
-            "note": "the reported state no longer holds, so the imperfect is required"
+            "note": "the reported state no longer holds, so the imperfect is required",
+            "match_at": "word"
           }
         ]
       }
@@ -1522,12 +1779,16 @@
         "bucket": "reported_speech.tense_shift.present_to_imperfect",
         "label": "Quoted present becomes the imperfect",
         "any_phrases": [
-          "voleva"
+          {
+            "phrase": "voleva",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
             "phrase": "vuole",
-            "note": "he has since changed his mind, so the present would report a wish he no longer has"
+            "note": "he has since changed his mind, so the present would report a wish he no longer has",
+            "match_at": "word"
           }
         ]
       },
@@ -1537,12 +1798,16 @@
         "bucket": "verb_form.imperfect.indirect_speech.reported_present",
         "label": "Imperfect reporting a quoted present",
         "any_phrases": [
-          "voleva"
+          {
+            "phrase": "voleva",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
             "phrase": "vuole",
-            "note": "the reported wish no longer holds, so the imperfect is required"
+            "note": "the reported wish no longer holds, so the imperfect is required",
+            "match_at": "word"
           }
         ]
       }
@@ -1586,12 +1851,16 @@
         "bucket": "reported_speech.tense_shift.present_to_imperfect",
         "label": "Quoted present becomes the imperfect",
         "any_phrases": [
-          "potevano"
+          {
+            "phrase": "potevano",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
             "phrase": "possono",
-            "note": "the neighbours have since left; the present would report an ongoing inability that is no longer in view"
+            "note": "the neighbours have since left; the present would report an ongoing inability that is no longer in view",
+            "match_at": "word"
           }
         ]
       },
@@ -1601,12 +1870,16 @@
         "bucket": "verb_form.imperfect.indirect_speech.reported_present",
         "label": "Imperfect reporting a quoted present",
         "any_phrases": [
-          "potevano"
+          {
+            "phrase": "potevano",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
             "phrase": "possono",
-            "note": "the reported state no longer holds, so the imperfect is required"
+            "note": "the reported state no longer holds, so the imperfect is required",
+            "match_at": "word"
           }
         ]
       }
@@ -1650,12 +1923,16 @@
         "bucket": "reported_speech.tense_shift.present_to_imperfect",
         "label": "Quoted present becomes the imperfect",
         "any_phrases": [
-          "faceva"
+          {
+            "phrase": "faceva",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
             "phrase": "fa",
-            "note": "today is cool, so the present would report a heat that is no longer the case"
+            "note": "today is cool, so the present would report a heat that is no longer the case",
+            "match_at": "word"
           }
         ]
       },
@@ -1665,12 +1942,16 @@
         "bucket": "verb_form.imperfect.indirect_speech.reported_present",
         "label": "Imperfect reporting a quoted present",
         "any_phrases": [
-          "faceva"
+          {
+            "phrase": "faceva",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
             "phrase": "fa",
-            "note": "the reported weather no longer holds, so the imperfect is required"
+            "note": "the reported weather no longer holds, so the imperfect is required",
+            "match_at": "word"
           }
         ]
       }
@@ -1714,12 +1995,16 @@
         "bucket": "reported_speech.tense_shift.past_to_trapassato",
         "label": "Quoted passato prossimo becomes the trapassato",
         "any_phrases": [
-          "aveva"
+          {
+            "phrase": "aveva",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
             "phrase": "ha",
-            "note": "leaving the passato prossimo in place fails to mark the eating as prior to the saying"
+            "note": "leaving the passato prossimo in place fails to mark the eating as prior to the saying",
+            "match_at": "word"
           }
         ]
       },
@@ -1729,12 +2014,16 @@
         "bucket": "tense_choice.trapassato_vs_imperfect.completed_prior_to_prior",
         "label": "Completed action prior to a past reference point",
         "any_phrases": [
-          "aveva"
+          {
+            "phrase": "aveva",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
             "phrase": "ha",
-            "note": "the eating is complete and prior to the past reporting moment, which is what the trapassato marks"
+            "note": "the eating is complete and prior to the past reporting moment, which is what the trapassato marks",
+            "match_at": "word"
           }
         ]
       }
@@ -1779,17 +2068,22 @@
         "bucket": "reported_speech.tense_shift.past_to_trapassato",
         "label": "Quoted passato prossimo becomes the trapassato",
         "any_phrases": [
-          "era arrivata",
+          {
+            "phrase": "era arrivata",
+            "match_at": "word"
+          },
           {
             "phrase": "era arrivato",
             "credit": 0.8,
-            "note": "the trapassato is right; with essere the participle agrees with Anna, so arrivata"
+            "note": "the trapassato is right; with essere the participle agrees with Anna, so arrivata",
+            "match_at": "word"
           }
         ],
         "must_not_include": [
           {
             "phrase": "è arrivata",
-            "note": "the passato prossimo does not survive a past reporting verb here"
+            "note": "the passato prossimo does not survive a past reporting verb here",
+            "match_at": "word"
           }
         ]
       },
@@ -1799,17 +2093,22 @@
         "bucket": "tense_choice.trapassato_vs_imperfect.completed_prior_to_prior",
         "label": "Completed action prior to a past reference point",
         "any_phrases": [
-          "era arrivata",
+          {
+            "phrase": "era arrivata",
+            "match_at": "word"
+          },
           {
             "phrase": "era arrivato",
             "credit": 0.8,
-            "note": "the tense is right; the participle should agree with Anna"
+            "note": "the tense is right; the participle should agree with Anna",
+            "match_at": "word"
           }
         ],
         "must_not_include": [
           {
             "phrase": "è arrivata",
-            "note": "the arrival is prior to the past reporting moment, which the trapassato marks"
+            "note": "the arrival is prior to the past reporting moment, which the trapassato marks",
+            "match_at": "word"
           }
         ]
       }
@@ -1858,12 +2157,16 @@
         "bucket": "reported_speech.tense_shift.past_to_trapassato",
         "label": "Quoted passato prossimo becomes the trapassato",
         "any_phrases": [
-          "avevano riparato"
+          {
+            "phrase": "avevano riparato",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
             "phrase": "hanno riparato",
-            "note": "leaving the passato prossimo fails to place the repair before the reporting moment"
+            "note": "leaving the passato prossimo fails to place the repair before the reporting moment",
+            "match_at": "word"
           }
         ]
       },
@@ -1873,12 +2176,16 @@
         "bucket": "tense_choice.trapassato_vs_imperfect.completed_prior_to_prior",
         "label": "Completed action prior to a past reference point",
         "any_phrases": [
-          "avevano riparato"
+          {
+            "phrase": "avevano riparato",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
             "phrase": "hanno riparato",
-            "note": "the repair is complete and prior to the past reporting moment"
+            "note": "the repair is complete and prior to the past reporting moment",
+            "match_at": "word"
           }
         ]
       }
@@ -1922,12 +2229,16 @@
         "bucket": "reported_speech.tense_shift.past_to_trapassato",
         "label": "Quoted passato prossimo becomes the trapassato",
         "any_phrases": [
-          "aveva ricevuto"
+          {
+            "phrase": "aveva ricevuto",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
             "phrase": "ha ricevuto",
-            "note": "the passato prossimo does not survive a past reporting verb here"
+            "note": "the passato prossimo does not survive a past reporting verb here",
+            "match_at": "word"
           }
         ]
       },
@@ -1937,12 +2248,16 @@
         "bucket": "tense_choice.trapassato_vs_imperfect.completed_prior_to_prior",
         "label": "Completed action prior to a past reference point",
         "any_phrases": [
-          "aveva ricevuto"
+          {
+            "phrase": "aveva ricevuto",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
             "phrase": "ha ricevuto",
-            "note": "the non-arrival is prior to the past reporting moment"
+            "note": "the non-arrival is prior to the past reporting moment",
+            "match_at": "word"
           }
         ]
       }
@@ -1986,16 +2301,21 @@
         "bucket": "reported_speech.tense_shift.past_to_trapassato",
         "label": "Quoted passato prossimo becomes the trapassato",
         "any_phrases": [
-          "era andato"
+          {
+            "phrase": "era andato",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
             "phrase": "è andato",
-            "note": "the passato prossimo does not survive a past reporting verb here"
+            "note": "the passato prossimo does not survive a past reporting verb here",
+            "match_at": "word"
           },
           {
             "phrase": "aveva andato",
-            "note": "andare takes essere, so the trapassato is era andato"
+            "note": "andare takes essere, so the trapassato is era andato",
+            "match_at": "word"
           }
         ]
       },
@@ -2005,12 +2325,16 @@
         "bucket": "tense_choice.trapassato_vs_imperfect.completed_prior_to_prior",
         "label": "Completed action prior to a past reference point",
         "any_phrases": [
-          "era andato"
+          {
+            "phrase": "era andato",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
             "phrase": "è andato",
-            "note": "the visit is prior to the past reporting moment"
+            "note": "the visit is prior to the past reporting moment",
+            "match_at": "word"
           }
         ]
       }
@@ -2054,12 +2378,16 @@
         "bucket": "reported_speech.deixis",
         "label": "domani travels to il giorno dopo",
         "any_phrases": [
-          "il giorno dopo"
+          {
+            "phrase": "il giorno dopo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
             "phrase": "domani",
-            "note": "the report is anchored to last Monday, so 'domani' would point at tomorrow from now, not the day after he spoke"
+            "note": "the report is anchored to last Monday, so 'domani' would point at tomorrow from now, not the day after he spoke",
+            "match_at": "word"
           }
         ]
       }
@@ -2099,12 +2427,16 @@
         "bucket": "reported_speech.deixis",
         "label": "ieri travels to il giorno prima",
         "any_phrases": [
-          "il giorno prima"
+          {
+            "phrase": "il giorno prima",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
             "phrase": "ieri",
-            "note": "the report is anchored to last week, so 'ieri' would point at yesterday from now"
+            "note": "the report is anchored to last week, so 'ieri' would point at yesterday from now",
+            "match_at": "word"
           }
         ]
       }
@@ -2143,12 +2475,16 @@
         "bucket": "reported_speech.deixis",
         "label": "oggi travels to quel giorno",
         "any_phrases": [
-          "quel giorno"
+          {
+            "phrase": "quel giorno",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
             "phrase": "oggi",
-            "note": "the report is anchored to 2020, so 'oggi' would point at today rather than the day the mayor spoke"
+            "note": "the report is anchored to 2020, so 'oggi' would point at today rather than the day the mayor spoke",
+            "match_at": "word"
           }
         ]
       }
@@ -2187,12 +2523,16 @@
         "bucket": "reported_speech.deixis",
         "label": "qui travels to lì",
         "any_phrases": [
-          "lì"
+          {
+            "phrase": "lì",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
             "phrase": "qui",
-            "note": "'qui' points at where the reporter is now, not at where Luca was standing when he spoke"
+            "note": "'qui' points at where the reporter is now, not at where Luca was standing when he spoke",
+            "match_at": "word"
           }
         ]
       }
@@ -2232,13 +2572,20 @@
         "bucket": "reported_speech.deixis",
         "label": "questo travels to the quello family",
         "any_phrases": [
-          "quel libro",
-          "quello libro"
+          {
+            "phrase": "quel libro",
+            "match_at": "word"
+          },
+          {
+            "phrase": "quello libro",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
             "phrase": "questo libro",
-            "note": "'questo' points at what the speaker is holding; reported later, the book is no longer near the reporter"
+            "note": "'questo' points at what the speaker is holding; reported later, the book is no longer near the reporter",
+            "match_at": "word"
           }
         ]
       },
@@ -2248,12 +2595,16 @@
         "bucket": "demonstrative.quello",
         "label": "quello shortens to quel before a simple consonant",
         "any_phrases": [
-          "quel libro"
+          {
+            "phrase": "quel libro",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
             "phrase": "quello libro",
-            "note": "before a simple consonant quello shortens to quel, like the article il"
+            "note": "before a simple consonant quello shortens to quel, like the article il",
+            "match_at": "word"
           }
         ]
       }
@@ -2297,12 +2648,16 @@
         "bucket": "reported_speech.deixis",
         "label": "fra due giorni travels to due giorni dopo",
         "any_phrases": [
-          "due giorni dopo"
+          {
+            "phrase": "due giorni dopo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
             "phrase": "fra due giorni",
-            "note": "'fra due giorni' counts forward from now; the report needs to count forward from Monday, when he spoke"
+            "note": "'fra due giorni' counts forward from now; the report needs to count forward from Monday, when he spoke",
+            "match_at": "word"
           }
         ]
       }

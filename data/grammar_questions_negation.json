@@ -319,7 +319,9 @@
     ],
     "vocab_help": [],
     "explanation": "'Nobody came to the party': Non è venuto nessuno. When the negative word follows the verb, Italian insists on non as well, one negation marked twice. Flip nessuno to the front and the non disappears: Nessuno è venuto.",
-    "version": 1
+    "version": 1,
+    "info_display": "suppress",
+    "examiner_note": ". Suppressed per Architecture ruling 2026-07-14 (v3 Q1): the breadcrumb 'Double negation is the norm' hands over the kept-non strategy on postverbal production. Rev-19 recoverability holds: the prompt fully specifies the task, so suppression does not make the item unanswerable."
   },
   {
     "external_id": "neg_concord_02",
@@ -364,8 +366,9 @@
     ],
     "vocab_help": [],
     "explanation": "'I didn't see anything / I saw nothing': Non ho visto niente (or nulla). English marks one negative ('didn't') and switches to 'anything'; Italian keeps non AND uses the negative word niente.",
-    "examiner_note": "niente and nulla are interchangeable here; both accepted. qualcosa guard catches the English 'anything' calque.",
-    "version": 1
+    "examiner_note": "niente and nulla are interchangeable here; both accepted. qualcosa guard catches the English 'anything' calque. Suppressed per Architecture ruling 2026-07-14 (v3 Q1): the breadcrumb 'Double negation is the norm' hands over the kept-non strategy on postverbal production. Rev-19 recoverability holds: the prompt fully specifies the task, so suppression does not make the item unanswerable.",
+    "version": 1,
+    "info_display": "suppress"
   },
   {
     "external_id": "neg_concord_03",
@@ -401,8 +404,9 @@
     ],
     "vocab_help": [],
     "explanation": "'Nobody came': Nessuno è venuto. This is the mirror of Non è venuto nessuno. When the negative word moves ahead of the verb it does the negating alone, so non drops out. Keeping both (nessuno non...) is the classic over-correction.",
-    "examiner_note": "The preverbal-drop trap: this is the direction learners most often get wrong by keeping non.",
-    "version": 1
+    "examiner_note": "The preverbal-drop trap: this is the direction learners most often get wrong by keeping non. Deliberately VISIBLE: naming the norm here tempts the wrong retained non, which must_not_include catches (criterion 15 trap exception; ratified v3 Q1).",
+    "version": 1,
+    "info_display": "show"
   },
   {
     "external_id": "neg_concord_04",
@@ -449,7 +453,9 @@
       }
     ],
     "explanation": "'Nothing has changed': Niente è cambiato. Same rule as nessuno: a negative word placed before the verb negates on its own, so non is not added.",
-    "version": 1
+    "version": 1,
+    "info_display": "show",
+    "examiner_note": ". Deliberately VISIBLE: naming the norm here tempts the wrong retained non, which must_not_include catches (criterion 15 trap exception; ratified v3 Q1)."
   },
   {
     "external_id": "neg_concord_05",
@@ -496,7 +502,9 @@
       }
     ],
     "explanation": "'I don't know anyone here': Non conosco nessuno qui. Present tense, same concord rule: postverbal nessuno keeps non.",
-    "version": 1
+    "version": 1,
+    "info_display": "suppress",
+    "examiner_note": ". Suppressed per Architecture ruling 2026-07-14 (v3 Q1): the breadcrumb 'Double negation is the norm' hands over the kept-non strategy on postverbal production. Rev-19 recoverability holds: the prompt fully specifies the task, so suppression does not make the item unanswerable."
   },
   {
     "external_id": "neg_concord_06",
@@ -541,7 +549,9 @@
     ],
     "vocab_help": [],
     "explanation": "'I don't want anything / I want nothing': Non voglio niente (or nulla). The English 'anything' after a negative maps to niente/nulla in Italian, with non kept.",
-    "version": 1
+    "version": 1,
+    "info_display": "suppress",
+    "examiner_note": ". Suppressed per Architecture ruling 2026-07-14 (v3 Q1): the breadcrumb 'Double negation is the norm' hands over the kept-non strategy on postverbal production. Rev-19 recoverability holds: the prompt fully specifies the task, so suppression does not make the item unanswerable."
   },
   {
     "external_id": "neg_bip_01",
@@ -657,6 +667,12 @@
           {
             "phrase": "non fumo più",
             "match_at": "word"
+          },
+          {
+            "phrase": "ho smesso",
+            "match_at": "word",
+            "credit": 0.9,
+            "note": "correct Italian, but sidesteps the non...più frame the item drills"
           }
         ],
         "must_not_include": [
@@ -685,9 +701,15 @@
         }
       }
     ],
-    "explanation": "'I don't smoke anymore': Non fumo più. non ... più means 'no longer / not anymore' (something that used to be true has stopped). Don't confuse it with non ... ancora, 'not yet'.",
+    "explanation": "'I don't smoke anymore': Non fumo più. non ... più means 'no longer / not anymore' (something that used to be true has stopped). Don't confuse it with non ... ancora, 'not yet'. (Ho smesso di fumare is correct Italian and means the same, but it dodges the frame being practised here.)",
     "examiner_note": "The più-vs-ancora meaning pair: ancora guard catches the crossed meaning.",
-    "version": 1
+    "version": 1,
+    "candidate_forms": [
+      "più",
+      "ancora"
+    ],
+    "correct_form": "più",
+    "info_display": "show"
   },
   {
     "external_id": "neg_bip_04",
@@ -740,7 +762,13 @@
     ],
     "explanation": "'Dinner isn't ready yet': La cena non è ancora pronta. non ... ancora means 'not yet' (still waiting for something to happen). Its partner non ... più means the opposite, 'no longer'.",
     "examiner_note": "Mirror of neg_bip_03; the più guard catches the crossed meaning in this direction.",
-    "version": 1
+    "version": 1,
+    "candidate_forms": [
+      "ancora",
+      "più"
+    ],
+    "correct_form": "ancora",
+    "info_display": "show"
   },
   {
     "external_id": "neg_bip_05",
@@ -895,7 +923,13 @@
     "vocab_help": [],
     "explanation": "'I don't eat meat.' - 'Me neither!': Neanch'io! To agree WITH a negative you echo it with neanche/nemmeno/neppure (all interchangeable), never with anche. Before io, neanche elides to neanch'io.",
     "examiner_note": "The planted miss is anch'io (agreeing to a negative with the positive echo).",
-    "version": 1
+    "version": 1,
+    "candidate_forms": [
+      "neanch'io",
+      "anch'io"
+    ],
+    "correct_form": "neanch'io",
+    "info_display": "show"
   },
   {
     "external_id": "neg_resp_02",
@@ -945,7 +979,13 @@
     "vocab_help": [],
     "explanation": "'I don't like fish.' - 'Me neither.': Neanche a me. Because piacere works with an indirect object (a me = to me), its echo is Neanche a me, not Neanch'io. Same neanche/nemmeno/neppure choice.",
     "examiner_note": "Cross-ref piacere.usage.agreeing_responses (Mi piace -> A me si / Anche a me; Non mi piace -> Neanche a me). Two guards: the positive echo, and the wrong-frame neanch'io.",
-    "version": 1
+    "version": 1,
+    "candidate_forms": [
+      "neanche a me",
+      "anche a me"
+    ],
+    "correct_form": "neanche a me",
+    "info_display": "show"
   },
   {
     "external_id": "neg_resp_03",
@@ -1162,11 +1202,11 @@
     "subtopic": "restrictive",
     "difficulty": 4,
     "cefr_level_target": "C1",
-    "type": "short",
+    "type": "mcq",
     "marks": 1,
     "prompt_supplies_base_form": false,
     "info_display": "suppress",
-    "prompt": "Vero o falso: in 'Non fa che piangere', la persona non piange. (vero/falso)",
+    "prompt": "'Non fa che piangere': la persona non piange.",
     "markpoints": [
       {
         "order_index": 0,
@@ -1190,8 +1230,13 @@
     ],
     "vocab_help": [],
     "explanation": "False. 'Non fa che piangere' = 'she does nothing but cry' (she cries all the time). non ... che is restrictive ('only / nothing but'), not a real negation, so the person very much does cry.",
-    "examiner_note": "Suppressed recognition item: the breadcrumb naming 'only' would give away that this is not a real negation.",
-    "version": 1
+    "examiner_note": "Suppressed recognition item: the breadcrumb naming 'only' would give away that this is not a real negation. Converted to MCQ per Architecture v3 Q4 (two-option shape reads naturally; index-scored, markpoint retained for bucket attribution).",
+    "version": 1,
+    "choices": [
+      "vero",
+      "falso"
+    ],
+    "answer_index": 1
   },
   {
     "external_id": "neg_finche_01",
@@ -1200,11 +1245,11 @@
     "subtopic": "pleonastic.finche_flip",
     "difficulty": 4,
     "cefr_level_target": "C1",
-    "type": "short",
+    "type": "mcq",
     "marks": 1,
     "prompt_supplies_base_form": false,
     "info_display": "suppress",
-    "prompt": "'Aspetto qui finché non arrivi.' Il 'non' è una vera negazione? (sì/no)",
+    "prompt": "'Aspetto qui finché non arrivi.' Il 'non' è una vera negazione?",
     "markpoints": [
       {
         "order_index": 0,
@@ -1222,19 +1267,19 @@
             "phrase": "sì",
             "match_at": "word",
             "note": "after finché the non is pleonastic: it does not negate. The sentence means 'I'll wait here until you arrive'"
-          },
-          {
-            "phrase": "si",
-            "match_at": "word",
-            "note": "see above: the answer is no"
           }
         ]
       }
     ],
     "vocab_help": [],
     "explanation": "No. 'Aspetto qui finché non arrivi' = 'I'll wait here until you arrive.' After finché the non is pleonastic (empty): it marks the boundary point in time, it does not make the clause negative. 'Until you don't arrive' is a mistranslation.",
-    "examiner_note": "Suppressed discrimination: naming the pleonastic-non contrast pre-answer tips the classification.",
-    "version": 1
+    "examiner_note": "Suppressed discrimination: naming the pleonastic-non contrast pre-answer tips the classification. Converted to MCQ per Architecture v3 Q4 (two-option shape reads naturally; index-scored, markpoint retained for bucket attribution).",
+    "version": 1,
+    "choices": [
+      "sì",
+      "no"
+    ],
+    "answer_index": 1
   },
   {
     "external_id": "neg_finche_02",
@@ -1243,11 +1288,11 @@
     "subtopic": "pleonastic.finche_flip",
     "difficulty": 4,
     "cefr_level_target": "C1",
-    "type": "short",
+    "type": "mcq",
     "marks": 1,
     "prompt_supplies_base_form": false,
     "info_display": "suppress",
-    "prompt": "'Studiavo finché mi sono addormentato' e 'Studiavo finché non mi sono addormentato' hanno lo stesso significato? (sì/no)",
+    "prompt": "'Studiavo finché mi sono addormentato' e 'Studiavo finché non mi sono addormentato' hanno lo stesso significato?",
     "markpoints": [
       {
         "order_index": 0,
@@ -1257,10 +1302,6 @@
         "any_phrases": [
           {
             "phrase": "sì",
-            "match_at": "word"
-          },
-          {
-            "phrase": "si",
             "match_at": "word"
           }
         ],
@@ -1275,8 +1316,13 @@
     ],
     "vocab_help": [],
     "explanation": "Yes. Both mean 'I studied until I fell asleep.' In the 'until' reading, the pleonastic non after finché is optional and carries no meaning, so adding or dropping it leaves the sentence identical.",
-    "examiner_note": "Suppressed discrimination.",
-    "version": 1
+    "examiner_note": "Suppressed discrimination. Converted to MCQ per Architecture v3 Q4 (two-option shape reads naturally; index-scored, markpoint retained for bucket attribution).",
+    "version": 1,
+    "choices": [
+      "sì",
+      "no"
+    ],
+    "answer_index": 0
   },
   {
     "external_id": "neg_finche_03",
@@ -1285,11 +1331,11 @@
     "subtopic": "pleonastic.finche_flip",
     "difficulty": 5,
     "cefr_level_target": "C1",
-    "type": "short",
+    "type": "mcq",
     "marks": 1,
     "prompt_supplies_base_form": false,
     "info_display": "suppress",
-    "prompt": "Quale frase dice che stava bene PRIMA di trasferirsi a Roma? A: 'Sono stato bene finché ho abitato a Roma.' B: 'Sono stato bene finché non ho abitato a Roma.' (A/B)",
+    "prompt": "Quale frase dice che stava bene PRIMA di trasferirsi a Roma?",
     "markpoints": [
       {
         "order_index": 0,
@@ -1298,32 +1344,28 @@
         "label": "finché vs finché non meaning flip",
         "any_phrases": [
           {
-            "phrase": "B",
-            "match_at": "word"
-          },
-          {
-            "phrase": "b",
+            "phrase": "finché non ho abitato",
             "match_at": "word"
           }
         ],
         "must_not_include": [
           {
-            "phrase": "A",
+            "phrase": "finché ho abitato",
             "match_at": "word",
-            "note": "A ('finché ho abitato') means he was well AS LONG AS he lived in Rome; adding non flips it to 'UNTIL he lived in Rome', i.e. before moving there"
-          },
-          {
-            "phrase": "a",
-            "match_at": "word",
-            "note": "see above: the answer is B"
+            "note": "'finché ho abitato' means he was well AS LONG AS he lived in Rome; adding non flips it to 'UNTIL he lived in Rome', i.e. before moving there"
           }
         ]
       }
     ],
     "vocab_help": [],
     "explanation": "B. Here two readings collide. 'finché ho abitato a Roma' = 'as long as I lived in Rome' (well DURING). Add non and it flips: 'finché non ho abitato a Roma' = 'until I lived in Rome' (well BEFORE moving). So the 'before' meaning is B.",
-    "examiner_note": "The hard truth-condition flip: the same finché takes opposite meanings with vs without non under the 'as long as' reading. Suppressed.",
-    "version": 1
+    "examiner_note": "The hard truth-condition flip: the same finché takes opposite meanings with vs without non under the 'as long as' reading. Suppressed. Converted to MCQ per Architecture v3 Q4 (two-option shape reads naturally; index-scored, markpoint retained for bucket attribution).",
+    "version": 1,
+    "choices": [
+      "Sono stato bene finché ho abitato a Roma.",
+      "Sono stato bene finché non ho abitato a Roma."
+    ],
+    "answer_index": 1
   },
   {
     "external_id": "neg_ameno_01",
@@ -1457,11 +1499,11 @@
     "subtopic": "mica",
     "difficulty": 4,
     "cefr_level_target": "C1",
-    "type": "short",
+    "type": "mcq",
     "marks": 1,
     "prompt_supplies_base_form": false,
     "info_display": "suppress",
-    "prompt": "In 'Mica sono stupida!', 'mica' vale come...? A) non (Non sono affatto stupida) B) forse (A/B)",
+    "prompt": "In 'Mica sono stupida!', 'mica' vale come...",
     "markpoints": [
       {
         "order_index": 0,
@@ -1470,32 +1512,28 @@
         "label": "preverbal mica replaces non",
         "any_phrases": [
           {
-            "phrase": "A",
-            "match_at": "word"
-          },
-          {
-            "phrase": "a",
+            "phrase": "non (Non sono affatto stupida)",
             "match_at": "word"
           }
         ],
         "must_not_include": [
           {
-            "phrase": "B",
+            "phrase": "forse",
             "match_at": "word",
             "note": "before the verb, mica replaces non and negates emphatically: 'Mica sono stupida' = 'I'm not stupid at all'"
-          },
-          {
-            "phrase": "b",
-            "match_at": "word",
-            "note": "see above: the answer is A"
           }
         ]
       }
     ],
     "vocab_help": [],
     "explanation": "A. Placed before the verb, mica stands in for non and negates emphatically: 'Mica sono stupida!' = 'Non sono affatto stupida!' ('I'm not stupid at all!'). It is colloquial reinforcement, not a maybe.",
-    "examiner_note": "Suppressed: the breadcrumb would name the position-meaning rule under test.",
-    "version": 1
+    "examiner_note": "Suppressed: the breadcrumb would name the position-meaning rule under test. Converted to MCQ per Architecture v3 Q4 (two-option shape reads naturally; index-scored, markpoint retained for bucket attribution).",
+    "version": 1,
+    "choices": [
+      "non (Non sono affatto stupida)",
+      "forse"
+    ],
+    "answer_index": 0
   },
   {
     "external_id": "neg_mica_02",
@@ -1504,11 +1542,11 @@
     "subtopic": "mica",
     "difficulty": 5,
     "cefr_level_target": "C1",
-    "type": "short",
+    "type": "mcq",
     "marks": 1,
     "prompt_supplies_base_form": false,
     "info_display": "suppress",
-    "prompt": "'Mica hai visto mia madre?' Chi parla sta...? A) chiedendo con esitazione (per caso l'hai vista?) B) negando con forza (A/B)",
+    "prompt": "'Mica hai visto mia madre?' Chi parla sta...",
     "markpoints": [
       {
         "order_index": 0,
@@ -1517,32 +1555,28 @@
         "label": "mica in a question (supposition)",
         "any_phrases": [
           {
-            "phrase": "A",
-            "match_at": "word"
-          },
-          {
-            "phrase": "a",
+            "phrase": "chiedendo con esitazione (per caso l'hai vista?)",
             "match_at": "word"
           }
         ],
         "must_not_include": [
           {
-            "phrase": "B",
+            "phrase": "negando con forza",
             "match_at": "word",
             "note": "in a question mica softens to a tentative supposition: 'You haven't by any chance seen my mother?'"
-          },
-          {
-            "phrase": "b",
-            "match_at": "word",
-            "note": "see above: the answer is A"
           }
         ]
       }
     ],
     "vocab_help": [],
     "explanation": "A. In a question, mica softens the ask into a tentative supposition: 'Mica hai visto mia madre?' = 'You haven't by any chance seen my mother?' (roughly per caso). It is not a forceful denial here.",
-    "examiner_note": "Suppressed; third of mica's three position-meaning pairings.",
-    "version": 1
+    "examiner_note": "Suppressed; third of mica's three position-meaning pairings. Converted to MCQ per Architecture v3 Q4 (two-option shape reads naturally; index-scored, markpoint retained for bucket attribution).",
+    "version": 1,
+    "choices": [
+      "chiedendo con esitazione (per caso l'hai vista?)",
+      "negando con forza"
+    ],
+    "answer_index": 0
   },
   {
     "external_id": "neg_mica_03",
@@ -1582,11 +1616,11 @@
     "subtopic": "mica",
     "difficulty": 4,
     "cefr_level_target": "C1",
-    "type": "short",
+    "type": "mcq",
     "marks": 1,
     "prompt_supplies_base_form": false,
     "info_display": "suppress",
-    "prompt": "Quale è corretto? A) Mica sono stupida. B) Non mica sono stupida. (A/B)",
+    "prompt": "'Mica sono stupida!' Con 'mica' davanti al verbo, si usa anche 'non'?",
     "markpoints": [
       {
         "order_index": 0,
@@ -1595,31 +1629,235 @@
         "label": "preverbal mica does not co-occur with non",
         "any_phrases": [
           {
-            "phrase": "A",
-            "match_at": "word"
-          },
-          {
-            "phrase": "a",
+            "phrase": "no",
             "match_at": "word"
           }
         ],
         "must_not_include": [
           {
-            "phrase": "B",
+            "phrase": "sì",
             "match_at": "word",
-            "note": "when mica stands before the verb it REPLACES non; you don't use both, so 'Non mica sono' is wrong"
-          },
-          {
-            "phrase": "b",
-            "match_at": "word",
-            "note": "see above: the answer is A"
+            "note": "preverbal mica REPLACES non; stacking them ('Non mica sono stupida') is wrong"
           }
         ]
       }
     ],
     "vocab_help": [],
-    "explanation": "A. Preverbal mica already replaces non, so you never stack them: 'Mica sono stupida' is right, 'Non mica sono stupida' is not. (After the verb it is the opposite: there mica joins non, as in Non ho mica detto.)",
-    "examiner_note": "Catches the common miss 'preverbal mica WITH non'. Suppressed.",
+    "explanation": "No. Placed before the verb, mica already replaces non, so you never stack them: 'Mica sono stupida!' is right, 'Non mica sono stupida' is not. After the verb it is the opposite: there mica joins non, as in 'Non ho mica detto'.",
+    "examiner_note": "Reframed from a 'which is correct' A/B to a yes/no: the wrong form is the correct one PLUS non, so the correct string nests inside the distractor and no substring guard can separate them (criterion 18). The yes/no options do not nest. Suppressed; index-scored.",
+    "version": 1,
+    "choices": [
+      "sì",
+      "no"
+    ],
+    "answer_index": 1
+  },
+  {
+    "external_id": "neg_corr_01",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "correlative",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "prompt": "Di’ che non bevi né caffè né tè: '____.'",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.correlative",
+        "label": "non ... né ... né",
+        "any_phrases": [
+          {
+            "phrase": "non bevo né caffè né tè",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "bevo né caffè né tè",
+            "match_at": "word",
+            "note": "postverbal né...né still needs non before the verb, exactly like postverbal nessuno"
+          },
+          {
+            "phrase": "non bevo o caffè o tè",
+            "match_at": "word",
+            "note": "English 'either...or' under a negative becomes né...né, not o...o"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "tè",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "tea - tè",
+            "bucket": "vocabulary.it.tè.noun.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'I drink neither coffee nor tea': Non bevo né caffè né tè. When the né...né pair sits after the verb, non stays in front, the same concord rule as non ho visto nessuno. Calquing 'either...or' as o...o is the usual slip.",
     "version": 1
+  },
+  {
+    "external_id": "neg_corr_02",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "correlative",
+    "difficulty": 4,
+    "cefr_level_target": "B1",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "prompt": "Comincia la frase con Né: 'Non sono venuti né Marco né Luca.' → '____ venuti.'",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.correlative",
+        "label": "Preverbal né...né drops non",
+        "any_phrases": [
+          {
+            "phrase": "né marco né luca sono",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "né marco né luca non sono",
+            "match_at": "word",
+            "note": "moved in front of the verb, né...né carries the negation alone and non is dropped"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'Neither Marco nor Luca came': Né Marco né Luca sono venuti. This is the né...né mirror of Nessuno è venuto: once the negative pair leads the sentence, non drops out. Note the verb stays plural.",
+    "examiner_note": "The preverbal-drop mirror; same diagnostic as neg_concord_03 but on the correlative.",
+    "version": 1
+  },
+  {
+    "external_id": "neg_corr_03",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "correlative",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "prompt": "Unisci le due frasi: 'Non ho fame. Non ho sete.' → 'Non ho fame ____ sete.'",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.correlative",
+        "label": "single né = 'or' under a negative",
+        "any_phrases": [
+          {
+            "phrase": "né",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "o",
+            "match_at": "word",
+            "note": "under a negative, 'or' becomes né, not o"
+          },
+          {
+            "phrase": "e",
+            "match_at": "word",
+            "note": "joining two negated items uses né, not e"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'I'm not hungry or thirsty': Non ho fame né sete. A single né links a second negated item and translates English 'or' after a negative. Using e or o here is the calque.",
+    "version": 1
+  },
+  {
+    "external_id": "neg_corr_04",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "correlative",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "prompt": "Di’ che non mangi né carne né pesce: '____ pesce.'",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.correlative",
+        "label": "non ... né ... né",
+        "any_phrases": [
+          {
+            "phrase": "non mangio né carne né",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "non mangio o carne o",
+            "match_at": "word",
+            "note": "'neither...nor' is né...né; o...o calques English 'either...or'"
+          },
+          {
+            "phrase": "mangio né carne né",
+            "match_at": "word",
+            "note": "the postverbal pair keeps non in front of the verb"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'I eat neither meat nor fish': Non mangio né carne né pesce. Both halves of the pair take né, and non stays before the verb because the pair follows it.",
+    "version": 1
+  },
+  {
+    "external_id": "neg_corr_05",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "correlative",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "prompt": "Comincia la frase con Né: 'Non lo sanno né lui né lei.' → '____.'",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.correlative",
+        "label": "Preverbal né...né drops non",
+        "any_phrases": [
+          {
+            "phrase": "né lui né lei lo sanno",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "né lui né lei non lo sanno",
+            "match_at": "word",
+            "note": "a preverbal né...né drops non; you cannot keep both"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'Neither he nor she knows': Né lui né lei lo sanno. Fronting the né...né pair removes non, the same drop as Nessuno lo sa.",
+    "version": 1,
+    "examiner_note": "Blank widened to include the verb so the guard is reachable: with a bare 'né lui né lei' answer the correct string nests inside the wrong 'né lui né lei non lo sanno' and the positive would credit the error (criterion 18)."
   }
 ]

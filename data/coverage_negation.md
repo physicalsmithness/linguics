@@ -1,50 +1,54 @@
 # Coverage: Negation (topic `negation`, prefix `neg` / `trans_neg`)
 
-Authored by NegationAuthor, 2026-07-14, against `data/buckets/negation.json` (11 nodes) and `DISPATCH_negation.md`, brief Revision 16. First batch. Status: delivered for Architecture review, not yet wired to the manifest.
+Authored by NegationAuthor. Batch 1 delivered 2026-07-14 to brief Rev 16 and ACCEPTED (scope thread v4). Reconciled 2026-07-15 to brief **Rev 19** and to Architecture's five rulings, with the né...né leaf added. Validation: 0 failures, 0 warnings.
+
+Per brief Rev 18, this doc is the RECORD; every ask below is also live on `inter_chat/Architecture_NegationAuthor_scope_ratified.md` (v5).
 
 ## Totals
 
-36 grammar questions, 18 translation items. Every active leaf covered; hot spots (concord, bipartite, echo answers) carry the heaviest load. All markpoints word-anchored per criterion 18 (see Marker safety below); validation run reports 0 failures, 0 warnings.
+**41 grammar + 20 translation** across all 9 active leaves.
 
-## Bucket-to-item counts
-
-| Leaf (friendly label) | id | Grammar | Trans (required) |
+| Leaf (friendly label) | id | Grammar | Trans |
 |---|---|---|---|
 | Where non goes | negation.core.non_position | 6 | 2 |
 | Double negation is the norm | negation.core.concord | 6 | 4 |
 | Two-part negatives (non... mai/più/ancora) | negation.core.bipartite | 6 | 4 |
 | Neanche, nemmeno, neppure | negation.responses | 4 | 3 |
 | Non... che: only | negation.restrictive | 4 | 2 |
+| Né... né | negation.correlative | 5 | 2 |
 | Finché and finché non | negation.pleonastic.finche_flip | 3 | 1 |
 | A meno che non, and friends | negation.pleonastic.a_meno_che | 3 | 1 |
 | Mica | negation.mica | 4 | 1 |
 
-Translation items also cite existential.form.negative, piacere.usage.agreeing_responses, verb_form.passato_prossimo.*, verb_form.congiuntivo, adjective_agreement.* as optional/cross-tree buckets (all verified present on disk).
+## The five rulings, as applied (scope thread v4)
 
-## Suppression inventory (info_display: "suppress")
+1. **Concord breadcrumb.** Suppressed all four postverbal-production items (neg_concord_01/02/05/06), including the worked example. The two preverbal-drop items (03/04) stay visible as productive traps.
+2. **né...né ratified under negation.** Leaf `negation.correlative` live; authored 5 grammar + 2 translation. Covers postverbal non...né...né, the preverbal Né...né drop mirror, single né as "or", and the o...o calque guard.
+3. **a_meno_che bundling accepted.** Unchanged.
+4. **MCQ.** Converted 7 recognition items to real MCQ (index-scored, markpoint retained for attribution): neg_finche_01/02/03, neg_restr_04, neg_mica_01/02/04. Kept as short answer where the token is doing honest work: neg_restr_01 (produce solo), neg_ameno_03 (produce non), neg_mica_03 (produce mica).
+5. **Thin comparative item.** Left as is.
 
-Set on the discrimination and recognition items whose breadcrumb would hand over the answer: neg_finche_01/02/03 (the pleonastic-vs-real and the truth-condition flip), neg_restr_01 and neg_restr_04 (the two non...che recognition items; the production items neg_restr_02/03 name the frame in the prompt, so they stay visible), and neg_mica_01/02/04 (the position-meaning classifications). neg_mica_03 names mica in the prompt, so it stays visible. This follows the dispatch (suppress finché #4 and mica #5) plus criterion 15's project-wide discrimination default.
+## Rev 17/19 reconciliation
 
-## House techniques used
+- **candidate_forms + correct_form (Rev 17 iii)** on the four genuine form-discriminations: neg_bip_03 / neg_bip_04 (the più-vs-ancora meaning pair, both directions) and neg_resp_01 / neg_resp_02 (the neanche-vs-anche echo). All four carry `info_display: "show"`, per Rev 19: the candidates are lexemes the prompt does not reveal, so the breadcrumb must stay visible and the leaf labels already name the candidate forms rather than the rule. **Deliberate departure:** candidate_forms NOT applied to the finché / mica / restrictive recognition items. Their answers are verdicts (is this a real negation? does this reading flip?), not competing Italian surface forms, so a candidate_forms tick would be noise. Flagged for a ruling.
+- **0.9-for-dodges (Rev 17 iv)**: one applied. neg_bip_03 accepts "ho smesso" at 0.9 with a steering note (correct Italian, sidesteps the non...più frame).
+- **Rev 19 recoverability**: all 12 suppressions re-checked. Each is either a production item whose task the prompt fully specifies, or an MCQ whose options are on screen. None is a hidden lexeme choice, so none becomes unanswerable when suppressed.
+- **POS migration**: absorbed, not reverted. vocab_help refs are on the new `vocabulary.it.<lemma>.<pos>.translation` shape; the né...né items were authored to it directly.
 
-Person recovery from a compound subject (neg_resp_04, "io e i miei amici" -> noi). Same-surface / opposite-answer pairs on the più-vs-ancora meaning axis (neg_bip_03 vs neg_bip_04, and the paired must_not_include guards each way). The "anything" -> qualcosa calque is planted as a guard across concord items and translations.
+## Criterion 18: third direction (Rev 17 ii) and two bugs it caught
 
-## Marker safety (criterion 18)
+The reconciliation audit added the third direction (no must_not_include may fire on a plausible correct attempt) and found **two dead guards, both introduced in this pass, both now fixed**:
 
-`non` is a substring of nonna/nonno/nonostante, and short frames nest (non ho inside non ho mica detto), so every any_phrase and must_not_include carries match_at: "word". The containment audit (any_phrase must not match any enumerated wrong attempt under its anchor) passes for all 36 items. The single-token answers (A/B, sì/no, vero/falso, solo, non, mica) rely entirely on word-anchoring; they are safe because the opposite token is the guard and word boundaries block embedding.
+- `neg_corr_05`: the answer "né lui né lei" nests inside the wrong "né lui né lei non lo sanno", so the positive would have CREDITED the error. Blank widened to take the verb ("né lui né lei lo sanno"), as neg_corr_02 already did.
+- `neg_mica_04`: "Mica sono stupida." nests inside the distractor "Non mica sono stupida.". Because the error here is an ADDED word, the correct string is always a substring of the wrong one and no substring guard can separate them. Reframed to a yes/no MCQ whose options do not nest.
 
-## Flagged / uncertain (open questions for Architecture, biggest first)
+The 17 remaining "must_not inside correct" hits are all the dropped-non guards (e.g. "conosco nessuno" inside "non conosco nessuno"). These are safe and intended: must_not_include is else-if gated behind the positive, so a correct attempt matches the any_phrase and the guard is never evaluated. This is the pattern the dispatch's worked example blessed.
 
-1. **Concord breadcrumb leak.** The leaf label "Double negation is the norm" shows pre-answer on visible items. On the postverbal-production items (neg_concord_01/02/05/06) that arguably leaks the strategy (keep non), which is the very English-instinct error under test; on the preverbal-drop items (neg_concord_03/04) naming the norm is a *productive* trap (it tempts the wrong retained non, which the must_not_include catches), so visible is correct there. Per criterion 15 the flag is per-item. I did NOT override the dispatch's worked example (neg_concord_01 shipped visible as modelled); recommend suppressing the four postverbal-production concord items and leaving the two preverbal-drop items visible. One-line ruling flips them.
+## Flagged for a ruling (also on the thread, per Rev 18)
 
-2. **né... né correlative gap.** Not in the ratified tree and not needed for the 8 leaves, so left out; proposed as `negation.correlative` in bucket_suggestions with an ownership caveat (it sits on the seam with a future connettivi/coordination tree). Awaiting a ratify/relocate call before I author it (est. 4-5 grammar + 2 translation).
-
-3. **a_meno_che markpoint bundling.** neg_ameno_01/02 fuse the pleonastic non and the subjunctive form in one markpoint ("non piova"/"non sia"), because the answer is a two-word frame and splitting would require an unanchored "non" (criterion-18 hazard). Diagnostic attribution therefore lands wholly on a_meno_che, not on congiuntivo. If clean per-skill split is wanted, the cleaner route is to give the subjunctive elsewhere and test only the non here; flag if you want that reworked.
-
-4. **Classify items as short-answer.** The finché/mica/restrictive recognition items are type "short" with token any_phrases (A/B, sì/no, vero/falso). If Housing would rather these be true MCQ (choices + answer_index) they convert cleanly; I kept them as markpoint items so bucket attribution still fires.
-
-5. **Minor: comparative pleonastic.** Folded into the a_meno_che leaf per the tree's own description. neg_ameno_03 is consequently a thin single-"non" answer; acceptable, but if the comparative pleonastic deserves its own leaf later, that item moves.
+1. **The elliptical dodge is unreachable.** "Cosa hai visto?" answered with a bare "Niente." is correct, idiomatic Italian that sidesteps the concord frame, so Rev 17(iv) would want it at 0.9. It cannot be authored: the phrase "niente" is a substring of the wrong attempt "ho visto niente" (dropped non), so a 0.9 entry would credit the very error the item tests. Same class as ComparisonAuthor's molto+issimo stacking. Left unauthored on neg_concord_02/06; the honest fix is a marker that can anchor a whole-answer match, or routing the ellipsis to translation.
+2. **candidate_forms on verdict items** (see above): confirm the judgement or tell me to add them.
 
 ## Notes for next pass
 
-né...né (pending ratification); if wanted, deepen mica with a chunk-reorder format should Housing ship one (the dispatch notes the error is positional); and the non-position tree could gain a couple of B1 items on non with double clitics in compound tenses once the boundary with passato_prossimo.adverb_placement is comfortable.
+Né...né could take a verb-agreement item (Né Marco né Luca sono/è venuti) if that is negation's rather than agreement's. Mica would benefit from a chunk-reorder format if Housing ships one, since the error is positional. The non-position leaf could gain B1 items on non with clitic clusters in compound tenses once the passato_prossimo.adverb_placement boundary is comfortable.

@@ -45,6 +45,14 @@ The brief moved twice after this batch shipped. Self-audit against both, all cha
 - **Rev 14 house techniques** were not retrofitted; noted for the next relative_pronoun dispatch.
 - The seven-batch retro-audit that accompanied Rev 15 did not include relative_pronoun (file mtimes show no external edits); this section is the equivalent audit, done author-side.
 
+## Rev 17/19 reconciliation (2026-07-15)
+
+- **Criterion 16 generalised (Rev 17 iii):** the five discrimination items now carry `candidate_forms` + `correct_form` (superseding the dispatch's "no candidate fields" instruction, which predates the generalisation). Marking unaffected; post-answer tick and per-context stats gained.
+- **0.9-for-dodges (Rev 17 iv):** the four (prep + quale) items now credit the equally-correct cui forms at 0.9 with a steering note (per cui / con cui / a cui / di cui, all word-anchored). Adding the a-cui dodge made wrong-preposition "da cui" a plausible attempt on the alla-quale item, so it joined that item's must_not_include. Bare literary `cui` is deliberately NOT a dodge entry anywhere: word-anchored `cui` sits word-bounded inside the wrong "da cui" and would credit it.
+- **Criterion 18 third direction (Rev 17 ii):** audited every must_not_include entry against plausible CORRECT attempts. One exposure: the chi-selection items' bare-che guard would fire a false diagnostic on correct multiword completions ("La persona che studia..."). Mitigation shipped: "Complete with one word:" on rel_chi_01/rel_chi_02 (names the output shape, not the rule); the residual (a learner defying the instruction gets a chi-bucket wrong-flag for correct Italian) is flagged for sign-off in the batch-review thread. Dropping the che guard instead would lose the bucket's named common_miss.
+- **Recoverability audit (Rev 19):** all 40 suppressions stand. Discrimination items show their two candidates in the prompt (recoverable). Production items force a relative through the syntactic frame, every standard alternative is credited, and near-rights fall to not-attempted rather than misses, so no bucket records a miss the learner was never invited to engage - the bene/buono failure shape does not arise.
+- **Policy tension flagged, not resolved here:** il quale where plain che suffices is marked WRONG (bucket common_miss, dispatch instruction, blessed in batch review) yet is correct-if-stilted Italian, which Rev 17's dodge rule would score 0.9. Ask in the batch-review thread; whichever way Architecture rules, one line in the brief would stop the next author re-deriving it.
+
 ## Authoring decisions worth review
 
 - **dove / in cui / nella quale cross-credited at 1.0** on dove items (all standard for place); the leaf's diagnostic guard is che-for-place. Conversely the in-cui grammar item uses a manner antecedent (il modo) so dove is a catchable wrong answer, not a valid alternative.

@@ -1,6 +1,6 @@
 # Coverage: verb_form.imperativo (formation branch)
 
-**Author:** Imperativo chat (formation dispatch, against AUTHOR_BRIEF Rev 10)
+**Author:** Imperativo chat (formation dispatch; authored against AUTHOR_BRIEF Rev 10, reconciled to Rev 18 on 2026-07-15)
 **Date:** 2026-06-11
 **Scope:** the four leaves under *Formation* only. Usage and the tu-vs-Lei register choice are stubs and were not authored.
 
@@ -64,3 +64,20 @@ Checked `data/glossary.json` first. The relevant terms already exist and are ade
 - The usage leaf (`verb_form.imperativo.usage`) and the discrimination leaf (`...discrimination.register_informal_vs_formal`) are still stubs. The register *choice* (tu vs Lei for the social context) belongs there, and per the brief's Rev 10 it should be `info_display: "suppress"` by default as a discrimination bucket. I kept all my translation items register-*stated* (a name cues tu, a title like "signore/signora" cues Lei) precisely so they test formation, not the choice — the usage dispatch can reuse several of these source sentences trigger-stripped to test the choice instead.
 - The recipe/sign infinitive-as-impersonal-imperative (Mescolare bene; Non fumare) is usage territory and was not touched.
 - Clitic + imperative interaction (enclisis on the informal, proclisis on the formal, doubling on the apocopated forms) is the pronoun tree's; a coordination note may be worth a shared `inter_chat/` file between Imperativo and PronounAuthor if those items are authored.
+
+---
+
+## Reconciliation pass, 2026-07-15 (Rev 10 → Rev 18)
+
+The batch was authored against Rev 10. Rulings and brief revisions since have been applied:
+
+- **Criterion 15 / Rev 12 (terse labels).** Architecture shortened the four formation leaf labels at source (thread `Architecture_ImperativoAuthor_breadcrumb_label_leak.md`, CLOSED v2). Per that ruling the tree-wide suppress is gone: `info_display: "suppress"` now sits on the **seven apocopated / irregular tu items only**, because "Apocopated / irregular tu" still names a class the learner cannot derive from the infinitive. The other 30 items are unsuppressed — their terse labels ("Informal affirmative", "Formal Lei") restate only the person/register the cue already supplies.
+- **Criterion 18 / Rev 15 (superstring safety).** The retro-audit anchored bare `abbi` but missed the apostrophe forms: norm() folds the apostrophe to a space, so `va'`→`va` was mis-crediting `vado`/`vada`, `fa'`→`fa` was mis-crediting `faccia`, and `di'`→`di` was mis-crediting `dici`/`dire`. Fixed with per-phrase `match_at: "word"` across the apocopated set (10 anchored phrases; audit clean at 0 exposed). Raised to Architecture as a cross-batch audit gap at thread v4.
+- **Marker questions settled** (thread `Architecture_ImperativoAuthor_short_form_marker_apostrophe.md`): `match_at` is engine-supported since build 2026-07-13-r1; the input rewriter no longer mangles the apocopated forms; **equal full credit for va'/vai, da'/dai, fa'/fai, sta'/stai is ratified policy** (di' the only-form exception), so uncertain-item #1 in the list above is CLOSED. Uncertain-item #2 (apostrophe normalisation) is CLOSED: the fold is lenient (bare `va` passes) and accepted as harmless for a formation drill.
+- **Vocab POS migration** applied to this batch automatically (`vocabulary.it.parlare.translation` → `...parlare.verb.translation`).
+
+### Still outstanding on this batch
+
+- **Criterion 17 / Rev 13**: every grammar explanation must carry a plain English translation of the completed correct sentence. None of the 37 items has one yet; they gain it on next touch. This is the main remaining debt.
+- **Criterion 19 / Rev 16 (accent as morpheme)**: needs an audit pass. The brief's own worked example says `da` for `dà` is a do-nothing case, so exposure here is likely nil, but it has not been checked item by item.
+- **Misconception batch-tagging**: the imperativo tree sits in the "second pass, still to come" group on `Architecture_MisconceptionAnalyst_registry_harvest.md` (OPEN v9, closes once the last author has tagged).

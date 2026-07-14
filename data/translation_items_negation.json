@@ -654,5 +654,96 @@
     "vocab_help": [],
     "explanation": "'I didn't say that at all!': Non ho mica detto questo! After the verb (here after the auxiliary ho), mica reinforces non with a colloquial, slightly indignant 'at all'.",
     "version": 1
+  },
+  {
+    "external_id": "trans_neg_en_it_corr_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I drink neither coffee nor tea.",
+    "reference_translations": [
+      {
+        "text": "Non bevo né caffè né tè.",
+        "register": "neutral",
+        "notes": "Standard; postverbal pair keeps non."
+      },
+      {
+        "text": "Bevo né caffè né tè.",
+        "register": "neutral",
+        "polarity": "negative",
+        "notes": "WRONG: the postverbal né...né pair still needs non before the verb."
+      },
+      {
+        "text": "Non bevo o caffè o tè.",
+        "register": "neutral",
+        "polarity": "negative",
+        "notes": "WRONG: calques 'either...or'; under a negative Italian uses né...né."
+      }
+    ],
+    "topic": "negation",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "negation.correlative"
+    ],
+    "optional_buckets": [
+      "negation.core.concord"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "tea",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "tea - tè",
+            "bucket": "vocabulary.it.tè.noun.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Neither coffee nor tea': non bevo né caffè né tè. The pair follows the verb, so non stays in front; the same concord rule as non ho visto nessuno.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_neg_it_en_corr_02",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Né Marco né Luca sono venuti alla riunione.",
+    "reference_translations": [
+      {
+        "text": "Neither Marco nor Luca came to the meeting.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "Neither Marco nor Luca came to the meeting.",
+        "register": "neutral",
+        "notes": "Note the Italian verb is plural (sono venuti) though English takes a singular reading."
+      }
+    ],
+    "topic": "negation",
+    "register": "neutral",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "negation.correlative"
+    ],
+    "optional_buckets": [
+      "verb_form.passato_prossimo"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "riunione",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "riunione - meeting",
+            "bucket": "vocabulary.it.riunione.noun.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Né Marco né Luca sono venuti' = 'Neither Marco nor Luca came.' The pair sits before the verb, so there is no non; Italian also keeps the verb plural where English hears a singular.",
+    "version": 1
   }
 ]

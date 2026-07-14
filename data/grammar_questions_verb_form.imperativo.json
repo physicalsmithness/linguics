@@ -10,7 +10,6 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
-    "info_display": "suppress",
     "markpoints": [
       {
         "order_index": 0,
@@ -52,7 +51,6 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
-    "info_display": "suppress",
     "markpoints": [
       {
         "order_index": 0,
@@ -104,7 +102,6 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
-    "info_display": "suppress",
     "markpoints": [
       {
         "order_index": 0,
@@ -146,7 +143,6 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
-    "info_display": "suppress",
     "markpoints": [
       {
         "order_index": 0,
@@ -198,7 +194,6 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
-    "info_display": "suppress",
     "markpoints": [
       {
         "order_index": 0,
@@ -250,7 +245,6 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
-    "info_display": "suppress",
     "markpoints": [
       {
         "order_index": 0,
@@ -292,7 +286,6 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
-    "info_display": "suppress",
     "markpoints": [
       {
         "order_index": 0,
@@ -334,7 +327,6 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
-    "info_display": "suppress",
     "markpoints": [
       {
         "order_index": 0,
@@ -390,7 +382,6 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
-    "info_display": "suppress",
     "markpoints": [
       {
         "order_index": 0,
@@ -443,7 +434,6 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
-    "info_display": "suppress",
     "markpoints": [
       {
         "order_index": 0,
@@ -485,7 +475,6 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
-    "info_display": "suppress",
     "markpoints": [
       {
         "order_index": 0,
@@ -527,7 +516,6 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
-    "info_display": "suppress",
     "markpoints": [
       {
         "order_index": 0,
@@ -569,7 +557,6 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
-    "info_display": "suppress",
     "markpoints": [
       {
         "order_index": 0,
@@ -621,7 +608,6 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
-    "info_display": "suppress",
     "markpoints": [
       {
         "order_index": 0,
@@ -665,7 +651,6 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
-    "info_display": "suppress",
     "markpoints": [
       {
         "order_index": 0,
@@ -717,7 +702,6 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
-    "info_display": "suppress",
     "markpoints": [
       {
         "order_index": 0,
@@ -759,7 +743,6 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
-    "info_display": "suppress",
     "markpoints": [
       {
         "order_index": 0,
@@ -815,7 +798,6 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
-    "info_display": "suppress",
     "markpoints": [
       {
         "order_index": 0,
@@ -870,7 +852,6 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
-    "info_display": "suppress",
     "markpoints": [
       {
         "order_index": 0,
@@ -912,7 +893,6 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
-    "info_display": "suppress",
     "markpoints": [
       {
         "order_index": 0,
@@ -962,8 +942,14 @@
         "bucket": "verb_form.imperativo.formation.irregular_tu",
         "label": "irregular tu: andare -> va' / vai",
         "any_phrases": [
-          "va'",
-          "vai"
+          {
+            "phrase": "va'",
+            "match_at": "word"
+          },
+          {
+            "phrase": "vai",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "vada",
@@ -1006,8 +992,14 @@
         "bucket": "verb_form.imperativo.formation.irregular_tu",
         "label": "irregular tu: dare -> da' / dai",
         "any_phrases": [
-          "da'",
-          "dai"
+          {
+            "phrase": "da'",
+            "match_at": "word"
+          },
+          {
+            "phrase": "dai",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "dia",
@@ -1050,12 +1042,17 @@
         "bucket": "verb_form.imperativo.formation.irregular_tu",
         "label": "irregular tu: fare -> fa' / fai",
         "any_phrases": [
-          "fa'",
-          "fai"
+          {
+            "phrase": "fa'",
+            "match_at": "word"
+          },
+          {
+            "phrase": "fai",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
-          "faccia",
-          "fa "
+          "faccia"
         ]
       }
     ],
@@ -1094,8 +1091,14 @@
         "bucket": "verb_form.imperativo.formation.irregular_tu",
         "label": "irregular tu: stare -> sta' / stai",
         "any_phrases": [
-          "sta'",
-          "stai"
+          {
+            "phrase": "sta'",
+            "match_at": "word"
+          },
+          {
+            "phrase": "stai",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "stia"
@@ -1137,7 +1140,10 @@
         "bucket": "verb_form.imperativo.formation.irregular_tu",
         "label": "irregular tu: dire -> di' (no long form)",
         "any_phrases": [
-          "di'"
+          {
+            "phrase": "di'",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "dici",
@@ -1282,7 +1288,6 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
-    "info_display": "suppress",
     "markpoints": [
       {
         "order_index": 0,
@@ -1325,7 +1330,6 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
-    "info_display": "suppress",
     "markpoints": [
       {
         "order_index": 0,
@@ -1378,7 +1382,6 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
-    "info_display": "suppress",
     "markpoints": [
       {
         "order_index": 0,
@@ -1421,7 +1424,6 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
-    "info_display": "suppress",
     "markpoints": [
       {
         "order_index": 0,
@@ -1465,7 +1467,6 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
-    "info_display": "suppress",
     "markpoints": [
       {
         "order_index": 0,
@@ -1509,7 +1510,6 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
-    "info_display": "suppress",
     "markpoints": [
       {
         "order_index": 0,
@@ -1563,7 +1563,6 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
-    "info_display": "suppress",
     "markpoints": [
       {
         "order_index": 0,
@@ -1606,7 +1605,6 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
-    "info_display": "suppress",
     "markpoints": [
       {
         "order_index": 0,
@@ -1659,7 +1657,6 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
-    "info_display": "suppress",
     "markpoints": [
       {
         "order_index": 0,
@@ -1702,7 +1699,6 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
-    "info_display": "suppress",
     "markpoints": [
       {
         "order_index": 0,

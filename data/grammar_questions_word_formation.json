@@ -346,19 +346,28 @@
         "bucket": "word_formation.alterati.augmentative_pejorative",
         "label": "Accrescitivo -one with gender shift",
         "any_phrases": [
-          "il portone",
+          {
+            "phrase": "il portone",
+            "match_at": "word"
+          },
           {
             "phrase": "portone",
             "match_at": "word"
           }
         ],
         "must_not_include": [
-          "la portona",
+          {
+            "phrase": "la portona",
+            "match_at": "word"
+          },
           {
             "phrase": "portona",
             "match_at": "word"
           },
-          "la portone"
+          {
+            "phrase": "la portone",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -396,19 +405,28 @@
         "bucket": "word_formation.alterati.augmentative_pejorative",
         "label": "Accrescitivo -one with gender shift",
         "any_phrases": [
-          "il macchinone",
+          {
+            "phrase": "il macchinone",
+            "match_at": "word"
+          },
           {
             "phrase": "macchinone",
             "match_at": "word"
           }
         ],
         "must_not_include": [
-          "la macchinona",
+          {
+            "phrase": "la macchinona",
+            "match_at": "word"
+          },
           {
             "phrase": "macchinona",
             "match_at": "word"
           },
-          "la macchinone"
+          {
+            "phrase": "la macchinone",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -1228,8 +1246,10 @@
         "bucket": "word_formation.prefixes.neo_ex",
         "label": "ex = former",
         "any_phrases": [
-          "ex marito",
-          "ex-marito"
+          {
+            "phrase": "ex marito",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
