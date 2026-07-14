@@ -1,0 +1,307 @@
+[
+  {
+    "id": "indefinite",
+    "parent_id": null,
+    "language_code": "it",
+    "label": "Indefinites",
+    "description": "Some, every, any, nobody: qualche, alcuni, ogni, tutto, qualcuno, qualcosa, nessuno, niente, ognuno, ciascuno, qualunque, chiunque.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "topic_short": "ind",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "indefinite.core",
+    "parent_id": "indefinite",
+    "language_code": "it",
+    "label": "The everyday quantifiers",
+    "description": "qualche, alcuni, ogni, tutto: the A2 workhorses.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "indefinite.core.qualche",
+    "parent_id": "indefinite.core",
+    "language_code": "it",
+    "label": "Qualche + singular",
+    "description": "qualche always takes a SINGULAR noun even though the meaning is plural: qualche libro (some books). The alcuni alternative takes the plural.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "Ho letto qualche libro.",
+      "common_miss": "qualche libri (plural after qualche, the near-universal calque).",
+      "is_aggregate": false,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "indefinite.core.alcuni",
+    "parent_id": "indefinite.core",
+    "language_code": "it",
+    "label": "Alcuni / alcune",
+    "description": "Plural some with agreement: alcuni ragazzi, alcune ragazze. Interchangeable with qualche + singular in most affirmative contexts; the choice itself is a style call, the AGREEMENT is the skill.",
+    "cefr_importance": {
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "Alcune ragazze sono arrivate presto.",
+      "common_miss": "alcuni with a feminine noun.",
+      "is_aggregate": false,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "indefinite.core.ogni",
+    "parent_id": "indefinite.core",
+    "language_code": "it",
+    "label": "Ogni + singular",
+    "description": "ogni is invariable and takes a singular noun: ogni giorno, ogni volta. For every-as-all use tutti i: tutti i giorni.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "Vado in palestra ogni giorno.",
+      "common_miss": "ogni giorni; ogni inflected (ogna, ognie).",
+      "is_aggregate": false,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "indefinite.core.tutto",
+    "parent_id": "indefinite.core",
+    "language_code": "it",
+    "label": "Tutto + article",
+    "description": "tutto takes the article after it: tutto il giorno, tutta la classe, tutti i giorni, tutte le sere. Bare adverbial tutto (è tutta strana) exists but is not the pattern here.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "article.definite"
+    ],
+    "attributes": {
+      "canonical_example": "Ho lavorato tutto il giorno.",
+      "common_miss": "tutto giorno (missing article); tutti giorni.",
+      "is_aggregate": false,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "indefinite.pronouns",
+    "parent_id": "indefinite",
+    "language_code": "it",
+    "label": "The pronoun set",
+    "description": "Somebody, something, nobody, nothing, everybody: the stand-alone indefinites.",
+    "cefr_importance": {
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "indefinite.pronouns.qualcuno_qualcosa",
+    "parent_id": "indefinite.pronouns",
+    "language_code": "it",
+    "label": "Qualcuno and qualcosa",
+    "description": "qualcuno for people, qualcosa for things, both grammatically singular; qualcosa DI + adjective (qualcosa di bello), qualcosa DA + infinitive (qualcosa da mangiare).",
+    "cefr_importance": {
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "C'è qualcosa di bello da vedere?",
+      "common_miss": "qualcosa bello (missing di); plural verb with qualcuno.",
+      "is_aggregate": false,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "indefinite.pronouns.nessuno_niente",
+    "parent_id": "indefinite.pronouns",
+    "language_code": "it",
+    "label": "Nessuno, niente, nulla",
+    "description": "The negative indefinites: forms and meanings, nessuno also as adjective with uno-like endings (nessun amico, nessuno zaino, nessuna casa). Their WORD ORDER with non belongs to the negation topic; cite it, do not re-teach it.",
+    "cefr_importance": {
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "negation.core.concord"
+    ],
+    "attributes": {
+      "canonical_example": "Nessun problema! Non ho visto nessuno.",
+      "common_miss": "nessuno amico (the uno-endings missed); nessuni (pluralised).",
+      "is_aggregate": false,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "indefinite.pronouns.ognuno_ciascuno",
+    "parent_id": "indefinite.pronouns",
+    "language_code": "it",
+    "label": "Ognuno and ciascuno",
+    "description": "The distributives: ognuno/ciascuno di noi, singular verb; ciascuno also adjectival with uno-endings (ciascun candidato). Register: ciascuno leans formal.",
+    "cefr_importance": {
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "Ognuno di noi ha un compito.",
+      "common_miss": "plural verb after ognuno; ciascuni.",
+      "is_aggregate": false,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "indefinite.free_choice",
+    "parent_id": "indefinite",
+    "language_code": "it",
+    "label": "Free choice: qualunque, qualsiasi, chiunque",
+    "description": "Any-whatever words, and the subjunctive they drag in.",
+    "cefr_importance": {
+      "B1": "preview",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "indefinite.free_choice.qualunque_qualsiasi",
+    "parent_id": "indefinite.free_choice",
+    "language_code": "it",
+    "label": "Qualunque / qualsiasi + noun",
+    "description": "Invariable, adjectival, before or after the noun (qualsiasi cosa, un libro qualunque, with a shade of dismissiveness post-nominally); in a subordinate they take the subjunctive (qualunque cosa faccia).",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "tense_choice.indicative_vs_subjunctive"
+    ],
+    "attributes": {
+      "direction": "bidirectional",
+      "canonical_example": "Qualsiasi cosa faccia, la fa bene.",
+      "common_miss": "qualunqui (inflected); indicative after qualunque cosa.",
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "indefinite.free_choice.chiunque",
+    "parent_id": "indefinite.free_choice",
+    "language_code": "it",
+    "label": "Chiunque",
+    "description": "Pronoun ONLY (never before a noun), person-referring, singular verb, subjunctive in subordinates: Chiunque sia, digli che non ci sono. Against qualunque persona.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "tense_choice.indicative_vs_subjunctive"
+    ],
+    "attributes": {
+      "direction": "bidirectional",
+      "canonical_example": "Chiunque sia, digli che non ci sono.",
+      "common_miss": "chiunque persona (used adjectivally); plural verb.",
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  }
+]

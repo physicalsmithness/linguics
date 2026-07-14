@@ -92,8 +92,18 @@
     if (!url) throw new Error("No marker URL configured.");
     const model = options.model || LL.markerModel();
 
+    // Strip square-bracketed disambiguation instructions from the MARKER feed
+    // (e.g. "[it is the sister who studies there]"): they are meaning-forcing
+    // notes for the learner, kept verbatim in the display, but not translatable
+    // content the marker should judge against. See inter_chat/
+    // Architecture_Housing_translation_source_brackets.md.
+    let markerItem = item;
+    if (item && typeof item.source_text === "string" && item.source_text.indexOf("[") !== -1) {
+      markerItem = Object.assign({}, item);
+      markerItem.source_text = item.source_text.replace(/\s*\[[^\]]*\]\s*/g, " ").replace(/\s+/g, " ").trim();
+    }
     const body = {
-      item,
+      item: markerItem,
       raw,
       intent: intent || "literal",
       bucket_context: options.bucketContext || {},

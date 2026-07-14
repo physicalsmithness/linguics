@@ -283,6 +283,44 @@ The elided-variant follow-up (adding "me l'" alongside "me lo" in any_phrases on
 
 Both threads (`Architecture_PronounAuthor_prompt_and_granularity.md` v4 and `Architecture_PronounAuthor_slot_count_collapse.md` v3) are now CLOSED. Two bucket proposals remain pending ratification: the dare union bucket and the 1/2-person-DOP optional-agreement bucket. Item counts unchanged: 216 grammar, 56 translation.
 
+## Brief Rev 6 audit pass (2026-06-08)
+
+Self-audit against `AUTHOR_BRIEF.md` Rev 6, covering criteria 10, 11, 12, 13 that landed after my earlier Rev 3 audit. Thread `Architecture_PronounAuthor_brief_rev6_audit.md` closed at v2, ratified by Architecture.
+
+**Criterion 13 (cue chips name surface, not rule)** — 7 fixes. Items where the parenthetical or "Use:" chip named the structural rule the item was testing (typically "infinitive", "gerund", "gerundio" on position-attached items). Rewrote each to name what the learner is producing rather than the rule. The batch triggered the brief's own worked-wrong example (`op_pos_neg_03`).
+
+**Criterion 12 (prompts not glossary-wrapped)** — clean. My earlier jargon sweep (clitic → pronoun, DOP → direct-object pronoun) had already handled this.
+
+**Criterion 11 (register-conditional items state register)** — clean. Every register-conditional item already carried `(formal)`, `(informal)`, `(polite)`, `(spoken polite)`, `(modern spoken Italian)`, or similar cue.
+
+**Criterion 10a (tense ambiguity)** — 14 prompt rewrites. Twelve items had a redundant `Complete in passato prossimo` cue alongside an explicit past-time marker; the cue leaked the tense rule per criterion 5 and was redundant per 10a. Dropped in each. One item (`op_iop_verbs_iop_05`) genuinely needed disambiguation and got a past-time marker added ("Ieri sera, a Marco...") instead of the tense-naming cue.
+
+**Criterion 10b (wrong-tense in must_not_include)** — one addition. The pronoun batch is mostly pronoun-choice items, not tense-discrimination items, so 10b's "and the item is testing a discrimination" gate excludes most items. Added `piace`, `piaceva` to `op_iop_verbs_iop_05`'s participle markpoint (that item genuinely was present-vs-PP ambiguous).
+
+**Rev 5 vocab bucket-id `<pos>` migration** — deferred to central script per Architecture ruling. My ~150 vocab_help refs will migrate with the corpus-wide script, not by hand.
+
+## Brief Rev 7 clitic-position-framing pass (2026-06-08)
+
+Thread `Architecture_PronounAuthor_clitic_position_framing.md` closed at v3.
+
+**Criterion 14 (multi-position clitic prompts must NOT announce placement)** — 8 rewrites. Prompts on the two-valid-position items had shapes like "Place the pronoun in EITHER valid position" that told the learner placement was the variable and that two answers were valid. Rewrote each to "Rewrite the sentence, replacing X with a pronoun: '<source>.' → ____" or equivalent, per Architecture's prescribed pattern.
+
+Six were straightforward short-answer rewrites: `op_pos_modal_01`, `op_pos_modal_03`, `op_pos_ger_02` (Smith's screenshot item, matching Architecture's exact worked example), `op_pos_neg_01`, `op_pos_neg_03`, `op_pos_neg_04`. For the negative-imperative family I used positive imperatives as source ("Dimmi!", "Dammelo!", "Muoviti!") and asked the learner to negate — a clean sentence rewrite that names the surface (negate this) without naming the rule (non + infinitive).
+
+Two items (`op_pos_modal_02`, `op_pos_neg_02`) were MCQ with their first option listing both placements slash-separated ("Non dirmi! / Non mi dire!"). That slash-merged option is itself the "either valid position" announce criterion 14 targets, just relocated from prompt to choice text. Converted both to short-answer with both forms in `any_phrases`; the substring marker scores both cleanly. Architecture ratified as a "sharp catch" (and noted the engine doesn't currently support multiple `answer_index` values so short-answer is both cleaner and cheaper).
+
+## Brief Rev 8-13 pass (2026-07-14)
+
+Substantial jump — six new revisions landed between Rev 7 and today's Rev 13. Findings:
+
+**Rev 9 cue-economy note (criterion 13 extension)** — 2 small fixes. `op_comb_glielo_11` had "Attach the cluster to an infinitive" where `dare` is visible in the prompt; trimmed to "Attach the cluster". `op_refl_mi_01` had `(alzarsi, 1sg)` where the visible verb form `alzo` shows the 1sg; trimmed to `(alzarsi)`.
+
+**Rev 8/10/12 info_display suppress (criterion 15)** — flagged as needing architect ruling. The pronoun batch has ~100 items where the bucket-name breadcrumb (e.g. "mi (me, 1sg)", "lo (him / it, masc 3sg)", "gli + lo → glielo (one word)") literally hands over the answer form as a pre-answer breadcrumb. Rev 10's auto-suppress applies to `.discrimination` buckets; my items aren't in that tree, so no auto-fire. Rev 12's "shorten labels before reaching for suppress" would apply, but labels are architecture-owned. Rev 12's fallback is per-item `info_display: "suppress"`. This is potentially 100 per-item edits and depends on whether Architecture wants to auto-suppress whole bucket families (e.g. every `pronoun.direct_object.*` gets suppress by default) rather than per-item. Deferred pending architect ruling.
+
+**Rev 11 candidate_tenses (criterion 16)** — doesn't apply. Pronoun items aren't in `tense_choice` or `.discrimination.*` trees.
+
+**Rev 13 criterion 17 (explanations translate the sentence)** — 216 grammar explanations updated. Every item's explanation now opens with a plain English translation of the completed correct Italian sentence (or a target gloss for fragment prompts like "Combine: gli + lo → glielo"). Delegated the bulk pass to a general-purpose agent with a clear method spec; 216 of 216 items updated cleanly; JSON integrity preserved (grep still returns 216, `json.loads` succeeded); a small number of edge cases flagged (redundant-pronoun colloquial forms like "Ce ne abbiamo molto", the spot-the-error item `op_comb_joined_04` glossed with the intended meaning, the slightly-awkward `op_ne_prondi_01` rendered naturally).
+
 ## Pacing notes for the next dispatcher
 
 The angle-based audit approach worked well a second time on the house-style pass. Recommend the next dispatcher use the rule-by-rule frame from the start: count distinct angles, not items. A rule like "the gli-exception to consonant doubling" needs three or four angles even though it has only one underlying fact, because the angles are where learners stumble in different ways.

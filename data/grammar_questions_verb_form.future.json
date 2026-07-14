@@ -17,7 +17,7 @@
         "bucket": "verb_form.future.formation.regular_are",
         "label": "1sg parlerò (a-to-e shift, accent)",
         "any_phrases": ["parlerò"],
-        "must_not_include": ["parlarò", "parlero"]
+        "must_not_include": ["parlarò"]
       }
     ],
     "vocab_help": [
@@ -51,7 +51,7 @@
         "bucket": "verb_form.future.formation.regular_are",
         "label": "3sg lavorerà (a-to-e shift, accent)",
         "any_phrases": ["lavorerà"],
-        "must_not_include": ["lavorarà", "lavorera"]
+        "must_not_include": ["lavorarà"]
       }
     ],
     "vocab_help": [
@@ -224,7 +224,7 @@
         "bucket": "verb_form.future.formation.regular_ere",
         "label": "1sg prenderò (e kept, accent)",
         "any_phrases": ["prenderò"],
-        "must_not_include": ["prendrò", "prendero"]
+        "must_not_include": ["prendrò"]
       }
     ],
     "vocab_help": [
@@ -265,7 +265,7 @@
         "bucket": "verb_form.future.formation.regular_ere",
         "label": "3sg scriverà (e kept, accent)",
         "any_phrases": ["scriverà"],
-        "must_not_include": ["scrivrà", "scrivera"]
+        "must_not_include": ["scrivrà"]
       }
     ],
     "vocab_help": [
@@ -364,7 +364,7 @@
         "bucket": "verb_form.future.formation.regular_ire",
         "label": "3sg partirà (i kept, accent)",
         "any_phrases": ["partirà"],
-        "must_not_include": ["partira", "parterà"]
+        "must_not_include": ["parterà"]
       }
     ],
     "vocab_help": [
@@ -406,7 +406,7 @@
         "bucket": "verb_form.future.formation.regular_ire",
         "label": "1sg capirò (no -isc-, accent)",
         "any_phrases": ["capirò"],
-        "must_not_include": ["capiscirò", "capiro"]
+        "must_not_include": ["capiscirò"]
       }
     ],
     "vocab_help": [
@@ -608,7 +608,7 @@
       }
     ],
     "explanation": "La squadra is the subject, so this is the third person singular. Giocare ends in -care, so an h is inserted before the future e to keep the c hard: giocherà. Two things to keep here: the h (without it, giocerà reads wrong) and the obligatory accent on -à.",
-    "examiner_note": "Suppressed; must_not_include carries both the no-h miss (giocera) and the accent guard. The accent-only miss giocerà is also rejected because it lacks the h.",
+    "examiner_note": "Suppressed for the same reason as the other care_gare items. Both rejected forms (giocera, giocerà) are genuine no-h misses; the accent alone is orthography, left to the soft accent guard.",
     "version": 1
   },
   {
@@ -665,7 +665,7 @@
         "bucket": "verb_form.future.formation.orthographic.ciare_giare",
         "label": "1sg comincerò (i dropped, accent)",
         "any_phrases": ["comincerò"],
-        "must_not_include": ["comincierò", "comincero"]
+        "must_not_include": ["comincierò"]
       }
     ],
     "vocab_help": [
@@ -805,7 +805,7 @@
         "bucket": "verb_form.future.formation.irregular.syncopated",
         "label": "1sg avrò (theme vowel dropped, accent)",
         "any_phrases": ["avrò"],
-        "must_not_include": ["averò", "avero", "avro"]
+        "must_not_include": ["averò", "avero"]
       }
     ],
     "vocab_help": [
@@ -980,7 +980,7 @@
         "bucket": "verb_form.future.formation.irregular.syncopated",
         "label": "1sg vedrò (theme vowel dropped, accent)",
         "any_phrases": ["vedrò"],
-        "must_not_include": ["vederò", "vedero", "vedro"]
+        "must_not_include": ["vederò", "vedero"]
       }
     ],
     "vocab_help": [
@@ -1085,7 +1085,7 @@
         "bucket": "verb_form.future.formation.irregular.double_r",
         "label": "1sg vorrò (double r, accent)",
         "any_phrases": ["vorrò"],
-        "must_not_include": ["vorò", "volerò", "vorro"]
+        "must_not_include": ["vorò", "volerò"]
       }
     ],
     "vocab_help": [
@@ -1120,7 +1120,7 @@
         "bucket": "verb_form.future.formation.irregular.double_r",
         "label": "3sg verrà (double r, accent)",
         "any_phrases": ["verrà"],
-        "must_not_include": ["verà", "venirà", "verra"]
+        "must_not_include": ["verà", "venirà"]
       }
     ],
     "vocab_help": [
@@ -1295,7 +1295,7 @@
         "bucket": "verb_form.future.formation.irregular.essere",
         "label": "1sg sarò (suppletive stem, accent)",
         "any_phrases": ["sarò"],
-        "must_not_include": ["esserò", "saro", "essero"]
+        "must_not_include": ["esserò", "essero"]
       }
     ],
     "vocab_help": [
@@ -1330,7 +1330,7 @@
         "bucket": "verb_form.future.formation.irregular.essere",
         "label": "3sg sarà (suppletive stem, accent)",
         "any_phrases": ["sarà"],
-        "must_not_include": ["esserà", "sara"]
+        "must_not_include": ["esserà"]
       }
     ],
     "vocab_help": [
@@ -1343,7 +1343,7 @@
       }
     ],
     "explanation": "Lei is the subject, so this is the third person singular. Essere's suppletive stem sar- takes the ending -à: sarà. The accent matters: sarà (she will be) with the accent, never the bare sara. Don't reach back to the infinitive (esserà).",
-    "examiner_note": "Suppressed for the same reason as the other essere items. The unaccented sara is the spelling-meaning miss.",
+    "examiner_note": "Suppressed for the same reason as the other essere items. A dropped accent (sara) is left to the marker's soft accent guard (full credit plus an orthography.accent miss), not must_not_include: sarà has no unaccented real-word collision, so per the accent-as-morpheme thread the load-bearing flag is not needed here.",
     "version": 1
   },
   {
@@ -1435,7 +1435,7 @@
         "bucket": "verb_form.future.formation.irregular.dare_stare_fare",
         "label": "1sg farò (keeps -ar-, accent)",
         "any_phrases": ["farò"],
-        "must_not_include": ["ferò", "faro", "farciò"]
+        "must_not_include": ["ferò"]
       }
     ],
     "vocab_help": [
@@ -1470,7 +1470,7 @@
         "bucket": "verb_form.future.formation.irregular.dare_stare_fare",
         "label": "3sg darà (keeps -ar-, accent)",
         "any_phrases": ["darà"],
-        "must_not_include": ["derà", "dara"]
+        "must_not_include": ["derà"]
       }
     ],
     "vocab_help": [
@@ -1609,7 +1609,7 @@
         "bucket": "verb_form.future.formation.future_anteriore",
         "label": "avrò finito (future auxiliary + participle)",
         "any_phrases": ["avrò finito"],
-        "must_not_include": ["finirò", "ho finito", "avro finito"]
+        "must_not_include": ["finirò", "ho finito"]
       }
     ],
     "vocab_help": [

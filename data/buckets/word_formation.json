@@ -1,0 +1,192 @@
+[
+  {
+    "id": "word_formation",
+    "parent_id": null,
+    "language_code": "it",
+    "label": "Word formation",
+    "description": "Making words from words: the alterati (diminutives, augmentatives, pejoratives), the intensifying prefixes, and the fakes.",
+    "cefr_importance": {
+      "B1": "preview",
+      "B2": "core",
+      "C1": "core",
+      "C2": "review"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "topic_short": "wf",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "word_formation.alterati",
+    "parent_id": "word_formation",
+    "language_code": "it",
+    "label": "Alterati",
+    "description": "Suffixes that resize and colour a noun without changing what it is.",
+    "cefr_importance": {
+      "B1": "preview",
+      "B2": "core",
+      "C1": "core",
+      "C2": "review"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "word_formation.alterati.diminutives",
+    "parent_id": "word_formation.alterati",
+    "language_code": "it",
+    "label": "Diminutives: -ino, -etto, -ello, -uccio",
+    "description": "Small and often affectionate: tavolino, momentino, sorellina (affection, not necessarily age). Suffix choice is partly lexicalised; produce the common ones, recognise the rest.",
+    "cefr_importance": {
+      "B1": "preview",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "Un attimino! Sento la mancanza della mia sorellina.",
+      "common_miss": "Free-generating on any noun (not every noun takes every suffix).",
+      "is_aggregate": false,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "word_formation.alterati.augmentative_pejorative",
+    "parent_id": "word_formation.alterati",
+    "language_code": "it",
+    "label": "Augmentative -one, pejorative -accio",
+    "description": "Big (librone, portone) and bad (tempaccio, parolaccia). Watch the gender shift: feminine bases often go masculine under -one (la porta, il portone; la campana, il campanello).",
+    "cefr_importance": {
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "Che tempaccio! Hanno chiuso il portone.",
+      "common_miss": "la portona (missed gender shift); -accio read as size.",
+      "is_aggregate": false,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "word_formation.alterati.falsi",
+    "parent_id": "word_formation.alterati",
+    "language_code": "it",
+    "label": "Falsi alterati",
+    "description": "Words that only LOOK altered: cavalletto is an easel not a small horse; mattino is not a small matto; focaccia is not a bad foca. Classification is the skill: real alterato or independent word?",
+    "cefr_importance": {
+      "B2": "preview",
+      "C1": "core",
+      "C2": "review"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "bidirectional",
+      "canonical_example": "il cavalletto (easel), la focaccia (bread)",
+      "common_miss": "Reading every -etto/-accia as an alterato.",
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "word_formation.prefixes",
+    "parent_id": "word_formation",
+    "language_code": "it",
+    "label": "Prefixes",
+    "description": "The productive prefixes worth owning.",
+    "cefr_importance": {
+      "B2": "core",
+      "C1": "core",
+      "C2": "review"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "word_formation.prefixes.intensifiers",
+    "parent_id": "word_formation.prefixes",
+    "language_code": "it",
+    "label": "Stra-, arci-, super-, ultra-",
+    "description": "Intensifying prefixes on adjectives: strapieno, arcistufo, superveloce. They form absolute superlatives without -issimo (cite the comparison topic for that frame).",
+    "cefr_importance": {
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "comparison"
+    ],
+    "attributes": {
+      "canonical_example": "Il treno era strapieno.",
+      "common_miss": "stra- on verbs/nouns where it does not go; missing that arcistufo IS a superlative.",
+      "is_aggregate": false,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "word_formation.prefixes.neo_ex",
+    "parent_id": "word_formation.prefixes",
+    "language_code": "it",
+    "label": "Neo-, ex-",
+    "description": "neo- = newly (neolaureato, neonato, neologismo); ex = former (il mio ex marito, written separate or hyphenated). Recognition first, production second.",
+    "cefr_importance": {
+      "B2": "preview",
+      "C1": "core",
+      "C2": "review"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "bidirectional",
+      "canonical_example": "Una festa per i neolaureati.",
+      "common_miss": "neo- read as a meaning change rather than newness.",
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "word_formation.relational_adjectives",
+    "parent_id": "word_formation",
+    "language_code": "it",
+    "label": "Relational adjectives (stub)",
+    "description": "Noun-derived adjectives (-ale, -are, -istico, -oso, -ivo: nazione > nazionale, sole > solare) and the irregular Latinate pairs (fegato > epatico). Stubbed: authored later, possibly with the adjective topic.",
+    "cefr_importance": {
+      "B2": "preview",
+      "C1": "core",
+      "C2": "review"
+    },
+    "prerequisites": [
+      "adjective_agreement"
+    ],
+    "attributes": {
+      "is_aggregate": false,
+      "stub": true,
+      "direction": "bidirectional"
+    },
+    "active": true,
+    "version": 1
+  }
+]

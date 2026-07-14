@@ -489,3 +489,13 @@ Why it matters:
 
 **Trigger**: each author chat, on next opening (whichever order Smith brings them up).
 
+## New grammar topics surfaced by the OIC deep drill (2026-07-14, awaiting Smith's pick)
+
+The deep exercise drill (REFERENCE_oic_exercise_drill.md) surfaced topics with no Linguics tree that the index-level pass had underweighted. Candidates, in the architect's priority order:
+
+1. **Indefinites** (qualche + obligatory singular, alcuni, ogni, ciascuno, qualunque/qualsiasi, chiunque, nessuno, ognuno). No tree at all; A2-B1 core; rich drill material recovered (the four-way qualunque/chiunque/ciascuno/nessuno gap-fill, the chiunque-takes-subjunctive rule, qualcuno-for-people). Strongest candidate.
+2. **Connectives / discourse linkers** (siccome vs perché vs quindi by clause position; però/invece/comunque/allora/infine discrimination; the mood-government map: benché + subjunctive vs anche se + indicative, prima che vs dopo che, affinché vs perché). We only touch subjunctive triggers inside tense_choice; the broader system has no home.
+3. **Alterati / word formation** (diminutives -ino/-etto/-ello/-uccio/-otto, augmentative -one, falsi alterati like cavalletto, gender-shift alterati campanello/portone, prefixes stra-/arci-/neo-). B2-C1, self-contained, good trap inventory.
+4. **Negation and particles** (mica's three position-meaning pairings, pleonastic vs grammatical non, negative concord word order, finché vs finché non meaning-flip). C1; overlaps the connettivi candidate at finché, so scope the two together if both go ahead.
+5. **Deferred**: costruzione scissa (cleft) at C2; the tu/Lei register system as a topic (partially covered via imperativo); consonanti doppie as listening/orthography (belongs to the vocab/orthography axis and the housing's audio ambitions rather than a grammar tree).
+

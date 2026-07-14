@@ -1,0 +1,314 @@
+[
+  {
+    "id": "connective",
+    "parent_id": null,
+    "language_code": "it",
+    "label": "Connectives",
+    "description": "Joining and steering words: because-family, so-family, but-family, time connectors, and the discourse sequencers.",
+    "cefr_importance": {
+      "A2": "core",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "topic_short": "conn",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "connective.cause",
+    "parent_id": "connective",
+    "language_code": "it",
+    "label": "Because-family",
+    "description": "perché, siccome, poiché, dato che, visto che: same meaning, different slots and registers.",
+    "cefr_importance": {
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "connective.cause.siccome_perche",
+    "parent_id": "connective.cause",
+    "language_code": "it",
+    "label": "Siccome or perché: position",
+    "description": "Both mean because; siccome opens the sentence (Siccome pioveva, sono rimasto), perché follows the main clause (Sono rimasto perché pioveva). Swapping slots is the classic miss.",
+    "cefr_importance": {
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "bidirectional",
+      "canonical_example": "Siccome ero ammalato, non sono andato a scuola.",
+      "common_miss": "Perché pioveva, sono rimasto (cause-first perché).",
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "connective.cause.register_set",
+    "parent_id": "connective.cause",
+    "language_code": "it",
+    "label": "Poiché, dato che, visto che",
+    "description": "The register ladder of because: visto che / dato che conversational, poiché / giacché written-formal. All position-flexible, unlike perché.",
+    "cefr_importance": {
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "Visto che sei qui, aiutami.",
+      "common_miss": "poiché in casual speech (register mismatch), treated as style not error.",
+      "is_aggregate": false,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "connective.result",
+    "parent_id": "connective",
+    "language_code": "it",
+    "label": "So-family",
+    "description": "quindi, perciò, allora, dunque, pertanto, and the result constructions.",
+    "cefr_importance": {
+      "A2": "core",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "connective.result.quindi_percio",
+    "parent_id": "connective.result",
+    "language_code": "it",
+    "label": "Quindi, perciò, allora",
+    "description": "Consequence linkers: quindi/perciò neutral, allora also temporal-then, dunque/pertanto formal. Against the because-family: cause vs consequence direction is the diagnostic.",
+    "cefr_importance": {
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "bidirectional",
+      "canonical_example": "Mi piace il mare, quindi andrò in Sardegna.",
+      "common_miss": "quindi where a cause is being given (direction flipped).",
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "connective.result.che_vs_da",
+    "parent_id": "connective.result",
+    "language_code": "it",
+    "label": "Result: che + verb or da + infinitive",
+    "description": "cosicché / tanto che / così tanto che take a conjugated verb; così da / tanto da / in modo da take the infinitive. Same meaning, different machinery.",
+    "cefr_importance": {
+      "B1": "preview",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "Era così stanco da non riuscire a parlare.",
+      "common_miss": "così da + conjugated verb; tanto che + infinitive.",
+      "is_aggregate": false,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "connective.contrast",
+    "parent_id": "connective",
+    "language_code": "it",
+    "label": "But-family",
+    "description": "ma, però, invece, comunque, tuttavia, eppure, anzi, and the concessive connector choice.",
+    "cefr_importance": {
+      "A2": "core",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "connective.contrast.pero_invece",
+    "parent_id": "connective.contrast",
+    "language_code": "it",
+    "label": "Però, invece, ma",
+    "description": "Plain contrast (ma, però, flexible position for però) vs substitutive contrast about a different referent (invece, invece di + infinitive).",
+    "cefr_importance": {
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "bidirectional",
+      "canonical_example": "Io lavoro; lui invece dorme.",
+      "common_miss": "invece for plain objection; ma però stacked (tolerated speech, flagged in writing).",
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "connective.contrast.comunque_anzi",
+    "parent_id": "connective.contrast",
+    "language_code": "it",
+    "label": "Comunque, tuttavia, eppure, anzi",
+    "description": "The advanced contrast set: comunque dismissive-anyway, tuttavia/eppure written adversatives, anzi bidirectional (correction OR intensification, read from the prior sentence).",
+    "cefr_importance": {
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "bidirectional",
+      "canonical_example": "Non è una brutta idea. Anzi!",
+      "common_miss": "anzi read only as contradiction when it intensifies.",
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "connective.contrast.mood_pairs",
+    "parent_id": "connective.contrast",
+    "language_code": "it",
+    "label": "Concessive connector choice",
+    "description": "Choosing the connector to fit the verb form on the page: anche se + indicative, benché / sebbene / nonostante + subjunctive, pur + gerund. The MOOD-choice drill (connector given, pick the verb form) lives with tense_choice; here the verb form is given and the CONNECTOR is the answer.",
+    "cefr_importance": {
+      "B1": "preview",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "tense_choice.indicative_vs_subjunctive"
+    ],
+    "attributes": {
+      "direction": "bidirectional",
+      "canonical_example": "Benché fosse tardi, è uscito. / Anche se era tardi, è uscito.",
+      "common_miss": "benché + indicative accepted as fine (it is not); anche se + subjunctive hypercorrection.",
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "connective.time",
+    "parent_id": "connective",
+    "language_code": "it",
+    "label": "Time connectors",
+    "description": "prima di, prima che, dopo, dopo che, mentre, (non) appena. Finché belongs to the negation topic (the finché non flip); cite it, do not duplicate.",
+    "cefr_importance": {
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "connective.time.prima_dopo",
+    "parent_id": "connective.time",
+    "language_code": "it",
+    "label": "Prima di, prima che, dopo (che)",
+    "description": "prima di + infinitive when subjects match, prima che + subjunctive when they differ; dopo + past infinitive (dopo aver mangiato) vs dopo che + indicative. The same-subject rule is the diagnostic.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "negation.pleonastic.finche_flip"
+    ],
+    "attributes": {
+      "canonical_example": "Prima di uscire, chiudi la finestra. / Prima che tu esca, parliamo.",
+      "common_miss": "prima di with different subjects (prima di tu esci); dopo mangiare.",
+      "is_aggregate": false,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "connective.discourse",
+    "parent_id": "connective",
+    "language_code": "it",
+    "label": "Sequencers",
+    "description": "Ordering a text: innanzitutto, poi, inoltre, infine, insomma, in conclusione. Recognition and placement, register-aware.",
+    "cefr_importance": {
+      "B1": "core",
+      "B2": "review",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "bidirectional",
+      "canonical_example": "Innanzitutto i fatti; poi le opinioni; infine una proposta.",
+      "common_miss": "infine for allora (sequence vs consequence).",
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  }
+]

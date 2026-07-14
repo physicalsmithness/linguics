@@ -61,7 +61,7 @@ The two preceding-pronoun avere items cover the feminine-plural and feminine-sin
 
 Every agreement markpoint and the preceding-pronoun markpoints reference passato prossimo buckets (the with-essere agreement set, the with-avere preceding-pronoun set). The translation items additionally list the imperfect tree as an optional bucket where the sentence carries an imperfect background clause ("non avevo fame", "erano stanchi"). All cross-referenced buckets were confirmed to exist in the passato prossimo and imperfect trees at authoring time.
 
-## Breadcrumb suppression (criterion 15): one thing for Architecture / Housing to decide
+## Breadcrumb suppression (criterion 15): RESOLVED 2026-07-12
 
 I have **not** set `info_display: "suppress"` on any item, following the dispatch's steer that the avere / essere leaf names read as plain auxiliary labels the learner can infer from the verb anyway.
 
@@ -69,7 +69,9 @@ But I want to flag this rather than silently decide it, because it depends on so
 
 So the call hinges on what the breadcrumb actually surfaces. I have left the flag off per the dispatch; if the breadcrumb shows the full label, treat this as a request to set `info_display: "suppress"` tree-wide, and I will add the flag on a follow-up. This is the single biggest open point in the batch.
 
-**Update 2026-07-12 (PluperfectAuthor):** confirmed the breadcrumb renders the full friendly label, so the stored labels do leak `avevo` / `ero` on every item. Escalated to Architecture in `inter_chat/Architecture_PluperfectAuthor_breadcrumb_label_leak.md`, recommending the two leaf labels be shortened at source ("avere auxiliary" / "essere auxiliary") rather than suppressing tree-wide. Awaiting their ruling; suppress is the agreed fallback.
+**Update 2026-07-12 (PluperfectAuthor):** confirmed the breadcrumb renders the full friendly label, so the stored labels did leak `avevo` / `ero` on every item. Escalated to Architecture in `inter_chat/Architecture_PluperfectAuthor_breadcrumb_label_leak.md`, recommending the two leaf labels be shortened at source rather than suppressing tree-wide.
+
+**Resolved 2026-07-12 (Architecture, thread v2, CLOSED):** ruling was to shorten the labels at source. The two formation leaves in `data/buckets/verb_form.trapassato_prossimo.json` now read `avere auxiliary` and `essere auxiliary`, with the `avevo` / `ero` worked detail kept verbatim in the `description` fields. No `info_display: "suppress"` on the 34 items: the terse labels restate only what the prompt already gives (the verb, from which the auxiliary follows) and do not name the diagnostic (putting that auxiliary into the imperfect). The batch needs no change. Architecture also added a terse-leaf-label steer to AUTHOR_BRIEF (Rev 12) to head off this class at authoring time.
 
 ## Items flagged uncertain
 

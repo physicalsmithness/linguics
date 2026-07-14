@@ -1,0 +1,267 @@
+[
+  {
+    "id": "negation",
+    "parent_id": null,
+    "language_code": "it",
+    "label": "Negation",
+    "description": "Saying no, not, never, nobody: where non goes, the two-part negatives, and the places Italian negates differently from English.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "topic_short": "neg",
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "negation.core",
+    "parent_id": "negation",
+    "language_code": "it",
+    "label": "The non system",
+    "description": "Sentence negation with non and its two-part partners.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "negation.core.non_position",
+    "parent_id": "negation.core",
+    "language_code": "it",
+    "label": "Where non goes",
+    "description": "Non sits before the verb, and before any clitics: Non lo vedo, non mi piace. Nothing comes between non and the clitic-verb block.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "review",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "pronoun.direct_object"
+    ],
+    "attributes": {
+      "direction": "production",
+      "canonical_example": "Non lo vedo.",
+      "common_miss": "Lo non vedo (clitic before non) and io non... word-order calques.",
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "negation.core.bipartite",
+    "parent_id": "negation.core",
+    "language_code": "it",
+    "label": "Two-part negatives: non... mai, più, ancora",
+    "description": "The non...X frames: non...mai (never), non...più (no longer), non...ancora (not yet), non...affatto / per niente (not at all). Simple-tense placement lives here; placement inside compound tenses belongs to the passato prossimo tree.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.passato_prossimo.adverb_placement"
+    ],
+    "attributes": {
+      "direction": "production",
+      "canonical_example": "Non bevo mai il caffè.",
+      "common_miss": "Dropping non (bevo mai), or English-order mai bevo.",
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "negation.core.concord",
+    "parent_id": "negation.core",
+    "language_code": "it",
+    "label": "Double negation is the norm",
+    "description": "Negative concord: nessuno, niente, nulla after the verb KEEP non (Non viene nessuno; Non ho visto niente); moved before the verb they DROP it (Nessuno viene). The forms and meanings of the negative indefinites themselves will live with the indefinites topic; this leaf owns the word-order rule.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "production",
+      "canonical_example": "Non ho visto nessuno. / Nessuno mi ha visto.",
+      "common_miss": "Non nessuno è venuto (keeping non with a preverbal negative), or dropping non postverbally on the English single-negation instinct.",
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "negation.responses",
+    "parent_id": "negation",
+    "language_code": "it",
+    "label": "Neanche, nemmeno, neppure",
+    "description": "Negative agreement and echo answers: neanche/nemmeno/neppure io, Neanch'io!, Neanche a me (the piacere echo). All three are interchangeable; elision to neanch' before io.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "piacere.usage.agreeing_responses"
+    ],
+    "attributes": {
+      "direction": "bidirectional",
+      "canonical_example": "Non mi piace il pesce. Neanche a me!",
+      "common_miss": "Anche io as the echo to a negative (needs neanche).",
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "negation.restrictive",
+    "parent_id": "negation",
+    "language_code": "it",
+    "label": "Non... che: only",
+    "description": "The restrictive frame non...che = only (Non ho che dieci euro), against solo; recognising it in reading is the first skill, producing it the second.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "bidirectional",
+      "canonical_example": "Non ho che dieci euro.",
+      "common_miss": "Reading non...che as a real negation.",
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "negation.pleonastic",
+    "parent_id": "negation",
+    "language_code": "it",
+    "label": "Pleonastic non",
+    "description": "The non that does not negate: finché non, a meno che non, and the comparative più di quanto non + subjunctive.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "review",
+      "B2": "preview",
+      "C1": "core",
+      "C2": "review"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "negation.pleonastic.finche_flip",
+    "parent_id": "negation.pleonastic",
+    "language_code": "it",
+    "label": "Finché and finché non",
+    "description": "Under the until reading, non is optional and changes nothing (Studiavo finché (non) mi sono addormentato). Under the as-long-as reading, adding non REVERSES the meaning (Sono stato bene finché ho abitato a Roma vs finché non ho abitato a Roma). Classifying which non this is IS the skill.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "review",
+      "B2": "preview",
+      "C1": "core",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "bidirectional",
+      "canonical_example": "Sono stato bene finché non ho abitato a Roma.",
+      "common_miss": "Reading the pleonastic non as a negation, or missing the meaning flip under the as-long-as reading.",
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "negation.pleonastic.a_meno_che",
+    "parent_id": "negation.pleonastic",
+    "language_code": "it",
+    "label": "A meno che non, and friends",
+    "description": "A meno che non + subjunctive (unless), and the comparative pleonastic (più difficile di quanto non pensassi). The non is structural, not semantic.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "review",
+      "B2": "preview",
+      "C1": "core",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "production",
+      "canonical_example": "Vengo, a meno che non piova.",
+      "common_miss": "Omitting the non, or double-translating it (unless it does NOT rain).",
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "negation.mica",
+    "parent_id": "negation",
+    "language_code": "it",
+    "label": "Mica",
+    "description": "Colloquial reinforcement with three position-meaning pairings: after the verb reinforcing non (Non ho mica detto...), before the verb replacing non (Mica sono stupida!), and question-softening supposition (Mica hai visto mia madre?).",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "review",
+      "B2": "preview",
+      "C1": "core",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "bidirectional",
+      "canonical_example": "Non ho mica detto che devi farlo!",
+      "common_miss": "Mica placed before the verb WITH non, or read as a noun.",
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  }
+]

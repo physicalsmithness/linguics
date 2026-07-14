@@ -120,7 +120,7 @@
     "id": "preposition.articulated.di_partitive",
     "parent_id": "preposition.articulated",
     "language_code": "it",
-    "label": "del / della as 'some'",
+    "label": "Partitive 'some'",
     "description": "The articulated di used as a partitive to mean some or any.",
     "cefr_importance": {
       "A1": "arcane",
@@ -167,7 +167,7 @@
     "parent_id": "preposition.usage",
     "language_code": "it",
     "label": "Prepositions of place",
-    "description": "a with towns, in with countries/regions and enclosed spaces, da with a person's place.",
+    "description": "a with towns, in with countries/regions and enclosed spaces, location and motion generally (da with a person's place belongs to the da-special leaf).",
     "cefr_importance": {
       "A1": "arcane",
       "A2": "core",
@@ -274,10 +274,79 @@
     },
     "prerequisites": [],
     "attributes": {
-      "is_aggregate": false,
+      "is_aggregate": true,
       "direction": "bidirectional",
       "canonical_example": "Comincio a capire; Finisco di mangiare",
       "common_miss": "wrong or missing preposition after the verb"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "preposition.usage.verb_governed.a_infinitive",
+    "parent_id": "preposition.usage.verb_governed",
+    "language_code": "it",
+    "label": "Verbs taking a + infinitive",
+    "description": "Verbs whose governed preposition before an infinitive is a: cominciare, imparare, provare, riuscire, aiutare, continuare.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "Comincio a capire",
+      "is_aggregate": false,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "preposition.usage.verb_governed.di_infinitive",
+    "parent_id": "preposition.usage.verb_governed",
+    "language_code": "it",
+    "label": "Verbs taking di + infinitive",
+    "description": "Verbs whose governed preposition before an infinitive is di: finire, cercare, decidere, smettere, dimenticare.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "Finisco di mangiare",
+      "is_aggregate": false,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "preposition.usage.verb_governed.object_governed",
+    "parent_id": "preposition.usage.verb_governed",
+    "language_code": "it",
+    "label": "Verb + preposition + object",
+    "description": "Verbs that fix a preposition before a noun or pronoun object: pensare a, credere a, parlare di, avere bisogno di, innamorarsi di.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "Penso a te; ho bisogno di aiuto",
+      "is_aggregate": false,
+      "direction": "production"
     },
     "active": true,
     "version": 1
@@ -358,7 +427,7 @@
     "parent_id": "preposition.discrimination",
     "language_code": "it",
     "label": "a vs in for places",
-    "description": "Town versus country/region and enclosed space.",
+    "description": "Town versus country/region and enclosed space. The island size-class runs through the same rule: small islands take a (a Capri), regions and large islands take in (in Sicilia).",
     "cefr_importance": {
       "A1": "arcane",
       "A2": "core",

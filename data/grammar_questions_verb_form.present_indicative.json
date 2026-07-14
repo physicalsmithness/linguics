@@ -1391,7 +1391,10 @@
         "bucket": "verb_form.present_indicative.formation.orthographic.care_gare",
         "label": "2sg giochi (h kept)",
         "any_phrases": [
-          "giochi"
+          {
+            "phrase": "giochi",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "gioci",
@@ -1614,7 +1617,10 @@
         "bucket": "verb_form.present_indicative.formation.orthographic.ciare_giare",
         "label": "2sg cominci (single i)",
         "any_phrases": [
-          "cominci"
+          {
+            "phrase": "cominci",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "comincii",
@@ -1656,7 +1662,10 @@
         "bucket": "verb_form.present_indicative.formation.orthographic.ciare_giare",
         "label": "2sg mangi (single i)",
         "any_phrases": [
-          "mangi"
+          {
+            "phrase": "mangi",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "mangii",
@@ -1850,7 +1859,10 @@
         "bucket": "verb_form.present_indicative.formation.orthographic.iare_stress",
         "label": "2sg studi (unstressed i merges)",
         "any_phrases": [
-          "studi"
+          {
+            "phrase": "studi",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "studii",
@@ -1906,7 +1918,10 @@
         "bucket": "verb_form.present_indicative.formation.orthographic.iare_stress",
         "label": "2sg invii (stressed i kept)",
         "any_phrases": [
-          "invii"
+          {
+            "phrase": "invii",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "invi",
@@ -1948,7 +1963,10 @@
         "bucket": "verb_form.present_indicative.formation.orthographic.iare_stress",
         "label": "2sg scii (stressed i kept)",
         "any_phrases": [
-          "scii"
+          {
+            "phrase": "scii",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "sci",
@@ -2444,7 +2462,10 @@
         "bucket": "verb_form.present_indicative.formation.irregular.avere",
         "label": "1pl abbiamo (no h)",
         "any_phrases": [
-          "abbiamo"
+          {
+            "phrase": "abbiamo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "habbiamo",
@@ -2499,7 +2520,10 @@
         "bucket": "verb_form.present_indicative.formation.irregular.avere",
         "label": "2pl avete (no h)",
         "any_phrases": [
-          "avete"
+          {
+            "phrase": "avete",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "havete",
@@ -4353,7 +4377,10 @@
         "bucket": "verb_form.present_indicative.formation.reflexive_assembly",
         "label": "2sg ti svegli",
         "any_phrases": [
-          "ti svegli"
+          {
+            "phrase": "ti svegli",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "mi sveglio",
@@ -4591,6 +4618,757 @@
       }
     ],
     "explanation": "For voi the reflexive pronoun is vi, with the third-conjugation -ite ending: vi vestite. As always the pronoun has to match the subject, so a voi sentence pairs vi with the voi verb form.",
+    "version": 1
+  },
+  {
+    "external_id": "pu_hab_01",
+    "language_code": "it",
+    "topic": "verb_form.present_indicative",
+    "subtopic": "usage.general_habitual",
+    "difficulty": 1,
+    "cefr_level_target": "A1",
+    "prompt": "Complete: 'Ogni mattina ____ il giornale al bar.' (leggere, io)",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.present_indicative.usage.general_habitual",
+        "label": "present for a habit",
+        "any_phrases": [
+          "leggo"
+        ],
+        "must_not_include": [
+          "sto leggendo",
+          "leggevo",
+          "leggerò",
+          "leggero",
+          "ho letto"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "leggere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "leggere - to read",
+            "bucket": "vocabulary.it.leggere.translation"
+          }
+        }
+      },
+      {
+        "lemma": "giornale",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "giornale - newspaper",
+            "bucket": "vocabulary.it.giornale.translation"
+          }
+        }
+      },
+      {
+        "lemma": "mattina",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "mattina - morning",
+            "bucket": "vocabulary.it.mattina.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Ogni mattina leggo il giornale al bar' means 'Every morning I read the newspaper at the café.' Something you do again and again as part of your routine is a habit, and Italian marks a habit with the plain present tense: leggo on its own covers English 'I read'. The habit marker ogni mattina tells you the sentence is about what regularly happens, so the present is the natural form; no past, future or stare + gerundio progressive is wanted.",
+    "examiner_note": "Residual substring risk: 'leggo' sits inside 'leggono', so a wrong-person 'leggono' would false-credit. The (io) cue makes that attempt unlikely; accepted as residual.",
+    "version": 1
+  },
+  {
+    "external_id": "pu_hab_02",
+    "language_code": "it",
+    "topic": "verb_form.present_indicative",
+    "subtopic": "usage.general_habitual",
+    "difficulty": 1,
+    "cefr_level_target": "A1",
+    "prompt": "Complete: 'In questa scuola le lezioni ____ ogni giorno alle otto.' (cominciare)",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.present_indicative.usage.general_habitual",
+        "label": "present for a general truth",
+        "any_phrases": [
+          "cominciano",
+          "iniziano"
+        ],
+        "must_not_include": [
+          "stanno cominciando",
+          "cominceranno",
+          "cominciavano",
+          "stanno iniziando",
+          "inizieranno"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "cominciare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "cominciare - to begin",
+            "bucket": "vocabulary.it.cominciare.translation"
+          }
+        }
+      },
+      {
+        "lemma": "lezioni",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "lezione - lesson, class",
+            "bucket": "vocabulary.it.lezione.translation"
+          }
+        }
+      },
+      {
+        "lemma": "scuola",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "scuola - school",
+            "bucket": "vocabulary.it.scuola.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'In questa scuola le lezioni cominciano ogni giorno alle otto' means 'At this school, lessons start every day at eight.' A statement about how things always are, a general truth, takes the plain present in Italian: cominciano states the standing fact. The markers in questa scuola and ogni giorno show nothing is happening at one particular moment, so the present is right and the progressive stanno cominciando would wrongly picture one specific eight o'clock unfolding now.",
+    "examiner_note": "iniziano accepted as a full synonym; the usage skill is identical. Explicit plural subject (le lezioni), so no person cue per the cue-economy rule.",
+    "version": 1
+  },
+  {
+    "external_id": "pu_hab_03",
+    "language_code": "it",
+    "topic": "verb_form.present_indicative",
+    "subtopic": "usage.general_habitual",
+    "difficulty": 1,
+    "cefr_level_target": "A2",
+    "prompt": "Complete: 'Di solito i negozi ____ alle nove e mezza.' (aprire)",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.present_indicative.usage.general_habitual",
+        "label": "present for a routine",
+        "any_phrases": [
+          "aprono"
+        ],
+        "must_not_include": [
+          "stanno aprendo",
+          "apriranno",
+          "aprivano",
+          "aprano"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "aprire",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "aprire - to open",
+            "bucket": "vocabulary.it.aprire.translation"
+          }
+        }
+      },
+      {
+        "lemma": "negozi",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "negozio - shop",
+            "bucket": "vocabulary.it.negozio.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Di solito i negozi aprono alle nove e mezza' means 'Shops usually open at half past nine.' What usually happens is a habit of the world around you, and habits sit in the plain present: aprono. Di solito ('usually') is the give-away that this is routine, not one morning in progress, so the present is wanted rather than the future apriranno or the progressive stanno aprendo.",
+    "version": 1
+  },
+  {
+    "external_id": "pu_now_01",
+    "language_code": "it",
+    "topic": "verb_form.present_indicative",
+    "subtopic": "usage.ongoing_now",
+    "difficulty": 1,
+    "cefr_level_target": "A1",
+    "prompt": "Complete: 'Non posso uscire adesso: ____ la cena.' (preparare, io)",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.present_indicative.usage.ongoing_now",
+        "label": "present for happening-now",
+        "any_phrases": [
+          "preparo",
+          {
+            "phrase": "sto preparando",
+            "credit": 1.0,
+            "note": "stare + gerundio is equally natural in this now-context; full credit per the context-dependent progressive policy"
+          }
+        ],
+        "must_not_include": [
+          "preparerò",
+          "preparero",
+          "ho preparato",
+          "preparavo"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "preparare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "preparare - to prepare, to make",
+            "bucket": "vocabulary.it.preparare.translation"
+          }
+        }
+      },
+      {
+        "lemma": "cena",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "cena - dinner",
+            "bucket": "vocabulary.it.cena.translation"
+          }
+        }
+      },
+      {
+        "lemma": "uscire",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "uscire - to go out",
+            "bucket": "vocabulary.it.uscire.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Non posso uscire adesso: preparo la cena' means 'I can't go out now: I'm making dinner.' Something going on at this very moment is a happening-now use, and Italian is happy to cover it with the plain present: preparo, where English must say 'I'm making'. Sto preparando (the stare + gerundio progressive) is equally correct here; the point to take away is that Italian never NEEDS the progressive the way English does, so the bare present is never too weak for a now-context.",
+    "examiner_note": "Both preparo and sto preparando carry full credit by design: the context does not make the plain present clearly more natural, so per the ruling of 2026-07-14 no nudge-grading applies and the teaching lives in the explanation.",
+    "version": 1
+  },
+  {
+    "external_id": "pu_now_02",
+    "language_code": "it",
+    "topic": "verb_form.present_indicative",
+    "subtopic": "usage.ongoing_now",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "prompt": "Complete: 'Dalla mia finestra ____ il mare.' (vedere, io)",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.present_indicative.usage.ongoing_now",
+        "label": "plain present with a perception verb",
+        "any_phrases": [
+          "vedo",
+          {
+            "phrase": "sto vedendo",
+            "credit": 0.6,
+            "note": "grammatical but unnatural: perception verbs resist the progressive; partial credit with the full explanation, per the context-dependent progressive policy"
+          }
+        ],
+        "must_not_include": [
+          "vedrò",
+          "vedro",
+          "vedevo"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "vedere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "vedere - to see",
+            "bucket": "vocabulary.it.vedere.translation"
+          }
+        }
+      },
+      {
+        "lemma": "finestra",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "finestra - window",
+            "bucket": "vocabulary.it.finestra.translation"
+          }
+        }
+      },
+      {
+        "lemma": "mare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "mare - sea",
+            "bucket": "vocabulary.it.mare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Dalla mia finestra vedo il mare' means 'From my window I can see the sea.' Seeing, hearing and the other senses describe a state of perceiving rather than an activity you perform, and verbs of this kind, stative verbs, sit in the plain present: vedo. Sto vedendo is not incorrect grammar, but Italians do not say it here, because perception is not an action in progress; if you wrote it, the answer is understandable but the plain vedo is what the language actually uses.",
+    "version": 1
+  },
+  {
+    "external_id": "pu_now_03",
+    "language_code": "it",
+    "topic": "verb_form.present_indicative",
+    "subtopic": "usage.ongoing_now",
+    "difficulty": 1,
+    "cefr_level_target": "A1",
+    "prompt": "Complete: 'I nonni non possono rispondere adesso: ____ al telefono con la zia.' (parlare)",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.present_indicative.usage.ongoing_now",
+        "label": "present for happening-now",
+        "any_phrases": [
+          "parlano",
+          {
+            "phrase": "stanno parlando",
+            "credit": 1.0,
+            "note": "equally natural; full credit"
+          }
+        ],
+        "must_not_include": [
+          "parleranno",
+          "hanno parlato",
+          "parlavano"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "parlare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "parlare - to speak, to talk",
+            "bucket": "vocabulary.it.parlare.translation"
+          }
+        }
+      },
+      {
+        "lemma": "rispondere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "rispondere - to answer",
+            "bucket": "vocabulary.it.rispondere.translation"
+          }
+        }
+      },
+      {
+        "lemma": "nonni",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "nonno - grandfather",
+            "bucket": "vocabulary.it.nonno.translation"
+          }
+        }
+      },
+      {
+        "lemma": "zia",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "zia - aunt",
+            "bucket": "vocabulary.it.zia.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'I nonni non possono rispondere adesso: parlano al telefono con la zia' means 'Grandma and grandpa can't answer right now: they're talking on the phone with our aunt.' This is a happening-now use of the present: the call is going on as we speak, and the plain parlano covers it fully, where English needs 'they're talking'. Stanno parlando is just as natural; Italian offers both, English only the progressive, and that asymmetry is the thing to learn.",
+    "examiner_note": "3pl chosen deliberately: the 3sg 'parla' is a substring of parlando/parlava/parlato/parlare, and positive any_phrases matches win over must_not_include, so a 3sg version of this item would false-credit wrong-tense attempts. 'parlano' has no such superstrings among plausible attempts.",
+    "version": 1
+  },
+  {
+    "external_id": "pu_state_01",
+    "language_code": "it",
+    "topic": "verb_form.present_indicative",
+    "subtopic": "usage.states_facts",
+    "difficulty": 1,
+    "cefr_level_target": "A1",
+    "prompt": "Complete: 'Mangiamo qualcosa? ____ fame!' (io)",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.present_indicative.usage.states_facts",
+        "label": "avere for a physical state",
+        "any_phrases": [
+          "ho"
+        ],
+        "must_not_include": [
+          "sono",
+          "sto",
+          "è"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "fame",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "fame - hunger",
+            "bucket": "vocabulary.it.fame.translation"
+          }
+        }
+      },
+      {
+        "lemma": "mangiare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "mangiare - to eat",
+            "bucket": "vocabulary.it.mangiare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Ho fame!' literally 'I have hunger', is how Italian says 'I'm hungry.' Physical states, hunger, thirst, heat, cold, sleepiness, fear, are felt in Italian as things you have, so the language reaches for avere in the present where English uses 'to be': avere fame, avere sete, avere freddo, avere sonno. The blank takes ho, the io form of avere; sono fame would be word-for-word English and is never said.",
+    "examiner_note": "The verb choice is the test, so no lemma is cued. must_not 'sono' catches the essere calque; the deliberately absent lemma cue means a blank attempt is a genuine idiom gap, not a formation slip.",
+    "version": 1
+  },
+  {
+    "external_id": "pu_state_02",
+    "language_code": "it",
+    "topic": "verb_form.present_indicative",
+    "subtopic": "usage.states_facts",
+    "difficulty": 1,
+    "cefr_level_target": "A1",
+    "prompt": "Complete: 'Mio fratello ____ dodici anni.' (He is twelve.)",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.present_indicative.usage.states_facts",
+        "label": "avere for age",
+        "any_phrases": [
+          "ha"
+        ],
+        "must_not_include": [
+          "è",
+          "sta"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "fratello",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "fratello - brother",
+            "bucket": "vocabulary.it.fratello.translation"
+          }
+        }
+      },
+      {
+        "lemma": "anni",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "anno - year",
+            "bucket": "vocabulary.it.anno.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Mio fratello ha dodici anni' means 'My brother is twelve years old.' Age in Italian is a state you have, not something you are: the pattern is avere + number + anni, literally 'to have twelve years'. So the blank takes ha, the 3sg present of avere; è dodici anni is an English calque and always wrong.",
+    "examiner_note": "Residual substring risks: 'ha' sits inside 'hanno' (wrong-number attempt would false-credit; explicit singular subject makes it unlikely). Bare unaccented 'e' is NOT in must_not_include because a single letter would substring-match inside almost any answer; the accent guard is soft by house policy.",
+    "version": 1
+  },
+  {
+    "external_id": "pu_state_03",
+    "language_code": "it",
+    "topic": "verb_form.present_indicative",
+    "subtopic": "usage.states_facts",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "prompt": "Complete: 'Non ____ ancora dove abita.' (sapere, noi)",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.present_indicative.usage.states_facts",
+        "label": "plain present for a state of knowing",
+        "any_phrases": [
+          "sappiamo"
+        ],
+        "must_not_include": [
+          "stiamo sapendo",
+          "sapremo",
+          "conosciamo",
+          "sapevamo"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "sapere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "sapere - to know (a fact)",
+            "bucket": "vocabulary.it.sapere.translation"
+          }
+        }
+      },
+      {
+        "lemma": "abitare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "abitare - to live (somewhere)",
+            "bucket": "vocabulary.it.abitare.translation"
+          }
+        }
+      },
+      {
+        "lemma": "ancora",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "ancora - yet, still",
+            "bucket": "vocabulary.it.ancora.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Non sappiamo ancora dove abita' means 'We don't know yet where he (or she) lives.' Knowing is not an activity you are in the middle of; it is a state you are in, and states sit in the plain present: sappiamo. Stative verbs like sapere, avere and volere resist the stare + gerundio progressive, so stiamo sapendo is not Italian at all. And before a question word like dove, knowing a fact is sapere, not conoscere.",
+    "examiner_note": "must_not 'conosciamo' is safe here precisely because a clause follows: conoscere cannot take 'dove...', so the item pins sapere without testing vocabulary knowledge separately. 1pl chosen to avoid the 3sg-in-gerundio substring collision.",
+    "version": 1
+  },
+  {
+    "external_id": "pu_instr_01",
+    "language_code": "it",
+    "topic": "verb_form.present_indicative",
+    "subtopic": "usage.instructions",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "prompt": "Complete the serving instruction: 'Questo vino si ____ freddo.' (servire)",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.present_indicative.usage.instructions",
+        "label": "si-impersonal, singular",
+        "any_phrases": [
+          "serve"
+        ],
+        "must_not_include": [
+          "servi",
+          "serva",
+          "servirà",
+          "servira",
+          "servite"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "servire",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "servire - to serve",
+            "bucket": "vocabulary.it.servire.translation"
+          }
+        }
+      },
+      {
+        "lemma": "vino",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "vino - wine",
+            "bucket": "vocabulary.it.vino.translation"
+          }
+        }
+      },
+      {
+        "lemma": "freddo",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "freddo - cold",
+            "bucket": "vocabulary.it.freddo.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Questo vino si serve freddo' means 'This wine is served cold' or 'You serve this wine cold.' Instructions about how things are done in general take the si-impersonal: si plus the verb in the third person of the plain present. With a singular subject (questo vino), the verb after si is 3sg: si serve. The 2sg servi is the informal you-voice of instructions and fine on its own, but after si it is wrong.",
+    "examiner_note": "servire chosen deliberately over an -are/-ere verb: -ire 3sg forms ('serve') are not substrings of their own infinitive, future or 2pl, so the wrong-tense guards in must_not_include are all reachable. Only the gerundio ('servendo') contains 'serve', and 'si sta servendo' is not a plausible attempt here.",
+    "version": 1
+  },
+  {
+    "external_id": "pu_instr_02",
+    "language_code": "it",
+    "topic": "verb_form.present_indicative",
+    "subtopic": "usage.instructions",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Complete the recipe step: 'Prima si ____ le patate a cubetti.' (tagliare)",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.present_indicative.usage.instructions",
+        "label": "si-impersonal, plural agreement",
+        "any_phrases": [
+          "tagliano"
+        ],
+        "must_not_include": [
+          "taglia",
+          "taglierà",
+          "tagliera",
+          "tagli"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "tagliare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "tagliare - to cut",
+            "bucket": "vocabulary.it.tagliare.translation"
+          }
+        }
+      },
+      {
+        "lemma": "patate",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "patata - potato",
+            "bucket": "vocabulary.it.patata.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Prima si tagliano le patate a cubetti' means 'First you cut the potatoes into cubes.' In the si-impersonal the verb agrees with the thing acted on: le patate is plural, so the verb goes plural too, si tagliano, as if the potatoes cut themselves. Keeping the singular (si taglia le patate) is the classic slip; when what follows si is plural, the plural noun drags the verb to -ano.",
+    "examiner_note": "must_not entries 'taglia' and 'tagli' are substrings of the correct 'tagliano', which is safe: any_phrases are checked before must_not_include, so the correct answer credits first. A learner answering 'taglia' alone fails the any_phrases check and is then caught.",
+    "version": 1
+  },
+  {
+    "external_id": "pu_instr_03",
+    "language_code": "it",
+    "topic": "verb_form.present_indicative",
+    "subtopic": "usage.instructions",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Complete the directions: 'Per il museo si ____ al secondo piano e poi a destra.' (salire)",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.present_indicative.usage.instructions",
+        "label": "si-impersonal for directions",
+        "any_phrases": [
+          "sale"
+        ],
+        "must_not_include": [
+          "sali",
+          "salga",
+          "salirà",
+          "salira",
+          "salite"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "salire",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "salire - to go up",
+            "bucket": "vocabulary.it.salire.translation"
+          }
+        }
+      },
+      {
+        "lemma": "museo",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "museo - museum",
+            "bucket": "vocabulary.it.museo.translation"
+          }
+        }
+      },
+      {
+        "lemma": "piano",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "piano - floor, storey",
+            "bucket": "vocabulary.it.piano.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Per il museo si sale al secondo piano e poi a destra' means 'For the museum you go up to the second floor and then turn right.' Directions in Italian often come as a statement of what one does, using the si-impersonal in the plain present: si sale, 'one goes up'. The verb after si sits in the 3sg: sale. The present does all the instructional work; no command form or future is needed.",
+    "examiner_note": "salire chosen deliberately: its 3sg 'sale' is not a substring of salire/salirà/salite, so every wrong-form guard is reachable. 'salga' in must_not catches the Lei-imperative reach, a real temptation in a directions context. (Formation note: salire is a -go verb, but the 3sg 'sale' is regular, so no formation confound.)",
     "version": 1
   }
 ]

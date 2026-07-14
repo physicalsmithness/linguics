@@ -611,10 +611,18 @@
     "bucket": "relative_pronoun.cui.with_preposition",
     "label": "a + cui",
     "any_phrases": [
-     "a cui",
-     "alla quale"
+     {
+      "phrase": "a cui",
+      "match_at": "word"
+     },
+     {
+      "phrase": "alla quale",
+      "match_at": "word",
+      "note": "agreeing alternative, more formal"
+     }
     ],
     "must_not_include": [
+     "da cui",
      "che"
     ]
    }
@@ -652,7 +660,7 @@
    }
   ],
   "explanation": "'La ragazza a cui ho dato il mio numero non mi ha chiamato' means 'The girl I gave my number to never called me.' You give something TO someone (dare a), so the relative needs the preposition, and preposition + relative means a cui, never a che. The formal agreeing alternative alla quale also works.",
-  "examiner_note": "Two engine caveats: (1) literary bare 'cui' (= a cui) is not credited at this level, and by check order it falls through to a silent miss rather than a wrong-flag; (2) a wrong 'da cui' attempt contains the substring 'a cui' and would be falsely credited - known substring-engine limitation, flagged in coverage notes.",
+  "examiner_note": "any_phrases word-anchored (match_at, engine support landed 2026-07-13 per inter_chat/Architecture_Housing_marker_match_at_and_apocope.md): a wrong 'da cui' no longer substring-matches 'a cui' and now falls to must_not_include for clean attribution. Literary bare 'cui' (= a cui) still deliberately uncredited at B1; it falls through to a silent miss.",
   "version": 1
  },
  {
@@ -678,6 +686,7 @@
      "per il quale"
     ],
     "must_not_include": [
+     "perché",
      "che"
     ]
    }
@@ -854,7 +863,10 @@
     "bucket": "relative_pronoun.cui.possessive",
     "label": "il cui, m sg possessed",
     "any_phrases": [
-     "il cui"
+     {
+      "phrase": "il cui",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
      "la cui",
@@ -922,7 +934,10 @@
     "bucket": "relative_pronoun.cui.possessive",
     "label": "la cui, f sg possessed, owner/possessed clash",
     "any_phrases": [
-     "la cui"
+     {
+      "phrase": "la cui",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
      "il cui",
@@ -989,7 +1004,10 @@
     "bucket": "relative_pronoun.cui.possessive",
     "label": "le cui, f pl possessed",
     "any_phrases": [
-     "le cui"
+     {
+      "phrase": "le cui",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
      "il cui",
@@ -1057,7 +1075,10 @@
     "bucket": "relative_pronoun.cui.possessive",
     "label": "il cui, m sg possessed, owner/possessed clash",
     "any_phrases": [
-     "il cui"
+     {
+      "phrase": "il cui",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
      "la cui",
@@ -1102,7 +1123,82 @@
    }
   ],
   "explanation": "'L'attrice il cui ultimo film ha vinto tre premi è qui stasera' means 'The actress whose latest film won three prizes is here tonight.' The article in the 'whose' construction agrees with the possessed noun: film is masculine singular, so il cui, even though the owner, l'attrice, is feminine. The feminine pull of attrice toward la cui is exactly the miss this item hunts.",
-  "examiner_note": "Sharpest safe diagnostic in the leaf: feminine owner, masculine singular possessed. Masculine PLURAL possessed (i cui) cannot be marked safely: 'i cui' is a substring of 'di cui', so the commonest miss would be falsely credited. i cui coverage moved to the translation strand; flagged in coverage notes.",
+  "examiner_note": "Owner feminine, possessed masculine singular: the article-agreement clash is the diagnostic. Any_phrases word-anchored. The former 'i cui is unmarkable' ruling is superseded: match_at word-anchoring (shipped 2026-07-13) stops 'i cui' matching inside 'di cui', so the masculine-plural case is now drilled by rel_cui_poss_05.",
+  "version": 1
+ },
+ {
+  "external_id": "rel_cui_poss_05",
+  "language_code": "it",
+  "topic": "relative_pronoun",
+  "subtopic": "cui.possessive",
+  "difficulty": 4,
+  "cefr_level_target": "B2",
+  "prompt": "Complete: 'La regista ____ film hanno vinto tre premi è qui stasera.'",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "relative_pronoun.cui.possessive",
+    "label": "i cui, m pl possessed, owner/possessed clash",
+    "any_phrases": [
+     {
+      "phrase": "i cui",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     "la cui",
+     "le cui",
+     "di cui"
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "regista",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "regista - director (film)",
+      "bucket": "vocabulary.it.regista.translation"
+     },
+     "gender": {
+      "reveal": "feminine here (la regista; the noun serves both genders)",
+      "bucket": "vocabulary.it.regista.gender"
+     }
+    }
+   },
+   {
+    "lemma": "film",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "film - film",
+      "bucket": "vocabulary.it.film.translation"
+     },
+     "gender": {
+      "reveal": "masculine (m)",
+      "bucket": "vocabulary.it.film.gender"
+     }
+    }
+   },
+   {
+    "lemma": "premi",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "premio - prize",
+      "bucket": "vocabulary.it.premio.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "'La regista i cui film hanno vinto tre premi è qui stasera' means 'The director whose films have won three prizes is here tonight.' The article in the 'whose' construction agrees with the possessed noun: film is masculine plural here (hanno vinto confirms the plural), so i cui, even though the owner, la regista, is feminine. Both pulls are wrong: la cui copies the owner, le cui copies the wrong gender onto the plural.",
+  "examiner_note": "This item exists because word-anchoring made it safe: unanchored, 'i cui' sits inside 'di cui' and the commonest miss would have been credited. any_phrases carries match_at word; a di cui attempt now falls to must_not_include.",
   "version": 1
  },
  {
@@ -1124,7 +1220,10 @@
     "bucket": "relative_pronoun.il_quale.for_clarity",
     "label": "la quale to disambiguate, f sg",
     "any_phrases": [
-     "la quale"
+     {
+      "phrase": "la quale",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
      "il quale",
@@ -1188,7 +1287,10 @@
     "bucket": "relative_pronoun.il_quale.for_clarity",
     "label": "il quale to disambiguate, m sg",
     "any_phrases": [
-     "il quale"
+     {
+      "phrase": "il quale",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
      "la quale",
@@ -1250,7 +1352,10 @@
     "bucket": "relative_pronoun.il_quale.for_clarity",
     "label": "la quale to disambiguate, f sg",
     "any_phrases": [
-     "la quale"
+     {
+      "phrase": "la quale",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
      "il quale",
@@ -1442,12 +1547,16 @@
     "bucket": "relative_pronoun.il_quale.after_preposition",
     "label": "alla quale, articulated a + f sg",
     "any_phrases": [
-     "alla quale"
+     {
+      "phrase": "alla quale",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
      "al quale",
      "alle quali",
-     "ai quali"
+     "ai quali",
+     "dalla quale"
     ]
    }
   ],
@@ -1484,7 +1593,7 @@
    }
   ],
   "explanation": "'La conferenza alla quale ho assistito era molto noiosa' means 'The lecture I attended was very boring.' Assistere takes a, and with il quale the preposition fuses into an articulated form: a + la quale gives alla quale. Two agreements ride on one word: gender and number from conferenza, and the correct fusion of preposition and article.",
-  "examiner_note": "Substring caveat: a wrong 'dalla quale' attempt contains 'alla quale' and would be falsely credited by the engine; low likelihood given the (a + quale) cue, flagged in coverage notes.",
+  "examiner_note": "Word-anchored via match_at, so a wrong 'dalla quale' is no longer credited as containing 'alla quale'; it is caught by must_not_include instead.",
   "version": 1
  },
  {
@@ -1723,7 +1832,7 @@
    }
   ],
   "explanation": "'Chi vuole può restare ancora un po'' means 'Whoever wants to can stay a little longer.' Even when chi points at a whole roomful of people, it is grammatically singular and its verb stays third-person singular: vuole, never vogliono. English 'those who want' pulls hard toward the plural; resist it.",
-  "examiner_note": "Verb chosen so the singular is not a substring of the plural (vuole/vogliono); arrivare was rejected because 'arriva' sits inside 'arrivano' and the engine's positive match would credit the plural miss.",
+  "examiner_note": "Verb chosen so the singular is not a substring of the plural (vuole/vogliono). Historical note: arrivare was rejected because 'arriva' sits inside 'arrivano'; with match_at word-anchoring now in the engine, future singular-verb items may use prefix verbs by anchoring the phrase instead.",
   "version": 1
  },
  {
@@ -2279,10 +2388,14 @@
     "bucket": "relative_pronoun.discrimination.che_vs_cui",
     "label": "a cui chosen: prestare a",
     "any_phrases": [
-     "a cui"
+     {
+      "phrase": "a cui",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "che"
+     "che",
+     "da cui"
     ]
    }
   ],
@@ -2401,7 +2514,10 @@
     "bucket": "relative_pronoun.discrimination.che_vs_il_quale",
     "label": "la quale chosen to disambiguate",
     "any_phrases": [
-     "la quale"
+     {
+      "phrase": "la quale",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
      "che"

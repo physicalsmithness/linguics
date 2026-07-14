@@ -1,0 +1,982 @@
+[
+ {
+  "external_id": "pia_agr_01",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "form.agreement",
+  "difficulty": 1,
+  "cefr_level_target": "A1",
+  "prompt": "A Luca ____ i film dell'orrore. (piacere)",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": true,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.form.agreement",
+    "label": "Piace or piacciono?",
+    "any_phrases": [
+     "piacciono"
+    ],
+    "must_not_include": [
+     "piace",
+     "piacere"
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "film",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "film - film, movie",
+      "bucket": "vocabulary.it.film.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "'A Luca piacciono i film dell'orrore' means 'Luca likes horror films.' With piacere the thing that is liked is the subject of the sentence, so the verb agrees with it. The liked thing here is 'i film', which is plural, so the verb is the plural piacciono. Luca, the person who likes them, sits in the a-phrase and does not drive the verb.",
+  "examiner_note": "Common miss: singular 'piace', agreeing with Luca or ignoring the plural liked noun; caught in must_not_include. 'piace' is not a substring of 'piacciono', so the correct answer is safe.",
+  "version": 1
+ },
+ {
+  "external_id": "pia_agr_02",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "form.agreement",
+  "difficulty": 2,
+  "cefr_level_target": "A1",
+  "prompt": "Ci ____ la montagna d'estate. (piacere)",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": true,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.form.agreement",
+    "label": "Piace or piacciono?",
+    "any_phrases": [
+     "piace"
+    ],
+    "must_not_include": [
+     "piacciono"
+    ],
+    "match_at": "end"
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "montagna",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "montagna - mountain",
+      "bucket": "vocabulary.it.montagna.translation"
+     },
+     "gender": {
+      "reveal": "feminine (f)",
+      "bucket": "vocabulary.it.montagna.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "'Ci piace la montagna d'estate' means 'We like the mountains in summer.' The verb agrees with the liked thing, not with who does the liking. The experiencer here is plural (ci, 'to us'), but the liked thing 'la montagna' is singular, so the verb stays singular: piace. Do not copy the plural from the experiencer.",
+  "examiner_note": "Plural experiencer (ci) with a singular liked thing baits the plural piacciono; caught in must_not_include. Hot-spot pattern from the dispatch.",
+  "version": 1
+ },
+ {
+  "external_id": "pia_agr_03",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "form.agreement",
+  "difficulty": 2,
+  "cefr_level_target": "A1",
+  "prompt": "Ti ____ davvero gli spaghetti alla carbonara? (piacere)",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": true,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.form.agreement",
+    "label": "Piace or piacciono?",
+    "any_phrases": [
+     "piacciono"
+    ],
+    "must_not_include": [
+     "piace",
+     "piacere"
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "spaghetti",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "spaghetti - spaghetti",
+      "bucket": "vocabulary.it.spaghetti.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "'Ti piacciono davvero gli spaghetti alla carbonara?' means 'Do you really like spaghetti carbonara?' The liked thing 'gli spaghetti' is plural, so the verb is plural piacciono, even though a word (davvero) sits between the verb and the liked noun. The distance does not change the agreement.",
+  "examiner_note": "Distance between verb and liked noun tests whether agreement is computed from the right noun.",
+  "version": 1
+ },
+ {
+  "external_id": "pia_agr_04",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "form.agreement",
+  "difficulty": 1,
+  "cefr_level_target": "A1",
+  "prompt": "Mi ____ questo quadro. (piacere)",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": true,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.form.agreement",
+    "label": "Piace or piacciono?",
+    "any_phrases": [
+     "piace"
+    ],
+    "must_not_include": [
+     "piacciono"
+    ],
+    "match_at": "end"
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "quadro",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "quadro - painting, picture",
+      "bucket": "vocabulary.it.quadro.translation"
+     },
+     "gender": {
+      "reveal": "masculine (m)",
+      "bucket": "vocabulary.it.quadro.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "'Mi piace questo quadro' means 'I like this painting.' The liked thing 'questo quadro' is singular, so the verb is the singular piace. The experiencer 'I' surfaces as the small pronoun mi and does not drive the verb.",
+  "version": 1
+ },
+ {
+  "external_id": "pia_agr_05",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "form.agreement",
+  "difficulty": 2,
+  "cefr_level_target": "A1",
+  "prompt": "A Sara ____ le lingue straniere. (piacere)",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": true,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.form.agreement",
+    "label": "Piace or piacciono?",
+    "any_phrases": [
+     "piacciono"
+    ],
+    "must_not_include": [
+     "piace",
+     "piacere"
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "lingua",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "lingua - language",
+      "bucket": "vocabulary.it.lingua.translation"
+     },
+     "gender": {
+      "reveal": "feminine (f)",
+      "bucket": "vocabulary.it.lingua.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "'A Sara piacciono le lingue straniere' means 'Sara likes foreign languages.' The liked thing 'le lingue straniere' is plural, so the verb is plural piacciono. Sara sits in the a-phrase (a Sara) as the experiencer and does not affect the verb.",
+  "examiner_note": "'lingue' shown as the plural surface form; the gender aspect is safe here because agreement in this leaf tests number, not gender.",
+  "version": 1
+ },
+ {
+  "external_id": "pia_clit_01",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "form.experiencer_clitic",
+  "difficulty": 2,
+  "cefr_level_target": "A1",
+  "prompt": "Marco adora la musica jazz. ____ piace da sempre. (a lui)",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.form.experiencer_clitic",
+    "label": "Right clitic for the experiencer",
+    "any_phrases": [
+     {
+      "phrase": "gli",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     "le",
+     "la"
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "musica",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "musica - music",
+      "bucket": "vocabulary.it.musica.translation"
+     },
+     "gender": {
+      "reveal": "feminine (f)",
+      "bucket": "vocabulary.it.musica.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "'Gli piace da sempre' means 'He has always liked it.' The person who does the liking is an indirect object, the 'to him / to her' role. For 'to him' Italian uses gli. Watch the pair: gli is 'to him', le is 'to her'.",
+  "examiner_note": "gli vs le is the target contrast. must_not_include uses trailing spaces on 'le ' and 'la ' to avoid matching inside other words; low residual risk noted.",
+  "version": 1
+ },
+ {
+  "external_id": "pia_clit_02",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "form.experiencer_clitic",
+  "difficulty": 2,
+  "cefr_level_target": "A1",
+  "prompt": "Sara ama i gatti. ____ piacciono da quando era piccola. (a lei)",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.form.experiencer_clitic",
+    "label": "Right clitic for the experiencer",
+    "any_phrases": [
+     "le"
+    ],
+    "must_not_include": [
+     "gli",
+     "glieli"
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "gatti",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "gatto - cat",
+      "bucket": "vocabulary.it.gatto.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "'Le piacciono da quando era piccola' means 'She has liked them since she was little.' The experiencer 'to her' is the indirect object le. The verb is plural (piacciono) because the liked thing, the cats, is plural, but that is a separate decision from choosing the clitic.",
+  "examiner_note": "'le' is the answer; 'gli' (to him) is the target wrong form. Substring: 'le' is short but the answer slot is a single clitic, so contamination risk is low.",
+  "version": 1
+ },
+ {
+  "external_id": "pia_clit_03",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "form.experiencer_clitic",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "prompt": "____ piace il nuovo ufficio, dottoressa? (formal address)",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.form.experiencer_clitic",
+    "label": "Formal experiencer clitic",
+    "any_phrases": [
+     "le"
+    ],
+    "must_not_include": [
+     "ti",
+     "vi"
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "ufficio",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "ufficio - office",
+      "bucket": "vocabulary.it.ufficio.translation"
+     },
+     "gender": {
+      "reveal": "masculine (m)",
+      "bucket": "vocabulary.it.ufficio.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "'Le piace il nuovo ufficio, dottoressa?' means 'Do you like the new office, doctor?' Speaking formally, Italian addresses one person with the Lei forms, and the indirect-object clitic is Le (written with a capital in careful writing). The informal ti would be wrong for this respectful register.",
+  "examiner_note": "Register stated in the prompt (formal address), never the form, per criterion 11. The marker is case-insensitive, so capital Le and lowercase le both pass; capitalisation is not markable here.",
+  "version": 1
+ },
+ {
+  "external_id": "pia_clit_04",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "form.experiencer_clitic",
+  "difficulty": 1,
+  "cefr_level_target": "A1",
+  "prompt": "Ragazzi, ____ piace la pizza? (a voi)",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.form.experiencer_clitic",
+    "label": "Right clitic for the experiencer",
+    "any_phrases": [
+     "vi"
+    ],
+    "must_not_include": [
+     "ci",
+     "gli"
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "pizza",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "pizza - pizza",
+      "bucket": "vocabulary.it.pizza.translation"
+     },
+     "gender": {
+      "reveal": "feminine (f)",
+      "bucket": "vocabulary.it.pizza.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "'Vi piace la pizza?' means 'Do you all like pizza?' Talking to more than one person (voi), the experiencer clitic is vi, the 'to you all' form. Ci would mean 'to us', which is not who is being addressed here.",
+  "version": 1
+ },
+ {
+  "external_id": "pia_flip_01",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "usage.subject_flip",
+  "difficulty": 1,
+  "cefr_level_target": "A1",
+  "prompt": "In Italian, 'I like coffee' is: '____ il caffè.'",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.usage.subject_flip",
+    "label": "The 'I like' flip",
+    "any_phrases": [
+     "mi piace"
+    ],
+    "must_not_include": [
+     "piaccio",
+     "io piace"
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "caffè",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "caffè - coffee",
+      "bucket": "vocabulary.it.caffè.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "'Mi piace il caffè' means 'I like coffee.' This is the big flip: English makes 'I' the subject, but Italian makes the liked thing (coffee) the subject and the liker an indirect object, mi. Mapping 'I like' word for word gives 'io piaccio', which actually means 'I am likeable', a different sentence.",
+  "examiner_note": "'piaccio' in must_not_include catches both 'io piaccio' and bare 'piaccio la...'. info_display suppressed because the breadcrumb names the flip under test.",
+  "version": 1
+ },
+ {
+  "external_id": "pia_flip_02",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "usage.subject_flip",
+  "difficulty": 2,
+  "cefr_level_target": "A1",
+  "prompt": "In Italian, 'We like these songs' is: '____ queste canzoni.'",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.usage.subject_flip",
+    "label": "The 'I like' flip",
+    "any_phrases": [
+     "ci piacciono"
+    ],
+    "must_not_include": [
+     "piacciamo",
+     "noi piac"
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "canzoni",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "canzone - song",
+      "bucket": "vocabulary.it.canzone.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "'Ci piacciono queste canzoni' means 'We like these songs.' 'We' is not the subject in Italian: the songs are, so the liker becomes the indirect object ci and the verb agrees with the songs (plural, piacciono). 'Noi piacciamo' would mean 'we are likeable / people like us'.",
+  "examiner_note": "Tests the flip with a plural liked thing; the flip bucket owns the ci/noi error, while number choice is agreement's concern, so 'ci piace' is not listed here.",
+  "version": 1
+ },
+ {
+  "external_id": "pia_flip_03",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "usage.subject_flip",
+  "difficulty": 1,
+  "cefr_level_target": "A1",
+  "prompt": "In Italian, 'Do you like the sea?' is: '____ il mare?'",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.usage.subject_flip",
+    "label": "The 'I like' flip",
+    "any_phrases": [
+     "ti piace"
+    ],
+    "must_not_include": [
+     "piaci",
+     "tu piace"
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "mare",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "mare - sea",
+      "bucket": "vocabulary.it.mare.translation"
+     },
+     "gender": {
+      "reveal": "masculine (m)",
+      "bucket": "vocabulary.it.mare.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "'Ti piace il mare?' means 'Do you like the sea?' Italian makes the sea the subject and 'you' the indirect object ti. Careful with 'tu piaci': that means 'you are likeable / I like you', pointing the liking the other way.",
+  "examiner_note": "'piaci' (you are likeable) is the flip error and is caught; it also foreshadows the liking-people leaf.",
+  "version": 1
+ },
+ {
+  "external_id": "pia_inf_01",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "form.with_infinitive",
+  "difficulty": 2,
+  "cefr_level_target": "A1",
+  "prompt": "Mi ____ leggere i gialli. (piacere)",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": true,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.form.with_infinitive",
+    "label": "Piace + infinitive stays singular",
+    "any_phrases": [
+     "piace"
+    ],
+    "must_not_include": [
+     "piacciono"
+    ],
+    "match_at": "end"
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "leggere",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "leggere - to read",
+      "bucket": "vocabulary.it.leggere.translation"
+     }
+    }
+   },
+   {
+    "lemma": "gialli",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "giallo - crime novel, thriller",
+      "bucket": "vocabulary.it.giallo.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "'Mi piace leggere i gialli' means 'I like reading crime novels.' When what you like is an activity named by an infinitive (leggere), the verb stays singular: piace. The plural 'i gialli' is the object of leggere, not what is liked, so it does not pull the verb into the plural.",
+  "examiner_note": "Plural object after the infinitive (i gialli) baits piacciono; caught in must_not_include. Dispatch hot-spot 3.",
+  "version": 1
+ },
+ {
+  "external_id": "pia_inf_02",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "form.with_infinitive",
+  "difficulty": 1,
+  "cefr_level_target": "A1",
+  "prompt": "Ci ____ viaggiare in treno. (piacere)",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": true,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.form.with_infinitive",
+    "label": "Piace + infinitive stays singular",
+    "any_phrases": [
+     "piace"
+    ],
+    "must_not_include": [
+     "piacciono",
+     "piacciamo"
+    ],
+    "match_at": "end"
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "viaggiare",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "viaggiare - to travel",
+      "bucket": "vocabulary.it.viaggiare.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "'Ci piace viaggiare in treno' means 'We like travelling by train.' What is liked is the activity viaggiare (an infinitive), so the verb is the singular piace. The experiencer 'we' is the small pronoun ci and does not make the verb plural.",
+  "version": 1
+ },
+ {
+  "external_id": "pia_inf_03",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "form.with_infinitive",
+  "difficulty": 2,
+  "cefr_level_target": "A1",
+  "prompt": "Ti ____ ascoltare le canzoni napoletane? (piacere)",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": true,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.form.with_infinitive",
+    "label": "Piace + infinitive stays singular",
+    "any_phrases": [
+     "piace"
+    ],
+    "must_not_include": [
+     "piacciono"
+    ],
+    "match_at": "end"
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "ascoltare",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "ascoltare - to listen to",
+      "bucket": "vocabulary.it.ascoltare.translation"
+     }
+    }
+   },
+   {
+    "lemma": "canzoni",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "canzone - song",
+      "bucket": "vocabulary.it.canzone.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "'Ti piace ascoltare le canzoni napoletane?' means 'Do you like listening to Neapolitan songs?' The liked thing is the activity ascoltare, so the verb stays singular: piace. 'Le canzoni' is plural but it is the object of ascoltare, not what is liked, so it does not change the verb.",
+  "examiner_note": "Plural bait (le canzoni) after the infinitive.",
+  "version": 1
+ },
+ {
+  "external_id": "pia_past_01",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "form.past",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "prompt": "Il film di ieri sera mi ____ molto. (piacere)",
+  "type": "short",
+  "marks": 2,
+  "prompt_supplies_base_form": true,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.form.past",
+    "label": "Essere as auxiliary",
+    "any_phrases": [
+     "è piaciut"
+    ],
+    "must_not_include": [
+     "ha piaciut",
+     "ho piaciut"
+    ]
+   },
+   {
+    "order_index": 1,
+    "credit": 1.0,
+    "bucket": "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
+    "label": "Participle agrees with the liked thing",
+    "any_phrases": [
+     "piaciuto"
+    ],
+    "must_not_include": [
+     "piaciuta",
+     "piaciuti",
+     "piaciute"
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "film",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "film - film, movie",
+      "bucket": "vocabulary.it.film.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "'Il film di ieri sera mi è piaciuto molto' means 'I really liked last night's film.' In the past, piacere takes essere as its auxiliary, so the verb is 'è piaciuto', never 'ha piaciuto'. The participle then agrees with the liked thing: 'il film' is masculine singular, so piaciuto.",
+  "examiner_note": "Two skills, two markpoints per criterion 8: essere-choice (piacere bucket) and participle agreement (cross-referenced to the passato prossimo tree). 'mi ha piaciuto' misses markpoint 0 but the gender is untested there; a feminine-liked item would separately catch the participle.",
+  "version": 1
+ },
+ {
+  "external_id": "pia_past_02",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "form.past",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "prompt": "Ti ____ la festa di sabato scorso? (piacere)",
+  "type": "short",
+  "marks": 2,
+  "prompt_supplies_base_form": true,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.form.past",
+    "label": "Essere as auxiliary",
+    "any_phrases": [
+     "è piaciut"
+    ],
+    "must_not_include": [
+     "ha piaciut",
+     "hai piaciut"
+    ]
+   },
+   {
+    "order_index": 1,
+    "credit": 1.0,
+    "bucket": "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_singular",
+    "label": "Participle agrees with the liked thing",
+    "any_phrases": [
+     "piaciuta"
+    ],
+    "must_not_include": [
+     "piaciuto",
+     "piaciute",
+     "piaciuti"
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "festa",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "festa - party",
+      "bucket": "vocabulary.it.festa.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "'Ti è piaciuta la festa di sabato scorso?' means 'Did you like last Saturday's party?' Piacere in the past uses essere (è piaciuta), not avere. The participle agrees with the liked thing: 'la festa' is feminine singular, so the ending is -a: piaciuta.",
+  "examiner_note": "Feminine-singular liked thing; 'piaciuto' left as default masculine is the agreement miss on markpoint 1. Gender aspect deliberately omitted from vocab_help because gender is what markpoint 1 tests.",
+  "version": 1
+ },
+ {
+  "external_id": "pia_past_03",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "form.past",
+  "difficulty": 3,
+  "cefr_level_target": "A2",
+  "prompt": "Le scarpe che ho comprato non mi ____. (piacere)",
+  "type": "short",
+  "marks": 2,
+  "prompt_supplies_base_form": true,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.form.past",
+    "label": "Essere as auxiliary",
+    "any_phrases": [
+     "sono piaciut"
+    ],
+    "must_not_include": [
+     "ho piaciut",
+     "hanno piaciut",
+     "ha piaciut"
+    ]
+   },
+   {
+    "order_index": 1,
+    "credit": 1.0,
+    "bucket": "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_plural",
+    "label": "Participle agrees with the liked thing",
+    "any_phrases": [
+     "piaciute"
+    ],
+    "must_not_include": [
+     "piaciuti",
+     "piaciuto",
+     "piaciuta"
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "scarpe",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "scarpa - shoe",
+      "bucket": "vocabulary.it.scarpa.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "'Le scarpe che ho comprato non mi sono piaciute' means 'The shoes I bought, I didn't like.' The liked thing 'le scarpe' is plural, so the auxiliary is the plural essere form sono (sono piaciute), not ho. The participle agrees with the shoes, feminine plural, so piaciute.",
+  "examiner_note": "Plural liked thing forces sono over ho and the feminine-plural participle. A learner writing 'mi ha piaciuto' fails both markpoints for distinct reasons.",
+  "version": 1
+ },
+ {
+  "external_id": "pia_past_04",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "form.past",
+  "difficulty": 3,
+  "cefr_level_target": "A2",
+  "prompt": "Ti ____ i regali di Natale? (piacere)",
+  "type": "short",
+  "marks": 2,
+  "prompt_supplies_base_form": true,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.form.past",
+    "label": "Essere as auxiliary",
+    "any_phrases": [
+     "sono piaciut"
+    ],
+    "must_not_include": [
+     "hai piaciut",
+     "ha piaciut",
+     "hanno piaciut"
+    ]
+   },
+   {
+    "order_index": 1,
+    "credit": 1.0,
+    "bucket": "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_plural",
+    "label": "Participle agrees with the liked thing",
+    "any_phrases": [
+     "piaciuti"
+    ],
+    "must_not_include": [
+     "piaciute",
+     "piaciuto",
+     "piaciuta"
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "regali",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "regalo - present, gift",
+      "bucket": "vocabulary.it.regalo.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "'Ti sono piaciuti i regali di Natale?' means 'Did you like the Christmas presents?' The liked thing 'i regali' is masculine plural, so the auxiliary is the plural sono and the participle takes the masculine-plural ending: piaciuti. Avere (hai) would be wrong for piacere.",
+  "version": 1
+ },
+ {
+  "external_id": "pia_past_05",
+  "language_code": "it",
+  "topic": "piacere",
+  "subtopic": "form.past",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "prompt": "Il libro che ti ho regalato ti ____? (piacere)",
+  "type": "short",
+  "marks": 2,
+  "prompt_supplies_base_form": true,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "piacere.form.past",
+    "label": "Essere as auxiliary",
+    "any_phrases": [
+     "è piaciut"
+    ],
+    "must_not_include": [
+     "ha piaciut",
+     "hai piaciut"
+    ]
+   },
+   {
+    "order_index": 1,
+    "credit": 1.0,
+    "bucket": "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
+    "label": "Participle agrees with the liked thing",
+    "any_phrases": [
+     "piaciuto"
+    ],
+    "must_not_include": [
+     "piaciuta",
+     "piaciuti",
+     "piaciute"
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "libro",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "libro - book",
+      "bucket": "vocabulary.it.libro.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "'Il libro che ti ho regalato ti è piaciuto?' means 'Did you like the book I gave you?' Even next to 'ho regalato' (which uses avere), piacere keeps its own auxiliary essere: ti è piaciuto. The participle agrees with 'il libro', masculine singular, so piaciuto.",
+  "examiner_note": "Adjacent avere (ho regalato) baits the avere miss on piacere; the essere markpoint catches 'ha piaciuto'.",
+  "version": 1
+ }
+]

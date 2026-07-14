@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-13-r3";
+  const LL_BUILD = "2026-07-14-r5";
   // Touch-first device (no hover, coarse pointer): tap interactions replace
   // keyboard ones. Computed once; used for tap-to-mark on MCQ.
   const TOUCH_FIRST = !!(window.matchMedia
@@ -121,6 +121,10 @@
       } else if (filter.cefr && q.cefr_level_target !== filter.cefr) {
         return false;
       }
+      // Translation which-way: keep only items translating INTO the chosen
+      // language (target_lang). Grammar items carry no target_lang and grammar
+      // never sets this, so it is a no-op there.
+      if (filter.targetLang && q.target_lang !== filter.targetLang) return false;
       if (hasClauses) {
         if (!filter.clauses.some(c => itemMatchesClause(q, c))) return false;
       } else if (filter.topic && q.topic !== filter.topic) {
@@ -265,7 +269,7 @@
   // different filters can yield the same count, and a length-only check then
   // serves stale items. See inter_chat/Architecture_Housing_drill_filter_not_applied.md.
   function filterSig(f) {
-    return JSON.stringify([f.topic, f.cefr, f.bucketPath, f.clauses || null, f.cefrRange || null]);
+    return JSON.stringify([f.topic, f.cefr, f.bucketPath, f.clauses || null, f.cefrRange || null, f.targetLang || null]);
   }
   let _grammarDeckSig = null;
   function ensureGrammarDeck() {
@@ -312,7 +316,17 @@
       if (t === filterObj.topic) o.selected = true;
       tSel.appendChild(o);
     }
+    // Guardrail: while a composed multi-part selection is active (clauses set),
+    // the scalar dropdown must not show one topic as if it were the whole filter.
+    // Show "Custom mix" instead. See entry-screen thread v6.
+    const tHasClauses = Array.isArray(filterObj.clauses) && filterObj.clauses.length > 0;
+    if (tHasClauses) {
+      const cm = document.createElement("option");
+      cm.value = "__custom__"; cm.textContent = "Custom mix"; cm.selected = true;
+      tSel.appendChild(cm);
+    }
     tSel.addEventListener("change", () => {
+      if (tSel.value === "__custom__") return;   // no-op: it's the current composed state
       filterObj.topic = tSel.value;
       filterObj.clauses = null; filterObj.cefrRange = null;  // in-session edit reverts to scalar
       onChange();
@@ -333,7 +347,14 @@
       if (c === filterObj.cefr) o.selected = true;
       cSel.appendChild(o);
     }
+    const cHasRange = Array.isArray(filterObj.cefrRange) && filterObj.cefrRange.length === 2;
+    if (cHasRange) {
+      const cr = document.createElement("option");
+      cr.value = "__custom__"; cr.textContent = "Custom range"; cr.selected = true;
+      cSel.appendChild(cr);
+    }
     cSel.addEventListener("change", () => {
+      if (cSel.value === "__custom__") return;
       filterObj.cefr = cSel.value;
       filterObj.clauses = null; filterObj.cefrRange = null;  // in-session edit reverts to scalar
       onChange();
@@ -706,6 +727,7 @@
   // -------------------- nav --------------------
   function showStrand(name) {
     hideEntry();
+    hideCoverage();
     document.querySelectorAll(".strand").forEach(s => s.hidden = (s.id !== "strand-" + name));
     document.querySelectorAll("nav#strand-nav button").forEach(b =>
       b.classList.toggle("active", b.dataset.strand === name));
@@ -983,6 +1005,7 @@
 
     const commitResult = (result, rawForRecord) => {
       const attempt = LL.store.recordAttempt("grammar", q, rawForRecord, result);
+      track("grammar_marked", { outcome: result.overall.status, awarded: result.overall.marks_awarded, possible: result.overall.marks_possible });
       recentlyChangedBuckets = new Set(attempt.events.map(e => e.bucket));
       // Post-answer surfaces are unaffected by info_display: "suppress",
       // so clear the in-flight hint before re-rendering the live panel.
@@ -1330,6 +1353,7 @@
 
   let vocabEntries = [];
   let vocabDeck = [];
+  let vocabDeckDirs = [];   // per-card directions when direction is "mix"
   let vocabIndex = 0;
   let vocabFilter = {
     band: "",
@@ -1338,6 +1362,7 @@
     genderClass: "",
     rankRange: null,
     drillLevel: null,   // null | "thousand" | "hundred" | "ten"
+    genderDrill: false, // nouns-only production focus (Smith gender ask)
     topN: 0,            // 0 = all; else max rank to include in scope
     subBand: ""         // "" | "A1-core" | "A1-secure" | ... | "C1-stretch"
   };
@@ -1395,6 +1420,7 @@
       if (vocabFilter.theme) {
         if (!Array.isArray(v.themes) || !v.themes.includes(vocabFilter.theme)) return false;
       }
+      if (vocabFilter.genderDrill && v.pos !== "noun") return false;
       if (vocabFilter.genderClass) {
         if (v.pos !== "noun") return false;
         const cls = v.noun_class || (v.gender === "m" ? "unspecified_m" : v.gender === "f" ? "unspecified_f" : "unspecified");
@@ -1407,6 +1433,9 @@
   function ensureVocabDeck() {
     if (!vocabDeck.length || vocabIndex >= vocabDeck.length) {
       vocabDeck = weightedVocabShuffle(filteredVocabEntries());
+      vocabDeckDirs = (vocabFilter.direction === "mix")
+        ? vocabDeck.map(() => Math.random() < 0.5 ? "it_en" : "en_it")
+        : [];
       vocabIndex = 0;
     }
   }
@@ -1463,7 +1492,7 @@
     dirLabel.textContent = "Direction:";
     host.appendChild(dirLabel);
     const dirSel = document.createElement("select");
-    [["it_en", "Italian → English"], ["en_it", "English → Italian"]].forEach(([v, t]) => {
+    [["it_en", "Italian → English"], ["en_it", "English → Italian"], ["mix", "Mixed"]].forEach(([v, t]) => {
       const o = document.createElement("option");
       o.value = v; o.textContent = t;
       if (vocabFilter.direction === v) o.selected = true;
@@ -1567,7 +1596,10 @@
       return;
     }
     const entry = vocabDeck[vocabIndex];
-    const isItEn = vocabFilter.direction === "it_en";
+    const effDir = (vocabFilter.direction === "mix")
+      ? (vocabDeckDirs[vocabIndex] || "it_en")
+      : vocabFilter.direction;
+    const isItEn = effDir === "it_en";
 
     const card = document.createElement("div");
     card.className = "qcard";
@@ -4268,6 +4300,47 @@
     return out;
   }
 
+  // ---- shared coverage helper (competence strip + 2D coverage matrix) ----
+  // In-scope leaves for a (topic-set, level): leaf buckets under any of rootIds
+  // whose cefr_importance at that level is core or preview (denominator (a),
+  // proposed in inter_chat/Architecture_Housing_coverage_matrix_2d v2, pending
+  // ratification).
+  function bucketLeavesInScope(rootIds, level) {
+    const leaves = []; const seen = new Set();
+    for (const rid of rootIds) {
+      const root = bucketIndex.byId[rid];
+      if (!root) continue;
+      for (const leaf of getLeavesUnder(root)) {
+        if (seen.has(leaf.id)) continue;
+        const ci = leaf.cefr_importance && leaf.cefr_importance[level];
+        if (ci === "core" || ci === "preview") { leaves.push(leaf); seen.add(leaf.id); }
+      }
+    }
+    return leaves;
+  }
+  // Baseline-diluted mean mastery over the in-scope leaves, IDENTICAL in method
+  // to averageCorrectnessAcrossLemmas (the vocab heatmap): touched leaves give
+  // their recency-weighted correctness, untouched leaves give the baseline.
+  // attempted-share = touched / total (the matrix fill fraction).
+  function masteryForScope(rootIds, level) {
+    const leaves = bucketLeavesInScope(rootIds, level);
+    if (!leaves.length) {
+      return { correctness: vocabUnattemptedBaseline, hasEvents: false, touched: 0, total: 0, empty: true };
+    }
+    let sum = 0, touched = 0;
+    for (const leaf of leaves) {
+      const wc = recencyWeightedCorrectness(eventsForNode(leaf));
+      if (wc.hasEvents) { sum += wc.correctness; touched++; }
+      else { sum += vocabUnattemptedBaseline; }
+    }
+    return {
+      correctness: sum / leaves.length,
+      hasEvents: touched > 0,
+      attempted_share: touched / leaves.length,
+      touched, total: leaves.length, empty: false
+    };
+  }
+
   // Category derivation from a top-level bucket id. Data-driven so future
   // verb_form.future / .condizionale slot in automatically.
   // See inter_chat/Architecture_Housing_stats_panel_structure.md.
@@ -4892,8 +4965,8 @@
         pronouns:   { on: false, kinds: {} },   // kinds:  { "pronoun.<kind>": true }
         adjectives: { on: false }
       },
-      vocab: { direction: "it_en", subBand: "" },
-      translation: { grammarPoint: "" },
+      vocab: { direction: "it_en", subBand: "", genderDrill: false },
+      translation: { grammarPoint: "", way: "" },
       cefrRange: null                            // [minIdx, maxIdx] over CEFR_ORDER; set by the level strip (phase 1b)
     };
   }
@@ -4912,6 +4985,19 @@
     if (opts && opts.title) b.title = opts.title;
     b.addEventListener("click", e => { e.preventDefault(); onClick(); });
     return b;
+  }
+
+  // GA4 semantic events for non-click moments (guarded; no-op if gtag absent).
+  function track(name, params) {
+    try { if (typeof window.gtag === "function") window.gtag("event", name, params || {}); } catch (e) {}
+  }
+  function grammarPartsSummary() {
+    const g = entrySel && entrySel.grammar; if (!g) return "all";
+    const on = [];
+    if (g.verbs && g.verbs.on) on.push("verbs:" + g.verbMode);
+    if (g.pronouns && g.pronouns.on) on.push("pronouns");
+    if (g.adjectives && g.adjectives.on) on.push("adjectives");
+    return on.join(",") || "all";
   }
 
   function showEntry() {
@@ -4986,6 +5072,14 @@
       else if (entrySel.strand === "vocab")   renderVocabConfig(panel);
       else                                    renderTranslationConfig(panel);
       col.appendChild(panel);
+    }
+
+    if (LL.state && Array.isArray(LL.state.attempts) && LL.state.attempts.length > 0) {
+      const cov = document.createElement("button");
+      cov.type = "button"; cov.className = "entry-coverage-link";
+      cov.textContent = "See your coverage \u2192";
+      cov.addEventListener("click", () => { hideEntry(); showCoverage(); });
+      col.appendChild(cov);
     }
 
     host.appendChild(col);
@@ -5093,6 +5187,19 @@
     if (g.adjectives.on) clauses.push({ topics: ["adjective_agreement"] });
     return clauses;
   }
+  // Root bucket ids for the current grammar selection, for the competence strip.
+  function selectedGrammarRootIds() {
+    const clauses = buildGrammarClauses();
+    if (!clauses.length) {
+      return bucketIndex.roots.map(r => r.id).filter(isGrammarPartRoot);
+    }
+    const ids = [];
+    for (const c of clauses) {
+      if (c.bucketPaths && c.bucketPaths.length) ids.push.apply(ids, c.bucketPaths);
+      else if (c.topics) ids.push.apply(ids, c.topics);
+    }
+    return ids;
+  }
   function composeGrammarFilter() {
     const clauses = buildGrammarClauses();
     grammarFilter.clauses = clauses.length ? clauses : null;
@@ -5104,6 +5211,7 @@
   function startGrammarSession() {
     composeGrammarFilter();
     saveLastSession("grammar");
+    track("session_start", { strand: "grammar", source: "welcome", parts: grammarPartsSummary() });
     renderGrammarFilterBar();
     renderGrammar();
     showStrand("grammar");
@@ -5112,18 +5220,19 @@
   // ---- vocab config (direction + frequency band, via existing vocabFilter) ----
   function renderVocabConfig(panel) {
     const v = entrySel.vocab;
-    const head = document.createElement("h3");
-    head.className = "entry-config-head";
-    head.textContent = "See which side?";
-    panel.appendChild(head);
 
-    const dirRow = document.createElement("div");
-    dirRow.className = "entry-chip-row";
-    dirRow.appendChild(entryChip("See Italian", v.direction === "it_en", () => { v.direction = "it_en"; renderEntryScreen(); },
-      { title: "Recall the English" }));
-    dirRow.appendChild(entryChip("See English", v.direction === "en_it", () => { v.direction = "en_it"; renderEntryScreen(); },
-      { title: "Recall the Italian" }));
-    panel.appendChild(dirRow);
+    if (!v.genderDrill) {
+      const head = document.createElement("h3");
+      head.className = "entry-config-head";
+      head.textContent = "See which side?";
+      panel.appendChild(head);
+      const dirRow = document.createElement("div");
+      dirRow.className = "entry-chip-row";
+      dirRow.appendChild(entryChip("See Italian", v.direction === "it_en", () => { v.direction = "it_en"; renderEntryScreen(); }, { title: "Recall the English" }));
+      dirRow.appendChild(entryChip("See English", v.direction === "en_it", () => { v.direction = "en_it"; renderEntryScreen(); }, { title: "Recall the Italian" }));
+      dirRow.appendChild(entryChip("Mix", v.direction === "mix", () => { v.direction = "mix"; renderEntryScreen(); }, { title: "A mix of both directions" }));
+      panel.appendChild(dirRow);
+    }
 
     const h2 = document.createElement("h3");
     h2.className = "entry-config-head";
@@ -5137,39 +5246,65 @@
     }
     panel.appendChild(bandRow);
 
+    const h3 = document.createElement("h3");
+    h3.className = "entry-config-head";
+    h3.textContent = "Focus";
+    panel.appendChild(h3);
+    const focusRow = document.createElement("div");
+    focusRow.className = "entry-chip-row";
+    focusRow.appendChild(entryChip("Gender drill (nouns)", v.genderDrill,
+      () => { v.genderDrill = !v.genderDrill; renderEntryScreen(); },
+      { title: "Nouns only, producing the Italian with its gender" }));
+    panel.appendChild(focusRow);
+    if (v.genderDrill) {
+      const note = document.createElement("p");
+      note.className = "entry-config-hint";
+      note.textContent = "nouns only, producing the Italian (with its article)";
+      panel.appendChild(note);
+    }
+
     appendStart(panel, () => startVocabSession());
   }
   function startVocabSession() {
     const v = entrySel.vocab;
-    vocabFilter.direction = v.direction;
+    vocabFilter.genderDrill = !!v.genderDrill;
+    vocabFilter.direction = v.genderDrill ? "en_it" : v.direction;   // gender drill = production
     vocabFilter.subBand = v.subBand || "";
-    if (typeof vocabDeck !== "undefined") { vocabDeck = []; }
-    if (typeof vocabIndex !== "undefined") { vocabIndex = 0; }
+    vocabFilter.rankRange = v.subBand ? vocabSubbandRange(v.subBand) : null;   // subBand only bites via rankRange
+    vocabDeck = []; vocabDeckDirs = []; vocabIndex = 0;
     saveLastSession("vocab");
+    track("session_start", { strand: "vocab", source: "welcome", direction: vocabFilter.direction, gender_drill: vocabFilter.genderDrill });
     renderVocab();
     showStrand("vocab");
   }
 
   // ---- translation config (grammar-point narrowing when available; else just start) ----
   function renderTranslationConfig(panel) {
-    const topics = uniqueValues(translationItems, "topic");
+    const w = entrySel.translation;
     const head = document.createElement("h3");
     head.className = "entry-config-head";
-    head.textContent = "Whole sentences, both ways.";
+    head.textContent = "Which way?";
     panel.appendChild(head);
+    const wayRow = document.createElement("div");
+    wayRow.className = "entry-chip-row";
+    wayRow.appendChild(entryChip("Into Italian", w.way === "it", () => { w.way = "it"; renderEntryScreen(); }, { title: "Translate English into Italian" }));
+    wayRow.appendChild(entryChip("Into English", w.way === "en", () => { w.way = "en"; renderEntryScreen(); }, { title: "Translate Italian into English" }));
+    wayRow.appendChild(entryChip("Both", !w.way, () => { w.way = ""; renderEntryScreen(); }, { title: "A mix of both directions" }));
+    panel.appendChild(wayRow);
 
+    const topics = uniqueValues(translationItems, "topic");
     if (topics.length) {
-      const hint = document.createElement("p");
-      hint.className = "entry-config-hint";
-      hint.textContent = "narrow to a grammar point, or just start";
-      panel.appendChild(hint);
+      const h2 = document.createElement("h3");
+      h2.className = "entry-config-head";
+      h2.textContent = "Narrow by grammar point?";
+      panel.appendChild(h2);
       const row = document.createElement("div");
       row.className = "entry-chip-row";
-      row.appendChild(entryChip("Any", !entrySel.translation.grammarPoint,
-        () => { entrySel.translation.grammarPoint = ""; renderEntryScreen(); }));
+      row.appendChild(entryChip("Any", !w.grammarPoint,
+        () => { w.grammarPoint = ""; renderEntryScreen(); }));
       for (const tp of topics) {
-        row.appendChild(entryChip(tenseLabel(tp), entrySel.translation.grammarPoint === tp,
-          () => { entrySel.translation.grammarPoint = tp; renderEntryScreen(); }));
+        row.appendChild(entryChip(tenseLabel(tp), w.grammarPoint === tp,
+          () => { w.grammarPoint = tp; renderEntryScreen(); }));
       }
       panel.appendChild(row);
     }
@@ -5181,8 +5316,10 @@
     translationFilter.clauses = gp ? [{ topics: [gp] }] : null;
     translationFilter.cefrRange = entrySel.cefrRange || null;
     translationFilter.topic = ""; translationFilter.cefr = ""; translationFilter.bucketPath = "";
+    translationFilter.targetLang = entrySel.translation.way || "";
     translationDeck = []; translationIndex = 0;
     saveLastSession("translation");
+    track("session_start", { strand: "translation", source: "welcome" });
     renderTranslationFilterBar();
     renderTranslation();
     showStrand("translation");
@@ -5191,13 +5328,17 @@
   // ---- level strip (grammar + translation): availability counts per CEFR band ----
   const _levelCountCache = {};
   function levelCountsFor(strand) {
-    let clauses, pool;
+    let clauses, pool; const extra = {};
     if (strand === "grammar") { clauses = buildGrammarClauses(); pool = grammarQuestions; }
-    else { const gp = entrySel.translation.grammarPoint; clauses = gp ? [{ topics: [gp] }] : []; pool = translationItems; }
+    else {
+      const gp = entrySel.translation.grammarPoint;
+      clauses = gp ? [{ topics: [gp] }] : []; pool = translationItems;
+      if (entrySel.translation.way) extra.targetLang = entrySel.translation.way;
+    }
     // pool.length in the signature invalidates the cache when real content loads.
-    const sig = strand + "|" + pool.length + "|" + JSON.stringify(clauses);
+    const sig = strand + "|" + pool.length + "|" + JSON.stringify(clauses) + "|" + JSON.stringify(extra);
     if (_levelCountCache[sig]) return _levelCountCache[sig];
-    const filtered = applyFilter(pool, { clauses: clauses.length ? clauses : null });
+    const filtered = applyFilter(pool, Object.assign({ clauses: clauses.length ? clauses : null }, extra));
     const counts = [0, 0, 0, 0, 0, 0];
     for (const q of filtered) { const i = cefrIndex(q.cefr_level_target); if (i >= 0) counts[i]++; }
     _levelCountCache[sig] = counts;
@@ -5223,6 +5364,7 @@
     panel.appendChild(head);
     const strip = document.createElement("div");
     strip.className = "entry-level-strip";
+    const masteryRoots = (strand === "grammar") ? selectedGrammarRootIds() : null;
     CEFR_ORDER.forEach((lvl, i) => {
       const cell = document.createElement("button");
       cell.type = "button";
@@ -5236,6 +5378,20 @@
       if (alpha > 0) cell.style.background = "rgba(58,79,138," + alpha.toFixed(2) + ")";
       if (alpha > 0.55) cell.style.color = "#fff";
       cell.innerHTML = '<span class="lvl-name">' + lvl + '</span><span class="lvl-count">' + counts[i] + '</span>';
+      // Subordinate 'how you're doing' mastery bar (grammar only, touched bands).
+      if (masteryRoots && !empty) {
+        const m = masteryForScope(masteryRoots, lvl);
+        if (m.hasEvents) {
+          const mb = document.createElement("div");
+          mb.className = "lvl-mastery";
+          mb.title = "how you're doing: " + Math.round(m.correctness * 100) + "%";
+          const fill = document.createElement("i");
+          fill.style.width = Math.round(m.correctness * 100) + "%";
+          fill.style.background = coverageColour(m.correctness, true);
+          mb.appendChild(fill);
+          cell.appendChild(mb);
+        }
+      }
       if (empty) cell.disabled = true;
       else cell.addEventListener("click", () => { onLevelTap(i); renderEntryScreen(); });
       strip.appendChild(cell);
@@ -5276,6 +5432,7 @@
     const clause = weak.length ? [{ bucketPaths: weak }] : null;
     // Prefer grammar items touching the weak buckets; fall back to all grammar
     // if none match (e.g. the misses are all vocab-side in this early build).
+    track("session_start", { strand: "grammar", source: "mistakes" });
     const test = applyFilter(grammarQuestions, { clauses: clause });
     grammarFilter.clauses = test.length ? clause : null;
     grammarFilter.cefrRange = null;
@@ -5312,6 +5469,157 @@
       wrap.appendChild(b);
     }
     col.appendChild(wrap);
+  }
+
+  // ==================== 2D coverage matrix (topics x CEFR) ====================
+  // See inter_chat/Architecture_Housing_coverage_matrix_2d. Shares masteryForScope
+  // with the competence strip, so the two are identical in formula and colour.
+  let coverageTransposed = false;
+
+  // Coverage colour ramp: white-to-green only, NO red, cream baseline for
+  // untouched, intensity capped so black text stays readable. Estate
+  // DATA_PRESENTATION rule for coverage grids (red only where negative means
+  // bad, which does not apply to "how much / how well"). Used by BOTH the
+  // matrix and the competence strip so they match.
+  function coverageColour(correctness, hasEvents) {
+    if (!hasEvents) return "#f3efe2";
+    const c = Math.max(0, Math.min(1, correctness));
+    const tt = c * 0.8;
+    const r = Math.round(250 + (46 - 250) * tt);
+    const g = Math.round(247 + (125 - 247) * tt);
+    const b = Math.round(238 + (79 - 238) * tt);
+    return "rgb(" + r + "," + g + "," + b + ")";
+  }
+
+  function isGrammarPartRoot(id) {
+    const c = overviewCategoryFor(id);
+    return c === "Verbs" || c === "Adjectives" || c === "Pronouns";
+  }
+  function friendlyTopicLabel(id) {
+    if (id.indexOf("verb_form.") === 0 || id === "tense_choice") return tenseLabel(id);
+    if (id === "pronoun") return "Pronouns";
+    if (id === "adjective_agreement") return "Adjectives";
+    const b = bucketIndex.byId[id];
+    return (b && b.label) ? b.label : prettifyId(id);
+  }
+  function grammarTopicRows() {
+    const roots = bucketIndex.roots.map(r => r.id).filter(isGrammarPartRoot);
+    roots.sort((a, b) => {
+      const ca = OVERVIEW_CATEGORY_ORDER.indexOf(overviewCategoryFor(a));
+      const cb = OVERVIEW_CATEGORY_ORDER.indexOf(overviewCategoryFor(b));
+      if (ca !== cb) return ca - cb;
+      return verbCurriculumRank(a) - verbCurriculumRank(b);
+    });
+    return roots.map(id => ({ id, label: friendlyTopicLabel(id), part: overviewCategoryFor(id) }));
+  }
+
+  function showCoverage() {
+    document.body.classList.add("coverage-active");
+    const el = document.getElementById("coverage-view");
+    if (el) el.hidden = false;
+    renderCoverage();
+  }
+  function hideCoverage() {
+    document.body.classList.remove("coverage-active");
+    const el = document.getElementById("coverage-view");
+    if (el) el.hidden = true;
+  }
+  LL.showCoverage = showCoverage;
+
+  function coverageDrill(topicId, level) {
+    const li = CEFR_ORDER.indexOf(level);
+    grammarFilter.clauses = [{ topics: [topicId] }];
+    grammarFilter.cefrRange = [li, li];
+    grammarFilter.topic = ""; grammarFilter.cefr = ""; grammarFilter.bucketPath = "";
+    grammarDeck = []; grammarIndex = 0;
+    hideCoverage();
+    track("coverage_drill", { topic: topicId, level: level });
+    renderGrammarFilterBar();
+    renderGrammar();
+    showStrand("grammar");
+  }
+
+  function renderCoverage() {
+    const host = document.getElementById("coverage-view");
+    if (!host) return;
+    host.innerHTML = "";
+    const col = document.createElement("div");
+    col.className = "coverage-col";
+
+    const bar = document.createElement("div");
+    bar.className = "coverage-bar";
+    const back = document.createElement("button");
+    back.type = "button"; back.className = "coverage-back"; back.textContent = "← Back";
+    back.addEventListener("click", () => { hideCoverage(); showEntry(); });
+    const title = document.createElement("h2");
+    title.className = "coverage-title"; title.textContent = "Your coverage";
+    const trBtn = document.createElement("button");
+    trBtn.type = "button"; trBtn.className = "coverage-transpose"; trBtn.textContent = "Transpose";
+    trBtn.title = "Swap the axes";
+    trBtn.addEventListener("click", () => { coverageTransposed = !coverageTransposed; renderCoverage(); });
+    bar.appendChild(back); bar.appendChild(title); bar.appendChild(trBtn);
+    col.appendChild(bar);
+
+    const sub = document.createElement("p");
+    sub.className = "coverage-sub";
+    sub.textContent = "Fill shows how much you've practised; colour shows how you're doing. Tap a cell to drill in.";
+    col.appendChild(sub);
+
+    const topics = grammarTopicRows();
+    const levels = CEFR_ORDER.map(l => ({ level: l, label: l }));
+    const rowAxis = coverageTransposed ? levels : topics;
+    const colAxis = coverageTransposed ? topics : levels;
+
+    const scroll = document.createElement("div");
+    scroll.className = "coverage-scroll" + (coverageTransposed ? " wide" : "");
+    const table = document.createElement("table");
+    table.className = "coverage-matrix";
+
+    const thead = document.createElement("thead");
+    const htr = document.createElement("tr");
+    htr.appendChild(document.createElement("th"));
+    for (const c of colAxis) {
+      const th = document.createElement("th");
+      th.textContent = c.label;
+      htr.appendChild(th);
+    }
+    thead.appendChild(htr); table.appendChild(thead);
+
+    const tbody = document.createElement("tbody");
+    for (const r of rowAxis) {
+      const tr = document.createElement("tr");
+      const rh = document.createElement("th");
+      rh.className = "coverage-rowhead";
+      rh.textContent = r.label;
+      tr.appendChild(rh);
+      for (const c of colAxis) {
+        const topic = coverageTransposed ? c : r;
+        const level = coverageTransposed ? r.level : c.level;
+        const td = document.createElement("td");
+        td.className = "coverage-cell";
+        const m = masteryForScope([topic.id], level);
+        if (m.empty) {
+          td.classList.add("coverage-na");
+          td.title = topic.label + " · " + level + ": not in scope at this level";
+        } else {
+          const fill = document.createElement("div");
+          fill.className = "coverage-fill";
+          fill.style.height = Math.round(m.attempted_share * 100) + "%";
+          fill.style.background = coverageColour(m.correctness, m.hasEvents);
+          td.appendChild(fill);
+          td.title = topic.label + " · " + level + ": "
+            + (m.hasEvents ? Math.round(m.correctness * 100) + "% over " + m.touched + "/" + m.total + " areas practised"
+                           : m.total + " areas, none practised yet");
+          td.addEventListener("click", () => coverageDrill(topic.id, level));
+        }
+        tr.appendChild(td);
+      }
+      tbody.appendChild(tr);
+    }
+    table.appendChild(tbody);
+    scroll.appendChild(table);
+    col.appendChild(scroll);
+    host.appendChild(col);
   }
 
   function appendStart(panel, onStart) {

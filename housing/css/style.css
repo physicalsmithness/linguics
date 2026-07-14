@@ -1601,3 +1601,37 @@ body.entry-active #live-stats { display: none; }
   border-radius: 999px; padding: 9px 15px; font-family: inherit; font-size: 13px; cursor: pointer;
   min-height: 40px; animation: result-late 0.95s ease;
 }
+
+/* ---- entry: per-band competence bar (subordinate to availability) ---- */
+.entry-level-cell .lvl-mastery { width: 100%; height: 4px; border-radius: 2px; background: rgba(0,0,0,0.09); margin-top: 4px; overflow: hidden; }
+.entry-level-cell .lvl-mastery i { display: block; height: 100%; border-radius: 2px; }
+.entry-level-cell.sel .lvl-mastery { background: rgba(255,255,255,0.35); }
+
+/* ==================== coverage matrix view ==================== */
+.coverage-view[hidden] { display: none; }
+body.coverage-active nav#strand-nav { display: none; }
+body.coverage-active main { display: block; }
+body.coverage-active .content,
+body.coverage-active #live-stats,
+body.coverage-active #entry-screen { display: none; }
+
+.coverage-view { padding: 8px 16px 40px; }
+.coverage-col { max-width: 720px; margin: 0 auto; }
+.coverage-bar { display: flex; align-items: center; gap: 12px; margin: 16px 0 4px; }
+.coverage-title { flex: 1; margin: 0; font-size: 22px; font-weight: 600; text-align: center; }
+.coverage-back, .coverage-transpose { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; font-family: inherit; font-size: 13px; cursor: pointer; min-height: 40px; }
+.coverage-sub { color: var(--muted); font-size: 13px; margin: 0 0 14px; text-align: center; }
+.coverage-scroll { width: 100%; }
+.coverage-scroll.wide { overflow-x: auto; }
+.coverage-matrix { border-collapse: separate; border-spacing: 3px; width: 100%; }
+.coverage-matrix th { font-weight: 600; font-size: 12px; text-align: center; color: var(--muted); padding: 2px 3px; }
+.coverage-matrix th.coverage-rowhead { text-align: left; font-size: 12px; color: var(--ink); white-space: nowrap; padding-right: 8px; }
+.coverage-cell { position: relative; height: 34px; min-width: 40px; border: 1px solid var(--line); border-radius: 5px; background: #f3efe2; overflow: hidden; cursor: pointer; padding: 0; }
+.coverage-fill { position: absolute; bottom: 0; left: 0; right: 0; }
+.coverage-na { background: repeating-linear-gradient(45deg, #f3efe2, #f3efe2 4px, #ece7d7 4px, #ece7d7 8px); cursor: default; opacity: .6; }
+.entry-coverage-link { display: block; width: 100%; margin-top: 18px; background: transparent; border: none; color: var(--accent); font-family: inherit; font-size: 14px; text-align: center; cursor: pointer; padding: 10px; }
+@media (max-width: 600px) {
+  .coverage-col { max-width: 100%; }
+  .coverage-matrix th.coverage-rowhead { font-size: 11px; }
+  .coverage-cell { height: 30px; min-width: 34px; }
+}

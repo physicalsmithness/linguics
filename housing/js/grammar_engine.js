@@ -84,14 +84,24 @@
       // accent-folding, and per-phrase credit is honoured on a folded hit.
       else if (Array.isArray(mp.any_phrases)) {
         let foldedHit = null;
-        for (const p of mp.any_phrases) {
-          const ps = phraseStr(p);
-          const pFolded = LL.foldAccents(LL.norm(ps));
-          // Honour match_at in the folded fallback too, else an end-anchored
-          // needle (abbi) still substring-matches a longer wrong form (abbia)
-          // here and gets wrongly credited as "accents off".
-          const mAt = (typeof p === "object" && p) ? p.match_at : undefined;
-          if (pFolded && LL.occursAt(normedFolded, pFolded, mAt)) { foldedHit = p; break; }
+        // accent_load_bearing (markpoint flag): when the accent is the ONLY thing
+        // distinguishing the target (futuro parlerò vs parlerà, remoto parlò
+        // vs present parlo), the accent-folded typo-tolerance fallback would mark
+        // the wrong person as right. Setting the flag disables the fold for this
+        // markpoint: the accented form must be typed, and the unaccented twin then
+        // falls through to must_not_include. Everywhere the flag is absent, the
+        // soft accent guard behaves exactly as before. This is markpoint-scoped
+        // (the fold loop runs per markpoint), so the flag gates cleanly per point.
+        // See inter_chat/Architecture_Housing_accent_as_morpheme.md.
+        if (!mp.accent_load_bearing) {
+          for (const p of mp.any_phrases) {
+            const ps = phraseStr(p);
+            // match_at honoured here too, else an end-anchored needle (abbi) would
+            // substring-match a longer wrong form (abbia) and be wrongly credited.
+            const mAt = (typeof p === "object" && p) ? p.match_at : undefined;
+            const pFolded = LL.foldAccents(LL.norm(ps));
+            if (pFolded && LL.occursAt(normedFolded, pFolded, mAt)) { foldedHit = p; break; }
+          }
         }
         if (foldedHit) {
           // The right idea but wrong accents. Credit the main markpoint,

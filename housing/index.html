@@ -3,6 +3,40 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- ============================================================
+       WEB_KIT analytics (estate standard). Automated / data-only edits
+       to index.html must NEVER touch this <head> block, so the tags
+       survive file rewrites. GA4 property G-WKYGJYERSR (shared estate);
+       Microsoft Clarity xdr2tsc688 (physicalsmithness.github.io).
+       Canonical GA4/Clarity snippets; align to the estate head verbatim
+       when the reusable drop-in gets a canonical home.
+       ============================================================ -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WKYGJYERSR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-WKYGJYERSR');
+  </script>
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window, document, "clarity", "script", "xdr2tsc688");
+  </script>
+  <script>
+    // Delegated click-tracker: one document-level listener emitting a GA4
+    // site_click event carrying the actioned element's id / class / label.
+    // Auto-captures buttons, links, tabs and the entry-screen controls.
+    document.addEventListener('click', function(e){
+      var el = e.target && e.target.closest && e.target.closest('button, a, [role="button"], input[type="button"], input[type="submit"], .entry-card, .entry-chip, .entry-level-cell, nav#strand-nav button');
+      if (!el || typeof window.gtag !== 'function') return;
+      var cls = (typeof el.className === 'string') ? el.className : '';
+      var label = (el.getAttribute && el.getAttribute('aria-label')) || el.textContent || '';
+      window.gtag('event', 'site_click', {
+        element_id: el.id || '',
+        element_class: cls,
+        element_label: String(label).trim().slice(0, 100)
+      });
+    }, true);
+  </script>
   <title>Linguics &middot; housing prototype</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -20,6 +54,7 @@
 
   <main>
     <section id="entry-screen" class="entry-screen" hidden></section>
+    <section id="coverage-view" class="coverage-view" hidden></section>
     <div id="load-failure-banner" class="load-failure-banner" hidden></div>
     <div class="content">
       <section id="strand-grammar" class="strand">
@@ -90,6 +125,10 @@
     <span id="content-status" class="muted"></span>
     <span class="muted">prototype &middot; localStorage only</span>
     <span id="build-version" class="muted" title="Build identifier. Useful for spotting when two tabs are on different versions."></span>
+    <!-- WEB_KIT feedback widget slot: the estate feedback.js drop-in
+         (in-page panel POSTing to the shared Apps Script endpoint) mounts here
+         once it has a canonical home (WEB_KIT.md marks it TBD). Do not build a
+         one-off; leave this placeholder. -->
   </footer>
 
   <script src="data/sample_buckets.js"></script>

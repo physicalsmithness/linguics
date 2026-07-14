@@ -777,3 +777,58 @@ Two adoptions from the MetaProject constitution read. UPDATES.md now exists as t
 **How to apply:** all Linguics seats append to UPDATES.md on every shared-state write, starting now.
 
 ---
+## 2026-07-14: Relative-pronoun and preposition batches accepted, with rulings
+
+Both 2026-07-14 batches accepted (relative_pronoun: 41 grammar + 15 translation; preposition: 82 + 24). Rulings of substance: (1) the relative author's match_at ask was already satisfied, Housing shipped start/word/end anchoring on 2026-07-13; the two suffix-contaminated items (a cui inside da cui, alla quale inside dalla quale) get match_at "word" retrofits, and i cui becomes markable the same way if wanted. (2) The relative author's manifest touch is blessed retroactively with the norm restated: authors flag, architect wires (architect wired preposition). (3) Preposition tree edited at source: the da-plus-person seam ruled into da_special, the partitive leaf relabelled "Partitive 'some'" per the terse-label rule, small islands absorbed into the a_vs_in description, and all three proposed verb_governed children ratified and live (a_infinitive, di_infinitive, object_governed; existing items keep citing the parent, rollup handles it). (4) Glossary to v3: relative pronoun, relative clause, invariable, euphonic ad, passive agent merged; antecedent already existed. (5) Blessed as authored: col treno at 0.9 under the standard-variant policy, context-dependent contraction-credit choices, the stylistic il-quale miss, dove / in cui cross-credit, suppress on 37/41 relative items. Full substance in the two batch-review threads.
+
+**Why:** both coverage docs met the task-closure standard (grepped counts, engine-semantics reasoning); the asks were either already-shipped engine features or tree-side fixes squarely in architect territory.
+
+**How to apply:** authors do the two match_at retrofits and optional cleanups on next touch; both topics are manifest-wired and live once Smith pushes via GitHub Desktop.
+
+---
+## 2026-07-14: OIC drill follow-through (idea-bank appendices, Rev 14 house techniques, new-topic candidates)
+
+The deep-drill follow-ups queued from the off-bridge session are done. Twelve un-dispatched dispatches (article, noun, possessive, demonstrative, plus the eight new topics) carry hand-curated "OIC idea bank" appendices: steals, trap stems, and exception lists specific to each topic, drawn from oic_drill_raw_findings.json. AUTHOR_BRIEF bumped to Revision 14 with a House-techniques section (person recovery from indirect cues; exception density one-to-three per ten; same-surface-opposite-answer pairs; one out-of-paradigm trap per drill; word-bank-as-distractor-set), encouraged patterns rather than gates. Genuinely new topics the drill surfaced (indefinites, connettivi, alterati, negation/particles) are in OPEN_QUESTIONS awaiting Smith's pick; none scaffolded unprompted.
+
+**Why:** the drill's value was always meant to land in the dispatches authors actually read, and the already-dispatched topics get their steals through next-wave dispatches instead. Techniques were codified once in the brief rather than repeated per dispatch.
+
+**How to apply:** author chats read their dispatch's appendix at dispatch time; the piacere appendix records that OIC has no deep piacere coverage, so that topic is ours alone.
+
+---
+## 2026-07-14: Learner-coverage surfaces briefed (2D topic-by-CEFR matrix; entry-screen per-band standing)
+
+Two Smith asks briefed to Housing. A 2D coverage matrix (topics down one axis, A1-C2 across the other, transposable, cells carrying the established fill-equals-attempted, hue-equals-correctness signals, DATA_PRESENTATION rules quoted in the thread, mobile defaults to topics-as-rows). And the entry screen gains the learner's own standing per CEFR band under the active filter: one blended percentage per band (the mastery blend with untouched-baseline dilution), attempted-vs-total at leaf level in drill-in, gated on history, visually subordinate to availability. Naming ruled: avoid the word "competence" on-screen; plain "how you're doing" language, since the honest quantity is a blend of coverage and correctness. Slotted into welcome phase-1b as third in priority (after translation direction and vocab Mix/gender, before the Custom-mix label guardrail).
+
+**Why:** with sixteen-plus grammar topics live, per-topic-per-level coverage is now a real question learners ask, and the two surfaces must share formula and colour or they will contradict each other.
+
+**How to apply:** Housing answers the denominator question (buckets-at-level vs items-at-level) in the matrix thread before building; both surfaces reuse the existing mastery formula, no new statistics.
+
+---
+## 2026-07-14: Superstring safety becomes criterion 18; 53 live anchors applied; two marker defects routed
+
+PresentUsageAuthor found the rightward superstring hazard (a 3sg present is a substring of its own wrong-tense forms, and positive matches win, so the wrong-tense attempt self-credits); PrepositionAuthor independently found the leftward variant (a X inside da X). Ruled: criterion 18 (Brief Revision 15), comparison set is plausible attempts, default mitigation match_at "word" (both-boundary anchoring, confirmed in norm.js). An architect-side retro-audit of all 1264 live grammar items found 99 exposure-pairs; 53 any_phrases were word-anchored centrally the same night (adjective orthographic and apocope classes, pronoun short forms, person guards, progressive traps, h-guards, -iare stress items). Residue routed: the three formal-capitalisation pronoun items sit on a deeper defect (norm lowercases everything, so La/la was never distinguishable), proposed to Housing as a case_sensitive markpoint flag; op_comb_glielo_11 needs an author reframe (the wrong word-order attempt contains the anchored right answer). The audit now runs as a standing check on every batch acceptance.
+
+**Why:** these were live false credits on exactly the items whose point is the distinction (vecchii crediting as vecchi, hanno as ha, bello as bel); two authors surfaced the class independently within hours, which is principle 5 (both sides think) working.
+
+**How to apply:** authors carry criterion 18 forward; the anchored items need no re-touch; PronounAuthor gets the two-item retrofit ask once Housing answers on case sensitivity.
+
+---
+## 2026-07-14: Present-usage batch accepted and merged; negation scaffolded on NegationAuthor's carve-out
+
+PresentUsageAuthor's branch batch (12 + 12) accepted: the three-grade progressive application stands, all four flagged uncertains blessed (iniziano at full credit, affamato/assetato at full credit with steering explanation, three voices on the instruction item, documented residual substrings), staging files merged into the present_indicative topic files and the five usage stubs cleared. Separately, Smith fired a NegationAuthor before a negation topic existed; the author correctly halted and proposed a carve-out, ratified with two adjustments (concord items may use nessuno/niente now, only the indefinites' lexical coverage waits; the bipartite non...X frames are wholly negation's, since the adverb tree carries only a generic position leaf). Tree live (negation, 11 nodes, topic_short neg), DISPATCH_negation.md written with the OIC micro_topics idea bank inline, boundary note added to the adverb dispatch.
+
+**Why:** the usage batch is the template for the coming usage dispatches; and an author seat that halts at a missing tree instead of inventing one is the operating model working, so the reward is same-night scaffolding.
+
+**How to apply:** NegationAuthor reads its scope thread and DISPATCH_negation.md and starts on the concord hot spot; present-usage content goes live on Smith's next push.
+
+---
+## 2026-07-14: accent_load_bearing shipped and scoped; retrofit routed to PassatoRemotoAuthor only
+
+Housing shipped the flag same-night (markpoint-scoped, fold-gating verified). Scope refined twice en route: v2 narrowed from "futuro and remoto person distinctions" to collision cases, and v5 narrowed again to the honest test, "is the stripped form a plausible alternative ANSWER to this prompt". Net: the futuro needs nothing (its unaccented twins are non-words; FutureAuthor's same-night cleanup of six dead guards was already aligned), essere/dare presente items need nothing (e and da are not candidate answers at a verb blank, so fold-rescue plus orthography miss is right), and the whole retrofit lands on the remoto 3sg collision classes (parlò/parlo, credè/crede, partì/parti). Codified as criterion 19 (Brief Revision 16); retrofit ask routed. Open question put to Smith: vocab marks accent omission at 50 percent partial while grammar gives full credit plus a tracked orthography miss; two philosophies, his call whether to harmonise.
+
+**Why:** the two-step narrowing avoided flagging dozens of items where a missed accent is a typo, not a wrong answer; the flag now touches only items where leniency means crediting a different tense.
+
+**How to apply:** PassatoRemotoAuthor works the retrofit thread on next touch; everyone else authors new collision items with the flag from the start per criterion 19.
+
+---
+

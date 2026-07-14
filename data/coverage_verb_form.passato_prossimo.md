@@ -1,12 +1,21 @@
 # Coverage summary: passato prossimo
 
-Authored across two dispatches (initial + post-architecture-feedback revision). Brief revision 2.
+Authored across two dispatches (initial + post-architecture-feedback revision). Brief revision 2. Rev 5/8/9/13/15 catch-up applied 2026-07-14.
 
 **Totals**: 103 grammar questions, 50 translation items (24 en→it, 26 it→en).
 
 **Prompt-leak fix (2026-05-15)**: rewrote prompts on `pp_aux_modal_01..05` (stripped "using prescriptive inheritance" and the redundant agreement cue) and `pp_aux_amb_01..03` (stripped "(transitive use ...)" and "(intransitive, motion)" parentheticals that named the bucket diagnostic). The diagnostic survives via participle agreement and sentence structure; the parentheticals now carry only the infinitive cue.
 
 **Slot-count collapse (2026-05-28)**: collapsed all 6 multi-slot prompts to single slot per AUTHOR_BRIEF §2 criterion 9 (multi-slot blanks cue compound-form-family). Affected items: `pp_aux_refl_05` (was 2-slot for `sono divertiti`) and `pp_adv_pos_01..05` (were 2-slot for auxiliary+adverb or adverb+participle pairings). Markpoints unchanged — substring matching handles the new format.
+
+**Brief-revision catch-up (2026-07-14)**: four rev-driven passes applied in one sweep, no content change to prompts / any_phrases / must_not_include / markpoints.
+
+- **Rev 13 (criterion 17, English sentence gloss on explanations)**: prepended a completed-sentence gloss to all 103 grammar explanations. Full-sentence items open with `'<Italian>' (= '<English>').`; the 10 fragment-prompt items (form-only participle drills) open with `<Italian target> = '<English>'.`. Four-beat working preserved. Translation items untouched (they're inherently about translation).
+- **Rev 5 (vocab_help bucket-id pos slot)**: retrofitted 112 vocab_help entry buckets to insert the `.<pos>.` segment between lemma and aspect (e.g. `vocabulary.it.parlare.translation` → `vocabulary.it.parlare.verb.translation`). Covers all lemmas in the batch across both grammar and translation files (verbs, nouns, adverbs).
+- **Rev 9 (criterion 13 cue economy)**: audit surfaced 7 items with parentheticals containing `masc/fem/N-sg/N-pl` cues; on inspection every one is doing gender or number disambiguation the sentence itself doesn't supply (Loro / io / lei without a gender-marked possessive nearby). No rev 9 rewrites needed — the parentheticals aren't naming a person that the sentence already provides.
+- **Rev 8/15 (criterion 15 info_display suppress)**: per-item leak-vs-trap test applied. 92 items get `info_display: "suppress"` (participle-form regulars and irregulars, essere/avere auxiliary choice, agreement with essere / avere / partitive-ne / mixed-gender, modal inheritance, adverb placement — all cases where the bucket breadcrumb would name the class / rule-output the item tests). 11 items stay visible: `auxiliary.ambiguous` (breadcrumb "Verbs that take either auxiliary" doesn't commit), `auxiliary.person_agreement` (breadcrumb names the diagnostic axis but not the answer form), `negation` (topic-level "Negation" label doesn't leak).
+
+**Not applied**: rev 12's terse-label rule is a bucket-tree concern for Architecture, not for items (items reference the tree by id path, not by label). Rev 14's House Techniques are encouraged patterns; the batch already applies technique #3 (same-surface opposite-answer pair, via `pp_aux_amb_01/02` = correre transitive vs intransitive); the other four techniques are batch-composition concerns for future dispatches rather than per-item rewrites.
 
 ## Bucket-to-item-count table
 
