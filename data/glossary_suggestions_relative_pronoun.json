@@ -1,0 +1,26 @@
+{
+ "$comment": "Glossary terms used in relative_pronoun explanations not yet in data/glossary.json. Project author reviews and merges. Checked against glossary.json v2.",
+ "version": 1,
+ "suggestions": {
+  "relative pronoun": {
+   "short": "A joining word (che, cui, il quale, chi, dove) that hooks a describing clause onto a noun: il libro CHE leggo.",
+   "long": "A relative pronoun attaches a whole clause to a noun and stands in for that noun inside the clause. Italian picks the relative by its grammatical role: plain subject or direct object takes che; anything with a preposition takes preposition + cui (or the agreeing il quale); 'whose' is article + cui; 'whoever' with no noun at all is chi; place takes dove or in cui.",
+   "needed_for": "Named in nearly every relative_pronoun explanation as the four-beat term."
+  },
+  "antecedent": {
+   "short": "The noun a relative clause describes: in 'il libro che leggo', the antecedent is il libro.",
+   "long": "The antecedent is the noun the relative pronoun points back at. Most Italian relatives need one (che, cui, il quale all lean on a preceding noun); chi is the exception, an antecedent-less relative meaning 'the one who / whoever'. When two candidate antecedents are in view, the agreeing il quale family disambiguates where invariable che cannot.",
+   "needed_for": "chi and il_quale.for_clarity explanations turn on having or lacking an antecedent."
+  },
+  "relative clause": {
+   "short": "The mini-sentence a relative pronoun introduces: che leggo in 'il libro che leggo'.",
+   "long": "A relative clause is a clause embedded after a noun to describe it. The relative pronoun plays a role inside that clause (subject, object, object of a preposition, possessor), and Italian chooses the pronoun by that internal role, not by the noun's role in the main sentence.",
+   "needed_for": "Role-inside-the-clause reasoning appears across che.subject/che.direct_object explanations."
+  },
+  "invariable": {
+   "short": "Never changes form for gender or number: che and cui are invariable; il quale is not.",
+   "long": "An invariable word has one fixed form. Che and cui stay identical whatever the antecedent (il ragazzo che, le ragazze che), which is what makes them the default relatives. The agreeing alternative il quale / la quale / i quali / le quali changes with gender and number, and that agreement is precisely what makes it useful for disambiguation.",
+   "needed_for": "The che-vs-il quale contrast is stated via invariability in several explanations."
+  }
+ }
+}

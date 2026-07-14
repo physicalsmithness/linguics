@@ -1,0 +1,246 @@
+[
+  {
+    "id": "passive",
+    "parent_id": null,
+    "language_code": "it",
+    "label": "The passive",
+    "description": "Turning the object into the subject: essere + participle across tenses, venire as the dynamic auxiliary, andare for obligation, the da agent phrase, and the choice between passive and si passivante.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.passato_prossimo"
+    ],
+    "attributes": {
+      "topic_short": "pas",
+      "direction": "bidirectional",
+      "is_aggregate": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "passive.formation",
+    "parent_id": "passive",
+    "language_code": "it",
+    "label": "Forming the passive",
+    "description": "The three auxiliaries and the agent phrase.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "production",
+      "is_aggregate": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "passive.formation.essere",
+    "parent_id": "passive.formation",
+    "language_code": "it",
+    "label": "Essere + participle",
+    "description": "The standard passive: essere in the wanted tense plus the participle agreeing with the subject. La pizza è stata inventata a Napoli; il ponte sarà costruito l'anno prossimo. In compound tenses two participles stack (è stata inventata).",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.passato_prossimo.participle_agreement.with_essere"
+    ],
+    "attributes": {
+      "direction": "production",
+      "common_miss": "Participle left masculine singular ('la pizza è stato inventato'), and avere sneaking in as auxiliary.",
+      "canonical_examples": [
+        "La pizza è stata inventata a Napoli.",
+        "Il conto è pagato in cassa.",
+        "Il ponte sarà costruito l'anno prossimo."
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "passive.formation.venire",
+    "parent_id": "passive.formation",
+    "language_code": "it",
+    "label": "Venire + participle",
+    "description": "Venire replaces essere in simple tenses only, with a dynamic something-happens flavour: le tasse vengono pagate ogni anno. In compound tenses it is impossible: no 'è venuto pagato'.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "core",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "passive.formation.essere"
+    ],
+    "attributes": {
+      "direction": "production",
+      "common_miss": "Venire in a compound tense ('è venuto pagato'), and reading venire as literal motion.",
+      "canonical_examples": [
+        "Le tasse vengono pagate ogni anno.",
+        "Il pane viene fatto ogni mattina.",
+        "La porta venne chiusa alle otto."
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "passive.formation.andare",
+    "parent_id": "passive.formation",
+    "language_code": "it",
+    "label": "Andare + participle: must be done",
+    "description": "Andare + participle expresses obligation: il modulo va compilato in stampatello means the form must be filled in. A small lexical set (perdere, smarrire) uses it for loss instead: il pacco è andato perso.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "core",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "passive.formation.essere"
+    ],
+    "attributes": {
+      "direction": "bidirectional",
+      "common_miss": "Reading 'va fatto' as motion ('it goes done'), and missing the obligation sense entirely.",
+      "canonical_examples": [
+        "Il modulo va compilato in stampatello.",
+        "Queste medicine vanno prese a stomaco pieno.",
+        "Il pacco è andato perso."
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "passive.formation.agent_da",
+    "parent_id": "passive.formation",
+    "language_code": "it",
+    "label": "The agent with da",
+    "description": "Who did it, when the passive keeps them: da + agent. Il ritratto è stato dipinto da Caravaggio. Not di, not per.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "passive.formation.essere"
+    ],
+    "attributes": {
+      "direction": "production",
+      "common_miss": "'di Caravaggio' (the possessive calque) and 'per' from English 'by' confusion via Spanish.",
+      "canonical_examples": [
+        "Il ritratto è stato dipinto da Caravaggio.",
+        "La decisione è stata presa dal direttore."
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "passive.usage",
+    "parent_id": "passive",
+    "language_code": "it",
+    "label": "When to go passive",
+    "description": "Choosing the passive against its rivals: the active voice, and the si passivante.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "bidirectional",
+      "is_aggregate": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "passive.usage.when_to_use",
+    "parent_id": "passive.usage",
+    "language_code": "it",
+    "label": "Passive or active?",
+    "description": "The passive foregrounds the thing affected and suits formal registers, news, and instructions; everyday speech prefers active or si constructions. Choosing it well is a register skill as much as a grammar one.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "core",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "bidirectional",
+      "common_miss": "Passive overuse calqued from English academic habits where Italian would use si or the active.",
+      "canonical_examples": [
+        "Il presidente è stato eletto ieri. (news)",
+        "Hanno eletto il presidente ieri. (speech)"
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "passive.usage.vs_si_passivante",
+    "parent_id": "passive.usage",
+    "language_code": "it",
+    "label": "Passive or si passivante?",
+    "description": "Si vendono libri and i libri sono venduti overlap, but the si construction cannot name the agent: with a da-phrase only the full passive works. The si form is lighter and commoner in speech and signage.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "core",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "si_constructions.passivante.agreement"
+    ],
+    "attributes": {
+      "direction": "bidirectional",
+      "common_miss": "An agent bolted onto the si form ('si vendono libri da Marco').",
+      "canonical_examples": [
+        "Qui si vendono libri usati.",
+        "I libri sono venduti dalla libreria Feltrinelli."
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  }
+]

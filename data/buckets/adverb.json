@@ -1,0 +1,247 @@
+[
+  {
+    "id": "adverb",
+    "parent_id": null,
+    "language_code": "it",
+    "label": "Adverbs",
+    "description": "Building adverbs with -mente, the primary adverbs that are not built from anything, and the choices that trip learners: adjective or adverb, bene or buono, and where the adverb sits.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "topic_short": "adv",
+      "direction": "bidirectional",
+      "is_aggregate": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "adverb.formation",
+    "parent_id": "adverb",
+    "language_code": "it",
+    "label": "Forming adverbs",
+    "description": "The -mente derivation and the primary adverbs that exist in their own right.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "adjective_agreement"
+    ],
+    "attributes": {
+      "direction": "production",
+      "is_aggregate": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "adverb.formation.mente_regular",
+    "parent_id": "adverb.formation",
+    "language_code": "it",
+    "label": "-mente from the feminine",
+    "description": "Adjectives in -o build the adverb on the feminine: lento becomes lentamente, vero becomes veramente. Adjectives already in -e just add -mente: veloce becomes velocemente.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "production",
+      "common_miss": "Building on the masculine ('lentomente'), or English calque '-ly' guesses.",
+      "canonical_examples": [
+        "Guida lentamente.",
+        "Veramente non lo so.",
+        "Parla velocemente."
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "adverb.formation.mente_le_re",
+    "parent_id": "adverb.formation",
+    "language_code": "it",
+    "label": "-le and -re drop the e",
+    "description": "Adjectives ending in -le or -re drop the final e before -mente: facile becomes facilmente, regolare becomes regolarmente. A few are simply irregular: leggero gives leggermente.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "adverb.formation.mente_regular"
+    ],
+    "attributes": {
+      "direction": "production",
+      "common_miss": "'Facilemente', 'regolaremente': the undropped e.",
+      "canonical_examples": [
+        "Si arriva facilmente in treno.",
+        "Pago regolarmente l'affitto.",
+        "Piove leggermente."
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "adverb.formation.primary",
+    "parent_id": "adverb.formation",
+    "language_code": "it",
+    "label": "Bene, male, presto and friends",
+    "description": "The everyday adverbs that are not derived from adjectives: bene, male, presto, tardi, spesso, sempre, mai, subito, volentieri, già, ancora. They never agree with anything.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "bidirectional",
+      "common_miss": "Inventing -mente forms ('benemente'), or agreement where none exists.",
+      "canonical_examples": [
+        "Parla bene l'italiano.",
+        "Mi alzo presto.",
+        "Vengo volentieri."
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "adverb.usage",
+    "parent_id": "adverb",
+    "language_code": "it",
+    "label": "Using adverbs well",
+    "description": "The discriminations: invariable adverb vs agreeing adjective, bene vs buono, and where the adverb goes.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "bidirectional",
+      "is_aggregate": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "adverb.usage.invariable_vs_adjective",
+    "parent_id": "adverb.usage",
+    "language_code": "it",
+    "label": "Molto that agrees, molto that doesn't",
+    "description": "Molto, poco, troppo, tanto are invariable when they modify adjectives or verbs (sono molto stanche) but agree when they quantify nouns (molte case, troppi errori). Same word, two behaviours.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "core",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "adjective_agreement"
+    ],
+    "attributes": {
+      "direction": "production",
+      "common_miss": "'Molte stanche', 'sono molta stanca': agreement leaking onto the adverb.",
+      "canonical_examples": [
+        "Le ragazze sono molto stanche.",
+        "Ci sono molte case.",
+        "Ho mangiato troppo.",
+        "Troppi errori."
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "adverb.usage.bene_vs_buono",
+    "parent_id": "adverb.usage",
+    "language_code": "it",
+    "label": "Bene or buono?",
+    "description": "Buono is an adjective and describes things (il caffè è buono); bene is an adverb and describes how something is done (cucina bene). English 'good/well' maps onto them imperfectly, and 'sto bene' for wellbeing uses bene, never buono.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "bidirectional",
+      "common_miss": "'Cucina buono', 'parlo italiano molto buono', 'sto buono' (which actually means 'I behave').",
+      "canonical_examples": [
+        "Il caffè è buono.",
+        "Lucia cucina bene.",
+        "Come stai? Sto bene."
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "adverb.usage.position",
+    "parent_id": "adverb.usage",
+    "language_code": "it",
+    "label": "Where the adverb goes",
+    "description": "In simple tenses the adverb usually follows the verb (parla bene l'italiano) and precedes an adjective it modifies (molto bello). In compound tenses the short frequency adverbs slot between auxiliary and participle; that placement skill lives with the passato prossimo tree and items should cite it there.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.passato_prossimo.adverb_placement"
+    ],
+    "attributes": {
+      "direction": "production",
+      "common_miss": "English-style pre-verb placement ('lei bene parla'), and adverb between verb and direct object calques.",
+      "authoring_note": "Compound-tense placement (già/mai/ancora between aux and participle) belongs to verb_form.passato_prossimo.adverb_placement; cite that bucket rather than duplicating it here.",
+      "canonical_examples": [
+        "Parla bene l'italiano.",
+        "È molto bello.",
+        "Arriva sempre in ritardo."
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  }
+]

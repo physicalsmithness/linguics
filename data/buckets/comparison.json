@@ -1,0 +1,307 @@
+[
+  {
+    "id": "comparison",
+    "parent_id": null,
+    "language_code": "it",
+    "label": "Comparatives and superlatives",
+    "description": "Comparing things and pushing qualities to their extremes: più/meno with di or che, comparisons of equality, the irregular forms (migliore, meglio, ottimo), and the two superlatives.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "topic_short": "cmp",
+      "direction": "bidirectional",
+      "is_aggregate": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "comparison.comparative",
+    "parent_id": "comparison",
+    "language_code": "it",
+    "label": "Comparatives",
+    "description": "More, less, and as-much-as: the più/meno machinery and its connectors.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "adjective_agreement"
+    ],
+    "attributes": {
+      "direction": "production",
+      "is_aggregate": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "comparison.comparative.piu_meno_di",
+    "parent_id": "comparison.comparative",
+    "language_code": "it",
+    "label": "Più and meno with di",
+    "description": "The basic comparison of two entities: più/meno + adjective + di (Marco è più alto di Luca), with di contracting with articles (più caro del vino rosso) and di before numbers (più di venti).",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "preposition.articulated"
+    ],
+    "attributes": {
+      "direction": "production",
+      "common_miss": "che where di belongs ('più alto che Luca', 'più che venti'), and the missing articulated form ('più caro di il').",
+      "canonical_examples": [
+        "Marco è più alto di Luca.",
+        "Questo vino è meno caro di quello.",
+        "Ci sono più di venti studenti."
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "comparison.comparative.di_vs_che",
+    "parent_id": "comparison.comparative",
+    "language_code": "it",
+    "label": "Di or che?",
+    "description": "Che replaces di when comparing two qualities of the same thing (più simpatico che intelligente), two verbs (è più facile criticare che agire), two nouns in quantity (più libri che riviste), or two prepositional phrases (più a Roma che a Milano). Comparing two entities directly stays di.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "comparison.comparative.piu_meno_di"
+    ],
+    "attributes": {
+      "direction": "bidirectional",
+      "common_miss": "di between two infinitives or two qualities ('più facile criticare di agire', 'più simpatico di intelligente').",
+      "canonical_examples": [
+        "È più simpatico che intelligente.",
+        "È più facile criticare che agire.",
+        "Ci sono più studenti che professori.",
+        "Vado più spesso a Roma che a Milano."
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "comparison.comparative.equality",
+    "parent_id": "comparison.comparative",
+    "language_code": "it",
+    "label": "As...as: come and quanto",
+    "description": "Comparisons of equality: (così)...come and (tanto)...quanto, with the first half usually dropped (È alta come me). Stressed pronouns after come/quanto (come te, quanto lui).",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "production",
+      "common_miss": "Subject pronouns after come ('come io'), and mixing the pairs ('così...quanto').",
+      "canonical_examples": [
+        "È alta come me.",
+        "Lavora quanto te.",
+        "Il libro è tanto bello quanto utile."
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "comparison.comparative.irregular_adjectives",
+    "parent_id": "comparison.comparative",
+    "language_code": "it",
+    "label": "Migliore, peggiore, maggiore, minore",
+    "description": "The inherited one-word comparatives: migliore (better), peggiore (worse), maggiore (bigger/older/greater), minore (smaller/younger/lesser), alongside the regular più buono etc., which remain possible with a concrete flavour.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "production",
+      "common_miss": "The double comparative 'più migliore', and 'più buono' rejected as wrong when it is merely the concrete variant.",
+      "canonical_examples": [
+        "Questo ristorante è migliore di quello.",
+        "Il mio fratello maggiore.",
+        "Un problema minore."
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "comparison.comparative.migliore_vs_meglio",
+    "parent_id": "comparison.comparative",
+    "language_code": "it",
+    "label": "Migliore or meglio?",
+    "description": "Migliore is an adjective and describes nouns (questo vino è migliore); meglio is an adverb and describes actions (canta meglio di me), and also serves as the impersonal predicate for situations (è meglio andare). English 'better' covers both, so they blur.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "comparison.comparative.irregular_adjectives"
+    ],
+    "attributes": {
+      "direction": "bidirectional",
+      "common_miss": "'Questo libro è meglio di quello' (common in speech, standard wants migliore) and 'canta migliore'.",
+      "authoring_note": "'è meglio di quello' with a noun subject is widespread colloquially; candidate for graded credit with a register note rather than a flat miss.",
+      "canonical_examples": [
+        "Questo vino è migliore di quello.",
+        "Canta meglio di me.",
+        "È meglio partire presto."
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "comparison.superlative",
+    "parent_id": "comparison",
+    "language_code": "it",
+    "label": "Superlatives",
+    "description": "The most and the utterly: relative superlative with the article, absolute superlative with -issimo, and the irregular set.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "production",
+      "is_aggregate": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "comparison.superlative.relative",
+    "parent_id": "comparison.superlative",
+    "language_code": "it",
+    "label": "Il più... di: the most in a group",
+    "description": "Article + più/meno + adjective, with di (or tra) for the group: la città più bella d'Italia. When the adjective follows the noun the article is not repeated: la città più bella, never la città la più bella.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "article.definite"
+    ],
+    "attributes": {
+      "direction": "production",
+      "common_miss": "Repeating the article French-style ('la città la più bella'), and che for the group ('più bella che Italia').",
+      "canonical_examples": [
+        "È la città più bella d'Italia.",
+        "Il giorno più lungo dell'anno.",
+        "Il meno caro tra questi."
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "comparison.superlative.absolute",
+    "parent_id": "comparison.superlative",
+    "language_code": "it",
+    "label": "-issimo: utterly, extremely",
+    "description": "The absolute superlative: drop the final vowel, add -issimo, agreeing like a normal adjective (bellissima, stanchissimi). Spelling shifts mirror the plural rules: stanco keeps the hard c (stanchissimo), simpatico does not (simpaticissimo). Molto + adjective says the same thing more mildly.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "adjective_agreement.stem_changes"
+    ],
+    "attributes": {
+      "direction": "production",
+      "common_miss": "Spelling at the join ('stancissimo', 'simpatichissimo'), and stacking ('molto bellissimo').",
+      "canonical_examples": [
+        "Il film era bellissimo.",
+        "Siamo stanchissimi.",
+        "Una pizza buonissima."
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "comparison.superlative.irregular",
+    "parent_id": "comparison.superlative",
+    "language_code": "it",
+    "label": "Ottimo, pessimo, benissimo",
+    "description": "The inherited absolute superlatives: ottimo (excellent), pessimo (dreadful), massimo, minimo, plus the adverb pair benissimo and malissimo. Ottimo is warmer and more idiomatic than buonissimo in many contexts.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "bidirectional",
+      "common_miss": "'Molto ottimo' (ottimo is already superlative), and 'buonissimo' forced where ottimo is the idiomatic choice.",
+      "canonical_examples": [
+        "Un'ottima idea.",
+        "Il servizio era pessimo.",
+        "Sto benissimo, grazie."
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  }
+]

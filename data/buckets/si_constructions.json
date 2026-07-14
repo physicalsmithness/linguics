@@ -1,0 +1,273 @@
+[
+  {
+    "id": "si_constructions",
+    "parent_id": null,
+    "language_code": "it",
+    "label": "Si: one does, one sells",
+    "description": "The impersonal si (si mangia bene = one eats well) and the si passivante (si vendono libri = books are sold), plus the sign forms (Affittasi) and telling this si apart from its reflexive twin.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.present_indicative.formation"
+    ],
+    "attributes": {
+      "topic_short": "si",
+      "direction": "bidirectional",
+      "is_aggregate": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "si_constructions.impersonal",
+    "parent_id": "si_constructions",
+    "language_code": "it",
+    "label": "Impersonal si",
+    "description": "General statements with no stated subject: si + third person singular.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "production",
+      "is_aggregate": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "si_constructions.impersonal.basic",
+    "parent_id": "si_constructions.impersonal",
+    "language_code": "it",
+    "label": "Si mangia bene: the basic impersonal",
+    "description": "Si + third person singular for what people in general do: In Italia si cena tardi. Si può fumare qui? Covers the very frequent si può / si deve / non si sa patterns.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "production",
+      "common_miss": "Plural verb with no plural noun ('si cenano tardi'), and English-calqued 'uno mangia' or 'tu mangi' where si is idiomatic.",
+      "canonical_examples": [
+        "In Italia si cena tardi.",
+        "Si può parcheggiare qui?",
+        "Non si sa mai."
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "si_constructions.impersonal.advanced",
+    "parent_id": "si_constructions.impersonal",
+    "language_code": "it",
+    "label": "Si è stanchi: the strange agreements",
+    "description": "Two quirks at once: predicate adjectives after impersonal si go plural (quando si è stanchi, si dorme male), and compound tenses always take essere (si è parlato di politica), with the participle going plural for verbs that themselves take essere (si è arrivati tardi).",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "core",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "si_constructions.impersonal.basic",
+      "verb_form.passato_prossimo.auxiliary"
+    ],
+    "attributes": {
+      "direction": "production",
+      "common_miss": "Singular adjective ('quando si è stanco'), avere in the compound ('si ha parlato'), singular participle with essere verbs ('si è arrivato tardi').",
+      "canonical_examples": [
+        "Quando si è stanchi, si dorme male.",
+        "Ieri si è parlato di politica.",
+        "Si è arrivati tardi."
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "si_constructions.passivante",
+    "parent_id": "si_constructions",
+    "language_code": "it",
+    "label": "Si passivante",
+    "description": "Si with a transitive verb and a noun: the noun is the grammatical subject and the verb agrees with it.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "production",
+      "is_aggregate": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "si_constructions.passivante.agreement",
+    "parent_id": "si_constructions.passivante",
+    "language_code": "it",
+    "label": "Si vendono libri: agreeing with the noun",
+    "description": "The verb agrees with the thing: si affitta una camera but si affittano camere. The same number-agreement instinct as c'è / ci sono, and missed the same way.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "existential.form.plural"
+    ],
+    "attributes": {
+      "direction": "production",
+      "common_miss": "The singular with a plural noun ('si vende libri'), extremely common even among natives in speech.",
+      "canonical_examples": [
+        "Si affittano camere.",
+        "Qui si parla inglese.",
+        "In quel negozio si vendono libri usati."
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "si_constructions.passivante.vs_impersonal",
+    "parent_id": "si_constructions.passivante",
+    "language_code": "it",
+    "label": "Passivante or impersonal? When si agrees",
+    "description": "With a transitive verb and its noun, si is passivante and agrees (si mangiano gli spaghetti); with an intransitive verb, an adverb, or no object, it is impersonal and stays third singular (si mangia bene). Deciding which frame you are in is the skill.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "core",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "si_constructions.impersonal.basic",
+      "si_constructions.passivante.agreement"
+    ],
+    "attributes": {
+      "direction": "bidirectional",
+      "common_miss": "Agreement forced where there is nothing to agree with ('si mangiano bene qui').",
+      "canonical_examples": [
+        "Si mangiano gli spaghetti al dente.",
+        "Qui si mangia bene.",
+        "Si vive meglio al mare."
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "si_constructions.usage",
+    "parent_id": "si_constructions",
+    "language_code": "it",
+    "label": "Si in the wild",
+    "description": "Where these constructions actually live: signs and small ads, and next to the reflexive si they must be told apart from.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "bidirectional",
+      "is_aggregate": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "si_constructions.usage.attached_signs",
+    "parent_id": "si_constructions.usage",
+    "language_code": "it",
+    "label": "Affittasi, cercasi, vendesi",
+    "description": "The sign register glues si to the verb: Affittasi appartamento, Cercasi cameriere, Vendesi. Recognition matters more than production; the forms are frozen and usually stay singular whatever follows.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "si_constructions.passivante.agreement"
+    ],
+    "attributes": {
+      "direction": "bidirectional",
+      "common_miss": "Not recognising the attached si at all, and reading cercasi as a verb form of some other verb.",
+      "canonical_examples": [
+        "Affittasi appartamento.",
+        "Cercasi cameriere con esperienza.",
+        "Vendesi."
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "si_constructions.usage.which_si",
+    "parent_id": "si_constructions.usage",
+    "language_code": "it",
+    "label": "Which si is this?",
+    "description": "Reading si correctly: reflexive with a subject (Marco si lava), impersonal or passivante without one (si lava tutto a mano), and the accented sì (yes) as a spelling matter. A recognition skill that keeps sentences from collapsing.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "pronoun.reflexive"
+    ],
+    "attributes": {
+      "direction": "bidirectional",
+      "common_miss": "Reading impersonal si as reflexive ('si mangia bene' as 'he eats himself well'), and si/sì accent slips in writing.",
+      "canonical_examples": [
+        "Marco si alza presto. (reflexive)",
+        "Qui si lavora troppo. (impersonal)",
+        "Si lavano a mano. (either, context decides)"
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  }
+]

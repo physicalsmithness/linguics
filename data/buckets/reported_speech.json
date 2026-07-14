@@ -1,0 +1,252 @@
+[
+  {
+    "id": "reported_speech",
+    "parent_id": null,
+    "language_code": "it",
+    "label": "Reported speech",
+    "description": "Turning quotes into reports: which tenses shift after a past reporting verb (and which don't), how commands and questions are reported, and how words like domani and qui travel.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.imperfect",
+      "verb_form.passato_prossimo"
+    ],
+    "attributes": {
+      "topic_short": "rep",
+      "direction": "bidirectional",
+      "is_aggregate": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "reported_speech.tense_shift",
+    "parent_id": "reported_speech",
+    "language_code": "it",
+    "label": "The tense shifts",
+    "description": "After a past reporting verb (ha detto, disse), the quoted tenses slide back. The structural homes for two of these shifts are the imperfect and conditional trees; items here cite those buckets rather than re-owning them.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "production",
+      "is_aggregate": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "reported_speech.tense_shift.no_shift",
+    "parent_id": "reported_speech.tense_shift",
+    "language_code": "it",
+    "label": "No shift after dice",
+    "description": "A present reporting verb keeps the quoted tenses: Dice che è stanco. Knowing when NOT to shift is a skill in its own right, and over-shifting is a real learner error once backshift has been taught.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "production",
+      "common_miss": "Backshifting after a present reporter ('dice che era stanco' for a now-statement).",
+      "canonical_examples": [
+        "Dice che è stanco.",
+        "Marco scrive che arriva domani."
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "reported_speech.tense_shift.present_to_imperfect",
+    "parent_id": "reported_speech.tense_shift",
+    "language_code": "it",
+    "label": "Present becomes imperfect",
+    "description": "A quoted present shifts to the imperfect: 'Sono stanco' becomes Ha detto che era stanco. The structural home of this skill is the imperfect tree's reported-present bucket; items should fire there too.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.imperfect.indirect_speech.reported_present"
+    ],
+    "attributes": {
+      "direction": "production",
+      "common_miss": "Keeping the present ('ha detto che è stanco', acceptable only when the fact still holds and the item context excludes that reading).",
+      "canonical_examples": [
+        "Ha detto che era stanco.",
+        "Mi ha scritto che aveva fame."
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "reported_speech.tense_shift.past_to_trapassato",
+    "parent_id": "reported_speech.tense_shift",
+    "language_code": "it",
+    "label": "Past becomes trapassato",
+    "description": "A quoted passato prossimo shifts to the trapassato: 'Ho già mangiato' becomes Disse che aveva già mangiato. Cites the trapassato machinery rather than re-teaching it.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "tense_choice.trapassato_vs_imperfect"
+    ],
+    "attributes": {
+      "direction": "production",
+      "common_miss": "Leaving the passato prossimo in place ('ha detto che ha già mangiato').",
+      "canonical_examples": [
+        "Ha detto che aveva già mangiato.",
+        "Disse che era arrivata la sera prima."
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "reported_speech.tense_shift.future_to_past_conditional",
+    "parent_id": "reported_speech.tense_shift",
+    "language_code": "it",
+    "label": "Future becomes PAST conditional",
+    "description": "The Italian-specific trap: a quoted future shifts to the past conditional, not the present one. 'Verrò' becomes Ha detto che sarebbe venuto, where English says 'he would come' and lures learners to verrebbe. The diagnostic jewel of the topic.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "core",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.imperfect.indirect_speech.reported_intention"
+    ],
+    "attributes": {
+      "direction": "bidirectional",
+      "common_miss": "The present conditional calque ('ha detto che verrebbe'), and colloquial imperfetto ('ha detto che veniva', fine in speech, not the standard written form).",
+      "authoring_note": "Suggested marker treatment: the imperfetto variant as a graded any_phrases entry at 0.5 with a register note; the present conditional as a full miss with a note.",
+      "canonical_examples": [
+        "Ha detto che sarebbe venuto alla festa.",
+        "Promise che avrebbe telefonato."
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "reported_speech.commands",
+    "parent_id": "reported_speech",
+    "language_code": "it",
+    "label": "Reporting commands: di + infinitive",
+    "description": "Imperatives are reported with di + infinitive: 'Vieni!' becomes Mi ha detto di venire. The formal alternative with che + subjunctive exists but di + infinitive is the everyday target.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "production",
+      "common_miss": "'Mi ha detto che vengo' and 'mi ha detto venire' (the missing di).",
+      "canonical_examples": [
+        "Mi ha detto di venire.",
+        "Ci ha chiesto di aspettare fuori.",
+        "Le ho detto di non preoccuparsi."
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "reported_speech.questions",
+    "parent_id": "reported_speech",
+    "language_code": "it",
+    "label": "Reporting questions: se and the wh-words",
+    "description": "Yes/no questions are reported with se (Mi ha chiesto se venivo); wh-questions keep their question word (Mi ha chiesto dove abitavo). The tense shifts apply as usual, and formal registers allow the subjunctive (chiese se fossi stanco).",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "reported_speech.tense_shift.present_to_imperfect"
+    ],
+    "attributes": {
+      "direction": "production",
+      "common_miss": "Question word order kept inside the report, and 'se' dropped ('mi ha chiesto venivo').",
+      "canonical_examples": [
+        "Mi ha chiesto se venivo alla festa.",
+        "Le ho chiesto dove abitava.",
+        "Chiese se fossimo pronti. (formal)"
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "reported_speech.deixis",
+    "parent_id": "reported_speech",
+    "language_code": "it",
+    "label": "Domani becomes il giorno dopo",
+    "description": "The pointing words travel when the speech moves to another day and place: domani becomes il giorno dopo, ieri il giorno prima, oggi quel giorno, qui lì, questo quello, fra due giorni due giorni dopo. Persons and possessives shift with them.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "demonstrative"
+    ],
+    "attributes": {
+      "direction": "production",
+      "common_miss": "Domani left in place inside a report anchored days later, and possessives failing to shift person.",
+      "canonical_examples": [
+        "'Arrivo domani' → Ha detto che arrivava il giorno dopo.",
+        "'Ci vediamo qui' → Disse che si sarebbero visti lì."
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  }
+]

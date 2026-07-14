@@ -1,0 +1,141 @@
+[
+  {
+    "id": "existential",
+    "parent_id": null,
+    "label": "C'è and ci sono",
+    "description": "Saying that something exists or is present: the existential construction built on esserci (ci + essere), which agrees in number with the thing that exists.",
+    "cefr_importance": {"A1": "core", "A2": "core", "B1": "review", "B2": "review", "C1": "fluency", "C2": "fluency"},
+    "prerequisites": [],
+    "attributes": {
+      "topic_short": "ex",
+      "direction": "bidirectional"
+    }
+  },
+  {
+    "id": "existential.form",
+    "parent_id": "existential",
+    "label": "Forming c'è and ci sono",
+    "description": "Producing the right form of esserci: number agreement, negation, questions, and the past-tense forms.",
+    "cefr_importance": {"A1": "core", "A2": "core", "B1": "review", "B2": "review", "C1": "fluency", "C2": "fluency"},
+    "prerequisites": ["verb_form.present_indicative.formation.irregular.essere"],
+    "attributes": {
+      "direction": "production_only"
+    }
+  },
+  {
+    "id": "existential.form.singular",
+    "parent_id": "existential.form",
+    "label": "C'è with a singular thing",
+    "description": "One thing exists or is present: c'è (ci + è, always elided). C'è un bar in piazza. C'è tempo.",
+    "cefr_importance": {"A1": "core", "A2": "core", "B1": "review", "B2": "review", "C1": "fluency", "C2": "fluency"},
+    "prerequisites": [],
+    "attributes": {
+      "direction": "production_only",
+      "examples": ["C'è un bar in piazza.", "C'è ancora tempo.", "In camera c'è un letto grande."],
+      "common_miss": "Unelided 'ci è', or bare 'è' with no ci ('È un bar in piazza' for existence)."
+    }
+  },
+  {
+    "id": "existential.form.plural",
+    "parent_id": "existential.form",
+    "label": "Ci sono with plural things",
+    "description": "More than one thing exists or is present: ci sono, agreeing with the plural noun. Ci sono due camere libere.",
+    "cefr_importance": {"A1": "core", "A2": "core", "B1": "review", "B2": "review", "C1": "fluency", "C2": "fluency"},
+    "prerequisites": [],
+    "attributes": {
+      "direction": "production_only",
+      "examples": ["Ci sono due camere libere.", "Ci sono molti turisti in agosto.", "Nel frigo ci sono tre uova."],
+      "common_miss": "The classic agreement failure: 'c'è due camere', 'c'è molti turisti'. English 'there's two rooms' encourages it."
+    }
+  },
+  {
+    "id": "existential.form.negative",
+    "parent_id": "existential.form",
+    "label": "Negative: non c'è, non ci sono",
+    "description": "Negating the existential: non goes before the whole cluster. Non c'è tempo. Non ci sono problemi. With nessuno/niente the verb stays singular: Non c'è nessuno.",
+    "cefr_importance": {"A1": "core", "A2": "core", "B1": "review", "B2": "review", "C1": "fluency", "C2": "fluency"},
+    "prerequisites": [],
+    "attributes": {
+      "direction": "production_only",
+      "examples": ["Non c'è tempo.", "Non ci sono problemi.", "Non c'è nessuno in ufficio."],
+      "common_miss": "Placing non after the cluster ('c'è non tempo'), or dropping ci ('non è tempo')."
+    }
+  },
+  {
+    "id": "existential.form.questions",
+    "parent_id": "existential.form",
+    "label": "Questions and short answers",
+    "description": "Asking about existence or presence and answering briefly: C'è Marco? Sì, c'è. / No, non c'è. The presence-of-a-person sense (is Marco in / around) rides on the same form.",
+    "cefr_importance": {"A1": "core", "A2": "core", "B1": "review", "B2": "review", "C1": "fluency", "C2": "fluency"},
+    "prerequisites": [],
+    "attributes": {
+      "direction": "bidirectional",
+      "examples": ["C'è Marco? No, non c'è.", "Ci sono domande?", "Scusi, c'è un bancomat qui vicino?"],
+      "common_miss": "Answering with bare essere: 'Sì, è' instead of 'Sì, c'è'."
+    }
+  },
+  {
+    "id": "existential.form.past",
+    "parent_id": "existential.form",
+    "label": "Past: c'era, c'erano, c'è stato",
+    "description": "Existence in the past: imperfect c'era/c'erano for states and descriptions (C'era una volta...), passato prossimo c'è stato/ci sono stati for events, with the participle agreeing in gender and number (ci sono state due telefonate).",
+    "cefr_importance": {"A1": "preview", "A2": "core", "B1": "core", "B2": "review", "C1": "fluency", "C2": "fluency"},
+    "prerequisites": ["verb_form.imperfect.formation", "verb_form.passato_prossimo"],
+    "attributes": {
+      "direction": "production_only",
+      "examples": ["C'era molta gente alla festa.", "C'erano due lettere per te.", "C'è stato un problema.", "Ci sono state due telefonate."],
+      "common_miss": "Number agreement again ('c'era due lettere'), and participle agreement in the passato prossimo ('ci sono stato due telefonate')."
+    }
+  },
+  {
+    "id": "existential.usage",
+    "parent_id": "existential",
+    "label": "When to use c'è (and when not)",
+    "description": "Choosing the existential against its neighbours: essere for locating known things, ecco for presenting and pointing, plus the fixed expressions built on esserci.",
+    "cefr_importance": {"A1": "core", "A2": "core", "B1": "review", "B2": "review", "C1": "fluency", "C2": "fluency"},
+    "prerequisites": [],
+    "attributes": {
+      "direction": "bidirectional"
+    }
+  },
+  {
+    "id": "existential.usage.vs_essere",
+    "parent_id": "existential.usage",
+    "label": "C'è or è? New things vs known things",
+    "description": "Introducing something new and indefinite takes c'è (C'è un libro sul tavolo); locating something known and definite takes plain essere with the thing as subject (Il libro è sul tavolo). The definiteness of the noun is the main signal.",
+    "cefr_importance": {"A1": "core", "A2": "core", "B1": "core", "B2": "review", "C1": "fluency", "C2": "fluency"},
+    "prerequisites": ["article.definite", "article.indefinite"],
+    "attributes": {
+      "direction": "bidirectional",
+      "examples": ["C'è un libro sul tavolo.", "Il libro è sul tavolo.", "In centro c'è una farmacia. La farmacia è in Via Roma."],
+      "common_miss": "Using è to introduce new entities ('Un libro è sul tavolo' as a translation of 'There is a book on the table').",
+      "authoring_note": "Colloquial availability readings ('C'è il libro sul tavolo' = the book IS there / is available) are grammatical; items must pin context so only one choice is natural."
+    }
+  },
+  {
+    "id": "existential.usage.vs_ecco",
+    "parent_id": "existential.usage",
+    "label": "C'è or ecco? Existing vs pointing",
+    "description": "Ecco presents something arriving or being handed over, here-and-now (Ecco l'autobus!); c'è states that something exists or is around (C'è un autobus ogni dieci minuti). English 'here is / there is' blurs the two.",
+    "cefr_importance": {"A1": "preview", "A2": "core", "B1": "review", "B2": "review", "C1": "fluency", "C2": "fluency"},
+    "prerequisites": [],
+    "attributes": {
+      "direction": "bidirectional",
+      "examples": ["Ecco l'autobus!", "C'è un autobus ogni dieci minuti.", "Ecco il tuo caffè."],
+      "common_miss": "'C'è il tuo caffè' when handing a coffee over, or 'Ecco un autobus ogni dieci minuti' for a timetable fact."
+    }
+  },
+  {
+    "id": "existential.usage.idioms",
+    "parent_id": "existential.usage",
+    "label": "Fixed expressions with esserci",
+    "description": "The everyday idioms built on the same verb: Che c'è? (what's up / what's wrong), Non c'è di che (don't mention it), Ci sei? (are you with me / are you there), Non c'è male (not bad), C'era una volta (once upon a time).",
+    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "review", "C1": "fluency", "C2": "fluency"},
+    "prerequisites": [],
+    "attributes": {
+      "direction": "bidirectional",
+      "examples": ["Che c'è? Niente, sono solo stanco.", "Grazie mille! Non c'è di che.", "Ci sei? Sì, ti sento."],
+      "common_miss": "Reading Che c'è? literally as 'what is there?' rather than 'what's wrong?'."
+    }
+  }
+]

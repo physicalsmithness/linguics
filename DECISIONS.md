@@ -740,3 +740,40 @@ Following the OnlineItalianClub coverage cross-reference (`REFERENCE_coverage_vs
 **How to apply:** launch the four author chats from their dispatch packets when the author-chat bridge is stable; batches return, architect reviews and wires to the manifest; they then appear in the welcome screen's parts list automatically (data-driven).
 
 ---
+
+## 2026-07-14: A1 construction topics committed (existential, piacere), with pronoun-tree deprecations
+
+Two learner-facing trees are live: `existential` (c'è / ci sono, 11 nodes, topic_short ex) and `piacere` (13 nodes, topic_short pia), drafted off-bridge on 2026-07-13 and schema-validated against disk before commit. Boundary rulings: existential owns esserci only, every other life of ci (locative, farcela, volerci) stays with the pronoun tree; piacere owns choosing-the-clitic-in-a-piacere-frame, clitic grammar at large stays with the pronoun tree; the dispiacere false friend lives at piacere.usage.dispiacere (the trap is constructional, not lexical); liking people (mi piaci) is its own leaf at B1-core; the family verbs (mancare, servire, bastare, interessare, sembrare, restare) are one leaf inside piacere, with mancare's direction flip the sharpest diagnostic. Marker ruling: "A me mi piace" earns graded credit 0.5 with a register note, not a flat miss. Three pronoun-tree leaves are deprecated as authoring targets toward the new homes, using the same convention as the nine tense_choice deprecations: pronoun.ci_locative.existential -> existential; pronoun.indirect_object.verbs_taking_iop -> piacere.form.experiencer_clitic; pronoun.indirect_object.verbs_taking_iop.with_essere_in_pp -> piacere.form.past. External_id prefixes claimed: ex_, pia_ (and trans_ variants), verified free.
+
+**Why:** the OIC coverage cross-reference showed these as the last missing A1 staples, and the topic-home-vs-mechanics split follows the established tense_choice precedent: events already logged against the old buckets stay; new items author against the topic home.
+
+**How to apply:** dispatch the two author chats from DISPATCH_existential.md and DISPATCH_piacere.md (each carries a Brief Revision 13 addendum). Neither topic enters data/manifest.json until its first content batch lands (standing no-empty-counts ruling).
+
+---
+## 2026-07-14: A2+ tranche committed (comparison, adverb, passive, si_constructions, reported_speech, pronominal_verbs)
+
+Six trees live (57 nodes total; topic_shorts cmp, adv, pas, si, rep, pv; prefixes verified free). The load-bearing rulings: (1) pronominal verbs get their own learner-facing tree despite existing pronoun-tree leaves, on a cite-not-duplicate contract (the new tree owns meaning and whole-verb conjugation; the pronoun tree keeps clitic mechanics; items cite both; verified leaf-by-leaf at commit, no duplication found). (2) Reported speech is an umbrella topic whose tense-shift leaves double-cite the imperfect tree's reported_present / reported_intention buckets, the tense_choice pattern. (3) Compound-tense adverb placement stays with the PP tree's existing bucket. (4) The passive-vs-si-passivante discrimination lives in the passive tree; the si tree cites it. (5) Reflexive si stays in the pronoun tree; si_constructions.usage.which_si tests recognition only. (6) Si-passivante agreement cross-links existential.form.plural (same number instinct, same miss). Graded-credit rulings: "ha detto che veniva" (colloquial imperfetto for future-in-the-past) at 0.5 with a register note; "questo libro è meglio" (meglio as adjective) at 0.5 with a register note; "è pagato" and "viene pagato" both full credit in simple-tense passive rewrites unless context forces one. All eight new dispatches carry a Rev-13 addendum: named suppress-list per topic (criterion 15), candidate_tenses for reported_speech shifts and existential c'era/c'è stato items (criterion 16), the English-translation requirement (criterion 17), and a note that the worked examples predate Rev 13.
+
+**Why:** these are the sentence-level structures the OIC cross-reference flagged as our second-tier gap; the boundary rulings keep one bucket per skill while giving learners findable topic homes.
+
+**How to apply:** commit order mattered (noun-phrase trees, then the A1 pair, then this tranche) and is satisfied. Dispatch author chats as capacity allows; manifest wiring waits for content per topic. CEFR bands remain informed defaults pending the Profilo grounding pass in OPEN_QUESTIONS.
+
+---
+## 2026-07-14: Accent-as-morpheme carve-out in the grammar marker (proposed to Housing)
+
+Where the accent is the only person distinction (parlerò/parlerà in the futuro, parlò vs present parlo in the remoto), the marker's soft accent guard currently credits the wrong person at full marks. Proposed mechanism, in inter_chat/Architecture_Housing_accent_as_morpheme.md v1: a markpoint-level `accent_load_bearing: true` flag disables the accent-folded fallback for that markpoint, letting the unaccented twin fall through to a noted must_not_include. Everywhere else the soft guard stays.
+
+**Why:** the OIC drill (REFERENCE_oic_exercise_drill.md, futuro batch) surfaced accent-as-morpheme as a deliberate grading rule; our blanket softness inverts it exactly where it matters most.
+
+**How to apply:** Housing implements the flag; then retrofit asks go to FutureAuthor and PassatoRemotoAuthor for person-distinguishing items, plus a brief amendment so new items in those families carry the flag from authoring.
+
+---
+## 2026-07-14: Estate hygiene adopted (UPDATES.md ticker; WEB_KIT compliance thread)
+
+Two adoptions from the MetaProject constitution read. UPDATES.md now exists as the one-line ticker (estate convention, ECM d040): every seat appends a line when it writes shared state. And the housing's live page is missing the entire WEB_KIT layer (GA4 G-WKYGJYERSR, Clarity xdr2tsc688, feedback widget): thread opened at inter_chat/Architecture_Housing_webkit_ga4_feedback_clarity.md, GA4 + Clarity immediately actionable, the feedback widget pending the estate's shared drop-in.
+
+**Why:** GA4-on-everything is a no-exceptions estate policy (Smith, 2026-06-21), and the ticker is the cheapest defence against seats posting over unread state.
+
+**How to apply:** all Linguics seats append to UPDATES.md on every shared-state write, starting now.
+
+---

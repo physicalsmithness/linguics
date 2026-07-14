@@ -1,0 +1,361 @@
+[
+  {
+    "id": "piacere",
+    "parent_id": null,
+    "language_code": "it",
+    "label": "Piacere: saying what you like",
+    "description": "The liking construction, where the thing you like is the grammatical subject and the person doing the liking is an indirect object: mi piace la pizza is literally 'the pizza is pleasing to me'. The single biggest structural flip for English speakers at A1.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "topic_short": "pia",
+      "direction": "bidirectional",
+      "is_aggregate": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "piacere.form",
+    "parent_id": "piacere",
+    "language_code": "it",
+    "label": "Building piacere sentences",
+    "description": "Producing the pieces: the verb agreeing with the liked thing, the experiencer as clitic or a-phrase, the infinitive pattern, and the past with essere.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.present_indicative.formation"
+    ],
+    "attributes": {
+      "direction": "production",
+      "is_aggregate": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "piacere.form.agreement",
+    "parent_id": "piacere.form",
+    "language_code": "it",
+    "label": "Piace or piacciono? Agreeing with the liked thing",
+    "description": "The verb agrees with what is liked, not with who likes it: mi piace la pizza (singular) but mi piacciono gli spaghetti (plural).",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "production",
+      "common_miss": "'Mi piace i libri' and 'mi piacciono la pizza': agreement copied from the experiencer or just ignored.",
+      "canonical_examples": [
+        "Mi piace la pizza.",
+        "Mi piacciono gli spaghetti.",
+        "Ti piacciono i film dell'orrore?"
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "piacere.form.with_infinitive",
+    "parent_id": "piacere.form",
+    "language_code": "it",
+    "label": "Piace + infinitive",
+    "description": "When what you like is an activity, the verb is always singular piace followed by the infinitive, even if the infinitive has a plural object: mi piace leggere i libri, never piacciono leggere.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "production",
+      "common_miss": "'Mi piacciono leggere i gialli': the plural bait after the infinitive.",
+      "canonical_examples": [
+        "Mi piace nuotare.",
+        "Ci piace viaggiare insieme.",
+        "Mi piace leggere i gialli."
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "piacere.form.experiencer_clitic",
+    "parent_id": "piacere.form",
+    "language_code": "it",
+    "label": "Who likes it: mi, ti, gli, le, Le, ci, vi",
+    "description": "The person doing the liking is an indirect object clitic before the verb: mi, ti, gli (to him / to them), le (to her), Le (formal you), ci, vi.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "pronoun.indirect_object"
+    ],
+    "attributes": {
+      "direction": "production",
+      "common_miss": "gli/le swapped, or a subject pronoun where the clitic belongs ('io piace').",
+      "canonical_examples": [
+        "Le piace il caffè? (formal)",
+        "Gli piace la musica jazz.",
+        "Vi piacciono le lasagne?"
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "piacere.form.experiencer_a_phrase",
+    "parent_id": "piacere.form",
+    "language_code": "it",
+    "label": "A Marco piace: the a-phrase experiencer",
+    "description": "Named or contrasted experiencers use a + noun or stressed pronoun instead of the clitic: A Marco piace il calcio. A me piace, a lei no. Using both at once (a me mi piace) is common in speech but redundant in standard Italian.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "production",
+      "common_miss": "Dropping the a ('Marco piace il calcio', which actually means people like Marco), and the redundant 'a me mi piace'.",
+      "authoring_note": "Suggested marker treatment for 'a me mi piace': graded any_phrases entry at credit 0.5 with a register note, not a flat miss. Architect ruling recorded in the dispatch.",
+      "canonical_examples": [
+        "A Marco piace il calcio.",
+        "A mia madre non piacciono i gatti.",
+        "A me piace, a lei no."
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "piacere.form.past",
+    "parent_id": "piacere.form",
+    "language_code": "it",
+    "label": "Past: mi è piaciuto, mi sono piaciuti",
+    "description": "In the passato prossimo piacere takes essere, and the participle agrees with the liked thing: il film mi è piaciuto, le scarpe non mi sono piaciute. Two agreement decisions in one small sentence.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.passato_prossimo.auxiliary",
+      "verb_form.passato_prossimo.participle_agreement.with_essere"
+    ],
+    "attributes": {
+      "direction": "production",
+      "common_miss": "avere as auxiliary ('mi ha piaciuto'), and the participle left masculine singular regardless of the liked thing.",
+      "canonical_examples": [
+        "Il film mi è piaciuto molto.",
+        "Le scarpe non mi sono piaciute.",
+        "Ti è piaciuta la festa?"
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "piacere.usage",
+    "parent_id": "piacere",
+    "language_code": "it",
+    "label": "Using piacere well",
+    "description": "The traps around the construction: the English subject flip, liking people, agreeing and disagreeing with someone's likes, the dispiacere false friend, and the wider family of verbs that behave the same way.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "bidirectional",
+      "is_aggregate": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "piacere.usage.subject_flip",
+    "parent_id": "piacere.usage",
+    "language_code": "it",
+    "label": "The 'I like' trap",
+    "description": "Mapping English 'I like X' word-for-word produces io piaccio X, which is wrong (and piaccio actually means 'I am likeable / people like me'). The liked thing is the subject; the liker is an indirect object. This is the diagnostic heart of the topic.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "bidirectional",
+      "common_miss": "'Io piaccio la pizza', 'io piace', 'piaccio la pizza': the subject flip in every variant.",
+      "canonical_examples": [
+        "Mi piace il mare. (not 'Io piaccio il mare')",
+        "Ci piacciono queste canzoni."
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "piacere.usage.liking_people",
+    "parent_id": "piacere.usage",
+    "language_code": "it",
+    "label": "Mi piaci: liking people",
+    "description": "When the liked thing is a person, the verb conjugates for that person: mi piaci (I like you), ti piaccio? (do you like me?), le piaci (she likes you). Recognition of these forms is a distinct skill from the mi piace pattern.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "bidirectional",
+      "common_miss": "Reading 'mi piaci' as 'you like me' (it is the reverse), and producing 'ti piaccio' when 'mi piaci' is meant.",
+      "canonical_examples": [
+        "Mi piaci.",
+        "Ti piaccio?",
+        "Secondo me le piaci."
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "piacere.usage.agreeing_responses",
+    "parent_id": "piacere.usage",
+    "language_code": "it",
+    "label": "Anche a me, neanche a me",
+    "description": "Agreeing or disagreeing with someone's likes keeps the a-phrase: Mi piace il gelato. Anche a me (not anch'io). Non mi piace. Neanche a me. Contrast uses a me sì / a me no.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "piacere.form.experiencer_a_phrase"
+    ],
+    "attributes": {
+      "direction": "bidirectional",
+      "common_miss": "'Anch'io' in reply to 'mi piace...': the subject-pronoun reply English invites.",
+      "canonical_examples": [
+        "Mi piace il gelato. Anche a me!",
+        "Non mi piacciono i cavoli. Neanche a me.",
+        "A me sì, a lui no."
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "piacere.usage.dispiacere",
+    "parent_id": "piacere.usage",
+    "language_code": "it",
+    "label": "Dispiacere is not 'to dislike'",
+    "description": "Mi dispiace means 'I'm sorry', not 'I dislike it'. Dislike is non mi piace. And non mi dispiace is understatement for mild liking ('I don't mind it / I quite like it'). Ti dispiace + infinitive is a polite request.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "bidirectional",
+      "common_miss": "'Mi dispiace il pesce' for 'I dislike fish', and reading 'non mi dispiace' as indifference rather than mild approval.",
+      "canonical_examples": [
+        "Mi dispiace, non posso venire.",
+        "Questo vino non mi dispiace.",
+        "Ti dispiace chiudere la finestra?"
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "piacere.usage.family_verbs",
+    "parent_id": "piacere.usage",
+    "language_code": "it",
+    "label": "Verbs that work like piacere",
+    "description": "The same experiencer-flip construction runs through mancare (mi manchi: I miss you), servire (mi servono due uova), bastare, interessare, sembrare, restare. Once piacere clicks, this family comes almost free, and mancare's direction flip (mi manchi = I miss you, not you miss me) is the sharpest test of whether it really has.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "piacere.usage.subject_flip"
+    ],
+    "attributes": {
+      "direction": "bidirectional",
+      "common_miss": "'Ti manco' produced for 'I miss you': the direction flip failing on mancare even when piacere is secure.",
+      "canonical_examples": [
+        "Mi manchi.",
+        "Mi servono due uova.",
+        "Ti interessa la storia?",
+        "Mi sembra giusto."
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  }
+]

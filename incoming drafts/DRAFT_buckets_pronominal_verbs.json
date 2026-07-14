@@ -1,0 +1,107 @@
+[
+  {
+    "id": "pronominal_verbs",
+    "parent_id": null,
+    "label": "Pronominal verbs: farcela, andarsene and friends",
+    "description": "The verbs whose clitics are part of the word: farcela (to manage), andarsene (to leave), cavarsela (to get by), prendersela (to take offence), volerci (to take/require). The learner-facing topic home for their meaning and conjugation; the clitic mechanics themselves live in the pronoun tree and are cited, not re-owned.",
+    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
+    "prerequisites": ["pronoun.reflexive", "pronoun.ne", "pronoun.ci_locative"],
+    "attributes": {"topic_short": "pv", "direction": "bidirectional"}
+  },
+  {
+    "id": "pronominal_verbs.mechanics",
+    "parent_id": "pronominal_verbs",
+    "label": "Conjugating them",
+    "description": "The three families by their frozen clitic: -sela verbs, -sene verbs, and the ci verbs.",
+    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
+    "prerequisites": [],
+    "attributes": {"direction": "production_only"}
+  },
+  {
+    "id": "pronominal_verbs.mechanics.sela_type",
+    "parent_id": "pronominal_verbs.mechanics",
+    "label": "-sela verbs: me la cavo, ce l'ho fatta",
+    "description": "Cavarsela, prendersela, sentirsela, godersela, and farcela's past: the reflexive part conjugates (me, te, se, ce, ve, se) while la stays frozen, and in compound tenses the participle is invariably feminine because it agrees with la: se l'è cavata, ce l'abbiamo fatta.",
+    "cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
+    "prerequisites": ["pronoun.combined"],
+    "attributes": {
+      "direction": "production_only",
+      "examples": ["Me la cavo in cucina.", "Non prendertela!", "Se l'è cavata bene.", "Ce l'ho fatta!"],
+      "common_miss": "The participle agreeing with the subject instead of la ('ce l'ho fatto', 'se l'è cavato'), and the reflexive part left unconjugated ('si la cava' for 'me la cavo')."
+    }
+  },
+  {
+    "id": "pronominal_verbs.mechanics.sene_type",
+    "parent_id": "pronominal_verbs.mechanics",
+    "label": "-sene verbs: me ne vado",
+    "description": "Andarsene, starsene, fregarsene: reflexive + ne, with the vowel change (mi diventa me) and essere in compound tenses, participle agreeing with the subject: se n'è andata. The clitic mechanics live in the pronoun tree's ne buckets.",
+    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
+    "prerequisites": ["pronoun.ne.motion_andarsene", "pronoun.ne.pronominal_idiomatic_verbs"],
+    "attributes": {
+      "direction": "production_only",
+      "examples": ["Me ne vado.", "Se n'è andata senza salutare.", "Me ne sto a casa stasera."],
+      "common_miss": "'Mi ne vado' (the unshifted vowel), and avere in the compound ('se n'ha andato')."
+    }
+  },
+  {
+    "id": "pronominal_verbs.mechanics.ci_type",
+    "parent_id": "pronominal_verbs.mechanics",
+    "label": "Ci verbs: ci vuole, ci metto, ce l'ho",
+    "description": "Volerci (agreeing with what is required: ci vuole un'ora, ci vogliono due ore), metterci (personal subject: ci metto un'ora), entrarci (non c'entra niente), tenerci, avercela con, vederci and sentirci. Ci becomes ce before la/lo/ne. The clitic mechanics live in the pronoun tree's locative-ci idiom buckets.",
+    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
+    "prerequisites": ["pronoun.ci_locative.idiomatic_verbs"],
+    "attributes": {
+      "direction": "production_only",
+      "examples": ["Ci vogliono due ore.", "Quanto ci metti?", "Non c'entra niente.", "Ci tengo molto."],
+      "common_miss": "Volerci left singular with a plural requirement ('ci vuole due ore'), and 'ci l'ho' for 'ce l'ho'."
+    }
+  },
+  {
+    "id": "pronominal_verbs.meaning",
+    "parent_id": "pronominal_verbs",
+    "label": "What they mean",
+    "description": "The meanings are lexical and mostly untransparent; recognising and choosing them is a separate skill from conjugating them.",
+    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
+    "prerequisites": [],
+    "attributes": {"direction": "bidirectional"}
+  },
+  {
+    "id": "pronominal_verbs.meaning.core_set",
+    "parent_id": "pronominal_verbs.meaning",
+    "label": "The core set, recognised",
+    "description": "Farcela = to manage; andarsene = to leave; cavarsela = to get by; prendersela = to take offence; sentirsela = to feel up to it; avercela con = to have it in for; entrarci = to have to do with it. Reading these correctly in context is high-value comprehension from B1 on.",
+    "cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
+    "prerequisites": [],
+    "attributes": {
+      "direction": "bidirectional",
+      "examples": ["Non ce la faccio più.", "Perché ce l'hai con me?", "Non me la sento di guidare stanotte.", "Questo non c'entra."],
+      "common_miss": "Literal readings: 'non ce la faccio' parsed as making something, 'ce l'ha con me' as possession."
+    }
+  },
+  {
+    "id": "pronominal_verbs.meaning.volerci_vs_metterci",
+    "parent_id": "pronominal_verbs.meaning",
+    "label": "Volerci or metterci?",
+    "description": "Both say how long things take, differently: volerci is impersonal and agrees with the time required (ci vogliono due ore per arrivare); metterci has a personal subject (io ci metto due ore). Swapping frames is the classic B1 miss.",
+    "cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
+    "prerequisites": ["pronominal_verbs.mechanics.ci_type"],
+    "attributes": {
+      "direction": "bidirectional",
+      "examples": ["Ci vogliono due ore per arrivare a Roma.", "Io ci metto due ore con il traffico.", "Quanto tempo ci vuole?"],
+      "common_miss": "'Io ci voglio due ore' and 'ci mette due ore per arrivare' with no personal subject in view."
+    }
+  },
+  {
+    "id": "pronominal_verbs.meaning.ce_lho_possession",
+    "parent_id": "pronominal_verbs.meaning",
+    "label": "Ce l'ho: the have-it answer",
+    "description": "Everyday possession answers demand the ce: Hai una penna? Sì, ce l'ho. Bare 'l'ho' sounds unfinished and 'ho' alone answers nothing. Frozen, extremely frequent, and taught nowhere near as early as it is needed.",
+    "cefr_importance": {"A1": "arcane", "A2": "core", "B1": "core", "B2": "review", "C1": "fluency", "C2": "fluency"},
+    "prerequisites": ["pronoun.combined"],
+    "attributes": {
+      "direction": "bidirectional",
+      "examples": ["Hai una penna? Sì, ce l'ho.", "Ce l'hai il biglietto?", "No, non ce l'ho."],
+      "common_miss": "'Sì, l'ho' and 'sì, ho': the missing ce, plus 'ci l'ho' for 'ce l'ho'."
+    }
+  }
+]

@@ -123,12 +123,15 @@
       }
       if (hasClauses) {
         if (!filter.clauses.some(c => itemMatchesClause(q, c))) return false;
-      } else {
-        if (filter.topic && q.topic !== filter.topic) return false;
-        if (filter.bucketPath) {
-          const buckets = getItemBuckets(q);
-          if (!buckets.some(b => bucketUnder(b, filter.bucketPath))) return false;
-        }
+      } else if (filter.topic && q.topic !== filter.topic) {
+        return false;
+      }
+      // Drill bucketPath is an ADDITIONAL constraint applied in both branches, so
+      // drilling into a bucket narrows a composed (clauses) session too, not only
+      // a scalar one. See inter_chat/Architecture_Housing_drill_filter_not_applied.md.
+      if (filter.bucketPath) {
+        const buckets = getItemBuckets(q);
+        if (!buckets.some(b => bucketUnder(b, filter.bucketPath))) return false;
       }
       return true;
     });
@@ -258,16 +261,28 @@
     banner.appendChild(clearBtn);
     return banner;
   }
+  // Deck rebuild keys on the full filter SIGNATURE, not the filtered length: two
+  // different filters can yield the same count, and a length-only check then
+  // serves stale items. See inter_chat/Architecture_Housing_drill_filter_not_applied.md.
+  function filterSig(f) {
+    return JSON.stringify([f.topic, f.cefr, f.bucketPath, f.clauses || null, f.cefrRange || null]);
+  }
+  let _grammarDeckSig = null;
   function ensureGrammarDeck() {
-    const filtered = applyFilter(grammarQuestions, grammarFilter);
-    if (grammarDeck.length !== filtered.length) {
-      grammarDeck = shuffle(filtered);
+    const sig = filterSig(grammarFilter);
+    if (sig !== _grammarDeckSig || grammarDeck.length === 0) {
+      grammarDeck = shuffle(applyFilter(grammarQuestions, grammarFilter));
+      if (sig !== _grammarDeckSig) grammarIndex = 0;   // filter changed -> restart position
+      _grammarDeckSig = sig;
     }
   }
+  let _translationDeckSig = null;
   function ensureTranslationDeck() {
-    const filtered = applyFilter(translationItems, translationFilter);
-    if (translationDeck.length !== filtered.length) {
-      translationDeck = shuffle(filtered);
+    const sig = filterSig(translationFilter);
+    if (sig !== _translationDeckSig || translationDeck.length === 0) {
+      translationDeck = shuffle(applyFilter(translationItems, translationFilter));
+      if (sig !== _translationDeckSig) translationIndex = 0;
+      _translationDeckSig = sig;
     }
   }
   function uniqueValues(arr, key) {
@@ -1060,7 +1075,7 @@
     const doNext = () => {
       grammarIndex++;
       if (grammarIndex >= grammarDeck.length) {
-        grammarDeck = shuffle(grammarQuestions);
+        grammarDeck = shuffle(applyFilter(grammarQuestions, grammarFilter));
         grammarIndex = 0;
       }
       renderGrammar();
@@ -1280,7 +1295,7 @@
     const doNext = () => {
       translationIndex++;
       if (translationIndex >= translationDeck.length) {
-        translationDeck = shuffle(translationItems);
+        translationDeck = shuffle(applyFilter(translationItems, translationFilter));
         translationIndex = 0;
       }
       renderTranslation();
