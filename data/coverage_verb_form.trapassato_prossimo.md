@@ -1,8 +1,9 @@
 # Coverage: verb_form.trapassato_prossimo (formation branch)
 
 **Author:** PluperfectAuthor (formation dispatch, `DISPATCH_trapassato_formation.md`)
-**Date:** 2026-06-09
-**Brief:** AUTHOR_BRIEF.md Revision 9
+**Date:** 2026-06-09; reconciled to brief Rev 19 on 2026-07-15
+**Brief:** authored against AUTHOR_BRIEF.md Revision 9; reconciled to Revision 19 (see "Rev 19 reconciliation" below)
+**Open threads:** `inter_chat/Architecture_PluperfectAuthor_breadcrumb_label_leak.md` (CLOSED v2, labels shortened at source); `inter_chat/Architecture_PluperfectAuthor_rev19_reconciliation.md` (retrofit report + the wrong-person auxiliary ruling)
 **Scope:** formation only. Two leaves: the avere auxiliary and the essere auxiliary. Usage and discrimination are left at the stubs owned by later dispatches (TrapassatoUsage, TenseChoice).
 
 ## Headline
@@ -76,7 +77,21 @@ So the call hinges on what the breadcrumb actually surfaces. I have left the fla
 ## Items flagged uncertain
 
 - **tpp_es_nato_01** ("Il nonno raccontava che ____ in un piccolo paese"): the reported-clause context ("raccontava che") pins a past-before-past in standard backshift, but a determined reader could argue for a passato remoto ("nacque") in a literary register. The item is formation, not discrimination, and the answer is unambiguously the pluperfect form here, so I kept it; flagging in case the reviewer wants the anteriority sharpened with an explicit prior anchor.
-- **The "person, not just tense" question on the essere auxiliary markpoint.** That markpoint tests imperfect-versus-present, and it matches the auxiliary word; it does not separately penalise a wrong-person imperfect auxiliary (for example "eravamo" written on an "era" item), which would land in the passato prossimo person-agreement bucket rather than here. The prompt's subject scaffolds the person, so I judged this acceptable, but if the project wants wrong-person auxiliaries caught in this tree, that is a small change to the matching and worth a ruling.
+- ~~**The "person, not just tense" question on the essere auxiliary markpoint.**~~ **RESOLVED 2026-07-15 by criterion 18 (brief Rev 15); see the reconciliation section below.** The original note judged it acceptable that the auxiliary markpoint did not penalise a wrong-person imperfect auxiliary ("eravamo" on an "era" item), on the grounds that the prompt's subject scaffolds the person. That judgement was wrong, and criterion 18 shows why: the markpoint did not merely fail to penalise "eravamo", it **actively credited** it, because the unanchored phrase "era" substring-matched inside "eravamo". This was a false positive, not a tolerated gap. Anchoring the phrase (`match_at: "word"`) resolves it: the wrong-person auxiliary now records a clean miss on this tree's leaf. Reported to Architecture in the reconciliation thread rather than left in this doc (brief Rev 18).
+
+## Rev 19 reconciliation (2026-07-15, PluperfectAuthor)
+
+The batch was authored against brief Rev 9 and shipped 2026-06-09. The brief has since reached Rev 19. Reconciliation pass; thread `inter_chat/Architecture_PluperfectAuthor_rev19_reconciliation.md`.
+
+**Criterion 18 (Rev 15, superstring safety) — a live marking bug, now fixed.** The batch shipped with **zero** anchored phrases and was not among the seven batches swept by the 2026-07-14 retro-audit. 27 item-phrase pairs were exposed. Two mattered: the bare `era` phrase sits inside `erano` / `eravamo` / `eravate`, and bare `aveva` sits inside `avevano` / `avevamo` / `avevate`. Because the engine checks `any_phrases` before `must_not_include` and a positive match wins, a learner writing "eravamo andati" on an `era` item scored **full credit on the auxiliary markpoint**. All 140 phrases (52 `any_phrases` + 88 `must_not_include`) now carry per-phrase `match_at: "word"`, the criterion-18 default. Verified by simulation against a port of the shipped `norm()` / `occursAt()`: all 34 correct answers still score full marks; "eravamo andati" on `tpp_es_lui_andato_01` drops 1.0/2.0 → 0.0/2.0; "l'avevano fatta" on `tpp_av_dop_la_01` drops 2.0/2.0 → 1.0/2.0 with the auxiliary missing and the agreement still hitting, which is the per-skill decomposition criterion 8 asks for. Elision is safe: `norm()` folds the apostrophe to a space, so `l'aveva fatta` still marks 2/2 under word anchoring.
+
+**Criterion 17 (Rev 13, explanations translate the sentence) — applied to all 34.** Every explanation now opens with the completed correct sentence and its natural English gloss in the house shape (`'<Italian>' means '<English>.'`), followed by the existing four-beat working, which is unchanged. Versions bumped. Glosses verified programmatically against each prompt skeleton and each markpoint's correct form (0 divergences).
+
+**Criterion 19 (Rev 16, accent as morpheme) — not applicable, confirmed.** No `any_phrase` in this tree carries an accent, so no answer has an accent-stripped twin that is itself a plausible answer. This is Rev 16's explicit do-nothing branch (`e` for `è`). The `è andato` guards stay as full forms, which is what the original batch reasoned and remains right.
+
+**Rev 17 (ii) (no `must_not_include` inside a plausible correct attempt) — clean.** Audited all 88 guard entries against each item's plausible correct attempt: zero violations.
+
+**Criterion 15 / Rev 19 recoverability — no change.** Architecture ruled these items breadcrumb-visible (see above). Rev 19's recoverability condition does not disturb that: these are formation items whose base form the cue supplies, and the label names the auxiliary, not the diagnostic.
 
 ## Suggestions
 

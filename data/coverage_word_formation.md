@@ -1,7 +1,11 @@
 # Coverage: Word formation (`word_formation`, topic_short `wf`)
 
 Author: WordFormationAuthor. Dispatch: `DISPATCH_word_formation.md`. Brief: AUTHOR_BRIEF Revision 16.
-First pass, 2026-07-15. Outputs: `grammar_questions_word_formation.json` (30), `translation_items_word_formation.json` (11), `glossary_suggestions_word_formation.json` (6 terms), `bucket_suggestions_word_formation.json` (1).
+First pass, 2026-07-15; reconciled Brief Rev 16 -> Rev 19 the same day. Batch ACCEPTED by Architecture.
+
+**Thread (the channel, per Rev 18): `inter_chat/Architecture_WordFormationAuthor_batch_disposition.md` (v2, OPEN, 6 asks pending).** The sections below are the record; the asks live in the thread.
+
+Outputs: `grammar_questions_word_formation.json` (30), `translation_items_word_formation.json` (11), `glossary_suggestions_word_formation.json` (6 terms), `bucket_suggestions_word_formation.json` (1).
 
 ## Bucket-to-item counts
 
@@ -34,13 +38,16 @@ Every active leaf cleared the brief's 2-5-per-leaf floor. Falsi and augmentative
 
 ## Marker safety (criterion 18)
 
-- 29 of 33 grammar any_phrases are `match_at: "word"` anchored. The four unanchored are full answer phrases containing a space (`il portone`, `il macchinone`, `ex marito`) plus one hyphenated variant (`ex-marito`).
+- All 32 grammar any_phrases are `match_at: "word"` anchored (uniform anchoring applied on the Rev 17 reconciliation; must_not_include likewise).
+- **Rev 17 (ii) audit CLEAN**: no must_not_include entry is a substring of its item's correct answer, checked against a port of the shipped `norm()`. must_not_include is else-if gated behind the positive match in grammar_engine.js, so a present correct phrase always wins first.
+- **Rev 19 recoverability audit CLEAN**: all 13 suppressed items are forced choices whose two options appear verbatim in the prompt, so the candidate set is recoverable pre-answer and suppression remains legitimate. None is a bene/buono-style unrecoverable lexeme choice.
 - Bases are never used as bare any_phrases, so the "base inside its own alterato" hazard (tavolo inside tavolino) does not arise: produce-the-alterato answers are the long form.
 - Gender-shift items list the wrong-gender form (`la portona`, `la macchinona`) in must_not_include, anchored, so a gender miss is attributed, not silently dropped.
 
 ## Flagged / uncertain items (for review)
 
-- **wf_pref_ex_01** accepts `ex-marito` (hyphen) as a plain, unanchored any_phrase. Reviewed as benign: no plausible wrong attempt embeds it, and the spaced form `ex marito` will not substring-match the hyphen spelling, so both are needed. Confirm the engine's `match_at: word` treats a hyphen as a boundary if you would rather anchor it.
+- **wf_pref_ex_01 hyphen question: RESOLVED, ask withdrawn.** `norm.js` folds hyphen to space (`t.replace(/-/g, " ")`), so `ex-marito` normalises to `ex marito`: the spaced any_phrase already catches the hyphen spelling and the separate `ex-marito` entry was a norm-duplicate. Dropped; `ex marito` word-anchored.
+- **Rev 17 (iii) candidate_forms: held, ruling requested in the thread.** The binary items (falsi vero/indipendente, affetto/statura, quality/size, vero/falso) are two-option discriminations, but the options are classification labels rather than candidate forms of a lexeme, which is what the Rev 17 (iii) precedents (suo referent, questo/quello) address. Not added unilaterally across the 16 affected items.
 - **Three forced-choice items** (wf_dim_03, wf_pej_03, wf_pref_int_05) and the falsi set are authored as `type: short` with the two options named in the prompt, following the dispatch worked example. If the housing would render these better as `mcq`, they convert cleanly. Flagging the format choice, not the content.
 - **tavolino as "vero alterato"** (wf_falsi_07): defensible because the base "small table" survives even in the lexicalised side-table sense, but it sits near the falso/lexicalised line. If you would rather teach it as lexicalised-independent, move it to the falsi-"ind" side.
 - **montone as falso** (wf_falsi_08): etymologically not from monte; kept as a shape-only lookalike. Confirm you are happy teaching it in the falsi set rather than dropping it.
@@ -54,5 +61,5 @@ Every active leaf cleared the brief's 2-5-per-leaf floor. Falsi and augmentative
 - **relational_adjectives** stub still open (the -ale/-are/-istico/-oso derivation family and Latinate pairs like fegato > epatico). Larger and overlaps the adjective topic; worth its own scoping.
 - **Deliberately omitted borderline falsi**: postino, rossetto, mulino, matterello. Available if a second pass wants more falsi volume.
 - **Suffix inventory**: the diminutives leaf label lists -ino/-etto/-ello/-uccio; the dispatch scope also names -otto. No -otto item yet (few clean, non-lexicalised bases). Flag if you want it covered explicitly.
-- **glossary_suggestions**: 6 terms (alterato, diminutivo, accrescitivo, peggiorativo, falso alterato, prefisso intensivo) to review and merge into glossary.json (v4). "lexicalised" already exists and was reused.
+- **glossary_suggestions NOT YET MERGED** (checked 2026-07-15: glossary.json is at v5/111 terms, none of the six present). Every explanation in this topic names these as its four-beat term and relies on the tooltip, so the terms are currently unexpandable. Raised as ask #1 in the thread. "lexicalised" already exists and was reused.
 - **Cross-topic**: intensifiers cite `comparison` (the absolute-superlative frame) as prerequisite/optional-bucket per the dispatch. No comparison items authored here; comparison owns arcistufo-as-superlative classification.

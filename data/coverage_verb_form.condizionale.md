@@ -2,14 +2,31 @@
 
 **Dispatch:** ConditionalFormation (formation branch only; usage and discrimination left as stubs for later dispatches).
 **Author:** ConditionalFormationAuthor
-**Date:** 2026-06-09
-**Brief revision applied:** AUTHOR_BRIEF Rev 9.
+**Date:** 2026-06-09; reconciled to Rev 19 on 2026-07-15.
+**Brief revision applied:** authored against AUTHOR_BRIEF Rev 9; **reconciled to Rev 19** (see "Rev 19 reconciliation" below).
+**Threads (Rev 18: this doc is the record, the threads are the channel):**
+- `inter_chat/Architecture_ConditionalFormationAuthor_batch_delivery.md` — delivery, the reconciliation, and the five asks in "Items flagged uncertain" below.
+- `inter_chat/Architecture_ConditionalFormationAuthor_breadcrumb_label_leak.md` — the leaf labels spell the double-m / double-b answer (Rev 12 retrofit missed this tree).
+- `inter_chat/Architecture_ConditionalFormationAuthor_broken_usage_citations.md` — three imperfect-batch citations into this tree do not resolve.
 
 **Totals:** 49 grammar questions + 19 translation items (EN→IT only), of which **33 grammar items carry `info_display: "suppress"`** (see chip-suppression section). Every active formation leaf is covered; no zero-coverage leaves. The usage and discrimination branches were left untouched (they are stubs owned by ConditionalUsage and TenseChoice). No new buckets were needed, so `bucket_suggestions_verb_form.condizionale.json` is empty. One glossary term is proposed (the conditional perfect / condizionale passato); three more that the explanations lean on are already proposed by sibling dispatches and were not re-proposed (see the glossary note at the end).
 
 All translation items are EN→IT, because the formation buckets are `direction: "production"`: a conditional formation bucket only fires when the learner *produces* the Italian conditional form. IT→EN would not exercise formation.
 
 The governing idea, per the dispatch: **the conditional is built on the exact same stem as the future**, with a different set of endings (-ei, -esti, -ebbe, -emmo, -este, -ebbero). So the weight here is on the endings and on reusing the future stems, not on new stems. Every explanation says so explicitly ("the future stem you already know, plus these endings").
+
+---
+
+## Rev 19 reconciliation (2026-07-15)
+
+The batch was authored against Rev 9 and reconciled to Rev 19 today. It was not part of the Rev 15 retro-audit that anchored 53 phrases across seven live batches, so it carried the criterion-18 exposure until now.
+
+- **Criterion 18 (Rev 15, plus Rev 17's third direction): one real defect, fixed.** Ten items accepted a bare 3sg `-ebbe` phrase that is a substring of its own 3pl `-ebbero` form, so a wrong-person plural attempt (`sarebbero` on a `sarebbe` item) scored **full credit**. All 155 phrases in the batch now carry per-phrase `match_at: "word"` on both `any_phrases` and `must_not_include`. Proved by simulating the marker against each 3pl twin: credited-before → not-credited-after on all ten. The doubled-letter guards were already structurally safe in the other direction (a single-letter form is never a substring of its double-letter twin, so `abiteremo` never matched inside `abiteremmo`), and no `must_not_include` entry fires on a plausible correct attempt.
+- **Criterion 17 (Rev 13): applied to all 49.** Every grammar explanation now opens with the completed correct sentence quoted, followed by a natural English translation in parentheses, then the existing four-beat working. Item versions bumped to 2.
+- **Criterion 19 (Rev 16, accent as morpheme): no action, deliberately.** The simple conditional carries no final accent (parlerei, not parlerò), so no accent-stripped form is a rival answer to any prompt here. The conditional is the one half of the future/conditional pair that escapes the accent retrofit its siblings needed. This supersedes the accent caveat in "Items flagged uncertain" #2 below, which is now closed.
+- **Criterion 15 recoverability (Rev 19): no change, all 33 suppressions stand.** Every item is a formation item whose base form the cue supplies, so the candidate set is recoverable pre-answer and suppress-by-default applies. The different-lexeme case Rev 19 carves out (bene/buono) does not arise in this tree.
+- **Criteria 16 / 17(iii) (candidate_tenses, candidate_forms): not applicable.** Both bind discrimination and tense_choice items; this batch authors none (they are stubs).
+- **Outstanding at tree level, not fixable from here:** the leaf labels still spell the paradigm (Rev 12's terse-label rule never swept this tree), which leaks the double-m and double-b on the 16 visible items. Raised in the breadcrumb thread; the bucket tree is Architecture's artefact.
 
 ---
 
@@ -83,6 +100,8 @@ A note on how the conditional is forced without naming it (criteria 5 and 13): g
 ---
 
 ## Items flagged uncertain (for the project author to rule on)
+
+> **Channel:** all five asks below are carried in `inter_chat/Architecture_ConditionalFormationAuthor_batch_delivery.md` (Rev 18: this section is the record, the thread is the contract). Item 2's accent caveat is **closed** by the Rev 19 reconciliation above; the rest are open.
 
 1. **The conditional-forcing frames are contextual, not lexical.** Unlike the future's "Domani", the conditional has no one-word trigger, so each item relies on a polite / hypothetical / counterfactual frame to make the conditional the wanted form. Most are watertight (polite requests, "se + congiuntivo" apodoses, reported speech). Two are slightly softer and I flag them: **cond_are_lavorare_2sg_01** ("Tu ____ di più, ma sei troppo stanco") and **cond_are_cantare_3pl_01** ("Volentieri ____ con noi, ma sono timidi") lean on the contrastive "ma …" clause to force the conditional reading. A determined learner could read a present there. I judged them clear enough in context, but if you'd rather they were ironclad, say so and I'll add an explicit "Al posto tuo" / "se potessero" frame.
 

@@ -638,14 +638,6 @@
           {
             "phrase": "dove abiti",
             "match_at": "word"
-          },
-          {
-            "phrase": "se dove abita",
-            "match_at": "word"
-          },
-          {
-            "phrase": "che dove abita",
-            "match_at": "word"
           }
         ]
       }
@@ -663,7 +655,7 @@
       }
     ],
     "explanation": "'Le chiede dove abita' means 'He asks her where she lives.' A wh-question keeps its question word — 'dove' stays 'dove', with no 'se' or 'che' added — while the verb shifts person to the person reported: 'abiti' becomes 'abita'. Adding 'se' in front of an existing wh-word, or keeping 'abiti', are the misses.",
-    "examiner_note": "Tests wh-retention plus the person shift; single reported-question skill. Present reporter keeps tense unshifted.",
+    "examiner_note": "Tests wh-retention plus the person shift; single reported-question skill. Present reporter keeps tense unshifted. The se-before-a-wh-word error is additive (the correct clause nests inside the wrong one), so the substring marker cannot reject it and no guard is authored for it; that miss is carried on the AI-marked strand by trans_rep_en_it_q_02's instructive-wrong reference.",
     "version": 1
   },
   {
@@ -807,10 +799,6 @@
             "match_at": "word"
           },
           {
-            "phrase": "se quando partiamo",
-            "match_at": "word"
-          },
-          {
             "phrase": "che partiamo",
             "match_at": "word"
           }
@@ -830,7 +818,8 @@
       }
     ],
     "explanation": "'Ci domanda quando partiamo' means 'He asks us when we're leaving.' The question word 'quando' is kept unchanged, and the verb shifts person to 'partiamo' because we are the ones asked ('voi' addressed becomes 'noi' reporting ourselves). As with every wh-question, no 'se' or 'che' is added in front of the question word.",
-    "version": 1
+    "version": 1,
+    "examiner_note": "The se-before-a-wh-word error is additive (the correct clause nests inside the wrong one), so the substring marker cannot reject it and no guard is authored for it; that miss is carried on the AI-marked strand by trans_rep_en_it_q_02's instructive-wrong reference."
   },
   {
     "external_id": "rep_futcond_01",

@@ -3,7 +3,7 @@
 **Dispatch:** GerundioFormation (formation branch only; the adverbial-usage and progressive-vs-simple branches are left as stubs for the GerundioUsage and TenseChoice dispatches).
 **Author:** GerundioFormationAuthor
 **Date:** 2026-06-09
-**Brief revision applied:** AUTHOR_BRIEF Rev 9 (the revision my dispatch supplied). The live brief has since advanced to Rev 11; both later additions (Rev 10, discrimination items suppress by default; Rev 11, `candidate_tenses` on discrimination / tense_choice items) bind only `.discrimination` and `tense_choice` items, which this dispatch does not author, so the batch remains compliant with the current brief with no rework.
+**Brief revision applied:** authored against AUTHOR_BRIEF Rev 9 (the revision the dispatch supplied); **reconciled to Rev 19 on 2026-07-15**. See the reconciliation section below and `inter_chat/Architecture_GerundioAuthor_batch_delivery.md` (OPEN) for the asks arising, per Rev 18.
 
 **Totals:** 35 grammar questions + 14 translation items (EN→IT only), of which **21 grammar items carry `info_display: "suppress"`** (see chip-suppression section). Every active formation leaf is covered; no zero-coverage leaves. The usage and discrimination branches were left untouched (they are stubs owned by GerundioUsage and TenseChoice). No new buckets were needed, so `bucket_suggestions_verb_form.gerundio.json` is empty. Two glossary terms are proposed (the progressive, and the compound gerund).
 
@@ -17,11 +17,13 @@ The "G items" column counts grammar questions whose primary subtopic is the leaf
 
 | G items | G markpoints | T required | Leaf | What it tests |
 |--:|--:|--:|---|---|
-| 6 | 6 | 4 | -are gerund (-ando) | The -are → -ando rule (parlando-style); the cross-class -endo slip (mangendo); the -iare verbs keeping their i (studiando) |
-| 8 | 8 | 5 | -ere/-ire gerund (-endo) *(hot)* | One ending for two classes; the -ire = -endo economy (dormendo); the -isc- verbs dropping the -isc- (capendo, not capiscendo); the no -iendo guard |
-| 7 | 7 | 4 | Stem-expansion irregulars *(hot)* | facendo, dicendo, bevendo, ponendo, traducendo (built on the Latin stem, cross-referenced to the imperfect); essendo / avendo as regular; the short-infinitive miss (farendo) |
-| 10 | 10 | 12 | Progressive: stare + gerund *(hot)* | The headline construction across present, past and future stare; the essere-for-stare slip; the stare-with-infinitive slip; the wrong-tense slip |
-| 4 | 4 | 2 | Compound gerund (gerundio passato) | avendo / essendo + participle; auxiliary choice; participle agreement with essendo (cross-referenced to the passato prossimo) |
+| 6 | 10 | 4 | -are gerund (-ando) | The -are → -ando rule; the cross-class -endo slip (mangendo); the -iare verbs keeping their i (studiando). Markpoints exceed items because the progressive items' gerund markpoint lands here |
+| 8 | 13 | 5 | -ere/-ire gerund (-endo) *(hot)* | One ending for two classes; the -ire = -endo economy (dormendo); the -isc- verbs dropping the -isc- (capendo, not capiscendo); the no -iendo guard |
+| 7 | 8 | 4 | Stem-expansion irregulars *(hot)* | facendo, dicendo, bevendo, ponendo, traducendo (built on the Latin stem, cross-referenced to the imperfect); essendo / avendo as regular; the short-infinitive miss (farendo) |
+| 10 | 10 | 12 | Progressive: stare + gerund *(hot)* | The stare form for the person and tense (markpoint A of each progressive item); the essere-for-stare slip; the wrong person; the wrong tense |
+| 4 | 4 | 2 | Compound gerund (gerundio passato) | The avendo / essendo auxiliary choice (markpoint A of each compound item); participle form and agreement are markpoint B, cross-referenced to the passato prossimo |
+
+**Totals: 35 grammar items carrying 49 markpoints, and 14 translation items.** The progressive and compound items are two-markpoint (stare / gerund, and auxiliary / participle respectively), which is why the markpoint column exceeds the item column on the three gerund-formation leaves.
 
 **Cross-tree markpoints (compound-gerund participle):** four grammar markpoints and two translation required-buckets fire passato-prossimo buckets as the second skill in the compound gerund: the feminine-singular essere agreement (essendo andata / essendo partita), the masculine-plural essere agreement (essendo partiti), and the regular participle forms (finito on the ire→ito leaf, mangiato on the are→ato leaf, kept invariable under avere). All cross-referenced PP buckets were confirmed to exist in `data/buckets/verb_form.passato_prossimo.json` before use.
 
@@ -44,7 +46,16 @@ Before authoring, I read `housing/js/grammar_engine.js` and `housing/js/norm.js`
 
 2. **Normalisation collapses and trims whitespace.** `norm()` runs `\s+ → " "` and `.trim()`, so a trailing-space trick like `"sto "` reduces to `"sto"`. That matters because the 3sg stare form `sta` is a substring of `stai`, `stava`, `stavo` and `stanno`: a bare-`sta` sub-match would wrongly credit the wrong person.
 
-Given both, I did **not** split the progressive items into a stare-form markpoint and a gerund markpoint (the two-markpoint option criterion 8 offers). A clean stare-only sub-match is not reliable under this engine. Instead each progressive item is **one markpoint on the progressive-assembly leaf**, matching the full correct phrase (`sto leggendo`, `stanno giocando`, `stavo leggendo`, …), with `must_not_include` carrying the two misses the bucket tree itself lists for this leaf: the essere-for-stare substitution (sono / siamo / è + gerund) and the stare-with-infinitive pairing (sto leggere). This targets the assembly as a whole, which is exactly the criterion-8 fallback ("one markpoint if the item targets the assembly as a whole"), and it keeps the attribution faithful to the tree (the tree files the infinitive-pairing under the progressive leaf, not under the gerund leaf). The gerund-formation skill is separately and fully covered by the bare-gerund items, so nothing is lost.
+**Superseded on 2026-07-15 by per-phrase `match_at`.** The original Rev 9 delivery drew the conclusion that a stare-only sub-match was unreliable (point 2 above: `sta` is a substring of `stai` / `stava` / `stanno`), and therefore collapsed each progressive item to ONE markpoint on the progressive-assembly leaf matching the full phrase. Word-boundary anchoring shipped on 2026-07-13 (`{"phrase": "sta", "match_at": "word"}`, honoured on positives, the accent-folded fallback and `must_not_include`), which removes the constraint entirely.
+
+Each progressive item is therefore now **two markpoints**, the split the dispatch originally asked for and criterion 8 prefers:
+
+- **Markpoint A — the stare form**, on the progressive-assembly leaf, anchored (`{"phrase":"sto","match_at":"word"}`). Catches the wrong person, the wrong tense, and the essere-for-stare slip (`sono` / `è` / `ero` + gerund), each anchored in `must_not_include`.
+- **Markpoint B — the gerund**, on its own formation leaf (-ando / -endo / irregular), anchored. Catches the infinitive pairing (`sto leggere`) and the cross-class ending.
+
+This yields the decomposition the tree wants. Verified against a port of the shipped engine across 22 scenarios: `sto leggendo` → 2/2; `stai mangiando` → A miss, B hit (gerund right, stare person wrong); `sta mangiare` → A hit, B miss (stare right, no gerund); `è mangiando` → A miss, B hit; `sta farendo` → A hit, B miss. Marks on these 10 items are 2.
+
+Note the one attribution consequence: the tree files the infinitive-pairing under the progressive leaf's `common_miss`, but under the split it surfaces as a **gerund-formation** miss (markpoint B), because the learner's stare form is in fact correct. I think that is the better reading and have kept it; flagged in the delivery thread in case Architecture disagrees.
 
 The **compound-gerund items are split** (two markpoints), because there the two skills *are* cleanly separable by substring: `avendo` and `essendo` are distinctive whole words, so markpoint A (auxiliary choice, on the gerundio-passato leaf) and markpoint B (participle form / agreement, cross-referenced to the passato prossimo) fire independently. A learner who writes `essendo andato` for a feminine subject hits A (auxiliary right) and misses B (agreement wrong), which is the diagnostic split we want.
 
@@ -74,9 +85,11 @@ The progressive prompts name the **output form** ("Completa al presente progress
 
 ## Items flagged uncertain (for the project author to rule on)
 
-1. **Progressive scoring: one markpoint, not two.** The single biggest call (see "Marker mechanics" above). I chose one assembly markpoint per progressive item over the stare/gerund split, on engine grounds. If you would rather have the per-skill split for diagnostic richness, it would need either an engine change (a `match_at` / token-aware matcher so `sta` can be matched as a whole word) or a convention that the progressive's gerund is matched on its own markpoint while stare is left to a holistic check. Happy to redo if you want the split; flag it back.
+1. **RESOLVED 2026-07-15 — the progressive items are now split into two markpoints.** The engine limitation that forced the single-markpoint design no longer exists (`match_at` shipped 2026-07-13). The stare/gerund split the dispatch asked for is in place and verified. Nothing outstanding.
 
-2. **The infinitive-pairing miss (sto leggere) is filed under the progressive leaf, not the gerund leaf.** This follows the bucket tree's own `common_miss` for the progressive leaf, and falls out naturally from the single-markpoint design. If you'd prefer the infinitive-pairing to register as a gerund-formation miss instead, that is the split design in (1).
+2. **The infinitive-pairing miss (sto leggere) now files under the gerund leaf, not the progressive leaf.** Under the split, `sto leggere` credits markpoint A (the stare form IS correct) and misses markpoint B (no gerund produced). That contradicts the tree's `common_miss` text for the progressive leaf, which lists the infinitive pairing there. I judge the split's attribution to be the truer one (the learner's error is that they did not form a gerund, not that they mis-assembled stare), but it is a live disagreement with the tree's own annotation — ruling welcome. Raised as an ask in the delivery thread.
+
+3. **Five content bugs found and fixed when criterion 17 was applied.** Writing the completed sentence out in English exposed errors no substring audit could reach, the worst being `ger_ando_mangiare_01`, whose prompt required `mentre` + gerund ("Sto pensando a te mentre mangiando la cena"), which is ungrammatical — `mentre` takes a finite verb. Also fixed: a forced bad word order (avendo mangiato già → avendo già mangiato), a bad collocation (ponendo un esempio → ponendo una domanda), a tautology (Parla nel sonno dormendo), and two awkward gerund clauses. Recorded here because it argues for criterion 17 being retro-applied to older batches rather than only "on next touch".
 
 3. **essere / avere gerund placement.** essendo and avendo are authored under the stem-expansion irregular leaf (the tree lists them there), even though they are morphologically regular on their own stems. The explanations say as much. No change proposed, but flagging since a reviewer might expect them under "regular".
 

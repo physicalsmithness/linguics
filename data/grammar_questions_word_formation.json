@@ -140,7 +140,13 @@
     ],
     "vocab_help": [],
     "explanation": "'La chiamo sorellina' means 'I call her my little sister.' The diminutivo often carries affection rather than size: sorellina is warmth, not a claim that she is short. The same affective colour is in un attimino ('just a tick'). Reading -ino as 'small' only would miss the point.",
-    "version": 1
+    "version": 1,
+    "candidate_forms": [
+      "affetto (affection)",
+      "statura (size)"
+    ],
+    "correct_form": "affetto (affection)",
+    "info_display": "suppress"
   },
   {
     "external_id": "wf_dim_04",
@@ -226,7 +232,12 @@
     ],
     "vocab_help": [],
     "explanation": "A cucchiaino is a teaspoon. Some alterati harden into their own dictionary words: the diminutivo has stopped meaning simply 'a small X' and now names one precise object. This is the lexicalisation limit, and it is why you produce the common attested forms and only recognise the rest rather than coining freely.",
-    "version": 1
+    "version": 1,
+    "candidate_forms": [
+      "oggetto preciso (a teaspoon)",
+      "piccolo cucchiaio (any small spoon)"
+    ],
+    "correct_form": "oggetto preciso (a teaspoon)"
   },
   {
     "external_id": "wf_dim_06",
@@ -349,10 +360,6 @@
           {
             "phrase": "il portone",
             "match_at": "word"
-          },
-          {
-            "phrase": "portone",
-            "match_at": "word"
           }
         ],
         "must_not_include": [
@@ -384,7 +391,7 @@
       }
     ],
     "explanation": "'Hanno chiuso il portone del palazzo' means 'They shut the building's main door.' The accrescitivo -one enlarges la porta, and it also flips the gender: feminine la porta becomes masculine il portone. Many feminine bases do this (la palla, il pallone; la stanza, lo stanzone), so the article is part of the answer, not just the suffix.",
-    "examiner_note": "Hot spot: gender shift under -one. common_miss 'la portona' keeps the feminine and is caught. Candidate for a proposed gender_shift sub-bucket (see bucket_suggestions).",
+    "examiner_note": "Hot spot: gender shift under -one. common_miss 'la portona' keeps the feminine and is caught. Candidate for a proposed gender_shift sub-bucket (see bucket_suggestions). Crit-18 'guard contains an any_phrase': the bare augmentative was removed so the wrong-gender attempt falls through to must_not_include instead of matching the positive. The article is the diagnostic, so the full form is required.",
     "version": 1
   },
   {
@@ -407,10 +414,6 @@
         "any_phrases": [
           {
             "phrase": "il macchinone",
-            "match_at": "word"
-          },
-          {
-            "phrase": "macchinone",
             "match_at": "word"
           }
         ],
@@ -443,7 +446,7 @@
       }
     ],
     "explanation": "'Si è comprato il macchinone per la famiglia' means 'He bought himself a huge car for the family.' Feminine la macchina takes the accrescitivo -one and turns masculine: il macchinone. The gender shift is the trap; la macchinona is the miss to avoid.",
-    "examiner_note": "Hot spot: gender shift under -one; parallels wf_aug_02.",
+    "examiner_note": "Hot spot: gender shift under -one; parallels wf_aug_02. Crit-18 'guard contains an any_phrase': the bare augmentative was removed so the wrong-gender attempt falls through to must_not_include instead of matching the positive. The article is the diagnostic, so the full form is required.",
     "version": 1
   },
   {
@@ -580,7 +583,12 @@
     ],
     "vocab_help": [],
     "explanation": "A ragazzaccio is a badly-behaved boy, a rascal. The peggiorativo -accio judges quality, not size: it says the boy behaves badly, not that he is big. The accrescitivo ragazzone would be the big lad. Same base ragazzo, different suffix, different meaning.",
-    "version": 1
+    "version": 1,
+    "candidate_forms": [
+      "si comporta male (badly behaved)",
+      "molto grande (big)"
+    ],
+    "correct_form": "si comporta male (badly behaved)"
   },
   {
     "external_id": "wf_falsi_01",

@@ -78,6 +78,14 @@ The batch was authored against Rev 10. Rulings and brief revisions since have be
 
 ### Still outstanding on this batch
 
-- **Criterion 17 / Rev 13**: every grammar explanation must carry a plain English translation of the completed correct sentence. None of the 37 items has one yet; they gain it on next touch. This is the main remaining debt.
-- **Criterion 19 / Rev 16 (accent as morpheme)**: needs an audit pass. The brief's own worked example says `da` for `dà` is a do-nothing case, so exposure here is likely nil, but it has not been checked item by item.
-- **Misconception batch-tagging**: the imperativo tree sits in the "second pass, still to come" group on `Architecture_MisconceptionAnalyst_registry_harvest.md` (OPEN v9, closes once the last author has tagged).
+- **Misconception batch-tagging: BLOCKED on Architecture.** The bucket-level tags resolve cleanly from `data/misconception_tag_lists.json`, but the brief never defines how a tag attaches to an item, and no live batch across all 13 topics carries item-level tags yet, so tagging would set the project-wide precedent. Raised at `inter_chat/Architecture_ImperativoAuthor_misconception_tagging_schema.md`. Tagging is ~20 minutes once the shape is fixed.
+- **Unreachable tag flagged**: the irregular-tu leaf's `regularisation.irregular_verb` pairing can never fire, because the apostrophe fold means bare `va` scores as correct. Same thread.
+
+### Closed in this pass
+
+- **Criterion 17 / Rev 13 (sentence gloss): DONE.** All 37 grammar explanations now open with the completed Italian sentence and a natural English translation, per the house format. Versions bumped to 2. Glossing surfaced one content flaw, now fixed: `impv_form_02` addressed "Dottore" while instructing them to take medicine twice a day (the doctor prescribes); the vocative is now "Signor Verdi".
+- **Criterion 19 / Rev 16 (accent as morpheme): NIL, audited.** No `any_phrase` in the batch carries an accent, so there is no fold-rescue to disable. Consistent with the brief's own `da`/`dà` do-nothing example.
+- **Criterion 18 third direction: audited clean.** 14 places have a `must_not` entry sitting inside its own correct answer (`abbi` inside `abbia`, `non fa` inside `non fare`). All are safe: `grammar_engine.js` gates the must_not branch as an `else if` behind the positive match, so a correct answer never reaches it. Verified against the engine source, not assumed.
+- **Criterion 15 / Rev 19 (recoverability) re-checked**: the irregular-tu suppress still stands, because these are formation items whose cue supplies the base form (`(andare, tu)`), so the candidate set is recoverable pre-answer. Rev 19's visible-breadcrumb carve-out targets lexeme choices (bene/buono), which this is not.
+
+**Batch validation: 37 grammar + 16 translation, 0 errors** (buckets, marks, id uniqueness, criterion 13/15/17/18/19 checks).
