@@ -17,8 +17,14 @@
         "bucket": "passive.formation.essere",
         "label": "Essere/venire as passive auxiliary",
         "any_phrases": [
-          "è",
-          "viene"
+          {
+            "phrase": "è",
+            "match_at": "word"
+          },
+          {
+            "phrase": "viene",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
@@ -37,12 +43,24 @@
         "bucket": "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_singular",
         "label": "Agreement fem sing (-a)",
         "any_phrases": [
-          "spedita"
+          {
+            "phrase": "spedita",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
-          "spedito",
-          "spedite",
-          "spediti"
+          {
+            "phrase": "spedito",
+            "match_at": "word"
+          },
+          {
+            "phrase": "spedite",
+            "match_at": "word"
+          },
+          {
+            "phrase": "spediti",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -89,8 +107,14 @@
         "bucket": "passive.formation.essere",
         "label": "Essere/venire as passive auxiliary",
         "any_phrases": [
-          "è pagato",
-          "viene pagato"
+          {
+            "phrase": "è pagato",
+            "match_at": "word"
+          },
+          {
+            "phrase": "viene pagato",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
@@ -148,8 +172,14 @@
         "bucket": "passive.formation.essere",
         "label": "Essere/venire as passive auxiliary",
         "any_phrases": [
-          "sono",
-          "vengono"
+          {
+            "phrase": "sono",
+            "match_at": "word"
+          },
+          {
+            "phrase": "vengono",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
@@ -168,12 +198,24 @@
         "bucket": "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_plural",
         "label": "Agreement fem plural (-e)",
         "any_phrases": [
-          "pulite"
+          {
+            "phrase": "pulite",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
-          "puliti",
-          "pulito",
-          "pulita"
+          {
+            "phrase": "puliti",
+            "match_at": "word"
+          },
+          {
+            "phrase": "pulito",
+            "match_at": "word"
+          },
+          {
+            "phrase": "pulita",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -221,7 +263,10 @@
         "bucket": "passive.formation.essere",
         "label": "Essere as passive auxiliary (compound)",
         "any_phrases": [
-          "è"
+          {
+            "phrase": "è",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
@@ -240,12 +285,24 @@
         "bucket": "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_singular",
         "label": "Double participle agreement fem sing",
         "any_phrases": [
-          "stata inventata"
+          {
+            "phrase": "stata inventata",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
-          "stato inventato",
-          "stata inventato",
-          "stato inventata"
+          {
+            "phrase": "stato inventato",
+            "match_at": "word"
+          },
+          {
+            "phrase": "stata inventato",
+            "match_at": "word"
+          },
+          {
+            "phrase": "stato inventata",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -293,7 +350,10 @@
         "bucket": "passive.formation.essere",
         "label": "Essere as passive auxiliary (compound)",
         "any_phrases": [
-          "sono"
+          {
+            "phrase": "sono",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
@@ -312,13 +372,28 @@
         "bucket": "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_plural",
         "label": "Double participle agreement fem plural",
         "any_phrases": [
-          "state costruite"
+          {
+            "phrase": "state costruite",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
-          "stati costruiti",
-          "state costruiti",
-          "stati costruite",
-          "stato costruito"
+          {
+            "phrase": "stati costruiti",
+            "match_at": "word"
+          },
+          {
+            "phrase": "state costruiti",
+            "match_at": "word"
+          },
+          {
+            "phrase": "stati costruite",
+            "match_at": "word"
+          },
+          {
+            "phrase": "stato costruito",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -365,15 +440,24 @@
         "bucket": "passive.formation.essere",
         "label": "Essere as passive auxiliary (future)",
         "any_phrases": [
-          "sarà costruito",
-          "verrà costruito"
+          {
+            "phrase": "sarà costruito",
+            "match_at": "word"
+          },
+          {
+            "phrase": "verrà costruito",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
             "phrase": "avrà",
             "match_at": "word"
           },
-          "è costruito"
+          {
+            "phrase": "è costruito",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -421,8 +505,14 @@
         "bucket": "passive.formation.essere",
         "label": "Essere/venire as passive auxiliary (imperfect)",
         "any_phrases": [
-          "era",
-          "veniva"
+          {
+            "phrase": "era",
+            "match_at": "word"
+          },
+          {
+            "phrase": "veniva",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
@@ -437,12 +527,24 @@
         "bucket": "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_singular",
         "label": "Agreement fem sing (-a)",
         "any_phrases": [
-          "celebrata"
+          {
+            "phrase": "celebrata",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
-          "celebrato",
-          "celebrate",
-          "celebrati"
+          {
+            "phrase": "celebrato",
+            "match_at": "word"
+          },
+          {
+            "phrase": "celebrate",
+            "match_at": "word"
+          },
+          {
+            "phrase": "celebrati",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -490,7 +592,10 @@
         "bucket": "passive.formation.essere",
         "label": "Essere as passive auxiliary (compound)",
         "any_phrases": [
-          "sono"
+          {
+            "phrase": "sono",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
@@ -509,13 +614,28 @@
         "bucket": "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_plural",
         "label": "Double participle agreement masc plural",
         "any_phrases": [
-          "stati firmati"
+          {
+            "phrase": "stati firmati",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
-          "state firmate",
-          "stati firmate",
-          "state firmati",
-          "stato firmato"
+          {
+            "phrase": "state firmate",
+            "match_at": "word"
+          },
+          {
+            "phrase": "stati firmate",
+            "match_at": "word"
+          },
+          {
+            "phrase": "state firmati",
+            "match_at": "word"
+          },
+          {
+            "phrase": "stato firmato",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -562,8 +682,14 @@
         "bucket": "passive.formation.venire",
         "label": "Venire (or essere) as passive auxiliary",
         "any_phrases": [
-          "viene fatto",
-          "è fatto"
+          {
+            "phrase": "viene fatto",
+            "match_at": "word"
+          },
+          {
+            "phrase": "è fatto",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
@@ -620,12 +746,26 @@
         "bucket": "passive.formation.venire",
         "label": "No compound passive with venire",
         "any_phrases": [
-          "è stato arrestato",
-          "fu arrestato"
+          {
+            "phrase": "è stato arrestato",
+            "match_at": "word"
+          },
+          {
+            "phrase": "fu arrestato",
+            "credit": 0.9,
+            "match_at": "word",
+            "note": "Correct, and it rightly avoids the impossible venire compound, but the item asked for the passato prossimo: è stato arrestato."
+          }
         ],
         "must_not_include": [
-          "è venuto arrestato",
-          "venuto arrestato",
+          {
+            "phrase": "è venuto arrestato",
+            "match_at": "word"
+          },
+          {
+            "phrase": "venuto arrestato",
+            "match_at": "word"
+          },
           {
             "phrase": "ha",
             "match_at": "word"
@@ -656,7 +796,7 @@
       }
     ],
     "explanation": "'Ieri il ladro è stato arrestato' means 'Yesterday the thief was arrested.' Venire only works as the passive auxiliary in simple tenses. In a compound tense like the passato prossimo it is impossible: there is no 'è venuto arrestato'. You fall back to essere: è stato arrestato. Working: è stato arrestato.",
-    "examiner_note": "Tests the venire compound-tense restriction; the correct answer uses essere. Breadcrumb left visible because naming venire tempts exactly the catchable 'è venuto arrestato' error (leak-vs-trap, criterion 15). The passato-remoto 'fu arrestato' is also credited.",
+    "examiner_note": "Tests the venire compound-tense restriction; the correct answer uses essere. Breadcrumb left visible because naming venire tempts exactly the catchable 'è venuto arrestato' error (leak-vs-trap, criterion 15). The passato remoto 'fu arrestato' scores 0.9 under the Rev 17 dodge rule: correct passive, but not the requested tense.",
     "version": 1
   },
   {
@@ -677,8 +817,14 @@
         "bucket": "passive.formation.venire",
         "label": "Venire/essere passive (simple past)",
         "any_phrases": [
-          "venne",
-          "fu"
+          {
+            "phrase": "venne",
+            "match_at": "word"
+          },
+          {
+            "phrase": "fu",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
@@ -697,12 +843,24 @@
         "bucket": "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_singular",
         "label": "Agreement fem sing (-a)",
         "any_phrases": [
-          "chiusa"
+          {
+            "phrase": "chiusa",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
-          "chiuso",
-          "chiuse",
-          "chiusi"
+          {
+            "phrase": "chiuso",
+            "match_at": "word"
+          },
+          {
+            "phrase": "chiuse",
+            "match_at": "word"
+          },
+          {
+            "phrase": "chiusi",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -750,10 +908,16 @@
         "bucket": "passive.formation.venire",
         "label": "Venire for the action, not the state",
         "any_phrases": [
-          "viene chiuso"
+          {
+            "phrase": "viene chiuso",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
-          "è chiuso",
+          {
+            "phrase": "è chiuso",
+            "match_at": "word"
+          },
           {
             "phrase": "ha",
             "match_at": "word"
@@ -784,8 +948,13 @@
       }
     ],
     "explanation": "'Il negozio viene chiuso alle venti ogni sera' means 'The shop is closed (gets closed) at eight every evening.' Here the meaning is a repeated action, someone closing the shop, not the resulting state. Venire captures the action (viene chiuso); è chiuso would describe the state of being shut, a different meaning. Working: viene chiuso.",
-    "examiner_note": "The prompt cues the dynamic-action reading in plain words (not the rule), so è chiuso is a meaning miss and sits in must_not_include with a note. Tests the venire/essere nuance (B2).",
-    "version": 1
+    "examiner_note": "The prompt cues the dynamic-action reading in plain words (not the rule), so 'è chiuso' (the state) is a meaning miss, not a dodge, and stays in must_not_include. candidate_forms/correct_form added per Rev 17 (iii), which generalises criterion 16 to non-tense discriminations; flagged for ratification since this leaf is a formation leaf, not a '.discrimination' bucket, so the criterion's trigger does not strictly fire.",
+    "version": 1,
+    "candidate_forms": [
+      "viene chiuso",
+      "è chiuso"
+    ],
+    "correct_form": "viene chiuso"
   },
   {
     "external_id": "pas_ven_05",
@@ -805,8 +974,14 @@
         "bucket": "passive.formation.venire",
         "label": "Venire/essere as passive auxiliary (plural)",
         "any_phrases": [
-          "vengono",
-          "sono"
+          {
+            "phrase": "vengono",
+            "match_at": "word"
+          },
+          {
+            "phrase": "sono",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
@@ -825,12 +1000,24 @@
         "bucket": "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_plural",
         "label": "Agreement fem plural (-e)",
         "any_phrases": [
-          "pagate"
+          {
+            "phrase": "pagate",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
-          "pagati",
-          "pagato",
-          "pagata"
+          {
+            "phrase": "pagati",
+            "match_at": "word"
+          },
+          {
+            "phrase": "pagato",
+            "match_at": "word"
+          },
+          {
+            "phrase": "pagata",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -878,14 +1065,32 @@
         "bucket": "passive.formation.andare",
         "label": "andare + participle = obligation",
         "any_phrases": [
-          "must be",
-          "has to be",
-          "needs to be",
-          "should be"
+          {
+            "phrase": "must be",
+            "match_at": "word"
+          },
+          {
+            "phrase": "has to be",
+            "match_at": "word"
+          },
+          {
+            "phrase": "needs to be",
+            "match_at": "word"
+          },
+          {
+            "phrase": "should be",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
-          "goes",
-          "is going"
+          {
+            "phrase": "goes",
+            "match_at": "word"
+          },
+          {
+            "phrase": "is going",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -933,7 +1138,16 @@
         "bucket": "passive.formation.andare",
         "label": "andare = obligation (vanno)",
         "any_phrases": [
-          "vanno"
+          {
+            "phrase": "vanno",
+            "match_at": "word"
+          },
+          {
+            "phrase": "devono essere prese",
+            "credit": 0.9,
+            "match_at": "word",
+            "note": "Correct Italian, but it sidesteps the andare obligation construction: vanno prese is the idiomatic form."
+          }
         ],
         "must_not_include": [
           {
@@ -952,12 +1166,24 @@
         "bucket": "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_plural",
         "label": "Agreement fem plural (-e)",
         "any_phrases": [
-          "prese"
+          {
+            "phrase": "prese",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
-          "presi",
-          "preso",
-          "presa"
+          {
+            "phrase": "presi",
+            "match_at": "word"
+          },
+          {
+            "phrase": "preso",
+            "match_at": "word"
+          },
+          {
+            "phrase": "presa",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -984,7 +1210,7 @@
       }
     ],
     "explanation": "'Le medicine vanno prese a stomaco pieno' means 'The medicines must be taken on a full stomach.' Andare plus a participle expresses obligation, so vanno prese = must be taken. It agrees like any passive: medicine is feminine plural, giving prese, after the plural vanno. Working: vanno prese.",
-    "examiner_note": "Cue names the construction (andare) as an output form, which is allowed (criterion 13). The equally-correct 'devono essere prese' is a cue miss, not credited and deliberately not in must_not_include. Two markpoints: the obligation-auxiliary and the agreement.",
+    "examiner_note": "Cue names the construction (andare) as an output form, allowed per criterion 13. Rev 17 0.9-for-dodges: 'devono essere prese' is correct Italian sidestepping the drilled pattern, so it now scores 0.9 with a steering note instead of a silent zero. Two markpoints: obligation-auxiliary and agreement.",
     "version": 1
   },
   {
@@ -1005,12 +1231,20 @@
         "bucket": "passive.formation.andare",
         "label": "andare = obligation (va)",
         "any_phrases": [
-          "va compilato"
+          {
+            "phrase": "va compilato",
+            "match_at": "word"
+          },
+          {
+            "phrase": "deve essere compilato",
+            "credit": 0.9,
+            "match_at": "word",
+            "note": "Correct Italian, but it sidesteps the construction this item drills: for instructions the idiomatic form is va compilato."
+          }
         ],
         "must_not_include": [
-          "è compilato",
           {
-            "phrase": "deve",
+            "phrase": "è compilato",
             "match_at": "word"
           }
         ]
@@ -1039,7 +1273,7 @@
       }
     ],
     "explanation": "'Il modulo va compilato in stampatello' means 'The form must be filled in in block capitals.' Andare plus the participle carries the sense of necessity: va compilato = must be filled in. Modulo is masculine singular, so the participle stays -o. Working: va compilato.",
-    "examiner_note": "must_not_include catches the state reading 'è compilato' (is filled in) and the periphrastic 'deve...' start, since the item asks specifically for the andare construction named in the cue.",
+    "examiner_note": "Rev 17 0.9-for-dodges: the periphrastic 'deve essere compilato' is correct Italian that sidesteps the andare pattern, so it scores 0.9 with a steering note rather than being caught as wrong (it was in must_not_include at Rev 14, which would have told a learner good Italian was an error). must_not_include still catches the state reading 'è compilato'.",
     "version": 1
   },
   {
@@ -1060,17 +1294,32 @@
         "bucket": "passive.formation.andare",
         "label": "andare perso = got lost",
         "any_phrases": [
-          "è andato perso",
-          "andò perso",
-          "è andato perduto"
+          {
+            "phrase": "è andato perso",
+            "match_at": "word"
+          },
+          {
+            "phrase": "andò perso",
+            "match_at": "word"
+          },
+          {
+            "phrase": "è andato perduto",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
             "phrase": "ha",
             "match_at": "word"
           },
-          "è perso",
-          "è perduto"
+          {
+            "phrase": "è perso",
+            "match_at": "word"
+          },
+          {
+            "phrase": "è perduto",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -1119,15 +1368,36 @@
         "bucket": "passive.formation.andare",
         "label": "andare + participle = obligation",
         "any_phrases": [
-          "must be",
-          "has to be",
-          "needs to be",
-          "should be"
+          {
+            "phrase": "must be",
+            "match_at": "word"
+          },
+          {
+            "phrase": "has to be",
+            "match_at": "word"
+          },
+          {
+            "phrase": "needs to be",
+            "match_at": "word"
+          },
+          {
+            "phrase": "should be",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
-          "goes",
-          "is going",
-          "is being"
+          {
+            "phrase": "goes",
+            "match_at": "word"
+          },
+          {
+            "phrase": "is going",
+            "match_at": "word"
+          },
+          {
+            "phrase": "is being",
+            "match_at": "word"
+          }
         ]
       }
     ],

@@ -77,10 +77,13 @@
     return t;
   }
 
-  function norm(s) {
+  // Core normalisation. `lower` is false for the case-preserving variant used
+  // by case_sensitive markpoints (formal-capitalisation items: La/la, Sua/sua).
+  // See inter_chat/Architecture_Housing_case_sensitive_markpoints.md.
+  function normCore(s, lower) {
     if (s == null) return "";
     let t = String(s);
-    t = t.toLowerCase();
+    if (lower) t = t.toLowerCase();
     t = t.replace(/[‘’‚‛]/g, "'")
          .replace(/[“”„‟]/g, '"');
     t = t.replace(/-/g, " ");
@@ -103,6 +106,8 @@
     t = t.replace(/'/g, " ").replace(/\s+/g, " ").trim();
     return t;
   }
+  function norm(s) { return normCore(s, true); }
+  function normCased(s) { return normCore(s, false); }
 
   // Accent folding: à -> a, è/é -> e, etc. Only for typo-tolerance fallback.
   function foldAccents(s) {
@@ -146,8 +151,8 @@
     }
   }
 
-  function includesNeedle(haystackNorm, needle, matchAt) {
-    const n = norm(needle);
+  function includesNeedle(haystackNorm, needle, matchAt, caseSensitive) {
+    const n = caseSensitive ? normCased(needle) : norm(needle);
     return occursAt(haystackNorm, n, matchAt);
   }
 
@@ -161,24 +166,25 @@
   // so the caller can read per-phrase credit / note off it. Returns null on no
   // match. Use this when graded credit matters; includesAny stays for the
   // boolean-only callers.
-  function findMatchingPhrase(haystackNorm, anyArr) {
+  function findMatchingPhrase(haystackNorm, anyArr, caseSensitive) {
     if (!Array.isArray(anyArr)) return null;
     for (const phrase of anyArr) {
       const isObj = typeof phrase === "object" && phrase;
       const phraseStr = (isObj && phrase.phrase) ? phrase.phrase : phrase;
       const matchAt = isObj ? phrase.match_at : undefined;
-      if (includesNeedle(haystackNorm, phraseStr, matchAt)) {
+      if (includesNeedle(haystackNorm, phraseStr, matchAt, caseSensitive)) {
         return phrase;
       }
     }
     return null;
   }
 
-  function includesAny(haystackNorm, anyArr) {
-    return findMatchingPhrase(haystackNorm, anyArr) !== null;
+  function includesAny(haystackNorm, anyArr, caseSensitive) {
+    return findMatchingPhrase(haystackNorm, anyArr, caseSensitive) !== null;
   }
 
   LL.norm = norm;
+  LL.normCased = normCased;
   LL.normAccentFolded = normAccentFolded;
   LL.foldAccents = foldAccents;
   LL.normaliseAccentInput = normaliseAccentInput;

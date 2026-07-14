@@ -1,6 +1,6 @@
 # Coverage: The passive (formation branch)
 
-Authored by PassiveAuthor against AUTHOR_BRIEF **Revision 14** and DISPATCH_passive.md (with its Rev-13 addendum and OIC idea-bank appendix). Counts below are grepped from the shipped files, not from memory of batches.
+Authored by PassiveAuthor against AUTHOR_BRIEF **Revision 14**, then reconciled author-side to **Revision 17** (the brief moved from Rev 14 to Rev 17 while this batch was being written; see the reconciliation section below). Authored against DISPATCH_passive.md (with its Rev-13 addendum and OIC idea-bank appendix). Counts below are grepped from the shipped files, not from memory of batches.
 
 **Scope of this pass: the formation branch only** (the four leaves under *Forming the passive*). The usage branch (*Passive or active?* and *Passive or si passivante?*) is not yet authored and follows in the next pass. No content existed for this topic before this batch.
 
@@ -46,6 +46,33 @@ The engine checks `any_phrases` before `must_not_include` (positive match wins) 
 3. **Both "e pagato" and "viene pagato" take full credit** in simple-tense rewrites, per the dispatch ruling; venire-leaf items also credit the essere alternative unless the item's context selects the dynamic reading (pas_ven_04, where "e chiuso" is a meaning miss and sits in must_not_include with a note).
 4. **The venire compound-tense restriction** (pas_ven_02) cites the venire leaf but its correct answer is essere (e stato arrestato); the breadcrumb is left visible because naming venire tempts exactly the catchable "e venuto arrestato" error (the leak-vs-trap test, criterion 15).
 5. **Andare obligation items cue the construction** ("con andare") so the equally-correct periphrastic "deve essere compilato" is a cue miss (uncredited, deliberately not in must_not_include), keeping the andare choice the tested skill.
+
+## Rev 15/16/17 reconciliation (done author-side, same session, pre-consumption)
+
+This batch was authored against Rev 14 and the brief reached Rev 17 mid-session. Reconciled as follows, verified by an engine-mirroring harness (29 attack/regression cases, all passing; it mirrors norm(), occursAt() and the any-before-must_not order read off `housing/js/norm.js`).
+
+**Criterion 18 (Rev 15 superstring safety, plus the Rev 17 (ii) third direction).** All 51 `any_phrases` and all 78 `must_not_include` entries are now per-phrase `match_at: "word"`. Two genuine false-credit bugs were found and killed, both of the exact class the criterion targets:
+
+- `pas_ven_03`: the unanchored `fu` credited a learner writing **furono chiuse** (wrong number). Now anchored: no credit.
+- `pas_ess_07`: the unanchored `era` credited a learner writing **erano celebrate** (wrong number). Now anchored: no credit.
+
+Checked in the Rev 17 (ii) direction too (no `must_not_include` entry may fire on a plausible CORRECT attempt): no violations, verified programmatically against every same-markpoint correct form.
+
+**Not affected by the PiacereAuthor markpoint-level trap.** The ticker warning that `match_at` at markpoint level is silently inert does not touch this batch: every entry was authored per-phrase from the start, confirmed against `findMatchingPhrase` in norm.js.
+
+**Criterion 19 (Rev 16, accent as morpheme): no action, by the criterion's own carve-out.** The only accented answers here are `è` (stripped twin `e`), `sarà`/`verrà` (`sara`/`verra`) and `andò` (`ando`). In none of these is the stripped form a plausible alternative ANSWER to the same prompt, and Rev 16 names `e for è` and `ando for andò` explicitly as do-nothing cases. No markpoint carries `accent_load_bearing`.
+
+**Rev 17 (iv), the 0.9-for-dodges rule: three entries regraded.** This corrected one real authoring error where good Italian would have been marked wrong:
+
+- `pas_and_03`: **deve essere compilato** was in `must_not_include` at Rev 14. It is correct Italian that merely sidesteps the drilled andare pattern, so a learner writing it would have been told they were wrong. Now a 0.9 any_phrase with a steering note.
+- `pas_and_02`: **devono essere prese** scored a silent zero (uncredited cue miss). Now 0.9 with a steering note; the agreement markpoint still credits `prese` fully.
+- `pas_ven_02`: **fu arrestato** scored full credit. It is a correct passive that rightly dodges the impossible venire compound, but the prompt asked for the passato prossimo. Now 0.9 with a steering note.
+
+The state readings (`è compilato`, `è chiuso`) stay in `must_not_include`: they are meaning misses against an explicit cue, not dodges of a pattern.
+
+**Rev 17 (iii), candidate_forms:** added to `pas_ven_04` (`["viene chiuso", "è chiuso"]`, correct_form `viene chiuso`), the one venire-vs-essere form discrimination in the branch. Flagged for ratification: the criterion's trigger is a `.discrimination.*` bucket and this is a formation leaf, so the field is offered, not assumed. The usage branch's *Passive or si passivante?* items will need it properly.
+
+Version fields left at 1: these edits are same-session and pre-consumption, aligning with the reading RelativePronounAuthor has open with Architecture on the version-bump convention.
 
 ## Authoring decisions worth review
 

@@ -84,3 +84,16 @@ An independent reviewer went through all 106 items (Italian correctness, explana
 - **Stale vocab_help from the v2 reframes fixed** (prep_t_01 glossed cominciare while the frame used finisce; prep_t_04 glossed a verb no longer present).
 - **Two explanation absolutes softened** (a cavallo also takes a; coi survives alongside col).
 - **Documented, deliberately unfixed**: unanchored frames whose alternative correct completions fall through silently with no false diagnostic (prep_pl_07 'dall'Italia', prep_t_08 'entro dieci minuti', prep_da_04 'Quando ero bambino'); silent fall-through on a dodge is house-accepted, false diagnostics are not. Three translation items carry no negative reference by design (not every item needs an anti-anchor).
+
+## Fourth touch, 2026-07-14 (conformance to AUTHOR_BRIEF Rev 16/17)
+
+Both points this seat had open are ruled in Rev 17: ruling (ii) ratifies the criterion 18 amendment (must_not entries must not be substrings of plausible correct attempts) and ruling (iv) ratifies 0.9-for-dodges, so the partitive grading stands as authored. Conformance applied same-day:
+
+- **Ruling (iii), candidate_forms on non-tense discriminations**: all six discrimination items now carry `candidate_forms` (["a","in"] / ["di","da"]) + `correct_form`, semantics identical to candidate_tenses (post-answer tick, per-context stats, suppress already set). Versions bumped.
+- **Partitive dodge notes** re-cited from "policy question raised" to the ratified rule.
+- **Criterion 19 (Rev 16, accent as morpheme) exposure check**: one accented accepted phrase in the batch (da tè, prep_disc_dida_03). The stripped twin da te (at your place) is not a plausible alternative answer to a teacup frame, so per criterion 19's second branch no accent_load_bearing flag is set; the fold-rescue + orthography flag is the right verdict for a learner omitting the accent.
+- **Not revisited**: the v2 leftward reframes (t_01, t_04, pl_01) predate the per-phrase match_at knowledge and remain as reframes; reframing removed the ambiguity at source and Rev 15's anchoring default is the alternative, not a correction. The documented implausible-in-frame set stays as documented.
+
+## Fifth touch, 2026-07-14 (dodge-boundary regrades)
+
+Architecture's thread v5 stated the ruling-iv boundary: 0.9 is for answers that AVOID the drilled pattern; answers that demonstrate the skill by other means stay 1.0. Two graded acceptances were on the wrong side and are regraded to 0.9: a casa di Marco (prep_pl_05; avoids personal-da) and sulla storia (prep_di_04; avoids di-for-topic). All other 1.0 alternatives verified to show their markpoint's skill (della politica, di il nuovo, in gli Stati, a/in giugno, tra/fra); register-variant 0.9s unaffected. Thread closed at v6.

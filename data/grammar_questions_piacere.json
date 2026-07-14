@@ -18,13 +18,21 @@
     "bucket": "piacere.form.agreement",
     "label": "Piace or piacciono?",
     "any_phrases": [
-     "piacciono"
+     {
+      "phrase": "piacciono",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "piace",
-     "piacere"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "piace",
+      "match_at": "word"
+     },
+     {
+      "phrase": "piacere",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [
@@ -62,12 +70,17 @@
     "bucket": "piacere.form.agreement",
     "label": "Piace or piacciono?",
     "any_phrases": [
-     "piace"
+     {
+      "phrase": "piace",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "piacciono"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "piacciono",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [
@@ -109,13 +122,21 @@
     "bucket": "piacere.form.agreement",
     "label": "Piace or piacciono?",
     "any_phrases": [
-     "piacciono"
+     {
+      "phrase": "piacciono",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "piace",
-     "piacere"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "piace",
+      "match_at": "word"
+     },
+     {
+      "phrase": "piacere",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [
@@ -153,12 +174,17 @@
     "bucket": "piacere.form.agreement",
     "label": "Piace or piacciono?",
     "any_phrases": [
-     "piace"
+     {
+      "phrase": "piace",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "piacciono"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "piacciono",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [
@@ -199,13 +225,21 @@
     "bucket": "piacere.form.agreement",
     "label": "Piace or piacciono?",
     "any_phrases": [
-     "piacciono"
+     {
+      "phrase": "piacciono",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "piace",
-     "piacere"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "piace",
+      "match_at": "word"
+     },
+     {
+      "phrase": "piacere",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [
@@ -247,14 +281,25 @@
     "bucket": "piacere.usage.agreeing_responses",
     "label": "Anche a me, not anch'io",
     "any_phrases": [
-     "anche a me"
+     {
+      "phrase": "anche a me",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "anch'io",
-     "anchio",
-     "anch io"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "anch'io",
+      "match_at": "word"
+     },
+     {
+      "phrase": "anchio",
+      "match_at": "word"
+     },
+     {
+      "phrase": "anch io",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [
@@ -296,14 +341,25 @@
     "bucket": "piacere.usage.agreeing_responses",
     "label": "Neanche a me",
     "any_phrases": [
-     "neanche a me"
+     {
+      "phrase": "neanche a me",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "neanch'io",
-     "anche a me",
-     "neanche io"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "neanch'io",
+      "match_at": "word"
+     },
+     {
+      "phrase": "anche a me",
+      "match_at": "word"
+     },
+     {
+      "phrase": "neanche io",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [
@@ -341,13 +397,21 @@
     "bucket": "piacere.usage.agreeing_responses",
     "label": "A me sì (contrast)",
     "any_phrases": [
-     "a me sì"
+     {
+      "phrase": "a me sì",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "io sì",
-     "a me piace sì"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "io sì",
+      "match_at": "word"
+     },
+     {
+      "phrase": "a me piace sì",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [
@@ -388,12 +452,17 @@
     "bucket": "piacere.usage.agreeing_responses",
     "label": "Turning the question back with a te",
     "any_phrases": [
-     "a te"
+     {
+      "phrase": "a te",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "tu"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "tu",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [
@@ -434,12 +503,17 @@
     "bucket": "piacere.form.experiencer_a_phrase",
     "label": "Named experiencer takes a",
     "any_phrases": [
-     "a marco"
+     {
+      "phrase": "a marco",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "marco"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "marco",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [
@@ -481,13 +555,21 @@
     "bucket": "piacere.form.experiencer_a_phrase",
     "label": "Stressed pronoun in the a-phrase",
     "any_phrases": [
-     "a lei"
+     {
+      "phrase": "a lei",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "le no",
-     "gli no"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "le no",
+      "match_at": "word"
+     },
+     {
+      "phrase": "gli no",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [
@@ -526,18 +608,22 @@
     "any_phrases": [
      {
       "phrase": "a me piace",
-      "credit": 1.0
+      "credit": 1.0,
+      "match_at": "word"
      },
      {
       "phrase": "a me mi piace",
       "credit": 0.5,
-      "note": "heard everywhere in speech, but standard Italian uses either 'mi piace' or 'a me piace', not both at once"
+      "note": "heard everywhere in speech, but standard Italian uses either 'mi piace' or 'a me piace', not both at once",
+      "match_at": "word"
      }
     ],
     "must_not_include": [
-     "a me mi piaccio"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "a me mi piaccio",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [
@@ -579,12 +665,17 @@
     "bucket": "piacere.form.experiencer_a_phrase",
     "label": "Named experiencer takes a",
     "any_phrases": [
-     "a mia madre"
+     {
+      "phrase": "a mia madre",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "mia madre non"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "mia madre non",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [
@@ -627,10 +718,15 @@
      }
     ],
     "must_not_include": [
-     "le",
-     "la"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "le",
+      "match_at": "word"
+     },
+     {
+      "phrase": "la",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [
@@ -672,13 +768,21 @@
     "bucket": "piacere.form.experiencer_clitic",
     "label": "Right clitic for the experiencer",
     "any_phrases": [
-     "le"
+     {
+      "phrase": "le",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "gli",
-     "glieli"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "gli",
+      "match_at": "word"
+     },
+     {
+      "phrase": "glieli",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [
@@ -716,13 +820,21 @@
     "bucket": "piacere.form.experiencer_clitic",
     "label": "Formal experiencer clitic",
     "any_phrases": [
-     "le"
+     {
+      "phrase": "le",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "ti",
-     "vi"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "ti",
+      "match_at": "word"
+     },
+     {
+      "phrase": "vi",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [
@@ -764,13 +876,21 @@
     "bucket": "piacere.form.experiencer_clitic",
     "label": "Right clitic for the experiencer",
     "any_phrases": [
-     "vi"
+     {
+      "phrase": "vi",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "ci",
-     "gli"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "ci",
+      "match_at": "word"
+     },
+     {
+      "phrase": "gli",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [
@@ -811,13 +931,21 @@
     "bucket": "piacere.usage.dispiacere",
     "label": "Mi dispiace = I'm sorry",
     "any_phrases": [
-     "mi dispiace"
+     {
+      "phrase": "mi dispiace",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "mi scuse",
-     "sono spiacente di non"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "mi scuse",
+      "match_at": "word"
+     },
+     {
+      "phrase": "sono spiacente di non",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [
@@ -854,12 +982,17 @@
     "bucket": "piacere.usage.dispiacere",
     "label": "Dislike is non mi piace, not dispiacere",
     "any_phrases": [
-     "non mi piace"
+     {
+      "phrase": "non mi piace",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "dispiace"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "dispiace",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [
@@ -901,12 +1034,17 @@
     "bucket": "piacere.usage.dispiacere",
     "label": "Ti dispiace + infinitive = polite request",
     "any_phrases": [
-     "ti dispiace"
+     {
+      "phrase": "ti dispiace",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "ti piace"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "ti piace",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [
@@ -947,14 +1085,25 @@
     "bucket": "piacere.usage.family_verbs",
     "label": "Mi manchi (mancare flips like piacere)",
     "any_phrases": [
-     "mi manchi"
+     {
+      "phrase": "mi manchi",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "ti manco",
-     "mi manca",
-     "io manco"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "ti manco",
+      "match_at": "word"
+     },
+     {
+      "phrase": "mi manca",
+      "match_at": "word"
+     },
+     {
+      "phrase": "io manco",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [],
@@ -981,14 +1130,25 @@
     "bucket": "piacere.usage.family_verbs",
     "label": "Mi servono (servire, plural liked thing)",
     "any_phrases": [
-     "mi servono"
+     {
+      "phrase": "mi servono",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "mi serve",
-     "io servo",
-     "ho bisogno"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "mi serve",
+      "match_at": "word"
+     },
+     {
+      "phrase": "io servo",
+      "match_at": "word"
+     },
+     {
+      "phrase": "ho bisogno",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [
@@ -1025,14 +1185,25 @@
     "bucket": "piacere.usage.family_verbs",
     "label": "Ti interessa (interessare)",
     "any_phrases": [
-     "ti interessa"
+     {
+      "phrase": "ti interessa",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "tu interessi",
-     "sei interessata la",
-     "sei interessato la"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "tu interessi",
+      "match_at": "word"
+     },
+     {
+      "phrase": "sei interessata la",
+      "match_at": "word"
+     },
+     {
+      "phrase": "sei interessato la",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [
@@ -1073,13 +1244,21 @@
     "bucket": "piacere.usage.family_verbs",
     "label": "Mi sembra (sembrare)",
     "any_phrases": [
-     "mi sembra"
+     {
+      "phrase": "mi sembra",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "io sembro",
-     "mi sembrano"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "io sembro",
+      "match_at": "word"
+     },
+     {
+      "phrase": "mi sembrano",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [
@@ -1120,13 +1299,21 @@
     "bucket": "piacere.usage.subject_flip",
     "label": "The 'I like' flip",
     "any_phrases": [
-     "mi piace"
+     {
+      "phrase": "mi piace",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "piaccio",
-     "io piace"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "piaccio",
+      "match_at": "word"
+     },
+     {
+      "phrase": "io piace",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [
@@ -1164,13 +1351,21 @@
     "bucket": "piacere.usage.subject_flip",
     "label": "The 'I like' flip",
     "any_phrases": [
-     "ci piacciono"
+     {
+      "phrase": "ci piacciono",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "piacciamo",
-     "noi piac"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "piacciamo",
+      "match_at": "word"
+     },
+     {
+      "phrase": "noi piac",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [
@@ -1208,13 +1403,21 @@
     "bucket": "piacere.usage.subject_flip",
     "label": "The 'I like' flip",
     "any_phrases": [
-     "ti piace"
+     {
+      "phrase": "ti piace",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "piaci",
-     "tu piace"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "piaci",
+      "match_at": "word"
+     },
+     {
+      "phrase": "tu piace",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [
@@ -1256,12 +1459,17 @@
     "bucket": "piacere.form.with_infinitive",
     "label": "Piace + infinitive stays singular",
     "any_phrases": [
-     "piace"
+     {
+      "phrase": "piace",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "piacciono"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "piacciono",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [
@@ -1309,13 +1517,21 @@
     "bucket": "piacere.form.with_infinitive",
     "label": "Piace + infinitive stays singular",
     "any_phrases": [
-     "piace"
+     {
+      "phrase": "piace",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "piacciono",
-     "piacciamo"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "piacciono",
+      "match_at": "word"
+     },
+     {
+      "phrase": "piacciamo",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [
@@ -1352,12 +1568,17 @@
     "bucket": "piacere.form.with_infinitive",
     "label": "Piace + infinitive stays singular",
     "any_phrases": [
-     "piace"
+     {
+      "phrase": "piace",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "piacciono"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "piacciono",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [
@@ -1405,16 +1626,33 @@
     "bucket": "piacere.form.past",
     "label": "Essere as auxiliary",
     "any_phrases": [
-     "è",
-     "sono"
+     {
+      "phrase": "è",
+      "match_at": "word"
+     },
+     {
+      "phrase": "sono",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "ha",
-     "hanno",
-     "hai",
-     "ho"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "ha",
+      "match_at": "word"
+     },
+     {
+      "phrase": "hanno",
+      "match_at": "word"
+     },
+     {
+      "phrase": "hai",
+      "match_at": "word"
+     },
+     {
+      "phrase": "ho",
+      "match_at": "word"
+     }
+    ]
    },
    {
     "order_index": 1,
@@ -1422,14 +1660,25 @@
     "bucket": "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
     "label": "Participle agrees with the liked thing",
     "any_phrases": [
-     "piaciuto"
+     {
+      "phrase": "piaciuto",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "piaciuta",
-     "piaciuti",
-     "piaciute"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "piaciuta",
+      "match_at": "word"
+     },
+     {
+      "phrase": "piaciuti",
+      "match_at": "word"
+     },
+     {
+      "phrase": "piaciute",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [
@@ -1467,16 +1716,33 @@
     "bucket": "piacere.form.past",
     "label": "Essere as auxiliary",
     "any_phrases": [
-     "è",
-     "sono"
+     {
+      "phrase": "è",
+      "match_at": "word"
+     },
+     {
+      "phrase": "sono",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "ha",
-     "hanno",
-     "hai",
-     "ho"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "ha",
+      "match_at": "word"
+     },
+     {
+      "phrase": "hanno",
+      "match_at": "word"
+     },
+     {
+      "phrase": "hai",
+      "match_at": "word"
+     },
+     {
+      "phrase": "ho",
+      "match_at": "word"
+     }
+    ]
    },
    {
     "order_index": 1,
@@ -1484,14 +1750,25 @@
     "bucket": "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_singular",
     "label": "Participle agrees with the liked thing",
     "any_phrases": [
-     "piaciuta"
+     {
+      "phrase": "piaciuta",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "piaciuto",
-     "piaciute",
-     "piaciuti"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "piaciuto",
+      "match_at": "word"
+     },
+     {
+      "phrase": "piaciute",
+      "match_at": "word"
+     },
+     {
+      "phrase": "piaciuti",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [
@@ -1529,16 +1806,33 @@
     "bucket": "piacere.form.past",
     "label": "Essere as auxiliary",
     "any_phrases": [
-     "è",
-     "sono"
+     {
+      "phrase": "è",
+      "match_at": "word"
+     },
+     {
+      "phrase": "sono",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "ha",
-     "hanno",
-     "hai",
-     "ho"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "ha",
+      "match_at": "word"
+     },
+     {
+      "phrase": "hanno",
+      "match_at": "word"
+     },
+     {
+      "phrase": "hai",
+      "match_at": "word"
+     },
+     {
+      "phrase": "ho",
+      "match_at": "word"
+     }
+    ]
    },
    {
     "order_index": 1,
@@ -1546,14 +1840,25 @@
     "bucket": "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_plural",
     "label": "Participle agrees with the liked thing",
     "any_phrases": [
-     "piaciute"
+     {
+      "phrase": "piaciute",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "piaciuti",
-     "piaciuto",
-     "piaciuta"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "piaciuti",
+      "match_at": "word"
+     },
+     {
+      "phrase": "piaciuto",
+      "match_at": "word"
+     },
+     {
+      "phrase": "piaciuta",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [
@@ -1591,16 +1896,33 @@
     "bucket": "piacere.form.past",
     "label": "Essere as auxiliary",
     "any_phrases": [
-     "è",
-     "sono"
+     {
+      "phrase": "è",
+      "match_at": "word"
+     },
+     {
+      "phrase": "sono",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "ha",
-     "hanno",
-     "hai",
-     "ho"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "ha",
+      "match_at": "word"
+     },
+     {
+      "phrase": "hanno",
+      "match_at": "word"
+     },
+     {
+      "phrase": "hai",
+      "match_at": "word"
+     },
+     {
+      "phrase": "ho",
+      "match_at": "word"
+     }
+    ]
    },
    {
     "order_index": 1,
@@ -1608,14 +1930,25 @@
     "bucket": "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_plural",
     "label": "Participle agrees with the liked thing",
     "any_phrases": [
-     "piaciuti"
+     {
+      "phrase": "piaciuti",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "piaciute",
-     "piaciuto",
-     "piaciuta"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "piaciute",
+      "match_at": "word"
+     },
+     {
+      "phrase": "piaciuto",
+      "match_at": "word"
+     },
+     {
+      "phrase": "piaciuta",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [
@@ -1652,16 +1985,33 @@
     "bucket": "piacere.form.past",
     "label": "Essere as auxiliary",
     "any_phrases": [
-     "è",
-     "sono"
+     {
+      "phrase": "è",
+      "match_at": "word"
+     },
+     {
+      "phrase": "sono",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "ha",
-     "hanno",
-     "hai",
-     "ho"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "ha",
+      "match_at": "word"
+     },
+     {
+      "phrase": "hanno",
+      "match_at": "word"
+     },
+     {
+      "phrase": "hai",
+      "match_at": "word"
+     },
+     {
+      "phrase": "ho",
+      "match_at": "word"
+     }
+    ]
    },
    {
     "order_index": 1,
@@ -1669,14 +2019,25 @@
     "bucket": "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
     "label": "Participle agrees with the liked thing",
     "any_phrases": [
-     "piaciuto"
+     {
+      "phrase": "piaciuto",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "piaciuta",
-     "piaciuti",
-     "piaciute"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "piaciuta",
+      "match_at": "word"
+     },
+     {
+      "phrase": "piaciuti",
+      "match_at": "word"
+     },
+     {
+      "phrase": "piaciute",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [
@@ -1714,14 +2075,25 @@
     "bucket": "piacere.usage.liking_people",
     "label": "Mi piaci (liking a person)",
     "any_phrases": [
-     "mi piaci"
+     {
+      "phrase": "mi piaci",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "mi piace",
-     "ti piaccio",
-     "mi piaccio"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "mi piace",
+      "match_at": "word"
+     },
+     {
+      "phrase": "ti piaccio",
+      "match_at": "word"
+     },
+     {
+      "phrase": "mi piaccio",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [],
@@ -1748,13 +2120,21 @@
     "bucket": "piacere.usage.liking_people",
     "label": "Ti piaccio? (am I liked by you)",
     "any_phrases": [
-     "ti piaccio"
+     {
+      "phrase": "ti piaccio",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "mi piaci",
-     "ti piace"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "mi piaci",
+      "match_at": "word"
+     },
+     {
+      "phrase": "ti piace",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [],
@@ -1780,14 +2160,25 @@
     "bucket": "piacere.usage.liking_people",
     "label": "Le piaci (she likes you)",
     "any_phrases": [
-     "le piaci"
+     {
+      "phrase": "le piaci",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "le piace",
-     "ti piace",
-     "la piaci"
-    ],
-    "match_at": "word"
+     {
+      "phrase": "le piace",
+      "match_at": "word"
+     },
+     {
+      "phrase": "ti piace",
+      "match_at": "word"
+     },
+     {
+      "phrase": "la piaci",
+      "match_at": "word"
+     }
+    ]
    }
   ],
   "vocab_help": [],

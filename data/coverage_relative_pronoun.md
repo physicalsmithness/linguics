@@ -57,12 +57,12 @@ The brief moved twice after this batch shipped. Self-audit against both, all cha
 
 ## Items flagged uncertain
 
-- `trans_rel_en_it_ilq_clar_01`: the disambiguation instruction rides inside the source_text in brackets; if the housing renders source_text verbatim to learners this is fine, but if it feeds the AI marker as target content the bracket needs stripping. Worth one look from Housing.
+- (none remaining) `trans_rel_en_it_ilq_clar_01`'s bracket question was settled by `Architecture_Housing_translation_source_brackets` (CLOSED): the marker payload strips square-bracketed segments, display keeps them. The item's meta-instruction, originally in round parentheses (which the strip would have missed), is converted to square brackets.
 
 ## For the next dispatch / Architecture
 
 - `bucket_suggestions_relative_pronoun.json` NOT produced: the supplied tree covered everything authored; no new buckets needed.
-- `glossary_suggestions_relative_pronoun.json` proposes: relative pronoun, antecedent, relative clause, invariable.
-- `data/manifest.json`: `relative_pronoun` added to topics (loader auto-discovers the two item files from there), per the manifest's own comment. Flagged in-chat for pushback since authors do not normally touch shared files.
-- No engine ask remains: the match_at anchoring this batch needed already shipped (2026-07-13). One documentation errata instead: AUTHOR_BRIEF Rev 13 still describes `match_at` as "optional, future engine extension... support is partial" and as a markpoint-level field, but the shipped implementation reads it per-phrase (object-form entries in any_phrases / must_not_include) and supports start/end/word. Worth correcting at the brief's next revision so authors reach for it instead of padding answers.
+- `glossary_suggestions_relative_pronoun.json`: MERGED (glossary v3) - relative pronoun, relative clause, invariable accepted; antecedent already existed from the May pronoun merge and the live entry covers this batch's usage.
+- `data/manifest.json`: `relative_pronoun` registration blessed retroactively (batch_review ruling 3); standing norm going forward is flag-and-architect-wires, authors do not touch shared files.
+- No engine ask remains: the match_at anchoring this batch needed already shipped (2026-07-13). One documentation errata instead: AUTHOR_BRIEF Rev 13 still describes `match_at` as "optional, future engine extension... support is partial" and as a markpoint-level field, but the shipped implementation reads it per-phrase (object-form entries in any_phrases / must_not_include) and supports start/end/word. Worth correcting at the brief's next revision so authors reach for it instead of padding answers. (Rev 15's criterion 18 resolved the policy half; the stale field-reference bullet remains - thread `Architecture_RelativePronounAuthor_brief_match_at_errata` v2 is the live ask.)
 - Misconception tagging (registry is Architecture-owned) not attempted; the wrong-tense/wrong-relative entries in `must_not_include` are ready for Phase-3 misconception attribution.

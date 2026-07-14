@@ -1,0 +1,86 @@
+[
+  {
+    "proposed_id": "reported_speech.tense_shift.optional_no_shift_persisting_fact",
+    "proposed_parent_id": "reported_speech.tense_shift",
+    "proposed_label": "Present may stay when the fact still holds",
+    "proposed_description": "After a past reporting verb, a quoted present may legitimately stay in the present when the reported fact is still true at the moment of reporting: 'Ha detto che è stanco' is fine if he is still tired, alongside 'ha detto che era stanco'. Knowing that the backshift is optional here, rather than blocked or mandatory, is a distinct skill from performing the backshift.",
+    "proposed_cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "core",
+      "C2": "fluency"
+    },
+    "proposed_prerequisites": [
+      "reported_speech.tense_shift.present_to_imperfect",
+      "reported_speech.tense_shift.no_shift"
+    ],
+    "proposed_attributes": {
+      "direction": "production",
+      "common_miss": "Treating the backshift as mandatory and rejecting the still-true present, or conversely using the present for a fact that has demonstrably lapsed.",
+      "canonical_examples": [
+        "Marco ha detto che è stanco. (he still is)",
+        "Ha detto che si chiama Luca. (a permanent fact)"
+      ],
+      "is_aggregate": false
+    },
+    "rationale": "The dispatch's own prompt-trap note requires that present-to-imperfect items either exclude the still-true reading or accept both forms. I took the first branch on all six present_to_imperfect items, pinning context with a parenthetical, because the second branch is currently unauthorable: criterion 16 requires every tense-shift item to carry a single correct_tense, and an accept-both item has no single correct tense. That leaves a real, teachable skill with no home and no items. A dedicated leaf would let the accept-both case be authored honestly (both forms in any_phrases, no discrimination claim) and would stop the optionality being silently taught as an error. Needs an accompanying ruling on how criterion 16 applies to it."
+  },
+  {
+    "proposed_id": "reported_speech.questions.subjunctive_formal",
+    "proposed_parent_id": "reported_speech.questions",
+    "proposed_label": "Indirect questions in the careful register",
+    "proposed_description": "Careful and literary registers report an indirect question with the subjunctive rather than the indicative: 'Chiese se fossi stanco' alongside the everyday 'Mi ha chiesto se ero stanco'. Both are correct; the choice is register, not grammar.",
+    "proposed_cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "arcane",
+      "B2": "preview",
+      "C1": "core",
+      "C2": "core"
+    },
+    "proposed_prerequisites": [
+      "reported_speech.questions",
+      "verb_form.congiuntivo"
+    ],
+    "proposed_attributes": {
+      "direction": "production",
+      "common_miss": "Treating the subjunctive version as wrong, or over-applying it in casual speech where the indicative is the natural choice.",
+      "canonical_examples": [
+        "Chiese se fossimo pronti.",
+        "Il professore ci chiese se fossimo pronti."
+      ],
+      "is_aggregate": false
+    },
+    "rationale": "The questions leaf's own description already flags that 'formal registers allow the subjunctive (chiese se fossi stanco)', but there is no bucket to fire, so the variant is invisible to the diagnostic. I accepted it as a register variant on two translation items (trans_rep_en_it_q_02, q_03) and had nowhere to attribute it. Per criterion 11, register-conditional items must state their register, which this leaf would make markable rather than merely tolerated."
+  },
+  {
+    "proposed_id": "reported_speech.commands.che_subjunctive_formal",
+    "proposed_parent_id": "reported_speech.commands",
+    "proposed_label": "Commands reported in the careful register",
+    "proposed_description": "The formal alternative to di + infinitive for a reported command: che + subjunctive, as in 'Ordinò che partissero immediatamente' beside the everyday 'Ordinò loro di partire immediatamente'.",
+    "proposed_cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "arcane",
+      "B2": "preview",
+      "C1": "core",
+      "C2": "core"
+    },
+    "proposed_prerequisites": [
+      "reported_speech.commands",
+      "verb_form.congiuntivo"
+    ],
+    "proposed_attributes": {
+      "direction": "production",
+      "common_miss": "Producing 'che' with the indicative ('ordinò che partivano'), which is neither the everyday nor the formal option.",
+      "canonical_examples": [
+        "Ordinò che partissero immediatamente.",
+        "Chiese che tutti fossero presenti."
+      ],
+      "is_aggregate": false
+    },
+    "rationale": "Same shape as the questions proposal: the commands leaf's description already acknowledges that 'the formal alternative with che + subjunctive exists but di + infinitive is the everyday target', yet there is no bucket for it. My five command items all target di + infinitive and put che-forms in must_not_include, which is right for the everyday target but means a learner producing the correct formal 'ordinò che partissero' would currently be marked wrong by a che-catching marker. A separate leaf lets the formal option be credited where the item's register cue calls for it, and keeps the che-with-indicative error catchable as a genuine miss."
+  }
+]

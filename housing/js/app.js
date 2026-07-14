@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-14-r5";
+  const LL_BUILD = "2026-07-14-r7";
   // Touch-first device (no hover, coarse pointer): tap interactions replace
   // keyboard ones. Computed once; used for tap-to-mark on MCQ.
   const TOUCH_FIRST = !!(window.matchMedia
@@ -213,10 +213,31 @@
     return friendly.charAt(0).toUpperCase() + friendly.slice(1) + " drill";
   }
 
-  // True when the item carries the suppress flag. Use at pre-answer surfaces.
-  function shouldSuppressBucketName(item) {
-    return !!(item && item.info_display === "suppress");
+  // Walk a cited bucket's ancestor chain looking for a tree-level
+  // attributes.default_info_display: "suppress". See inter_chat/
+  // Architecture_Housing_breadcrumb_defaults_and_candidate_forms.md.
+  function bucketChainSuppresses(bucketId) {
+    let node = bucketIndex.byId[bucketId];
+    let guard = 0;
+    while (node && guard++ < 64) {
+      const a = node.attributes;
+      if (a && a.default_info_display === "suppress") return true;
+      node = node.parent_id ? bucketIndex.byId[node.parent_id] : null;
+    }
+    return false;
   }
+  // True when the item should hide its bucket name pre-answer. An explicit
+  // per-item info_display always wins (either direction); otherwise the flag is
+  // INHERITED from any cited bucket or its ancestors. Data-driven: no per-item
+  // edits needed for a whole subtree.
+  function shouldSuppressBucketName(item) {
+    if (!item) return false;
+    if (item.info_display) return item.info_display === "suppress";
+    const buckets = getItemBuckets(item);
+    for (const b of buckets) { if (bucketChainSuppresses(b)) return true; }
+    return false;
+  }
+  LL.shouldSuppressBucketName = shouldSuppressBucketName;  // exposed for tests
 
   // Global hint for the live stats panel: when a grammar/translation item is
   // in flight (rendered but unmarked) with info_display: "suppress", any
@@ -3818,26 +3839,40 @@
   // pre-answer these items carry info_display:"suppress" and nothing shows.
   // Phase 2 (marking the chosen-wrong tense) waits on tense-tagged
   // must_not_include entries; do not build yet.
+  // One code path for both discriminations: candidate_tenses/correct_tense
+  // (tense TAGS, friendly-labelled) and candidate_forms/correct_form (already
+  // display labels: his / her / your-formal, questo / quello). See inter_chat/
+  // Architecture_Housing_breadcrumb_defaults_and_candidate_forms.md.
   function renderCandidateTensesRow(q) {
-    if (!q || !Array.isArray(q.candidate_tenses) || q.candidate_tenses.length < 2) return null;
+    if (!q) return null;
+    let cands = null, correct = null, labelText = null, isForms = false;
+    if (Array.isArray(q.candidate_tenses) && q.candidate_tenses.length >= 2) {
+      cands = q.candidate_tenses; correct = q.correct_tense; labelText = "Tenses in play:";
+    } else if (Array.isArray(q.candidate_forms) && q.candidate_forms.length >= 2) {
+      cands = q.candidate_forms; correct = q.correct_form; labelText = "Forms in play:"; isForms = true;
+    } else {
+      return null;
+    }
     const row = document.createElement("div");
     row.className = "tense-candidates";
     const lbl = document.createElement("span");
     lbl.className = "tense-candidates-label";
-    lbl.textContent = "Tenses in play:";
+    lbl.textContent = labelText;
     row.appendChild(lbl);
-    for (const tag of q.candidate_tenses) {
+    for (const tag of cands) {
       const chip = document.createElement("span");
-      const isCorrect = tag === q.correct_tense;
+      const isCorrect = tag === correct;
       chip.className = "tense-chip" + (isCorrect ? " correct" : "");
-      chip.textContent = (isCorrect ? "\u2713 " : "") + tenseTagLabel(tag);
+      chip.textContent = (isCorrect ? "\u2713 " : "") + (isForms ? String(tag) : tenseTagLabel(tag));
       chip.title = isCorrect
-        ? "The tense the context demanded"
+        ? (isForms ? "The form the context demanded" : "The tense the context demanded")
         : "A legitimate option in this context";
       row.appendChild(chip);
     }
     return row;
   }
+
+  LL.renderCandidateRow = renderCandidateTensesRow;  // exposed for tests
 
   function renderResult(result) {
     const root = document.createElement("div");

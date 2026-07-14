@@ -2651,7 +2651,7 @@
         "any_phrases": [
           {
             "phrase": "bracci",
-            "match_at": "end"
+            "match_at": "word"
           }
         ],
         "must_not_include": [
@@ -2679,7 +2679,7 @@
       }
     ],
     "explanation": "'Un braccio, due bracci' means 'one arm, two arms' of a machine. When braccio means a mechanical arm, the plural is the regular masculine bracci; the feminine braccia is reserved for the body. One word, two plurals, split by meaning.",
-    "examiner_note": "VISIBLE, pair with irr_03. 'bracci' is a prefix of 'braccia', so it is anchored match_at end: without it, a learner typing the wrong 'braccia' would false-match the 'bracci' phrase and be wrongly credited.",
+    "examiner_note": "VISIBLE, pair with irr_03. 'bracci' is a prefix of 'braccia', so it is anchored match_at word (criterion 18 default): without it, a learner typing the wrong 'braccia' would false-match the 'bracci' phrase and be wrongly credited.",
     "version": 1
   },
   {

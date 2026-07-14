@@ -1,0 +1,26 @@
+{
+ "$comment": "Glossary terms used in reported_speech explanations not yet in data/glossary.json. Project author reviews and merges. Checked against glossary.json v2 (108 terms); none of the four below are present, and none matched an existing alias.",
+ "version": 1,
+ "suggestions": {
+  "reported speech": {
+   "short": "Telling someone what was said without quoting it: 'Vengo' becomes Ha detto che veniva.",
+   "long": "Reported speech (discorso indiretto) relays what someone said as part of your own sentence rather than as a quotation. Because the words are re-anchored to the moment of reporting rather than the moment of speaking, three things can move: the tense of the quoted verb, the shape of a command or question, and the words that point at times, places and people. Italian's headline difference from English is that a quoted future becomes the past conditional, not the present one.",
+   "needed_for": "The topic term; named across the reported_speech explanations and the natural anchor for the whole tree."
+  },
+  "backshift": {
+   "short": "The slide a quoted tense makes after a past reporting verb: 'sono stanco' becomes ha detto che era stanco.",
+   "long": "Backshift is the tense move a quoted verb makes when the reporting verb sits in the past. Present goes to imperfect, passato prossimo to trapassato, future to the past conditional; imperfect, trapassato and conditional are already far enough back and stay put. The trigger is the tense of the reporting verb, not the act of reporting: after a present reporter (dice, scrive) nothing backshifts at all, and over-applying the shift there is a common second-order error once the rule has been learnt.",
+   "needed_for": "Named in the no_shift and present_to_imperfect explanations as the four-beat term; the concept the whole tense_shift branch turns on."
+  },
+  "reporting verb": {
+   "short": "The verb that introduces the report (dice, ha detto, disse, ha chiesto) and whose tense decides whether anything shifts.",
+   "long": "The reporting verb is the verb of saying, writing, asking or promising that frames the report. Its tense is the conditioning factor for the entire sentence: a past reporting verb (ha detto, disse, mi ha scritto) triggers the backshift and sends the pointing words travelling, while a present one (dice, scrive, sostiene) leaves everything as it was. Which reporting verb is chosen also decides the shape of the report: verbs of command and request (dire, chiedere, ordinare) take di + infinitive.",
+   "needed_for": "Named in nearly every reported_speech explanation; the no_shift items turn entirely on identifying its tense."
+  },
+  "deixis": {
+   "short": "Words that point from where the speaker stands (domani, ieri, qui, questo) and so must travel in a report.",
+   "long": "Deixis is the property of words whose meaning depends on who is speaking, and when and where. Domani means the day after the moment of speaking, qui means the speaker's own location, questo means what the speaker has to hand. When a report re-anchors those words to a different moment, they have to travel or they will point at the wrong thing: domani becomes il giorno dopo, ieri il giorno prima, oggi quel giorno, qui lì, questo quello. Persons and possessives shift on the same logic.",
+   "needed_for": "Named in all six deixis explanations as the four-beat term, and in the it_en recognition items where reading il giorno prima as 'yesterday' is the miss."
+  }
+ }
+}

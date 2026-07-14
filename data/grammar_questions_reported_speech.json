@@ -11,7 +11,10 @@
     "marks": 1,
     "prompt_supplies_base_form": false,
     "info_display": "suppress",
-    "candidate_tenses": ["present", "imperfect"],
+    "candidate_tenses": [
+      "present",
+      "imperfect"
+    ],
     "correct_tense": "present",
     "markpoints": [
       {
@@ -19,8 +22,12 @@
         "credit": 1.0,
         "bucket": "reported_speech.tense_shift.no_shift",
         "label": "Present kept after a present reporter",
-        "any_phrases": ["è"],
-        "must_not_include": ["era"]
+        "any_phrases": [
+          "è"
+        ],
+        "must_not_include": [
+          "era"
+        ]
       }
     ],
     "vocab_help": [
@@ -28,7 +35,10 @@
         "lemma": "stanco",
         "language": "it",
         "aspects": {
-          "translation": { "reveal": "stanco - tired", "bucket": "vocabulary.it.stanco.translation" }
+          "translation": {
+            "reveal": "stanco - tired",
+            "bucket": "vocabulary.it.stanco.translation"
+          }
         }
       }
     ],
@@ -48,7 +58,10 @@
     "marks": 1,
     "prompt_supplies_base_form": false,
     "info_display": "suppress",
-    "candidate_tenses": ["present", "imperfect"],
+    "candidate_tenses": [
+      "present",
+      "imperfect"
+    ],
     "correct_tense": "present",
     "markpoints": [
       {
@@ -56,8 +69,13 @@
         "credit": 1.0,
         "bucket": "reported_speech.tense_shift.no_shift",
         "label": "Present kept after a present reporter",
-        "any_phrases": ["arriva"],
-        "must_not_include": ["arrivava", "arriverà"]
+        "any_phrases": [
+          "arriva"
+        ],
+        "must_not_include": [
+          "arrivava",
+          "arriverà"
+        ]
       }
     ],
     "vocab_help": [
@@ -65,7 +83,10 @@
         "lemma": "arrivare",
         "language": "it",
         "aspects": {
-          "translation": { "reveal": "to arrive - arrivare", "bucket": "vocabulary.it.arrivare.translation" }
+          "translation": {
+            "reveal": "to arrive - arrivare",
+            "bucket": "vocabulary.it.arrivare.translation"
+          }
         }
       }
     ],
@@ -85,7 +106,10 @@
     "marks": 1,
     "prompt_supplies_base_form": false,
     "info_display": "suppress",
-    "candidate_tenses": ["present", "imperfect"],
+    "candidate_tenses": [
+      "present",
+      "imperfect"
+    ],
     "correct_tense": "present",
     "markpoints": [
       {
@@ -93,8 +117,12 @@
         "credit": 1.0,
         "bucket": "reported_speech.tense_shift.no_shift",
         "label": "Present kept after a present reporter",
-        "any_phrases": ["hanno"],
-        "must_not_include": ["avevano"]
+        "any_phrases": [
+          "hanno"
+        ],
+        "must_not_include": [
+          "avevano"
+        ]
       }
     ],
     "vocab_help": [
@@ -102,8 +130,14 @@
         "lemma": "fame",
         "language": "it",
         "aspects": {
-          "translation": { "reveal": "hunger - fame", "bucket": "vocabulary.it.fame.translation" },
-          "gender": { "reveal": "feminine (f)", "bucket": "vocabulary.it.fame.gender" }
+          "translation": {
+            "reveal": "hunger - fame",
+            "bucket": "vocabulary.it.fame.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.fame.gender"
+          }
         }
       }
     ],
@@ -122,7 +156,10 @@
     "marks": 1,
     "prompt_supplies_base_form": false,
     "info_display": "suppress",
-    "candidate_tenses": ["passato_prossimo", "trapassato_prossimo"],
+    "candidate_tenses": [
+      "passato_prossimo",
+      "trapassato_prossimo"
+    ],
     "correct_tense": "passato_prossimo",
     "markpoints": [
       {
@@ -130,8 +167,12 @@
         "credit": 1.0,
         "bucket": "reported_speech.tense_shift.no_shift",
         "label": "Passato prossimo kept after a present reporter",
-        "any_phrases": ["ha"],
-        "must_not_include": ["aveva"]
+        "any_phrases": [
+          "ha"
+        ],
+        "must_not_include": [
+          "aveva"
+        ]
       }
     ],
     "vocab_help": [
@@ -139,7 +180,10 @@
         "lemma": "pagare",
         "language": "it",
         "aspects": {
-          "translation": { "reveal": "to pay - pagare", "bucket": "vocabulary.it.pagare.translation" }
+          "translation": {
+            "reveal": "to pay - pagare",
+            "bucket": "vocabulary.it.pagare.translation"
+          }
         }
       }
     ],
@@ -159,7 +203,10 @@
     "marks": 1,
     "prompt_supplies_base_form": false,
     "info_display": "suppress",
-    "candidate_tenses": ["future", "condizionale_passato"],
+    "candidate_tenses": [
+      "future",
+      "condizionale_passato"
+    ],
     "correct_tense": "future",
     "markpoints": [
       {
@@ -167,8 +214,13 @@
         "credit": 1.0,
         "bucket": "reported_speech.tense_shift.no_shift",
         "label": "Future kept after a present reporter",
-        "any_phrases": ["verrà"],
-        "must_not_include": ["sarebbe venuto", "verrebbe"]
+        "any_phrases": [
+          "verrà"
+        ],
+        "must_not_include": [
+          "sarebbe venuto",
+          "verrebbe"
+        ]
       }
     ],
     "vocab_help": [
@@ -176,7 +228,10 @@
         "lemma": "venire",
         "language": "it",
         "aspects": {
-          "translation": { "reveal": "to come - venire", "bucket": "vocabulary.it.venire.translation" }
+          "translation": {
+            "reveal": "to come - venire",
+            "bucket": "vocabulary.it.venire.translation"
+          }
         }
       }
     ],
@@ -202,8 +257,14 @@
         "credit": 1.0,
         "bucket": "reported_speech.commands",
         "label": "Command reported with di + infinitive",
-        "any_phrases": ["di venire"],
-        "must_not_include": ["che vengo", "che venga", "venire"]
+        "any_phrases": [
+          "di venire"
+        ],
+        "must_not_include": [
+          "che vengo",
+          "che venga",
+          "venire"
+        ]
       }
     ],
     "vocab_help": [
@@ -211,7 +272,10 @@
         "lemma": "venire",
         "language": "it",
         "aspects": {
-          "translation": { "reveal": "to come - venire", "bucket": "vocabulary.it.venire.translation" }
+          "translation": {
+            "reveal": "to come - venire",
+            "bucket": "vocabulary.it.venire.translation"
+          }
         }
       }
     ],
@@ -237,8 +301,14 @@
         "credit": 1.0,
         "bucket": "reported_speech.commands",
         "label": "Negative command reported with di non + infinitive",
-        "any_phrases": ["di non fumare"],
-        "must_not_include": ["che non fuma", "che non fumi", "di non fumi"]
+        "any_phrases": [
+          "di non fumare"
+        ],
+        "must_not_include": [
+          "che non fuma",
+          "che non fumi",
+          "di non fumi"
+        ]
       }
     ],
     "vocab_help": [
@@ -246,7 +316,10 @@
         "lemma": "fumare",
         "language": "it",
         "aspects": {
-          "translation": { "reveal": "to smoke - fumare", "bucket": "vocabulary.it.fumare.translation" }
+          "translation": {
+            "reveal": "to smoke - fumare",
+            "bucket": "vocabulary.it.fumare.translation"
+          }
         }
       }
     ],
@@ -271,8 +344,14 @@
         "credit": 1.0,
         "bucket": "reported_speech.commands",
         "label": "Command reported with di + infinitive",
-        "any_phrases": ["di aspettare"],
-        "must_not_include": ["che aspettiamo", "che aspettate", "aspettare fuori"]
+        "any_phrases": [
+          "di aspettare"
+        ],
+        "must_not_include": [
+          "che aspettiamo",
+          "che aspettate",
+          "aspettare fuori"
+        ]
       }
     ],
     "vocab_help": [
@@ -280,7 +359,10 @@
         "lemma": "aspettare",
         "language": "it",
         "aspects": {
-          "translation": { "reveal": "to wait - aspettare", "bucket": "vocabulary.it.aspettare.translation" }
+          "translation": {
+            "reveal": "to wait - aspettare",
+            "bucket": "vocabulary.it.aspettare.translation"
+          }
         }
       }
     ],
@@ -306,8 +388,14 @@
         "credit": 1.0,
         "bucket": "reported_speech.commands",
         "label": "Negative reflexive command with di non + infinitive",
-        "any_phrases": ["di non preoccuparsi"],
-        "must_not_include": ["che non si preoccupi", "di non preoccuparti", "di non ti preoccupare"]
+        "any_phrases": [
+          "di non preoccuparsi"
+        ],
+        "must_not_include": [
+          "che non si preoccupi",
+          "di non preoccuparti",
+          "di non ti preoccupare"
+        ]
       }
     ],
     "vocab_help": [
@@ -315,7 +403,10 @@
         "lemma": "preoccuparsi",
         "language": "it",
         "aspects": {
-          "translation": { "reveal": "to worry - preoccuparsi", "bucket": "vocabulary.it.preoccuparsi.translation" }
+          "translation": {
+            "reveal": "to worry - preoccuparsi",
+            "bucket": "vocabulary.it.preoccuparsi.translation"
+          }
         }
       }
     ],
@@ -341,8 +432,14 @@
         "credit": 1.0,
         "bucket": "reported_speech.commands",
         "label": "Command reported with di + infinitive",
-        "any_phrases": ["di finire"],
-        "must_not_include": ["che finiamo", "che finiate", "finire il lavoro"]
+        "any_phrases": [
+          "di finire"
+        ],
+        "must_not_include": [
+          "che finiamo",
+          "che finiate",
+          "finire il lavoro"
+        ]
       }
     ],
     "vocab_help": [
@@ -350,7 +447,10 @@
         "lemma": "finire",
         "language": "it",
         "aspects": {
-          "translation": { "reveal": "to finish - finire", "bucket": "vocabulary.it.finire.translation" }
+          "translation": {
+            "reveal": "to finish - finire",
+            "bucket": "vocabulary.it.finire.translation"
+          }
         }
       }
     ],
@@ -376,8 +476,14 @@
         "credit": 1.0,
         "bucket": "reported_speech.questions",
         "label": "Yes/no question reported with se",
-        "any_phrases": ["se vengo"],
-        "must_not_include": ["che vengo", "se vieni", "vengo"]
+        "any_phrases": [
+          "se vengo"
+        ],
+        "must_not_include": [
+          "che vengo",
+          "se vieni",
+          "vengo"
+        ]
       }
     ],
     "vocab_help": [
@@ -385,7 +491,10 @@
         "lemma": "venire",
         "language": "it",
         "aspects": {
-          "translation": { "reveal": "to come - venire", "bucket": "vocabulary.it.venire.translation" }
+          "translation": {
+            "reveal": "to come - venire",
+            "bucket": "vocabulary.it.venire.translation"
+          }
         }
       }
     ],
@@ -411,8 +520,14 @@
         "credit": 1.0,
         "bucket": "reported_speech.questions",
         "label": "Wh-question keeps its question word",
-        "any_phrases": ["dove abita"],
-        "must_not_include": ["dove abiti", "se dove abita", "che dove abita"]
+        "any_phrases": [
+          "dove abita"
+        ],
+        "must_not_include": [
+          "dove abiti",
+          "se dove abita",
+          "che dove abita"
+        ]
       }
     ],
     "vocab_help": [
@@ -420,7 +535,10 @@
         "lemma": "abitare",
         "language": "it",
         "aspects": {
-          "translation": { "reveal": "to live / reside - abitare", "bucket": "vocabulary.it.abitare.translation" }
+          "translation": {
+            "reveal": "to live / reside - abitare",
+            "bucket": "vocabulary.it.abitare.translation"
+          }
         }
       }
     ],
@@ -446,8 +564,14 @@
         "credit": 1.0,
         "bucket": "reported_speech.questions",
         "label": "Wh-question keeps its question word",
-        "any_phrases": ["perché piango"],
-        "must_not_include": ["perché piangi", "se perché", "che piango"]
+        "any_phrases": [
+          "perché piango"
+        ],
+        "must_not_include": [
+          "perché piangi",
+          "se perché",
+          "che piango"
+        ]
       }
     ],
     "vocab_help": [
@@ -455,7 +579,10 @@
         "lemma": "piangere",
         "language": "it",
         "aspects": {
-          "translation": { "reveal": "to cry - piangere", "bucket": "vocabulary.it.piangere.translation" }
+          "translation": {
+            "reveal": "to cry - piangere",
+            "bucket": "vocabulary.it.piangere.translation"
+          }
         }
       }
     ],
@@ -480,8 +607,14 @@
         "credit": 1.0,
         "bucket": "reported_speech.questions",
         "label": "Yes/no question reported with se",
-        "any_phrases": ["se sono"],
-        "must_not_include": ["che sono", "se sei", "sono pronto"]
+        "any_phrases": [
+          "se sono"
+        ],
+        "must_not_include": [
+          "che sono",
+          "se sei",
+          "sono pronto"
+        ]
       }
     ],
     "vocab_help": [
@@ -489,7 +622,10 @@
         "lemma": "pronto",
         "language": "it",
         "aspects": {
-          "translation": { "reveal": "ready - pronto", "bucket": "vocabulary.it.pronto.translation" }
+          "translation": {
+            "reveal": "ready - pronto",
+            "bucket": "vocabulary.it.pronto.translation"
+          }
         }
       }
     ],
@@ -515,8 +651,14 @@
         "credit": 1.0,
         "bucket": "reported_speech.questions",
         "label": "Wh-question keeps its question word",
-        "any_phrases": ["quando partiamo"],
-        "must_not_include": ["quando partite", "se quando partiamo", "che partiamo"]
+        "any_phrases": [
+          "quando partiamo"
+        ],
+        "must_not_include": [
+          "quando partite",
+          "se quando partiamo",
+          "che partiamo"
+        ]
       }
     ],
     "vocab_help": [
@@ -524,11 +666,1651 @@
         "lemma": "partire",
         "language": "it",
         "aspects": {
-          "translation": { "reveal": "to leave / depart - partire", "bucket": "vocabulary.it.partire.translation" }
+          "translation": {
+            "reveal": "to leave / depart - partire",
+            "bucket": "vocabulary.it.partire.translation"
+          }
         }
       }
     ],
     "explanation": "'Ci domanda quando partiamo' means 'He asks us when we're leaving.' The question word 'quando' is kept unchanged, and the verb shifts person to 'partiamo' because we are the ones asked ('voi' addressed becomes 'noi' reporting ourselves). As with every wh-question, no 'se' or 'che' is added in front of the question word.",
+    "version": 1
+  },
+  {
+    "external_id": "rep_futcond_01",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "tense_shift.future_to_past_conditional",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Trasforma in discorso indiretto: Marco ha detto: 'Verrò alla festa.' → Marco ha detto che ____ alla festa.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "candidate_tenses": [
+      "condizionale_passato",
+      "condizionale",
+      "future",
+      "imperfect"
+    ],
+    "correct_tense": "condizionale_passato",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "reported_speech.tense_shift.future_to_past_conditional",
+        "label": "Quoted future becomes the past conditional",
+        "any_phrases": [
+          "sarebbe venuto",
+          {
+            "phrase": "veniva",
+            "credit": 0.5,
+            "note": "common in speech; the standard written form is the past conditional, sarebbe venuto"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "verrebbe",
+            "note": "English says 'would come', but Italian reports a past speaker's future with the PAST conditional: sarebbe venuto"
+          },
+          {
+            "phrase": "verrà",
+            "note": "after a past reporting verb the future shifts back"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.imperfect.indirect_speech.reported_intention",
+        "label": "Reporting a past speaker's intention",
+        "any_phrases": [
+          "sarebbe venuto",
+          {
+            "phrase": "veniva",
+            "credit": 0.5,
+            "note": "common in speech; the standard written form is the past conditional, sarebbe venuto"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "verrebbe",
+            "note": "the present conditional is the English-driven calque"
+          },
+          {
+            "phrase": "verrà",
+            "note": "the future does not survive a past reporting verb"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "venire",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "to come - venire",
+            "bucket": "vocabulary.it.venire.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Marco ha detto che sarebbe venuto alla festa' means 'Marco said he would come to the party.' When the reporting verb is in the past, a quoted future slides back. English slides it to 'would come', and that is exactly the trap: Italian goes one step further, to the past conditional 'sarebbe venuto'. The present conditional 'verrebbe' is the direct calque of the English and the classic miss. In speech you will also hear 'veniva', which is accepted here at half credit but is not the standard written form.",
+    "examiner_note": "Dual citation per dispatch: markpoint 0 fires the reported-speech leaf (topic-facing home), markpoint 1 fires the imperfect tree's reported-intention bucket, each at 0.5 so the net credit and the graded 'veniva' at 0.5 both survive (engine multiplies markpoint credit by phrase credit). Same-surface partner: rep_noshift_05 uses this quote with a present reporter.",
+    "version": 1
+  },
+  {
+    "external_id": "rep_futcond_02",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "tense_shift.future_to_past_conditional",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Trasforma in discorso indiretto: Sara ha promesso: 'Ti telefonerò.' → Sara ha promesso che mi ____.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "candidate_tenses": [
+      "condizionale_passato",
+      "condizionale",
+      "future",
+      "imperfect"
+    ],
+    "correct_tense": "condizionale_passato",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "reported_speech.tense_shift.future_to_past_conditional",
+        "label": "Quoted future becomes the past conditional",
+        "any_phrases": [
+          "avrebbe telefonato",
+          {
+            "phrase": "telefonava",
+            "credit": 0.5,
+            "note": "common in speech; the standard written form is the past conditional, avrebbe telefonato"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "telefonerebbe",
+            "note": "the present conditional is the English-driven calque; Italian reports a past speaker's future with the PAST conditional"
+          },
+          {
+            "phrase": "telefonerà",
+            "note": "after a past reporting verb the future shifts back"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.imperfect.indirect_speech.reported_intention",
+        "label": "Reporting a past speaker's intention",
+        "any_phrases": [
+          "avrebbe telefonato",
+          {
+            "phrase": "telefonava",
+            "credit": 0.5,
+            "note": "common in speech; the standard written form is the past conditional, avrebbe telefonato"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "telefonerebbe",
+            "note": "the present conditional is the English-driven calque"
+          },
+          {
+            "phrase": "telefonerà",
+            "note": "the future does not survive a past reporting verb"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "telefonare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "to phone - telefonare",
+            "bucket": "vocabulary.it.telefonare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Sara ha promesso che mi avrebbe telefonato' means 'Sara promised she would phone me.' Promising is reporting an intention, and the promise was made in the past, so the quoted future 'telefonerò' backshifts to the past conditional 'avrebbe telefonato'. Note the auxiliary: telefonare takes avere, so the past conditional is built on 'avrebbe', not 'sarebbe'. 'Telefonerebbe' is the present-conditional calque of English 'would phone'.",
+    "examiner_note": "Dual citation as in rep_futcond_01. Chosen for the avere-auxiliary past conditional, contrasting with the essere-auxiliary items (01, 03, 05, 06).",
+    "version": 1
+  },
+  {
+    "external_id": "rep_futcond_03",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "tense_shift.future_to_past_conditional",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Trasforma in discorso indiretto: Anna ha detto: 'Partirò presto.' → Anna ha detto che ____ presto.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "candidate_tenses": [
+      "condizionale_passato",
+      "condizionale",
+      "future",
+      "imperfect"
+    ],
+    "correct_tense": "condizionale_passato",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "reported_speech.tense_shift.future_to_past_conditional",
+        "label": "Quoted future becomes the past conditional",
+        "any_phrases": [
+          "sarebbe partita",
+          {
+            "phrase": "sarebbe partito",
+            "credit": 0.8,
+            "note": "the past conditional is right; with essere the participle agrees with Anna, so partita"
+          },
+          {
+            "phrase": "partiva",
+            "credit": 0.5,
+            "note": "common in speech; the standard written form is the past conditional, sarebbe partita"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "partirebbe",
+            "note": "the present conditional is the English-driven calque; Italian uses the PAST conditional here"
+          },
+          {
+            "phrase": "partirà",
+            "note": "after a past reporting verb the future shifts back"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.imperfect.indirect_speech.reported_intention",
+        "label": "Reporting a past speaker's intention",
+        "any_phrases": [
+          "sarebbe partita",
+          {
+            "phrase": "sarebbe partito",
+            "credit": 0.8,
+            "note": "the shift is right; the participle should agree with Anna"
+          },
+          {
+            "phrase": "partiva",
+            "credit": 0.5,
+            "note": "common in speech; the standard written form is the past conditional"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "partirebbe",
+            "note": "the present conditional is the English-driven calque"
+          },
+          {
+            "phrase": "partirà",
+            "note": "the future does not survive a past reporting verb"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "partire",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "to leave / depart - partire",
+            "bucket": "vocabulary.it.partire.translation"
+          },
+          "auxiliary": {
+            "reveal": "essere (motion intransitive)",
+            "bucket": "vocabulary.it.partire.auxiliary"
+          }
+        }
+      }
+    ],
+    "explanation": "'Anna ha detto che sarebbe partita presto' means 'Anna said she would leave early.' The reporting verb is past, so the quoted future 'partirò' backshifts to the past conditional. Partire takes essere, so the past conditional is 'sarebbe partita' — and with essere the participle agrees with Anna, giving partita rather than partito. 'Partirebbe' is the present-conditional calque that English 'would leave' invites.",
+    "examiner_note": "The graded 'sarebbe partito' at 0.8 credits the shift while marking the agreement slip, so an agreement error is not misdiagnosed as a failure of the tense shift.",
+    "version": 1
+  },
+  {
+    "external_id": "rep_futcond_04",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "tense_shift.future_to_past_conditional",
+    "difficulty": 4,
+    "cefr_level_target": "C1",
+    "prompt": "Trasforma in discorso indiretto: Il direttore disse: 'Firmerò il contratto.' → Il direttore disse che ____ il contratto.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "candidate_tenses": [
+      "condizionale_passato",
+      "condizionale",
+      "future",
+      "imperfect"
+    ],
+    "correct_tense": "condizionale_passato",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "reported_speech.tense_shift.future_to_past_conditional",
+        "label": "Quoted future becomes the past conditional",
+        "any_phrases": [
+          "avrebbe firmato",
+          {
+            "phrase": "firmava",
+            "credit": 0.5,
+            "note": "common in speech; the standard written form is the past conditional, avrebbe firmato"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "firmerebbe",
+            "note": "the present conditional is the English-driven calque; Italian uses the PAST conditional"
+          },
+          {
+            "phrase": "firmerà",
+            "note": "after a past reporting verb the future shifts back"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.imperfect.indirect_speech.reported_intention",
+        "label": "Reporting a past speaker's intention",
+        "any_phrases": [
+          "avrebbe firmato",
+          {
+            "phrase": "firmava",
+            "credit": 0.5,
+            "note": "common in speech; the standard written form is the past conditional"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "firmerebbe",
+            "note": "the present conditional is the English-driven calque"
+          },
+          {
+            "phrase": "firmerà",
+            "note": "the future does not survive a past reporting verb"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "firmare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "to sign - firmare",
+            "bucket": "vocabulary.it.firmare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Il direttore disse che avrebbe firmato il contratto' means 'The director said he would sign the contract.' The reporting verb here is 'disse', a past tense used for narrative rather than conversation, but it anchors the past exactly as 'ha detto' does — so the quoted future still backshifts to the past conditional 'avrebbe firmato'. Any past reporting verb triggers the shift; the choice between disse and ha detto is a matter of narrative register, not of the shift.",
+    "examiner_note": "Uses a passato remoto reporter to show the shift is triggered by past-ness generally, not by the passato prossimo specifically.",
+    "version": 1
+  },
+  {
+    "external_id": "rep_futcond_05",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "tense_shift.future_to_past_conditional",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Trasforma in discorso indiretto: Luca mi ha scritto: 'Non riuscirò a venire.' → Luca mi ha scritto che non ____ a venire.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "candidate_tenses": [
+      "condizionale_passato",
+      "condizionale",
+      "future",
+      "imperfect"
+    ],
+    "correct_tense": "condizionale_passato",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "reported_speech.tense_shift.future_to_past_conditional",
+        "label": "Quoted future becomes the past conditional",
+        "any_phrases": [
+          "sarebbe riuscito",
+          {
+            "phrase": "riusciva",
+            "credit": 0.5,
+            "note": "common in speech; the standard written form is the past conditional, sarebbe riuscito"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "riuscirebbe",
+            "note": "the present conditional is the English-driven calque; Italian uses the PAST conditional"
+          },
+          {
+            "phrase": "riuscirà",
+            "note": "after a past reporting verb the future shifts back"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.imperfect.indirect_speech.reported_intention",
+        "label": "Reporting a past speaker's intention",
+        "any_phrases": [
+          "sarebbe riuscito",
+          {
+            "phrase": "riusciva",
+            "credit": 0.5,
+            "note": "common in speech; the standard written form is the past conditional"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "riuscirebbe",
+            "note": "the present conditional is the English-driven calque"
+          },
+          {
+            "phrase": "riuscirà",
+            "note": "the future does not survive a past reporting verb"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "riuscire",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "to manage / succeed - riuscire",
+            "bucket": "vocabulary.it.riuscire.translation"
+          },
+          "auxiliary": {
+            "reveal": "essere (motion intransitive)",
+            "bucket": "vocabulary.it.riuscire.auxiliary"
+          }
+        }
+      }
+    ],
+    "explanation": "'Luca mi ha scritto che non sarebbe riuscito a venire' means 'Luca wrote to me that he wouldn't manage to come.' Writing in the past is still a past reporting verb, so the quoted future 'riuscirò' backshifts to the past conditional. Riuscire takes essere, hence 'sarebbe riuscito'. The negation sits in front of the whole verb complex and changes nothing about the shift itself.",
+    "version": 1
+  },
+  {
+    "external_id": "rep_futcond_06",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "tense_shift.future_to_past_conditional",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Trasforma in discorso indiretto: I ragazzi hanno detto: 'Arriveremo presto.' → I ragazzi hanno detto che ____ presto.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "candidate_tenses": [
+      "condizionale_passato",
+      "condizionale",
+      "future",
+      "imperfect"
+    ],
+    "correct_tense": "condizionale_passato",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "reported_speech.tense_shift.future_to_past_conditional",
+        "label": "Quoted future becomes the past conditional",
+        "any_phrases": [
+          "sarebbero arrivati",
+          {
+            "phrase": "arrivavano",
+            "credit": 0.5,
+            "note": "common in speech; the standard written form is the past conditional, sarebbero arrivati"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "arriverebbero",
+            "note": "the present conditional is the English-driven calque; Italian uses the PAST conditional"
+          },
+          {
+            "phrase": "arriveranno",
+            "note": "after a past reporting verb the future shifts back"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.imperfect.indirect_speech.reported_intention",
+        "label": "Reporting a past speaker's intention",
+        "any_phrases": [
+          "sarebbero arrivati",
+          {
+            "phrase": "arrivavano",
+            "credit": 0.5,
+            "note": "common in speech; the standard written form is the past conditional"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "arriverebbero",
+            "note": "the present conditional is the English-driven calque"
+          },
+          {
+            "phrase": "arriveranno",
+            "note": "the future does not survive a past reporting verb"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "arrivare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "to arrive - arrivare",
+            "bucket": "vocabulary.it.arrivare.translation"
+          },
+          "auxiliary": {
+            "reveal": "essere (motion intransitive)",
+            "bucket": "vocabulary.it.arrivare.auxiliary"
+          }
+        }
+      }
+    ],
+    "explanation": "'I ragazzi hanno detto che sarebbero arrivati presto' means 'The boys said they would arrive early.' The past reporting verb backshifts the quoted future 'arriveremo' to the past conditional. Arrivare takes essere, so the auxiliary is 'sarebbero' and the participle agrees with the plural masculine subject: arrivati. 'Arriverebbero' is the calque English 'would arrive' pulls learners toward.",
+    "version": 1
+  },
+  {
+    "external_id": "rep_futcond_07",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "tense_shift.future_to_past_conditional",
+    "difficulty": 5,
+    "cefr_level_target": "C1",
+    "prompt": "Trasforma in discorso indiretto: Il collega ha detto: 'Potrò aiutarti domani.' → Il collega ha detto che ____ aiutarmi il giorno dopo.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "candidate_tenses": [
+      "condizionale_passato",
+      "condizionale",
+      "future",
+      "imperfect"
+    ],
+    "correct_tense": "condizionale_passato",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "reported_speech.tense_shift.future_to_past_conditional",
+        "label": "Quoted future becomes the past conditional",
+        "any_phrases": [
+          "avrebbe potuto",
+          {
+            "phrase": "poteva",
+            "credit": 0.5,
+            "note": "common in speech; the standard written form is the past conditional, avrebbe potuto"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "potrebbe",
+            "note": "English 'would be able to' invites the present conditional; Italian uses the PAST conditional here"
+          },
+          {
+            "phrase": "potrà",
+            "note": "after a past reporting verb the future shifts back"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.imperfect.indirect_speech.reported_intention",
+        "label": "Reporting a past speaker's intention",
+        "any_phrases": [
+          "avrebbe potuto",
+          {
+            "phrase": "poteva",
+            "credit": 0.5,
+            "note": "common in speech; the standard written form is the past conditional"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "potrebbe",
+            "note": "the present conditional is the English-driven calque"
+          },
+          {
+            "phrase": "potrà",
+            "note": "the future does not survive a past reporting verb"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "potere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "to be able to - potere",
+            "bucket": "vocabulary.it.potere.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Il collega ha detto che avrebbe potuto aiutarmi il giorno dopo' means 'My colleague said he would be able to help me the next day.' A modal in the future backshifts exactly like any other verb: 'potrò' becomes the past conditional 'avrebbe potuto', with the infinitive that follows it left alone. The clitic on the infinitive shifts person too (aiutarti becomes aiutarmi), and 'domani' becomes 'il giorno dopo' — both supplied here so the item tests only the verb.",
+    "examiner_note": "Modal + infinitive complement. The clitic shift and the deixis shift are given in the stem so the markpoints isolate the tense shift.",
+    "version": 1
+  },
+  {
+    "external_id": "rep_pres_imp_01",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "tense_shift.present_to_imperfect",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Trasforma in discorso indiretto: Ieri Marco ha detto: 'Sono stanco.' (Stamattina si sentiva benissimo.) → Ieri Marco ha detto che ____ stanco.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "candidate_tenses": [
+      "present",
+      "imperfect"
+    ],
+    "correct_tense": "imperfect",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "reported_speech.tense_shift.present_to_imperfect",
+        "label": "Quoted present becomes the imperfect",
+        "any_phrases": [
+          "era"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "è",
+            "note": "the present would report the tiredness as still true, but by this morning it had passed"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.imperfect.indirect_speech.reported_present",
+        "label": "Imperfect reporting a quoted present",
+        "any_phrases": [
+          "era"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "è",
+            "note": "the reported state no longer holds, so the imperfect is required"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "stanco",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "stanco - tired",
+            "bucket": "vocabulary.it.stanco.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Ieri Marco ha detto che era stanco' means 'Yesterday Marco said he was tired.' The reporting verb is in the past, so the quoted present 'sono' slides back to the imperfect 'era'. The bracketed note matters: when a reported state still holds, Italian tolerates the present ('ha detto che è stanco'), but here the tiredness had passed by this morning, so that reading is closed off and the imperfect is the only faithful report.",
+    "examiner_note": "Criterion 10a: the parenthetical exists to exclude the still-true reading, which would otherwise make 'è' legitimate. Dual citation: reported-speech leaf plus the imperfect tree's reported-present bucket, 0.5 each.",
+    "version": 1
+  },
+  {
+    "external_id": "rep_pres_imp_02",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "tense_shift.present_to_imperfect",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Trasforma in discorso indiretto: Ieri Luca mi ha scritto: 'Ho fame.' (Poi ha cenato.) → Ieri Luca mi ha scritto che ____ fame.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "candidate_tenses": [
+      "present",
+      "imperfect"
+    ],
+    "correct_tense": "imperfect",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "reported_speech.tense_shift.present_to_imperfect",
+        "label": "Quoted present becomes the imperfect",
+        "any_phrases": [
+          "aveva"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "ha",
+            "note": "he has since eaten, so the hunger no longer holds and the present cannot report it"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.imperfect.indirect_speech.reported_present",
+        "label": "Imperfect reporting a quoted present",
+        "any_phrases": [
+          "aveva"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "ha",
+            "note": "the reported state no longer holds, so the imperfect is required"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "fame",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "hunger - fame",
+            "bucket": "vocabulary.it.fame.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.fame.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "'Ieri Luca mi ha scritto che aveva fame' means 'Yesterday Luca wrote to me that he was hungry.' A past reporting verb backshifts the quoted present 'ho' to the imperfect 'aveva'. The bracketed note closes off the still-true reading: he has since had dinner, so reporting the hunger with the present would misdescribe the situation now.",
+    "examiner_note": "Matches the tree's canonical_example 'Mi ha scritto che aveva fame.' Criterion 10a context supplied.",
+    "version": 1
+  },
+  {
+    "external_id": "rep_pres_imp_03",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "tense_shift.present_to_imperfect",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Trasforma in discorso indiretto: Nel 2019 Anna disse: 'Abito a Roma.' (Adesso vive a Milano.) → Nel 2019 Anna disse che ____ a Roma.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "candidate_tenses": [
+      "present",
+      "imperfect"
+    ],
+    "correct_tense": "imperfect",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "reported_speech.tense_shift.present_to_imperfect",
+        "label": "Quoted present becomes the imperfect",
+        "any_phrases": [
+          "abitava"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "abita",
+            "note": "she lives in Milan now, so the present would report the wrong city"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.imperfect.indirect_speech.reported_present",
+        "label": "Imperfect reporting a quoted present",
+        "any_phrases": [
+          "abitava"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "abita",
+            "note": "the reported state no longer holds, so the imperfect is required"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "abitare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "to live / reside - abitare",
+            "bucket": "vocabulary.it.abitare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Nel 2019 Anna disse che abitava a Roma' means 'In 2019 Anna said she lived in Rome.' The reporting verb sits in the past and is pinned to a year, so the quoted present 'abito' backshifts to the imperfect 'abitava'. Because she has since moved to Milan, the present 'abita' would report something that is no longer true — the context deliberately rules it out.",
+    "version": 1
+  },
+  {
+    "external_id": "rep_pres_imp_04",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "tense_shift.present_to_imperfect",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "Trasforma in discorso indiretto: Lunedì il capo ci ha detto: 'Voglio i report entro venerdì.' (Poi ha cambiato idea.) → Lunedì il capo ci ha detto che ____ i report entro venerdì.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "candidate_tenses": [
+      "present",
+      "imperfect"
+    ],
+    "correct_tense": "imperfect",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "reported_speech.tense_shift.present_to_imperfect",
+        "label": "Quoted present becomes the imperfect",
+        "any_phrases": [
+          "voleva"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "vuole",
+            "note": "he has since changed his mind, so the present would report a wish he no longer has"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.imperfect.indirect_speech.reported_present",
+        "label": "Imperfect reporting a quoted present",
+        "any_phrases": [
+          "voleva"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "vuole",
+            "note": "the reported wish no longer holds, so the imperfect is required"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "volere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "to want - volere",
+            "bucket": "vocabulary.it.volere.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Lunedì il capo ci ha detto che voleva i report entro venerdì' means 'On Monday the boss told us he wanted the reports by Friday.' A past reporting verb backshifts the quoted present 'voglio' to the imperfect 'voleva'. Because he later changed his mind, the present 'vuole' would report a wish that no longer stands, so the imperfect is the only accurate report.",
+    "version": 1
+  },
+  {
+    "external_id": "rep_pres_imp_05",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "tense_shift.present_to_imperfect",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "Trasforma in discorso indiretto: I vicini dissero: 'Non possiamo aiutarvi.' (Poi se ne andarono.) → I vicini dissero che non ____ aiutarci.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "candidate_tenses": [
+      "present",
+      "imperfect"
+    ],
+    "correct_tense": "imperfect",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "reported_speech.tense_shift.present_to_imperfect",
+        "label": "Quoted present becomes the imperfect",
+        "any_phrases": [
+          "potevano"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "possono",
+            "note": "the neighbours have since left; the present would report an ongoing inability that is no longer in view"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.imperfect.indirect_speech.reported_present",
+        "label": "Imperfect reporting a quoted present",
+        "any_phrases": [
+          "potevano"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "possono",
+            "note": "the reported state no longer holds, so the imperfect is required"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "potere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "to be able to - potere",
+            "bucket": "vocabulary.it.potere.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'I vicini dissero che non potevano aiutarci' means 'The neighbours said they couldn't help us.' The past reporting verb backshifts the quoted present 'possiamo' to the imperfect 'potevano'. The clitic also shifts to match who is being reported — 'aiutarvi' (help you) becomes 'aiutarci' (help us) — and that shift is supplied here so the item tests the tense alone.",
+    "version": 1
+  },
+  {
+    "external_id": "rep_pres_imp_06",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "tense_shift.present_to_imperfect",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Trasforma in discorso indiretto: Ieri Sara ha detto: 'Fa troppo caldo.' (Oggi è fresco.) → Ieri Sara ha detto che ____ troppo caldo.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "candidate_tenses": [
+      "present",
+      "imperfect"
+    ],
+    "correct_tense": "imperfect",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "reported_speech.tense_shift.present_to_imperfect",
+        "label": "Quoted present becomes the imperfect",
+        "any_phrases": [
+          "faceva"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "fa",
+            "note": "today is cool, so the present would report a heat that is no longer the case"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.imperfect.indirect_speech.reported_present",
+        "label": "Imperfect reporting a quoted present",
+        "any_phrases": [
+          "faceva"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "fa",
+            "note": "the reported weather no longer holds, so the imperfect is required"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "caldo",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "caldo - hot / heat",
+            "bucket": "vocabulary.it.caldo.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Ieri Sara ha detto che faceva troppo caldo' means 'Yesterday Sara said it was too hot.' Weather expressions with fare backshift like any other present: 'fa' becomes 'faceva' under the past reporting verb. Since today is cool, the present 'fa' would report a heat that has passed, so the context rules it out.",
+    "version": 1
+  },
+  {
+    "external_id": "rep_trap_01",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "tense_shift.past_to_trapassato",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Trasforma in discorso indiretto: Marco ha detto: 'Ho già mangiato.' → Marco ha detto che ____ già mangiato.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "candidate_tenses": [
+      "passato_prossimo",
+      "trapassato_prossimo"
+    ],
+    "correct_tense": "trapassato_prossimo",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "reported_speech.tense_shift.past_to_trapassato",
+        "label": "Quoted passato prossimo becomes the trapassato",
+        "any_phrases": [
+          "aveva"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "ha",
+            "note": "leaving the passato prossimo in place fails to mark the eating as prior to the saying"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "tense_choice.trapassato_vs_imperfect.completed_prior_to_prior",
+        "label": "Completed action prior to a past reference point",
+        "any_phrases": [
+          "aveva"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "ha",
+            "note": "the eating is complete and prior to the past reporting moment, which is what the trapassato marks"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "mangiare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "to eat - mangiare",
+            "bucket": "vocabulary.it.mangiare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Marco ha detto che aveva già mangiato' means 'Marco said he had already eaten.' The quoted passato prossimo 'ho mangiato' describes something finished before Marco spoke, and the reporting verb is itself in the past — so the report needs a tense that sits one step further back. That tense is the trapassato: 'aveva già mangiato'. Leaving 'ha mangiato' collapses the two moments together.",
+    "examiner_note": "Dual citation: the reported-speech leaf plus the tense_choice tree's completed-prior-to-prior bucket, 0.5 each. Citing the leaf rather than the trapassato_vs_imperfect aggregate; flagged in the coverage doc for Architecture.",
+    "version": 1
+  },
+  {
+    "external_id": "rep_trap_02",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "tense_shift.past_to_trapassato",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Trasforma in discorso indiretto: Anna disse: 'Sono arrivata ieri sera.' → Anna disse che ____ la sera prima.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "candidate_tenses": [
+      "passato_prossimo",
+      "trapassato_prossimo"
+    ],
+    "correct_tense": "trapassato_prossimo",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "reported_speech.tense_shift.past_to_trapassato",
+        "label": "Quoted passato prossimo becomes the trapassato",
+        "any_phrases": [
+          "era arrivata",
+          {
+            "phrase": "era arrivato",
+            "credit": 0.8,
+            "note": "the trapassato is right; with essere the participle agrees with Anna, so arrivata"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "è arrivata",
+            "note": "the passato prossimo does not survive a past reporting verb here"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "tense_choice.trapassato_vs_imperfect.completed_prior_to_prior",
+        "label": "Completed action prior to a past reference point",
+        "any_phrases": [
+          "era arrivata",
+          {
+            "phrase": "era arrivato",
+            "credit": 0.8,
+            "note": "the tense is right; the participle should agree with Anna"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "è arrivata",
+            "note": "the arrival is prior to the past reporting moment, which the trapassato marks"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "arrivare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "to arrive - arrivare",
+            "bucket": "vocabulary.it.arrivare.translation"
+          },
+          "auxiliary": {
+            "reveal": "essere (motion intransitive)",
+            "bucket": "vocabulary.it.arrivare.auxiliary"
+          }
+        }
+      }
+    ],
+    "explanation": "'Anna disse che era arrivata la sera prima' means 'Anna said she had arrived the evening before.' The arrival happened before Anna spoke, and she spoke in the past, so the report needs the trapassato. Arrivare takes essere, so it is built with 'era', and the participle agrees with Anna: arrivata. Note 'ieri sera' has travelled to 'la sera prima', supplied here so the item tests the tense.",
+    "examiner_note": "Matches the tree's canonical_example 'Disse che era arrivata la sera prima.' Graded 'era arrivato' at 0.8 credits the tense shift while marking the agreement slip.",
+    "version": 1
+  },
+  {
+    "external_id": "rep_trap_03",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "tense_shift.past_to_trapassato",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Trasforma in discorso indiretto: I tecnici hanno detto: 'Abbiamo riparato il guasto.' → I tecnici hanno detto che ____ il guasto.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "candidate_tenses": [
+      "passato_prossimo",
+      "trapassato_prossimo"
+    ],
+    "correct_tense": "trapassato_prossimo",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "reported_speech.tense_shift.past_to_trapassato",
+        "label": "Quoted passato prossimo becomes the trapassato",
+        "any_phrases": [
+          "avevano riparato"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "hanno riparato",
+            "note": "leaving the passato prossimo fails to place the repair before the reporting moment"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "tense_choice.trapassato_vs_imperfect.completed_prior_to_prior",
+        "label": "Completed action prior to a past reference point",
+        "any_phrases": [
+          "avevano riparato"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "hanno riparato",
+            "note": "the repair is complete and prior to the past reporting moment"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "riparare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "to repair - riparare",
+            "bucket": "vocabulary.it.riparare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'I tecnici hanno detto che avevano riparato il guasto' means 'The technicians said they had repaired the fault.' The repair was finished before they spoke, and they spoke in the past, so the trapassato 'avevano riparato' places it one step further back. Riparare takes avere, so the auxiliary is 'avevano' and the participle does not agree with the object.",
+    "version": 1
+  },
+  {
+    "external_id": "rep_trap_04",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "tense_shift.past_to_trapassato",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Trasforma in discorso indiretto: Il cliente mi ha scritto: 'Non ho ricevuto il pacco.' → Il cliente mi ha scritto che non ____ il pacco.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "candidate_tenses": [
+      "passato_prossimo",
+      "trapassato_prossimo"
+    ],
+    "correct_tense": "trapassato_prossimo",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "reported_speech.tense_shift.past_to_trapassato",
+        "label": "Quoted passato prossimo becomes the trapassato",
+        "any_phrases": [
+          "aveva ricevuto"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "ha ricevuto",
+            "note": "the passato prossimo does not survive a past reporting verb here"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "tense_choice.trapassato_vs_imperfect.completed_prior_to_prior",
+        "label": "Completed action prior to a past reference point",
+        "any_phrases": [
+          "aveva ricevuto"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "ha ricevuto",
+            "note": "the non-arrival is prior to the past reporting moment"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "ricevere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "to receive - ricevere",
+            "bucket": "vocabulary.it.ricevere.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Il cliente mi ha scritto che non aveva ricevuto il pacco' means 'The customer wrote to me that he hadn't received the parcel.' Writing is a past reporting verb, so the quoted 'non ho ricevuto' backshifts to the trapassato 'non aveva ricevuto'. The negation sits in front of the auxiliary and has no bearing on the shift itself.",
+    "version": 1
+  },
+  {
+    "external_id": "rep_trap_05",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "tense_shift.past_to_trapassato",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Trasforma in discorso indiretto: Luca ha detto: 'Sono andato dal medico.' → Luca ha detto che ____ dal medico.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "candidate_tenses": [
+      "passato_prossimo",
+      "trapassato_prossimo"
+    ],
+    "correct_tense": "trapassato_prossimo",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "reported_speech.tense_shift.past_to_trapassato",
+        "label": "Quoted passato prossimo becomes the trapassato",
+        "any_phrases": [
+          "era andato"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "è andato",
+            "note": "the passato prossimo does not survive a past reporting verb here"
+          },
+          {
+            "phrase": "aveva andato",
+            "note": "andare takes essere, so the trapassato is era andato"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "tense_choice.trapassato_vs_imperfect.completed_prior_to_prior",
+        "label": "Completed action prior to a past reference point",
+        "any_phrases": [
+          "era andato"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "è andato",
+            "note": "the visit is prior to the past reporting moment"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "andare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "to go - andare",
+            "bucket": "vocabulary.it.andare.translation"
+          },
+          "auxiliary": {
+            "reveal": "essere (motion intransitive)",
+            "bucket": "vocabulary.it.andare.auxiliary"
+          }
+        }
+      }
+    ],
+    "explanation": "'Luca ha detto che era andato dal medico' means 'Luca said he had gone to the doctor.' The visit was over before Luca spoke, and he spoke in the past, so the trapassato is needed. Andare takes essere, so the trapassato keeps that auxiliary in the imperfect: 'era andato', not 'aveva andato'. The auxiliary the verb already owns is the one that backshifts.",
+    "examiner_note": "The 'aveva andato' entry catches the auxiliary error inside the right tense; 'era andato' wins first on the any_phrases pass.",
+    "version": 1
+  },
+  {
+    "external_id": "rep_deixis_01",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "deixis",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Trasforma in discorso indiretto: Lunedì scorso Marco ha detto: 'Parto domani.' → Marco ha detto che partiva ____.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "reported_speech.deixis",
+        "label": "domani travels to il giorno dopo",
+        "any_phrases": [
+          "il giorno dopo"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "domani",
+            "note": "the report is anchored to last Monday, so 'domani' would point at tomorrow from now, not the day after he spoke"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "domani",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "domani - tomorrow",
+            "bucket": "vocabulary.it.domani.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Marco ha detto che partiva il giorno dopo' means 'Marco said he was leaving the next day.' Words that point at a time only make sense from where the speaker stands; that anchoring to the speaker is what deixis means. Once the report is anchored to last Monday, 'domani' would point at tomorrow from today — the wrong day entirely — so it travels to 'il giorno dopo', which points forward from the moment Marco spoke. The verb is supplied here so the item tests only the pointing word.",
+    "examiner_note": "Verb given in the stem to isolate the deixis skill from the tense shift.",
+    "version": 1
+  },
+  {
+    "external_id": "rep_deixis_02",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "deixis",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Trasforma in discorso indiretto: La settimana scorsa Anna ha detto: 'Sono arrivata ieri.' → Anna ha detto che era arrivata ____.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "reported_speech.deixis",
+        "label": "ieri travels to il giorno prima",
+        "any_phrases": [
+          "il giorno prima"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "ieri",
+            "note": "the report is anchored to last week, so 'ieri' would point at yesterday from now"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "ieri",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "ieri - yesterday",
+            "bucket": "vocabulary.it.ieri.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Anna ha detto che era arrivata il giorno prima' means 'Anna said she had arrived the day before.' Deixis is anchored to the speaker, so since the report is anchored to last week, 'ieri' would point at yesterday counting from today, which is not what Anna meant. The pointing word travels backwards to 'il giorno prima', which counts from the moment she spoke.",
+    "version": 1
+  },
+  {
+    "external_id": "rep_deixis_03",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "deixis",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Trasforma in discorso indiretto: Nel 2020 il sindaco disse: 'Oggi apriamo il nuovo ospedale.' → Il sindaco disse che ____ aprivano il nuovo ospedale.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "reported_speech.deixis",
+        "label": "oggi travels to quel giorno",
+        "any_phrases": [
+          "quel giorno"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "oggi",
+            "note": "the report is anchored to 2020, so 'oggi' would point at today rather than the day the mayor spoke"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "oggi",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "oggi - today",
+            "bucket": "vocabulary.it.oggi.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Il sindaco disse che quel giorno aprivano il nuovo ospedale' means 'The mayor said that they were opening the new hospital that day.' 'Oggi' is deixis anchored to the day of speaking, so once the report is anchored back in 2020 it has to become 'quel giorno' — that day, the one the mayor was standing in — rather than today.",
+    "version": 1
+  },
+  {
+    "external_id": "rep_deixis_04",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "deixis",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Trasforma in discorso indiretto: Al telefono Luca disse: 'Ti aspetto qui.' → Luca disse che mi aspettava ____.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "reported_speech.deixis",
+        "label": "qui travels to lì",
+        "any_phrases": [
+          "lì"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "qui",
+            "note": "'qui' points at where the reporter is now, not at where Luca was standing when he spoke"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "qui",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "qui - here",
+            "bucket": "vocabulary.it.qui.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Luca disse che mi aspettava lì' means 'Luca said he was waiting for me there.' Place words are deixis too: they point from wherever the speaker stands. Luca said 'qui' meaning his own end of the phone; reported from somewhere else, that place is no longer 'here' but 'there', so 'qui' travels to 'lì'. The clitic has shifted from ti to mi as well, supplied here so the item tests the place word.",
+    "examiner_note": "Short accented answer; the engine's accent-folded fallback should credit an unaccented 'li'. Flagged in the coverage doc as accent-fragile.",
+    "version": 1
+  },
+  {
+    "external_id": "rep_deixis_05",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "deixis",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Trasforma in discorso indiretto: Ieri Sara ha detto: 'Questo libro è noioso.' → Sara ha detto che ____ era noioso.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "reported_speech.deixis",
+        "label": "questo travels to the quello family",
+        "any_phrases": [
+          "quel libro",
+          "quello libro"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "questo libro",
+            "note": "'questo' points at what the speaker is holding; reported later, the book is no longer near the reporter"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "demonstrative.quello",
+        "label": "quello shortens to quel before a simple consonant",
+        "any_phrases": [
+          "quel libro"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "quello libro",
+            "note": "before a simple consonant quello shortens to quel, like the article il"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "libro",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "libro - book",
+            "bucket": "vocabulary.it.libro.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.libro.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "'Sara ha detto che quel libro era noioso' means 'Sara said that book was boring.' 'Questo' is deixis pointing at something the speaker has to hand; once the report moves away in time and place, the book is no longer near, so the pointing word travels to the quello family. The form then follows the same shape as the article: before a simple consonant, quello shortens to 'quel libro', just as il libro does.",
+    "examiner_note": "Genuine two-skill split rather than a dual citation: markpoint 0 credits the deixis travel (either quel or quello shows the shift happened), markpoint 1 credits the correct apocopated form. So 'quello libro' credits the travel and misses the form, and 'questo libro' misses the travel. Blanking the full noun phrase avoids the quel-inside-quello substring false positive.",
+    "version": 1
+  },
+  {
+    "external_id": "rep_deixis_06",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "deixis",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Trasforma in discorso indiretto: Lunedì il tecnico ha detto: 'Torno fra due giorni.' → Il tecnico ha detto che tornava ____.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "reported_speech.deixis",
+        "label": "fra due giorni travels to due giorni dopo",
+        "any_phrases": [
+          "due giorni dopo"
+        ],
+        "must_not_include": [
+          {
+            "phrase": "fra due giorni",
+            "note": "'fra due giorni' counts forward from now; the report needs to count forward from Monday, when he spoke"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "tornare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "to return - tornare",
+            "bucket": "vocabulary.it.tornare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Il tecnico ha detto che tornava due giorni dopo' means 'The technician said he was coming back two days later.' 'Fra due giorni' is deixis counting forward from the moment of speaking, so in a report anchored to Monday it would land on the wrong day. Counting from the reported moment instead gives 'due giorni dopo'. The same logic that moves domani to il giorno dopo moves any forward-counting phrase.",
     "version": 1
   }
 ]

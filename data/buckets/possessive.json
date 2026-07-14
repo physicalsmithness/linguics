@@ -133,8 +133,104 @@
     "prerequisites": [],
     "attributes": {
       "is_aggregate": true,
+      "direction": "bidirectional"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "possessive.discrimination.suo",
+    "parent_id": "possessive.discrimination",
+    "language_code": "it",
+    "label": "suo/sua: his, her, your (formal)",
+    "description": "The third-person possessive suo agrees with the thing owned, not the owner, so context alone decides whether it means his, her, its or your (formal, Lei). Comprehension items resolve the owner from context; production items check that the learner reaches for suo regardless of the owner's gender.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "possessive.adjective.forms"
+    ],
+    "attributes": {
+      "is_aggregate": false,
       "direction": "bidirectional",
-      "stub": true
+      "canonical_example": "il suo cane (his or her dog); i Suoi documenti (your documents, formal)",
+      "common_miss": "sua for a male owner / suo for a female owner (agreeing with the owner instead of the noun)"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "possessive.predicate",
+    "parent_id": "possessive",
+    "language_code": "it",
+    "label": "Predicate: è mio",
+    "description": "Ownership after essere drops the article: Di chi è? È mio. Questa borsa è mia. Distinct from the article-bearing pronoun (la mia è più grande).",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "Di chi è questa borsa? È mia.",
+      "common_miss": "È la mia for plain ownership (article intrudes).",
+      "is_aggregate": false,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "possessive.postposed",
+    "parent_id": "possessive",
+    "language_code": "it",
+    "label": "Postposed: casa mia, colpa mia",
+    "description": "The possessive after the noun in the productive fixed patterns: casa mia/tua/sua, colpa mia, piacere mio, Dio mio. Word order is the skill; the fully lexicalised extremes are vocabulary.",
+    "cefr_importance": {
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "Vieni a casa mia stasera?",
+      "common_miss": "a mia casa (calqued order); alla casa mia.",
+      "is_aggregate": false,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "possessive.proprio",
+    "parent_id": "possessive",
+    "language_code": "it",
+    "label": "Proprio",
+    "description": "The reflexive possessive: with impersonal and third-person subjects (Ognuno pensa ai propri interessi), and as the disambiguator where suo is ambiguous.",
+    "cefr_importance": {
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "possessive.discrimination.suo"
+    ],
+    "attributes": {
+      "canonical_example": "Ognuno difende i propri diritti.",
+      "common_miss": "suo where proprio is required with impersonal subjects.",
+      "is_aggregate": false,
+      "direction": "production"
     },
     "active": true,
     "version": 1

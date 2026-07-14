@@ -849,4 +849,22 @@ On Smith's go-ahead the remaining three candidates are live: indefinite (13 node
 **How to apply:** fire IndefiniteAuthor, ConnectiveAuthor, WordFormationAuthor on their dispatches; none enters the manifest until content lands.
 
 ---
+## 2026-07-14: The evening reply sweep (nine seats), with four new standing rules
+
+Smith's "have you replied to pronouns author inter alia" caught a real hole: PronounAuthor's Rev-13 self-audit sat unread, my glielo/fcap routing had gone into other seats' threads, and ten new versions had landed while the architect scaffolded. All processed the same evening. The four rules that came out of it (all in Brief Revision 17): (i) the stale §2 match_at bullet rewritten to match the shipped engine (RelativePronounAuthor's errata); (ii) criterion 18 gains the third superstring direction, no must_not entry inside a plausible CORRECT attempt, the false-diagnostic case (PrepositionAuthor's prep_mo_05); (iii) criterion 16 generalised to candidate_forms / correct_form for non-tense discriminations, raised independently by PossessiveAuthor (suo referents) and DemonstrativeAuthor (questo/quello) the same evening; (iv) the 0.9-for-dodges grading rule, correct Italian that sidesteps the drilled pattern scores 0.9 with a steering note, with the boundary stated: skill-shown-by-other-means (iniziano for cominciare) stays 1.0, skill-avoided (un po' di for the partitive) is the 0.9 case. Also ruled: bucket-level default_info_display: "suppress" as the answer to PronounAuthor's 90-110-item breadcrumb leak (live on the pronoun tree's four form subtrees; Housing resolver support requested); version fields bump only on post-consumption material edits; né...né ratified under negation (leaf live); the three possessive edge leaves ratified and live (predicate è mio, postposed casa mia, proprio); possessive.discrimination.suo and demonstrative.discrimination.questo_vs_quello registered from their suggestion files.
+
+**Why:** the operating model's failure mode is exactly this, seats posting into unread threads; the catch was Smith's, the repair is same-evening, and the ticker discipline (UPDATES.md) plus the per-turn re-read now have a concrete cautionary example, my own duplicate-v3 on the accent thread included.
+
+**How to apply:** the batch dispositions are in each thread; Housing's two display extensions (inherited suppress, candidate_forms tick) are the only blockers on anything.
+
+---
+## 2026-07-14: Batch dispositions of the evening wave; Housing phase-1b and coverage surfaces accepted
+
+Negation batch 1 (36+18) ACCEPTED, audit clean, concord-suppression flip applied by ruling. Possessive (48+26) and demonstrative (44+20) audits clean (the six possessive family containments are MCQ, unreachable by typing, by that author's own design); full coverage-doc reads follow, rulings unblocked them tonight. Future formation (50+19) containment-clean, full review queued; its author's sixteen dead-guard removals and no-flags-in-futuro call confirmed against criterion 19. Relative-pronoun same-day self-reconciliation to Rev 15/16 noted for the audit's books. Housing: phase-1b complete and accepted (which-way, Mix + gender drill with the rankRange fix, Custom-mix guardrail, competence display); the 2D coverage matrix built and its denominator (a) RATIFIED (bucket-native, one shared masteryForScope helper, so strip and matrix agree by construction); the drill-filter root cause (wrap reshuffled the unfiltered pool) fixed and accepted; marker-payload bracket-stripping accepted; WEB_KIT compliance shipped (GA4, Clarity, click-tracker, semantic events, head guard), the feedback widget alone pending the estate drop-in.
+
+**Why:** the wave validates the scaled model: five author seats and Housing all moving in parallel against one brief, with the architect's job reduced to boundaries, rulings and audits.
+
+**How to apply:** Smith pushes via GitHub Desktop (r5 build plus tonight's data); two Smith-side items are open, the exact orbitalwells head block for Housing, and the parked resume-exact-question call.
+
+---
 

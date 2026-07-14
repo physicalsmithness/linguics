@@ -111,8 +111,34 @@
     "prerequisites": [],
     "attributes": {
       "is_aggregate": true,
+      "direction": "bidirectional"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "demonstrative.discrimination.questo_vs_quello",
+    "parent_id": "demonstrative.discrimination",
+    "language_code": "it",
+    "label": "this vs that (near / far)",
+    "description": "Choosing questo (near the speaker) or quello (further away) from distance cues in the sentence (qui/adesso vs laggiù/in fondo/all'orizzonte).",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "demonstrative.questo",
+      "demonstrative.quello"
+    ],
+    "attributes": {
+      "is_aggregate": false,
       "direction": "bidirectional",
-      "stub": true
+      "stub": true,
+      "canonical_example": "questo caffè (qui) vs quel palazzo (in fondo alla via)"
     },
     "active": true,
     "version": 1

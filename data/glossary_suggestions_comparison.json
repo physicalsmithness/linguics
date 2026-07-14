@@ -1,0 +1,26 @@
+{
+  "$comment": "Glossary terms used in comparison explanations but not yet in data/glossary.json. Checked against glossary.json v4 (108 terms): none of comparative, superlative, absolute superlative, relative superlative is present. Terms already in the glossary and reused unchanged by this batch: stressed pronoun, definite article, elision. Suggested aliases noted per entry for the renderer.",
+  "version": 1,
+  "suggestions": {
+    "comparative": {
+      "short": "The form that measures one thing against another: più/meno + adjective, joined by di or che (Marco è più alto di Luca).",
+      "long": "A comparative sets two things side by side on one quality. Italian builds it with più (more) or meno (less) before the adjective, then joins the halves with di or che. Di is used when two different entities are measured against one quality (Marco è più alto di Luca) and before bare numbers (più di venti). Che is used when the comparison is between two qualities of one thing, two verbs, two quantified nouns, or two prepositional phrases (è più simpatico che intelligente). A few adjectives also have inherited one-word comparatives: migliore, peggiore, maggiore, minore, which are never preceded by più.",
+      "needed_for": "Named as the four-beat term in nearly every comparison explanation. Suggested aliases: comparatives, comparative form."
+    },
+    "superlative": {
+      "short": "The form that takes a quality to its limit: the top of a group (relative) or utterly (absolute).",
+      "long": "A superlative pushes a quality to its extreme. Italian has two kinds. The relative superlative picks the top or bottom of a group with article + più/meno + adjective plus di or tra for the group (la città più bella d'Italia). The absolute superlative says 'utterly' with no group in view, usually by adding -issimo (bellissimo). A few adjectives carry inherited superlatives instead: ottimo, pessimo, massimo, minimo.",
+      "needed_for": "The umbrella term used across both superlative leaves; the two kinds are defined separately. Suggested aliases: superlatives."
+    },
+    "absolute superlative": {
+      "short": "'Utterly, extremely', with no group compared: drop the final vowel and add -issimo (bellissimo, stanchissimi).",
+      "long": "The absolute superlative states that a quality is at its extreme without comparing it to any group. It is formed by dropping the adjective's final vowel and adding -issimo, and it agrees like a normal adjective (bellissima, stanchissimi). Spelling shifts mirror the plural: stanco keeps its hard c (stanchissimo) while simpatico does not (simpaticissimo). Molto + adjective says the same thing more mildly, and the two are never stacked: molto bellissimo is not Italian. Some adjectives use inherited forms instead (ottimo, pessimo), which are likewise already at full strength.",
+      "needed_for": "Named in every -issimo explanation and contrasted with the relative superlative. Suggested alias: -issimo."
+    },
+    "relative superlative": {
+      "short": "'The most ... in a group': article + più/meno + adjective, with di or tra for the group (la città più bella d'Italia).",
+      "long": "The relative superlative picks out the top or bottom of a group. It is article + più/meno + adjective, with the group introduced by di (often contracted: della classe, del mondo) or by tra. When the adjective follows the noun, the article appears once only: la città più bella, never la città la più bella, which is a calque from French. It contrasts with the absolute superlative, which names no group at all.",
+      "needed_for": "Named in every relative-superlative explanation and needed for the repeated-article contrast."
+    }
+  }
+}

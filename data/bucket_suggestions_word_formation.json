@@ -1,0 +1,23 @@
+[
+  {
+    "proposed_id": "word_formation.alterati.augmentative_pejorative.gender_shift",
+    "proposed_parent_id": "word_formation.alterati.augmentative_pejorative",
+    "proposed_label": "-one gender shift (la porta, il portone)",
+    "proposed_description": "Feminine bases that turn masculine under the accrescitivo -one: la porta > il portone, la palla > il pallone, la stanza > lo stanzone. The diagnostic is the article/gender, distinct from producing the -one suffix itself.",
+    "proposed_cefr_importance": {
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "proposed_prerequisites": [
+      "word_formation.alterati.augmentative_pejorative"
+    ],
+    "proposed_attributes": {
+      "canonical_example": "la porta -> il portone",
+      "common_miss": "la portona (keeps the feminine)",
+      "is_aggregate": false,
+      "direction": "production"
+    },
+    "rationale": "Not strictly required to author (the three gender-shift items wf_aug_02/03 currently cite the parent leaf, so the batch is valid against the tree as shipped). Proposing it because the gender-shift miss (la portona) is diagnostically distinct from a plain augmentative miss and is dispatch hot spot #2: a sub-leaf would let those misses track separately. If ratified, retarget wf_aug_02 and wf_aug_03 and the translation item trans_wf_en_it_aug_01 from the parent leaf to this bucket."
+  }
+]

@@ -321,6 +321,13 @@ Substantial jump — six new revisions landed between Rev 7 and today's Rev 13. 
 
 **Rev 13 criterion 17 (explanations translate the sentence)** — 216 grammar explanations updated. Every item's explanation now opens with a plain English translation of the completed correct Italian sentence (or a target gloss for fragment prompts like "Combine: gli + lo → glielo"). Delegated the bulk pass to a general-purpose agent with a clear method spec; 216 of 216 items updated cleanly; JSON integrity preserved (grep still returns 216, `json.loads` succeeded); a small number of edge cases flagged (redundant-pronoun colloquial forms like "Ce ne abbiamo molto", the spot-the-error item `op_comb_joined_04` glossed with the intended meaning, the slightly-awkward `op_ne_prondi_01` rendered naturally).
 
+**Post-audit Architecture rulings (2026-07-14).** Two follow-ups from the Rev 13 audit thread v2:
+
+- **Criterion 15 info_display**: architect ruled option (a). The four aggregates (direct_object, indirect_object, reflexive, combined) now carry `default_info_display: "suppress"` in the pronoun bucket tree; every item under those aggregates inherits suppression. Zero per-item edits needed from my side. Housing resolver support is pending in a separate Architecture-Housing thread; until it ships the display default is a no-op on screen.
+- **op_comb_glielo_11 containment fix**: the bare any_phrase `["darglielo"]` was letting the wrong-order attempt `"darglielo voglio"` win via substring containment. Reframed to `["voglio darglielo"]` and extended must_not_include to `["voglio dare glielo", "voglio glielo dare", "darglielo voglio"]` so the containment reverses. Prompt unchanged; the learner still types just the completion.
+
+**Currently held.** Three items are pending the arrival of a case_sensitive markpoint flag from Housing: `op_spec_fcap_01`, `op_spec_fcap_03`, `op_spec_fcap_04`. The norm() pass lowercases both any_phrases and user input, so La/la are indistinguishable and the items over-credit today. Architecture has proposed the flag to Housing; the three items get a small retrofit when it lands. Not touching them until then.
+
 ## Pacing notes for the next dispatcher
 
 The angle-based audit approach worked well a second time on the house-style pass. Recommend the next dispatcher use the rule-by-rule frame from the start: count distinct angles, not items. A rule like "the gli-exception to consonant doubling" needs three or four angles even though it has only one underlying fact, because the angles are where learners stumble in different ways.

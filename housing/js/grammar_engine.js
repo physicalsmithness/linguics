@@ -29,6 +29,9 @@
     const points = Array.isArray(q.markpoints) ? q.markpoints : [];
     const normed = LL.norm(raw);
     const normedFolded = LL.normAccentFolded(raw);
+    // Case-preserving haystacks for case_sensitive markpoints (formal La/Sua/Le).
+    const normedCased = LL.normCased(raw);
+    const normedFoldedCased = LL.foldAccents(LL.normCased(raw));
     const inputWasNonEmpty = String(raw || "").trim() !== "";
 
     let awarded = 0;
@@ -62,8 +65,13 @@
       // 1. Try strict positive match. Uses findMatchingPhrase so object-form
       // entries carrying per-phrase credit / note are honoured (see
       // inter_chat/Architecture_Housing_engine_graded_any_phrases.md).
+      // case_sensitive: skip the lowercase fold for THIS markpoint, so formal
+      // capitalisation (La vs la) is markable. Absent -> unchanged behaviour.
+      const cs = !!mp.case_sensitive;
+      const hay = cs ? normedCased : normed;
+      const hayFolded = cs ? normedFoldedCased : normedFolded;
       const matched = Array.isArray(mp.any_phrases)
-        ? LL.findMatchingPhrase(normed, mp.any_phrases)
+        ? LL.findMatchingPhrase(hay, mp.any_phrases, cs)
         : null;
       if (matched !== null) {
         const phraseCredit = (typeof matched === "object" && typeof matched.credit === "number")
@@ -99,8 +107,8 @@
             // match_at honoured here too, else an end-anchored needle (abbi) would
             // substring-match a longer wrong form (abbia) and be wrongly credited.
             const mAt = (typeof p === "object" && p) ? p.match_at : undefined;
-            const pFolded = LL.foldAccents(LL.norm(ps));
-            if (pFolded && LL.occursAt(normedFolded, pFolded, mAt)) { foldedHit = p; break; }
+            const pFolded = LL.foldAccents(cs ? LL.normCased(ps) : LL.norm(ps));
+            if (pFolded && LL.occursAt(hayFolded, pFolded, mAt)) { foldedHit = p; break; }
           }
         }
         if (foldedHit) {
@@ -124,18 +132,18 @@
           });
         }
         // 3. Wrong-attempt: must_not_include phrases present
-        else if (Array.isArray(mp.must_not_include) && LL.includesAny(normed, mp.must_not_include)) {
+        else if (Array.isArray(mp.must_not_include) && LL.includesAny(hay, mp.must_not_include, cs)) {
           result.attempted_credit = 1;
           result.correctness_credit = 0;
           result.outcome = "miss";
           for (const p of mp.must_not_include) {
             const ps = phraseStr(p);
             const mAt = (typeof p === "object" && p) ? p.match_at : undefined;
-            if (LL.includesNeedle(normed, ps, mAt)) { result.evidence = ps + " (wrong form)"; break; }
+            if (LL.includesNeedle(hay, ps, mAt, cs)) { result.evidence = ps + " (wrong form)"; break; }
           }
         }
         // 4. Attempted-hints, if any
-        else if (Array.isArray(mp.attempted_hints) && LL.includesAny(normed, mp.attempted_hints)) {
+        else if (Array.isArray(mp.attempted_hints) && LL.includesAny(hay, mp.attempted_hints, cs)) {
           result.attempted_credit = 1;
           result.correctness_credit = 0;
           result.outcome = "miss";

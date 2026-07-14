@@ -1,0 +1,1255 @@
+[
+  {
+    "external_id": "trans_cmp_en_it_pmd_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "My brother Marco is taller than his friend Luca.",
+    "reference_translations": [
+      {
+        "text": "Mio fratello Marco è più alto del suo amico Luca.",
+        "register": "neutral",
+        "notes": "Standard. di + il (suo amico) contracts to del."
+      },
+      {
+        "text": "Marco, mio fratello, è più alto del suo amico Luca.",
+        "register": "neutral",
+        "notes": "Apposition fronted; same grammar."
+      },
+      {
+        "text": "Mio fratello Marco è più alto che il suo amico Luca.",
+        "register": "neutral",
+        "notes": "WRONG: two people measured against one quality take di, not che.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "comparison",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "comparison.comparative.piu_meno_di"
+    ],
+    "optional_buckets": [
+      "preposition.articulated"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "taller",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "tall - alto",
+            "bucket": "vocabulary.it.alto.translation"
+          }
+        }
+      },
+      {
+        "lemma": "brother",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "brother - fratello",
+            "bucket": "vocabulary.it.fratello.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.fratello.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "Two different people are compared against one quality (height), so the connector is di, and di + il contracts to del.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_cmp_en_it_pmd_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "This red wine is less expensive than the French one.",
+    "reference_translations": [
+      {
+        "text": "Questo vino rosso è meno caro di quello francese.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "Questo vino rosso costa meno di quello francese.",
+        "register": "neutral",
+        "notes": "Verb-based rendering; natural and idiomatic."
+      },
+      {
+        "text": "Questo vino rosso è meno caro che quello francese.",
+        "register": "neutral",
+        "notes": "WRONG: two entities, one quality: di.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "comparison",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "comparison.comparative.piu_meno_di"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "wine",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "wine - vino",
+            "bucket": "vocabulary.it.vino.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.vino.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "Meno works like più: meno + adjective, then di before the thing compared.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_cmp_en_it_pmd_03",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "There were more than thirty people at the party last night.",
+    "reference_translations": [
+      {
+        "text": "Ieri sera alla festa c'erano più di trenta persone.",
+        "register": "neutral",
+        "notes": "Standard; existential c'erano agrees plural."
+      },
+      {
+        "text": "Alla festa di ieri sera c'erano più di trenta persone.",
+        "register": "neutral",
+        "notes": "Time phrase attached to festa; same grammar."
+      },
+      {
+        "text": "Ieri sera alla festa c'erano più che trenta persone.",
+        "register": "neutral",
+        "notes": "WRONG: before a bare number the comparison takes di.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "comparison",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "comparison.comparative.piu_meno_di"
+    ],
+    "optional_buckets": [
+      "existential.form.plural"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "people",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "person - persona",
+            "bucket": "vocabulary.it.persona.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.persona.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "Before a bare number, 'more than' is always più di, never più che, even though a quantity is in play.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_cmp_en_it_dvc_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "It is easier to criticise other people than to act yourself.",
+    "reference_translations": [
+      {
+        "text": "È più facile criticare gli altri che agire.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "È più facile criticare gli altri che agire in prima persona.",
+        "register": "neutral",
+        "notes": "Fuller rendering of 'yourself'."
+      },
+      {
+        "text": "È più facile criticare gli altri di agire.",
+        "register": "neutral",
+        "notes": "WRONG: two verbs compared take che.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "comparison",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "comparison.comparative.di_vs_che"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "criticise",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to criticise - criticare",
+            "bucket": "vocabulary.it.criticare.translation"
+          }
+        }
+      },
+      {
+        "lemma": "act",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to act - agire",
+            "bucket": "vocabulary.it.agire.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Two infinitives are weighed against each other, so the connector is che, not di.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_cmp_en_it_dvc_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "In this small city there are more tourists than inhabitants.",
+    "reference_translations": [
+      {
+        "text": "In questa piccola città ci sono più turisti che abitanti.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "In questa cittadina ci sono più turisti che abitanti.",
+        "register": "neutral",
+        "notes": "cittadina for 'small city'; same grammar."
+      },
+      {
+        "text": "In questa piccola città ci sono più turisti di abitanti.",
+        "register": "neutral",
+        "notes": "WRONG: two nouns compared in quantity take che.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "comparison",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "comparison.comparative.di_vs_che"
+    ],
+    "optional_buckets": [
+      "existential.form.plural"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "tourists",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "tourist - turista",
+            "bucket": "vocabulary.it.turista.translation"
+          }
+        }
+      },
+      {
+        "lemma": "inhabitants",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "inhabitant - abitante",
+            "bucket": "vocabulary.it.abitante.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Two nouns weighed for quantity take che. (Di would be right only if two entities were measured against one quality.)",
+    "version": 1
+  },
+  {
+    "external_id": "trans_cmp_en_it_dvc_03",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "This actor is much more famous than he is talented.",
+    "reference_translations": [
+      {
+        "text": "Questo attore è molto più famoso che bravo.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "Quest'attore è molto più famoso che bravo.",
+        "register": "neutral",
+        "notes": "Elided quest'; same grammar."
+      },
+      {
+        "text": "Questo attore è molto più famoso di bravo.",
+        "register": "neutral",
+        "notes": "WRONG: two qualities of the same person take che.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "comparison",
+    "register": "neutral",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "comparison.comparative.di_vs_che"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "famous",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "famous - famoso",
+            "bucket": "vocabulary.it.famoso.translation"
+          }
+        }
+      },
+      {
+        "lemma": "talented",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "good, skilful - bravo",
+            "bucket": "vocabulary.it.bravo.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Two qualities of one and the same person are compared, so the connector is che.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_cmp_it_en_dvc_01",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Il nostro nuovo vicino è più simpatico che intelligente.",
+    "reference_translations": [
+      {
+        "text": "Our new neighbour is more likeable than intelligent.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "Our new neighbour is nicer than he is clever.",
+        "register": "neutral",
+        "notes": "Idiomatic English; the 'than he is' makes the same-person reading explicit."
+      }
+    ],
+    "topic": "comparison",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "comparison.comparative.di_vs_che"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "simpatico",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "simpatico - likeable, nice",
+            "bucket": "vocabulary.it.simpatico.translation"
+          }
+        }
+      },
+      {
+        "lemma": "vicino",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "vicino - neighbour",
+            "bucket": "vocabulary.it.vicino.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.vicino.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "'Il nostro nuovo vicino è più simpatico che intelligente' means 'Our new neighbour is more likeable than intelligent.' The che (not di) is the signal that both qualities belong to the same person: he is not being compared with somebody else.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_cmp_it_en_dvc_02",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Nella mia classe ci sono più studenti che professori.",
+    "reference_translations": [
+      {
+        "text": "In my class there are more students than teachers.",
+        "register": "neutral",
+        "notes": "Standard."
+      }
+    ],
+    "topic": "comparison",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "comparison.comparative.di_vs_che"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "professore",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "professore - teacher",
+            "bucket": "vocabulary.it.professore.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.professore.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "'Nella mia classe ci sono più studenti che professori' means 'In my class there are more students than teachers.' Che marks a comparison of two quantities of different things, so both nouns are being counted.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_cmp_it_en_dvc_03",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Per lavoro vado più spesso a Roma che a Milano.",
+    "reference_translations": [
+      {
+        "text": "For work I go to Rome more often than to Milan.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "I go to Rome more often than Milan for work.",
+        "register": "neutral",
+        "notes": "Natural English; the repeated 'to' is optional in English but the a is not in Italian."
+      }
+    ],
+    "topic": "comparison",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "comparison.comparative.di_vs_che"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "spesso",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "spesso - often",
+            "bucket": "vocabulary.it.spesso.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Per lavoro vado più spesso a Roma che a Milano' means 'For work I go to Rome more often than to Milan.' Two prepositional phrases are compared, so Italian uses che and repeats the preposition a.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_cmp_en_it_eq_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "My younger sister is already as tall as me.",
+    "reference_translations": [
+      {
+        "text": "Mia sorella minore è già alta come me.",
+        "register": "neutral",
+        "notes": "Standard; the così of così...come is normally dropped."
+      },
+      {
+        "text": "Mia sorella minore è già alta quanto me.",
+        "register": "neutral",
+        "notes": "quanto for come; equally standard."
+      },
+      {
+        "text": "Mia sorella minore è già alta come io.",
+        "register": "neutral",
+        "notes": "WRONG: after come the pronoun is stressed: come me.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "comparison",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "comparison.comparative.equality"
+    ],
+    "optional_buckets": [
+      "comparison.comparative.irregular_adjectives"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "sister",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "sister - sorella",
+            "bucket": "vocabulary.it.sorella.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.sorella.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "Equality is (così)...come or (tanto)...quanto, with the first half usually dropped. After come/quanto the pronoun is stressed: come me, not come io.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_cmp_en_it_eq_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "This book is as beautiful as it is useful.",
+    "reference_translations": [
+      {
+        "text": "Questo libro è tanto bello quanto utile.",
+        "register": "neutral",
+        "notes": "Standard; both halves present."
+      },
+      {
+        "text": "Questo libro è bello quanto utile.",
+        "register": "neutral",
+        "notes": "First half dropped; natural."
+      },
+      {
+        "text": "Questo libro è così bello quanto utile.",
+        "register": "neutral",
+        "notes": "WRONG: così pairs with come, tanto with quanto.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "comparison",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "comparison.comparative.equality"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "useful",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "useful - utile",
+            "bucket": "vocabulary.it.utile.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "When both halves are present the pair must match: tanto...quanto (or così...come). Mixing them (così...quanto) is the classic slip.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_cmp_en_it_irr_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "This restaurant is better than the one near the station.",
+    "reference_translations": [
+      {
+        "text": "Questo ristorante è migliore di quello vicino alla stazione.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "Questo ristorante è più buono di quello vicino alla stazione.",
+        "register": "neutral",
+        "notes": "Correct Italian, but it sidesteps the drilled inherited comparative; più buono leans concrete (tastier)."
+      },
+      {
+        "text": "Questo ristorante è più migliore di quello vicino alla stazione.",
+        "register": "neutral",
+        "notes": "WRONG: migliore is already comparative; never più migliore.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "comparison",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "comparison.comparative.irregular_adjectives"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "better",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "good - buono",
+            "bucket": "vocabulary.it.buono.translation"
+          }
+        }
+      },
+      {
+        "lemma": "station",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "station - stazione",
+            "bucket": "vocabulary.it.stazione.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.stazione.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "Buono's inherited one-word comparative is migliore. The regular più buono survives with a concrete flavour, but più migliore is never possible.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_cmp_en_it_irr_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "My older brother lives in Rome with his family.",
+    "reference_translations": [
+      {
+        "text": "Mio fratello maggiore abita a Roma con la sua famiglia.",
+        "register": "neutral",
+        "notes": "Standard; maggiore is the inherited comparative for age."
+      },
+      {
+        "text": "Mio fratello più grande abita a Roma con la sua famiglia.",
+        "register": "neutral",
+        "notes": "Common and acceptable, but it sidesteps maggiore, the drilled form."
+      },
+      {
+        "text": "Mio fratello più maggiore abita a Roma con la sua famiglia.",
+        "register": "neutral",
+        "notes": "WRONG: maggiore is already comparative.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "comparison",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "comparison.comparative.irregular_adjectives"
+    ],
+    "optional_buckets": [
+      "possessive.adjective.family_exception"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "older",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "big, great - grande",
+            "bucket": "vocabulary.it.grande.translation"
+          }
+        }
+      },
+      {
+        "lemma": "family",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "family - famiglia",
+            "bucket": "vocabulary.it.famiglia.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.famiglia.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "For age and rank, grande's inherited comparative maggiore does the work: fratello maggiore. Note no article before mio fratello (singular family member).",
+    "version": 1
+  },
+  {
+    "external_id": "trans_cmp_en_it_mvm_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Maria sings much better than me.",
+    "reference_translations": [
+      {
+        "text": "Maria canta molto meglio di me.",
+        "register": "neutral",
+        "notes": "Standard; meglio is the adverb."
+      },
+      {
+        "text": "Maria canta molto meglio di quanto canti io.",
+        "register": "neutral",
+        "notes": "Fuller comparative clause; more formal."
+      },
+      {
+        "text": "Maria canta molto migliore di me.",
+        "register": "neutral",
+        "notes": "WRONG: how an action is done takes the adverb meglio, not the adjective migliore.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "comparison",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "comparison.comparative.migliore_vs_meglio"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "sings",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to sing - cantare",
+            "bucket": "vocabulary.it.cantare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Better' here describes the action of singing, so it is the adverb meglio. Migliore is the adjective and would need a noun to describe.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_cmp_en_it_mvm_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "In my opinion your idea is better than mine.",
+    "reference_translations": [
+      {
+        "text": "Secondo me la tua idea è migliore della mia.",
+        "register": "neutral",
+        "notes": "Standard; migliore is the adjective describing idea."
+      },
+      {
+        "text": "Secondo me la tua idea è meglio della mia.",
+        "register": "colloquial",
+        "notes": "Very common in speech, but with a noun subject standard Italian wants migliore."
+      },
+      {
+        "text": "Secondo me la tua idea è più migliore della mia.",
+        "register": "neutral",
+        "notes": "WRONG: never più migliore.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "comparison",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "comparison.comparative.migliore_vs_meglio"
+    ],
+    "optional_buckets": [
+      "preposition.articulated"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "idea",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "idea - idea",
+            "bucket": "vocabulary.it.idea.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.idea.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "The subject is a noun (idea), so 'better' is the adjective migliore. The colloquial meglio is widespread but non-standard here, and is credited only partially.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_cmp_it_en_mvm_01",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "È meglio partire presto per evitare il traffico.",
+    "reference_translations": [
+      {
+        "text": "It's better to leave early to avoid the traffic.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "Better to set off early and avoid the traffic.",
+        "register": "neutral",
+        "notes": "Idiomatic; keeps the impersonal flavour."
+      }
+    ],
+    "topic": "comparison",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "comparison.comparative.migliore_vs_meglio"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "partire",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "partire - to leave",
+            "bucket": "vocabulary.it.partire.translation"
+          }
+        }
+      },
+      {
+        "lemma": "traffico",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "traffico - traffic",
+            "bucket": "vocabulary.it.traffico.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.traffico.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "'È meglio partire presto per evitare il traffico' means 'It's better to leave early to avoid the traffic.' The impersonal 'it is better to...' is è meglio, using the adverb, never è migliore.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_cmp_it_en_mvm_02",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Questo vino è migliore di quello, ma costa di più.",
+    "reference_translations": [
+      {
+        "text": "This wine is better than that one, but it costs more.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "This wine is better than that one, though it's more expensive.",
+        "register": "neutral",
+        "notes": "Natural English rendering."
+      }
+    ],
+    "topic": "comparison",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "comparison.comparative.migliore_vs_meglio"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "migliore",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "migliore - better",
+            "bucket": "vocabulary.it.migliore.translation"
+          }
+        }
+      },
+      {
+        "lemma": "costare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "costare - to cost",
+            "bucket": "vocabulary.it.costare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Questo vino è migliore di quello, ma costa di più' means 'This wine is better than that one, but it costs more.' Migliore is the adjective describing the wine; note the separate costa di più, where 'more' attaches to a verb.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_cmp_en_it_rel_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Florence is the most beautiful city in all of Italy.",
+    "reference_translations": [
+      {
+        "text": "Firenze è la città più bella di tutta l'Italia.",
+        "register": "neutral",
+        "notes": "Standard; single article, group with di."
+      },
+      {
+        "text": "Firenze è la più bella città di tutta l'Italia.",
+        "register": "neutral",
+        "notes": "Adjective before the noun; also standard."
+      },
+      {
+        "text": "Firenze è la città la più bella di tutta l'Italia.",
+        "register": "neutral",
+        "notes": "WRONG: a calque from French; Italian does not repeat the article after the noun.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "comparison",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "comparison.superlative.relative"
+    ],
+    "optional_buckets": [
+      "article.definite"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "city",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "city - città",
+            "bucket": "vocabulary.it.città.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.città.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "The relative superlative is article + più + adjective, with di for the group. When the adjective follows the noun the article appears once: la città più bella.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_cmp_en_it_rel_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "The twenty-first of June is the longest day of the year.",
+    "reference_translations": [
+      {
+        "text": "Il ventuno giugno è il giorno più lungo dell'anno.",
+        "register": "neutral",
+        "notes": "Standard; di + l'anno contracts to dell'anno."
+      },
+      {
+        "text": "Il 21 giugno è il giorno più lungo dell'anno.",
+        "register": "neutral",
+        "notes": "Numeral form; same grammar."
+      }
+    ],
+    "topic": "comparison",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "comparison.superlative.relative"
+    ],
+    "optional_buckets": [
+      "preposition.articulated"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "day",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "day - giorno",
+            "bucket": "vocabulary.it.giorno.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.giorno.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "Article + noun + più + adjective, with the group introduced by di, contracted here to dell' before anno.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_cmp_en_it_abs_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "After the race we were all extremely tired.",
+    "reference_translations": [
+      {
+        "text": "Dopo la gara eravamo tutti stanchissimi.",
+        "register": "neutral",
+        "notes": "Standard; stanco keeps its hard c with an h."
+      },
+      {
+        "text": "Dopo la corsa eravamo tutti stanchissimi.",
+        "register": "neutral",
+        "notes": "corsa for gara; same grammar."
+      },
+      {
+        "text": "Dopo la gara eravamo tutti stancissimi.",
+        "register": "neutral",
+        "notes": "WRONG: the spelling must keep the hard c: stanchissimi.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "comparison",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "comparison.superlative.absolute"
+    ],
+    "optional_buckets": [
+      "adjective_agreement.stem_changes"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "tired",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "tired - stanco",
+            "bucket": "vocabulary.it.stanco.translation"
+          }
+        }
+      },
+      {
+        "lemma": "race",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "race - gara",
+            "bucket": "vocabulary.it.gara.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.gara.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "The absolute superlative drops the final vowel and adds -issimo, agreeing like an adjective. Stanco keeps its hard c by inserting an h: stanchissimi.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_cmp_en_it_abs_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "The film we saw yesterday was extremely good.",
+    "reference_translations": [
+      {
+        "text": "Il film che abbiamo visto ieri era bellissimo.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "Il film che abbiamo visto ieri era bello bello.",
+        "register": "colloquial",
+        "notes": "Reduplication; colloquial but genuine Italian for the same intensity."
+      },
+      {
+        "text": "Il film che abbiamo visto ieri era molto bellissimo.",
+        "register": "neutral",
+        "notes": "WRONG: -issimo already means 'extremely'; molto must not be stacked on it.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "comparison",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "comparison.superlative.absolute"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "film",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "film - film",
+            "bucket": "vocabulary.it.film.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.film.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "-issimo already carries 'extremely', so it is never stacked with molto. Say either molto bello (milder) or bellissimo (strong), never molto bellissimo.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_cmp_en_it_supirr_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "What an excellent idea, thank you very much!",
+    "reference_translations": [
+      {
+        "text": "Che ottima idea, grazie mille!",
+        "register": "neutral",
+        "notes": "Standard; ottima is the inherited absolute superlative."
+      },
+      {
+        "text": "Che buonissima idea, grazie mille!",
+        "register": "neutral",
+        "notes": "Understood, but it sidesteps ottima, which is the idiomatic 'excellent' here."
+      },
+      {
+        "text": "Che molto ottima idea, grazie mille!",
+        "register": "neutral",
+        "notes": "WRONG: ottimo is already a superlative; molto must not be stacked on it.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "comparison",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "comparison.superlative.irregular"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "excellent",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "good - buono",
+            "bucket": "vocabulary.it.buono.translation"
+          }
+        }
+      },
+      {
+        "lemma": "idea",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "idea - idea",
+            "bucket": "vocabulary.it.idea.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.idea.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "Ottimo is the inherited absolute superlative of buono and is already at full strength, so molto ottimo is impossible. It is warmer and more idiomatic than buonissimo.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_cmp_it_en_supirr_01",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Il servizio in quel ristorante era davvero pessimo.",
+    "reference_translations": [
+      {
+        "text": "The service in that restaurant was really dreadful.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "The service at that restaurant was truly awful.",
+        "register": "neutral",
+        "notes": "Natural English; pessimo is stronger than 'bad'."
+      }
+    ],
+    "topic": "comparison",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "comparison.superlative.irregular"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "pessimo",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "pessimo - dreadful, very bad",
+            "bucket": "vocabulary.it.pessimo.translation"
+          }
+        }
+      },
+      {
+        "lemma": "servizio",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "servizio - service",
+            "bucket": "vocabulary.it.servizio.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.servizio.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "'Il servizio in quel ristorante era davvero pessimo' means 'The service in that restaurant was really dreadful.' Pessimo is the inherited absolute superlative of cattivo, the mirror of ottimo, so English needs a strong word (dreadful, awful), not merely 'bad'.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_cmp_it_en_supirr_02",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Come stai? Sto benissimo, grazie mille.",
+    "reference_translations": [
+      {
+        "text": "How are you? I'm very well, thanks a lot.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "How are you? I'm doing great, thanks so much.",
+        "register": "neutral",
+        "notes": "Idiomatic; benissimo is the adverb, so English uses 'very well / great', not 'very good'."
+      }
+    ],
+    "topic": "comparison",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "comparison.superlative.irregular"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "benissimo",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "benissimo - very well",
+            "bucket": "vocabulary.it.benissimo.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Sto benissimo' means 'I'm very well.' How you are is an adverb in Italian: bene becomes benissimo (never buonissimo, which is the adjective).",
+    "version": 1
+  }
+]

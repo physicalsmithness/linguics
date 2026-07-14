@@ -129,6 +129,19 @@
           && result.overall.marks_awarded >= result.overall.marks_possible
       };
     }
+    // candidate_forms metadata: same semantics as tense_meta above, for
+    // non-tense discriminations (suo his/her/your-formal, questo/quello). See
+    // inter_chat/Architecture_Housing_breadcrumb_defaults_and_candidate_forms.md.
+    if (Array.isArray(item_or_question.candidate_forms)
+        && item_or_question.candidate_forms.length >= 2
+        && item_or_question.correct_form) {
+      attempt.form_meta = {
+        candidate_forms: item_or_question.candidate_forms.slice(),
+        correct_form: item_or_question.correct_form,
+        was_right: result.overall.marks_possible > 0
+          && result.overall.marks_awarded >= result.overall.marks_possible
+      };
+    }
     state.attempts.push(attempt);
 
     // Track any bucket proposals that came through
