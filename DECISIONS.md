@@ -867,4 +867,49 @@ Negation batch 1 (36+18) ACCEPTED, audit clean, concord-suppression flip applied
 **How to apply:** Smith pushes via GitHub Desktop (r5 build plus tonight's data); two Smith-side items are open, the exact orbitalwells head block for Housing, and the parked resume-exact-question call.
 
 ---
+## 2026-07-15 (small hours): The full unreplied sweep, the midnight wave, and three Smith rulings
+
+Smith asked "any other interchats unreplied to" and the honest answer produced: the PiacereAuthor delivery (now ACCEPTED with its three rulings: the stressed-frame aphr_03 kept, past decomposition as shipped, manifest wired), the present-formation batch review owed since 2026-06-08 inside a CLOSED status (now done, ACCEPTED, fault owned), the PronounAuthor fcap retrofit unblocked by Housing's same-night case_sensitive flag (r6) and inherited-suppress (r7), and the pos-migration workstream whose v4 trigger (formation batches landed) has been met for weeks (now scheduled as next session's opener). Smith's three mid-sweep rulings: the orbitalwells verbatim alignment is stood down (templates stand); the accent-grading philosophies BOTH stand (vocab 50 percent partial, grammar full-credit-plus-orthography-miss, no harmonisation); the rest delegated, under which resume stays settings-only. New convention at Brief Revision 18, from Smith's observation that authors leave questions in coverage docs believing that is the channel: the coverage doc is the record, the inter_chat thread is the contract; every ask must open one. A one-off back-sweep extracted every buried ask into TRIAGE_coverage_asks_2026-07-15.md (gitignored) as the next session's inbox.
+
+**Why:** two structural leak-shapes surfaced in one evening (asks inside CLOSED statuses, asks inside coverage docs); the convention plus the ticker plus the per-turn re-read now cover all three channels.
+
+**How to apply:** authors open threads for asks from now on; the architect works the triage file next session, migration first.
+
+---
+## 2026-07-15 (small hours): Midnight wave audited; registry debt cleared; pronoun truncation reconstructed
+
+The remaining dispatch wave landed within two hours of dispatch (noun 52, comparison 51, adverb 46, pronominal_verbs 46, article 51, si_constructions 37, reported_speech 39, passive 23, word_formation 30, piacere 38+20): the estate now runs 1,872 grammar items across 30 manifest topics. Standing audit across everything: three reported_speech exposures word-anchored centrally; one inert markpoint-level match_at key in imperativo converted to per-phrase; and the off-tree citation debt cleared to ZERO by registering what had been ratified-or-deferred but never created: the three adjective semantic-shift word leaves (grande/povero/vecchio), pronoun.combined.joined_when_should_be_separate (proposed May), the PP per-verb participles conosciuto and saputo, the PP preceding_dop_mi_ti_ci_vi optional-agreement leaf (a distinct atom, deliberately NOT remapped to the lo/la/li/le leaves), the verb_form.present_or_future.dare union bucket (ratified May, homed as a cross-cutting root in the tense_choice file), plus one misnamed imperfect citation fixed to auxiliary.modal_inheritance. Separately, grammar_questions_pronoun.json truncated mid-write during PronounAuthor's evening edits (the Edit-tool 300KB hazard, on local disk); reconstructed from the committed copy plus surviving edits, 216 items, one in-flight item edit lost and re-asked. The eight wave dispatches' stale DRAFT headers fixed. Full per-batch acceptance reviews for the midnight arrivals ride the triage file.
+
+**Why:** registry debt was the silent kind (warn-at-authoring never escalated); tonight's stricter audit surfaced all of it at once, and the fixes were registrations, not judgement calls, except mi_ti_ci_vi, which is real pedagogy (optional agreement).
+
+**How to apply:** Smith pushes; the housing picks up 13 new manifest topics; next session opens with the pos-migration then works TRIAGE_coverage_asks in order.
+
+---
+## 2026-07-15: The vocab pos-migration has run (Brief Rev 5 shape, June dry-run plan executed)
+
+All 58 grammar and translation item files now carry POS-segmented vocab bucket ids (vocabulary.it.<lemma>.<pos>.<aspect>...): 3,840 references migrated (2,769 single-pos from the registry, 591 by dominant-sense rank where the registry holds multiple POS entries, 480 by the pronominal/infinitive verb rule), 112 already new-shape, and 182 deliberately left old-shape on a per-topic worklist because their lemma KEYS are the problem (genuine homographs for author judgement, plus Rev-3 violations: plural or inflected keys, squashed multiword keys, one missing accent). The dominant-sense rank rule is the one methodological addition to the June plan: where a lemma has several registry entries, the lowest-rank (most frequent) sense's POS wins, except the ~25 named homographs. Marker tolerance for both shapes (verified June) makes the mixed interim state safe; the worklist burns down on author next-touches, with ImperfectAuthor's cluster routed as its own thread.
+
+**Why:** the June trigger (formation batches landed and wired) had been met for weeks; every day of delay grew the corpus (tonight alone added ten batches), and the events layer only starts accumulating per-POS history once the ids carry POS.
+
+**How to apply:** authors write the new shape from now on (the brief has said so since Rev 5); the worklist entries get fixed keys before their POS segment; nothing else re-touches.
+
+---
+## 2026-07-15: Midnight wave fully dispositioned; si-parity and the two-grades distinction settled
+
+All nine midnight batches are ACCEPTED with compact disposition threads (Rev 18 shape). Rulings of substance: "si vende libri" granted 0.5-with-register-note PARITY with a-me-mi-piace and ha-detto-che-veniva (SiConstructionsAuthor's own thread, nine items flip); the grading taxonomy is now explicitly two-tier, 0.5-own-grade for NON-STANDARD ubiquitous forms versus 0.9-for-dodges for CORRECT Italian that sidesteps the drilled pattern (ComparisonAuthor's meglio call recorded as the exemplar); the noun batch's meaning-pair homographs become candidate_forms discriminations per Rev 17 (iii); and the misconception registry gains orthography.cia_gia_plural_i for the noun-plural i-retention split (the dispatch had pointed at verb tags; NounAuthor's stay-in-role flag was right).
+
+**Why:** the wave's asks were small precisely because the brief now carries the rules; the parity ruling closes the last graded-credit inconsistency between sibling batches.
+
+**How to apply:** si and noun authors apply their one-line flips on next touch; everything is live on Smith's next push.
+
+---
+## 2026-07-15: The recoverability condition (criterion 15 corrected by AdverbAuthor and Smith)
+
+Smith caught, live on the adverb batch, that suppressing the breadcrumb on a LEXICAL discrimination makes the item unanswerable: "Lucia cucina ____" admits a dozen good adverbs, and nothing reveals that bene-versus-buono is the question, so a learner producing velocemente takes a miss on a bucket they were never invited to engage. AdverbAuthor codified the distinction: criterion 15's suppress-by-default was derived from tense choice, where the candidate set is RECOVERABLE pre-answer (context pins the tense, the cue gives the verb); where the candidates are different lexemes the prompt cannot reveal, the breadcrumb stays visible and the leaf is labelled by its CANDIDATE FORMS, never the rule ("molto / molta / molti / molte", not "molto that agrees"). Ratified as Brief Revision 19; the adverb leaf renamed at source; the estate retro-audit flipped exactly one other case, DemonstrativeAuthor's five questo/quello items (possessive suo and existential vs_essere stay suppressed: their English sources pin the candidate set). Also from the same seat: the locuzioni avverbiali leaf ratified and registered, three glossary terms merged (v5), and bare POS terms confirmed excluded from the glossary by design.
+
+**Why:** answerability outranks leak-prevention; a leak costs diagnostic value, unanswerability costs the data's honesty. Two principles (13's name-the-surface and 15's suppression) compose into the fix: label by forms, show the label.
+
+**How to apply:** authors apply the recoverability test before suppressing; DemonstrativeAuthor flips five flags on next touch; the criterion text now carries the test.
+
+---
 

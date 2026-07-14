@@ -158,7 +158,7 @@
     "id": "adverb.usage.invariable_vs_adjective",
     "parent_id": "adverb.usage",
     "language_code": "it",
-    "label": "Molto that agrees, molto that doesn't",
+    "label": "molto / molta / molti / molte",
     "description": "Molto, poco, troppo, tanto are invariable when they modify adjectives or verbs (sono molto stanche) but agree when they quantify nouns (molte case, troppi errori). Same word, two behaviours.",
     "cefr_importance": {
       "A1": "preview",
@@ -239,6 +239,31 @@
         "È molto bello.",
         "Arriva sempre in ritardo."
       ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "adverb.locuzioni_avverbiali",
+    "parent_id": "adverb",
+    "language_code": "it",
+    "label": "Fixed adverbial phrases",
+    "description": "Multi-word adverbial idioms that work as a single adverb: a poco a poco (little by little), di solito (usually), all'improvviso (suddenly), in fretta (in a hurry), per caso (by chance), di nuovo (again). Learned whole, not derived; several are false-friend or distractor-prone (attualmente vs 'actually' sits at the lexical edge of this).",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "adverb.formation.primary"
+    ],
+    "attributes": {
+      "direction": "bidirectional",
+      "canonical_example": "a poco a poco",
       "is_aggregate": false
     },
     "active": true,

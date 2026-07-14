@@ -1,525 +1,525 @@
 [
- {
-  "external_id": "trans_adv_bb_en_it_01",
-  "source_lang": "en",
-  "target_lang": "it",
-  "source_text": "Lucia cooks very well.",
-  "reference_translations": [
-   {
-    "text": "Lucia cucina molto bene.",
+  {
+    "external_id": "trans_adv_bb_en_it_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Lucia cooks very well.",
+    "reference_translations": [
+      {
+        "text": "Lucia cucina molto bene.",
+        "register": "neutral",
+        "notes": "Standard. Bene is the adverb for how she cooks; molto stays invariable."
+      },
+      {
+        "text": "Lucia cucina molto buono.",
+        "register": "neutral",
+        "notes": "WRONG: buono is an adjective and cannot describe the action of cooking; the adverb is bene.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "adverb",
     "register": "neutral",
-    "notes": "Standard. Bene is the adverb for how she cooks; molto stays invariable."
-   },
-   {
-    "text": "Lucia cucina molto buono.",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "adverb.usage.bene_vs_buono"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "cooks",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to cook - cucinare",
+            "bucket": "vocabulary.it.cucinare.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Cooking is an action, so 'well' is the adverb bene, strengthened by molto: cucina molto bene. The frequent slip 'cucina molto buono' uses the adjective buono, which can only describe a thing.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_adv_bb_en_it_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "This coffee is really good.",
+    "reference_translations": [
+      {
+        "text": "Questo caffè è davvero buono.",
+        "register": "neutral",
+        "notes": "Standard; davvero = really. The coffee is a thing, so the adjective buono."
+      },
+      {
+        "text": "Questo caffè è molto buono.",
+        "register": "neutral",
+        "notes": "Also fine; molto buono = very good."
+      },
+      {
+        "text": "Questo caffè è molto bene.",
+        "register": "neutral",
+        "notes": "WRONG: describing a thing needs the adjective buono, not the adverb bene.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "adverb",
     "register": "neutral",
-    "notes": "WRONG: buono is an adjective and cannot describe the action of cooking; the adverb is bene.",
-    "polarity": "negative"
-   }
-  ],
-  "topic": "adverb",
-  "register": "neutral",
-  "difficulty": 2,
-  "cefr_level_target": "A2",
-  "required_buckets": [
-   "adverb.usage.bene_vs_buono"
-  ],
-  "optional_buckets": [],
-  "vocab_help": [
-   {
-    "lemma": "cooks",
-    "language": "en",
-    "aspects": {
-     "translation": {
-      "reveal": "to cook - cucinare",
-      "bucket": "vocabulary.it.cucinare.translation"
-     }
-    }
-   }
-  ],
-  "explanation": "Cooking is an action, so 'well' is the adverb bene, strengthened by molto: cucina molto bene. The frequent slip 'cucina molto buono' uses the adjective buono, which can only describe a thing.",
-  "version": 1
- },
- {
-  "external_id": "trans_adv_bb_en_it_02",
-  "source_lang": "en",
-  "target_lang": "it",
-  "source_text": "This coffee is really good.",
-  "reference_translations": [
-   {
-    "text": "Questo caffè è davvero buono.",
-    "register": "neutral",
-    "notes": "Standard; davvero = really. The coffee is a thing, so the adjective buono."
-   },
-   {
-    "text": "Questo caffè è molto buono.",
-    "register": "neutral",
-    "notes": "Also fine; molto buono = very good."
-   },
-   {
-    "text": "Questo caffè è molto bene.",
-    "register": "neutral",
-    "notes": "WRONG: describing a thing needs the adjective buono, not the adverb bene.",
-    "polarity": "negative"
-   }
-  ],
-  "topic": "adverb",
-  "register": "neutral",
-  "difficulty": 2,
-  "cefr_level_target": "A2",
-  "required_buckets": [
-   "adverb.usage.bene_vs_buono"
-  ],
-  "optional_buckets": [],
-  "vocab_help": [],
-  "explanation": "The coffee is a thing, so 'good' is the adjective buono (it agrees with the thing). Bene, an adverb, cannot describe a thing.",
-  "version": 1
- },
- {
-  "external_id": "trans_adv_bb_en_it_03",
-  "source_lang": "en",
-  "target_lang": "it",
-  "source_text": "How are you? I'm well, thanks.",
-  "reference_translations": [
-   {
-    "text": "Come stai? Sto bene, grazie.",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "adverb.usage.bene_vs_buono"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [],
+    "explanation": "The coffee is a thing, so 'good' is the adjective buono (it agrees with the thing). Bene, an adverb, cannot describe a thing.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_adv_bb_en_it_03",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "How are you? I'm well, thanks.",
+    "reference_translations": [
+      {
+        "text": "Come stai? Sto bene, grazie.",
+        "register": "informal",
+        "notes": "Standard informal."
+      },
+      {
+        "text": "Come sta? Sto bene, grazie.",
+        "register": "formal",
+        "notes": "Formal address (Lei)."
+      },
+      {
+        "text": "Come stai? Sto buono, grazie.",
+        "register": "informal",
+        "notes": "WRONG: sto buono means 'I behave', not 'I feel well'; wellbeing uses bene.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "adverb",
     "register": "informal",
-    "notes": "Standard informal."
-   },
-   {
-    "text": "Come sta? Sto bene, grazie.",
-    "register": "formal",
-    "notes": "Formal address (Lei)."
-   },
-   {
-    "text": "Come stai? Sto buono, grazie.",
-    "register": "informal",
-    "notes": "WRONG: sto buono means 'I behave', not 'I feel well'; wellbeing uses bene.",
-    "polarity": "negative"
-   }
-  ],
-  "topic": "adverb",
-  "register": "informal",
-  "difficulty": 2,
-  "cefr_level_target": "A2",
-  "required_buckets": [
-   "adverb.usage.bene_vs_buono"
-  ],
-  "optional_buckets": [],
-  "vocab_help": [],
-  "explanation": "Feeling well uses the adverb bene: sto bene. Sto buono exists but means 'I'm being good / I behave', so it changes the meaning entirely.",
-  "version": 1
- },
- {
-  "external_id": "trans_adv_bb_it_en_01",
-  "source_lang": "it",
-  "target_lang": "en",
-  "source_text": "Parli bene l'italiano.",
-  "reference_translations": [
-   {
-    "text": "You speak Italian well.",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "adverb.usage.bene_vs_buono"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [],
+    "explanation": "Feeling well uses the adverb bene: sto bene. Sto buono exists but means 'I'm being good / I behave', so it changes the meaning entirely.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_adv_bb_it_en_01",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Parli bene l'italiano.",
+    "reference_translations": [
+      {
+        "text": "You speak Italian well.",
+        "register": "neutral",
+        "notes": "Standard; bene is the adverb for how you speak."
+      },
+      {
+        "text": "You speak good Italian.",
+        "register": "neutral",
+        "notes": "Natural English; recasts the adverb as an adjective on 'Italian', fine in sense mode."
+      }
+    ],
+    "topic": "adverb",
     "register": "neutral",
-    "notes": "Standard; bene is the adverb for how you speak."
-   },
-   {
-    "text": "You speak good Italian.",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "adverb.usage.bene_vs_buono"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [],
+    "explanation": "'Parli bene l'italiano' means 'You speak Italian well.' Bene is the adverb describing how you speak, not an adjective on the language.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_adv_bb_en_it_04",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "It was a very good idea.",
+    "reference_translations": [
+      {
+        "text": "È stata una buona idea.",
+        "register": "neutral",
+        "notes": "Standard; buona agrees with the feminine idea."
+      },
+      {
+        "text": "È stata un'ottima idea.",
+        "register": "neutral",
+        "notes": "ottima = excellent, a natural intensified variant."
+      },
+      {
+        "text": "È stata una bene idea.",
+        "register": "neutral",
+        "notes": "WRONG: a noun needs the adjective buona, never the adverb bene.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "adverb",
     "register": "neutral",
-    "notes": "Natural English; recasts the adverb as an adjective on 'Italian', fine in sense mode."
-   }
-  ],
-  "topic": "adverb",
-  "register": "neutral",
-  "difficulty": 2,
-  "cefr_level_target": "A2",
-  "required_buckets": [
-   "adverb.usage.bene_vs_buono"
-  ],
-  "optional_buckets": [],
-  "vocab_help": [],
-  "explanation": "'Parli bene l'italiano' means 'You speak Italian well.' Bene is the adverb describing how you speak, not an adjective on the language.",
-  "version": 1
- },
- {
-  "external_id": "trans_adv_bb_en_it_04",
-  "source_lang": "en",
-  "target_lang": "it",
-  "source_text": "It was a very good idea.",
-  "reference_translations": [
-   {
-    "text": "È stata una buona idea.",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "adverb.usage.bene_vs_buono"
+    ],
+    "optional_buckets": [
+      "adjective_agreement.o_class.feminine_singular"
+    ],
+    "vocab_help": [],
+    "explanation": "Idea is a thing, so 'good' is the adjective buona, agreeing with the feminine noun. Bene never agrees and cannot sit on a noun.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_adv_inv_en_it_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "The girls are very tired.",
+    "reference_translations": [
+      {
+        "text": "Le ragazze sono molto stanche.",
+        "register": "neutral",
+        "notes": "Standard; molto stays invariable before the adjective, stanche agrees."
+      },
+      {
+        "text": "Le ragazze sono molte stanche.",
+        "register": "neutral",
+        "notes": "WRONG: molto before an adjective is an adverb and does not agree; only stanche agrees.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "adverb",
     "register": "neutral",
-    "notes": "Standard; buona agrees with the feminine idea."
-   },
-   {
-    "text": "È stata un'ottima idea.",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "adverb.usage.invariable_vs_adjective"
+    ],
+    "optional_buckets": [
+      "adjective_agreement.o_class.feminine_plural"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "tired",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "tired - stanco",
+            "bucket": "vocabulary.it.stanco.adjective.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Molto before an adjective is an adverb and stays molto; the adjective stanche does the agreeing (feminine plural). So molto stanche, not molte stanche.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_adv_inv_en_it_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "There are too many cars in the city.",
+    "reference_translations": [
+      {
+        "text": "Ci sono troppe macchine in città.",
+        "register": "neutral",
+        "notes": "Standard; troppe agrees with the feminine plural macchine."
+      },
+      {
+        "text": "Ci sono troppe auto in città.",
+        "register": "neutral",
+        "notes": "auto is invariable in form; troppe still agrees."
+      }
+    ],
+    "topic": "adverb",
     "register": "neutral",
-    "notes": "ottima = excellent, a natural intensified variant."
-   },
-   {
-    "text": "È stata una bene idea.",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "adverb.usage.invariable_vs_adjective"
+    ],
+    "optional_buckets": [
+      "adjective_agreement.o_class.feminine_plural"
+    ],
+    "vocab_help": [],
+    "explanation": "Here troppo counts a noun (cars), so it agrees: macchine is feminine plural, hence troppe. Beside a verb it would stay troppo.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_adv_inv_en_it_03",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I have few friends here.",
+    "reference_translations": [
+      {
+        "text": "Ho pochi amici qui.",
+        "register": "neutral",
+        "notes": "pochi agrees with the masculine plural amici."
+      },
+      {
+        "text": "Qui ho pochi amici.",
+        "register": "neutral",
+        "notes": "Fronted qui; equally natural."
+      }
+    ],
+    "topic": "adverb",
     "register": "neutral",
-    "notes": "WRONG: a noun needs the adjective buona, never the adverb bene.",
-    "polarity": "negative"
-   }
-  ],
-  "topic": "adverb",
-  "register": "neutral",
-  "difficulty": 3,
-  "cefr_level_target": "B1",
-  "required_buckets": [
-   "adverb.usage.bene_vs_buono"
-  ],
-  "optional_buckets": [
-   "adjective_agreement.o_class.feminine_singular"
-  ],
-  "vocab_help": [],
-  "explanation": "Idea is a thing, so 'good' is the adjective buona, agreeing with the feminine noun. Bene never agrees and cannot sit on a noun.",
-  "version": 1
- },
- {
-  "external_id": "trans_adv_inv_en_it_01",
-  "source_lang": "en",
-  "target_lang": "it",
-  "source_text": "The girls are very tired.",
-  "reference_translations": [
-   {
-    "text": "Le ragazze sono molto stanche.",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "adverb.usage.invariable_vs_adjective"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [],
+    "explanation": "Poco counts a noun here (friends), so it agrees: amici is masculine plural, hence pochi. Before an adjective it would stay poco.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_adv_inv_it_en_01",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Studia molto ma dorme poco.",
+    "reference_translations": [
+      {
+        "text": "He studies a lot but sleeps little.",
+        "register": "neutral",
+        "notes": "molto and poco modify the verbs, so they are invariable adverbs."
+      },
+      {
+        "text": "She studies a lot but sleeps little.",
+        "register": "neutral",
+        "notes": "Subject could be she; Italian drops it."
+      }
+    ],
+    "topic": "adverb",
     "register": "neutral",
-    "notes": "Standard; molto stays invariable before the adjective, stanche agrees."
-   },
-   {
-    "text": "Le ragazze sono molte stanche.",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "adverb.usage.invariable_vs_adjective"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [],
+    "explanation": "Beside verbs, molto and poco are adverbs (how much you study or sleep) and stay invariable: studia molto, dorme poco.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_adv_mente_en_it_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Please drive slowly.",
+    "reference_translations": [
+      {
+        "text": "Guida lentamente, per favore.",
+        "register": "informal",
+        "notes": "tu imperative; lentamente is built on the feminine lenta."
+      },
+      {
+        "text": "Guidi lentamente, per favore.",
+        "register": "formal",
+        "notes": "Lei (formal) form."
+      }
+    ],
+    "topic": "adverb",
     "register": "neutral",
-    "notes": "WRONG: molto before an adjective is an adverb and does not agree; only stanche agrees.",
-    "polarity": "negative"
-   }
-  ],
-  "topic": "adverb",
-  "register": "neutral",
-  "difficulty": 2,
-  "cefr_level_target": "A2",
-  "required_buckets": [
-   "adverb.usage.invariable_vs_adjective"
-  ],
-  "optional_buckets": [
-   "adjective_agreement.o_class.feminine_plural"
-  ],
-  "vocab_help": [
-   {
-    "lemma": "tired",
-    "language": "en",
-    "aspects": {
-     "translation": {
-      "reveal": "tired - stanco",
-      "bucket": "vocabulary.it.stanco.translation"
-     }
-    }
-   }
-  ],
-  "explanation": "Molto before an adjective is an adverb and stays molto; the adjective stanche does the agreeing (feminine plural). So molto stanche, not molte stanche.",
-  "version": 1
- },
- {
-  "external_id": "trans_adv_inv_en_it_02",
-  "source_lang": "en",
-  "target_lang": "it",
-  "source_text": "There are too many cars in the city.",
-  "reference_translations": [
-   {
-    "text": "Ci sono troppe macchine in città.",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "adverb.formation.mente_regular"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [],
+    "explanation": "The manner adverb is built with -mente on the feminine of lento: lenta + mente = lentamente.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_adv_mente_en_it_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "He answered me very kindly.",
+    "reference_translations": [
+      {
+        "text": "Mi ha risposto molto gentilmente.",
+        "register": "neutral",
+        "notes": "gentile (-le) drops the e: gentilmente; molto stays invariable."
+      },
+      {
+        "text": "Mi ha risposto in modo molto gentile.",
+        "register": "neutral",
+        "notes": "Periphrasis with in modo + adjective; also natural."
+      }
+    ],
+    "topic": "adverb",
     "register": "neutral",
-    "notes": "Standard; troppe agrees with the feminine plural macchine."
-   },
-   {
-    "text": "Ci sono troppe auto in città.",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "adverb.formation.mente_le_re"
+    ],
+    "optional_buckets": [
+      "adverb.usage.invariable_vs_adjective"
+    ],
+    "vocab_help": [],
+    "explanation": "Gentile ends in -le, so it drops the e before -mente: gentilmente. Molto before an adverb stays invariable.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_adv_mente_it_en_01",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Parla velocemente.",
+    "reference_translations": [
+      {
+        "text": "He speaks quickly.",
+        "register": "neutral",
+        "notes": "velocemente = quickly/fast."
+      },
+      {
+        "text": "She talks fast.",
+        "register": "neutral",
+        "notes": "Subject dropped; 'fast' is natural."
+      }
+    ],
+    "topic": "adverb",
     "register": "neutral",
-    "notes": "auto is invariable in form; troppe still agrees."
-   }
-  ],
-  "topic": "adverb",
-  "register": "neutral",
-  "difficulty": 2,
-  "cefr_level_target": "A2",
-  "required_buckets": [
-   "adverb.usage.invariable_vs_adjective"
-  ],
-  "optional_buckets": [
-   "adjective_agreement.o_class.feminine_plural"
-  ],
-  "vocab_help": [],
-  "explanation": "Here troppo counts a noun (cars), so it agrees: macchine is feminine plural, hence troppe. Beside a verb it would stay troppo.",
-  "version": 1
- },
- {
-  "external_id": "trans_adv_inv_en_it_03",
-  "source_lang": "en",
-  "target_lang": "it",
-  "source_text": "I have few friends here.",
-  "reference_translations": [
-   {
-    "text": "Ho pochi amici qui.",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "adverb.formation.mente_regular"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [],
+    "explanation": "Veloce ends in -e, so the adverb is velocemente (quickly). There is no feminine step for -e adjectives.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_adv_prim_en_it_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I'll gladly come tonight.",
+    "reference_translations": [
+      {
+        "text": "Vengo volentieri stasera.",
+        "register": "neutral",
+        "notes": "Present used for the near future; volentieri = gladly, a primary adverb."
+      },
+      {
+        "text": "Verrò volentieri stasera.",
+        "register": "neutral",
+        "notes": "Explicit future; also fine."
+      }
+    ],
+    "topic": "adverb",
     "register": "neutral",
-    "notes": "pochi agrees with the masculine plural amici."
-   },
-   {
-    "text": "Qui ho pochi amici.",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "adverb.formation.primary"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [],
+    "explanation": "Volentieri is a ready-made adverb (gladly); it takes no -mente and never agrees.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_adv_prim_it_en_01",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Mi alzo sempre presto.",
+    "reference_translations": [
+      {
+        "text": "I always get up early.",
+        "register": "neutral",
+        "notes": "presto = early; sempre = always."
+      },
+      {
+        "text": "I always wake up early.",
+        "register": "neutral",
+        "notes": "Natural variant."
+      }
+    ],
+    "topic": "adverb",
     "register": "neutral",
-    "notes": "Fronted qui; equally natural."
-   }
-  ],
-  "topic": "adverb",
-  "register": "neutral",
-  "difficulty": 2,
-  "cefr_level_target": "A2",
-  "required_buckets": [
-   "adverb.usage.invariable_vs_adjective"
-  ],
-  "optional_buckets": [],
-  "vocab_help": [],
-  "explanation": "Poco counts a noun here (friends), so it agrees: amici is masculine plural, hence pochi. Before an adjective it would stay poco.",
-  "version": 1
- },
- {
-  "external_id": "trans_adv_inv_it_en_01",
-  "source_lang": "it",
-  "target_lang": "en",
-  "source_text": "Studia molto ma dorme poco.",
-  "reference_translations": [
-   {
-    "text": "He studies a lot but sleeps little.",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "adverb.formation.primary"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [],
+    "explanation": "Presto (early) and sempre (always) are primary adverbs: whole words with no -mente and no agreement.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_adv_pos_en_it_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "She always arrives late.",
+    "reference_translations": [
+      {
+        "text": "Arriva sempre in ritardo.",
+        "register": "neutral",
+        "notes": "Adverb after the verb: arriva sempre."
+      },
+      {
+        "text": "Lei arriva sempre in ritardo.",
+        "register": "neutral",
+        "notes": "With subject pronoun for emphasis."
+      },
+      {
+        "text": "Sempre arriva in ritardo.",
+        "register": "neutral",
+        "notes": "WRONG order: the adverb should follow the verb, not precede it.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "adverb",
     "register": "neutral",
-    "notes": "molto and poco modify the verbs, so they are invariable adverbs."
-   },
-   {
-    "text": "She studies a lot but sleeps little.",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "adverb.usage.position"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [],
+    "explanation": "In a simple tense the adverb follows the verb: arriva sempre in ritardo. The English order 'always arrives' (adverb first) does not carry over.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_adv_pos_en_it_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I have already eaten.",
+    "reference_translations": [
+      {
+        "text": "Ho già mangiato.",
+        "register": "neutral",
+        "notes": "già sits between the auxiliary and the participle."
+      },
+      {
+        "text": "Ho mangiato già.",
+        "register": "neutral",
+        "notes": "Marked/dispreferred: già belongs between ho and mangiato.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "adverb",
     "register": "neutral",
-    "notes": "Subject could be she; Italian drops it."
-   }
-  ],
-  "topic": "adverb",
-  "register": "neutral",
-  "difficulty": 2,
-  "cefr_level_target": "A2",
-  "required_buckets": [
-   "adverb.usage.invariable_vs_adjective"
-  ],
-  "optional_buckets": [],
-  "vocab_help": [],
-  "explanation": "Beside verbs, molto and poco are adverbs (how much you study or sleep) and stay invariable: studia molto, dorme poco.",
-  "version": 1
- },
- {
-  "external_id": "trans_adv_mente_en_it_01",
-  "source_lang": "en",
-  "target_lang": "it",
-  "source_text": "Please drive slowly.",
-  "reference_translations": [
-   {
-    "text": "Guida lentamente, per favore.",
-    "register": "informal",
-    "notes": "tu imperative; lentamente is built on the feminine lenta."
-   },
-   {
-    "text": "Guidi lentamente, per favore.",
-    "register": "formal",
-    "notes": "Lei (formal) form."
-   }
-  ],
-  "topic": "adverb",
-  "register": "neutral",
-  "difficulty": 2,
-  "cefr_level_target": "A2",
-  "required_buckets": [
-   "adverb.formation.mente_regular"
-  ],
-  "optional_buckets": [],
-  "vocab_help": [],
-  "explanation": "The manner adverb is built with -mente on the feminine of lento: lenta + mente = lentamente.",
-  "version": 1
- },
- {
-  "external_id": "trans_adv_mente_en_it_02",
-  "source_lang": "en",
-  "target_lang": "it",
-  "source_text": "He answered me very kindly.",
-  "reference_translations": [
-   {
-    "text": "Mi ha risposto molto gentilmente.",
-    "register": "neutral",
-    "notes": "gentile (-le) drops the e: gentilmente; molto stays invariable."
-   },
-   {
-    "text": "Mi ha risposto in modo molto gentile.",
-    "register": "neutral",
-    "notes": "Periphrasis with in modo + adjective; also natural."
-   }
-  ],
-  "topic": "adverb",
-  "register": "neutral",
-  "difficulty": 3,
-  "cefr_level_target": "B1",
-  "required_buckets": [
-   "adverb.formation.mente_le_re"
-  ],
-  "optional_buckets": [
-   "adverb.usage.invariable_vs_adjective"
-  ],
-  "vocab_help": [],
-  "explanation": "Gentile ends in -le, so it drops the e before -mente: gentilmente. Molto before an adverb stays invariable.",
-  "version": 1
- },
- {
-  "external_id": "trans_adv_mente_it_en_01",
-  "source_lang": "it",
-  "target_lang": "en",
-  "source_text": "Parla velocemente.",
-  "reference_translations": [
-   {
-    "text": "He speaks quickly.",
-    "register": "neutral",
-    "notes": "velocemente = quickly/fast."
-   },
-   {
-    "text": "She talks fast.",
-    "register": "neutral",
-    "notes": "Subject dropped; 'fast' is natural."
-   }
-  ],
-  "topic": "adverb",
-  "register": "neutral",
-  "difficulty": 2,
-  "cefr_level_target": "A2",
-  "required_buckets": [
-   "adverb.formation.mente_regular"
-  ],
-  "optional_buckets": [],
-  "vocab_help": [],
-  "explanation": "Veloce ends in -e, so the adverb is velocemente (quickly). There is no feminine step for -e adjectives.",
-  "version": 1
- },
- {
-  "external_id": "trans_adv_prim_en_it_01",
-  "source_lang": "en",
-  "target_lang": "it",
-  "source_text": "I'll gladly come tonight.",
-  "reference_translations": [
-   {
-    "text": "Vengo volentieri stasera.",
-    "register": "neutral",
-    "notes": "Present used for the near future; volentieri = gladly, a primary adverb."
-   },
-   {
-    "text": "Verrò volentieri stasera.",
-    "register": "neutral",
-    "notes": "Explicit future; also fine."
-   }
-  ],
-  "topic": "adverb",
-  "register": "neutral",
-  "difficulty": 2,
-  "cefr_level_target": "A2",
-  "required_buckets": [
-   "adverb.formation.primary"
-  ],
-  "optional_buckets": [],
-  "vocab_help": [],
-  "explanation": "Volentieri is a ready-made adverb (gladly); it takes no -mente and never agrees.",
-  "version": 1
- },
- {
-  "external_id": "trans_adv_prim_it_en_01",
-  "source_lang": "it",
-  "target_lang": "en",
-  "source_text": "Mi alzo sempre presto.",
-  "reference_translations": [
-   {
-    "text": "I always get up early.",
-    "register": "neutral",
-    "notes": "presto = early; sempre = always."
-   },
-   {
-    "text": "I always wake up early.",
-    "register": "neutral",
-    "notes": "Natural variant."
-   }
-  ],
-  "topic": "adverb",
-  "register": "neutral",
-  "difficulty": 2,
-  "cefr_level_target": "A2",
-  "required_buckets": [
-   "adverb.formation.primary"
-  ],
-  "optional_buckets": [],
-  "vocab_help": [],
-  "explanation": "Presto (early) and sempre (always) are primary adverbs: whole words with no -mente and no agreement.",
-  "version": 1
- },
- {
-  "external_id": "trans_adv_pos_en_it_01",
-  "source_lang": "en",
-  "target_lang": "it",
-  "source_text": "She always arrives late.",
-  "reference_translations": [
-   {
-    "text": "Arriva sempre in ritardo.",
-    "register": "neutral",
-    "notes": "Adverb after the verb: arriva sempre."
-   },
-   {
-    "text": "Lei arriva sempre in ritardo.",
-    "register": "neutral",
-    "notes": "With subject pronoun for emphasis."
-   },
-   {
-    "text": "Sempre arriva in ritardo.",
-    "register": "neutral",
-    "notes": "WRONG order: the adverb should follow the verb, not precede it.",
-    "polarity": "negative"
-   }
-  ],
-  "topic": "adverb",
-  "register": "neutral",
-  "difficulty": 2,
-  "cefr_level_target": "A2",
-  "required_buckets": [
-   "adverb.usage.position"
-  ],
-  "optional_buckets": [],
-  "vocab_help": [],
-  "explanation": "In a simple tense the adverb follows the verb: arriva sempre in ritardo. The English order 'always arrives' (adverb first) does not carry over.",
-  "version": 1
- },
- {
-  "external_id": "trans_adv_pos_en_it_02",
-  "source_lang": "en",
-  "target_lang": "it",
-  "source_text": "I have already eaten.",
-  "reference_translations": [
-   {
-    "text": "Ho già mangiato.",
-    "register": "neutral",
-    "notes": "già sits between the auxiliary and the participle."
-   },
-   {
-    "text": "Ho mangiato già.",
-    "register": "neutral",
-    "notes": "Marked/dispreferred: già belongs between ho and mangiato.",
-    "polarity": "negative"
-   }
-  ],
-  "topic": "adverb",
-  "register": "neutral",
-  "difficulty": 3,
-  "cefr_level_target": "B1",
-  "required_buckets": [
-   "verb_form.passato_prossimo.adverb_placement"
-  ],
-  "optional_buckets": [
-   "adverb.usage.position"
-  ],
-  "vocab_help": [],
-  "explanation": "With a compound tense, short adverbs like già sit between the auxiliary and the participle: ho già mangiato. This placement skill lives with the passato prossimo, so it is credited there; the adverb topic owns only simple-tense placement.",
-  "version": 1
- }
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "verb_form.passato_prossimo.adverb_placement"
+    ],
+    "optional_buckets": [
+      "adverb.usage.position"
+    ],
+    "vocab_help": [],
+    "explanation": "With a compound tense, short adverbs like già sit between the auxiliary and the participle: ho già mangiato. This placement skill lives with the passato prossimo, so it is credited there; the adverb topic owns only simple-tense placement.",
+    "version": 1
+  }
 ]

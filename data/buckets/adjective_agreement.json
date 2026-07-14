@@ -586,7 +586,8 @@
     ],
     "attributes": {
       "canonical_example": "un vecchio amico vs un amico vecchio",
-      "direction": "bidirectional"
+      "direction": "bidirectional",
+      "is_aggregate": true
     },
     "active": true,
     "version": 1
@@ -1109,6 +1110,72 @@
       ],
       "canonical_example": "i numeri pari",
       "direction": "bidirectional"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "adjective_agreement.position.semantic_shift.grande",
+    "parent_id": "adjective_agreement.position.semantic_shift",
+    "language_code": "it",
+    "label": "Grande before or after",
+    "description": "Pre-noun grande = great/figurative (un grand'uomo); post-noun = physically big (un uomo grande).",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "bidirectional",
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "adjective_agreement.position.semantic_shift.povero",
+    "parent_id": "adjective_agreement.position.semantic_shift",
+    "language_code": "it",
+    "label": "Povero before or after",
+    "description": "Pre-noun povero = unfortunate (un pover'uomo); post-noun = financially poor (un uomo povero).",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "bidirectional",
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "adjective_agreement.position.semantic_shift.vecchio",
+    "parent_id": "adjective_agreement.position.semantic_shift",
+    "language_code": "it",
+    "label": "Vecchio before or after",
+    "description": "Pre-noun vecchio = long-standing (un vecchio amico); post-noun = aged (un amico vecchio).",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "direction": "bidirectional",
+      "is_aggregate": false
     },
     "active": true,
     "version": 1

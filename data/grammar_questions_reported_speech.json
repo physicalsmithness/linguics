@@ -37,7 +37,7 @@
         "aspects": {
           "translation": {
             "reveal": "stanco - tired",
-            "bucket": "vocabulary.it.stanco.translation"
+            "bucket": "vocabulary.it.stanco.adjective.translation"
           }
         }
       }
@@ -70,7 +70,10 @@
         "bucket": "reported_speech.tense_shift.no_shift",
         "label": "Present kept after a present reporter",
         "any_phrases": [
-          "arriva"
+          {
+            "phrase": "arriva",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "arrivava",
@@ -85,7 +88,7 @@
         "aspects": {
           "translation": {
             "reveal": "to arrive - arrivare",
-            "bucket": "vocabulary.it.arrivare.translation"
+            "bucket": "vocabulary.it.arrivare.verb.translation"
           }
         }
       }
@@ -132,11 +135,11 @@
         "aspects": {
           "translation": {
             "reveal": "hunger - fame",
-            "bucket": "vocabulary.it.fame.translation"
+            "bucket": "vocabulary.it.fame.noun.translation"
           },
           "gender": {
             "reveal": "feminine (f)",
-            "bucket": "vocabulary.it.fame.gender"
+            "bucket": "vocabulary.it.fame.noun.gender"
           }
         }
       }
@@ -182,7 +185,7 @@
         "aspects": {
           "translation": {
             "reveal": "to pay - pagare",
-            "bucket": "vocabulary.it.pagare.translation"
+            "bucket": "vocabulary.it.pagare.verb.translation"
           }
         }
       }
@@ -230,7 +233,7 @@
         "aspects": {
           "translation": {
             "reveal": "to come - venire",
-            "bucket": "vocabulary.it.venire.translation"
+            "bucket": "vocabulary.it.venire.verb.translation"
           }
         }
       }
@@ -274,7 +277,7 @@
         "aspects": {
           "translation": {
             "reveal": "to come - venire",
-            "bucket": "vocabulary.it.venire.translation"
+            "bucket": "vocabulary.it.venire.verb.translation"
           }
         }
       }
@@ -318,7 +321,7 @@
         "aspects": {
           "translation": {
             "reveal": "to smoke - fumare",
-            "bucket": "vocabulary.it.fumare.translation"
+            "bucket": "vocabulary.it.fumare.verb.translation"
           }
         }
       }
@@ -361,7 +364,7 @@
         "aspects": {
           "translation": {
             "reveal": "to wait - aspettare",
-            "bucket": "vocabulary.it.aspettare.translation"
+            "bucket": "vocabulary.it.aspettare.verb.translation"
           }
         }
       }
@@ -405,7 +408,7 @@
         "aspects": {
           "translation": {
             "reveal": "to worry - preoccuparsi",
-            "bucket": "vocabulary.it.preoccuparsi.translation"
+            "bucket": "vocabulary.it.preoccuparsi.verb.translation"
           }
         }
       }
@@ -449,7 +452,7 @@
         "aspects": {
           "translation": {
             "reveal": "to finish - finire",
-            "bucket": "vocabulary.it.finire.translation"
+            "bucket": "vocabulary.it.finire.verb.translation"
           }
         }
       }
@@ -493,7 +496,7 @@
         "aspects": {
           "translation": {
             "reveal": "to come - venire",
-            "bucket": "vocabulary.it.venire.translation"
+            "bucket": "vocabulary.it.venire.verb.translation"
           }
         }
       }
@@ -521,7 +524,10 @@
         "bucket": "reported_speech.questions",
         "label": "Wh-question keeps its question word",
         "any_phrases": [
-          "dove abita"
+          {
+            "phrase": "dove abita",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "dove abiti",
@@ -537,7 +543,7 @@
         "aspects": {
           "translation": {
             "reveal": "to live / reside - abitare",
-            "bucket": "vocabulary.it.abitare.translation"
+            "bucket": "vocabulary.it.abitare.verb.translation"
           }
         }
       }
@@ -581,7 +587,7 @@
         "aspects": {
           "translation": {
             "reveal": "to cry - piangere",
-            "bucket": "vocabulary.it.piangere.translation"
+            "bucket": "vocabulary.it.piangere.verb.translation"
           }
         }
       }
@@ -624,7 +630,7 @@
         "aspects": {
           "translation": {
             "reveal": "ready - pronto",
-            "bucket": "vocabulary.it.pronto.translation"
+            "bucket": "vocabulary.it.pronto.adjective.translation"
           }
         }
       }
@@ -652,7 +658,10 @@
         "bucket": "reported_speech.questions",
         "label": "Wh-question keeps its question word",
         "any_phrases": [
-          "quando partiamo"
+          {
+            "phrase": "quando partiamo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "quando partite",
@@ -668,7 +677,7 @@
         "aspects": {
           "translation": {
             "reveal": "to leave / depart - partire",
-            "bucket": "vocabulary.it.partire.translation"
+            "bucket": "vocabulary.it.partire.verb.translation"
           }
         }
       }
@@ -752,7 +761,7 @@
         "aspects": {
           "translation": {
             "reveal": "to come - venire",
-            "bucket": "vocabulary.it.venire.translation"
+            "bucket": "vocabulary.it.venire.verb.translation"
           }
         }
       }
@@ -837,7 +846,7 @@
         "aspects": {
           "translation": {
             "reveal": "to phone - telefonare",
-            "bucket": "vocabulary.it.telefonare.translation"
+            "bucket": "vocabulary.it.telefonare.verb.translation"
           }
         }
       }
@@ -932,11 +941,11 @@
         "aspects": {
           "translation": {
             "reveal": "to leave / depart - partire",
-            "bucket": "vocabulary.it.partire.translation"
+            "bucket": "vocabulary.it.partire.verb.translation"
           },
           "auxiliary": {
             "reveal": "essere (motion intransitive)",
-            "bucket": "vocabulary.it.partire.auxiliary"
+            "bucket": "vocabulary.it.partire.verb.auxiliary"
           }
         }
       }
@@ -1021,7 +1030,7 @@
         "aspects": {
           "translation": {
             "reveal": "to sign - firmare",
-            "bucket": "vocabulary.it.firmare.translation"
+            "bucket": "vocabulary.it.firmare.verb.translation"
           }
         }
       }
@@ -1106,11 +1115,11 @@
         "aspects": {
           "translation": {
             "reveal": "to manage / succeed - riuscire",
-            "bucket": "vocabulary.it.riuscire.translation"
+            "bucket": "vocabulary.it.riuscire.verb.translation"
           },
           "auxiliary": {
             "reveal": "essere (motion intransitive)",
-            "bucket": "vocabulary.it.riuscire.auxiliary"
+            "bucket": "vocabulary.it.riuscire.verb.auxiliary"
           }
         }
       }
@@ -1194,11 +1203,11 @@
         "aspects": {
           "translation": {
             "reveal": "to arrive - arrivare",
-            "bucket": "vocabulary.it.arrivare.translation"
+            "bucket": "vocabulary.it.arrivare.verb.translation"
           },
           "auxiliary": {
             "reveal": "essere (motion intransitive)",
-            "bucket": "vocabulary.it.arrivare.auxiliary"
+            "bucket": "vocabulary.it.arrivare.verb.auxiliary"
           }
         }
       }
@@ -1282,7 +1291,7 @@
         "aspects": {
           "translation": {
             "reveal": "to be able to - potere",
-            "bucket": "vocabulary.it.potere.translation"
+            "bucket": "vocabulary.it.potere.verb.translation"
           }
         }
       }
@@ -1347,7 +1356,7 @@
         "aspects": {
           "translation": {
             "reveal": "stanco - tired",
-            "bucket": "vocabulary.it.stanco.translation"
+            "bucket": "vocabulary.it.stanco.adjective.translation"
           }
         }
       }
@@ -1412,11 +1421,11 @@
         "aspects": {
           "translation": {
             "reveal": "hunger - fame",
-            "bucket": "vocabulary.it.fame.translation"
+            "bucket": "vocabulary.it.fame.noun.translation"
           },
           "gender": {
             "reveal": "feminine (f)",
-            "bucket": "vocabulary.it.fame.gender"
+            "bucket": "vocabulary.it.fame.noun.gender"
           }
         }
       }
@@ -1481,7 +1490,7 @@
         "aspects": {
           "translation": {
             "reveal": "to live / reside - abitare",
-            "bucket": "vocabulary.it.abitare.translation"
+            "bucket": "vocabulary.it.abitare.verb.translation"
           }
         }
       }
@@ -1545,7 +1554,7 @@
         "aspects": {
           "translation": {
             "reveal": "to want - volere",
-            "bucket": "vocabulary.it.volere.translation"
+            "bucket": "vocabulary.it.volere.verb.translation"
           }
         }
       }
@@ -1609,7 +1618,7 @@
         "aspects": {
           "translation": {
             "reveal": "to be able to - potere",
-            "bucket": "vocabulary.it.potere.translation"
+            "bucket": "vocabulary.it.potere.verb.translation"
           }
         }
       }
@@ -1737,7 +1746,7 @@
         "aspects": {
           "translation": {
             "reveal": "to eat - mangiare",
-            "bucket": "vocabulary.it.mangiare.translation"
+            "bucket": "vocabulary.it.mangiare.verb.translation"
           }
         }
       }
@@ -1812,11 +1821,11 @@
         "aspects": {
           "translation": {
             "reveal": "to arrive - arrivare",
-            "bucket": "vocabulary.it.arrivare.translation"
+            "bucket": "vocabulary.it.arrivare.verb.translation"
           },
           "auxiliary": {
             "reveal": "essere (motion intransitive)",
-            "bucket": "vocabulary.it.arrivare.auxiliary"
+            "bucket": "vocabulary.it.arrivare.verb.auxiliary"
           }
         }
       }
@@ -1881,7 +1890,7 @@
         "aspects": {
           "translation": {
             "reveal": "to repair - riparare",
-            "bucket": "vocabulary.it.riparare.translation"
+            "bucket": "vocabulary.it.riparare.verb.translation"
           }
         }
       }
@@ -1945,7 +1954,7 @@
         "aspects": {
           "translation": {
             "reveal": "to receive - ricevere",
-            "bucket": "vocabulary.it.ricevere.translation"
+            "bucket": "vocabulary.it.ricevere.verb.translation"
           }
         }
       }
@@ -2013,11 +2022,11 @@
         "aspects": {
           "translation": {
             "reveal": "to go - andare",
-            "bucket": "vocabulary.it.andare.translation"
+            "bucket": "vocabulary.it.andare.verb.translation"
           },
           "auxiliary": {
             "reveal": "essere (motion intransitive)",
-            "bucket": "vocabulary.it.andare.auxiliary"
+            "bucket": "vocabulary.it.andare.verb.auxiliary"
           }
         }
       }
@@ -2151,7 +2160,7 @@
         "aspects": {
           "translation": {
             "reveal": "oggi - today",
-            "bucket": "vocabulary.it.oggi.translation"
+            "bucket": "vocabulary.it.oggi.adverb.translation"
           }
         }
       }
@@ -2195,7 +2204,7 @@
         "aspects": {
           "translation": {
             "reveal": "qui - here",
-            "bucket": "vocabulary.it.qui.translation"
+            "bucket": "vocabulary.it.qui.adverb.translation"
           }
         }
       }
@@ -2256,11 +2265,11 @@
         "aspects": {
           "translation": {
             "reveal": "libro - book",
-            "bucket": "vocabulary.it.libro.translation"
+            "bucket": "vocabulary.it.libro.noun.translation"
           },
           "gender": {
             "reveal": "masculine (m)",
-            "bucket": "vocabulary.it.libro.gender"
+            "bucket": "vocabulary.it.libro.noun.gender"
           }
         }
       }
@@ -2305,7 +2314,7 @@
         "aspects": {
           "translation": {
             "reveal": "to return - tornare",
-            "bucket": "vocabulary.it.tornare.translation"
+            "bucket": "vocabulary.it.tornare.verb.translation"
           }
         }
       }

@@ -27,7 +27,7 @@
           {
             "phrase": "si cenano",
             "note": "impersonal si has no plural subject to agree with, so it stays singular: si cena",
-            "match_at": "start"
+            "match_at": "word"
           }
         ]
       }
@@ -39,7 +39,7 @@
         "aspects": {
           "translation": {
             "reveal": "cenare - to have dinner",
-            "bucket": "vocabulary.it.cenare.translation"
+            "bucket": "vocabulary.it.cenare.verb.translation"
           }
         }
       }
@@ -75,7 +75,7 @@
           {
             "phrase": "si possono",
             "note": "before an infinitive impersonal si still stays singular: si può fumare, not si possono",
-            "match_at": "start"
+            "match_at": "word"
           }
         ]
       }
@@ -87,7 +87,7 @@
         "aspects": {
           "translation": {
             "reveal": "fumare - to smoke",
-            "bucket": "vocabulary.it.fumare.translation"
+            "bucket": "vocabulary.it.fumare.verb.translation"
           }
         }
       }
@@ -123,7 +123,7 @@
           {
             "phrase": "si devono",
             "note": "impersonal si stays singular even before an infinitive: non si deve",
-            "match_at": "start"
+            "match_at": "word"
           }
         ]
       }
@@ -135,7 +135,7 @@
         "aspects": {
           "translation": {
             "reveal": "dovere - to have to, must",
-            "bucket": "vocabulary.it.dovere.translation"
+            "bucket": "vocabulary.it.dovere.verb.translation"
           }
         }
       },
@@ -145,7 +145,7 @@
         "aspects": {
           "translation": {
             "reveal": "biblioteca - library",
-            "bucket": "vocabulary.it.biblioteca.translation"
+            "bucket": "vocabulary.it.biblioteca.noun.translation"
           }
         }
       }
@@ -181,7 +181,7 @@
           {
             "phrase": "si sanno",
             "note": "non si sa mai is a fixed impersonal expression and stays singular: si sa",
-            "match_at": "start"
+            "match_at": "word"
           }
         ]
       }
@@ -193,7 +193,7 @@
         "aspects": {
           "translation": {
             "reveal": "sapere - to know",
-            "bucket": "vocabulary.it.sapere.translation"
+            "bucket": "vocabulary.it.sapere.verb.translation"
           }
         }
       }
@@ -229,7 +229,7 @@
           {
             "phrase": "si dicono",
             "note": "impersonal si is singular: come si dice",
-            "match_at": "start"
+            "match_at": "word"
           }
         ]
       }
@@ -241,7 +241,7 @@
         "aspects": {
           "translation": {
             "reveal": "dire - to say, to tell",
-            "bucket": "vocabulary.it.dire.translation"
+            "bucket": "vocabulary.it.dire.verb.translation"
           }
         }
       }
@@ -277,7 +277,7 @@
           {
             "phrase": "si lavorano",
             "note": "lavorare is intransitive here, so impersonal si stays singular: si lavora",
-            "match_at": "start"
+            "match_at": "word"
           }
         ]
       },
@@ -296,7 +296,7 @@
           {
             "phrase": "si tornano",
             "note": "tornare is intransitive, so impersonal si stays singular: si torna",
-            "match_at": "start"
+            "match_at": "word"
           }
         ]
       }
@@ -308,7 +308,7 @@
         "aspects": {
           "translation": {
             "reveal": "lavorare - to work",
-            "bucket": "vocabulary.it.lavorare.translation"
+            "bucket": "vocabulary.it.lavorare.verb.translation"
           }
         }
       },
@@ -318,7 +318,7 @@
         "aspects": {
           "translation": {
             "reveal": "tornare - to come back, return",
-            "bucket": "vocabulary.it.tornare.translation"
+            "bucket": "vocabulary.it.tornare.verb.translation"
           }
         }
       }
@@ -354,11 +354,13 @@
         "must_not_include": [
           {
             "phrase": "stanco",
-            "note": "after impersonal si a predicate adjective is masculine plural: si è stanchi, not stanco"
+            "note": "after impersonal si a predicate adjective is masculine plural: si è stanchi, not stanco",
+            "match_at": "word"
           },
           {
             "phrase": "stanca",
-            "note": "the predicate adjective after impersonal si is masculine plural: stanchi"
+            "note": "the predicate adjective after impersonal si is masculine plural: stanchi",
+            "match_at": "word"
           }
         ]
       }
@@ -370,7 +372,7 @@
         "aspects": {
           "translation": {
             "reveal": "stanco - tired",
-            "bucket": "vocabulary.it.stanco.translation"
+            "bucket": "vocabulary.it.stanco.adjective.translation"
           }
         }
       }
@@ -405,7 +407,8 @@
         "must_not_include": [
           {
             "phrase": "rilassato",
-            "note": "a predicate adjective after impersonal si is masculine plural: si è rilassati"
+            "note": "a predicate adjective after impersonal si is masculine plural: si è rilassati",
+            "match_at": "word"
           }
         ]
       }
@@ -452,7 +455,8 @@
         "must_not_include": [
           {
             "phrase": "curioso",
-            "note": "masculine plural after impersonal si: si è curiosi"
+            "note": "masculine plural after impersonal si: si è curiosi",
+            "match_at": "word"
           }
         ]
       }
@@ -464,7 +468,7 @@
         "aspects": {
           "translation": {
             "reveal": "curioso - curious",
-            "bucket": "vocabulary.it.curioso.translation"
+            "bucket": "vocabulary.it.curioso.adjective.translation"
           }
         }
       }
@@ -500,11 +504,12 @@
           {
             "phrase": "si ha parlato",
             "note": "the impersonal si always forms compound tenses with essere: si è parlato, not si ha parlato",
-            "match_at": "start"
+            "match_at": "word"
           },
           {
             "phrase": "si è parlati",
-            "note": "parlare is not an essere-verb, so its participle stays singular: si è parlato"
+            "note": "parlare is not an essere-verb, so its participle stays singular: si è parlato",
+            "match_at": "word"
           }
         ]
       }
@@ -516,7 +521,7 @@
         "aspects": {
           "translation": {
             "reveal": "parlare - to speak, to talk",
-            "bucket": "vocabulary.it.parlare.translation"
+            "bucket": "vocabulary.it.parlare.verb.translation"
           }
         }
       }
@@ -552,7 +557,7 @@
           {
             "phrase": "si ha lavorato",
             "note": "impersonal compounds take essere: si è lavorato",
-            "match_at": "start"
+            "match_at": "word"
           }
         ]
       },
@@ -571,7 +576,7 @@
           {
             "phrase": "si ha guadagnato",
             "note": "impersonal compounds take essere: si è guadagnato",
-            "match_at": "start"
+            "match_at": "word"
           }
         ]
       }
@@ -583,7 +588,7 @@
         "aspects": {
           "translation": {
             "reveal": "guadagnare - to earn",
-            "bucket": "vocabulary.it.guadagnare.translation"
+            "bucket": "vocabulary.it.guadagnare.verb.translation"
           }
         }
       }
@@ -620,12 +625,12 @@
           {
             "phrase": "si è arrivato",
             "note": "arrivare is an essere-verb, so under impersonal si the participle is masculine plural: si è arrivati",
-            "match_at": "start"
+            "match_at": "word"
           },
           {
             "phrase": "si ha arrivato",
             "note": "arrivare takes essere, and impersonal compounds take essere anyway: si è arrivati",
-            "match_at": "start"
+            "match_at": "word"
           }
         ]
       }
@@ -637,7 +642,7 @@
         "aspects": {
           "translation": {
             "reveal": "arrivare - to arrive",
-            "bucket": "vocabulary.it.arrivare.translation"
+            "bucket": "vocabulary.it.arrivare.verb.translation"
           }
         }
       }
@@ -673,7 +678,7 @@
           {
             "phrase": "è stato",
             "note": "essere is itself an essere-verb, so impersonally the participle is plural: si è stati",
-            "match_at": "start"
+            "match_at": "word"
           }
         ]
       },
@@ -691,7 +696,8 @@
         "must_not_include": [
           {
             "phrase": "povero",
-            "note": "the predicate adjective after impersonal si is masculine plural: poveri"
+            "note": "the predicate adjective after impersonal si is masculine plural: poveri",
+            "match_at": "word"
           }
         ]
       }
@@ -703,7 +709,7 @@
         "aspects": {
           "translation": {
             "reveal": "povero - poor",
-            "bucket": "vocabulary.it.povero.translation"
+            "bucket": "vocabulary.it.povero.adjective.translation"
           }
         }
       }
@@ -740,11 +746,12 @@
           {
             "phrase": "si riposa",
             "note": "riposarsi is reflexive, so impersonal si needs the extra ci: ci si riposa",
-            "match_at": "start"
+            "match_at": "word"
           },
           {
             "phrase": "ci si riposano",
-            "note": "impersonal ci si stays third person singular: ci si riposa"
+            "note": "impersonal ci si stays third person singular: ci si riposa",
+            "match_at": "word"
           }
         ]
       }
@@ -756,7 +763,7 @@
         "aspects": {
           "translation": {
             "reveal": "riposarsi - to rest",
-            "bucket": "vocabulary.it.riposarsi.translation"
+            "bucket": "vocabulary.it.riposarsi.verb.translation"
           }
         }
       }
@@ -793,11 +800,12 @@
           {
             "phrase": "si accorge",
             "note": "accorgersi is reflexive, so impersonally it needs ci: ci si accorge",
-            "match_at": "start"
+            "match_at": "word"
           },
           {
             "phrase": "ci si accorgono",
-            "note": "impersonal ci si stays third person singular: ci si accorge"
+            "note": "impersonal ci si stays third person singular: ci si accorge",
+            "match_at": "word"
           }
         ]
       }
@@ -809,7 +817,7 @@
         "aspects": {
           "translation": {
             "reveal": "accorgersi - to notice, to realise",
-            "bucket": "vocabulary.it.accorgersi.translation"
+            "bucket": "vocabulary.it.accorgersi.verb.translation"
           }
         }
       }
@@ -840,18 +848,19 @@
           {
             "phrase": "si vendono",
             "match_at": "word"
+          },
+          {
+            "phrase": "vendono",
+            "match_at": "word",
+            "credit": 0.9,
+            "note": "correct Italian, but it sidesteps the si construction the item drills: 'vendono libri' says unnamed people sell them. The si passivante is si vendono."
           }
         ],
         "must_not_include": [
           {
             "phrase": "si vende",
             "note": "libri is plural and is the subject of this construction, so the verb agrees in the plural: si vendono",
-            "match_at": "start"
-          },
-          {
-            "phrase": "vendono",
-            "note": "without si this says unnamed people sell; the si construction is wanted here",
-            "match_at": "start"
+            "match_at": "word"
           }
         ]
       }
@@ -863,7 +872,7 @@
         "aspects": {
           "translation": {
             "reveal": "libro - book",
-            "bucket": "vocabulary.it.libro.translation"
+            "bucket": "vocabulary.it.libro.noun.translation"
           }
         }
       },
@@ -873,7 +882,7 @@
         "aspects": {
           "translation": {
             "reveal": "usato - used, second-hand",
-            "bucket": "vocabulary.it.usato.translation"
+            "bucket": "vocabulary.it.usato.adjective.translation"
           }
         }
       }
@@ -909,7 +918,7 @@
           {
             "phrase": "si vendono",
             "note": "the noun bicicletta is singular, so the verb is singular: si vende",
-            "match_at": "start"
+            "match_at": "word"
           }
         ]
       }
@@ -921,7 +930,7 @@
         "aspects": {
           "translation": {
             "reveal": "bicicletta - bicycle",
-            "bucket": "vocabulary.it.bicicletta.translation"
+            "bucket": "vocabulary.it.bicicletta.noun.translation"
           }
         }
       }
@@ -957,7 +966,7 @@
           {
             "phrase": "si conserva",
             "note": "the subject le tradizioni is plural, so the verb agrees in the plural even though the noun comes later: si conservano",
-            "match_at": "start"
+            "match_at": "word"
           }
         ]
       }
@@ -969,7 +978,7 @@
         "aspects": {
           "translation": {
             "reveal": "conservare - to keep, preserve",
-            "bucket": "vocabulary.it.conservare.translation"
+            "bucket": "vocabulary.it.conservare.verb.translation"
           }
         }
       },
@@ -979,7 +988,7 @@
         "aspects": {
           "translation": {
             "reveal": "tradizione - tradition",
-            "bucket": "vocabulary.it.tradizione.translation"
+            "bucket": "vocabulary.it.tradizione.noun.translation"
           }
         }
       }
@@ -1015,7 +1024,7 @@
           {
             "phrase": "si affitta",
             "note": "case is plural, so the verb agrees: si affittano",
-            "match_at": "start"
+            "match_at": "word"
           }
         ]
       }
@@ -1027,7 +1036,7 @@
         "aspects": {
           "translation": {
             "reveal": "affittare - to rent out, let",
-            "bucket": "vocabulary.it.affittare.translation"
+            "bucket": "vocabulary.it.affittare.verb.translation"
           }
         }
       },
@@ -1037,7 +1046,7 @@
         "aspects": {
           "translation": {
             "reveal": "casa - house",
-            "bucket": "vocabulary.it.casa.translation"
+            "bucket": "vocabulary.it.casa.noun.translation"
           }
         }
       }
@@ -1073,7 +1082,7 @@
           {
             "phrase": "si produce",
             "note": "vini is plural; the si construction agrees just as ci sono did earlier: si producono",
-            "match_at": "start"
+            "match_at": "word"
           }
         ]
       }
@@ -1085,7 +1094,7 @@
         "aspects": {
           "translation": {
             "reveal": "produrre - to produce",
-            "bucket": "vocabulary.it.produrre.translation"
+            "bucket": "vocabulary.it.produrre.verb.translation"
           }
         }
       },
@@ -1095,7 +1104,7 @@
         "aspects": {
           "translation": {
             "reveal": "vino - wine",
-            "bucket": "vocabulary.it.vino.translation"
+            "bucket": "vocabulary.it.vino.noun.translation"
           }
         }
       }
@@ -1131,7 +1140,7 @@
           {
             "phrase": "si raccolgono",
             "note": "l'uva is a singular mass noun, so the verb stays singular: si raccoglie",
-            "match_at": "start"
+            "match_at": "word"
           }
         ]
       }
@@ -1143,7 +1152,7 @@
         "aspects": {
           "translation": {
             "reveal": "uva - grapes",
-            "bucket": "vocabulary.it.uva.translation"
+            "bucket": "vocabulary.it.uva.noun.translation"
           }
         }
       },
@@ -1153,7 +1162,7 @@
         "aspects": {
           "translation": {
             "reveal": "raccogliere - to harvest, pick",
-            "bucket": "vocabulary.it.raccogliere.translation"
+            "bucket": "vocabulary.it.raccogliere.verb.translation"
           }
         }
       }
@@ -1189,7 +1198,7 @@
           {
             "phrase": "si serve",
             "note": "the subject i vini bianchi is plural and governs the verb even before it: si servono",
-            "match_at": "start"
+            "match_at": "word"
           }
         ]
       }
@@ -1201,7 +1210,7 @@
         "aspects": {
           "translation": {
             "reveal": "servire - to serve",
-            "bucket": "vocabulary.it.servire.translation"
+            "bucket": "vocabulary.it.servire.verb.translation"
           }
         }
       }
@@ -1237,7 +1246,7 @@
           {
             "phrase": "si parla",
             "note": "two languages joined by sia...sia are a plural subject, so the verb is plural: si parlano",
-            "match_at": "start"
+            "match_at": "word"
           }
         ]
       }
@@ -1249,7 +1258,7 @@
         "aspects": {
           "translation": {
             "reveal": "parlare - to speak",
-            "bucket": "vocabulary.it.parlare.translation"
+            "bucket": "vocabulary.it.parlare.verb.translation"
           }
         }
       },
@@ -1259,7 +1268,7 @@
         "aspects": {
           "translation": {
             "reveal": "tedesco - German",
-            "bucket": "vocabulary.it.tedesco.translation"
+            "bucket": "vocabulary.it.tedesco.adjective.translation"
           }
         }
       }
@@ -1279,6 +1288,11 @@
     "marks": 1,
     "prompt_supplies_base_form": true,
     "info_display": "suppress",
+    "candidate_forms": [
+      "impersonal si (verb stays singular)",
+      "si passivante (verb agrees with the noun)"
+    ],
+    "correct_form": "impersonal si (verb stays singular)",
     "markpoints": [
       {
         "order_index": 0,
@@ -1295,7 +1309,7 @@
           {
             "phrase": "si mangiano",
             "note": "there is no object here, only the adverb bene, so si is impersonal and stays singular: si mangia",
-            "match_at": "start"
+            "match_at": "word"
           }
         ]
       }
@@ -1307,7 +1321,7 @@
         "aspects": {
           "translation": {
             "reveal": "mangiare - to eat",
-            "bucket": "vocabulary.it.mangiare.translation"
+            "bucket": "vocabulary.it.mangiare.verb.translation"
           }
         }
       },
@@ -1317,7 +1331,7 @@
         "aspects": {
           "translation": {
             "reveal": "trattoria - trattoria, family restaurant",
-            "bucket": "vocabulary.it.trattoria.translation"
+            "bucket": "vocabulary.it.trattoria.noun.translation"
           }
         }
       }
@@ -1337,6 +1351,11 @@
     "marks": 1,
     "prompt_supplies_base_form": true,
     "info_display": "suppress",
+    "candidate_forms": [
+      "impersonal si (verb stays singular)",
+      "si passivante (verb agrees with the noun)"
+    ],
+    "correct_form": "si passivante (verb agrees with the noun)",
     "markpoints": [
       {
         "order_index": 0,
@@ -1353,7 +1372,7 @@
           {
             "phrase": "si mangia",
             "note": "here there is a plural object (gli spaghetti) that is the subject of the construction, so the verb agrees: si mangiano",
-            "match_at": "start"
+            "match_at": "word"
           }
         ]
       }
@@ -1385,6 +1404,11 @@
     "marks": 1,
     "prompt_supplies_base_form": true,
     "info_display": "suppress",
+    "candidate_forms": [
+      "impersonal si (verb stays singular)",
+      "si passivante (verb agrees with the noun)"
+    ],
+    "correct_form": "impersonal si (verb stays singular)",
     "markpoints": [
       {
         "order_index": 0,
@@ -1401,7 +1425,7 @@
           {
             "phrase": "si vivono",
             "note": "vivere is intransitive with no object here, so si is impersonal and singular: si vive",
-            "match_at": "start"
+            "match_at": "word"
           }
         ]
       }
@@ -1413,7 +1437,7 @@
         "aspects": {
           "translation": {
             "reveal": "vivere - to live",
-            "bucket": "vocabulary.it.vivere.translation"
+            "bucket": "vocabulary.it.vivere.verb.translation"
           }
         }
       }
@@ -1433,6 +1457,11 @@
     "marks": 1,
     "prompt_supplies_base_form": true,
     "info_display": "suppress",
+    "candidate_forms": [
+      "impersonal si (verb stays singular)",
+      "si passivante (verb agrees with the noun)"
+    ],
+    "correct_form": "si passivante (verb agrees with the noun)",
     "markpoints": [
       {
         "order_index": 0,
@@ -1449,7 +1478,7 @@
           {
             "phrase": "si usa",
             "note": "prodotti is a plural object and the subject of the construction, so the verb agrees: si usano",
-            "match_at": "start"
+            "match_at": "word"
           }
         ]
       }
@@ -1461,7 +1490,7 @@
         "aspects": {
           "translation": {
             "reveal": "prodotto - product",
-            "bucket": "vocabulary.it.prodotto.translation"
+            "bucket": "vocabulary.it.prodotto.noun.translation"
           }
         }
       },
@@ -1471,7 +1500,7 @@
         "aspects": {
           "translation": {
             "reveal": "usare - to use",
-            "bucket": "vocabulary.it.usare.translation"
+            "bucket": "vocabulary.it.usare.verb.translation"
           }
         }
       }
@@ -1491,6 +1520,11 @@
     "marks": 1,
     "prompt_supplies_base_form": true,
     "info_display": "suppress",
+    "candidate_forms": [
+      "impersonal si (verb stays singular)",
+      "si passivante (verb agrees with the noun)"
+    ],
+    "correct_form": "impersonal si (verb stays singular)",
     "markpoints": [
       {
         "order_index": 0,
@@ -1507,7 +1541,7 @@
           {
             "phrase": "si dormono",
             "note": "dormire is intransitive, so si is impersonal and singular: si dorme",
-            "match_at": "start"
+            "match_at": "word"
           }
         ]
       }
@@ -1519,7 +1553,7 @@
         "aspects": {
           "translation": {
             "reveal": "dormire - to sleep",
-            "bucket": "vocabulary.it.dormire.translation"
+            "bucket": "vocabulary.it.dormire.verb.translation"
           }
         }
       }
@@ -1539,6 +1573,11 @@
     "marks": 1,
     "prompt_supplies_base_form": true,
     "info_display": "suppress",
+    "candidate_forms": [
+      "impersonal si (verb stays singular)",
+      "si passivante (verb agrees with the noun)"
+    ],
+    "correct_form": "si passivante (verb agrees with the noun)",
     "markpoints": [
       {
         "order_index": 0,
@@ -1555,7 +1594,7 @@
           {
             "phrase": "si ripete",
             "note": "gli stessi gesti is a plural object and the subject here, so the verb agrees: si ripetono",
-            "match_at": "start"
+            "match_at": "word"
           }
         ]
       }
@@ -1567,7 +1606,7 @@
         "aspects": {
           "translation": {
             "reveal": "ripetere - to repeat",
-            "bucket": "vocabulary.it.ripetere.translation"
+            "bucket": "vocabulary.it.ripetere.verb.translation"
           }
         }
       },
@@ -1577,7 +1616,7 @@
         "aspects": {
           "translation": {
             "reveal": "gesto - gesture",
-            "bucket": "vocabulary.it.gesto.translation"
+            "bucket": "vocabulary.it.gesto.noun.translation"
           }
         }
       }
@@ -1612,9 +1651,18 @@
           "The shop or item is for sale"
         ],
         "must_not_include": [
-          "The shop is looking for staff",
-          "The shop is closed",
-          "The shop is for rent"
+          {
+            "phrase": "The shop is looking for staff",
+            "match_at": "word"
+          },
+          {
+            "phrase": "The shop is closed",
+            "match_at": "word"
+          },
+          {
+            "phrase": "The shop is for rent",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -1649,9 +1697,18 @@
           "Waiter wanted"
         ],
         "must_not_include": [
-          "Waiter on duty",
-          "No waiters today",
-          "Head waiter"
+          {
+            "phrase": "Waiter on duty",
+            "match_at": "word"
+          },
+          {
+            "phrase": "No waiters today",
+            "match_at": "word"
+          },
+          {
+            "phrase": "Head waiter",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -1686,7 +1743,7 @@
           {
             "phrase": "si affitta",
             "note": "on a sign the si attaches to the end of the verb: affittasi",
-            "match_at": "start"
+            "match_at": "word"
           }
         ]
       }
@@ -1698,7 +1755,7 @@
         "aspects": {
           "translation": {
             "reveal": "appartamento - flat, apartment",
-            "bucket": "vocabulary.it.appartamento.translation"
+            "bucket": "vocabulary.it.appartamento.noun.translation"
           }
         }
       }
@@ -1739,7 +1796,7 @@
           {
             "phrase": "si affittano",
             "note": "the sign register glues si to the verb; the usual frozen form stays singular: affittasi camere",
-            "match_at": "start"
+            "match_at": "word"
           }
         ]
       }
@@ -1751,7 +1808,7 @@
         "aspects": {
           "translation": {
             "reveal": "camera - room",
-            "bucket": "vocabulary.it.camera.translation"
+            "bucket": "vocabulary.it.camera.noun.translation"
           }
         }
       }
@@ -1788,9 +1845,18 @@
           "one, people in general (impersonal)"
         ],
         "must_not_include": [
-          "himself or herself (reflexive)",
-          "the word 'yes'",
-          "to him, to her"
+          {
+            "phrase": "himself or herself (reflexive)",
+            "match_at": "word"
+          },
+          {
+            "phrase": "the word 'yes'",
+            "match_at": "word"
+          },
+          {
+            "phrase": "to him, to her",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -1826,9 +1892,18 @@
           "himself (reflexive)"
         ],
         "must_not_include": [
-          "one, people in general (impersonal)",
-          "the word 'yes'",
-          "them"
+          {
+            "phrase": "one, people in general (impersonal)",
+            "match_at": "word"
+          },
+          {
+            "phrase": "the word 'yes'",
+            "match_at": "word"
+          },
+          {
+            "phrase": "them",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -1864,9 +1939,18 @@
           "are washed (by hand)"
         ],
         "must_not_include": [
-          "wash themselves",
-          "one washes",
-          "say yes"
+          {
+            "phrase": "wash themselves",
+            "match_at": "word"
+          },
+          {
+            "phrase": "one washes",
+            "match_at": "word"
+          },
+          {
+            "phrase": "say yes",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -1877,7 +1961,7 @@
         "aspects": {
           "translation": {
             "reveal": "maglione - jumper, sweater",
-            "bucket": "vocabulary.it.maglione.translation"
+            "bucket": "vocabulary.it.maglione.noun.translation"
           }
         }
       }
@@ -1910,7 +1994,10 @@
           "sì (with accent)"
         ],
         "must_not_include": [
-          "si (no accent)"
+          {
+            "phrase": "si (no accent)",
+            "match_at": "word"
+          }
         ]
       }
     ],

@@ -5,7 +5,11 @@
     "target_lang": "it",
     "source_text": "The house is red.",
     "reference_translations": [
-      {"text": "La casa è rossa.", "register": "neutral", "notes": "Standard rendering."}
+      {
+        "text": "La casa è rossa.",
+        "register": "neutral",
+        "notes": "Standard rendering."
+      }
     ],
     "topic": "adjective_agreement",
     "register": "neutral",
@@ -18,8 +22,30 @@
       "article.definite"
     ],
     "vocab_help": [
-      {"lemma": "house", "language": "en", "aspects": {"translation": {"reveal": "house - casa", "bucket": "vocabulary.it.casa.translation"}, "gender": {"reveal": "casa is feminine (f) in Italian", "bucket": "vocabulary.it.casa.gender"}}},
-      {"lemma": "red", "language": "en", "aspects": {"translation": {"reveal": "red - rosso", "bucket": "vocabulary.it.rosso.translation"}}}
+      {
+        "lemma": "house",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "house - casa",
+            "bucket": "vocabulary.it.casa.noun.translation"
+          },
+          "gender": {
+            "reveal": "casa is feminine (f) in Italian",
+            "bucket": "vocabulary.it.casa.noun.gender"
+          }
+        }
+      },
+      {
+        "lemma": "red",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "red - rosso",
+            "bucket": "vocabulary.it.rosso.adjective.translation"
+          }
+        }
+      }
     ],
     "explanation": "Casa is feminine singular. Rosso is a Class I adjective with the four-form pattern; f.sg takes -a, giving rossa. So la casa è rossa.",
     "version": 1
@@ -30,9 +56,23 @@
     "target_lang": "it",
     "source_text": "I have two black cats.",
     "reference_translations": [
-      {"text": "Ho due gatti neri.", "register": "neutral", "notes": "Standard."},
-      {"text": "Ho due gatti neri a casa.", "register": "neutral", "notes": "Optional adverbial; same agreement test.", "polarity": "positive"},
-      {"text": "Ho due gatti nero.", "register": "neutral", "notes": "Classic no-agreement miss.", "polarity": "negative"}
+      {
+        "text": "Ho due gatti neri.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "Ho due gatti neri a casa.",
+        "register": "neutral",
+        "notes": "Optional adverbial; same agreement test.",
+        "polarity": "positive"
+      },
+      {
+        "text": "Ho due gatti nero.",
+        "register": "neutral",
+        "notes": "Classic no-agreement miss.",
+        "polarity": "negative"
+      }
     ],
     "topic": "adjective_agreement",
     "register": "neutral",
@@ -44,8 +84,30 @@
     ],
     "optional_buckets": [],
     "vocab_help": [
-      {"lemma": "black", "language": "en", "aspects": {"translation": {"reveal": "black - nero", "bucket": "vocabulary.it.nero.translation"}}},
-      {"lemma": "cat", "language": "en", "aspects": {"translation": {"reveal": "cat - gatto", "bucket": "vocabulary.it.gatto.translation"}, "gender": {"reveal": "gatto is masculine (m); gatta is the feminine", "bucket": "vocabulary.it.gatto.gender"}}}
+      {
+        "lemma": "black",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "black - nero",
+            "bucket": "vocabulary.it.nero.adjective.translation"
+          }
+        }
+      },
+      {
+        "lemma": "cat",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "cat - gatto",
+            "bucket": "vocabulary.it.gatto.noun.translation"
+          },
+          "gender": {
+            "reveal": "gatto is masculine (m); gatta is the feminine",
+            "bucket": "vocabulary.it.gatto.noun.gender"
+          }
+        }
+      }
     ],
     "explanation": "Gatti is m.pl. Nero is Class I, so the m.pl form takes -i: neri. Colour adjectives sit in post-noun position by default: gatti neri.",
     "version": 1
@@ -56,8 +118,17 @@
     "target_lang": "it",
     "source_text": "The girls are very intelligent.",
     "reference_translations": [
-      {"text": "Le ragazze sono molto intelligenti.", "register": "neutral", "notes": "Standard."},
-      {"text": "Le ragazze sono molto intelligente.", "register": "neutral", "notes": "Classic miss for the tree-noted hardest case: no number agreement on Class II adjective.", "polarity": "negative"}
+      {
+        "text": "Le ragazze sono molto intelligenti.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "Le ragazze sono molto intelligente.",
+        "register": "neutral",
+        "notes": "Classic miss for the tree-noted hardest case: no number agreement on Class II adjective.",
+        "polarity": "negative"
+      }
     ],
     "topic": "adjective_agreement",
     "register": "neutral",
@@ -68,8 +139,30 @@
     ],
     "optional_buckets": [],
     "vocab_help": [
-      {"lemma": "girl", "language": "en", "aspects": {"translation": {"reveal": "girl - ragazza", "bucket": "vocabulary.it.ragazza.translation"}, "gender": {"reveal": "ragazza is feminine (f)", "bucket": "vocabulary.it.ragazza.gender"}}},
-      {"lemma": "intelligent", "language": "en", "aspects": {"translation": {"reveal": "intelligent - intelligente", "bucket": "vocabulary.it.intelligente.translation"}}}
+      {
+        "lemma": "girl",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "girl - ragazza",
+            "bucket": "vocabulary.it.ragazza.noun.translation"
+          },
+          "gender": {
+            "reveal": "ragazza is feminine (f)",
+            "bucket": "vocabulary.it.ragazza.noun.gender"
+          }
+        }
+      },
+      {
+        "lemma": "intelligent",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "intelligent - intelligente",
+            "bucket": "vocabulary.it.intelligente.adjective.translation"
+          }
+        }
+      }
     ],
     "explanation": "The tree-noted hardest case for English learners: Class II f.pl takes -i, not -e. Ragazze is f.pl, intelligente is Class II, so the form is intelligenti. The classic miss leaves intelligente unchanged.",
     "version": 1
@@ -80,9 +173,23 @@
     "target_lang": "it",
     "source_text": "The walls of the kitchen are white.",
     "reference_translations": [
-      {"text": "I muri della cucina sono bianchi.", "register": "neutral", "notes": "Standard."},
-      {"text": "Le pareti della cucina sono bianche.", "register": "neutral", "notes": "Pareti (f.pl) is also a valid translation of 'walls' (interior walls particularly).", "polarity": "positive"},
-      {"text": "I muri della cucina sono bianci.", "register": "neutral", "notes": "Soft-c miss: forgets to insert h.", "polarity": "negative"}
+      {
+        "text": "I muri della cucina sono bianchi.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "Le pareti della cucina sono bianche.",
+        "register": "neutral",
+        "notes": "Pareti (f.pl) is also a valid translation of 'walls' (interior walls particularly).",
+        "polarity": "positive"
+      },
+      {
+        "text": "I muri della cucina sono bianci.",
+        "register": "neutral",
+        "notes": "Soft-c miss: forgets to insert h.",
+        "polarity": "negative"
+      }
     ],
     "topic": "adjective_agreement",
     "register": "neutral",
@@ -96,9 +203,40 @@
       "preposition.articulated.della"
     ],
     "vocab_help": [
-      {"lemma": "wall", "language": "en", "aspects": {"translation": {"reveal": "wall - muro (m) / parete (f, interior)", "bucket": "vocabulary.it.muro.translation"}}},
-      {"lemma": "white", "language": "en", "aspects": {"translation": {"reveal": "white - bianco", "bucket": "vocabulary.it.bianco.translation"}}},
-      {"lemma": "kitchen", "language": "en", "aspects": {"translation": {"reveal": "kitchen - cucina", "bucket": "vocabulary.it.cucina.translation"}, "gender": {"reveal": "cucina is feminine (f)", "bucket": "vocabulary.it.cucina.gender"}}}
+      {
+        "lemma": "wall",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "wall - muro (m) / parete (f, interior)",
+            "bucket": "vocabulary.it.muro.noun.translation"
+          }
+        }
+      },
+      {
+        "lemma": "white",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "white - bianco",
+            "bucket": "vocabulary.it.bianco.adjective.translation"
+          }
+        }
+      },
+      {
+        "lemma": "kitchen",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "kitchen - cucina",
+            "bucket": "vocabulary.it.cucina.noun.translation"
+          },
+          "gender": {
+            "reveal": "cucina is feminine (f)",
+            "bucket": "vocabulary.it.cucina.noun.gender"
+          }
+        }
+      }
     ],
     "explanation": "Muri is m.pl. Bianco is a penult-stressed -co adjective: stem change inserts h to preserve the hard c-sound, giving bianchi. Pareti (the alternative for 'walls') is f.pl and would take bianche by the parallel rule.",
     "version": 1
@@ -109,8 +247,17 @@
     "target_lang": "it",
     "source_text": "My colleagues are very nice.",
     "reference_translations": [
-      {"text": "I miei colleghi sono molto simpatici.", "register": "neutral", "notes": "Standard."},
-      {"text": "I miei colleghi sono molto simpatichi.", "register": "neutral", "notes": "Over-application of -chi rule (forgets antepenult-stress exception).", "polarity": "negative"}
+      {
+        "text": "I miei colleghi sono molto simpatici.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "I miei colleghi sono molto simpatichi.",
+        "register": "neutral",
+        "notes": "Over-application of -chi rule (forgets antepenult-stress exception).",
+        "polarity": "negative"
+      }
     ],
     "topic": "adjective_agreement",
     "register": "neutral",
@@ -123,8 +270,30 @@
       "possessive.miei"
     ],
     "vocab_help": [
-      {"lemma": "colleague", "language": "en", "aspects": {"translation": {"reveal": "colleague - collega (same form m and f)", "bucket": "vocabulary.it.collega.translation"}, "gender": {"reveal": "common-gender noun; m.pl colleghi, f.pl colleghe", "bucket": "vocabulary.it.collega.gender"}}},
-      {"lemma": "nice", "language": "en", "aspects": {"translation": {"reveal": "nice (of a person) - simpatico", "bucket": "vocabulary.it.simpatico.translation"}}}
+      {
+        "lemma": "colleague",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "colleague - collega (same form m and f)",
+            "bucket": "vocabulary.it.collega.noun.translation"
+          },
+          "gender": {
+            "reveal": "common-gender noun; m.pl colleghi, f.pl colleghe",
+            "bucket": "vocabulary.it.collega.noun.gender"
+          }
+        }
+      },
+      {
+        "lemma": "nice",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "nice (of a person) - simpatico",
+            "bucket": "vocabulary.it.simpatico.adjective.translation"
+          }
+        }
+      }
     ],
     "explanation": "Simpatico has antepenult stress (sim-pa-ti-co), so the stress rule gives m.pl simpatici with soft c, not simpatichi. Compare with bianchi: there, penult stress preserves the hard c through h-insertion.",
     "version": 1
@@ -135,8 +304,17 @@
     "target_lang": "it",
     "source_text": "Marco and Luigi have been friends for many years.",
     "reference_translations": [
-      {"text": "Marco e Luigi sono amici da molti anni.", "register": "neutral", "notes": "Standard; note Italian uses present + 'da' for ongoing duration."},
-      {"text": "Marco e Luigi sono amichi da molti anni.", "register": "neutral", "notes": "Over-application of the predictable -chi rule.", "polarity": "negative"}
+      {
+        "text": "Marco e Luigi sono amici da molti anni.",
+        "register": "neutral",
+        "notes": "Standard; note Italian uses present + 'da' for ongoing duration."
+      },
+      {
+        "text": "Marco e Luigi sono amichi da molti anni.",
+        "register": "neutral",
+        "notes": "Over-application of the predictable -chi rule.",
+        "polarity": "negative"
+      }
     ],
     "topic": "adjective_agreement",
     "register": "neutral",
@@ -149,8 +327,30 @@
       "verb.tense_for_ongoing_duration"
     ],
     "vocab_help": [
-      {"lemma": "friend", "language": "en", "aspects": {"translation": {"reveal": "friend - amico (m) / amica (f)", "bucket": "vocabulary.it.amico.translation"}}},
-      {"lemma": "year", "language": "en", "aspects": {"translation": {"reveal": "year - anno", "bucket": "vocabulary.it.anno.translation"}, "gender": {"reveal": "anno is masculine (m)", "bucket": "vocabulary.it.anno.gender"}}}
+      {
+        "lemma": "friend",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "friend - amico (m) / amica (f)",
+            "bucket": "vocabulary.it.amico.noun.translation"
+          }
+        }
+      },
+      {
+        "lemma": "year",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "year - anno",
+            "bucket": "vocabulary.it.anno.noun.translation"
+          },
+          "gender": {
+            "reveal": "anno is masculine (m)",
+            "bucket": "vocabulary.it.anno.noun.gender"
+          }
+        }
+      }
     ],
     "explanation": "Amico is irregular in the m.pl: the actual form is amici with soft c, despite penultimate stress that would predict amichi. This is a learned exception to the regular h-insertion rule.",
     "version": 1
@@ -161,8 +361,17 @@
     "target_lang": "it",
     "source_text": "The boys and girls are Italian.",
     "reference_translations": [
-      {"text": "I ragazzi e le ragazze sono italiani.", "register": "neutral", "notes": "Standard. Mixed-gender plural defaults to masculine."},
-      {"text": "I ragazzi e le ragazze sono italiane.", "register": "neutral", "notes": "Proximity-agreement miss (matches the closest noun).", "polarity": "negative"}
+      {
+        "text": "I ragazzi e le ragazze sono italiani.",
+        "register": "neutral",
+        "notes": "Standard. Mixed-gender plural defaults to masculine."
+      },
+      {
+        "text": "I ragazzi e le ragazze sono italiane.",
+        "register": "neutral",
+        "notes": "Proximity-agreement miss (matches the closest noun).",
+        "polarity": "negative"
+      }
     ],
     "topic": "adjective_agreement",
     "register": "neutral",
@@ -173,9 +382,44 @@
     ],
     "optional_buckets": [],
     "vocab_help": [
-      {"lemma": "boy", "language": "en", "aspects": {"translation": {"reveal": "boy - ragazzo", "bucket": "vocabulary.it.ragazzo.translation"}, "gender": {"reveal": "ragazzo is masculine (m)", "bucket": "vocabulary.it.ragazzo.gender"}}},
-      {"lemma": "girl", "language": "en", "aspects": {"translation": {"reveal": "girl - ragazza", "bucket": "vocabulary.it.ragazza.translation"}, "gender": {"reveal": "ragazza is feminine (f)", "bucket": "vocabulary.it.ragazza.gender"}}},
-      {"lemma": "Italian", "language": "en", "aspects": {"translation": {"reveal": "Italian - italiano", "bucket": "vocabulary.it.italiano.translation"}}}
+      {
+        "lemma": "boy",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "boy - ragazzo",
+            "bucket": "vocabulary.it.ragazzo.noun.translation"
+          },
+          "gender": {
+            "reveal": "ragazzo is masculine (m)",
+            "bucket": "vocabulary.it.ragazzo.noun.gender"
+          }
+        }
+      },
+      {
+        "lemma": "girl",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "girl - ragazza",
+            "bucket": "vocabulary.it.ragazza.noun.translation"
+          },
+          "gender": {
+            "reveal": "ragazza is feminine (f)",
+            "bucket": "vocabulary.it.ragazza.noun.gender"
+          }
+        }
+      },
+      {
+        "lemma": "Italian",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "Italian - italiano",
+            "bucket": "vocabulary.it.italiano.adjective.translation"
+          }
+        }
+      }
     ],
     "explanation": "Italian defaults to the masculine plural form for mixed-gender groups, even when the closest noun is feminine. So i ragazzi e le ragazze sono italiani, not italiane.",
     "version": 1
@@ -186,9 +430,23 @@
     "target_lang": "it",
     "source_text": "She has pink shoes.",
     "reference_translations": [
-      {"text": "Ha delle scarpe rosa.", "register": "neutral", "notes": "Standard. Rosa is invariable."},
-      {"text": "Lei ha delle scarpe rosa.", "register": "neutral", "notes": "Subject pronoun optional but possible for emphasis.", "polarity": "positive"},
-      {"text": "Ha delle scarpe rose.", "register": "neutral", "notes": "Over-applies Class I plural to an invariable colour adjective. Note 'rose' is also the noun 'roses'.", "polarity": "negative"}
+      {
+        "text": "Ha delle scarpe rosa.",
+        "register": "neutral",
+        "notes": "Standard. Rosa is invariable."
+      },
+      {
+        "text": "Lei ha delle scarpe rosa.",
+        "register": "neutral",
+        "notes": "Subject pronoun optional but possible for emphasis.",
+        "polarity": "positive"
+      },
+      {
+        "text": "Ha delle scarpe rose.",
+        "register": "neutral",
+        "notes": "Over-applies Class I plural to an invariable colour adjective. Note 'rose' is also the noun 'roses'.",
+        "polarity": "negative"
+      }
     ],
     "topic": "adjective_agreement",
     "register": "neutral",
@@ -201,8 +459,30 @@
       "article.partitive.delle"
     ],
     "vocab_help": [
-      {"lemma": "pink", "language": "en", "aspects": {"translation": {"reveal": "pink - rosa (invariable)", "bucket": "vocabulary.it.rosa.translation"}}},
-      {"lemma": "shoe", "language": "en", "aspects": {"translation": {"reveal": "shoe - scarpa", "bucket": "vocabulary.it.scarpa.translation"}, "gender": {"reveal": "scarpa is feminine (f)", "bucket": "vocabulary.it.scarpa.gender"}}}
+      {
+        "lemma": "pink",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "pink - rosa (invariable)",
+            "bucket": "vocabulary.it.rosa.adjective.translation"
+          }
+        }
+      },
+      {
+        "lemma": "shoe",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "shoe - scarpa",
+            "bucket": "vocabulary.it.scarpa.noun.translation"
+          },
+          "gender": {
+            "reveal": "scarpa is feminine (f)",
+            "bucket": "vocabulary.it.scarpa.noun.gender"
+          }
+        }
+      }
     ],
     "explanation": "Rosa is an invariable adjective borrowed from the noun 'rose' (the flower). It doesn't inflect for gender or number, so scarpe rosa stays unchanged in the plural.",
     "version": 1
@@ -213,9 +493,23 @@
     "target_lang": "it",
     "source_text": "I want a green car.",
     "reference_translations": [
-      {"text": "Voglio una macchina verde.", "register": "neutral", "notes": "Standard. Colour adjective post-noun."},
-      {"text": "Vorrei una macchina verde.", "register": "neutral", "notes": "Conditional 'vorrei' is more polite; same agreement test.", "polarity": "positive"},
-      {"text": "Voglio una verde macchina.", "register": "neutral", "notes": "English-style fronting of the colour adjective.", "polarity": "negative"}
+      {
+        "text": "Voglio una macchina verde.",
+        "register": "neutral",
+        "notes": "Standard. Colour adjective post-noun."
+      },
+      {
+        "text": "Vorrei una macchina verde.",
+        "register": "neutral",
+        "notes": "Conditional 'vorrei' is more polite; same agreement test.",
+        "polarity": "positive"
+      },
+      {
+        "text": "Voglio una verde macchina.",
+        "register": "neutral",
+        "notes": "English-style fronting of the colour adjective.",
+        "polarity": "negative"
+      }
     ],
     "topic": "adjective_agreement",
     "register": "neutral",
@@ -227,9 +521,40 @@
     ],
     "optional_buckets": [],
     "vocab_help": [
-      {"lemma": "green", "language": "en", "aspects": {"translation": {"reveal": "green - verde", "bucket": "vocabulary.it.verde.translation"}}},
-      {"lemma": "car", "language": "en", "aspects": {"translation": {"reveal": "car - macchina (also auto, automobile)", "bucket": "vocabulary.it.macchina.translation"}, "gender": {"reveal": "macchina is feminine (f)", "bucket": "vocabulary.it.macchina.gender"}}},
-      {"lemma": "want", "language": "en", "aspects": {"translation": {"reveal": "want - volere (io voglio)", "bucket": "vocabulary.it.volere.translation"}}}
+      {
+        "lemma": "green",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "green - verde",
+            "bucket": "vocabulary.it.verde.adjective.translation"
+          }
+        }
+      },
+      {
+        "lemma": "car",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "car - macchina (also auto, automobile)",
+            "bucket": "vocabulary.it.macchina.noun.translation"
+          },
+          "gender": {
+            "reveal": "macchina is feminine (f)",
+            "bucket": "vocabulary.it.macchina.noun.gender"
+          }
+        }
+      },
+      {
+        "lemma": "want",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "want - volere (io voglio)",
+            "bucket": "vocabulary.it.volere.verb.translation"
+          }
+        }
+      }
     ],
     "explanation": "Macchina is f.sg. Verde is a Class II adjective: same form for both genders in the singular, so still verde. Colour adjectives sit in post-noun position by default: una macchina verde.",
     "version": 1
@@ -240,9 +565,23 @@
     "target_lang": "it",
     "source_text": "He is a long-standing friend of mine.",
     "reference_translations": [
-      {"text": "È un mio vecchio amico.", "register": "neutral", "notes": "Standard. Vecchio pre-noun = long-standing (relational reading)."},
-      {"text": "È un vecchio amico.", "register": "neutral", "notes": "Without 'mio', still good; the pre-noun position carries the same meaning.", "polarity": "positive"},
-      {"text": "È un mio amico vecchio.", "register": "neutral", "notes": "Wrong reading: post-noun vecchio means 'elderly friend', not 'long-standing'.", "polarity": "negative"}
+      {
+        "text": "È un mio vecchio amico.",
+        "register": "neutral",
+        "notes": "Standard. Vecchio pre-noun = long-standing (relational reading)."
+      },
+      {
+        "text": "È un vecchio amico.",
+        "register": "neutral",
+        "notes": "Without 'mio', still good; the pre-noun position carries the same meaning.",
+        "polarity": "positive"
+      },
+      {
+        "text": "È un mio amico vecchio.",
+        "register": "neutral",
+        "notes": "Wrong reading: post-noun vecchio means 'elderly friend', not 'long-standing'.",
+        "polarity": "negative"
+      }
     ],
     "topic": "adjective_agreement",
     "register": "neutral",
@@ -256,8 +595,26 @@
       "possessive.attributive_with_article"
     ],
     "vocab_help": [
-      {"lemma": "long-standing", "language": "en", "aspects": {"translation": {"reveal": "long-standing (of a friendship) - vecchio (pre-noun)", "bucket": "vocabulary.it.vecchio.translation"}}},
-      {"lemma": "friend", "language": "en", "aspects": {"translation": {"reveal": "friend - amico (m)", "bucket": "vocabulary.it.amico.translation"}}}
+      {
+        "lemma": "long-standing",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "long-standing (of a friendship) - vecchio (pre-noun)",
+            "bucket": "vocabulary.it.vecchio.adjective.translation"
+          }
+        }
+      },
+      {
+        "lemma": "friend",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "friend - amico (m)",
+            "bucket": "vocabulary.it.amico.noun.translation"
+          }
+        }
+      }
     ],
     "explanation": "Vecchio shifts meaning by position. Pre-noun is the relational reading: long-standing. Un mio vecchio amico = a friend of many years. Post-noun (un amico vecchio) would mean physically elderly.",
     "examiner_note": "Tests both the canonical pre-noun position and the semantic shift. The negative reference illustrates the reading the learner must avoid.",
@@ -269,9 +626,23 @@
     "target_lang": "it",
     "source_text": "Leonardo was a great man.",
     "reference_translations": [
-      {"text": "Leonardo è stato un grande uomo.", "register": "neutral", "notes": "Standard. Pre-noun grande = great (figurative)."},
-      {"text": "Leonardo fu un grande uomo.", "register": "formal", "notes": "Passato remoto register, common in historical/narrative context.", "polarity": "positive"},
-      {"text": "Leonardo è stato un uomo grande.", "register": "neutral", "notes": "Wrong reading: post-noun grande means 'physically big/tall'.", "polarity": "negative"}
+      {
+        "text": "Leonardo è stato un grande uomo.",
+        "register": "neutral",
+        "notes": "Standard. Pre-noun grande = great (figurative)."
+      },
+      {
+        "text": "Leonardo fu un grande uomo.",
+        "register": "formal",
+        "notes": "Passato remoto register, common in historical/narrative context.",
+        "polarity": "positive"
+      },
+      {
+        "text": "Leonardo è stato un uomo grande.",
+        "register": "neutral",
+        "notes": "Wrong reading: post-noun grande means 'physically big/tall'.",
+        "polarity": "negative"
+      }
     ],
     "topic": "adjective_agreement",
     "register": "neutral",
@@ -285,8 +656,30 @@
       "verb_form.passato_prossimo"
     ],
     "vocab_help": [
-      {"lemma": "great", "language": "en", "aspects": {"translation": {"reveal": "great (figurative) - grande (pre-noun)", "bucket": "vocabulary.it.grande.translation"}}},
-      {"lemma": "man", "language": "en", "aspects": {"translation": {"reveal": "man - uomo", "bucket": "vocabulary.it.uomo.translation"}, "gender": {"reveal": "uomo is masculine (m); irregular plural uomini", "bucket": "vocabulary.it.uomo.gender"}}}
+      {
+        "lemma": "great",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "great (figurative) - grande (pre-noun)",
+            "bucket": "vocabulary.it.grande.adjective.translation"
+          }
+        }
+      },
+      {
+        "lemma": "man",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "man - uomo",
+            "bucket": "vocabulary.it.uomo.noun.translation"
+          },
+          "gender": {
+            "reveal": "uomo is masculine (m); irregular plural uomini",
+            "bucket": "vocabulary.it.uomo.noun.gender"
+          }
+        }
+      }
     ],
     "explanation": "Grande shifts meaning by position. Pre-noun is the figurative reading: great in stature, achievement. Un grande uomo = a great man, like Leonardo. Post-noun (un uomo grande) would mean physically big. The shortened gran uomo also exists but is rarer.",
     "version": 1
@@ -297,8 +690,17 @@
     "target_lang": "it",
     "source_text": "What a beautiful book!",
     "reference_translations": [
-      {"text": "Che bel libro!", "register": "neutral", "notes": "Standard exclamative. Bel before m.sg consonant."},
-      {"text": "Che bello libro!", "register": "neutral", "notes": "Wrong allomorph: bello stays full only before s+consonant/z, not before regular consonants.", "polarity": "negative"}
+      {
+        "text": "Che bel libro!",
+        "register": "neutral",
+        "notes": "Standard exclamative. Bel before m.sg consonant."
+      },
+      {
+        "text": "Che bello libro!",
+        "register": "neutral",
+        "notes": "Wrong allomorph: bello stays full only before s+consonant/z, not before regular consonants.",
+        "polarity": "negative"
+      }
     ],
     "topic": "adjective_agreement",
     "register": "neutral",
@@ -312,8 +714,30 @@
       "exclamative.che"
     ],
     "vocab_help": [
-      {"lemma": "beautiful", "language": "en", "aspects": {"translation": {"reveal": "beautiful - bello", "bucket": "vocabulary.it.bello.translation"}}},
-      {"lemma": "book", "language": "en", "aspects": {"translation": {"reveal": "book - libro", "bucket": "vocabulary.it.libro.translation"}, "gender": {"reveal": "libro is masculine (m)", "bucket": "vocabulary.it.libro.gender"}}}
+      {
+        "lemma": "beautiful",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "beautiful - bello",
+            "bucket": "vocabulary.it.bello.adjective.translation"
+          }
+        }
+      },
+      {
+        "lemma": "book",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "book - libro",
+            "bucket": "vocabulary.it.libro.noun.translation"
+          },
+          "gender": {
+            "reveal": "libro is masculine (m)",
+            "bucket": "vocabulary.it.libro.noun.gender"
+          }
+        }
+      }
     ],
     "explanation": "Pre-noun bello has an allomorph series paralleling the definite article. Before m.sg nouns taking il (most consonants), bello becomes bel: che bel libro, parallel to il libro.",
     "version": 1
@@ -324,9 +748,23 @@
     "target_lang": "it",
     "source_text": "Have a good day!",
     "reference_translations": [
-      {"text": "Buona giornata!", "register": "neutral", "notes": "Standard greeting. Buona before f.sg consonant."},
-      {"text": "Buon pomeriggio!", "register": "neutral", "notes": "If 'day' is paraphrased as 'afternoon'; tests the m.sg buon form.", "polarity": "positive"},
-      {"text": "Buono giornata!", "register": "neutral", "notes": "Over-applies the full form; should be buona.", "polarity": "negative"}
+      {
+        "text": "Buona giornata!",
+        "register": "neutral",
+        "notes": "Standard greeting. Buona before f.sg consonant."
+      },
+      {
+        "text": "Buon pomeriggio!",
+        "register": "neutral",
+        "notes": "If 'day' is paraphrased as 'afternoon'; tests the m.sg buon form.",
+        "polarity": "positive"
+      },
+      {
+        "text": "Buono giornata!",
+        "register": "neutral",
+        "notes": "Over-applies the full form; should be buona.",
+        "polarity": "negative"
+      }
     ],
     "topic": "adjective_agreement",
     "register": "neutral",
@@ -337,8 +775,26 @@
     ],
     "optional_buckets": [],
     "vocab_help": [
-      {"lemma": "good", "language": "en", "aspects": {"translation": {"reveal": "good - buono", "bucket": "vocabulary.it.buono.translation"}}},
-      {"lemma": "day", "language": "en", "aspects": {"translation": {"reveal": "day - giorno (m) / giornata (f, duration)", "bucket": "vocabulary.it.giornata.translation"}}}
+      {
+        "lemma": "good",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "good - buono",
+            "bucket": "vocabulary.it.buono.adverb.translation"
+          }
+        }
+      },
+      {
+        "lemma": "day",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "day - giorno (m) / giornata (f, duration)",
+            "bucket": "vocabulary.it.giornata.noun.translation"
+          }
+        }
+      }
     ],
     "explanation": "Pre-noun buono takes the f.sg form buona before a consonant: buona giornata, a standard greeting/farewell. The wrong buono giornata over-applies the m.sg form.",
     "version": 1
@@ -349,8 +805,17 @@
     "target_lang": "it",
     "source_text": "Those backpacks are very heavy.",
     "reference_translations": [
-      {"text": "Quegli zaini sono molto pesanti.", "register": "neutral", "notes": "Standard. Quegli before m.pl vowel/s+cons/z."},
-      {"text": "Quei zaini sono molto pesanti.", "register": "neutral", "notes": "Wrong allomorph: quei is for m.pl consonant; before z-initial nouns, use quegli.", "polarity": "negative"}
+      {
+        "text": "Quegli zaini sono molto pesanti.",
+        "register": "neutral",
+        "notes": "Standard. Quegli before m.pl vowel/s+cons/z."
+      },
+      {
+        "text": "Quei zaini sono molto pesanti.",
+        "register": "neutral",
+        "notes": "Wrong allomorph: quei is for m.pl consonant; before z-initial nouns, use quegli.",
+        "polarity": "negative"
+      }
     ],
     "topic": "adjective_agreement",
     "register": "neutral",
@@ -362,8 +827,30 @@
     ],
     "optional_buckets": [],
     "vocab_help": [
-      {"lemma": "backpack", "language": "en", "aspects": {"translation": {"reveal": "backpack - zaino", "bucket": "vocabulary.it.zaino.translation"}, "gender": {"reveal": "zaino is masculine (m); plural takes gli", "bucket": "vocabulary.it.zaino.gender"}}},
-      {"lemma": "heavy", "language": "en", "aspects": {"translation": {"reveal": "heavy - pesante", "bucket": "vocabulary.it.pesante.translation"}}}
+      {
+        "lemma": "backpack",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "backpack - zaino",
+            "bucket": "vocabulary.it.zaino.noun.translation"
+          },
+          "gender": {
+            "reveal": "zaino is masculine (m); plural takes gli",
+            "bucket": "vocabulary.it.zaino.noun.gender"
+          }
+        }
+      },
+      {
+        "lemma": "heavy",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "heavy - pesante",
+            "bucket": "vocabulary.it.pesante.adjective.translation"
+          }
+        }
+      }
     ],
     "explanation": "Pre-noun quello has an allomorph series like the definite article. Before m.pl nouns taking gli (vowel-initial, s+consonant, z), the form is quegli — parallel to gli zaini. Pesante is Class II: m.pl pesanti.",
     "version": 1
@@ -374,9 +861,23 @@
     "target_lang": "it",
     "source_text": "She was wearing a navy blue dress.",
     "reference_translations": [
-      {"text": "Indossava un vestito blu marino.", "register": "neutral", "notes": "Standard. Compound colour blu marino is invariable."},
-      {"text": "Aveva un vestito blu marino.", "register": "neutral", "notes": "Avere as a possessive paraphrase of 'wearing'.", "polarity": "positive"},
-      {"text": "Indossava un vestito blu marini.", "register": "neutral", "notes": "Over-applied agreement on a compound colour.", "polarity": "negative"}
+      {
+        "text": "Indossava un vestito blu marino.",
+        "register": "neutral",
+        "notes": "Standard. Compound colour blu marino is invariable."
+      },
+      {
+        "text": "Aveva un vestito blu marino.",
+        "register": "neutral",
+        "notes": "Avere as a possessive paraphrase of 'wearing'.",
+        "polarity": "positive"
+      },
+      {
+        "text": "Indossava un vestito blu marini.",
+        "register": "neutral",
+        "notes": "Over-applied agreement on a compound colour.",
+        "polarity": "negative"
+      }
     ],
     "topic": "adjective_agreement",
     "register": "neutral",
@@ -389,21 +890,51 @@
       "verb_form.imperfetto"
     ],
     "vocab_help": [
-      {"lemma": "navy blue", "language": "en", "aspects": {"translation": {"reveal": "navy blue - blu marino (invariable)", "bucket": "vocabulary.it.blu_marino.translation"}}},
-      {"lemma": "dress", "language": "en", "aspects": {"translation": {"reveal": "dress - vestito (also 'abito')", "bucket": "vocabulary.it.vestito.translation"}, "gender": {"reveal": "vestito is masculine (m)", "bucket": "vocabulary.it.vestito.gender"}}}
+      {
+        "lemma": "navy blue",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "navy blue - blu marino (invariable)",
+            "bucket": "vocabulary.it.blu_marino.translation"
+          }
+        }
+      },
+      {
+        "lemma": "dress",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "dress - vestito (also 'abito')",
+            "bucket": "vocabulary.it.vestito.noun.translation"
+          },
+          "gender": {
+            "reveal": "vestito is masculine (m)",
+            "bucket": "vocabulary.it.vestito.noun.gender"
+          }
+        }
+      }
     ],
     "explanation": "Compound colours like blu marino are invariable as a unit: they don't inflect for the noun's gender or number. Un vestito blu marino stays unchanged.",
     "version": 1
   },
-
   {
     "external_id": "trans_aa_it_en_01",
     "source_lang": "it",
     "target_lang": "en",
     "source_text": "Le mele rosse sono nel cestino.",
     "reference_translations": [
-      {"text": "The red apples are in the basket.", "register": "neutral", "notes": "Standard."},
-      {"text": "The red apples are in the little basket.", "register": "neutral", "notes": "Cestino can also imply a smaller basket.", "polarity": "positive"}
+      {
+        "text": "The red apples are in the basket.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "The red apples are in the little basket.",
+        "register": "neutral",
+        "notes": "Cestino can also imply a smaller basket.",
+        "polarity": "positive"
+      }
     ],
     "topic": "adjective_agreement",
     "register": "neutral",
@@ -414,10 +945,58 @@
     ],
     "optional_buckets": [],
     "vocab_help": [
-      {"lemma": "mela", "language": "it", "aspects": {"translation": {"reveal": "mela - apple", "bucket": "vocabulary.it.mela.translation"}, "gender": {"reveal": "feminine (f)", "bucket": "vocabulary.it.mela.gender"}}},
-      {"lemma": "mele", "language": "it", "aspects": {"translation": {"reveal": "mela - apple", "bucket": "vocabulary.it.mela.translation"}, "gender": {"reveal": "feminine (f), plural mele", "bucket": "vocabulary.it.mela.gender"}}},
-      {"lemma": "rosso", "language": "it", "aspects": {"translation": {"reveal": "rosso - red", "bucket": "vocabulary.it.rosso.translation"}}},
-      {"lemma": "cestino", "language": "it", "aspects": {"translation": {"reveal": "cestino - basket (small)", "bucket": "vocabulary.it.cestino.translation"}, "gender": {"reveal": "masculine (m)", "bucket": "vocabulary.it.cestino.gender"}}}
+      {
+        "lemma": "mela",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "mela - apple",
+            "bucket": "vocabulary.it.mela.noun.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.mela.noun.gender"
+          }
+        }
+      },
+      {
+        "lemma": "mele",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "mela - apple",
+            "bucket": "vocabulary.it.mela.noun.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f), plural mele",
+            "bucket": "vocabulary.it.mela.noun.gender"
+          }
+        }
+      },
+      {
+        "lemma": "rosso",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "rosso - red",
+            "bucket": "vocabulary.it.rosso.adjective.translation"
+          }
+        }
+      },
+      {
+        "lemma": "cestino",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "cestino - basket (small)",
+            "bucket": "vocabulary.it.cestino.noun.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.cestino.noun.gender"
+          }
+        }
+      }
     ],
     "explanation": "Mele is f.pl. Rosso is a Class I adjective; f.pl takes -e, giving rosse. So le mele rosse: 'the red apples'.",
     "version": 1
@@ -428,8 +1007,17 @@
     "target_lang": "en",
     "source_text": "Una persona gentile è sempre apprezzata.",
     "reference_translations": [
-      {"text": "A kind person is always appreciated.", "register": "neutral", "notes": "Standard."},
-      {"text": "Kind people are always appreciated.", "register": "neutral", "notes": "Generic English plural rendering of the singular Italian generic; acceptable.", "polarity": "positive"}
+      {
+        "text": "A kind person is always appreciated.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "Kind people are always appreciated.",
+        "register": "neutral",
+        "notes": "Generic English plural rendering of the singular Italian generic; acceptable.",
+        "polarity": "positive"
+      }
     ],
     "topic": "adjective_agreement",
     "register": "neutral",
@@ -440,9 +1028,40 @@
     ],
     "optional_buckets": [],
     "vocab_help": [
-      {"lemma": "persona", "language": "it", "aspects": {"translation": {"reveal": "persona - person", "bucket": "vocabulary.it.persona.translation"}, "gender": {"reveal": "feminine (f); used for both males and females", "bucket": "vocabulary.it.persona.gender"}}},
-      {"lemma": "gentile", "language": "it", "aspects": {"translation": {"reveal": "gentile - kind, polite", "bucket": "vocabulary.it.gentile.translation"}}},
-      {"lemma": "apprezzata", "language": "it", "aspects": {"translation": {"reveal": "apprezzata - appreciated (f.sg participle of apprezzare)", "bucket": "vocabulary.it.apprezzare.translation"}}}
+      {
+        "lemma": "persona",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "persona - person",
+            "bucket": "vocabulary.it.persona.noun.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f); used for both males and females",
+            "bucket": "vocabulary.it.persona.noun.gender"
+          }
+        }
+      },
+      {
+        "lemma": "gentile",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "gentile - kind, polite",
+            "bucket": "vocabulary.it.gentile.adjective.translation"
+          }
+        }
+      },
+      {
+        "lemma": "apprezzata",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "apprezzata - appreciated (f.sg participle of apprezzare)",
+            "bucket": "vocabulary.it.apprezzare.verb.translation"
+          }
+        }
+      }
     ],
     "explanation": "Persona is f.sg. Gentile is a Class II adjective: same form for both genders in the singular. Class II is invariable for gender in the singular, so still gentile.",
     "version": 1
@@ -453,9 +1072,23 @@
     "target_lang": "en",
     "source_text": "Carlo è un caro amico.",
     "reference_translations": [
-      {"text": "Carlo is a dear friend.", "register": "neutral", "notes": "Pre-noun caro = dear/beloved."},
-      {"text": "Carlo is a close friend.", "register": "neutral", "notes": "Pragmatically equivalent; close = dear in the affective sense.", "polarity": "positive"},
-      {"text": "Carlo is an expensive friend.", "register": "neutral", "notes": "Wrong reading: 'expensive' is the post-noun (literal/price) meaning.", "polarity": "negative"}
+      {
+        "text": "Carlo is a dear friend.",
+        "register": "neutral",
+        "notes": "Pre-noun caro = dear/beloved."
+      },
+      {
+        "text": "Carlo is a close friend.",
+        "register": "neutral",
+        "notes": "Pragmatically equivalent; close = dear in the affective sense.",
+        "polarity": "positive"
+      },
+      {
+        "text": "Carlo is an expensive friend.",
+        "register": "neutral",
+        "notes": "Wrong reading: 'expensive' is the post-noun (literal/price) meaning.",
+        "polarity": "negative"
+      }
     ],
     "topic": "adjective_agreement",
     "register": "neutral",
@@ -466,8 +1099,26 @@
     ],
     "optional_buckets": [],
     "vocab_help": [
-      {"lemma": "caro", "language": "it", "aspects": {"translation": {"reveal": "caro - dear (pre-noun) / expensive (post-noun)", "bucket": "vocabulary.it.caro.translation"}}},
-      {"lemma": "amico", "language": "it", "aspects": {"translation": {"reveal": "amico - friend", "bucket": "vocabulary.it.amico.translation"}}}
+      {
+        "lemma": "caro",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "caro - dear (pre-noun) / expensive (post-noun)",
+            "bucket": "vocabulary.it.caro.adjective.translation"
+          }
+        }
+      },
+      {
+        "lemma": "amico",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "amico - friend",
+            "bucket": "vocabulary.it.amico.noun.translation"
+          }
+        }
+      }
     ],
     "explanation": "Caro shifts meaning by position. Pre-noun is the figurative/affective reading: dear, beloved. Un caro amico = a dear friend. Post-noun (un amico caro) would mean financially expensive — concrete and almost humorous in context.",
     "version": 1
@@ -478,8 +1129,17 @@
     "target_lang": "en",
     "source_text": "Mi piacciono i fiori lilla.",
     "reference_translations": [
-      {"text": "I like lilac flowers.", "register": "neutral", "notes": "Standard."},
-      {"text": "I like the lilac flowers.", "register": "neutral", "notes": "Italian generic plural with definite article often translates to bare English plural; both fine.", "polarity": "positive"}
+      {
+        "text": "I like lilac flowers.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "I like the lilac flowers.",
+        "register": "neutral",
+        "notes": "Italian generic plural with definite article often translates to bare English plural; both fine.",
+        "polarity": "positive"
+      }
     ],
     "topic": "adjective_agreement",
     "register": "neutral",
@@ -492,8 +1152,30 @@
       "verb.piacere"
     ],
     "vocab_help": [
-      {"lemma": "fiore", "language": "it", "aspects": {"translation": {"reveal": "fiore - flower", "bucket": "vocabulary.it.fiore.translation"}, "gender": {"reveal": "masculine (m)", "bucket": "vocabulary.it.fiore.gender"}}},
-      {"lemma": "lilla", "language": "it", "aspects": {"translation": {"reveal": "lilla - lilac (colour, invariable)", "bucket": "vocabulary.it.lilla.translation"}}}
+      {
+        "lemma": "fiore",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "fiore - flower",
+            "bucket": "vocabulary.it.fiore.noun.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.fiore.noun.gender"
+          }
+        }
+      },
+      {
+        "lemma": "lilla",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "lilla - lilac (colour, invariable)",
+            "bucket": "vocabulary.it.lilla.translation"
+          }
+        }
+      }
     ],
     "explanation": "Lilla, borrowed from the flower name, is an invariable adjective: it stays lilla in singular and plural alike. I fiori lilla = 'the lilac flowers'.",
     "version": 1
@@ -504,8 +1186,17 @@
     "target_lang": "en",
     "source_text": "Sono dei begli zaini in vetrina.",
     "reference_translations": [
-      {"text": "There are some beautiful backpacks in the window.", "register": "neutral", "notes": "Standard. 'Begli' tests the m.pl allomorph before vowel/s+cons/z."},
-      {"text": "Those are nice backpacks in the display.", "register": "neutral", "notes": "Slightly different framing; same agreement content.", "polarity": "positive"}
+      {
+        "text": "There are some beautiful backpacks in the window.",
+        "register": "neutral",
+        "notes": "Standard. 'Begli' tests the m.pl allomorph before vowel/s+cons/z."
+      },
+      {
+        "text": "Those are nice backpacks in the display.",
+        "register": "neutral",
+        "notes": "Slightly different framing; same agreement content.",
+        "polarity": "positive"
+      }
     ],
     "topic": "adjective_agreement",
     "register": "neutral",
@@ -518,10 +1209,54 @@
       "article.partitive.dei"
     ],
     "vocab_help": [
-      {"lemma": "bello", "language": "it", "aspects": {"translation": {"reveal": "bello - beautiful, handsome, nice", "bucket": "vocabulary.it.bello.translation"}}},
-      {"lemma": "begli", "language": "it", "aspects": {"translation": {"reveal": "bello - beautiful (m.pl before vowel/s+cons/z)", "bucket": "vocabulary.it.bello.translation"}}},
-      {"lemma": "zaino", "language": "it", "aspects": {"translation": {"reveal": "zaino - backpack", "bucket": "vocabulary.it.zaino.translation"}, "gender": {"reveal": "masculine (m); plural takes gli", "bucket": "vocabulary.it.zaino.gender"}}},
-      {"lemma": "vetrina", "language": "it", "aspects": {"translation": {"reveal": "vetrina - shop window, display", "bucket": "vocabulary.it.vetrina.translation"}, "gender": {"reveal": "feminine (f)", "bucket": "vocabulary.it.vetrina.gender"}}}
+      {
+        "lemma": "bello",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "bello - beautiful, handsome, nice",
+            "bucket": "vocabulary.it.bello.adjective.translation"
+          }
+        }
+      },
+      {
+        "lemma": "begli",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "bello - beautiful (m.pl before vowel/s+cons/z)",
+            "bucket": "vocabulary.it.bello.adjective.translation"
+          }
+        }
+      },
+      {
+        "lemma": "zaino",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "zaino - backpack",
+            "bucket": "vocabulary.it.zaino.noun.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m); plural takes gli",
+            "bucket": "vocabulary.it.zaino.noun.gender"
+          }
+        }
+      },
+      {
+        "lemma": "vetrina",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "vetrina - shop window, display",
+            "bucket": "vocabulary.it.vetrina.noun.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.vetrina.noun.gender"
+          }
+        }
+      }
     ],
     "explanation": "Begli is the m.pl form of pre-noun bello before nouns taking gli. Zaini begins with z, so the article would be gli zaini and the agreeing adjective is begli zaini.",
     "version": 1
@@ -532,8 +1267,17 @@
     "target_lang": "en",
     "source_text": "I libri antichi sono in biblioteca.",
     "reference_translations": [
-      {"text": "The old books are in the library.", "register": "neutral", "notes": "Standard. 'Antichi' tests the counter-irregular -chi despite antepenult stress."},
-      {"text": "The ancient books are in the library.", "register": "neutral", "notes": "'Ancient' is also a valid translation, often preferred for the figurative/historical sense.", "polarity": "positive"}
+      {
+        "text": "The old books are in the library.",
+        "register": "neutral",
+        "notes": "Standard. 'Antichi' tests the counter-irregular -chi despite antepenult stress."
+      },
+      {
+        "text": "The ancient books are in the library.",
+        "register": "neutral",
+        "notes": "'Ancient' is also a valid translation, often preferred for the figurative/historical sense.",
+        "polarity": "positive"
+      }
     ],
     "topic": "adjective_agreement",
     "register": "neutral",
@@ -544,9 +1288,44 @@
     ],
     "optional_buckets": [],
     "vocab_help": [
-      {"lemma": "libro", "language": "it", "aspects": {"translation": {"reveal": "libro - book", "bucket": "vocabulary.it.libro.translation"}, "gender": {"reveal": "masculine (m)", "bucket": "vocabulary.it.libro.gender"}}},
-      {"lemma": "antico", "language": "it", "aspects": {"translation": {"reveal": "antico - old, ancient", "bucket": "vocabulary.it.antico.translation"}}},
-      {"lemma": "biblioteca", "language": "it", "aspects": {"translation": {"reveal": "biblioteca - library", "bucket": "vocabulary.it.biblioteca.translation"}, "gender": {"reveal": "feminine (f)", "bucket": "vocabulary.it.biblioteca.gender"}}}
+      {
+        "lemma": "libro",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "libro - book",
+            "bucket": "vocabulary.it.libro.noun.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.libro.noun.gender"
+          }
+        }
+      },
+      {
+        "lemma": "antico",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "antico - old, ancient",
+            "bucket": "vocabulary.it.antico.adjective.translation"
+          }
+        }
+      },
+      {
+        "lemma": "biblioteca",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "biblioteca - library",
+            "bucket": "vocabulary.it.biblioteca.noun.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.biblioteca.noun.gender"
+          }
+        }
+      }
     ],
     "explanation": "Antico is a counter-irregular: despite antepenult stress (an-ti-co), the m.pl is antichi with h-insertion, not antici as the stress rule would predict. Compare simpatici, which does follow the stress rule.",
     "version": 1
@@ -557,8 +1336,17 @@
     "target_lang": "en",
     "source_text": "Le strade di questa zona sono molto lunghe.",
     "reference_translations": [
-      {"text": "The streets in this area are very long.", "register": "neutral", "notes": "Standard."},
-      {"text": "The roads in this neighbourhood are very long.", "register": "neutral", "notes": "Strada can be road or street; zona can be area, district, or neighbourhood.", "polarity": "positive"}
+      {
+        "text": "The streets in this area are very long.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "The roads in this neighbourhood are very long.",
+        "register": "neutral",
+        "notes": "Strada can be road or street; zona can be area, district, or neighbourhood.",
+        "polarity": "positive"
+      }
     ],
     "topic": "adjective_agreement",
     "register": "neutral",
@@ -569,8 +1357,30 @@
     ],
     "optional_buckets": [],
     "vocab_help": [
-      {"lemma": "strada", "language": "it", "aspects": {"translation": {"reveal": "strada - street, road", "bucket": "vocabulary.it.strada.translation"}, "gender": {"reveal": "feminine (f)", "bucket": "vocabulary.it.strada.gender"}}},
-      {"lemma": "lungo", "language": "it", "aspects": {"translation": {"reveal": "lungo - long", "bucket": "vocabulary.it.lungo.translation"}}}
+      {
+        "lemma": "strada",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "strada - street, road",
+            "bucket": "vocabulary.it.strada.noun.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.strada.noun.gender"
+          }
+        }
+      },
+      {
+        "lemma": "lungo",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "lungo - long",
+            "bucket": "vocabulary.it.lungo.translation"
+          }
+        }
+      }
     ],
     "explanation": "Strade is f.pl. Lungo is a -go adjective: stem change inserts h to preserve the hard g-sound in the f.pl, giving lunghe.",
     "version": 1
@@ -581,9 +1391,23 @@
     "target_lang": "en",
     "source_text": "Il povero ragazzo è caduto dalla bicicletta.",
     "reference_translations": [
-      {"text": "The poor boy fell off his bicycle.", "register": "neutral", "notes": "'Poor' here = unfortunate, the pre-noun reading."},
-      {"text": "The unfortunate boy fell off his bicycle.", "register": "neutral", "notes": "Makes the pre-noun reading explicit.", "polarity": "positive"},
-      {"text": "The boy with little money fell off his bicycle.", "register": "neutral", "notes": "Wrong reading: that would be 'un ragazzo povero' (post-noun, literal financial meaning).", "polarity": "negative"}
+      {
+        "text": "The poor boy fell off his bicycle.",
+        "register": "neutral",
+        "notes": "'Poor' here = unfortunate, the pre-noun reading."
+      },
+      {
+        "text": "The unfortunate boy fell off his bicycle.",
+        "register": "neutral",
+        "notes": "Makes the pre-noun reading explicit.",
+        "polarity": "positive"
+      },
+      {
+        "text": "The boy with little money fell off his bicycle.",
+        "register": "neutral",
+        "notes": "Wrong reading: that would be 'un ragazzo povero' (post-noun, literal financial meaning).",
+        "polarity": "negative"
+      }
     ],
     "topic": "adjective_agreement",
     "register": "neutral",
@@ -596,9 +1420,44 @@
       "verb_form.passato_prossimo"
     ],
     "vocab_help": [
-      {"lemma": "povero", "language": "it", "aspects": {"translation": {"reveal": "povero - poor (pre-noun: unfortunate; post-noun: impoverished)", "bucket": "vocabulary.it.povero.translation"}}},
-      {"lemma": "ragazzo", "language": "it", "aspects": {"translation": {"reveal": "ragazzo - boy", "bucket": "vocabulary.it.ragazzo.translation"}, "gender": {"reveal": "masculine (m)", "bucket": "vocabulary.it.ragazzo.gender"}}},
-      {"lemma": "bicicletta", "language": "it", "aspects": {"translation": {"reveal": "bicicletta - bicycle", "bucket": "vocabulary.it.bicicletta.translation"}, "gender": {"reveal": "feminine (f)", "bucket": "vocabulary.it.bicicletta.gender"}}}
+      {
+        "lemma": "povero",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "povero - poor (pre-noun: unfortunate; post-noun: impoverished)",
+            "bucket": "vocabulary.it.povero.adjective.translation"
+          }
+        }
+      },
+      {
+        "lemma": "ragazzo",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "ragazzo - boy",
+            "bucket": "vocabulary.it.ragazzo.noun.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.ragazzo.noun.gender"
+          }
+        }
+      },
+      {
+        "lemma": "bicicletta",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "bicicletta - bicycle",
+            "bucket": "vocabulary.it.bicicletta.noun.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.bicicletta.noun.gender"
+          }
+        }
+      }
     ],
     "explanation": "Povero shifts meaning by position. Pre-noun is the empathetic reading: unfortunate, to be pitied. Il povero ragazzo è caduto = the boy (poor thing) fell. Post-noun would mean financially poor.",
     "version": 1
@@ -609,8 +1468,17 @@
     "target_lang": "en",
     "source_text": "Sono le sei e mezza.",
     "reference_translations": [
-      {"text": "It is half past six.", "register": "neutral", "notes": "Standard time expression."},
-      {"text": "It's six thirty.", "register": "informal", "notes": "Informal English equivalent.", "polarity": "positive"}
+      {
+        "text": "It is half past six.",
+        "register": "neutral",
+        "notes": "Standard time expression."
+      },
+      {
+        "text": "It's six thirty.",
+        "register": "informal",
+        "notes": "Informal English equivalent.",
+        "polarity": "positive"
+      }
     ],
     "topic": "adjective_agreement",
     "register": "neutral",
@@ -623,8 +1491,26 @@
       "time_expression"
     ],
     "vocab_help": [
-      {"lemma": "mezzo", "language": "it", "aspects": {"translation": {"reveal": "mezzo - half (here: mezza agrees with implicit ora)", "bucket": "vocabulary.it.mezzo.translation"}}},
-      {"lemma": "mezza", "language": "it", "aspects": {"translation": {"reveal": "mezzo - half (f.sg form)", "bucket": "vocabulary.it.mezzo.translation"}}}
+      {
+        "lemma": "mezzo",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "mezzo - half (here: mezza agrees with implicit ora)",
+            "bucket": "vocabulary.it.mezzo.translation"
+          }
+        }
+      },
+      {
+        "lemma": "mezza",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "mezzo - half (f.sg form)",
+            "bucket": "vocabulary.it.mezzo.translation"
+          }
+        }
+      }
     ],
     "explanation": "In Italian time expressions, mezza is the f.sg form of mezzo, agreeing with an implicit 'ora' (hour). Sono le sei e mezza = 'it's half past six'.",
     "version": 1
@@ -635,8 +1521,17 @@
     "target_lang": "en",
     "source_text": "I miei colleghi e le mie colleghe sono stanchi dopo il viaggio.",
     "reference_translations": [
-      {"text": "My colleagues (male and female) are tired after the trip.", "register": "neutral", "notes": "Standard. Italian masculine plural covers mixed-gender 'colleagues' in English."},
-      {"text": "My (male and female) colleagues are tired after the journey.", "register": "neutral", "notes": "Same meaning, different glossing of viaggio.", "polarity": "positive"}
+      {
+        "text": "My colleagues (male and female) are tired after the trip.",
+        "register": "neutral",
+        "notes": "Standard. Italian masculine plural covers mixed-gender 'colleagues' in English."
+      },
+      {
+        "text": "My (male and female) colleagues are tired after the journey.",
+        "register": "neutral",
+        "notes": "Same meaning, different glossing of viaggio.",
+        "polarity": "positive"
+      }
     ],
     "topic": "adjective_agreement",
     "register": "neutral",
@@ -648,9 +1543,44 @@
     ],
     "optional_buckets": [],
     "vocab_help": [
-      {"lemma": "collega", "language": "it", "aspects": {"translation": {"reveal": "collega - colleague (same form m and f)", "bucket": "vocabulary.it.collega.translation"}, "gender": {"reveal": "common-gender; m.pl colleghi, f.pl colleghe", "bucket": "vocabulary.it.collega.gender"}}},
-      {"lemma": "stanco", "language": "it", "aspects": {"translation": {"reveal": "stanco - tired", "bucket": "vocabulary.it.stanco.translation"}}},
-      {"lemma": "viaggio", "language": "it", "aspects": {"translation": {"reveal": "viaggio - trip, journey", "bucket": "vocabulary.it.viaggio.translation"}, "gender": {"reveal": "masculine (m)", "bucket": "vocabulary.it.viaggio.gender"}}}
+      {
+        "lemma": "collega",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "collega - colleague (same form m and f)",
+            "bucket": "vocabulary.it.collega.noun.translation"
+          },
+          "gender": {
+            "reveal": "common-gender; m.pl colleghi, f.pl colleghe",
+            "bucket": "vocabulary.it.collega.noun.gender"
+          }
+        }
+      },
+      {
+        "lemma": "stanco",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "stanco - tired",
+            "bucket": "vocabulary.it.stanco.adjective.translation"
+          }
+        }
+      },
+      {
+        "lemma": "viaggio",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "viaggio - trip, journey",
+            "bucket": "vocabulary.it.viaggio.noun.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.viaggio.noun.gender"
+          }
+        }
+      }
     ],
     "explanation": "Two rules combine: mixed-gender plural defaults to m.pl, and stanco's -co stem takes h-insertion in the m.pl. Both give stanchi.",
     "version": 1
@@ -661,8 +1591,17 @@
     "target_lang": "en",
     "source_text": "La chiesa di sant'Antonio è qui vicino.",
     "reference_translations": [
-      {"text": "Saint Anthony's church is nearby.", "register": "neutral", "notes": "Standard."},
-      {"text": "The church of Saint Anthony is near here.", "register": "neutral", "notes": "More literal rendering.", "polarity": "positive"}
+      {
+        "text": "Saint Anthony's church is nearby.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "The church of Saint Anthony is near here.",
+        "register": "neutral",
+        "notes": "More literal rendering.",
+        "polarity": "positive"
+      }
     ],
     "topic": "adjective_agreement",
     "register": "neutral",
@@ -673,9 +1612,40 @@
     ],
     "optional_buckets": [],
     "vocab_help": [
-      {"lemma": "santo", "language": "it", "aspects": {"translation": {"reveal": "santo - saint, holy", "bucket": "vocabulary.it.santo.translation"}}},
-      {"lemma": "sant'", "language": "it", "aspects": {"translation": {"reveal": "santo - saint (elided form before vowel)", "bucket": "vocabulary.it.santo.translation"}}},
-      {"lemma": "chiesa", "language": "it", "aspects": {"translation": {"reveal": "chiesa - church", "bucket": "vocabulary.it.chiesa.translation"}, "gender": {"reveal": "feminine (f)", "bucket": "vocabulary.it.chiesa.gender"}}}
+      {
+        "lemma": "santo",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "santo - saint, holy",
+            "bucket": "vocabulary.it.santo.adjective.translation"
+          }
+        }
+      },
+      {
+        "lemma": "sant'",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "santo - saint (elided form before vowel)",
+            "bucket": "vocabulary.it.santo.adjective.translation"
+          }
+        }
+      },
+      {
+        "lemma": "chiesa",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "chiesa - church",
+            "bucket": "vocabulary.it.chiesa.noun.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.chiesa.noun.gender"
+          }
+        }
+      }
     ],
     "explanation": "Pre-noun santo elides before a vowel-initial male saint's name: sant'Antonio. This is elision, parallel to the il → l' shift in the article system.",
     "version": 1
@@ -686,8 +1656,17 @@
     "target_lang": "en",
     "source_text": "Marco ha gli occhi grigi e i capelli lisci.",
     "reference_translations": [
-      {"text": "Marco has grey eyes and straight hair.", "register": "neutral", "notes": "Standard. Tests both -gio→-gi (grigi) and -cio→-ci (lisci)."},
-      {"text": "Marco has grey eyes and smooth hair.", "register": "neutral", "notes": "Liscio = smooth or straight (of hair).", "polarity": "positive"}
+      {
+        "text": "Marco has grey eyes and straight hair.",
+        "register": "neutral",
+        "notes": "Standard. Tests both -gio→-gi (grigi) and -cio→-ci (lisci)."
+      },
+      {
+        "text": "Marco has grey eyes and smooth hair.",
+        "register": "neutral",
+        "notes": "Liscio = smooth or straight (of hair).",
+        "polarity": "positive"
+      }
     ],
     "topic": "adjective_agreement",
     "register": "neutral",
@@ -699,10 +1678,54 @@
     ],
     "optional_buckets": [],
     "vocab_help": [
-      {"lemma": "occhio", "language": "it", "aspects": {"translation": {"reveal": "occhio - eye", "bucket": "vocabulary.it.occhio.translation"}, "gender": {"reveal": "masculine (m); irregular plural occhi", "bucket": "vocabulary.it.occhio.gender"}}},
-      {"lemma": "grigio", "language": "it", "aspects": {"translation": {"reveal": "grigio - grey", "bucket": "vocabulary.it.grigio.translation"}}},
-      {"lemma": "capello", "language": "it", "aspects": {"translation": {"reveal": "capello - (a single) hair", "bucket": "vocabulary.it.capello.translation"}, "gender": {"reveal": "masculine (m); 'hair' generally is i capelli", "bucket": "vocabulary.it.capello.gender"}}},
-      {"lemma": "liscio", "language": "it", "aspects": {"translation": {"reveal": "liscio - smooth, straight (of hair)", "bucket": "vocabulary.it.liscio.translation"}}}
+      {
+        "lemma": "occhio",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "occhio - eye",
+            "bucket": "vocabulary.it.occhio.noun.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m); irregular plural occhi",
+            "bucket": "vocabulary.it.occhio.noun.gender"
+          }
+        }
+      },
+      {
+        "lemma": "grigio",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "grigio - grey",
+            "bucket": "vocabulary.it.grigio.adjective.translation"
+          }
+        }
+      },
+      {
+        "lemma": "capello",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "capello - (a single) hair",
+            "bucket": "vocabulary.it.capello.noun.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m); 'hair' generally is i capelli",
+            "bucket": "vocabulary.it.capello.noun.gender"
+          }
+        }
+      },
+      {
+        "lemma": "liscio",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "liscio - smooth, straight (of hair)",
+            "bucket": "vocabulary.it.liscio.adjective.translation"
+          }
+        }
+      }
     ],
     "explanation": "Both -gio and -cio adjectives drop the unstressed -i in the m.pl. Grigio → grigi (gio_gi rule), liscio → lisci (cio_ci rule). Same underlying stem change applied to two adjective patterns.",
     "version": 1
@@ -713,8 +1736,17 @@
     "target_lang": "en",
     "source_text": "Quella casa nuova è di mio fratello.",
     "reference_translations": [
-      {"text": "That new house is my brother's.", "register": "neutral", "notes": "Standard. 'New' here is the literal post-noun reading: a recently-built or freshly-acquired house."},
-      {"text": "That new house belongs to my brother.", "register": "neutral", "notes": "Equivalent phrasing.", "polarity": "positive"}
+      {
+        "text": "That new house is my brother's.",
+        "register": "neutral",
+        "notes": "Standard. 'New' here is the literal post-noun reading: a recently-built or freshly-acquired house."
+      },
+      {
+        "text": "That new house belongs to my brother.",
+        "register": "neutral",
+        "notes": "Equivalent phrasing.",
+        "polarity": "positive"
+      }
     ],
     "topic": "adjective_agreement",
     "register": "neutral",
@@ -728,23 +1760,67 @@
       "possessive.di_mio"
     ],
     "vocab_help": [
-      {"lemma": "quello", "language": "it", "aspects": {"translation": {"reveal": "quello - that", "bucket": "vocabulary.it.quello.translation"}}},
-      {"lemma": "casa", "language": "it", "aspects": {"translation": {"reveal": "casa - house", "bucket": "vocabulary.it.casa.translation"}, "gender": {"reveal": "feminine (f)", "bucket": "vocabulary.it.casa.gender"}}},
-      {"lemma": "nuovo", "language": "it", "aspects": {"translation": {"reveal": "nuovo - new", "bucket": "vocabulary.it.nuovo.translation"}}}
+      {
+        "lemma": "quello",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "quello - that",
+            "bucket": "vocabulary.it.quello.translation"
+          }
+        }
+      },
+      {
+        "lemma": "casa",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "casa - house",
+            "bucket": "vocabulary.it.casa.noun.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.casa.noun.gender"
+          }
+        }
+      },
+      {
+        "lemma": "nuovo",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "nuovo - new",
+            "bucket": "vocabulary.it.nuovo.adjective.translation"
+          }
+        }
+      }
     ],
     "explanation": "Quella is the f.sg form of pre-noun quello before a consonant, parallel to la casa. Nuovo in post-noun position gives the literal reading: recently built or acquired, not 'another'.",
     "version": 1
   },
-
   {
     "external_id": "trans_aa_it_en_14",
     "source_lang": "it",
     "target_lang": "en",
     "source_text": "Il professore è un mio vecchio amico.",
     "reference_translations": [
-      {"text": "The professor is a long-standing friend of mine.", "register": "neutral", "notes": "Captures the pre-noun reading explicitly."},
-      {"text": "The professor is an old friend of mine.", "register": "neutral", "notes": "Idiomatic English: 'old friend' defaults to the long-standing reading.", "polarity": "positive"},
-      {"text": "The professor is an elderly friend of mine.", "register": "neutral", "notes": "Wrong reading: would correspond to 'un amico vecchio' (post-noun).", "polarity": "negative"}
+      {
+        "text": "The professor is a long-standing friend of mine.",
+        "register": "neutral",
+        "notes": "Captures the pre-noun reading explicitly."
+      },
+      {
+        "text": "The professor is an old friend of mine.",
+        "register": "neutral",
+        "notes": "Idiomatic English: 'old friend' defaults to the long-standing reading.",
+        "polarity": "positive"
+      },
+      {
+        "text": "The professor is an elderly friend of mine.",
+        "register": "neutral",
+        "notes": "Wrong reading: would correspond to 'un amico vecchio' (post-noun).",
+        "polarity": "negative"
+      }
     ],
     "topic": "adjective_agreement",
     "register": "neutral",
@@ -757,9 +1833,44 @@
       "possessive.attributive_with_article"
     ],
     "vocab_help": [
-      {"lemma": "vecchio", "language": "it", "aspects": {"translation": {"reveal": "vecchio - old (pre-noun: long-standing; post-noun: elderly)", "bucket": "vocabulary.it.vecchio.translation"}}},
-      {"lemma": "professore", "language": "it", "aspects": {"translation": {"reveal": "professore - professor, teacher", "bucket": "vocabulary.it.professore.translation"}, "gender": {"reveal": "masculine (m); professoressa is the f", "bucket": "vocabulary.it.professore.gender"}}},
-      {"lemma": "amico", "language": "it", "aspects": {"translation": {"reveal": "amico - friend", "bucket": "vocabulary.it.amico.translation"}, "gender": {"reveal": "masculine (m)", "bucket": "vocabulary.it.amico.gender"}}}
+      {
+        "lemma": "vecchio",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "vecchio - old (pre-noun: long-standing; post-noun: elderly)",
+            "bucket": "vocabulary.it.vecchio.adjective.translation"
+          }
+        }
+      },
+      {
+        "lemma": "professore",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "professore - professor, teacher",
+            "bucket": "vocabulary.it.professore.noun.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m); professoressa is the f",
+            "bucket": "vocabulary.it.professore.noun.gender"
+          }
+        }
+      },
+      {
+        "lemma": "amico",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "amico - friend",
+            "bucket": "vocabulary.it.amico.noun.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.amico.noun.gender"
+          }
+        }
+      }
     ],
     "explanation": "Vecchio pre-noun is the relational reading: long-standing. Un mio vecchio amico = a friend of many years, not a friend who is elderly. The English 'old friend' carries the same default idiomatically.",
     "examiner_note": "References proposed bucket position.semantic_shift.vecchio.",
@@ -771,9 +1882,23 @@
     "target_lang": "en",
     "source_text": "Garibaldi è stato un grande condottiero.",
     "reference_translations": [
-      {"text": "Garibaldi was a great commander.", "register": "neutral", "notes": "Standard. Pre-noun grande = great (figurative)."},
-      {"text": "Garibaldi was a great military leader.", "register": "neutral", "notes": "Condottiero glossed more broadly.", "polarity": "positive"},
-      {"text": "Garibaldi was a big commander.", "register": "neutral", "notes": "Wrong reading: literal/physical, would require 'un condottiero grande'.", "polarity": "negative"}
+      {
+        "text": "Garibaldi was a great commander.",
+        "register": "neutral",
+        "notes": "Standard. Pre-noun grande = great (figurative)."
+      },
+      {
+        "text": "Garibaldi was a great military leader.",
+        "register": "neutral",
+        "notes": "Condottiero glossed more broadly.",
+        "polarity": "positive"
+      },
+      {
+        "text": "Garibaldi was a big commander.",
+        "register": "neutral",
+        "notes": "Wrong reading: literal/physical, would require 'un condottiero grande'.",
+        "polarity": "negative"
+      }
     ],
     "topic": "adjective_agreement",
     "register": "neutral",
@@ -787,8 +1912,30 @@
       "verb_form.passato_prossimo"
     ],
     "vocab_help": [
-      {"lemma": "grande", "language": "it", "aspects": {"translation": {"reveal": "grande - big, great (pre-noun: great figurative)", "bucket": "vocabulary.it.grande.translation"}}},
-      {"lemma": "condottiero", "language": "it", "aspects": {"translation": {"reveal": "condottiero - commander, leader (military)", "bucket": "vocabulary.it.condottiero.translation"}, "gender": {"reveal": "masculine (m)", "bucket": "vocabulary.it.condottiero.gender"}}}
+      {
+        "lemma": "grande",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "grande - big, great (pre-noun: great figurative)",
+            "bucket": "vocabulary.it.grande.adjective.translation"
+          }
+        }
+      },
+      {
+        "lemma": "condottiero",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "condottiero - commander, leader (military)",
+            "bucket": "vocabulary.it.condottiero.noun.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.condottiero.noun.gender"
+          }
+        }
+      }
     ],
     "explanation": "Grande pre-noun gives the figurative reading: great in stature, reputation, achievement. Garibaldi un grande condottiero — recognised for his leadership, not his physical size. Post-noun grande would be the literal physical reading.",
     "examiner_note": "References proposed bucket position.semantic_shift.grande.",
@@ -800,9 +1947,23 @@
     "target_lang": "en",
     "source_text": "La povera signora ha perso le chiavi della macchina.",
     "reference_translations": [
-      {"text": "The poor lady has lost her car keys.", "register": "neutral", "notes": "English 'poor lady' in this context naturally reads as the empathetic/unfortunate sense."},
-      {"text": "The unfortunate lady has lost her car keys.", "register": "neutral", "notes": "Makes the pre-noun reading explicit.", "polarity": "positive"},
-      {"text": "The lady with little money has lost her car keys.", "register": "neutral", "notes": "Wrong reading: post-noun (impoverished) would be 'una signora povera'.", "polarity": "negative"}
+      {
+        "text": "The poor lady has lost her car keys.",
+        "register": "neutral",
+        "notes": "English 'poor lady' in this context naturally reads as the empathetic/unfortunate sense."
+      },
+      {
+        "text": "The unfortunate lady has lost her car keys.",
+        "register": "neutral",
+        "notes": "Makes the pre-noun reading explicit.",
+        "polarity": "positive"
+      },
+      {
+        "text": "The lady with little money has lost her car keys.",
+        "register": "neutral",
+        "notes": "Wrong reading: post-noun (impoverished) would be 'una signora povera'.",
+        "polarity": "negative"
+      }
     ],
     "topic": "adjective_agreement",
     "register": "neutral",
@@ -815,9 +1976,44 @@
       "verb_form.passato_prossimo"
     ],
     "vocab_help": [
-      {"lemma": "povero", "language": "it", "aspects": {"translation": {"reveal": "povero - poor (pre-noun: unfortunate; post-noun: impoverished)", "bucket": "vocabulary.it.povero.translation"}}},
-      {"lemma": "signora", "language": "it", "aspects": {"translation": {"reveal": "signora - lady, Mrs", "bucket": "vocabulary.it.signora.translation"}, "gender": {"reveal": "feminine (f)", "bucket": "vocabulary.it.signora.gender"}}},
-      {"lemma": "chiave", "language": "it", "aspects": {"translation": {"reveal": "chiave - key", "bucket": "vocabulary.it.chiave.translation"}, "gender": {"reveal": "feminine (f)", "bucket": "vocabulary.it.chiave.gender"}}}
+      {
+        "lemma": "povero",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "povero - poor (pre-noun: unfortunate; post-noun: impoverished)",
+            "bucket": "vocabulary.it.povero.adjective.translation"
+          }
+        }
+      },
+      {
+        "lemma": "signora",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "signora - lady, Mrs",
+            "bucket": "vocabulary.it.signora.noun.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.signora.noun.gender"
+          }
+        }
+      },
+      {
+        "lemma": "chiave",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "chiave - key",
+            "bucket": "vocabulary.it.chiave.noun.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.chiave.noun.gender"
+          }
+        }
+      }
     ],
     "explanation": "Povero pre-noun is the empathetic reading: unfortunate, to be pitied. La povera signora ha perso le chiavi — sympathy with her predicament. Post-noun (una signora povera) would mean financially poor.",
     "examiner_note": "References proposed bucket position.semantic_shift.povero.",
