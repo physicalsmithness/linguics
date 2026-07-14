@@ -1,0 +1,534 @@
+[
+  {
+    "external_id": "rep_noshift_01",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "tense_shift.no_shift",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Trasforma in discorso indiretto: Marco dice: 'Sono stanco.' → Marco dice che ____ stanco.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "candidate_tenses": ["present", "imperfect"],
+    "correct_tense": "present",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "reported_speech.tense_shift.no_shift",
+        "label": "Present kept after a present reporter",
+        "any_phrases": ["è"],
+        "must_not_include": ["era"]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "stanco",
+        "language": "it",
+        "aspects": {
+          "translation": { "reveal": "stanco - tired", "bucket": "vocabulary.it.stanco.translation" }
+        }
+      }
+    ],
+    "explanation": "'Marco dice che è stanco' means 'Marco says that he is tired.' The reporting verb here is in the present (dice), and a present-tense reporting verb leaves the quoted tenses untouched. That present reporter is exactly what blocks the backshift: because Marco says it now, his 'sono stanco' stays in the present as 'è stanco'. Sliding to 'era stanco' would wrongly push his tiredness into the past.",
+    "examiner_note": "No-shift discrimination: 'era' is the over-shift miss and is caught by must_not_include. candidate_tenses surfaces the present-vs-imperfect choice post-answer only.",
+    "version": 1
+  },
+  {
+    "external_id": "rep_noshift_02",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "tense_shift.no_shift",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Trasforma in discorso indiretto: Lucia scrive: 'Arrivo domani.' → Lucia scrive che ____ domani.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "candidate_tenses": ["present", "imperfect"],
+    "correct_tense": "present",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "reported_speech.tense_shift.no_shift",
+        "label": "Present kept after a present reporter",
+        "any_phrases": ["arriva"],
+        "must_not_include": ["arrivava", "arriverà"]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "arrivare",
+        "language": "it",
+        "aspects": {
+          "translation": { "reveal": "to arrive - arrivare", "bucket": "vocabulary.it.arrivare.translation" }
+        }
+      }
+    ],
+    "explanation": "'Lucia scrive che arriva domani' means 'Lucia writes that she is arriving tomorrow.' The reporting verb 'scrive' is present, so nothing backshifts: 'arrivo' stays as 'arriva'. Notice 'domani' also stays put — the pointing words only travel when the report is anchored in the past, and a present reporter keeps everything in the here-and-now.",
+    "examiner_note": "Single-skill no-shift item. 'domani' deliberately left unshifted to reinforce that a present reporter freezes both tense and deixis.",
+    "version": 1
+  },
+  {
+    "external_id": "rep_noshift_03",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "tense_shift.no_shift",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Trasforma in discorso indiretto: I ragazzi dicono: 'Abbiamo fame.' → I ragazzi dicono che ____ fame.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "candidate_tenses": ["present", "imperfect"],
+    "correct_tense": "present",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "reported_speech.tense_shift.no_shift",
+        "label": "Present kept after a present reporter",
+        "any_phrases": ["hanno"],
+        "must_not_include": ["avevano"]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "fame",
+        "language": "it",
+        "aspects": {
+          "translation": { "reveal": "hunger - fame", "bucket": "vocabulary.it.fame.translation" },
+          "gender": { "reveal": "feminine (f)", "bucket": "vocabulary.it.fame.gender" }
+        }
+      }
+    ],
+    "explanation": "'I ragazzi dicono che hanno fame' means 'The boys say that they are hungry.' 'Dicono' is a present reporter, so the quoted present 'abbiamo' simply changes person to 'hanno' and stays in the present. The over-shift to 'avevano' would report their hunger as something past, which the present 'dicono' does not license.",
+    "version": 1
+  },
+  {
+    "external_id": "rep_noshift_04",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "tense_shift.no_shift",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Trasforma in discorso indiretto: Il cliente sostiene: 'Ho già pagato.' → Il cliente sostiene che ____ già pagato.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "candidate_tenses": ["passato_prossimo", "trapassato_prossimo"],
+    "correct_tense": "passato_prossimo",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "reported_speech.tense_shift.no_shift",
+        "label": "Passato prossimo kept after a present reporter",
+        "any_phrases": ["ha"],
+        "must_not_include": ["aveva"]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "pagare",
+        "language": "it",
+        "aspects": {
+          "translation": { "reveal": "to pay - pagare", "bucket": "vocabulary.it.pagare.translation" }
+        }
+      }
+    ],
+    "explanation": "'Il cliente sostiene che ha già pagato' means 'The customer claims that he has already paid.' The no-shift rule is not just about the present tense: because the reporter 'sostiene' is present, the quoted passato prossimo 'ho pagato' stays as 'ha pagato'. Shifting to the trapassato 'aveva pagato' is the over-correction to watch for — that shift only happens under a past reporter.",
+    "examiner_note": "Shows no-shift extends beyond the present: a present reporter also blocks the passato-prossimo-to-trapassato backshift. Pairs against rep_trapassato items authored under a past reporter.",
+    "version": 1
+  },
+  {
+    "external_id": "rep_noshift_05",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "tense_shift.no_shift",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Trasforma in discorso indiretto: Marco dice: 'Verrò alla festa.' → Marco dice che ____ alla festa.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "candidate_tenses": ["future", "condizionale_passato"],
+    "correct_tense": "future",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "reported_speech.tense_shift.no_shift",
+        "label": "Future kept after a present reporter",
+        "any_phrases": ["verrà"],
+        "must_not_include": ["sarebbe venuto", "verrebbe"]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "venire",
+        "language": "it",
+        "aspects": {
+          "translation": { "reveal": "to come - venire", "bucket": "vocabulary.it.venire.translation" }
+        }
+      }
+    ],
+    "explanation": "'Marco dice che verrà alla festa' means 'Marco says that he will come to the party.' Because the reporter 'dice' is present, the quoted future 'verrò' just changes person to 'verrà' and stays future. The past-conditional 'sarebbe venuto' is wrong here: that shift belongs to a past reporter ('ha detto che sarebbe venuto'). This is the exact same quote as the future-to-past-conditional items, flipped only by the tense of the reporting verb.",
+    "examiner_note": "Deliberate same-surface / opposite-answer partner to the rep_futcond jewel items (same quote 'Verrò', present reporter here vs past reporter there). Teaches that the reporting verb's tense is the conditioning factor.",
+    "version": 1
+  },
+  {
+    "external_id": "rep_cmd_01",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "commands",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Trasforma in discorso indiretto: La mamma mi dice: 'Vieni!' → La mamma mi dice ____.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "reported_speech.commands",
+        "label": "Command reported with di + infinitive",
+        "any_phrases": ["di venire"],
+        "must_not_include": ["che vengo", "che venga", "venire"]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "venire",
+        "language": "it",
+        "aspects": {
+          "translation": { "reveal": "to come - venire", "bucket": "vocabulary.it.venire.translation" }
+        }
+      }
+    ],
+    "explanation": "'La mamma mi dice di venire' means 'Mum tells me to come.' A command is reported not with 'che' plus a finite verb but with 'di' plus the infinitive: the imperative 'Vieni!' becomes 'di venire'. The two classic misses are 'che vengo' (a finite clause instead of the infinitive) and a bare 'venire' with the 'di' dropped.",
+    "examiner_note": "any_phrases is checked before must_not_include, so the bare 'venire' entry catches the missing-di attempt without clobbering the correct 'di venire'.",
+    "version": 1
+  },
+  {
+    "external_id": "rep_cmd_02",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "commands",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Trasforma in discorso indiretto: Il medico gli dice: 'Non fumare!' → Il medico gli dice ____.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "reported_speech.commands",
+        "label": "Negative command reported with di non + infinitive",
+        "any_phrases": ["di non fumare"],
+        "must_not_include": ["che non fuma", "che non fumi", "di non fumi"]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "fumare",
+        "language": "it",
+        "aspects": {
+          "translation": { "reveal": "to smoke - fumare", "bucket": "vocabulary.it.fumare.translation" }
+        }
+      }
+    ],
+    "explanation": "'Il medico gli dice di non fumare' means 'The doctor tells him not to smoke.' A negative command keeps the same di + infinitive frame, with 'non' sitting between them: 'Non fumare!' becomes 'di non fumare'. Learners often reach for a finite 'che non fuma' or 'che non fumi'; the reported command stays on the infinitive.",
+    "version": 1
+  },
+  {
+    "external_id": "rep_cmd_03",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "commands",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Trasforma in discorso indiretto: Ci chiede: 'Aspettate fuori!' → Ci chiede ____ fuori.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "reported_speech.commands",
+        "label": "Command reported with di + infinitive",
+        "any_phrases": ["di aspettare"],
+        "must_not_include": ["che aspettiamo", "che aspettate", "aspettare fuori"]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "aspettare",
+        "language": "it",
+        "aspects": {
+          "translation": { "reveal": "to wait - aspettare", "bucket": "vocabulary.it.aspettare.translation" }
+        }
+      }
+    ],
+    "explanation": "'Ci chiede di aspettare fuori' means 'He asks us to wait outside.' 'Chiedere' reports a request the same way an order is reported — with di + infinitive — so 'Aspettate!' becomes 'di aspettare', regardless of the plural 'you' in the original. The finite 'che aspettiamo' is the miss to avoid.",
+    "examiner_note": "The bare 'aspettare fuori' entry in must_not_include catches the dropped-di attempt; the correct 'di aspettare' wins on the any_phrases pass first.",
+    "version": 1
+  },
+  {
+    "external_id": "rep_cmd_04",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "commands",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "Trasforma in discorso indiretto: Le ho detto: 'Non ti preoccupare!' → Le ho detto ____.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "reported_speech.commands",
+        "label": "Negative reflexive command with di non + infinitive",
+        "any_phrases": ["di non preoccuparsi"],
+        "must_not_include": ["che non si preoccupi", "di non preoccuparti", "di non ti preoccupare"]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "preoccuparsi",
+        "language": "it",
+        "aspects": {
+          "translation": { "reveal": "to worry - preoccuparsi", "bucket": "vocabulary.it.preoccuparsi.translation" }
+        }
+      }
+    ],
+    "explanation": "'Le ho detto di non preoccuparsi' means 'I told her not to worry.' Two things happen at once: the negative command takes di non + infinitive, and the reflexive pronoun shifts person to match the person being spoken about — 'ti' (you) becomes 'si' (her), attaching to the infinitive as 'preoccuparsi'. Keeping 'ti' ('di non preoccuparti') leaves the pronoun pointing at the wrong person.",
+    "examiner_note": "Combines di non + infinitive with a person shift on the reflexive clitic; still a single reported-command skill. Matches the tree's canonical_example 'Le ho detto di non preoccuparsi.'",
+    "version": 1
+  },
+  {
+    "external_id": "rep_cmd_05",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "commands",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Trasforma in discorso indiretto: Il capo ci ordina: 'Finite il lavoro!' → Il capo ci ordina ____ il lavoro.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "reported_speech.commands",
+        "label": "Command reported with di + infinitive",
+        "any_phrases": ["di finire"],
+        "must_not_include": ["che finiamo", "che finiate", "finire il lavoro"]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "finire",
+        "language": "it",
+        "aspects": {
+          "translation": { "reveal": "to finish - finire", "bucket": "vocabulary.it.finire.translation" }
+        }
+      }
+    ],
+    "explanation": "'Il capo ci ordina di finire il lavoro' means 'The boss orders us to finish the work.' 'Ordinare' is another verb of command, and it takes the same di + infinitive: 'Finite!' becomes 'di finire'. The infinitive does not change for person, so the plural addressee of the original leaves no trace on the verb form.",
+    "examiner_note": "The bare 'finire il lavoro' entry catches the dropped-di attempt; 'di finire' wins first on any_phrases.",
+    "version": 1
+  },
+  {
+    "external_id": "rep_q_01",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "questions",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Trasforma in discorso indiretto: Mi chiede: 'Vieni alla festa?' → Mi chiede ____ alla festa.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "reported_speech.questions",
+        "label": "Yes/no question reported with se",
+        "any_phrases": ["se vengo"],
+        "must_not_include": ["che vengo", "se vieni", "vengo"]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "venire",
+        "language": "it",
+        "aspects": {
+          "translation": { "reveal": "to come - venire", "bucket": "vocabulary.it.venire.translation" }
+        }
+      }
+    ],
+    "explanation": "'Mi chiede se vengo alla festa' means 'He asks me if I'm coming to the party.' A yes/no question is reported with 'se' ('if/whether'), not 'che', and the person shifts to match who is being reported: since I am the one asked, 'vieni' becomes 'vengo'. Dropping 'se' or using 'che' are the two standard misses.",
+    "examiner_note": "Present reporter, so no backshift — isolates the se-insertion skill cleanly. The bare 'vengo' entry catches the dropped-se attempt; 'se vengo' wins first on any_phrases.",
+    "version": 1
+  },
+  {
+    "external_id": "rep_q_02",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "questions",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Trasforma in discorso indiretto: Le chiede: 'Dove abiti?' → Le chiede ____.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "reported_speech.questions",
+        "label": "Wh-question keeps its question word",
+        "any_phrases": ["dove abita"],
+        "must_not_include": ["dove abiti", "se dove abita", "che dove abita"]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "abitare",
+        "language": "it",
+        "aspects": {
+          "translation": { "reveal": "to live / reside - abitare", "bucket": "vocabulary.it.abitare.translation" }
+        }
+      }
+    ],
+    "explanation": "'Le chiede dove abita' means 'He asks her where she lives.' A wh-question keeps its question word — 'dove' stays 'dove', with no 'se' or 'che' added — while the verb shifts person to the person reported: 'abiti' becomes 'abita'. Adding 'se' in front of an existing wh-word, or keeping 'abiti', are the misses.",
+    "examiner_note": "Tests wh-retention plus the person shift; single reported-question skill. Present reporter keeps tense unshifted.",
+    "version": 1
+  },
+  {
+    "external_id": "rep_q_03",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "questions",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Trasforma in discorso indiretto: Mi domanda: 'Perché piangi?' → Mi domanda ____.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "reported_speech.questions",
+        "label": "Wh-question keeps its question word",
+        "any_phrases": ["perché piango"],
+        "must_not_include": ["perché piangi", "se perché", "che piango"]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "piangere",
+        "language": "it",
+        "aspects": {
+          "translation": { "reveal": "to cry - piangere", "bucket": "vocabulary.it.piangere.translation" }
+        }
+      }
+    ],
+    "explanation": "'Mi domanda perché piango' means 'She asks me why I'm crying.' 'Domandare' reports a question just like 'chiedere', and the wh-word 'perché' is carried straight over; only the verb shifts person, from 'piangi' to 'piango', because I am the one being asked. No 'se' or 'che' is inserted before a wh-word.",
+    "version": 1
+  },
+  {
+    "external_id": "rep_q_04",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "questions",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Trasforma in discorso indiretto: Mi chiede: 'Sei pronto?' → Mi chiede ____ pronto.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "reported_speech.questions",
+        "label": "Yes/no question reported with se",
+        "any_phrases": ["se sono"],
+        "must_not_include": ["che sono", "se sei", "sono pronto"]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "pronto",
+        "language": "it",
+        "aspects": {
+          "translation": { "reveal": "ready - pronto", "bucket": "vocabulary.it.pronto.translation" }
+        }
+      }
+    ],
+    "explanation": "'Mi chiede se sono pronto' means 'He asks me if I'm ready.' The original inverts subject and verb ('Sei pronto?'), but a reported question is not an inversion — it becomes an ordinary 'se' clause in statement order: 'se sono pronto'. The person shifts from 'sei' to 'sono' because I am the one asked. Keeping the inverted 'sei' or swapping in 'che' are the misses.",
+    "examiner_note": "Targets the 'se' insertion plus the loss of question inversion. The bare 'sono pronto' entry catches the dropped-se attempt; 'se sono' wins first.",
+    "version": 1
+  },
+  {
+    "external_id": "rep_q_05",
+    "language_code": "it",
+    "topic": "reported_speech",
+    "subtopic": "questions",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Trasforma in discorso indiretto: Ci domanda: 'Quando partite?' → Ci domanda ____.",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "reported_speech.questions",
+        "label": "Wh-question keeps its question word",
+        "any_phrases": ["quando partiamo"],
+        "must_not_include": ["quando partite", "se quando partiamo", "che partiamo"]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "partire",
+        "language": "it",
+        "aspects": {
+          "translation": { "reveal": "to leave / depart - partire", "bucket": "vocabulary.it.partire.translation" }
+        }
+      }
+    ],
+    "explanation": "'Ci domanda quando partiamo' means 'He asks us when we're leaving.' The question word 'quando' is kept unchanged, and the verb shifts person to 'partiamo' because we are the ones asked ('voi' addressed becomes 'noi' reporting ourselves). As with every wh-question, no 'se' or 'che' is added in front of the question word.",
+    "version": 1
+  }
+]
