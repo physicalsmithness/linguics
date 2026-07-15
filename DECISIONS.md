@@ -1,5 +1,15 @@
 # DECISIONS.md
 
+## 2026-07-15 (late night): Smith's two accent rulings - the estate's accent policy is complete
+**What:** (1) parlò/dormì: no_flag per criterion 19 (twins are wrong-person, not competing answers); executed, twins pruned; the estate carries exactly TWO accent flags: credé (same-person collision) and dì (attested variant). (2) AI translation marker: accent-only errors ALWAYS deduct a little (one small deduction per answer, house 0.9 texture, each error named in feedback; never a full fail on accents alone). Three graders, three written philosophies: vocab 50% strict / grammar credit-and-classify / AI deduct-a-little-and-name.
+**Why:** Smith: accent-imperfect must never tie accent-perfect, anywhere; and the remoto teaching lives in credé, the explanations, and the orthography stats.
+**How to apply:** Worker prompt change with Housing (Architecture_Housing_ai_marker_accent_policy.md); AI_MARKER_PLAN.md carries the policy section.
+
+## 2026-07-15 (late night): acceptance tests are the user's flow - scroll and level-strip threads reopened with root causes
+**What:** Scroll-to-fresh never fired in the overview (freshness is exact-leaf-id only; no ancestor propagation; the fixed landing had no trigger). Entry level strip counted a stale persisted 3-question scope with an unlabelled number and a full-green mastery bar - read by Smith as "we've only done 3 grammar exercises". Both threads reopened with line-precise root causes and a named acceptance test that IS Smith's flow, to be verified verbatim in the reply.
+**Why:** Three shipped fixes validated against synthetic repros; the trigger was never tested. The architect now reads the code path before routing recurring UX defects.
+**How to apply:** Housing verifies against the stated flow and says so; no substitute repros on reopened threads.
+
 ## 2026-07-15 (night): accent endgame - the split supersedes the flag; two flags stand estate-wide
 **What:** AccentAuditor's estate sweep (267 markpoints judged): 265 no_flag. The r8 orthography split classifies accent slips at runtime (.missing/.added/.wrong_mark), so accent_load_bearing on NON-WORD twins misroutes a spelling slip onto a formation bucket the learner just demonstrated and corrupts misconception stats. Nine flags removed with fold-equal guards pruned (hò/hài/hà/stò/sò, fùi/fù/fù, me ne stò). Two stand: credé (the only same-person collision - conjugation-class arithmetic: only -ere strips onto the prompt's person) and dì (real word, attested variant). parlò/dormì held for Smith. The same-day prune ruling and the flag repair had silently competed for one 26-member class; the gate's output is rephrased: dead guard admits two repairs (flag OR prune), criterion 19 chooses, the gate cannot.
 **Why:** The auditor corrected the architect twice with evidence (unlanded dispatch edit; the r8 supersession) and both held.
@@ -1005,3 +1015,22 @@ Three batch threads closed or accepted with the rulings of substance: the DUAL-C
 
 ---
 
+## Brief Revision 21 (2026-07-16): the carve-out, the progressive tags, and the next-touch clause
+
+All three come from TenseChoiceAuthor's wave-2 asks; all three are things seats had derived independently and the brief had not written down.
+
+**(i) Criterion 19 gains a supplied-choice carve-out.** It does not apply where the prompt supplies or pins the candidate forms: the answer space is the menu, the accent-stripped twin is not on it, so the accent cannot be the discriminator. `accent_load_bearing` stays unset there. **Why:** five seats (NounAuthor, PassiveAuthor, NegationAuthor, ComparisonAuthor, TenseChoiceAuthor) each spent the same twenty minutes deriving this from first principles. Five independent derivations of one unwritten rule is a brief defect. **How to apply:** supplied-choice and discrimination authors check the carve-out and move on; no retrofit needed, since every seat that hit it already reached the right answer.
+
+**(ii) Criterion 16's tense-tag vocabulary gains presente_progressivo and imperfetto_progressivo; gerundio narrows to the bare nonfinite.** **Why:** `gerundio` was doing double duty, so tense_choice's progressive items tagged "sto mangiando" as a gerund and the post-answer chip would have read "Gerund" - mislabelling the choice the learner made. **How to apply:** progressive choices take the two new tags; `gerundio` tags only verb_form.gerundio formation items. Nine tense_choice items retagged centrally the same day; Housing's label map asked at Architecture_Housing_candidate_tenses_tick v3, its de-underscoring fallback covering the interim.
+
+**(iii) Every new criterion and revision carries a next-touch clause** naming the seats it BINDS and the route the retrofit takes (dispatch / thread append / new items only). The architect fires it the day the revision lands. **Why:** criteria 15 and 16 named tense_choice by name and sat at 0/92 for seven weeks; Rev 19 had the same gap. Ratification was doing no work because nothing turned it into a knock on a door. A criterion with no next-touch clause binds nobody. **How to apply:** no revision ships without the clause; the architect owns firing it, not the authors owning discovering it.
+
+## Misconception registry: five mints, one refusal, and the direction rule (2026-07-16)
+
+**Minted** (registry 69 -> 74; discrimination 10 -> 15): `discrimination.imperfect_for_pp`, `discrimination.progressive_underuse` (mirrors of the existing one-directional ids), `discrimination.perfect_for_durative_da`, `discrimination.durative_present_over_extension` (the da/per pair; pp_for_imperfect's da example moved across), and `discrimination.remoto_register_mismatch` (direction-neutral, one id both leaves).
+
+**`discrimination.remoto_register_mismatch` is filed under discrimination, not register.** **Why:** the family axis classifies what the learner got WRONG (a tense choice), not which cue they MISSED - the same logic that puts modal_stative_aspect under discrimination though its cue is lexical aspect. The reserved `register` family keeps its description updated to say so and points at the id, so the analytics question "does this learner read register?" resolves from either direction. **How to apply:** file by the error's shape; register hosts only errors whose CONTENT is the register choice (tu/Lei).
+
+**`discrimination.habitual_frame_mismatch` REFUSED.** **Why:** its author called the diagnostic weak, and an id whose stats will not mean anything is worse than a bare guard that honestly records the bucket miss. Four items stay bare. **How to apply:** mint on evidence, not on symmetry; reopen if the leaf's data shows the pattern.
+
+**The direction rule (binds every seat tagging a contrast topic): tag on the item's DIRECTION, not the bucket's id.** **Why:** the registry is one-directional (the harvest read each bucket's common_miss) where contrast topics are two-directional - one leaf hosts both pp_for_imperfect and imperfect_for_pp items. Tagging by bucket produces confident wrong stats, worse than the bare guard it replaces. **How to apply:** read the must_not_include entry, ask which way the error runs, tag that direction; ask for the mirror rather than forcing the fit. Written into the schema thread at v5, ahead of ImperfectAuthor arriving at it.

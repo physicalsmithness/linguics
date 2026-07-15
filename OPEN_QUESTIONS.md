@@ -514,4 +514,12 @@ Two item-classes are unauthorable because the correct string nests inside the wr
 word_formation.relational_adjectives is a deliberate stub. Scoping it needs a boundary ruling against the adjective topic (which owns -oso/-ale/-ivo derivation vs agreement?). Do not author from either current seat; wants its own scoping note when an adjective-side second pass opens. Tag: FUTURE-SEAT.
 
 ## AI translation marker accent policy (Smith to rule; then Code/Housing)
-Three graders, three philosophies, one unwritten: vocab EN→IT = 50% partial on accent omission (ruled, stands); grammar marker = full credit + classified orthography breadcrumb (ruled, stands); AI translation marker = NOTHING (AI_MARKER_PLAN.md and worker/ contain no accent policy - AccentAuditor, 2026-07-15). Proposal on the table: instruct the model to never deduct for accent-only errors and to name them in feedback, mirroring the grammar philosophy. Awaiting Smith.
+Three graders, three philosophies, one unwritten: vocab EN→IT = 50% partial on accent omission (ruled, stands); grammar marker = full credit + classified orthography breadcrumb (ruled, stands); AI translation marker = NOTHING (AI_MARKER_PLAN.md and worker/ contain no accent policy - AccentAuditor, 2026-07-15). Proposal on the table: instruct the model to never deduct for accent-only errors and to name them in feedback, mirroring the grammar philosophy. RESOLVED 2026-07-15: deduct-a-little-and-name, ruled by Smith; see Architecture_Housing_ai_marker_accent_policy.md.
+
+## Criterion-17 retro-sweep: now a resourcing question for Smith, with a base rate (2026-07-16)
+
+Previously parked as a vague "would be nice". TenseChoiceAuthor's wave 2 gives it a number: writing criterion 17's English glosses across 124 items surfaced **two live content bugs** that had been shipped since May (`tc_subj_op_05`: dovere with no infinitive, reading "the government owes stricter measures"; `tc_trap_compl_05`: glielo doubled by a nesuno phrase). Neither was findable by any gate the estate runs - the marker replica, the crit-18 containment scan and the schema check all pass on both. Grammatical-but-wrong prose is invisible to every automated instrument we have.
+
+**The mechanism:** you cannot write a gloss without parsing the sentence, so a 17 retrofit is a proofread with a learner-facing by-product. **The base rate:** ~2 bugs per 124 items on a Rev-3-era batch. Pre-Rev-13 batches are the exposure.
+
+**The question is resourcing, not principle**: this is a seat's worth of work across the corpus, and that is Smith's call. Flagged rather than spawned.

@@ -253,3 +253,7 @@ The plan is for the AI marker only. Things explicitly out of scope, for clarity:
 - Login / auth integration with Memoriser. Same as above; deferred.
 
 When you nod on the five decisions above, I'll start the work. Probably I write the Worker and the housing integration; you provide the Cloudflare account and the Anthropic key; deploy is a single `wrangler deploy` command on your machine once the secrets are loaded.
+
+## Accent policy (ruled by Smith, 2026-07-15)
+
+An otherwise-correct translation containing accent-only errors (missing, added, or wrong-mark accents; apostrophe-for-accent slips) is DEDUCTED A LITTLE, always - it must never score as a full-credit equal of the accent-perfect answer, and never fail outright on accents alone. Implementation: score the translation as if accents were correct, then apply a small fixed deduction (house texture: the 0.9 multiplier used for pattern-dodges) once per answer (not per accent error), and NAME each accent error in the feedback ("perché carries an acute accent"). This aligns the third grader with the estate: vocab EN→IT deducts 50% (strictest, ruled and stands), the substring grammar marker credits-and-classifies via the orthography split, the AI marker deducts-a-little-and-names. Registered in inter_chat/Architecture_Housing_ai_marker_accent_policy.md.

@@ -44,7 +44,7 @@
     },
     "register": {
       "label": "Register",
-      "description": "Reserved cross-kind family (formal/informal mismatch). No specifics seeded yet.",
+      "description": "Reserved cross-kind family: errors whose CONTENT is the register choice itself (tu/Lei address, formal/informal lexis). Where register is merely the CUE for an error of another shape - the passato remoto chosen in conversation is a tense choice cued by register - the misconception is filed by the error's shape, not its cue: see discrimination.remoto_register_mismatch (ruled 2026-07-16).",
       "cross_kind": true
     },
     "false_friend": {
@@ -380,6 +380,19 @@
       ]
     },
     {
+      "id": "discrimination.durative_present_over_extension",
+      "family": "discrimination",
+      "label": "Durative present extended to a stretch that has ended",
+      "description": "The mirror of discrimination.perfect_for_durative_da: the da-present applied where the stretch is closed and the past is required ('ho studiato per due anni'). Typically appears once the da-rule has been learnt and is then over-applied to per and to completed periods.",
+      "examples": [
+        "studio italiano per due anni (a finished course) for ho studiato",
+        "abito qui per tre anni (no longer) for ho abitato"
+      ],
+      "topics": [
+        "tense_choice"
+      ]
+    },
+    {
       "id": "discrimination.future_present_mismatch",
       "family": "discrimination",
       "label": "Future vs present-for-future mismatch",
@@ -390,6 +403,21 @@
       ],
       "topics": [
         "tense_choice"
+      ]
+    },
+    {
+      "id": "discrimination.imperfect_for_pp",
+      "family": "discrimination",
+      "label": "Imperfect used where the passato prossimo's aspect is required",
+      "description": "Choosing the imperfect for a context the passato prossimo owns: a single completed, bounded event, especially one that interrupts a background state. The mirror of discrimination.pp_for_imperfect; tag on the direction the ITEM's wrong form takes, never on the bucket's own id.",
+      "examples": [
+        "ieri mangiavo una pizza for ho mangiato (single completed event)",
+        "mentre leggevo, entrava for e' entrato (the interrupting event)",
+        "l'anno scorso andavo a Roma due volte for sono andato"
+      ],
+      "topics": [
+        "tense_choice",
+        "verb_form.imperfect"
       ]
     },
     {
@@ -432,14 +460,26 @@
       ]
     },
     {
+      "id": "discrimination.perfect_for_durative_da",
+      "family": "discrimination",
+      "label": "Passato prossimo used for a stretch that is still running (da + time)",
+      "description": "Choosing the passato prossimo for an action begun in the past and STILL going at speech time, where Italian takes the present with da ('studio italiano da due anni'). English's 'I have studied for two years' is the transfer source. The conditioning factor is the preposition: da leaves the stretch open, per closes it.",
+      "examples": [
+        "ho studiato italiano da due anni for studio da due anni",
+        "ho abitato qui da marzo for abito qui da marzo"
+      ],
+      "topics": [
+        "tense_choice"
+      ]
+    },
+    {
       "id": "discrimination.pp_for_imperfect",
       "family": "discrimination",
       "label": "Passato prossimo used where the imperfect's aspect is required",
-      "description": "Choosing the passato prossimo for a context the imperfect owns: habitual action, ongoing state/description, duration, and age/time/weather states. The dominant aspect error of the past tenses.",
+      "description": "Choosing the passato prossimo for a context the imperfect owns: habitual action, ongoing state/description, duration, and age/time/weather states. The dominant aspect error of the past tenses. The da-durative case (ho aspettato da venti minuti) moved to discrimination.perfect_for_durative_da at Rev 21: its conditioning factor is the preposition, not aspect.",
       "examples": [
         "ho giocato for giocavo (habitual)",
         "e' stata stanca for era stanca (state)",
-        "ho aspettato da venti minuti for aspettavo",
         "ho avuto dieci anni / ha fatto freddo for avevo/faceva"
       ],
       "topics": [
@@ -457,6 +497,34 @@
       ],
       "topics": [
         "tense_choice"
+      ]
+    },
+    {
+      "id": "discrimination.progressive_underuse",
+      "family": "discrimination",
+      "label": "Simple tense used where the in-progress reading is required",
+      "description": "Choosing the simple present or imperfect where the context insists the action is under way at the reference moment (stare + gerundio). The mirror of discrimination.progressive_overuse: the Italian-side error rather than the English-transfer one.",
+      "examples": [
+        "che fai? - mangio, for sto mangiando (right this second)",
+        "quando ha chiamato, cucinavo for stavo cucinando"
+      ],
+      "topics": [
+        "tense_choice",
+        "verb_form.gerundio"
+      ]
+    },
+    {
+      "id": "discrimination.remoto_register_mismatch",
+      "family": "discrimination",
+      "label": "Passato remoto and passato prossimo swapped by register",
+      "description": "Choosing the passato remoto in conversational register, or the passato prossimo in literary or historical narration, where the chosen form is itself correctly built. Direction-neutral by construction, so one id covers both leaves. Filed under discrimination rather than register because the family axis classifies the ERROR's shape (a tense choice), not the cue that was missed - the same logic that puts modal_stative_aspect here though its cue is lexical aspect.",
+      "examples": [
+        "ieri andai al cinema (spoken) for sono andato",
+        "Garibaldi e' sbarcato a Marsala (history textbook) for sbarco'"
+      ],
+      "topics": [
+        "tense_choice",
+        "verb_form.passato_remoto"
       ]
     },
     {
@@ -544,6 +612,12 @@
       "topics": [
         "adjective_agreement"
       ]
+    },
+    {
+      "id": "orthography.cia_gia_plural_i",
+      "family": "orthography",
+      "label": "-cia/-gia plural i kept or dropped wrongly",
+      "description": "The noun-plural i-retention split: vowel before -cia/-gia keeps the i (ciliegie, valigie, camicie), consonant before drops it (arance, facce, piogge). Misses in both directions: arancie, camice."
     },
     {
       "id": "orthography.double_i_retained",
@@ -975,6 +1049,20 @@
       ]
     },
     {
+      "id": "transfer.negative_imperative_infinitive_over_extension",
+      "label": "non + infinitive over-extended beyond tu",
+      "description": "The tu negative imperative's non + infinitive rule applied where it does not belong: noi/voi negatives (non parlare! for non parliamo! / non aspettare! for non aspettate!), or the bare infinitive reached for as an affirmative imperative (dire! for di'!). The learner has LEARNT the tu rule and is over-applying it - a more advanced error than never having the rule, and diagnostically the mirror of transfer.negative_imperative_finite.",
+      "family": "transfer",
+      "examples": [
+        "non parlare! (noi intended: non parliamo!)",
+        "non aspettare! (voi intended: non aspettate!)",
+        "dire! (tu affirmative intended: di'!)"
+      ],
+      "topics": [
+        "verb_form.imperativo"
+      ]
+    },
+    {
       "id": "word_order.adjective_position",
       "family": "word_order",
       "label": "Adjective placed before the noun where post-nominal is default",
@@ -1024,26 +1112,6 @@
       ],
       "topics": [
         "pronoun"
-      ]
-    },
-    {
-      "id": "orthography.cia_gia_plural_i",
-      "family": "orthography",
-      "label": "-cia/-gia plural i kept or dropped wrongly",
-      "description": "The noun-plural i-retention split: vowel before -cia/-gia keeps the i (ciliegie, valigie, camicie), consonant before drops it (arance, facce, piogge). Misses in both directions: arancie, camice."
-    },
-    {
-      "id": "transfer.negative_imperative_infinitive_over_extension",
-      "label": "non + infinitive over-extended beyond tu",
-      "description": "The tu negative imperative's non + infinitive rule applied where it does not belong: noi/voi negatives (non parlare! for non parliamo! / non aspettare! for non aspettate!), or the bare infinitive reached for as an affirmative imperative (dire! for di'!). The learner has LEARNT the tu rule and is over-applying it - a more advanced error than never having the rule, and diagnostically the mirror of transfer.negative_imperative_finite.",
-      "family": "transfer",
-      "examples": [
-        "non parlare! (noi intended: non parliamo!)",
-        "non aspettare! (voi intended: non aspettate!)",
-        "dire! (tu affirmative intended: di'!)"
-      ],
-      "topics": [
-        "verb_form.imperativo"
       ]
     }
   ]
