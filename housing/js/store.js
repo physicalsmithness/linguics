@@ -142,6 +142,12 @@
           && result.overall.marks_awarded >= result.overall.marks_possible
       };
     }
+    // Item-level misconception tags from the firing guard (attribution only;
+    // the stats axis is a later phase). See inter_chat/
+    // Architecture_Housing_misconception_item_tags.md.
+    if (Array.isArray(result.misconceptions) && result.misconceptions.length) {
+      attempt.misconception_hits = result.misconceptions.slice();
+    }
     state.attempts.push(attempt);
 
     // Track any bucket proposals that came through

@@ -512,3 +512,6 @@ Two item-classes are unauthorable because the correct string nests inside the wr
 
 ## Adjective/WordFormation boundary (future seat): relational_adjectives scoping
 word_formation.relational_adjectives is a deliberate stub. Scoping it needs a boundary ruling against the adjective topic (which owns -oso/-ale/-ivo derivation vs agreement?). Do not author from either current seat; wants its own scoping note when an adjective-side second pass opens. Tag: FUTURE-SEAT.
+
+## AI translation marker accent policy (Smith to rule; then Code/Housing)
+Three graders, three philosophies, one unwritten: vocab EN→IT = 50% partial on accent omission (ruled, stands); grammar marker = full credit + classified orthography breadcrumb (ruled, stands); AI translation marker = NOTHING (AI_MARKER_PLAN.md and worker/ contain no accent policy - AccentAuditor, 2026-07-15). Proposal on the table: instruct the model to never deduct for accent-only errors and to name them in feedback, mirroring the grammar philosophy. Awaiting Smith.

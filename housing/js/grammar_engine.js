@@ -69,6 +69,10 @@
     let respondedCount = 0;
     const mpResults = [];
     const orthographyHits = [];
+    // Item-level misconception attribution: ids carried by the must_not_include
+    // entry that actually fired. Pure attribution, marking is unchanged, nothing
+    // rendered yet. See inter_chat/Architecture_Housing_misconception_item_tags.md.
+    const misconceptionHits = [];
 
     for (const mp of points) {
       const credit = (typeof mp.credit === "number") ? mp.credit : 1;
@@ -169,7 +173,13 @@
           for (const p of mp.must_not_include) {
             const ps = phraseStr(p);
             const mAt = (typeof p === "object" && p) ? p.match_at : undefined;
-            if (LL.includesNeedle(hay, ps, mAt, cs)) { result.evidence = ps + " (wrong form)"; break; }
+            if (LL.includesNeedle(hay, ps, mAt, cs)) {
+              result.evidence = ps + " (wrong form)";
+              if (typeof p === "object" && p && p.misconception) {
+                misconceptionHits.push({ id: p.misconception, bucket: mp.bucket, evidence: ps });
+              }
+              break;
+            }
           }
         }
         // 4. Attempted-hints, if any
@@ -221,7 +231,8 @@
         examiner_note: q.examiner_note || null
       },
       markpoints: mpResults,
-      orthography: orthographyHits
+      orthography: orthographyHits,
+      misconceptions: misconceptionHits
     };
   }
 

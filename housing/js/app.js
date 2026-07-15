@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-15-r8";
+  const LL_BUILD = "2026-07-15-r10";
   // Touch-first device (no hover, coarse pointer): tap interactions replace
   // keyboard ones. Computed once; used for tap-to-mark on MCQ.
   const TOUCH_FIRST = !!(window.matchMedia

@@ -65,7 +65,7 @@
         "order_index": 0,
         "credit": 1.0,
         "bucket": "verb_form.passato_remoto.formation.regular_are",
-        "label": "3sg parlo with accent",
+        "label": "3sg parlò (stressed -ò, written accent)",
         "any_phrases": [
           {
             "phrase": "parlò",
@@ -76,7 +76,7 @@
           {
             "phrase": "parlo",
             "match_at": "word",
-            "note": "parlo is the present, 'I speak'. The accent on parlò is the whole of what makes it the remote past."
+            "note": "parlo is the io present, 'I speak' - not a reading Marco's sentence can take (his present is parla). Here the missing accent is the missing tense: par-LÒ is the remote past, PAR-lo is not."
           },
           {
             "phrase": "parlao",
@@ -98,7 +98,7 @@
         }
       }
     ],
-    "explanation": "'Quella sera Marco parlò a lungo davanti a tutti.' (That evening Marco spoke at length in front of everyone.) The lui/lei form of a regular -are passato remoto ends in a stressed -ò, and the written accent is obligatory: parlare gives parlò. Drop the accent and you have written the present parlo instead, a different tense.",
+    "explanation": "'Quella sera Marco parlò a lungo davanti a tutti.' (That evening Marco spoke at length in front of everyone.) The lui/lei form of a regular -are passato remoto ends in a stressed -ò, and the written accent is obligatory: parlare gives parlò. The accent is not decoration. It marks where the stress falls (par-LÒ, not PAR-lo) and it is the only thing on the page that separates this remote past from parlo, the io present of the same verb. Marco could not take parlo anyway (his present would be parla), so the accent here is carrying the tense, not resolving a clash of persons.",
     "version": 2
   },
   {
@@ -272,7 +272,7 @@
         "order_index": 0,
         "credit": 1.0,
         "bucket": "verb_form.passato_remoto.formation.regular_ere",
-        "label": "3sg crede / credette (dual, accent)",
+        "label": "3sg credé / credette (dual; credé carries the accent)",
         "any_phrases": [
           {
             "phrase": "credé",
@@ -287,7 +287,7 @@
           {
             "phrase": "crede",
             "match_at": "word",
-            "note": "crede is the present, 'he believes'. The accent on credé is what makes it the remote past."
+            "note": "crede is the present, 'he believes' - and it fits this sentence exactly as well as credé does, so only the accent tells the two apart. That is why it is a real wrong answer here, not a slip."
           },
           {
             "phrase": "credì",
@@ -494,7 +494,7 @@
         "order_index": 0,
         "credit": 1.0,
         "bucket": "verb_form.passato_remoto.formation.regular_ire",
-        "label": "3sg dormi with accent",
+        "label": "3sg dormì (stressed -ì, written accent)",
         "any_phrases": [
           {
             "phrase": "dormì",
@@ -505,7 +505,7 @@
           {
             "phrase": "dormi",
             "match_at": "word",
-            "note": "dormi is the present, 'you sleep'. The accent on dormì is what makes it the remote past."
+            "note": "dormi is the tu present, 'you sleep' - not a reading this sentence can take (the child's present is dorme). The accent is what makes dormì the remote past."
           },
           {
             "phrase": "dormiva",
@@ -527,7 +527,7 @@
         }
       }
     ],
-    "explanation": "'Il bambino dormì profondamente fino al mattino.' (The child slept deeply until morning.) The lui/lei form of an -ire passato remoto ends in a stressed -ì with an obligatory written accent: dormire gives dormì. Drop the accent and you have the present dormi; dormiva is the imperfect.",
+    "explanation": "'Il bambino dormì profondamente fino al mattino.' (The child slept deeply until morning.) The lui/lei form of an -ire passato remoto ends in a stressed -ì with an obligatory written accent: dormire gives dormì. The accent marks the stress (dor-MÌ, not DOR-mi) and separates the remote past from dormi, the tu present. The child's own present would be dorme, so nothing but the accent is doing the tense work here. The imperfect dormiva would describe the sleeping rather than state it.",
     "version": 2
   },
   {
@@ -1364,14 +1364,8 @@
           {
             "phrase": "essei",
             "match_at": "word"
-          },
-          {
-            "phrase": "fùi",
-            "match_at": "word",
-            "note": "fui carries no written accent; the accent here is not Italian spelling."
           }
-        ],
-        "accent_load_bearing": true
+        ]
       }
     ],
     "vocab_help": [
@@ -1387,7 +1381,7 @@
       }
     ],
     "explanation": "'Quell'anno fui davvero felice.' (That year I was really happy.) essere is wholly suppletive in the passato remoto, built on an unrelated stem: fui, fosti, fu, fummo, foste, furono. The io form is fui. There is no regular essei.",
-    "version": 2
+    "version": 3
   },
   {
     "external_id": "prem_supp_essere_3sg_02",
@@ -1415,16 +1409,10 @@
         ],
         "must_not_include": [
           {
-            "phrase": "fù",
-            "match_at": "word",
-            "note": "fu never takes a written accent, though its length tempts one. Bare fu is correct."
-          },
-          {
             "phrase": "era",
             "match_at": "word"
           }
-        ],
-        "accent_load_bearing": true
+        ]
       }
     ],
     "vocab_help": [
@@ -1440,7 +1428,7 @@
       }
     ],
     "explanation": "'Il viaggio fu lungo e difficile.' (The journey was long and difficult.) The lui/lei form is fu, with no accent. fu is one of the commonest words in Italian narrative. The imperfect era describes an ongoing state; fu states the event as a whole.",
-    "version": 2
+    "version": 3
   },
   {
     "external_id": "prem_supp_essere_3pl_03",
@@ -2035,14 +2023,8 @@
           {
             "phrase": "era",
             "match_at": "word"
-          },
-          {
-            "phrase": "fù",
-            "match_at": "word",
-            "note": "fu never takes a written accent. Bare fu is the passato remoto of essere."
           }
-        ],
-        "accent_load_bearing": true
+        ]
       },
       {
         "order_index": 1,
@@ -2082,7 +2064,7 @@
     ],
     "explanation": "'Dopo che fu partito, ci pentimmo della lite.' (After he had left, we regretted the quarrel.) partire is a verb of motion, so its trapassato remoto takes essere, not avere: the passato remoto essere form fu plus the participle partito gives 'fu partito'. The participle agrees with the masculine singular subject. 'Dopo che ... pentimmo' frames the prior completed departure. The pluperfect era partito would be the everyday past.",
     "examiner_note": "Two markpoints: essere passato remoto auxiliary (this tree) and the participle, masculine-singular agreement. A feminine subject would need partita.",
-    "version": 2
+    "version": 3
   },
   {
     "external_id": "prem_trap_fare_3pl_03",

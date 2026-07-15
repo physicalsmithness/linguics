@@ -1,5 +1,20 @@
 # DECISIONS.md
 
+## 2026-07-15 (night): accent endgame - the split supersedes the flag; two flags stand estate-wide
+**What:** AccentAuditor's estate sweep (267 markpoints judged): 265 no_flag. The r8 orthography split classifies accent slips at runtime (.missing/.added/.wrong_mark), so accent_load_bearing on NON-WORD twins misroutes a spelling slip onto a formation bucket the learner just demonstrated and corrupts misconception stats. Nine flags removed with fold-equal guards pruned (hò/hài/hà/stò/sò, fùi/fù/fù, me ne stò). Two stand: credé (the only same-person collision - conjugation-class arithmetic: only -ere strips onto the prompt's person) and dì (real word, attested variant). parlò/dormì held for Smith. The same-day prune ruling and the flag repair had silently competed for one 26-member class; the gate's output is rephrased: dead guard admits two repairs (flag OR prune), criterion 19 chooses, the gate cannot.
+**Why:** The auditor corrected the architect twice with evidence (unlanded dispatch edit; the r8 supersession) and both held.
+**How to apply:** AccentAuditor's suggestions file is the record; new accent guards default to prune-and-let-fold-rescue unless the twin is a plausible answer to the prompt.
+
+## 2026-07-15 (night): registry gains transfer.negative_imperative_infinitive_over_extension; dì stays bare
+**What:** Ratified ImperativoAuthor's proposal (non+infinitive over-extended to noi/voi, plus the bare-infinitive-for-affirmative reflex). dì-for-di' gets no registry id: runtime .added classification is the diagnosis; note-on-record convention applies.
+**Why:** The over-extension is the mirror of negative_imperative_finite and marks a MORE advanced learner - worth separate stats. One-word cases do not mint ids.
+**How to apply:** ImperativoAuthor retags impv_neg_06/07 + the dire guard.
+
+## 2026-07-15 (night): label-vs-guard estate check clean; crede label already fixed author-side
+**What:** AccentAuditor found a markpoint label naming the guarded form as if accepted ("crede / credette"). Author fixed it in their Rev 20 pass before central action. Estate grep: 67 raw hits refine to 12, all legitimate cue-lemma naming. Rule for authors: a label must never present a guarded form as accepted; naming the cue lemma is fine; candidate-forms labels listing both are fine.
+**Why:** The breadcrumb renders the label; a wrong-form label is the site showing the learner a wrong answer.
+**How to apply:** Eyeball at authoring; the refined grep joins the acceptance checks.
+
 ## 2026-07-15 (evening): universal word-anchoring - every any_phrase in the estate is anchored
 **What:** PassatoRemotoAuthor proved the paradigm-containment class (fu ⊂ furono: every 3sg nests in its 3pl; 16 live false-credit markpoints in a batch that had passed every audit). The guard-list-based checks were structurally blind to it because nobody guards wrong persons. Fix executed estate-wide: match_at "word" on every unanchored any_phrase (871 phrases today across two passes), every anchor validated for self-credit, zero unanchored remaining across 1,876 markpoints, full gate clean.
 **Why:** Selective anchoring (Rev 15) mitigated known exposures; the comparison set "plausible attempts" can never be enumerated, so the default had to flip. Anchored-by-default makes the whole class unrepresentable.
