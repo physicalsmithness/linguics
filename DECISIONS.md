@@ -912,4 +912,13 @@ Smith caught, live on the adverb batch, that suppressing the breadcrumb on a LEX
 **How to apply:** authors apply the recoverability test before suppressing; DemonstrativeAuthor flips five flags on next touch; the criterion text now carries the test.
 
 ---
+## 2026-07-15: Estate audit v2 after three author corrections of the architect's own passes
+
+Three authors independently corrected tonight's central passes, and the corrections are all accepted and executed. ReportedSpeechAuthor: the superstring sweep did not fold accents (bare è sits inside era once folded); re-run folded, two more anchors applied, and 14 fold-equal accent guards identified as dead-but-policy-consistent (the fold-rescue already delivers the right verdict; authors may prune). ComparisonAuthor and NegationAuthor, independently: the fourth containment direction, the guard that CONTAINS the anchored answer as whole words is dead on arrival and anchoring cannot help; three live items routed for reframe (op_comb_order_01, wf_aug_02/03); and ComparisonAuthor's record correction stands, the lexical-discrimination kill was a THREE-instance class (migliore_vs_meglio self-flipped minutes before the 802-item sweep ran, so its clean bill was true of the state it saw, not of the evening). ComparisonAuthor also caught the pos-migration's dominant-sense rule mis-guessing live (buono.adverb, bravo.interjection): 14 references corrected to adjective estate-wide. PassiveAuthor: criteria 18 and 19 existed only in the brief's revision header while the §2 body still said the opposite at criterion 15; the body is now integrated (recoverability condition incl. the frame-forced sixth class inside criterion 15, candidate_forms generalisation inside 16, full-text 18 and 19 appended). All four containment directions, accent-folded, are now the standing acceptance audit.
+
+**Why:** principle 5 at full stretch: the authors audited the auditor. Every central sweep now carries the lesson that its blind spots are found by the seats closest to the material.
+
+**How to apply:** authors prune dead accent guards at leisure; PronounAuthor and WordFormationAuthor reframe the three routed items; the brief's §2 body is now the single reading authors need.
+
+---
 

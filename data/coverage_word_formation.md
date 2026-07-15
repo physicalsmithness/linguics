@@ -3,7 +3,7 @@
 Author: WordFormationAuthor. Dispatch: `DISPATCH_word_formation.md`. Brief: AUTHOR_BRIEF Revision 16.
 First pass, 2026-07-15; reconciled Brief Rev 16 -> Rev 19 the same day. Batch ACCEPTED by Architecture.
 
-**Thread (the channel, per Rev 18): `inter_chat/Architecture_WordFormationAuthor_batch_disposition.md` (v2, OPEN, 6 asks pending).** The sections below are the record; the asks live in the thread.
+**Thread (the channel, per Rev 18): `inter_chat/Architecture_WordFormationAuthor_batch_disposition.md` (v3, OPEN, 4 asks pending; glossary merge is the live defect).** The sections below are the record; the asks live in the thread.
 
 Outputs: `grammar_questions_word_formation.json` (30), `translation_items_word_formation.json` (11), `glossary_suggestions_word_formation.json` (6 terms), `bucket_suggestions_word_formation.json` (1).
 
@@ -40,6 +40,8 @@ Every active leaf cleared the brief's 2-5-per-leaf floor. Falsi and augmentative
 
 - All 32 grammar any_phrases are `match_at: "word"` anchored (uniform anchoring applied on the Rev 17 reconciliation; must_not_include likewise).
 - **Rev 17 (ii) audit CLEAN**: no must_not_include entry is a substring of its item's correct answer, checked against a port of the shipped `norm()`. must_not_include is else-if gated behind the positive match in grammar_engine.js, so a present correct phrase always wins first.
+- **Crit-18 'guard CONTAINS an any_phrase' (ComparisonAuthor / NegationAuthor's direction): TWO DEAD GUARDS FOUND AND FIXED, and they were a live false-credit bug.** `wf_aug_02` and `wf_aug_03` carried the bare augmentative (`portone`, `macchinone`) alongside the full answer, so a learner writing "la portone" (the exact common_miss, feminine kept) matched the positive, was credited full marks, and the `la portone` guard never fired. Since the article IS the diagnostic on those two items, the bare phrase silently deleted the gender-shift test on hot spot #2. Bare forms dropped; wrong-gender attempts now fall through to must_not_include and record a miss. Re-audit clean.
+- **Crit-18 re-run WITH accent folding** (per ReportedSpeechAuthor's finding that the central sweep does not fold): only hits were the two above; now **CLEAN 0/0**. Crit 19 stays a no-op by its own carve-out (`sì` is the batch's only accented phrase and it is a guard, not an answer).
 - **Rev 19 recoverability audit CLEAN**: all 13 suppressed items are forced choices whose two options appear verbatim in the prompt, so the candidate set is recoverable pre-answer and suppression remains legitimate. None is a bene/buono-style unrecoverable lexeme choice.
 - Bases are never used as bare any_phrases, so the "base inside its own alterato" hazard (tavolo inside tavolino) does not arise: produce-the-alterato answers are the long form.
 - Gender-shift items list the wrong-gender form (`la portona`, `la macchinona`) in must_not_include, anchored, so a gender miss is attributed, not silently dropped.
@@ -47,7 +49,7 @@ Every active leaf cleared the brief's 2-5-per-leaf floor. Falsi and augmentative
 ## Flagged / uncertain items (for review)
 
 - **wf_pref_ex_01 hyphen question: RESOLVED, ask withdrawn.** `norm.js` folds hyphen to space (`t.replace(/-/g, " ")`), so `ex-marito` normalises to `ex marito`: the spaced any_phrase already catches the hyphen spelling and the separate `ex-marito` entry was a norm-duplicate. Dropped; `ex marito` word-anchored.
-- **Rev 17 (iii) candidate_forms: held, ruling requested in the thread.** The binary items (falsi vero/indipendente, affetto/statura, quality/size, vero/falso) are two-option discriminations, but the options are classification labels rather than candidate forms of a lexeme, which is what the Rev 17 (iii) precedents (suo referent, questo/quello) address. Not added unilaterally across the 16 affected items.
+- **Rev 17 (iii) candidate_forms: half applied, half held.** Applied to the 3 meaning-label items (`wf_dim_03`, `wf_dim_05`, `wf_pej_03`) on Architecture's ratified noun meaning-pair precedent (candidate_forms carries the two meaning-labels, correct_form the asked one, suppress applies). Held on the 13 **verdict** items (8 falsi, 3 neo- vero/falso, 2 no/sì): a verdict judges a word's status rather than choosing between candidate forms, and this is exactly NegationAuthor's still-open ask, so it wants one ruling across both seats rather than a unilateral precedent.
 - **Three forced-choice items** (wf_dim_03, wf_pej_03, wf_pref_int_05) and the falsi set are authored as `type: short` with the two options named in the prompt, following the dispatch worked example. If the housing would render these better as `mcq`, they convert cleanly. Flagging the format choice, not the content.
 - **tavolino as "vero alterato"** (wf_falsi_07): defensible because the base "small table" survives even in the lexicalised side-table sense, but it sits near the falso/lexicalised line. If you would rather teach it as lexicalised-independent, move it to the falsi-"ind" side.
 - **montone as falso** (wf_falsi_08): etymologically not from monte; kept as a shape-only lookalike. Confirm you are happy teaching it in the falsi set rather than dropping it.

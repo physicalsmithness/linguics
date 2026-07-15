@@ -23,16 +23,22 @@
     "bucket": "verb_form.imperfect.discrimination.vs_passato_prossimo_general",
     "label": "Imperfect for habitual past (giocavo)",
     "any_phrases": [
-     "giocavo"
+     {
+      "phrase": "giocavo",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "ho giocato"
+     {
+      "phrase": "ho giocato",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Da bambino giocavo a calcio ogni domenica con i miei amici.' means 'As a child I played football every Sunday with my friends.' When you describe what you used to do regularly as a child, you're talking about a repeated past pattern, not one specific Sunday. Italian uses the imperfect indicative for habitual past actions. The cues 'ogni domenica' (every Sunday) and 'da bambino' (as a child) both point to a recurring habit spread over a whole period. Ho giocato (passato prossimo) would single out one particular game, which doesn't fit the routine the sentence is setting up.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_imp_pp_gen_02",
@@ -58,17 +64,26 @@
     "bucket": "verb_form.imperfect.discrimination.vs_passato_prossimo_general",
     "label": "PP for single past event (sono andato)",
     "any_phrases": [
-     "sono andato",
-     "sono andata"
+     {
+      "phrase": "sono andato",
+      "match_at": "word"
+     },
+     {
+      "phrase": "sono andata",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "andavo"
+     {
+      "phrase": "andavo",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Ieri sera sono andato al cinema con Marco a vedere un film francese.' means 'Last night I went to the cinema with Marco to see a French film.' When you tell someone about one specific outing that happened on a specific evening, you're naming a single completed event. Italian uses the passato prossimo for one-off past actions. The cue 'ieri sera' (yesterday evening) pins the trip to a defined moment, exactly the territory the passato prossimo covers. Andavo (imperfect) would frame the cinema-going as ongoing or habitual, which the sentence doesn't intend.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_imp_pp_gen_03",
@@ -94,10 +109,16 @@
     "bucket": "verb_form.imperfect.discrimination.vs_passato_prossimo_general",
     "label": "Imperfect for ongoing background (preparavo)",
     "any_phrases": [
-     "preparavo"
+     {
+      "phrase": "preparavo",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "ho preparato"
+     {
+      "phrase": "ho preparato",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -118,7 +139,7 @@
    }
   ],
   "explanation": "'Mentre preparavo la cena, è arrivata Anna senza preavviso.' means 'While I was making dinner, Anna turned up without warning.' When one past action is unfolding and another past event drops into it, the unfolding one is the backdrop. Italian uses the imperfect indicative for the ongoing background and the passato prossimo for the event that interrupts it ('è arrivata'). The conjunction 'mentre' (while) is a strong cue for the imperfect on the verb it governs. Ho preparato would mark the cooking as a completed event, which doesn't fit the 'in the middle of doing it' reading.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_imp_pp_gen_04",
@@ -144,17 +165,26 @@
     "bucket": "verb_form.imperfect.discrimination.vs_passato_prossimo_general",
     "label": "Imperfect for habitual past, contrast with a PP exception (andavo)",
     "any_phrases": [
-     "andavo"
+     {
+      "phrase": "andavo",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "sono andato",
-     "sono andata"
+     {
+      "phrase": "sono andato",
+      "match_at": "word"
+     },
+     {
+      "phrase": "sono andata",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Di solito andavo in autobus al lavoro, ma martedì scorso ho preso il treno.' means 'I usually went to work by bus, but last Tuesday I took the train.' When you talk about what you usually did and then contrast it with one specific exception, the usual pattern lives in the imperfect indicative and the exception lives in the passato prossimo. The adverb 'di solito' (usually) is a textbook habitual cue, and the second clause's 'ho preso il treno' marks the one Tuesday that broke the habit. Sono andato would crash the two readings together by treating the routine as a single event.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_imp_pp_gen_05",
@@ -180,10 +210,16 @@
     "bucket": "verb_form.imperfect.discrimination.vs_passato_prossimo_general",
     "label": "PP for an abrupt punctual event (ha bussato)",
     "any_phrases": [
-     "ha bussato"
+     {
+      "phrase": "ha bussato",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "bussava"
+     {
+      "phrase": "bussava",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -200,7 +236,7 @@
    }
   ],
   "explanation": "'Tutto era tranquillo, poi all'improvviso ha bussato qualcuno alla porta.' means 'Everything was quiet, then suddenly someone knocked at the door.' When a quiet stretch of past time is broken by a sharp moment, the moment is a single completed event. Italian uses the passato prossimo for sharp punctual events. The adverb 'all'improvviso' (suddenly) is a textbook signal that the verb it modifies is a one-off happening, not a continuing background. Bussava would suggest someone was knocking continuously, which doesn't match the 'all of a sudden' framing.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_imp_pp_gen_06",
@@ -226,16 +262,22 @@
     "bucket": "verb_form.imperfect.discrimination.vs_passato_prossimo_general",
     "label": "PP for a bounded past stretch (ho passato)",
     "any_phrases": [
-     "ho passato"
+     {
+      "phrase": "ho passato",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "passavo"
+     {
+      "phrase": "passavo",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'L'estate scorsa ho passato tre settimane in Sicilia: che vacanza!' means 'Last summer I spent three weeks in Sicily: what a holiday!' When a past activity has a defined start and end, it's a closed event, no matter how many days it covered. Italian uses the passato prossimo for past stretches that are over and bounded. 'L'estate scorsa' fixes the period and 'tre settimane' bounds the length; the whole holiday sits inside a finished frame. Passavo would suggest an open-ended or habitual span, which doesn't fit a one-off holiday in a named summer.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_imp_pp_gen_07",
@@ -261,10 +303,16 @@
     "bucket": "verb_form.imperfect.discrimination.vs_passato_prossimo_general",
     "label": "Imperfect for a past state (era stanca)",
     "any_phrases": [
-     "era"
+     {
+      "phrase": "era",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "è stata"
+     {
+      "phrase": "è stata",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -281,7 +329,7 @@
    }
   ],
   "explanation": "'Quella sera Maria era molto stanca: aveva lavorato dodici ore di fila.' means 'That evening Maria was very tired: she had worked twelve hours straight.' When you describe how someone felt at a past point, you're naming a state, not an event. Italian uses the imperfect indicative for past states and descriptions. The second clause ('aveva lavorato dodici ore di fila') explains the state's cause; both halves describe a condition rather than narrate a happening. È stata stanca would treat the tiredness as a closed event, which is dispreferred for stative descriptions.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_imp_pp_gen_08",
@@ -307,17 +355,26 @@
     "bucket": "verb_form.imperfect.discrimination.vs_passato_prossimo_general",
     "label": "Imperfect for habitual past contrasted with a PP exception (andavamo)",
     "any_phrases": [
-     "andavamo"
+     {
+      "phrase": "andavamo",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "siamo andati",
-     "siamo andate"
+     {
+      "phrase": "siamo andati",
+      "match_at": "word"
+     },
+     {
+      "phrase": "siamo andate",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Ogni inverno andavamo in montagna a sciare, ma l'anno scorso siamo restati a casa per il freddo.' means 'Every winter we used to go to the mountains to ski, but last year we stayed at home because of the cold.' When you describe what your family used to do every winter and then flag a specific exception, the routine sits in the imperfect indicative and the exception sits in the passato prossimo. 'Ogni inverno' is a habitual cue; 'l'anno scorso siamo restati' singles out the year that broke the pattern. Siamo andati would collapse the routine into a single event, losing the recurring reading the first clause needs.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_imp_pp_sap_01",
@@ -343,10 +400,16 @@
     "bucket": "verb_form.imperfect.discrimination.modals.sapere",
     "label": "Imperfect of sapere for an ongoing state of knowledge (sapevo)",
     "any_phrases": [
-     "sapevo"
+     {
+      "phrase": "sapevo",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "ho saputo"
+     {
+      "phrase": "ho saputo",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -363,7 +426,7 @@
    }
   ],
   "explanation": "'Quando l'ho incontrata, sapevo già che era incinta.' means 'When I ran into her, I already knew she was pregnant.' When you say you 'already knew' something at a past moment, you're describing a state you carried into that moment, not the moment of finding out. Italian's modal verb sapere flips meaning between the imperfect indicative (sapevo = knew, state) and the passato prossimo (ho saputo = found out, event). The cues 'già' and the prior-knowledge clause 'me l'aveva detto sua sorella la settimana prima' fix the state reading. Ho saputo would suggest the encounter itself was when you learnt the news, which the sentence rules out.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_imp_pp_sap_02",
@@ -389,10 +452,16 @@
     "bucket": "verb_form.imperfect.discrimination.modals.sapere",
     "label": "PP of sapere for the event of learning (ho saputo)",
     "any_phrases": [
-     "ho saputo"
+     {
+      "phrase": "ho saputo",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "sapevo"
+     {
+      "phrase": "sapevo",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -409,7 +478,7 @@
    }
   ],
   "explanation": "'Ho saputo la notizia della sua morte dal giornale di stamattina.' means 'I found out about his death from this morning's paper.' When you pinpoint the moment you found something out, you're naming a single event of learning, not a continuing state. Italian's modal verb sapere uses the passato prossimo (ho saputo) for the event-of-learning reading and the imperfect indicative for the prior-state reading. The cues 'dal giornale di stamattina' and the follow-on 'sono rimasto sconvolto' both fix the news as something that landed at a specific moment. Sapevo would mean you already knew, which contradicts the shock the second clause describes.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_imp_pp_sap_03",
@@ -435,10 +504,16 @@
     "bucket": "verb_form.imperfect.discrimination.modals.sapere",
     "label": "Imperfect of sapere for ongoing knowledge / mastery (sapeva)",
     "any_phrases": [
-     "sapeva"
+     {
+      "phrase": "sapeva",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "ha saputo"
+     {
+      "phrase": "ha saputo",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -455,7 +530,7 @@
    }
   ],
   "explanation": "'Mia nonna sapeva a memoria tutte le poesie di Leopardi.' means 'My grandmother knew all of Leopardi's poems by heart.' When you say someone 'knew' a body of material in the long-haul sense, the reading is a continuing state of mastery, not the moment they picked it up. Italian's modal verb sapere uses the imperfect indicative for that ongoing-knowledge reading. The duration cue 'anche dopo i novant'anni' makes clear the knowledge ran across years. Ha saputo would mean she 'found out' the poems at some particular moment, which doesn't fit a lifelong familiarity.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_imp_pp_sap_04",
@@ -481,16 +556,22 @@
     "bucket": "verb_form.imperfect.discrimination.modals.sapere",
     "label": "PP of sapere for the moment of finding out (ho saputo)",
     "any_phrases": [
-     "ho saputo"
+     {
+      "phrase": "ho saputo",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "sapevo"
+     {
+      "phrase": "sapevo",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Ho saputo del divorzio solo ieri, mentre prendevo un caffè con Lucia.' means 'I only found out about the divorce yesterday, while I was having a coffee with Lucia.' When you flag the exact moment you found something out, the verb names an event of learning. Italian's modal verb sapere uses the passato prossimo for that event reading and the imperfect indicative for the prior-state reading. The cue 'solo ieri' rules out any earlier knowledge, and 'mentre prendevo un caffè con Lucia' frames the coffee chat as the moment of discovery. Sapevo would suggest you'd been aware all along, contradicting 'solo ieri'.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_imp_pp_sap_05",
@@ -516,16 +597,22 @@
     "bucket": "verb_form.imperfect.discrimination.modals.sapere",
     "label": "Imperfect of sapere for an ongoing state of not-knowing (non sapevo)",
     "any_phrases": [
-     "sapevo"
+     {
+      "phrase": "sapevo",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "ho saputo"
+     {
+      "phrase": "ho saputo",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Non sapevo niente del progetto fino a quando Marco non me l'ha spiegato in dettaglio.' means 'I knew nothing about the project until Marco explained it to me in detail.' When you say you 'knew nothing' across a stretch of past time before someone explained it, you're describing a sustained state of ignorance, not a single event. Italian's modal verb sapere uses the imperfect indicative for that ongoing-state reading, even under negation. The frame 'fino a quando...mi ha spiegato' bounds the not-knowing as a period that ran up to a later moment. Ho saputo would mean you 'didn't find out' at that moment, which doesn't fit the long stretch of prior ignorance the sentence sets up.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_imp_pp_dov_01",
@@ -551,16 +638,22 @@
     "bucket": "verb_form.imperfect.discrimination.modals.dovere",
     "label": "Imperfect of dovere for 'was supposed to' (dovevo)",
     "any_phrases": [
-     "dovevo"
+     {
+      "phrase": "dovevo",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "ho dovuto"
+     {
+      "phrase": "ho dovuto",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Dovevo studiare per l'esame, ma alla fine ho preferito uscire con gli amici.' means 'I was supposed to study for the exam, but in the end I chose to go out with friends.' When you describe an obligation that hung over you and then say you didn't act on it, the obligation stayed unresolved. Italian's modal verb dovere uses the imperfect indicative for the 'was supposed to' reading, where completion is left open or actively undone. The contrast 'ma alla fine ho preferito uscire' tells you the studying didn't actually happen. Ho dovuto studiare would commit to the studying having taken place, which the second clause overturns.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_imp_pp_dov_02",
@@ -586,10 +679,16 @@
     "bucket": "verb_form.imperfect.discrimination.modals.dovere",
     "label": "PP of dovere for 'had to and did' (ho dovuto)",
     "any_phrases": [
-     "ho dovuto"
+     {
+      "phrase": "ho dovuto",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "dovevo"
+     {
+      "phrase": "dovevo",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -610,7 +709,7 @@
    }
   ],
   "explanation": "'Ieri ho dovuto lavorare fino a mezzanotte per finire la relazione in tempo.' means 'Yesterday I had to work until midnight to get the report finished on time.' When an obligation kicked in and got carried out on a specific past day, the verb names a completed event. Italian's modal verb dovere uses the passato prossimo for the 'had to, and actually did' reading. The cue 'ieri' anchors the work to a particular day, and 'per finire la relazione in tempo' implies the deadline was met. Dovevo lavorare would leave open whether the work happened, which doesn't match a definite past day.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_imp_pp_dov_03",
@@ -636,10 +735,16 @@
     "bucket": "verb_form.imperfect.discrimination.modals.dovere",
     "label": "PP of dovere for 'had to and did' (ho dovuto)",
     "any_phrases": [
-     "ho dovuto"
+     {
+      "phrase": "ho dovuto",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "dovevo"
+     {
+      "phrase": "dovevo",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -656,7 +761,7 @@
    }
   ],
   "explanation": "'Mio nonno stava male, così ho dovuto accompagnarlo al pronto soccorso.' means 'My grandfather was unwell, so I had to take him to A&E.' When a sudden situation forces you into action and the action gets carried out, the verb names a completed event. Italian's modal verb dovere uses the passato prossimo for the 'had to and did' reading. The chain 'mio nonno stava male, così...' makes the obligation a one-off response and implies the trip to A&E actually happened. Dovevo accompagnarlo would leave the trip open, which doesn't match an emergency that's been resolved in narration.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_imp_pp_dov_04",
@@ -682,16 +787,22 @@
     "bucket": "verb_form.imperfect.discrimination.modals.dovere",
     "label": "Imperfect of dovere for a planned/expected obligation (doveva)",
     "any_phrases": [
-     "doveva"
+     {
+      "phrase": "doveva",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "ha dovuto"
+     {
+      "phrase": "ha dovuto",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Anna doveva presentare la tesi alle dieci, ma è arrivata in ritardo.' means 'Anna was supposed to present her thesis at ten, but she arrived late.' When you describe a plan or arrangement that was on the books for a past moment, the verb names an expectation rather than a fulfilled event. Italian's modal verb dovere uses the imperfect indicative for that 'was supposed to' reading. The second clause ('è arrivata in ritardo e ha rimandato') tells you the scheduled action didn't happen at ten as planned. Ha dovuto presentare would commit to her having actually presented at ten, which the continuation overturns.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_imp_pp_dov_05",
@@ -717,10 +828,16 @@
     "bucket": "verb_form.imperfect.discrimination.modals.dovere",
     "label": "PP of dovere for 'had to and did' (ho dovuto)",
     "any_phrases": [
-     "ho dovuto"
+     {
+      "phrase": "ho dovuto",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "dovevo"
+     {
+      "phrase": "dovevo",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -741,7 +858,7 @@
    }
   ],
   "explanation": "'Per quel concorso ho dovuto preparare una presentazione di trenta pagine in una sola settimana.' means 'For that competition I had to put together a thirty-page presentation in a single week.' When you describe a closed past project that demanded a specific effort, the verb names the effort as something that got done. Italian's modal verb dovere uses the passato prossimo for the 'had to and did' reading. The cue 'per quel concorso...in una sola settimana' pins the work to a finished episode. Dovevo preparare would leave the preparation open, which doesn't fit a project the speaker is summarising in retrospect.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_imp_pp_pot_01",
@@ -767,10 +884,16 @@
     "bucket": "verb_form.imperfect.discrimination.modals.potere",
     "label": "Imperfect of potere for 'could have' (potevo)",
     "any_phrases": [
-     "potevo"
+     {
+      "phrase": "potevo",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "ho potuto"
+     {
+      "phrase": "ho potuto",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -791,7 +914,7 @@
    }
   ],
   "explanation": "'Potevo aiutarti con il trasloco, ma non me l'hai chiesto.' means 'I could have helped you with the move, but you didn't ask me.' When you describe a past ability that was available but never got used, the verb names a potential, not a completed action. Italian's modal verb potere uses the imperfect indicative for the 'could have' reading, where the ability existed but the action didn't happen. The follow-up 'ma non me l'hai chiesto' confirms no help was actually given. Ho potuto aiutarti would mean you actually managed to help, contradicting the second clause.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_imp_pp_pot_02",
@@ -817,10 +940,16 @@
     "bucket": "verb_form.imperfect.discrimination.modals.potere",
     "label": "PP of potere for 'managed to' (ho potuto)",
     "any_phrases": [
-     "ho potuto"
+     {
+      "phrase": "ho potuto",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "potevo"
+     {
+      "phrase": "potevo",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -841,7 +970,7 @@
    }
   ],
   "explanation": "'Dopo molti tentativi, finalmente ho potuto parlare con il direttore in persona.' means 'After many attempts, I finally managed to speak to the director in person.' When you describe getting something done against resistance and frame it as the moment of breakthrough, the verb names an achieved event. Italian's modal verb potere uses the passato prossimo for the 'managed to' reading, often with an against-odds nuance. The cues 'dopo molti tentativi' and 'finalmente' both flag the achievement as the point of the sentence. Potevo parlare would describe a standing possibility, which loses the 'finally got there' meaning the sentence is building toward.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_imp_pp_pot_03",
@@ -867,16 +996,22 @@
     "bucket": "verb_form.imperfect.discrimination.modals.potere",
     "label": "Imperfect of potere for habitual past ability (poteva)",
     "any_phrases": [
-     "poteva"
+     {
+      "phrase": "poteva",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "ha potuto"
+     {
+      "phrase": "ha potuto",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Da giovane Anna poteva studiare per dieci ore di fila senza alcun problema.' means 'When she was young, Anna could study for ten hours straight without any trouble.' When you describe a general capacity that someone had across a past life-stage, the verb names a standing ability, not a specific success. Italian's modal verb potere uses the imperfect indicative for habitual past ability. The frame 'da giovane' marks the ability as something Anna routinely had across a long period. Ha potuto studiare would name one specific time she managed it, which doesn't match a description of her capacity in general.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_imp_pp_pot_04",
@@ -902,10 +1037,16 @@
     "bucket": "verb_form.imperfect.discrimination.modals.potere",
     "label": "PP of potere for 'managed to' (ho potuto)",
     "any_phrases": [
-     "ho potuto"
+     {
+      "phrase": "ho potuto",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "potevo"
+     {
+      "phrase": "potevo",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -926,7 +1067,7 @@
    }
   ],
   "explanation": "'Solo grazie a un amico ho potuto visitare la mostra senza fare la fila.' means 'Only thanks to a friend was I able to get into the exhibition without queuing.' When a particular bit of help makes a one-off success possible, the verb names that success as an event. Italian's modal verb potere uses the passato prossimo for the 'managed to' reading. The framing 'solo grazie a un amico' attributes the achievement to a specific intervention, and 'senza fare la fila' names the concrete benefit gained. Potevo visitare would describe a standing possibility, losing the 'managed thanks to a specific bit of luck' meaning.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_imp_pp_pot_05",
@@ -952,10 +1093,16 @@
     "bucket": "verb_form.imperfect.discrimination.modals.potere",
     "label": "Imperfect of potere for a sustained past constraint (potevo)",
     "any_phrases": [
-     "potevo"
+     {
+      "phrase": "potevo",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "ho potuto"
+     {
+      "phrase": "ho potuto",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -972,7 +1119,7 @@
    }
   ],
   "explanation": "'In quel periodo potevo vedere mia figlia solo nei weekend, per via del lavoro.' means 'In that period I could only see my daughter at weekends, because of work.' When you describe a stretch of past life in which a routine constraint shaped what you could and couldn't do, the verb names the standing limit, not a one-off success. Italian's modal verb potere uses the imperfect indicative for that habitual-constraint reading. 'In quel periodo' bounds the stretch and 'solo nei weekend' marks the pattern that ran through it. Ho potuto vedere would single out one specific weekend, which doesn't fit a recurring arrangement.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_imp_pp_vol_01",
@@ -998,16 +1145,22 @@
     "bucket": "verb_form.imperfect.discrimination.modals.volere",
     "label": "Imperfect of volere for 'wanted to' (volevo)",
     "any_phrases": [
-     "volevo"
+     {
+      "phrase": "volevo",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "ho voluto"
+     {
+      "phrase": "ho voluto",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Volevo dirti una cosa importante, ma è arrivata gente e non sono riuscito a parlarti.' means 'I wanted to tell you something important, but people turned up and I couldn't get you alone.' When you describe an intention that you held at a past moment but didn't follow through on, the verb names the wish, not the act. Italian's modal verb volere uses the imperfect indicative for the 'wanted to' reading, where the wanting stayed unfulfilled. The follow-up 'ma è arrivata gente e non sono riuscito' confirms the act never happened. Ho voluto dirti would carry the 'insisted on telling you' meaning, which clashes with the rest of the sentence.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_imp_pp_vol_02",
@@ -1033,16 +1186,22 @@
     "bucket": "verb_form.imperfect.discrimination.modals.volere",
     "label": "PP of volere for 'insisted on' (ha voluto)",
     "any_phrases": [
-     "ha voluto"
+     {
+      "phrase": "ha voluto",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "voleva"
+     {
+      "phrase": "voleva",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Maria ha voluto confessare la verità ai genitori, anche se sapeva che si sarebbero arrabbiati.' means 'Maria insisted on telling her parents the truth, even though she knew they'd be angry.' When someone pushed ahead with a hard decision despite knowing the cost, the verb names the act of insisting, not just the wish. Italian's modal verb volere uses the passato prossimo for the 'insisted on (and did)' reading. The clause 'anche se sapeva che si sarebbero arrabbiati' weighs against any 'just considering it' reading; it implies Maria went through with the confession. Voleva confessare would leave the confession open, losing the resolve the second clause sets up.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_imp_pp_vol_03",
@@ -1068,16 +1227,22 @@
     "bucket": "verb_form.imperfect.discrimination.modals.volere",
     "label": "Imperfect of volere for an unfulfilled impulse (voleva)",
     "any_phrases": [
-     "voleva"
+     {
+      "phrase": "voleva",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "ha voluto"
+     {
+      "phrase": "ha voluto",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'In quel momento Marco voleva chiamare sua madre, ma non aveva il telefono con sé.' means 'At that moment Marco wanted to call his mother, but he didn't have his phone on him.' When someone had the urge to do something at a past moment but a practical obstacle blocked it, the verb names the urge, not the act. Italian's modal verb volere uses the imperfect indicative for an unfulfilled impulse. The obstacle 'ma non aveva il telefono con sé' makes clear the call didn't happen. Ha voluto chiamare would imply he went ahead and called, which the second clause rules out.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_imp_pp_vol_04",
@@ -1103,10 +1268,16 @@
     "bucket": "verb_form.imperfect.discrimination.modals.volere",
     "label": "PP of volere for 'insisted on (and did)' (ha voluto)",
     "any_phrases": [
-     "ha voluto"
+     {
+      "phrase": "ha voluto",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "voleva"
+     {
+      "phrase": "voleva",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -1127,7 +1298,7 @@
    }
   ],
   "explanation": "'Mio nonno ha voluto pagare il conto a tutti, nonostante avessimo insistito per dividere.' means 'My grandfather insisted on paying everyone's bill, even though we'd pushed to split it.' When someone got their way against the protests of others, the verb names the act of insisting, not just the wish. Italian's modal verb volere uses the passato prossimo for that 'insisted on and got it done' reading. The clause 'nonostante avessimo insistito' establishes the protests and implies the grandfather overrode them. Voleva pagare would describe a standing wish, losing the moment of insistence the sentence is built around.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_imp_pp_vol_05",
@@ -1153,16 +1324,22 @@
     "bucket": "verb_form.imperfect.discrimination.modals.volere",
     "label": "PP of volere for self-imposed insistence (ho voluto)",
     "any_phrases": [
-     "ho voluto"
+     {
+      "phrase": "ho voluto",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "volevo"
+     {
+      "phrase": "volevo",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Alla fine ho voluto essere io a guidare fino a casa, anche se ero stanchissima.' means 'In the end I insisted on being the one to drive home, even though I was exhausted.' When you describe a decision you stuck to despite a reason against it, the verb names your act of insisting. Italian's modal verb volere uses the passato prossimo for the 'insisted on (and did)' reading, including the case where you insist against your own better interest. The cue 'alla fine' and the contrast 'anche se ero stanchissima' both fix the choice as resolved and acted on. Volevo essere would leave the driving open, which doesn't fit a sentence that's clearly settling what happened.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_imp_pp_con_01",
@@ -1188,16 +1365,22 @@
     "bucket": "verb_form.imperfect.discrimination.modals.conoscere",
     "label": "Imperfect of conoscere for an ongoing state of acquaintance (conoscevo)",
     "any_phrases": [
-     "conoscevo"
+     {
+      "phrase": "conoscevo",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "ho conosciuto"
+     {
+      "phrase": "ho conosciuto",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Conoscevo già Anna prima del matrimonio: lavoravamo nello stesso ufficio da anni.' means 'I already knew Anna before the wedding: we'd been working in the same office for years.' When you say you 'knew' someone in the long-standing acquaintance sense, you're describing a relationship that ran across time. Italian's modal verb conoscere flips meaning between the imperfect indicative (conoscevo = was acquainted with) and the passato prossimo (ho conosciuto = met for the first time). The cues 'già' and 'lavoravamo nello stesso ufficio da anni' lock in the long acquaintance reading. Ho conosciuto would point to the moment of first meeting, which the years of shared office rule out.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_imp_pp_con_02",
@@ -1223,16 +1406,22 @@
     "bucket": "verb_form.imperfect.discrimination.modals.conoscere",
     "label": "PP of conoscere for the event of first meeting (ho conosciuto)",
     "any_phrases": [
-     "ho conosciuto"
+     {
+      "phrase": "ho conosciuto",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "conoscevo"
+     {
+      "phrase": "conoscevo",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Ho conosciuto mio marito a una festa di compleanno una sera d'estate.' means 'I met my husband at a birthday party one summer evening.' When you describe the first time you met someone, you're naming a single event of meeting. Italian's modal verb conoscere uses the passato prossimo for the 'met for the first time' reading. The setting cues 'a una festa di compleanno' and 'una sera d'estate' frame the meeting as a defined moment. Conoscevo mio marito would mean you already knew him, which doesn't fit a sentence describing where you first crossed paths.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_imp_pp_con_03",
@@ -1258,10 +1447,16 @@
     "bucket": "verb_form.imperfect.discrimination.modals.conoscere",
     "label": "Imperfect of conoscere for a past state of non-acquaintance (conoscevo)",
     "any_phrases": [
-     "conoscevo"
+     {
+      "phrase": "conoscevo",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "ho conosciuto"
+     {
+      "phrase": "ho conosciuto",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -1278,7 +1473,7 @@
    }
   ],
   "explanation": "'Quando mi sono trasferita a Bologna, non conoscevo ancora nessuno in città.' means 'When I moved to Bologna, I didn't know anyone in the city yet.' When you describe a state you were in at a past moment ('I didn't know anyone yet'), the verb names a continuing condition, not an event. Italian's modal verb conoscere uses the imperfect indicative for that state-of-acquaintance reading, including under negation. The cue 'ancora nessuno' tells you the state ran up to the moment in question without anyone having been met yet. Ho conosciuto would mean 'I didn't meet anyone', which would describe failing to meet people at a specific event, not the standing situation on arrival.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_imp_pp_con_04",
@@ -1304,16 +1499,22 @@
     "bucket": "verb_form.imperfect.discrimination.modals.conoscere",
     "label": "PP of conoscere for the event of meeting (abbiamo conosciuto)",
     "any_phrases": [
-     "abbiamo conosciuto"
+     {
+      "phrase": "abbiamo conosciuto",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "conoscevamo"
+     {
+      "phrase": "conoscevamo",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Ieri sera, alla cena dei colleghi, abbiamo conosciuto una persona davvero interessante.' means 'Last night, at the work dinner, we met a really interesting person.' When you tell someone about meeting a new person at a specific event, the verb names a one-off introduction. Italian's modal verb conoscere uses the passato prossimo for the 'met for the first time' reading. The cues 'ieri sera' and 'alla cena dei colleghi' fix the encounter to a defined moment. Conoscevamo would mean you already knew the person, which clashes with the 'new acquaintance' nuance the sentence is building.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_imp_pp_con_05",
@@ -1339,10 +1540,16 @@
     "bucket": "verb_form.imperfect.discrimination.modals.conoscere",
     "label": "Imperfect of conoscere for prior familiarity (conoscevo)",
     "any_phrases": [
-     "conoscevo"
+     {
+      "phrase": "conoscevo",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "ho conosciuto"
+     {
+      "phrase": "ho conosciuto",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -1363,7 +1570,7 @@
    }
   ],
   "explanation": "'Conoscevo già la sua musica perché avevo letto un articolo su una rivista qualche mese prima.' means 'I already knew her music because I'd read an article in a magazine a few months earlier.' When you say you 'already knew' a body of work coming into a moment, you're describing a state of prior familiarity. Italian's modal verb conoscere uses the imperfect indicative for that standing-familiarity reading, even when the object is a creative output rather than a person. The cues 'già' and the explanatory 'perché avevo letto un articolo...qualche mese prima' anchor the familiarity in time. Ho conosciuto la sua musica would point to a moment of first encounter, which doesn't fit a sentence that's locating the familiarity earlier than the current scene.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_prog_pres_01",
@@ -1389,16 +1596,22 @@
     "bucket": "tense_choice.progressive_vs_simple.present_progressive_vs_present",
     "label": "Simple present for habit (fai)",
     "any_phrases": [
-     "fai"
+     {
+      "phrase": "fai",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "stai facendo"
+     {
+      "phrase": "stai facendo",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Tua sorella ti chiede al telefono cosa fai di solito la domenica mattina.' means 'Your sister asks you on the phone what you usually do on Sunday mornings.' When you ask someone about a habit or routine, the verb names a recurring pattern rather than something unfolding right at this moment. Italian uses the simple present indicative for habitual activity, even where English would readily use 'are doing' (as in 'what are you doing on Sundays these days?'). The cue 'di solito' (usually) makes the habit reading explicit. Stai facendo would frame the action as in-progress right now, which doesn't fit a question about typical Sunday mornings.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_prog_pres_02",
@@ -1430,13 +1643,16 @@
      }
     ],
     "must_not_include": [
-     "sta lavorando"
+     {
+      "phrase": "sta lavorando",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Carlo lavora in banca da quindici anni e si occupa di prestiti per le piccole imprese.' means 'Carlo has worked at a bank for fifteen years and handles loans for small businesses.' When you describe someone's job as a long-standing condition of their life, the verb names a stable state, not an in-progress action. Italian uses the simple present indicative for occupations and other stative descriptions. The duration phrase 'da quindici anni' (for fifteen years) marks the working-at-the-bank as a state that has held across a long stretch. Sta lavorando would mean he is at the bank right now, working, which doesn't match a sentence about his career.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_prog_pres_03",
@@ -1462,16 +1678,22 @@
     "bucket": "tense_choice.progressive_vs_simple.present_progressive_vs_present",
     "label": "Present progressive for genuinely in-progress right now (sto facendo)",
     "any_phrases": [
-     "sto facendo"
+     {
+      "phrase": "sto facendo",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "faccio"
+     {
+      "phrase": "faccio",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Non posso parlarti adesso: sto facendo una telefonata importante con un cliente.' means 'I can't talk to you right now: I'm on an important call with a client.' When you tell someone you can't be interrupted because an action is genuinely unfolding at this very moment, the progressive form earns its keep. Italian uses the present progressive (stare + gerundio) for emphatically-in-progress actions. The cues 'non posso parlarti adesso' and the present-moment framing fix the call as live and ongoing. Faccio una telefonata would be the unmarked answer and would describe a habit or a plan; it loses the 'I'm on it right now, please don't interrupt' meaning the sentence needs.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_prog_pres_04",
@@ -1503,13 +1725,16 @@
      }
     ],
     "must_not_include": [
-     "sta giocando"
+     {
+      "phrase": "sta giocando",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Mio fratello gioca ogni sera con i suoi amici online dopo cena.' means 'My brother plays online with his friends every evening after dinner.' When you describe an evening routine, the verb names a recurring habit, not something happening as you speak. Italian uses the simple present indicative for habitual activity even where English speakers reach for 'is playing'. The cue 'ogni sera...dopo cena' (every evening after dinner) makes the routine reading explicit. Sta giocando would fix the action as right-now, which doesn't fit a general statement about what he does after dinner.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_prog_pres_05",
@@ -1535,10 +1760,16 @@
     "bucket": "tense_choice.progressive_vs_simple.present_progressive_vs_present",
     "label": "Present progressive for vivid in-the-moment scene (sta tagliando)",
     "any_phrases": [
-     "sta tagliando"
+     {
+      "phrase": "sta tagliando",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "taglia"
+     {
+      "phrase": "taglia",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -1555,7 +1786,7 @@
    }
   ],
   "explanation": "'Guarda dalla finestra! Marco sta tagliando l'erba sotto la pioggia battente.' means 'Look out of the window! Marco is mowing the lawn in the pouring rain.' When you point at a scene as it's unfolding and want the listener to picture it live, the progressive form does work the simple present can't. Italian uses the present progressive for vividly-in-progress action that the speaker is calling attention to. The opener 'Guarda dalla finestra!' and the exclamation 'è impazzito!' both signal that the action is being witnessed in real time. Taglia l'erba would be a neutral statement about the activity in general, losing the live-witnessing flavour the sentence is built around.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_prog_past_01",
@@ -1581,16 +1812,22 @@
     "bucket": "tense_choice.progressive_vs_simple.past_progressive_vs_imperfetto",
     "label": "Imperfetto as the default for past ongoing action (preparavo)",
     "any_phrases": [
-     "preparavo"
+     {
+      "phrase": "preparavo",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "stavo preparando"
+     {
+      "phrase": "stavo preparando",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Mentre preparavo la cena, il telefono ha squillato all'improvviso e mi ha distratto.' means 'While I was making dinner, the phone suddenly rang and distracted me.' When you describe a routine past action that was unfolding when something else interrupted it, the imperfect indicative is Italian's default. The past progressive (stare + gerundio in the imperfect) is reserved for emphasis on the vividly-in-the-moment quality of the action. The cue 'mentre' + 'ha squillato all'improvviso' fits the standard background-action plus interrupting-event pattern, which the unmarked imperfect already carries. Stavo preparando is grammatical but adds a vividness this neutral sentence doesn't need.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_prog_past_02",
@@ -1616,16 +1853,22 @@
     "bucket": "tense_choice.progressive_vs_simple.past_progressive_vs_imperfetto",
     "label": "Past progressive for highlighted coincidence (stavamo parlando)",
     "any_phrases": [
-     "stavamo parlando"
+     {
+      "phrase": "stavamo parlando",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "parlavamo"
+     {
+      "phrase": "parlavamo",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Proprio in quel momento, mentre stavamo parlando di Anna a bassa voce, lei è entrata nella stanza.' means 'Just at that moment, while we were talking about Anna in low voices, she walked into the room.' When a past coincidence is being played up for its 'right at that very moment' drama, the past progressive lends a vividness the imperfect indicative on its own doesn't quite carry. Italian uses stare + gerundio (in the imperfect) for emphatic real-time backdrops. The cue 'proprio in quel momento' (right at that very moment) and the awkward 'a bassa voce' (in hushed voices) both push the framing toward live, on-the-spot embarrassment. Parlavamo would be grammatical but flatter; the sentence's literary set-up calls for the marked form.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_prog_past_03",
@@ -1651,16 +1894,22 @@
     "bucket": "tense_choice.progressive_vs_simple.past_progressive_vs_imperfetto",
     "label": "Imperfetto for stative past description (indossava)",
     "any_phrases": [
-     "indossava"
+     {
+      "phrase": "indossava",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "stava indossando"
+     {
+      "phrase": "stava indossando",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Quando l'ho rivisto dopo anni, indossava una giacca grigia che non gli avevo mai visto prima.' means 'When I saw him again after years, he was wearing a grey jacket I'd never seen on him before.' When you describe what someone was wearing at a past moment, the verb names a state of being clothed, not the act of putting clothes on. Italian uses the imperfect indicative for clothing and similar stative descriptions in the past. The cue 'una giacca grigia che non gli avevo mai visto prima' frames the jacket as a visual feature of the encounter, not a process the wearer was carrying out. Stava indossando would suggest he was in the act of putting the jacket on, which doesn't fit a description of how he looked.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_prog_past_04",
@@ -1686,16 +1935,22 @@
     "bucket": "tense_choice.progressive_vs_simple.past_progressive_vs_imperfetto",
     "label": "Past progressive for a vivid, freeze-frame moment (stava alzando)",
     "any_phrases": [
-     "stava alzando"
+     {
+      "phrase": "stava alzando",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "alzava"
+     {
+      "phrase": "alzava",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Proprio nel momento in cui il treno è partito, lei stava alzando la mano per salutarmi.' means 'Just as the train pulled out, she was raising her hand to wave to me.' When a memory zooms in on the exact instant an action was unfolding, the past progressive captures the freeze-frame quality the imperfect indicative alone doesn't reach. Italian uses stare + gerundio (in the imperfect) for this kind of marked, in-the-moment recall. The cues 'ricordo che' and 'proprio nel momento in cui il treno è partito' both signal a vivid memory of one precise instant. Alzava would describe a habit or background action, losing the cinematic feel the rest of the sentence is building.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_fut_unamb_01",
@@ -1721,16 +1976,22 @@
     "bucket": "tense_choice.future_vs_present.future_for_unambiguous_future",
     "label": "Morphological future for distant / uncertain future (parlerò)",
     "any_phrases": [
-     "parlerò"
+     {
+      "phrase": "parlerò",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "parlo"
+     {
+      "phrase": "parlo",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Un giorno, quando avrò abbastanza tempo libero, parlerò italiano fluentemente.' means 'One day, when I have enough free time, I'll speak Italian fluently.' When the future you're describing is genuinely far off and not pinned to any clear date, Italian uses the morphological future tense rather than the present-for-future shortcut. The cue 'un giorno...quando avrò abbastanza tempo' frames the wish as open-ended, not as a near-term plan. Parlo italiano fluentemente would be a present-tense claim about how you speak right now, which clashes with the 'one day' framing the sentence relies on.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_fut_unamb_02",
@@ -1756,16 +2017,22 @@
     "bucket": "tense_choice.future_vs_present.future_for_unambiguous_future",
     "label": "Future of probability (saranno = it must be)",
     "any_phrases": [
-     "saranno"
+     {
+      "phrase": "saranno",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "sono"
+     {
+      "phrase": "sono",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Non ho l'orologio, ma guardando il sole saranno già le tre passate.' means 'I haven't got a watch, but going by the sun it must be gone three already.' When you make an estimate that hedges a present claim with uncertainty, Italian reaches for the morphological future even though no actual future time is involved. The cue 'non ho l'orologio, ma guardando il sole' signals a guess rather than a known fact. Sono già le tre would assert the time as certain, losing the 'I'm estimating' quality the speaker needs.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_fut_unamb_03",
@@ -1791,10 +2058,16 @@
     "bucket": "tense_choice.future_vs_present.future_for_unambiguous_future",
     "label": "Future of probability for age estimate (avrà)",
     "any_phrases": [
-     "avrà"
+     {
+      "phrase": "avrà",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "ha"
+     {
+      "phrase": "ha",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -1815,7 +2088,7 @@
    }
   ],
   "explanation": "'Non so quanti anni ha la nuova vicina, ma avrà una sessantina.' means 'I don't know how old the new neighbour is, but she must be about sixty.' When you estimate someone's age out loud, Italian uses the morphological future to mark the uncertainty, even though the topic is the present. The cues 'non so esattamente' and 'a giudicare dall'aspetto' tag the claim as an inference rather than a fact. Ha una sessantina would commit to the age as known, which the sentence explicitly disclaims.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_fut_unamb_04",
@@ -1841,16 +2114,22 @@
     "bucket": "tense_choice.future_vs_present.future_for_unambiguous_future",
     "label": "Morphological future for genuinely uncertain plan (andrò)",
     "any_phrases": [
-     "andrò"
+     {
+      "phrase": "andrò",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "vado"
+     {
+      "phrase": "vado",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Non so ancora cosa farò dopo la laurea: forse andrò in Germania a cercare lavoro.' means 'I don't know yet what I'll do after graduating: maybe I'll go to Germany to look for work.' When a plan is up in the air and no fixed time anchor pins it down, Italian uses the morphological future rather than the present-for-future shortcut. The opener 'non so ancora cosa farò' and the hedge 'forse' both flag the plan as undecided. Vado in Germania would commit to a definite trip, which the surrounding uncertainty rules out.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_fut_unamb_05",
@@ -1876,16 +2155,22 @@
     "bucket": "tense_choice.future_vs_present.future_for_unambiguous_future",
     "label": "Morphological future for hedged, conditional commitment (finirò)",
     "any_phrases": [
-     "finirò"
+     {
+      "phrase": "finirò",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "finisco"
+     {
+      "phrase": "finisco",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Se tutto va come spero, finirò il libro entro l'anno prossimo.' means 'If everything goes as I hope, I'll finish the book by next year.' When a future commitment hangs on a condition and you're flagging that the outcome isn't guaranteed, Italian uses the morphological future. The frame 'se tutto va come spero...anche se non posso garantirlo' surrounds the verb with explicit hedging. Finisco il libro would assert the completion as a definite plan, which the hedges in the sentence undercut.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_fut_pres_01",
@@ -1911,16 +2196,22 @@
     "bucket": "tense_choice.future_vs_present.present_for_near_future",
     "label": "Present for anchored near-future plan (Parto)",
     "any_phrases": [
-     "parto"
+     {
+      "phrase": "parto",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "partirò"
+     {
+      "phrase": "partirò",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Parto domani per Roma con il treno delle otto, ho già comprato il biglietto.' means 'I'm leaving for Rome tomorrow on the eight o'clock train; I've already bought the ticket.' When a future event is pinned by a clear time adverb and the plan is settled, Italian uses the simple present where English would use 'will' or 'I'm leaving tomorrow'. The cue 'domani...con il treno delle otto' anchors the trip to a specific moment, and 'ho già comprato il biglietto' confirms it's locked in. Partirò would be grammatical but adds an uncertainty that the settled plan doesn't need.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_fut_pres_02",
@@ -1946,16 +2237,22 @@
     "bucket": "tense_choice.future_vs_present.present_for_near_future",
     "label": "Present for anchored evening plan (vado)",
     "any_phrases": [
-     "vado"
+     {
+      "phrase": "vado",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "andrò"
+     {
+      "phrase": "andrò",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Stasera vado a cena dai miei genitori alle otto.' means 'Tonight I'm going to my parents' for dinner at eight.' When tonight's plans are settled and you're telling someone the schedule, Italian uses the simple present indicative. The cues 'stasera...alle otto' fix the event to a precise time, and 'mi aspettano' shows it's confirmed on both ends. Andrò would be grammatical but slot the dinner into a less-anchored, less-certain frame than the rest of the sentence implies.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_fut_pres_03",
@@ -1981,10 +2278,16 @@
     "bucket": "tense_choice.future_vs_present.present_for_near_future",
     "label": "Present for scheduled timetable event (arriva)",
     "any_phrases": [
-     "arriva"
+     {
+      "phrase": "arriva",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "arriverà"
+     {
+      "phrase": "arriverà",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -2005,7 +2308,7 @@
    }
   ],
   "explanation": "'Il treno per Milano arriva alle tre e venti dal binario sette.' means 'The train to Milan arrives at three twenty at platform seven.' When a timetable or schedule fixes a future event, Italian uses the simple present indicative, just as English does for trains, films, and similar fixed schedules ('the train arrives at 3:20'). The cues 'alle tre e venti dal binario sette' and 'secondo l'orario ufficiale' both name the train's arrival as a scheduled fact. Arriverà would loosen the framing into something uncertain, clashing with the official schedule the sentence is quoting.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_fut_pres_04",
@@ -2031,16 +2334,22 @@
     "bucket": "tense_choice.future_vs_present.present_for_near_future",
     "label": "Present for settled near-future move (vado)",
     "any_phrases": [
-     "vado"
+     {
+      "phrase": "vado",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "andrò"
+     {
+      "phrase": "andrò",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'L'anno prossimo vado a vivere a Berlino con il mio fidanzato.' means 'Next year I'm going to live in Berlin with my partner.' When the future plan is settled enough that paperwork is already done, Italian treats it as definite and uses the simple present indicative. The cue 'l'anno prossimo' anchors the move to a clear timeframe, and 'abbiamo già firmato il contratto' makes the plan irreversible. Andrò would treat the move as still uncertain, which contradicts the signed contract.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_fut_pres_05",
@@ -2066,16 +2375,22 @@
     "bucket": "tense_choice.future_vs_present.present_for_near_future",
     "label": "Present for confirmed appointment (vedo)",
     "any_phrases": [
-     "vedo"
+     {
+      "phrase": "vedo",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "vedrò"
+     {
+      "phrase": "vedrò",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Lunedì alle nove vedo il dottore per la visita di controllo annuale.' means 'On Monday at nine I'm seeing the doctor for my annual check-up.' When an appointment is on the calendar and confirmed, Italian uses the simple present indicative. The cues 'lunedì alle nove' and 'l'appuntamento è fissato da mesi' both lock the event to a defined and confirmed slot. Vedrò would suggest the meeting is still up in the air, which the long-standing booking rules out.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_cf_presc_01",
@@ -2101,16 +2416,22 @@
     "bucket": "tense_choice.conditional_vs_imperfect_counterfactual.prescriptive_conditional",
     "label": "Present conditional in counterfactual apodosis (andrei)",
     "any_phrases": [
-     "andrei"
+     {
+      "phrase": "andrei",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "andavo"
+     {
+      "phrase": "andavo",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Se avessi più tempo libero la sera, andrei a un corso di pittura senza alcuna esitazione.' means 'If I had more free time in the evenings, I'd go to a painting class without hesitating.' When you write out a contrary-to-fact 'if' in a careful or formal register, Italian pairs an imperfect subjunctive in the if-clause with the present conditional in the result clause. The prompt's 'avessi' (imperfect subjunctive) already sets up the prescriptive pattern, and 'formal writing context' fixes the register. Andavo would be the colloquial counterfactual form widely heard in speech, which the formal-writing cue rules out.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_cf_presc_02",
@@ -2136,17 +2457,26 @@
     "bucket": "tense_choice.conditional_vs_imperfect_counterfactual.prescriptive_conditional",
     "label": "Past conditional in past counterfactual apodosis (sarei venuto)",
     "any_phrases": [
-     "sarei venuto",
-     "sarei venuta"
+     {
+      "phrase": "sarei venuto",
+      "match_at": "word"
+     },
+     {
+      "phrase": "sarei venuta",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "venivo"
+     {
+      "phrase": "venivo",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Se avessi saputo della tua malattia, ti sarei venuto a trovare subito.' means 'If I had known about your illness, I would have come to see you straight away.' When a counterfactual reaches into the past ('if I had known, I would have come'), Italian pairs a pluperfect subjunctive in the if-clause with the past conditional in the result clause. The protasis 'se avessi saputo' is the pluperfect subjunctive, and the formal-letter cue fixes the register. Venivo would substitute the colloquial imperfetto, which fits chatty speech but not a written letter expressing regret.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_cf_presc_03",
@@ -2172,16 +2502,22 @@
     "bucket": "tense_choice.conditional_vs_imperfect_counterfactual.prescriptive_conditional",
     "label": "Present conditional with modal in counterfactual apodosis (potrebbe)",
     "any_phrases": [
-     "potrebbe"
+     {
+      "phrase": "potrebbe",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "poteva"
+     {
+      "phrase": "poteva",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Se Maria parlasse il cinese fluentemente, potrebbe lavorare a Pechino senza alcun problema.' means 'If Maria spoke Chinese fluently, she could work in Beijing without any trouble.' When a counterfactual with a modal verb appears in formal writing, Italian uses the present conditional of the modal in the result clause. The protasis 'se Maria parlasse' is imperfect subjunctive, and 'formal report' fixes the prescriptive register. Poteva lavorare would substitute the colloquial imperfetto, which the formal report context rules out.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_cf_presc_04",
@@ -2207,16 +2543,22 @@
     "bucket": "tense_choice.conditional_vs_imperfect_counterfactual.prescriptive_conditional",
     "label": "Present conditional in a scientific counterfactual (sarebbero)",
     "any_phrases": [
-     "sarebbero"
+     {
+      "phrase": "sarebbero",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "erano"
+     {
+      "phrase": "erano",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Se il clima continuasse a riscaldarsi a questo ritmo, le coste italiane sarebbero trasformate radicalmente entro il 2100.' means 'If the climate went on warming at this rate, the Italian coastline would be radically transformed by 2100.' When a hypothetical projection appears in scholarly writing, Italian uses the prescriptive subjunctive-plus-conditional pattern. The protasis 'se il clima continuasse' is imperfect subjunctive, and 'scientific paper' fixes the formal register; the writing convention here is strict. Erano trasformate would substitute the colloquial imperfetto, which would feel jarringly out of place in academic prose.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_cf_presc_05",
@@ -2242,16 +2584,22 @@
     "bucket": "tense_choice.conditional_vs_imperfect_counterfactual.prescriptive_conditional",
     "label": "Past conditional in a historical counterfactual (avrebbe preso)",
     "any_phrases": [
-     "avrebbe preso"
+     {
+      "phrase": "avrebbe preso",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "prendeva"
+     {
+      "phrase": "prendeva",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Se non fosse intervenuto Garibaldi, l'unificazione avrebbe preso un percorso molto diverso.' means 'If Garibaldi had not stepped in, unification would have taken a very different path.' When a historical counterfactual reaches into the past in formal essayistic prose, Italian uses the pluperfect subjunctive plus the past conditional. The protasis 'se non fosse intervenuto' is pluperfect subjunctive, and 'historical essay' fixes the register. Prendeva would substitute the colloquial imperfetto, which would clash with the essay's careful tone.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_cf_coll_01",
@@ -2277,17 +2625,26 @@
     "bucket": "tense_choice.conditional_vs_imperfect_counterfactual.colloquial_imperfect",
     "label": "Colloquial imperfetto in spoken counterfactual (venivo)",
     "any_phrases": [
-     "venivo"
+     {
+      "phrase": "venivo",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "sarei venuto",
-     "sarei venuta"
+     {
+      "phrase": "sarei venuto",
+      "match_at": "word"
+     },
+     {
+      "phrase": "sarei venuta",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Se avevo tempo ieri sera, venivo volentieri alla tua festa, ma ero stanco morto.' means 'If I'd had time last night, I'd gladly have come to your party, but I was dead tired.' When a counterfactual appears in casual, friend-to-friend speech, Italian widely uses the imperfetto in both the if-clause and the result clause. The protasis 'se avevo tempo' is already imperfetto rather than subjunctive, signalling the colloquial register; 'casual speech to a friend' confirms it. Sarei venuto would be the prescriptive past conditional, which is technically right but feels stiff in this chatty exchange.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_cf_coll_02",
@@ -2313,17 +2670,26 @@
     "bucket": "tense_choice.conditional_vs_imperfect_counterfactual.colloquial_imperfect",
     "label": "Colloquial imperfetto in spoken apology (arrivavo)",
     "any_phrases": [
-     "arrivavo"
+     {
+      "phrase": "arrivavo",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "sarei arrivato",
-     "sarei arrivata"
+     {
+      "phrase": "sarei arrivato",
+      "match_at": "word"
+     },
+     {
+      "phrase": "sarei arrivata",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Se sapevo prima della riunione, arrivavo subito per dare una mano.' means 'If I'd known about the meeting sooner, I'd have come straight over to help.' When you apologise in casual speech for not having done something, Italian's colloquial counterfactual uses the imperfetto in both clauses. The protasis 'se sapevo' is already imperfetto, and the opener 'guarda...scusami' fixes the chatty register. Sarei arrivato would be the prescriptive past conditional, which feels more formal than the apology calls for.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_cf_coll_03",
@@ -2349,16 +2715,22 @@
     "bucket": "tense_choice.conditional_vs_imperfect_counterfactual.colloquial_imperfect",
     "label": "Colloquial imperfetto inside quoted casual speech (dicevo)",
     "any_phrases": [
-     "dicevo"
+     {
+      "phrase": "dicevo",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "avrei detto"
+     {
+      "phrase": "avrei detto",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Se avevo i soldi, te lo dicevo subito, fidati di me!' means 'If I'd had the money, I'd have told you right away, trust me!' When direct speech inside a sentence preserves the original speaker's casual voice, Italian keeps the colloquial counterfactual intact. The protasis 'se avevo i soldi' is imperfetto and the framing 'mi disse...fidati di me!' fixes the chatty register. Avrei detto would substitute the past conditional and would feel awkwardly formal inside the quotation marks.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_cf_coll_04",
@@ -2384,16 +2756,22 @@
     "bucket": "tense_choice.conditional_vs_imperfect_counterfactual.colloquial_imperfect",
     "label": "Colloquial imperfetto in vivid storytelling (portavo)",
     "any_phrases": [
-     "portavo"
+     {
+      "phrase": "portavo",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "avrei portato"
+     {
+      "phrase": "avrei portato",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Se vincevo la lotteria quella sera, portavo tutti gli amici in viaggio in Sicilia!' means 'If I'd won the lottery that night, I'd have taken all my mates on a trip to Sicily!' When someone tells a story over dinner with vivid emphasis, the colloquial counterfactual carries the storytelling energy that the prescriptive form blunts. Italian uses the imperfetto in both clauses for this kind of lively, in-the-moment recounting. The protasis 'se vincevo' and the oath 'te lo giuro' both fix the casual storytelling register. Avrei portato would be technically correct but would deaden the telling.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_cf_coll_05",
@@ -2419,10 +2797,16 @@
     "bucket": "tense_choice.conditional_vs_imperfect_counterfactual.colloquial_imperfect",
     "label": "Colloquial imperfetto in informal grumble (evitavamo)",
     "any_phrases": [
-     "evitavamo"
+     {
+      "phrase": "evitavamo",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "avremmo evitato"
+     {
+      "phrase": "avremmo evitato",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -2443,7 +2827,7 @@
    }
   ],
   "explanation": "'Se ti chiamavo prima, evitavamo tutto questo casino, mi sa.' means 'If I'd rung you sooner, we'd have avoided this whole mess, I reckon.' When you grumble informally about a mess that could have been avoided, the colloquial counterfactual gives the complaint its conversational ease. Italian uses the imperfetto in both clauses for this register. The protasis 'se ti chiamavo prima' and the chatty filler 'mi sa' both fix the informal register. Avremmo evitato would be technically correct but would clash with the grumbling tone.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_subj_op_01",
@@ -2469,16 +2853,22 @@
     "bucket": "tense_choice.indicative_vs_subjunctive.opinion_triggers",
     "label": "Present subjunctive after penso che (abbia)",
     "any_phrases": [
-     "abbia"
+     {
+      "phrase": "abbia",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "ha"
+     {
+      "phrase": "ha",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Penso che Maria abbia ragione su questo punto.' means 'I think Maria is right on this point.' When a verb of personal opinion ('penso che') governs a clause, prescriptive Italian uses the present subjunctive in the embedded verb. The cue 'formal writing' fixes the register where the prescriptive form is required. Ha ragione would be the colloquial indicative widely heard in speech, but standard writing keeps the subjunctive.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_subj_op_02",
@@ -2504,16 +2894,22 @@
     "bucket": "tense_choice.indicative_vs_subjunctive.opinion_triggers",
     "label": "Present subjunctive after credo che (sia)",
     "any_phrases": [
-     "sia"
+     {
+      "phrase": "sia",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "è"
+     {
+      "phrase": "è",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Credo che il film sia molto interessante: i critici ne hanno parlato benissimo.' means 'I think the film is very interesting: the critics spoke very highly of it.' When a verb of belief ('credo che') governs a clause in writing, prescriptive Italian uses the present subjunctive. The cue 'formal review' fixes the register. È molto interessante would be the colloquial indicative, common in chatty speech but not in published criticism.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_subj_op_03",
@@ -2539,10 +2935,16 @@
     "bucket": "tense_choice.indicative_vs_subjunctive.opinion_triggers",
     "label": "Present subjunctive after mi sembra che (abbia)",
     "any_phrases": [
-     "abbia"
+     {
+      "phrase": "abbia",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "ha"
+     {
+      "phrase": "ha",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -2563,7 +2965,7 @@
    }
   ],
   "explanation": "'Mi sembra che il tuo ragionamento abbia una falla importante.' means 'It seems to me your argument has a serious flaw.' When an opinion expression like 'mi sembra che' governs a clause, prescriptive Italian uses the present subjunctive. The cue 'formal academic context' fixes the register where the prescriptive form is required. Ha una falla would be the colloquial indicative, fine in chatty speech but not in academic prose.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_subj_op_04",
@@ -2589,16 +2991,22 @@
     "bucket": "tense_choice.indicative_vs_subjunctive.opinion_triggers",
     "label": "Present subjunctive after sostenere che (abbia)",
     "any_phrases": [
-     "abbia"
+     {
+      "phrase": "abbia",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "ha"
+     {
+      "phrase": "ha",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Nel suo studio l'autore sostiene che la riforma abbia effetti negativi sull'economia delle famiglie.' means 'In his study the author argues that the reform has a negative effect on household finances.' When verbs of argued opinion ('sostenere che') introduce a claim attributed to someone else, prescriptive Italian uses the present subjunctive to flag the embedded claim as a reported position rather than a settled fact. The cue 'academic article' fixes the register where this is required. Ha effetti negativi would assert the claim as fact in the reporter's voice, which the careful attributional framing of academic prose tries to avoid.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_subj_op_05",
@@ -2624,16 +3032,22 @@
     "bucket": "tense_choice.indicative_vs_subjunctive.opinion_triggers",
     "label": "Present subjunctive after suggerire che (debba)",
     "any_phrases": [
-     "debba"
+     {
+      "phrase": "debba",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "deve"
+     {
+      "phrase": "deve",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Il rapporto suggerisce che il governo debba adottare misure più severe per limitare le emissioni.' means 'The report suggests the government should adopt stricter measures to limit emissions.' When verbs of recommendation ('suggerire che') govern a clause in writing, prescriptive Italian uses the present subjunctive. The cue 'policy paper' fixes the formal register. Deve adottare would be the colloquial indicative, acceptable in conversation but out of place in a written recommendation.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_subj_op_06",
@@ -2659,10 +3073,16 @@
     "bucket": "tense_choice.indicative_vs_subjunctive.opinion_triggers",
     "label": "Present subjunctive after trovo che (sia)",
     "any_phrases": [
-     "sia"
+     {
+      "phrase": "sia",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "è"
+     {
+      "phrase": "è",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -2679,7 +3099,7 @@
    }
   ],
   "explanation": "'Trovo che questa decisione sia azzardata, ma non ho prove sufficienti per dimostrarlo.' means 'I find this decision reckless, but I haven't enough evidence to show it.' When a verb of judgement ('trovare' in the opinion sense) governs a clause in writing, prescriptive Italian uses the present subjunctive. The cue 'formal analysis' fixes the register. È azzardata would be the colloquial indicative, fine in speech but not in careful written analysis.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_subj_em_01",
@@ -2705,16 +3125,22 @@
     "bucket": "tense_choice.indicative_vs_subjunctive.emotion_triggers",
     "label": "Present subjunctive after sono contento che (sia)",
     "any_phrases": [
-     "sia"
+     {
+      "phrase": "sia",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "sei"
+     {
+      "phrase": "sei",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Sono contento che tu sia qui con me stasera.' means 'I'm glad you're here with me tonight.' When an expression of emotion ('sono contento che') governs a clause, Italian uses the present subjunctive in the embedded verb, with much less colloquial slippage than opinion verbs allow. The phrasing 'sono contento che' marks the speaker's feeling, and the subjunctive in the embedded verb is the standard pairing. Sei qui (indicative) is heard occasionally in very casual speech but feels distinctly wrong, even informally.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_subj_em_02",
@@ -2740,16 +3166,22 @@
     "bucket": "tense_choice.indicative_vs_subjunctive.emotion_triggers",
     "label": "Present subjunctive after mi dispiace che (possa)",
     "any_phrases": [
-     "possa"
+     {
+      "phrase": "possa",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "può"
+     {
+      "phrase": "può",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Mi dispiace che Carlo non possa venire al matrimonio.' means 'I'm sorry Carlo can't come to the wedding.' When an expression of regret ('mi dispiace che') governs a clause, Italian uses the present subjunctive. The standard pairing is rigid here; even in informal speech the indicative would feel off. Non può venire would be technically grammatical as a clause on its own, but as the complement of 'mi dispiace che' it sounds wrong.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_subj_em_03",
@@ -2775,16 +3207,22 @@
     "bucket": "tense_choice.indicative_vs_subjunctive.emotion_triggers",
     "label": "Present subjunctive after spero che (vada)",
     "any_phrases": [
-     "vada"
+     {
+      "phrase": "vada",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "va"
+     {
+      "phrase": "va",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Spero che il tuo viaggio in Giappone vada bene.' means 'I hope your trip to Japan goes well.' When an expression of hope ('spero che') governs a clause, Italian uses the present subjunctive in the embedded verb. The pairing is standard and barely admits colloquial slippage. Va bene as the complement of 'spero che' would feel distinctly wrong, even informally.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_subj_em_04",
@@ -2810,16 +3248,22 @@
     "bucket": "tense_choice.indicative_vs_subjunctive.emotion_triggers",
     "label": "Present subjunctive of stare after temo che (stia)",
     "any_phrases": [
-     "stia"
+     {
+      "phrase": "stia",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "sta"
+     {
+      "phrase": "sta",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Temo che la situazione stia peggiorando giorno dopo giorno.' means 'I'm afraid the situation is getting worse day by day.' When an expression of fear or worry ('temo che') governs a clause, Italian uses the present subjunctive. The parallel construction 'e che nessuno se ne stia accorgendo' (also subjunctive 'stia') reinforces the pairing. Sta peggiorando in the embedded position would clash with both the prescriptive rule and the parallel clause.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_subj_em_05",
@@ -2845,16 +3289,22 @@
     "bucket": "tense_choice.indicative_vs_subjunctive.emotion_triggers",
     "label": "Past subjunctive after sono sorpreso che (abbia trattato)",
     "any_phrases": [
-     "abbia trattato"
+     {
+      "phrase": "abbia trattato",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "ha trattato"
+     {
+      "phrase": "ha trattato",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Sono sorpreso che il direttore abbia trattato così duramente Marco davanti a tutti i colleghi.' means 'I'm surprised the director treated Marco so harshly in front of all his colleagues.' When an expression of surprise ('sono sorpreso che') governs a clause about a past event, Italian uses the past subjunctive (subjunctive of avere/essere plus past participle). The pairing is the standard prescriptive form and resists colloquial slippage even in speech. Ha trattato would be the indicative compound past, which doesn't fit after an emotional trigger.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_subj_hyp_01",
@@ -2880,16 +3330,22 @@
     "bucket": "tense_choice.indicative_vs_subjunctive.hypothetical_triggers",
     "label": "Imperfect subjunctive after sebbene (facesse)",
     "any_phrases": [
-     "facesse"
+     {
+      "phrase": "facesse",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "faceva"
+     {
+      "phrase": "faceva",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Sebbene facesse molto freddo quel mattino, abbiamo deciso di andare comunque al mare.' means 'Although it was very cold that morning, we decided to go to the seaside anyway.' When a concessive conjunction ('sebbene') introduces a clause, Italian requires the subjunctive in the embedded verb, with almost no colloquial slippage. The pairing is structural: the conjunction itself forces the subjunctive. Faceva freddo would be indicative and is heard occasionally in very casual speech, but feels distinctly wrong as the complement of sebbene.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_subj_hyp_02",
@@ -2915,16 +3371,22 @@
     "bucket": "tense_choice.indicative_vs_subjunctive.hypothetical_triggers",
     "label": "Imperfect subjunctive after benché (fosse)",
     "any_phrases": [
-     "fosse"
+     {
+      "phrase": "fosse",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "era"
+     {
+      "phrase": "era",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Benché fosse già tardi, abbiamo continuato la riunione per altre due ore.' means 'Although it was already late, we carried on with the meeting for another two hours.' When the concessive conjunction 'benché' introduces a clause, Italian requires the subjunctive in the embedded verb, with almost no colloquial slippage. The conjunction itself is the trigger. Era tardi as the complement of benché would clash with the structural rule even in informal speech.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_subj_hyp_03",
@@ -2950,16 +3412,22 @@
     "bucket": "tense_choice.indicative_vs_subjunctive.hypothetical_triggers",
     "label": "Present subjunctive after prima che (parta)",
     "any_phrases": [
-     "parta"
+     {
+      "phrase": "parta",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "parti"
+     {
+      "phrase": "parti",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Voglio dirti una cosa importante prima che tu parta per il viaggio.' means 'I want to tell you something important before you leave on your trip.' When the time conjunction 'prima che' introduces a clause about a future or anticipated event, Italian requires the subjunctive. The pairing is structural and resists colloquial slippage. Parti (present indicative) would clash with the rule even in casual speech.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_subj_hyp_04",
@@ -2985,16 +3453,22 @@
     "bucket": "tense_choice.indicative_vs_subjunctive.hypothetical_triggers",
     "label": "Present subjunctive after affinché (possano)",
     "any_phrases": [
-     "possano"
+     {
+      "phrase": "possano",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "possono"
+     {
+      "phrase": "possono",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Ho ripetuto le istruzioni due volte affinché tutti possano capire chiaramente cosa fare.' means 'I went over the instructions twice so that everyone can clearly understand what to do.' When the purpose conjunction 'affinché' introduces a clause, Italian requires the subjunctive. The pairing is structural and barely admits colloquial slippage. Possono capire would be the indicative and would clash with the conjunction's rule.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_subj_hyp_05",
@@ -3020,16 +3494,22 @@
     "bucket": "tense_choice.indicative_vs_subjunctive.hypothetical_triggers",
     "label": "Present subjunctive after purché (venga)",
     "any_phrases": [
-     "venga"
+     {
+      "phrase": "venga",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "viene"
+     {
+      "phrase": "viene",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Verrò volentieri alla festa di sabato, purché venga anche Marco con me.' means 'I'll gladly come to Saturday's party, as long as Marco comes with me too.' When the conditional conjunction 'purché' introduces a clause spelling out a condition for the main clause, Italian requires the subjunctive. The pairing is structural and very stable. Viene anche Marco would be the indicative and would clash with the rule.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_subj_neg_01",
@@ -3055,16 +3535,22 @@
     "bucket": "tense_choice.indicative_vs_subjunctive.negative_triggers",
     "label": "Present subjunctive after non penso che (sia)",
     "any_phrases": [
-     "sia"
+     {
+      "phrase": "sia",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "è"
+     {
+      "phrase": "è",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Non penso che Anna sia ancora arrivata: il suo treno aveva qualche minuto di ritardo.' means 'I don't think Anna has arrived yet: her train was running a few minutes late.' When the opinion trigger 'penso che' is negated, Italian keeps the subjunctive in the embedded clause; if anything the subjunctive feels more secure under negation than in the affirmative. The cue 'formal note' fixes the prescriptive register. È ancora arrivata would be the colloquial indicative, heard in speech but not in writing.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_subj_neg_02",
@@ -3090,16 +3576,22 @@
     "bucket": "tense_choice.indicative_vs_subjunctive.negative_triggers",
     "label": "Present subjunctive after non è vero che (siano)",
     "any_phrases": [
-     "siano"
+     {
+      "phrase": "siano",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "sono"
+     {
+      "phrase": "sono",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Non è affatto vero che siano tutti d'accordo con la proposta.' means 'It's not at all true that everyone agrees with the proposal.' When 'è vero che' (which normally takes the indicative because it asserts a fact) is negated, the polarity flip licenses the subjunctive in the embedded clause. Italian's prescriptive rule treats 'non è vero che' as a denial of fact and the subjunctive marks the contested claim. Sono tutti d'accordo would assert the agreement as fact even inside the negation, which is the structural error the rule is designed to catch.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_subj_neg_03",
@@ -3125,16 +3617,22 @@
     "bucket": "tense_choice.indicative_vs_subjunctive.negative_triggers",
     "label": "Present subjunctive after non dico che (sia)",
     "any_phrases": [
-     "sia"
+     {
+      "phrase": "sia",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "è"
+     {
+      "phrase": "è",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Non dico che sia tua tutta la responsabilità, ma non hai fatto niente per migliorare la situazione.' means 'I'm not saying the whole responsibility is yours, but you did nothing to improve the situation.' When 'dire che' (normally an indicative-taking reporting verb) is negated, Italian's prescriptive rule shifts the embedded clause to the subjunctive: the speaker is disclaiming the assertion. È tua tutta la responsabilità would assert the attribution as fact even inside the denial, which the subjunctive properly avoids.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_subj_neg_04",
@@ -3160,16 +3658,22 @@
     "bucket": "tense_choice.indicative_vs_subjunctive.negative_triggers",
     "label": "Imperfect subjunctive after non sapevo che (parlasse)",
     "any_phrases": [
-     "parlasse"
+     {
+      "phrase": "parlasse",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "parlava"
+     {
+      "phrase": "parlava",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Non sapevo che Marco parlasse così bene il francese.' means 'I didn't know Marco spoke French so well.' When 'sapere che' (which normally takes the indicative because it reports a known fact) is negated, the polarity flip licenses the subjunctive in the embedded clause. With a past-tense matrix verb the embedded subjunctive shifts to the imperfect subjunctive. Parlava così bene would be the indicative imperfect and would clash with the prescriptive flip under negation.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_trap_compl_01",
@@ -3195,16 +3699,22 @@
     "bucket": "tense_choice.trapassato_vs_imperfect.completed_prior_to_prior",
     "label": "Trapassato for an event completed before the past reference (avevano mangiato)",
     "any_phrases": [
-     "avevano mangiato"
+     {
+      "phrase": "avevano mangiato",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "mangiavano"
+     {
+      "phrase": "mangiavano",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Quando sono arrivato al ristorante, gli altri avevano già mangiato.' means 'When I got to the restaurant, the others had already eaten.' When one past event is plainly finished before another past event you're narrating, Italian uses the trapassato prossimo for the earlier, completed action. The adverb 'già' is a textbook cue, and the continuation 'mi sono unito a loro per il dolce' confirms the eating was done. Mangiavano would frame the eating as still ongoing at the moment of arrival, which contradicts joining them only for dessert.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_trap_compl_02",
@@ -3230,16 +3740,22 @@
     "bucket": "tense_choice.trapassato_vs_imperfect.completed_prior_to_prior",
     "label": "Trapassato with appena cue (era tornato)",
     "any_phrases": [
-     "era tornato"
+     {
+      "phrase": "era tornato",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "tornava"
+     {
+      "phrase": "tornava",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Marco era tornato appena dal lavoro quando è arrivata la notizia.' means 'Marco had just got back from work when the news came through.' When a past action has just finished moments before another past event, Italian uses the trapassato prossimo with cues like 'appena' (just / a moment ago). The adverb is a reliable signal that the action wraps up before the reference point. Tornava would frame the return as still in progress, which the 'appena' tag rules out.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_trap_compl_03",
@@ -3265,16 +3781,22 @@
     "bucket": "tense_choice.trapassato_vs_imperfect.completed_prior_to_prior",
     "label": "Trapassato for the cause of a past state (aveva preso)",
     "any_phrases": [
-     "aveva preso"
+     {
+      "phrase": "aveva preso",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "prendeva"
+     {
+      "phrase": "prendeva",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Era furioso perché qualcuno aveva preso il suo nuovo libro dalla scrivania.' means 'He was furious because someone had taken his new book off the desk.' When a past state (being furious) is explained by an earlier completed action (the book having been taken), Italian uses the trapassato prossimo for the earlier action. The framing 'era furioso perché...' makes the book-taking the cause and locates it before the moment of fury. Prendeva would describe the taking as ongoing at the moment of fury, which doesn't fit a sentence about a finished discovery.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_trap_compl_04",
@@ -3300,10 +3822,16 @@
     "bucket": "tense_choice.trapassato_vs_imperfect.completed_prior_to_prior",
     "label": "Trapassato with da poco cue (aveva ricevuto)",
     "any_phrases": [
-     "aveva ricevuto"
+     {
+      "phrase": "aveva ricevuto",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "riceveva"
+     {
+      "phrase": "riceveva",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -3320,7 +3848,7 @@
    }
   ],
   "explanation": "'Quel pomeriggio Anna era pallida: aveva ricevuto da poco una brutta notizia al telefono.' means 'That afternoon Anna was pale: she had just had bad news on the phone.' When the adverb phrase 'da poco' (a short while ago) modifies a past action that produced the visible past state in the main clause, Italian uses the trapassato prossimo. The phrasing 'era pallida: aveva ricevuto da poco' locates the news strictly before the pale appearance. Riceveva would describe the receiving as ongoing, which doesn't fit a sentence where the call is already over and the speaker is reacting to its effect.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_trap_compl_05",
@@ -3346,10 +3874,16 @@
     "bucket": "tense_choice.trapassato_vs_imperfect.completed_prior_to_prior",
     "label": "Trapassato for a long-prior completed event (aveva bruciato)",
     "any_phrases": [
-     "aveva bruciato"
+     {
+      "phrase": "aveva bruciato",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "bruciava"
+     {
+      "phrase": "bruciava",
+      "match_at": "word"
+     }
     ]
    }
   ],
@@ -3370,7 +3904,7 @@
    }
   ],
   "explanation": "'Solo dopo molti anni scoprì che la sorella aveva bruciato il manoscritto del padre.' means 'Only after many years did he find out that his sister had burnt their father's manuscript.' When a past discovery reveals an even-earlier completed action, Italian uses the trapassato prossimo for the earlier event. The phrasing 'solo dopo molti anni scoprì che...' locates the burning strictly before the moment of discovery and treats it as finished. Bruciava would frame the act as habitual or in-progress, which doesn't fit a sentence describing a single, irreversible act revealed years later.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_trap_bg_01",
@@ -3396,16 +3930,22 @@
     "bucket": "tense_choice.trapassato_vs_imperfect.ongoing_background",
     "label": "Imperfetto for ongoing past background with mentre (dormiva)",
     "any_phrases": [
-     "dormiva"
+     {
+      "phrase": "dormiva",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "aveva dormito"
+     {
+      "phrase": "aveva dormito",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Mentre Marco dormiva tranquillamente sul divano, è suonato improvvisamente il campanello.' means 'While Marco was sleeping peacefully on the sofa, the doorbell suddenly rang.' When 'mentre' frames a past action as the unfolding backdrop for another past event, Italian uses the imperfect indicative for the backdrop. The conjunction is a reliable cue: the action it governs is still in progress when the foreground event lands. Aveva dormito would mean the sleeping was already finished before the doorbell, which the 'mentre' framing rules out.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_trap_bg_02",
@@ -3431,16 +3971,22 @@
     "bucket": "tense_choice.trapassato_vs_imperfect.ongoing_background",
     "label": "Imperfetto for ongoing past background at a punctual moment (leggevo)",
     "any_phrases": [
-     "leggevo"
+     {
+      "phrase": "leggevo",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "avevo letto"
+     {
+      "phrase": "avevo letto",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Quando il telefono ha squillato, leggevo tranquillamente sul divano con un libro in mano.' means 'When the phone rang, I was reading quietly on the sofa with a book in my hand.' When a past punctual event ('ha squillato') drops into an ongoing scene, Italian uses the imperfect indicative for the ongoing scene. The cue 'con un libro in mano' confirms the reading was in progress at the moment the phone rang. Avevo letto would mean the reading was over before the call, which doesn't fit a sentence describing the live posture in which the interruption arrived.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_trap_bg_03",
@@ -3466,16 +4012,22 @@
     "bucket": "tense_choice.trapassato_vs_imperfect.ongoing_background",
     "label": "Imperfetto for parallel ongoing past actions (leggeva)",
     "any_phrases": [
-     "leggeva"
+     {
+      "phrase": "leggeva",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "aveva letto"
+     {
+      "phrase": "aveva letto",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Lei cucinava in silenzio e suo marito leggeva ai bambini in salotto.' means 'She was cooking in silence and her husband was reading to the children in the living room.' When two past actions run side by side as parallel backdrops to a described scene, Italian uses the imperfect indicative for both. The first verb 'cucinava' is imperfect and the second verb should match in aspect. Aveva letto would mean the husband had finished reading before the cooking scene, breaking the parallel-ongoing structure the sentence sets up.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_trap_bg_04",
@@ -3501,16 +4053,22 @@
     "bucket": "tense_choice.trapassato_vs_imperfect.ongoing_background",
     "label": "Imperfetto for a past weather state (Pioveva)",
     "any_phrases": [
-     "pioveva"
+     {
+      "phrase": "pioveva",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "aveva piovuto"
+     {
+      "phrase": "aveva piovuto",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Pioveva così forte quel pomeriggio che ho deciso di non uscire.' means 'It was raining so hard that afternoon that I decided not to go out.' When the weather sets the past backdrop for a decision, Italian uses the imperfect indicative. Weather descriptions in the past are stative by default. The continuation 'ho deciso di non uscire' makes clear the rain was active during the decision moment. Aveva piovuto would mean it had already rained and was no longer raining, which would have made staying in unnecessary.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_trap_bg_05",
@@ -3536,16 +4094,22 @@
     "bucket": "tense_choice.trapassato_vs_imperfect.ongoing_background",
     "label": "Imperfetto for ongoing past state at a named time (dormiva)",
     "any_phrases": [
-     "dormiva"
+     {
+      "phrase": "dormiva",
+      "match_at": "word"
+     }
     ],
     "must_not_include": [
-     "aveva dormito"
+     {
+      "phrase": "aveva dormito",
+      "match_at": "word"
+     }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Erano le tre del pomeriggio. Il bambino dormiva ancora profondamente.' means 'It was three in the afternoon. The child was still fast asleep.' When a past scene is anchored to a named time and you describe what was still going on at that moment, Italian uses the imperfect indicative. The adverb 'ancora' (still) confirms the sleep continued at the named hour. Aveva dormito would mean the sleeping was already over by three, which contradicts the household's reluctance to wake him.",
-  "version": 2
+  "version": 3
  },
  {
   "external_id": "tc_pres_pp_da_01",
