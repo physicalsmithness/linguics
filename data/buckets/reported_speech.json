@@ -51,7 +51,7 @@
     "id": "reported_speech.tense_shift.no_shift",
     "parent_id": "reported_speech.tense_shift",
     "language_code": "it",
-    "label": "No shift after dice",
+    "label": "No shift after a present reporter",
     "description": "A present reporting verb keeps the quoted tenses: Dice che è stanco. Knowing when NOT to shift is a skill in its own right, and over-shifting is a real learner error once backshift has been taught.",
     "cefr_importance": {
       "A1": "arcane",
@@ -136,7 +136,7 @@
     "id": "reported_speech.tense_shift.future_to_past_conditional",
     "parent_id": "reported_speech.tense_shift",
     "language_code": "it",
-    "label": "Future becomes PAST conditional",
+    "label": "Future in the past",
     "description": "The Italian-specific trap: a quoted future shifts to the past conditional, not the present one. 'Verrò' becomes Ha detto che sarebbe venuto, where English says 'he would come' and lures learners to verrebbe. The diagnostic jewel of the topic.",
     "cefr_importance": {
       "A1": "arcane",
@@ -166,7 +166,7 @@
     "id": "reported_speech.commands",
     "parent_id": "reported_speech",
     "language_code": "it",
-    "label": "Reporting commands: di + infinitive",
+    "label": "Reporting commands",
     "description": "Imperatives are reported with di + infinitive: 'Vieni!' becomes Mi ha detto di venire. The formal alternative with che + subjunctive exists but di + infinitive is the everyday target.",
     "cefr_importance": {
       "A1": "arcane",
@@ -194,7 +194,7 @@
     "id": "reported_speech.questions",
     "parent_id": "reported_speech",
     "language_code": "it",
-    "label": "Reporting questions: se and the wh-words",
+    "label": "Reporting questions",
     "description": "Yes/no questions are reported with se (Mi ha chiesto se venivo); wh-questions keep their question word (Mi ha chiesto dove abitavo). The tense shifts apply as usual, and formal registers allow the subjunctive (chiese se fossi stanco).",
     "cefr_importance": {
       "A1": "arcane",
@@ -224,7 +224,7 @@
     "id": "reported_speech.deixis",
     "parent_id": "reported_speech",
     "language_code": "it",
-    "label": "Domani becomes il giorno dopo",
+    "label": "Deixis: time and place words",
     "description": "The pointing words travel when the speech moves to another day and place: domani becomes il giorno dopo, ieri il giorno prima, oggi quel giorno, qui lì, questo quello, fra due giorni due giorni dopo. Persons and possessives shift with them.",
     "cefr_importance": {
       "A1": "arcane",
@@ -245,6 +245,27 @@
         "'Ci vediamo qui' → Disse che si sarebbero visti lì."
       ],
       "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "reported_speech.tense_shift.optional_no_shift_persisting_fact",
+    "parent_id": "reported_speech.tense_shift",
+    "language_code": "it",
+    "label": "Still true: shift optional",
+    "description": "When the reported fact still holds, both tenses are right: Ha detto che è stanco (still tired) and Ha detto che era stanco. Accept-both items; not a discrimination, so no candidate set is declared.",
+    "cefr_importance": {
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional"
     },
     "active": true,
     "version": 1

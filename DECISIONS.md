@@ -921,4 +921,22 @@ Three authors independently corrected tonight's central passes, and the correcti
 **How to apply:** authors prune dead accent guards at leisure; PronounAuthor and WordFormationAuthor reframe the three routed items; the brief's §2 body is now the single reading authors need.
 
 ---
+## 2026-07-15: Conditional formation accepted; the future-seat-asks convention; the estate glossary bulk-merged
+
+ConditionalFormationAuthor's batch (49+19, delivered under Rev 9, self-reconciled to Rev 19 including a simulation-verified fix of ten 3sg-inside-3pl false credits) is ACCEPTED, and its three threads produced structural fixes: the ten condizionale leaf labels shortened at source (the stored labels spelled parleremmo and parlerebbe, the exact doubled letters the topic tests, a leak the shorter future-tense labels never had); three usage stub-leaves registered (polite, hypothetical_apodosis, reported_future_in_past) so the imperfect batch's five-week-broken citations resolve, with the four citations re-pointed centrally; and a new convention for asks addressed to seats that do not exist yet: they live in OPEN_QUESTIONS.md tagged "for the future X dispatch", because a note to an unappointed dispatcher waits for an accident. Rulings on the batch: the reported frame belongs to formation (formation-supplies-the-trigger), the two soft ma-clause triggers get hardened, the compound-choice line stays with tense_choice, potrebbe/potresti both 1.0 (addressee-ambiguous English, two standard renderings). The ask about glossary dependencies exposed that suggestion files were never bulk-merged; all outstanding files are now in (glossary v6).
+
+**Why:** a batch stranded pre-Rev-18 carried five asks nobody saw; the same evening that codified the channel also cleared its backlog.
+
+**How to apply:** ConditionalUsage's future dispatch inherits the three stub-leaves and the citation wire-up in its topic notes; authors' pending glossary terms now resolve.
+
+---
+## 2026-07-15: The queue's top half ruled (reported speech, gerundio, tense_choice wave 2)
+
+Three batch threads closed or accepted with the rulings of substance: the DUAL-CITATION mechanism is ratified house-wide for umbrella topics (two markpoints at 0.5 with identical phrase lists, one per bucket home; criterion 8 forbids bundling two skills, not mirroring one skill to its two homes; an also_credits engine field is parked in OPEN_QUESTIONS); ORDERING-PROTECTED guards are exempt from criterion 18's guard-inside-correct direction and are the standard attributor for dropped-word misses, while token-boundary ADDITIVE errors are formally unreachable by the substring engine and route to MCQ or the AI strand (both now in the criterion body); the persisting-fact leaf is registered (accept-both items are not discriminations, so criterion 16 does not bind); reported_speech and gerundio leaf labels shortened at source, with GerundioAuthor's per-leaf suppress table (21 to 12, the -ire/-isc- and stem-expansion subsets keep their flags) ratified as the model application of Rev 12 plus Rev 19 together; translation references carry an explicit credit field for 0.9 dodges (documented in the brief); the condizionale non-shift ruled (hypothetical reading stays put, futurity reading shifts to the compound); tense_choice wave 2 accepted (185 items, tree complete, exhaustive marker replica) with the dispatch's wrong status line fixed at source and the seven-week dark tick owned as an architect sequencing failure; ImperfectAuthor's 37 shared-leaf items routed for the same retrofit, completing that seat's one-sitting queue.
+
+**Why:** the wave's authors are now running engine replicas and citing each other's case law; the architect's job tonight was almost entirely ratification and tree-side execution, which is the operating model at its intended steady state.
+
+**How to apply:** RS authors the persisting-fact and condizionale items next touch; Gerundio retrofits flags per its own v2 table; TenseChoice re-flags anything below tonight's read fold; the tail of the queue (pronoun rev19, relative, word_formation, negation, comparison, passive, pluperfect) rides the next pass.
+
+---
 

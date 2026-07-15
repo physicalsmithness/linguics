@@ -558,7 +558,10 @@
         "bucket": "pronoun.direct_object.la",
         "label": "DOP f.sg la, with elision context implicit",
         "any_phrases": [
-          "l'",
+          {
+            "phrase": "l'",
+            "match_at": "word"
+          },
           "la"
         ],
         "must_not_include": [
@@ -1204,7 +1207,10 @@
         "bucket": "pronoun.direct_object.elision_before_vowel",
         "label": "lo/la → l' before a vowel",
         "any_phrases": [
-          "l'"
+          {
+            "phrase": "l'",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "la ho",
@@ -1253,7 +1259,10 @@
         "bucket": "pronoun.direct_object.elision_before_vowel",
         "label": "elision lo → l' before ho",
         "any_phrases": [
-          "l'"
+          {
+            "phrase": "l'",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "lo",
@@ -6594,7 +6603,10 @@
         "bucket": "pronoun.special.left_dislocation_with_pp_agreement",
         "label": "Resumptive DOP after fronted topic, with PP agreement",
         "any_phrases": [
-          "l'",
+          {
+            "phrase": "l'",
+            "match_at": "word"
+          },
           "la"
         ],
         "must_not_include": [
@@ -7681,7 +7693,10 @@
         "label": "Reflexive 3sg + f.pl DOP cluster (se le, with vowel change)",
         "any_phrases": [
           "se le",
-          "se l'"
+          {
+            "phrase": "se l'",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "si le",
