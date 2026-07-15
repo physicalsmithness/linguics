@@ -354,7 +354,7 @@
       {
         "order_index": 0,
         "credit": 1.0,
-        "bucket": "word_formation.alterati.augmentative_pejorative",
+        "bucket": "word_formation.alterati.augmentative_pejorative.gender_shift",
         "label": "Accrescitivo -one with gender shift",
         "any_phrases": [
           {
@@ -409,7 +409,7 @@
       {
         "order_index": 0,
         "credit": 1.0,
-        "bucket": "word_formation.alterati.augmentative_pejorative",
+        "bucket": "word_formation.alterati.augmentative_pejorative.gender_shift",
         "label": "Accrescitivo -one with gender shift",
         "any_phrases": [
           {
@@ -597,8 +597,8 @@
     "subtopic": "falsi",
     "difficulty": 4,
     "cefr_level_target": "C1",
-    "prompt": "Vero alterato o parola indipendente? 'Il pittore ha messo la tela sul cavalletto.' Rispondi 'vero alterato' o 'parola indipendente'.",
-    "type": "short",
+    "prompt": "'Il pittore ha messo la tela sul cavalletto.' La parola 'cavalletto' è:",
+    "type": "mcq",
     "marks": 1,
     "prompt_supplies_base_form": false,
     "info_display": "suppress",
@@ -618,17 +618,19 @@
           {
             "phrase": "vero alterato",
             "match_at": "word"
-          },
-          {
-            "phrase": "piccolo cavallo",
-            "match_at": "word"
           }
         ]
       }
     ],
     "vocab_help": [],
     "explanation": "'Il pittore ha messo la tela sul cavalletto' means 'The painter put the canvas on the easel.' Cavalletto is an easel, an independent word: only its shape looks like cavallo + -etto. This is a falso alterato, where the meaning no longer contains the base word. The test is exactly that: does 'small horse' survive in the meaning? It does not.",
-    "version": 1
+    "version": 2,
+    "choices": [
+      "vero alterato",
+      "parola indipendente"
+    ],
+    "answer_index": 1,
+    "examiner_note": "Converted short -> MCQ per Architecture v5 Q3/Q4: candidate_forms ruled NO for verdict items (a tick listing the verdict labels is noise), so MCQ is the honest instrument for the tick and per-context stats. Index-scored; markpoint retained for bucket attribution. Suppress kept: the criterion-15 breadcrumb leak is unaffected by the rendering."
   },
   {
     "external_id": "wf_falsi_02",
@@ -637,8 +639,8 @@
     "subtopic": "falsi",
     "difficulty": 4,
     "cefr_level_target": "C1",
-    "prompt": "Vero alterato o parola indipendente? 'Abbiamo mangiato la focaccia calda.' Rispondi 'vero alterato' o 'parola indipendente'.",
-    "type": "short",
+    "prompt": "'Abbiamo mangiato la focaccia calda.' La parola 'focaccia' è:",
+    "type": "mcq",
     "marks": 1,
     "prompt_supplies_base_form": false,
     "info_display": "suppress",
@@ -658,17 +660,19 @@
           {
             "phrase": "vero alterato",
             "match_at": "word"
-          },
-          {
-            "phrase": "brutta foca",
-            "match_at": "word"
           }
         ]
       }
     ],
     "vocab_help": [],
     "explanation": "'Abbiamo mangiato la focaccia calda' means 'We ate the warm focaccia.' Focaccia is a flatbread, an independent word, not a 'bad foca' (seal). It is a falso alterato: the -accia ending is a coincidence of shape, and the base foca has vanished from the meaning.",
-    "version": 1
+    "version": 2,
+    "choices": [
+      "vero alterato",
+      "parola indipendente"
+    ],
+    "answer_index": 1,
+    "examiner_note": "Converted short -> MCQ per Architecture v5 Q3/Q4: candidate_forms ruled NO for verdict items (a tick listing the verdict labels is noise), so MCQ is the honest instrument for the tick and per-context stats. Index-scored; markpoint retained for bucket attribution. Suppress kept: the criterion-15 breadcrumb leak is unaffected by the rendering."
   },
   {
     "external_id": "wf_falsi_03",
@@ -677,8 +681,8 @@
     "subtopic": "falsi",
     "difficulty": 4,
     "cefr_level_target": "C1",
-    "prompt": "Vero alterato o parola indipendente? 'Mi sveglio presto il mattino.' Rispondi 'vero alterato' o 'parola indipendente'.",
-    "type": "short",
+    "prompt": "'Mi sveglio presto il mattino.' La parola 'mattino' è:",
+    "type": "mcq",
     "marks": 1,
     "prompt_supplies_base_form": false,
     "info_display": "suppress",
@@ -698,17 +702,19 @@
           {
             "phrase": "vero alterato",
             "match_at": "word"
-          },
-          {
-            "phrase": "piccolo matto",
-            "match_at": "word"
           }
         ]
       }
     ],
     "vocab_help": [],
     "explanation": "'Mi sveglio presto il mattino' means 'I wake up early in the morning.' Mattino is 'morning', an independent word, not a 'little matto' (madman). A falso alterato: the shape suggests matto + -ino, but the meaning keeps nothing of matto.",
-    "version": 1
+    "version": 2,
+    "choices": [
+      "vero alterato",
+      "parola indipendente"
+    ],
+    "answer_index": 1,
+    "examiner_note": "Converted short -> MCQ per Architecture v5 Q3/Q4: candidate_forms ruled NO for verdict items (a tick listing the verdict labels is noise), so MCQ is the honest instrument for the tick and per-context stats. Index-scored; markpoint retained for bucket attribution. Suppress kept: the criterion-15 breadcrumb leak is unaffected by the rendering."
   },
   {
     "external_id": "wf_falsi_04",
@@ -717,8 +723,8 @@
     "subtopic": "falsi",
     "difficulty": 4,
     "cefr_level_target": "C1",
-    "prompt": "Vero alterato o parola indipendente? 'La strada correva lungo un burrone.' Rispondi 'vero alterato' o 'parola indipendente'.",
-    "type": "short",
+    "prompt": "'La strada correva lungo un burrone.' La parola 'burrone' è:",
+    "type": "mcq",
     "marks": 1,
     "prompt_supplies_base_form": false,
     "info_display": "suppress",
@@ -738,17 +744,19 @@
           {
             "phrase": "vero alterato",
             "match_at": "word"
-          },
-          {
-            "phrase": "grande burro",
-            "match_at": "word"
           }
         ]
       }
     ],
     "vocab_help": [],
     "explanation": "'La strada correva lungo un burrone' means 'The road ran along a ravine.' Burrone is a ravine, an independent word, not a 'big burro' (butter). Falso alterato: -one looks augmentative, but there is no butter in a ravine.",
-    "version": 1
+    "version": 2,
+    "choices": [
+      "vero alterato",
+      "parola indipendente"
+    ],
+    "answer_index": 1,
+    "examiner_note": "Converted short -> MCQ per Architecture v5 Q3/Q4: candidate_forms ruled NO for verdict items (a tick listing the verdict labels is noise), so MCQ is the honest instrument for the tick and per-context stats. Index-scored; markpoint retained for bucket attribution. Suppress kept: the criterion-15 breadcrumb leak is unaffected by the rendering."
   },
   {
     "external_id": "wf_falsi_05",
@@ -757,8 +765,8 @@
     "subtopic": "falsi",
     "difficulty": 4,
     "cefr_level_target": "C1",
-    "prompt": "Vero alterato o parola indipendente? 'A Natale hanno cucinato il tacchino.' Rispondi 'vero alterato' o 'parola indipendente'.",
-    "type": "short",
+    "prompt": "'A Natale hanno cucinato il tacchino.' La parola 'tacchino' è:",
+    "type": "mcq",
     "marks": 1,
     "prompt_supplies_base_form": false,
     "info_display": "suppress",
@@ -778,17 +786,19 @@
           {
             "phrase": "vero alterato",
             "match_at": "word"
-          },
-          {
-            "phrase": "piccolo tacco",
-            "match_at": "word"
           }
         ]
       }
     ],
     "vocab_help": [],
     "explanation": "'A Natale hanno cucinato il tacchino' means 'At Christmas they cooked the turkey.' Tacchino is a turkey, an independent word, not a 'small tacco' (heel). The -ino is a false diminutive: the base tacco is not in the meaning.",
-    "version": 1
+    "version": 2,
+    "choices": [
+      "vero alterato",
+      "parola indipendente"
+    ],
+    "answer_index": 1,
+    "examiner_note": "Converted short -> MCQ per Architecture v5 Q3/Q4: candidate_forms ruled NO for verdict items (a tick listing the verdict labels is noise), so MCQ is the honest instrument for the tick and per-context stats. Index-scored; markpoint retained for bucket attribution. Suppress kept: the criterion-15 breadcrumb leak is unaffected by the rendering."
   },
   {
     "external_id": "wf_falsi_06",
@@ -797,8 +807,8 @@
     "subtopic": "falsi",
     "difficulty": 3,
     "cefr_level_target": "C1",
-    "prompt": "Vero alterato o parola indipendente? 'Il gattino miagola perché ha fame.' Rispondi 'vero alterato' o 'parola indipendente'.",
-    "type": "short",
+    "prompt": "'Il gattino miagola perché ha fame.' La parola 'gattino' è:",
+    "type": "mcq",
     "marks": 1,
     "prompt_supplies_base_form": false,
     "info_display": "suppress",
@@ -824,7 +834,13 @@
     ],
     "vocab_help": [],
     "explanation": "'Il gattino miagola perché ha fame' means 'The kitten is meowing because it is hungry.' Gattino is a real alterato: it genuinely means a small gatto, so the base survives in the meaning. That is what makes it a vero alterato and not a falso like cavalletto.",
-    "version": 1
+    "version": 2,
+    "choices": [
+      "vero alterato",
+      "parola indipendente"
+    ],
+    "answer_index": 0,
+    "examiner_note": "Converted short -> MCQ per Architecture v5 Q3/Q4: candidate_forms ruled NO for verdict items (a tick listing the verdict labels is noise), so MCQ is the honest instrument for the tick and per-context stats. Index-scored; markpoint retained for bucket attribution. Suppress kept: the criterion-15 breadcrumb leak is unaffected by the rendering."
   },
   {
     "external_id": "wf_falsi_07",
@@ -833,8 +849,8 @@
     "subtopic": "falsi",
     "difficulty": 3,
     "cefr_level_target": "C1",
-    "prompt": "Vero alterato o parola indipendente? 'Ho appoggiato le chiavi sul tavolino.' Rispondi 'vero alterato' o 'parola indipendente'.",
-    "type": "short",
+    "prompt": "'Ho appoggiato le chiavi sul tavolino.' La parola 'tavolino' è:",
+    "type": "mcq",
     "marks": 1,
     "prompt_supplies_base_form": false,
     "info_display": "suppress",
@@ -860,7 +876,13 @@
     ],
     "vocab_help": [],
     "explanation": "'Ho appoggiato le chiavi sul tavolino' means 'I put the keys on the little table.' Tavolino is a real alterato of tavolo: even where it names a specific small side table, the meaning still contains 'small table', so the base is present. Vero alterato.",
-    "version": 1
+    "version": 2,
+    "choices": [
+      "vero alterato",
+      "parola indipendente"
+    ],
+    "answer_index": 0,
+    "examiner_note": "Converted short -> MCQ per Architecture v5 Q3/Q4: candidate_forms ruled NO for verdict items (a tick listing the verdict labels is noise), so MCQ is the honest instrument for the tick and per-context stats. Index-scored; markpoint retained for bucket attribution. Suppress kept: the criterion-15 breadcrumb leak is unaffected by the rendering."
   },
   {
     "external_id": "wf_falsi_08",
@@ -869,8 +891,8 @@
     "subtopic": "falsi",
     "difficulty": 4,
     "cefr_level_target": "C1",
-    "prompt": "Vero alterato o parola indipendente? 'Ha comprato una giacca di montone.' Rispondi 'vero alterato' o 'parola indipendente'.",
-    "type": "short",
+    "prompt": "'Ha comprato una giacca di montone.' La parola 'montone' è:",
+    "type": "mcq",
     "marks": 1,
     "prompt_supplies_base_form": false,
     "info_display": "suppress",
@@ -890,17 +912,19 @@
           {
             "phrase": "vero alterato",
             "match_at": "word"
-          },
-          {
-            "phrase": "grande monte",
-            "match_at": "word"
           }
         ]
       }
     ],
     "vocab_help": [],
     "explanation": "'Ha comprato una giacca di montone' means 'She bought a sheepskin jacket.' Montone is a ram or sheepskin, an independent word, not a 'big monte' (mountain). Falso alterato: the -one is not doing augmentative work here.",
-    "version": 1
+    "version": 2,
+    "choices": [
+      "vero alterato",
+      "parola indipendente"
+    ],
+    "answer_index": 1,
+    "examiner_note": "Converted short -> MCQ per Architecture v5 Q3/Q4: candidate_forms ruled NO for verdict items (a tick listing the verdict labels is noise), so MCQ is the honest instrument for the tick and per-context stats. Index-scored; markpoint retained for bucket attribution. Suppress kept: the criterion-15 breadcrumb leak is unaffected by the rendering."
   },
   {
     "external_id": "wf_pref_int_01",
@@ -1101,8 +1125,8 @@
     "subtopic": "prefixes.intensifiers",
     "difficulty": 3,
     "cefr_level_target": "C1",
-    "prompt": "'strapieno' e 'stracarico' esistono. Si può formare liberamente 'strasedia' (stra + sedia, un nome)? Rispondi 'no' o 'sì'.",
-    "type": "short",
+    "prompt": "'strapieno' e 'stracarico' esistono. Si può formare liberamente 'strasedia' (stra + sedia, un nome)?",
+    "type": "mcq",
     "marks": 1,
     "prompt_supplies_base_form": false,
     "info_display": "suppress",
@@ -1128,7 +1152,13 @@
     ],
     "vocab_help": [],
     "explanation": "No: strasedia is not Italian. The intensifying prefixes attach to adjectives (strapieno, stracarico, straricco), not freely to nouns. The productive pattern is prefisso + adjective; extending it to a noun overgeneralises. A few fixed verbs like stravedere exist, but you learn those as set words, not by rule.",
-    "version": 1
+    "version": 2,
+    "choices": [
+      "sì",
+      "no"
+    ],
+    "answer_index": 1,
+    "examiner_note": "Converted short -> MCQ per Architecture v5 Q3/Q4: candidate_forms ruled NO for verdict items (a tick listing the verdict labels is noise), so MCQ is the honest instrument for the tick and per-context stats. Index-scored; markpoint retained for bucket attribution. Suppress kept: the criterion-15 breadcrumb leak is unaffected by the rendering."
   },
   {
     "external_id": "wf_pref_neo_01",
@@ -1137,8 +1167,8 @@
     "subtopic": "prefixes.neo_ex",
     "difficulty": 2,
     "cefr_level_target": "B2",
-    "prompt": "Vero o falso: un 'neolaureato' è una persona che si è appena laureata. Rispondi 'vero' o 'falso'.",
-    "type": "short",
+    "prompt": "Un 'neolaureato' è una persona che si è appena laureata.",
+    "type": "mcq",
     "marks": 1,
     "prompt_supplies_base_form": false,
     "markpoints": [
@@ -1163,7 +1193,14 @@
     ],
     "vocab_help": [],
     "explanation": "A neolaureato is someone who has just graduated, so the statement is true. The prefisso neo- means 'newly': neo- + laureato = newly graduated. The same neo- gives neonato (newborn) and neologismo (a newly-coined word).",
-    "version": 1
+    "version": 2,
+    "choices": [
+      "vero",
+      "falso"
+    ],
+    "answer_index": 0,
+    "info_display": "suppress",
+    "examiner_note": "Converted short -> MCQ per Architecture v5 Q3/Q4: candidate_forms ruled NO for verdict items (a tick listing the verdict labels is noise), so MCQ is the honest instrument for the tick and per-context stats. Index-scored; markpoint retained for bucket attribution. Suppress kept: the criterion-15 breadcrumb leak is unaffected by the rendering."
   },
   {
     "external_id": "wf_pref_neo_02",
@@ -1172,8 +1209,8 @@
     "subtopic": "prefixes.neo_ex",
     "difficulty": 2,
     "cefr_level_target": "B2",
-    "prompt": "Vero o falso: un 'neonato' è un bambino appena nato. Rispondi 'vero' o 'falso'.",
-    "type": "short",
+    "prompt": "Un 'neonato' è un bambino appena nato.",
+    "type": "mcq",
     "marks": 1,
     "prompt_supplies_base_form": false,
     "markpoints": [
@@ -1198,7 +1235,14 @@
     ],
     "vocab_help": [],
     "explanation": "A neonato is a newborn baby, so the statement is true. Neo- means 'newly' and nato means 'born': neo- + nato = newly born. Recognising neo- as 'new' is the skill; the pattern is fully transparent here.",
-    "version": 1
+    "version": 2,
+    "choices": [
+      "vero",
+      "falso"
+    ],
+    "answer_index": 0,
+    "info_display": "suppress",
+    "examiner_note": "Converted short -> MCQ per Architecture v5 Q3/Q4: candidate_forms ruled NO for verdict items (a tick listing the verdict labels is noise), so MCQ is the honest instrument for the tick and per-context stats. Index-scored; markpoint retained for bucket attribution. Suppress kept: the criterion-15 breadcrumb leak is unaffected by the rendering."
   },
   {
     "external_id": "wf_pref_neo_03",
@@ -1207,8 +1251,8 @@
     "subtopic": "prefixes.neo_ex",
     "difficulty": 3,
     "cefr_level_target": "C1",
-    "prompt": "Vero o falso: 'neoclassico' significa 'contro il classico'. Rispondi 'vero' o 'falso'.",
-    "type": "short",
+    "prompt": "'Neoclassico' significa 'contro il classico'.",
+    "type": "mcq",
     "marks": 1,
     "prompt_supplies_base_form": false,
     "info_display": "suppress",
@@ -1234,7 +1278,13 @@
     ],
     "vocab_help": [],
     "explanation": "False. Neo- means 'new', not 'against': neoclassico is the new or revived classical style, not the opposite of classical. Reading neo- as a change of meaning rather than as 'newness' is the common slip this item catches.",
-    "version": 1
+    "version": 2,
+    "choices": [
+      "vero",
+      "falso"
+    ],
+    "answer_index": 1,
+    "examiner_note": "Converted short -> MCQ per Architecture v5 Q3/Q4: candidate_forms ruled NO for verdict items (a tick listing the verdict labels is noise), so MCQ is the honest instrument for the tick and per-context stats. Index-scored; markpoint retained for bucket attribution. Suppress kept: the criterion-15 breadcrumb leak is unaffected by the rendering."
   },
   {
     "external_id": "wf_pref_ex_01",
@@ -1289,8 +1339,8 @@
     "subtopic": "prefixes.neo_ex",
     "difficulty": 3,
     "cefr_level_target": "C1",
-    "prompt": "Il 'neo-presidente' e l' 'ex presidente' sono la stessa persona? Rispondi 'no' o 'sì'.",
-    "type": "short",
+    "prompt": "Il 'neo-presidente' e l' 'ex presidente' sono la stessa persona?",
+    "type": "mcq",
     "marks": 1,
     "prompt_supplies_base_form": false,
     "info_display": "suppress",
@@ -1316,6 +1366,399 @@
     ],
     "vocab_help": [],
     "explanation": "No: they are opposites. The neo-presidente is the new president just taking office; the ex presidente is the former one who has left. Neo- means 'new' and ex means 'former', so the two prefixes point in opposite directions even on the same noun.",
+    "version": 2,
+    "choices": [
+      "sì",
+      "no"
+    ],
+    "answer_index": 1,
+    "examiner_note": "Converted short -> MCQ per Architecture v5 Q3/Q4: candidate_forms ruled NO for verdict items (a tick listing the verdict labels is noise), so MCQ is the honest instrument for the tick and per-context stats. Index-scored; markpoint retained for bucket attribution. Suppress kept: the criterion-15 breadcrumb leak is unaffected by the rendering."
+  },
+  {
+    "external_id": "wf_falsi_09",
+    "language_code": "it",
+    "topic": "word_formation",
+    "subtopic": "falsi",
+    "difficulty": 4,
+    "cefr_level_target": "C1",
+    "explanation": "'Il postino ha portato un pacco' means 'The postman brought a parcel.' Postino is a postman, an independent word: the -ino is doing agent work (from posta, the mail), not shrinking a posto. A falso alterato, because 'a small posto' is nowhere in the meaning.",
+    "prompt": "'Il postino ha portato un pacco.' La parola 'postino' è:",
+    "type": "mcq",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "choices": [
+      "vero alterato",
+      "parola indipendente"
+    ],
+    "answer_index": 1,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "word_formation.alterati.falsi",
+        "label": "Falsi alterati",
+        "any_phrases": [
+          {
+            "phrase": "parola indipendente",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "vero alterato",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "examiner_note": "Converted short -> MCQ per Architecture v5 Q3/Q4: candidate_forms ruled NO for verdict items (a tick listing the verdict labels is noise), so MCQ is the honest instrument for the tick and per-context stats. Index-scored; markpoint retained for bucket attribution. Suppress kept: the criterion-15 breadcrumb leak is unaffected by the rendering.",
+    "version": 2
+  },
+  {
+    "external_id": "wf_falsi_10",
+    "language_code": "it",
+    "topic": "word_formation",
+    "subtopic": "falsi",
+    "difficulty": 4,
+    "cefr_level_target": "C1",
+    "explanation": "'Si è messa il rossetto prima di uscire' means 'She put on lipstick before going out.' Rossetto is lipstick, its own word. The shape is rosso + -etto, but the meaning is not 'a little red': it has hardened into the name of an object, so it reads as a falso alterato rather than a live diminutive.",
+    "prompt": "'Si è messa il rossetto prima di uscire.' La parola 'rossetto' è:",
+    "type": "mcq",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "choices": [
+      "vero alterato",
+      "parola indipendente"
+    ],
+    "answer_index": 1,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "word_formation.alterati.falsi",
+        "label": "Falsi alterati",
+        "any_phrases": [
+          {
+            "phrase": "parola indipendente",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "vero alterato",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "examiner_note": "Converted short -> MCQ per Architecture v5 Q3/Q4: candidate_forms ruled NO for verdict items (a tick listing the verdict labels is noise), so MCQ is the honest instrument for the tick and per-context stats. Index-scored; markpoint retained for bucket attribution. Suppress kept: the criterion-15 breadcrumb leak is unaffected by the rendering.",
+    "version": 2
+  },
+  {
+    "external_id": "wf_falsi_11",
+    "language_code": "it",
+    "topic": "word_formation",
+    "subtopic": "falsi",
+    "difficulty": 4,
+    "cefr_level_target": "C1",
+    "explanation": "'Il mulino macina il grano del paese' means 'The mill grinds the village's grain.' Mulino is a mill, an independent word, not a 'small mulo' (mule). Falso alterato: the -ino is a coincidence of shape and the base has no part in the meaning.",
+    "prompt": "'Il mulino macina il grano del paese.' La parola 'mulino' è:",
+    "type": "mcq",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "choices": [
+      "vero alterato",
+      "parola indipendente"
+    ],
+    "answer_index": 1,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "word_formation.alterati.falsi",
+        "label": "Falsi alterati",
+        "any_phrases": [
+          {
+            "phrase": "parola indipendente",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "vero alterato",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "examiner_note": "Converted short -> MCQ per Architecture v5 Q3/Q4: candidate_forms ruled NO for verdict items (a tick listing the verdict labels is noise), so MCQ is the honest instrument for the tick and per-context stats. Index-scored; markpoint retained for bucket attribution. Suppress kept: the criterion-15 breadcrumb leak is unaffected by the rendering.",
+    "version": 2
+  },
+  {
+    "external_id": "wf_falsi_12",
+    "language_code": "it",
+    "topic": "word_formation",
+    "subtopic": "falsi",
+    "difficulty": 4,
+    "cefr_level_target": "C1",
+    "explanation": "'Ha steso la pasta con il matterello' means 'She rolled out the pasta with the rolling pin.' Matterello is a rolling pin, an independent word, not a 'little matto' (madman). Falso alterato, and a close sibling of mattino: same misleading base, same verdict.",
+    "prompt": "'Ha steso la pasta con il matterello.' La parola 'matterello' è:",
+    "type": "mcq",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "choices": [
+      "vero alterato",
+      "parola indipendente"
+    ],
+    "answer_index": 1,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "word_formation.alterati.falsi",
+        "label": "Falsi alterati",
+        "any_phrases": [
+          {
+            "phrase": "parola indipendente",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "vero alterato",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "examiner_note": "Converted short -> MCQ per Architecture v5 Q3/Q4: candidate_forms ruled NO for verdict items (a tick listing the verdict labels is noise), so MCQ is the honest instrument for the tick and per-context stats. Index-scored; markpoint retained for bucket attribution. Suppress kept: the criterion-15 breadcrumb leak is unaffected by the rendering.",
+    "version": 2
+  },
+  {
+    "external_id": "wf_falsi_13",
+    "language_code": "it",
+    "topic": "word_formation",
+    "subtopic": "falsi",
+    "difficulty": 3,
+    "cefr_level_target": "C1",
+    "explanation": "'Vivono in una casetta di montagna' means 'They live in a little mountain house.' Casetta is a real alterato: it still means a small casa, so the base survives in the meaning. Vero alterato.",
+    "prompt": "'Vivono in una casetta di montagna.' La parola 'casetta' è:",
+    "type": "mcq",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "choices": [
+      "vero alterato",
+      "parola indipendente"
+    ],
+    "answer_index": 0,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "word_formation.alterati.falsi",
+        "label": "Falsi alterati",
+        "any_phrases": [
+          {
+            "phrase": "vero alterato",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "parola indipendente",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "examiner_note": "Converted short -> MCQ per Architecture v5 Q3/Q4: candidate_forms ruled NO for verdict items (a tick listing the verdict labels is noise), so MCQ is the honest instrument for the tick and per-context stats. Index-scored; markpoint retained for bucket attribution. Suppress kept: the criterion-15 breadcrumb leak is unaffected by the rendering.",
+    "version": 2
+  },
+  {
+    "external_id": "wf_falsi_14",
+    "language_code": "it",
+    "topic": "word_formation",
+    "subtopic": "falsi",
+    "difficulty": 3,
+    "cefr_level_target": "C1",
+    "explanation": "'Da bambino avevo paura del suo nasone' means 'As a child I was scared of his big nose.' Nasone is a real alterato: the accrescitivo -one genuinely enlarges naso, and a nasone is a big nose and nothing else. Vero alterato.",
+    "prompt": "'Da bambino avevo paura del suo nasone.' La parola 'nasone' è:",
+    "type": "mcq",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "choices": [
+      "vero alterato",
+      "parola indipendente"
+    ],
+    "answer_index": 0,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "word_formation.alterati.falsi",
+        "label": "Falsi alterati",
+        "any_phrases": [
+          {
+            "phrase": "vero alterato",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "parola indipendente",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "examiner_note": "Converted short -> MCQ per Architecture v5 Q3/Q4: candidate_forms ruled NO for verdict items (a tick listing the verdict labels is noise), so MCQ is the honest instrument for the tick and per-context stats. Index-scored; markpoint retained for bucket attribution. Suppress kept: the criterion-15 breadcrumb leak is unaffected by the rendering.",
+    "version": 2
+  },
+  {
+    "external_id": "wf_falsi_15",
+    "language_code": "it",
+    "topic": "word_formation",
+    "subtopic": "falsi",
+    "difficulty": 3,
+    "cefr_level_target": "C1",
+    "explanation": "'Il bambino alzò la manina per salutare' means 'The child raised his little hand to wave.' Manina is a real alterato of mano, small and affectionate at once. The base is fully present in the meaning, so vero alterato.",
+    "prompt": "'Il bambino alzò la manina per salutare.' La parola 'manina' è:",
+    "type": "mcq",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "choices": [
+      "vero alterato",
+      "parola indipendente"
+    ],
+    "answer_index": 0,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "word_formation.alterati.falsi",
+        "label": "Falsi alterati",
+        "any_phrases": [
+          {
+            "phrase": "vero alterato",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "parola indipendente",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "examiner_note": "Converted short -> MCQ per Architecture v5 Q3/Q4: candidate_forms ruled NO for verdict items (a tick listing the verdict labels is noise), so MCQ is the honest instrument for the tick and per-context stats. Index-scored; markpoint retained for bucket attribution. Suppress kept: the criterion-15 breadcrumb leak is unaffected by the rendering.",
+    "version": 2
+  },
+  {
+    "external_id": "wf_falsi_16",
+    "language_code": "it",
+    "topic": "word_formation",
+    "subtopic": "falsi",
+    "difficulty": 3,
+    "cefr_level_target": "C1",
+    "explanation": "'Nell'acquario nuota un pesciolino rosso' means 'A little red fish is swimming in the tank.' Pesciolino is a real alterato of pesce (with the -ol- linker before -ino). It still means a small pesce, so vero alterato despite the extra syllable.",
+    "prompt": "'Nell'acquario nuota un pesciolino rosso.' La parola 'pesciolino' è:",
+    "type": "mcq",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "choices": [
+      "vero alterato",
+      "parola indipendente"
+    ],
+    "answer_index": 0,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "word_formation.alterati.falsi",
+        "label": "Falsi alterati",
+        "any_phrases": [
+          {
+            "phrase": "vero alterato",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "parola indipendente",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "examiner_note": "Converted short -> MCQ per Architecture v5 Q3/Q4: candidate_forms ruled NO for verdict items (a tick listing the verdict labels is noise), so MCQ is the honest instrument for the tick and per-context stats. Index-scored; markpoint retained for bucket attribution. Suppress kept: the criterion-15 breadcrumb leak is unaffected by the rendering.",
+    "version": 2
+  },
+  {
+    "external_id": "wf_dim_07",
+    "language_code": "it",
+    "topic": "word_formation",
+    "subtopic": "diminutives",
+    "difficulty": 3,
+    "cefr_level_target": "C1",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": true,
+    "prompt": "Completa con il diminutivo in -otto: 'Il ____ è caduto dal nido.' (passero, il piccolo)",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "word_formation.alterati.diminutives",
+        "label": "Diminutivo -otto",
+        "any_phrases": [
+          {
+            "phrase": "passerotto",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "passerino",
+            "match_at": "word"
+          },
+          {
+            "phrase": "passeretto",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "passero",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "passero - sparrow",
+            "bucket": "vocabulary.it.passero.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Il passerotto è caduto dal nido' means 'The young sparrow fell out of the nest.' The diminutivo -otto is the one that most often marks a young animal rather than merely a small thing: passero gives passerotto, and the same suffix gives aquilotto (eaglet) and leprotto (young hare). Usage fixes it: passerotto, not passerino.",
+    "examiner_note": "Second pass, approved at v5. One -otto item: clean non-lexicalised bases are thin, so this covers the suffix named in the dispatch scope without forcing more.",
     "version": 1
   }
 ]

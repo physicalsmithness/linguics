@@ -3,7 +3,7 @@
     "id": "tense_choice",
     "parent_id": "verb_form",
     "language_code": "it",
-    "label": "Tense choice (diagnostic-only)",
+    "label": "Tense choice",
     "description": "Cross-cutting bucket family for items where the only diagnostic is choosing the right tense, not forming it. All items present fully-formed verbs and ask the learner to pick. Covers six contrast areas: imperfetto vs passato prossimo (cross-referenced from the imperfect.discrimination tree, not duplicated here), progressive vs simple, future vs present-for-future, conditional vs imperfetto in counterfactuals, indicative vs subjunctive, and trapassato vs imperfetto. Items dispatched to this topic deliberately do NOT cite formation buckets so the signal stays pure.",
     "cefr_importance": {
       "A1": "arcane",
@@ -25,7 +25,7 @@
       "direction": "bidirectional"
     },
     "active": true,
-    "version": 1
+    "version": 2
   },
   {
     "id": "tense_choice.progressive_vs_simple",
@@ -647,7 +647,7 @@
   },
   {
     "id": "verb_form.present_or_future.dare",
-    "parent_id": null,
+    "parent_id": "tense_choice.future_vs_present",
     "language_code": "it",
     "label": "Dare: present or future both fine",
     "description": "Union bucket for question frames where dai and darai are both natural; the diagnostic is producing dare correctly at all, not the tense choice. Ratified 2026-05-28 (pronoun granularity thread).",
@@ -665,6 +665,6 @@
       "is_aggregate": false
     },
     "active": true,
-    "version": 1
+    "version": 2
   }
 ]

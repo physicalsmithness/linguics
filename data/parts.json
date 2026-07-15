@@ -1,0 +1,73 @@
+{
+  "$comment": "Entry-screen 'Which part?' families. Picker renders parts in this order; within a part, topics render in manifest order (Verbs keeps its curriculum sequence + Form/Use/Tense-choice modes). A manifest topic missing from every part must surface in an auto 'More' part with a console warning - never silently dropped. Parts with zero loaded topics are hidden. Future topics (indefinite, connective) pre-mapped.",
+  "parts": [
+    {
+      "id": "verbs",
+      "label": "Verbs",
+      "topics": [
+        "verb_form.present_indicative",
+        "verb_form.passato_prossimo",
+        "verb_form.imperfect",
+        "verb_form.future",
+        "verb_form.condizionale",
+        "verb_form.gerundio",
+        "verb_form.trapassato_prossimo",
+        "verb_form.congiuntivo",
+        "verb_form.passato_remoto",
+        "verb_form.imperativo",
+        "tense_choice",
+        "piacere"
+      ]
+    },
+    {
+      "id": "pronouns",
+      "label": "Pronouns",
+      "topics": [
+        "pronoun",
+        "pronominal_verbs",
+        "relative_pronoun"
+      ]
+    },
+    {
+      "id": "nouns_articles",
+      "label": "Nouns & articles",
+      "topics": [
+        "noun",
+        "article",
+        "possessive",
+        "demonstrative",
+        "word_formation",
+        "indefinite"
+      ]
+    },
+    {
+      "id": "adjectives_adverbs",
+      "label": "Adjectives & adverbs",
+      "topics": [
+        "adjective_agreement",
+        "adverb",
+        "comparison"
+      ]
+    },
+    {
+      "id": "building_sentences",
+      "label": "Building sentences",
+      "topics": [
+        "preposition",
+        "negation",
+        "existential",
+        "si_constructions",
+        "passive",
+        "reported_speech",
+        "connective"
+      ]
+    },
+    {
+      "id": "vocab",
+      "label": "Vocab",
+      "topics": [
+        "vocabulary"
+      ]
+    }
+  ]
+}

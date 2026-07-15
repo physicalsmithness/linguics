@@ -505,7 +505,16 @@
         "bucket": "pronoun.direct_object.la",
         "label": "DOP f.sg la for a feminine person",
         "any_phrases": [
-          "la"
+          {
+            "phrase": "l'",
+            "match_at": "word"
+          },
+          {
+            "phrase": "la",
+            "match_at": "word",
+            "credit": 0.9,
+            "note": "Before a vowel sound Italian elides: l'invita. Right pronoun, so nearly full credit - but write l' here."
+          }
         ],
         "must_not_include": [
           "le",
@@ -562,7 +571,12 @@
             "phrase": "l'",
             "match_at": "word"
           },
-          "la"
+          {
+            "phrase": "la",
+            "match_at": "word",
+            "credit": 0.9,
+            "note": "Before a vowel sound Italian elides: l'ho. Right pronoun, so nearly full credit - but write l' here."
+          }
         ],
         "must_not_include": [
           "lo",
@@ -1214,8 +1228,7 @@
         ],
         "must_not_include": [
           "la ho",
-          "lo ho",
-          "l ho"
+          "lo ho"
         ]
       }
     ],
@@ -3379,13 +3392,19 @@
         "label": "IOP me precedes DOP lo",
         "any_phrases": [
           {
-            "phrase": "lo",
+            "phrase": "Me lo dai",
+            "match_at": "word"
+          },
+          {
+            "phrase": "me lo dai",
             "match_at": "word"
           }
         ],
         "must_not_include": [
           "la mi",
-          "lo mi"
+          "lo mi",
+          "Lo mi dai",
+          "lo mi dai"
         ]
       }
     ],
@@ -6507,34 +6526,49 @@
     "subtopic": "special.formal_lei_capitalisation",
     "difficulty": 3,
     "cefr_level_target": "B2",
-    "prompt": "Capitalise the formal pronouns. 'Gentile signora, la ringrazio per la sua gentilezza.' → 'Gentile signora, ____ ringrazio per la ____ gentilezza.'",
+    "prompt": "Fill each blank with 'la' or 'La' or 'sua' or 'Sua' as appropriate: 'Gentile signora, ____ ringrazio per ____ ____ gentilezza.'",
     "type": "short",
-    "marks": 2,
+    "marks": 3,
     "prompt_supplies_base_form": false,
     "markpoints": [
       {
         "order_index": 0,
         "credit": 1.0,
         "bucket": "pronoun.special.formal_lei_capitalisation",
-        "label": "Capitalise formal La (DOP)",
+        "label": "Formal DOP takes capital La",
         "any_phrases": [
           "La"
         ],
         "must_not_include": [
-          "la"
-        ]
+          "la ringrazio"
+        ],
+        "case_sensitive": true
       },
       {
         "order_index": 1,
         "credit": 1.0,
         "bucket": "pronoun.special.formal_lei_capitalisation",
-        "label": "Capitalise formal possessive Sua",
+        "label": "Article la stays lowercase (not a formal pronoun)",
+        "any_phrases": [
+          "per la"
+        ],
+        "must_not_include": [
+          "per La"
+        ],
+        "case_sensitive": true
+      },
+      {
+        "order_index": 2,
+        "credit": 1.0,
+        "bucket": "pronoun.special.formal_lei_capitalisation",
+        "label": "Formal possessive takes capital Sua",
         "any_phrases": [
           "Sua"
         ],
         "must_not_include": [
           "sua"
-        ]
+        ],
+        "case_sensitive": true
       }
     ],
     "vocab_help": [
@@ -6607,7 +6641,12 @@
             "phrase": "l'",
             "match_at": "word"
           },
-          "la"
+          {
+            "phrase": "la",
+            "match_at": "word",
+            "credit": 0.9,
+            "note": "Before a vowel sound Italian elides: l'ho. Right pronoun, so nearly full credit - but write l' here."
+          }
         ],
         "must_not_include": [
           "lo",
@@ -7975,7 +8014,6 @@
         "must_not_include": [
           "ti ne",
           "te ni",
-          "te'ne",
           "tene"
         ]
       }
@@ -9119,34 +9157,49 @@
     "subtopic": "special.formal_lei_capitalisation",
     "difficulty": 3,
     "cefr_level_target": "B2",
-    "prompt": "Capitalise the formal pronoun in this business email: 'Buongiorno dottore, la informiamo che la sua richiesta è stata accettata.' → '... ____ informiamo che la ____ richiesta è stata accettata.'",
+    "prompt": "Fill each blank with 'la' or 'La' or 'sua' or 'Sua' as appropriate (business email): 'Buongiorno dottore, ____ informiamo che ____ ____ richiesta è stata accettata.'",
     "type": "short",
-    "marks": 2,
+    "marks": 3,
     "prompt_supplies_base_form": false,
     "markpoints": [
       {
         "order_index": 0,
         "credit": 1.0,
         "bucket": "pronoun.special.formal_lei_capitalisation",
-        "label": "Capitalise formal La (DOP) in business email",
+        "label": "Formal DOP takes capital La",
         "any_phrases": [
-          "La"
+          "La informiamo"
         ],
         "must_not_include": [
-          "la"
-        ]
+          "la informiamo"
+        ],
+        "case_sensitive": true
       },
       {
         "order_index": 1,
         "credit": 1.0,
         "bucket": "pronoun.special.formal_lei_capitalisation",
-        "label": "Capitalise formal Sua (possessive) in business email",
+        "label": "Article la stays lowercase (not a formal pronoun)",
         "any_phrases": [
-          "Sua"
+          "che la"
         ],
         "must_not_include": [
-          "sua"
-        ]
+          "che La"
+        ],
+        "case_sensitive": true
+      },
+      {
+        "order_index": 2,
+        "credit": 1.0,
+        "bucket": "pronoun.special.formal_lei_capitalisation",
+        "label": "Formal possessive takes capital Sua",
+        "any_phrases": [
+          "Sua richiesta"
+        ],
+        "must_not_include": [
+          "sua richiesta"
+        ],
+        "case_sensitive": true
       }
     ],
     "vocab_help": [],
@@ -9175,7 +9228,8 @@
         ],
         "must_not_include": [
           "sua"
-        ]
+        ],
+        "case_sensitive": true
       },
       {
         "order_index": 1,
@@ -9187,7 +9241,8 @@
         ],
         "must_not_include": [
           "le"
-        ]
+        ],
+        "case_sensitive": true
       }
     ],
     "vocab_help": [],
@@ -9358,8 +9413,7 @@
         ],
         "must_not_include": [
           "Mene",
-          "mene",
-          "Me-ne"
+          "mene"
         ]
       }
     ],
@@ -9428,8 +9482,7 @@
         ],
         "must_not_include": [
           "Mele",
-          "mele",
-          "Me-le"
+          "mele"
         ]
       }
     ],

@@ -507,3 +507,8 @@ The ratified dual-citation mechanism (two 0.5 markpoints with identical phrase l
 
 GerundioAuthor's reconciliation found five real content bugs (one ungrammatical prompt) purely by writing out the completed sentence in English per criterion 17. The older batches (adjective_agreement, pronoun, PP, imperfect wave-1) predate the criterion and have never had that pass. Mechanical audits cannot catch wrong Italian; this one does. Schedule as a per-author next-touch or a dedicated sweep.
 
+## Engine (Housing, future): whole-answer anchoring (match_at "exact")
+Two item-classes are unauthorable because the correct string nests inside the wrong attempt at clean word boundaries AND the item wants a whole-answer equivalence: NegationAuthor's elliptical dodge ("Niente." vs "ho visto niente" crediting the dropped-non error) and ComparisonAuthor's molto+issimo. Ruled 2026-07-15: not built for one class; translation strand covers the ellipsis. If a third class appears, build match_at "exact" (needle must equal the whole normalised attempt). Tag: FUTURE-HOUSING.
+
+## Adjective/WordFormation boundary (future seat): relational_adjectives scoping
+word_formation.relational_adjectives is a deliberate stub. Scoping it needs a boundary ruling against the adjective topic (which owns -oso/-ale/-ivo derivation vs agreement?). Do not author from either current seat; wants its own scoping note when an adjective-side second pass opens. Tag: FUTURE-SEAT.

@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-14-r7";
+  const LL_BUILD = "2026-07-15-r8";
   // Touch-first device (no hover, coarse pointer): tap interactions replace
   // keyboard ones. Computed once; used for tap-to-mark on MCQ.
   const TOUCH_FIRST = !!(window.matchMedia
@@ -418,6 +418,11 @@
   // is served over http (e.g. `python -m http.server` from the project root).
   // Falls back silently to the inline samples if fetch fails (file://).
   async function tryLoadRealContent() {
+    // Files that failed to PARSE or errored on the network. A 404 is not a
+    // failure: missing optional files are the documented contract. Anything in
+    // here gets named to the learner rather than silently skipped. See
+    // inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md v3.
+    const loadFailures = [];
     // Defensive JSON parser. Trailing NUL bytes (and stray CRLFs) on some
     // chat-edited JSON files have been observed causing JSON.parse to throw
     // and the page to silently fall back to inline samples. We trim the
@@ -426,10 +431,11 @@
     const parseJson = async (path, response) => {
       const raw = await response.text();
       const trimmed = raw.replace(/[\x00\r\n\s]+$/, "");
-      if (trimmed.length !== raw.length) {
-        const dropped = raw.length - trimmed.length;
-        const nulCount = (raw.match(/\x00/g) || []).length;
-        console.warn(`[Linguics] ${path}: stripped ${dropped} trailing bytes before parse (${nulCount} NULs).`);
+      const nulCount = (raw.match(/\x00/g) || []).length;
+      if (nulCount > 0) {
+        // Only NULs are worth shouting about. A trailing newline is normal, and
+        // warning on it drowned the signal we actually track here.
+        console.warn(`[Linguics] ${path}: stripped ${raw.length - trimmed.length} trailing bytes before parse (${nulCount} NULs).`);
       }
       return JSON.parse(trimmed);
     };
@@ -497,10 +503,12 @@
           return await parseJson(path, r);
         } catch (e) {
           logFetchFailure("parse_error", path, { optional: true, error: String(e) });
+          loadFailures.push({ path: path, kind: "parse_error", error: String(e) });
           return null;
         }
       } catch (e) {
         logFetchFailure("fetch_error", path, { optional: true, error: String(e) });
+        loadFailures.push({ path: path, kind: "fetch_error", error: String(e) });
         return null;
       }
     };
@@ -559,16 +567,25 @@
 
       // Optional themes taxonomy (separate axis on the right-hand heatmap).
       // Missing file means the themes axis is hidden; everything else works.
+      // Architecture-owned part families for the entry picker + categoriser.
+      const parts = await Foptional("../data/parts.json");
       const themes = await Foptional("../data/vocab_themes.json");
       if (themes) {
         LL.themesTaxonomy = themes;
       }
 
       console.info("Loaded per topic:", perTopicCounts);
-      return { buckets, grammar, translation, perTopicCounts, vocab, themes };
+      return { buckets, grammar, translation, perTopicCounts, vocab, themes, parts, failures: loadFailures };
     } catch (e) {
-      console.error("[Linguics] Real content fetch failed; using inline samples. Cause:", e && e.message || e);
-      showLoadFailureBanner(e && e.message ? e.message : String(e));
+      const cause = e && e.message ? e.message : String(e);
+      console.error("[Linguics] Real content fetch failed; using inline samples. Cause:", cause);
+      showLoadFailureBanner(cause);
+      // Promote the real cause to the footer: on http(s) the old "serve via
+      // http" line was actively misleading.
+      const onFile = (typeof location !== "undefined" && location.protocol === "file:");
+      setStatus("Inline samples \u2014 " + (onFile
+        ? "serve via http to load real content."
+        : "couldn\u2019t load real content: " + cause));
       return null;
     }
   }
@@ -604,6 +621,44 @@
     if (detailForTitle) {
       host.title = "Details: " + detailForTitle;
     }
+  }
+  // Partial-load banner: content loaded, but named files were skipped. The old
+  // behaviour skipped them SILENTLY, so a corrupt batch was invisible to the
+  // learner and misdiagnosed twice. Names what is missing, in plain language.
+  function friendlyFailureName(path) {
+    let m = /grammar_questions_(.+)\.json$/.exec(path);
+    if (m) return prettifyId(m[1]) + " grammar items";
+    m = /translation_items_(.+)\.json$/.exec(path);
+    if (m) return prettifyId(m[1]) + " translation items";
+    m = /buckets\/(.+)\.json$/.exec(path);
+    if (m) return prettifyId(m[1]) + " topic";
+    return String(path).split("/").pop();
+  }
+  function showPartialLoadBanner(failures) {
+    const host = document.getElementById("load-failure-banner");
+    if (!host || !failures || !failures.length) return;
+    host.innerHTML = "";
+    host.hidden = false;
+    const names = failures.map(f => friendlyFailureName(f.path));
+    const msg = document.createElement("span");
+    msg.className = "load-failure-msg";
+    msg.textContent = names.join(", ") + " failed to load. You\u2019re practising without "
+      + (names.length > 1 ? "them" : "it") + ".";
+    host.appendChild(msg);
+    const reloadBtn = document.createElement("button");
+    reloadBtn.type = "button";
+    reloadBtn.className = "load-failure-reload";
+    reloadBtn.textContent = "Refresh";
+    reloadBtn.addEventListener("click", () => location.reload());
+    host.appendChild(reloadBtn);
+    const dismiss = document.createElement("button");
+    dismiss.type = "button";
+    dismiss.className = "load-failure-dismiss";
+    dismiss.textContent = "\u00d7";
+    dismiss.title = "Dismiss";
+    dismiss.addEventListener("click", () => { host.hidden = true; });
+    host.appendChild(dismiss);
+    host.title = "Details: " + failures.map(f => f.path + " (" + f.kind + ")").join("; ");
   }
   function clearLoadFailureBanner() {
     const host = document.getElementById("load-failure-banner");
@@ -4317,7 +4372,7 @@
     }
     // After rendering, bring the first recently-changed row into view.
     if (recentlyChangedBuckets.size) {
-      setTimeout(scrollToFreshBuckets, 80);
+      scrollToFreshBuckets();   // rAF settle inside owns the timing
     }
   }
 
@@ -4381,14 +4436,53 @@
   // See inter_chat/Architecture_Housing_stats_panel_structure.md.
   function overviewCategoryFor(rootId) {
     if (!rootId) return null;
-    if (rootId === "tense_choice" || rootId.startsWith("verb_form.")) return "Verbs";
-    if (rootId.startsWith("adjective_agreement")) return "Adjectives";
-    if (rootId.startsWith("pronoun")) return "Pronouns";
-    if (rootId.startsWith("vocabulary")) return null;  // suppressed per ask 4
-    return "Other";
+    const head = String(rootId).split(".")[0];
+    if (head === "vocabulary") return null;              // vocab has its own strand
+    // Diagnostic-only trees (orthography.*) are analytics axes, not practisable
+    // parts: they must never appear in the picker or the coverage matrix.
+    const node = bucketIndex && bucketIndex.byId && (bucketIndex.byId[rootId] || bucketIndex.byId[head]);
+    if (node && node.attributes && node.attributes.diagnostic_only) return null;
+    const idx = topicPartIndex();
+    const hit = idx[rootId] || idx[head];
+    if (hit) return hit.id === "vocab" ? null : hit.label;
+    // No silent drops: an unmapped loaded topic surfaces under "More", warned once.
+    if (LL.partsConfig && !_warnedUnmapped.has(head)) {   // don't warn during the legacy-fallback boot window
+      _warnedUnmapped.add(head);
+      console.warn("[Linguics] topic \"" + head + "\" is in no parts.json family; showing under \"" + MORE_PART_LABEL + "\".");
+    }
+    return MORE_PART_LABEL;
   }
   // Across-category order. Verbs first (bulk), then Adjectives, then Pronouns.
-  const OVERVIEW_CATEGORY_ORDER = ["Verbs", "Adjectives", "Pronouns", "Other"];
+  // ---- part families (data/parts.json, architecture-owned) ----
+  // Single source of truth for the entry picker AND the overview categoriser, so
+  // the two surfaces cannot disagree. Legacy fallback keeps inline-sample boot
+  // working before the file loads. See inter_chat/Architecture_Housing_entry_parts_map.md.
+  const LEGACY_PARTS = { parts: [
+    { id: "verbs", label: "Verbs", topics: ["verb_form.present_indicative","verb_form.passato_prossimo","verb_form.imperfect","verb_form.future","verb_form.condizionale","verb_form.gerundio","verb_form.trapassato_prossimo","verb_form.congiuntivo","verb_form.passato_remoto","verb_form.imperativo","tense_choice"] },
+    { id: "pronouns", label: "Pronouns", topics: ["pronoun"] },
+    { id: "adjectives_adverbs", label: "Adjectives & adverbs", topics: ["adjective_agreement"] },
+    { id: "vocab", label: "Vocab", topics: ["vocabulary"] }
+  ] };
+  function partsConfig() {
+    const c = LL.partsConfig;
+    return (c && Array.isArray(c.parts) && c.parts.length) ? c : LEGACY_PARTS;
+  }
+  const MORE_PART_LABEL = "More";
+  const _warnedUnmapped = new Set();
+  // topic -> { id, label } for every mapped topic.
+  function topicPartIndex() {
+    const idx = {};
+    for (const part of partsConfig().parts) {
+      for (const tp of (part.topics || [])) idx[tp] = { id: part.id, label: part.label };
+    }
+    return idx;
+  }
+  function overviewCategoryOrder() {
+    const out = partsConfig().parts.filter(p => p.id !== "vocab").map(p => p.label);
+    out.push(MORE_PART_LABEL);
+    return out;
+  }
+  const OVERVIEW_CATEGORY_ORDER = null;  // superseded by overviewCategoryOrder()
   // Within-Verbs curriculum sequence. Other categories use manifest order.
   // Full intended curriculum order (CEFR-grounded, see CEFR_GROUNDING.md and
   // inter_chat/Architecture_Housing_curriculum_order_new_trees.md). Trees not
@@ -4432,7 +4526,7 @@
     });
 
     // Render category by category.
-    for (const cat of OVERVIEW_CATEGORY_ORDER) {
+    for (const cat of overviewCategoryOrder()) {
       const roots = byCategory.get(cat);
       if (!roots || roots.length === 0) continue;
       const header = document.createElement("div");
@@ -4621,15 +4715,46 @@
     return dots;
   }
 
+  // Nearest scrollbox that actually scrolls the bucket rows. The sidebar nests
+  // TWO scrollboxes (#live-stats and #live-stats-content), which is part of why
+  // scrollIntoView misbehaved: it walks EVERY scrollable ancestor, including the
+  // window. See inter_chat/Architecture_Housing_grammar_view_space_and_scroll.md v4.
+  function freshScrollBox() {
+    const inner = document.getElementById("live-stats-content");
+    const outer = document.getElementById("live-stats");
+    if (inner && inner.scrollHeight > inner.clientHeight + 1) return inner;
+    if (outer && outer.scrollHeight > outer.clientHeight + 1) return outer;
+    return inner || outer || null;
+  }
   function scrollToFreshBuckets() {
     if (TOUCH_FIRST) return;  // phones: keep the answer + explanation in view; the inline hint invites a look
-    // Post-Mark auto-scroll: only nudge if the fresh row is OUTSIDE the
-    // viewport (block: "nearest"). When the live panel is already visible
-    // — the common case during normal practice — this becomes a no-op so
-    // the page doesn't jump and the user sees the cell update in place.
-    // See inter_chat/Architecture_Housing_grammar_view_space_and_scroll.md.
     const fresh = document.querySelector("#live-stats-content .live-bucket-row.fresh");
-    if (fresh) fresh.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    if (!fresh) return;
+    // Wait until layout STOPS MOVING before measuring. The post-Mark result
+    // reveal animates the main column and the fresh row flashes here, so the old
+    // fixed 80ms timeout measured a layout still in flight and the smooth scroll
+    // landed where the row used to be (it slid to the bottom). Settle = two
+    // consecutive frames with the same top, capped so we can never spin.
+    let lastTop = null, stable = 0, frames = 0;
+    const step = () => {
+      const top = fresh.getBoundingClientRect().top;
+      if (lastTop !== null && Math.abs(top - lastTop) < 0.5) stable++; else stable = 0;
+      lastTop = top;
+      if (stable < 2 && frames++ < 90) { requestAnimationFrame(step); return; }
+      const box = freshScrollBox();
+      if (!box) return;
+      const r = fresh.getBoundingClientRect();
+      const b = box.getBoundingClientRect();
+      const topInBox = r.top - b.top + box.scrollTop;
+      const botInBox = topInBox + r.height;
+      // Already fully visible (the common case mid-practice): do nothing at all.
+      if (topInBox >= box.scrollTop && botInBox <= box.scrollTop + box.clientHeight) return;
+      // Centre it rather than "nearest", so it never parks at the very bottom.
+      const target = Math.max(0, topInBox - Math.max(0, (box.clientHeight - r.height) / 2));
+      if (typeof box.scrollTo === "function") box.scrollTo({ top: target, behavior: "smooth" });
+      else box.scrollTop = target;
+    };
+    requestAnimationFrame(step);
   }
 
   function scrollToBucket(bucketId) {
@@ -4956,36 +5081,51 @@
 
   // Returns the ordered part structure for the grammar config panel.
   function deriveEntryParts(grammarItems, bucketById) {
-    const topics = uniqueValues(grammarItems, "topic");
-    const formationTopics = topics.filter(t => t.startsWith("verb_form."))
-      .sort((a, b) => verbCurriculumRank(a) - verbCurriculumRank(b));
-    const usageTopics = topics.filter(t => t === "tense_choice");
-
-    const pronounKinds = [];
-    if (topics.includes("pronoun") && bucketById) {
-      for (const id of Object.keys(bucketById)) {
-        const b = bucketById[id];
-        if (b && b.parent_id === "pronoun") {
-          pronounKinds.push({ bucketPath: b.id, label: b.label || prettifyId(b.id) });
-        }
+    const loaded = new Set(uniqueValues(grammarItems, "topic"));
+    const cfg = partsConfig();
+    const out = [];
+    const mapped = new Set();
+    for (const part of cfg.parts) {
+      for (const tp of (part.topics || [])) mapped.add(tp);
+      if (part.id === "vocab") continue;                       // vocab has its own strand card
+      const topics = (part.topics || []).filter(tp => loaded.has(tp));
+      if (!topics.length) continue;                            // all-unloaded part is hidden
+      const entry = {
+        id: part.id,
+        label: part.label,
+        kind: part.id === "verbs" ? "verbs" : (part.id === "pronouns" ? "pronouns" : "generic"),
+        topics: topics.map(tp => ({ topic: tp, label: friendlyTopicLabel(tp) }))
+      };
+      if (entry.kind === "verbs") {
+        const formation = topics.filter(tp => tp !== "tense_choice")
+          .sort((a, b) => verbCurriculumRank(a) - verbCurriculumRank(b));
+        entry.formationTopics = formation.map(tp => ({ topic: tp, label: friendlyTopicLabel(tp) }));
+        entry.usageTopics = topics.filter(tp => tp === "tense_choice")
+          .map(tp => ({ topic: tp, label: friendlyTopicLabel(tp) }));
       }
+      if (entry.kind === "pronouns") {
+        const kinds = [];
+        if (loaded.has("pronoun") && bucketById) {
+          for (const id of Object.keys(bucketById)) {
+            const b = bucketById[id];
+            if (b && b.parent_id === "pronoun") kinds.push({ bucketPath: b.id, label: b.label || prettifyId(b.id) });
+          }
+        }
+        entry.kinds = kinds;
+      }
+      out.push(entry);
     }
-
-    const parts = [];
-    if (formationTopics.length || usageTopics.length) {
-      parts.push({
-        id: "verbs", label: "Verbs", kind: "verbs",
-        formationTenses: formationTopics.map(tp => ({ topic: tp, label: tenseLabel(tp) })),
-        usageTenses: usageTopics.map(tp => ({ topic: tp, label: tenseLabel(tp) }))
+    // No silent drops: any loaded topic in no family surfaces under "More", warned.
+    const extra = Array.from(loaded).filter(tp => !mapped.has(tp));
+    if (extra.length) {
+      console.warn("[Linguics] " + extra.length + " loaded topic(s) map to no parts.json family; "
+        + "showing under \"" + MORE_PART_LABEL + "\": " + extra.join(", "));
+      out.push({
+        id: "__more__", label: MORE_PART_LABEL, kind: "generic",
+        topics: extra.map(tp => ({ topic: tp, label: friendlyTopicLabel(tp) }))
       });
     }
-    if (topics.includes("pronoun")) {
-      parts.push({ id: "pronouns", label: "Pronouns", kind: "pronouns", topic: "pronoun", kinds: pronounKinds });
-    }
-    if (topics.includes("adjective_agreement")) {
-      parts.push({ id: "adjectives", label: "Adjectives", kind: "adjectives", topic: "adjective_agreement" });
-    }
-    return parts;
+    return out;
   }
   LL.deriveEntryParts = deriveEntryParts;  // exposed for tests
 
@@ -4995,15 +5135,19 @@
     return {
       strand: null,
       grammar: {
-        verbMode: "form",                       // "form" | "use"
-        verbs:      { on: false, tenses: {} },  // tenses: { "<topic>": true }
-        pronouns:   { on: false, kinds: {} },   // kinds:  { "pronoun.<kind>": true }
-        adjectives: { on: false }
+        verbMode: "form",   // "form" | "use"
+        parts: {}           // partId -> { on, topics: {topic:true}, kinds: {bucketPath:true} }
       },
       vocab: { direction: "it_en", subBand: "", genderDrill: false },
       translation: { grammarPoint: "", way: "" },
-      cefrRange: null                            // [minIdx, maxIdx] over CEFR_ORDER; set by the level strip (phase 1b)
+      cefrRange: null
     };
+  }
+  function partSel(partId) {
+    const g = entrySel.grammar;
+    if (!g.parts) g.parts = {};
+    if (!g.parts[partId]) g.parts[partId] = { on: false, topics: {}, kinds: {} };
+    return g.parts[partId];
   }
 
   function currentEntryParts() {
@@ -5134,63 +5278,71 @@
     panel.appendChild(head);
     panel.appendChild(hint);
 
+    const chipRow = (items, isActive, onTap, allActive, onAll) => {
+      const r = document.createElement("div");
+      r.className = "entry-chip-row";
+      r.appendChild(entryChip("All", allActive(), onAll));
+      for (const it of items) r.appendChild(entryChip(it.label, isActive(it), () => onTap(it)));
+      return r;
+    };
+
     for (const part of parts) {
       const row = document.createElement("div");
       row.className = "entry-part";
-
-      const sel = part.kind === "verbs" ? g.verbs : (part.kind === "pronouns" ? g.pronouns : g.adjectives);
+      const sel = partSel(part.id);
+      const hasDrill = (part.kind === "verbs")
+        || (part.kind === "pronouns" && part.kinds && part.kinds.length)
+        || (part.topics.length > 1);
 
       const tickWrap = document.createElement("button");
       tickWrap.type = "button";
       tickWrap.className = "entry-part-tick" + (sel.on ? " on" : "");
-      const hasDrill = part.kind === "verbs" || (part.kind === "pronouns" && part.kinds && part.kinds.length);
       tickWrap.innerHTML = '<span class="tickbox"></span><span class="entry-part-label">' + part.label + '</span>'
         + (hasDrill ? '<span class="entry-part-caret" aria-hidden="true">' + (sel.on ? "\u25be" : "\u25b8") + '</span>' : '');
       tickWrap.addEventListener("click", () => { sel.on = !sel.on; renderEntryScreen(); });
       row.appendChild(tickWrap);
 
-      // drill-in (only when ticked)
-      if (sel.on && part.kind === "verbs") {
+      if (sel.on && hasDrill) {
         const drill = document.createElement("div");
         drill.className = "entry-drill";
-        // Form / Use toggle
-        const modeRow = document.createElement("div");
-        modeRow.className = "entry-chip-row";
-        modeRow.appendChild(entryChip("Form them", g.verbMode === "form",
-          () => { g.verbMode = "form"; renderEntryScreen(); },
-          { title: "Produce the verb form" }));
-        modeRow.appendChild(entryChip("Use them", g.verbMode === "use",
-          () => { g.verbMode = "use"; renderEntryScreen(); },
-          { title: "Choose the right tense in context" }));
-        drill.appendChild(modeRow);
 
-        const tenseList = g.verbMode === "use" ? part.usageTenses : part.formationTenses;
-        if (tenseList.length) {
-          const tr = document.createElement("div");
-          tr.className = "entry-chip-row";
-          tr.appendChild(entryChip("All", Object.keys(g.verbs.tenses).filter(k => g.verbs.tenses[k]).length === 0,
-            () => { g.verbs.tenses = {}; renderEntryScreen(); }));
-          for (const tn of tenseList) {
-            tr.appendChild(entryChip(tn.label, !!g.verbs.tenses[tn.topic],
-              () => { g.verbs.tenses[tn.topic] = !g.verbs.tenses[tn.topic]; renderEntryScreen(); }));
+        if (part.kind === "verbs") {
+          const modeRow = document.createElement("div");
+          modeRow.className = "entry-chip-row";
+          modeRow.appendChild(entryChip("Form them", g.verbMode === "form",
+            () => { g.verbMode = "form"; renderEntryScreen(); }, { title: "Produce the verb form" }));
+          modeRow.appendChild(entryChip("Use them", g.verbMode === "use",
+            () => { g.verbMode = "use"; renderEntryScreen(); }, { title: "Choose the right tense in context" }));
+          drill.appendChild(modeRow);
+          const list = (g.verbMode === "use") ? part.usageTopics : part.formationTopics;
+          if (list.length) {
+            drill.appendChild(chipRow(list,
+              it => !!sel.topics[it.topic],
+              it => { sel.topics[it.topic] = !sel.topics[it.topic]; renderEntryScreen(); },
+              () => Object.keys(sel.topics).filter(k => sel.topics[k]).length === 0,
+              () => { sel.topics = {}; renderEntryScreen(); }));
           }
-          drill.appendChild(tr);
+        } else {
+          if (part.topics.length > 1) {
+            drill.appendChild(chipRow(part.topics,
+              it => !!sel.topics[it.topic],
+              it => { sel.topics[it.topic] = !sel.topics[it.topic]; renderEntryScreen(); },
+              () => Object.keys(sel.topics).filter(k => sel.topics[k]).length === 0,
+              () => { sel.topics = {}; renderEntryScreen(); }));
+          }
+          if (part.kind === "pronouns" && part.kinds && part.kinds.length) {
+            const kh = document.createElement("p");
+            kh.className = "entry-config-hint";
+            kh.textContent = "or narrow to a pronoun kind";
+            drill.appendChild(kh);
+            drill.appendChild(chipRow(part.kinds,
+              k => !!sel.kinds[k.bucketPath],
+              k => { sel.kinds[k.bucketPath] = !sel.kinds[k.bucketPath]; renderEntryScreen(); },
+              () => Object.keys(sel.kinds).filter(k => sel.kinds[k]).length === 0,
+              () => { sel.kinds = {}; renderEntryScreen(); }));
+          }
         }
-        row.appendChild(drill);
-      }
-      if (sel.on && part.kind === "pronouns" && part.kinds.length) {
-        const drill = document.createElement("div");
-        drill.className = "entry-drill";
-        const kr = document.createElement("div");
-        kr.className = "entry-chip-row";
-        kr.appendChild(entryChip("All", Object.keys(g.pronouns.kinds).filter(k => g.pronouns.kinds[k]).length === 0,
-          () => { g.pronouns.kinds = {}; renderEntryScreen(); }));
-        for (const k of part.kinds) {
-          kr.appendChild(entryChip(k.label, !!g.pronouns.kinds[k.bucketPath],
-            () => { g.pronouns.kinds[k.bucketPath] = !g.pronouns.kinds[k.bucketPath]; renderEntryScreen(); }));
-        }
-        drill.appendChild(kr);
-        row.appendChild(drill);
+        if (drill.children.length) row.appendChild(drill);
       }
       panel.appendChild(row);
     }
@@ -5203,23 +5355,27 @@
     const g = entrySel.grammar;
     const parts = currentEntryParts();
     const clauses = [];
-    if (g.verbs.on) {
-      const chosen = Object.keys(g.verbs.tenses).filter(k => g.verbs.tenses[k]);
-      let topics;
-      if (g.verbMode === "use") {
-        const usage = (parts.find(p => p.id === "verbs") || {}).usageTenses || [];
-        topics = chosen.length ? chosen : usage.map(x => x.topic);
-      } else {
-        const formation = (parts.find(p => p.id === "verbs") || {}).formationTenses || [];
-        topics = chosen.length ? chosen : formation.map(x => x.topic);
+    for (const part of parts) {
+      const sel = g.parts && g.parts[part.id];
+      if (!sel || !sel.on) continue;
+      if (part.kind === "verbs") {
+        const chosen = Object.keys(sel.topics).filter(k => sel.topics[k]);
+        const list = (g.verbMode === "use") ? part.usageTopics : part.formationTopics;
+        const topics = chosen.length ? chosen : list.map(x => x.topic);
+        if (topics.length) clauses.push({ topics });
+        continue;
       }
+      const chosenTopics = Object.keys(sel.topics).filter(k => sel.topics[k]);
+      const chosenKinds = Object.keys(sel.kinds).filter(k => sel.kinds[k]);
+      if (part.kind === "pronouns" && chosenKinds.length) {
+        clauses.push({ topics: ["pronoun"], bucketPaths: chosenKinds });
+        const others = chosenTopics.filter(tp => tp !== "pronoun");
+        if (others.length) clauses.push({ topics: others });
+        continue;
+      }
+      const topics = chosenTopics.length ? chosenTopics : part.topics.map(x => x.topic);
       if (topics.length) clauses.push({ topics });
     }
-    if (g.pronouns.on) {
-      const kinds = Object.keys(g.pronouns.kinds).filter(k => g.pronouns.kinds[k]);
-      clauses.push({ topics: ["pronoun"], bucketPaths: kinds });
-    }
-    if (g.adjectives.on) clauses.push({ topics: ["adjective_agreement"] });
     return clauses;
   }
   // Root bucket ids for the current grammar selection, for the competence strip.
@@ -5526,9 +5682,10 @@
     return "rgb(" + r + "," + g + "," + b + ")";
   }
 
+  // Every grammar topic that maps to a (non-vocab) part family, including "More".
+  // Previously hardcoded to three, which hid ~17 topics from the matrix.
   function isGrammarPartRoot(id) {
-    const c = overviewCategoryFor(id);
-    return c === "Verbs" || c === "Adjectives" || c === "Pronouns";
+    return overviewCategoryFor(id) !== null;
   }
   function friendlyTopicLabel(id) {
     if (id.indexOf("verb_form.") === 0 || id === "tense_choice") return tenseLabel(id);
@@ -5540,8 +5697,9 @@
   function grammarTopicRows() {
     const roots = bucketIndex.roots.map(r => r.id).filter(isGrammarPartRoot);
     roots.sort((a, b) => {
-      const ca = OVERVIEW_CATEGORY_ORDER.indexOf(overviewCategoryFor(a));
-      const cb = OVERVIEW_CATEGORY_ORDER.indexOf(overviewCategoryFor(b));
+      const order = overviewCategoryOrder();
+      const ca = order.indexOf(overviewCategoryFor(a));
+      const cb = order.indexOf(overviewCategoryFor(b));
       if (ca !== cb) return ca - cb;
       return verbCurriculumRank(a) - verbCurriculumRank(b);
     });
@@ -5688,17 +5846,26 @@
   renderSessionCost();
   renderLiveStats();
   showEntry();  // land on the welcome / session builder, not straight into a strand
-  setStatus(`Inline samples (${grammarQuestions.length}G / ${translationItems.length}T / ${allBuckets.length}B). Serve via http to load real content.`);
+  {
+    // "Serve via http" only makes sense on file://. On an http(s) origin it is a
+    // lie that misdirected the diagnosis twice; say we are still loading instead.
+    const onFile = (typeof location !== "undefined" && location.protocol === "file:");
+    setStatus(`Inline samples (${grammarQuestions.length}G / ${translationItems.length}T / ${allBuckets.length}B).`
+      + (onFile ? " Serve via http to load real content." : " Loading real content\u2026"));
+  }
 
   // Try to upgrade to real content
   tryLoadRealContent().then(real => {
     if (!real) return;
-    clearLoadFailureBanner();
+    // Name any skipped file to the learner instead of skipping it silently.
+    if (real.failures && real.failures.length) showPartialLoadBanner(real.failures);
+    else clearLoadFailureBanner();
     allBuckets = real.buckets;
     bucketIndex = LL.store.indexBuckets(allBuckets);
     LL.bucketsById = bucketIndex.byId;
     grammarQuestions = real.grammar;
     translationItems = real.translation;
+    if (real.parts && Array.isArray(real.parts.parts)) LL.partsConfig = real.parts;
     if (real.vocab && Array.isArray(real.vocab)) {
       vocabEntries = real.vocab;
       LL.vocabEntries = vocabEntries;

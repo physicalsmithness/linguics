@@ -21,6 +21,12 @@
      {
       "phrase": "che",
       "match_at": "word"
+     },
+     {
+      "phrase": "il quale",
+      "credit": 0.7,
+      "match_at": "word",
+      "note": "grammatical but heavy: everyday Italian uses plain che for an unambiguous subject relative"
      }
     ],
     "must_not_include": [
@@ -28,7 +34,6 @@
       "phrase": "chi",
       "match_at": "word"
      },
-     "il quale",
      {
       "phrase": "cui",
       "match_at": "word"
@@ -69,7 +74,7 @@
    }
   ],
   "explanation": "'Il ragazzo che parla è mio fratello' means 'The boy who is speaking is my brother.' To hang a description on a noun, Italian uses a joining word, the relative pronoun. Here the relative stands for the subject of its own clause (the boy does the speaking), and for a plain subject with no preposition Italian reaches for che. Che never changes form: il ragazzo che, la ragazza che, i ragazzi che.",
-  "examiner_note": "Common miss per bucket attributes: il quale where plain che suffices; the must_not_include catches it as attempted-but-wrong. chi is ungrammatical with an antecedent and is also caught.",
+  "examiner_note": "Common miss per bucket attributes: il quale where plain che suffices; the must_not_include catches it as attempted-but-wrong. chi is ungrammatical with an antecedent and is also caught. Rev 20 flex exercised (v5 of the batch-review thread): the agreeing relative here is correct-but-stilted, and a flat WRONG on the che.subject bucket would mis-attribute it as a failed subject relative; graded 0.7 with a steering note. Direct-object and discrimination items keep flat WRONG (there il quale is deviant / is the tested choice).",
   "version": 1
  },
  {
@@ -94,6 +99,12 @@
      {
       "phrase": "che",
       "match_at": "word"
+     },
+     {
+      "phrase": "la quale",
+      "credit": 0.7,
+      "match_at": "word",
+      "note": "grammatical but heavy: everyday Italian uses plain che for an unambiguous subject relative"
      }
     ],
     "must_not_include": [
@@ -101,7 +112,6 @@
       "phrase": "chi",
       "match_at": "word"
      },
-     "la quale",
      {
       "phrase": "cui",
       "match_at": "word"
@@ -132,7 +142,8 @@
    }
   ],
   "explanation": "'Ho un'amica che abita a Napoli' means 'I have a friend who lives in Naples.' The relative pronoun che links the description back to amica, and since the friend is the one doing the living (the subject of the clause), plain che is the word. No agreement is needed: che stays the same for masculine, feminine, singular and plural.",
-  "version": 1
+  "version": 1,
+  "examiner_note": "Rev 20 flex exercised (v5 of the batch-review thread): the agreeing relative here is correct-but-stilted, and a flat WRONG on the che.subject bucket would mis-attribute it as a failed subject relative; graded 0.7 with a steering note. Direct-object and discrimination items keep flat WRONG (there il quale is deviant / is the tested choice)."
  },
  {
   "external_id": "rel_che_subj_03",
@@ -156,6 +167,12 @@
      {
       "phrase": "che",
       "match_at": "word"
+     },
+     {
+      "phrase": "le quali",
+      "credit": 0.7,
+      "match_at": "word",
+      "note": "grammatical but heavy: everyday Italian uses plain che for an unambiguous subject relative"
      }
     ],
     "must_not_include": [
@@ -163,7 +180,6 @@
       "phrase": "chi",
       "match_at": "word"
      },
-     "le quali",
      {
       "phrase": "cui",
       "match_at": "word"
@@ -204,7 +220,7 @@
    }
   ],
   "explanation": "'Non mi piacciono le persone che arrivano sempre in ritardo' means 'I don't like people who always arrive late.' The relative pronoun che stands for the subject of arrivano. English switches between who and which; Italian che covers both, and it does not pluralise either: le persone che, exactly like la persona che.",
-  "examiner_note": "le quali is grammatical but stilted here; caught as the over-formal miss. chi cannot follow an antecedent.",
+  "examiner_note": "le quali is grammatical but stilted here; caught as the over-formal miss. chi cannot follow an antecedent. Rev 20 flex exercised (v5 of the batch-review thread): the agreeing relative here is correct-but-stilted, and a flat WRONG on the che.subject bucket would mis-attribute it as a failed subject relative; graded 0.7 with a steering note. Direct-object and discrimination items keep flat WRONG (there il quale is deviant / is the tested choice).",
   "version": 1
  },
  {
@@ -229,6 +245,12 @@
      {
       "phrase": "che",
       "match_at": "word"
+     },
+     {
+      "phrase": "il quale",
+      "credit": 0.7,
+      "match_at": "word",
+      "note": "grammatical but heavy: everyday Italian uses plain che for an unambiguous subject relative"
      }
     ],
     "must_not_include": [
@@ -236,7 +258,6 @@
       "phrase": "chi",
       "match_at": "word"
      },
-     "il quale",
      {
       "phrase": "cui",
       "match_at": "word"
@@ -277,7 +298,8 @@
    }
   ],
   "explanation": "'Il treno che parte alle otto è già pieno' means 'The train that leaves at eight is already full.' The relative pronoun che introduces the clause describing the train, and the train is the subject of parte, so plain che does the job. Che works for people and things alike; there is no who/which split to manage.",
-  "version": 1
+  "version": 1,
+  "examiner_note": "Rev 20 flex exercised (v5 of the batch-review thread): the agreeing relative here is correct-but-stilted, and a flat WRONG on the che.subject bucket would mis-attribute it as a failed subject relative; graded 0.7 with a steering note. Direct-object and discrimination items keep flat WRONG (there il quale is deviant / is the tested choice)."
  },
  {
   "external_id": "rel_che_do_01",

@@ -1,17 +1,17 @@
 # Coverage: Negation (topic `negation`, prefix `neg` / `trans_neg`)
 
-Authored by NegationAuthor. Batch 1 delivered 2026-07-14 to brief Rev 16 and ACCEPTED (scope thread v4). Reconciled 2026-07-15 to brief **Rev 19** and to Architecture's five rulings, with the né...né leaf added. Validation: 0 failures, 0 warnings.
+Authored by NegationAuthor. Batch 1 delivered 2026-07-14 to brief Rev 16 and ACCEPTED (scope thread v4). Reconciled to brief **Rev 20**. Batch ACCEPTED and LIVE (negation is in manifest.topics). Scope thread CLOSED at v7: all seven asks across the run answered. Validation 0/0; marker replica (strict + accent-folded) 0/0.
 
 Per brief Rev 18, this doc is the RECORD; every ask below is also live on `inter_chat/Architecture_NegationAuthor_scope_ratified.md` (v5).
 
 ## Totals
 
-**41 grammar + 20 translation** across all 9 active leaves.
+**41 grammar + 22 translation** across all 9 active leaves.
 
 | Leaf (friendly label) | id | Grammar | Trans |
 |---|---|---|---|
 | Where non goes | negation.core.non_position | 6 | 2 |
-| Double negation is the norm | negation.core.concord | 6 | 4 |
+| Double negation is the norm | negation.core.concord | 6 | 6 |
 | Two-part negatives (non... mai/più/ancora) | negation.core.bipartite | 6 | 4 |
 | Neanche, nemmeno, neppure | negation.responses | 4 | 3 |
 | Non... che: only | negation.restrictive | 4 | 2 |
@@ -44,10 +44,27 @@ The reconciliation audit added the third direction (no must_not_include may fire
 
 The 17 remaining "must_not inside correct" hits are all the dropped-non guards (e.g. "conosco nessuno" inside "non conosco nessuno"). These are safe and intended: must_not_include is else-if gated behind the positive, so a correct attempt matches the any_phrase and the guard is never evaluated. This is the pattern the dispatch's worked example blessed.
 
-## Flagged for a ruling (also on the thread, per Rev 18)
+## Rev 20 pass (2026-07-15)
 
-1. **The elliptical dodge is unreachable.** "Cosa hai visto?" answered with a bare "Niente." is correct, idiomatic Italian that sidesteps the concord frame, so Rev 17(iv) would want it at 0.9. It cannot be authored: the phrase "niente" is a substring of the wrong attempt "ho visto niente" (dropped non), so a 0.9 entry would credit the very error the item tests. Same class as ComparisonAuthor's molto+issimo stacking. Left unauthored on neg_concord_02/06; the honest fix is a marker that can anchor a whole-answer match, or routing the ellipsis to translation.
-2. **candidate_forms on verdict items** (see above): confirm the judgement or tell me to add them.
+- **20(i) dodge-vs-named-miss precedence**: checked against my only grammar dodge. neg_bip_03 accepts "ho smesso" at 0.9; the bipartite bucket's named common_miss is "dropping non (bevo mai), or English-order mai bevo", which "ho smesso" is not. The sidestep is not a targeted misconception of the bucket, so the 0.9 stands unchanged.
+- **20(ii) frame-forced recoverability**: a sixth class that further supports the existing suppressions; no item changed.
+- **20(iii) instruction-pinned guards**: no guard here false-flags a compliant answer, so the mitigation is unused.
+- **§3 explicit `credit` on references** (previously undocumented to me): applied. Four references now carry `credit: 0.9` with steering notes rather than leaving the AI marker to infer from prose.
+
+## Resolved (scope thread v7, CLOSED)
+
+1. **Elliptical dodge**: ruled unauthorable in grammar, covered in translation instead, which is now done (see below). The engine ask for whole-answer anchoring (`match_at "exact"`) is logged in OPEN_QUESTIONS with this case and ComparisonAuthor's molto+issimo as the motivating pair; it gets built if a third class appears.
+2. **candidate_forms on verdict items**: ruled off, jointly with WordFormationAuthor. candidate_forms carries answer-content alternatives; verdict labels are meta-judgements. The MCQ conversions here are cited as the precedent.
+3. **Dead guards**: the canonical gate reports negation 0 dead on current disk, corroborating the two fixes and the marker replica.
+4. **Accent**: the AccentAuditor seat's central count is negation 13/0, matching my per-phrase criterion-19 check exactly. Accent sweeps now belong to that seat; nothing was recalled from negation.
+
+## The ellipsis, as covered in translation
+
+Two items carry it, because the AI marker sees the whole answer where the substring marker cannot:
+
+- `trans_neg_en_it_concord_05` ("What did you see?" / "I didn't see anything.") and `trans_neg_en_it_concord_06` ("Who came to the party?" / "Nobody came."). Each enumerates the full frame at full credit, the bare elliptical («Niente.» / «Nessuno.») at an explicit `credit: 0.9` with a steering note, and the dropped-non or kept-non error as a `polarity: "negative"` anti-anchor. concord_06 doubles as the both-frames teacher, since Non è venuto nessuno and Nessuno è venuto are both right.
+
+The teaching point that grammar could not grade is exactly the one these carry: the bare ellipsis is what a native actually says, and it is fine, but the moment the full clause appears, non must be there.
 
 ## Notes for next pass
 

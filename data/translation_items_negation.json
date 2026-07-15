@@ -482,7 +482,8 @@
       {
         "text": "Ho solo dieci euro.",
         "register": "neutral",
-        "notes": "Most natural everyday rendering."
+        "notes": "Correct and the most natural everyday rendering, but it sidesteps the restrictive non...che frame this item drills, so it takes the pattern-dodge credit. Steer: Non ho che dieci euro.",
+        "credit": 0.9
       },
       {
         "text": "Non ho che dieci euro.",
@@ -640,7 +641,8 @@
       {
         "text": "Non ho detto questo per niente!",
         "register": "neutral",
-        "notes": "Alternative intensifier without mica."
+        "notes": "Correct Italian and the same force, but it sidesteps mica, which is the pattern this item drills. Steer: Non ho mica detto questo!",
+        "credit": 0.9
       }
     ],
     "topic": "negation",
@@ -744,6 +746,88 @@
       }
     ],
     "explanation": "'Né Marco né Luca sono venuti' = 'Neither Marco nor Luca came.' The pair sits before the verb, so there is no non; Italian also keeps the verb plural where English hears a singular.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_neg_en_it_concord_05",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "'What did you see?' 'I didn't see anything.'",
+    "reference_translations": [
+      {
+        "text": "«Che cosa hai visto?» «Non ho visto niente.»",
+        "register": "neutral",
+        "notes": "Standard. The English spells out the full clause, so the Italian carries the full non...niente frame."
+      },
+      {
+        "text": "«Che cosa hai visto?» «Non ho visto nulla.»",
+        "register": "neutral",
+        "notes": "nulla = niente; equally correct."
+      },
+      {
+        "text": "«Che cosa hai visto?» «Niente.»",
+        "register": "neutral",
+        "credit": 0.9,
+        "notes": "Natural Italian and what a native would actually answer, but the English gives a full clause and this sidesteps the non...niente concord frame the item drills. Steer: the elliptical Niente. is fine as a bare answer, but the full sentence keeps non."
+      },
+      {
+        "text": "«Che cosa hai visto?» «Ho visto niente.»",
+        "register": "neutral",
+        "polarity": "negative",
+        "notes": "WRONG: postverbal niente still needs non before the verb."
+      }
+    ],
+    "topic": "negation",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "negation.core.concord"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [],
+    "explanation": "'I didn't see anything': Non ho visto niente. Italian marks the negative twice (non + niente) where English marks it once and switches to 'anything'. A bare «Niente.» is perfectly natural as a short answer, but as soon as you say the whole clause, non must be there.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_neg_en_it_concord_06",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "'Who came to the party?' 'Nobody came.'",
+    "reference_translations": [
+      {
+        "text": "«Chi è venuto alla festa?» «Non è venuto nessuno.»",
+        "register": "neutral",
+        "notes": "Standard: postverbal nessuno keeps non."
+      },
+      {
+        "text": "«Chi è venuto alla festa?» «Nessuno è venuto.»",
+        "register": "neutral",
+        "notes": "Equally correct: fronting nessuno drops non. Both frames are right; this is the pair the leaf teaches."
+      },
+      {
+        "text": "«Chi è venuto alla festa?» «Nessuno.»",
+        "register": "neutral",
+        "credit": 0.9,
+        "notes": "Natural as a bare answer, but it sidesteps the concord frame the English clause spells out. Steer: Non è venuto nessuno, or Nessuno è venuto."
+      },
+      {
+        "text": "«Chi è venuto alla festa?» «Nessuno non è venuto.»",
+        "register": "neutral",
+        "polarity": "negative",
+        "notes": "WRONG: a preverbal nessuno drops non; you cannot keep both."
+      }
+    ],
+    "topic": "negation",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "negation.core.concord"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [],
+    "explanation": "'Nobody came': both Non è venuto nessuno (nessuno after the verb, non kept) and Nessuno è venuto (nessuno fronted, non dropped) are correct. A bare «Nessuno.» is what a native would say, but it leaves the concord rule untested, which is what this item is for.",
     "version": 1
   }
 ]

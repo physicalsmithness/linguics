@@ -16,6 +16,35 @@
   "use strict";
   const LL = window.LL || (window.LL = {});
 
+  // Classify an accent slip three ways for the misconception axis: the learner
+  // DROPPED a mark (parlo for parlò), ADDED one (hò for ho), or used the WRONG
+  // mark (perchè for perché). Span-mapped on NFC so folded/unfolded indices line
+  // up (foldAccents is 1 char -> 1 char, so lengths match). Anything mixed or
+  // uncertain returns null and the caller logs the parent id, exactly as before.
+  // See inter_chat/Architecture_Housing_orthography_split.md.
+  const ACCENTED_RE = /[\u00e0\u00e8\u00e9\u00ec\u00f2\u00f9\u00c0\u00c8\u00c9\u00cc\u00d2\u00d9]/;
+  function classifyAccentSlip(attemptNorm, attemptFolded, positivePhrase) {
+    try {
+      const pNorm = LL.norm(positivePhrase).normalize("NFC");
+      const pFolded = LL.foldAccents(pNorm);
+      const idx = attemptFolded.indexOf(pFolded);
+      if (idx === -1) return null;
+      const aSpan = attemptNorm.normalize("NFC").substr(idx, pFolded.length);
+      if (aSpan.length !== pNorm.length) return null;      // length drift: bail to parent
+      let missing = 0, added = 0, wrong = 0;
+      for (let k = 0; k < pNorm.length; k++) {
+        const pc = pNorm[k], ac = aSpan[k];
+        const pAcc = ACCENTED_RE.test(pc), aAcc = ACCENTED_RE.test(ac);
+        if (pAcc && !aAcc) missing++;
+        else if (!pAcc && aAcc) added++;
+        else if (pAcc && aAcc && pc !== ac) wrong++;
+      }
+      const hits = [["missing", missing], ["added", added], ["wrong_mark", wrong]].filter(x => x[1] > 0);
+      if (hits.length !== 1) return null;                  // none or mixed classes: parent
+      return hits[0][0];
+    } catch (e) { return null; }
+  }
+
   function statusFromCombined(awarded, possible) {
     if (possible <= 0) return "not_attempted";
     const f = awarded / possible;
@@ -126,8 +155,9 @@
             result.phrase_note = foldedHit.note;
           }
           awarded += credit * phraseCredit;
+          const slip = classifyAccentSlip(hay, hayFolded, foldedStr);
           orthographyHits.push({
-            bucket: "orthography.accent.italian",
+            bucket: "orthography.accent.italian" + (slip ? "." + slip : ""),
             evidence: foldedStr
           });
         }

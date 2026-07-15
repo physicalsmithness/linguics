@@ -188,5 +188,28 @@
     },
     "active": true,
     "version": 1
+  },
+  {
+    "id": "word_formation.alterati.augmentative_pejorative.gender_shift",
+    "parent_id": "word_formation.alterati.augmentative_pejorative",
+    "language_code": "it",
+    "label": "-one gender shift (la porta, il portone)",
+    "description": "Feminine bases that turn masculine under the accrescitivo -one: la porta > il portone, la palla > il pallone, la stanza > lo stanzone. The diagnostic is the article/gender, distinct from producing the -one suffix itself.",
+    "cefr_importance": {
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "word_formation.alterati.augmentative_pejorative"
+    ],
+    "attributes": {
+      "canonical_example": "la porta -> il portone",
+      "common_miss": "la portona (keeps the feminine)",
+      "is_aggregate": false,
+      "direction": "production"
+    },
+    "active": true,
+    "version": 1
   }
 ]

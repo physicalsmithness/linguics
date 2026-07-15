@@ -1,0 +1,92 @@
+[
+  {
+    "id": "orthography.accent.italian",
+    "parent_id": null,
+    "language_code": "it",
+    "label": "Italian accent slip",
+    "description": "Accent errors caught when the accent-folded fallback rescued an otherwise-correct answer. Aggregate; the engine logs to a child when it can classify the slip, and falls back to this node when it cannot.",
+    "cefr_importance": {
+      "A1": "review",
+      "A2": "review",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "diagnostic_only": true,
+      "topic_short": "accents"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "orthography.accent.italian.missing",
+    "parent_id": "orthography.accent.italian",
+    "language_code": "it",
+    "label": "accent dropped",
+    "description": "Target has an accent the attempt lacks (parlo for parlò, perche for perché). With the apostrophe live-rewriter available, a dropped accent is a knowledge signal, not an input-method artefact.",
+    "cefr_importance": {
+      "A1": "review",
+      "A2": "review",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "diagnostic_only": true,
+      "canonical_example": "parlo for parlò"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "orthography.accent.italian.added",
+    "parent_id": "orthography.accent.italian",
+    "language_code": "it",
+    "label": "accent added (hypercorrection)",
+    "description": "Attempt carries an accent the target lacks (hò for ho, fù for fu, stò for sto). A systematic habit, not a typo; distinct misconception family from dropping accents.",
+    "cefr_importance": {
+      "A1": "review",
+      "A2": "review",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "diagnostic_only": true,
+      "canonical_example": "hò for ho",
+      "common_miss": "hypercorrection on avere and monosyllables"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "orthography.accent.italian.wrong_mark",
+    "parent_id": "orthography.accent.italian",
+    "language_code": "it",
+    "label": "wrong accent mark",
+    "description": "Accent present on the right letter but the wrong mark (perchè for perché, é for è): the grave/acute distinction.",
+    "cefr_importance": {
+      "A1": "review",
+      "A2": "review",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "diagnostic_only": true,
+      "canonical_example": "perchè for perché"
+    },
+    "active": true,
+    "version": 1
+  }
+]

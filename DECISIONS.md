@@ -1,5 +1,30 @@
 # DECISIONS.md
 
+## 2026-07-15: canonical marker-replica gate is the acceptance standard; estate run dispositioned 31 dead guards
+**What:** An architect-owned replica of grammar_engine.js marking semantics (strict per-phrase match_at -> accent-folded rescue unless accent_load_bearing -> must_not_include strict-only, else-if gated; case_sensitive honoured) now runs over every guard-as-attempt at batch acceptance and on demand estate-wide. First full run found 31 live dead guards (pronoun 11, present 10, remoto 6, adjective 2, pronominal_verbs 1, imperativo 1). Settles the duelling per-seat counts (PluperfectAuthor's 30 was correct at its snapshot).
+**Why:** Three seats independently built replicas with different modelling choices; counts diverged on timing and flag-modelling, and static review provably misses the folded/case paths.
+**How to apply:** Anchoring cures NONE of this class. Disposition: accent_load_bearing on 16 gate-proven markpoints (parlò/parlo, fù/fu, hò/ho, dì, me ne stò classes); case_sensitive on 3 fcap markpoints; 6 norm-identical guards REMOVED as ungradeable (apostrophe/hyphen fold makes guard ≡ positive: l ho, te'ne, Me-ne, Me-le, buon', pari'); 1 routed (op_comb_order_01, additive/reorder). Re-run clean.
+
+## 2026-07-15: isolated clitic before vowel frame grades elision (la -> 0.9)
+**What:** Where a blank isolates a clitic and the frame's next word forces elision (l'ho), bare `la` earns 0.9 with a steering note and l' full credit (op_dop_la_02/03, op_spec_dislo_01). Smith caught it live.
+**Why:** Unlike un'/un, the isolated blank makes la vs l' distinguishable post-norm ("la" ≠ "l"), so the apostrophe-fold limitation does not apply; and the items' own explanations teach the elision.
+**How to apply:** Only where the blank isolates the clitic AND elision is obligatory-ish (before ho/hai/ha...). le NEVER elides - le items stay full credit. Formal La informiamo stays full credit (standard unelided).
+
+## 2026-07-15: candidate_forms boundary - answer-content alternatives only; verdict labels never
+**What:** candidate_forms/correct_form carry alternatives that ARE the answer (forms, senses, referents). Verdict/classification labels (vero alterato / parola indipendente, sì/no) do not get the fields; where an author wants the tick and stats on verdict items, convert to MCQ.
+**Why:** Joint ask from WordFormationAuthor + NegationAuthor (13+ items). A tick listing "sì / no" is noise; MCQ gives index-scoring and stats natively and avoids stretching criterion-16 suppression semantics.
+**How to apply:** Meaning-pair items keep the fields (noun precedent). Verdict items: MCQ or plain short.
+
+## 2026-07-15: Brief Rev 20 - dodge precedence, frame-forced sixth class, instruction-pinned guards, bracket convention
+**What:** (i) 0.9-for-dodges applies only where the sidestep is not the bucket's named common_miss; a named common_miss defaults to WRONG but the author may assign an explicit 0.5-0.8 with a steering note where that makes the point better (Smith's flex amendment, same day). What it can never do is silently inherit the 0.9. (ii) Recoverability gains the frame-forced class (di_vs_che: the frame admits exactly the candidate set). (iii) Criterion 18 gains instruction-pinned mitigation ("Complete with one word:" + guard is acceptable). (iv) §3 documents square-bracket meta-instructions.
+**Why:** RelativePronounAuthor's collision and chi residual; ComparisonAuthor's taxonomy gap; a ratified-but-undocumented convention.
+**How to apply:** In the brief body; authors reconcile on next touch.
+
+## 2026-07-15: orthography accent split registered; parts map ships; proper nouns take .noun
+**What:** (a) orthography.accent.italian was engine-emitted but never in the production tree - registered now with three children (.missing, .added, .wrong_mark); Housing owes the ~15-line rescue-branch classification. (b) data/parts.json maps all 30 topics into six entry-picker families; picker must render from it with no silent drops (27 topics are currently invisible on entry). (c) Proper nouns take .noun, no new POS tag; themes can carry proper_noun. (d) word_formation gender_shift leaf ratified; bene/buono <-> migliore/meglio cross-cited.
+**Why:** Smith's live session surfaced the picker gap and the accent-bucket question in one sitting; the registry gap fell out of answering him.
+**How to apply:** Housing: entry_parts_map + orthography_split + english_answer_grammar_items threads, plus the reopened scroll regression (v4).
+
 The rationale log. Read before reversing a decision; the trade-off you're about to re-make is probably already in here. Append new decisions; mark old ones superseded rather than rewriting them.
 
 ---

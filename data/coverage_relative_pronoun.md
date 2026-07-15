@@ -53,6 +53,12 @@ The brief moved twice after this batch shipped. Self-audit against both, all cha
 - **Recoverability audit (Rev 19):** all 40 suppressions stand. Discrimination items show their two candidates in the prompt (recoverable). Production items force a relative through the syntactic frame, every standard alternative is credited, and near-rights fall to not-attempted rather than misses, so no bucket records a miss the learner was never invited to engage - the bene/buono failure shape does not arise.
 - **Policy tension flagged, not resolved here:** il quale where plain che suffices is marked WRONG (bucket common_miss, dispatch instruction, blessed in batch review) yet is correct-if-stilted Italian, which Rev 17's dodge rule would score 0.9. Ask in the batch-review thread; whichever way Architecture rules, one line in the brief would stop the next author re-deriving it.
 
+## Rev 20 closure (2026-07-15)
+
+Batch-review thread CLOSED at v5. Rulings landed in the brief with this batch as the exemplar: dodge-vs-named-miss precedence (Rev 20 i, il-quale-where-che-suffices stays WRONG by default) and the instruction-pinned criterion-18 mitigation class (Rev 20 iii, the chi one-word items). §3 now documents the square-bracket convention.
+
+**Rev 20/v5 flex exercised, three-way split by bucket attribution:** on the four SUBJECT-relative drills, the agreeing relative (il quale / la quale / le quali) moved from must_not_include to graded credit 0.7 with a steering note - it is correct-but-stilted Italian, and a flat WRONG on the che-as-subject bucket would record a failed subject relative the learner in fact formed, agreement and all. DIRECT-OBJECT drills keep flat WRONG (bare il quale as an object relative is deviant in modern Italian, not merely heavy). The che-vs-il-quale DISCRIMINATION item keeps flat WRONG (the natural-choice judgement is the tested skill). Attribution follows the bucket, per the atomised-marking philosophy. Verified 12/12 on the marker mirror.
+
 ## Authoring decisions worth review
 
 - **dove / in cui / nella quale cross-credited at 1.0** on dove items (all standard for place); the leaf's diagnostic guard is che-for-place. Conversely the in-cui grammar item uses a manner antecedent (il modo) so dove is a catchable wrong answer, not a valid alternative.

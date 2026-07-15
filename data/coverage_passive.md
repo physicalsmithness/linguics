@@ -1,6 +1,6 @@
 # Coverage: The passive (formation branch)
 
-Authored by PassiveAuthor against AUTHOR_BRIEF **Revision 14**, then reconciled author-side to **Revision 17** (the brief moved from Rev 14 to Rev 17 while this batch was being written; see the reconciliation section below). Authored against DISPATCH_passive.md (with its Rev-13 addendum and OIC idea-bank appendix). Counts below are grepped from the shipped files, not from memory of batches.
+Authored by PassiveAuthor against AUTHOR_BRIEF **Revision 14**, then reconciled author-side to **Revision 17** and audited clean against **Revisions 19 and 20** (the brief moved from Rev 14 to Rev 17 while this batch was being written; see the reconciliation section below). Authored against DISPATCH_passive.md (with its Rev-13 addendum and OIC idea-bank appendix). Counts below are grepped from the shipped files, not from memory of batches.
 
 **Scope of this pass: the formation branch only** (the four leaves under *Forming the passive*). The usage branch (*Passive or active?* and *Passive or si passivante?*) is not yet authored and follows in the next pass. No content existed for this topic before this batch.
 
@@ -71,6 +71,15 @@ Checked in the Rev 17 (ii) direction too (no `must_not_include` entry may fire o
 The state readings (`è compilato`, `è chiuso`) stay in `must_not_include`: they are meaning misses against an explicit cue, not dodges of a pattern.
 
 **Rev 17 (iii), candidate_forms:** added to `pas_ven_04` (`["viene chiuso", "è chiuso"]`, correct_form `viene chiuso`), the one venire-vs-essere form discrimination in the branch. Flagged for ratification: the criterion's trigger is a `.discrimination.*` bucket and this is a formation leaf, so the field is offered, not assumed. The usage branch's *Passive or si passivante?* items will need it properly.
+
+**Rev 20: audited, no changes needed (all four points verified, not assumed).**
+
+- *(i) Dodge-vs-named-miss precedence.* The 0.9 kindness is withdrawn where the sidestep IS the bucket's named `common_miss`. Checked all three dodges against their leaf's `common_miss` text: none collides. The andare leaf's named miss is "reading 'va fatto' as motion, and missing the obligation sense entirely", and *deve essere compilato* / *devono essere prese* both EXPRESS obligation, so they are off-pattern, not the diagnosis. The venire leaf's named miss is the compound venire / motion reading, which *fu arrestato* is not. All three keep 0.9.
+- *(ii) Frame-forced recoverability (the new sixth class).* This strengthens the agent items rather than changing them: the frame `è stato dipinto ____ Caravaggio` admits exactly a preposition, so the candidate set is recoverable from the sentence itself and suppression stands on the criterion's own terms, not merely on the prompt naming the slot.
+- *(iii) Criterion 18's instruction-pinned mitigation class.* Not needed here: direction 3 is clean, no guard fires on any correct attempt.
+- *(iv) §3 square-bracket meta-instruction convention.* Not engaged: no translation `source_text` in this batch carries a bracketed instruction.
+
+**Disposition: batch ACCEPTED; delivery-review thread CLOSED at v4** with all six asks ruled (dodge boundary ratified as drawn; candidate_forms confirmed; brief documentation gap fixed in §2; English-answer items routed to Housing; proper nouns ruled to take `.noun`; the match_at-aware dead-guard refinement adopted verbatim into the canonical gate).
 
 **Criterion 15 + Rev 19 (recoverability condition): audited, no changes.** Rev 19 narrows suppress-by-default to items whose candidate set is recoverable pre-answer, because suppressing a choice between different LEXEMES the prompt never reveals (bene/buono, questo/quello) makes the item unanswerable. All 21 suppressed items here survive the test: every prompt names the task and supplies the base form ("Riscrivi al passivo, al presente" plus the source verb; "Completa esprimendo obbligo con andare"; "Completa con la preposizione dell'agente"; the dynamic-vs-state contrast cued in plain meaning on `pas_ven_04`). The learner is always told what to produce, so no miss lands on a bucket they were not invited to engage. The agent items are the closest call (da / di / per are different lexemes), but the prompt names the slot's function outright, so the item stays answerable while the breadcrumb, which literally contains the answer ("The agent with da"), must stay hidden. `pas_ven_04` carries candidate_forms, which Rev 19 confirms still ride along for the post-answer tick.
 
