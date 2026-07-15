@@ -258,6 +258,42 @@ reason; raised in the thread.
 
 ---
 
+## Phase 3: misconception tagging (2026-07-15)
+
+The item-level schema was ratified today (`Architecture_ImperativoAuthor_misconception_tagging_schema`
+v2), so Phase 3 is discharged for this topic. **89 guards tagged across 85 of 124 items; 39 left
+bare with zero forced fits**, per ImperativoAuthor's precedent.
+
+| Misconception | Items |
+|---|---|
+| `discrimination.modal_stative_aspect` | 25 |
+| `discrimination.indicative_for_subjunctive_choice` | 20 |
+| `discrimination.future_present_mismatch` | 10 |
+| `discrimination.counterfactual_construction` | 10 |
+| `discrimination.trapassato_imperfect_choice` | 10 |
+| `discrimination.pp_for_imperfect` | 5 |
+| `discrimination.progressive_overuse` | 5 |
+
+**The registry is one-directional where this topic is two-directional.** The tag-list pairs a
+bucket with an id, but several specifics name only the dominant direction of their error (the
+harvest read `common_miss` prose). Every tense_choice leaf pair is authored in *both* directions by
+design — that is what the counterweight leaves and the same-surface pairs are for. Tagging by
+bucket alone would have logged the opposite of the learner's actual error on 7 items: 3
+general-aspect items where the *imperfect* is chosen for a bounded event (not `pp_for_imperfect`),
+and 4 progressive items where the *simple* is chosen where the progressive is required (not
+`progressive_overuse`). Those are bare pending two mirror specifics; thread asks 8 and 11.
+
+**The five wave-2 leaves have no specifics** because they were stubs when the registry was
+harvested (2026-06-09), so they contributed no `common_miss` prose. 32 items bare pending asks
+9-10. Note `pp_for_imperfect` already carries *"ho aspettato da venti minuti for aspettavo"* in its
+examples — the durative-da calque, filed under a label whose target is the imperfect, when the
+canonical case (*studio da due anni*) targets the present.
+
+Bare guards still record their bucket miss exactly as before; they simply carry no misconception
+yet, which is the honest state rather than a wrong one.
+
+---
+
 ## Items flagged uncertain
 
 The dispatch asks for these explicitly. Four, none blocking.
