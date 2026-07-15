@@ -1,5 +1,30 @@
 # DECISIONS.md
 
+## 2026-07-15 (evening): universal word-anchoring - every any_phrase in the estate is anchored
+**What:** PassatoRemotoAuthor proved the paradigm-containment class (fu ⊂ furono: every 3sg nests in its 3pl; 16 live false-credit markpoints in a batch that had passed every audit). The guard-list-based checks were structurally blind to it because nobody guards wrong persons. Fix executed estate-wide: match_at "word" on every unanchored any_phrase (871 phrases today across two passes), every anchor validated for self-credit, zero unanchored remaining across 1,876 markpoints, full gate clean.
+**Why:** Selective anchoring (Rev 15) mitigated known exposures; the comparison set "plausible attempts" can never be enumerated, so the default had to flip. Anchored-by-default makes the whole class unrepresentable.
+**How to apply:** Authors write new any_phrases with match_at "word" unless they have a reason (start/end anchors stay available). The gate enforces at acceptance.
+
+## 2026-07-15 (evening): misconception item-tag schema ruled; unreachable pairings annotated
+**What:** must_not_include entries may be objects {"phrase","match_at","misconception","note"} carrying ONE registry id; mixed string/object lists legal; marking untouched; dodges never tagged. Housing owes the recorder (misconceptionHits alongside the bucket miss). Registry gains unreachable_notes (first: regularisation.irregular_verb x imperativo - apostrophe fold makes regularised va score correct, empty stats meaningless).
+**Why:** ImperativoAuthor stopped rather than improvise a project-wide shape into their batch: correct instinct, schema is architecture's. Their engine evidence (polymorphic reader) made the object form free.
+**How to apply:** Tag on the guard entry that catches the miss; bucket-level lists in misconception_tag_lists.json say which id.
+
+## 2026-07-15 (evening): criterion 19's own text controls the flag; contradicting guards are removed, not honoured
+**What:** Three present-indicative flags (è/dà/può) applied by the morning gate run were REVERSED on PresentFormationAuthor's testimony: the stripped twins do not parse as answers to those prompts, and criterion 19 names e-for-è and da-for-dà as no-flag cases. The twin guards (e, é, da, dá, puo) were removed: with fold-rescue restored they can never fire and their intent contradicts the ruled philosophy. e-for-è now earns full credit + a classified .missing breadcrumb (r8 split).
+**Why:** The gate proves a guard is dead; it cannot prove the guard SHOULD live. Where guard intent and criterion 19 disagree, the criterion wins and the guard goes.
+**How to apply:** AccentAuditor inherits this as precedent; author testimony on prompt plausibility is decisive evidence.
+
+## 2026-07-15 (evening): answer-class balance on verdict leaves; the 0.5/0.7/0.9 ladder
+**What:** (a) WordFormationAuthor's four balancing alterati RATIFIED (10:6 not 10:2): a verdict leaf must keep answer classes balanced enough that a constant strategy scores poorly. (b) ComparisonAuthor's ladder ratified as Rev 20(i)'s worked example: 0.5 register-wrong / 0.7 standard Italian missing the leaf's named idiom / 0.9 genuine dodge - with buonissima-for-ottima at 0.7 because flat WRONG would teach that correct Italian is broken.
+**Why:** Both are Smith's flex doctrine applied: grades carry the teaching point.
+**How to apply:** Cite the ladder, don't reinvent it; check verdict-leaf class ratios at authoring.
+
+## 2026-07-15 (evening): pronoun file is bash-write-only; second Edit-tool truncation
+**What:** grammar_questions_pronoun.json truncated at 298,196 bytes mid-item (PronounAuthor's op_comb_joined_05 re-edit lost). Repaired from HEAD, all central edits intact. Hard rule: files near 300KB are written sandbox-side via atomic bash only, never the Edit tool.
+**Why:** Second occurrence, same file, same size territory, same tool.
+**How to apply:** In the pronoun thread and AUTHOR_BRIEF operational notes on next touch.
+
 ## 2026-07-15: canonical marker-replica gate is the acceptance standard; estate run dispositioned 31 dead guards
 **What:** An architect-owned replica of grammar_engine.js marking semantics (strict per-phrase match_at -> accent-folded rescue unless accent_load_bearing -> must_not_include strict-only, else-if gated; case_sensitive honoured) now runs over every guard-as-attempt at batch acceptance and on demand estate-wide. First full run found 31 live dead guards (pronoun 11, present 10, remoto 6, adjective 2, pronominal_verbs 1, imperativo 1). Settles the duelling per-seat counts (PluperfectAuthor's 30 was correct at its snapshot).
 **Why:** Three seats independently built replicas with different modelling choices; counts diverged on timing and flag-modelling, and static review provably misses the folded/case paths.

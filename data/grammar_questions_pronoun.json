@@ -17,7 +17,10 @@
         "bucket": "pronoun.direct_object.mi",
         "label": "DOP 1sg mi",
         "any_phrases": [
-          "mi"
+          {
+            "phrase": "mi",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "me",
@@ -60,7 +63,10 @@
         "bucket": "pronoun.direct_object.mi",
         "label": "DOP 1sg in finite tense, pre-verb",
         "any_phrases": [
-          "mi"
+          {
+            "phrase": "mi",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "me",
@@ -111,7 +117,10 @@
         "bucket": "pronoun.direct_object.mi",
         "label": "DOP 1sg in passato prossimo, pre-aux",
         "any_phrases": [
-          "mi"
+          {
+            "phrase": "mi",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "me",
@@ -154,7 +163,10 @@
         "bucket": "pronoun.direct_object.ti",
         "label": "DOP 2sg informal",
         "any_phrases": [
-          "ti"
+          {
+            "phrase": "ti",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "te",
@@ -196,7 +208,10 @@
         "bucket": "pronoun.direct_object.ti",
         "label": "DOP 2sg informal pre-verb",
         "any_phrases": [
-          "ti"
+          {
+            "phrase": "ti",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "te",
@@ -240,7 +255,10 @@
         "bucket": "pronoun.direct_object.lo",
         "label": "DOP m.sg lo",
         "any_phrases": [
-          "lo"
+          {
+            "phrase": "lo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "il",
@@ -299,7 +317,10 @@
         "bucket": "pronoun.direct_object.lo",
         "label": "DOP m.sg lo, sentence-initial",
         "any_phrases": [
-          "lo"
+          {
+            "phrase": "lo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "il",
@@ -356,7 +377,10 @@
         "bucket": "pronoun.direct_object.lo",
         "label": "DOP m.sg lo for a masculine person",
         "any_phrases": [
-          "lo"
+          {
+            "phrase": "lo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "gli",
@@ -448,7 +472,10 @@
         "bucket": "pronoun.direct_object.la",
         "label": "DOP f.sg la",
         "any_phrases": [
-          "la"
+          {
+            "phrase": "la",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "lo",
@@ -633,7 +660,10 @@
         "bucket": "pronoun.direct_object.ci_us",
         "label": "DOP 1pl ci",
         "any_phrases": [
-          "ci"
+          {
+            "phrase": "ci",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "noi",
@@ -686,7 +716,10 @@
         "bucket": "pronoun.direct_object.ci_us",
         "label": "DOP 1pl ci replacing stressed noi",
         "any_phrases": [
-          "ci"
+          {
+            "phrase": "ci",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "noi",
@@ -728,7 +761,10 @@
         "bucket": "pronoun.direct_object.vi_you",
         "label": "DOP 2pl vi",
         "any_phrases": [
-          "vi"
+          {
+            "phrase": "vi",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "voi",
@@ -781,7 +817,10 @@
         "bucket": "pronoun.direct_object.vi_you",
         "label": "DOP 2pl vi",
         "any_phrases": [
-          "vi"
+          {
+            "phrase": "vi",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "voi",
@@ -919,7 +958,10 @@
         "bucket": "pronoun.direct_object.le",
         "label": "DOP f.pl le (NOT li)",
         "any_phrases": [
-          "le"
+          {
+            "phrase": "le",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "li",
@@ -966,7 +1008,10 @@
         "bucket": "pronoun.direct_object.le",
         "label": "DOP f.pl le",
         "any_phrases": [
-          "le"
+          {
+            "phrase": "le",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "li",
@@ -1024,7 +1069,10 @@
         "bucket": "pronoun.direct_object.le",
         "label": "DOP f.pl le for feminine persons",
         "any_phrases": [
-          "le"
+          {
+            "phrase": "le",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "li",
@@ -1132,8 +1180,14 @@
         "bucket": "pronoun.direct_object.formal_La",
         "label": "DOP formal La",
         "any_phrases": [
-          "La",
-          "la"
+          {
+            "phrase": "La",
+            "match_at": "word"
+          },
+          {
+            "phrase": "la",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ti",
@@ -1177,8 +1231,14 @@
         "bucket": "pronoun.direct_object.formal_La",
         "label": "DOP formal La in correspondence opener",
         "any_phrases": [
-          "La",
-          "la"
+          {
+            "phrase": "La",
+            "match_at": "word"
+          },
+          {
+            "phrase": "la",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ti",
@@ -1353,7 +1413,10 @@
         "bucket": "pronoun.indirect_object.mi",
         "label": "IOP 1sg mi",
         "any_phrases": [
-          "mi"
+          {
+            "phrase": "mi",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "me",
@@ -1396,7 +1459,10 @@
         "bucket": "pronoun.indirect_object.mi",
         "label": "IOP 1sg with scrivere",
         "any_phrases": [
-          "mi"
+          {
+            "phrase": "mi",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "me",
@@ -1457,7 +1523,10 @@
         "bucket": "pronoun.indirect_object.ti",
         "label": "IOP 2sg informal",
         "any_phrases": [
-          "ti"
+          {
+            "phrase": "ti",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "te",
@@ -1504,7 +1573,10 @@
         "bucket": "pronoun.indirect_object.ti",
         "label": "IOP 2sg with portare",
         "any_phrases": [
-          "ti"
+          {
+            "phrase": "ti",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "te",
@@ -1555,7 +1627,10 @@
         "bucket": "pronoun.indirect_object.gli_masc",
         "label": "IOP 3sg masc gli",
         "any_phrases": [
-          "gli"
+          {
+            "phrase": "gli",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "lo",
@@ -1609,7 +1684,10 @@
         "bucket": "pronoun.indirect_object.gli_masc",
         "label": "IOP 3sg masc gli, sentence-initial",
         "any_phrases": [
-          "gli"
+          {
+            "phrase": "gli",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "lo",
@@ -1861,7 +1939,10 @@
         "bucket": "pronoun.indirect_object.ci_us",
         "label": "IOP 1pl ci",
         "any_phrases": [
-          "ci"
+          {
+            "phrase": "ci",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "a noi",
@@ -1923,7 +2004,10 @@
         "bucket": "pronoun.indirect_object.ci_us",
         "label": "IOP 1pl ci, with dare",
         "any_phrases": [
-          "ci"
+          {
+            "phrase": "ci",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "noi",
@@ -1975,7 +2059,10 @@
         "bucket": "pronoun.indirect_object.vi_you",
         "label": "IOP 2pl vi",
         "any_phrases": [
-          "vi"
+          {
+            "phrase": "vi",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "voi",
@@ -2018,7 +2105,10 @@
         "bucket": "pronoun.indirect_object.vi_you",
         "label": "IOP 2pl vi with prestare",
         "any_phrases": [
-          "vi"
+          {
+            "phrase": "vi",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "voi",
@@ -2070,7 +2160,10 @@
         "bucket": "pronoun.indirect_object.gli_them",
         "label": "IOP 3pl modern gli",
         "any_phrases": [
-          "gli"
+          {
+            "phrase": "gli",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "li",
@@ -2134,7 +2227,10 @@
         "bucket": "pronoun.indirect_object.gli_them",
         "label": "Formal post-verb loro",
         "any_phrases": [
-          "loro"
+          {
+            "phrase": "loro",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "gli",
@@ -2177,8 +2273,14 @@
         "bucket": "pronoun.indirect_object.formal_Le",
         "label": "Formal IOP Le",
         "any_phrases": [
-          "Le",
-          "le"
+          {
+            "phrase": "Le",
+            "match_at": "word"
+          },
+          {
+            "phrase": "le",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ti",
@@ -2280,7 +2382,10 @@
         "bucket": "pronoun.indirect_object.verbs_taking_iop",
         "label": "Piacere takes IOP, 1sg mi",
         "any_phrases": [
-          "mi"
+          {
+            "phrase": "mi",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "io",
@@ -2327,8 +2432,14 @@
         "bucket": "pronoun.indirect_object.verbs_taking_iop",
         "label": "Piacere plural-subject, IOP gli",
         "any_phrases": [
-          "gli",
-          "Gli"
+          {
+            "phrase": "gli",
+            "match_at": "word"
+          },
+          {
+            "phrase": "Gli",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "lui",
@@ -2443,7 +2554,10 @@
         "bucket": "pronoun.indirect_object.verbs_taking_iop",
         "label": "Sembrare takes IOP, 1pl ci",
         "any_phrases": [
-          "ci"
+          {
+            "phrase": "ci",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "noi",
@@ -2498,8 +2612,14 @@
         "bucket": "pronoun.indirect_object.verbs_taking_iop.with_essere_in_pp",
         "label": "Piacere PP: IOP gli (or kept as 'a Marco' resumed)",
         "any_phrases": [
-          "gli",
-          "è"
+          {
+            "phrase": "gli",
+            "match_at": "word"
+          },
+          {
+            "phrase": "è",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "lo",
@@ -2512,7 +2632,10 @@
         "bucket": "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
         "label": "Piacere aux is essere; participle agrees with subject (la festa, f.sg)",
         "any_phrases": [
-          "è piaciuta"
+          {
+            "phrase": "è piaciuta",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ha piaciuto",
@@ -2560,7 +2683,10 @@
         "bucket": "pronoun.reflexive.mi",
         "label": "Reflexive 1sg mi",
         "any_phrases": [
-          "mi"
+          {
+            "phrase": "mi",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "me",
@@ -2602,7 +2728,10 @@
         "bucket": "pronoun.reflexive.mi",
         "label": "Reflexive 1sg with chiamarsi",
         "any_phrases": [
-          "mi"
+          {
+            "phrase": "mi",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "me",
@@ -2643,7 +2772,10 @@
         "bucket": "pronoun.reflexive.ti",
         "label": "Reflexive 2sg ti",
         "any_phrases": [
-          "ti"
+          {
+            "phrase": "ti",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "te",
@@ -2684,7 +2816,10 @@
         "bucket": "pronoun.reflexive.ti",
         "label": "Reflexive 2sg with divertirsi",
         "any_phrases": [
-          "ti"
+          {
+            "phrase": "ti",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "te",
@@ -2725,7 +2860,10 @@
         "bucket": "pronoun.reflexive.si_sg",
         "label": "Reflexive 3sg si",
         "any_phrases": [
-          "si"
+          {
+            "phrase": "si",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "lo",
@@ -2779,7 +2917,10 @@
         "bucket": "pronoun.reflexive.si_sg",
         "label": "Reflexive 3sg with chiamarsi",
         "any_phrases": [
-          "si"
+          {
+            "phrase": "si",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "la",
@@ -2821,7 +2962,10 @@
         "bucket": "pronoun.reflexive.si_sg",
         "label": "Reflexive 3sg si covers formal Lei",
         "any_phrases": [
-          "si"
+          {
+            "phrase": "si",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ti",
@@ -2864,7 +3008,10 @@
         "bucket": "pronoun.reflexive.ci",
         "label": "Reflexive/reciprocal 1pl ci",
         "any_phrases": [
-          "ci"
+          {
+            "phrase": "ci",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "noi",
@@ -2907,7 +3054,10 @@
         "bucket": "pronoun.reflexive.ci",
         "label": "Reflexive 1pl ci",
         "any_phrases": [
-          "ci"
+          {
+            "phrase": "ci",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "noi",
@@ -2948,7 +3098,10 @@
         "bucket": "pronoun.reflexive.vi",
         "label": "Reflexive 2pl vi",
         "any_phrases": [
-          "vi"
+          {
+            "phrase": "vi",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "voi",
@@ -2990,7 +3143,10 @@
         "bucket": "pronoun.reflexive.vi",
         "label": "Reflexive 2pl with svegliarsi",
         "any_phrases": [
-          "vi"
+          {
+            "phrase": "vi",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "voi",
@@ -3032,7 +3188,10 @@
         "bucket": "pronoun.reflexive.si_pl",
         "label": "Reflexive 3pl si",
         "any_phrases": [
-          "si"
+          {
+            "phrase": "si",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "li",
@@ -3084,7 +3243,10 @@
         "bucket": "pronoun.reflexive.si_pl",
         "label": "Reciprocal 3pl si",
         "any_phrases": [
-          "si"
+          {
+            "phrase": "si",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "loro",
@@ -3126,7 +3288,10 @@
         "bucket": "pronoun.reflexive.essere_in_compound",
         "label": "Reflexive PP takes essere",
         "any_phrases": [
-          "sono"
+          {
+            "phrase": "sono",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ho",
@@ -3168,7 +3333,10 @@
         "bucket": "pronoun.reflexive.essere_in_compound",
         "label": "Reflexive aux essere",
         "any_phrases": [
-          "si è"
+          {
+            "phrase": "si è",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ha",
@@ -3181,7 +3349,10 @@
         "bucket": "verb_form.passato_prossimo.auxiliary.essere_reflexive",
         "label": "Participle agrees fem.sg",
         "any_phrases": [
-          "divertita"
+          {
+            "phrase": "divertita",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "divertito",
@@ -3224,7 +3395,10 @@
         "bucket": "pronoun.reflexive.essere_in_compound",
         "label": "Reflexive aux essere, 3pl",
         "any_phrases": [
-          "si sono"
+          {
+            "phrase": "si sono",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "hanno",
@@ -3237,8 +3411,14 @@
         "bucket": "verb_form.passato_prossimo.auxiliary.essere_reflexive",
         "label": "Participle agrees with subject (modern) or with post-verb DO (prescriptive)",
         "any_phrases": [
-          "lavati",
-          "lavate"
+          {
+            "phrase": "lavati",
+            "match_at": "word"
+          },
+          {
+            "phrase": "lavate",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "lavato",
@@ -3290,7 +3470,10 @@
         "bucket": "pronoun.reflexive.with_object",
         "label": "Reflexive + DOP cluster, with vowel change",
         "any_phrases": [
-          "me le"
+          {
+            "phrase": "me le",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "mi le",
@@ -3344,7 +3527,10 @@
         "bucket": "pronoun.reflexive.with_object",
         "label": "Reflexive 3sg + DOP m.pl, vowel change does NOT apply to si",
         "any_phrases": [
-          "se li"
+          {
+            "phrase": "se li",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "si li",
@@ -3491,7 +3677,10 @@
         "bucket": "pronoun.combined.vowel_changes",
         "label": "mi → me before lo",
         "any_phrases": [
-          "me lo"
+          {
+            "phrase": "me lo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "mi lo",
@@ -3523,7 +3712,10 @@
         "bucket": "pronoun.combined.vowel_changes",
         "label": "ti → te before la",
         "any_phrases": [
-          "te la"
+          {
+            "phrase": "te la",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ti la",
@@ -3554,7 +3746,10 @@
         "bucket": "pronoun.combined.vowel_changes",
         "label": "ci → ce before li",
         "any_phrases": [
-          "ce li"
+          {
+            "phrase": "ce li",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ci li",
@@ -3586,8 +3781,14 @@
         "bucket": "pronoun.combined.vowel_changes",
         "label": "mi → me + DOP lo (m.sg)",
         "any_phrases": [
-          "Me lo",
-          "me lo"
+          {
+            "phrase": "Me lo",
+            "match_at": "word"
+          },
+          {
+            "phrase": "me lo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "mi lo",
@@ -3645,8 +3846,14 @@
         "bucket": "pronoun.combined.me_ne_family",
         "label": "me + ne (partitive)",
         "any_phrases": [
-          "Me ne",
-          "me ne"
+          {
+            "phrase": "Me ne",
+            "match_at": "word"
+          },
+          {
+            "phrase": "me ne",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "mi ne",
@@ -3691,7 +3898,10 @@
         "bucket": "pronoun.combined.glielo_family",
         "label": "gli + lo → glielo (one word)",
         "any_phrases": [
-          "glielo"
+          {
+            "phrase": "glielo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "gli lo",
@@ -3723,7 +3933,10 @@
         "bucket": "pronoun.combined.glielo_family",
         "label": "le (IOP fem) + la → gliela (fem IOP becomes glie-)",
         "any_phrases": [
-          "gliela"
+          {
+            "phrase": "gliela",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "le la",
@@ -3755,7 +3968,10 @@
         "bucket": "pronoun.combined.glielo_family",
         "label": "le + lo → glielo",
         "any_phrases": [
-          "glielo"
+          {
+            "phrase": "glielo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "gli lo",
@@ -3811,7 +4027,10 @@
         "bucket": "pronoun.combined.glielo_family",
         "label": "gli + li → glieli, with participle agreement",
         "any_phrases": [
-          "Glieli"
+          {
+            "phrase": "Glieli",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "Gli li",
@@ -3869,8 +4088,14 @@
         "bucket": "pronoun.combined.glielo_family",
         "label": "gli + le → gliele (fem.pl DOP)",
         "any_phrases": [
-          "Gliele",
-          "gliele"
+          {
+            "phrase": "Gliele",
+            "match_at": "word"
+          },
+          {
+            "phrase": "gliele",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "Gli le",
@@ -3979,7 +4204,10 @@
         "bucket": "pronoun.combined.glielo_family",
         "label": "gli + ne → gliene",
         "any_phrases": [
-          "gliene"
+          {
+            "phrase": "gliene",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "gli ne",
@@ -4009,8 +4237,14 @@
         "bucket": "pronoun.combined.me_ne_family",
         "label": "me + ne for IOP 1sg + partitive",
         "any_phrases": [
-          "Me ne",
-          "me ne"
+          {
+            "phrase": "Me ne",
+            "match_at": "word"
+          },
+          {
+            "phrase": "me ne",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "mi ne",
@@ -4054,7 +4288,10 @@
         "bucket": "pronoun.combined.me_ne_family",
         "label": "me ne in andarsene 1sg",
         "any_phrases": [
-          "Me ne"
+          {
+            "phrase": "Me ne",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "Mi ne",
@@ -4098,7 +4335,10 @@
         "bucket": "pronoun.combined.me_ne_family",
         "label": "te ne in andarsene 2sg",
         "any_phrases": [
-          "te ne"
+          {
+            "phrase": "te ne",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ti ne",
@@ -4141,8 +4381,14 @@
         "bucket": "pronoun.combined.me_ne_family",
         "label": "ce ne (1pl 'we have some of it') — really existential ci + ne",
         "any_phrases": [
-          "Ce ne",
-          "ce ne"
+          {
+            "phrase": "Ce ne",
+            "match_at": "word"
+          },
+          {
+            "phrase": "ce ne",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "Ci ne",
@@ -4186,8 +4432,14 @@
         "bucket": "pronoun.ne.partitive_quantity",
         "label": "Partitive ne with a number",
         "any_phrases": [
-          "Ne",
-          "ne"
+          {
+            "phrase": "Ne",
+            "match_at": "word"
+          },
+          {
+            "phrase": "ne",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "li",
@@ -4229,7 +4481,10 @@
         "bucket": "pronoun.ne.partitive_quantity",
         "label": "Partitive ne with un po'",
         "any_phrases": [
-          "ne"
+          {
+            "phrase": "ne",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "lo",
@@ -4271,7 +4526,10 @@
         "bucket": "pronoun.ne.partitive_quantity",
         "label": "Partitive ne with parecchie",
         "any_phrases": [
-          "ne"
+          {
+            "phrase": "ne",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "le",
@@ -4370,8 +4628,14 @@
         "bucket": "pronoun.ne.pronominal_di",
         "label": "Pronominal ne for 'di + topic'",
         "any_phrases": [
-          "Ne",
-          "ne"
+          {
+            "phrase": "Ne",
+            "match_at": "word"
+          },
+          {
+            "phrase": "ne",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "Lo",
@@ -4414,7 +4678,10 @@
         "bucket": "pronoun.ne.pronominal_di",
         "label": "Pronominal ne with parlare di",
         "any_phrases": [
-          "ne"
+          {
+            "phrase": "ne",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "la",
@@ -4457,7 +4724,10 @@
         "bucket": "pronoun.ne.pronominal_di",
         "label": "ne with adjective + di (essere sicuro di)",
         "any_phrases": [
-          "ne"
+          {
+            "phrase": "ne",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "lo",
@@ -4498,7 +4768,10 @@
         "bucket": "pronoun.ne.with_pp_agreement",
         "label": "ne triggers participle agreement (here f.pl)",
         "any_phrases": [
-          "e"
+          {
+            "phrase": "e",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "o",
@@ -4545,7 +4818,10 @@
         "bucket": "pronoun.ne.with_pp_agreement",
         "label": "ne agreement m.pl",
         "any_phrases": [
-          "i"
+          {
+            "phrase": "i",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "o",
@@ -4658,8 +4934,14 @@
         "bucket": "pronoun.ne.motion_andarsene",
         "label": "Andarsene 3sg clitics (se + ne, with optional elision)",
         "any_phrases": [
-          "se n'",
-          "se ne"
+          {
+            "phrase": "se n'",
+            "match_at": "word"
+          },
+          {
+            "phrase": "se ne",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "si",
@@ -4672,7 +4954,10 @@
         "bucket": "verb_form.trapassato_prossimo",
         "label": "Trapassato prossimo auxiliary (era)",
         "any_phrases": [
-          "era"
+          {
+            "phrase": "era",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "è",
@@ -4686,7 +4971,10 @@
         "bucket": "verb_form.passato_prossimo.participle_form.regular.are_ato",
         "label": "Participle of andare, m.sg agreement",
         "any_phrases": [
-          "andato"
+          {
+            "phrase": "andato",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "andata",
@@ -4729,8 +5017,14 @@
         "bucket": "pronoun.ne.pronominal_idiomatic_verbs",
         "label": "fregarsene 1sg (me ne frega)",
         "any_phrases": [
-          "me ne frega",
-          "Me ne frega"
+          {
+            "phrase": "me ne frega",
+            "match_at": "word"
+          },
+          {
+            "phrase": "Me ne frega",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "mi ne frega",
@@ -4772,7 +5066,10 @@
         "bucket": "pronoun.ci_locative.location",
         "label": "Locative ci replacing 'a + place'",
         "any_phrases": [
-          "ci"
+          {
+            "phrase": "ci",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "la",
@@ -4815,7 +5112,10 @@
         "bucket": "pronoun.ci_locative.location",
         "label": "Locative ci replacing 'in + place'",
         "any_phrases": [
-          "Ci"
+          {
+            "phrase": "Ci",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "Lo",
@@ -4846,7 +5146,10 @@
         "bucket": "pronoun.ci_locative.location",
         "label": "Locative ci in a negated sentence",
         "any_phrases": [
-          "ci"
+          {
+            "phrase": "ci",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "lo",
@@ -4888,8 +5191,14 @@
         "bucket": "pronoun.ci_locative.existential",
         "label": "c'è (sg existential)",
         "any_phrases": [
-          "C'è",
-          "c'è"
+          {
+            "phrase": "C'è",
+            "match_at": "word"
+          },
+          {
+            "phrase": "c'è",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "È",
@@ -4935,7 +5244,10 @@
         "bucket": "pronoun.ci_locative.existential",
         "label": "ci sono (pl existential)",
         "any_phrases": [
-          "Ci sono"
+          {
+            "phrase": "Ci sono",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "C'è",
@@ -4977,8 +5289,14 @@
         "bucket": "pronoun.ci_locative.existential",
         "label": "Existential in PP: c'è stata / ci sono state",
         "any_phrases": [
-          "c'è stata",
-          "ci è stata"
+          {
+            "phrase": "c'è stata",
+            "match_at": "word"
+          },
+          {
+            "phrase": "ci è stata",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ha avuto",
@@ -5025,7 +5343,10 @@
         "bucket": "pronoun.ci_locative.topic",
         "label": "ci for 'a + topic' (pensare a)",
         "any_phrases": [
-          "ci"
+          {
+            "phrase": "ci",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ne",
@@ -5078,7 +5399,10 @@
         "bucket": "pronoun.ci_locative.topic",
         "label": "ci with credere a",
         "any_phrases": [
-          "ci"
+          {
+            "phrase": "ci",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "lo",
@@ -5120,7 +5444,10 @@
         "bucket": "pronoun.ci_locative.topic",
         "label": "ci with riuscire a",
         "any_phrases": [
-          "ci"
+          {
+            "phrase": "ci",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "lo",
@@ -5161,7 +5488,10 @@
         "bucket": "pronoun.ci_locative.idiomatic_verbs",
         "label": "Volerci (it takes [time])",
         "any_phrases": [
-          "Ci"
+          {
+            "phrase": "Ci",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "Mi",
@@ -5204,7 +5534,10 @@
         "bucket": "pronoun.ci_locative.idiomatic_verbs",
         "label": "Metterci (to take [time], personal)",
         "any_phrases": [
-          "ci"
+          {
+            "phrase": "ci",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ne",
@@ -5245,7 +5578,10 @@
         "bucket": "pronoun.ci_locative.idiomatic_verbs.farcela",
         "label": "Farcela 1sg: non ce la faccio",
         "any_phrases": [
-          "ce la faccio"
+          {
+            "phrase": "ce la faccio",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ci la faccio",
@@ -5287,7 +5623,10 @@
         "bucket": "pronoun.ci_locative.idiomatic_verbs",
         "label": "Tenerci (to care about)",
         "any_phrases": [
-          "ci"
+          {
+            "phrase": "ci",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ne",
@@ -5481,8 +5820,14 @@
         "bucket": "pronoun.position.pre_finite_verb",
         "label": "Clitic before finite verb (present)",
         "any_phrases": [
-          "Lo vedo",
-          "lo vedo"
+          {
+            "phrase": "Lo vedo",
+            "match_at": "word"
+          },
+          {
+            "phrase": "lo vedo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "Vedo lo",
@@ -5514,8 +5859,14 @@
         "bucket": "pronoun.position.pre_finite_verb",
         "label": "DOP la before finite verb",
         "any_phrases": [
-          "la vede",
-          "Marco la vede"
+          {
+            "phrase": "la vede",
+            "match_at": "word"
+          },
+          {
+            "phrase": "Marco la vede",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "vede la",
@@ -5556,8 +5907,14 @@
         "bucket": "pronoun.position.pre_finite_verb",
         "label": "Clitic before auxiliary in compound tense",
         "any_phrases": [
-          "L'ho visto",
-          "Lo ho visto"
+          {
+            "phrase": "L'ho visto",
+            "match_at": "word"
+          },
+          {
+            "phrase": "Lo ho visto",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "Ho lo visto",
@@ -5589,7 +5946,10 @@
         "bucket": "pronoun.position.post_infinitive_attached",
         "label": "Drop -e from infinitive, attach clitic",
         "any_phrases": [
-          "vederlo"
+          {
+            "phrase": "vederlo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "vedere lo",
@@ -5620,7 +5980,10 @@
         "bucket": "pronoun.position.post_infinitive_attached",
         "label": "Infinitive drops -e, IOP gli attaches",
         "any_phrases": [
-          "parlargli"
+          {
+            "phrase": "parlargli",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "parlare gli",
@@ -5651,7 +6014,10 @@
         "bucket": "pronoun.position.post_infinitive_attached",
         "label": "Clitic attached to infinitive in a per+inf complement",
         "any_phrases": [
-          "vederti"
+          {
+            "phrase": "vederti",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "vedere ti",
@@ -5682,10 +6048,22 @@
         "bucket": "pronoun.position.modal_plus_infinitive_either",
         "label": "modal + inf: lo voglio vedere OR voglio vederlo",
         "any_phrases": [
-          "Lo voglio vedere",
-          "Voglio vederlo",
-          "lo voglio vedere",
-          "voglio vederlo"
+          {
+            "phrase": "Lo voglio vedere",
+            "match_at": "word"
+          },
+          {
+            "phrase": "Voglio vederlo",
+            "match_at": "word"
+          },
+          {
+            "phrase": "lo voglio vedere",
+            "match_at": "word"
+          },
+          {
+            "phrase": "voglio vederlo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "voglio lo vedere",
@@ -5728,10 +6106,22 @@
         "bucket": "pronoun.position.modal_plus_infinitive_either",
         "label": "Combined cluster + modal: cluster either pre-modal or attached, never between",
         "any_phrases": [
-          "Glielo voglio dare",
-          "Voglio darglielo",
-          "glielo voglio dare",
-          "voglio darglielo"
+          {
+            "phrase": "Glielo voglio dare",
+            "match_at": "word"
+          },
+          {
+            "phrase": "Voglio darglielo",
+            "match_at": "word"
+          },
+          {
+            "phrase": "glielo voglio dare",
+            "match_at": "word"
+          },
+          {
+            "phrase": "voglio darglielo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "Voglio glielo dare",
@@ -5764,10 +6154,22 @@
         "bucket": "pronoun.position.modal_plus_infinitive_either",
         "label": "modal + inf with IOP: gli devo parlare OR devo parlargli",
         "any_phrases": [
-          "Gli devo parlare",
-          "Devo parlargli",
-          "gli devo parlare",
-          "devo parlargli"
+          {
+            "phrase": "Gli devo parlare",
+            "match_at": "word"
+          },
+          {
+            "phrase": "Devo parlargli",
+            "match_at": "word"
+          },
+          {
+            "phrase": "gli devo parlare",
+            "match_at": "word"
+          },
+          {
+            "phrase": "devo parlargli",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "Devo gli parlare",
@@ -5798,7 +6200,10 @@
         "bucket": "pronoun.position.post_gerund_attached",
         "label": "Gerund + clitic, attached",
         "any_phrases": [
-          "vedendolo"
+          {
+            "phrase": "vedendolo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "vedendo lo",
@@ -5828,10 +6233,22 @@
         "bucket": "pronoun.position.post_gerund_attached",
         "label": "Progressive: pre-stare OR attached to gerund",
         "any_phrases": [
-          "Lo sto leggendo",
-          "Sto leggendolo",
-          "lo sto leggendo",
-          "sto leggendolo"
+          {
+            "phrase": "Lo sto leggendo",
+            "match_at": "word"
+          },
+          {
+            "phrase": "Sto leggendolo",
+            "match_at": "word"
+          },
+          {
+            "phrase": "lo sto leggendo",
+            "match_at": "word"
+          },
+          {
+            "phrase": "sto leggendolo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "Sto lo leggendo",
@@ -5873,7 +6290,10 @@
         "bucket": "pronoun.position.post_imperative_tu_attached",
         "label": "tu imp + clitic attached",
         "any_phrases": [
-          "parlami"
+          {
+            "phrase": "parlami",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "mi parla",
@@ -5914,7 +6334,10 @@
         "bucket": "pronoun.position.post_imperative_tu_attached",
         "label": "noi imp + clitic attached",
         "any_phrases": [
-          "andiamoci"
+          {
+            "phrase": "andiamoci",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ci andiamo",
@@ -5944,7 +6367,10 @@
         "bucket": "pronoun.position.post_imperative_tu_attached",
         "label": "voi imp + clitic attached",
         "any_phrases": [
-          "aspettatemi"
+          {
+            "phrase": "aspettatemi",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "mi aspettate",
@@ -5974,7 +6400,10 @@
         "bucket": "pronoun.position.post_imperative_consonant_doubling",
         "label": "da' + mi → dammi (double m)",
         "any_phrases": [
-          "dammi"
+          {
+            "phrase": "dammi",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "dami",
@@ -6006,7 +6435,10 @@
         "bucket": "pronoun.position.post_imperative_consonant_doubling",
         "label": "di' + mi → dimmi",
         "any_phrases": [
-          "dimmi"
+          {
+            "phrase": "dimmi",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "dimi",
@@ -6036,7 +6468,10 @@
         "bucket": "pronoun.position.post_imperative_consonant_doubling",
         "label": "fa' + me + lo → fammelo (double m + vowel change)",
         "any_phrases": [
-          "fammelo"
+          {
+            "phrase": "fammelo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "famelo",
@@ -6068,7 +6503,10 @@
         "bucket": "pronoun.position.post_imperative_consonant_doubling",
         "label": "va' + ci → vacci",
         "any_phrases": [
-          "vacci"
+          {
+            "phrase": "vacci",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "vaci",
@@ -6135,8 +6573,14 @@
         "bucket": "pronoun.position.negative_imperative",
         "label": "neg tu imp: 'non + inf', clitic pre or attached",
         "any_phrases": [
-          "mi parlare",
-          "parlarmi"
+          {
+            "phrase": "mi parlare",
+            "match_at": "word"
+          },
+          {
+            "phrase": "parlarmi",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "parla mi",
@@ -6168,10 +6612,22 @@
         "bucket": "pronoun.position.negative_imperative",
         "label": "neg tu imp with dire: infinitive form",
         "any_phrases": [
-          "Non dirmi",
-          "Non mi dire",
-          "non dirmi",
-          "non mi dire"
+          {
+            "phrase": "Non dirmi",
+            "match_at": "word"
+          },
+          {
+            "phrase": "Non mi dire",
+            "match_at": "word"
+          },
+          {
+            "phrase": "non dirmi",
+            "match_at": "word"
+          },
+          {
+            "phrase": "non mi dire",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "Non dimmi",
@@ -6203,8 +6659,14 @@
         "bucket": "pronoun.position.formal_imperative_pre_verb",
         "label": "Formal Lei imp: clitic BEFORE the verb",
         "any_phrases": [
-          "Mi dica",
-          "mi dica"
+          {
+            "phrase": "Mi dica",
+            "match_at": "word"
+          },
+          {
+            "phrase": "mi dica",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "Dimmi",
@@ -6283,8 +6745,14 @@
         "bucket": "pronoun.position.formal_imperative_pre_verb",
         "label": "Formal imp + combined clitic cluster pre-verb",
         "any_phrases": [
-          "Me lo dia",
-          "me lo dia"
+          {
+            "phrase": "Me lo dia",
+            "match_at": "word"
+          },
+          {
+            "phrase": "me lo dia",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "Diammelo",
@@ -6327,7 +6795,10 @@
         "bucket": "pronoun.special.lo_neutral",
         "label": "Neuter lo replacing a clause",
         "any_phrases": [
-          "lo"
+          {
+            "phrase": "lo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "la",
@@ -6370,7 +6841,10 @@
         "bucket": "pronoun.special.lo_neutral",
         "label": "Neuter lo replacing a predicate adjective",
         "any_phrases": [
-          "lo"
+          {
+            "phrase": "lo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "la",
@@ -6412,7 +6886,10 @@
         "bucket": "pronoun.special.lo_neutral",
         "label": "Neuter lo with pensare",
         "any_phrases": [
-          "lo"
+          {
+            "phrase": "lo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ci",
@@ -6444,8 +6921,14 @@
         "bucket": "pronoun.special.stressed_forms",
         "label": "Stressed a me for emphasis",
         "any_phrases": [
-          "A me",
-          "a me"
+          {
+            "phrase": "A me",
+            "match_at": "word"
+          },
+          {
+            "phrase": "a me",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "Mi",
@@ -6476,7 +6959,10 @@
         "bucket": "pronoun.special.stressed_forms",
         "label": "Stressed lei post-verb for DO contrast",
         "any_phrases": [
-          "lei"
+          {
+            "phrase": "lei",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "la",
@@ -6506,7 +6992,10 @@
         "bucket": "pronoun.special.stressed_forms",
         "label": "Stressed me after preposition",
         "any_phrases": [
-          "me"
+          {
+            "phrase": "me",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "mi",
@@ -6537,7 +7026,10 @@
         "bucket": "pronoun.special.formal_lei_capitalisation",
         "label": "Formal DOP takes capital La",
         "any_phrases": [
-          "La"
+          {
+            "phrase": "La",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "la ringrazio"
@@ -6550,7 +7042,10 @@
         "bucket": "pronoun.special.formal_lei_capitalisation",
         "label": "Article la stays lowercase (not a formal pronoun)",
         "any_phrases": [
-          "per la"
+          {
+            "phrase": "per la",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "per La"
@@ -6563,7 +7058,10 @@
         "bucket": "pronoun.special.formal_lei_capitalisation",
         "label": "Formal possessive takes capital Sua",
         "any_phrases": [
-          "Sua"
+          {
+            "phrase": "Sua",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "sua"
@@ -6605,8 +7103,14 @@
         "bucket": "pronoun.special.formal_lei_capitalisation",
         "label": "Reflexive si/Si in formal address (both credited)",
         "any_phrases": [
-          "Si",
-          "si"
+          {
+            "phrase": "Si",
+            "match_at": "word"
+          },
+          {
+            "phrase": "si",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ti",
@@ -6692,7 +7196,10 @@
         "bucket": "pronoun.special.pronoun_then_subject_noun",
         "label": "Resumptive IOP after fronted a-phrase",
         "any_phrases": [
-          "gli"
+          {
+            "phrase": "gli",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "lo",
@@ -6723,8 +7230,14 @@
         "bucket": "pronoun.special.pronoun_then_subject_noun",
         "label": "Resumptive cluster: IOP + DOP after fronted topic",
         "any_phrases": [
-          "me l'",
-          "me lo"
+          {
+            "phrase": "me l'",
+            "match_at": "word"
+          },
+          {
+            "phrase": "me lo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "mi lo",
@@ -6805,7 +7318,10 @@
         "bucket": "pronoun.direct_object.elision_before_vowel",
         "label": "f.pl le does not elide",
         "any_phrases": [
-          "le"
+          {
+            "phrase": "le",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "l'",
@@ -7135,7 +7651,10 @@
         "bucket": "pronoun.direct_object.ti",
         "label": "DOP ti in compound tense (no agreement)",
         "any_phrases": [
-          "ti"
+          {
+            "phrase": "ti",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "te",
@@ -7229,8 +7748,14 @@
         "bucket": "pronoun.direct_object.vi_you",
         "label": "DOP 2pl vi, pre-aux",
         "any_phrases": [
-          "vi ho",
-          "Non vi ho"
+          {
+            "phrase": "vi ho",
+            "match_at": "word"
+          },
+          {
+            "phrase": "Non vi ho",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ho vi",
@@ -7243,8 +7768,14 @@
         "bucket": "verb_form.passato_prossimo.participle_agreement.with_avere.preceding_dop_mi_ti_ci_vi",
         "label": "Participle ending: agreement with vi is optional (viste/visto both credited)",
         "any_phrases": [
-          "viste",
-          "visto"
+          {
+            "phrase": "viste",
+            "match_at": "word"
+          },
+          {
+            "phrase": "visto",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "visti",
@@ -7275,8 +7806,14 @@
         "bucket": "pronoun.direct_object.formal_La",
         "label": "Formal La addressing a male professional",
         "any_phrases": [
-          "La",
-          "la"
+          {
+            "phrase": "La",
+            "match_at": "word"
+          },
+          {
+            "phrase": "la",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "Lo",
@@ -7319,7 +7856,10 @@
         "bucket": "pronoun.indirect_object.mi",
         "label": "IOP 1sg in imperfect context",
         "any_phrases": [
-          "mi"
+          {
+            "phrase": "mi",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "me",
@@ -7361,7 +7901,10 @@
         "bucket": "pronoun.indirect_object.ti",
         "label": "IOP 2sg in conditional",
         "any_phrases": [
-          "ti"
+          {
+            "phrase": "ti",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "te",
@@ -7392,7 +7935,10 @@
         "bucket": "pronoun.indirect_object.ci_us",
         "label": "IOP 1pl ci with piacere",
         "any_phrases": [
-          "ci"
+          {
+            "phrase": "ci",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "noi",
@@ -7434,7 +7980,10 @@
         "bucket": "pronoun.indirect_object.vi_you",
         "label": "IOP 2pl with servire (piacere-family)",
         "any_phrases": [
-          "vi"
+          {
+            "phrase": "vi",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "voi",
@@ -7479,7 +8028,10 @@
         "bucket": "pronoun.indirect_object.gli_them",
         "label": "Modern gli for mixed-gender 3pl",
         "any_phrases": [
-          "gli"
+          {
+            "phrase": "gli",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "li",
@@ -7521,8 +8073,14 @@
         "bucket": "pronoun.indirect_object.formal_Le",
         "label": "Formal Le with modal + infinitive",
         "any_phrases": [
-          "Le",
-          "le"
+          {
+            "phrase": "Le",
+            "match_at": "word"
+          },
+          {
+            "phrase": "le",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "La",
@@ -7554,8 +8112,14 @@
         "bucket": "pronoun.reflexive.with_object",
         "label": "reflexive 1sg + f.sg DOP, with vowel change",
         "any_phrases": [
-          "Me la",
-          "me la"
+          {
+            "phrase": "Me la",
+            "match_at": "word"
+          },
+          {
+            "phrase": "me la",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "Mi la",
@@ -7613,8 +8177,14 @@
         "bucket": "pronoun.reflexive.with_object",
         "label": "reflexive 1pl + m.sg DOP, with vowel change",
         "any_phrases": [
-          "Ce lo",
-          "ce lo"
+          {
+            "phrase": "Ce lo",
+            "match_at": "word"
+          },
+          {
+            "phrase": "ce lo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "Ci lo",
@@ -7672,8 +8242,14 @@
         "bucket": "pronoun.reflexive.with_object",
         "label": "reflexive 2sg + f.pl DOP, with vowel change",
         "any_phrases": [
-          "Te le",
-          "te le"
+          {
+            "phrase": "Te le",
+            "match_at": "word"
+          },
+          {
+            "phrase": "te le",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "Ti le",
@@ -7731,7 +8307,10 @@
         "bucket": "pronoun.reflexive.with_object",
         "label": "Reflexive 3sg + f.pl DOP cluster (se le, with vowel change)",
         "any_phrases": [
-          "se le",
+          {
+            "phrase": "se le",
+            "match_at": "word"
+          },
           {
             "phrase": "se l'",
             "match_at": "word"
@@ -7749,7 +8328,10 @@
         "bucket": "verb_form.passato_prossimo.auxiliary.essere_reflexive",
         "label": "Reflexive auxiliary (è)",
         "any_phrases": [
-          "è"
+          {
+            "phrase": "è",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ha"
@@ -7790,7 +8372,10 @@
         "bucket": "pronoun.combined.order_iop_before_dop",
         "label": "Cluster order in attached imperative: parlamene",
         "any_phrases": [
-          "parlamene"
+          {
+            "phrase": "parlamene",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "parlanemi",
@@ -7822,8 +8407,14 @@
         "bucket": "pronoun.combined.order_iop_before_dop",
         "label": "Cluster pre-aux in PP",
         "any_phrases": [
-          "me l'",
-          "me lo"
+          {
+            "phrase": "me l'",
+            "match_at": "word"
+          },
+          {
+            "phrase": "me lo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "lo mi",
@@ -7929,7 +8520,10 @@
         "bucket": "pronoun.combined.vowel_changes",
         "label": "vi → ve before lo",
         "any_phrases": [
-          "ve lo"
+          {
+            "phrase": "ve lo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "vi lo",
@@ -7960,8 +8554,14 @@
         "bucket": "pronoun.combined.vowel_changes",
         "label": "ve la in progressive with stare+gerundio",
         "any_phrases": [
-          "Ve la",
-          "ve la"
+          {
+            "phrase": "Ve la",
+            "match_at": "word"
+          },
+          {
+            "phrase": "ve la",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "Vi la",
@@ -8009,7 +8609,10 @@
         "bucket": "pronoun.combined.me_ne_family",
         "label": "te + ne",
         "any_phrases": [
-          "te ne"
+          {
+            "phrase": "te ne",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ti ne",
@@ -8040,7 +8643,10 @@
         "bucket": "pronoun.combined.glielo_family",
         "label": "gliela with PP agreement to preceding f.sg DOP",
         "any_phrases": [
-          "a"
+          {
+            "phrase": "a",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "o",
@@ -8072,8 +8678,14 @@
         "bucket": "pronoun.combined.glielo_family",
         "label": "gliele with PP agreement f.pl",
         "any_phrases": [
-          "Gliele",
-          "gliele"
+          {
+            "phrase": "Gliele",
+            "match_at": "word"
+          },
+          {
+            "phrase": "gliele",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "Gli le",
@@ -8115,8 +8727,14 @@
         "bucket": "pronoun.combined.glielo_family",
         "label": "gliene cluster",
         "any_phrases": [
-          "Gliene",
-          "gliene"
+          {
+            "phrase": "Gliene",
+            "match_at": "word"
+          },
+          {
+            "phrase": "gliene",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "Gli ne",
@@ -8130,8 +8748,14 @@
         "bucket": "verb_form.present_or_future.dare",
         "label": "dare in present or future",
         "any_phrases": [
-          "dai",
-          "darai"
+          {
+            "phrase": "dai",
+            "match_at": "word"
+          },
+          {
+            "phrase": "darai",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -8158,7 +8782,10 @@
         "bucket": "pronoun.combined.glielo_family",
         "label": "glielo attached to infinitive: darglielo",
         "any_phrases": [
-          "voglio darglielo"
+          {
+            "phrase": "voglio darglielo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "voglio dare glielo",
@@ -8190,7 +8817,10 @@
         "bucket": "pronoun.ne.pronominal_idiomatic_verbs",
         "label": "starsene 1sg me ne",
         "any_phrases": [
-          "Me ne"
+          {
+            "phrase": "Me ne",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "Mi ne",
@@ -8234,7 +8864,10 @@
         "bucket": "pronoun.ne.motion_andarsene",
         "label": "venirsene 3pl se ne",
         "any_phrases": [
-          "se ne"
+          {
+            "phrase": "se ne",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "si ne",
@@ -8276,7 +8909,10 @@
         "bucket": "pronoun.ne.partitive_quantity",
         "label": "Partitive ne with negative quantifier 'nessuno'",
         "any_phrases": [
-          "ne"
+          {
+            "phrase": "ne",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "li",
@@ -8318,7 +8954,10 @@
         "bucket": "pronoun.ne.partitive_quantity",
         "label": "Partitive ne with abstract noun",
         "any_phrases": [
-          "ne"
+          {
+            "phrase": "ne",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "li",
@@ -8464,7 +9103,10 @@
         "bucket": "pronoun.ci_locative.location",
         "label": "Locative ci in PP, pre-aux",
         "any_phrases": [
-          "ci"
+          {
+            "phrase": "ci",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "la",
@@ -8496,8 +9138,14 @@
         "bucket": "pronoun.ci_locative.existential",
         "label": "Negated existential: non c'è più",
         "any_phrases": [
-          "Non c'è più un problema",
-          "Non c'è più nessun problema"
+          {
+            "phrase": "Non c'è più un problema",
+            "match_at": "word"
+          },
+          {
+            "phrase": "Non c'è più nessun problema",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "Non è un problema",
@@ -8611,7 +9259,10 @@
         "bucket": "pronoun.position.post_infinitive_attached",
         "label": "Cluster attached to infinitive: darmelo",
         "any_phrases": [
-          "darmelo"
+          {
+            "phrase": "darmelo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "dare me lo",
@@ -8642,7 +9293,10 @@
         "bucket": "pronoun.position.post_infinitive_attached",
         "label": "-ire infinitive + ne",
         "any_phrases": [
-          "partirne"
+          {
+            "phrase": "partirne",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "partire ne",
@@ -8673,7 +9327,10 @@
         "bucket": "pronoun.position.post_gerund_attached",
         "label": "Cluster attached to gerund: parlandogliene",
         "any_phrases": [
-          "parlandogliene"
+          {
+            "phrase": "parlandogliene",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "parlando gli ne",
@@ -8742,7 +9399,10 @@
         "bucket": "pronoun.position.post_imperative_tu_attached",
         "label": "Reflexive ti attached to tu imperative",
         "any_phrases": [
-          "Lavati"
+          {
+            "phrase": "Lavati",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "Ti lava",
@@ -8773,8 +9433,14 @@
         "bucket": "pronoun.position.post_imperative_tu_attached",
         "label": "Cluster attached to non-monosyllabic imperative",
         "any_phrases": [
-          "compramelo",
-          "Compramelo"
+          {
+            "phrase": "compramelo",
+            "match_at": "word"
+          },
+          {
+            "phrase": "Compramelo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "compra me lo",
@@ -8805,7 +9471,10 @@
         "bucket": "pronoun.position.post_imperative_consonant_doubling",
         "label": "sta' + mi → stammi",
         "any_phrases": [
-          "stammi"
+          {
+            "phrase": "stammi",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "stami",
@@ -8910,8 +9579,14 @@
         "bucket": "pronoun.position.negative_imperative",
         "label": "neg tu imp + cluster: 'non darmelo' or 'non me lo dare'",
         "any_phrases": [
-          "Non darmelo",
-          "Non me lo dare"
+          {
+            "phrase": "Non darmelo",
+            "match_at": "word"
+          },
+          {
+            "phrase": "Non me lo dare",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "Non dammelo",
@@ -8942,8 +9617,14 @@
         "bucket": "pronoun.position.negative_imperative",
         "label": "neg tu imp with reflexive: 'non muoverti' or 'non ti muovere'",
         "any_phrases": [
-          "Non muoverti",
-          "Non ti muovere"
+          {
+            "phrase": "Non muoverti",
+            "match_at": "word"
+          },
+          {
+            "phrase": "Non ti muovere",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "Non muoviti",
@@ -8984,8 +9665,14 @@
         "bucket": "pronoun.position.formal_imperative_pre_verb",
         "label": "Formal Lei imp + reflexive si pre-verb",
         "any_phrases": [
-          "Si calmi",
-          "si calmi"
+          {
+            "phrase": "Si calmi",
+            "match_at": "word"
+          },
+          {
+            "phrase": "si calmi",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "Calmati",
@@ -9064,8 +9751,14 @@
         "bucket": "pronoun.special.stressed_forms",
         "label": "Stressed te after preposition senza",
         "any_phrases": [
-          "di te",
-          "te"
+          {
+            "phrase": "di te",
+            "match_at": "word"
+          },
+          {
+            "phrase": "te",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ti",
@@ -9096,7 +9789,10 @@
         "bucket": "pronoun.special.stressed_forms",
         "label": "Stressed lui after preposition per",
         "any_phrases": [
-          "lui"
+          {
+            "phrase": "lui",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "lo",
@@ -9126,7 +9822,10 @@
         "bucket": "pronoun.special.stressed_forms",
         "label": "Stressed me post-verb for DO contrast",
         "any_phrases": [
-          "me"
+          {
+            "phrase": "me",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "mi",
@@ -9168,7 +9867,10 @@
         "bucket": "pronoun.special.formal_lei_capitalisation",
         "label": "Formal DOP takes capital La",
         "any_phrases": [
-          "La informiamo"
+          {
+            "phrase": "La informiamo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "la informiamo"
@@ -9181,7 +9883,10 @@
         "bucket": "pronoun.special.formal_lei_capitalisation",
         "label": "Article la stays lowercase (not a formal pronoun)",
         "any_phrases": [
-          "che la"
+          {
+            "phrase": "che la",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "che La"
@@ -9194,7 +9899,10 @@
         "bucket": "pronoun.special.formal_lei_capitalisation",
         "label": "Formal possessive takes capital Sua",
         "any_phrases": [
-          "Sua richiesta"
+          {
+            "phrase": "Sua richiesta",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "sua richiesta"
@@ -9224,7 +9932,10 @@
         "bucket": "pronoun.special.formal_lei_capitalisation",
         "label": "Capitalise Sua in closing formula",
         "any_phrases": [
-          "Sua"
+          {
+            "phrase": "Sua",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "sua"
@@ -9237,7 +9948,10 @@
         "bucket": "pronoun.special.formal_lei_capitalisation",
         "label": "Capitalise Le (IOP) in closing formula",
         "any_phrases": [
-          "Le"
+          {
+            "phrase": "Le",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "le"
@@ -9267,8 +9981,14 @@
         "bucket": "pronoun.special.left_dislocation_with_pp_agreement",
         "label": "Dislocation + cluster (me li) + PP agreement (m.pl)",
         "any_phrases": [
-          "me li",
-          "Me li"
+          {
+            "phrase": "me li",
+            "match_at": "word"
+          },
+          {
+            "phrase": "Me li",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "mi li",
@@ -9302,8 +10022,14 @@
         "bucket": "pronoun.special.lo_neutral",
         "label": "Neuter lo + IOP gli → glielo in cluster",
         "any_phrases": [
-          "gliel'",
-          "glielo"
+          {
+            "phrase": "gliel'",
+            "match_at": "word"
+          },
+          {
+            "phrase": "glielo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "gli lo",
@@ -9409,7 +10135,10 @@
         "bucket": "pronoun.combined.joined_when_should_be_separate",
         "label": "me ne stays as two words pre-verb",
         "any_phrases": [
-          "Me ne"
+          {
+            "phrase": "Me ne",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "Mene",
@@ -9477,8 +10206,14 @@
         "bucket": "pronoun.combined.joined_when_should_be_separate",
         "label": "me le stays separate pre-aux in PP",
         "any_phrases": [
-          "Me le",
-          "me le"
+          {
+            "phrase": "Me le",
+            "match_at": "word"
+          },
+          {
+            "phrase": "me le",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "Mele",

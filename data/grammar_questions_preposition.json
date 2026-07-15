@@ -17,7 +17,10 @@
         "bucket": "preposition.usage.verb_governed.a_infinitive",
         "label": "cominciare + a",
         "any_phrases": [
-          "a studiare"
+          {
+            "phrase": "a studiare",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "di studiare"
@@ -67,7 +70,10 @@
         "bucket": "preposition.usage.verb_governed.a_infinitive",
         "label": "imparare + a",
         "any_phrases": [
-          "a nuotare"
+          {
+            "phrase": "a nuotare",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "di nuotare"
@@ -117,7 +123,10 @@
         "bucket": "preposition.usage.verb_governed.a_infinitive",
         "label": "riuscire + a",
         "any_phrases": [
-          "a capire"
+          {
+            "phrase": "a capire",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "di capire"
@@ -179,12 +188,14 @@
         "any_phrases": [
           {
             "phrase": "ad aprire",
-            "credit": 1.0
+            "credit": 1.0,
+            "match_at": "word"
           },
           {
             "phrase": "a aprire",
             "credit": 0.9,
-            "note": "understood, but before another a- sound the euphonic ad is standard"
+            "note": "understood, but before another a- sound the euphonic ad is standard",
+            "match_at": "word"
           }
         ],
         "must_not_include": [
@@ -246,7 +257,10 @@
         "bucket": "preposition.usage.verb_governed.a_infinitive",
         "label": "aiutare + a",
         "any_phrases": [
-          "a portare"
+          {
+            "phrase": "a portare",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "di portare"
@@ -306,7 +320,10 @@
         "bucket": "preposition.usage.verb_governed.a_infinitive",
         "label": "continuare + a",
         "any_phrases": [
-          "a piangere"
+          {
+            "phrase": "a piangere",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "di piangere"
@@ -366,7 +383,10 @@
         "bucket": "preposition.usage.verb_governed.di_infinitive",
         "label": "finire + di",
         "any_phrases": [
-          "di lavorare"
+          {
+            "phrase": "di lavorare",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "a lavorare"
@@ -416,7 +436,10 @@
         "bucket": "preposition.usage.verb_governed.di_infinitive",
         "label": "cercare + di",
         "any_phrases": [
-          "di risolvere"
+          {
+            "phrase": "di risolvere",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "a risolvere"
@@ -476,7 +499,10 @@
         "bucket": "preposition.usage.verb_governed.di_infinitive",
         "label": "decidere + di",
         "any_phrases": [
-          "di restare"
+          {
+            "phrase": "di restare",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "a restare"
@@ -526,7 +552,10 @@
         "bucket": "preposition.usage.verb_governed.di_infinitive",
         "label": "smettere + di",
         "any_phrases": [
-          "di fumare"
+          {
+            "phrase": "di fumare",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "a fumare"
@@ -576,7 +605,10 @@
         "bucket": "preposition.usage.verb_governed.di_infinitive",
         "label": "dimenticare + di",
         "any_phrases": [
-          "di chiudere"
+          {
+            "phrase": "di chiudere",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "a chiudere"
@@ -626,7 +658,10 @@
         "bucket": "preposition.usage.verb_governed.object_governed",
         "label": "pensare a + person",
         "any_phrases": [
-          "a te"
+          {
+            "phrase": "a te",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "di te"
@@ -666,11 +701,15 @@
         "bucket": "preposition.usage.verb_governed.object_governed",
         "label": "parlare di + topic",
         "any_phrases": [
-          "di politica",
+          {
+            "phrase": "di politica",
+            "match_at": "word"
+          },
           {
             "phrase": "della politica",
             "credit": 1.0,
-            "note": "articulated form; specific rather than generic reference, equally correct"
+            "note": "articulated form; specific rather than generic reference, equally correct",
+            "match_at": "word"
           }
         ],
         "must_not_include": [
@@ -721,8 +760,14 @@
         "bucket": "preposition.usage.verb_governed.object_governed",
         "label": "avere bisogno di",
         "any_phrases": [
-          "di aiuto",
-          "d'aiuto"
+          {
+            "phrase": "di aiuto",
+            "match_at": "word"
+          },
+          {
+            "phrase": "d'aiuto",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "per aiuto"
@@ -776,8 +821,14 @@
         "bucket": "preposition.usage.verb_governed.object_governed",
         "label": "innamorarsi di",
         "any_phrases": [
-          "di una",
-          "d'una"
+          {
+            "phrase": "di una",
+            "match_at": "word"
+          },
+          {
+            "phrase": "d'una",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "con una",
@@ -828,11 +879,15 @@
         "bucket": "preposition.usage.verb_governed.object_governed",
         "label": "pensare di + opinion",
         "any_phrases": [
-          "del nuovo",
+          {
+            "phrase": "del nuovo",
+            "match_at": "word"
+          },
           {
             "phrase": "di il nuovo",
             "credit": 1.0,
-            "note": "uncontracted: credits the di-choice; the missing contraction is markpoint B's miss"
+            "note": "uncontracted: credits the di-choice; the missing contraction is markpoint B's miss",
+            "match_at": "word"
           }
         ],
         "must_not_include": [
@@ -846,8 +901,14 @@
         "bucket": "preposition.articulated.formation",
         "label": "di + il contracted",
         "any_phrases": [
-          "del nuovo",
-          "al nuovo"
+          {
+            "phrase": "del nuovo",
+            "match_at": "word"
+          },
+          {
+            "phrase": "al nuovo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "di il",
@@ -889,7 +950,10 @@
         "bucket": "preposition.usage.place",
         "label": "a + town",
         "any_phrases": [
-          "a Firenze"
+          {
+            "phrase": "a Firenze",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "in Firenze"
@@ -930,7 +994,10 @@
         "bucket": "preposition.usage.place",
         "label": "in + country",
         "any_phrases": [
-          "in Germania"
+          {
+            "phrase": "in Germania",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "a Germania"
@@ -980,7 +1047,10 @@
         "bucket": "preposition.usage.place",
         "label": "in + region",
         "any_phrases": [
-          "in Toscana"
+          {
+            "phrase": "in Toscana",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "a Toscana"
@@ -1020,7 +1090,10 @@
         "bucket": "preposition.usage.place",
         "label": "in + enclosed space",
         "any_phrases": [
-          "in biblioteca"
+          {
+            "phrase": "in biblioteca",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
@@ -1073,11 +1146,15 @@
         "bucket": "preposition.usage.place",
         "label": "da + person's place",
         "any_phrases": [
-          "da Marco",
+          {
+            "phrase": "da Marco",
+            "match_at": "word"
+          },
           {
             "phrase": "a casa di Marco",
             "credit": 0.9,
-            "note": "fully correct, but sidesteps the personal-da pattern under drill; 0.9 per the 0.9-for-dodges boundary (batch-review thread v5: skill avoided, not shown)"
+            "note": "fully correct, but sidesteps the personal-da pattern under drill; 0.9 per the 0.9-for-dodges boundary (batch-review thread v5: skill avoided, not shown)",
+            "match_at": "word"
           }
         ],
         "must_not_include": [
@@ -1118,11 +1195,15 @@
         "bucket": "preposition.usage.place",
         "label": "in + country (plural)",
         "any_phrases": [
-          "negli Stati",
+          {
+            "phrase": "negli Stati",
+            "match_at": "word"
+          },
           {
             "phrase": "in gli Stati",
             "credit": 1.0,
-            "note": "credits the place rule only; the missing contraction is markpoint B's miss"
+            "note": "credits the place rule only; the missing contraction is markpoint B's miss",
+            "match_at": "word"
           }
         ],
         "must_not_include": [
@@ -1136,7 +1217,10 @@
         "bucket": "preposition.articulated.formation",
         "label": "in + gli contracted",
         "any_phrases": [
-          "negli Stati"
+          {
+            "phrase": "negli Stati",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "in gli Stati"
@@ -1187,7 +1271,10 @@
         "bucket": "preposition.usage.place",
         "label": "in + country",
         "any_phrases": [
-          "in Italia"
+          {
+            "phrase": "in Italia",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "a Italia",
@@ -1228,7 +1315,10 @@
         "bucket": "preposition.usage.place",
         "label": "a + town",
         "any_phrases": [
-          "a Venezia"
+          {
+            "phrase": "a Venezia",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "in Venezia"
@@ -1257,7 +1347,10 @@
         "bucket": "preposition.usage.time",
         "label": "a + clock time",
         "any_phrases": [
-          "alle nove"
+          {
+            "phrase": "alle nove",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "a le nove",
@@ -1309,7 +1402,10 @@
         "bucket": "preposition.usage.time",
         "label": "a + one o'clock",
         "any_phrases": [
-          "all'una"
+          {
+            "phrase": "all'una",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "alle una",
@@ -1351,7 +1447,10 @@
         "bucket": "preposition.usage.time",
         "label": "di + part of day",
         "any_phrases": [
-          "di mattina",
+          {
+            "phrase": "di mattina",
+            "match_at": "word"
+          },
           {
             "phrase": "la mattina",
             "match_at": "word",
@@ -1361,7 +1460,8 @@
           {
             "phrase": "alla mattina",
             "credit": 0.9,
-            "note": "regional (northern) but widespread; standard forms are di mattina / la mattina"
+            "note": "regional (northern) but widespread; standard forms are di mattina / la mattina",
+            "match_at": "word"
           }
         ],
         "must_not_include": [
@@ -1407,8 +1507,14 @@
         "bucket": "preposition.usage.time",
         "label": "a / in + month",
         "any_phrases": [
-          "a giugno",
-          "in giugno"
+          {
+            "phrase": "a giugno",
+            "match_at": "word"
+          },
+          {
+            "phrase": "in giugno",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "di giugno"
@@ -1449,7 +1555,10 @@
         "bucket": "preposition.usage.time",
         "label": "da + since (year)",
         "any_phrases": [
-          "dal 2020"
+          {
+            "phrase": "dal 2020",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "da il 2020",
@@ -1480,7 +1589,10 @@
         "bucket": "preposition.usage.time",
         "label": "da + ongoing duration",
         "any_phrases": [
-          "da venti"
+          {
+            "phrase": "da venti",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "per venti"
@@ -1520,7 +1632,10 @@
         "bucket": "preposition.usage.time",
         "label": "per + completed duration",
         "any_phrases": [
-          "per tre"
+          {
+            "phrase": "per tre",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "da tre"
@@ -1549,8 +1664,14 @@
         "bucket": "preposition.usage.time",
         "label": "fra/tra + future interval",
         "any_phrases": [
-          "fra dieci",
-          "tra dieci"
+          {
+            "phrase": "fra dieci",
+            "match_at": "word"
+          },
+          {
+            "phrase": "tra dieci",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "in dieci"
@@ -1590,7 +1711,10 @@
         "bucket": "preposition.usage.time",
         "label": "in + year (contracted)",
         "any_phrases": [
-          "nel 1998"
+          {
+            "phrase": "nel 1998",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "in 1998",
@@ -1631,7 +1755,10 @@
         "bucket": "preposition.usage.motion",
         "label": "a + activity-place",
         "any_phrases": [
-          "a teatro"
+          {
+            "phrase": "a teatro",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "in teatro"
@@ -1671,7 +1798,10 @@
         "bucket": "preposition.usage.motion",
         "label": "in + country destination",
         "any_phrases": [
-          "in Svizzera"
+          {
+            "phrase": "in Svizzera",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "a Svizzera"
@@ -1700,7 +1830,10 @@
         "bucket": "preposition.usage.motion",
         "label": "da + origin",
         "any_phrases": [
-          "da Madrid"
+          {
+            "phrase": "da Madrid",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
@@ -1745,7 +1878,10 @@
         "bucket": "preposition.usage.motion",
         "label": "da + person's place (destination)",
         "any_phrases": [
-          "dal dentista"
+          {
+            "phrase": "dal dentista",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "al dentista",
@@ -1786,7 +1922,10 @@
         "bucket": "preposition.usage.motion",
         "label": "partire per + destination",
         "any_phrases": [
-          "per Parigi"
+          {
+            "phrase": "per Parigi",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
@@ -1832,16 +1971,21 @@
         "bucket": "preposition.usage.means_manner",
         "label": "in + vehicle",
         "any_phrases": [
-          "in treno",
+          {
+            "phrase": "in treno",
+            "match_at": "word"
+          },
           {
             "phrase": "con il treno",
             "credit": 0.9,
-            "note": "heard colloquially; in treno is the standard means expression"
+            "note": "heard colloquially; in treno is the standard means expression",
+            "match_at": "word"
           },
           {
             "phrase": "col treno",
             "credit": 0.9,
-            "note": "as con il treno"
+            "note": "as con il treno",
+            "match_at": "word"
           }
         ],
         "must_not_include": [
@@ -1871,7 +2015,10 @@
         "bucket": "preposition.usage.means_manner",
         "label": "a piedi",
         "any_phrases": [
-          "a piedi"
+          {
+            "phrase": "a piedi",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "in piedi",
@@ -1901,7 +2048,10 @@
         "bucket": "preposition.usage.means_manner",
         "label": "con + instrument",
         "any_phrases": [
-          "con la chiave"
+          {
+            "phrase": "con la chiave",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
@@ -1945,7 +2095,10 @@
         "bucket": "preposition.usage.means_manner",
         "label": "con + manner noun",
         "any_phrases": [
-          "con calma"
+          {
+            "phrase": "con calma",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "in calma",
@@ -1986,8 +2139,14 @@
         "bucket": "preposition.usage.means_manner",
         "label": "in + vehicle",
         "any_phrases": [
-          "in bicicletta",
-          "in bici"
+          {
+            "phrase": "in bicicletta",
+            "match_at": "word"
+          },
+          {
+            "phrase": "in bici",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "a bicicletta",
@@ -2028,7 +2187,10 @@
         "bucket": "preposition.usage.di_uses",
         "label": "di + possessor",
         "any_phrases": [
-          "di mio padre"
+          {
+            "phrase": "di mio padre",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "da mio padre"
@@ -2068,11 +2230,15 @@
         "bucket": "preposition.usage.di_uses",
         "label": "di + material",
         "any_phrases": [
-          "di legno",
+          {
+            "phrase": "di legno",
+            "match_at": "word"
+          },
           {
             "phrase": "in legno",
             "credit": 0.9,
-            "note": "commercial/technical register (catalogue style); di legno is the neutral choice"
+            "note": "commercial/technical register (catalogue style); di legno is the neutral choice",
+            "match_at": "word"
           }
         ],
         "must_not_include": [
@@ -2123,7 +2289,10 @@
         "bucket": "preposition.usage.di_uses",
         "label": "di + comparison",
         "any_phrases": [
-          "di me"
+          {
+            "phrase": "di me",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "che me",
@@ -2153,11 +2322,15 @@
         "bucket": "preposition.usage.di_uses",
         "label": "di + topic",
         "any_phrases": [
-          "di storia",
+          {
+            "phrase": "di storia",
+            "match_at": "word"
+          },
           {
             "phrase": "sulla storia",
             "credit": 0.9,
-            "note": "equally natural Italian, but dodges di-for-topic, the pattern under drill; 0.9 per the 0.9-for-dodges boundary (thread v5)"
+            "note": "equally natural Italian, but dodges di-for-topic, the pattern under drill; 0.9 per the 0.9-for-dodges boundary (thread v5)",
+            "match_at": "word"
           }
         ],
         "must_not_include": [
@@ -2198,7 +2371,10 @@
         "bucket": "preposition.usage.di_uses",
         "label": "di + contents/measure",
         "any_phrases": [
-          "di vino"
+          {
+            "phrase": "di vino",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "da vino",
@@ -2239,7 +2415,10 @@
         "bucket": "preposition.usage.di_uses",
         "label": "di + place possessor",
         "any_phrases": [
-          "di Milano"
+          {
+            "phrase": "di Milano",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "da Milano"
@@ -2268,7 +2447,10 @@
         "bucket": "preposition.usage.da_special",
         "label": "da + purpose infinitive",
         "any_phrases": [
-          "da mangiare"
+          {
+            "phrase": "da mangiare",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "di mangiare",
@@ -2298,7 +2480,10 @@
         "bucket": "preposition.usage.da_special",
         "label": "da + purpose object",
         "any_phrases": [
-          "da vino"
+          {
+            "phrase": "da vino",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "di vino"
@@ -2338,7 +2523,10 @@
         "bucket": "preposition.usage.da_special",
         "label": "da + passive agent",
         "any_phrases": [
-          "da Michelangelo"
+          {
+            "phrase": "da Michelangelo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "di Michelangelo",
@@ -2379,7 +2567,10 @@
         "bucket": "preposition.usage.da_special",
         "label": "da + stage of life",
         "any_phrases": [
-          "da bambino"
+          {
+            "phrase": "da bambino",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "come bambino",
@@ -2420,7 +2611,10 @@
         "bucket": "preposition.usage.da_special",
         "label": "da + at someone's (location)",
         "any_phrases": [
-          "da Luisa"
+          {
+            "phrase": "da Luisa",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "a Luisa"
@@ -2460,7 +2654,10 @@
         "bucket": "preposition.usage.da_special",
         "label": "da + passive agent",
         "any_phrases": [
-          "da tutti"
+          {
+            "phrase": "da tutti",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "di tutti",
@@ -2501,7 +2698,10 @@
         "bucket": "preposition.simple.forms",
         "label": "su = on/about",
         "any_phrases": [
-          "su Leonardo"
+          {
+            "phrase": "su Leonardo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "di Leonardo"
@@ -2541,7 +2741,10 @@
         "bucket": "preposition.simple.forms",
         "label": "con = with",
         "any_phrases": [
-          "con noi"
+          {
+            "phrase": "con noi",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "a noi"
@@ -2581,7 +2784,10 @@
         "bucket": "preposition.simple.forms",
         "label": "per = for",
         "any_phrases": [
-          "per te"
+          {
+            "phrase": "per te",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "a te"
@@ -2621,8 +2827,14 @@
         "bucket": "preposition.simple.forms",
         "label": "tra/fra = between",
         "any_phrases": [
-          "tra il bar",
-          "fra il bar"
+          {
+            "phrase": "tra il bar",
+            "match_at": "word"
+          },
+          {
+            "phrase": "fra il bar",
+            "match_at": "word"
+          }
         ],
         "must_not_include": []
       }
@@ -2660,7 +2872,10 @@
         "bucket": "preposition.simple.forms",
         "label": "in = inside",
         "any_phrases": [
-          "in macchina"
+          {
+            "phrase": "in macchina",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           {
@@ -2704,7 +2919,10 @@
         "bucket": "preposition.simple.forms",
         "label": "a = to (recipient)",
         "any_phrases": [
-          "a Maria"
+          {
+            "phrase": "a Maria",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "per Maria"
@@ -2744,7 +2962,10 @@
         "bucket": "preposition.articulated.formation",
         "label": "contracted form",
         "any_phrases": [
-          "del pane"
+          {
+            "phrase": "del pane",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "dello pane",
@@ -2774,7 +2995,10 @@
         "bucket": "preposition.articulated.formation",
         "label": "contracted form",
         "any_phrases": [
-          "allo stadio"
+          {
+            "phrase": "allo stadio",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "al stadio",
@@ -2804,7 +3028,10 @@
         "bucket": "preposition.articulated.formation",
         "label": "contracted form",
         "any_phrases": [
-          "nella cucina"
+          {
+            "phrase": "nella cucina",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "in la cucina",
@@ -2834,7 +3061,10 @@
         "bucket": "preposition.articulated.formation",
         "label": "contracted form",
         "any_phrases": [
-          "sull'autobus"
+          {
+            "phrase": "sull'autobus",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "sul autobus",
@@ -2864,7 +3094,10 @@
         "bucket": "preposition.articulated.formation",
         "label": "contracted form",
         "any_phrases": [
-          "dai nonni"
+          {
+            "phrase": "dai nonni",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "da i nonni",
@@ -2894,7 +3127,10 @@
         "bucket": "preposition.articulated.formation",
         "label": "contracted form",
         "any_phrases": [
-          "agli studenti"
+          {
+            "phrase": "agli studenti",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ai studenti",
@@ -2924,7 +3160,10 @@
         "bucket": "preposition.articulated.formation",
         "label": "contracted form",
         "any_phrases": [
-          "delle ragazze"
+          {
+            "phrase": "delle ragazze",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "di le ragazze",
@@ -2954,7 +3193,10 @@
         "bucket": "preposition.articulated.formation",
         "label": "contracted form",
         "any_phrases": [
-          "nei parchi"
+          {
+            "phrase": "nei parchi",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "in i parchi",
@@ -2984,7 +3226,10 @@
         "bucket": "preposition.articulated.formation",
         "label": "contracted form",
         "any_phrases": [
-          "sulla sedia"
+          {
+            "phrase": "sulla sedia",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "su la sedia",
@@ -3014,7 +3259,10 @@
         "bucket": "preposition.articulated.formation",
         "label": "contracted form in context",
         "any_phrases": [
-          "sul divano"
+          {
+            "phrase": "sul divano",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "su il divano",
@@ -3065,7 +3313,10 @@
         "bucket": "preposition.articulated.formation",
         "label": "con stays uncontracted",
         "any_phrases": [
-          "con gli amici"
+          {
+            "phrase": "con gli amici",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "congli amici"
@@ -3106,11 +3357,15 @@
         "bucket": "preposition.articulated.di_partitive",
         "label": "del = some",
         "any_phrases": [
-          "del pane",
+          {
+            "phrase": "del pane",
+            "match_at": "word"
+          },
           {
             "phrase": "un po' di pane",
             "credit": 0.9,
-            "note": "fully correct Italian; 0.9 per the 0.9-for-dodges rule (AUTHOR_BRIEF Rev 17 ruling iv: correct Italian that sidesteps the drilled pattern scores 0.9 with a steering note)"
+            "note": "fully correct Italian; 0.9 per the 0.9-for-dodges rule (AUTHOR_BRIEF Rev 17 ruling iv: correct Italian that sidesteps the drilled pattern scores 0.9 with a steering note)",
+            "match_at": "word"
           }
         ],
         "must_not_include": [
@@ -3152,16 +3407,21 @@
         "bucket": "preposition.articulated.di_partitive",
         "label": "delle = some (f pl)",
         "any_phrases": [
-          "delle fragole",
+          {
+            "phrase": "delle fragole",
+            "match_at": "word"
+          },
           {
             "phrase": "un po' di fragole",
             "credit": 0.9,
-            "note": "fully correct Italian; 0.9 per the 0.9-for-dodges rule (AUTHOR_BRIEF Rev 17 ruling iv: correct Italian that sidesteps the drilled pattern scores 0.9 with a steering note)"
+            "note": "fully correct Italian; 0.9 per the 0.9-for-dodges rule (AUTHOR_BRIEF Rev 17 ruling iv: correct Italian that sidesteps the drilled pattern scores 0.9 with a steering note)",
+            "match_at": "word"
           },
           {
             "phrase": "alcune fragole",
             "credit": 0.9,
-            "note": "fully correct Italian; 0.9 per the 0.9-for-dodges rule (AUTHOR_BRIEF Rev 17 ruling iv: correct Italian that sidesteps the drilled pattern scores 0.9 with a steering note)"
+            "note": "fully correct Italian; 0.9 per the 0.9-for-dodges rule (AUTHOR_BRIEF Rev 17 ruling iv: correct Italian that sidesteps the drilled pattern scores 0.9 with a steering note)",
+            "match_at": "word"
           }
         ],
         "must_not_include": [
@@ -3203,16 +3463,21 @@
         "bucket": "preposition.articulated.di_partitive",
         "label": "dei = some (m pl)",
         "any_phrases": [
-          "dei biscotti",
+          {
+            "phrase": "dei biscotti",
+            "match_at": "word"
+          },
           {
             "phrase": "un po' di biscotti",
             "credit": 0.9,
-            "note": "fully correct Italian; 0.9 per the 0.9-for-dodges rule (AUTHOR_BRIEF Rev 17 ruling iv: correct Italian that sidesteps the drilled pattern scores 0.9 with a steering note)"
+            "note": "fully correct Italian; 0.9 per the 0.9-for-dodges rule (AUTHOR_BRIEF Rev 17 ruling iv: correct Italian that sidesteps the drilled pattern scores 0.9 with a steering note)",
+            "match_at": "word"
           },
           {
             "phrase": "alcuni biscotti",
             "credit": 0.9,
-            "note": "fully correct Italian; 0.9 per the 0.9-for-dodges rule (AUTHOR_BRIEF Rev 17 ruling iv: correct Italian that sidesteps the drilled pattern scores 0.9 with a steering note)"
+            "note": "fully correct Italian; 0.9 per the 0.9-for-dodges rule (AUTHOR_BRIEF Rev 17 ruling iv: correct Italian that sidesteps the drilled pattern scores 0.9 with a steering note)",
+            "match_at": "word"
           }
         ],
         "must_not_include": [
@@ -3254,11 +3519,15 @@
         "bucket": "preposition.articulated.di_partitive",
         "label": "degli = some (before vowel)",
         "any_phrases": [
-          "degli uccelli",
+          {
+            "phrase": "degli uccelli",
+            "match_at": "word"
+          },
           {
             "phrase": "alcuni uccelli",
             "credit": 0.9,
-            "note": "fully correct Italian; 0.9 per the 0.9-for-dodges rule (AUTHOR_BRIEF Rev 17 ruling iv: correct Italian that sidesteps the drilled pattern scores 0.9 with a steering note)"
+            "note": "fully correct Italian; 0.9 per the 0.9-for-dodges rule (AUTHOR_BRIEF Rev 17 ruling iv: correct Italian that sidesteps the drilled pattern scores 0.9 with a steering note)",
+            "match_at": "word"
           }
         ],
         "must_not_include": [
@@ -3309,7 +3578,10 @@
         "bucket": "preposition.discrimination.a_vs_in_place",
         "label": "in for region/large island",
         "any_phrases": [
-          "in Sardegna"
+          {
+            "phrase": "in Sardegna",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "a Sardegna"
@@ -3355,7 +3627,10 @@
         "bucket": "preposition.discrimination.a_vs_in_place",
         "label": "a for town",
         "any_phrases": [
-          "a Bologna"
+          {
+            "phrase": "a Bologna",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "in Bologna"
@@ -3401,7 +3676,10 @@
         "bucket": "preposition.discrimination.a_vs_in_place",
         "label": "a for small island",
         "any_phrases": [
-          "a Capri"
+          {
+            "phrase": "a Capri",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "in Capri"
@@ -3436,7 +3714,10 @@
         "bucket": "preposition.discrimination.di_vs_da",
         "label": "da for source",
         "any_phrases": [
-          "da Napoli"
+          {
+            "phrase": "da Napoli",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "di Napoli"
@@ -3482,7 +3763,10 @@
         "bucket": "preposition.discrimination.di_vs_da",
         "label": "di for hometown identity",
         "any_phrases": [
-          "di Palermo"
+          {
+            "phrase": "di Palermo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "da Palermo"
@@ -3517,7 +3801,10 @@
         "bucket": "preposition.discrimination.di_vs_da",
         "label": "da for purpose object",
         "any_phrases": [
-          "da tè"
+          {
+            "phrase": "da tè",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "di tè"

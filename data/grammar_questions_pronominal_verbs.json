@@ -18,7 +18,10 @@
         "bucket": "pronoun.reflexive.with_object",
         "label": "reflexive part conjugates: me la",
         "any_phrases": [
-          "me la"
+          {
+            "phrase": "me la",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "mi la",
@@ -31,7 +34,10 @@
         "bucket": "pronominal_verbs.mechanics.sela_type",
         "label": "cavarsela, 1sg: cavo",
         "any_phrases": [
-          "cavo"
+          {
+            "phrase": "cavo",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -72,7 +78,10 @@
         "bucket": "pronominal_verbs.mechanics.sela_type",
         "label": "cavarsela, 2sg: te la cavi",
         "any_phrases": [
-          "te la cavi"
+          {
+            "phrase": "te la cavi",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ti la cavi",
@@ -104,7 +113,10 @@
         "bucket": "pronominal_verbs.mechanics.sela_type",
         "label": "cavarsela, 3sg: se la cava",
         "any_phrases": [
-          "se la cava"
+          {
+            "phrase": "se la cava",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "si la cava",
@@ -136,8 +148,14 @@
         "bucket": "pronoun.combined",
         "label": "frozen cluster ce l'ho",
         "any_phrases": [
-          "ce l'ho",
-          "ce l' ho"
+          {
+            "phrase": "ce l'ho",
+            "match_at": "word"
+          },
+          {
+            "phrase": "ce l' ho",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ce la ho",
@@ -150,7 +168,10 @@
         "bucket": "pronominal_verbs.mechanics.sela_type",
         "label": "farcela past: invariably feminine fatta",
         "any_phrases": [
-          "fatta"
+          {
+            "phrase": "fatta",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "fatto",
@@ -182,8 +203,14 @@
         "bucket": "verb_form.passato_prossimo.auxiliary.essere_reflexive",
         "label": "reflexive auxiliary è (not ha)",
         "any_phrases": [
-          "se l'è",
-          "se l' è"
+          {
+            "phrase": "se l'è",
+            "match_at": "word"
+          },
+          {
+            "phrase": "se l' è",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "se l'ha",
@@ -197,7 +224,10 @@
         "bucket": "pronominal_verbs.mechanics.sela_type",
         "label": "frozen feminine participle cavata",
         "any_phrases": [
-          "cavata"
+          {
+            "phrase": "cavata",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "cavato"
@@ -228,7 +258,10 @@
         "bucket": "pronominal_verbs.mechanics.sela_type",
         "label": "non me la sento (sentirsela, 1sg neg)",
         "any_phrases": [
-          "non me la sento"
+          {
+            "phrase": "non me la sento",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "non mi la sento",
@@ -260,7 +293,10 @@
         "bucket": "verb_form.passato_prossimo.auxiliary.essere_reflexive",
         "label": "reflexive auxiliary: se la sono",
         "any_phrases": [
-          "se la sono"
+          {
+            "phrase": "se la sono",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "si la sono",
@@ -274,7 +310,10 @@
         "bucket": "pronominal_verbs.mechanics.sela_type",
         "label": "frozen feminine participle goduta",
         "any_phrases": [
-          "goduta"
+          {
+            "phrase": "goduta",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "goduti",
@@ -306,7 +345,10 @@
         "bucket": "pronoun.combined.vowel_changes",
         "label": "vowel shift mi -> me",
         "any_phrases": [
-          "me ne"
+          {
+            "phrase": "me ne",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "mi ne"
@@ -318,7 +360,10 @@
         "bucket": "pronominal_verbs.mechanics.sene_type",
         "label": "andarsene, 1sg: vado",
         "any_phrases": [
-          "vado"
+          {
+            "phrase": "vado",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -346,7 +391,10 @@
         "bucket": "pronominal_verbs.mechanics.sene_type",
         "label": "andarsene, 2sg: te ne vai",
         "any_phrases": [
-          "te ne vai"
+          {
+            "phrase": "te ne vai",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ti ne vai",
@@ -378,7 +426,10 @@
         "bucket": "pronominal_verbs.mechanics.sene_type",
         "label": "andarsene, 3sg: se ne va",
         "any_phrases": [
-          "se ne va"
+          {
+            "phrase": "se ne va",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "si ne va"
@@ -409,9 +460,18 @@
         "bucket": "verb_form.passato_prossimo.auxiliary.essere_reflexive",
         "label": "auxiliary essere: se n'è",
         "any_phrases": [
-          "se n'è",
-          "se n' è",
-          "se ne è"
+          {
+            "phrase": "se n'è",
+            "match_at": "word"
+          },
+          {
+            "phrase": "se n' è",
+            "match_at": "word"
+          },
+          {
+            "phrase": "se ne è",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "se n'ha",
@@ -424,7 +484,10 @@
         "bucket": "pronominal_verbs.mechanics.sene_type",
         "label": "subject agreement: andata",
         "any_phrases": [
-          "andata"
+          {
+            "phrase": "andata",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "andato"
@@ -455,7 +518,10 @@
         "bucket": "pronominal_verbs.mechanics.sene_type",
         "label": "starsene, 1sg: me ne sto",
         "any_phrases": [
-          "me ne sto"
+          {
+            "phrase": "me ne sto",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "mi ne sto",
@@ -488,7 +554,10 @@
         "bucket": "pronominal_verbs.mechanics.sene_type",
         "label": "fregarsene, 1sg: me ne frego",
         "any_phrases": [
-          "me ne frego"
+          {
+            "phrase": "me ne frego",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "mi ne frego",
@@ -520,7 +589,10 @@
         "bucket": "pronoun.combined.vowel_changes",
         "label": "vowel shift ci -> ce",
         "any_phrases": [
-          "ce ne"
+          {
+            "phrase": "ce ne",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ci ne"
@@ -532,7 +604,10 @@
         "bucket": "pronominal_verbs.mechanics.sene_type",
         "label": "andarsene, 1pl: andiamo",
         "any_phrases": [
-          "andiamo"
+          {
+            "phrase": "andiamo",
+            "match_at": "word"
+          }
         ]
       }
     ],
@@ -560,7 +635,10 @@
         "bucket": "pronominal_verbs.mechanics.ci_type",
         "label": "volerci, singular requirement: ci vuole",
         "any_phrases": [
-          "ci vuole"
+          {
+            "phrase": "ci vuole",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ci vogliono",
@@ -606,7 +684,10 @@
         "bucket": "pronominal_verbs.mechanics.ci_type",
         "label": "volerci, plural requirement: ci vogliono",
         "any_phrases": [
-          "ci vogliono"
+          {
+            "phrase": "ci vogliono",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ci vuole",
@@ -651,7 +732,10 @@
         "bucket": "pronominal_verbs.mechanics.ci_type",
         "label": "metterci, 1sg: ci metto",
         "any_phrases": [
-          "ci metto"
+          {
+            "phrase": "ci metto",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ci mette",
@@ -683,8 +767,14 @@
         "bucket": "pronominal_verbs.mechanics.ci_type",
         "label": "entrarci, 3sg negative: non c'entra",
         "any_phrases": [
-          "non c'entra",
-          "non c' entra"
+          {
+            "phrase": "non c'entra",
+            "match_at": "word"
+          },
+          {
+            "phrase": "non c' entra",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "non centra",
@@ -717,7 +807,10 @@
         "bucket": "pronominal_verbs.mechanics.ci_type",
         "label": "tenerci, 1sg: ci tengo",
         "any_phrases": [
-          "ci tengo"
+          {
+            "phrase": "ci tengo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ci tiengo",
@@ -750,8 +843,14 @@
         "bucket": "pronominal_verbs.mechanics.ci_type",
         "label": "avercela con: ce l'ha",
         "any_phrases": [
-          "ce l'ha",
-          "ce l' ha"
+          {
+            "phrase": "ce l'ha",
+            "match_at": "word"
+          },
+          {
+            "phrase": "ce l' ha",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ci l'ha",
@@ -784,8 +883,14 @@
         "bucket": "pronominal_verbs.mechanics.ci_type",
         "label": "vederci, 1sg: ci vedo",
         "any_phrases": [
-          "non ci vedo",
-          "ci vedo"
+          {
+            "phrase": "non ci vedo",
+            "match_at": "word"
+          },
+          {
+            "phrase": "ci vedo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "non lo vedo",
@@ -817,7 +922,10 @@
         "bucket": "verb_form.passato_prossimo.auxiliary.essere_reflexive",
         "label": "volerci past takes essere: ci sono",
         "any_phrases": [
-          "ci sono"
+          {
+            "phrase": "ci sono",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ci ha",
@@ -831,7 +939,10 @@
         "bucket": "pronominal_verbs.mechanics.ci_type",
         "label": "past agreement: volute (fem pl)",
         "any_phrases": [
-          "volute"
+          {
+            "phrase": "volute",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "voluto",
@@ -1130,7 +1241,10 @@
         "bucket": "pronominal_verbs.meaning.volerci_vs_metterci",
         "label": "personal subject -> metterci",
         "any_phrases": [
-          "ci metto"
+          {
+            "phrase": "ci metto",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ci vuole",
@@ -1163,7 +1277,10 @@
         "bucket": "pronominal_verbs.meaning.volerci_vs_metterci",
         "label": "impersonal, singular -> ci vuole",
         "any_phrases": [
-          "ci vuole"
+          {
+            "phrase": "ci vuole",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ci metto",
@@ -1196,7 +1313,10 @@
         "bucket": "pronominal_verbs.meaning.volerci_vs_metterci",
         "label": "impersonal, plural -> ci vogliono",
         "any_phrases": [
-          "ci vogliono"
+          {
+            "phrase": "ci vogliono",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ci vuole",
@@ -1229,7 +1349,10 @@
         "bucket": "pronominal_verbs.meaning.volerci_vs_metterci",
         "label": "named personal subject -> metterci",
         "any_phrases": [
-          "ci mette"
+          {
+            "phrase": "ci mette",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ci vuole",
@@ -1262,7 +1385,10 @@
         "bucket": "pronominal_verbs.meaning.volerci_vs_metterci",
         "label": "metterci past takes avere: ci ho messo",
         "any_phrases": [
-          "ho messo"
+          {
+            "phrase": "ho messo",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "sono voluto",
@@ -1296,7 +1422,10 @@
         "bucket": "pronominal_verbs.meaning.volerci_vs_metterci",
         "label": "general/impersonal -> volerci",
         "any_phrases": [
-          "ci vuole"
+          {
+            "phrase": "ci vuole",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ci metti",
@@ -1329,8 +1458,14 @@
         "bucket": "pronominal_verbs.meaning.ce_lho_possession",
         "label": "ce l'ho (have-it answer)",
         "any_phrases": [
-          "ce l'ho",
-          "ce l' ho"
+          {
+            "phrase": "ce l'ho",
+            "match_at": "word"
+          },
+          {
+            "phrase": "ce l' ho",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "l'ho",
@@ -1376,8 +1511,14 @@
         "bucket": "pronominal_verbs.meaning.ce_lho_possession",
         "label": "negative: non ce l'ho",
         "any_phrases": [
-          "non ce l'ho",
-          "non ce l' ho"
+          {
+            "phrase": "non ce l'ho",
+            "match_at": "word"
+          },
+          {
+            "phrase": "non ce l' ho",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "non l'ho",
@@ -1422,8 +1563,14 @@
         "bucket": "pronominal_verbs.meaning.ce_lho_possession",
         "label": "question 2sg: ce l'hai",
         "any_phrases": [
-          "ce l'hai",
-          "ce l' hai"
+          {
+            "phrase": "ce l'hai",
+            "match_at": "word"
+          },
+          {
+            "phrase": "ce l' hai",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "l'hai",
@@ -1469,8 +1616,14 @@
         "bucket": "pronominal_verbs.meaning.ce_lho_possession",
         "label": "3sg: ce l'ha",
         "any_phrases": [
-          "ce l'ha",
-          "ce l' ha"
+          {
+            "phrase": "ce l'ha",
+            "match_at": "word"
+          },
+          {
+            "phrase": "ce l' ha",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "l'ha",
@@ -1503,7 +1656,10 @@
         "bucket": "pronominal_verbs.meaning.ce_lho_possession",
         "label": "plural object, no elision: ce li ho",
         "any_phrases": [
-          "ce li ho"
+          {
+            "phrase": "ce li ho",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ce l'ho",
@@ -1549,7 +1705,10 @@
         "bucket": "pronominal_verbs.meaning.ce_lho_possession",
         "label": "feminine plural object: ce le ho",
         "any_phrases": [
-          "ce le ho"
+          {
+            "phrase": "ce le ho",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ce l'ho",
@@ -1594,7 +1753,10 @@
         "bucket": "pronominal_verbs.mechanics.sela_type",
         "label": "farcela: frozen feminine fatta",
         "any_phrases": [
-          "fatta"
+          {
+            "phrase": "fatta",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "fatto",
@@ -1607,8 +1769,14 @@
         "bucket": "pronominal_verbs.mechanics.sene_type",
         "label": "andarsene: subject agreement andati/e",
         "any_phrases": [
-          "andati",
-          "andate"
+          {
+            "phrase": "andati",
+            "match_at": "word"
+          },
+          {
+            "phrase": "andate",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "andato",
@@ -1640,7 +1808,10 @@
         "bucket": "pronominal_verbs.mechanics.ci_type",
         "label": "farcela present, 1sg: ce la faccio",
         "any_phrases": [
-          "ce la faccio"
+          {
+            "phrase": "ce la faccio",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "ci la faccio",
@@ -1673,8 +1844,14 @@
         "bucket": "pronominal_verbs.mechanics.sene_type",
         "label": "correct shell -sene: me ne frego/infischio",
         "any_phrases": [
-          "me ne frego",
-          "me ne infischio"
+          {
+            "phrase": "me ne frego",
+            "match_at": "word"
+          },
+          {
+            "phrase": "me ne infischio",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "me la frego",
@@ -1707,7 +1884,10 @@
         "bucket": "pronominal_verbs.mechanics.sela_type",
         "label": "frozen feminine tail: tutta",
         "any_phrases": [
-          "tutta"
+          {
+            "phrase": "tutta",
+            "match_at": "word"
+          }
         ],
         "must_not_include": [
           "tutto",
