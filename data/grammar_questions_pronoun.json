@@ -10195,35 +10195,34 @@
     "subtopic": "combined.joined_when_should_be_separate",
     "difficulty": 3,
     "cefr_level_target": "B2",
-    "prompt": "Complete: 'Le scarpe? ____ ho lavate stamattina.' (= I washed them for myself this morning)",
-    "type": "short",
+    "prompt": "Choose the standard-register written form. 'The shoes? I washed them for myself this morning.'",
+    "type": "mcq",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "choices": [
+      "Le scarpe? Me le ho lavate stamattina.",
+      "Le scarpe? Mele ho lavate stamattina.",
+      "Le scarpe? Me-le ho lavate stamattina.",
+      "Le scarpe? Me li ho lavati stamattina."
+    ],
+    "answer_index": 0,
     "markpoints": [
       {
         "order_index": 0,
         "credit": 1.0,
         "bucket": "pronoun.combined.joined_when_should_be_separate",
-        "label": "me le stays separate pre-aux in PP",
+        "label": "Reflexive + DOP cluster stays separate pre-aux in PP",
         "any_phrases": [
-          {
-            "phrase": "Me le",
-            "match_at": "word"
-          },
-          {
-            "phrase": "me le",
-            "match_at": "word"
-          }
+          "Me le ho lavate"
         ],
         "must_not_include": [
-          "Mele",
-          "mele"
+          "Mele ho lavate",
+          "Me li ho lavati"
         ]
       }
     ],
     "vocab_help": [],
-    "explanation": "'Le scarpe? Me le ho lavate stamattina' means 'The shoes? I washed them for myself this morning'. In passato prossimo the cluster sits pre-aux and stays as a separated cluster (two words). The reflexive mi shifts to me before the DOP le. Participle agreement with f.pl gives lavate. Stack: me + le + ho + lavate.",
-    "examiner_note": "Tests the rule with reflexive + DOP cluster in PP. Combines the joined/separate rule with participle agreement.",
-    "version": 1
+    "explanation": "'Le scarpe? Me le ho lavate stamattina' means 'The shoes? I washed them for myself this morning'. Pre-verb the reflexive + DOP cluster stays as two written words: me le, se la, ce ne. The joined form mele only applies post-verb (parlamele, dammele). Participle agrees f.pl with the preceding DOP le → lavate. The joined-when-separate error is the diagnostic; the wrong-gender li/lavati is also caught.",
+    "examiner_note": "MCQ conversion (2026-07-15): moved from short-answer because norm() folding made the separate-vs-joined distinction harder to grade cleanly at scale. MCQ makes the contrast explicit in the choice text. The distractors span the two error classes (joined-when-should-be-separate; wrong-gender).",
+    "version": 2
   }
 ]

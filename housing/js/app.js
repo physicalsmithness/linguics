@@ -141,9 +141,20 @@
     });
   }
 
-  function setBucketFilter(bucketId) {
-    grammarFilter.bucketPath = bucketId;
-    translationFilter.bucketPath = bucketId;
+  // What the topic scope currently is, in learner language.
+  function scopeLabelFor(filter) {
+    if (Array.isArray(filter.clauses) && filter.clauses.length) return "Custom mix";
+    if (filter.topic) return friendlyTopicLabel(filter.topic);
+    return "";
+  }
+  function cefrLabelFor(filter) {
+    if (Array.isArray(filter.cefrRange) && filter.cefrRange.length === 2) {
+      const a = CEFR_ORDER[filter.cefrRange[0]], b = CEFR_ORDER[filter.cefrRange[1]];
+      return a === b ? a : a + "\u2013" + b;
+    }
+    return filter.cefr || "";
+  }
+  function resetDecksAndRender() {
     grammarDeck = [];
     translationDeck = [];
     grammarIndex = 0;
@@ -154,17 +165,49 @@
     renderTranslation();
   }
 
+  // Snapshot of the topic scope a drill replaced, so it can be undone.
+  let _preDrillScope = null;
+
+  // Drilling into a bucket makes THAT BUCKET the corpus: the topic scope widens
+  // to all, because keeping a stale intersection turns every cross-topic drill
+  // into a dead end (Custom mix pronouns + a tense_choice tile = zero, with
+  // nothing explaining which filter blocked). Clicking another tile while
+  // drilled SWITCHES the drill and does not re-snapshot, so undo always returns
+  // to the pre-drill scope. See inter_chat/
+  // Architecture_Housing_drill_filter_ux_and_dropdown_labels.md.
+  function setBucketFilter(bucketId) {
+    const alreadyDrilled = !!grammarFilter.bucketPath;
+    if (!alreadyDrilled) {
+      _preDrillScope = {
+        label: scopeLabelFor(grammarFilter) || scopeLabelFor(translationFilter),
+        grammar:     { topic: grammarFilter.topic,     clauses: grammarFilter.clauses },
+        translation: { topic: translationFilter.topic, clauses: translationFilter.clauses }
+      };
+    }
+    grammarFilter.bucketPath = bucketId;
+    translationFilter.bucketPath = bucketId;
+    grammarFilter.topic = "";     grammarFilter.clauses = null;
+    translationFilter.topic = ""; translationFilter.clauses = null;
+    resetDecksAndRender();
+  }
+  function undoDrillWiden() {
+    if (_preDrillScope) {
+      grammarFilter.topic       = _preDrillScope.grammar.topic;
+      grammarFilter.clauses     = _preDrillScope.grammar.clauses;
+      translationFilter.topic   = _preDrillScope.translation.topic;
+      translationFilter.clauses = _preDrillScope.translation.clauses;
+    }
+    grammarFilter.bucketPath = "";
+    translationFilter.bucketPath = "";
+    _preDrillScope = null;
+    resetDecksAndRender();
+  }
+
   function clearBucketFilter() {
     grammarFilter.bucketPath = "";
     translationFilter.bucketPath = "";
-    grammarDeck = [];
-    translationDeck = [];
-    grammarIndex = 0;
-    translationIndex = 0;
-    renderGrammarFilterBar();
-    renderTranslationFilterBar();
-    renderGrammar();
-    renderTranslation();
+    _preDrillScope = null;   // the widened scope stands; only the drill is dropped
+    resetDecksAndRender();
   }
 
   // Topic-root → generic label for the info_display: "suppress" flag.
@@ -260,32 +303,6 @@
   }
   function clearInFlightSuppress() { LL.inFlightSuppress = null; }
 
-  function buildBucketFilterBanner(filter) {
-    if (!filter.bucketPath) return null;
-    const banner = document.createElement("div");
-    banner.className = "bucket-filter-banner";
-    const node = bucketIndex.byId[filter.bucketPath];
-    let label = node ? (node.label || node.id) : filter.bucketPath;
-    // Honour info_display: "suppress" — if the in-flight item shares this
-    // bucket (or descends from it), show the topic-generic label instead.
-    if (LL.inFlightSuppress) {
-      const buckets = LL.inFlightSuppress.buckets;
-      const filterPath = filter.bucketPath;
-      let touches = false;
-      buckets.forEach(b => {
-        if (b === filterPath || b.startsWith(filterPath + ".")) touches = true;
-      });
-      if (touches) label = LL.inFlightSuppress.topicLabel;
-    }
-    banner.innerHTML = `Drilled into: <strong>${escapeHtml(label)}</strong>`;
-    banner.title = filter.bucketPath;
-    const clearBtn = document.createElement("button");
-    clearBtn.className = "clear-btn";
-    clearBtn.textContent = "Clear";
-    clearBtn.addEventListener("click", clearBucketFilter);
-    banner.appendChild(clearBtn);
-    return banner;
-  }
   // Deck rebuild keys on the full filter SIGNATURE, not the filtered length: two
   // different filters can yield the same count, and a length-only check then
   // serves stale items. See inter_chat/Architecture_Housing_drill_filter_not_applied.md.
@@ -316,35 +333,69 @@
     return Array.from(s).sort();
   }
 
+  // The drilled-into label, honouring info_display:"suppress" exactly as the old
+  // standalone banner did (a drilled bucket must not leak the rule under test).
+  function drillChipLabel(filter) {
+    const node = bucketIndex.byId[filter.bucketPath];
+    let label = node ? (node.label || node.id) : filter.bucketPath;
+    if (LL.inFlightSuppress) {
+      const filterPath = filter.bucketPath;
+      let touches = false;
+      LL.inFlightSuppress.buckets.forEach(b => {
+        if (b === filterPath || b.startsWith(filterPath + ".")) touches = true;
+      });
+      if (touches) label = LL.inFlightSuppress.topicLabel;
+    }
+    return label;
+  }
+
+  // One row, one system: Topic, Level and the drill all render as chips side by
+  // side, so every active restriction is visible in one place and an active one
+  // can't be missed. Topic options use friendly labels grouped into the
+  // parts.json families; raw dot-ids never reach a learner-facing surface.
+  // See inter_chat/Architecture_Housing_drill_filter_ux_and_dropdown_labels.md.
   function buildFilterBar(strandName, sourceArr, filterObj, onChange) {
     const bar = document.createElement("div");
-    bar.innerHTML = "";
+    bar.className = "filter-row";
 
-    const topics = uniqueValues(sourceArr, "topic");
-    const cefrs = uniqueValues(sourceArr, "cefr_level_target");
+    const hasClauses = Array.isArray(filterObj.clauses) && filterObj.clauses.length > 0;
+    const hasRange = Array.isArray(filterObj.cefrRange) && filterObj.cefrRange.length === 2;
 
-    const tLabel = document.createElement("label");
-    tLabel.textContent = "Topic:";
-    bar.appendChild(tLabel);
-
+    // ---- Topic chip ----
+    const tChip = document.createElement("label");
+    tChip.className = "filter-chip" + ((filterObj.topic || hasClauses) ? " active" : "");
+    const tLbl = document.createElement("span");
+    tLbl.className = "filter-chip-key";
+    tLbl.textContent = "Topic";
+    tChip.appendChild(tLbl);
     const tSel = document.createElement("select");
-    const tAny = document.createElement("option");
-    tAny.value = ""; tAny.textContent = "any";
-    tSel.appendChild(tAny);
-    for (const t of topics) {
-      const o = document.createElement("option");
-      o.value = t; o.textContent = t;
-      if (t === filterObj.topic) o.selected = true;
-      tSel.appendChild(o);
-    }
-    // Guardrail: while a composed multi-part selection is active (clauses set),
-    // the scalar dropdown must not show one topic as if it were the whole filter.
-    // Show "Custom mix" instead. See entry-screen thread v6.
-    const tHasClauses = Array.isArray(filterObj.clauses) && filterObj.clauses.length > 0;
-    if (tHasClauses) {
-      const cm = document.createElement("option");
+    if (hasClauses) {
+      const cm = document.createElement("option");     // pinned at the top
       cm.value = "__custom__"; cm.textContent = "Custom mix"; cm.selected = true;
       tSel.appendChild(cm);
+    }
+    const tAny = document.createElement("option");
+    tAny.value = ""; tAny.textContent = "all topics";
+    if (!hasClauses && !filterObj.topic) tAny.selected = true;
+    tSel.appendChild(tAny);
+    const byFam = new Map();
+    for (const tp of uniqueValues(sourceArr, "topic")) {
+      const fam = overviewCategoryFor(tp) || MORE_PART_LABEL;
+      if (!byFam.has(fam)) byFam.set(fam, []);
+      byFam.get(fam).push(tp);
+    }
+    for (const fam of overviewCategoryOrder()) {
+      const list = byFam.get(fam);
+      if (!list || !list.length) continue;
+      const og = document.createElement("optgroup");
+      og.label = fam;
+      for (const tp of list) {
+        const o = document.createElement("option");
+        o.value = tp; o.textContent = friendlyTopicLabel(tp);
+        if (tp === filterObj.topic) o.selected = true;
+        og.appendChild(o);
+      }
+      tSel.appendChild(og);
     }
     tSel.addEventListener("change", () => {
       if (tSel.value === "__custom__") return;   // no-op: it's the current composed state
@@ -352,40 +403,75 @@
       filterObj.clauses = null; filterObj.cefrRange = null;  // in-session edit reverts to scalar
       onChange();
     });
-    bar.appendChild(tSel);
+    tChip.appendChild(tSel);
+    bar.appendChild(tChip);
 
-    const cLabel = document.createElement("label");
-    cLabel.textContent = "CEFR:";
-    bar.appendChild(cLabel);
-
+    // ---- Level chip ----
+    const cChip = document.createElement("label");
+    cChip.className = "filter-chip" + ((filterObj.cefr || hasRange) ? " active" : "");
+    const cLbl = document.createElement("span");
+    cLbl.className = "filter-chip-key";
+    cLbl.textContent = "Level";
+    cChip.appendChild(cLbl);
     const cSel = document.createElement("select");
+    if (hasRange) {
+      const cr = document.createElement("option");
+      cr.value = "__custom__"; cr.textContent = cefrLabelFor(filterObj); cr.selected = true;
+      cSel.appendChild(cr);
+    }
     const cAny = document.createElement("option");
-    cAny.value = ""; cAny.textContent = "any";
+    cAny.value = ""; cAny.textContent = "all levels";
+    if (!hasRange && !filterObj.cefr) cAny.selected = true;
     cSel.appendChild(cAny);
-    for (const c of cefrs) {
+    for (const c of uniqueValues(sourceArr, "cefr_level_target")) {
       const o = document.createElement("option");
       o.value = c; o.textContent = c;
       if (c === filterObj.cefr) o.selected = true;
       cSel.appendChild(o);
     }
-    const cHasRange = Array.isArray(filterObj.cefrRange) && filterObj.cefrRange.length === 2;
-    if (cHasRange) {
-      const cr = document.createElement("option");
-      cr.value = "__custom__"; cr.textContent = "Custom range"; cr.selected = true;
-      cSel.appendChild(cr);
-    }
     cSel.addEventListener("change", () => {
       if (cSel.value === "__custom__") return;
       filterObj.cefr = cSel.value;
-      filterObj.clauses = null; filterObj.cefrRange = null;  // in-session edit reverts to scalar
+      filterObj.clauses = null; filterObj.cefrRange = null;
       onChange();
     });
-    bar.appendChild(cSel);
+    cChip.appendChild(cSel);
+    bar.appendChild(cChip);
+
+    // ---- Drill chip (same row, so all three restrictions read together) ----
+    if (filterObj.bucketPath) {
+      const dChip = document.createElement("span");
+      dChip.className = "filter-chip drill active";
+      dChip.title = filterObj.bucketPath;
+      const dKey = document.createElement("span");
+      dKey.className = "filter-chip-key";
+      dKey.textContent = "Drilled into";
+      dChip.appendChild(dKey);
+      const dVal = document.createElement("strong");
+      dVal.textContent = drillChipLabel(filterObj);
+      dChip.appendChild(dVal);
+      if (_preDrillScope && _preDrillScope.label) {
+        const note = document.createElement("span");
+        note.className = "drill-note";
+        note.textContent = "topic widened from " + _preDrillScope.label + " ";
+        const undo = document.createElement("button");
+        undo.type = "button"; undo.className = "linkish"; undo.textContent = "undo";
+        undo.title = "Restore the previous topic scope and drop the drill";
+        undo.addEventListener("click", undoDrillWiden);
+        note.appendChild(undo);
+        dChip.appendChild(note);
+      }
+      const x = document.createElement("button");
+      x.type = "button"; x.className = "chip-x"; x.textContent = "\u00d7";
+      x.title = "Clear the drill";
+      x.addEventListener("click", clearBucketFilter);
+      dChip.appendChild(x);
+      bar.appendChild(dChip);
+    }
 
     const count = document.createElement("span");
     count.className = "filter-count";
-    const filtered = applyFilter(sourceArr, filterObj);
-    count.textContent = `${filtered.length} of ${sourceArr.length}`;
+    count.textContent = `${applyFilter(sourceArr, filterObj).length} of ${sourceArr.length}`;
     bar.appendChild(count);
 
     return bar;
@@ -936,21 +1022,77 @@
     setTimeout(() => yes.focus(), 0);
   }
 
+  // A zero-result state must NAME the blocking restriction and offer the fix in
+  // one click, instead of leaving the learner to guess which filter bit. We test
+  // each active facet by relaxing it and seeing whether anything comes back.
+  // See inter_chat/Architecture_Housing_drill_filter_ux_and_dropdown_labels.md.
+  function buildEmptyState(pool, filter, noun, onChanged) {
+    const el = document.createElement("div");
+    el.className = "muted empty-state";
+    const lvl = cefrLabelFor(filter);
+    const scope = scopeLabelFor(filter);
+    let msg = "No " + (lvl ? lvl + " " : "") + noun;
+    if (filter.bucketPath) msg += " in this bucket";
+    else if (scope) msg += " under " + scope;
+    const line = document.createElement("div");
+    line.className = "empty-state-msg";
+    line.textContent = msg + ".";
+    el.appendChild(line);
+
+    const tries = [];
+    if (filter.bucketPath) tries.push({
+      label: "Clear the drill",
+      relaxed: Object.assign({}, filter, { bucketPath: "" }),
+      apply: () => clearBucketFilter()
+    });
+    if (lvl) tries.push({
+      label: "Widen the level",
+      relaxed: Object.assign({}, filter, { cefr: "", cefrRange: null }),
+      apply: () => { filter.cefr = ""; filter.cefrRange = null; onChanged(); }
+    });
+    if (scope) tries.push({
+      label: "Clear the topic",
+      relaxed: Object.assign({}, filter, { topic: "", clauses: null }),
+      apply: () => { filter.topic = ""; filter.clauses = null; onChanged(); }
+    });
+    const unblock = tries.filter(x => applyFilter(pool, x.relaxed).length > 0);
+    const actions = document.createElement("div");
+    actions.className = "empty-actions";
+    if (unblock.length) {
+      for (const u of unblock) {
+        const b = document.createElement("button");
+        b.type = "button"; b.className = "empty-action";
+        b.textContent = u.label;
+        b.addEventListener("click", u.apply);
+        actions.appendChild(b);
+      }
+    } else if (tries.length) {
+      // No single relaxation helps: offer the whole reset rather than a lie.
+      const b = document.createElement("button");
+      b.type = "button"; b.className = "empty-action";
+      b.textContent = "Clear all filters";
+      b.addEventListener("click", () => {
+        filter.bucketPath = ""; filter.cefr = ""; filter.cefrRange = null;
+        filter.topic = ""; filter.clauses = null;
+        _preDrillScope = null;
+        onChanged();
+      });
+      actions.appendChild(b);
+    }
+    if (actions.children.length) el.appendChild(actions);
+    return el;
+  }
+
   function renderGrammar() {
     const host = document.getElementById("grammar-host");
     host.innerHTML = "";
     if (!grammarQuestions.length) { host.textContent = "No grammar questions loaded."; return; }
-    const banner = buildBucketFilterBanner(grammarFilter);
-    if (banner) host.appendChild(banner);
     ensureGrammarDeck();
     if (!grammarDeck.length) {
-      const empty = document.createElement("div");
-      empty.className = "muted";
-      empty.style.cssText = "padding:18px;font-style:italic";
-      empty.textContent = grammarFilter.bucketPath
-        ? "No questions touch this bucket. Clear the bucket filter, or pick a different one."
-        : "No questions match the current filter. Loosen the topic or CEFR filter above.";
-      host.appendChild(empty);
+      host.appendChild(buildEmptyState(grammarQuestions, grammarFilter, "questions", () => {
+        grammarDeck = []; grammarIndex = 0;
+        renderGrammarFilterBar(); renderGrammar();
+      }));
       return;
     }
     const q = grammarDeck[grammarIndex % grammarDeck.length];
@@ -1257,17 +1399,12 @@
     const host = document.getElementById("translation-host");
     host.innerHTML = "";
     if (!translationItems.length) { host.textContent = "No translation items loaded."; return; }
-    const tbanner = buildBucketFilterBanner(translationFilter);
-    if (tbanner) host.appendChild(tbanner);
     ensureTranslationDeck();
     if (!translationDeck.length) {
-      const empty = document.createElement("div");
-      empty.className = "muted";
-      empty.style.cssText = "padding:18px;font-style:italic";
-      empty.textContent = translationFilter.bucketPath
-        ? "No items touch this bucket. Clear the bucket filter, or pick a different one."
-        : "No items match the current filter. Loosen the topic or CEFR filter above.";
-      host.appendChild(empty);
+      host.appendChild(buildEmptyState(translationItems, translationFilter, "items", () => {
+        translationDeck = []; translationIndex = 0;
+        renderTranslationFilterBar(); renderTranslation();
+      }));
       return;
     }
     const it = translationDeck[translationIndex % translationDeck.length];
@@ -4673,7 +4810,7 @@
       summary = "\nNo events yet (0/0)";
     }
     const desc = node.description ? "\n\n" + node.description : "";
-    return label + summary + desc + "\n\nClick to filter the deck to this.";
+    return label + summary + desc + "\n\nDrill into this.";
   }
 
   // For top-level groups with no tree children (like the demo vocabulary

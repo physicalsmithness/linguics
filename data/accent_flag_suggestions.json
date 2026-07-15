@@ -15,7 +15,10 @@
   "flags_upheld": 2,
   "data_caveat": "grammar_questions_pronoun.json is TRUNCATED in the worktree (invalid JSON, mtime 10:37); its 9 axis-1 + 30 axis-2 markpoints were judged against git HEAD and must be re-verified after repair.",
   "flags_to_remove": 11,
-  "state_note": "Corpus census taken 11:04 showed 16 flags; grammar_questions_verb_form.present_indicative.json was rewritten at 11:18 DURING this sweep, removing the 3 axis-1 flags (è, dà, può) and their dead guards. flag_on_disk re-read after that write: 13 flags. The removals match this sweep's independent verdicts. The dispatch's \"present_indicative: 10 flagged\" was always a miscount: it was 8 (3 axis-1 + 5 axis-2), now 5."
+  "state_note": "Corpus census taken 11:04 showed 16 flags; grammar_questions_verb_form.present_indicative.json was rewritten at 11:18 DURING this sweep, removing the 3 axis-1 flags (è, dà, può) and their dead guards. flag_on_disk re-read after that write: 13 flags. The removals match this sweep's independent verdicts. The dispatch's \"present_indicative: 10 flagged\" was always a miscount: it was 8 (3 axis-1 + 5 axis-2), now 5.",
+  "corpus_closed": "Grammar-only by construction: 711 translation items across 29 files carry ZERO markpoints (reference_translations + required_buckets, AI-graded), and accent_load_bearing is a markpoint-level flag, so criterion 19 cannot bind there. These 267 entries are the whole deterministic accent corpus; no second batch is owed.",
+  "fold_equal_census": "12 fold-equal accent guards live in the grammar corpus (guard folds onto a positive on the same markpoint, so the fold-rescue credits before must_not is consulted). All 12 are flagged; zero left dead. DECISIONS.md 2026-07-15 ratified the opposite repair for this same class (dead-but-policy-consistent, authors may prune) on ~14 others the same day.",
+  "gerundio_verified": "GerundioAuthor v1 criterion-19 table verified against the file rather than re-derived: one accented positive (starò), non-word twin, no_flag. Agrees."
  },
  "entries": [
   {

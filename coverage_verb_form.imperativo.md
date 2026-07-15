@@ -78,14 +78,15 @@ The batch was authored against Rev 10. Rulings and brief revisions since have be
 
 ### Still outstanding on this batch
 
-- **Misconception batch-tagging: BLOCKED on Architecture.** The bucket-level tags resolve cleanly from `data/misconception_tag_lists.json`, but the brief never defines how a tag attaches to an item, and no live batch across all 13 topics carries item-level tags yet, so tagging would set the project-wide precedent. Raised at `inter_chat/Architecture_ImperativoAuthor_misconception_tagging_schema.md`. Tagging is ~20 minutes once the shape is fixed.
-- **Unreachable tag flagged**: the irregular-tu leaf's `regularisation.irregular_verb` pairing can never fire, because the apostrophe fold means bare `va` scores as correct. Same thread.
+- **Two registry gaps proposed, awaiting Architecture** (thread `Architecture_ImperativoAuthor_misconception_tagging_schema.md` v3): a specific for the over-extension of the non+infinitive rule to noi/voi (the mirror of `transfer.negative_imperative_finite`), and a home for wrong-accent-added (`dì` for `di'`). 13 guards sit bare pending these; nine of those are malformed non-words that correctly have no specific.
 
 ### Closed in this pass
 
-- **Criterion 17 / Rev 13 (sentence gloss): DONE.** All 37 grammar explanations now open with the completed Italian sentence and a natural English translation, per the house format. Versions bumped to 2. Glossing surfaced one content flaw, now fixed: `impv_form_02` addressed "Dottore" while instructing them to take medicine twice a day (the doctor prescribes); the vocative is now "Signor Verdi".
-- **Criterion 19 / Rev 16 (accent as morpheme): NIL, audited.** No `any_phrase` in the batch carries an accent, so there is no fold-rescue to disable. Consistent with the brief's own `da`/`dà` do-nothing example.
-- **Criterion 18 third direction: audited clean.** 14 places have a `must_not` entry sitting inside its own correct answer (`abbi` inside `abbia`, `non fa` inside `non fare`). All are safe: `grammar_engine.js` gates the must_not branch as an `else if` behind the positive match, so a correct answer never reaches it. Verified against the engine source, not assumed.
-- **Criterion 15 / Rev 19 (recoverability) re-checked**: the irregular-tu suppress still stands, because these are formation items whose cue supplies the base form (`(andare, tu)`), so the candidate set is recoverable pre-answer. Rev 19's visible-breadcrumb carve-out targets lexeme choices (bene/buono), which this is not.
+- **Misconception tagging: DONE.** 66 guards tagged across the 37 items using the ruled object schema (27 wrong-person-as-imperative, 23 indicative-for-subjunctive-form, 12 negative-imperative-finite, 2 regularisation, 2 wrong-theme-vowel). Batch validates 0 errors.
+- **Criterion 17 / Rev 13 (sentence gloss): DONE**, all 37 explanations. Surfaced and fixed a content flaw (`impv_form_02` told "Dottore" to take medicine twice a day; vocative now "Signor Verdi").
+- **Criterion 18: my apostrophe-fold finding went estate-wide.** Architecture's norm-modelled sweep found 18 further live false-credits across adjective_agreement (bell', sant', quell') and the pronoun tree (l', se l'), all anchored centrally. My own three (va'/fa'/di') are fixed; anchoring now at 41 phrases after the central sweep.
+- **Criterion 19: corrected.** My first audit checked only `any_phrases` for accents and concluded nil. That was wrong: the accented twin can sit on the GUARD side. The central gate proved impv_irr_05's `dì` guard dead on the folded path (`dì` folds to `di`, as does the correct `di'`); `accent_load_bearing: true` applied centrally, guard now fires, `di'` still credits.
+- **Rev 20 re-checked, no action**: the dodge-vs-named-miss precedence needs no change (the batch carries no graded any_phrases; va'/vai equal credit is separately ratified), and the recoverability additions leave the irregular_tu suppress standing.
+- **Record correction absorbed**: norm() folds apostrophes AND hyphens to spaces; the apocope forms survive via a dedicated word-start-anchored rewrite, not apostrophe preservation.
 
-**Batch validation: 37 grammar + 16 translation, 0 errors** (buckets, marks, id uniqueness, criterion 13/15/17/18/19 checks).
+**Batch state: 37 grammar + 16 translation, 0 errors, reconciled to Rev 20.**
