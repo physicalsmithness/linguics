@@ -37,11 +37,11 @@
   window.__wkFeedbackLoaded = true;
 
   /* The ONE shared estate endpoint (Apps Script web app appending to the shared
-   * Sheet). Same for every tool; only `project` varies. If this is still the
-   * placeholder, the widget still renders and still thanks the user, it just
-   * cannot deliver: see MetaProject\web_kit\feedback_appsscript.gs for the
-   * five-minute deploy that produces this URL. */
-  var ENDPOINT = 'PASTE_APPS_SCRIPT_WEB_APP_URL_HERE';
+   * Sheet). Same for every tool; only `project` varies. Deployed 2026-07-17.
+   * If this URL ever changes, every copied tool orphans silently, so when editing
+   * the Apps Script always use Deploy > Manage deployments > New version (which
+   * keeps the URL), never a fresh deployment (which mints a new one). */
+  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbwMbhGFHSd2D1IwpnDlYhbVNLqc7IBk88iDUQcjYHZGPLAnNvVLq4QRm6lMFSM8nqrkfQ/exec';
 
   var cfg = window.FEEDBACK_CONFIG || {};
   var PROJECT = cfg.project || (location.hostname + location.pathname);

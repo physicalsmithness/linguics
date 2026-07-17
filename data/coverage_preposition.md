@@ -101,3 +101,11 @@ Architecture's thread v5 stated the ruling-iv boundary: 0.9 is for answers that 
 ## Sixth touch, 2026-07-16 (Rev 18-22 reconciliation)
 
 Brief moved Rev 17 → 22 since delivery; full reconciliation pass. Criterion 20 (cue by meaning): 6 items reframed to bracketed English meaning-cues with base_form false (sf_03, sf_02, sf_06-adjacent, vg_obj_01, vg_obj_04, da_04, da_06; da_04 now accepts da bambina since the meaning-cue leaves gender open), sf_06 keeps its operand cue but gains attempted_hints for the dropped-preposition calque; the other 48 census items are exempt under the operand test, reasoning in the cue-framing thread v2. Rev 20(i): un po' di regraded 0.9 → explicit 0.7 with steering notes on pt_01..03 (named common_miss forfeits the dodge default; alcuni/alcune keep 0.9). Rev 21(i): confirms the da tè criterion-19 verdict. Rev 19: discrimination suppressions stand (candidates supplied in-prompt, recoverable). Threads: cue-framing CLOSED at v2, batch-review at v7 (conformance note).
+
+## Seventh touch, 2026-07-17 (wake self-check: Rev 23 re-run + criterion 13 audit)
+
+Wake-instruction name-grep surfaced two live tasks; both run, both clean, evidence here as the record (stamps are Architecture's).
+
+**Rev 23 (crit-19 after crit-20) on the six reframed items:** no accented forms in any answer set (programmatic scan), and each English gloss pins its lexeme, so the Rev 21(i) carve-out survives glossing. Verified no-op.
+
+**Criterion 13 chip-audit (all-authors retrofit, first run for this seat):** rule-word grep over all 82 prompts. Nine hits, all "contracted form" in the af_01..09 fragment drills: output-form naming per criterion 5's distinction, per the dispatch's formation-cue instruction. The announced operation concedes the di-il separateness miss (instruction-pinned per Rev 20(iii)); agreement stays tested, and contraction is tested unannounced by af_10 and every in-context contracted answer (alle nove, nel 1998, negli Stati, dal dentista, sul divano). Zero rewrites.

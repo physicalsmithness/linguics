@@ -345,11 +345,16 @@ Don't use this for new content. The rich shape gives the learner more agency (on
 Every criterion carries two fields. A retrofit-bearing criterion with no `binds:` token is a **defect** — it can knock on no door.
 
 - **`binds:`** — explicit seat names, or a class token (`all-authors`, `all-seats`, `Housing`). The seat's self-check greps its name + its declared classes.
+
+**Class token definitions (Rev 24, ratified 2026-07-17 on Vocab's reading):**
+- **`all-seats`** — every chat in the estate, including Housing, Vocab, MetaProject and the analysis seats.
+- **`all-authors`** — seats that author **grammar or translation ITEMS**: things carrying markpoints, cue chips, `must_not_include`, item explanations. Criteria 13-20 all bind this class and none of them reach a seat that does not write items. **Vocab is NOT `all-authors`** — it authors vocabulary ENTRIES (lemma, translation, themes), which have no chips or markpoints; it self-classified `[all-seats]` with that reasoning and is correct. Housing (code), MetaProject, MisconceptionAnalyst, AccentAuditor and Coverage are likewise not `all-authors`.
+- **Self-classification is a silent failure surface.** A seat that under-claims a class misses every criterion bound to it, and nothing detects that. So: **state your reasoning when you declare `classes:`, as Vocab did, and the architect ratifies it.** Do not guess quietly.
 - **`retrofit:`** — `none` (standing rule: new items only; NEVER a queue item) or a described task (dischargeable; stamped per seat).
 
 | # | binds | retrofit | state |
 |---|---|---|---|
-| 13 | all-authors | self-audit for rule-naming chip texts | **UNRUN — named nobody, so nobody ran it. Same shape as 17.** |
+| 13 | all-authors | self-audit for rule-naming chip texts | **RUNNING — was UNRUN for months (named nobody).** `[discharged: PrepositionAuthor, 2026-07-17, coverage seventh touch — 9 hits, all "contracted form" output-form naming, triaged clean, zero rewrites]`. Compliance: 1 of ~25 author seats. |
 | 14 | PronounAuthor | none | standing |
 | 15 | all-authors | none (Rev 19 recoverability applies to new items) | standing |
 | 16 | all-authors | wave-1 retrofit | discharged (TenseChoiceAuthor, 92 items, 2026-07-15) |
