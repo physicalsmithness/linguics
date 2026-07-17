@@ -647,10 +647,10 @@
     "subtopic": "usage.verb_governed.object_governed",
     "difficulty": 2,
     "cefr_level_target": "B1",
-    "prompt": "Complete: 'Penso spesso ____ .' (te)",
+    "prompt": "Complete: 'Penso spesso ____ .' [of you, informal]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "prompt_supplies_base_form": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -681,7 +681,8 @@
       }
     ],
     "explanation": "'I often think of you.' Pensare takes a before the person or thing on your mind: pensare a qualcuno. English 'think of / about' pulls hard toward di, but pensare di is a different construction (having an opinion, or planning to do something); for the have-in-mind sense the governed preposition is a.",
-    "version": 2
+    "version": 3,
+    "examiner_note": "Criterion 20 reframe: bare (te) had the sf_03 defect. The English 'of' actively pulls toward di, which is the listed miss; the cue keeps the trap honest rather than leaking the answer."
   },
   {
     "external_id": "prep_vg_obj_02",
@@ -810,10 +811,10 @@
     "subtopic": "usage.verb_governed.object_governed",
     "difficulty": 3,
     "cefr_level_target": "B1",
-    "prompt": "Complete: 'Marco si è innamorato ____ ragazza inglese.' (una)",
+    "prompt": "Complete: 'Marco si è innamorato ____ ragazza inglese.' [fell in love with an English girl]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "prompt_supplies_base_form": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -859,7 +860,8 @@
       }
     ],
     "explanation": "'Marco fell in love with an English girl.' English says in love WITH, so con is the magnetic wrong answer; Italian's governed preposition is di: innamorarsi di qualcuno. This is the clearest case of the per-verb rule beating translation instinct.",
-    "version": 3
+    "version": 4,
+    "examiner_note": "Criterion 20 reframe: (una) was an answer-slice cue. The English 'with' in the meaning-cue is the recorded trap (con una in must_not), kept deliberately live."
   },
   {
     "external_id": "prep_vg_obj_05",
@@ -2556,7 +2558,7 @@
     "subtopic": "usage.da_special",
     "difficulty": 3,
     "cefr_level_target": "B2",
-    "prompt": "Complete: '____ , passavo le estati al mare.' (bambino)",
+    "prompt": "Complete: '____ , passavo le estati al mare.' [as a child]",
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": false,
@@ -2567,13 +2569,12 @@
         "bucket": "preposition.usage.da_special",
         "label": "da + stage of life",
         "any_phrases": [
-          {
-            "phrase": "da bambino",
-            "match_at": "word"
-          }
+          "da bambino",
+          "da bambina"
         ],
         "must_not_include": [
           "come bambino",
+          "come bambina",
           "di bambino"
         ]
       }
@@ -2590,8 +2591,9 @@
         }
       }
     ],
-    "explanation": "'As a child, I used to spend my summers at the seaside.' A stage of life is marked with da: da bambino, da giovane, da studente. English 'as a child' makes come the magnetic calque, but come compares; da here means 'in the period of being'. Note the natural pairing with the imperfect (passavo) for the habitual past.",
-    "version": 1
+    "explanation": "'As a child, I used to spend my summers at the seaside.' A stage of life is marked with da: da bambino, da giovane, da studente. English 'as a child' makes come the magnetic calque, but come compares; da here means 'in the period of being'. The speaker's gender is unstated, so da bambino and da bambina are both right. Note the natural pairing with the imperfect (passavo) for the habitual past.",
+    "version": 2,
+    "examiner_note": "Criterion 20 reframe: (bambino) at a sentence-initial blank read as the whole answer. The meaning-cue leaves gender open, so both da bambino and da bambina are accepted at 1.0; 'come + child' is the as-calque either way."
   },
   {
     "external_id": "prep_da_05",
@@ -2643,10 +2645,10 @@
     "subtopic": "usage.da_special",
     "difficulty": 2,
     "cefr_level_target": "B1",
-    "prompt": "Complete: 'Questo quadro è amato ____ .' (tutti)",
+    "prompt": "Complete: 'Questo quadro è amato ____ .' [by everyone]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "prompt_supplies_base_form": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -2678,7 +2680,8 @@
       }
     ],
     "explanation": "'This painting is loved by everyone.' Passive agent again, in an everyday present-tense shape: amato da tutti. Worth a second angle because di tutti is a real phrase (belonging to everyone) that means something else; after a passive participle, the by-phrase is da.",
-    "version": 1
+    "version": 2,
+    "examiner_note": "Criterion 20 reframe: (tutti) was a pronoun answer-slice. English 'by' maps to no single Italian preposition, so the meaning-cue hands nothing; di/per stay the live misses."
   },
   {
     "external_id": "prep_sf_01",
@@ -2730,10 +2733,10 @@
     "subtopic": "simple.forms",
     "difficulty": 1,
     "cefr_level_target": "A1",
-    "prompt": "Complete: 'Vieni al cinema ____ ?' (noi)",
+    "prompt": "Complete: 'Vieni al cinema ____ ?' [with us]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "prompt_supplies_base_form": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -2764,7 +2767,7 @@
       }
     ],
     "explanation": "'Are you coming to the cinema with us?' Con is the plain with of company: con noi, con Maria. Its base sense maps cleanly from English, which is why the simple form is easy and the traps live elsewhere (means of transport, where in takes over).",
-    "version": 1
+    "version": 2
   },
   {
     "external_id": "prep_sf_03",
@@ -2773,10 +2776,10 @@
     "subtopic": "simple.forms",
     "difficulty": 1,
     "cefr_level_target": "A1",
-    "prompt": "Complete: 'Questo regalo è ____ .' (te)",
+    "prompt": "Complete: 'Questo regalo è ____ .' [for you, informal]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "prompt_supplies_base_form": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -2807,7 +2810,8 @@
       }
     ],
     "explanation": "'This present is for you.' Per is the for of benefit and destination-of-purpose: per te, per la festa. A te would mark a giving-to (dare a), but with essere the beneficiary reading wants per.",
-    "version": 1
+    "version": 2,
+    "examiner_note": "Criterion 20 reframe (the item that raised the criterion, Smith live hit 2026-07-16): bare (te) read as the whole answer and presupposed the stressed pronoun; the English cue names the meaning, the register pin excludes per Lei / per voi. base_form false so the cue-misread second-chance applies."
   },
   {
     "external_id": "prep_sf_04",
@@ -2926,6 +2930,9 @@
         ],
         "must_not_include": [
           "per Maria"
+        ],
+        "attempted_hints": [
+          "Maria"
         ]
       }
     ],
@@ -2942,7 +2949,8 @@
       }
     ],
     "explanation": "'I give the book to Maria.' A marks the receiver: dare a, dire a, scrivere a. Per Maria would say the book is intended for her but changes the construction; the recipient of dare is always introduced by a.",
-    "version": 1
+    "version": 2,
+    "examiner_note": "Cue (Maria) kept per criterion 20's operand exemption. attempted_hints catches the dropped-preposition calque 'Do il libro Maria' (English 'give Maria the book' has no preposition); positive 'a Maria' is checked first so correct answers are unaffected."
   },
   {
     "external_id": "prep_af_01",
@@ -3363,8 +3371,8 @@
           },
           {
             "phrase": "un po' di pane",
-            "credit": 0.9,
-            "note": "fully correct Italian; 0.9 per the 0.9-for-dodges rule (AUTHOR_BRIEF Rev 17 ruling iv: correct Italian that sidesteps the drilled pattern scores 0.9 with a steering note)",
+            "credit": 0.7,
+            "note": "correct Italian, but this is the un po'-reflex the bucket is named to track (common_miss); explicit graded credit 0.7 per Rev 20(i) precedence rule, not the default 0.9 dodge credit. The partitive is the native default; keep un po' for genuinely small quantities.",
             "match_at": "word"
           }
         ],
@@ -3387,7 +3395,7 @@
       }
     ],
     "explanation": "'I'd like some bread, please.' Some is the articulated di: del pane, literally 'of the bread'. Un po' di pane also works, but leaning on un po' everywhere is the recorded habit this bucket watches for; the partitive del is the native default.",
-    "version": 4
+    "version": 5
   },
   {
     "external_id": "prep_pt_02",
@@ -3413,8 +3421,8 @@
           },
           {
             "phrase": "un po' di fragole",
-            "credit": 0.9,
-            "note": "fully correct Italian; 0.9 per the 0.9-for-dodges rule (AUTHOR_BRIEF Rev 17 ruling iv: correct Italian that sidesteps the drilled pattern scores 0.9 with a steering note)",
+            "credit": 0.7,
+            "note": "correct Italian, but this is the un po'-reflex the bucket is named to track (common_miss); explicit graded credit 0.7 per Rev 20(i) precedence rule, not the default 0.9 dodge credit. The partitive is the native default; keep un po' for genuinely small quantities.",
             "match_at": "word"
           },
           {
@@ -3443,7 +3451,7 @@
       }
     ],
     "explanation": "'I bought some strawberries for dinner.' The partitive agrees like the article inside it: fragole is feminine plural, so delle fragole. Dei fragole gets the some-idea right but the agreement wrong; bare di fragole drops the article the partitive is made of.",
-    "version": 4
+    "version": 5
   },
   {
     "external_id": "prep_pt_03",
@@ -3469,8 +3477,8 @@
           },
           {
             "phrase": "un po' di biscotti",
-            "credit": 0.9,
-            "note": "fully correct Italian; 0.9 per the 0.9-for-dodges rule (AUTHOR_BRIEF Rev 17 ruling iv: correct Italian that sidesteps the drilled pattern scores 0.9 with a steering note)",
+            "credit": 0.7,
+            "note": "correct Italian, but this is the un po'-reflex the bucket is named to track (common_miss); explicit graded credit 0.7 per Rev 20(i) precedence rule, not the default 0.9 dodge credit. The partitive is the native default; keep un po' for genuinely small quantities.",
             "match_at": "word"
           },
           {
@@ -3499,7 +3507,7 @@
       }
     ],
     "explanation": "'There are some biscuits on the table.' Masculine plural: dei biscotti. The partitive is just di + the noun's own article, so the whole definite-article system (il/lo/la/i/gli/le) rides along inside it.",
-    "version": 4
+    "version": 5
   },
   {
     "external_id": "prep_pt_04",

@@ -467,7 +467,7 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": false,
-    "prompt": "Di’ che non conosci nessuno qui: '____ qui.'",
+    "prompt": "Completa (you don't know anyone here): '____ qui.'",
     "markpoints": [
       {
         "order_index": 0,
@@ -504,7 +504,7 @@
     "explanation": "'I don't know anyone here': Non conosco nessuno qui. Present tense, same concord rule: postverbal nessuno keeps non.",
     "version": 1,
     "info_display": "suppress",
-    "examiner_note": ". Suppressed per Architecture ruling 2026-07-14 (v3 Q1): the breadcrumb 'Double negation is the norm' hands over the kept-non strategy on postverbal production. Rev-19 recoverability holds: the prompt fully specifies the task, so suppression does not make the item unanswerable."
+    "examiner_note": ". Suppressed per Architecture ruling 2026-07-14 (v3 Q1): the breadcrumb 'Double negation is the norm' hands over the kept-non strategy on postverbal production. Rev-19 recoverability holds: the prompt fully specifies the task, so suppression does not make the item unanswerable. Criterion 20 (Rev 22): the Italian cue restated the answer person-swapped, so it is now cued by bracketed English meaning with prompt_supplies_base_form:false."
   },
   {
     "external_id": "neg_concord_06",
@@ -563,7 +563,7 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": false,
-    "prompt": "Di’ che non bevi mai il caffè: '____ il caffè.'",
+    "prompt": "Completa (you never drink coffee): '____ il caffè.'",
     "markpoints": [
       {
         "order_index": 0,
@@ -603,7 +603,8 @@
       }
     ],
     "explanation": "'I never drink coffee': Non bevo mai il caffè. 'Never' is a two-part frame in Italian: non before the verb, mai after it. Both halves are required.",
-    "version": 1
+    "version": 1,
+    "examiner_note": ". Criterion 20 (Rev 22): the Italian cue restated the answer person-swapped, so it is now cued by bracketed English meaning with prompt_supplies_base_form:false."
   },
   {
     "external_id": "neg_bip_02",
@@ -615,7 +616,7 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": false,
-    "prompt": "Rispondi: 'Mangi la carne?' → 'No, ____ la carne.'",
+    "prompt": "Rispondi (never): 'Mangi la carne?' → 'No, ____ la carne.'",
     "markpoints": [
       {
         "order_index": 0,
@@ -644,7 +645,8 @@
     ],
     "vocab_help": [],
     "explanation": "'I never eat meat': Non mangio mai la carne. Keep the non ... mai frame around the verb.",
-    "version": 1
+    "version": 1,
+    "examiner_note": "Criterion 20 gloss ALSO repairs a criterion-10a ambiguity: with no 'never' cue, 'non mangio la carne' was a legitimate reading that matched no any_phrase and no named miss, so it scored no-attempt. The gloss pins mai."
   },
   {
     "external_id": "neg_bip_03",
@@ -721,7 +723,7 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": false,
-    "prompt": "Di’ che la cena non è ancora pronta (not yet): 'La cena ____ pronta.'",
+    "prompt": "Completa (dinner isn't ready yet): 'La cena ____ pronta.'",
     "markpoints": [
       {
         "order_index": 0,
@@ -761,7 +763,7 @@
       }
     ],
     "explanation": "'Dinner isn't ready yet': La cena non è ancora pronta. non ... ancora means 'not yet' (still waiting for something to happen). Its partner non ... più means the opposite, 'no longer'.",
-    "examiner_note": "Mirror of neg_bip_03; the più guard catches the crossed meaning in this direction.",
+    "examiner_note": "Mirror of neg_bip_03; the più guard catches the crossed meaning in this direction. Criterion 20 (Rev 22): the Italian cue restated the answer person-swapped, so it is now cued by bracketed English meaning with prompt_supplies_base_form:false.",
     "version": 1,
     "candidate_forms": [
       "ancora",
@@ -840,7 +842,7 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": false,
-    "prompt": "Di’ che non hai più fame (no longer hungry): '____ fame.'",
+    "prompt": "Completa (you're not hungry any more): '____ fame.'",
     "markpoints": [
       {
         "order_index": 0,
@@ -869,7 +871,8 @@
     ],
     "vocab_help": [],
     "explanation": "'I'm not hungry anymore': Non ho più fame. Here ho ... fame is the fixed way to say 'be hungry', and non ... più wraps it to mean the hunger has stopped.",
-    "version": 1
+    "version": 1,
+    "examiner_note": ". Criterion 20 (Rev 22): the Italian cue restated the answer person-swapped, so it is now cued by bracketed English meaning with prompt_supplies_base_form:false."
   },
   {
     "external_id": "neg_resp_01",
@@ -997,7 +1000,7 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": false,
-    "prompt": "Di’ che non hai nemmeno un euro (not even): '____ un euro.'",
+    "prompt": "Completa (you don't have even one euro): '____ un euro.'",
     "markpoints": [
       {
         "order_index": 0,
@@ -1029,7 +1032,8 @@
     ],
     "vocab_help": [],
     "explanation": "'I don't have even one euro': Non ho nemmeno un euro. Beyond echo answers, neanche/nemmeno/neppure also mean 'not even', and inside a sentence they keep non in front of the verb.",
-    "version": 1
+    "version": 1,
+    "examiner_note": ". Criterion 20 (Rev 22): the Italian cue restated the answer person-swapped, so it is now cued by bracketed English meaning with prompt_supplies_base_form:false."
   },
   {
     "external_id": "neg_resp_04",
@@ -1083,11 +1087,11 @@
     "subtopic": "restrictive",
     "difficulty": 3,
     "cefr_level_target": "B2",
-    "type": "short",
+    "type": "mcq",
     "marks": 1,
     "prompt_supplies_base_form": false,
     "info_display": "suppress",
-    "prompt": "Riscrivi con 'solo' senza cambiare il senso: 'Non ho che dieci euro.' → 'Ho ____ dieci euro.'",
+    "prompt": "'Non ho che dieci euro.' Che cosa significa?",
     "markpoints": [
       {
         "order_index": 0,
@@ -1096,27 +1100,28 @@
         "label": "non ... che = only",
         "any_phrases": [
           {
-            "phrase": "solo",
-            "match_at": "word"
-          },
-          {
-            "phrase": "soltanto",
+            "phrase": "Ho solo dieci euro.",
             "match_at": "word"
           }
         ],
         "must_not_include": [
           {
-            "phrase": "non",
+            "phrase": "Non ho dieci euro.",
             "match_at": "word",
-            "note": "non ... che is not a real negation: it means 'only', so the plain sentence keeps no non"
+            "note": "non ... che is restrictive ('only'), not a real negation: the speaker does have ten euros"
           }
         ]
       }
     ],
     "vocab_help": [],
-    "explanation": "'I only have ten euros': Non ho che dieci euro = Ho solo dieci euro. The frame non ... che looks negative but means 'only'. Reading it as a real negation ('I don't have ten euros') is the classic trap.",
-    "examiner_note": "Suppressed: the breadcrumb 'non ... che = only' would hand over that che means solo, which is the recognition being tested.",
-    "version": 1
+    "explanation": "'Non ho che dieci euro' = 'I only have ten euros.' The frame non ... che looks negative but means 'only'. Reading it as a real negation ('I don't have ten euros') is the classic trap, and it reverses the meaning.",
+    "examiner_note": "Criterion 20: the old cue named 'solo', which was the answer, and glossing by English '(only)' would hand it over just as directly, so the criterion's own remedy does not apply. Converted to MCQ instead (v7 Q4 precedent: MCQ is the right instrument for recognition). Options do not nest. Suppressed; index-scored.",
+    "version": 1,
+    "choices": [
+      "Ho solo dieci euro.",
+      "Non ho dieci euro."
+    ],
+    "answer_index": 0
   },
   {
     "external_id": "neg_restr_02",
@@ -1471,7 +1476,7 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": false,
-    "prompt": "Aggiungi il 'non' pleonastico dove va: 'Il film era più bello di quanto ____ immaginassi.'",
+    "prompt": "Completa (the film was better than I imagined): 'Il film era più bello di quanto ____ immaginassi.'",
     "markpoints": [
       {
         "order_index": 0,
@@ -1489,7 +1494,7 @@
     ],
     "vocab_help": [],
     "explanation": "'The film was better than I imagined': Il film era più bello di quanto non immaginassi. In a comparative with di quanto + subjunctive, Italian can insert a pleonastic non that does not negate: 'than I imagined', not 'than I did not imagine'.",
-    "examiner_note": "Single-word answer 'non', word-anchored (crit 18: non would otherwise embed in nonna/nonostante). The comparative pleonastic shares the a_meno_che leaf per the tree.",
+    "examiner_note": "Single-word answer 'non', word-anchored (crit 18: non would otherwise embed in nonna/nonostante). The comparative pleonastic shares the a_meno_che leaf per the tree. Criterion 20 (Rev 22): the Italian cue restated the answer person-swapped, so it is now cued by bracketed English meaning with prompt_supplies_base_form:false.",
     "version": 1
   },
   {
@@ -1588,7 +1593,7 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": false,
-    "prompt": "Rafforza la negazione con 'mica' (I didn't say that!): 'Non ho detto questo.' → 'Non ho ____ detto questo.'",
+    "prompt": "Rafforza la negazione, in tono colloquiale (I didn't say that at all!): 'Non ho detto questo.' → 'Non ho ____ detto questo.'",
     "markpoints": [
       {
         "order_index": 0,
@@ -1599,14 +1604,20 @@
           {
             "phrase": "mica",
             "match_at": "word"
+          },
+          {
+            "phrase": "affatto",
+            "match_at": "word",
+            "credit": 0.9,
+            "note": "correct and idiomatic, but affatto sidesteps the colloquial mica this item drills"
           }
         ],
         "must_not_include": []
       }
     ],
     "vocab_help": [],
-    "explanation": "'I didn't say that (at all)!': Non ho mica detto questo! After the verb (here after the auxiliary), mica reinforces the non already there, adding an indignant 'not at all'.",
-    "examiner_note": "Prompt already names mica, so the breadcrumb leaks nothing: left visible.",
+    "explanation": "'I didn't say that at all!': Non ho mica detto questo! After the verb (here after the auxiliary), mica reinforces the non already there, adding a colloquial, slightly indignant 'not at all'. Affatto would be correct too, but it is the neutral intensifier; mica is the colloquial one.",
+    "examiner_note": "Criterion 20: the cue used to name 'mica', which was the answer. Now cued by meaning + register. affatto graded 0.9 as a pattern-dodge (Rev 17 iv); checked against Rev 20(i): the mica bucket's named common_miss is 'mica before the verb WITH non, or read as a noun', not affatto, so the dodge credit is not outranked.",
     "version": 1
   },
   {
@@ -1662,7 +1673,7 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": false,
-    "prompt": "Di’ che non bevi né caffè né tè: '____.'",
+    "prompt": "Completa (you drink neither coffee nor tea): '____.'",
     "markpoints": [
       {
         "order_index": 0,
@@ -1702,7 +1713,8 @@
       }
     ],
     "explanation": "'I drink neither coffee nor tea': Non bevo né caffè né tè. When the né...né pair sits after the verb, non stays in front, the same concord rule as non ho visto nessuno. Calquing 'either...or' as o...o is the usual slip.",
-    "version": 1
+    "version": 1,
+    "examiner_note": ". Criterion 20 (Rev 22): the Italian cue restated the answer person-swapped, so it is now cued by bracketed English meaning with prompt_supplies_base_form:false."
   },
   {
     "external_id": "neg_corr_02",
@@ -1792,7 +1804,7 @@
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": false,
-    "prompt": "Di’ che non mangi né carne né pesce: '____ pesce.'",
+    "prompt": "Completa (you eat neither meat nor fish): '____ pesce.'",
     "markpoints": [
       {
         "order_index": 0,
@@ -1821,7 +1833,8 @@
     ],
     "vocab_help": [],
     "explanation": "'I eat neither meat nor fish': Non mangio né carne né pesce. Both halves of the pair take né, and non stays before the verb because the pair follows it.",
-    "version": 1
+    "version": 1,
+    "examiner_note": ". Criterion 20 (Rev 22): the Italian cue restated the answer person-swapped, so it is now cued by bracketed English meaning with prompt_supplies_base_form:false."
   },
   {
     "external_id": "neg_corr_05",

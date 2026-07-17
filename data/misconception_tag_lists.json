@@ -453,6 +453,15 @@
         "common_miss": "over-applying the progressive for any English -ing form",
         "misconception_ids": [
           "discrimination.progressive_overuse"
+        ],
+        "direction": [
+          {
+            "id": "discrimination.progressive_overuse",
+            "status": "DIRECTION-DEPENDENT",
+            "bucket_names_direction": "discrimination.progressive_overuse",
+            "mirror_id": "discrimination.progressive_underuse",
+            "instruction": "Do NOT tag from this bucket id. Read the must_not_include entry, decide which way the error runs, and pick this id or its mirror accordingly."
+          }
         ]
       },
       {
@@ -460,6 +469,15 @@
         "common_miss": "over-applying the past progressive for any English 'was -ing'",
         "misconception_ids": [
           "discrimination.progressive_overuse"
+        ],
+        "direction": [
+          {
+            "id": "discrimination.progressive_overuse",
+            "status": "DIRECTION-DEPENDENT",
+            "bucket_names_direction": "discrimination.progressive_overuse",
+            "mirror_id": "discrimination.progressive_underuse",
+            "instruction": "Do NOT tag from this bucket id. Read the must_not_include entry, decide which way the error runs, and pick this id or its mirror accordingly."
+          }
         ]
       },
       {
@@ -467,6 +485,13 @@
         "common_miss": "using present for cases where future is required (distant, uncertain, or probabilistic)",
         "misconception_ids": [
           "discrimination.future_present_mismatch"
+        ],
+        "direction": [
+          {
+            "id": "discrimination.future_present_mismatch",
+            "status": "DIRECTION-MERGED (unresolved)",
+            "issue": "Both directions live in ONE id (present-for-future AND future-for-present) and the two tense_choice buckets below ARE the two directions. No mirror exists. FLAGGED to Architecture (thread v12): split or declare direction-neutral. Until ruled, the stat is direction-blind."
+          }
         ]
       },
       {
@@ -474,6 +499,13 @@
         "common_miss": "over-applying the morphological future when a present-for-future is more natural",
         "misconception_ids": [
           "discrimination.future_present_mismatch"
+        ],
+        "direction": [
+          {
+            "id": "discrimination.future_present_mismatch",
+            "status": "DIRECTION-MERGED (unresolved)",
+            "issue": "Both directions live in ONE id (present-for-future AND future-for-present) and the two tense_choice buckets below ARE the two directions. No mirror exists. FLAGGED to Architecture (thread v12): split or declare direction-neutral. Until ruled, the stat is direction-blind."
+          }
         ]
       },
       {
@@ -481,6 +513,13 @@
         "common_miss": "using present indicative + future ('se ho tempo, verrò') which is fine for a real condition but wrong for a counterfactual",
         "misconception_ids": [
           "discrimination.counterfactual_construction"
+        ],
+        "direction": [
+          {
+            "id": "discrimination.counterfactual_construction",
+            "status": "DIRECTION-MERGED (unresolved)",
+            "issue": "Conflates a production error (present+future for a counterfactual), an over-strict marking judgement (colloquial imperfect wrongly rejected), and a comprehension miss. FLAGGED to Architecture (thread v12)."
+          }
         ]
       },
       {
@@ -488,6 +527,13 @@
         "common_miss": "treating the colloquial form as wrong when in fact it's accepted in speech",
         "misconception_ids": [
           "discrimination.counterfactual_construction"
+        ],
+        "direction": [
+          {
+            "id": "discrimination.counterfactual_construction",
+            "status": "DIRECTION-MERGED (unresolved)",
+            "issue": "Conflates a production error (present+future for a counterfactual), an over-strict marking judgement (colloquial imperfect wrongly rejected), and a comprehension miss. FLAGGED to Architecture (thread v12)."
+          }
         ]
       },
       {
@@ -523,6 +569,13 @@
         "common_miss": "using imperfetto for a clearly-completed prior event ('mangiava' for 'had eaten')",
         "misconception_ids": [
           "discrimination.trapassato_imperfect_choice"
+        ],
+        "direction": [
+          {
+            "id": "discrimination.trapassato_imperfect_choice",
+            "status": "DIRECTION-MERGED (unresolved)",
+            "issue": "Both directions live in ONE id (imperfect-for-trapassato AND trapassato-for-imperfect) and the two tense_choice buckets below ARE the two directions. No mirror exists. FLAGGED to Architecture (thread v12)."
+          }
         ]
       },
       {
@@ -530,6 +583,13 @@
         "common_miss": "using trapassato for an ongoing state ('avevo mangiato quando sei entrato' implies I'd finished, which usually isn't the intended reading)",
         "misconception_ids": [
           "discrimination.trapassato_imperfect_choice"
+        ],
+        "direction": [
+          {
+            "id": "discrimination.trapassato_imperfect_choice",
+            "status": "DIRECTION-MERGED (unresolved)",
+            "issue": "Both directions live in ONE id (imperfect-for-trapassato AND trapassato-for-imperfect) and the two tense_choice buckets below ARE the two directions. No mirror exists. FLAGGED to Architecture (thread v12)."
+          }
         ]
       }
     ],
@@ -917,6 +977,15 @@
         "common_miss": "using passato prossimo for habituals (ho giocato instead of giocavo)",
         "misconception_ids": [
           "discrimination.pp_for_imperfect"
+        ],
+        "direction": [
+          {
+            "id": "discrimination.pp_for_imperfect",
+            "status": "DIRECTION-DEPENDENT",
+            "bucket_names_direction": "discrimination.pp_for_imperfect",
+            "mirror_id": "discrimination.imperfect_for_pp",
+            "instruction": "Do NOT tag from this bucket id. Read the must_not_include entry, decide which way the error runs, and pick this id or its mirror accordingly."
+          }
         ]
       },
       {
@@ -924,6 +993,15 @@
         "common_miss": "using passato prossimo for states (è stata stanca for the state, instead of era stanca)",
         "misconception_ids": [
           "discrimination.pp_for_imperfect"
+        ],
+        "direction": [
+          {
+            "id": "discrimination.pp_for_imperfect",
+            "status": "DIRECTION-DEPENDENT",
+            "bucket_names_direction": "discrimination.pp_for_imperfect",
+            "mirror_id": "discrimination.imperfect_for_pp",
+            "instruction": "Do NOT tag from this bucket id. Read the must_not_include entry, decide which way the error runs, and pick this id or its mirror accordingly."
+          }
         ]
       },
       {
@@ -937,7 +1015,17 @@
         "bucket": "verb_form.imperfect.usage.duration",
         "common_miss": "using PP (ho aspettato da venti minuti) instead of imperfect",
         "misconception_ids": [
-          "discrimination.pp_for_imperfect"
+          "discrimination.perfect_for_durative_da"
+        ],
+        "note": "CORRECTED 2026-07-17: was pp_for_imperfect. Rev 21 moved the da-durative case (ho aspettato da venti minuti) to discrimination.perfect_for_durative_da - its conditioning factor is the preposition (da leaves the stretch open, per closes it), not aspect.",
+        "direction": [
+          {
+            "id": "discrimination.perfect_for_durative_da",
+            "status": "DIRECTION-DEPENDENT",
+            "bucket_names_direction": "discrimination.perfect_for_durative_da",
+            "mirror_id": "discrimination.durative_present_over_extension",
+            "instruction": "Do NOT tag from this bucket id. Read the must_not_include entry, decide which way the error runs, and pick this id or its mirror accordingly."
+          }
         ]
       },
       {
@@ -945,6 +1033,15 @@
         "common_miss": "using PP (ho avuto dieci anni, ha fatto freddo) for these states",
         "misconception_ids": [
           "discrimination.pp_for_imperfect"
+        ],
+        "direction": [
+          {
+            "id": "discrimination.pp_for_imperfect",
+            "status": "DIRECTION-DEPENDENT",
+            "bucket_names_direction": "discrimination.pp_for_imperfect",
+            "mirror_id": "discrimination.imperfect_for_pp",
+            "instruction": "Do NOT tag from this bucket id. Read the must_not_include entry, decide which way the error runs, and pick this id or its mirror accordingly."
+          }
         ]
       },
       {
@@ -952,6 +1049,13 @@
         "common_miss": "missing the politeness reading and over-translating as 'I wanted'",
         "misconception_ids": [
           "discrimination.modal_stative_aspect"
+        ],
+        "direction": [
+          {
+            "id": "discrimination.modal_stative_aspect",
+            "status": "DIRECTION-MERGED (unresolved)",
+            "issue": "Direction-merged AND mixes production with comprehension (conoscere/volere/polite are reading-side). No mirror exists. FLAGGED to Architecture (thread v12)."
+          }
         ]
       },
       {
@@ -959,6 +1063,15 @@
         "common_miss": "defaulting to PP for English past-tense verbs regardless of aspect",
         "misconception_ids": [
           "discrimination.pp_for_imperfect"
+        ],
+        "direction": [
+          {
+            "id": "discrimination.pp_for_imperfect",
+            "status": "DIRECTION-DEPENDENT",
+            "bucket_names_direction": "discrimination.pp_for_imperfect",
+            "mirror_id": "discrimination.imperfect_for_pp",
+            "instruction": "Do NOT tag from this bucket id. Read the must_not_include entry, decide which way the error runs, and pick this id or its mirror accordingly."
+          }
         ]
       },
       {
@@ -966,6 +1079,13 @@
         "common_miss": "using imperfect for the event-of-learning reading",
         "misconception_ids": [
           "discrimination.modal_stative_aspect"
+        ],
+        "direction": [
+          {
+            "id": "discrimination.modal_stative_aspect",
+            "status": "DIRECTION-MERGED (unresolved)",
+            "issue": "Direction-merged AND mixes production with comprehension (conoscere/volere/polite are reading-side). No mirror exists. FLAGGED to Architecture (thread v12)."
+          }
         ]
       },
       {
@@ -973,6 +1093,13 @@
         "common_miss": "interchanging the two and missing the completion implication",
         "misconception_ids": [
           "discrimination.modal_stative_aspect"
+        ],
+        "direction": [
+          {
+            "id": "discrimination.modal_stative_aspect",
+            "status": "DIRECTION-MERGED (unresolved)",
+            "issue": "Direction-merged AND mixes production with comprehension (conoscere/volere/polite are reading-side). No mirror exists. FLAGGED to Architecture (thread v12)."
+          }
         ]
       },
       {
@@ -980,6 +1107,13 @@
         "common_miss": "defaulting to imperfect for both because English 'could' is ambiguous",
         "misconception_ids": [
           "discrimination.modal_stative_aspect"
+        ],
+        "direction": [
+          {
+            "id": "discrimination.modal_stative_aspect",
+            "status": "DIRECTION-MERGED (unresolved)",
+            "issue": "Direction-merged AND mixes production with comprehension (conoscere/volere/polite are reading-side). No mirror exists. FLAGGED to Architecture (thread v12)."
+          }
         ]
       },
       {
@@ -987,6 +1121,13 @@
         "common_miss": "missing the insistence reading in the PP form",
         "misconception_ids": [
           "discrimination.modal_stative_aspect"
+        ],
+        "direction": [
+          {
+            "id": "discrimination.modal_stative_aspect",
+            "status": "DIRECTION-MERGED (unresolved)",
+            "issue": "Direction-merged AND mixes production with comprehension (conoscere/volere/polite are reading-side). No mirror exists. FLAGGED to Architecture (thread v12)."
+          }
         ]
       },
       {
@@ -994,6 +1135,13 @@
         "common_miss": "translating PP as 'have known' instead of 'met'",
         "misconception_ids": [
           "discrimination.modal_stative_aspect"
+        ],
+        "direction": [
+          {
+            "id": "discrimination.modal_stative_aspect",
+            "status": "DIRECTION-MERGED (unresolved)",
+            "issue": "Direction-merged AND mixes production with comprehension (conoscere/volere/polite are reading-side). No mirror exists. FLAGGED to Architecture (thread v12)."
+          }
         ]
       },
       {
@@ -1022,6 +1170,13 @@
         "common_miss": "translating literally and missing the counterfactual reading",
         "misconception_ids": [
           "discrimination.counterfactual_construction"
+        ],
+        "direction": [
+          {
+            "id": "discrimination.counterfactual_construction",
+            "status": "DIRECTION-MERGED (unresolved)",
+            "issue": "Conflates a production error (present+future for a counterfactual), an over-strict marking judgement (colloquial imperfect wrongly rejected), and a comprehension miss. FLAGGED to Architecture (thread v12)."
+          }
         ]
       }
     ],
@@ -1352,15 +1507,40 @@
           "discrimination.progressive_overuse",
           "discrimination.future_present_mismatch"
         ],
-        "note": "usage bucket; discrimination-axis, same specifics as the tense_choice tree."
+        "note": "usage bucket; discrimination-axis, same specifics as the tense_choice tree.",
+        "direction": [
+          {
+            "id": "discrimination.progressive_overuse",
+            "status": "DIRECTION-DEPENDENT",
+            "bucket_names_direction": "discrimination.progressive_overuse",
+            "mirror_id": "discrimination.progressive_underuse",
+            "instruction": "Do NOT tag from this bucket id. Read the must_not_include entry, decide which way the error runs, and pick this id or its mirror accordingly."
+          },
+          {
+            "id": "discrimination.future_present_mismatch",
+            "status": "DIRECTION-MERGED (unresolved)",
+            "issue": "Both directions live in ONE id (present-for-future AND future-for-present) and the two tense_choice buckets below ARE the two directions. No mirror exists. FLAGGED to Architecture (thread v12): split or declare direction-neutral. Until ruled, the stat is direction-blind."
+          }
+        ]
       },
       {
         "bucket": "verb_form.present_indicative.usage.ongoing_now",
         "common_miss": "over-reaching for stare + gerundio",
         "misconception_ids": [
           "discrimination.progressive_overuse"
+        ],
+        "direction": [
+          {
+            "id": "discrimination.progressive_overuse",
+            "status": "DIRECTION-DEPENDENT",
+            "bucket_names_direction": "discrimination.progressive_overuse",
+            "mirror_id": "discrimination.progressive_underuse",
+            "instruction": "Do NOT tag from this bucket id. Read the must_not_include entry, decide which way the error runs, and pick this id or its mirror accordingly."
+          }
         ]
       }
     ]
-  }
+  },
+  "$direction_rule": "BINDING (Architecture_ImperativoAuthor_misconception_tagging_schema.md v5, Rev 21): TAG ON THE ITEM'S DIRECTION, NOT THE BUCKET'S ID. This file is BUCKET-keyed, and the registry is one-directional by construction (the pass-1 harvest read each bucket's common_miss and minted an id for the error THAT names). Contrast topics are two-directional: one leaf hosts both directions. So for any entry carrying a `direction` block, the misconception_ids field names the direction the BUCKET's common_miss happens to describe - it is NOT automatically the right id for a given item. Read the must_not_include entry you are tagging, ask which way the error runs, and pick the id for THAT direction. If the id for your direction does not exist, ask Architecture for the mirror rather than forcing the fit. Entries with no `direction` block are one-directional and safe to tag straight from misconception_ids.",
+  "$revision": "2026-07-17 (MisconceptionAnalyst): direction rule applied; usage.duration corrected to perfect_for_durative_da per Rev 21; direction blocks added to all discrimination-tagged entries; 4 direction-merged ids flagged to Architecture (thread v12)."
 }

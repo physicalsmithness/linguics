@@ -1127,7 +1127,7 @@
     "subtopic": "formation.andare",
     "difficulty": 4,
     "cefr_level_target": "B2",
-    "prompt": "Completa esprimendo obbligo con andare (l'idea: devono essere prese): 'Le medicine ____ a stomaco pieno.' (prendere, con andare)",
+    "prompt": "Completa esprimendo obbligo (meaning: they must be taken): 'Le medicine ____ a stomaco pieno.' (prendere, con andare)",
     "type": "short",
     "marks": 2,
     "info_display": "suppress",
@@ -1210,8 +1210,9 @@
       }
     ],
     "explanation": "'Le medicine vanno prese a stomaco pieno' means 'The medicines must be taken on a full stomach.' Andare plus a participle expresses obligation, so vanno prese = must be taken. It agrees like any passive: medicine is feminine plural, giving prese, after the plural vanno. Working: vanno prese.",
-    "examiner_note": "Cue names the construction (andare) as an output form, allowed per criterion 13. Rev 17 0.9-for-dodges: 'devono essere prese' is correct Italian sidestepping the drilled pattern, so it now scores 0.9 with a steering note instead of a silent zero. Two markpoints: obligation-auxiliary and agreement.",
-    "version": 1
+    "examiner_note": "Criterion 20 (Rev 22): the earlier Italian gloss '(l'idea: devono essere prese)' handed over BOTH the agreement answer 'prese' (markpoint 1's whole test) and the 0.9 dodge phrase verbatim, so a learner could copy the cue for 1.9/2 without reaching for andare. Recued by bracketed English meaning; the citation-form trigger '(prendere, con andare)' is exempt and stays, so prompt_supplies_base_form is true. Rev 17 0.9-for-dodges: 'devono essere prese' stays a 0.9 dodge with a steering note, now a genuine sidestep rather than a copy of the cue. Two markpoints: obligation-auxiliary and agreement.",
+    "version": 1,
+    "prompt_supplies_base_form": true
   },
   {
     "external_id": "pas_and_03",
@@ -1743,6 +1744,831 @@
     ],
     "explanation": "'La legge è stata approvata dai deputati' means 'The law was passed by the members of parliament.' Before a masculine plural, da + i = dai (written as one word, not da i). The possessive dei (di + i) is the miss to avoid. Working: dai deputati.",
     "examiner_note": "Plural masculine contraction. must_not_include catches dei (di calque), the per calque, and the un-fused 'da i'.",
+    "version": 1
+  },
+  {
+    "external_id": "pas_use_reg_01",
+    "language_code": "it",
+    "topic": "passive",
+    "subtopic": "usage.when_to_use",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Which is more natural in a television news bulletin?",
+    "type": "mcq",
+    "choices": [
+      "Il presidente è stato eletto ieri.",
+      "Hanno eletto il presidente ieri."
+    ],
+    "answer_index": 0,
+    "marks": 1,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.usage.when_to_use",
+        "label": "Passive for news register"
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "eletto",
+        "language": "it",
+        "aspects": {
+          "infinitive": {
+            "reveal": "eleggere - to elect",
+            "bucket": "vocabulary.it.eleggere.verb.translation"
+          }
+        }
+      },
+      {
+        "lemma": "presidente",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "presidente - president",
+            "bucket": "vocabulary.it.presidente.noun.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Il presidente è stato eletto ieri' means 'The president was elected yesterday.' News writing puts the affected thing first and leaves the doer out, which is exactly what the passive is for: the story is about the president, not about whoever counted the votes. The active 'Hanno eletto il presidente' is perfectly correct Italian, but its vague 'they' belongs in speech, not in a bulletin.",
+    "examiner_note": "MCQ, index-scored: the register judgement is not reachable by the substring marker. Paired with pas_use_reg_02, which offers the identical two sentences and takes the opposite answer (house technique 3).",
+    "version": 1
+  },
+  {
+    "external_id": "pas_use_reg_02",
+    "language_code": "it",
+    "topic": "passive",
+    "subtopic": "usage.when_to_use",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Which is more natural when you are telling a friend the news over coffee?",
+    "type": "mcq",
+    "choices": [
+      "Il presidente è stato eletto ieri.",
+      "Hanno eletto il presidente ieri."
+    ],
+    "answer_index": 1,
+    "marks": 1,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.usage.when_to_use",
+        "label": "Active for everyday speech"
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "eletto",
+        "language": "it",
+        "aspects": {
+          "infinitive": {
+            "reveal": "eleggere - to elect",
+            "bucket": "vocabulary.it.eleggere.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Hanno eletto il presidente ieri' means 'They elected the president yesterday.' In everyday speech Italian reaches for the active with a vague 'they' rather than the passive. The passive version is not wrong, but it sounds like you are reading the news aloud. This is the commonest English-speaker habit to unlearn: English uses the passive far more freely than Italian does.",
+    "examiner_note": "Same two sentences as pas_use_reg_01, opposite answer, per the Rev 14 house technique on same-surface pairs: the pair teaches the register conditioning better than either item alone.",
+    "version": 1
+  },
+  {
+    "external_id": "pas_use_reg_03",
+    "language_code": "it",
+    "topic": "passive",
+    "subtopic": "usage.when_to_use",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Riscrivi come lo diresti a un amico al bar (parlato quotidiano): 'Il presidente è stato eletto ieri.' -> '____ il presidente ieri.'",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.usage.when_to_use",
+        "label": "Active for everyday speech",
+        "any_phrases": [
+          {
+            "phrase": "hanno eletto",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "è stato eletto",
+            "match_at": "word"
+          },
+          {
+            "phrase": "viene eletto",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "eletto",
+        "language": "it",
+        "aspects": {
+          "infinitive": {
+            "reveal": "eleggere - to elect",
+            "bucket": "vocabulary.it.eleggere.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Hanno eletto il presidente ieri' means 'They elected the president yesterday.' Spoken Italian prefers the active with an unspecified 'they' where English might keep the passive. Keeping 'è stato eletto' at the bar is the classic calque: grammatical, but it lands like a news anchor. Working: hanno eletto.",
+    "examiner_note": "Register cued in plain words (criterion 11), and the voice is never named, so the choice stays the test. Rev 20 (i): keeping the passive here IS this leaf's named common_miss (passive overuse calqued from English), so it takes a flat WRONG and does not inherit the 0.9 dodge kindness.",
+    "version": 1
+  },
+  {
+    "external_id": "pas_use_reg_04",
+    "language_code": "it",
+    "topic": "passive",
+    "subtopic": "usage.when_to_use",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Riscrivi per un avviso ufficiale in aeroporto (registro formale), mettendo il volo in primo piano: 'Hanno cancellato il volo delle 18.' -> '____'",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.usage.when_to_use",
+        "label": "Passive for a formal notice",
+        "any_phrases": [
+          {
+            "phrase": "è stato cancellato",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "hanno cancellato",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "volo",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "volo - flight",
+            "bucket": "vocabulary.it.volo.noun.translation"
+          }
+        }
+      },
+      {
+        "lemma": "cancellato",
+        "language": "it",
+        "aspects": {
+          "infinitive": {
+            "reveal": "cancellare - to cancel",
+            "bucket": "vocabulary.it.cancellare.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Il volo delle 18 è stato cancellato' means 'The 18:00 flight has been cancelled.' An official notice keeps the doer out of sight and puts the affected thing first, so the passive is the register's default. Working: il volo delle 18 è stato cancellato.",
+    "examiner_note": "Both the register and the information structure are pinned by the prompt (formal notice, flight first), so the active defies an explicit instruction rather than merely sidestepping a pattern: flat WRONG, not a Rev 17 (iv) dodge. Naming the doer is impossible here anyway.",
+    "version": 1
+  },
+  {
+    "external_id": "pas_use_reg_05",
+    "language_code": "it",
+    "topic": "passive",
+    "subtopic": "usage.when_to_use",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Riscrivi per il parlato quotidiano: 'Il pane è fatto qui ogni giorno.' -> 'Qui ____ il pane ogni giorno.'",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "candidate_forms": [
+      "si fa",
+      "è fatto"
+    ],
+    "correct_form": "si fa",
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.usage.when_to_use",
+        "label": "si construction for speech",
+        "any_phrases": [
+          {
+            "phrase": "si fa",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "è fatto",
+            "match_at": "word"
+          },
+          {
+            "phrase": "viene fatto",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "pane",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "pane - bread",
+            "bucket": "vocabulary.it.pane.noun.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Qui si fa il pane ogni giorno' means 'They make bread here every day / Bread is made here every day.' For an everyday statement about what generally happens, Italian reaches for the si construction rather than the full passive: si fa il pane is what you would actually hear. The passive è fatto is grammatical but stiff in speech. Working: si fa.",
+    "examiner_note": "Rev 20 (i): keeping the passive here is this leaf's named common_miss (passive overuse where Italian would use si or the active), so it is a flat WRONG and does not collect the 0.9 dodge kindness. candidate_forms per Rev 17 (iii): a genuine two-candidate form choice.",
+    "version": 1
+  },
+  {
+    "external_id": "pas_use_reg_06",
+    "language_code": "it",
+    "topic": "passive",
+    "subtopic": "usage.when_to_use",
+    "difficulty": 5,
+    "cefr_level_target": "C1",
+    "prompt": "In a company's annual report, stating what happens each year (not an obligation), which is most idiomatic?",
+    "type": "mcq",
+    "choices": [
+      "Il bilancio è presentato ogni anno ai finanziatori.",
+      "Si presenta il bilancio ogni anno ai finanziatori.",
+      "Va presentato il bilancio ogni anno ai finanziatori."
+    ],
+    "answer_index": 0,
+    "marks": 1,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.usage.when_to_use",
+        "label": "Passive for formal reportage"
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "bilancio",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "bilancio - balance sheet",
+            "bucket": "vocabulary.it.bilancio.noun.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Il bilancio è presentato ogni anno ai finanziatori' means 'The balance sheet is presented to the investors every year.' A formal report wants the passive: the document is the topic and the doer is irrelevant. 'Si presenta il bilancio' says the same thing but sounds spoken, and 'Va presentato il bilancio' changes the meaning altogether, since andare plus a participle expresses obligation (it must be presented).",
+    "examiner_note": "From the OIC idea bank's triple rendering of one sentence. The prompt pins the meaning ('stating what happens, not an obligation') so the andare option is a genuine meaning distractor rather than an ambiguity: without that pin the item would be unfair, since va presentato is impeccable Italian for a different proposition.",
+    "version": 1
+  },
+  {
+    "external_id": "pas_use_reg_07",
+    "language_code": "it",
+    "topic": "passive",
+    "subtopic": "usage.when_to_use",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Riscrivi per un titolo di giornale (registro formale, notizia): 'La polizia ha arrestato due uomini.' -> '____'",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.usage.when_to_use",
+        "label": "Passive for headline register",
+        "any_phrases": [
+          {
+            "phrase": "sono stati arrestati",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "ha arrestato",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "arrestato",
+        "language": "it",
+        "aspects": {
+          "infinitive": {
+            "reveal": "arrestare - to arrest",
+            "bucket": "vocabulary.it.arrestare.verb.translation"
+          }
+        }
+      },
+      {
+        "lemma": "polizia",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "polizia - police",
+            "bucket": "vocabulary.it.polizia.noun.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Due uomini sono stati arrestati dalla polizia' means 'Two men have been arrested by the police.' A headline foregrounds what happened to the people involved, so the passive is idiomatic, with the doer surviving after da if it is worth naming. Working: due uomini sono stati arrestati (dalla polizia).",
+    "examiner_note": "The agent is optional in a correct answer, so the markpoint tests only the voice choice; the da-phrase has its own leaf and is not double-marked here (criterion 8).",
+    "version": 1
+  },
+  {
+    "external_id": "pas_use_vsi_01",
+    "language_code": "it",
+    "topic": "passive",
+    "subtopic": "usage.vs_si_passivante",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Completa: 'I libri ____ dalla libreria Feltrinelli.' (vendere)",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": true,
+    "candidate_forms": [
+      "sono venduti",
+      "si vendono"
+    ],
+    "correct_form": "sono venduti",
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.usage.vs_si_passivante",
+        "label": "Named agent forces the full passive",
+        "any_phrases": [
+          {
+            "phrase": "sono venduti",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "si vendono",
+            "match_at": "word"
+          },
+          {
+            "phrase": "si vende",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "libri",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "libro - book",
+            "bucket": "vocabulary.it.libro.noun.translation"
+          }
+        }
+      },
+      {
+        "lemma": "vendere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "vendere - to sell",
+            "bucket": "vocabulary.it.vendere.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'I libri sono venduti dalla libreria Feltrinelli' means 'The books are sold by the Feltrinelli bookshop.' The si construction and the full passive overlap almost everywhere, but they split on one test: si can never name the doer. Once a da-phrase appears, only the full passive works, so 'si vendono libri dalla libreria' is impossible. Working: sono venduti.",
+    "examiner_note": "Rev 20 (i): the si form with a da-agent IS this leaf's named common_miss, so it takes a flat WRONG and does not inherit the 0.9 dodge kindness. Suppressed under the Rev 20 (ii) frame-forced class: the da-phrase in the sentence admits exactly one of the two candidates, so the set is recoverable pre-answer without the breadcrumb naming it.",
+    "version": 1
+  },
+  {
+    "external_id": "pas_use_vsi_02",
+    "language_code": "it",
+    "topic": "passive",
+    "subtopic": "usage.vs_si_passivante",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Su un cartello in vetrina: 'Qui ____ libri usati.' (vendere)",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": true,
+    "candidate_forms": [
+      "si vendono",
+      "sono venduti"
+    ],
+    "correct_form": "si vendono",
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.usage.vs_si_passivante",
+        "label": "si passivante on signage",
+        "any_phrases": [
+          {
+            "phrase": "si vendono",
+            "match_at": "word"
+          },
+          {
+            "phrase": "sono venduti",
+            "match_at": "word",
+            "credit": 0.9,
+            "note": "Correct, but signage reaches for the lighter si form: qui si vendono libri usati."
+          },
+          {
+            "phrase": "si vende",
+            "match_at": "word",
+            "credit": 0.5,
+            "note": "Very widely said and heard, but non-standard: with a plural noun the verb agrees, si vendono libri."
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "è venduto",
+            "match_at": "word"
+          },
+          {
+            "phrase": "vendono",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "libri",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "libro - book",
+            "bucket": "vocabulary.it.libro.noun.translation"
+          }
+        }
+      },
+      {
+        "lemma": "vendere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "vendere - to sell",
+            "bucket": "vocabulary.it.vendere.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Qui si vendono libri usati' means 'Second-hand books sold here.' With no doer to name, Italian prefers the lighter si construction, which is why shop windows are full of it. The verb still agrees with the thing: libri is plural, so si vendono, not si vende. Working: si vendono.",
+    "examiner_note": "Three graded entries. The full passive is correct Italian sidestepping the drilled si form and is NOT this leaf's named common_miss (that is the agent-bolted-on error), so it keeps the Rev 17 (iv) 0.9. 'si vende' + plural noun takes 0.5 with a register note, for parity with the ruling on the si_constructions batch (Architecture_SiConstructionsAuthor_graded_credit_parity, RULED v2: the a-me-mi-piace class). Order matters: the engine returns the first matching entry, and no entry is a substring of another.",
+    "version": 1
+  },
+  {
+    "external_id": "pas_use_vsi_03",
+    "language_code": "it",
+    "topic": "passive",
+    "subtopic": "usage.vs_si_passivante",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Which of these is NOT possible in Italian?",
+    "type": "mcq",
+    "choices": [
+      "I libri sono venduti da Marco.",
+      "Si vendono libri da Marco.",
+      "Marco vende libri."
+    ],
+    "answer_index": 1,
+    "marks": 1,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.usage.vs_si_passivante",
+        "label": "si cannot take a da-agent"
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "vendere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "vendere - to sell",
+            "bucket": "vocabulary.it.vendere.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Si vendono libri da Marco' is the impossible one. The si construction hides the doer by design, so it cannot then name one: bolt a da-phrase on and the sentence breaks. To name Marco you need either the full passive ('I libri sono venduti da Marco', 'The books are sold by Marco') or the plain active ('Marco vende libri', 'Marco sells books'). This is the single sharpest test for telling the two constructions apart.",
+    "examiner_note": "MCQ, index-scored: 'pick the impossible one' cannot be marked by substring. This is the leaf's hot spot, the agent test, stated directly.",
+    "version": 1
+  },
+  {
+    "external_id": "pas_use_vsi_04",
+    "language_code": "it",
+    "topic": "passive",
+    "subtopic": "usage.vs_si_passivante",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Su un cartello: 'Qui ____ camere.' (affittare)",
+    "type": "short",
+    "marks": 2,
+    "prompt_supplies_base_form": true,
+    "candidate_forms": [
+      "si affittano",
+      "sono affittate"
+    ],
+    "correct_form": "si affittano",
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.usage.vs_si_passivante",
+        "label": "si passivante agreeing with a plural noun",
+        "any_phrases": [
+          {
+            "phrase": "si affittano",
+            "match_at": "word"
+          },
+          {
+            "phrase": "sono affittate",
+            "match_at": "word",
+            "credit": 0.9,
+            "note": "Correct, but a sign reaches for the lighter si form: qui si affittano camere."
+          },
+          {
+            "phrase": "si affitta",
+            "match_at": "word",
+            "credit": 0.5,
+            "note": "Very widely said and heard, but non-standard: camere is plural, so si affittano."
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "è affittata",
+            "match_at": "word"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 1.0,
+        "bucket": "si_constructions.passivante.agreement",
+        "label": "Agreement with the thing (plural)",
+        "any_phrases": [
+          {
+            "phrase": "affittano",
+            "match_at": "word"
+          },
+          {
+            "phrase": "affittate",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "affitta",
+            "match_at": "word"
+          },
+          {
+            "phrase": "affittata",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "camere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "camera - room",
+            "bucket": "vocabulary.it.camera.noun.translation"
+          }
+        }
+      },
+      {
+        "lemma": "affittare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "affittare - to let, rent out",
+            "bucket": "vocabulary.it.affittare.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Qui si affittano camere' means 'Rooms to let here.' The si passivante agrees with the thing, not with an invisible doer: camere is plural, so the verb goes plural too. It is the same number instinct as c'è versus ci sono, and it is missed the same way. Working: si affittano.",
+    "examiner_note": "Two markpoints (criterion 8). mp0 is the construction choice; mp1 is the number instinct, which BOTH constructions share (si affittano camere / camere sono affittate), so it accepts either plural form and guards the singular slips. That matters: without it the 0.9 passive dodge would also forfeit the agreement mark and score 0.9/2 for a correct answer. The 0.5 on 'si affitta' matches the ratified si-parity ruling (Architecture_SiConstructionsAuthor_graded_credit_parity v2), and decomposes correctly: 0.5 on the choice, WRONG on agreement, i.e. right construction, slipped on the number.",
+    "version": 1
+  },
+  {
+    "external_id": "pas_use_vsi_05",
+    "language_code": "en",
+    "topic": "passive",
+    "subtopic": "usage.vs_si_passivante",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "'Qui si vendono libri usati' vuol dire: 'Second-hand books ____ here.'",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.usage.vs_si_passivante",
+        "label": "Reading si passivante as an English passive",
+        "any_phrases": [
+          {
+            "phrase": "are sold",
+            "match_at": "word"
+          },
+          {
+            "phrase": "get sold",
+            "match_at": "word"
+          },
+          {
+            "phrase": "are being sold",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "one sells",
+            "match_at": "word"
+          },
+          {
+            "phrase": "it sells",
+            "match_at": "word"
+          },
+          {
+            "phrase": "sells itself",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "libri",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "libro - book",
+            "bucket": "vocabulary.it.libro.noun.translation"
+          }
+        }
+      },
+      {
+        "lemma": "usati",
+        "language": "it",
+        "aspects": {
+          "infinitive": {
+            "reveal": "usare - to use",
+            "bucket": "vocabulary.it.usare.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Qui si vendono libri usati' means 'Second-hand books are sold here.' The si passivante has no English twin, so it lands in English as a plain passive. Reading it word by word as 'one sells' or 'it sells itself' is the trap: si here is not a real doer and not reflexive, it is the marker that lets Italian skip the doer entirely.",
+    "examiner_note": "Recognition item (it->en), English answer, cleared to ship by Housing (thread Architecture_Housing_english_answer_grammar_items, CLOSED: norm() is language-agnostic, the accent rewriter is inert on English). Guards catch the two literal misreadings.",
+    "version": 1
+  },
+  {
+    "external_id": "pas_use_vsi_06",
+    "language_code": "it",
+    "topic": "passive",
+    "subtopic": "usage.vs_si_passivante",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Riscrivi nominando chi vende: 'Qui si vendono libri usati.' -> 'I libri usati ____ da questa libreria.'",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "candidate_forms": [
+      "sono venduti",
+      "si vendono"
+    ],
+    "correct_form": "sono venduti",
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.usage.vs_si_passivante",
+        "label": "Naming the agent forces the passive",
+        "any_phrases": [
+          {
+            "phrase": "sono venduti",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "si vendono",
+            "match_at": "word"
+          },
+          {
+            "phrase": "si vende",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "libri",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "libro - book",
+            "bucket": "vocabulary.it.libro.noun.translation"
+          }
+        }
+      },
+      {
+        "lemma": "libreria",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "libreria - bookshop",
+            "bucket": "vocabulary.it.libreria.noun.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'I libri usati sono venduti da questa libreria' means 'The second-hand books are sold by this bookshop.' The moment you decide to name the seller, the si construction is no longer available: si exists precisely to leave the doer out. You switch to the full passive and the doer returns after da. Working: sono venduti.",
+    "examiner_note": "The mirror of pas_use_vsi_01: there the agent was already in the frame, here the learner adds it and must notice that doing so rules the si form out. Keeping si is the named common_miss: flat WRONG.",
+    "version": 1
+  },
+  {
+    "external_id": "pas_use_vsi_07",
+    "language_code": "it",
+    "topic": "passive",
+    "subtopic": "usage.vs_si_passivante",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Which is more natural on a shop window?",
+    "type": "mcq",
+    "choices": [
+      "Qui si vendono libri usati.",
+      "Qui i libri usati sono venduti."
+    ],
+    "answer_index": 0,
+    "marks": 1,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "passive.usage.vs_si_passivante",
+        "label": "si passivante for signage"
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "libri",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "libro - book",
+            "bucket": "vocabulary.it.libro.noun.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Qui si vendono libri usati' means 'Second-hand books sold here.' With nobody to name, the si construction is lighter and is what signage actually uses. The full passive 'i libri usati sono venduti' is grammatical but reads like a report about the shop rather than a sign in its window.",
+    "examiner_note": "Pairs with pas_use_vsi_01 across the register axis: same two constructions, opposite winners, the conditioning factor being whether a doer is named. Index-scored.",
     "version": 1
   }
 ]

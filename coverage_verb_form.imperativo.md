@@ -78,15 +78,15 @@ The batch was authored against Rev 10. Rulings and brief revisions since have be
 
 ### Still outstanding on this batch
 
-- **Two registry gaps proposed, awaiting Architecture** (thread `Architecture_ImperativoAuthor_misconception_tagging_schema.md` v3): a specific for the over-extension of the non+infinitive rule to noi/voi (the mirror of `transfer.negative_imperative_finite`), and a home for wrong-accent-added (`dì` for `di'`). 13 guards sit bare pending these; nine of those are malformed non-words that correctly have no specific.
+Nothing. All threads closed; batch reconciled to Rev 22.
 
-### Closed in this pass
+### Closed in this pass (Rev 20 → Rev 22)
 
-- **Misconception tagging: DONE.** 66 guards tagged across the 37 items using the ruled object schema (27 wrong-person-as-imperative, 23 indicative-for-subjunctive-form, 12 negative-imperative-finite, 2 regularisation, 2 wrong-theme-vowel). Batch validates 0 errors.
-- **Criterion 17 / Rev 13 (sentence gloss): DONE**, all 37 explanations. Surfaced and fixed a content flaw (`impv_form_02` told "Dottore" to take medicine twice a day; vocative now "Signor Verdi").
-- **Criterion 18: my apostrophe-fold finding went estate-wide.** Architecture's norm-modelled sweep found 18 further live false-credits across adjective_agreement (bell', sant', quell') and the pronoun tree (l', se l'), all anchored centrally. My own three (va'/fa'/di') are fixed; anchoring now at 41 phrases after the central sweep.
-- **Criterion 19: corrected.** My first audit checked only `any_phrases` for accents and concluded nil. That was wrong: the accented twin can sit on the GUARD side. The central gate proved impv_irr_05's `dì` guard dead on the folded path (`dì` folds to `di`, as does the correct `di'`); `accent_load_bearing: true` applied centrally, guard now fires, `di'` still credits.
-- **Rev 20 re-checked, no action**: the dodge-vs-named-miss precedence needs no change (the batch carries no graded any_phrases; va'/vai equal credit is separately ratified), and the recoverability additions leave the irregular_tu suppress standing.
-- **Record correction absorbed**: norm() folds apostrophes AND hyphens to spaces; the apocope forms survive via a dedicated word-start-anchored rewrite, not apostrophe preservation.
+- **Misconception tagging COMPLETE**: 69 guards tagged, 9 bare (malformed non-words only, no forced fits). My proposed specific `transfer.negative_imperative_infinitive_over_extension` was ratified and registered, widened by Architecture to cover the bare-infinitive-for-affirmative reflex (`dire!` for `di'!`); it now tags impv_neg_06, impv_neg_07 and impv_irr_05.
+- **dì taken at graded 0.7** (Rev 20(i)), not flat WRONG: the learner has formed the apocopated imperative correctly and errs only orthographically, which r8's runtime accent split already diagnoses. It moves from `must_not_include` to a graded `any_phrases` entry with a steering note; `accent_load_bearing` stays set so the fold cannot rescue it to full credit. Explanation now teaches the dated form.
+- **v5 direction rule applied**, all 69 re-audited. Tags hold: the subjunctive-on-tu guards are blessed by `wrong_person_as_imperative`'s own registered example (`prenda! for prendi!`), and the formal leaf stays on `mood.indicative_for_subjunctive_form` rather than `register.tu_lei_mismatch` because these items SUPPLY the Lei trigger, so register is the cue, not the content, and the register family note files by the error's shape.
+- **Criterion 20 (Rev 22): exempt.** Cues are citation-form triggers (`(parlare, tu)` = infinitive to conjugate), which the criterion explicitly exempts. Next-touch named PrepositionAuthor and ComparisonAuthor, not this batch.
+- **Criterion 19 (Rev 21 carve-out): no change.** The carve-out applies where the prompt supplies/pins the candidates; these are free-text formation items, so impv_irr_05's `accent_load_bearing` stays (one of only two the estate keeps, per the AccentAuditor sweep).
+- **Criterion 17 sweep (Rev 22(ii))**: this batch needs no visit; all 37 glosses were added at the Rev 19 reconciliation.
 
-**Batch state: 37 grammar + 16 translation, 0 errors, reconciled to Rev 20.**
+**Batch state: 37 grammar + 16 translation, 0 errors, reconciled to Rev 22, fully tagged.**

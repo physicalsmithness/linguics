@@ -125,10 +125,9 @@
     <span id="content-status" class="muted"></span>
     <span class="muted">prototype &middot; localStorage only</span>
     <span id="build-version" class="muted" title="Build identifier. Useful for spotting when two tabs are on different versions."></span>
-    <!-- WEB_KIT feedback widget slot: the estate feedback.js drop-in
-         (in-page panel POSTing to the shared Apps Script endpoint) mounts here
-         once it has a canonical home (WEB_KIT.md marks it TBD). Do not build a
-         one-off; leave this placeholder. -->
+    <!-- WEB_KIT feedback widget: mounted via js/feedback.js (see the script
+         block below the app scripts). The widget renders its own button and
+         panel; nothing needs to live in this footer. -->
   </footer>
 
   <script src="data/sample_buckets.js"></script>
@@ -141,5 +140,25 @@
   <script src="js/translation_marker.js"></script>
   <script src="js/store.js"></script>
   <script src="js/app.js"></script>
+
+  <!-- Estate feedback widget (WEB_KIT standard; canonical source
+       MetaProject\web_kit\feedback.js, copied verbatim - do not fork).
+       Mounted per Architecture_Housing_webkit_ga4_feedback_clarity v5.
+       Fails soft until the shared Apps Script endpoint is deployed. -->
+  <script>
+    window.FEEDBACK_CONFIG = {
+      project: 'linguics-housing',
+      context: function () {
+        // Called at submit time; must not throw. Build id and strand are read
+        // live so the values are always current, never baked.
+        var strandBtn = document.querySelector('#strand-nav button.active');
+        return {
+          strand: (strandBtn && strandBtn.dataset && strandBtn.dataset.strand) || 'welcome',
+          build: (window.LL && window.LL.build) || 'unknown'
+        };
+      }
+    };
+  </script>
+  <script src="js/feedback.js"></script>
 </body>
 </html>

@@ -161,20 +161,23 @@ main {
   margin-top: 2px;
   order: 0;
 }
-/* Cue ("Use quello") sits ABOVE the prompt and is visually prominent —
-   it's a constraint on how to answer, not a footnote. Bumped 2026-06-07
-   per inter_chat/Architecture_Housing_chip_prominence.md: the chip is
-   load-bearing instruction, easy to miss at quiet sizes. Now larger,
-   semi-bold, with a one-shot fade/scale-in pulse on first render so the
-   eye catches it before the prompt or input. */
+/* Cue ("Use quello") sits at the END of the prompt, directly above the
+   answer box - after the sentence has created the expectation it constrains.
+   Reverses the 2026-06-07 chip_prominence hoist (order: -1) per inter_chat/
+   Architecture_Housing_cue_placement.md: Smith's ex_form_neg_01 evidence
+   showed a constraint read BEFORE the sentence is absorbed and gone by the
+   time the sentence suggests its own answer ("Hai tempo?" -> "non ho").
+   Prominence kept; hoist dropped; the pulse dropped too - it was
+   compensating for the placement. Reading order: instruction -> sentence ->
+   "Use esserci" -> answer. */
 .qcard .prompt .prompt-cue {
-  order: -1;
+  order: 2;
   font-size: 22px;
-  margin: 0 0 14px;
-  padding: 6px 0;
+  margin: 10px 0 2px;
+  padding: 6px 0 0;
   color: var(--ink);
-  border-bottom: 1px dashed var(--line);
-  animation: cue-attention-pulse 480ms ease-out 1;
+  border-top: 1px dashed var(--line);
+  border-bottom: none;
 }
 .qcard .prompt .prompt-cue .prompt-cue-label {
   color: var(--muted);
@@ -718,6 +721,38 @@ main {
 .live-bucket-row.aggregate .label-text { color: var(--ink); }
 .live-bucket-row.leaf .label-text { color: var(--muted); }
 .live-bucket-row.fresh { animation: flash 600ms ease-out; }
+/* Topic tile freshness (grammar_view_space_and_scroll v6): the shallowest
+   fresh surface in the sidebar flashes too, so the post-Mark scroll has a
+   visible landing in the default overview view. */
+.overview-cell.fresh { animation: flash 600ms ease-out; }
+
+/* Entry-screen loading state (entry_load_and_level_strip Defect 2): quiet
+   line where the counts would go; replaced in place when content lands. */
+.entry-loading { color: var(--muted); font-style: italic; margin: 10px 0; }
+
+/* Vocab session builder (vocab_session_builder v3): two-lens frequency
+   control, category chips, special-drills box. The inactive lens is greyed
+   but LIVE - clicking anything in it switches lens; it must never read as
+   disabled, hence the hover lift. */
+.entry-lens { padding: 8px 10px; border-radius: 8px; margin: 4px 0; }
+.entry-lens.lens-dim { opacity: 0.45; cursor: pointer; }
+.entry-lens.lens-dim:hover { opacity: 0.8; }
+.entry-lens-toggle { display: flex; gap: 6px; margin: 4px 0 2px; }
+.entry-freq-inputs { display: flex; align-items: center; gap: 6px; margin: 8px 0; }
+.entry-freq-inputs input[type="number"] { width: 84px; font-size: 16px; padding: 4px 6px; }
+.entry-freq-inputs span { color: var(--muted); font-size: 13px; }
+.entry-band-row .entry-chip { font-size: 12px; }
+.entry-tier-row { margin-top: 4px; }
+.entry-vocab-summary { color: var(--muted); font-size: 13px; margin: 6px 0 2px; }
+.entry-special-drills { border: 1px solid rgba(128,128,128,0.35); border-radius: 8px; padding: 8px 12px 10px; margin-top: 14px; }
+.entry-special-drills .entry-config-head { margin-top: 0; }
+
+/* Ratified category picker (display_theme_grouping v3/v4): section headers,
+   sub-theme rows, and the "..." expander that reveals them. */
+.entry-cat-section { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 10px 0 2px; }
+.entry-cat-subrow { flex-basis: 100%; margin: 2px 0 4px 18px; }
+.entry-cat-subrow .entry-chip { font-size: 12px; }
+.entry-cat-expander { min-width: 26px; padding-left: 6px; padding-right: 6px; color: var(--muted); }
 
 @keyframes flash {
   0% { background: var(--amber-soft); }

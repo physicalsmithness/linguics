@@ -1,18 +1,20 @@
 # Coverage: The passive (formation branch)
 
-Authored by PassiveAuthor against AUTHOR_BRIEF **Revision 14**, then reconciled author-side to **Revision 17** and audited clean against **Revisions 19 and 20** (the brief moved from Rev 14 to Rev 17 while this batch was being written; see the reconciliation section below). Authored against DISPATCH_passive.md (with its Rev-13 addendum and OIC idea-bank appendix). Counts below are grepped from the shipped files, not from memory of batches.
+Authored by PassiveAuthor against AUTHOR_BRIEF **Revision 14**, then reconciled author-side to **Revision 17** and audited clean against **Revisions 19 to 22** (the brief moved from Rev 14 to Rev 17 while this batch was being written; see the reconciliation section below). Authored against DISPATCH_passive.md (with its Rev-13 addendum and OIC idea-bank appendix). Counts below are grepped from the shipped files, not from memory of batches.
 
-**Scope of this pass: the formation branch only** (the four leaves under *Forming the passive*). The usage branch (*Passive or active?* and *Passive or si passivante?*) is not yet authored and follows in the next pass. No content existed for this topic before this batch.
+**Both branches are now authored.** The formation branch (four leaves) landed 2026-07-14 and was accepted; the usage branch (*Passive or active?*, *Passive or si passivante?*) landed 2026-07-17 authored against Rev 23 from the start, closing the residual the batch disposition left open. The tree has no unauthored leaves.
 
 ## Bucket-to-item counts
 
 | Bucket (label) | Grammar | Translation (required) |
 |---|---|---|
-| Essere + participle | 8 | 6 |
+| Essere + participle | 8 | 8 |
 | Venire + participle | 5 | 3 |
 | Andare + participle | 5 | 2 |
-| The agent with da | 5 | 2 |
-| **Totals** | **23** | **11 items** |
+| The agent with da | 5 | 3 |
+| Passive or active? | 7 | 4 |
+| Passive or si passivante? | 7 | 4 |
+| **Totals** | **37** | **19 items** |
 
 Grammar is counted by each item's primary (voice) markpoint. Translation counts required-bucket citations of a formation leaf; the essere and agent rows overlap on the two agent-bearing translation items (an agent item necessarily also exercises essere).
 
@@ -47,6 +49,24 @@ The engine checks `any_phrases` before `must_not_include` (positive match wins) 
 4. **The venire compound-tense restriction** (pas_ven_02) cites the venire leaf but its correct answer is essere (e stato arrestato); the breadcrumb is left visible because naming venire tempts exactly the catchable "e venuto arrestato" error (the leak-vs-trap test, criterion 15).
 5. **Andare obligation items cue the construction** ("con andare"), keeping the andare choice the tested skill. The equally-correct periphrastic "deve essere compilato" scores **0.9 with a steering note** under the Rev 17 dodge rule; at Rev 14 it was wrongly in `must_not_include`, which would have marked correct Italian wrong. See the reconciliation section.
 
+
+## Usage branch (added 2026-07-17, authored against Rev 23)
+
+Fourteen grammar (5 of them MCQ) + 8 translation across the two usage leaves. Authored against the current brief from the start rather than reconciled afterwards, so no Rev 15-23 retrofit was needed.
+
+**Why five MCQs.** *Passive or active?* is a register judgement and *which of these is impossible?* is a well-formedness judgement; neither is reachable by a substring marker over a free-typed blank. Index-scored MCQ is the honest instrument, and it is also the supplied-choice case, so criterion 19 does not apply (accent_load_bearing stays unset, per the Rev 21 carve-out). The rewrite items carry the load where the answer is a short verb complex.
+
+**Rev 20 (i) dodge-vs-named-miss did real work here, in both directions.** The two usage leaves have opposite named misses, so the same construction is graded differently depending on the leaf:
+
+- *Passive or active?* names **passive overuse** as its common_miss. So on `pas_use_reg_03` and `pas_use_reg_05`, keeping the passive where speech wants the active or the si form is the named diagnosis: **flat WRONG**, no 0.9 kindness.
+- *Passive or si passivante?* names the **agent bolted onto the si form** as its common_miss. So on `pas_use_vsi_02`, the full passive on signage is merely correct-but-off-pattern: it **keeps the 0.9** with a steering note. On `pas_use_vsi_01`, where a da-agent is in the frame, the si form IS the named miss: **flat WRONG**.
+
+**Cross-tree parity applied.** `si vende` + a plural noun scores **0.5 with a register note** on `pas_use_vsi_02` / `pas_use_vsi_04`, mirroring the ratified ruling on the si_constructions batch (`Architecture_SiConstructionsAuthor_graded_credit_parity`, RULED v2: the a-me-mi-piace class, ubiquitous, native, non-standard). Flagged for ratification since it is applied from another seat's thread.
+
+**One ordering-protected guard, deliberate and exempt.** `pas_use_vsi_02` guards a bare `vendono` (the dropped-si active) while the correct answer `si vendono` contains it. Criterion 18 direction 3 flags the containment, but this is the brief's own exempt mirror case (`venire` inside `di venire`): the positive is checked first and wins, so the guard can never misfire and fires only on the dropped-si miss. Verified on all five paths (`si vendono` -> 1.0, `vendono libri` -> WRONG, `sono venduti` -> 0.9, `si vende` -> 0.5, `è venduto` -> WRONG).
+
+**Suppression.** All 14 usage items suppress. Every one is recoverable: the MCQs supply the candidate set outright, the rewrites pin the register in plain words, and `pas_use_vsi_01` is frame-forced (the da-phrase in the sentence admits exactly one of the two candidates), which is the Rev 20 (ii) class.
+
 ## Rev 15/16/17 reconciliation (done author-side, same session, pre-consumption)
 
 This batch was authored against Rev 14 and the brief reached Rev 17 mid-session. Reconciled as follows, verified by an engine-mirroring harness (29 attack/regression cases, all passing; it mirrors norm(), occursAt() and the any-before-must_not order read off `housing/js/norm.js`).
@@ -78,6 +98,10 @@ The state readings (`è compilato`, `è chiuso`) stay in `must_not_include`: the
 - *(ii) Frame-forced recoverability (the new sixth class).* This strengthens the agent items rather than changing them: the frame `è stato dipinto ____ Caravaggio` admits exactly a preposition, so the candidate set is recoverable from the sentence itself and suppression stands on the criterion's own terms, not merely on the prompt naming the slot.
 - *(iii) Criterion 18's instruction-pinned mitigation class.* Not needed here: direction 3 is clean, no guard fires on any correct attempt.
 - *(iv) §3 square-bracket meta-instruction convention.* Not engaged: no translation `source_text` in this batch carries a bracketed instruction.
+
+**Rev 22 criterion 20 (cue by meaning, not by fragment): ONE real bug found and fixed, though passive was not in the next-touch census.** `pas_and_02` cued with an Italian gloss `(l'idea: devono essere prese)` that contained both `prese` (markpoint 1's entire agreement test) and the item's own 0.9 dodge phrase, so a learner could copy the cue for 1.9/2 without reaching for andare. Recued by bracketed English meaning `(meaning: they must be taken)`; the citation-form trigger `(prendere, con andare)` is exempt and stays, and `prompt_supplies_base_form` is now explicitly true. A mechanical leak check (does the prompt contain its own `any_phrase`?) is now clean across all 23. **The check must use plain substring, not word-boundary matching**: my first pass anchored it and returned a false CLEAN, because cue fragments are bounded by parentheses, not spaces. Routed to Architecture in `Architecture_PassiveAuthor_criterion20_cue_leak.md`.
+
+**Rev 21: no changes.** (i) The criterion-19 supplied-choice carve-out ratifies the verdict this batch already recorded (accent_load_bearing unset throughout); the AccentAuditor sweep independently scores `passive 7/0`. (ii) The criterion-16 tense-tag additions do not apply: `pas_ven_04` uses `candidate_forms`, not tense tags. **Housing cleared the English-answer items** (thread CLOSED, all three assumptions confirmed, no code change).
 
 **Disposition: batch ACCEPTED; delivery-review thread CLOSED at v4** with all six asks ruled (dodge boundary ratified as drawn; candidate_forms confirmed; brief documentation gap fixed in §2; English-answer items routed to Housing; proper nouns ruled to take `.noun`; the match_at-aware dead-guard refinement adopted verbatim into the canonical gate).
 

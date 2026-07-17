@@ -258,39 +258,56 @@ reason; raised in the thread.
 
 ---
 
-## Phase 3: misconception tagging (2026-07-15)
+## Phase 3: misconception tagging (complete 2026-07-17)
 
-The item-level schema was ratified today (`Architecture_ImperativoAuthor_misconception_tagging_schema`
-v2), so Phase 3 is discharged for this topic. **89 guards tagged across 85 of 124 items; 39 left
-bare with zero forced fits**, per ImperativoAuthor's precedent.
+**128 guards tagged across 124/124 items; zero bare.** Marker replica re-run after tagging:
+unchanged (tags are display-only).
 
 | Misconception | Items |
 |---|---|
 | `discrimination.modal_stative_aspect` | 25 |
 | `discrimination.indicative_for_subjunctive_choice` | 20 |
+| `discrimination.remoto_register_mismatch` | 13 |
 | `discrimination.future_present_mismatch` | 10 |
 | `discrimination.counterfactual_construction` | 10 |
 | `discrimination.trapassato_imperfect_choice` | 10 |
+| `discrimination.perfect_for_durative_da` | 8 |
+| `discrimination.durative_present_over_extension` | 7 |
 | `discrimination.pp_for_imperfect` | 5 |
 | `discrimination.progressive_overuse` | 5 |
+| `discrimination.progressive_underuse` | 4 |
+| `discrimination.habitual_frame_mismatch` | 4 |
+| `discrimination.imperfect_for_pp` | 3 |
 
-**The registry is one-directional where this topic is two-directional.** The tag-list pairs a
-bucket with an id, but several specifics name only the dominant direction of their error (the
-harvest read `common_miss` prose). Every tense_choice leaf pair is authored in *both* directions by
-design — that is what the counterweight leaves and the same-surface pairs are for. Tagging by
-bucket alone would have logged the opposite of the learner's actual error on 7 items: 3
-general-aspect items where the *imperfect* is chosen for a bounded event (not `pp_for_imperfect`),
-and 4 progressive items where the *simple* is chosen where the progressive is required (not
-`progressive_overuse`). Those are bare pending two mirror specifics; thread asks 8 and 11.
+Six of these ids did not exist when the batch was authored. They were minted by Architecture
+(thread v3) on this batch's findings:
 
-**The five wave-2 leaves have no specifics** because they were stubs when the registry was
-harvested (2026-06-09), so they contributed no `common_miss` prose. 32 items bare pending asks
-9-10. Note `pp_for_imperfect` already carries *"ho aspettato da venti minuti for aspettavo"* in its
-examples — the durative-da calque, filed under a label whose target is the imperfect, when the
-canonical case (*studio da due anni*) targets the present.
+**The registry was one-directional where this topic is two-directional.** Specifics were harvested
+from `common_miss` prose, which names only each error's dominant direction; but every tense_choice
+leaf pair is authored in *both* directions by design (the counterweight leaves and same-surface
+opposite-answer pairs). Tagging by bucket->id would have logged the opposite of the learner's
+actual error on 7 items. `imperfect_for_pp` and `progressive_underuse` were minted as **mirrors
+rather than widenings** — direction is diagnostic, and a learner reaching for the imperfect at a
+bounded event has a different problem from one reaching for the PP at a habitual. The rule
+"**tag on the item's DIRECTION, not the bucket's id**" is now in the estate's tagging schema
+thread (v5).
 
-Bare guards still record their bucket miss exactly as before; they simply carry no misconception
-yet, which is the honest state rather than a wrong one.
+**The five wave-2 leaves had no specifics** because they were stubs when the registry was
+harvested (2026-06-09) and so contributed no `common_miss` prose. Four ids cover them
+(`perfect_for_durative_da`, `durative_present_over_extension`, `remoto_register_mismatch`,
+`habitual_frame_mismatch`). `pp_for_imperfect` had been carrying the durative-da calque in its
+examples under a label whose target tense was wrong; that example has moved to
+`perfect_for_durative_da`.
+
+**Remoto vs PP was a family-boundary call**, resolved to `discrimination` rather than the reserved
+`register` family: the family axis classifies *what the learner got wrong* (a tense choice), not
+*which cue they missed*. The `register` family's description now records that boundary with a
+pointer, so an analyst finds the id from either direction.
+
+**`habitual_frame_mismatch` carries a watch clause.** This seat argued the diagnostic was too weak
+to earn an id; Architecture agreed and declined it, and Smith overruled and minted it. It is
+registered with a note that its stats are watched for separability from `pp_for_imperfect` /
+`imperfect_for_pp` — if they blur, it gets retired or sharpened.
 
 ---
 

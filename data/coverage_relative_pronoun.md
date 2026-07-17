@@ -59,6 +59,12 @@ Batch-review thread CLOSED at v5. Rulings landed in the brief with this batch as
 
 **Rev 20/v5 flex exercised, three-way split by bucket attribution:** on the four SUBJECT-relative drills, the agreeing relative (il quale / la quale / le quali) moved from must_not_include to graded credit 0.7 with a steering note - it is correct-but-stilted Italian, and a flat WRONG on the che-as-subject bucket would record a failed subject relative the learner in fact formed, agreement and all. DIRECT-OBJECT drills keep flat WRONG (bare il quale as an object relative is deviant in modern Italian, not merely heavy). The che-vs-il-quale DISCRIMINATION item keeps flat WRONG (the natural-choice judgement is the tested skill). Attribution follows the bucket, per the atomised-marking philosophy. Verified 12/12 on the marker mirror.
 
+## Post-closure hygiene (2026-07-17)
+
+- **pos-migration worklist cleared:** the topic's six flagged vocab refs (domani, ancora, cosa, di_sopra, sodo, tardi) resolved to POS-segmented bucket ids from each item's own usage (five adverb, one noun); zero old-shape refs remain in either file. Reported in `Architecture_RelativePronounAuthor_pos_worklist_cleared.md`.
+- **Criterion 20 (Rev 22) self-check:** the (per + quale) cues on the agreeing-relative items are read as exempt citation-form triggers (quale is the lemma being agreed); all other items pin meaning via bracketed English or supplied choice. No bare answer-fragment cues found.
+- **Cr17Sweep exposure survey:** relative_pronoun scanned clean (batch authored under Rev 13, glosses present from birth); not in the sweep's five-topic worklist.
+
 ## Authoring decisions worth review
 
 - **dove / in cui / nella quale cross-credited at 1.0** on dove items (all standard for place); the leaf's diagnostic guard is che-for-place. Conversely the in-cui grammar item uses a manner antecedent (il modo) so dove is a catchable wrong answer, not a valid alternative.

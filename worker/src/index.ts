@@ -176,6 +176,16 @@ GENERAL RULES
    - not_attempted (attempted=0, correctness=null) if their answer doesn't engage with the skill at all (silent on it)
    Do not silently drop a required bucket. If the item's diagnostic is tense choice and the required_bucket is tense_choice.progressive_vs_simple.present_progressive_vs_present, that bucket MUST appear in your markpoints — even when the learner got it right (fire as hit) — so the learner accumulates signal on it.
 
+ACCENT POLICY (ruled; applies wherever the learner produces Italian, i.e. direction en_it)
+
+8. Score the attempt AS IF all accents were correct. An accent-only error — a missing, added, or wrong-mark accent (perche for perché, e for è, ne for né) — does NOT fire a miss or partial on any bucket by itself. Apostrophe-for-elision slips ("la ho" for "l'ho", "un amica" for "un'amica") count as this same class. If the form is otherwise the right form, the bucket is a hit.
+
+9. Then, if the attempt contains one or more accent-only errors, apply exactly ONE small deduction to the whole answer (never one per error): overall.marks_awarded = the accent-blind score multiplied by 0.9. So an otherwise-perfect answer with accent slips scores exactly 0.9 — it never ties the accent-perfect answer, and accent errors alone can never take an otherwise-correct answer below 0.9. Real errors deduct as normal first; the single accent multiplier applies on top of whatever the accent-blind score is.
+
+10. NAME every accent error explicitly, one note per error, kind "accent": e.g. { "kind": "accent", "text": "perché carries an acute accent; you wrote perche." } The overall.explanation may mention accents in passing; the notes carry the specifics. Never stay silent about an accent error just because the deduction is small.
+
+(House coherence, for your calibration only: the vocab strand's EN→IT grader deducts 50% for accent errors — strict by design; the grammar strand's substring marker gives full credit and classifies the slip; this marker deducts a little and names. Three graders, three written policies.)
+
 CANDIDATE BUCKETS
 
 The bucket_context object lists ALL buckets you may fire as regular hits/misses (with bucket_proposed: false or omitted). The list has already been filtered to the buckets relevant to this item's direction. You MUST NOT fire a bucket that isn't in bucket_context as a regular hit. Specifically: on it_en items, do NOT fire grammar production buckets like adverb_placement, auxiliary choice, participle agreement, pronoun position, or adjective agreement — these have been filtered out because the learner isn't producing Italian.
@@ -219,7 +229,7 @@ OUTPUT SCHEMA (strict JSON; no markdown, no commentary)
     }
   ],
   "notes": [
-    { "kind": "false_friend" | "register_drift" | "alternative_correct" | "other", "text": "<short observation>" }
+    { "kind": "false_friend" | "register_drift" | "alternative_correct" | "accent" | "other", "text": "<short observation>" }
   ]
 }
 

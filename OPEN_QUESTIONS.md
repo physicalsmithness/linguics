@@ -503,7 +503,7 @@ The deep exercise drill (REFERENCE_oic_exercise_drill.md) surfaced topics with n
 
 The ratified dual-citation mechanism (two 0.5 markpoints with identical phrase lists, reported_speech thread v4) works but duplicates data. A markpoint-level also_credits: [bucket] would let one markpoint feed two buckets. Not urgent; adopt if a third umbrella topic appears.
 
-## For a future retro-sweep: criterion 17 across pre-Rev-13 batches (2026-07-15)
+## Criterion-17 retro-sweep: COMMISSIONED 2026-07-16 as the Cr17Sweep seat (was: parked 2026-07-15)
 
 GerundioAuthor's reconciliation found five real content bugs (one ungrammatical prompt) purely by writing out the completed sentence in English per criterion 17. The older batches (adjective_agreement, pronoun, PP, imperfect wave-1) predate the criterion and have never had that pass. Mechanical audits cannot catch wrong Italian; this one does. Schedule as a per-author next-touch or a dedicated sweep.
 

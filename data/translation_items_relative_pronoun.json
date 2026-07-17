@@ -1,998 +1,998 @@
 [
-  {
-    "external_id": "trans_rel_en_it_che_subj_01",
-    "source_lang": "en",
-    "target_lang": "it",
-    "source_text": "The woman who lives upstairs is a doctor.",
-    "reference_translations": [
-      {
-        "text": "La donna che abita di sopra fa il medico.",
-        "register": "neutral",
-        "notes": "Standard; fare il + profession is the idiomatic job construction."
-      },
-      {
-        "text": "La donna che vive di sopra è un medico.",
-        "register": "neutral",
-        "notes": "vivere and essere un medico both fine."
-      },
-      {
-        "text": "La donna chi abita di sopra fa il medico.",
-        "register": "neutral",
-        "notes": "WRONG: chi never follows an antecedent; after a noun the subject relative is che.",
-        "polarity": "negative"
-      }
-    ],
-    "topic": "relative_pronoun",
+ {
+  "external_id": "trans_rel_en_it_che_subj_01",
+  "source_lang": "en",
+  "target_lang": "it",
+  "source_text": "The woman who lives upstairs is a doctor.",
+  "reference_translations": [
+   {
+    "text": "La donna che abita di sopra fa il medico.",
     "register": "neutral",
-    "difficulty": 2,
-    "cefr_level_target": "B1",
-    "required_buckets": [
-      "relative_pronoun.che.subject"
-    ],
-    "optional_buckets": [],
-    "vocab_help": [
-      {
-        "lemma": "woman",
-        "language": "en",
-        "aspects": {
-          "translation": {
-            "reveal": "woman - donna",
-            "bucket": "vocabulary.it.donna.noun.translation"
-          }
-        }
-      },
-      {
-        "lemma": "lives",
-        "language": "en",
-        "aspects": {
-          "translation": {
-            "reveal": "to live - abitare",
-            "bucket": "vocabulary.it.abitare.verb.translation"
-          }
-        }
-      },
-      {
-        "lemma": "upstairs",
-        "language": "en",
-        "aspects": {
-          "translation": {
-            "reveal": "upstairs - di sopra",
-            "bucket": "vocabulary.it.di_sopra.translation"
-          }
-        }
-      },
-      {
-        "lemma": "doctor",
-        "language": "en",
-        "aspects": {
-          "translation": {
-            "reveal": "doctor - medico",
-            "bucket": "vocabulary.it.medico.noun.translation"
-          }
-        }
-      }
-    ],
-    "explanation": "The woman is the subject of 'lives', and a subject relative with no preposition is plain che: la donna che abita. Chi looks like 'who' but is the antecedent-less relative ('whoever'); it can never lean on a noun. 'Fa il medico' (does the doctor) is how Italian states professions.",
-    "version": 1
-  },
-  {
-    "external_id": "trans_rel_en_it_che_do_01",
-    "source_lang": "en",
-    "target_lang": "it",
-    "source_text": "The book I am reading is really interesting.",
-    "reference_translations": [
-      {
-        "text": "Il libro che leggo è molto interessante.",
-        "register": "neutral",
-        "notes": "Standard; simple present for English progressive."
-      },
-      {
-        "text": "Il libro che sto leggendo è davvero interessante.",
-        "register": "neutral",
-        "notes": "Progressive with stare + gerundio, equally natural."
-      },
-      {
-        "text": "Il libro leggo è molto interessante.",
-        "register": "neutral",
-        "notes": "WRONG: English drops the relative ('the book I am reading'); Italian never does. che is obligatory.",
-        "polarity": "negative"
-      }
-    ],
-    "topic": "relative_pronoun",
+    "notes": "Standard; fare il + profession is the idiomatic job construction."
+   },
+   {
+    "text": "La donna che vive di sopra è un medico.",
     "register": "neutral",
-    "difficulty": 2,
-    "cefr_level_target": "B1",
-    "required_buckets": [
-      "relative_pronoun.che.direct_object"
-    ],
-    "optional_buckets": [],
-    "vocab_help": [
-      {
-        "lemma": "book",
-        "language": "en",
-        "aspects": {
-          "translation": {
-            "reveal": "book - libro",
-            "bucket": "vocabulary.it.libro.noun.translation"
-          }
-        }
-      },
-      {
-        "lemma": "reading",
-        "language": "en",
-        "aspects": {
-          "translation": {
-            "reveal": "to read - leggere",
-            "bucket": "vocabulary.it.leggere.verb.translation"
-          }
-        }
-      },
-      {
-        "lemma": "interesting",
-        "language": "en",
-        "aspects": {
-          "translation": {
-            "reveal": "interesting - interessante",
-            "bucket": "vocabulary.it.interessante.adjective.translation"
-          }
-        }
-      }
-    ],
-    "explanation": "English quietly omits the relative ('the book [that] I am reading'); Italian must say it: il libro che leggo. The book is the direct object of leggere, and an object with no preposition takes invariable che, the same word as the subject relative.",
-    "version": 1
-  },
-  {
-    "external_id": "trans_rel_en_it_cui_prep_01",
-    "source_lang": "en",
-    "target_lang": "it",
-    "source_text": "The person I work with is very kind.",
-    "reference_translations": [
-      {
-        "text": "La persona con cui lavoro è molto gentile.",
-        "register": "neutral",
-        "notes": "Standard: preposition fronted before cui."
-      },
-      {
-        "text": "La persona con la quale lavoro è molto gentile.",
-        "register": "neutral",
-        "notes": "Agreeing alternative, a shade more formal."
-      },
-      {
-        "text": "La persona che lavoro con è molto gentile.",
-        "register": "neutral",
-        "notes": "WRONG: English word order strands the preposition; Italian must front it (con cui), and che cannot follow a preposition.",
-        "polarity": "negative"
-      }
-    ],
-    "topic": "relative_pronoun",
+    "notes": "vivere and essere un medico both fine."
+   },
+   {
+    "text": "La donna chi abita di sopra fa il medico.",
     "register": "neutral",
-    "difficulty": 3,
-    "cefr_level_target": "B1",
-    "required_buckets": [
-      "relative_pronoun.cui.with_preposition"
-    ],
-    "optional_buckets": [],
-    "vocab_help": [
-      {
-        "lemma": "person",
-        "language": "en",
-        "aspects": {
-          "translation": {
-            "reveal": "person - persona",
-            "bucket": "vocabulary.it.persona.noun.translation"
-          }
-        }
-      },
-      {
-        "lemma": "work",
-        "language": "en",
-        "aspects": {
-          "translation": {
-            "reveal": "to work - lavorare",
-            "bucket": "vocabulary.it.lavorare.verb.translation"
-          }
-        }
-      },
-      {
-        "lemma": "kind",
-        "language": "en",
-        "aspects": {
-          "translation": {
-            "reveal": "kind - gentile",
-            "bucket": "vocabulary.it.gentile.adjective.translation"
-          }
-        }
-      }
-    ],
-    "explanation": "English hides the preposition at the end ('work with'); Italian gathers it up and puts it before the relative: con cui lavoro. Whenever the relative carries a preposition, che gives way to cui. The stranded-preposition rendering is the classic transfer error this item exists to catch.",
-    "version": 1
-  },
-  {
-    "external_id": "trans_rel_en_it_cui_prep_02",
-    "source_lang": "en",
-    "target_lang": "it",
-    "source_text": "The film we were talking about won a prize.",
-    "reference_translations": [
-      {
-        "text": "Il film di cui parlavamo ha vinto un premio.",
-        "register": "neutral",
-        "notes": "Standard: parlare di, so di cui, imperfect for the background activity."
-      },
-      {
-        "text": "Il film del quale parlavamo ha vinto un premio.",
-        "register": "neutral",
-        "notes": "Agreeing alternative del quale, more formal."
-      },
-      {
-        "text": "Il film che parlavamo di ha vinto un premio.",
-        "register": "neutral",
-        "notes": "WRONG: stranded preposition copied from English; Italian fronts it as di cui.",
-        "polarity": "negative"
-      }
-    ],
-    "topic": "relative_pronoun",
+    "notes": "WRONG: chi never follows an antecedent; after a noun the subject relative is che.",
+    "polarity": "negative"
+   }
+  ],
+  "topic": "relative_pronoun",
+  "register": "neutral",
+  "difficulty": 2,
+  "cefr_level_target": "B1",
+  "required_buckets": [
+   "relative_pronoun.che.subject"
+  ],
+  "optional_buckets": [],
+  "vocab_help": [
+   {
+    "lemma": "woman",
+    "language": "en",
+    "aspects": {
+     "translation": {
+      "reveal": "woman - donna",
+      "bucket": "vocabulary.it.donna.noun.translation"
+     }
+    }
+   },
+   {
+    "lemma": "lives",
+    "language": "en",
+    "aspects": {
+     "translation": {
+      "reveal": "to live - abitare",
+      "bucket": "vocabulary.it.abitare.verb.translation"
+     }
+    }
+   },
+   {
+    "lemma": "upstairs",
+    "language": "en",
+    "aspects": {
+     "translation": {
+      "reveal": "upstairs - di sopra",
+      "bucket": "vocabulary.it.di_sopra.adverb.translation"
+     }
+    }
+   },
+   {
+    "lemma": "doctor",
+    "language": "en",
+    "aspects": {
+     "translation": {
+      "reveal": "doctor - medico",
+      "bucket": "vocabulary.it.medico.noun.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "The woman is the subject of 'lives', and a subject relative with no preposition is plain che: la donna che abita. Chi looks like 'who' but is the antecedent-less relative ('whoever'); it can never lean on a noun. 'Fa il medico' (does the doctor) is how Italian states professions.",
+  "version": 1
+ },
+ {
+  "external_id": "trans_rel_en_it_che_do_01",
+  "source_lang": "en",
+  "target_lang": "it",
+  "source_text": "The book I am reading is really interesting.",
+  "reference_translations": [
+   {
+    "text": "Il libro che leggo è molto interessante.",
     "register": "neutral",
-    "difficulty": 3,
-    "cefr_level_target": "B2",
-    "required_buckets": [
-      "relative_pronoun.cui.with_preposition"
-    ],
-    "optional_buckets": [
-      "verb_form.imperfect"
-    ],
-    "vocab_help": [
-      {
-        "lemma": "film",
-        "language": "en",
-        "aspects": {
-          "translation": {
-            "reveal": "film - film",
-            "bucket": "vocabulary.it.film.noun.translation"
-          }
-        }
-      },
-      {
-        "lemma": "talking",
-        "language": "en",
-        "aspects": {
-          "translation": {
-            "reveal": "to talk (about) - parlare (di)",
-            "bucket": "vocabulary.it.parlare.verb.translation"
-          }
-        }
-      },
-      {
-        "lemma": "prize",
-        "language": "en",
-        "aspects": {
-          "translation": {
-            "reveal": "prize - premio",
-            "bucket": "vocabulary.it.premio.noun.translation"
-          }
-        }
-      },
-      {
-        "lemma": "won",
-        "language": "en",
-        "aspects": {
-          "translation": {
-            "reveal": "to win - vincere",
-            "bucket": "vocabulary.it.vincere.verb.translation"
-          }
-        }
-      }
-    ],
-    "explanation": "Parlare takes di, and the preposition must travel to the front of the relative: di cui parlavamo, 'about which we were talking'. The imperfect parlavamo fits the open-ended background activity. English 'about' dangling at the end is the trap; Italian has no stranded prepositions.",
-    "version": 1
-  },
-  {
-    "external_id": "trans_rel_en_it_cui_poss_01",
-    "source_lang": "en",
-    "target_lang": "it",
-    "source_text": "The writer whose book you gave me is famous.",
-    "reference_translations": [
-      {
-        "text": "Lo scrittore il cui libro mi hai regalato è famoso.",
-        "register": "neutral",
-        "notes": "Standard: article agrees with libro (m sg), regalare for a gift."
-      },
-      {
-        "text": "Lo scrittore il cui libro mi hai dato è famoso.",
-        "register": "neutral",
-        "notes": "dare instead of regalare, equally fine."
-      },
-      {
-        "text": "Lo scrittore di cui libro mi hai dato è famoso.",
-        "register": "neutral",
-        "notes": "WRONG: possession inside a relative is article + cui + noun (il cui libro), not di cui.",
-        "polarity": "negative"
-      }
-    ],
-    "topic": "relative_pronoun",
+    "notes": "Standard; simple present for English progressive."
+   },
+   {
+    "text": "Il libro che sto leggendo è davvero interessante.",
     "register": "neutral",
-    "difficulty": 4,
-    "cefr_level_target": "B2",
-    "required_buckets": [
-      "relative_pronoun.cui.possessive"
-    ],
-    "optional_buckets": [],
-    "vocab_help": [
-      {
-        "lemma": "writer",
-        "language": "en",
-        "aspects": {
-          "translation": {
-            "reveal": "writer - scrittore",
-            "bucket": "vocabulary.it.scrittore.noun.translation"
-          }
-        }
-      },
-      {
-        "lemma": "book",
-        "language": "en",
-        "aspects": {
-          "translation": {
-            "reveal": "book - libro",
-            "bucket": "vocabulary.it.libro.noun.translation"
-          },
-          "gender": {
-            "reveal": "masculine (m)",
-            "bucket": "vocabulary.it.libro.noun.gender"
-          }
-        }
-      },
-      {
-        "lemma": "gave",
-        "language": "en",
-        "aspects": {
-          "translation": {
-            "reveal": "to give - dare",
-            "bucket": "vocabulary.it.dare.verb.translation"
-          }
-        }
-      }
-    ],
-    "explanation": "'Whose' inside a relative clause is article + cui + noun: il cui libro, with the article agreeing with the possessed thing (libro, masculine singular), not with the writer. Di cui expresses 'of which' but cannot own anything; that substitution is the headline miss.",
-    "version": 1
-  },
-  {
-    "external_id": "trans_rel_en_it_chi_01",
-    "source_lang": "en",
-    "target_lang": "it",
-    "source_text": "Those who work hard deserve a holiday.",
-    "reference_translations": [
-      {
-        "text": "Chi lavora sodo merita una vacanza.",
-        "register": "neutral",
-        "notes": "Standard: antecedent-less chi with singular verb throughout."
-      },
-      {
-        "text": "Chi lavora molto merita una vacanza.",
-        "register": "neutral",
-        "notes": "lavorare molto as the everyday alternative to sodo."
-      },
-      {
-        "text": "Chi lavorano sodo meritano una vacanza.",
-        "register": "neutral",
-        "notes": "WRONG: chi is grammatically singular; lavora and merita, never the plural.",
-        "polarity": "negative"
-      },
-      {
-        "text": "Quelli che lavorano sodo meritano una vacanza.",
-        "register": "neutral",
-        "notes": "Grammatical alternative with quelli che + plural; accepted, though chi is the neater rendering."
-      }
-    ],
-    "topic": "relative_pronoun",
+    "notes": "Progressive with stare + gerundio, equally natural."
+   },
+   {
+    "text": "Il libro leggo è molto interessante.",
     "register": "neutral",
-    "difficulty": 3,
-    "cefr_level_target": "B1",
-    "required_buckets": [
-      "relative_pronoun.chi"
-    ],
-    "optional_buckets": [],
-    "vocab_help": [
-      {
-        "lemma": "work",
-        "language": "en",
-        "aspects": {
-          "translation": {
-            "reveal": "to work - lavorare",
-            "bucket": "vocabulary.it.lavorare.verb.translation"
-          }
-        }
-      },
-      {
-        "lemma": "hard",
-        "language": "en",
-        "aspects": {
-          "translation": {
-            "reveal": "hard (of work) - sodo",
-            "bucket": "vocabulary.it.sodo.translation"
-          }
-        }
-      },
-      {
-        "lemma": "deserve",
-        "language": "en",
-        "aspects": {
-          "translation": {
-            "reveal": "to deserve - meritare",
-            "bucket": "vocabulary.it.meritare.verb.translation"
-          }
-        }
-      },
-      {
-        "lemma": "holiday",
-        "language": "en",
-        "aspects": {
-          "translation": {
-            "reveal": "holiday - vacanza",
-            "bucket": "vocabulary.it.vacanza.noun.translation"
-          }
-        }
-      }
-    ],
-    "explanation": "English 'those who' is plural, but the idiomatic Italian rendering is the antecedent-less relative chi, and chi is grammatically singular: chi lavora... merita. The whole sentence stays third-person singular even though it describes many people. Quelli che + plural verbs is also correct, just heavier.",
-    "version": 1
-  },
-  {
-    "external_id": "trans_rel_en_it_neut_01",
-    "source_lang": "en",
-    "target_lang": "it",
-    "source_text": "I did not understand what you said.",
-    "reference_translations": [
-      {
-        "text": "Non ho capito quello che hai detto.",
-        "register": "neutral",
-        "notes": "Standard neuter relative quello che."
-      },
-      {
-        "text": "Non ho capito ciò che hai detto.",
-        "register": "neutral",
-        "notes": "ciò che, the more formal twin."
-      },
-      {
-        "text": "Non ho capito cosa hai detto.",
-        "register": "neutral",
-        "notes": "Indirect question with cosa, also fully correct after capire."
-      },
-      {
-        "text": "Non ho capito che hai detto.",
-        "register": "neutral",
-        "notes": "WRONG at this level: bare che for 'what' is regional/colloquial; standard Italian needs quello che, ciò che or cosa.",
-        "polarity": "negative"
-      }
-    ],
-    "topic": "relative_pronoun",
+    "notes": "WRONG: English drops the relative ('the book I am reading'); Italian never does. che is obligatory.",
+    "polarity": "negative"
+   }
+  ],
+  "topic": "relative_pronoun",
+  "register": "neutral",
+  "difficulty": 2,
+  "cefr_level_target": "B1",
+  "required_buckets": [
+   "relative_pronoun.che.direct_object"
+  ],
+  "optional_buckets": [],
+  "vocab_help": [
+   {
+    "lemma": "book",
+    "language": "en",
+    "aspects": {
+     "translation": {
+      "reveal": "book - libro",
+      "bucket": "vocabulary.it.libro.noun.translation"
+     }
+    }
+   },
+   {
+    "lemma": "reading",
+    "language": "en",
+    "aspects": {
+     "translation": {
+      "reveal": "to read - leggere",
+      "bucket": "vocabulary.it.leggere.verb.translation"
+     }
+    }
+   },
+   {
+    "lemma": "interesting",
+    "language": "en",
+    "aspects": {
+     "translation": {
+      "reveal": "interesting - interessante",
+      "bucket": "vocabulary.it.interessante.adjective.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "English quietly omits the relative ('the book [that] I am reading'); Italian must say it: il libro che leggo. The book is the direct object of leggere, and an object with no preposition takes invariable che, the same word as the subject relative.",
+  "version": 1
+ },
+ {
+  "external_id": "trans_rel_en_it_cui_prep_01",
+  "source_lang": "en",
+  "target_lang": "it",
+  "source_text": "The person I work with is very kind.",
+  "reference_translations": [
+   {
+    "text": "La persona con cui lavoro è molto gentile.",
     "register": "neutral",
-    "difficulty": 3,
-    "cefr_level_target": "B1",
-    "required_buckets": [
-      "relative_pronoun.neuter"
-    ],
-    "optional_buckets": [],
-    "vocab_help": [
-      {
-        "lemma": "understand",
-        "language": "en",
-        "aspects": {
-          "translation": {
-            "reveal": "to understand - capire",
-            "bucket": "vocabulary.it.capire.verb.translation"
-          }
-        }
-      },
-      {
-        "lemma": "said",
-        "language": "en",
-        "aspects": {
-          "translation": {
-            "reveal": "to say - dire",
-            "bucket": "vocabulary.it.dire.verb.translation"
-          }
-        }
-      }
-    ],
-    "explanation": "English 'what' hides 'the thing that', and Italian spells it out: quello che (or ciò che) hai detto. After a verb like capire an indirect question with cosa is also available and correct. What standard Italian rejects is the bare che, which cannot carry the 'thing' on its own.",
-    "version": 1
-  },
-  {
-    "external_id": "trans_rel_en_it_dove_01",
-    "source_lang": "en",
-    "target_lang": "it",
-    "source_text": "The town where I was born is by the sea.",
-    "reference_translations": [
-      {
-        "text": "Il paese dove sono nato è sul mare.",
-        "register": "neutral",
-        "notes": "Standard relative dove; nato agrees with a male speaker."
-      },
-      {
-        "text": "Il paese in cui sono nata è sul mare.",
-        "register": "neutral",
-        "notes": "in cui equivalent; nata for a female speaker, both agreements accepted."
-      },
-      {
-        "text": "Il paese che sono nato è sul mare.",
-        "register": "neutral",
-        "notes": "WRONG: che cannot express place; the 'in' idea needs dove or in cui.",
-        "polarity": "negative"
-      }
-    ],
-    "topic": "relative_pronoun",
+    "notes": "Standard: preposition fronted before cui."
+   },
+   {
+    "text": "La persona con la quale lavoro è molto gentile.",
     "register": "neutral",
-    "difficulty": 2,
-    "cefr_level_target": "B1",
-    "required_buckets": [
-      "relative_pronoun.dove"
-    ],
-    "optional_buckets": [
-      "verb_form.passato_prossimo.auxiliary.essere_motion_intransitive"
-    ],
-    "vocab_help": [
-      {
-        "lemma": "town",
-        "language": "en",
-        "aspects": {
-          "translation": {
-            "reveal": "town, village - paese",
-            "bucket": "vocabulary.it.paese.noun.translation"
-          }
-        }
-      },
-      {
-        "lemma": "born",
-        "language": "en",
-        "aspects": {
-          "translation": {
-            "reveal": "to be born - nascere",
-            "bucket": "vocabulary.it.nascere.verb.translation"
-          },
-          "auxiliary": {
-            "reveal": "essere",
-            "bucket": "vocabulary.it.nascere.verb.auxiliary"
-          }
-        }
-      },
-      {
-        "lemma": "sea",
-        "language": "en",
-        "aspects": {
-          "translation": {
-            "reveal": "sea - mare",
-            "bucket": "vocabulary.it.mare.verb.translation"
-          }
-        }
-      }
-    ],
-    "explanation": "A place followed by 'where' takes the relative dove: il paese dove sono nato, with in cui as the formal equivalent. Nascere conjugates with essere, so the participle agrees with the speaker (nato/nata). Che alone cannot mean 'where'; it drops the 'in' idea on the floor.",
-    "version": 1
-  },
-  {
-    "external_id": "trans_rel_en_it_ilq_clar_01",
-    "source_lang": "en",
-    "target_lang": "it",
-    "source_text": "Paolo's sister, who studies in Milan, arrives tomorrow. [make clear it is the sister who studies there]",
-    "reference_translations": [
-      {
-        "text": "La sorella di Paolo, la quale studia a Milano, arriva domani.",
-        "register": "neutral",
-        "notes": "Standard: la quale pins the clause to the sister unambiguously."
-      },
-      {
-        "text": "La sorella di Paolo, che studia a Milano, arriva domani.",
-        "register": "neutral",
-        "notes": "Grammatical, but che leaves it open whether the sister or Paolo studies in Milan; fails the disambiguation the brief in brackets asks for.",
-        "polarity": "negative"
-      }
-    ],
-    "topic": "relative_pronoun",
+    "notes": "Agreeing alternative, a shade more formal."
+   },
+   {
+    "text": "La persona che lavoro con è molto gentile.",
     "register": "neutral",
-    "difficulty": 4,
-    "cefr_level_target": "B2",
-    "required_buckets": [
-      "relative_pronoun.il_quale.for_clarity"
-    ],
-    "optional_buckets": [],
-    "vocab_help": [
-      {
-        "lemma": "sister",
-        "language": "en",
-        "aspects": {
-          "translation": {
-            "reveal": "sister - sorella",
-            "bucket": "vocabulary.it.sorella.noun.translation"
-          }
-        }
-      },
-      {
-        "lemma": "studies",
-        "language": "en",
-        "aspects": {
-          "translation": {
-            "reveal": "to study - studiare",
-            "bucket": "vocabulary.it.studiare.verb.translation"
-          }
-        }
-      },
-      {
-        "lemma": "arrives",
-        "language": "en",
-        "aspects": {
-          "translation": {
-            "reveal": "to arrive - arrivare",
-            "bucket": "vocabulary.it.arrivare.verb.translation"
-          }
-        }
-      }
-    ],
-    "explanation": "With two names in play, che would leave 'who studies in Milan' hovering between the sister and Paolo. The agreeing relative la quale carries feminine gender, so it can only attach to la sorella; ambiguity gone. This is the one job where the heavyweight il quale family beats everyday che.",
-    "version": 1
-  },
-  {
-    "external_id": "trans_rel_en_it_ilq_prep_01",
-    "source_lang": "en",
-    "target_lang": "it",
-    "source_text": "The colleagues with whom I travelled are Swiss.",
-    "reference_translations": [
-      {
-        "text": "I colleghi con i quali ho viaggiato sono svizzeri.",
-        "register": "neutral",
-        "notes": "Agreeing relative matches colleghi (m pl): con i quali. 'With whom' signals the formal register."
-      },
-      {
-        "text": "I colleghi con cui ho viaggiato sono svizzeri.",
-        "register": "neutral",
-        "notes": "con cui equally correct; invariable, a notch less formal."
-      },
-      {
-        "text": "I colleghi con il quale ho viaggiato sono svizzeri.",
-        "register": "neutral",
-        "notes": "WRONG: quale must agree with the plural antecedent; con i quali, not con il quale.",
-        "polarity": "negative"
-      }
-    ],
-    "topic": "relative_pronoun",
+    "notes": "WRONG: English word order strands the preposition; Italian must front it (con cui), and che cannot follow a preposition.",
+    "polarity": "negative"
+   }
+  ],
+  "topic": "relative_pronoun",
+  "register": "neutral",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "required_buckets": [
+   "relative_pronoun.cui.with_preposition"
+  ],
+  "optional_buckets": [],
+  "vocab_help": [
+   {
+    "lemma": "person",
+    "language": "en",
+    "aspects": {
+     "translation": {
+      "reveal": "person - persona",
+      "bucket": "vocabulary.it.persona.noun.translation"
+     }
+    }
+   },
+   {
+    "lemma": "work",
+    "language": "en",
+    "aspects": {
+     "translation": {
+      "reveal": "to work - lavorare",
+      "bucket": "vocabulary.it.lavorare.verb.translation"
+     }
+    }
+   },
+   {
+    "lemma": "kind",
+    "language": "en",
+    "aspects": {
+     "translation": {
+      "reveal": "kind - gentile",
+      "bucket": "vocabulary.it.gentile.adjective.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "English hides the preposition at the end ('work with'); Italian gathers it up and puts it before the relative: con cui lavoro. Whenever the relative carries a preposition, che gives way to cui. The stranded-preposition rendering is the classic transfer error this item exists to catch.",
+  "version": 1
+ },
+ {
+  "external_id": "trans_rel_en_it_cui_prep_02",
+  "source_lang": "en",
+  "target_lang": "it",
+  "source_text": "The film we were talking about won a prize.",
+  "reference_translations": [
+   {
+    "text": "Il film di cui parlavamo ha vinto un premio.",
+    "register": "neutral",
+    "notes": "Standard: parlare di, so di cui, imperfect for the background activity."
+   },
+   {
+    "text": "Il film del quale parlavamo ha vinto un premio.",
+    "register": "neutral",
+    "notes": "Agreeing alternative del quale, more formal."
+   },
+   {
+    "text": "Il film che parlavamo di ha vinto un premio.",
+    "register": "neutral",
+    "notes": "WRONG: stranded preposition copied from English; Italian fronts it as di cui.",
+    "polarity": "negative"
+   }
+  ],
+  "topic": "relative_pronoun",
+  "register": "neutral",
+  "difficulty": 3,
+  "cefr_level_target": "B2",
+  "required_buckets": [
+   "relative_pronoun.cui.with_preposition"
+  ],
+  "optional_buckets": [
+   "verb_form.imperfect"
+  ],
+  "vocab_help": [
+   {
+    "lemma": "film",
+    "language": "en",
+    "aspects": {
+     "translation": {
+      "reveal": "film - film",
+      "bucket": "vocabulary.it.film.noun.translation"
+     }
+    }
+   },
+   {
+    "lemma": "talking",
+    "language": "en",
+    "aspects": {
+     "translation": {
+      "reveal": "to talk (about) - parlare (di)",
+      "bucket": "vocabulary.it.parlare.verb.translation"
+     }
+    }
+   },
+   {
+    "lemma": "prize",
+    "language": "en",
+    "aspects": {
+     "translation": {
+      "reveal": "prize - premio",
+      "bucket": "vocabulary.it.premio.noun.translation"
+     }
+    }
+   },
+   {
+    "lemma": "won",
+    "language": "en",
+    "aspects": {
+     "translation": {
+      "reveal": "to win - vincere",
+      "bucket": "vocabulary.it.vincere.verb.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "Parlare takes di, and the preposition must travel to the front of the relative: di cui parlavamo, 'about which we were talking'. The imperfect parlavamo fits the open-ended background activity. English 'about' dangling at the end is the trap; Italian has no stranded prepositions.",
+  "version": 1
+ },
+ {
+  "external_id": "trans_rel_en_it_cui_poss_01",
+  "source_lang": "en",
+  "target_lang": "it",
+  "source_text": "The writer whose book you gave me is famous.",
+  "reference_translations": [
+   {
+    "text": "Lo scrittore il cui libro mi hai regalato è famoso.",
+    "register": "neutral",
+    "notes": "Standard: article agrees with libro (m sg), regalare for a gift."
+   },
+   {
+    "text": "Lo scrittore il cui libro mi hai dato è famoso.",
+    "register": "neutral",
+    "notes": "dare instead of regalare, equally fine."
+   },
+   {
+    "text": "Lo scrittore di cui libro mi hai dato è famoso.",
+    "register": "neutral",
+    "notes": "WRONG: possession inside a relative is article + cui + noun (il cui libro), not di cui.",
+    "polarity": "negative"
+   }
+  ],
+  "topic": "relative_pronoun",
+  "register": "neutral",
+  "difficulty": 4,
+  "cefr_level_target": "B2",
+  "required_buckets": [
+   "relative_pronoun.cui.possessive"
+  ],
+  "optional_buckets": [],
+  "vocab_help": [
+   {
+    "lemma": "writer",
+    "language": "en",
+    "aspects": {
+     "translation": {
+      "reveal": "writer - scrittore",
+      "bucket": "vocabulary.it.scrittore.noun.translation"
+     }
+    }
+   },
+   {
+    "lemma": "book",
+    "language": "en",
+    "aspects": {
+     "translation": {
+      "reveal": "book - libro",
+      "bucket": "vocabulary.it.libro.noun.translation"
+     },
+     "gender": {
+      "reveal": "masculine (m)",
+      "bucket": "vocabulary.it.libro.noun.gender"
+     }
+    }
+   },
+   {
+    "lemma": "gave",
+    "language": "en",
+    "aspects": {
+     "translation": {
+      "reveal": "to give - dare",
+      "bucket": "vocabulary.it.dare.verb.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "'Whose' inside a relative clause is article + cui + noun: il cui libro, with the article agreeing with the possessed thing (libro, masculine singular), not with the writer. Di cui expresses 'of which' but cannot own anything; that substitution is the headline miss.",
+  "version": 1
+ },
+ {
+  "external_id": "trans_rel_en_it_chi_01",
+  "source_lang": "en",
+  "target_lang": "it",
+  "source_text": "Those who work hard deserve a holiday.",
+  "reference_translations": [
+   {
+    "text": "Chi lavora sodo merita una vacanza.",
+    "register": "neutral",
+    "notes": "Standard: antecedent-less chi with singular verb throughout."
+   },
+   {
+    "text": "Chi lavora molto merita una vacanza.",
+    "register": "neutral",
+    "notes": "lavorare molto as the everyday alternative to sodo."
+   },
+   {
+    "text": "Chi lavorano sodo meritano una vacanza.",
+    "register": "neutral",
+    "notes": "WRONG: chi is grammatically singular; lavora and merita, never the plural.",
+    "polarity": "negative"
+   },
+   {
+    "text": "Quelli che lavorano sodo meritano una vacanza.",
+    "register": "neutral",
+    "notes": "Grammatical alternative with quelli che + plural; accepted, though chi is the neater rendering."
+   }
+  ],
+  "topic": "relative_pronoun",
+  "register": "neutral",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "required_buckets": [
+   "relative_pronoun.chi"
+  ],
+  "optional_buckets": [],
+  "vocab_help": [
+   {
+    "lemma": "work",
+    "language": "en",
+    "aspects": {
+     "translation": {
+      "reveal": "to work - lavorare",
+      "bucket": "vocabulary.it.lavorare.verb.translation"
+     }
+    }
+   },
+   {
+    "lemma": "hard",
+    "language": "en",
+    "aspects": {
+     "translation": {
+      "reveal": "hard (of work) - sodo",
+      "bucket": "vocabulary.it.sodo.adverb.translation"
+     }
+    }
+   },
+   {
+    "lemma": "deserve",
+    "language": "en",
+    "aspects": {
+     "translation": {
+      "reveal": "to deserve - meritare",
+      "bucket": "vocabulary.it.meritare.verb.translation"
+     }
+    }
+   },
+   {
+    "lemma": "holiday",
+    "language": "en",
+    "aspects": {
+     "translation": {
+      "reveal": "holiday - vacanza",
+      "bucket": "vocabulary.it.vacanza.noun.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "English 'those who' is plural, but the idiomatic Italian rendering is the antecedent-less relative chi, and chi is grammatically singular: chi lavora... merita. The whole sentence stays third-person singular even though it describes many people. Quelli che + plural verbs is also correct, just heavier.",
+  "version": 1
+ },
+ {
+  "external_id": "trans_rel_en_it_neut_01",
+  "source_lang": "en",
+  "target_lang": "it",
+  "source_text": "I did not understand what you said.",
+  "reference_translations": [
+   {
+    "text": "Non ho capito quello che hai detto.",
+    "register": "neutral",
+    "notes": "Standard neuter relative quello che."
+   },
+   {
+    "text": "Non ho capito ciò che hai detto.",
+    "register": "neutral",
+    "notes": "ciò che, the more formal twin."
+   },
+   {
+    "text": "Non ho capito cosa hai detto.",
+    "register": "neutral",
+    "notes": "Indirect question with cosa, also fully correct after capire."
+   },
+   {
+    "text": "Non ho capito che hai detto.",
+    "register": "neutral",
+    "notes": "WRONG at this level: bare che for 'what' is regional/colloquial; standard Italian needs quello che, ciò che or cosa.",
+    "polarity": "negative"
+   }
+  ],
+  "topic": "relative_pronoun",
+  "register": "neutral",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "required_buckets": [
+   "relative_pronoun.neuter"
+  ],
+  "optional_buckets": [],
+  "vocab_help": [
+   {
+    "lemma": "understand",
+    "language": "en",
+    "aspects": {
+     "translation": {
+      "reveal": "to understand - capire",
+      "bucket": "vocabulary.it.capire.verb.translation"
+     }
+    }
+   },
+   {
+    "lemma": "said",
+    "language": "en",
+    "aspects": {
+     "translation": {
+      "reveal": "to say - dire",
+      "bucket": "vocabulary.it.dire.verb.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "English 'what' hides 'the thing that', and Italian spells it out: quello che (or ciò che) hai detto. After a verb like capire an indirect question with cosa is also available and correct. What standard Italian rejects is the bare che, which cannot carry the 'thing' on its own.",
+  "version": 1
+ },
+ {
+  "external_id": "trans_rel_en_it_dove_01",
+  "source_lang": "en",
+  "target_lang": "it",
+  "source_text": "The town where I was born is by the sea.",
+  "reference_translations": [
+   {
+    "text": "Il paese dove sono nato è sul mare.",
+    "register": "neutral",
+    "notes": "Standard relative dove; nato agrees with a male speaker."
+   },
+   {
+    "text": "Il paese in cui sono nata è sul mare.",
+    "register": "neutral",
+    "notes": "in cui equivalent; nata for a female speaker, both agreements accepted."
+   },
+   {
+    "text": "Il paese che sono nato è sul mare.",
+    "register": "neutral",
+    "notes": "WRONG: che cannot express place; the 'in' idea needs dove or in cui.",
+    "polarity": "negative"
+   }
+  ],
+  "topic": "relative_pronoun",
+  "register": "neutral",
+  "difficulty": 2,
+  "cefr_level_target": "B1",
+  "required_buckets": [
+   "relative_pronoun.dove"
+  ],
+  "optional_buckets": [
+   "verb_form.passato_prossimo.auxiliary.essere_motion_intransitive"
+  ],
+  "vocab_help": [
+   {
+    "lemma": "town",
+    "language": "en",
+    "aspects": {
+     "translation": {
+      "reveal": "town, village - paese",
+      "bucket": "vocabulary.it.paese.noun.translation"
+     }
+    }
+   },
+   {
+    "lemma": "born",
+    "language": "en",
+    "aspects": {
+     "translation": {
+      "reveal": "to be born - nascere",
+      "bucket": "vocabulary.it.nascere.verb.translation"
+     },
+     "auxiliary": {
+      "reveal": "essere",
+      "bucket": "vocabulary.it.nascere.verb.auxiliary"
+     }
+    }
+   },
+   {
+    "lemma": "sea",
+    "language": "en",
+    "aspects": {
+     "translation": {
+      "reveal": "sea - mare",
+      "bucket": "vocabulary.it.mare.verb.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "A place followed by 'where' takes the relative dove: il paese dove sono nato, with in cui as the formal equivalent. Nascere conjugates with essere, so the participle agrees with the speaker (nato/nata). Che alone cannot mean 'where'; it drops the 'in' idea on the floor.",
+  "version": 1
+ },
+ {
+  "external_id": "trans_rel_en_it_ilq_clar_01",
+  "source_lang": "en",
+  "target_lang": "it",
+  "source_text": "Paolo's sister, who studies in Milan, arrives tomorrow. [make clear it is the sister who studies there]",
+  "reference_translations": [
+   {
+    "text": "La sorella di Paolo, la quale studia a Milano, arriva domani.",
+    "register": "neutral",
+    "notes": "Standard: la quale pins the clause to the sister unambiguously."
+   },
+   {
+    "text": "La sorella di Paolo, che studia a Milano, arriva domani.",
+    "register": "neutral",
+    "notes": "Grammatical, but che leaves it open whether the sister or Paolo studies in Milan; fails the disambiguation the brief in brackets asks for.",
+    "polarity": "negative"
+   }
+  ],
+  "topic": "relative_pronoun",
+  "register": "neutral",
+  "difficulty": 4,
+  "cefr_level_target": "B2",
+  "required_buckets": [
+   "relative_pronoun.il_quale.for_clarity"
+  ],
+  "optional_buckets": [],
+  "vocab_help": [
+   {
+    "lemma": "sister",
+    "language": "en",
+    "aspects": {
+     "translation": {
+      "reveal": "sister - sorella",
+      "bucket": "vocabulary.it.sorella.noun.translation"
+     }
+    }
+   },
+   {
+    "lemma": "studies",
+    "language": "en",
+    "aspects": {
+     "translation": {
+      "reveal": "to study - studiare",
+      "bucket": "vocabulary.it.studiare.verb.translation"
+     }
+    }
+   },
+   {
+    "lemma": "arrives",
+    "language": "en",
+    "aspects": {
+     "translation": {
+      "reveal": "to arrive - arrivare",
+      "bucket": "vocabulary.it.arrivare.verb.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "With two names in play, che would leave 'who studies in Milan' hovering between the sister and Paolo. The agreeing relative la quale carries feminine gender, so it can only attach to la sorella; ambiguity gone. This is the one job where the heavyweight il quale family beats everyday che.",
+  "version": 1
+ },
+ {
+  "external_id": "trans_rel_en_it_ilq_prep_01",
+  "source_lang": "en",
+  "target_lang": "it",
+  "source_text": "The colleagues with whom I travelled are Swiss.",
+  "reference_translations": [
+   {
+    "text": "I colleghi con i quali ho viaggiato sono svizzeri.",
+    "register": "neutral",
+    "notes": "Agreeing relative matches colleghi (m pl): con i quali. 'With whom' signals the formal register."
+   },
+   {
+    "text": "I colleghi con cui ho viaggiato sono svizzeri.",
+    "register": "neutral",
+    "notes": "con cui equally correct; invariable, a notch less formal."
+   },
+   {
+    "text": "I colleghi con il quale ho viaggiato sono svizzeri.",
+    "register": "neutral",
+    "notes": "WRONG: quale must agree with the plural antecedent; con i quali, not con il quale.",
+    "polarity": "negative"
+   }
+  ],
+  "topic": "relative_pronoun",
+  "register": "formal",
+  "difficulty": 4,
+  "cefr_level_target": "C1",
+  "required_buckets": [
+   "relative_pronoun.il_quale.after_preposition"
+  ],
+  "optional_buckets": [
+   "relative_pronoun.cui.with_preposition"
+  ],
+  "vocab_help": [
+   {
+    "lemma": "colleagues",
+    "language": "en",
+    "aspects": {
+     "translation": {
+      "reveal": "colleague - collega",
+      "bucket": "vocabulary.it.collega.noun.translation"
+     }
+    }
+   },
+   {
+    "lemma": "travelled",
+    "language": "en",
+    "aspects": {
+     "translation": {
+      "reveal": "to travel - viaggiare",
+      "bucket": "vocabulary.it.viaggiare.verb.translation"
+     }
+    }
+   },
+   {
+    "lemma": "Swiss",
+    "language": "en",
+    "aspects": {
+     "translation": {
+      "reveal": "Swiss - svizzero",
+      "bucket": "vocabulary.it.svizzero.adjective.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "English 'with whom' invites the formal agreeing relative: con i quali, agreeing in gender and number with colleghi. The invariable con cui says the same thing and is also credited. What the agreeing family cannot do is skip the agreement: con il quale with a plural antecedent is the catchable miss.",
+  "version": 1
+ },
+ {
+  "external_id": "trans_rel_it_en_cui_01",
+  "source_lang": "it",
+  "target_lang": "en",
+  "source_text": "Il ragazzo a cui ho dato il libro è sparito.",
+  "reference_translations": [
+   {
+    "text": "The boy I gave the book to has disappeared.",
+    "register": "neutral",
+    "notes": "Natural English: relative dropped, preposition stranded at the end."
+   },
+   {
+    "text": "The boy to whom I gave the book has disappeared.",
+    "register": "neutral",
+    "notes": "Formal English keeping the preposition up front, mirroring the Italian."
+   },
+   {
+    "text": "The boy who I gave the book has disappeared.",
+    "register": "neutral",
+    "notes": "WRONG: English needs the 'to' somewhere; dropping it loses the indirect object.",
+    "polarity": "negative"
+   }
+  ],
+  "topic": "relative_pronoun",
+  "register": "neutral",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "required_buckets": [
+   "relative_pronoun.cui.with_preposition"
+  ],
+  "optional_buckets": [],
+  "vocab_help": [
+   {
+    "lemma": "sparito",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "sparire - to disappear",
+      "bucket": "vocabulary.it.sparire.verb.translation"
+     }
+    }
+   },
+   {
+    "lemma": "dato",
+    "language": "it",
+    "aspects": {
+     "infinitive": {
+      "reveal": "dare - to give",
+      "bucket": "vocabulary.it.dare.verb.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "A cui marks the person the book went TO. English can render it two ways: formally, keeping the preposition with the relative ('to whom I gave'), or naturally, dropping the relative and stranding the preposition ('I gave the book to'). Either is right; what English cannot do is lose the 'to' altogether.",
+  "version": 1
+ },
+ {
+  "external_id": "trans_rel_it_en_chi_01",
+  "source_lang": "it",
+  "target_lang": "en",
+  "source_text": "Chi arriva tardi non trova posto.",
+  "reference_translations": [
+   {
+    "text": "Whoever arrives late finds no seat.",
+    "register": "neutral",
+    "notes": "Whoever + singular mirrors the Italian most closely."
+   },
+   {
+    "text": "Those who arrive late don't find a seat.",
+    "register": "neutral",
+    "notes": "Plural 'those who' is idiomatic English; the number shift from singular chi is expected and correct."
+   },
+   {
+    "text": "Who arrives late doesn't find a seat.",
+    "register": "neutral",
+    "notes": "WRONG: bare 'who' cannot head an English free relative; use 'whoever' or 'those who'.",
+    "polarity": "negative"
+   }
+  ],
+  "topic": "relative_pronoun",
+  "register": "neutral",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "required_buckets": [
+   "relative_pronoun.chi"
+  ],
+  "optional_buckets": [],
+  "vocab_help": [
+   {
+    "lemma": "tardi",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "tardi - late",
+      "bucket": "vocabulary.it.tardi.adverb.translation"
+     }
+    }
+   },
+   {
+    "lemma": "posto",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "posto - seat, place",
+      "bucket": "vocabulary.it.posto.noun.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "Chi with no noun in front means 'whoever / those who'. Going into English you must supply what Italian leaves out: either 'whoever' with a singular verb or 'those who' with plurals. Both are faithful; the grammatical number is allowed to change in transit. Bare 'who' at the head of the sentence is the transfer error.",
+  "version": 1
+ },
+ {
+  "external_id": "trans_rel_it_en_poss_01",
+  "source_lang": "it",
+  "target_lang": "en",
+  "source_text": "L'autrice i cui romanzi leggiamo a scuola vive a Parigi.",
+  "reference_translations": [
+   {
+    "text": "The author whose novels we read at school lives in Paris.",
+    "register": "neutral",
+    "notes": "Standard: i cui (agreeing with romanzi) collapses into invariable English 'whose'."
+   },
+   {
+    "text": "The writer whose novels we read at school lives in Paris.",
+    "register": "neutral",
+    "notes": "writer/author both fine for autrice."
+   },
+   {
+    "text": "The author the novels of which we read at school lives in Paris.",
     "register": "formal",
-    "difficulty": 4,
-    "cefr_level_target": "C1",
-    "required_buckets": [
-      "relative_pronoun.il_quale.after_preposition"
-    ],
-    "optional_buckets": [
-      "relative_pronoun.cui.with_preposition"
-    ],
-    "vocab_help": [
-      {
-        "lemma": "colleagues",
-        "language": "en",
-        "aspects": {
-          "translation": {
-            "reveal": "colleague - collega",
-            "bucket": "vocabulary.it.collega.noun.translation"
-          }
-        }
-      },
-      {
-        "lemma": "travelled",
-        "language": "en",
-        "aspects": {
-          "translation": {
-            "reveal": "to travel - viaggiare",
-            "bucket": "vocabulary.it.viaggiare.verb.translation"
-          }
-        }
-      },
-      {
-        "lemma": "Swiss",
-        "language": "en",
-        "aspects": {
-          "translation": {
-            "reveal": "Swiss - svizzero",
-            "bucket": "vocabulary.it.svizzero.adjective.translation"
-          }
-        }
-      }
-    ],
-    "explanation": "English 'with whom' invites the formal agreeing relative: con i quali, agreeing in gender and number with colleghi. The invariable con cui says the same thing and is also credited. What the agreeing family cannot do is skip the agreement: con il quale with a plural antecedent is the catchable miss.",
-    "version": 1
-  },
-  {
-    "external_id": "trans_rel_it_en_cui_01",
-    "source_lang": "it",
-    "target_lang": "en",
-    "source_text": "Il ragazzo a cui ho dato il libro è sparito.",
-    "reference_translations": [
-      {
-        "text": "The boy I gave the book to has disappeared.",
-        "register": "neutral",
-        "notes": "Natural English: relative dropped, preposition stranded at the end."
-      },
-      {
-        "text": "The boy to whom I gave the book has disappeared.",
-        "register": "neutral",
-        "notes": "Formal English keeping the preposition up front, mirroring the Italian."
-      },
-      {
-        "text": "The boy who I gave the book has disappeared.",
-        "register": "neutral",
-        "notes": "WRONG: English needs the 'to' somewhere; dropping it loses the indirect object.",
-        "polarity": "negative"
-      }
-    ],
-    "topic": "relative_pronoun",
+    "notes": "Clumsy but not wrong; 'whose' is the natural rendering."
+   }
+  ],
+  "topic": "relative_pronoun",
+  "register": "neutral",
+  "difficulty": 4,
+  "cefr_level_target": "B2",
+  "required_buckets": [
+   "relative_pronoun.cui.possessive"
+  ],
+  "optional_buckets": [],
+  "vocab_help": [
+   {
+    "lemma": "autrice",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "autrice - author (female)",
+      "bucket": "vocabulary.it.autrice.noun.translation"
+     }
+    }
+   },
+   {
+    "lemma": "romanzi",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "romanzo - novel",
+      "bucket": "vocabulary.it.romanzo.noun.translation"
+     }
+    }
+   },
+   {
+    "lemma": "leggiamo",
+    "language": "it",
+    "aspects": {
+     "infinitive": {
+      "reveal": "leggere - to read",
+      "bucket": "vocabulary.it.leggere.verb.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "I cui romanzi is the 'whose' construction: article + cui + noun, article agreeing with romanzi (masculine plural), not with the feminine author. English is kinder: 'whose' never changes form. The reading skill is spotting that i cui signals possession, not 'of which'.",
+  "version": 1
+ },
+ {
+  "external_id": "trans_rel_it_en_neut_01",
+  "source_lang": "it",
+  "target_lang": "en",
+  "source_text": "Quello che dici non ha senso.",
+  "reference_translations": [
+   {
+    "text": "What you're saying makes no sense.",
     "register": "neutral",
-    "difficulty": 3,
-    "cefr_level_target": "B1",
-    "required_buckets": [
-      "relative_pronoun.cui.with_preposition"
-    ],
-    "optional_buckets": [],
-    "vocab_help": [
-      {
-        "lemma": "sparito",
-        "language": "it",
-        "aspects": {
-          "translation": {
-            "reveal": "sparire - to disappear",
-            "bucket": "vocabulary.it.sparire.verb.translation"
-          }
-        }
-      },
-      {
-        "lemma": "dato",
-        "language": "it",
-        "aspects": {
-          "infinitive": {
-            "reveal": "dare - to give",
-            "bucket": "vocabulary.it.dare.verb.translation"
-          }
-        }
-      }
-    ],
-    "explanation": "A cui marks the person the book went TO. English can render it two ways: formally, keeping the preposition with the relative ('to whom I gave'), or naturally, dropping the relative and stranding the preposition ('I gave the book to'). Either is right; what English cannot do is lose the 'to' altogether.",
-    "version": 1
-  },
-  {
-    "external_id": "trans_rel_it_en_chi_01",
-    "source_lang": "it",
-    "target_lang": "en",
-    "source_text": "Chi arriva tardi non trova posto.",
-    "reference_translations": [
-      {
-        "text": "Whoever arrives late finds no seat.",
-        "register": "neutral",
-        "notes": "Whoever + singular mirrors the Italian most closely."
-      },
-      {
-        "text": "Those who arrive late don't find a seat.",
-        "register": "neutral",
-        "notes": "Plural 'those who' is idiomatic English; the number shift from singular chi is expected and correct."
-      },
-      {
-        "text": "Who arrives late doesn't find a seat.",
-        "register": "neutral",
-        "notes": "WRONG: bare 'who' cannot head an English free relative; use 'whoever' or 'those who'.",
-        "polarity": "negative"
-      }
-    ],
-    "topic": "relative_pronoun",
+    "notes": "Standard: quello che = 'what' (the thing that)."
+   },
+   {
+    "text": "What you say doesn't make sense.",
     "register": "neutral",
-    "difficulty": 3,
-    "cefr_level_target": "B1",
-    "required_buckets": [
-      "relative_pronoun.chi"
-    ],
-    "optional_buckets": [],
-    "vocab_help": [
-      {
-        "lemma": "tardi",
-        "language": "it",
-        "aspects": {
-          "translation": {
-            "reveal": "tardi - late",
-            "bucket": "vocabulary.it.tardi.translation"
-          }
-        }
-      },
-      {
-        "lemma": "posto",
-        "language": "it",
-        "aspects": {
-          "translation": {
-            "reveal": "posto - seat, place",
-            "bucket": "vocabulary.it.posto.noun.translation"
-          }
-        }
-      }
-    ],
-    "explanation": "Chi with no noun in front means 'whoever / those who'. Going into English you must supply what Italian leaves out: either 'whoever' with a singular verb or 'those who' with plurals. Both are faithful; the grammatical number is allowed to change in transit. Bare 'who' at the head of the sentence is the transfer error.",
-    "version": 1
-  },
-  {
-    "external_id": "trans_rel_it_en_poss_01",
-    "source_lang": "it",
-    "target_lang": "en",
-    "source_text": "L'autrice i cui romanzi leggiamo a scuola vive a Parigi.",
-    "reference_translations": [
-      {
-        "text": "The author whose novels we read at school lives in Paris.",
-        "register": "neutral",
-        "notes": "Standard: i cui (agreeing with romanzi) collapses into invariable English 'whose'."
-      },
-      {
-        "text": "The writer whose novels we read at school lives in Paris.",
-        "register": "neutral",
-        "notes": "writer/author both fine for autrice."
-      },
-      {
-        "text": "The author the novels of which we read at school lives in Paris.",
-        "register": "formal",
-        "notes": "Clumsy but not wrong; 'whose' is the natural rendering."
-      }
-    ],
-    "topic": "relative_pronoun",
+    "notes": "Simple present equally fine."
+   },
+   {
+    "text": "That which you say makes no sense.",
+    "register": "formal",
+    "notes": "Archaic-sounding but faithful; 'what' is the natural choice."
+   }
+  ],
+  "topic": "relative_pronoun",
+  "register": "neutral",
+  "difficulty": 2,
+  "cefr_level_target": "B1",
+  "required_buckets": [
+   "relative_pronoun.neuter"
+  ],
+  "optional_buckets": [],
+  "vocab_help": [
+   {
+    "lemma": "senso",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "senso - sense",
+      "bucket": "vocabulary.it.senso.noun.translation"
+     }
+    }
+   },
+   {
+    "lemma": "dici",
+    "language": "it",
+    "aspects": {
+     "infinitive": {
+      "reveal": "dire - to say",
+      "bucket": "vocabulary.it.dire.verb.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "Quello che at the head of a clause is English 'what': 'the thing that you say'. Italian needs the two words (quello + che) because che alone cannot carry the hidden 'thing'; English packs both into 'what'. Avoid translating word by word as 'that which' unless you want a deliberately antique flavour.",
+  "version": 1
+ },
+ {
+  "external_id": "trans_rel_it_en_che_01",
+  "source_lang": "it",
+  "target_lang": "en",
+  "source_text": "La torta che hai portato era squisita.",
+  "reference_translations": [
+   {
+    "text": "The cake you brought was delicious.",
     "register": "neutral",
-    "difficulty": 4,
-    "cefr_level_target": "B2",
-    "required_buckets": [
-      "relative_pronoun.cui.possessive"
-    ],
-    "optional_buckets": [],
-    "vocab_help": [
-      {
-        "lemma": "autrice",
-        "language": "it",
-        "aspects": {
-          "translation": {
-            "reveal": "autrice - author (female)",
-            "bucket": "vocabulary.it.autrice.noun.translation"
-          }
-        }
-      },
-      {
-        "lemma": "romanzi",
-        "language": "it",
-        "aspects": {
-          "translation": {
-            "reveal": "romanzo - novel",
-            "bucket": "vocabulary.it.romanzo.noun.translation"
-          }
-        }
-      },
-      {
-        "lemma": "leggiamo",
-        "language": "it",
-        "aspects": {
-          "infinitive": {
-            "reveal": "leggere - to read",
-            "bucket": "vocabulary.it.leggere.verb.translation"
-          }
-        }
-      }
-    ],
-    "explanation": "I cui romanzi is the 'whose' construction: article + cui + noun, article agreeing with romanzi (masculine plural), not with the feminine author. English is kinder: 'whose' never changes form. The reading skill is spotting that i cui signals possession, not 'of which'.",
-    "version": 1
-  },
-  {
-    "external_id": "trans_rel_it_en_neut_01",
-    "source_lang": "it",
-    "target_lang": "en",
-    "source_text": "Quello che dici non ha senso.",
-    "reference_translations": [
-      {
-        "text": "What you're saying makes no sense.",
-        "register": "neutral",
-        "notes": "Standard: quello che = 'what' (the thing that)."
-      },
-      {
-        "text": "What you say doesn't make sense.",
-        "register": "neutral",
-        "notes": "Simple present equally fine."
-      },
-      {
-        "text": "That which you say makes no sense.",
-        "register": "formal",
-        "notes": "Archaic-sounding but faithful; 'what' is the natural choice."
-      }
-    ],
-    "topic": "relative_pronoun",
+    "notes": "Most natural: English drops the object relative entirely."
+   },
+   {
+    "text": "The cake that you brought was delicious.",
     "register": "neutral",
-    "difficulty": 2,
-    "cefr_level_target": "B1",
-    "required_buckets": [
-      "relative_pronoun.neuter"
-    ],
-    "optional_buckets": [],
-    "vocab_help": [
-      {
-        "lemma": "senso",
-        "language": "it",
-        "aspects": {
-          "translation": {
-            "reveal": "senso - sense",
-            "bucket": "vocabulary.it.senso.noun.translation"
-          }
-        }
-      },
-      {
-        "lemma": "dici",
-        "language": "it",
-        "aspects": {
-          "infinitive": {
-            "reveal": "dire - to say",
-            "bucket": "vocabulary.it.dire.verb.translation"
-          }
-        }
-      }
-    ],
-    "explanation": "Quello che at the head of a clause is English 'what': 'the thing that you say'. Italian needs the two words (quello + che) because che alone cannot carry the hidden 'thing'; English packs both into 'what'. Avoid translating word by word as 'that which' unless you want a deliberately antique flavour.",
-    "version": 1
-  },
-  {
-    "external_id": "trans_rel_it_en_che_01",
-    "source_lang": "it",
-    "target_lang": "en",
-    "source_text": "La torta che hai portato era squisita.",
-    "reference_translations": [
-      {
-        "text": "The cake you brought was delicious.",
-        "register": "neutral",
-        "notes": "Most natural: English drops the object relative entirely."
-      },
-      {
-        "text": "The cake that you brought was delicious.",
-        "register": "neutral",
-        "notes": "Keeping 'that' is equally correct."
-      },
-      {
-        "text": "The cake which you brought was delicious.",
-        "register": "neutral",
-        "notes": "'which' acceptable, slightly formal in a restrictive clause."
-      }
-    ],
-    "topic": "relative_pronoun",
+    "notes": "Keeping 'that' is equally correct."
+   },
+   {
+    "text": "The cake which you brought was delicious.",
     "register": "neutral",
-    "difficulty": 2,
-    "cefr_level_target": "A2",
-    "required_buckets": [
-      "relative_pronoun.che.direct_object"
-    ],
-    "optional_buckets": [],
-    "vocab_help": [
-      {
-        "lemma": "torta",
-        "language": "it",
-        "aspects": {
-          "translation": {
-            "reveal": "torta - cake",
-            "bucket": "vocabulary.it.torta.noun.translation"
-          }
-        }
-      },
-      {
-        "lemma": "portato",
-        "language": "it",
-        "aspects": {
-          "infinitive": {
-            "reveal": "portare - to bring",
-            "bucket": "vocabulary.it.portare.verb.translation"
-          }
-        }
-      },
-      {
-        "lemma": "squisita",
-        "language": "it",
-        "aspects": {
-          "translation": {
-            "reveal": "squisito - delicious",
-            "bucket": "vocabulary.it.squisito.adjective.translation"
-          }
-        }
-      }
-    ],
-    "explanation": "Che here stands for the cake, the direct object of portare. English has the luxury Italian lacks: the object relative can vanish ('the cake you brought'), or surface as 'that' or 'which'. All three are right. Going the other way, remember the luxury is one-directional; Italian che can never be dropped.",
-    "version": 1
-  }
+    "notes": "'which' acceptable, slightly formal in a restrictive clause."
+   }
+  ],
+  "topic": "relative_pronoun",
+  "register": "neutral",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "required_buckets": [
+   "relative_pronoun.che.direct_object"
+  ],
+  "optional_buckets": [],
+  "vocab_help": [
+   {
+    "lemma": "torta",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "torta - cake",
+      "bucket": "vocabulary.it.torta.noun.translation"
+     }
+    }
+   },
+   {
+    "lemma": "portato",
+    "language": "it",
+    "aspects": {
+     "infinitive": {
+      "reveal": "portare - to bring",
+      "bucket": "vocabulary.it.portare.verb.translation"
+     }
+    }
+   },
+   {
+    "lemma": "squisita",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "squisito - delicious",
+      "bucket": "vocabulary.it.squisito.adjective.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "Che here stands for the cake, the direct object of portare. English has the luxury Italian lacks: the object relative can vanish ('the cake you brought'), or surface as 'that' or 'which'. All three are right. Going the other way, remember the luxury is one-directional; Italian che can never be dropped.",
+  "version": 1
+ }
 ]

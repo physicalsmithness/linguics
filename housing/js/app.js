@@ -9,7 +9,8 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-15-r10";
+  const LL_BUILD = "2026-07-17-r14";
+  LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // Touch-first device (no hover, coarse pointer): tap interactions replace
   // keyboard ones. Computed once; used for tap-to-mark on MCQ.
   const TOUCH_FIRST = !!(window.matchMedia
@@ -114,8 +115,13 @@
     const hasClauses = Array.isArray(filter.clauses) && filter.clauses.length > 0;
     const range = (Array.isArray(filter.cefrRange) && filter.cefrRange.length === 2)
       ? filter.cefrRange : null;
+    const lvls = (Array.isArray(filter.cefrLevels) && filter.cefrLevels.length)
+      ? filter.cefrLevels : null;
     return arr.filter(q => {
-      if (range) {
+      if (lvls) {
+        // Independent multi-select: membership in the OR-ed level set.
+        if (!lvls.includes(cefrIndex(q.cefr_level_target))) return false;
+      } else if (range) {
         const ci = cefrIndex(q.cefr_level_target);
         if (ci < range[0] || ci > range[1]) return false;
       } else if (filter.cefr && q.cefr_level_target !== filter.cefr) {
@@ -148,6 +154,18 @@
     return "";
   }
   function cefrLabelFor(filter) {
+    if (Array.isArray(filter.cefrLevels) && filter.cefrLevels.length) {
+      // Collapse to runs: [A1,A2,B1] -> "A1-B1"; [A1,B1] -> "A1, B1".
+      const s = filter.cefrLevels.slice().sort((a, b) => a - b);
+      const parts = [];
+      let a = s[0], b = s[0];
+      for (let k = 1; k <= s.length; k++) {
+        if (k < s.length && s[k] === b + 1) { b = s[k]; continue; }
+        parts.push(a === b ? CEFR_ORDER[a] : CEFR_ORDER[a] + "\u2013" + CEFR_ORDER[b]);
+        if (k < s.length) { a = s[k]; b = s[k]; }
+      }
+      return parts.join(", ");
+    }
     if (Array.isArray(filter.cefrRange) && filter.cefrRange.length === 2) {
       const a = CEFR_ORDER[filter.cefrRange[0]], b = CEFR_ORDER[filter.cefrRange[1]];
       return a === b ? a : a + "\u2013" + b;
@@ -307,7 +325,7 @@
   // different filters can yield the same count, and a length-only check then
   // serves stale items. See inter_chat/Architecture_Housing_drill_filter_not_applied.md.
   function filterSig(f) {
-    return JSON.stringify([f.topic, f.cefr, f.bucketPath, f.clauses || null, f.cefrRange || null, f.targetLang || null]);
+    return JSON.stringify([f.topic, f.cefr, f.bucketPath, f.clauses || null, f.cefrRange || null, f.targetLang || null, f.cefrLevels || null]);
   }
   let _grammarDeckSig = null;
   function ensureGrammarDeck() {
@@ -359,7 +377,8 @@
     bar.className = "filter-row";
 
     const hasClauses = Array.isArray(filterObj.clauses) && filterObj.clauses.length > 0;
-    const hasRange = Array.isArray(filterObj.cefrRange) && filterObj.cefrRange.length === 2;
+    const hasRange = (Array.isArray(filterObj.cefrRange) && filterObj.cefrRange.length === 2)
+      || (Array.isArray(filterObj.cefrLevels) && filterObj.cefrLevels.length > 0);
 
     // ---- Topic chip ----
     const tChip = document.createElement("label");
@@ -400,7 +419,7 @@
     tSel.addEventListener("change", () => {
       if (tSel.value === "__custom__") return;   // no-op: it's the current composed state
       filterObj.topic = tSel.value;
-      filterObj.clauses = null; filterObj.cefrRange = null;  // in-session edit reverts to scalar
+      filterObj.clauses = null; filterObj.cefrRange = null; filterObj.cefrLevels = null;  // in-session edit reverts to scalar
       onChange();
     });
     tChip.appendChild(tSel);
@@ -432,7 +451,7 @@
     cSel.addEventListener("change", () => {
       if (cSel.value === "__custom__") return;
       filterObj.cefr = cSel.value;
-      filterObj.clauses = null; filterObj.cefrRange = null;
+      filterObj.clauses = null; filterObj.cefrRange = null; filterObj.cefrLevels = null;
       onChange();
     });
     cChip.appendChild(cSel);
@@ -609,53 +628,73 @@
       // Some topics are buckets-only (no grammar / translation items). For
       // those we skip the content fetches entirely to avoid the 404 noise.
       const BUCKETS_ONLY_TOPICS = new Set(["vocabulary", "vocabulary_frequency"]);
+      // Parallel fetch with a small concurrency pool (entry_load_and_level_strip
+      // Defect 1). The old loop awaited every file in sequence - ~30 topics x
+      // up to 3 files = up to ~90 serial round-trips, which was the ten-second
+      // cold load. Results collect into a keyed map and are flattened in
+      // manifest order below, so parallel completion can never shuffle topic
+      // order. Per-file Foptional resilience is unchanged: one bad file skips
+      // that file, one missing tree skips that topic.
+      const POOL = 8;
+      const perTopic = new Map();
+      let nextJob = 0;
+      const worker = async () => {
+        for (;;) {
+          const idx = nextJob++;
+          if (idx >= topics.length) return;
+          const topic = topics[idx];
+          const tree = await Foptional(`../data/buckets/${topic}.json`);
+          if (!tree) {
+            console.warn(`Bucket tree missing for topic '${topic}'; skipping.`);
+            continue;
+          }
+          const isBucketsOnly = BUCKETS_ONLY_TOPICS.has(topic);
+          let g = null, t = null;
+          if (!isBucketsOnly) {
+            [g, t] = await Promise.all([
+              Foptional(`../data/grammar_questions_${topic}.json`),
+              Foptional(`../data/translation_items_${topic}.json`)
+            ]);
+          }
+          perTopic.set(topic, { tree, g, t, isBucketsOnly });
+        }
+      };
+      // The four singleton files (glossary, vocab list, parts, themes) join
+      // the same wave rather than trailing the topic loop.
+      const tail = Promise.all([
+        Foptional("../data/glossary.json"),
+        Foptional("../data/vocabulary_it_frequency.json"),
+        Foptional("../data/parts.json"),
+        Foptional("../data/vocab_themes.json")
+      ]);
+      const workers = [];
+      for (let w = 0; w < Math.min(POOL, topics.length); w++) workers.push(worker());
+      await Promise.all(workers);
+      const [glossary, vocab, parts, themes] = await tail;
+
+      // Flatten strictly in manifest order.
       const buckets = [];
       const grammar = [];
       const translation = [];
       const perTopicCounts = [];
-
       for (const topic of topics) {
-        const tree = await Foptional(`../data/buckets/${topic}.json`);
-        if (!tree) {
-          console.warn(`Bucket tree missing for topic '${topic}'; skipping.`);
-          continue;
-        }
-        for (const b of tree) buckets.push(b);
-
-        const isBucketsOnly = BUCKETS_ONLY_TOPICS.has(topic);
-        let g = null, t = null;
-        if (!isBucketsOnly) {
-          g = await Foptional(`../data/grammar_questions_${topic}.json`);
-          if (g) for (const q of g) grammar.push(q);
-          t = await Foptional(`../data/translation_items_${topic}.json`);
-          if (t) for (const it of t) translation.push(it);
-        }
-
+        const r = perTopic.get(topic);
+        if (!r) continue;
+        for (const b of r.tree) buckets.push(b);
+        if (r.g) for (const q of r.g) grammar.push(q);
+        if (r.t) for (const it of r.t) translation.push(it);
         perTopicCounts.push({
           topic,
-          buckets: tree.length,
-          grammar: g ? g.length : 0,
-          translation: t ? t.length : 0,
-          bucketsOnly: isBucketsOnly
+          buckets: r.tree.length,
+          grammar: r.g ? r.g.length : 0,
+          translation: r.t ? r.t.length : 0,
+          bucketsOnly: r.isBucketsOnly
         });
       }
 
-      // Optional glossary load (separate from the topic loop).
-      const glossary = await Foptional("../data/glossary.json");
       if (glossary) {
         LL.glossary = buildGlossaryIndex(glossary);
       }
-
-      // Optional vocabulary frequency list (separate from the topic loop).
-      // Used by the vocab strand. Missing file means the vocab tab shows an
-      // empty state but everything else still works.
-      const vocab = await Foptional("../data/vocabulary_it_frequency.json");
-
-      // Optional themes taxonomy (separate axis on the right-hand heatmap).
-      // Missing file means the themes axis is hidden; everything else works.
-      // Architecture-owned part families for the entry picker + categoriser.
-      const parts = await Foptional("../data/parts.json");
-      const themes = await Foptional("../data/vocab_themes.json");
       if (themes) {
         LL.themesTaxonomy = themes;
       }
@@ -869,6 +908,20 @@
   // Track recently-changed buckets so the live panel can flash them
   let recentlyChangedBuckets = new Set();
 
+  // Freshness propagates to ancestors: a node is fresh when the last attempt
+  // recorded an event on it OR on any descendant (id-prefix match). Without
+  // this, the overview topic tiles never read as fresh and the post-Mark
+  // scroll silently no-ops in the default view. See inter_chat/
+  // Architecture_Housing_grammar_view_space_and_scroll.md v6.
+  function bucketIsFresh(id) {
+    if (recentlyChangedBuckets.has(id)) return true;
+    const prefix = id + ".";
+    for (const b of recentlyChangedBuckets) {
+      if (b.startsWith(prefix)) return true;
+    }
+    return false;
+  }
+
   // -------------------- pretty breadcrumb --------------------
   // Resolve a bucket id (full dot-path) to a readable breadcrumb:
   // "adjective_agreement.o_class.feminine_singular"
@@ -1047,8 +1100,8 @@
     });
     if (lvl) tries.push({
       label: "Widen the level",
-      relaxed: Object.assign({}, filter, { cefr: "", cefrRange: null }),
-      apply: () => { filter.cefr = ""; filter.cefrRange = null; onChanged(); }
+      relaxed: Object.assign({}, filter, { cefr: "", cefrRange: null, cefrLevels: null }),
+      apply: () => { filter.cefr = ""; filter.cefrRange = null; filter.cefrLevels = null; onChanged(); }
     });
     if (scope) tries.push({
       label: "Clear the topic",
@@ -1072,7 +1125,7 @@
       b.type = "button"; b.className = "empty-action";
       b.textContent = "Clear all filters";
       b.addEventListener("click", () => {
-        filter.bucketPath = ""; filter.cefr = ""; filter.cefrRange = null;
+        filter.bucketPath = ""; filter.cefr = ""; filter.cefrRange = null; filter.cefrLevels = null;
         filter.topic = ""; filter.clauses = null;
         _preDrillScope = null;
         onChanged();
@@ -1237,11 +1290,7 @@
         jump.type = "button";
         jump.className = "grammar-updated-hint";
         jump.innerHTML = 'Grammar progress updated <span aria-hidden="true">\u2193</span>';
-        jump.addEventListener("click", () => {
-          const fresh = document.querySelector("#live-stats-content .live-bucket-row.fresh")
-            || document.getElementById("live-stats");
-          if (fresh) fresh.scrollIntoView({ behavior: "smooth", block: "center" });
-        });
+        jump.addEventListener("click", () => scrollToFreshBuckets({ force: true }));
         resultHost.appendChild(jump);
       }
       renderLiveStats();
@@ -1572,8 +1621,10 @@
     band: "",
     direction: "it_en",
     theme: "",
+    themes: null,       // list of theme ids OR'd (multi-id category chips, e.g. Numbers = cardinal+ordinal)
     genderClass: "",
     rankRange: null,
+    rankRanges: null,   // list of {start,end} OR'd - the entry builder's frequency selection (vocab_session_builder v2: non-contiguous bands)
     drillLevel: null,   // null | "thousand" | "hundred" | "ten"
     genderDrill: false, // nouns-only production focus (Smith gender ask)
     topN: 0,            // 0 = all; else max rank to include in scope
@@ -1601,6 +1652,196 @@
   function vocabSubbandRange(id) {
     return VOCAB_SUBBANDS.find(s => s.id === id) || null;
   }
+
+  // The RATIFIED category chip list (Architecture_Vocab_display_theme_grouping
+  // v3, ratified v4): 94 chips - 30 parents + 64 sub-themes - in 4 sections.
+  // Labels are Vocab's editorial deliverable and render verbatim; ids are the
+  // engine's. Multi-id chips query as a set-union. Counts are NEVER baked
+  // (v4 ruling): anything a learner sees is computed live at render.
+  const VOCAB_CATEGORY_SECTIONS = [
+    { section: "Everyday", chips: [
+      { label: "Numbers", ids: ["numbers_cardinal", "numbers_ordinal"] },
+      { label: "Colours", ids: ["colours"] },
+      { label: "Days, months & seasons", ids: ["days_of_week", "months", "seasons", "parts_of_day"] },
+      { label: "Time words", ids: ["time_general"] },
+      { label: "Family", ids: ["people_family"] },
+      { label: "Body", ids: ["body"], subs: [
+        { label: "Head & face", ids: ["body_head"] },
+        { label: "Arms & legs", ids: ["body_limbs"] },
+        { label: "Torso", ids: ["body_torso"] },
+        { label: "Organs & bones", ids: ["body_internal"] },
+        { label: "Skin, hair & fluids", ids: ["body_surface"] },
+        { label: "Animal body parts", ids: ["body_animal_part"] }
+      ] },
+      { label: "Food & drink", ids: ["food_drink"], subs: [
+        { label: "Fruit", ids: ["food_fruit"] },
+        { label: "Vegetables", ids: ["food_vegetable"] },
+        { label: "Meat & fish", ids: ["food_meat_fish"] },
+        { label: "Dairy & eggs", ids: ["food_dairy"] },
+        { label: "Grains, bread & pasta", ids: ["food_grain_pasta"] },
+        { label: "Sweets & desserts", ids: ["food_sweet"] },
+        { label: "Herbs, spices & condiments", ids: ["food_herb_spice"] },
+        { label: "Meal types & courses", ids: ["food_meal_type"] },
+        { label: "Alcoholic drinks", ids: ["drink_alcoholic"] },
+        { label: "Soft drinks", ids: ["drink_nonalcoholic"] },
+        { label: "Kitchen & tableware", ids: ["food_utensil"] }
+      ] },
+      { label: "Clothing", ids: ["clothing"] },
+      { label: "Home", ids: ["home"] },
+      { label: "Weather", ids: ["weather"] }
+    ] },
+    { section: "Out in the world", chips: [
+      { label: "Places in town", ids: ["city_places"], subs: [
+        { label: "Shops & restaurants", ids: ["places_commerce"] },
+        { label: "Government buildings", ids: ["places_civic"] },
+        { label: "Schools & libraries", ids: ["places_education"] },
+        { label: "Hospitals & clinics", ids: ["places_health"] },
+        { label: "Museums & monuments", ids: ["places_culture"] },
+        { label: "Churches & religious sites", ids: ["places_religious"] },
+        { label: "Stations & airports", ids: ["places_transit"] },
+        { label: "Parks, streets & squares", ids: ["places_outdoor"] }
+      ] },
+      { label: "Transport", ids: ["transport"], subs: [
+        { label: "Cars, buses & trains", ids: ["transport_land"] },
+        { label: "Boats & ships", ids: ["transport_water"] },
+        { label: "Planes & helicopters", ids: ["transport_air"] },
+        { label: "Vehicle parts", ids: ["transport_part"] },
+        { label: "Roads, bridges & tracks", ids: ["transport_infrastructure"] },
+        { label: "Journeys & routes", ids: ["transport_journey"] },
+        { label: "Tickets & paperwork", ids: ["transport_document"] }
+      ] },
+      { label: "Directions", ids: ["direction"] },
+      { label: "Countries & regions", ids: ["geography_admin"] },
+      { label: "Nature", ids: ["nature"] },
+      { label: "Animals", ids: ["animals"], subs: [
+        { label: "Pets", ids: ["animals_pet"] },
+        { label: "Farm animals", ids: ["animals_farm"] },
+        { label: "Wild mammals", ids: ["animals_wild_mammal"] },
+        { label: "Birds", ids: ["animals_bird"] },
+        { label: "Sea creatures", ids: ["animals_sea_creature"] },
+        { label: "Reptiles & amphibians", ids: ["animals_reptile_amphibian"] },
+        { label: "Insects", ids: ["animals_insect"] }
+      ] },
+      { label: "Plants", ids: ["plants"] }
+    ] },
+    { section: "People, work & society", chips: [
+      { label: "Professions", ids: ["people_roles"], subs: [
+        { label: "Politicians & leaders", ids: ["roles_political"] },
+        { label: "Lawyers & judges", ids: ["roles_legal"] },
+        { label: "Military & police", ids: ["roles_security"] },
+        { label: "Teachers & students", ids: ["roles_education"] },
+        { label: "Doctors & nurses", ids: ["roles_medical"] },
+        { label: "Priests & religious roles", ids: ["roles_religious"] },
+        { label: "Artists & journalists", ids: ["roles_arts_media"] },
+        { label: "Business & office roles", ids: ["roles_business"] },
+        { label: "Trades & service work", ids: ["roles_trade_service"] },
+        { label: "Engineers & scientists", ids: ["roles_technical_science"] },
+        { label: "Athletes & coaches", ids: ["roles_sports"] },
+        { label: "Citizens, guests & residents", ids: ["roles_status_general"] }
+      ] },
+      { label: "Nationalities", ids: ["adjective_nationality"] },
+      { label: "School", ids: ["school_education"] },
+      { label: "Work & business", ids: ["work_business"] },
+      { label: "Shopping & money", ids: ["shopping_money"] },
+      { label: "Health & medicine", ids: ["health_medicine"] },
+      { label: "Sports & leisure", ids: ["sports_leisure"] },
+      { label: "Politics & society", ids: ["politics_society"] },
+      { label: "Law & justice", ids: ["law_justice"] }
+    ] },
+    { section: "Culture, mind & self", chips: [
+      { label: "Arts & entertainment", ids: ["arts_entertainment"], subs: [
+        { label: "Music", ids: ["arts_music"] },
+        { label: "Visual arts", ids: ["arts_visual"] },
+        { label: "Literature & writing", ids: ["arts_literature"] },
+        { label: "Theatre & dance", ids: ["arts_performing"] },
+        { label: "Film & TV", ids: ["arts_film_tv"] },
+        { label: "General arts terms", ids: ["arts_general"] }
+      ] },
+      { label: "Science & technology", ids: ["science_technology"], subs: [
+        { label: "Computing & digital", ids: ["tech_computing"] },
+        { label: "Physics", ids: ["science_physics"] },
+        { label: "Chemistry", ids: ["science_chemistry"] },
+        { label: "Biology & life sciences", ids: ["science_biology"] },
+        { label: "Mathematics", ids: ["science_math"] },
+        { label: "Astronomy & earth sciences", ids: ["science_astronomy"] },
+        { label: "General science terms", ids: ["science_general"] }
+      ] },
+      { label: "Emotions", ids: ["emotions"] },
+      { label: "Physical sensations", ids: ["sensations_physical"] },
+      { label: "Personal care", ids: ["personal_care"] }
+    ] }
+  ];
+
+  // ---- vocab session-builder helpers (inter_chat/Architecture_Housing_vocab_session_builder.md) ----
+  function mergeRankRanges(ranges) {
+    const s = ranges.slice().sort((a, b) => a.start - b.start);
+    const out = [];
+    for (const r of s) {
+      const last = out[out.length - 1];
+      if (last && r.start <= last.end + 1) last.end = Math.max(last.end, r.end);
+      else out.push({ start: r.start, end: r.end });
+    }
+    return out;
+  }
+  // CEFR lens spans, read from the vocabulary_frequency band registry's
+  // cefr_subbands tags (v3 ruling: real data, overlapping by design, with the
+  // core/secure/stretch tier). Tag may be coarse ("A1") or a subband
+  // ("A1-secure"). Static VOCAB_SUBBANDS is only the pre-load fallback.
+  function vocabCefrSpans(tag) {
+    const out = [];
+    const byId = (typeof bucketIndex !== "undefined" && bucketIndex && bucketIndex.byId) ? bucketIndex.byId : null;
+    if (byId) {
+      for (const id in byId) {
+        const n = byId[id];
+        const a = n && n.attributes;
+        const tags = (n && n.cefr_subbands) || (a && a.cefr_subbands);
+        if (!a || a.band_lo == null || !Array.isArray(tags)) continue;
+        if (tags.some(t => t === tag || t.split("-")[0] === tag)) {
+          out.push({ start: a.band_lo, end: a.band_hi });
+        }
+      }
+    }
+    if (!out.length) {
+      for (const s of VOCAB_SUBBANDS) {
+        if (s.id === tag || s.id.split("-")[0] === tag) out.push({ start: s.start, end: s.end });
+      }
+    }
+    return mergeRankRanges(out);
+  }
+  // Parent themes select their whole subtree (Ruling 1's category axis).
+  function themesList() {
+    const tx = LL.themesTaxonomy;
+    if (!tx) return [];
+    if (Array.isArray(tx)) return tx;
+    if (Array.isArray(tx.themes)) return tx.themes;
+    return Object.values(tx).filter(t => t && t.id);
+  }
+  let _themeChildren = null;
+  function themeChildrenMap() {
+    if (_themeChildren) return _themeChildren;
+    const m = new Map();
+    for (const t of themesList()) {
+      if (t && t.parent_id) {
+        if (!m.has(t.parent_id)) m.set(t.parent_id, []);
+        m.get(t.parent_id).push(t.id);
+      }
+    }
+    _themeChildren = m;
+    return m;
+  }
+  function themeMatchesSelected(entryThemes, selected) {
+    if (entryThemes.includes(selected)) return true;
+    const kids = themeChildrenMap().get(selected);
+    if (!kids) return false;
+    const stack = kids.slice();
+    while (stack.length) {
+      const id = stack.pop();
+      if (entryThemes.includes(id)) return true;
+      const more = themeChildrenMap().get(id);
+      if (more) for (const x of more) stack.push(x);
+    }
+    return false;
+  }
   let vocabExpandedThemes = new Set();
   let vocabExpandedGenders = new Set();
   let vocabInputRef = null;
@@ -1619,6 +1860,11 @@
       if (sub && typeof v.rank === "number") {
         if (v.rank < sub.start || v.rank > sub.end) return false;
       }
+      // Entry-builder frequency selection: a list of rank ranges, OR'd.
+      // Scope-level like topN/subBand, so the axes reflect the session.
+      if (Array.isArray(vocabFilter.rankRanges) && vocabFilter.rankRanges.length && typeof v.rank === "number") {
+        if (!vocabFilter.rankRanges.some(r => v.rank >= r.start && v.rank <= r.end)) return false;
+      }
       return true;
     });
   }
@@ -1631,7 +1877,10 @@
         if (v.rank < vocabFilter.rankRange.start || v.rank > vocabFilter.rankRange.end) return false;
       }
       if (vocabFilter.theme) {
-        if (!Array.isArray(v.themes) || !v.themes.includes(vocabFilter.theme)) return false;
+        if (!Array.isArray(v.themes) || !themeMatchesSelected(v.themes, vocabFilter.theme)) return false;
+      }
+      if (Array.isArray(vocabFilter.themes) && vocabFilter.themes.length) {
+        if (!Array.isArray(v.themes) || !vocabFilter.themes.some(id => themeMatchesSelected(v.themes, id))) return false;
       }
       if (vocabFilter.genderDrill && v.pos !== "noun") return false;
       if (vocabFilter.genderClass) {
@@ -2138,6 +2387,7 @@
     return _bandListCache;
   }
   function invalidateVocabCaches() {
+    _themeChildren = null;
     _bandLemmasCache = null;
     _bandLemmasCacheLen = -1;
     _bandListCache = null;
@@ -3999,8 +4249,10 @@
   // 2026-06-09). Friendly labels follow the verb_form tree names.
   const TENSE_TAG_LABELS = {
     present: "Present",
+    presente_progressivo: "Present progressive",
     passato_prossimo: "Passato prossimo",
     imperfect: "Imperfect",
+    imperfetto_progressivo: "Imperfect progressive",
     trapassato_prossimo: "Pluperfect",
     passato_remoto: "Past historic",
     future: "Future",
@@ -4697,6 +4949,10 @@
     const hasEvents = !!stats;
     const cell = document.createElement("div");
     cell.className = "overview-cell";
+    // Topic tile flashes when the last attempt touched anything under it
+    // (grammar_view_space_and_scroll v6): this is the shallowest fresh
+    // surface and the scroll target in the default overview view.
+    if (bucketIsFresh(root.id)) cell.classList.add("fresh");
     cell.title = friendlyOverviewTitle(root, stats);
     // Top-level cell carries no rolled-up background; the texture comes from
     // the mini-cells and micro-dots inside. An overall colour would smooth
@@ -4863,9 +5119,15 @@
     if (outer && outer.scrollHeight > outer.clientHeight + 1) return outer;
     return inner || outer || null;
   }
-  function scrollToFreshBuckets() {
-    if (TOUCH_FIRST) return;  // phones: keep the answer + explanation in view; the inline hint invites a look
-    const fresh = document.querySelector("#live-stats-content .live-bucket-row.fresh");
+  function scrollToFreshBuckets(opts) {
+    // On phones the answer + explanation stay in view and the inline pill
+    // invites a look; the pill's click passes force:true so there is exactly
+    // one scroll path (grammar_view_space_and_scroll v6 ask 2).
+    if (TOUCH_FIRST && !(opts && opts.force)) return;
+    // Shallowest fresh surface wins: the overview topic tile (document order
+    // puts #live-overview first), else the shallowest fresh tree row (parents
+    // render before children, so document order is depth order there too).
+    const fresh = document.querySelector("#live-overview .overview-cell.fresh, #live-stats-content .live-bucket-row.fresh");
     if (!fresh) return;
     // Wait until layout STOPS MOVING before measuring. The post-Mark result
     // reveal animates the main column and the fresh row flashes here, so the old
@@ -4881,6 +5143,14 @@
       const box = freshScrollBox();
       if (!box) return;
       const r = fresh.getBoundingClientRect();
+      // Stacked layouts (phone): neither sidebar box overflows, the page
+      // itself scrolls. Scroll the window to centre the tile instead.
+      if (!(box.scrollHeight > box.clientHeight + 1)) {
+        if (r.top >= 0 && r.bottom <= window.innerHeight) return;
+        const t = Math.max(0, window.scrollY + r.top - Math.max(0, (window.innerHeight - r.height) / 2));
+        window.scrollTo({ top: t, behavior: "smooth" });
+        return;
+      }
       const b = box.getBoundingClientRect();
       const topInBox = r.top - b.top + box.scrollTop;
       const botInBox = topInBox + r.height;
@@ -4920,7 +5190,7 @@
 
     const row = document.createElement("div");
     row.className = "live-bucket-row " + (hasChildren ? "aggregate" : "leaf");
-    if (hasEvents && recentlyChangedBuckets.has(node.id)) row.classList.add("fresh");
+    if (hasEvents && bucketIsFresh(node.id)) row.classList.add("fresh");
     // Friendly label in the tooltip (DECISIONS.md 2026-05-15); fall back to id
     // only when the bucket has no label. The dotted id is engine-facing.
     // Honour info_display: "suppress" by using the topic-generic label when
@@ -5275,9 +5545,9 @@
         verbMode: "form",   // "form" | "use"
         parts: {}           // partId -> { on, topics: {topic:true}, kinds: {bucketPath:true} }
       },
-      vocab: { direction: "it_en", subBand: "", genderDrill: false },
+      vocab: { direction: "it_en", subBand: "", genderDrill: false, lens: "numeric", rankRanges: [], cefr: "", theme: "", catIds: null, catLabel: "" },
       translation: { grammarPoint: "", way: "" },
-      cefrRange: null
+      cefrLevels: []
     };
   }
   function partSel(partId) {
@@ -5338,7 +5608,7 @@
 
     const col = document.createElement("div");
     col.className = "entry-col";
-    renderQuickStarts(col);
+    if (!LL.contentLoading) renderQuickStarts(col);
 
     // greeting
     const h = document.createElement("h2");
@@ -5384,7 +5654,15 @@
     if (entrySel.strand) {
       const panel = document.createElement("div");
       panel.className = "entry-config";
-      if (entrySel.strand === "grammar")      renderGrammarConfig(panel);
+      if (LL.contentLoading) {
+        // Provisional data is never shown as final (entry_load Defect 2): no
+        // counts, parts or level strip derived from the inline samples. The
+        // loader's .then re-renders this screen in place when content lands.
+        const wait = document.createElement("p");
+        wait.className = "entry-loading";
+        wait.textContent = "Loading your exercises\u2026";
+        panel.appendChild(wait);
+      } else if (entrySel.strand === "grammar") renderGrammarConfig(panel);
       else if (entrySel.strand === "vocab")   renderVocabConfig(panel);
       else                                    renderTranslationConfig(panel);
       col.appendChild(panel);
@@ -5531,7 +5809,8 @@
   function composeGrammarFilter() {
     const clauses = buildGrammarClauses();
     grammarFilter.clauses = clauses.length ? clauses : null;
-    grammarFilter.cefrRange = entrySel.cefrRange || null;
+    grammarFilter.cefrLevels = (Array.isArray(entrySel.cefrLevels) && entrySel.cefrLevels.length) ? entrySel.cefrLevels.slice() : null;
+    grammarFilter.cefrRange = null;
     grammarFilter.topic = ""; grammarFilter.cefr = ""; grammarFilter.bucketPath = "";
     grammarDeck = []; grammarIndex = 0;
   }
@@ -5548,48 +5827,239 @@
   // ---- vocab config (direction + frequency band, via existing vocabFilter) ----
   function renderVocabConfig(panel) {
     const v = entrySel.vocab;
+    // Older saved sessions predate these fields.
+    if (!Array.isArray(v.rankRanges)) v.rankRanges = [];
+    if (!v.lens) v.lens = "numeric";
+    if (v.theme == null) v.theme = "";
+    if (v.cefr == null) v.cefr = "";
+    if (v.catLabel == null) v.catLabel = "";
+    if (v.theme && (!v.catIds || !v.catIds.length)) { v.catIds = [v.theme]; v.catLabel = v.theme; v.theme = ""; }  // migrate interim-era selection
+    const maxRank = (vocabEntries && vocabEntries.length) ? vocabEntries.length : 18071;
+    const setRanges = rr => { v.rankRanges = mergeRankRanges(rr); renderEntryScreen(); };
+    const subtractRange = (ranges, s, e) => {
+      const out = [];
+      for (const r of ranges) {
+        if (r.end < s || r.start > e) { out.push(r); continue; }
+        if (r.start < s) out.push({ start: r.start, end: s - 1 });
+        if (r.end > e) out.push({ start: e + 1, end: r.end });
+      }
+      return out;
+    };
+    const covered = (s, e) => v.rankRanges.some(r => r.start <= s && r.end >= e);
 
+    // ---- direction (arrowed labels, Ruling 3) ----
     if (!v.genderDrill) {
       const head = document.createElement("h3");
       head.className = "entry-config-head";
-      head.textContent = "See which side?";
+      head.textContent = "Which direction?";
       panel.appendChild(head);
       const dirRow = document.createElement("div");
       dirRow.className = "entry-chip-row";
-      dirRow.appendChild(entryChip("See Italian", v.direction === "it_en", () => { v.direction = "it_en"; renderEntryScreen(); }, { title: "Recall the English" }));
-      dirRow.appendChild(entryChip("See English", v.direction === "en_it", () => { v.direction = "en_it"; renderEntryScreen(); }, { title: "Recall the Italian" }));
-      dirRow.appendChild(entryChip("Mix", v.direction === "mix", () => { v.direction = "mix"; renderEntryScreen(); }, { title: "A mix of both directions" }));
+      dirRow.appendChild(entryChip("Italian \u2192 English", v.direction === "it_en", () => { v.direction = "it_en"; renderEntryScreen(); }, { title: "You see the Italian, type the English" }));
+      dirRow.appendChild(entryChip("English \u2192 Italian", v.direction === "en_it", () => { v.direction = "en_it"; renderEntryScreen(); }, { title: "You see the English, type the Italian" }));
+      dirRow.appendChild(entryChip("Mix", v.direction === "mix", () => { v.direction = "mix"; renderEntryScreen(); }, { title: "Both directions, shuffled" }));
       panel.appendChild(dirRow);
     }
 
-    const h2 = document.createElement("h3");
-    h2.className = "entry-config-head";
-    h2.textContent = "How common?";
-    panel.appendChild(h2);
-    const bandRow = document.createElement("div");
-    bandRow.className = "entry-chip-row";
-    bandRow.appendChild(entryChip("All", !v.subBand, () => { v.subBand = ""; renderEntryScreen(); }));
-    for (const sb of VOCAB_SUBBANDS) {
-      bandRow.appendChild(entryChip(sb.id, v.subBand === sb.id, () => { v.subBand = sb.id; renderEntryScreen(); }));
-    }
-    panel.appendChild(bandRow);
+    // ---- frequency axis: one rank selection, two input lenses (Ruling 1 + v2/v3) ----
+    const hFreq = document.createElement("h3");
+    hFreq.className = "entry-config-head";
+    hFreq.textContent = "How common?";
+    panel.appendChild(hFreq);
 
-    const h3 = document.createElement("h3");
-    h3.className = "entry-config-head";
-    h3.textContent = "Focus";
-    panel.appendChild(h3);
-    const focusRow = document.createElement("div");
-    focusRow.className = "entry-chip-row";
-    focusRow.appendChild(entryChip("Gender drill (nouns)", v.genderDrill,
+    const lensRow = document.createElement("div");
+    lensRow.className = "entry-lens-toggle";
+    lensRow.appendChild(entryChip("By rank", v.lens === "numeric", () => { v.lens = "numeric"; renderEntryScreen(); }, { title: "Pick by frequency rank: presets, a from/to range, or 100-word bands" }));
+    lensRow.appendChild(entryChip("By level", v.lens === "cefr", () => { v.lens = "cefr"; renderEntryScreen(); }, { title: "Pick by CEFR level, read from the frequency band registry" }));
+    panel.appendChild(lensRow);
+
+    // -- numeric lens --
+    const numBlock = document.createElement("div");
+    numBlock.className = "entry-lens" + (v.lens === "numeric" ? "" : " lens-dim");
+    numBlock.title = v.lens === "numeric" ? "" : "Click to switch to picking by rank";
+    const presetRow = document.createElement("div");
+    presetRow.className = "entry-chip-row";
+    for (const n of [500, 1000, 2000, 5000]) {
+      const active = v.rankRanges.length === 1 && v.rankRanges[0].start === 1 && v.rankRanges[0].end === n;
+      presetRow.appendChild(entryChip("Top " + n, active, () => {
+        v.lens = "numeric"; v.cefr = "";
+        setRanges(active ? [] : [{ start: 1, end: n }]);
+      }, { title: "The " + n + " most common words" }));
+    }
+    presetRow.appendChild(entryChip("All", v.rankRanges.length === 0, () => { v.lens = "numeric"; v.cefr = ""; setRanges([]); }, { title: "No frequency restriction" }));
+    numBlock.appendChild(presetRow);
+
+    const ftRow = document.createElement("div");
+    ftRow.className = "entry-freq-inputs";
+    const single = v.rankRanges.length === 1 ? v.rankRanges[0] : null;
+    const mkNum = (ph, val) => {
+      const inp = document.createElement("input");
+      inp.type = "number"; inp.min = "1"; inp.max = String(maxRank);
+      inp.placeholder = ph;
+      if (val != null) inp.value = String(val);
+      return inp;
+    };
+    const fromInp = mkNum("from", single ? single.start : null);
+    const toInp = mkNum("to", single ? single.end : null);
+    const applyFromTo = () => {
+      v.lens = "numeric"; v.cefr = "";
+      const f = parseInt(fromInp.value, 10), t = parseInt(toInp.value, 10);
+      const hasF = !isNaN(f) && f > 0, hasT = !isNaN(t) && t > 0;
+      if (!hasF && !hasT) { setRanges([]); return; }
+      // blank "from" = everything under "to"; blank "to" = from there on up
+      const s = hasF ? f : 1, e = hasT ? t : maxRank;
+      setRanges([{ start: Math.min(s, e), end: Math.max(s, e) }]);
+    };
+    fromInp.addEventListener("change", applyFromTo);
+    toInp.addEventListener("change", applyFromTo);
+    const lblW = document.createElement("span"); lblW.textContent = "words";
+    const lblTo = document.createElement("span"); lblTo.textContent = "to";
+    ftRow.appendChild(lblW); ftRow.appendChild(fromInp); ftRow.appendChild(lblTo); ftRow.appendChild(toInp);
+    numBlock.appendChild(ftRow);
+
+    const bandRow = document.createElement("div");
+    bandRow.className = "entry-chip-row entry-band-row";
+    for (let b = 1; b <= 901; b += 100) {
+      const e = b + 99;
+      const on = covered(b, e);
+      bandRow.appendChild(entryChip(b + "\u2013" + e, on, () => {
+        v.lens = "numeric"; v.cefr = "";
+        setRanges(on ? subtractRange(v.rankRanges, b, e) : v.rankRanges.concat([{ start: b, end: e }]));
+      }, { title: on ? "Remove this band from the selection" : "Add this band to the selection" }));
+    }
+    numBlock.appendChild(bandRow);
+    numBlock.addEventListener("click", () => { if (v.lens !== "numeric") { v.lens = "numeric"; renderEntryScreen(); } });
+    panel.appendChild(numBlock);
+
+    // -- CEFR lens (reads cefr_subbands off the band registry, v3) --
+    const cefrBlock = document.createElement("div");
+    cefrBlock.className = "entry-lens" + (v.lens === "cefr" ? "" : " lens-dim");
+    cefrBlock.title = v.lens === "cefr" ? "" : "Click to switch to picking by level";
+    const lvlRow = document.createElement("div");
+    lvlRow.className = "entry-chip-row";
+    const LEVELS = [["A1","A1"],["A2","A2"],["B1","B1"],["B2","B2"],["C1","C1"],["out_of_scope","Beyond C1"]];
+    for (const [tag, label] of LEVELS) {
+      const active = v.cefr === tag || v.cefr.indexOf(tag + "-") === 0;
+      lvlRow.appendChild(entryChip(label, active, () => {
+        v.lens = "cefr"; v.cefr = tag;
+        setRanges(vocabCefrSpans(tag));
+      }, { title: (() => { const sp = vocabCefrSpans(tag); return sp.length ? "ranks " + sp.map(r => r.start + "\u2013" + r.end).join(", ") : ""; })() }));
+    }
+    cefrBlock.appendChild(lvlRow);
+    const coarse = v.cefr ? v.cefr.split("-")[0] : "";
+    if (coarse && coarse !== "out_of_scope") {
+      const tierRow = document.createElement("div");
+      tierRow.className = "entry-chip-row entry-tier-row";
+      tierRow.appendChild(entryChip("whole level", v.cefr === coarse, () => { v.cefr = coarse; setRanges(vocabCefrSpans(coarse)); }, { title: "All bands tagged " + coarse }));
+      for (const tier of ["core", "secure", "stretch"]) {
+        const tag = coarse + "-" + tier;
+        tierRow.appendChild(entryChip(tier, v.cefr === tag, () => { v.cefr = tag; setRanges(vocabCefrSpans(tag)); }, { title: "Bands tagged " + tag }));
+      }
+      cefrBlock.appendChild(tierRow);
+    }
+    const cefrNote = document.createElement("p");
+    cefrNote.className = "entry-config-hint";
+    cefrNote.textContent = "levels come from the frequency band registry; neighbouring levels overlap on purpose";
+    cefrBlock.appendChild(cefrNote);
+    cefrBlock.addEventListener("click", () => { if (v.lens !== "cefr") { v.lens = "cefr"; renderEntryScreen(); } });
+    panel.appendChild(cefrBlock);
+
+    // -- live summary of the whole selection --
+    const inSel = e => {
+      const t = e.translation_en;
+      if (!t || !String(t).trim() || String(t).trim() === "[skip]") return false;
+      if (v.rankRanges.length && typeof e.rank === "number" && !v.rankRanges.some(r => e.rank >= r.start && e.rank <= r.end)) return false;
+      if (v.catIds && v.catIds.length && (!Array.isArray(e.themes) || !v.catIds.some(id => themeMatchesSelected(e.themes, id)))) return false;
+      if (v.genderDrill && e.pos !== "noun") return false;
+      return true;
+    };
+    const nSel = vocabEntries.filter(inSel).length;
+    const sum = document.createElement("p");
+    sum.className = "entry-vocab-summary";
+    const rangeTxt = v.rankRanges.length ? "words " + v.rankRanges.map(r => r.start + "\u2013" + r.end).join(" + ") : "all words";
+    sum.textContent = rangeTxt + (v.catLabel ? ", " + v.catLabel : "") + " \u00b7 " + nSel + " in this session";
+    panel.appendChild(sum);
+
+    // ---- category axis (Ruling 1): the RATIFIED chip list ----
+    // 94 chips in 4 sections per Architecture_Vocab_display_theme_grouping v3
+    // (ratified v4). UI shape (Housing's call): grouped-flat - parent chips
+    // per section, sub-theme chips revealed by the parent's "..." expander OR
+    // automatically when the parent is selected, so subs are pickable from
+    // the primary picker AND as drill-in narrowing (Smith's both-ways push).
+    // Counts live only in tooltips and the summary line, computed at render.
+    {
+      const hCat = document.createElement("h3");
+      hCat.className = "entry-config-head";
+      hCat.textContent = "Which category?";
+      panel.appendChild(hCat);
+      if (!v._catExpanded) v._catExpanded = {};
+      const liveCount = ids => vocabEntries.filter(e => {
+        const t = e.translation_en;
+        if (!t || !String(t).trim() || String(t).trim() === "[skip]") return false;
+        return Array.isArray(e.themes) && ids.some(id => themeMatchesSelected(e.themes, id));
+      }).length;
+      const pick = chip => {
+        if (v.catLabel === chip.label) { v.catIds = null; v.catLabel = ""; }
+        else { v.catIds = chip.ids.slice(); v.catLabel = chip.label; }
+        renderEntryScreen();
+      };
+      const allRow = document.createElement("div");
+      allRow.className = "entry-chip-row";
+      allRow.appendChild(entryChip("All categories", !v.catLabel, () => { v.catIds = null; v.catLabel = ""; renderEntryScreen(); }));
+      panel.appendChild(allRow);
+      for (const sec of VOCAB_CATEGORY_SECTIONS) {
+        const sh = document.createElement("div");
+        sh.className = "entry-cat-section";
+        sh.textContent = sec.section;
+        panel.appendChild(sh);
+        const row = document.createElement("div");
+        row.className = "entry-chip-row";
+        for (const chip of sec.chips) {
+          row.appendChild(entryChip(chip.label, v.catLabel === chip.label, () => pick(chip),
+            { title: liveCount(chip.ids) + " words" }));
+          if (chip.subs && chip.subs.length) {
+            const open = !!v._catExpanded[chip.label] || v.catLabel === chip.label
+              || chip.subs.some(s => s.label === v.catLabel);
+            const ex = entryChip(open ? "\u25be" : "\u2026", false,
+              () => { v._catExpanded[chip.label] = !open; renderEntryScreen(); },
+              { title: open ? "Hide sub-topics of " + chip.label : "Show sub-topics of " + chip.label });
+            ex.classList.add("entry-cat-expander");
+            row.appendChild(ex);
+            if (open) {
+              const subRow = document.createElement("div");
+              subRow.className = "entry-chip-row entry-cat-subrow";
+              for (const s of chip.subs) {
+                subRow.appendChild(entryChip(s.label, v.catLabel === s.label, () => pick(s),
+                  { title: liveCount(s.ids) + " words" }));
+              }
+              row.appendChild(subRow);
+            }
+          }
+        }
+        panel.appendChild(row);
+      }
+    }
+
+    // ---- special drills: a mode, set apart (Ruling 2) ----
+    const drills = document.createElement("div");
+    drills.className = "entry-special-drills";
+    const hDrill = document.createElement("h3");
+    hDrill.className = "entry-config-head";
+    hDrill.textContent = "Special drills";
+    drills.appendChild(hDrill);
+    const drillRow = document.createElement("div");
+    drillRow.className = "entry-chip-row";
+    drillRow.appendChild(entryChip("Gender drill (nouns)", v.genderDrill,
       () => { v.genderDrill = !v.genderDrill; renderEntryScreen(); },
       { title: "Nouns only, producing the Italian with its gender" }));
-    panel.appendChild(focusRow);
-    if (v.genderDrill) {
-      const note = document.createElement("p");
-      note.className = "entry-config-hint";
-      note.textContent = "nouns only, producing the Italian (with its article)";
-      panel.appendChild(note);
-    }
+    drills.appendChild(drillRow);
+    const dNote = document.createElement("p");
+    dNote.className = "entry-config-hint";
+    dNote.textContent = v.genderDrill
+      ? "nouns only, producing the Italian (with its article); frequency and category still apply"
+      : "changes what the session is, not just which words are in it";
+    drills.appendChild(dNote);
+    panel.appendChild(drills);
 
     appendStart(panel, () => startVocabSession());
   }
@@ -5597,11 +6067,17 @@
     const v = entrySel.vocab;
     vocabFilter.genderDrill = !!v.genderDrill;
     vocabFilter.direction = v.genderDrill ? "en_it" : v.direction;   // gender drill = production
-    vocabFilter.subBand = v.subBand || "";
-    vocabFilter.rankRange = v.subBand ? vocabSubbandRange(v.subBand) : null;   // subBand only bites via rankRange
+    // The builder's frequency selection replaces the legacy subBand/topN caps.
+    vocabFilter.subBand = "";
+    vocabFilter.topN = 0;
+    vocabFilter.rankRange = null;
+    vocabFilter.rankRanges = (Array.isArray(v.rankRanges) && v.rankRanges.length)
+      ? v.rankRanges.map(r => ({ start: r.start, end: r.end })) : null;
+    vocabFilter.themes = (v.catIds && v.catIds.length) ? v.catIds.slice() : null;
+    vocabFilter.theme = (v.catIds && v.catIds.length === 1) ? v.catIds[0] : "";  // single-id picks light the in-session themes axis
     vocabDeck = []; vocabDeckDirs = []; vocabIndex = 0;
     saveLastSession("vocab");
-    track("session_start", { strand: "vocab", source: "welcome", direction: vocabFilter.direction, gender_drill: vocabFilter.genderDrill });
+    track("session_start", { strand: "vocab", source: "welcome", direction: vocabFilter.direction, gender_drill: vocabFilter.genderDrill, lens: v.lens || "numeric", category: v.catLabel || "", ranges: (v.rankRanges || []).map(r => r.start + "-" + r.end).join("+") });
     renderVocab();
     showStrand("vocab");
   }
@@ -5615,8 +6091,8 @@
     panel.appendChild(head);
     const wayRow = document.createElement("div");
     wayRow.className = "entry-chip-row";
-    wayRow.appendChild(entryChip("Into Italian", w.way === "it", () => { w.way = "it"; renderEntryScreen(); }, { title: "Translate English into Italian" }));
-    wayRow.appendChild(entryChip("Into English", w.way === "en", () => { w.way = "en"; renderEntryScreen(); }, { title: "Translate Italian into English" }));
+    wayRow.appendChild(entryChip("English \u2192 Italian", w.way === "it", () => { w.way = "it"; renderEntryScreen(); }, { title: "You see the English, produce the Italian" }));
+    wayRow.appendChild(entryChip("Italian \u2192 English", w.way === "en", () => { w.way = "en"; renderEntryScreen(); }, { title: "You see the Italian, produce the English" }));
     wayRow.appendChild(entryChip("Both", !w.way, () => { w.way = ""; renderEntryScreen(); }, { title: "A mix of both directions" }));
     panel.appendChild(wayRow);
 
@@ -5642,7 +6118,8 @@
   function startTranslationSession() {
     const gp = entrySel.translation.grammarPoint;
     translationFilter.clauses = gp ? [{ topics: [gp] }] : null;
-    translationFilter.cefrRange = entrySel.cefrRange || null;
+    translationFilter.cefrLevels = (Array.isArray(entrySel.cefrLevels) && entrySel.cefrLevels.length) ? entrySel.cefrLevels.slice() : null;
+    translationFilter.cefrRange = null;
     translationFilter.topic = ""; translationFilter.cefr = ""; translationFilter.bucketPath = "";
     translationFilter.targetLang = entrySel.translation.way || "";
     translationDeck = []; translationIndex = 0;
@@ -5672,19 +6149,34 @@
     _levelCountCache[sig] = counts;
     return counts;
   }
-  function onLevelTap(i) {
-    const r = entrySel.cefrRange;
-    if (!r) entrySel.cefrRange = [i, i];
-    else if (r[0] === r[1] && r[0] === i) entrySel.cefrRange = null;               // tap same single -> clear
-    else if (r[0] === r[1]) entrySel.cefrRange = [Math.min(r[0], i), Math.max(r[0], i)];  // second tap -> bracket
-    else entrySel.cefrRange = [i, i];                                              // tap while ranged -> new single
+  // Level selection is a SET (each tap toggles that one level, so tapping
+  // three levels leaves three selected) with a range accelerator layered on
+  // top: shift-tap, or press one cell and release on another, fills the run.
+  // Smith's "we want both" ruling - see inter_chat/
+  // Architecture_Housing_entry_load_and_level_strip.md Defect 4 (v2).
+  function onLevelTap(i, span) {
+    if (!Array.isArray(entrySel.cefrLevels)) entrySel.cefrLevels = [];
+    const L = entrySel.cefrLevels;
+    const anchor = entrySel._levelAnchor;
+    if (span && anchor != null && anchor !== i) {
+      const a = Math.min(anchor, i), b = Math.max(anchor, i);
+      for (let k = a; k <= b; k++) if (!L.includes(k)) L.push(k);
+    } else {
+      const at = L.indexOf(i);
+      if (at >= 0) L.splice(at, 1); else L.push(i);
+    }
+    L.sort((x, y) => x - y);
+    entrySel._levelAnchor = i;
   }
   function renderLevelStrip(panel, strand) {
-    // Hidden on a true first run (no history yet), per architect ruling.
-    if (!LL.state || !Array.isArray(LL.state.attempts) || LL.state.attempts.length === 0) return;
+    // Shown whenever the pool carries more than one level: level SELECTION
+    // needs nothing but the item pool. Only the mastery bars need history,
+    // and they gate themselves per band below. (Reverses the first-run gate;
+    // inter_chat/Architecture_Housing_entry_load_and_level_strip.md Defect 3.)
     const counts = levelCountsFor(strand);
     const total = counts.reduce((a, b) => a + b, 0);
     if (total === 0) return;
+    if (counts.filter(c => c > 0).length < 2) return;  // single-level pool: nothing to choose
     const max = Math.max.apply(null, counts);
     const head = document.createElement("h3");
     head.className = "entry-config-head";
@@ -5697,8 +6189,9 @@
       const cell = document.createElement("button");
       cell.type = "button";
       const empty = counts[i] === 0;
-      const inRange = entrySel.cefrRange && i >= entrySel.cefrRange[0] && i <= entrySel.cefrRange[1];
-      cell.className = "entry-level-cell" + (inRange ? " sel" : "") + (empty ? " empty" : "");
+      const inSel = Array.isArray(entrySel.cefrLevels) && entrySel.cefrLevels.includes(i);
+      cell.className = "entry-level-cell" + (inSel ? " sel" : "") + (empty ? " empty" : "");
+      cell.dataset.idx = String(i);
       // Density fill (availability) is always applied; SELECTION is signalled by a
       // contrasting ring + check in .sel, never by the same blue, so a max-density
       // cell can no longer be mistaken for a selected one.
@@ -5721,8 +6214,27 @@
         }
       }
       if (empty) cell.disabled = true;
-      else cell.addEventListener("click", () => { onLevelTap(i); renderEntryScreen(); });
+      else cell.addEventListener("click", ev => { onLevelTap(i, ev.shiftKey); renderEntryScreen(); });
       strip.appendChild(cell);
+    });
+    // Range accelerator, gesture form: press one cell, release on another.
+    // elementFromPoint is used because with pointer events touch input gets
+    // implicit capture (e.target would stay the pressed cell). A click never
+    // fires cross-element, so the toggle cannot double-run.
+    let downIdx = null;
+    strip.addEventListener("pointerdown", e => {
+      const c = e.target && e.target.closest ? e.target.closest(".entry-level-cell") : null;
+      downIdx = (c && c.dataset.idx != null) ? Number(c.dataset.idx) : null;
+    });
+    strip.addEventListener("pointerup", e => {
+      const el = document.elementFromPoint(e.clientX, e.clientY);
+      const c = el && el.closest ? el.closest(".entry-level-cell") : null;
+      if (c && downIdx != null && Number(c.dataset.idx) !== downIdx) {
+        entrySel._levelAnchor = downIdx;
+        onLevelTap(Number(c.dataset.idx), true);
+        renderEntryScreen();
+      }
+      downIdx = null;
     });
     panel.appendChild(strip);
   }
@@ -5746,6 +6258,13 @@
     const ls = LL.state && LL.state.last_session;
     if (!ls) return;
     entrySel = JSON.parse(JSON.stringify(ls.sel));
+    // Saved sessions from the range era carry cefrRange; migrate to the set.
+    if (Array.isArray(entrySel.cefrRange) && entrySel.cefrRange.length === 2 && !Array.isArray(entrySel.cefrLevels)) {
+      entrySel.cefrLevels = [];
+      for (let k = entrySel.cefrRange[0]; k <= entrySel.cefrRange[1]; k++) entrySel.cefrLevels.push(k);
+      entrySel.cefrRange = null;
+    }
+    if (!Array.isArray(entrySel.cefrLevels)) entrySel.cefrLevels = [];
     if (ls.strand === "grammar") startGrammarSession();
     else if (ls.strand === "vocab") startVocabSession();
     else startTranslationSession();
@@ -5982,6 +6501,7 @@
   renderMarkerConfig();
   renderSessionCost();
   renderLiveStats();
+  LL.contentLoading = true;  // entry screen shows a loading state, never sample-derived counts (entry_load Defect 2)
   showEntry();  // land on the welcome / session builder, not straight into a strand
   {
     // "Serve via http" only makes sense on file://. On an http(s) origin it is a
@@ -5993,7 +6513,13 @@
 
   // Try to upgrade to real content
   tryLoadRealContent().then(real => {
-    if (!real) return;
+    LL.contentLoading = false;
+    if (!real) {
+      // Fallback settled: the samples ARE the content now and the failure
+      // banner explains why. Refresh the entry screen out of its loading state.
+      if (document.body.classList.contains("entry-active")) showEntry();
+      return;
+    }
     // Name any skipped file to the learner instead of skipping it silently.
     if (real.failures && real.failures.length) showPartialLoadBanner(real.failures);
     else clearLoadFailureBanner();

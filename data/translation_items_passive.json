@@ -586,5 +586,354 @@
     ],
     "explanation": "veniva celebrata is the venire passive in the imperfect, for a repeated past action; English uses 'was celebrated' or the habitual 'would be celebrated'.",
     "version": 1
+  },
+  {
+    "external_id": "trans_pas_en_it_use_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "The president was elected yesterday.",
+    "reference_translations": [
+      {
+        "text": "Il presidente è stato eletto ieri.",
+        "register": "neutral",
+        "notes": "Passive, the news register this English implies."
+      },
+      {
+        "text": "Hanno eletto il presidente ieri.",
+        "register": "neutral",
+        "notes": "Active with a vague 'they'; what speech would use."
+      }
+    ],
+    "topic": "passive",
+    "register": "neutral",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "passive.usage.when_to_use",
+      "passive.formation.essere"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "elected",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to elect - eleggere",
+            "bucket": "vocabulary.it.eleggere.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "English passives map onto either an Italian passive or an active with an unspecified 'they'; the register decides. In a bulletin the passive is right; at the bar the active is.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_pas_it_en_use_02",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Il bilancio è presentato ogni anno ai finanziatori.",
+    "reference_translations": [
+      {
+        "text": "The balance sheet is presented to the investors every year.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "The accounts are presented to the backers every year.",
+        "register": "neutral",
+        "notes": "Also fine."
+      }
+    ],
+    "topic": "passive",
+    "register": "neutral",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "passive.usage.when_to_use"
+    ],
+    "optional_buckets": [
+      "passive.formation.essere"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "bilancio",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "bilancio - balance sheet",
+            "bucket": "vocabulary.it.bilancio.noun.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "A formal Italian passive lands as a formal English passive: the register matches on both sides. Note this is a statement, not an obligation; 'va presentato' would be the obligation version.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_pas_en_it_vsi_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Second-hand books are sold here.",
+    "reference_translations": [
+      {
+        "text": "Qui si vendono libri usati.",
+        "register": "neutral",
+        "notes": "The si passivante, idiomatic for signage; agrees with libri."
+      },
+      {
+        "text": "Qui i libri usati sono venduti.",
+        "register": "neutral",
+        "notes": "Grammatical full passive, but stiff for a sign."
+      },
+      {
+        "text": "Qui si vende libri usati.",
+        "register": "neutral",
+        "notes": "WRONG as standard: the verb agrees with the plural noun, si vendono.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "passive",
+    "register": "neutral",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "passive.usage.vs_si_passivante",
+      "si_constructions.passivante.agreement"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "books",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "book - libro",
+            "bucket": "vocabulary.it.libro.noun.translation"
+          }
+        }
+      },
+      {
+        "lemma": "sold",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to sell - vendere",
+            "bucket": "vocabulary.it.vendere.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "With no doer to name, Italian prefers si. The verb agrees with the thing: libri is plural, so si vendono.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_pas_en_it_vsi_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "The books are sold by the Feltrinelli bookshop.",
+    "reference_translations": [
+      {
+        "text": "I libri sono venduti dalla libreria Feltrinelli.",
+        "register": "neutral",
+        "notes": "Named agent, so the full passive is the only option."
+      },
+      {
+        "text": "Si vendono libri dalla libreria Feltrinelli.",
+        "register": "neutral",
+        "notes": "WRONG: si can never take a da-agent.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "passive",
+    "register": "neutral",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "passive.usage.vs_si_passivante",
+      "passive.formation.agent_da"
+    ],
+    "optional_buckets": [
+      "passive.formation.essere"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "bookshop",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "bookshop - libreria",
+            "bucket": "vocabulary.it.libreria.noun.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Naming the seller rules the si construction out: si exists to leave the doer unnamed. The full passive takes the agent after da, contracted with the article: da + la = dalla.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_pas_it_en_vsi_03",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Qui si affittano camere.",
+    "reference_translations": [
+      {
+        "text": "Rooms to let here.",
+        "register": "neutral",
+        "notes": "Sign register."
+      },
+      {
+        "text": "Rooms are rented out here.",
+        "register": "neutral",
+        "notes": "Fuller, also correct."
+      }
+    ],
+    "topic": "passive",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "passive.usage.vs_si_passivante"
+    ],
+    "optional_buckets": [
+      "si_constructions.passivante.agreement"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "camere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "camera - room",
+            "bucket": "vocabulary.it.camera.noun.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "The si passivante has no English twin, so it lands as a passive or as sign shorthand. The plural agreement (affittano) follows camere.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_pas_it_en_use_03",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Hanno arrestato due uomini.",
+    "reference_translations": [
+      {
+        "text": "Two men were arrested.",
+        "register": "neutral",
+        "notes": "English prefers the passive where Italian used a vague-they active."
+      },
+      {
+        "text": "They arrested two men.",
+        "register": "neutral",
+        "notes": "Literal; fine if the 'they' is identifiable from context."
+      }
+    ],
+    "topic": "passive",
+    "register": "neutral",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "passive.usage.when_to_use"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "arrestato",
+        "language": "it",
+        "aspects": {
+          "infinitive": {
+            "reveal": "arrestare - to arrest",
+            "bucket": "vocabulary.it.arrestare.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "The asymmetry runs both ways: Italian's vague-they active is most naturally English's passive. Translating it as 'they arrested' invents a 'they' the Italian never committed to.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_pas_en_it_use_04",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "The 18:00 flight has been cancelled.",
+    "reference_translations": [
+      {
+        "text": "Il volo delle 18 è stato cancellato.",
+        "register": "neutral",
+        "notes": "Passive, the register of an official notice."
+      },
+      {
+        "text": "Hanno cancellato il volo delle 18.",
+        "register": "neutral",
+        "notes": "Active; what a passenger would say to another passenger."
+      }
+    ],
+    "topic": "passive",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "passive.usage.when_to_use",
+      "passive.formation.essere"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "flight",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "flight - volo",
+            "bucket": "vocabulary.it.volo.noun.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "An airport notice keeps the doer invisible, so the passive fits; between passengers the active is more natural. Same content, different register.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_pas_en_it_vsi_04",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Bread is made here every day.",
+    "reference_translations": [
+      {
+        "text": "Qui si fa il pane ogni giorno.",
+        "register": "neutral",
+        "notes": "si construction, what speech uses."
+      },
+      {
+        "text": "Qui il pane viene fatto ogni giorno.",
+        "register": "neutral",
+        "notes": "Dynamic passive with venire; correct, slightly more formal."
+      }
+    ],
+    "topic": "passive",
+    "register": "neutral",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "passive.usage.vs_si_passivante"
+    ],
+    "optional_buckets": [
+      "passive.usage.when_to_use"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "bread",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "bread - pane",
+            "bucket": "vocabulary.it.pane.noun.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "For what generally happens, everyday Italian reaches for si rather than the full passive. Both are offered because the register line here is soft, not sharp.",
+    "version": 1
   }
 ]
