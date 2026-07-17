@@ -720,11 +720,19 @@ main {
 
 .live-bucket-row.aggregate .label-text { color: var(--ink); }
 .live-bucket-row.leaf .label-text { color: var(--muted); }
-.live-bucket-row.fresh { animation: flash 600ms ease-out; }
-/* Topic tile freshness (grammar_view_space_and_scroll v6): the shallowest
-   fresh surface in the sidebar flashes too, so the post-Mark scroll has a
-   visible landing in the default overview view. */
-.overview-cell.fresh { animation: flash 600ms ease-out; }
+/* Freshness (grammar_view v8): .fresh is a MARKER only - the visible pulse
+   is .fresh-flash, applied by scrollToFreshBuckets AFTER the scroll lands so
+   the learner is looking at the tile when it fires. Slower and stronger than
+   the old 600ms wash, which was over before the scroll arrived. */
+.live-bucket-row.fresh-flash,
+.overview-cell.fresh-flash { animation: fresh-flash-strong 1400ms ease-in-out 1; }
+@keyframes fresh-flash-strong {
+  0%   { background: transparent;      box-shadow: none; }
+  18%  { background: var(--amber-soft); box-shadow: 0 0 0 3px var(--accent); }
+  45%  { background: transparent;      box-shadow: 0 0 0 1px var(--accent); }
+  65%  { background: var(--amber-soft); box-shadow: 0 0 0 3px var(--accent); }
+  100% { background: transparent;      box-shadow: none; }
+}
 
 /* Entry-screen loading state (entry_load_and_level_strip Defect 2): quiet
    line where the counts would go; replaced in place when content lands. */

@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-17-r14";
+  const LL_BUILD = "2026-07-18-r16";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // Touch-first device (no hover, coarse pointer): tap interactions replace
   // keyboard ones. Computed once; used for tap-to-mark on MCQ.
@@ -1029,6 +1029,19 @@
   // Stem-overlap test: returns true if the learner's answer doesn't share a
   // 3-character prefix with the chip lemma. The mismatch is the trigger for
   // the second-chance prompt.
+  let _legacyBaseFormWarned = false;
+  function wrongAnswerIsFormErrorOnly(q) {
+    if (q.wrong_answer_is_form_error_only !== undefined) return !!q.wrong_answer_is_form_error_only;
+    if (q.prompt_supplies_base_form !== undefined) {
+      if (!_legacyBaseFormWarned) {
+        _legacyBaseFormWarned = true;
+        console.warn("[Linguics] item uses legacy field prompt_supplies_base_form (renamed wrong_answer_is_form_error_only, cue_placement v3/v4); honouring it, but the migration missed this file.");
+      }
+      return !!q.prompt_supplies_base_form;
+    }
+    return false;
+  }
+
   function chipStemMismatch(answer, lemma) {
     const norm = (s) => String(s || "").toLowerCase().trim();
     const a = norm(answer);
@@ -1331,7 +1344,7 @@
       //   - the item is short-answer (not MCQ),
       //   - we haven't already prompted this item,
       //   - the item is NOT a conjugation drill that hands the learner the
-      //     base form via the cue (prompt_supplies_base_form): on those, a
+      //     base form via the cue (wrong_answer_is_form_error_only): on those, a
       //     wrong answer is a form / spelling error of the cued verb, not a
       //     cue misread, and the marker should just record it. The whole
       //     present-formation batch (and future / conditional to come) ships
@@ -1341,7 +1354,14 @@
       //     errors the item was built to catch; no rescue),
       //   - the chip has an extractable lemma AND the answer's stem doesn't
       //     overlap the lemma's stem (the cue-misread signal).
-      if (!isMcq && !secondChanceShown && !q.prompt_supplies_base_form) {
+      // Field renamed per Architecture_Housing_cue_placement v3/v4: the old
+      // name (prompt_supplies_base_form) asked a descriptive question about
+      // the prompt, which 1,083 items answered honestly while meaning the
+      // wrong thing. The new name states the author's actual claim: a wrong
+      // answer here can only be a form/spelling error of the cued word, so
+      // the cue-misread rescue must not fire. Legacy read is a tripwire, not
+      // a compat layer - it warns so unmigrated items surface.
+      if (!isMcq && !secondChanceShown && !wrongAnswerIsFormErrorOnly(q)) {
         const isCleanMiss = result.overall.marks_awarded === 0
           && Array.isArray(result.markpoints)
           && result.markpoints.every(mp => mp.outcome === "miss" || mp.outcome === "not_attempted");
@@ -5125,43 +5145,68 @@
     // one scroll path (grammar_view_space_and_scroll v6 ask 2).
     if (TOUCH_FIRST && !(opts && opts.force)) return;
     // Shallowest fresh surface wins: the overview topic tile (document order
-    // puts #live-overview first), else the shallowest fresh tree row (parents
-    // render before children, so document order is depth order there too).
+    // puts #live-overview first), else the shallowest fresh tree row.
     const fresh = document.querySelector("#live-overview .overview-cell.fresh, #live-stats-content .live-bucket-row.fresh");
     if (!fresh) return;
-    // Wait until layout STOPS MOVING before measuring. The post-Mark result
-    // reveal animates the main column and the fresh row flashes here, so the old
-    // fixed 80ms timeout measured a layout still in flight and the smooth scroll
-    // landed where the row used to be (it slid to the bottom). Settle = two
-    // consecutive frames with the same top, capped so we can never spin.
-    let lastTop = null, stable = 0, frames = 0;
-    const step = () => {
-      const top = fresh.getBoundingClientRect().top;
-      if (lastTop !== null && Math.abs(top - lastTop) < 0.5) stable++; else stable = 0;
-      lastTop = top;
-      if (stable < 2 && frames++ < 90) { requestAnimationFrame(step); return; }
-      const box = freshScrollBox();
-      if (!box) return;
-      const r = fresh.getBoundingClientRect();
-      // Stacked layouts (phone): neither sidebar box overflows, the page
-      // itself scrolls. Scroll the window to centre the tile instead.
-      if (!(box.scrollHeight > box.clientHeight + 1)) {
-        if (r.top >= 0 && r.bottom <= window.innerHeight) return;
+    // The flash is SEQUENCED: it fires only after the scroll has landed (or
+    // immediately when no scroll is needed), so the learner actually sees it.
+    // v7's mistake: .fresh animated at render, up to ~1.5s before the scroll
+    // arrived, so the pulse was over before the tile was on screen (v8).
+    const flashFresh = () => {
+      document.querySelectorAll("#live-stats .fresh").forEach(el => {
+        el.classList.remove("fresh-flash");
+        void el.offsetWidth;   // restart the animation even on repeated Marks
+        el.classList.add("fresh-flash");
+      });
+    };
+    // rAF-poll a position getter until it stops moving, then fire done().
+    const afterSettle = (getPos, done, cap) => {
+      let last = null, still = 0, n = 0;
+      const tick = () => {
+        const p = getPos();
+        if (last !== null && Math.abs(p - last) < 0.5) still++; else still = 0;
+        last = p;
+        if (still >= 2 || n++ > (cap || 120)) { done(); return; }
+        requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    // Wait for layout to stop moving before measuring (v5's settle rationale:
+    // the post-Mark reveal animates the main column while we measure).
+    afterSettle(() => fresh.getBoundingClientRect().top, () => {
+      // v8 root cause: choose the scrollbox that actually CONTAINS the fresh
+      // element by walking its ancestors. v5's chooser hard-coded
+      // #live-stats-content (right when fresh rows lived in the tree), but the
+      // v7 tile target lives in #live-overview, whose scroller is the OUTER
+      // #live-stats - so the code scrolled a box the tile was never in.
+      let box = null;
+      for (let el = fresh.parentElement; el; el = el.parentElement) {
+        if (el.scrollHeight > el.clientHeight + 1) { box = el; break; }
+        if (el.id === "live-stats") break;   // past the sidebar = the page scrolls
+      }
+      if (box) {
+        const r = fresh.getBoundingClientRect();
+        const b = box.getBoundingClientRect();
+        const topInBox = r.top - b.top + box.scrollTop;
+        const botInBox = topInBox + r.height;
+        if (topInBox >= box.scrollTop && botInBox <= box.scrollTop + box.clientHeight) {
+          flashFresh();   // already fully visible: no movement, flash now
+          return;
+        }
+        const target = Math.max(0, topInBox - Math.max(0, (box.clientHeight - r.height) / 2));
+        if (typeof box.scrollTo === "function") box.scrollTo({ top: target, behavior: "smooth" });
+        else box.scrollTop = target;
+        afterSettle(() => box.scrollTop, flashFresh);
+      } else {
+        // Stacked layouts (phone): nothing in the sidebar overflows, the page
+        // itself scrolls. Centre the tile via the window, then flash.
+        const r = fresh.getBoundingClientRect();
+        if (r.top >= 0 && r.bottom <= window.innerHeight) { flashFresh(); return; }
         const t = Math.max(0, window.scrollY + r.top - Math.max(0, (window.innerHeight - r.height) / 2));
         window.scrollTo({ top: t, behavior: "smooth" });
-        return;
+        afterSettle(() => window.scrollY, flashFresh);
       }
-      const b = box.getBoundingClientRect();
-      const topInBox = r.top - b.top + box.scrollTop;
-      const botInBox = topInBox + r.height;
-      // Already fully visible (the common case mid-practice): do nothing at all.
-      if (topInBox >= box.scrollTop && botInBox <= box.scrollTop + box.clientHeight) return;
-      // Centre it rather than "nearest", so it never parks at the very bottom.
-      const target = Math.max(0, topInBox - Math.max(0, (box.clientHeight - r.height) / 2));
-      if (typeof box.scrollTo === "function") box.scrollTo({ top: target, behavior: "smooth" });
-      else box.scrollTop = target;
-    };
-    requestAnimationFrame(step);
+    }, 90);
   }
 
   function scrollToBucket(bucketId) {

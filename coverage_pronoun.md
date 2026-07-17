@@ -337,3 +337,33 @@ The pronoun tree is dense and the cross-references to passato_prossimo are heavy
 Two specific gaps worth a future top-up:
 - Tag-question patterns ("Lo capisci, vero?") aren't tested anywhere in the current set.
 - The colloquial reduction of negative + imperative + clitic ("Nondire!") is a real spoken pattern but might be out of scope at B2.
+
+
+## Dark-leaf translation top-up (2026-07-17)
+
+Twelve new translation items authored to cover the 12 leaves that carried no required or optional citation in translation_items_pronoun.json (per rev19_audit v7 rule 2, "author them yourself, at your own pace, no fresh dispatch"). Coverage census before: 43/55 leaves cited; after: 55/55.
+
+New items (`trans_op_en_it_39` through `trans_op_en_it_49`, plus `trans_op_it_en_19`):
+
+| item | dark leaf covered | difficulty | CEFR |
+|---|---|---|---|
+| trans_op_en_it_39 | pronoun.direct_object.ci_us | 2 | A2 |
+| trans_op_en_it_40 | pronoun.direct_object.vi_you | 2 | A2 |
+| trans_op_en_it_41 | pronoun.indirect_object.ci_us | 1 | A2 |
+| trans_op_en_it_42 | pronoun.indirect_object.gli_them | 3 | B1 |
+| trans_op_en_it_43 | pronoun.indirect_object.ti | 2 | A2 |
+| trans_op_en_it_44 | pronoun.indirect_object.verbs_taking_iop.with_essere_in_pp | 3 | B1 |
+| trans_op_en_it_45 | pronoun.indirect_object.vi_you | 3 | B1 |
+| trans_op_en_it_46 | pronoun.ne.pronominal_idiomatic_verbs | 4 | B2 |
+| trans_op_it_en_19 | pronoun.position.post_gerund_attached | 3 | B1 |
+| trans_op_en_it_47 | pronoun.reflexive.vi | 1 | A2 |
+| trans_op_en_it_48 | pronoun.reflexive.with_object | 4 | B1 |
+| trans_op_en_it_49 | pronoun.special.left_dislocation_with_pp_agreement | 3 | B1 |
+
+Style pass on the batch:
+- Rev 17 gloss is native to translation items (the source_text IS the gloss); each explanation still opens with the everyday-terms lead and names the grammatical term before using it (house style, four beats).
+- Rev 19 recoverability is a grammar-item concern (info_display suppress); does not apply here.
+- Rev 20 0.9-for-dodges applied on trans_op_en_it_42 (a loro stressed dodge), trans_op_en_it_45 (chiamare switches vi from IOP to DOP), trans_op_en_it_46 (dropping ne). Each has an explicit `credit: 0.9` field on the sidestepping reference, with a steering note.
+- Negative-polarity references included where a common wrong attempt is informative for the AI marker: trans_op_en_it_44 (piacere-with-avere), trans_op_en_it_48 (missed vowel-change si -> se), trans_op_en_it_49 (invariant letto vs agreed lette).
+
+Item counts now: **216 grammar + 68 translation**. Every leaf has at least one required or optional citation in a translation item.

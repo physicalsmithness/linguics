@@ -35,7 +35,9 @@ Live items already cite these; the flag lied. Same defect found and fixed on ten
 **Standing rule:** clearing the stub flag is part of accepting a batch. A stub flag on authored work sends the next
 author to build something that exists.
 
-## 2. PHANTOM DUPLICATES — do NOT dispatch (16). RULING NEEDED.
+## 2. PHANTOM DUPLICATES — RULED AND EXECUTED 2026-07-17 (16)
+
+**Smith ruled: mark superseded, do not delete.** All 16 now carry `superseded_by: <tense_choice leaf>`, `active: false`, and a `superseded_note` explaining the duplication and forbidding dispatch. Kept rather than deleted so the reason survives and nobody re-scaffolds them in six months — consistent with the estate's append-only record rule. Verified from disk: stub flags 25 -> 9, superseded_by nodes = 16. **The 9 remaining stubs are the real backlog in section 3.**
 
 Every per-tense `discrimination.*` stub duplicates a leaf `tense_choice` **already owns and has authored** (185 items):
 

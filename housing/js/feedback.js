@@ -1,6 +1,10 @@
 /* =============================================================================
  * feedback.js  -  the estate feedback widget (WEB_KIT standard, Sheets style)
  * Canonical source: MetaProject\web_kit\feedback.js  -  copy verbatim, do not fork.
+ * v2, 2026-07-17: optional name/email fields, capture-disclosure caption, no
+ * personal name in user-facing copy. Backend columns added in the same revision;
+ * the backend must be redeployed as a NEW VERSION (same URL) to store them.
+ * Deploy order does not matter: the old backend simply ignores the new fields.
  *
  * What it is: an in-page feedback panel that POSTs straight to a shared Google
  * Sheet via one Apps Script endpoint. No Google Form, no redirect, full styling
@@ -29,6 +33,10 @@
  *    blocked or the endpoint is not deployed yet. Never show the user a stack trace.
  *  - The trigger button carries an id, so the estate delegated click-tracker
  *    (site_click) picks it up with no extra instrumentation.
+ *  - Copy never names the recipient personally: tools are used by pupils who know
+ *    him by whatever they call him, not by the estate's name for him.
+ *  - The caption under the form tells the user the page is included automatically,
+ *    so they need not describe where they were. Name/email are optional fields.
  * ========================================================================== */
 (function () {
   'use strict';
@@ -61,12 +69,29 @@
     '#wk-fb-panel p.wk-fb-hint{margin:0 0 8px;font-size:12px;color:#6b7280}',
     '#wk-fb-msg{width:100%;box-sizing:border-box;min-height:96px;resize:vertical;',
     'padding:8px;border:1px solid rgba(0,0,0,.22);border-radius:8px;font:inherit}',
+    '#wk-fb-name,#wk-fb-email{width:100%;box-sizing:border-box;margin-top:8px;',
+    'padding:8px;border:1px solid rgba(0,0,0,.22);border-radius:8px;font:inherit}',
+    '#wk-fb-panel p.wk-fb-note{margin:8px 0 0;font-size:11px;line-height:1.4;color:#6b7280}',
     '#wk-fb-row{display:flex;gap:8px;justify-content:flex-end;margin-top:10px}',
     '#wk-fb-panel button{font:600 13px/1 inherit;padding:8px 12px;border-radius:8px;cursor:pointer}',
     '#wk-fb-send{background:#111827;color:#fff;border:1px solid #111827}',
     '#wk-fb-cancel{background:#fff;color:#374151;border:1px solid rgba(0,0,0,.22)}',
     '#wk-fb-done{margin:0;padding:6px 0;font-size:13px;color:#065f46}'
   ].join('');
+
+  /* One source for the form so open/reset can never drift apart. */
+  var FORM_HTML =
+    '<h2>Send feedback</h2>' +
+    '<p class="wk-fb-hint">What worked, what did not, what is missing.</p>' +
+    '<textarea id="wk-fb-msg" aria-label="Your feedback"></textarea>' +
+    '<input id="wk-fb-name" type="text" autocomplete="name" placeholder="Name (optional)" aria-label="Your name (optional)">' +
+    '<input id="wk-fb-email" type="email" autocomplete="email" placeholder="Email (optional)" aria-label="Your email (optional)">' +
+    '<p class="wk-fb-note">The page you were on is automatically included in the feedback, ' +
+    'so you don\'t need to describe which page it is.</p>' +
+    '<div id="wk-fb-row">' +
+      '<button id="wk-fb-cancel" type="button">Cancel</button>' +
+      '<button id="wk-fb-send" type="button">Send</button>' +
+    '</div>';
 
   function el(tag, attrs, html) {
     var n = document.createElement(tag);
@@ -83,10 +108,12 @@
     }
   }
 
-  function send(message) {
+  function send(message, name, email) {
     var payload = {
       project: PROJECT,
       message: message,
+      name: name || '',
+      email: email || '',
       url: location.href,
       ts: new Date().toISOString(),
       context: safeContext()
@@ -121,26 +148,22 @@
       role: 'dialog',
       'aria-label': 'Send feedback',
       hidden: 'hidden'
-    },
-      '<h2>Send feedback</h2>' +
-      '<p class="wk-fb-hint">What worked, what did not, what is missing. Goes straight to Smith.</p>' +
-      '<textarea id="wk-fb-msg" aria-label="Your feedback"></textarea>' +
-      '<div id="wk-fb-row">' +
-        '<button id="wk-fb-cancel" type="button">Cancel</button>' +
-        '<button id="wk-fb-send" type="button">Send</button>' +
-      '</div>');
+    }, FORM_HTML);
 
     document.body.appendChild(btn);
     document.body.appendChild(panel);
 
-    var msg = panel.querySelector('#wk-fb-msg');
+    function val(id) {
+      var n = panel.querySelector(id);
+      return n ? n.value : '';
+    }
 
     function open() {
       panel.hidden = false;
-      panel.innerHTML = panel.innerHTML; // no-op guard for re-open after thanks
-      msg = panel.querySelector('#wk-fb-msg');
-      if (msg) { msg.value = ''; msg.focus(); }
+      panel.innerHTML = FORM_HTML;           // fresh form every open
       wire();
+      var msg = panel.querySelector('#wk-fb-msg');
+      if (msg) msg.focus();
     }
     function close() { panel.hidden = true; btn.focus(); }
 
@@ -148,14 +171,7 @@
       panel.innerHTML = '<h2>Thank you</h2><p id="wk-fb-done">Noted. That genuinely helps.</p>';
       setTimeout(function () {
         panel.hidden = true;
-        panel.innerHTML =
-          '<h2>Send feedback</h2>' +
-          '<p class="wk-fb-hint">What worked, what did not, what is missing. Goes straight to Smith.</p>' +
-          '<textarea id="wk-fb-msg" aria-label="Your feedback"></textarea>' +
-          '<div id="wk-fb-row">' +
-            '<button id="wk-fb-cancel" type="button">Cancel</button>' +
-            '<button id="wk-fb-send" type="button">Send</button>' +
-          '</div>';
+        panel.innerHTML = FORM_HTML;
         wire();
       }, 1400);
     }
@@ -165,9 +181,10 @@
       var s = panel.querySelector('#wk-fb-send');
       if (c) c.onclick = close;
       if (s) s.onclick = function () {
-        var text = (panel.querySelector('#wk-fb-msg') || {}).value || '';
-        if (!text.trim()) { close(); return; }
-        send(text.trim());       // fire and forget: the user is thanked either way
+        var text = val('#wk-fb-msg').trim();
+        if (!text) { close(); return; }
+        // fire and forget: the user is thanked either way
+        send(text, val('#wk-fb-name').trim(), val('#wk-fb-email').trim());
         thanks();
       };
     }

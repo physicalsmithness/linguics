@@ -33,39 +33,47 @@ PATCH_MARKER = "[science-polysemy-prune]"
 
 # Each entry is (lemma, pos_or_None, rank_or_None). rank/pos None means "any".
 # Adding rank when there are multiple entries with same lemma+pos to disambiguate.
-STRIPS_CHEMISTRY = [
-    ("roba", "noun", 1201),
-    ("nodo", "noun", 3046),
-    ("asse", "noun", 3687),
-    ("corno", "noun", 4325),
-    ("neo", "noun", 5119),
-    ("persiano", "noun", 12447),
-    ("marocchino", "noun", 11745),
-    ("bulgaro", "noun", 12935),
-    ("pelliccia", "noun", 6371),
-    ("ceppo", "noun", 7222),
-    ("sarda", "noun", 15220),
-    ("cacca", "noun", 6991),
-    ("merda", "noun", 1946),
-    ("stronzo", "noun", 3654),
-    ("attivo", "noun", 11754),
-    ("rimanente", "noun", 8195),
-    ("cartina", "noun", 6770),
-    ("malta", "noun", 11486),
-    ("e", "noun", 10729),
-    ("e", "noun", 10730),
-    ("azoto", "verb", 11131),
-    ("azoto", "adjective", 13766),
-    # Smith also flagged: linfa (body fluid, biochemistry-adjacent but really body)
-    ("linfa", "noun", 10690),
-]
+STRIPS_CHEMISTRY = []  # phase 1 already applied on 2026-07-17; kept empty for idempotency
 
-STRIPS_PHYSICS = []  # populated in phase 2 after survey
-STRIPS_BIOLOGY = []
-STRIPS_MATH = []
-STRIPS_ASTRONOMY = []
-STRIPS_GENERAL = []
-STRIPS_COMPUTING = []
+# Phase 2 (Smith-ratified 2026-07-17 turn 2):
+STRIPS_PHYSICS = [
+    ("corrente", "adverb", 1283),      # "currently; fluently" — time adverb, not electrical
+    ("corrente", "adjective", 1431),   # "current; common" — general adj, not electrical
+]
+STRIPS_BIOLOGY = [
+    ("specie", "adverb", 630),         # "especially" — adverb, not species
+    ("tessuto", "adjective", 13940),   # "woven" — adj, not biological tissue
+]
+STRIPS_MATH = [
+    ("prodotto", "adjective", 11401),  # "extensive, protracted" — duration adj, not math product
+]
+STRIPS_ASTRONOMY = [
+    ("universo", "adjective", 1988),   # empty translation, corpus noise
+]
+STRIPS_GENERAL = [
+    ("decadenza", "noun", 8483),       # cultural decadence, not physics decay (which is decadimento)
+    ("fruizione", "noun", 15426),      # enjoyment/use, no scientific sense
+    ("allargamento", "noun", 15730),   # widening, no specific scientific use
+]
+STRIPS_COMPUTING = [
+    ("sito", "adjective", 805),        # "located, situated" — adj, not website
+    ("digitale", "noun", 2980),        # "foxglove, digitalis" — plant, not digital
+    ("binario", "noun", 4124),         # "platform" — train, not binary
+    ("cavo", "adjective", 4732),       # "hollow" — not cable
+    ("cuffia", "noun", 6432),          # "bonnet" — not headphones per this entry's translation
+    ("account", "verb", 5159),         # empty, noise
+    ("account", "adjective", 6859),    # empty, noise
+    ("profilo", "adjective", 8249),    # empty, noise
+    ("download", "adjective", 9186),   # empty, noise
+    ("stampante", "adjective", 9540),  # empty, noise
+    ("app", "verb", 9814),             # empty, noise
+    ("webcam", "adjective", 11265),    # empty, noise
+    ("ram", "adjective", 11457),       # empty, noise
+    ("spam", "verb", 13188),           # empty, noise
+    ("antivirus", "adjective", 14911), # empty, noise
+    ("login", "adjective", 15950),     # empty, noise
+    ("spam", "adjective", 16270),      # empty, noise
+]
 
 
 def matches(entry, lemma, pos, rank):

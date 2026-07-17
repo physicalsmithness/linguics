@@ -228,6 +228,70 @@ The flag is display-only; engine behaviour (marking, bucket attribution, must_no
 
 - Grammar items: **118** (was 121, minus 3 polite items recast as translation)
 - Translation items: **54** (was 51, plus 3 polite items recast)
-- Items carrying `info_display: "suppress"`: **25**
+- Items carrying `info_display: "suppress"`: **57**
 
 Validated programmatically: 0 mark/credit mismatches; JSON parses on both files.
+
+---
+
+## Update 2026-07-17: chip_suppression v4 extension applied
+
+Per architect's v4 ruling on `Architecture_ImperfectAuthor_chip_suppression.md`: extend `info_display: "suppress"` to all discrimination items, not just sapere. Applied to the 32 items previously left unflagged (20 non-sapere modal-discrim + 12 general-discrim). Thread posted v5 close.
+
+New totals:
+
+- Total grammar items: 118 (unchanged)
+- Total items carrying `info_display: "suppress"`: **57** (up from 25)
+- Marks/credit accounting: 0 mismatches
+
+Corresponding project-wide rule (criterion 15 in AUTHOR_BRIEF Rev 8 + DECISIONS 2026-06-08): discrimination items are suppress-by-default. Extension to be folded into criterion 15 by architect on next pass.
+
+### Open thread state, refreshed
+
+- `Architecture_ImperfectAuthor_chip_suppression.md`: OPEN at v5 (my close), awaiting architect CLOSED stamp.
+- `Architecture_ImperfectAuthor_isc_overextension_coverage.md`: OPEN at v1, Next: ImperfectAuthor.
+- `Architecture_ImperfectAuthor_vocab_lemma_hygiene.md`: OPEN at v2, Next: ImperfectAuthor.
+
+
+---
+
+## Update 2026-07-17 (2nd): isc_overextension_coverage v2 applied
+
+Per architect's v1 ruling on `Architecture_ImperfectAuthor_isc_overextension_coverage.md`:
+
+- **10 formation items rewritten** to add a genuine past anchor. Rewrites include the canonical preferire bug (`imp_form_ire_05` now prepends "Da studenti,"). Full list in the thread's v2.
+- **5 -isc- retention entries tagged** with the misconception `stem_change.isc_over_extension` (object-form must_not_include). Items: `imp_form_ire_03` (capiscevo, capisceva, capisciva), `imp_form_ire_04` (finiscevamo), `imp_form_ire_05` (preferiscevano).
+- **0 present-tense entries removed** because all three -isc- items now carry a strong past anchor.
+
+Grammar total remains 118. Marks/credit accounting 0 mismatches. Thread posted v2 close; awaiting architect CLOSED stamp.
+
+
+---
+
+## Update 2026-07-17 (3rd): vocab_lemma_hygiene v3 applied
+
+Per architect's v1+v2 ruling on `Architecture_ImperfectAuthor_vocab_lemma_hygiene.md`:
+
+**Vocab lemma-key hygiene + POS migration:**
+
+- 18 unique lemma keys touched across 26 vocab_help bucket refs. Applied Rev 3 §2 conventions plus the migrated `vocabulary.it.<lemma>.<pos>.<aspect>` shape.
+- 5 squashed multiwords underscored: `stareper`→`stare_per`, `allimprovviso`→`all_improvviso`, `difila`→`di_fila`, `piutardi`→`piu_tardi`, `cartonianimati`→`cartoni_animati`.
+- 1 missing accent: `verita`→`verità`.
+- 2 proper nouns (`africa`, `toscana`) kept lowercase-key per Rev 3 rule 2; POS added.
+- 2 missing-registry lemmas (`sveglia`, `passeggiata`) verified as canonical; POS added.
+- 8 homographs given batch-appropriate POS assignments (`cosa`,`ora`,`dolce` = noun; `alto`,`caldo`,`solo` = adjective; `forte` = adverb; `sotto` = preposition).
+- 2 extras outside the worklist (`dirotto`, `fluentemente`) also migrated so the batch is 100% new-shape.
+
+**candidate_tenses / correct_tense on 37 discrimination items:**
+
+Item-level fields added to every `discrimination.*` grammar item (all 37 of my shared-tree items). `candidate_tenses: ["imperfect", "passato_prossimo"]` uniform; `correct_tense` classified per markpoint 0's answer form (20 imperfect, 17 passato_prossimo). Same shape as TenseChoiceAuthor's wave-2 items.
+
+**Batch state after this sitting:**
+
+- Grammar items: 118, Translation items: 54
+- Old-shape vocab refs remaining: 0
+- `info_display: "suppress"` items: 57
+- Discrimination items with `candidate_tenses` + `correct_tense`: 37
+- Marks/credit mismatches: 0
+
+One-sitting bundle complete. All three OPEN threads (chip_suppression, isc_overextension_coverage, vocab_lemma_hygiene) posted close-outs; awaiting Architecture CLOSED stamps.

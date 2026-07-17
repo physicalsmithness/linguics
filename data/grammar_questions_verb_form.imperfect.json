@@ -67,7 +67,7 @@
         }
       }
     ],
-    "explanation": "When you describe what you used to do as a child, you're talking about a repeated past action. Italian uses the imperfect indicative for habitual past actions. The imperfect of parlare in the 1sg is parlavo: stem parl- + the -are class marker -av- + the 1sg ending -o.",
+    "explanation": "'As a child, I spoke Italian at home with my grandparents': Da bambino, parlavo italiano a casa con i nonni. When you describe what you used to do as a child, you're talking about a repeated past action. Italian uses the imperfect indicative for habitual past actions. The imperfect of parlare in the 1sg is parlavo: stem parl- + the -are class marker -av- + the 1sg ending -o.",
     "examiner_note": "Common miss: defaulting to passato prossimo (ho parlato) because English 'spoke' can map to either tense.",
     "version": 1
   },
@@ -213,7 +213,7 @@
         }
       }
     ],
-    "explanation": "When you describe what a past scene looked like, you're characterising a state, not narrating an event. Italian uses the imperfect indicative for past states and descriptions. The 3sg of sembrare in the imperfect is sembrava: stem sembr- + -av- + -a.",
+    "explanation": "'It was raining hard and the road seemed deserted': Pioveva forte e la strada sembrava deserta. When you describe what a past scene looked like, you're characterising a state, not narrating an event. Italian uses the imperfect indicative for past states and descriptions. The 3sg of sembrare in the imperfect is sembrava: stem sembr- + -av- + -a.",
     "version": 1
   },
   {
@@ -741,7 +741,7 @@
     "subtopic": "formation.regular_ere",
     "difficulty": 2,
     "cefr_level_target": "B1",
-    "prompt": "Complete: 'I miei zii ____ sempre una buona bottiglia in tavola la domenica.' (mettere)",
+    "prompt": "Complete: 'Quando ero piccolo, i miei zii ____ sempre una buona bottiglia in tavola la domenica.' (mettere)",
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
@@ -964,9 +964,18 @@
           }
         ],
         "must_not_include": [
-          "capiscevo",
-          "capisceva",
-          "capisciva",
+          {
+            "phrase": "capiscevo",
+            "misconception": "stem_change.isc_over_extension"
+          },
+          {
+            "phrase": "capisceva",
+            "misconception": "stem_change.isc_over_extension"
+          },
+          {
+            "phrase": "capisciva",
+            "misconception": "stem_change.isc_over_extension"
+          },
           "ha capito",
           "capì",
           "capisce"
@@ -1009,7 +1018,7 @@
         }
       }
     ],
-    "explanation": "Capire is one of the -isc- verbs: in the present indicative it inserts -isc- in the singular and 3pl forms (capisco, capisci, capisce, capiscono). But the -isc- pattern is a feature of the present indicative only. In the imperfect, capire is fully regular: stem cap- + -iv- + -a = capiva. So the 3sg is capiva, never *capisceva.",
+    "explanation": "'As a little girl, my sister never got Dad's jokes': Da bambina, mia sorella non capiva mai gli scherzi di papà. Capire is one of the -isc- verbs: in the present indicative it inserts -isc- in the singular and 3pl forms (capisco, capisci, capisce, capiscono). But the -isc- pattern is a feature of the present indicative only. In the imperfect, capire is fully regular: stem cap- + -iv- + -a = capiva. So the 3sg is capiva, never *capisceva.",
     "examiner_note": "A high-frequency sleeper miss: learners who have internalised -isc- for the present sometimes carry it into the imperfect, producing 'capiscevo'. The must_not_include list catches several variants of this.",
     "version": 1
   },
@@ -1037,7 +1046,10 @@
           }
         ],
         "must_not_include": [
-          "finiscevamo",
+          {
+            "phrase": "finiscevamo",
+            "misconception": "stem_change.isc_over_extension"
+          },
           "abbiamo finito",
           "finimmo",
           "finiremo",
@@ -1091,7 +1103,7 @@
     "subtopic": "formation.regular_ire",
     "difficulty": 2,
     "cefr_level_target": "B1",
-    "prompt": "Complete: 'I miei amici ____ sempre il caffè all'americana, mai l'espresso.' (preferire)",
+    "prompt": "Complete: 'Da studenti, i miei amici ____ sempre il caffè all'americana, mai l'espresso.' (preferire)",
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
@@ -1108,7 +1120,10 @@
           }
         ],
         "must_not_include": [
-          "preferiscevano",
+          {
+            "phrase": "preferiscevano",
+            "misconception": "stem_change.isc_over_extension"
+          },
           "preferiscono",
           "hanno preferito",
           "preferirono"
@@ -1222,7 +1237,7 @@
         }
       }
     ],
-    "explanation": "When you describe how you felt at a past point, you're characterising a state, so Italian uses the imperfect indicative. Essere is the most irregular imperfect in the language: it doesn't use the regular -ev- pattern but instead has its own stem er-. The 1sg is ero (er- + -o), which sits alongside eri, era, eravamo, eravate, erano. Worth memorising as a paradigm.",
+    "explanation": "'Yesterday evening I was very tired and went to bed early': Ieri sera ero molto stanco e sono andato a letto presto. When you describe how you felt at a past point, you're characterising a state, so Italian uses the imperfect indicative. Essere is the most irregular imperfect in the language: it doesn't use the regular -ev- pattern but instead has its own stem er-. The 1sg is ero (er- + -o), which sits alongside eri, era, eravamo, eravate, erano. Worth memorising as a paradigm.",
     "examiner_note": "Common slip: regularising essere to *essevo. The must_not_include list catches this.",
     "version": 1
   },
@@ -1233,7 +1248,7 @@
     "subtopic": "formation.irregular.essere",
     "difficulty": 1,
     "cefr_level_target": "A2",
-    "prompt": "Complete: 'La casa dei miei nonni ____ grande e luminosa.' (essere)",
+    "prompt": "Complete: 'Quando andavamo a trovarli, la casa dei miei nonni ____ grande e luminosa.' (essere)",
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
@@ -1294,7 +1309,7 @@
         }
       }
     ],
-    "explanation": "A description of what a place was like is a state, not an event. Italian uses the imperfect indicative for past states. The 3sg of essere in the imperfect is era: stem er- + -a. The full paradigm: ero, eri, era, eravamo, eravate, erano.",
+    "explanation": "'When we went to visit them, my grandparents' house was big and full of light': Quando andavamo a trovarli, la casa dei miei nonni era grande e luminosa. A description of what a place was like is a state, not an event. Italian uses the imperfect indicative for past states. The 3sg of essere in the imperfect is era: stem er- + -a. The full paradigm: ero, eri, era, eravamo, eravate, erano.",
     "version": 1
   },
   {
@@ -1522,7 +1537,7 @@
         }
       }
     ],
-    "explanation": "The clause 'quando vi siete sposati' anchors the moment, and 'eravate giovani' describes the state at that moment, so Italian uses the imperfect indicative for the state. The 2pl of essere in the imperfect is eravate (er- + -avate). Stress on the -a- of -avate (eravÀte).",
+    "explanation": "'You told me you were very young when you got married': Mi avete raccontato che eravate molto giovani quando vi siete sposati. The clause 'quando vi siete sposati' anchors the moment, and 'eravate giovani' describes the state at that moment, so Italian uses the imperfect indicative for the state. The 2pl of essere in the imperfect is eravate (er- + -avate). Stress on the -a- of -avate (eravÀte).",
     "version": 1
   },
   {
@@ -1532,7 +1547,7 @@
     "subtopic": "formation.irregular.essere",
     "difficulty": 2,
     "cefr_level_target": "A2",
-    "prompt": "Complete: 'Le strade del centro ____ piene di gente la sera.' (essere)",
+    "prompt": "Complete: 'In quegli anni, le strade del centro ____ piene di gente la sera.' (essere)",
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
@@ -1597,7 +1612,7 @@
         }
       }
     ],
-    "explanation": "A description of what the streets were habitually like is a state, so Italian uses the imperfect indicative. The 3pl of essere in the imperfect is erano (er- + -ano). The 3pl is antepenult-stressed, like all -ano endings (Èrano).",
+    "explanation": "'In those years, the streets of the centre were full of people in the evenings': In quegli anni, le strade del centro erano piene di gente la sera. A description of what the streets were habitually like is a state, so Italian uses the imperfect indicative. The 3pl of essere in the imperfect is erano (er- + -ano). The 3pl is antepenult-stressed, like all -ano endings (Èrano).",
     "version": 1
   },
   {
@@ -1607,7 +1622,7 @@
     "subtopic": "formation.irregular.essere",
     "difficulty": 2,
     "cefr_level_target": "A2",
-    "prompt": "Complete the existential: 'Sul tavolo ____ un libro aperto e una tazza di caffè.' (esserci)",
+    "prompt": "Complete the existential: 'Quando sono entrato, sul tavolo ____ un libro aperto e una tazza di caffè.' (esserci)",
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
@@ -1675,7 +1690,7 @@
         }
       }
     ],
-    "explanation": "When you describe what was present at a past scene, you're characterising the scene, so Italian uses the imperfect indicative. The existential construction is c'è / ci sono in the present, and c'era / c'erano in the imperfect. Either c'era (agreeing with the nearer singular subject 'un libro') or c'erano (agreeing with the whole list) is acceptable here.",
+    "explanation": "'When I came in, there was an open book and a cup of coffee on the table': Quando sono entrato, sul tavolo c'era un libro aperto e una tazza di caffè. When you describe what was present at a past scene, you're characterising the scene, so Italian uses the imperfect indicative. The existential construction is c'è / ci sono in the present, and c'era / c'erano in the imperfect. Either c'era (agreeing with the nearer singular subject 'un libro') or c'erano (agreeing with the whole list) is acceptable here.",
     "examiner_note": "Both forms are common in this kind of nearest-conjunct existential. Marker accepts both.",
     "version": 1
   },
@@ -1746,7 +1761,7 @@
         }
       }
     ],
-    "explanation": "An ongoing past scene with a plural subject (molti turisti) takes the imperfect indicative existential in the plural: c'erano. Stem er- + -ano in the 3pl, with the locative clitic ci attaching: c' + erano = c'erano.",
+    "explanation": "'When I arrived, there were a lot of tourists in front of the museum': Quando sono arrivato, c'erano molti turisti davanti al museo. An ongoing past scene with a plural subject (molti turisti) takes the imperfect indicative existential in the plural: c'erano. Stem er- + -ano in the 3pl, with the locative clitic ci attaching: c' + erano = c'erano.",
     "version": 1
   },
   {
@@ -1833,7 +1848,7 @@
     "subtopic": "formation.irregular.stem_expansion.fare",
     "difficulty": 2,
     "cefr_level_target": "B1",
-    "prompt": "Complete: 'La mia maestra ____ sempre le stesse domande all'inizio della lezione.' (fare)",
+    "prompt": "Complete: 'Alle elementari, la mia maestra ____ sempre le stesse domande all'inizio della lezione.' (fare)",
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
@@ -1978,11 +1993,11 @@
         "aspects": {
           "translation": {
             "reveal": "passeggiata - walk / stroll",
-            "bucket": "vocabulary.it.passeggiata.translation"
+            "bucket": "vocabulary.it.passeggiata.noun.translation"
           },
           "gender": {
             "reveal": "feminine (f)",
-            "bucket": "vocabulary.it.passeggiata.gender"
+            "bucket": "vocabulary.it.passeggiata.noun.gender"
           }
         }
       },
@@ -2285,7 +2300,7 @@
         }
       }
     ],
-    "explanation": "When you describe what people habitually said in a community, Italian uses the imperfect indicative for the repeated past action. The 3pl of dire in the imperfect is dicevano (dic- + -ev- + -ano). Antepenult-stressed (dicÈvano).",
+    "explanation": "'The old people of the village used to say the fountain was magic': I vecchi del paese dicevano che la fontana era magica. When you describe what people habitually said in a community, Italian uses the imperfect indicative for the repeated past action. The 3pl of dire in the imperfect is dicevano (dic- + -ev- + -ano). Antepenult-stressed (dicÈvano).",
     "version": 1
   },
   {
@@ -2375,7 +2390,7 @@
     "subtopic": "formation.irregular.stem_expansion.bere",
     "difficulty": 2,
     "cefr_level_target": "B1",
-    "prompt": "Complete: 'A casa dei nonni ____ sempre il vino rosso a cena.' (bere)",
+    "prompt": "Complete: 'Da bambini, a casa dei nonni ____ sempre il vino rosso a cena.' (bere)",
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
@@ -2432,7 +2447,7 @@
     "subtopic": "formation.irregular.stem_expansion.bere",
     "difficulty": 2,
     "cefr_level_target": "B1",
-    "prompt": "Complete: 'I miei colleghi ____ troppi caffè durante la giornata.' (bere)",
+    "prompt": "Complete: 'Nel mio primo lavoro, i miei colleghi ____ troppi caffè durante la giornata.' (bere)",
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
@@ -2493,7 +2508,7 @@
         }
       }
     ],
-    "explanation": "A description of a recurring habit takes the imperfect indicative. The 3pl of bere in the imperfect is bevevano (bev- + -ev- + -ano). Antepenult-stressed (bevÈvano).",
+    "explanation": "'In my first job, my colleagues drank too many coffees during the day': Nel mio primo lavoro, i miei colleghi bevevano troppi caffè durante la giornata. A description of a recurring habit takes the imperfect indicative. The 3pl of bere in the imperfect is bevevano (bev- + -ev- + -ano). Antepenult-stressed (bevÈvano).",
     "version": 1
   },
   {
@@ -2503,7 +2518,7 @@
     "subtopic": "formation.irregular.stem_expansion.porre",
     "difficulty": 3,
     "cefr_level_target": "B2",
-    "prompt": "Complete: 'Il professore ____ sempre domande difficili agli esami.' (porre)",
+    "prompt": "Complete: 'All'università, il professore ____ sempre domande difficili agli esami.' (porre)",
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
@@ -2648,7 +2663,7 @@
         }
       }
     ],
-    "explanation": "Compounds of porre (proporre, comporre, opporre, supporre, etc.) all follow the porre stem-expansion pattern. The expanded stem is -pon-, so the 1sg imperfect of proporre is proponevo (pro- + pon- + -ev- + -o). 'In quegli anni' cues a sustained past habit, hence the imperfect indicative.",
+    "explanation": "'In those years, I was always putting forward new ideas to improve the company': In quegli anni, proponevo sempre nuove idee per migliorare l'azienda. Compounds of porre (proporre, comporre, opporre, supporre, etc.) all follow the porre stem-expansion pattern. The expanded stem is -pon-, so the 1sg imperfect of proporre is proponevo (pro- + pon- + -ev- + -o). 'In quegli anni' cues a sustained past habit, hence the imperfect indicative.",
     "examiner_note": "All porre compounds inherit both the imperfect stem (-pon-) and the participle stem (-pos-, as in proposto): pre-noun prefix + pon- in the imperfect, pre-noun prefix + pos- in the PP.",
     "version": 1
   },
@@ -2659,7 +2674,7 @@
     "subtopic": "formation.irregular.stem_expansion.tradurre",
     "difficulty": 3,
     "cefr_level_target": "B2",
-    "prompt": "Complete: 'Al liceo classico ____ dal latino tutti i giorni.' (tradurre, noi)",
+    "prompt": "Complete: 'Anni fa al liceo classico ____ dal latino tutti i giorni.' (tradurre, noi)",
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
@@ -2801,7 +2816,7 @@
         }
       }
     ],
-    "explanation": "Compounds of -durre (introdurre, produrre, ridurre, sedurre, condurre) follow the tradurre pattern: contracted -durre infinitive, expanded -duc- stem in the imperfect. So the 3pl of introdurre in the imperfect is introducevano (intro- + duc- + -ev- + -ano). 'Negli anni Settanta' frames a habit-period, hence the imperfect.",
+    "explanation": "'In the Seventies, television channels brought in a lot of American programmes': Negli anni Settanta, le televisioni introducevano molti programmi americani. Compounds of -durre (introdurre, produrre, ridurre, sedurre, condurre) follow the tradurre pattern: contracted -durre infinitive, expanded -duc- stem in the imperfect. So the 3pl of introdurre in the imperfect is introducevano (intro- + duc- + -ev- + -ano). 'Negli anni Settanta' frames a habit-period, hence the imperfect.",
     "version": 1
   },
   {
@@ -2996,7 +3011,7 @@
         "aspects": {
           "translation": {
             "reveal": "dolce - sweet / dessert (dolci = sweets)",
-            "bucket": "vocabulary.it.dolce.translation"
+            "bucket": "vocabulary.it.dolce.noun.translation"
           }
         }
       },
@@ -3210,7 +3225,7 @@
         }
       }
     ],
-    "explanation": "There's no explicit 'sempre' or 'ogni' here, but 'in quel periodo' (during that period) frames a habit across an extended past stretch. Italian uses the imperfect indicative whenever the framing is durational or repeated, even without a frequency adverb. The 1sg of mangiare in the imperfect is mangiavo.",
+    "explanation": "'In that period of my life I ate very little because I was very stressed': In quel periodo della mia vita mangiavo pochissimo perché ero molto stressato. There's no explicit 'sempre' or 'ogni' here, but 'in quel periodo' (during that period) frames a habit across an extended past stretch. Italian uses the imperfect indicative whenever the framing is durational or repeated, even without a frequency adverb. The 1sg of mangiare in the imperfect is mangiavo.",
     "examiner_note": "Implicit habitual cues are diagnostically richer than explicit ones: the learner has to read the framing rather than spotting an adverb. Important to include items like this so learners don't pattern-match on lexical cues alone.",
     "version": 1
   },
@@ -3272,7 +3287,7 @@
         }
       }
     ],
-    "explanation": "When you describe the weather at a past moment, you're characterising the conditions, not narrating a discrete event. Italian uses the imperfect indicative for ongoing past states. The 3sg of piovere in the imperfect is pioveva (regular -ere: piov- + -ev- + -a). Piovere is impersonal, so it's always 3sg.",
+    "explanation": "'When I left the house, it was raining hard and it was very windy': Quando sono uscito di casa, pioveva forte e c'era molto vento. When you describe the weather at a past moment, you're characterising the conditions, not narrating a discrete event. Italian uses the imperfect indicative for ongoing past states. The 3sg of piovere in the imperfect is pioveva (regular -ere: piov- + -ev- + -a). Piovere is impersonal, so it's always 3sg.",
     "version": 1
   },
   {
@@ -3339,7 +3354,7 @@
         }
       }
     ],
-    "explanation": "A description of someone's appearance is a past state, not an event. Italian uses the imperfect indicative for descriptive past states. The 3sg of avere in the imperfect is aveva (regular -ere: av- + -ev- + -a). Avere is regular in the imperfect, despite being highly irregular in many other tenses (ho, hai, ha in the present; ho avuto in the PP).",
+    "explanation": "'As a little girl, my sister had long curly hair': Da bambina, mia sorella aveva i capelli lunghi e ricci. A description of someone's appearance is a past state, not an event. Italian uses the imperfect indicative for descriptive past states. The 3sg of avere in the imperfect is aveva (regular -ere: av- + -ev- + -a). Avere is regular in the imperfect, despite being highly irregular in many other tenses (ho, hai, ha in the present; ho avuto in the PP).",
     "examiner_note": "Common miss: using 'ha avuto' for a past possession-state. PP changes the reading to 'received / acquired'.",
     "version": 1
   },
@@ -3391,12 +3406,12 @@
         "aspects": {
           "translation": {
             "reveal": "solo - alone / lonely",
-            "bucket": "vocabulary.it.solo.translation"
+            "bucket": "vocabulary.it.solo.adjective.translation"
           }
         }
       }
     ],
-    "explanation": "An emotional state at a past time is a state, not an event. Italian uses the imperfect indicative for past states. The reflexive sentirsi in the 1sg imperfect is 'mi sentivo' (mi + sentivo, from regular -ire stem sent-). Note that 'mi sono sentito' (PP) shifts the reading to a discrete event of feeling at one moment, which doesn't fit a sustained emotional state.",
+    "explanation": "'When we met, I was feeling very lonely': Quando ci siamo conosciuti, mi sentivo molto solo. An emotional state at a past time is a state, not an event. Italian uses the imperfect indicative for past states. The reflexive sentirsi in the 1sg imperfect is 'mi sentivo' (mi + sentivo, from regular -ire stem sent-). Note that 'mi sono sentito' (PP) shifts the reading to a discrete event of feeling at one moment, which doesn't fit a sustained emotional state.",
     "version": 1
   },
   {
@@ -3457,7 +3472,7 @@
         }
       }
     ],
-    "explanation": "When you describe what someone was in the middle of doing at a past moment, you're describing an ongoing action. Italian uses the imperfect indicative for that progressive reading. The 3sg of leggere in the imperfect is leggeva. Note: this item edges toward background_with_pp (the 'incontrata' is a PP foreground event), but the focus here is purely the imperfect's ongoing-action use.",
+    "explanation": "'When I ran into her at the café, she was reading a philosophy book': Quando l'ho incontrata al caffè, leggeva un libro di filosofia. When you describe what someone was in the middle of doing at a past moment, you're describing an ongoing action. Italian uses the imperfect indicative for that progressive reading. The 3sg of leggere in the imperfect is leggeva. Note: this item edges toward background_with_pp (the 'incontrata' is a PP foreground event), but the focus here is purely the imperfect's ongoing-action use.",
     "version": 1
   },
   {
@@ -3517,7 +3532,7 @@
         }
       }
     ],
-    "explanation": "Two simultaneous ongoing actions in the past both take the imperfect indicative. Italian doesn't mix tenses here: the children playing and the parents preparing dinner are both backgrounded scenes, no single foregrounded event. The 3pl of giocare in the imperfect is giocavano (regular -are: gioc- + -av- + -ano).",
+    "explanation": "'The children were playing in the garden while we were making dinner': I bambini giocavano in giardino mentre noi preparavamo la cena. Two simultaneous ongoing actions in the past both take the imperfect indicative. Italian doesn't mix tenses here: the children playing and the parents preparing dinner are both backgrounded scenes, no single foregrounded event. The 3pl of giocare in the imperfect is giocavano (regular -are: gioc- + -av- + -ano).",
     "version": 1
   },
   {
@@ -3602,7 +3617,7 @@
         }
       }
     ],
-    "explanation": "When you describe what a place was like at a past moment, you're characterising a state. Italian uses the imperfect indicative for past states. The 3sg of essere in the imperfect is era.",
+    "explanation": "'The classroom was full of students listening in silence': L'aula era piena di studenti che ascoltavano in silenzio. When you describe what a place was like at a past moment, you're characterising a state. Italian uses the imperfect indicative for past states. The 3sg of essere in the imperfect is era.",
     "version": 1
   },
   {
@@ -3749,7 +3764,7 @@
         }
       }
     ],
-    "explanation": "The PP clause (sono entrato) gives the foregrounded event; the imperfect clause describes what was already in progress when that event happened. Italian uses the imperfect indicative for that background state. The 3pl of guardare in the imperfect is guardavano. The English equivalent uses past continuous: 'the students were watching the film'.",
+    "explanation": "'When I came into the room, the students were watching the film': Quando sono entrato nella stanza, gli studenti guardavano il film. The PP clause (sono entrato) gives the foregrounded event; the imperfect clause describes what was already in progress when that event happened. Italian uses the imperfect indicative for that background state. The 3pl of guardare in the imperfect is guardavano. The English equivalent uses past continuous: 'the students were watching the film'.",
     "version": 1
   },
   {
@@ -4034,7 +4049,7 @@
         }
       }
     ],
-    "explanation": "The PP clause names the entering event; the imperfect describes the cold state that was already there when the entering happened. Italian uses the imperfect indicative for the past state. 'Fare freddo' is the idiom for 'to be cold' (of weather/atmosphere); the 3sg imperfect is faceva. Note that the stem-expansion fac- is needed (faceva, not *fava).",
+    "explanation": "'When I came into the house, it was very cold': Quando sono entrato in casa, faceva molto freddo. The PP clause names the entering event; the imperfect describes the cold state that was already there when the entering happened. Italian uses the imperfect indicative for the past state. 'Fare freddo' is the idiom for 'to be cold' (of weather/atmosphere); the 3sg imperfect is faceva. Note that the stem-expansion fac- is needed (faceva, not *fava).",
     "version": 1
   },
   {
@@ -4193,7 +4208,7 @@
         }
       }
     ],
-    "explanation": "The first slot is the ongoing background action (walking), the second is the punctuating event (running into the friend). Italian uses imperfect for the background and passato prossimo for the event. camminavo + ho incontrato. A learner who writes 'camminavo' + 'incontravo' for both has missed the foreground/background contrast.",
+    "explanation": "'The other day, while I was walking down the street, I ran into an old friend of mine': L'altro giorno mentre camminavo per strada, ho incontrato un mio vecchio amico. The first slot is the ongoing background action (walking), the second is the punctuating event (running into the friend). Italian uses imperfect for the background and passato prossimo for the event. camminavo + ho incontrato. A learner who writes 'camminavo' + 'incontravo' for both has missed the foreground/background contrast.",
     "examiner_note": "Two-slot item; both halves of the contrast are under test.",
     "version": 1
   },
@@ -4288,7 +4303,7 @@
         }
       }
     ],
-    "explanation": "Three imperfects (era, pioveva, tirava) set the cold, rainy, windy scene. 'All'improvviso' (suddenly) signals the breaking event, which takes passato prossimo. The 3sg of rompere in the PP is ha rotto (irregular participle from rompere). Note that rompere takes avere despite the breaking-something result, because it's transitive: una finestra is the direct object.",
+    "explanation": "'It was a cold evening, pouring with rain and windy. Suddenly the wind smashed a window': Era una serata fredda, pioveva forte e tirava vento. All'improvviso il vento ha rotto una finestra. Three imperfects (era, pioveva, tirava) set the cold, rainy, windy scene. 'All'improvviso' (suddenly) signals the breaking event, which takes passato prossimo. The 3sg of rompere in the PP is ha rotto (irregular participle from rompere). Note that rompere takes avere despite the breaking-something result, because it's transitive: una finestra is the direct object.",
     "examiner_note": "Cross-tree item: scene-setting imperfects are given; the diagnostic is the surprise-event PP. Sometimes called 'imperfect with PP-foreground in a marked-surprise frame'.",
     "version": 1
   },
@@ -4453,7 +4468,7 @@
         }
       }
     ],
-    "explanation": "The scene-setting weather and TV-watching are parallel ongoing backgrounds in the imperfect (pioveva is given, guardavano is the blank). The power-cut is the foregrounded event in the PP. The Italian idiom 'saltare la corrente' (literally 'the current jumps') takes essere: è saltata, with f.sg participle agreement on 'la corrente'.",
+    "explanation": "'It was raining and the children were watching television when the power went out': Pioveva e i bambini guardavano la televisione quando è saltata la corrente. The scene-setting weather and TV-watching are parallel ongoing backgrounds in the imperfect (pioveva is given, guardavano is the blank). The power-cut is the foregrounded event in the PP. The Italian idiom 'saltare la corrente' (literally 'the current jumps') takes essere: è saltata, with f.sg participle agreement on 'la corrente'.",
     "examiner_note": "Tricky auxiliary on saltare in this idiomatic sense: it's intransitive-of-change-of-state here, so essere. Compounded with f.sg agreement.",
     "version": 1
   },
@@ -4513,7 +4528,7 @@
         }
       }
     ],
-    "explanation": "To say how long a past action had already been going on at the moment something else happened, Italian uses imperfect + da + time. English maps to the past perfect continuous ('I had been waiting for twenty minutes'). The 1sg of aspettare in the imperfect is aspettavo. Italian never uses passato prossimo with this 'da X' construction: 'ho aspettato da venti minuti' is ungrammatical.",
+    "explanation": "'I'd been waiting for the train for twenty minutes when it finally arrived': aspettavo il treno da venti minuti quando finalmente è arrivato. To say how long a past action had already been going on at the moment something else happened, Italian uses imperfect + da + time. English maps to the past perfect continuous ('I had been waiting for twenty minutes'). The 1sg of aspettare in the imperfect is aspettavo. Italian never uses passato prossimo with this 'da X' construction: 'ho aspettato da venti minuti' is ungrammatical.",
     "examiner_note": "High-frequency miss: learners default to PP for the wait, mistranslating English past perfect.",
     "version": 1
   },
@@ -4574,7 +4589,7 @@
         }
       }
     ],
-    "explanation": "The construction is imperfect + da + time-phrase: it expresses how long an action had been going on by the reference point. The 1sg of vivere in the imperfect is vivevo (regular -ere). Note that vivere's participle is irregular (vissuto), but the imperfect is regular.",
+    "explanation": "'When we met, I'd been living in Rome for three years': Quando ci siamo conosciuti, vivevo a Roma da tre anni. The construction is imperfect + da + time-phrase: it expresses how long an action had been going on by the reference point. The 1sg of vivere in the imperfect is vivevo (regular -ere). Note that vivere's participle is irregular (vissuto), but the imperfect is regular.",
     "version": 1
   },
   {
@@ -4750,7 +4765,7 @@
         }
       }
     ],
-    "explanation": "Italian expresses age with 'avere + N anni' (literally 'to have N years'). In the past, this is a state, so it takes the imperfect indicative. 'Avevo ventidue anni' = 'I was twenty-two years old'. The miss to avoid is 'ho avuto ventidue anni' (PP), which would mean something like 'I had twenty-two years' as a discrete event, which is nonsensical.",
+    "explanation": "'When I started work, I was twenty-two': Quando ho cominciato a lavorare, avevo ventidue anni. Italian expresses age with 'avere + N anni' (literally 'to have N years'). In the past, this is a state, so it takes the imperfect indicative. 'Avevo ventidue anni' = 'I was twenty-two years old'. The miss to avoid is 'ho avuto ventidue anni' (PP), which would mean something like 'I had twenty-two years' as a discrete event, which is nonsensical.",
     "examiner_note": "Hot-spot bucket: English speakers default to 'was X years old' → 'sono stato X' (which is wrong) or 'ho avuto X anni' (which is also wrong). Both should be discouraged. The right pattern is 'avevo X anni'.",
     "version": 1
   },
@@ -4827,7 +4842,7 @@
         }
       }
     ],
-    "explanation": "Age expressed in the past is a state, not an event, so Italian uses the imperfect indicative. The 3sg of avere in the imperfect is aveva. Even though the second clause (è nato) is a PP event, the age state runs in the imperfect alongside it: the grandfather was eighty when the brother was born.",
+    "explanation": "'My grandfather was eighty when my brother was born': Mio nonno aveva ottant'anni quando è nato mio fratello. Age expressed in the past is a state, not an event, so Italian uses the imperfect indicative. The 3sg of avere in the imperfect is aveva. Even though the second clause (è nato) is a PP event, the age state runs in the imperfect alongside it: the grandfather was eighty when the brother was born.",
     "version": 1
   },
   {
@@ -4888,7 +4903,7 @@
         }
       }
     ],
-    "explanation": "Italian expresses time of day with 'sono le X' (present) and 'erano le X' (past), agreeing with the plural number of hours. Time of day is a state, so the past form takes the imperfect indicative. The 3pl of essere in the imperfect is erano. 'Erano le otto' = 'It was eight o'clock'. The singular 'era' is used for 'era l'una' (it was one o'clock), 'era mezzogiorno' (noon), 'era mezzanotte' (midnight).",
+    "explanation": "'It was eight in the evening when they finally arrived': erano le otto di sera quando finalmente sono arrivati. Italian expresses time of day with 'sono le X' (present) and 'erano le X' (past), agreeing with the plural number of hours. Time of day is a state, so the past form takes the imperfect indicative. The 3pl of essere in the imperfect is erano. 'Erano le otto' = 'It was eight o'clock'. The singular 'era' is used for 'era l'una' (it was one o'clock), 'era mezzogiorno' (noon), 'era mezzanotte' (midnight).",
     "examiner_note": "PP miss (sono state le otto) is the textbook wrong form; English 'was' tempts it. The agreement with the number of hours is the second diagnostic.",
     "version": 1
   },
@@ -4950,7 +4965,7 @@
         }
       }
     ],
-    "explanation": "Mezzanotte (midnight), mezzogiorno (noon), and 'l'una' (one o'clock) take the singular essere because they're conceptually single time points. In the past, time of day is a state, so the imperfect indicative: era mezzanotte. Contrast with 'erano le otto' (plural hours, plural verb).",
+    "explanation": "'It was almost midnight and everyone in the house was asleep': era quasi mezzanotte e tutti in casa dormivano. Mezzanotte (midnight), mezzogiorno (noon), and 'l'una' (one o'clock) take the singular essere because they're conceptually single time points. In the past, time of day is a state, so the imperfect indicative: era mezzanotte. Contrast with 'erano le otto' (plural hours, plural verb).",
     "version": 1
   },
   {
@@ -5007,7 +5022,7 @@
         }
       }
     ],
-    "explanation": "Weather in the past is a state, not an event, so Italian uses the imperfect indicative. 'Fare freddo' is the idiom for 'to be cold' (of weather); the 3sg imperfect is faceva. Note that ieri ('yesterday') normally cues PP for events, but for weather and other states, the imperfect overrides that default.",
+    "explanation": "'Yesterday evening it was very cold, almost below zero': Ieri sera faceva molto freddo, quasi sotto zero. Weather in the past is a state, not an event, so Italian uses the imperfect indicative. 'Fare freddo' is the idiom for 'to be cold' (of weather); the 3sg imperfect is faceva. Note that ieri ('yesterday') normally cues PP for events, but for weather and other states, the imperfect overrides that default.",
     "examiner_note": "The tension between 'ieri' (PP cue) and 'fare freddo' (imperfect-state idiom) is exactly the discrimination point. Learners who pattern-match on 'ieri' produce 'ha fatto freddo', which sounds odd (it would mean 'the cold-making event happened').",
     "version": 1
   },
@@ -5075,12 +5090,12 @@
         "aspects": {
           "translation": {
             "reveal": "a dirotto - heavily (of rain) / non-stop",
-            "bucket": "vocabulary.it.dirotto.translation"
+            "bucket": "vocabulary.it.dirotto.adverb.translation"
           }
         }
       }
     ],
-    "explanation": "Weather in the past is a state and takes the imperfect indicative. The 3sg of piovere in the imperfect is pioveva (regular -ere). Note that piovere can take essere or avere in the PP (è piovuto / ha piovuto, both attested), but the imperfect has no auxiliary, so the choice doesn't arise here.",
+    "explanation": "'While I was driving here it was pouring down': Mentre venivo qui in macchina pioveva a dirotto. Weather in the past is a state and takes the imperfect indicative. The 3sg of piovere in the imperfect is pioveva (regular -ere). Note that piovere can take essere or avere in the PP (è piovuto / ha piovuto, both attested), but the imperfect has no auxiliary, so the choice doesn't arise here.",
     "version": 1
   },
   {
@@ -5161,9 +5176,15 @@
   },
   {
     "external_id": "imp_disc_gen_01",
+    "info_display": "suppress",
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.vs_passato_prossimo_general",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "imperfect",
     "difficulty": 2,
     "cefr_level_target": "B1",
     "prompt": "Complete: 'Da bambino, ____ sempre paura del buio.' (avere, 1sg)",
@@ -5217,14 +5238,20 @@
         }
       }
     ],
-    "explanation": "When you describe a fear that ran through your childhood, you're talking about a sustained state. Italian uses the imperfect indicative for past states, not the passato prossimo. The 1sg of avere in the imperfect is avevo. 'Ho avuto paura' would mean 'I got scared' (a single event), which doesn't fit the lifelong pattern.",
+    "explanation": "'As a child, I was always afraid of the dark': Da bambino, avevo sempre paura del buio. When you describe a fear that ran through your childhood, you're talking about a sustained state. Italian uses the imperfect indicative for past states, not the passato prossimo. The 1sg of avere in the imperfect is avevo. 'Ho avuto paura' would mean 'I got scared' (a single event), which doesn't fit the lifelong pattern.",
     "version": 1
   },
   {
     "external_id": "imp_disc_gen_02",
+    "info_display": "suppress",
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.vs_passato_prossimo_general",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "passato_prossimo",
     "difficulty": 2,
     "cefr_level_target": "B1",
     "prompt": "Complete: 'Ieri ____ molta paura quando il cane mi ha abbaiato.' (avere, 1sg)",
@@ -5294,9 +5321,15 @@
   },
   {
     "external_id": "imp_disc_gen_03",
+    "info_display": "suppress",
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.vs_passato_prossimo_general",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "imperfect",
     "difficulty": 2,
     "cefr_level_target": "B1",
     "prompt": "Complete: 'Quando vivevo in campagna, ____ ogni mattina alle sei.' (svegliarsi, 1sg)",
@@ -5354,9 +5387,15 @@
   },
   {
     "external_id": "imp_disc_gen_04",
+    "info_display": "suppress",
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.vs_passato_prossimo_general",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "passato_prossimo",
     "difficulty": 2,
     "cefr_level_target": "B1",
     "prompt": "Complete: 'Stamattina ____ presto perché avevo un appuntamento alle otto.' (svegliarsi, 1sg)",
@@ -5419,9 +5458,15 @@
   },
   {
     "external_id": "imp_disc_gen_05",
+    "info_display": "suppress",
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.vs_passato_prossimo_general",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "imperfect",
     "difficulty": 3,
     "cefr_level_target": "B1",
     "prompt": "Complete: 'Negli anni Novanta, i miei amici di scuola ____ tutti in centro città, vicini fra loro.' (abitare, 3pl)",
@@ -5466,9 +5511,15 @@
   },
   {
     "external_id": "imp_disc_gen_06",
+    "info_display": "suppress",
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.vs_passato_prossimo_general",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "passato_prossimo",
     "difficulty": 3,
     "cefr_level_target": "B2",
     "prompt": "Complete: 'Dal 2018 al 2020 ____ in un appartamento in periferia.' (abitare, 1sg)",
@@ -5527,9 +5578,15 @@
   },
   {
     "external_id": "imp_disc_gen_07",
+    "info_display": "suppress",
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.vs_passato_prossimo_general",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "passato_prossimo",
     "difficulty": 2,
     "cefr_level_target": "B1",
     "prompt": "Complete: 'Una volta, da giovane, ____ in Africa per lavoro.' (andare, 1sg)",
@@ -5582,7 +5639,7 @@
         "aspects": {
           "translation": {
             "reveal": "Africa - Africa",
-            "bucket": "vocabulary.it.africa.translation"
+            "bucket": "vocabulary.it.africa.noun.translation"
           }
         }
       }
@@ -5593,9 +5650,15 @@
   },
   {
     "external_id": "imp_disc_gen_08",
+    "info_display": "suppress",
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.vs_passato_prossimo_general",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "imperfect",
     "difficulty": 2,
     "cefr_level_target": "B1",
     "prompt": "Complete: 'Da bambino, spesso d'estate ____ al mare con la mia famiglia.' (andare, 1sg)",
@@ -5655,9 +5718,15 @@
   },
   {
     "external_id": "imp_disc_gen_09",
+    "info_display": "suppress",
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.vs_passato_prossimo_general",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "imperfect",
     "difficulty": 2,
     "cefr_level_target": "B1",
     "prompt": "Complete: 'Mio padre ____ sempre molto severo, ma era anche affettuoso.' (essere, 3sg)",
@@ -5706,14 +5775,20 @@
         }
       }
     ],
-    "explanation": "When you describe someone's enduring character, you're talking about a sustained state, not a series of events. Italian uses the imperfect indicative for descriptive states. The 3sg of essere in the imperfect is era. 'È stato severo' would shift to 'he was strict (once / for a closed period)', which doesn't fit a character description.",
+    "explanation": "'My father was always very strict, but he was affectionate too': Mio padre era sempre molto severo, ma era anche affettuoso. When you describe someone's enduring character, you're talking about a sustained state, not a series of events. Italian uses the imperfect indicative for descriptive states. The 3sg of essere in the imperfect is era. 'È stato severo' would shift to 'he was strict (once / for a closed period)', which doesn't fit a character description.",
     "version": 1
   },
   {
     "external_id": "imp_disc_gen_10",
+    "info_display": "suppress",
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.vs_passato_prossimo_general",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "imperfect",
     "difficulty": 3,
     "cefr_level_target": "B2",
     "prompt": "Complete: '____ stanchissimo dopo quella riunione, lo ricordo bene.' (essere, 1sg)",
@@ -5766,15 +5841,21 @@
         }
       }
     ],
-    "explanation": "There's no habit-cue or time-anchor here; what makes this an imperfect is the recognition that 'being tired after the meeting' is a state, not an event. Italian uses the imperfect for past states. The 1sg of essere is ero. The frame 'lo ricordo' (I remember it) puts the state in the speaker's recall, but the state itself is what's being described.",
+    "explanation": "'I was exhausted after that meeting, I remember it well': ero stanchissimo dopo quella riunione, lo ricordo bene. There's no habit-cue or time-anchor here; what makes this an imperfect is the recognition that 'being tired after the meeting' is a state, not an event. Italian uses the imperfect for past states. The 1sg of essere is ero. The frame 'lo ricordo' (I remember it) puts the state in the speaker's recall, but the state itself is what's being described.",
     "examiner_note": "Pure implicit-cue diagnostic: no adverbs, no explicit framing. The skill being tested is reading the aspect from the state-vs-event distinction alone.",
     "version": 1
   },
   {
     "external_id": "imp_disc_gen_11",
+    "info_display": "suppress",
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.vs_passato_prossimo_general",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "passato_prossimo",
     "difficulty": 3,
     "cefr_level_target": "B2",
     "prompt": "Complete: 'Quel giorno, per la prima volta in vita mia ____ una vera tristezza.' (provare, 1sg)",
@@ -5832,9 +5913,15 @@
   },
   {
     "external_id": "imp_disc_gen_12",
+    "info_display": "suppress",
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.vs_passato_prossimo_general",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "passato_prossimo",
     "difficulty": 2,
     "cefr_level_target": "B1",
     "prompt": "Complete: 'Tre anni fa ____ il mio primo libro.' (pubblicare, 1sg)",
@@ -5896,6 +5983,11 @@
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.modals.sapere",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "passato_prossimo",
     "difficulty": 3,
     "cefr_level_target": "B1",
     "prompt": "Complete: 'Ieri sera ____ che il direttore è in vacanza.' (sapere, 1sg)",
@@ -5972,7 +6064,7 @@
         }
       }
     ],
-    "explanation": "Sapere shifts meaning between imperfect and PP. The imperfect (sapevo) describes the ongoing state of knowing; the PP (ho saputo) describes the moment of learning. 'Ieri sera' anchors a single past moment, so the event-of-learning reading is what fits: 'I found out yesterday evening'.",
+    "explanation": "'Yesterday evening I found out the director is on holiday': Ieri sera ho saputo che il direttore è in vacanza. Sapere shifts meaning between imperfect and PP. The imperfect (sapevo) describes the ongoing state of knowing; the PP (ho saputo) describes the moment of learning. 'Ieri sera' anchors a single past moment, so the event-of-learning reading is what fits: 'I found out yesterday evening'.",
     "examiner_note": "Hot-spot modal discrimination. The English gloss 'I knew yesterday' is misleading: Italian uses PP for the discovery event, not the ongoing knowing.",
     "version": 1
   },
@@ -5982,6 +6074,11 @@
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.modals.sapere",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "imperfect",
     "difficulty": 3,
     "cefr_level_target": "B1",
     "prompt": "Complete: 'Da tempo ____ che eri arrabbiato con me, ma non sapevo come parlartene.' (sapere, 1sg)",
@@ -6040,6 +6137,11 @@
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.modals.sapere",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "passato_prossimo",
     "difficulty": 3,
     "cefr_level_target": "B1",
     "prompt": "Complete: 'Solo questa mattina ____ del tuo trasferimento.' (sapere, 1sg)",
@@ -6125,6 +6227,11 @@
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.modals.sapere",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "imperfect",
     "difficulty": 3,
     "cefr_level_target": "B1",
     "prompt": "Complete: 'All'università tutti ____ già che il professore era difficile.' (sapere, 3pl)",
@@ -6186,6 +6293,11 @@
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.modals.sapere",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "imperfect",
     "difficulty": 3,
     "cefr_level_target": "B2",
     "prompt": "Complete: 'Anche lui ____ del nostro segreto, ma non l'ha mai detto a nessuno.' (sapere, 3sg)",
@@ -6238,14 +6350,20 @@
         }
       }
     ],
-    "explanation": "The state-of-knowing reading: he had the knowledge of the secret over time, but kept silent about it. Italian uses the imperfect for the sustained knowing. 'Ha saputo' would shift to 'he found out (at some point)', which doesn't fit a description of long-term complicit silence.",
+    "explanation": "'He too knew about our secret, but he never told anyone': Anche lui sapeva del nostro segreto, ma non l'ha mai detto a nessuno. The state-of-knowing reading: he had the knowledge of the secret over time, but kept silent about it. Italian uses the imperfect for the sustained knowing. 'Ha saputo' would shift to 'he found out (at some point)', which doesn't fit a description of long-term complicit silence.",
     "version": 1
   },
   {
     "external_id": "imp_disc_dov_01",
+    "info_display": "suppress",
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.modals.dovere",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "imperfect",
     "difficulty": 3,
     "cefr_level_target": "B1",
     "prompt": "Complete: '____ andare a una riunione, ma sono uscito comunque con gli amici.' (dovere, 1sg)",
@@ -6298,15 +6416,21 @@
         }
       }
     ],
-    "explanation": "The structure '____ X, ma Y' (was supposed to X, but Y) is a textbook signal for the imperfect of dovere: the obligation existed, but the follow-through is ambiguous or explicitly didn't happen. Italian uses the imperfect dovevo for that 'was supposed to'. The PP 'ho dovuto' would imply the action was actually carried out, which contradicts 'sono uscito comunque'.",
+    "explanation": "'I was supposed to go to a meeting, but I went out with my friends anyway': dovevo andare a una riunione, ma sono uscito comunque con gli amici. The structure '____ X, ma Y' (was supposed to X, but Y) is a textbook signal for the imperfect of dovere: the obligation existed, but the follow-through is ambiguous or explicitly didn't happen. Italian uses the imperfect dovevo for that 'was supposed to'. The PP 'ho dovuto' would imply the action was actually carried out, which contradicts 'sono uscito comunque'.",
     "examiner_note": "The 'ma' clause is the structural giveaway. Without it, the sentence could go either way.",
     "version": 1
   },
   {
     "external_id": "imp_disc_dov_02",
+    "info_display": "suppress",
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.modals.dovere",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "passato_prossimo",
     "difficulty": 3,
     "cefr_level_target": "B1",
     "prompt": "Complete: 'Mi sentivo male e ____ andare dal medico subito.' (dovere, 1sg)",
@@ -6402,9 +6526,15 @@
   },
   {
     "external_id": "imp_disc_dov_03",
+    "info_display": "suppress",
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.modals.dovere",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "imperfect",
     "difficulty": 3,
     "cefr_level_target": "B2",
     "prompt": "Complete: 'Sapevamo che ____ partire presto, ma ci siamo addormentati.' (dovere, 1pl)",
@@ -6455,14 +6585,20 @@
         }
       }
     ],
-    "explanation": "The 'ma ci siamo addormentati' (but we fell asleep) makes the obligation unfulfilled. Italian uses the imperfect dovevamo for 'were supposed to (but didn't)'. The indirect-speech frame 'sapevamo che' (we knew that) is one place where the imperfect of dovere is especially natural.",
+    "explanation": "'We knew we were supposed to leave early, but we fell asleep': Sapevamo che dovevamo partire presto, ma ci siamo addormentati. The 'ma ci siamo addormentati' (but we fell asleep) makes the obligation unfulfilled. Italian uses the imperfect dovevamo for 'were supposed to (but didn't)'. The indirect-speech frame 'sapevamo che' (we knew that) is one place where the imperfect of dovere is especially natural.",
     "version": 1
   },
   {
     "external_id": "imp_disc_dov_04",
+    "info_display": "suppress",
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.modals.dovere",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "passato_prossimo",
     "difficulty": 3,
     "cefr_level_target": "B2",
     "prompt": "Complete: 'Per finire il progetto in tempo ____ lavorare anche di domenica, ma ce l'ho fatta.' (dovere, 1sg)",
@@ -6544,9 +6680,15 @@
   },
   {
     "external_id": "imp_disc_dov_05",
+    "info_display": "suppress",
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.modals.dovere",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "passato_prossimo",
     "difficulty": 3,
     "cefr_level_target": "B2",
     "prompt": "Complete: 'Volevo riposarmi ma ____ finire un articolo per il giornale.' (dovere, 1sg)",
@@ -6629,9 +6771,15 @@
   },
   {
     "external_id": "imp_disc_pot_01",
+    "info_display": "suppress",
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.modals.potere",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "imperfect",
     "difficulty": 3,
     "cefr_level_target": "B1",
     "prompt": "Complete: 'Da giovane ____ correre per ore senza stancarmi.' (potere, 1sg)",
@@ -6691,15 +6839,21 @@
         }
       }
     ],
-    "explanation": "An ability that ran through a past life-stage is a sustained state, so Italian uses the imperfect of potere: potevo = was able to / could. 'Ho potuto' would shift to 'managed to (on a particular occasion)', which doesn't fit the for-hours ability.",
+    "explanation": "'When I was young I could run for hours without getting tired': Da giovane potevo correre per ore senza stancarmi. An ability that ran through a past life-stage is a sustained state, so Italian uses the imperfect of potere: potevo = was able to / could. 'Ho potuto' would shift to 'managed to (on a particular occasion)', which doesn't fit the for-hours ability.",
     "examiner_note": "Ability-state vs single-occasion-managed-to is the potere contrast.",
     "version": 1
   },
   {
     "external_id": "imp_disc_pot_02",
+    "info_display": "suppress",
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.modals.potere",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "passato_prossimo",
     "difficulty": 3,
     "cefr_level_target": "B1",
     "prompt": "Complete: 'Ieri, finalmente ____ vedere il mio nipotino dopo mesi di attesa.' (potere, 1sg)",
@@ -6778,9 +6932,15 @@
   },
   {
     "external_id": "imp_disc_pot_03",
+    "info_display": "suppress",
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.modals.potere",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "imperfect",
     "difficulty": 3,
     "cefr_level_target": "B2",
     "prompt": "Complete: 'Mio fratello ____ aiutarmi con i compiti, perché era già laureato in matematica.' (potere, 3sg)",
@@ -6849,9 +7009,15 @@
   },
   {
     "external_id": "imp_disc_pot_04",
+    "info_display": "suppress",
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.modals.potere",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "passato_prossimo",
     "difficulty": 3,
     "cefr_level_target": "B2",
     "prompt": "Complete: 'Grazie al vostro aiuto ____ comprare la casa che desideravamo.' (potere, 1pl)",
@@ -6940,9 +7106,15 @@
   },
   {
     "external_id": "imp_disc_pot_05",
+    "info_display": "suppress",
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.modals.potere",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "imperfect",
     "difficulty": 3,
     "cefr_level_target": "B1",
     "prompt": "Complete: 'Da piccolo non ____ mai uscire la sera senza i miei genitori.' (potere, 1sg)",
@@ -7007,9 +7179,15 @@
   },
   {
     "external_id": "imp_disc_vol_01",
+    "info_display": "suppress",
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.modals.volere",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "imperfect",
     "difficulty": 3,
     "cefr_level_target": "B1",
     "prompt": "Complete: 'Da bambino ____ fare il pompiere quando fossi cresciuto.' (volere, 1sg)",
@@ -7063,14 +7241,20 @@
         }
       }
     ],
-    "explanation": "Childhood ambitions are sustained desires, not insisted-on outcomes. Italian uses the imperfect volevo for 'wanted to (over a period)'. The PP ho voluto would mean 'insisted on (and got my way)', which doesn't fit the open-ended childhood dream.",
+    "explanation": "'As a child I wanted to be a fireman when I grew up': Da bambino volevo fare il pompiere quando fossi cresciuto. Childhood ambitions are sustained desires, not insisted-on outcomes. Italian uses the imperfect volevo for 'wanted to (over a period)'. The PP ho voluto would mean 'insisted on (and got my way)', which doesn't fit the open-ended childhood dream.",
     "version": 1
   },
   {
     "external_id": "imp_disc_vol_02",
+    "info_display": "suppress",
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.modals.volere",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "passato_prossimo",
     "difficulty": 3,
     "cefr_level_target": "B2",
     "prompt": "Complete: 'A vent'anni ____ assolutamente diventare pilota, ed eccomi qui.' (volere, 1sg)",
@@ -7158,9 +7342,15 @@
   },
   {
     "external_id": "imp_disc_vol_03",
+    "info_display": "suppress",
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.modals.volere",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "imperfect",
     "difficulty": 3,
     "cefr_level_target": "B1",
     "prompt": "Complete: 'Mia madre ____ sempre che io facessi il medico, non l'architetto.' (volere, 3sg)",
@@ -7225,9 +7415,15 @@
   },
   {
     "external_id": "imp_disc_vol_04",
+    "info_display": "suppress",
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.modals.volere",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "passato_prossimo",
     "difficulty": 3,
     "cefr_level_target": "B2",
     "prompt": "Complete: 'Marco ____ vedere quel film in lingua originale, anche se nessuno era d'accordo.' (volere, 3sg)",
@@ -7306,9 +7502,15 @@
   },
   {
     "external_id": "imp_disc_vol_05",
+    "info_display": "suppress",
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.modals.volere",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "imperfect",
     "difficulty": 3,
     "cefr_level_target": "B2",
     "prompt": "Complete: 'I miei amici ____ ordinare la pizza, ma alla fine abbiamo cucinato a casa.' (volere, 3pl)",
@@ -7363,9 +7565,15 @@
   },
   {
     "external_id": "imp_disc_con_01",
+    "info_display": "suppress",
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.modals.conoscere",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "imperfect",
     "difficulty": 3,
     "cefr_level_target": "B1",
     "prompt": "Complete: 'Quando lavoravo in quell'ufficio, ____ già la sua famiglia da anni.' (conoscere, 1sg)",
@@ -7424,9 +7632,15 @@
   },
   {
     "external_id": "imp_disc_con_02",
+    "info_display": "suppress",
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.modals.conoscere",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "passato_prossimo",
     "difficulty": 3,
     "cefr_level_target": "B1",
     "prompt": "Complete: 'Alla festa di Marco ieri ____ una persona molto interessante.' (conoscere, 1sg)",
@@ -7519,9 +7733,15 @@
   },
   {
     "external_id": "imp_disc_con_03",
+    "info_display": "suppress",
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.modals.conoscere",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "imperfect",
     "difficulty": 3,
     "cefr_level_target": "B1",
     "prompt": "Complete: 'Mio nonno ____ tutti nel paese; era una figura importante.' (conoscere, 3sg)",
@@ -7574,14 +7794,20 @@
         }
       }
     ],
-    "explanation": "Knowing everyone in a village is a sustained state of acquaintance, not a series of first-meetings. Italian uses the imperfect conosceva. 'Ha conosciuto tutti nel paese' would shift to 'he met everyone (one by one)', which is more event-narrating and less character-describing.",
+    "explanation": "'My grandfather knew everyone in the village; he was an important figure': Mio nonno conosceva tutti nel paese; era una figura importante. Knowing everyone in a village is a sustained state of acquaintance, not a series of first-meetings. Italian uses the imperfect conosceva. 'Ha conosciuto tutti nel paese' would shift to 'he met everyone (one by one)', which is more event-narrating and less character-describing.",
     "version": 1
   },
   {
     "external_id": "imp_disc_con_04",
+    "info_display": "suppress",
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.modals.conoscere",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "passato_prossimo",
     "difficulty": 3,
     "cefr_level_target": "B2",
     "prompt": "Complete: 'L'anno scorso al convegno di Milano ____ il presidente dell'associazione.' (conoscere, 1sg)",
@@ -7673,9 +7899,15 @@
   },
   {
     "external_id": "imp_disc_con_05",
+    "info_display": "suppress",
     "language_code": "it",
     "topic": "verb_form.imperfect",
     "subtopic": "discrimination.modals.conoscere",
+    "candidate_tenses": [
+      "imperfect",
+      "passato_prossimo"
+    ],
+    "correct_tense": "imperfect",
     "difficulty": 3,
     "cefr_level_target": "B2",
     "prompt": "Complete: 'Tu ____ già Anna prima della festa, vero? Non vi siete conosciuti lì.' (conoscere, 2sg)",
@@ -7856,7 +8088,7 @@
         }
       }
     ],
-    "explanation": "Newspapers reported (past reporting verb: hanno scritto) what was, at that earlier moment, a present state. Italian shifts the embedded present to imperfect: 'era in vacanza' rather than 'è in vacanza'. The shift signals the indirectness — what was true at the time of writing, not necessarily now.",
+    "explanation": "'The papers wrote that the president was on holiday in Sardinia': I giornali hanno scritto che il presidente era in vacanza in Sardegna. Newspapers reported (past reporting verb: hanno scritto) what was, at that earlier moment, a present state. Italian shifts the embedded present to imperfect: 'era in vacanza' rather than 'è in vacanza'. The shift signals the indirectness — what was true at the time of writing, not necessarily now.",
     "version": 1
   },
   {
@@ -8048,7 +8280,7 @@
         }
       }
     ],
-    "explanation": "Marco's direct words would have been 'torno a casa presto' (I'm coming home early — present-as-future). Under past reporting, the colloquial imperfect carries the prospective reading: 'mi ha detto che tornava a casa presto'. The prescriptive alternative is the past conditional 'sarebbe tornato', but the imperfect is the colloquial choice and what this bucket tests.",
+    "explanation": "'Marco told me he was coming home early tonight, but he arrived at midnight': Marco mi ha detto che tornava a casa presto stasera, ma è arrivato a mezzanotte. Marco's direct words would have been 'torno a casa presto' (I'm coming home early — present-as-future). Under past reporting, the colloquial imperfect carries the prospective reading: 'mi ha detto che tornava a casa presto'. The prescriptive alternative is the past conditional 'sarebbe tornato', but the imperfect is the colloquial choice and what this bucket tests.",
     "examiner_note": "Past conditional sarebbe tornato is also right in formal writing but is a different topic (conditionals); this bucket tests the colloquial imperfect form.",
     "version": 1
   },
@@ -8115,7 +8347,7 @@
         }
       }
     ],
-    "explanation": "Direct speech would have been 'dobbiamo partire fra poco' (we have to leave soon). Under the past reporting verb 'mi avete avvisato', Italian shifts the embedded 'dobbiamo' to imperfect 'dovevate'. The departure is still upcoming from the speaker's now, but the reporting verb locks the embedded form to imperfect.",
+    "explanation": "'You told me you had to leave soon. How much time is left?': Mi avete avvisato che dovevate partire fra poco. Quanto manca? Direct speech would have been 'dobbiamo partire fra poco' (we have to leave soon). Under the past reporting verb 'mi avete avvisato', Italian shifts the embedded 'dobbiamo' to imperfect 'dovevate'. The departure is still upcoming from the speaker's now, but the reporting verb locks the embedded form to imperfect.",
     "version": 1
   },
   {
@@ -8155,7 +8387,7 @@
         "aspects": {
           "translation": {
             "reveal": "stare per + infinitive - to be about to (do something)",
-            "bucket": "vocabulary.it.stareper.translation"
+            "bucket": "vocabulary.it.stare_per.phrase.translation"
           }
         }
       },
@@ -8184,7 +8416,7 @@
         }
       }
     ],
-    "explanation": "Direct speech: 'stiamo per chiudere' (we're about to close). Under past reporting (avevano annunciato), the 'stare per' construction shifts to imperfect 'stavano per'. The imperfect of stare carries the same about-to reading as the present, transposed to the past viewpoint.",
+    "explanation": "'They'd announced they were about to close the shop, but they're still open': Avevano annunciato che stavano per per chiudere il negozio, ma sono ancora aperti. Direct speech: 'stiamo per chiudere' (we're about to close). Under past reporting (avevano annunciato), the 'stare per' construction shifts to imperfect 'stavano per'. The imperfect of stare carries the same about-to reading as the present, transposed to the past viewpoint.",
     "examiner_note": "'Stare per + infinitive' is one of Italian's clearest about-to-happen constructions. Worth testing in indirect-speech context for the prospective reading.",
     "version": 1
   },
@@ -8252,7 +8484,7 @@
         }
       }
     ],
-    "explanation": "The narrative imperfect is a stylistic choice used in historical writing, journalism, and literary fiction to recount discrete past events with an immersive 'in the moment' feel. It functionally substitutes for the passato remoto (partì) or passato prossimo (è partito), but adds a vivid, scene-painting quality. Here Garibaldi's departure is being narrated, and partiva places the reader inside the moment.",
+    "explanation": "'The next day Garibaldi set off for Sicily with the Thousand': Il giorno dopo Garibaldi partiva per la Sicilia con i Mille. The narrative imperfect is a stylistic choice used in historical writing, journalism, and literary fiction to recount discrete past events with an immersive 'in the moment' feel. It functionally substitutes for the passato remoto (partì) or passato prossimo (è partito), but adds a vivid, scene-painting quality. Here Garibaldi's departure is being narrated, and partiva places the reader inside the moment.",
     "examiner_note": "C1+ stylistic. The prompt explicitly frames the register ('in stile narrativo') so the imperfect is what's wanted; without that framing the passato remoto or PP would also be right.",
     "version": 1
   },
@@ -8324,7 +8556,7 @@
         }
       }
     ],
-    "explanation": "Newspaper reporting often uses the narrative imperfect to recount sequences of past events vividly. The chain 'succedeva... arrivava... venivano' creates a stretched-out, scene-by-scene effect that the PP or passato remoto wouldn't carry. The other two verbs (arrivava, venivano) are given in the narrative imperfect; this item tests the matching style choice for succedere.",
+    "explanation": "'The accident happened at ten in the evening. The police arrived shortly after, and the rescue services came to the scene': L'incidente succedeva alle dieci di sera. La polizia arrivava poco dopo, e i soccorsi venivano sul posto. Newspaper reporting often uses the narrative imperfect to recount sequences of past events vividly. The chain 'succedeva... arrivava... venivano' creates a stretched-out, scene-by-scene effect that the PP or passato remoto wouldn't carry. The other two verbs (arrivava, venivano) are given in the narrative imperfect; this item tests the matching style choice for succedere.",
     "examiner_note": "The register cue ('stile giornalistico') and the matching style of the other two verbs lock in the narrative imperfect.",
     "version": 1
   },
@@ -8399,7 +8631,7 @@
         }
       }
     ],
-    "explanation": "In informal Italian, the imperfect indicative can stand in for both halves of a hypothetical conditional: the protasis (if-clause) and the apodosis (then-clause). The prescriptive form would be 'Se avessimo preso il treno, saremmo arrivati' (trapassato subjunctive + past conditional), but in everyday speech 'Se prendevamo il treno, arrivavamo' is widespread. The apodosis 'arrivavamo' is given; this item tests the matching protasis form.",
+    "explanation": "'If we'd caught the train, we'd have arrived in time for the meeting': Se prendevamo il treno, arrivavamo in tempo per la riunione. In informal Italian, the imperfect indicative can stand in for both halves of a hypothetical conditional: the protasis (if-clause) and the apodosis (then-clause). The prescriptive form would be 'Se avessimo preso il treno, saremmo arrivati' (trapassato subjunctive + past conditional), but in everyday speech 'Se prendevamo il treno, arrivavamo' is widespread. The apodosis 'arrivavamo' is given; this item tests the matching protasis form.",
     "examiner_note": "Prescriptively dispreferred in writing, but standard in speech. The matching imperfect 'arrivavamo' in the second clause is the register anchor.",
     "version": 1
   },
@@ -8447,7 +8679,7 @@
         }
       }
     ],
-    "explanation": "The colloquial counterfactual pattern with sapere. Prescriptive: 'Se l'avessi saputo prima, te l'avrei detto subito' (trapassato subjunctive + past conditional). Colloquial: 'Se lo sapevo prima, te lo dicevo subito' — both halves in plain imperfect. The diagnostic miss to avoid is 'sapessi' (imperfect subjunctive), which is the form for present hypothetical, not past counterfactual.",
+    "explanation": "'If I'd known earlier, I'd have told you straight away': Se lo sapevo prima, te lo dicevo subito. The colloquial counterfactual pattern with sapere. Prescriptive: 'Se l'avessi saputo prima, te l'avrei detto subito' (trapassato subjunctive + past conditional). Colloquial: 'Se lo sapevo prima, te lo dicevo subito' — both halves in plain imperfect. The diagnostic miss to avoid is 'sapessi' (imperfect subjunctive), which is the form for present hypothetical, not past counterfactual.",
     "examiner_note": "'Sapessi' is the over-applied-formal-rule miss — it's right for present hypothetical ('se sapessi la verità, ti direi tutto'), but for past counterfactual the prescriptive form needs trapassato subjunctive (avessi saputo). In the colloquial frame this item tests, plain imperfect is what's wanted.",
     "version": 1
   },
@@ -8519,7 +8751,7 @@
         }
       }
     ],
-    "explanation": "The same colloquial pattern with negation and a different person. Prescriptive form: 'Se non avessi parlato tanto al cellulare, avremmo finito i compiti prima' (trapassato subjunctive + past conditional). Colloquial: 'Se non parlavi tanto, avevamo finito prima' — both halves plain imperfect indicative. The avevamo in the apodosis is given as the register anchor.",
+    "explanation": "'If you hadn't talked so much on your phone, we'd have finished our homework sooner': Se non parlavi tanto al cellulare, avevamo finito i compiti prima. The same colloquial pattern with negation and a different person. Prescriptive form: 'Se non avessi parlato tanto al cellulare, avremmo finito i compiti prima' (trapassato subjunctive + past conditional). Colloquial: 'Se non parlavi tanto, avevamo finito prima' — both halves plain imperfect indicative. The avevamo in the apodosis is given as the register anchor.",
     "version": 1
   }
 ]

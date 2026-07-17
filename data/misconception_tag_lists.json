@@ -445,6 +445,214 @@
         "common_miss": "(none specific; the construction is optional)",
         "misconception_ids": [],
         "note": "INTENTIONAL NON-MAPPING (common_miss carries no taggable error pattern)"
+      },
+      {
+        "bucket": "pronoun.combined.me_ne_family",
+        "common_miss": "(bucket carries no common_miss attribute — mapped in pass 2 from the live must_not_include guards)",
+        "misconception_ids": [
+          "clitic_cluster.form_change",
+          "word_order.clitic_cluster_order",
+          "paradigm_confusion.ci_vs_ne"
+        ],
+        "note": "Menu: 'mi ne'->form_change; 'ne mi'->cluster_order; 'me la'->ci_vs_ne; 'Mene'-> GAP-NO-ID: clitic cluster written as one word (melo/mene/sene). Proposed to Architecture, thread v13. Leave bare until ruled.",
+        "source": "pass-2 pilot 2026-07-17 (guards read, not inferred)"
+      },
+      {
+        "bucket": "pronoun.combined.joined_when_should_be_separate",
+        "common_miss": "(bucket carries no common_miss attribute — mapped in pass 2 from the live must_not_include guards)",
+        "misconception_ids": [
+          "gemination.enclitic_doubling"
+        ],
+        "note": "GAP-NO-ID: clitic cluster written as one word (melo/mene/sene). Proposed to Architecture, thread v13. Leave bare until ruled. 'dami lo'->enclitic_doubling. Most guards here have NO id.",
+        "source": "pass-2 pilot 2026-07-17 (guards read, not inferred)"
+      },
+      {
+        "bucket": "pronoun.direct_object.ti",
+        "common_miss": "(bucket carries no common_miss attribute — mapped in pass 2 from the live must_not_include guards)",
+        "misconception_ids": [
+          "paradigm_confusion.clitic_vs_stressed",
+          "agreement.clitic_gender_number"
+        ],
+        "note": "'te'/'a te'/'tu'->clitic_vs_stressed; 'lo'/'la'/'vi'->wrong person. agreement.clitic_gender_number used for wrong-PERSON clitics (lo for ti); its description says gender/number only. Broadening asked at thread v13.",
+        "source": "pass-2 pilot 2026-07-17 (guards read, not inferred)"
+      },
+      {
+        "bucket": "pronoun.direct_object.la",
+        "common_miss": "(bucket carries no common_miss attribute — mapped in pass 2 from the live must_not_include guards)",
+        "misconception_ids": [
+          "agreement.clitic_gender_number",
+          "paradigm_confusion.clitic_vs_stressed"
+        ],
+        "note": "'lo'/'le'/'li'->gender/number; 'lei'->clitic_vs_stressed.",
+        "source": "pass-2 pilot 2026-07-17 (guards read, not inferred)"
+      },
+      {
+        "bucket": "pronoun.direct_object.vi_you",
+        "common_miss": "(bucket carries no common_miss attribute — mapped in pass 2 from the live must_not_include guards)",
+        "misconception_ids": [
+          "paradigm_confusion.clitic_vs_stressed",
+          "agreement.clitic_gender_number",
+          "word_order.clitic_position"
+        ],
+        "note": "'voi'/'a voi'->clitic_vs_stressed; 'ti'/'ci'/'li'/'le'->wrong person/number (agreement.clitic_gender_number used for wrong-PERSON clitics (lo for ti); its description says gender/number only. Broadening asked at thread v13.); 'ho vi'->clitic_position.",
+        "source": "pass-2 pilot 2026-07-17 (guards read, not inferred)"
+      },
+      {
+        "bucket": "pronoun.direct_object.ci_us",
+        "common_miss": "(bucket carries no common_miss attribute — mapped in pass 2 from the live must_not_include guards)",
+        "misconception_ids": [
+          "paradigm_confusion.clitic_vs_stressed",
+          "agreement.clitic_gender_number",
+          "paradigm_confusion.ci_vs_ne"
+        ],
+        "note": "'noi'/'a noi'->clitic_vs_stressed; 'vi'->wrong person; 'ne ha'->ci_vs_ne.",
+        "source": "pass-2 pilot 2026-07-17 (guards read, not inferred)"
+      },
+      {
+        "bucket": "pronoun.indirect_object.mi",
+        "common_miss": "(bucket carries no common_miss attribute — mapped in pass 2 from the live must_not_include guards)",
+        "misconception_ids": [
+          "paradigm_confusion.clitic_vs_stressed"
+        ],
+        "note": "'me'/'a me'/'io'->clitic_vs_stressed.",
+        "source": "pass-2 pilot 2026-07-17 (guards read, not inferred)"
+      },
+      {
+        "bucket": "pronoun.indirect_object.ti",
+        "common_miss": "(bucket carries no common_miss attribute — mapped in pass 2 from the live must_not_include guards)",
+        "misconception_ids": [
+          "paradigm_confusion.clitic_vs_stressed"
+        ],
+        "note": "'te'/'a te'/'tu'->clitic_vs_stressed.",
+        "source": "pass-2 pilot 2026-07-17 (guards read, not inferred)"
+      },
+      {
+        "bucket": "pronoun.indirect_object.vi_you",
+        "common_miss": "(bucket carries no common_miss attribute — mapped in pass 2 from the live must_not_include guards)",
+        "misconception_ids": [
+          "paradigm_confusion.clitic_vs_stressed",
+          "agreement.clitic_gender_number"
+        ],
+        "note": "'voi'/'a voi'->clitic_vs_stressed; 'ti'->wrong person.",
+        "source": "pass-2 pilot 2026-07-17 (guards read, not inferred)"
+      },
+      {
+        "bucket": "pronoun.indirect_object.ci_us",
+        "common_miss": "(bucket carries no common_miss attribute — mapped in pass 2 from the live must_not_include guards)",
+        "misconception_ids": [
+          "paradigm_confusion.clitic_vs_stressed",
+          "agreement.clitic_gender_number"
+        ],
+        "note": "'a noi'/'noi'->clitic_vs_stressed; 'vi'->wrong person.",
+        "source": "pass-2 pilot 2026-07-17 (guards read, not inferred)"
+      },
+      {
+        "bucket": "pronoun.indirect_object.formal_Le",
+        "common_miss": "(bucket carries no common_miss attribute — mapped in pass 2 from the live must_not_include guards)",
+        "misconception_ids": [
+          "register.tu_lei_mismatch",
+          "paradigm_confusion.dop_iop",
+          "agreement.clitic_gender_number"
+        ],
+        "note": "'ti'/'vi'->tu_lei_mismatch; 'la'/'La'->dop_iop; 'gli'->gender.",
+        "source": "pass-2 pilot 2026-07-17 (guards read, not inferred)"
+      },
+      {
+        "bucket": "pronoun.reflexive.mi",
+        "common_miss": "(bucket carries no common_miss attribute — mapped in pass 2 from the live must_not_include guards)",
+        "misconception_ids": [
+          "agreement.reflexive_pronoun_person",
+          "paradigm_confusion.clitic_vs_stressed"
+        ],
+        "note": "'io'->reflexive person; 'me'/'a me'->clitic_vs_stressed.",
+        "source": "pass-2 pilot 2026-07-17 (guards read, not inferred)"
+      },
+      {
+        "bucket": "pronoun.reflexive.ti",
+        "common_miss": "(bucket carries no common_miss attribute — mapped in pass 2 from the live must_not_include guards)",
+        "misconception_ids": [
+          "agreement.reflexive_pronoun_person",
+          "paradigm_confusion.clitic_vs_stressed"
+        ],
+        "note": "'tu'->reflexive person; 'te'->clitic_vs_stressed.",
+        "source": "pass-2 pilot 2026-07-17 (guards read, not inferred)"
+      },
+      {
+        "bucket": "pronoun.reflexive.ci",
+        "common_miss": "(bucket carries no common_miss attribute — mapped in pass 2 from the live must_not_include guards)",
+        "misconception_ids": [
+          "agreement.reflexive_pronoun_person"
+        ],
+        "note": "'noi'/'vi'/'si'->reflexive pronoun wrong for the subject.",
+        "source": "pass-2 pilot 2026-07-17 (guards read, not inferred)"
+      },
+      {
+        "bucket": "pronoun.reflexive.vi",
+        "common_miss": "(bucket carries no common_miss attribute — mapped in pass 2 from the live must_not_include guards)",
+        "misconception_ids": [
+          "agreement.reflexive_pronoun_person"
+        ],
+        "note": "'voi'/'ti'/'ci'->reflexive pronoun wrong for the subject.",
+        "source": "pass-2 pilot 2026-07-17 (guards read, not inferred)"
+      },
+      {
+        "bucket": "pronoun.reflexive.si_sg",
+        "common_miss": "(bucket carries no common_miss attribute — mapped in pass 2 from the live must_not_include guards)",
+        "misconception_ids": [
+          "agreement.reflexive_pronoun_person",
+          "paradigm_confusion.clitic_vs_stressed"
+        ],
+        "note": "'lo'/'la'/'le'/'ti'->reflexive person; 'se'->clitic_vs_stressed (stressed se for clitic si); 'lui'/'lei'->clitic_vs_stressed.",
+        "source": "pass-2 pilot 2026-07-17 (guards read, not inferred)"
+      },
+      {
+        "bucket": "pronoun.reflexive.si_pl",
+        "common_miss": "(bucket carries no common_miss attribute — mapped in pass 2 from the live must_not_include guards)",
+        "misconception_ids": [
+          "agreement.reflexive_pronoun_person",
+          "paradigm_confusion.clitic_vs_stressed"
+        ],
+        "note": "'li'/'le'->reflexive person; 'loro'/'se'->clitic_vs_stressed.",
+        "source": "pass-2 pilot 2026-07-17 (guards read, not inferred)"
+      },
+      {
+        "bucket": "pronoun.special.formal_lei_capitalisation",
+        "common_miss": "(bucket carries no common_miss attribute — mapped in pass 2 from the live must_not_include guards)",
+        "misconception_ids": [
+          "register.tu_lei_mismatch"
+        ],
+        "note": "GAP-NO-ID: courtesy capitalisation (La/Le/Suo). Proposed to Architecture, thread v13. Leave bare until ruled. 'ti'/'lo'->tu_lei_mismatch. The capitalisation guards ('la ringrazio' for 'La', 'per La' for 'per la', 'sua' for 'Sua') have NO id and run BOTH ways.",
+        "source": "pass-2 pilot 2026-07-17 (guards read, not inferred)"
+      },
+      {
+        "bucket": "pronoun.ci_locative.idiomatic_verbs",
+        "common_miss": "(bucket carries no common_miss attribute — mapped in pass 2 from the live must_not_include guards)",
+        "misconception_ids": [
+          "paradigm_confusion.ci_vs_ne",
+          "transfer.clitic_omission"
+        ],
+        "note": "'ne'/'lo' for 'ci'->ci_vs_ne; omission->clitic_omission.",
+        "source": "pass-2 pilot 2026-07-17 (guards read, not inferred)"
+      },
+      {
+        "bucket": "pronoun.ne.pronominal_idiomatic_verbs",
+        "common_miss": "(bucket carries no common_miss attribute — mapped in pass 2 from the live must_not_include guards)",
+        "misconception_ids": [
+          "clitic_cluster.form_change",
+          "word_order.clitic_cluster_order"
+        ],
+        "note": "'mi ne'->form_change; 'ne mi'->cluster_order; 'Mene'-> GAP-NO-ID: clitic cluster written as one word (melo/mene/sene). Proposed to Architecture, thread v13. Leave bare until ruled.",
+        "source": "pass-2 pilot 2026-07-17 (guards read, not inferred)"
+      },
+      {
+        "bucket": "pronoun.ne.motion_andarsene",
+        "common_miss": "(bucket carries no common_miss attribute — mapped in pass 2 from the live must_not_include guards)",
+        "misconception_ids": [
+          "clitic_cluster.form_change",
+          "word_order.clitic_cluster_order"
+        ],
+        "note": "'si' for 'se'->form_change; 'ne si'/'si ne'->cluster_order; 'sene'-> GAP-NO-ID: clitic cluster written as one word (melo/mene/sene). Proposed to Architecture, thread v13. Leave bare until ruled.",
+        "source": "pass-2 pilot 2026-07-17 (guards read, not inferred)"
       }
     ],
     "tense_choice": [
@@ -1306,6 +1514,81 @@
         "misconception_ids": [
           "agreement.mixed_gender_default"
         ]
+      },
+      {
+        "bucket": "verb_form.passato_prossimo.auxiliary.essere_reflexive",
+        "common_miss": "(bucket carries no common_miss attribute — mapped in pass 2 from the live must_not_include guards)",
+        "misconception_ids": [
+          "agreement.participle_essere_subject",
+          "auxiliary_choice.avere_for_essere"
+        ],
+        "note": "participle gender/number->participle_essere_subject; 'ha' for 'e'->avere_for_essere.",
+        "source": "pass-2 pilot 2026-07-17 (guards read, not inferred)"
+      },
+      {
+        "bucket": "verb_form.passato_prossimo.participle_agreement.with_avere.preceding_dop_mi_ti_ci_vi",
+        "common_miss": "(bucket carries no common_miss attribute — mapped in pass 2 from the live must_not_include guards)",
+        "misconception_ids": [
+          "agreement.participle_preceding_dop"
+        ],
+        "note": "Guards target WRONG-gender forms only; the invariable default is accepted, so tagging these is correct (cf. the passato file's caveat).",
+        "source": "pass-2 pilot 2026-07-17 (guards read, not inferred)"
+      },
+      {
+        "bucket": "verb_form.passato_prossimo.participle_agreement.with_avere.preceding_dop_li",
+        "common_miss": "(bucket carries no common_miss attribute — mapped in pass 2 from the live must_not_include guards)",
+        "misconception_ids": [
+          "agreement.participle_preceding_dop"
+        ],
+        "note": "",
+        "source": "pass-2 pilot 2026-07-17 (guards read, not inferred)"
+      },
+      {
+        "bucket": "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
+        "common_miss": "(bucket carries no common_miss attribute — mapped in pass 2 from the live must_not_include guards)",
+        "misconception_ids": [
+          "auxiliary_choice.avere_for_essere",
+          "agreement.participle_essere_subject",
+          "discrimination.pp_for_imperfect"
+        ],
+        "note": "'ha piaciuto'->avere_for_essere; 'e piaciuto'->participle agreement; 'piaceva'->pp_for_imperfect (direction-dependent).",
+        "source": "pass-2 pilot 2026-07-17 (guards read, not inferred)"
+      },
+      {
+        "bucket": "verb_form.passato_prossimo.participle_form.regular.are_ato",
+        "common_miss": "(bucket carries no common_miss attribute — mapped in pass 2 from the live must_not_include guards)",
+        "misconception_ids": [
+          "agreement.participle_essere_subject"
+        ],
+        "note": "UNCERTAIN: wrong gender/number on the participle; overagreement vs essere-agreement depends on the item's auxiliary.",
+        "source": "pass-2 pilot 2026-07-17 (guards read, not inferred)"
+      },
+      {
+        "bucket": "verb_form.passato_prossimo.participle_form.irregular.bere_bevuto",
+        "common_miss": "(bucket carries no common_miss attribute — mapped in pass 2 from the live must_not_include guards)",
+        "misconception_ids": [
+          "agreement.participle_overagreement"
+        ],
+        "note": "UNCERTAIN: avere-participle inflected where invariable is required; confirm per item.",
+        "source": "pass-2 pilot 2026-07-17 (guards read, not inferred)"
+      },
+      {
+        "bucket": "verb_form.passato_prossimo.participle_form.irregular.saputo",
+        "common_miss": "(bucket carries no common_miss attribute — mapped in pass 2 from the live must_not_include guards)",
+        "misconception_ids": [
+          "agreement.participle_overagreement"
+        ],
+        "note": "UNCERTAIN: as bere_bevuto.",
+        "source": "pass-2 pilot 2026-07-17 (guards read, not inferred)"
+      },
+      {
+        "bucket": "verb_form.passato_prossimo.participle_form.irregular.conosciuto",
+        "common_miss": "(bucket carries no common_miss attribute — mapped in pass 2 from the live must_not_include guards)",
+        "misconception_ids": [
+          "agreement.participle_overagreement"
+        ],
+        "note": "UNCERTAIN: as bere_bevuto.",
+        "source": "pass-2 pilot 2026-07-17 (guards read, not inferred)"
       }
     ],
     "verb_form.passato_remoto": [
@@ -1372,6 +1655,16 @@
           "auxiliary_choice.avere_for_essere",
           "agreement.participle_essere_subject"
         ]
+      },
+      {
+        "bucket": "verb_form.trapassato_prossimo",
+        "common_miss": "(bucket carries no common_miss attribute — mapped in pass 2 from the live must_not_include guards)",
+        "misconception_ids": [
+          "auxiliary_choice.wrong_auxiliary_tense",
+          "auxiliary_choice.avere_for_essere"
+        ],
+        "note": "'e'/'ha' for 'era'->wrong_auxiliary_tense / avere_for_essere.",
+        "source": "pass-2 pilot 2026-07-17 (guards read, not inferred)"
       }
     ],
     "verb_form.present_indicative": [
@@ -1542,5 +1835,7 @@
     ]
   },
   "$direction_rule": "BINDING (Architecture_ImperativoAuthor_misconception_tagging_schema.md v5, Rev 21): TAG ON THE ITEM'S DIRECTION, NOT THE BUCKET'S ID. This file is BUCKET-keyed, and the registry is one-directional by construction (the pass-1 harvest read each bucket's common_miss and minted an id for the error THAT names). Contrast topics are two-directional: one leaf hosts both directions. So for any entry carrying a `direction` block, the misconception_ids field names the direction the BUCKET's common_miss happens to describe - it is NOT automatically the right id for a given item. Read the must_not_include entry you are tagging, ask which way the error runs, and pick the id for THAT direction. If the id for your direction does not exist, ask Architecture for the mirror rather than forcing the fit. Entries with no `direction` block are one-directional and safe to tag straight from misconception_ids.",
-  "$revision": "2026-07-17 (MisconceptionAnalyst): direction rule applied; usage.duration corrected to perfect_for_durative_da per Rev 21; direction blocks added to all discrimination-tagged entries; 4 direction-merged ids flagged to Architecture (thread v12)."
+  "$revision": "2026-07-17 (MisconceptionAnalyst): direction rule applied; usage.duration corrected to perfect_for_durative_da per Rev 21; direction blocks added to all discrimination-tagged entries; 4 direction-merged ids flagged to Architecture (thread v12). | 2026-07-17 pass-2 pilot: +30 bucket entries (pronoun/imperfect) judged from live guards; $menu_rule added; coverage hole sized; 2 registry gaps + 1 broadening asked at thread v13.",
+  "$menu_rule": "misconception_ids is a MENU, not a bucket-level answer. One bucket's guards routinely evidence several different misconceptions (pronoun.combined.me_ne_family alone needs four: 'mi ne'->clitic_cluster.form_change, 'ne mi'->word_order.clitic_cluster_order, 'me la'->paradigm_confusion.ci_vs_ne, 'Mene'->an unminted gap). Read each must_not_include guard and pick the id for THAT guard. This generalises the $direction_rule: bucket->id is both direction-lossy AND pattern-lossy.",
+  "$coverage_note": "PARTIAL COVERAGE, sized 2026-07-17 (pass-2 pilot). Live items cite 358 buckets; this file now covers 176 + the 30 pilot additions. ~152 buckets holding ~1,450 untagged guards still have NO entry, because pass 1 harvested only buckets carrying a common_miss attribute and items cite leaf buckets that carry none. The pilot additions were JUDGED from reading the guards. The remainder are NOT auto-filled by sibling inference: that would manufacture exactly the confident-wrong tags the direction rule forbids."
 }

@@ -2536,5 +2536,707 @@
     ],
     "explanation": "For strong contrastive emphasis, Italian uses the stressed pronoun post-verb. The clitic mi can't carry contrast; the stressed me in 'Chiama sempre me, non lui' does. No clitic doubling needed. The cleft 'È me che chiama...' is a more marked alternative.",
     "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_39",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Marco has known us since middle school.",
+    "reference_translations": [
+      {
+        "text": "Marco ci conosce dalle medie.",
+        "register": "neutral",
+        "notes": "Standard. 'ci' is the 1pl DOP, pre-verb. Present + 'da/dalle' for ongoing duration since a start point."
+      },
+      {
+        "text": "Marco ci conosce dai tempi delle medie.",
+        "register": "neutral",
+        "notes": "Slightly wordier variant, same structure."
+      }
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "pronoun.direct_object.ci_us",
+      "pronoun.position.pre_finite_verb"
+    ],
+    "optional_buckets": [
+      "verb_form.present_indicative.with_da_for_duration"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "know",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to know (person) - conoscere",
+            "bucket": "vocabulary.it.conoscere.verb.translation"
+          }
+        }
+      },
+      {
+        "lemma": "middle school",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "middle school - le (scuole) medie",
+            "bucket": "vocabulary.it.medie.noun.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Conoscere is transitive, so 'us' is the direct object. The 1pl direct-object pronoun is ci, which sits pre-verb in a finite tense. Stack: ci + conosce. The 'has known ... since' present-perfect maps to Italian present + da (dalle = da + le).",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_40",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "The teacher will see you (all) tomorrow morning.",
+    "reference_translations": [
+      {
+        "text": "L'insegnante vi vedrà domani mattina.",
+        "register": "neutral",
+        "notes": "Standard. 'vi' is the 2pl DOP, pre-verb; future of vedere in 3sg."
+      },
+      {
+        "text": "Domani mattina l'insegnante vi vedrà.",
+        "register": "neutral",
+        "notes": "Fronted time adverbial."
+      }
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "pronoun.direct_object.vi_you",
+      "pronoun.position.pre_finite_verb"
+    ],
+    "optional_buckets": [
+      "verb_form.future.formation.regular"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "teacher",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "teacher - insegnante",
+            "bucket": "vocabulary.it.insegnante.noun.translation"
+          }
+        }
+      },
+      {
+        "lemma": "see",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to see - vedere",
+            "bucket": "vocabulary.it.vedere.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Vedere is transitive, so 'you (all)' is the direct object. The 2pl direct-object pronoun is vi, sitting pre-verb in a finite tense. Stack: vi + vedra'. The future 3sg of vedere is vedra' (irregular stem vedr-).",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_41",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "My aunt often writes to us from London.",
+    "reference_translations": [
+      {
+        "text": "Mia zia ci scrive spesso da Londra.",
+        "register": "neutral",
+        "notes": "Standard. 'ci' is the 1pl IOP, pre-verb; scrivere a qualcuno takes IOP."
+      }
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 1,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "pronoun.indirect_object.ci_us",
+      "pronoun.position.pre_finite_verb"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "aunt",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "aunt - zia",
+            "bucket": "vocabulary.it.zia.noun.translation"
+          }
+        }
+      },
+      {
+        "lemma": "write",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to write - scrivere",
+            "bucket": "vocabulary.it.scrivere.verb.translation"
+          }
+        }
+      },
+      {
+        "lemma": "often",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "often - spesso",
+            "bucket": "vocabulary.it.spesso.adverb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Scrivere a qualcuno takes an indirect object, so 'to us' is the indirect object. The 1pl indirect-object pronoun is ci (identical in shape to the 1pl DOP; the verb's argument frame disambiguates). Stack: ci + scrive.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_42",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I gave them the keys yesterday.",
+    "reference_translations": [
+      {
+        "text": "Gli ho dato le chiavi ieri.",
+        "register": "neutral",
+        "notes": "Modern spoken and written standard: gli covers 3pl indirect. Pre-verb, no PP agreement with the following DO."
+      },
+      {
+        "text": "Ho dato loro le chiavi ieri.",
+        "register": "formal",
+        "notes": "Traditional form: 'loro' as a 3pl IOP is postposed after the verb. More formal register."
+      },
+      {
+        "text": "Ho dato le chiavi a loro ieri.",
+        "register": "neutral",
+        "credit": 0.9,
+        "notes": "Sidesteps the clitic entirely with stressed 'a loro'; correct Italian but skips the drilled skill."
+      }
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "pronoun.indirect_object.gli_them",
+      "pronoun.position.pre_finite_verb"
+    ],
+    "optional_buckets": [
+      "verb_form.passato_prossimo.formation.regular"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "gave",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to give - dare",
+            "bucket": "vocabulary.it.dare.verb.translation"
+          }
+        }
+      },
+      {
+        "lemma": "keys",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "key - chiave (f)",
+            "bucket": "vocabulary.it.chiave.noun.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Dare takes a direct object (the thing given) and an indirect object (the recipient). For 3pl 'to them' modern Italian uses gli pre-verb; the traditional 'loro' sits post-verb and reads as more formal. Stack: gli + ho + dato. The participle stays m.sg dato because it is the direct object 'le chiavi' that follows, not precedes, and IOPs never trigger PP agreement.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_43",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Sara wrote you (informal, sg) a long letter last week.",
+    "reference_translations": [
+      {
+        "text": "Sara ti ha scritto una lunga lettera la settimana scorsa.",
+        "register": "neutral",
+        "notes": "Standard. 'ti' 2sg IOP pre-verb; PP with avere, no agreement (IOPs never trigger PP agreement)."
+      },
+      {
+        "text": "La settimana scorsa Sara ti ha scritto una lunga lettera.",
+        "register": "neutral",
+        "notes": "Fronted time adverbial."
+      }
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "pronoun.indirect_object.ti",
+      "pronoun.position.pre_finite_verb"
+    ],
+    "optional_buckets": [
+      "verb_form.passato_prossimo.formation.regular"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "write",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to write - scrivere",
+            "bucket": "vocabulary.it.scrivere.verb.translation"
+          }
+        }
+      },
+      {
+        "lemma": "letter",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "letter - lettera",
+            "bucket": "vocabulary.it.lettera.noun.translation"
+          }
+        }
+      },
+      {
+        "lemma": "week",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "week - settimana",
+            "bucket": "vocabulary.it.settimana.noun.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Scrivere a qualcuno takes an indirect object, so 'to you' is the indirect object. The 2sg indirect-object pronoun is ti (identical in shape to 2sg DOP; frame disambiguates). Stack: ti + ha + scritto. The participle stays m.sg scritto because IOPs never trigger PP participle agreement.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_44",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Did you (informal, sg) like the film?",
+    "reference_translations": [
+      {
+        "text": "Ti e' piaciuto il film?",
+        "register": "neutral",
+        "notes": "Standard. Piacere in PP takes essere and the participle agrees with the grammatical subject 'il film' (m.sg -> piaciuto)."
+      },
+      {
+        "text": "Il film ti e' piaciuto?",
+        "register": "neutral",
+        "notes": "Fronted subject for emphasis, same structure."
+      },
+      {
+        "text": "Ti ha piaciuto il film?",
+        "register": "neutral",
+        "polarity": "negative",
+        "notes": "WRONG: piacere in compound tenses takes essere, never avere."
+      }
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "pronoun.indirect_object.ti",
+      "pronoun.indirect_object.verbs_taking_iop.with_essere_in_pp",
+      "pronoun.position.pre_finite_verb"
+    ],
+    "optional_buckets": [
+      "verb_form.passato_prossimo.auxiliary.essere_other_intransitive"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "like",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "'to like' inverts as piacere - the liked thing is subject, the liker is IOP",
+            "bucket": "vocabulary.it.piacere.verb.translation"
+          }
+        }
+      },
+      {
+        "lemma": "film",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "film - film (m)",
+            "bucket": "vocabulary.it.film.noun.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Italian piacere inverts the English argument frame: the liked thing is the grammatical subject and the liker becomes an indirect object. In the passato prossimo piacere is a piacere-family verb, so it takes essere and the participle agrees with the grammatical subject. Stack: ti + e' + piaciuto (m.sg to match 'il film').",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_45",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "The manager will call you (all) later this afternoon.",
+    "reference_translations": [
+      {
+        "text": "Il direttore vi telefonera' piu' tardi nel pomeriggio.",
+        "register": "neutral",
+        "notes": "Standard. Telefonare a qualcuno takes IOP; 'vi' 2pl pre-verb; future 3sg of telefonare."
+      },
+      {
+        "text": "Il direttore vi chiamera' piu' tardi nel pomeriggio.",
+        "register": "neutral",
+        "credit": 0.9,
+        "notes": "Chiamare is transitive and takes DOP 'vi' (same form). Correct Italian but sidesteps the IOP skill the item targets."
+      }
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "pronoun.indirect_object.vi_you",
+      "pronoun.position.pre_finite_verb"
+    ],
+    "optional_buckets": [
+      "verb_form.future.formation.regular"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "manager",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "manager - direttore",
+            "bucket": "vocabulary.it.direttore.noun.translation"
+          }
+        }
+      },
+      {
+        "lemma": "call",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to phone / call - telefonare (a)",
+            "bucket": "vocabulary.it.telefonare.verb.translation"
+          }
+        }
+      },
+      {
+        "lemma": "afternoon",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "afternoon - pomeriggio",
+            "bucket": "vocabulary.it.pomeriggio.noun.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Telefonare a qualcuno takes an indirect object, so 'to you (all)' is the indirect object. The 2pl indirect-object pronoun is vi, pre-verb. Stack: vi + telefonera'. Chiamare would fit the English 'call' too, but chiamare is transitive and would exercise vi as DOP, not IOP.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_46",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I don't care about it at all.",
+    "reference_translations": [
+      {
+        "text": "Non me ne importa niente.",
+        "register": "neutral",
+        "notes": "Standard. Importarsene: 3sg impersonal 'importa' + clitic cluster 'me ne'. Vowel change mi -> me before ne."
+      },
+      {
+        "text": "Non me ne frega niente.",
+        "register": "informal",
+        "notes": "Fregarsene: same cluster shape, more colloquial and slightly stronger register."
+      },
+      {
+        "text": "Non mi importa niente.",
+        "register": "neutral",
+        "credit": 0.9,
+        "notes": "Correct Italian but drops the pronominal 'ne', sidestepping the drilled cluster."
+      }
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "pronoun.ne.pronominal_idiomatic_verbs",
+      "pronoun.combined.vowel_changes"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "care",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "the pronominal verb 'importarsene' / 'fregarsene' packs the 'about it' into 'ne'",
+            "bucket": "vocabulary.it.importarsene.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "English 'not care about it' becomes a pronominal-idiomatic verb in Italian where the 'about it' is packed into the clitic ne. Idiomatic pronominal verbs like importarsene and fregarsene lexicalise the reflexive-plus-ne cluster: the reflexive changes person to match the experiencer (mi -> me before another clitic) and the verb stays 3sg impersonal. Stack: non + me + ne + importa + niente.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_it_en_19",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Vedendoli in piazza, li ho salutati subito.",
+    "reference_translations": [
+      {
+        "text": "Seeing them in the square, I greeted them right away.",
+        "register": "neutral",
+        "notes": "Standard. Italian gerund with post-attached DOP 'li'; the same DOP recurs pre-verb in the main clause with participle agreement."
+      },
+      {
+        "text": "When I saw them in the square, I greeted them straightaway.",
+        "register": "neutral",
+        "notes": "Freer rendering of the gerund as a temporal clause."
+      }
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "pronoun.position.post_gerund_attached",
+      "pronoun.direct_object.li",
+      "pronoun.position.pre_finite_verb"
+    ],
+    "optional_buckets": [
+      "verb_form.passato_prossimo.participle_agreement.with_avere.preceding_dop_li"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "vedendoli",
+        "language": "it",
+        "aspects": {
+          "infinitive": {
+            "reveal": "vedere - to see (gerund vedendo + attached DOP li)",
+            "bucket": "vocabulary.it.vedere.verb.translation"
+          }
+        }
+      },
+      {
+        "lemma": "piazza",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "piazza - square",
+            "bucket": "vocabulary.it.piazza.noun.translation"
+          }
+        }
+      },
+      {
+        "lemma": "salutare",
+        "language": "it",
+        "aspects": {
+          "infinitive": {
+            "reveal": "salutare - to greet",
+            "bucket": "vocabulary.it.salutare.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "The Italian gerund attaches clitics to its end (vedendo + li = vedendoli), the standard clitic-position rule for nonfinite forms. In the main clause the same DOP li returns to pre-verb position because the verb is finite, and the preceding-DOP triggers participle agreement m.pl -> salutati.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_47",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "You (all) get up too early on Saturdays.",
+    "reference_translations": [
+      {
+        "text": "Vi alzate troppo presto il sabato.",
+        "register": "neutral",
+        "notes": "Standard. Alzarsi 2pl present; reflexive 'vi' pre-verb agreeing with 2pl subject."
+      },
+      {
+        "text": "Il sabato vi alzate troppo presto.",
+        "register": "neutral",
+        "notes": "Fronted time adverbial."
+      }
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 1,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "pronoun.reflexive.vi",
+      "pronoun.position.pre_finite_verb"
+    ],
+    "optional_buckets": [
+      "verb_form.present_indicative.formation.regular_are"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "get up",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to get up - alzarsi (reflexive)",
+            "bucket": "vocabulary.it.alzarsi.verb.translation"
+          }
+        }
+      },
+      {
+        "lemma": "early",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "early - presto",
+            "bucket": "vocabulary.it.presto.adverb.translation"
+          }
+        }
+      },
+      {
+        "lemma": "Saturday",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "Saturday - sabato; il sabato = on Saturdays (habitual)",
+            "bucket": "vocabulary.it.sabato.noun.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Alzarsi is reflexive: the action returns to the subject. The 2pl reflexive pronoun is vi, matching a 2pl subject and sitting pre-verb in a finite tense. Stack: vi + alzate. The definite article on 'il sabato' turns a weekday into a habitual 'on Saturdays'.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_48",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Anna wants to wash her hands, but she never washes them properly.",
+    "reference_translations": [
+      {
+        "text": "Anna vuole lavarsi le mani, ma non se le lava mai bene.",
+        "register": "neutral",
+        "notes": "Standard. Cluster 'se le' = reflexive si + DOP le (f.pl for le mani); vowel change si -> se before another clitic; pre-verb because 'lava' is finite."
+      },
+      {
+        "text": "Anna vuole lavarsi le mani, ma non se le lava mai per bene.",
+        "register": "neutral",
+        "notes": "Slight register lift with 'per bene'."
+      },
+      {
+        "text": "Anna vuole lavarsi le mani, ma non si le lava mai bene.",
+        "register": "neutral",
+        "polarity": "negative",
+        "notes": "WRONG: si must change to se before another clitic (vowel change rule)."
+      }
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 4,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "pronoun.reflexive.with_object",
+      "pronoun.reflexive.si_sg",
+      "pronoun.direct_object.le",
+      "pronoun.combined.vowel_changes",
+      "pronoun.position.pre_finite_verb"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "wash",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to wash oneself - lavarsi (reflexive)",
+            "bucket": "vocabulary.it.lavarsi.verb.translation"
+          }
+        }
+      },
+      {
+        "lemma": "hands",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "hand - mano (f), pl mani",
+            "bucket": "vocabulary.it.mano.noun.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "A reflexive verb can co-occur with a direct-object pronoun (the body part or possession being acted on). The reflexive plus DOP cluster undergoes a vowel change: 3sg reflexive si becomes se before another clitic, giving se + le for f.pl 'them (the hands)'. Stack: se + le + lava. The cluster sits pre-verb because lava is finite.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_op_en_it_49",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "The letters? I've already read them all.",
+    "reference_translations": [
+      {
+        "text": "Le lettere? Le ho gia' lette tutte.",
+        "register": "neutral",
+        "notes": "Left-dislocated object 'le lettere' with clitic resumption 'le' pre-verb; participle agrees f.pl -> lette."
+      },
+      {
+        "text": "Le lettere, le ho gia' lette tutte.",
+        "register": "neutral",
+        "notes": "Comma variant, same structure."
+      },
+      {
+        "text": "Le lettere? Le ho gia' letto tutte.",
+        "register": "neutral",
+        "polarity": "negative",
+        "notes": "WRONG: the preceding DOP le (f.pl) triggers agreement letto -> lette; leaving letto invariant is a common mistake."
+      }
+    ],
+    "topic": "pronoun",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "pronoun.special.left_dislocation_with_pp_agreement",
+      "pronoun.direct_object.le",
+      "pronoun.position.pre_finite_verb"
+    ],
+    "optional_buckets": [
+      "verb_form.passato_prossimo.participle_agreement.with_avere.preceding_dop_le"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "letter",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "letter - lettera (f)",
+            "bucket": "vocabulary.it.lettera.noun.translation"
+          }
+        }
+      },
+      {
+        "lemma": "read",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to read - leggere",
+            "bucket": "vocabulary.it.leggere.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Italian frequently fronts a definite object as a topic and resumes it inside the clause with a matching clitic; this is left dislocation with clitic resumption. The resuming clitic (here f.pl le) is a preceding direct-object pronoun, so it triggers passato prossimo participle agreement: letto -> lette. Stack: le + ho + gia' + lette.",
+    "version": 1
   }
 ]
