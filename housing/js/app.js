@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-18-r17";
+  const LL_BUILD = "2026-07-18-r18";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // Touch-first device (no hover, coarse pointer): tap interactions replace
   // keyboard ones. Computed once; used for tap-to-mark on MCQ.
@@ -6476,7 +6476,7 @@
 
     const sub = document.createElement("p");
     sub.className = "coverage-sub";
-    sub.textContent = "Fill shows how much you've practised; colour shows how you're doing. Tap a cell to drill in.";
+    sub.textContent = "Each strip is one area at that level; it takes colour as you practise it. Tap a cell to drill in.";
     col.appendChild(sub);
 
     const topics = grammarTopicRows();
@@ -6516,14 +6516,28 @@
           td.classList.add("coverage-na");
           td.title = topic.label + " · " + level + ": not in scope at this level";
         } else {
-          const fill = document.createElement("div");
-          fill.className = "coverage-fill";
-          fill.style.height = Math.round(m.attempted_share * 100) + "%";
-          fill.style.background = coverageColour(m.correctness, m.hasEvents);
-          td.appendChild(fill);
-          td.title = topic.label + " · " + level + ": "
-            + (m.hasEvents ? Math.round(m.correctness * 100) + "% over " + m.touched + "/" + m.total + " areas practised"
-                           : m.total + " areas, none practised yet");
+          // One strip per in-scope area, each wearing its OWN state - no
+          // aggregation into a single percentage (Smith, 2026-07-18; coverage
+          // matrix v5). The box still fills with coverage: untouched areas
+          // are faint empty strips, so colour spreading across the box IS
+          // the coverage progress.
+          const leaves = bucketLeavesInScope([topic.id], level);
+          const strips = document.createElement("div");
+          // Dense topics (15+ areas at one level) drop the gaps so the strips
+          // compress into contiguous colour bands rather than overflowing.
+          strips.className = "coverage-strips" + (leaves.length > 14 ? " dense" : "");
+          let touched = 0;
+          for (const leaf of leaves) {
+            const st = aggregateNodeStats(leaf);
+            const s = document.createElement("i");
+            s.className = "coverage-strip" + (st ? " touched" : "");
+            if (st) { s.style.background = coverageColour(st.correctness, true); touched++; }
+            s.title = (leaf.label || leaf.id) + " · " + level + ": "
+              + (st ? Math.round(st.correctness * 100) + "% (" + st.hits + " hits / " + st.n + " events)" : "not practised yet");
+            strips.appendChild(s);
+          }
+          td.appendChild(strips);
+          td.title = topic.label + " · " + level + ": " + touched + "/" + leaves.length + " areas practised";
           td.addEventListener("click", () => coverageDrill(topic.id, level));
         }
         tr.appendChild(td);

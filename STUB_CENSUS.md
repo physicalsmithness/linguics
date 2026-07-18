@@ -57,7 +57,28 @@ Plus their 7 `*.discrimination` aggregates. **"Present vs future" is registered 
 verb_form, once in tense_choice. Dispatching any of these authors a live skill a second time under a second bucket
 id and splits the learner's stats across both. **Blocked pending Smith's ruling; nobody should dispatch them.**
 
-## 3. THE REAL BACKLOG — genuinely to be made (9)
+## 3. CORRECTED 2026-07-17 — the "9 real" was wrong: it is 1 dispatchable + 1 parked + 6 UNDEFINED
+
+I told Smith the remaining 9 stubs were "the real backlog". Checked properly, they are three different things again — the same error as section 1, one level down.
+
+**Dispatchable now (1):** `verb_form.imperativo.discrimination.register_informal_vs_formal` (+ its aggregate). It has a **defined leaf**, it is NOT a tense_choice duplicate (tense_choice has no register axis), and it is the only registered candidate anywhere for the reserved `register` misconception family. **Not a new seat** — one leaf is not a seat's worth; it is a wave-2 dispatch to ImperativoAuthor, who is active, has declared, and owns the tree.
+
+**Parked (1):** `word_formation.relational_adjectives` — scoping against the adjective topic, already in OPEN_QUESTIONS as a future-seat ask.
+
+**UNDEFINED, not backlog (6):** `congiuntivo.usage`, `future.usage`, `gerundio.usage`, `imperativo.usage`, `passato_remoto.usage`, `trapassato_prossimo.usage`. **Every one is an EMPTY AGGREGATE with no child leaves at all.** Nothing anywhere says what they own. You cannot dispatch "author verb_form.congiuntivo.usage" — there is no leaf to author against.
+
+**And the scope question is live, not clerical.** Each verb tree was scaffolded as formation / discrimination / usage. Discrimination has just been superseded wholesale into tense_choice. So: **what does `.usage` own once tense_choice owns the contrast?** My read, for ruling:
+
+| branch | likely real content | verdict |
+|---|---|---|
+| `future.usage` | future of probability (*saranno le tre* = "it must be three") — a use of the future for PRESENT conjecture, not a tense choice at all | **real, distinct** |
+| `gerundio.usage` | adverbial gerund (*camminando, pensavo*) — subordination, not the progressive (tense_choice.progressive_vs_simple owns that) | **real, distinct** |
+| `imperativo.usage` | pragmatics: softening, instructions, sequences | **probably real** |
+| `congiuntivo.usage` | trigger-based choice is tense_choice.indicative_vs_subjunctive; only the independent/exhortative (*che venga!*) is left | **thin** |
+| `passato_remoto.usage` | remoto-vs-pp is tense_choice's; only literary recognition is left | **thin** |
+| `trapassato.usage` | trapassato-vs-imperfect is tense_choice's | **possibly empty by right** |
+
+**Ruling needed before ANY of the six is dispatched**, or we re-run the phantom-stub mistake one level down: scaffolded branches, authored later by someone who never asked what the neighbour already owns. Three of the six may be empty by right and should be superseded like their discrimination siblings; three want real dispatches scoped explicitly AGAINST tense_choice.
 
 - **Usage leaves (6)**: `congiuntivo.usage`, `future.usage`, `gerundio.usage`, `imperativo.usage`,
   `passato_remoto.usage`, `trapassato_prossimo.usage`. Real work: usage is not formation (formation supplies the

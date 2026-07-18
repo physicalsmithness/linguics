@@ -1,0 +1,73 @@
+[
+ {
+  "proposed_id": "tense_choice.indicative_vs_subjunctive.free_choice_triggers",
+  "proposed_parent_id": "tense_choice.indicative_vs_subjunctive",
+  "proposed_label": "Free-choice triggers (chiunque, qualunque, qualsiasi, dovunque)",
+  "proposed_description": "The free-choice indefinites take the subjunctive in a subordinate clause: Chiunque sia, digli che non ci sono; Qualunque cosa faccia, la fa bene; Dovunque tu vada, ti seguiro. Structurally distinct from the sibling leaves: the trigger is neither a matrix verb (opinion/emotion) nor a conjunction (sebbene, prima che) nor a polarity flip, but an indefinite sitting in the subordinate's own subject or object slot. Almost no colloquial slippage, like the other structural triggers.",
+  "proposed_cefr_importance": {
+   "A1": "arcane",
+   "A2": "arcane",
+   "B1": "preview",
+   "B2": "core",
+   "C1": "review",
+   "C2": "fluency"
+  },
+  "proposed_prerequisites": [
+   "indefinite.free_choice"
+  ],
+  "proposed_attributes": {
+   "canonical_examples": [
+    "Chiunque sia, digli che non ci sono",
+    "Qualunque cosa faccia, la fa bene"
+   ],
+   "common_miss": "indicative after a free-choice word (qualunque cosa fa, chiunque e)",
+   "is_aggregate": false,
+   "direction": "bidirectional"
+  },
+  "rationale": "NOT for me to author -- proposed and left uncited, per stay-in-role. The parent has exactly four children (opinion / emotion / hypothetical conjunctions / negation) and none reaches the free-choice indefinites; grep confirms ZERO items in grammar_questions_tense_choice.json use chiunque, qualunque, qualsiasi or dovunque. Meanwhile BOTH my free-choice leaves declare tense_choice.indicative_vs_subjunctive as a prerequisite, so the shipped tree has a prerequisite pointing at a parent whose children do not cover it. OIC states the rule outright and it is currently taught by no item in the estate. Full argument and the who-authors-it question: inter_chat/Architecture_IndefiniteAuthor_free_choice_mood_seam.md."
+ },
+ {
+  "proposed_id": "indefinite.pronouns.tutto_tutti",
+  "proposed_parent_id": "indefinite.pronouns",
+  "proposed_label": "Tutto and tutti as pronouns",
+  "proposed_description": "The collective stand-alone forms: Ho visto tutto (everything), Tutti sono venuti (everybody, plural verb), Va tutto bene. Distinct from indefinite.core.tutto, which is tutto + article in front of a noun, and distinct from ognuno, which distributes one-by-one over a group and takes a SINGULAR verb. The tutti/ognuno contrast is the diagnostic: tutti hanno portato qualcosa vs ognuno ha portato qualcosa.",
+  "proposed_cefr_importance": {
+   "A1": "preview",
+   "A2": "core",
+   "B1": "core",
+   "B2": "review",
+   "C1": "fluency",
+   "C2": "fluency"
+  },
+  "proposed_prerequisites": [],
+  "proposed_attributes": {
+   "canonical_example": "Tutti sono venuti alla festa.",
+   "common_miss": "singular verb with tutti (by analogy with ognuno); tutti i as a pronoun (tutti i sono venuti).",
+   "is_aggregate": false,
+   "direction": "production"
+  },
+  "rationale": "The pronoun aggregate's OWN description promises the set is 'Somebody, something, nobody, nothing, everybody' -- and no leaf delivers everybody as a collective. Ognuno covers 'each one' distributively, which is a different machine and takes the opposite verb agreement. So Tutti sono venuti and Ho visto tutto currently have nowhere to be marked. Found while authoring ind_oc_02, where 'Tutti' is a plausible learner answer I had to guard against with no bucket to attribute it to. Cited on no item pending registration."
+ },
+ {
+  "proposed_id": "indefinite.free_choice.dovunque",
+  "proposed_parent_id": "indefinite.free_choice",
+  "proposed_label": "Dovunque / ovunque",
+  "proposed_description": "The free-choice place word: Dovunque tu vada, ti seguiro; Ovunque si guardi, c'e traffico. Invariable, adverbial, and it takes the subjunctive in a subordinate exactly as chiunque and qualunque do. Dovunque and ovunque are interchangeable.",
+  "proposed_cefr_importance": {
+   "A1": "arcane",
+   "A2": "arcane",
+   "B1": "preview",
+   "B2": "core",
+   "C1": "review",
+   "C2": "fluency"
+  },
+  "proposed_prerequisites": [],
+  "proposed_attributes": {
+   "canonical_example": "Dovunque tu vada, ti seguiro.",
+   "common_miss": "indicative in the subordinate (dovunque vai); dovunque used for a bare 'everywhere' (dappertutto).",
+   "is_aggregate": false,
+   "direction": "production"
+  },
+  "rationale": "OIC names dovunque in the same rule as qualunque/qualsiasi/chiunque, and it has no home anywhere in the estate. It is an ADVERB, so it is neither my qualunque_qualsiasi (adjectival) nor my chiunque (pronoun); and the adverb tree carries only a generic position leaf, per the boundary note Architecture added to the adverb dispatch. Proposed under my free_choice aggregate because the free-choice semantics and the subjunctive behaviour are what define it, but I have no strong claim -- if it belongs to adverb, say so and I will stay off it. Cited on no item."
+ }
+]

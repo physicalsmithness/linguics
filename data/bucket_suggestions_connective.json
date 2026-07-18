@@ -1,0 +1,22 @@
+[
+ {
+  "proposed_id": "connective.time.mentre_appena",
+  "proposed_parent_id": "connective.time",
+  "proposed_label": "Mentre, (non) appena",
+  "proposed_description": "mentre lays two ongoing actions side by side over the same stretch (both verbs typically imperfetto); (non) appena marks a trigger instant (as soon as). Traps: durante + clause (durante takes only a noun), and appena/mentre swapped across the overlap-vs-instant line.",
+  "proposed_cefr_importance": {
+   "A2": "preview",
+   "B1": "core",
+   "B2": "review",
+   "C1": "fluency",
+   "C2": "fluency"
+  },
+  "proposed_prerequisites": [],
+  "proposed_attributes": {
+   "canonical_example": "Mentre cucinavo, lui guardava la TV. / Appena arrivo, ti chiamo.",
+   "common_miss": "durante + clause (durante cucinavo); appena for an ongoing overlap.",
+   "direction": "production"
+  },
+  "rationale": "The connective.time aggregate's description names mentre and (non) appena but no leaf holds them; finché is negation's and prima/dopo has its own leaf. Needed while authoring conn_time_05 and conn_time_06, which are delivered against this proposed id (runtime warns at authoring, strict-rejects at production load, so ratification gates their manifest entry)."
+ }
+]

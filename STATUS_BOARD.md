@@ -12,20 +12,20 @@ rules never appear here as tasks, only their retrofit/compliance state does.
   - Dispatch fully discharged 2026-07-15 (267 markpoints, 265 no_flag, 2 flag); re-derived today rather than trusting the stamp - corpus drifted by exactly one markpoint (pas_use_reg_04, verbless-e class, no_flag, already correct on disk unaided). Queue empty. One decision open: how to detect criterion-19 drift now that the retrofit is stamped discharged.
 - **Architecture** needs **decision** (blocked by: Smith — the 16 phantom stub duplicates (queue item 1))
   - Cr17Sweep unblocked — ImperfectAuthor's 3 threads verified from disk and CLOSED, so imperfect's last 52 items are GO. 4 topic reports stamped (366 glossed, zero replica deltas). Both content bugs routed. Additive-error engine fix put to Housing with a survey gate. One ruling still with Smith.
+- **ConnectiveAuthor** needs **decision**
+  - Seat opened; self-check run across all six surfaces + class tokens; queue = one item, author the connective topic per DISPATCH_connective.md (commissioned DECISIONS 2026-07-14, no discharge stamp; no inter_chat thread names me; topic unauthored on disk, conn_/trans_conn_ prefixes verified free). Awaiting go-ahead + slice choice.
 - **ExistentialAuthor** needs **decision** (blocked by: ex_form_neg_01 unset waits on Architecture's 1,665-item migration to wrong_answer_is_form_error_only (Architecture_Housing_cue_placement, Next: Architecture))
   - 2026-07-14 batch accepted. My turn on the esserci cue-level + additive-credit thread; 32 esserci cues (14 A1) to audit, 5 bare-noun items carry a verified additive-over-translation false-credit. cr13 chip audit run, clean. Proposing the Rev-25 reframe; awaiting a scope decision.
+- **IndefiniteAuthor** needs **decision**
+  - Fresh seat, self-check done, queue EMPTY of retrofits (no items on disk to retrofit); the dispatch itself is the work. One scope fork found before authoring: the free-choice subjunctive trigger (chiunque/qualunque + subjunctive) is owned by nobody.
 - **NegationAuthor** needs **decision**
   - Negation live and accepted (41 grammar + 22 translation, 9 leaves, validation 0/0, replica clean). Nothing to author. Raw name-grep showed 6; after triage the queue is two all-authors retrofits, both RUN clean this turn and awaiting Architecture's stamp, plus one thread on Architecture's side. Nothing owed by me.
 - **NounAuthor** needs **decision**
   - batch ACCEPTED 2026-07-15 with both asks answered; wake self-check finds one explicit ruling still undelivered after 3 days (candidate_forms on 4 meaning-pair items) plus two unstamped class retrofits that my name alone could never have found (crit 13, Rev 25); the italia.verb defect routed to me is already fixed on disk, reported not self-stamped
-- **PiacereAuthor** needs **decision** (blocked by: Smith ruling on the Rev 25 cue-level call (is `piacere` an A1 citation form?))
-  - batch live and accepted (thread CLOSED at v3, manifest wired, all three asks ruled); wake self-check found two unstamped class retrofits; crit 13 audited clean this turn; Rev 25 audit run but its A1 call is owed to Smith
 - **ReportedSpeechAuthor** needs **decision** (blocked by: Smith - suppression-scope decision (options A/B/C given in chat))
   - thread v4 ruled all four asks in my favour and ordered two authoring tasks; both class retrofits (crit 13, Rev 25) audited clean this turn with zero exposure, evidence ready to file for stamping; one decision owed before I author
 - **WordFormationAuthor** needs **decision**
   - Batch complete and ACCEPTED (thread CLOSED v6, 39 grammar + 11 translation). Nothing owed on any thread. Two class-token retrofits bind me via all-authors and are unstamped for this seat; both are expected near-no-ops but neither has been run. One discharged clause (DECISIONS 996) needs an architect stamp.
-- **GerundioAuthor** needs **continue**
-  - Batch ACCEPTED and thread CLOSED at v3 (2026-07-15). One ratified retrofit is still undone: the suppress flags are on disk at 21, the ratified v2 table says 12. Rev 25 cue-level audit run today, clean. Criterion 13 self-audit was run at authoring; needs an Architecture stamp, not a self-stamp.
 - **SiConstructionsAuthor** needs **continue** (blocked by: Smith - awaiting go to apply the RULED nine-item 0.5 flip (I must speak before writing, per WAKE_INSTRUCTION step 3))
   - Batch ACCEPTED and live; one ruled task ready to execute (nine-item 0.5 parity flip); both class-token audits run clean and await Architecture's stamp.
 - **DemonstrativeAuthor** needs **external-action** (blocked by: Architecture (3 stamps to apply + the cio/criterion-20 ruling))
@@ -38,10 +38,11 @@ rules never appear here as tasks, only their retrofit/compliance state does.
   - Original batch ACCEPTED 2026-07-15. Smith commissioned the frozen-tail idioms C1 pass 2026-07-18; authored and on disk (10 new grammar + 3 translation, pv_adv_frozentail_01 re-homed, topic now 56/23), validates clean, forward-referencing a leaf Architecture must place. Two all-authors class retrofits (crit 13, Rev 25) re-run clean and reported for stamping.
 - **RelativePronounAuthor** needs **external-action**
   - batch live and settled; wake self-check found two unstamped class retrofits (crit 13, Rev 25), both audited clean same turn, evidence filed for stamping; pos-worklist census decrement still pending
+- **CongiuntivoFormationAuthor** needs **review**
+  - FORMATION BRANCH COMPLETE — all three waves delivered and verified: 75 grammar + 26 translation, engine-green (75/75 full marks on correct answers, all guards reject). Nothing owed. One flag open to Architecture on compound leaf labels.
 
 ## Open these next
 
-- GerundioAuthor: reopen and say go. Batch ACCEPTED and thread CLOSED at v3 (2026-07-15). One ratified retrofit is still undone: the suppress flags are on disk at 21, the ratified v2 table says 12. Rev 25 cue-level audit run today, clean. Criterion 13 self-audit was run at authoring; needs an Architecture stamp, not a self-stamp.
 - SiConstructionsAuthor: reopen and say go. Batch ACCEPTED and live; one ruled task ready to execute (nine-item 0.5 parity flip); both class-token audits run clean and await Architecture's stamp.
 
 ## Seat declarations (`_status/`)
@@ -55,6 +56,10 @@ rules never appear here as tasks, only their retrofit/compliance state does.
 - Classes: all-seats, all-authors
 - Both threads with `Next: AdjectiveAuthor` discharged this wake. adj_buono_02 prompt fixed (uno -> un) + buon guard relaxed to graded credit at 0.7. 47-ref pos-migration applied per Cr17Sweep worklist + orecchia -> orecchio citation-form fix on adj_ga_ghe_05. Awaiting Architecture stamps on both.
   - (empty; both owed threads discharged this wake)
+
+### AdverbAuthor - parked / none (updated 2026-07-18)
+- Classes: all-seats, all-authors
+- Batch accepted; my finding is criterion 15's recoverability condition (Rev 19). Rev 25 retrofit run and discharged (26 cued items, 26 exempt, 3 vocab_help'd); adv_bb_07 repaired per Smith; one collision ruling asked of Architecture.
 
 ### Architecture - blocked / decision (updated 2026-07-17)
 - Blocked by: Smith — the 16 phantom stub duplicates (queue item 1)
@@ -77,6 +82,16 @@ rules never appear here as tasks, only their retrofit/compliance state does.
 - Classes: all-seats, all-authors
 - Comparison batch live and ACCEPTED (51 grammar + 24 translation, all 8 leaves), reconciled Rev 16->22 and re-checked against Rev 25 today. Self-check run across name + classes; queue is EMPTY. Two class-bound audits run today, both clean; three items await Architecture's stamp.
   - none — nothing owed. (name-grep MINUS discharged = 0)
+
+### CongiuntivoFormationAuthor - parked / review (updated 2026-07-18)
+- Classes: all-seats, all-authors
+- FORMATION BRANCH COMPLETE — all three waves delivered and verified: 75 grammar + 26 translation, engine-green (75/75 full marks on correct answers, all guards reject). Nothing owed. One flag open to Architecture on compound leaf labels.
+  - (none owed)
+
+### ConnectiveAuthor - parked / decision (updated 2026-07-18)
+- Classes: all-seats, all-authors
+- Seat opened; self-check run across all six surfaces + class tokens; queue = one item, author the connective topic per DISPATCH_connective.md (commissioned DECISIONS 2026-07-14, no discharge stamp; no inter_chat thread names me; topic unauthored on disk, conn_/trans_conn_ prefixes verified free). Awaiting go-ahead + slice choice.
+  - Author connective batch (14-node tree, 9 leaves): grammar_questions_connective.json, translation_items_connective.json, bucket_suggestions_connective.json, glossary_suggestions_connective.json, coverage_connective.md   [DECISIONS.md 2026-07-14 "How to apply: fire ... ConnectiveAuthor ... on their dispatches", unstamped]
 
 ### Cr17Sweep - closed / none (updated 2026-07-17)
 - Classes: all-seats
@@ -101,12 +116,17 @@ rules never appear here as tasks, only their retrofit/compliance state does.
   - ex_form_neg_01 flag unset   [inter_chat Architecture_Housing_cue_placement, BLOCKED on Architecture's central migration; converges with the reframe since neg_01 is one of the 5]
   - Criterion 13 chip audit: RUN 2026-07-18, CLEAN (0 rule-naming cues; "(esserci)" names the operand/output form, vs_ecco cues are bracketed situations). Evidence on disk; Architecture stamps, not me   [AUTHOR_BRIEF binding register, all-authors]
 
-### GerundioAuthor - parked / continue (updated 2026-07-18)
+### FutureFormationAuthor - parked / none (updated 2026-07-18)
+- Blocked by: none (vedrò repair pick + crit-13 stamp sit with Architecture, not blocking further work)
 - Classes: all-seats, all-authors
-- Batch ACCEPTED and thread CLOSED at v3 (2026-07-15). One ratified retrofit is still undone: the suppress flags are on disk at 21, the ratified v2 table says 12. Rev 25 cue-level audit run today, clean. Criterion 13 self-audit was run at authoring; needs an Architecture stamp, not a self-stamp.
-  - Flag retrofit 21 -> 12 per my ratified v2 table + bump coverage doc   [DECISIONS.md 2026-07-15 "How to apply: Gerundio retrofits flags per its own v2 table"; thread v3 ask 1. VERIFIED UNDONE: file shows 21]
-  - Criterion 13 self-audit (Rev 24 register: RUNNING, compliance 1 of ~25 authors) — RUN at authoring 2026-06-09, zero hits; awaiting Architecture stamp   [binds: all-authors]
-  - Rev 25 cue-vs-level audit — RUN today, 35/35 cues are ordinary infinitives at or below item level, no esserci-class gate; one judgement call (porre/tradurre on B1); awaiting Architecture stamp   [binds: all-authors, retrofit]
+- Future formation batch (50 grammar + 19 translation) live and reconciled; crit-13 audited clean, 15/17/18/19/20 discharged or standing, 16 N/A; già and pagare observations actioned; only the vedrò content-bug repair pick sits with Architecture.
+  - vedrò content bug fut_irr_sync_vedere_1sg_01: repair pick handed to Architecture (recommend Ti vedrò)   [inter_chat/Architecture_FutureFormationAuthor_vedere_ci_bug.md, Next: Architecture]
+  - criterion-13 chip audit: reported clean, awaiting Architecture stamp   [inter_chat/Architecture_FutureFormationAuthor_class_retrofit_audits.md, Next: Architecture]
+
+### GerundioAuthor - parked / none (updated 2026-07-18)
+- Classes: all-seats, all-authors
+- Queue clear. The one ratified-but-undelivered item (suppress flags 21->12) is DONE and verified; batch itself was ACCEPTED and CLOSED at v3 on 2026-07-15. Three items now sit with Architecture for stamps/ruling at Architecture_GerundioAuthor_selfcheck_discharge.md (Next: Architecture).
+  - nothing owed
 
 ### Housing - parked / external-action (updated 2026-07-18)
 - r17 - Smith's live round: scroll CONFIRMED, pulse moved to the small cell/dot, in-session multi-level toggles (a1b1a2) + composed-scope preservation, accent policy CONFIRMED live (0.9, caffe named). r16 - cue_placement v3 ruling acted on same-day: field renamed wrong_answer_is_form_error_only (claim-named), engine read live with legacy tripwire, migration ball with Architecture. r15 - Smith-direct scroll regression fixed same turn (v7 scrolled the wrong scrollbox + flashed pre-scroll; now ancestor-walk box choice + scroll-then-flash, geometry-mocked harness). Previously: queue cleared at r14 - 8 threads closed/advanced today (scroll fix, entry load race, level picker set, AI-marker accent policy, vocab builder two-lens + ratified 94-chip category picker, cue placement CSS, feedback widget mounted); cue-placement FLAG ruling awaits Architecture
@@ -126,6 +146,11 @@ rules never appear here as tasks, only their retrofit/compliance state does.
 ### ImperfectAuthor - parked / none (updated 2026-07-17)
 - Classes: all-seats, all-authors
 - One-sitting bundle complete. All 3 OPEN threads closed on my end; awaiting Architecture CLOSED stamps.
+
+### IndefiniteAuthor - parked / decision (updated 2026-07-18)
+- Classes: all-seats, all-authors
+- Fresh seat, self-check done, queue EMPTY of retrofits (no items on disk to retrofit); the dispatch itself is the work. One scope fork found before authoring: the free-choice subjunctive trigger (chiunque/qualunque + subjunctive) is owned by nobody.
+  - DISPATCH_indefinite.md — author the topic: 13 nodes / 8 active leaves, prefixes ind_ + trans_ind_ verified free (0 collisions), est. ~48-55 grammar + ~20-24 translation   [self-check surface 5]
 
 ### MisconceptionAnalyst - parked / none (updated 2026-07-17)
 - Classes: all-seats
@@ -147,12 +172,11 @@ rules never appear here as tasks, only their retrofit/compliance state does.
   - Rev 25 cue-level audit, 52 items: NOT RUN   [AUTHOR_BRIEF Rev 25: binds all-authors, retrofit = audit cues against item levels]
   - italia.verb (noun_gen_e_08): already fixed centrally to vocabulary.it.italia.noun.translation; PassiveAuthor's routing is stale, awaiting Architecture stamp/withdrawal   [evidence: item on disk]
 
-### PiacereAuthor - blocked / decision (updated 2026-07-18)
-- Blocked by: Smith ruling on the Rev 25 cue-level call (is `piacere` an A1 citation form?)
+### PiacereAuthor - closed / none (updated 2026-07-18)
 - Classes: all-seats, all-authors
-- batch live and accepted (thread CLOSED at v3, manifest wired, all three asks ruled); wake self-check found two unstamped class retrofits; crit 13 audited clean this turn; Rev 25 audit run but its A1 call is owed to Smith
-  - Criterion 13 chip self-audit: DONE this turn. 29 cues scanned, 0 rule-naming hits, 0 rewrites. Evidence ready, awaiting Architecture stamp (seats do not stamp themselves).   [AUTHOR_BRIEF Rev 24 binding register, binds all-authors]
-  - Rev 25 citation-form-level audit: RUN this turn. 13 items cued `(piacere)`, 8 A1 / 5 A2. Proposed verdict: exemption HOLDS, zero changes (piacere verb rank 267/18071; not a compound, so no esserci-style decomposition barrier; independently A1 as greeting/noun; Rev 23 broken-not-fluent predictor clears the bare cue). DECISION owed from Smith before filing for stamp.   [AUTHOR_BRIEF Rev 25, binds all-authors]
+- batch live and accepted (delivery thread CLOSED v3, manifest verified); wake self-check found two unstamped class retrofits, both audited clean this turn and filed for stamping; Smith ruled the Rev 25 cue call (exemption holds, zero changes)
+  - Criterion 13 chip self-audit: DONE. 29 cues / 38 items, 0 rule-naming hits, 0 rewrites. Evidence filed; awaiting Architecture stamp (not mine to apply).   [class_retrofit_audits v1; AUTHOR_BRIEF Rev 24 register, binds all-authors]
+  - Rev 25 cue-level audit: DONE. 13 citation cues (8 A1); Smith ruled 2026-07-18 exemption holds, 0 changes. Evidence filed; awaiting Architecture stamp.   [class_retrofit_audits v1; AUTHOR_BRIEF Rev 25, binds all-authors]
 
 ### PossessiveAuthor - parked / continue # go-ahead / sequencing steer; work is already ratified (updated 2026-07-18)
 - Blocked by: none
@@ -213,8 +237,10 @@ rules never appear here as tasks, only their retrofit/compliance state does.
 
 ### TenseChoiceAuthor - parked / none (updated 2026-07-18)
 - Classes: all-seats, all-authors
-- Wave 2 complete and delivery thread CLOSED at v5; nothing owed. Wake self-check found three all-authors clauses that had never reached this seat (13, Rev 25/20, Rev 23) — all three run, all no-ops BY CONSTRUCTION, reported for Architecture to stamp. Two questions raised (supplied-choice exemption for 13/20; "discharged" vs "n/a by construction" as register states) and one finding routed (9 deprecated pointers still flagged stub:true, distorting six trees' coverage denominators).
-  - Architecture_TenseChoiceAuthor_criterion_compliance v1 — 3 stamps + 2 questions   [inter_chat, Next: Architecture]
+- nothing owed on the queue side; wave-2 fully accepted (128 tags / 124 items / zero bare, marker replica green); wake self-check found two unstamped class retrofits (crit 13, Rev 25), both audited clean this turn with zero exposure; crit 17 discharged in substance but the estate-table row carries no per-seat stamp for this seat; evidence filed for all three in class_retrofit_audits v1
+  - Crit 13 rule-naming chip audit: DONE, 124 prompts scanned, zero exposure, evidence filed, awaiting Architecture stamp   [inter_chat/Architecture_TenseChoiceAuthor_class_retrofit_audits.md v1]
+  - Rev 25 citation-form cue level audit: DONE, 124 prompts scanned, zero cues to level-check, evidence filed, awaiting Architecture stamp   [class_retrofit_audits v1]
+  - Crit 17 stamp gap: discharged by wave2_delivery v1 + confirmed by Cr17Sweep exposure survey, table row still unstamped for this seat, flagged for bookkeeping   [class_retrofit_audits v1]
 
 ### Vocab - closed / none (updated 2026-07-17)
 - Classes: all-seats
@@ -229,9 +255,9 @@ rules never appear here as tasks, only their retrofit/compliance state does.
 
 ## Thread ledger (open threads, whose turn, sitting how long)
 
-141 threads on disk, 36 open. Sorted oldest-last-write first.
+150 threads on disk, 45 open. Sorted oldest-last-write first.
 
-### Turn: Architecture (23)
+### Turn: Architecture (31)
 - `Architecture_NegationAuthor_criterion20_retrofit.md` - last wrote NegationAuthor on 2026-07-15 (3d sitting) [Next:]
   - Next: Architecture (accept the retrofit; rule the proposed criterion-20 extension; route adv_bb_07)
 - `Architecture_NegationAuthor_scope_ratified.md` - last wrote NegationAuthor on 2026-07-15 (3d sitting) [inferred from last author]
@@ -245,8 +271,6 @@ rules never appear here as tasks, only their retrofit/compliance state does.
   - Next: Architecture (route the volere flag + two answer-leak observations to ImperfectAuthor; stamp when satisfied)
 - `Architecture_Cr17Sweep_present_indicative.md` - last wrote Cr17Sweep on 2026-07-17 (1d sitting) [Next:]
   - Next: Architecture (stamp or query; two observations routed to PresentFormationAuthor)
-- `Architecture_MetaProject_status_board_pilot.md` - last wrote MetaProject on 2026-07-17 (1d sitting) [Next:]
-  - Next: Architecture (stamp backfill/triage + the v6 wake-instruction fix, BEFORE the seat walk), and Smith (the board's Waiting-on-Smith bucket: two decisions)
 - `Architecture_PassiveAuthor_criterion20_cue_leak.md` - last wrote PassiveAuthor on 2026-07-17 (1d sitting) [inferred from last author]
 - `Architecture_PassiveAuthor_usage_branch_delivery.md` - last wrote PassiveAuthor on 2026-07-17 (1d sitting) [inferred from last author]
 - `Architecture_PresentFormationAuthor_rev25_and_stamps.md` - last wrote PresentFormationAuthor on 2026-07-17 (1d sitting) [Next:]
@@ -255,23 +279,41 @@ rules never appear here as tasks, only their retrofit/compliance state does.
   - Next: Architecture (close thread + stamp 3 discharged clauses)
 - `AdjectiveAuthor_Cr17Sweep_hygiene_work_order.md` - last wrote AdjectiveAuthor on 2026-07-18 (0d sitting) [Next:]
   - Next: Architecture
+- `AdverbAuthor_Architecture_rev25_cue_level_retrofit.md` - last wrote AdverbAuthor on 2026-07-18 (0d sitting) [Next:]
+  - Next: Architecture (stamp the Rev 25 discharge for this seat; rule the remedy collision; adv_bb_07 needs no routing, it is fixed)
 - `Architecture_AdjectiveAuthor_buono_02_prompt_bug.md` - last wrote AdjectiveAuthor on 2026-07-18 (0d sitting) [Next:]
   - Next: Architecture
 - `Architecture_ArticleAuthor_class_retrofit_audits.md` - last wrote ArticleAuthor on 2026-07-18 (0d sitting) [Next:]
   - Next: Architecture
 - `Architecture_ArticleAuthor_discrimination_candidate_forms.md` - last wrote ArticleAuthor on 2026-07-18 (0d sitting) [Next:]
   - Next: Architecture
+- `Architecture_CongiuntivoFormationAuthor_compound_leaf_label_hygiene.md` - last wrote CongiuntivoFormationAuthor on 2026-07-18 (0d sitting) [Next:]
+  - Next: Architecture (rule on the relabel; stamp when satisfied)
 - `Architecture_DemonstrativeAuthor_class_retrofit_audits.md` - last wrote DemonstrativeAuthor on 2026-07-18 (0d sitting) [Next:]
   - Next: Architecture (three stamps to apply + one ruling to make)
+- `Architecture_FutureFormationAuthor_class_retrofit_audits.md` - last wrote FutureFormationAuthor on 2026-07-18 (0d sitting) [Next:]
+  - Next: Architecture
+- `Architecture_FutureFormationAuthor_vedere_ci_bug.md` - last wrote FutureFormationAuthor on 2026-07-18 (0d sitting) [Next:]
+  - Next: Architecture
+- `Architecture_GerundioAuthor_selfcheck_discharge.md` - last wrote GerundioAuthor on 2026-07-18 (0d sitting) [Next:]
+  - Next: Architecture
 - `Architecture_Housing_cue_placement.md` - last wrote Housing on 2026-07-18 (0d sitting) [Next:]
   - Next: Architecture (migrate the 1,665 items to the new key; same push as r16); then ExistentialAuthor (unset ex_form_neg_01) + Cr17Sweep (straggler net)
 - `Architecture_ImperativoAuthor_discharges.md` - last wrote ImperativoAuthor on 2026-07-18 (0d sitting) [Next:]
   - Next: Architecture (stamp 4 clauses)
+- `Architecture_IndefiniteAuthor_free_choice_mood_seam.md` - last wrote IndefiniteAuthor on 2026-07-18 (0d sitting) [Next:]
+  - Next: Architecture
+- `Architecture_MetaProject_status_board_pilot.md` - last wrote MetaProject on 2026-07-18 (0d sitting) [Next:]
+  - Next: Architecture (stamp backfill/triage + the v6 wake-instruction fix, BEFORE the seat walk), and Smith (the board's Waiting-on-Smith bucket: two decisions)
+- `Architecture_PiacereAuthor_class_retrofit_audits.md` - last wrote PiacereAuthor on 2026-07-18 (0d sitting) [Next:]
+  - Next: Architecture (two stamps + one class ratification requested)
 - `Architecture_PronominalVerbsAuthor_class_retrofit_audits.md` - last wrote PronominalVerbsAuthor on 2026-07-18 (0d sitting) [Next:]
   - Next: Architecture (stamps)
 - `Architecture_PronominalVerbsAuthor_frozen_tail_idioms.md` - last wrote PronominalVerbsAuthor on 2026-07-18 (0d sitting) [Next:]
   - Next: Architecture (ratify/place the leaf)
 - `Architecture_RelativePronounAuthor_class_retrofit_audits.md` - last wrote RelativePronounAuthor on 2026-07-18 (0d sitting) [Next:]
+  - Next: Architecture
+- `Architecture_TenseChoiceAuthor_class_retrofit_audits.md` - last wrote TenseChoiceAuthor on 2026-07-18 (0d sitting) [Next:]
   - Next: Architecture
 - `Architecture_TenseChoiceAuthor_criterion_compliance.md` - last wrote TenseChoiceAuthor on 2026-07-18 (0d sitting) [Next:]
   - Next: Architecture
@@ -301,13 +343,13 @@ rules never appear here as tasks, only their retrofit/compliance state does.
 - `Architecture_ReportedSpeechAuthor_batch_disposition.md` - last wrote Architecture on 2026-07-15 (3d sitting) [Next:]
   - Next: ReportedSpeechAuthor (four ruled asks to absorb)
 
+### Turn: the (1)
+- `Architecture_ALLAUTHORS_cue_notation_renders_use_english.md` - last wrote Architecture on 2026-07-17 (1d sitting) [Next:]
+  - Next: the eight named authors below (pronoun 80, possessive 29, piacere 12, adverb 7, relative_pronoun 4, imperfect 2, adjective_agreement 1, preposition 1)
+
 ### Turn: ExistentialAuthor (1)
 - `Architecture_ExistentialAuthor_cue_level_and_additive_credit.md` - last wrote Architecture on 2026-07-17 (1d sitting) [Next:]
   - Next: ExistentialAuthor
-
-### Turn: FutureFormationAuthor (1)
-- `Architecture_FutureFormationAuthor_vedere_ci_bug.md` - last wrote Architecture on 2026-07-17 (1d sitting) [Next:]
-  - Next: FutureFormationAuthor
 
 ### Turn: ImperfectAuthor (1)
 - `Architecture_ImperfectAuthor_vol_01_prompt_bug.md` - last wrote Architecture on 2026-07-17 (1d sitting) [Next:]
@@ -316,6 +358,10 @@ rules never appear here as tasks, only their retrofit/compliance state does.
 ### Turn: MisconceptionAnalyst (1)
 - `Architecture_MisconceptionAnalyst_registry_harvest.md` - last wrote Architecture on 2026-07-17 (1d sitting) [Next:]
   - Next: MisconceptionAnalyst (fill the ~152 tag-lists thoroughly; then bring v13's proposals as a discrete list)
+
+### Turn: PronounAuthor (1)
+- `Architecture_PronounAuthor_criterion13_chip_audit.md` - last wrote Architecture on 2026-07-17 (1d sitting) [Next:]
+  - Next: PronounAuthor (judge 5 chips; the other 5 hits are triaged as false positives, no action)
 
 ### Turn: (unknown) (1)
 - `Architecture_AdverbAuthor_batch_disposition.md` - last wrote ? on ? (? sitting) [inferred from last author]
@@ -328,10 +374,16 @@ rules never appear here as tasks, only their retrofit/compliance state does.
 
 - **binds: all-authors** (DECISIONS.md) - stamps: none yet
   - ecomes a gate rather than a scaffold. **Where the citation form is above the item's level, gloss in English instead.** `binds: all-authors`; ExistentialAuthor first (32 esserci cues, 14 at A1). - **VERIFIED: additive over-translation scores full credit and no guard can stop it.** Engine-checked (g
-  - Compliance (of seats declaring `all-authors`): 0/21 stamped; missing: AdjectiveAuthor, ArticleAuthor, ComparisonAuthor, DemonstrativeAuthor, ExistentialAuthor, GerundioAuthor, ImperativoAuthor, ImperfectAuthor, NegationAuthor, NounAuthor, PiacereAuthor, PossessiveAuthor, PrepositionAuthor, PresentFormationAuthor, PronominalVerbsAuthor, PronounAuthor, RelativePronounAuthor, ReportedSpeechAuthor, SiConstructionsAuthor, TenseChoiceAuthor, WordFormationAuthor
+  - Compliance (of seats declaring `all-authors`): 0/26 stamped; missing: AdjectiveAuthor, AdverbAuthor, ArticleAuthor, ComparisonAuthor, CongiuntivoFormationAuthor, ConnectiveAuthor, DemonstrativeAuthor, ExistentialAuthor, FutureFormationAuthor, GerundioAuthor, ImperativoAuthor, ImperfectAuthor, IndefiniteAuthor, NegationAuthor, NounAuthor, PiacereAuthor, PossessiveAuthor, PrepositionAuthor, PresentFormationAuthor, PronominalVerbsAuthor, PronounAuthor, RelativePronounAuthor, ReportedSpeechAuthor, SiConstructionsAuthor, TenseChoiceAuthor, WordFormationAuthor
+- **binds: all-authors** (DECISIONS.md) - stamps: all-authors except PronounAuthor
+  - `[discharged: all-authors except PronounAuthor, 2026-07-17, central chip audit]`. **This is the general shape for any `binds: all-authors` retrofit that is mechanically detectable: Architecture runs it once, stamps the class, routes the residue.** A per-seat self-audit is for judgement work only.
+  - Compliance (of seats declaring `all-authors`): 0/26 stamped; missing: AdjectiveAuthor, AdverbAuthor, ArticleAuthor, ComparisonAuthor, CongiuntivoFormationAuthor, ConnectiveAuthor, DemonstrativeAuthor, ExistentialAuthor, FutureFormationAuthor, GerundioAuthor, ImperativoAuthor, ImperfectAuthor, IndefiniteAuthor, NegationAuthor, NounAuthor, PiacereAuthor, PossessiveAuthor, PrepositionAuthor, PresentFormationAuthor, PronominalVerbsAuthor, PronounAuthor, RelativePronounAuthor, ReportedSpeechAuthor, SiConstructionsAuthor, TenseChoiceAuthor, WordFormationAuthor
+- **binds: all-authors** (AUTHOR_BRIEF.md) - stamps: none yet
+  - greement item names the diagnostic; "'i libri' is masculine plural" gives the context the learner needs to perform it. `binds: all-authors`; `retrofit:` **DISCHARGED CENTRALLY** for 26 of 29 topics by the audit — real exposure is 5 chips, all in `pronoun`, routed to PronounAuthor. **Revision 25**
+  - Compliance (of seats declaring `all-authors`): 0/26 stamped; missing: AdjectiveAuthor, AdverbAuthor, ArticleAuthor, ComparisonAuthor, CongiuntivoFormationAuthor, ConnectiveAuthor, DemonstrativeAuthor, ExistentialAuthor, FutureFormationAuthor, GerundioAuthor, ImperativoAuthor, ImperfectAuthor, IndefiniteAuthor, NegationAuthor, NounAuthor, PiacereAuthor, PossessiveAuthor, PrepositionAuthor, PresentFormationAuthor, PronominalVerbsAuthor, PronounAuthor, RelativePronounAuthor, ReportedSpeechAuthor, SiConstructionsAuthor, TenseChoiceAuthor, WordFormationAuthor
 - **binds: all-authors** (AUTHOR_BRIEF.md) - stamps: none yet
   - level, gloss the target in English instead** ("[Are there any questions?]"), per criterion 20's main rule. Next-touch: `binds: all-authors`; `retrofit:` audit your cues against your items' levels — ExistentialAuthor first (32 esserci-cued items, 14 of them A1). **Revision 24** (2026-07-17). From S
-  - Compliance (of seats declaring `all-authors`): 0/21 stamped; missing: AdjectiveAuthor, ArticleAuthor, ComparisonAuthor, DemonstrativeAuthor, ExistentialAuthor, GerundioAuthor, ImperativoAuthor, ImperfectAuthor, NegationAuthor, NounAuthor, PiacereAuthor, PossessiveAuthor, PrepositionAuthor, PresentFormationAuthor, PronominalVerbsAuthor, PronounAuthor, RelativePronounAuthor, ReportedSpeechAuthor, SiConstructionsAuthor, TenseChoiceAuthor, WordFormationAuthor
+  - Compliance (of seats declaring `all-authors`): 0/26 stamped; missing: AdjectiveAuthor, AdverbAuthor, ArticleAuthor, ComparisonAuthor, CongiuntivoFormationAuthor, ConnectiveAuthor, DemonstrativeAuthor, ExistentialAuthor, FutureFormationAuthor, GerundioAuthor, ImperativoAuthor, ImperfectAuthor, IndefiniteAuthor, NegationAuthor, NounAuthor, PiacereAuthor, PossessiveAuthor, PrepositionAuthor, PresentFormationAuthor, PronominalVerbsAuthor, PronounAuthor, RelativePronounAuthor, ReportedSpeechAuthor, SiConstructionsAuthor, TenseChoiceAuthor, WordFormationAuthor
 
 Declared classes so far: all-authors, all-seats. Seats without a `_status/` file are invisible
 to compliance; the walk-the-seats step is what fixes that.

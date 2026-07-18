@@ -1,0 +1,3342 @@
+[
+ {
+  "external_id": "conn_cause_01",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "cause.siccome_perche",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "prompt": "Completa: '____ pioveva, sono rimasto a casa.' [Since it was raining, I stayed home.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.cause.siccome_perche",
+    "label": "siccome or perché: front slot",
+    "any_phrases": [
+     {
+      "phrase": "siccome",
+      "match_at": "word"
+     },
+     {
+      "phrase": "poiché",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "right slot; poiché is the formal-register cousin"
+     },
+     {
+      "phrase": "dato che",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "right slot; dato che works here too"
+     },
+     {
+      "phrase": "visto che",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "right slot; visto che works here too"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "perché",
+      "match_at": "word",
+      "note": "perché gives the reason AFTER the main clause; at the front of the sentence Italian reaches for siccome"
+     },
+     {
+      "phrase": "quindi",
+      "match_at": "word",
+      "note": "quindi introduces the CONSEQUENCE; this gap holds the cause"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "pioveva",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "piovere - to rain",
+      "bucket": "vocabulary.it.piovere.translation"
+     }
+    }
+   },
+   {
+    "lemma": "rimasto",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "rimanere - to stay",
+      "bucket": "vocabulary.it.rimanere.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "Since it was raining, I stayed home: Siccome pioveva, sono rimasto a casa. A connective is a joining word, and the because-connectives care about position. Siccome opens the sentence; perché follows the main clause (Sono rimasto a casa perché pioveva). Poiché, dato che and visto che all share siccome's front slot.",
+  "version": 1,
+  "candidate_forms": [
+   "siccome",
+   "perché"
+  ],
+  "correct_form": "siccome",
+  "examiner_note": "Dispatch worked example, adapted: the dispatch rubric 'per la posizione' named the diagnostic (position), so it was replaced by a bracketed meaning gloss."
+ },
+ {
+  "external_id": "conn_cause_02",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "cause.siccome_perche",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "prompt": "Completa: 'Sono rimasto a casa ____ pioveva.' [I stayed home because it was raining.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.cause.siccome_perche",
+    "label": "perché after the main clause",
+    "any_phrases": [
+     {
+      "phrase": "perché",
+      "match_at": "word"
+     },
+     {
+      "phrase": "dato che",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "grammatical here; the everyday after-the-clause choice is perché"
+     },
+     {
+      "phrase": "visto che",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "grammatical here too"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "siccome",
+      "match_at": "word",
+      "note": "siccome wants the front of the sentence: Siccome pioveva, sono rimasto a casa"
+     },
+     {
+      "phrase": "quindi",
+      "match_at": "word",
+      "note": "quindi announces a consequence; this clause gives the cause"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "pioveva",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "piovere - to rain",
+      "bucket": "vocabulary.it.piovere.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "I stayed home because it was raining: Sono rimasto a casa perché pioveva. Perché is the because that follows the main clause. Its mirror twin siccome does the same job from the front of the sentence, and putting siccome here is the classic slot mistake.",
+  "version": 1,
+  "candidate_forms": [
+   "perché",
+   "siccome"
+  ],
+  "correct_form": "perché"
+ },
+ {
+  "external_id": "conn_cause_03",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "cause.siccome_perche",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "prompt": "Completa: '____ non avevo soldi, non ho comprato niente.' [Since I had no money, I didn't buy anything.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.cause.siccome_perche",
+    "label": "siccome or perché: front slot",
+    "any_phrases": [
+     {
+      "phrase": "siccome",
+      "match_at": "word"
+     },
+     {
+      "phrase": "dato che",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "right slot; a shade more matter-of-fact"
+     },
+     {
+      "phrase": "visto che",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "right slot; conversational"
+     },
+     {
+      "phrase": "poiché",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "right slot; formal register"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "perché",
+      "match_at": "word",
+      "note": "front-position perché is the classic miss; perché belongs after the main clause"
+     },
+     {
+      "phrase": "quindi",
+      "match_at": "word",
+      "note": "the gap holds the cause, not the consequence"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "soldi",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "soldi - money",
+      "bucket": "vocabulary.it.soldi.translation"
+     }
+    }
+   },
+   {
+    "lemma": "comprato",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "comprare - to buy",
+      "bucket": "vocabulary.it.comprare.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "Since I had no money, I didn't buy anything: Siccome non avevo soldi, non ho comprato niente. The cause comes first here, and the front slot belongs to siccome (or its cousins dato che, visto che, poiché). Perché would need the other order: Non ho comprato niente perché non avevo soldi.",
+  "version": 1,
+  "candidate_forms": [
+   "siccome",
+   "perché"
+  ],
+  "correct_form": "siccome"
+ },
+ {
+  "external_id": "conn_cause_04",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "cause.siccome_perche",
+  "difficulty": 1,
+  "cefr_level_target": "A2",
+  "prompt": "Completa: 'Mangio ____ ho fame.' [I'm eating because I'm hungry.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.cause.siccome_perche",
+    "label": "perché after the main clause",
+    "any_phrases": [
+     {
+      "phrase": "perché",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "siccome",
+      "match_at": "word",
+      "note": "siccome opens sentences: Siccome ho fame, mangio"
+     },
+     {
+      "phrase": "quindi",
+      "match_at": "word",
+      "note": "quindi points at a result; here the gap gives the reason"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "fame",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "fame - hunger (avere fame = to be hungry)",
+      "bucket": "vocabulary.it.fame.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "I'm eating because I'm hungry: Mangio perché ho fame. After the main clause, because is perché. This is the plainest connective pattern in Italian, and the one the front-slot family (siccome, dato che) exists to mirror.",
+  "version": 1,
+  "candidate_forms": [
+   "perché",
+   "siccome"
+  ],
+  "correct_form": "perché"
+ },
+ {
+  "external_id": "conn_cause_05",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "cause.siccome_perche",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "prompt": "Scegli: 'Non sono uscito ____ faceva freddo.' [I didn't go out because it was cold.]",
+  "type": "mcq",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.cause.siccome_perche",
+    "label": "siccome / perché / quindi by slot",
+    "any_phrases": [
+     {
+      "phrase": "perché",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "siccome",
+      "match_at": "word",
+      "note": "wrong slot: siccome opens the sentence"
+     },
+     {
+      "phrase": "quindi",
+      "match_at": "word",
+      "note": "direction flipped: the clause gives the cause"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [],
+  "explanation": "I didn't go out because it was cold: Non sono uscito perché faceva freddo. After the main clause the because-word is perché. Siccome would need to open the sentence (Siccome faceva freddo, non sono uscito), and quindi would announce a result, not a reason.",
+  "version": 1,
+  "choices": [
+   "siccome",
+   "perché",
+   "quindi"
+  ],
+  "answer_index": 1,
+  "examiner_note": "OIC three-way steal, part 1 of 3 (with conn_cause_06 and conn_cons_03). Index-scored; markpoint retained for bucket attribution."
+ },
+ {
+  "external_id": "conn_cause_06",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "cause.siccome_perche",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "prompt": "Scegli: '____ era tardi, siamo tornati a casa.' [Since it was late, we went back home.]",
+  "type": "mcq",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.cause.siccome_perche",
+    "label": "siccome / perché / quindi by slot",
+    "any_phrases": [
+     {
+      "phrase": "siccome",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "perché",
+      "match_at": "word",
+      "note": "wrong slot: perché follows the main clause"
+     },
+     {
+      "phrase": "quindi",
+      "match_at": "word",
+      "note": "the gap holds the cause, not the result"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [],
+  "explanation": "Since it was late, we went back home: Siccome era tardi, siamo tornati a casa. The cause opens the sentence, so the slot belongs to siccome. Perché would need the clauses the other way round, and quindi would make the first clause a conclusion rather than a reason.",
+  "version": 1,
+  "choices": [
+   "perché",
+   "quindi",
+   "siccome"
+  ],
+  "answer_index": 2,
+  "examiner_note": "OIC three-way steal, part 2 of 3. Index-scored; markpoint retained for bucket attribution."
+ },
+ {
+  "external_id": "conn_cause_07",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "cause.siccome_perche",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "prompt": "Completa: 'Sono andato a letto presto ____ ero stanchissimo.' [I went to bed early because I was really tired.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.cause.siccome_perche",
+    "label": "perché after the main clause",
+    "any_phrases": [
+     {
+      "phrase": "perché",
+      "match_at": "word"
+     },
+     {
+      "phrase": "dato che",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "grammatical; perché is the everyday choice here"
+     },
+     {
+      "phrase": "visto che",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "grammatical here too"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "quindi",
+      "match_at": "word",
+      "note": "quindi would announce a consequence, but this clause gives the CAUSE; the direction is flipped"
+     },
+     {
+      "phrase": "siccome",
+      "match_at": "word",
+      "note": "siccome opens sentences; after the main clause Italian wants perché"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "stanchissimo",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "stanco - tired",
+      "bucket": "vocabulary.it.stanco.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "I went to bed early because I was really tired: Sono andato a letto presto perché ero stanchissimo. The result stands first and the reason follows, so the joint takes perché. Compare the same two facts wired the other way: Ero stanchissimo, quindi sono andato a letto presto.",
+  "version": 1,
+  "candidate_forms": [
+   "perché",
+   "quindi"
+  ],
+  "correct_form": "perché",
+  "examiner_note": "Same-surface opposite-direction pair with conn_cons_02: identical facts, cause slot here, consequence slot there."
+ },
+ {
+  "external_id": "conn_reg_01",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "cause.register_set",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "prompt": "Completa (formal written style): '____ il traffico era intenso, la riunione è iniziata in ritardo.' [Since traffic was heavy, the meeting started late.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.cause.register_set",
+    "label": "poiché in formal writing",
+    "any_phrases": [
+     {
+      "phrase": "poiché",
+      "match_at": "word"
+     },
+     {
+      "phrase": "dato che",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "fine in formal writing; poiché is the most at-home"
+     },
+     {
+      "phrase": "siccome",
+      "match_at": "word",
+      "credit": 0.8,
+      "note": "grammatical, but neutral-conversational where the register asks written-formal"
+     },
+     {
+      "phrase": "visto che",
+      "match_at": "word",
+      "credit": 0.7,
+      "note": "right slot, wrong shelf: visto che is conversational"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "perché",
+      "match_at": "word",
+      "note": "wrong slot: perché follows the main clause"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "riunione",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "riunione - meeting",
+      "bucket": "vocabulary.it.riunione.translation"
+     }
+    }
+   },
+   {
+    "lemma": "ritardo",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "ritardo - delay (in ritardo = late)",
+      "bucket": "vocabulary.it.ritardo.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "Since the traffic was heavy, the meeting started late: Poiché il traffico era intenso, la riunione è iniziata in ritardo. Register is the level of formality a word carries, and the because-family is a register ladder: visto che and dato che live in conversation, poiché (and the literary giacché) in reports and essays. All of them share the front slot.",
+  "version": 1,
+  "candidate_forms": [
+   "poiché",
+   "dato che",
+   "visto che",
+   "siccome"
+  ],
+  "correct_form": "poiché"
+ },
+ {
+  "external_id": "conn_reg_02",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "cause.register_set",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "prompt": "Completa (casual speech, to a friend): '____ sei qui, aiutami!' [Since you're here, give me a hand!]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.cause.register_set",
+    "label": "visto che in casual speech",
+    "any_phrases": [
+     {
+      "phrase": "visto che",
+      "match_at": "word"
+     },
+     {
+      "phrase": "dato che",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "fine casually too; visto che is the most conversational"
+     },
+     {
+      "phrase": "siccome",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "fine; a shade plainer"
+     },
+     {
+      "phrase": "poiché",
+      "match_at": "word",
+      "credit": 0.6,
+      "note": "grammatical but a register mismatch: poiché belongs in reports and essays, not casual speech"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "perché",
+      "match_at": "word",
+      "note": "wrong slot: perché follows the main clause"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [],
+  "explanation": "Since you're here, give me a hand: Visto che sei qui, aiutami! In casual speech the because-slot at the front of the sentence usually goes to visto che or dato che. Poiché would say the same thing in a suit and tie: not wrong, just dressed for a different room.",
+  "version": 1,
+  "candidate_forms": [
+   "visto che",
+   "dato che",
+   "poiché"
+  ],
+  "correct_form": "visto che",
+  "examiner_note": "Per Rev 20(i): poiché-in-casual-speech is this bucket's named common_miss and the bucket's own note says style-not-error, so it takes an explicit graded 0.6 with a steering note rather than a must_not wrong-flag or a silent 0.9 kindness."
+ },
+ {
+  "external_id": "conn_reg_03",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "cause.register_set",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "prompt": "Completa (everyday conversation): '____ non c'era più pane, ho preso i grissini.' [Seeing as there was no bread left, I got breadsticks.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.cause.register_set",
+    "label": "visto che / dato che in conversation",
+    "any_phrases": [
+     {
+      "phrase": "visto che",
+      "match_at": "word"
+     },
+     {
+      "phrase": "dato che",
+      "match_at": "word"
+     },
+     {
+      "phrase": "siccome",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "fine; slightly plainer"
+     },
+     {
+      "phrase": "poiché",
+      "match_at": "word",
+      "credit": 0.6,
+      "note": "register mismatch in everyday conversation; poiché is written-formal"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "perché",
+      "match_at": "word",
+      "note": "wrong slot: perché follows the main clause"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "pane",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "pane - bread",
+      "bucket": "vocabulary.it.pane.translation"
+     }
+    }
+   },
+   {
+    "lemma": "grissini",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "grissino - breadstick",
+      "bucket": "vocabulary.it.grissino.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "Seeing as there was no bread left, I got breadsticks: Visto che non c'era più pane, ho preso i grissini. Visto che and dato che are the everyday front-slot because-words, and either earns full credit here. The register ladder only bites when the room changes: in a formal report the same slot would prefer poiché.",
+  "version": 1,
+  "candidate_forms": [
+   "visto che",
+   "dato che",
+   "poiché"
+  ],
+  "correct_form": "visto che"
+ },
+ {
+  "external_id": "conn_reg_04",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "cause.register_set",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "prompt": "Which fits a formal report? '____ i dati erano incompleti, l'analisi è stata rinviata.' [Since the data were incomplete, the analysis was postponed.]",
+  "type": "mcq",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.cause.register_set",
+    "label": "poiché in formal writing",
+    "any_phrases": [
+     {
+      "phrase": "poiché",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "visto che",
+      "match_at": "word",
+      "note": "right slot, wrong register: visto che is conversational"
+     },
+     {
+      "phrase": "perché",
+      "match_at": "word",
+      "note": "wrong slot: perché follows the main clause"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [],
+  "explanation": "Since the data were incomplete, the analysis was postponed: Poiché i dati erano incompleti, l'analisi è stata rinviata. In a formal report the front-slot because is poiché. Visto che would say the same thing over coffee, and giacché would say it in a nineteenth-century novel. Perché fails twice over: wrong slot and no register credentials for openers.",
+  "version": 1,
+  "choices": [
+   "visto che",
+   "poiché",
+   "perché"
+  ],
+  "answer_index": 1,
+  "examiner_note": "Index-scored; markpoint retained for bucket attribution."
+ },
+ {
+  "external_id": "conn_cons_01",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "result.quindi_percio",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "prompt": "Completa: 'Mi piace il mare, ____ andrò in Sardegna.' [I like the sea, so I'll go to Sardinia.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.result.quindi_percio",
+    "label": "quindi / perciò for the consequence",
+    "any_phrases": [
+     {
+      "phrase": "quindi",
+      "match_at": "word"
+     },
+     {
+      "phrase": "perciò",
+      "match_at": "word"
+     },
+     {
+      "phrase": "dunque",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "right direction; a notch more formal"
+     },
+     {
+      "phrase": "allora",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "right direction; conversational then"
+     },
+     {
+      "phrase": "pertanto",
+      "match_at": "word",
+      "credit": 0.8,
+      "note": "right direction; bureaucratic register"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "perché",
+      "match_at": "word",
+      "note": "perché would give a reason; this slot announces the CONSEQUENCE"
+     },
+     {
+      "phrase": "siccome",
+      "match_at": "word",
+      "note": "siccome introduces a cause at the front of a sentence; this gap points forward to a result"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "mare",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "mare - sea",
+      "bucket": "vocabulary.it.mare.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "I like the sea, so I'll go to Sardinia: Mi piace il mare, quindi andrò in Sardegna. Quindi and perciò both hang a consequence off what has just been said. The because-family runs the same wire in the opposite direction: cause first versus result first is the whole game with these connectives.",
+  "version": 1,
+  "candidate_forms": [
+   "quindi / perciò",
+   "perché"
+  ],
+  "correct_form": "quindi / perciò"
+ },
+ {
+  "external_id": "conn_cons_02",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "result.quindi_percio",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "prompt": "Completa: 'Ero stanchissimo, ____ sono andato a letto presto.' [I was really tired, so I went to bed early.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.result.quindi_percio",
+    "label": "quindi / perciò for the consequence",
+    "any_phrases": [
+     {
+      "phrase": "quindi",
+      "match_at": "word"
+     },
+     {
+      "phrase": "perciò",
+      "match_at": "word"
+     },
+     {
+      "phrase": "così",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "così as plain 'so' works here"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "perché",
+      "match_at": "word",
+      "note": "the first clause is the cause; the gap points FORWARD to the result, and perché flips the direction"
+     },
+     {
+      "phrase": "siccome",
+      "match_at": "word",
+      "note": "siccome would restart the sentence as a cause; this slot draws the conclusion"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "stanchissimo",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "stanco - tired",
+      "bucket": "vocabulary.it.stanco.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "I was really tired, so I went to bed early: Ero stanchissimo, quindi sono andato a letto presto. Cause first, then quindi (or perciò) to hang the result on it. Wire the same facts the other way and the joint changes tool: Sono andato a letto presto perché ero stanchissimo.",
+  "version": 1,
+  "candidate_forms": [
+   "quindi / perciò",
+   "perché"
+  ],
+  "correct_form": "quindi / perciò",
+  "examiner_note": "Same-surface opposite-direction pair with conn_cause_07."
+ },
+ {
+  "external_id": "conn_cons_03",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "result.quindi_percio",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "prompt": "Scegli: 'Pioveva, ____ sono rimasto a casa.' [It was raining, so I stayed home.]",
+  "type": "mcq",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.result.quindi_percio",
+    "label": "siccome / perché / quindi by slot",
+    "any_phrases": [
+     {
+      "phrase": "quindi",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "siccome",
+      "match_at": "word",
+      "note": "siccome would restart the clause as a cause; this slot draws the consequence"
+     },
+     {
+      "phrase": "perché",
+      "match_at": "word",
+      "note": "direction flipped: the rain is the cause, staying home is the result"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [],
+  "explanation": "It was raining, so I stayed home: Pioveva, quindi sono rimasto a casa. The cause is already on the table, so the connector's job is to draw the consequence, and that is quindi. This completes the three-way: Siccome pioveva, sono rimasto; Sono rimasto perché pioveva; Pioveva, quindi sono rimasto.",
+  "version": 1,
+  "choices": [
+   "siccome",
+   "perché",
+   "quindi"
+  ],
+  "answer_index": 2,
+  "examiner_note": "OIC three-way steal, part 3 of 3 (with conn_cause_05 and conn_cause_06): same weather, all three slots."
+ },
+ {
+  "external_id": "conn_cons_04",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "result.quindi_percio",
+  "difficulty": 2,
+  "cefr_level_target": "B1",
+  "prompt": "Completa: 'Non ti piace? ____ non mangiarlo!' [You don't like it? Then don't eat it!]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.result.quindi_percio",
+    "label": "allora in dialogue",
+    "any_phrases": [
+     {
+      "phrase": "allora",
+      "match_at": "word"
+     },
+     {
+      "phrase": "quindi",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "fine; allora is the natural conversational then"
+     },
+     {
+      "phrase": "perciò",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "fine; a shade heavier in dialogue"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "perché",
+      "match_at": "word",
+      "note": "perché would ask for or give a reason; this slot draws a conclusion from what the other person said"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "mangiarlo",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "mangiare - to eat",
+      "bucket": "vocabulary.it.mangiare.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "You don't like it? Then don't eat it: Non ti piace? Allora non mangiarlo! Allora is the conversational then: it picks up what the other person just said and draws the consequence on the spot. Quindi and perciò do the same logical work with slightly stiffer joints.",
+  "version": 1,
+  "candidate_forms": [
+   "allora",
+   "quindi / perciò"
+  ],
+  "correct_form": "allora"
+ },
+ {
+  "external_id": "conn_cons_05",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "result.quindi_percio",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "prompt": "Completa (formal, wrapping up an argument): 'Penso, ____ sono.' [I think, therefore I am.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.result.quindi_percio",
+    "label": "dunque for the formal conclusion",
+    "any_phrases": [
+     {
+      "phrase": "dunque",
+      "match_at": "word",
+      "note": "the canonical dictum: Cogito ergo sum, Penso dunque sono"
+     },
+     {
+      "phrase": "quindi",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "right direction; the fixed phrase prefers dunque"
+     },
+     {
+      "phrase": "perciò",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "right direction; the fixed phrase prefers dunque"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "perché",
+      "match_at": "word",
+      "note": "perché gives reasons; this slot draws the grand conclusion"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [],
+  "explanation": "I think, therefore I am: Penso, dunque sono. Dunque is the therefore of formal argument, the connective that closes a chain of reasoning, which is why Descartes' dictum lives in Italian as Penso, dunque sono. Quindi and perciò draw the same arrow in plainer clothes.",
+  "version": 1,
+  "candidate_forms": [
+   "dunque",
+   "quindi / perciò"
+  ],
+  "correct_form": "dunque"
+ },
+ {
+  "external_id": "conn_cons_06",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "result.quindi_percio",
+  "difficulty": 4,
+  "cefr_level_target": "B2",
+  "prompt": "Completa (official notice style): 'L'ascensore è guasto; ____ si prega di usare le scale.' [The lift is out of order; therefore please use the stairs.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.result.quindi_percio",
+    "label": "pertanto in official register",
+    "any_phrases": [
+     {
+      "phrase": "pertanto",
+      "match_at": "word"
+     },
+     {
+      "phrase": "quindi",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "right direction; official notices prefer pertanto"
+     },
+     {
+      "phrase": "perciò",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "right direction; a notch too plain for notice-board prose"
+     },
+     {
+      "phrase": "dunque",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "right direction; argumentative rather than administrative"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "perché",
+      "match_at": "word",
+      "note": "perché would justify; the notice is drawing the practical consequence"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "guasto",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "guasto - broken, out of order",
+      "bucket": "vocabulary.it.guasto.translation"
+     }
+    }
+   },
+   {
+    "lemma": "scale",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "scala - staircase (le scale = the stairs)",
+      "bucket": "vocabulary.it.scala.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "The lift is out of order; therefore please use the stairs: L'ascensore è guasto; pertanto si prega di usare le scale. Pertanto is consequence in its official uniform, the therefore of notices, contracts and circulars. Quindi says the same thing in plain clothes; the register is the only thing at stake.",
+  "version": 1,
+  "candidate_forms": [
+   "pertanto",
+   "quindi / perciò"
+  ],
+  "correct_form": "pertanto"
+ },
+ {
+  "external_id": "conn_cvd_01",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "result.che_vs_da",
+  "difficulty": 4,
+  "cefr_level_target": "B2",
+  "prompt": "Completa: 'Era così stanco ____ non riusciva a stare in piedi.' [He was so tired that he couldn't stand up.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.result.che_vs_da",
+    "label": "così ... che + conjugated verb",
+    "any_phrases": [
+     {
+      "phrase": "che",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "da",
+      "match_at": "word",
+      "note": "da would need the infinitive (da non riuscire); riusciva is conjugated, so the result clause takes che"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "riusciva",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "riuscire - to manage",
+      "bucket": "vocabulary.it.riuscire.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "He was so tired that he couldn't stand up: Era così stanco che non riusciva a stare in piedi. Italian has two result machines: così ... che takes a conjugated verb, così ... da takes the infinitive. The verb on the page is riusciva, conjugated, so the joint is che.",
+  "version": 1,
+  "candidate_forms": [
+   "che + conjugated verb",
+   "da + infinitive"
+  ],
+  "correct_form": "che + conjugated verb"
+ },
+ {
+  "external_id": "conn_cvd_02",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "result.che_vs_da",
+  "difficulty": 4,
+  "cefr_level_target": "B2",
+  "prompt": "Completa: 'Era così stanco ____ non riuscire a stare in piedi.' [He was so tired that he couldn't stand up.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.result.che_vs_da",
+    "label": "così ... da + infinitive",
+    "any_phrases": [
+     {
+      "phrase": "da",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "che",
+      "match_at": "word",
+      "note": "che would need a conjugated verb (che non riusciva); riuscire is an infinitive, so the machinery is così ... da"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "riuscire",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "riuscire - to manage",
+      "bucket": "vocabulary.it.riuscire.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "He was so tired that he couldn't stand up: Era così stanco da non riuscire a stare in piedi. Same meaning as the che-version, different machinery: before an infinitive the result construction is così ... da. The verb form on the page is the whole signal.",
+  "version": 1,
+  "candidate_forms": [
+   "che + conjugated verb",
+   "da + infinitive"
+  ],
+  "correct_form": "da + infinitive",
+  "examiner_note": "Same-surface opposite-answer pair with conn_cvd_01: only the given verb form differs, and it decides everything."
+ },
+ {
+  "external_id": "conn_cvd_03",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "result.che_vs_da",
+  "difficulty": 4,
+  "cefr_level_target": "B2",
+  "prompt": "Completa: 'Ha lavorato tanto ____ ammalarsi.' [He worked so much that he made himself ill.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.result.che_vs_da",
+    "label": "tanto ... da + infinitive",
+    "any_phrases": [
+     {
+      "phrase": "da",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "che",
+      "match_at": "word",
+      "note": "tanto che wants a conjugated verb; ammalarsi is an infinitive, so the joint is tanto ... da"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "ammalarsi",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "ammalarsi - to fall ill",
+      "bucket": "vocabulary.it.ammalarsi.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "He worked so much that he made himself ill: Ha lavorato tanto da ammalarsi. Tanto runs the same two machines as così: tanto che plus a conjugated verb, tanto da plus the infinitive. Ammalarsi is an infinitive, so da it is.",
+  "version": 1,
+  "candidate_forms": [
+   "che + conjugated verb",
+   "da + infinitive"
+  ],
+  "correct_form": "da + infinitive"
+ },
+ {
+  "external_id": "conn_cvd_04",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "result.che_vs_da",
+  "difficulty": 4,
+  "cefr_level_target": "B2",
+  "prompt": "Completa: 'Ha lavorato tanto ____ alla fine si è ammalato.' [He worked so much that in the end he fell ill.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.result.che_vs_da",
+    "label": "tanto ... che + conjugated verb",
+    "any_phrases": [
+     {
+      "phrase": "che",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "da",
+      "match_at": "word",
+      "note": "da wants the infinitive; si è ammalato is conjugated, so the result clause takes che"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "ammalato",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "ammalarsi - to fall ill",
+      "bucket": "vocabulary.it.ammalarsi.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "He worked so much that in the end he fell ill: Ha lavorato tanto che alla fine si è ammalato. The verb arrives conjugated (si è ammalato), so the result joint is che. Its twin with the infinitive says the same thing: Ha lavorato tanto da ammalarsi.",
+  "version": 1,
+  "candidate_forms": [
+   "che + conjugated verb",
+   "da + infinitive"
+  ],
+  "correct_form": "che + conjugated verb"
+ },
+ {
+  "external_id": "conn_cvd_05",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "result.che_vs_da",
+  "difficulty": 4,
+  "cefr_level_target": "B2",
+  "prompt": "Completa: 'Parla lentamente, ____ farti capire.' [Speak slowly, so as to make yourself understood.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.result.che_vs_da",
+    "label": "in modo da + infinitive",
+    "any_phrases": [
+     {
+      "phrase": "in modo da",
+      "match_at": "word"
+     },
+     {
+      "phrase": "così da",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "same machinery, slightly terser"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "in modo che",
+      "match_at": "word",
+      "note": "in modo che introduces a conjugated verb, usually subjunctive (in modo che tutti capiscano); before an infinitive the choice is in modo da"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "capire",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "capire - to understand",
+      "bucket": "vocabulary.it.capire.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "Speak slowly, so as to make yourself understood: Parla lentamente, in modo da farti capire. In modo da belongs to the infinitive machine, alongside così da and tanto da. Swap in a conjugated verb and the joint changes to in modo che: Parla lentamente, in modo che tutti ti capiscano.",
+  "version": 1,
+  "candidate_forms": [
+   "in modo da + infinitive",
+   "in modo che + conjugated verb"
+  ],
+  "correct_form": "in modo da + infinitive"
+ },
+ {
+  "external_id": "conn_cvd_06",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "result.che_vs_da",
+  "difficulty": 4,
+  "cefr_level_target": "B2",
+  "prompt": "Completa: 'Ha spiegato tutto due volte, ____ tutti hanno capito.' [He explained everything twice, so that everyone understood.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.result.che_vs_da",
+    "label": "cosicché + conjugated verb",
+    "any_phrases": [
+     {
+      "phrase": "cosicché",
+      "match_at": "word"
+     },
+     {
+      "phrase": "così che",
+      "match_at": "word"
+     },
+     {
+      "phrase": "tanto che",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "fine: result with a conjugated verb"
+     },
+     {
+      "phrase": "quindi",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "grammatical consequence linker; the drilled machinery is the così/che result set"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "così da",
+      "match_at": "word",
+      "note": "da needs an infinitive; hanno capito is conjugated"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "spiegato",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "spiegare - to explain",
+      "bucket": "vocabulary.it.spiegare.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "He explained everything twice, so that everyone understood: Ha spiegato tutto due volte, cosicché tutti hanno capito. Cosicché (also written così che) hangs a fulfilled result on a conjugated verb. The infinitive twin would be così da far capire a tutti; and plain quindi states the consequence without the built-in so-that flavour.",
+  "version": 1,
+  "candidate_forms": [
+   "cosicché / così che",
+   "così da"
+  ],
+  "correct_form": "cosicché / così che"
+ },
+ {
+  "external_id": "conn_pi_01",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "contrast.pero_invece",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "prompt": "Completa: 'Il ristorante è caro, ____ si mangia bene.' [The restaurant is expensive, but the food is good.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.contrast.pero_invece",
+    "label": "ma / però for plain objection",
+    "any_phrases": [
+     {
+      "phrase": "ma",
+      "match_at": "word"
+     },
+     {
+      "phrase": "però",
+      "match_at": "word"
+     },
+     {
+      "phrase": "tuttavia",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "fine; written-formal flavour"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "invece",
+      "match_at": "word",
+      "note": "invece swaps in a different referent doing something else (lui invece...); a plain objection to the same topic wants ma or però"
+     },
+     {
+      "phrase": "quindi",
+      "match_at": "word",
+      "note": "not a consequence; the second clause pushes back against the first"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "caro",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "caro - expensive",
+      "bucket": "vocabulary.it.caro.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "The restaurant is expensive, but the food is good: Il ristorante è caro, ma si mangia bene. For a plain objection, both clauses about the same topic, Italian reaches for ma or però. Invece is a different tool: it needs a second referent doing something contrasting.",
+  "version": 1,
+  "candidate_forms": [
+   "ma / però",
+   "invece"
+  ],
+  "correct_form": "ma / però"
+ },
+ {
+  "external_id": "conn_pi_02",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "contrast.pero_invece",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "prompt": "Completa: 'Io lavoro; lui ____ dorme.' [I work; he, on the other hand, sleeps.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.contrast.pero_invece",
+    "label": "invece for a switched referent",
+    "any_phrases": [
+     {
+      "phrase": "invece",
+      "match_at": "word"
+     },
+     {
+      "phrase": "però",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "grammatical; invece is sharper where the referent switches"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "ma",
+      "match_at": "word",
+      "note": "ma joins two clauses at the joint; it cannot sit after the subject (lui ma dorme)"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [],
+  "explanation": "I work; he, on the other hand, sleeps: Io lavoro; lui invece dorme. Invece is the substitutive contrast: a new referent (lui) doing the opposite of the first. Note the position too: invece slots comfortably after the subject, exactly where ma can never go.",
+  "version": 1,
+  "candidate_forms": [
+   "invece",
+   "però",
+   "ma"
+  ],
+  "correct_form": "invece"
+ },
+ {
+  "external_id": "conn_pi_03",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "contrast.pero_invece",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "prompt": "Completa: 'Non posso venire stasera. Domani, ____, sono libero.' [Tomorrow, though, I'm free.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.contrast.pero_invece",
+    "label": "però / invece in mid position, not ma",
+    "any_phrases": [
+     {
+      "phrase": "però",
+      "match_at": "word"
+     },
+     {
+      "phrase": "invece",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "ma",
+      "match_at": "word",
+      "note": "ma cannot appear parenthetically mid-sentence; però and invece can"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [],
+  "explanation": "Tomorrow, though, I'm free: Domani, però, sono libero. Però's party trick is position: unlike ma, which must stand at the joint between clauses, però (and invece) can sit parenthetically inside the sentence. Both are accepted here; ma in that slot is the one thing Italian will not allow.",
+  "version": 1,
+  "candidate_forms": [
+   "però / invece",
+   "ma"
+  ],
+  "correct_form": "però / invece",
+  "examiner_note": "Two full-credit answers are deliberate: the diagnostic is ma's exclusion from the parenthetical slot, not a però/invece choice. Domani vs stasera gives invece a legitimate switched referent."
+ },
+ {
+  "external_id": "conn_pi_04",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "contrast.pero_invece",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "prompt": "Completa: '____ studiare, guarda la TV.' [Instead of studying, he watches TV.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.contrast.pero_invece",
+    "label": "invece di + infinitive",
+    "any_phrases": [
+     {
+      "phrase": "invece di",
+      "match_at": "word"
+     },
+     {
+      "phrase": "anziché",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "right machinery; a notch more formal"
+     },
+     {
+      "phrase": "al posto di",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "fine; concrete substitution flavour"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "invece che",
+      "match_at": "word",
+      "note": "before an infinitive the standard is invece di; invece che appears in comparisons before nouns and prepositional phrases (a Roma invece che a Milano)"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [],
+  "explanation": "Instead of studying, he watches TV: Invece di studiare, guarda la TV. Invece di plus the infinitive swaps one activity in for another. Anziché does the same job more formally. The near-twin invece che belongs to comparisons (a Roma invece che a Milano), which is why invece di is the safe habit before a verb.",
+  "version": 1,
+  "candidate_forms": [
+   "invece di",
+   "invece che"
+  ],
+  "correct_form": "invece di"
+ },
+ {
+  "external_id": "conn_pi_05",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "contrast.pero_invece",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "prompt": "In careful writing, which fits? 'Volevo venire, ____ non ho potuto.' [I wanted to come, but I couldn't.]",
+  "type": "mcq",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.contrast.pero_invece",
+    "label": "single contrast joint, not ma però",
+    "any_phrases": [
+     {
+      "phrase": "ma",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "e",
+      "match_at": "word",
+      "note": "e adds; this joint pushes back"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [],
+  "explanation": "I wanted to come, but I couldn't: Volevo venire, ma non ho potuto. One objection, one connective. Spoken Italian happily stacks ma però for emphasis, and you will hear it everywhere; careful writing keeps a single joint, so on paper choose ma (or però), never both at once.",
+  "version": 1,
+  "choices": [
+   "ma però",
+   "ma",
+   "e"
+  ],
+  "answer_index": 1,
+  "examiner_note": "Additive-error routing: the wrong form 'ma però' CONTAINS the correct 'ma' at clean word boundaries, so no guard can catch it in the substring engine (positive matches first, criterion 18 fourth direction) and it is deliberately NOT listed in must_not_include; a listed guard would be dead on arrival and imply a catch that cannot happen. The MCQ's index scoring carries the diagnosis instead. Choice texts kept verbatim as the distractor set."
+ },
+ {
+  "external_id": "conn_pi_06",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "contrast.pero_invece",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "prompt": "Completa: 'Non è italiano, ____ spagnolo.' [He's not Italian, but Spanish.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.contrast.pero_invece",
+    "label": "corrective ma after a negative",
+    "any_phrases": [
+     {
+      "phrase": "ma",
+      "match_at": "word"
+     },
+     {
+      "phrase": "bensì",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "the formal corrective but; at home in writing"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "però",
+      "match_at": "word",
+      "note": "però objects; it cannot swap the wrong term for the right one after non è..."
+     },
+     {
+      "phrase": "invece",
+      "match_at": "word",
+      "note": "bare invece cannot make this joint; the corrective after a negative is ma (or bensì)"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [],
+  "explanation": "He's not Italian, but Spanish: Non è italiano, ma spagnolo. After a negative, ma turns corrective: not X but Y. Formal prose has a dedicated tool for exactly this joint, bensì (non è italiano, bensì spagnolo). Però never does correction duty; it only objects.",
+  "version": 1,
+  "candidate_forms": [
+   "ma / bensì",
+   "però"
+  ],
+  "correct_form": "ma / bensì"
+ },
+ {
+  "external_id": "conn_pi_07",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "contrast.pero_invece",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "prompt": "Scegli: 'Marco è vegetariano; sua sorella ____ mangia di tutto.' [Marco is vegetarian; his sister, on the other hand, eats everything.]",
+  "type": "mcq",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.contrast.pero_invece",
+    "label": "invece for a switched referent",
+    "any_phrases": [
+     {
+      "phrase": "invece",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "però",
+      "match_at": "word",
+      "note": "grammatical but weaker: the sharp tool for a switched referent is invece"
+     },
+     {
+      "phrase": "quindi",
+      "match_at": "word",
+      "note": "her eating everything is not a consequence of his vegetarianism"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [],
+  "explanation": "Marco is vegetarian; his sister, on the other hand, eats everything: Marco è vegetariano; sua sorella invece mangia di tutto. Two referents, two opposite behaviours: that is invece's home ground. Però would merely register an objection; invece draws the substitution.",
+  "version": 1,
+  "choices": [
+   "però",
+   "invece",
+   "quindi"
+  ],
+  "answer_index": 1,
+  "examiner_note": "Index-scored; però kept as a labelled near-miss distractor."
+ },
+ {
+  "external_id": "conn_ca_01",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "contrast.comunque_anzi",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "prompt": "Completa: 'Non ho studiato molto; ____ proverò a dare l'esame.' [I didn't study much; I'll try to sit the exam anyway.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.contrast.comunque_anzi",
+    "label": "comunque: the dismissive anyway",
+    "any_phrases": [
+     {
+      "phrase": "comunque",
+      "match_at": "word"
+     },
+     {
+      "phrase": "tuttavia",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "fine; written adversative rather than a shrug"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "anzi",
+      "match_at": "word",
+      "note": "anzi corrects or raises the stakes; the shrug past an obstacle is comunque"
+     },
+     {
+      "phrase": "quindi",
+      "match_at": "word",
+      "note": "sitting the exam is not a consequence of not studying; comunque shrugs past the problem"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "esame",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "esame - exam (dare un esame = to sit an exam)",
+      "bucket": "vocabulary.it.esame.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "I didn't study much; I'll try to sit the exam anyway: Non ho studiato molto; comunque proverò a dare l'esame. Comunque is the dismissive anyway: it concedes the first clause and walks past it. (Dare un esame is the idiom for sitting an exam.)",
+  "version": 1,
+  "candidate_forms": [
+   "comunque",
+   "anzi"
+  ],
+  "correct_form": "comunque"
+ },
+ {
+  "external_id": "conn_ca_02",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "contrast.comunque_anzi",
+  "difficulty": 4,
+  "cefr_level_target": "B2",
+  "prompt": "Completa (formal written): 'L'ipotesi è affascinante; ____ mancano le prove.' [The hypothesis is fascinating; however, the evidence is lacking.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.contrast.comunque_anzi",
+    "label": "tuttavia: the written however",
+    "any_phrases": [
+     {
+      "phrase": "tuttavia",
+      "match_at": "word"
+     },
+     {
+      "phrase": "eppure",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "fine; adds surprise: and yet"
+     },
+     {
+      "phrase": "però",
+      "match_at": "word",
+      "credit": 0.8,
+      "note": "fine in speech; the register asks written-formal"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "anzi",
+      "match_at": "word",
+      "note": "anzi would correct or intensify; this joint concedes and then objects"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "prove",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "prova - proof, piece of evidence",
+      "bucket": "vocabulary.it.prova.translation"
+     }
+    }
+   },
+   {
+    "lemma": "mancano",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "mancare - to be lacking",
+      "bucket": "vocabulary.it.mancare.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "The hypothesis is fascinating; however, the evidence is lacking: L'ipotesi è affascinante; tuttavia mancano le prove. Tuttavia is the written-register however, the adversative of essays and reviews. Eppure would add a note of surprise; però says the same thing in conversation.",
+  "version": 1,
+  "candidate_forms": [
+   "tuttavia",
+   "eppure",
+   "però"
+  ],
+  "correct_form": "tuttavia"
+ },
+ {
+  "external_id": "conn_ca_03",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "contrast.comunque_anzi",
+  "difficulty": 3,
+  "cefr_level_target": "B2",
+  "prompt": "Completa: 'Sembra impossibile, ____ è vero.' [It seems impossible, and yet it's true.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.contrast.comunque_anzi",
+    "label": "eppure: the surprised and-yet",
+    "any_phrases": [
+     {
+      "phrase": "eppure",
+      "match_at": "word"
+     },
+     {
+      "phrase": "tuttavia",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "fine; flatter, without the surprise"
+     },
+     {
+      "phrase": "però",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "fine; plainer"
+     },
+     {
+      "phrase": "ma",
+      "match_at": "word",
+      "credit": 0.8,
+      "note": "fine; the plainest joint of all"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "anzi",
+      "match_at": "word",
+      "note": "anzi corrects or escalates; this joint registers astonished contrast"
+     },
+     {
+      "phrase": "quindi",
+      "match_at": "word",
+      "note": "being true is not a consequence of seeming impossible"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [],
+  "explanation": "It seems impossible, and yet it's true: Sembra impossibile, eppure è vero. Eppure is contrast with raised eyebrows: and yet, against all expectation. It is the connective of Galileo's legendary Eppur si muove. Tuttavia and però would make the same objection without the wonder.",
+  "version": 1,
+  "candidate_forms": [
+   "eppure",
+   "tuttavia",
+   "però"
+  ],
+  "correct_form": "eppure"
+ },
+ {
+  "external_id": "conn_ca_04",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "contrast.comunque_anzi",
+  "difficulty": 4,
+  "cefr_level_target": "B2",
+  "prompt": "What is anzi doing here? 'Non mi disturbi affatto. Anzi, mi fai compagnia.' [You're not disturbing me at all. ..., you're keeping me company.]",
+  "type": "mcq",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.contrast.comunque_anzi",
+    "label": "anzi: reversal reading",
+    "any_phrases": [
+     {
+      "phrase": "It reverses the previous statement: on the contrary",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "It strengthens it: indeed, even more so",
+      "match_at": "word",
+      "note": "the prior sentence is negative, so anzi flips it: on the contrary"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [],
+  "explanation": "You're not disturbing me at all. On the contrary, you're keeping me company: Non mi disturbi affatto. Anzi, mi fai compagnia. Anzi has two readings and the previous sentence picks between them. After a negative, anzi reverses: not only is the complaint untrue, the opposite holds.",
+  "version": 1,
+  "choices": [
+   "It reverses the previous statement: on the contrary",
+   "It strengthens it: indeed, even more so"
+  ],
+  "answer_index": 0,
+  "examiner_note": "Reading item: anzi's two senses resolve only from the prior sentence's polarity. Same-surface pair with conn_ca_05. Index-scored."
+ },
+ {
+  "external_id": "conn_ca_05",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "contrast.comunque_anzi",
+  "difficulty": 4,
+  "cefr_level_target": "B2",
+  "prompt": "What is anzi doing here? 'Il film mi è piaciuto. Anzi, mi è piaciuto moltissimo.' [I liked the film. ..., I liked it a great deal.]",
+  "type": "mcq",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.contrast.comunque_anzi",
+    "label": "anzi: escalation reading",
+    "any_phrases": [
+     {
+      "phrase": "It strengthens it: indeed, even more so",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "It reverses the previous statement: on the contrary",
+      "match_at": "word",
+      "note": "the prior sentence is positive, so anzi escalates it: indeed, even more so"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [],
+  "explanation": "I liked the film. In fact, I liked it a great deal: Il film mi è piaciuto. Anzi, mi è piaciuto moltissimo. After a positive statement anzi does not contradict; it raises the stakes, correcting the first claim upward. One word, two jobs, and the prior sentence is the only referee.",
+  "version": 1,
+  "choices": [
+   "It reverses the previous statement: on the contrary",
+   "It strengthens it: indeed, even more so"
+  ],
+  "answer_index": 1,
+  "examiner_note": "Same-surface pair with conn_ca_04: identical choices, opposite answer, decided entirely by the prior sentence's polarity. Index-scored."
+ },
+ {
+  "external_id": "conn_ca_06",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "contrast.comunque_anzi",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "prompt": "Completa: 'Non è una brutta idea. ____, è geniale!' [It's not a bad idea. On the contrary, it's brilliant!]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.contrast.comunque_anzi",
+    "label": "anzi flips a negative",
+    "any_phrases": [
+     {
+      "phrase": "anzi",
+      "match_at": "word"
+     },
+     {
+      "phrase": "al contrario",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "fine; explicit and a little heavier"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "comunque",
+      "match_at": "word",
+      "note": "comunque shrugs (anyway); this slot flips the negative into praise"
+     },
+     {
+      "phrase": "però",
+      "match_at": "word",
+      "note": "però would object; the second sentence agrees and raises"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [],
+  "explanation": "It's not a bad idea. On the contrary, it's brilliant: Non è una brutta idea. Anzi, è geniale! Anzi after a negative does the full reversal: it cancels the faint praise and replaces it with the strong version. Comunque would just shrug, and però would start an argument the speaker is not having.",
+  "version": 1,
+  "candidate_forms": [
+   "anzi",
+   "comunque"
+  ],
+  "correct_form": "anzi"
+ },
+ {
+  "external_id": "conn_mood_01",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "contrast.mood_pairs",
+  "difficulty": 4,
+  "cefr_level_target": "B2",
+  "prompt": "Completa: '____ fosse tardi, è uscito lo stesso.' [Although it was late, he went out all the same.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.contrast.mood_pairs",
+    "label": "concessive fitting a subjunctive",
+    "any_phrases": [
+     {
+      "phrase": "benché",
+      "match_at": "word"
+     },
+     {
+      "phrase": "sebbene",
+      "match_at": "word"
+     },
+     {
+      "phrase": "nonostante",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "anche se",
+      "match_at": "word",
+      "note": "anche se pairs with the indicative (anche se ERA tardi); fosse is subjunctive"
+     },
+     {
+      "phrase": "pur",
+      "match_at": "word",
+      "note": "pur takes the gerund: pur essendo tardi"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [],
+  "explanation": "Although it was late, he went out all the same: Benché fosse tardi, è uscito lo stesso. A concessive connective concedes an obstacle, and each one has a fixed dance partner: fosse on the page is subjunctive, so the slot belongs to benché, sebbene or nonostante. Anche se would demand the indicative era.",
+  "version": 1,
+  "candidate_forms": [
+   "benché / sebbene / nonostante",
+   "anche se",
+   "pur + gerundio"
+  ],
+  "correct_form": "benché / sebbene / nonostante"
+ },
+ {
+  "external_id": "conn_mood_02",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "contrast.mood_pairs",
+  "difficulty": 4,
+  "cefr_level_target": "B2",
+  "prompt": "Completa: '____ era tardi, è uscito lo stesso.' [Even though it was late, he went out all the same.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.contrast.mood_pairs",
+    "label": "anche se fitting an indicative",
+    "any_phrases": [
+     {
+      "phrase": "anche se",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "benché",
+      "match_at": "word",
+      "note": "benché calls for the subjunctive (benché FOSSE tardi); era is indicative"
+     },
+     {
+      "phrase": "sebbene",
+      "match_at": "word",
+      "note": "sebbene calls for the subjunctive; era is indicative"
+     },
+     {
+      "phrase": "nonostante",
+      "match_at": "word",
+      "note": "before a conjugated indicative clause nonostante is substandard; it wants the subjunctive or a bare noun"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [],
+  "explanation": "Even though it was late, he went out all the same: Anche se era tardi, è uscito lo stesso. Era is indicative, and the concessive that pairs with the indicative is anche se. The subjunctive team (benché, sebbene, nonostante) would need fosse. Same meaning as the twin item; the verb form on the page picks the connective.",
+  "version": 1,
+  "candidate_forms": [
+   "anche se",
+   "benché / sebbene / nonostante"
+  ],
+  "correct_form": "anche se",
+  "examiner_note": "Same-surface pair with conn_mood_01: fosse vs era is the entire trigger. This is the two-sided mood contract's author side: verb GIVEN, connector answered; the mood-choice mirror lives in tense_choice.indicative_vs_subjunctive."
+ },
+ {
+  "external_id": "conn_mood_03",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "contrast.mood_pairs",
+  "difficulty": 4,
+  "cefr_level_target": "B2",
+  "prompt": "Completa: '____ essendo stanco, ha continuato a lavorare.' [Despite being tired, he kept working.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.contrast.mood_pairs",
+    "label": "pur fitting a gerund",
+    "any_phrases": [
+     {
+      "phrase": "pur",
+      "match_at": "word"
+     },
+     {
+      "phrase": "pure",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "heard; before a gerund the clipped pur is standard"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "benché",
+      "match_at": "word",
+      "note": "benché wants a conjugated subjunctive clause (benché fosse stanco), not the gerund"
+     },
+     {
+      "phrase": "anche se",
+      "match_at": "word",
+      "note": "anche se wants a conjugated indicative clause (anche se era stanco)"
+     },
+     {
+      "phrase": "nonostante",
+      "match_at": "word",
+      "note": "nonostante wants a subjunctive clause or a bare noun (nonostante la stanchezza), not the gerund"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "stanco",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "stanco - tired",
+      "bucket": "vocabulary.it.stanco.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "Despite being tired, he kept working: Pur essendo stanco, ha continuato a lavorare. Pur plus the gerund is the most compact concessive in Italian, one word and no conjugation. Essendo on the page is a gerund, so no clause-taking concessive (benché, anche se) can make the joint.",
+  "version": 1,
+  "candidate_forms": [
+   "pur + gerundio",
+   "benché / sebbene",
+   "anche se"
+  ],
+  "correct_form": "pur + gerundio"
+ },
+ {
+  "external_id": "conn_mood_04",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "contrast.mood_pairs",
+  "difficulty": 3,
+  "cefr_level_target": "B2",
+  "prompt": "Completa: '____ la pioggia, siamo usciti.' [Despite the rain, we went out.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.contrast.mood_pairs",
+    "label": "nonostante fitting a bare noun",
+    "any_phrases": [
+     {
+      "phrase": "nonostante",
+      "match_at": "word"
+     },
+     {
+      "phrase": "malgrado",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "fine; a shade more formal"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "benché",
+      "match_at": "word",
+      "note": "benché governs a subjunctive clause (benché piovesse), never a bare noun"
+     },
+     {
+      "phrase": "anche se",
+      "match_at": "word",
+      "note": "anche se needs a clause: anche se pioveva"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "pioggia",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "pioggia - rain",
+      "bucket": "vocabulary.it.pioggia.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "Despite the rain, we went out: Nonostante la pioggia, siamo usciti. What follows the gap is a bare noun, la pioggia, and only nonostante (or malgrado) can take a noun directly. The clause-taking concessives all need a verb to govern: benché piovesse, anche se pioveva.",
+  "version": 1,
+  "candidate_forms": [
+   "nonostante / malgrado + noun",
+   "benché + clause"
+  ],
+  "correct_form": "nonostante / malgrado + noun"
+ },
+ {
+  "external_id": "conn_mood_05",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "contrast.mood_pairs",
+  "difficulty": 4,
+  "cefr_level_target": "B2",
+  "prompt": "Completa: '____ avesse chiamato a tutte le ore, nessuno le rispose.' [Although she had called at all hours, no one answered her.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.contrast.mood_pairs",
+    "label": "concessive fitting a past subjunctive",
+    "any_phrases": [
+     {
+      "phrase": "sebbene",
+      "match_at": "word"
+     },
+     {
+      "phrase": "benché",
+      "match_at": "word"
+     },
+     {
+      "phrase": "nonostante",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "fine with the subjunctive clause"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "anche se",
+      "match_at": "word",
+      "note": "anche se would take the indicative (aveva chiamato); avesse is subjunctive"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "rispose",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "rispondere - to answer",
+      "bucket": "vocabulary.it.rispondere.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "Although she had called at all hours, no one answered her: Sebbene avesse chiamato a tutte le ore, nessuno le rispose. Avesse chiamato is a past subjunctive, so the concessive must come from the subjunctive team. The passato remoto (rispose) marks this as written narration, exactly where sebbene is most at home.",
+  "version": 1,
+  "candidate_forms": [
+   "sebbene / benché",
+   "anche se"
+  ],
+  "correct_form": "sebbene / benché",
+  "examiner_note": "Adapted from the OIC idea bank (sebbene + imperfect subjunctive in past narration)."
+ },
+ {
+  "external_id": "conn_mood_06",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "contrast.mood_pairs",
+  "difficulty": 4,
+  "cefr_level_target": "B2",
+  "prompt": "Scegli: 'Mi piace questo cappotto, ____ costi troppo.' [I like this coat, although it costs too much.]",
+  "type": "mcq",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.contrast.mood_pairs",
+    "label": "concessive fitting a subjunctive",
+    "any_phrases": [
+     {
+      "phrase": "benché",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "anche se",
+      "match_at": "word",
+      "note": "anche se would need the indicative costa; costi is subjunctive"
+     },
+     {
+      "phrase": "e",
+      "match_at": "word",
+      "note": "e adds; the clause concedes an objection"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "cappotto",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "cappotto - coat",
+      "bucket": "vocabulary.it.cappotto.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "I like this coat, although it costs too much: Mi piace questo cappotto, benché costi troppo. Costi is subjunctive (the indicative would be costa), so the concessive has to be one of the subjunctive team, and benché is the one on offer. Anche se costa troppo would say the same thing in indicative dress.",
+  "version": 1,
+  "choices": [
+   "anche se",
+   "benché",
+   "e"
+  ],
+  "answer_index": 1,
+  "examiner_note": "Reverse-mood drill per the dispatch: the verb arrives conjugated, the learner picks the compatible connector. Index-scored."
+ },
+ {
+  "external_id": "conn_time_01",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "time.prima_dopo",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "prompt": "Completa: '____ uscire, chiudi la finestra.' [Before going out, close the window.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.time.prima_dopo",
+    "label": "prima di + infinitive, same subject",
+    "any_phrases": [
+     {
+      "phrase": "prima di",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "prima che",
+      "match_at": "word",
+      "note": "prima che opens a clause with its OWN subject and a subjunctive (prima che tu esca); one subject doing both things wants prima di + infinitive"
+     },
+     {
+      "phrase": "prima",
+      "match_at": "word",
+      "note": "bare prima is an adverb (prima o poi); before an infinitive Italian needs prima DI"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "chiudi",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "chiudere - to close",
+      "bucket": "vocabulary.it.chiudere.translation"
+     }
+    }
+   },
+   {
+    "lemma": "finestra",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "finestra - window",
+      "bucket": "vocabulary.it.finestra.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "Before going out, close the window: Prima di uscire, chiudi la finestra. One person does both things, and same subject means prima di plus the infinitive. The moment a second subject enters, the machinery changes to prima che plus the subjunctive: Prima che arrivino gli ospiti...",
+  "version": 1,
+  "candidate_forms": [
+   "prima di + infinitive",
+   "prima che + subjunctive"
+  ],
+  "correct_form": "prima di + infinitive",
+  "examiner_note": "The bare-prima guard is nested inside both positives at word boundaries; ordering protection (positive wins first) makes it a safe dropped-word attributor per criterion 18's exempt mirror case."
+ },
+ {
+  "external_id": "conn_time_02",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "time.prima_dopo",
+  "difficulty": 4,
+  "cefr_level_target": "B2",
+  "prompt": "Completa: '____ tu esca, parliamo un attimo.' [Before you leave, let's talk for a moment.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.time.prima_dopo",
+    "label": "prima che + subjunctive, subjects differ",
+    "any_phrases": [
+     {
+      "phrase": "prima che",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "prima di",
+      "match_at": "word",
+      "note": "prima di keeps ONE subject (prima di uscire); here a new subject (tu) enters, so prima che + subjunctive"
+     },
+     {
+      "phrase": "prima",
+      "match_at": "word",
+      "note": "bare prima cannot govern the clause; the clause-opener is prima CHE"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [],
+  "explanation": "Before you leave, let's talk for a moment: Prima che tu esca, parliamo un attimo. The two clauses have different subjects (you leave, we talk), and different subjects switch the machinery to prima che plus the subjunctive, which is why esca stands on the page. Prima di would glue the infinitive to the wrong subject.",
+  "version": 1,
+  "candidate_forms": [
+   "prima che + subjunctive",
+   "prima di + infinitive"
+  ],
+  "correct_form": "prima che + subjunctive",
+  "examiner_note": "Same-subject-rule pair with conn_time_01. The subjunctive esca is GIVEN per the mood contract; the connector is the answer."
+ },
+ {
+  "external_id": "conn_time_03",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "time.prima_dopo",
+  "difficulty": 4,
+  "cefr_level_target": "B2",
+  "prompt": "Completa: '____ mangiato, siamo usciti.' [After eating, we went out.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.time.prima_dopo",
+    "label": "dopo aver + past participle",
+    "any_phrases": [
+     {
+      "phrase": "dopo aver",
+      "match_at": "word"
+     },
+     {
+      "phrase": "dopo avere",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "dopo che",
+      "match_at": "word",
+      "note": "dopo che starts a clause with its own subject and conjugated verb (dopo che gli ospiti sono partiti)"
+     },
+     {
+      "phrase": "dopo",
+      "match_at": "word",
+      "note": "bare dopo + participle is colloquial; the standard machinery is dopo aver(e) + past participle"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [],
+  "explanation": "After eating, we went out: Dopo aver mangiato, siamo usciti. Dopo runs on the past infinitive, aver(e) plus the participle, when one subject does both things. You will hear the clipped dopo mangiato in conversation, but the standard written joint keeps the aver.",
+  "version": 1,
+  "candidate_forms": [
+   "dopo aver + participle",
+   "dopo che + conjugated verb"
+  ],
+  "correct_form": "dopo aver + participle",
+  "examiner_note": "The bare-dopo guard is nested inside both positives at word boundaries; ordering protection makes it the dropped-aver attributor (criterion 18 exempt mirror case)."
+ },
+ {
+  "external_id": "conn_time_04",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "time.prima_dopo",
+  "difficulty": 3,
+  "cefr_level_target": "B2",
+  "prompt": "Completa: '____ sono partiti gli ospiti, abbiamo pulito la casa.' [After the guests left, we cleaned the house.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.time.prima_dopo",
+    "label": "dopo che + conjugated verb",
+    "any_phrases": [
+     {
+      "phrase": "dopo che",
+      "match_at": "word"
+     },
+     {
+      "phrase": "non appena",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "changes the nuance to the moment they left; the gloss says after"
+     },
+     {
+      "phrase": "appena",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "same nuance shift; fine Italian"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "dopo aver",
+      "match_at": "word",
+      "note": "dopo aver keeps the SAME subject; here the guests leave and we clean"
+     },
+     {
+      "phrase": "dopo",
+      "match_at": "word",
+      "note": "bare dopo before a full clause reads as a stranded adverb; the clause-opener is dopo CHE"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "ospiti",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "ospite - guest",
+      "bucket": "vocabulary.it.ospite.translation"
+     }
+    }
+   },
+   {
+    "lemma": "pulito",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "pulire - to clean",
+      "bucket": "vocabulary.it.pulire.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "After the guests left, we cleaned the house: Dopo che sono partiti gli ospiti, abbiamo pulito la casa. Two different subjects (the guests, we), so dopo che opens a full clause with its own conjugated verb. Dopo aver partito would weld the leaving onto the wrong subject.",
+  "version": 1,
+  "candidate_forms": [
+   "dopo che + conjugated verb",
+   "dopo aver + participle"
+  ],
+  "correct_form": "dopo che + conjugated verb"
+ },
+ {
+  "external_id": "conn_time_05",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "time.mentre_appena",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "prompt": "Completa: '____ arrivo, ti chiamo.' [As soon as I arrive, I'll call you.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.time.mentre_appena",
+    "label": "appena: the trigger instant",
+    "any_phrases": [
+     {
+      "phrase": "appena",
+      "match_at": "word"
+     },
+     {
+      "phrase": "non appena",
+      "match_at": "word"
+     },
+     {
+      "phrase": "quando",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "natural here, but flatter than appena's as-soon-as"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "mentre",
+      "match_at": "word",
+      "note": "mentre spreads two actions over the same stretch (while); the gloss wants the instant of arrival"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [],
+  "explanation": "As soon as I arrive, I'll call you: Appena arrivo, ti chiamo. Appena (often reinforced as non appena) marks a trigger instant: the moment one thing happens, the next fires. Mentre would stretch the two actions out side by side, which is a different piece of time machinery.",
+  "version": 1,
+  "candidate_forms": [
+   "appena / non appena",
+   "mentre"
+  ],
+  "correct_form": "appena / non appena",
+  "examiner_note": "Authored against proposed bucket connective.time.mentre_appena (see bucket_suggestions): the time aggregate's description names mentre and (non) appena but no leaf holds them. Both positives share full credit, so appena nesting inside non appena is harmless."
+ },
+ {
+  "external_id": "conn_time_06",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "time.mentre_appena",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "prompt": "Completa: '____ cucinavo, lui guardava la TV.' [While I was cooking, he was watching TV.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.time.mentre_appena",
+    "label": "mentre: two overlapping stretches",
+    "any_phrases": [
+     {
+      "phrase": "mentre",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "durante",
+      "match_at": "word",
+      "note": "durante takes a NOUN (durante la cena), never a clause; before a subject and verb Italian wants mentre"
+     },
+     {
+      "phrase": "appena",
+      "match_at": "word",
+      "note": "appena is a trigger instant; two overlapping ongoing actions want mentre"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "cucinavo",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "cucinare - to cook",
+      "bucket": "vocabulary.it.cucinare.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "While I was cooking, he was watching TV: Mentre cucinavo, lui guardava la TV. Mentre lays two ongoing actions side by side over the same stretch of time, which is why both verbs sit in the imperfetto. The classic trap is durante, which only ever governs a noun: durante la cena, never durante cucinavo.",
+  "version": 1,
+  "candidate_forms": [
+   "mentre",
+   "durante + noun"
+  ],
+  "correct_form": "mentre",
+  "examiner_note": "Authored against proposed bucket connective.time.mentre_appena."
+ },
+ {
+  "external_id": "conn_seq_01",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "discourse",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "prompt": "Completa (opening a structured argument): '____, esaminiamo i fatti.' [First of all, let's look at the facts.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.discourse",
+    "label": "innanzitutto opens the sequence",
+    "any_phrases": [
+     {
+      "phrase": "innanzitutto",
+      "match_at": "word"
+     },
+     {
+      "phrase": "prima di tutto",
+      "match_at": "word"
+     },
+     {
+      "phrase": "per prima cosa",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "fine; a touch more conversational"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "infine",
+      "match_at": "word",
+      "note": "infine closes a sequence; this slot opens it"
+     },
+     {
+      "phrase": "insomma",
+      "match_at": "word",
+      "note": "insomma sums up; nothing has been said yet"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "esaminiamo",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "esaminare - to examine",
+      "bucket": "vocabulary.it.esaminare.translation"
+     }
+    }
+   },
+   {
+    "lemma": "fatti",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "fatto - fact",
+      "bucket": "vocabulary.it.fatto.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "First of all, let's look at the facts: Innanzitutto, esaminiamo i fatti. A sequencer is a signpost word that orders a text, and innanzitutto (or prima di tutto) is the opening signpost. The closing jobs belong elsewhere: infine ends the series, insomma sums it up.",
+  "version": 1,
+  "candidate_forms": [
+   "innanzitutto",
+   "poi",
+   "infine",
+   "insomma"
+  ],
+  "correct_form": "innanzitutto"
+ },
+ {
+  "external_id": "conn_seq_02",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "discourse",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "prompt": "Completa: 'Prima ho fatto la spesa, ____ ho cucinato.' [First I did the shopping, then I cooked.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.discourse",
+    "label": "poi carries the sequence on",
+    "any_phrases": [
+     {
+      "phrase": "poi",
+      "match_at": "word"
+     },
+     {
+      "phrase": "dopo",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "fine; adverbial afterwards"
+     },
+     {
+      "phrase": "in seguito",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "fine; formal register"
+     },
+     {
+      "phrase": "quindi",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "temporal quindi = then; fine"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "poiché",
+      "match_at": "word",
+      "note": "one syllable more, an entirely different job: poiché means since or because"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "spesa",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "spesa - shopping (fare la spesa = to do the grocery shopping)",
+      "bucket": "vocabulary.it.spesa.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "First I did the shopping, then I cooked: Prima ho fatto la spesa, poi ho cucinato. Poi is the workhorse next-step word. Mind the one-syllable trap: poi means then, poiché means since, and mixing them rewires the whole sentence.",
+  "version": 1,
+  "candidate_forms": [
+   "poi",
+   "poiché"
+  ],
+  "correct_form": "poi"
+ },
+ {
+  "external_id": "conn_seq_03",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "discourse",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "prompt": "Completa: 'È puntuale, gentile e ____ è molto disponibile.' [He's punctual, kind, and what's more he's very helpful.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.discourse",
+    "label": "inoltre stands free before a clause",
+    "any_phrases": [
+     {
+      "phrase": "inoltre",
+      "match_at": "word"
+     },
+     {
+      "phrase": "per di più",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "fine; adds with a flourish"
+     },
+     {
+      "phrase": "anche",
+      "match_at": "word",
+      "credit": 0.8,
+      "note": "understood, but anche prefers to sit inside the clause: ed è anche molto disponibile"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "oltre a",
+      "match_at": "word",
+      "note": "oltre a hangs on a noun or infinitive (Oltre a saper parlare...); a free-standing moreover before a full clause is inoltre"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "disponibile",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "disponibile - helpful, available",
+      "bucket": "vocabulary.it.disponibile.translation"
+     }
+    }
+   },
+   {
+    "lemma": "puntuale",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "puntuale - punctual",
+      "bucket": "vocabulary.it.puntuale.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "He's punctual, kind, and what's more he's very helpful: È puntuale, gentile e inoltre è molto disponibile. Inoltre is a free-standing moreover: it links full statements and governs nothing. Its lookalike oltre a is a leaning word that must rest on a noun or an infinitive.",
+  "version": 1,
+  "candidate_forms": [
+   "inoltre",
+   "oltre a"
+  ],
+  "correct_form": "inoltre"
+ },
+ {
+  "external_id": "conn_seq_04",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "discourse",
+  "difficulty": 3,
+  "cefr_level_target": "B2",
+  "prompt": "Completa: '____ saper parlare cinque lingue, sa usare bene il computer.' [Besides knowing how to speak five languages, he's good with computers.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.discourse",
+    "label": "oltre a governs an infinitive",
+    "any_phrases": [
+     {
+      "phrase": "oltre a",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "inoltre",
+      "match_at": "word",
+      "note": "inoltre cannot govern the infinitive that follows; it links two full statements"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [],
+  "explanation": "Besides knowing how to speak five languages, he's good with computers: Oltre a saper parlare cinque lingue, sa usare bene il computer. Oltre a is the leaning version of moreover: it attaches to a noun or infinitive (here saper parlare). Free-standing inoltre would need two complete clauses to link.",
+  "version": 1,
+  "candidate_forms": [
+   "oltre a",
+   "inoltre"
+  ],
+  "correct_form": "oltre a",
+  "examiner_note": "OIC minimal pair with conn_seq_03, verbatim from the dispatch idea bank."
+ },
+ {
+  "external_id": "conn_seq_05",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "discourse",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "prompt": "Completa (closing a recipe's steps): 'Aggiungete la farina, mescolate; ____ infornate per venti minuti.' [Finally, put it in the oven for twenty minutes.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.discourse",
+    "label": "infine closes the sequence",
+    "any_phrases": [
+     {
+      "phrase": "infine",
+      "match_at": "word"
+     },
+     {
+      "phrase": "alla fine",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "fine; slightly heavier"
+     },
+     {
+      "phrase": "per finire",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "fine; conversational"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "allora",
+      "match_at": "word",
+      "note": "allora draws a consequence or picks up a moment in time; closing an ordered list is infine's job"
+     },
+     {
+      "phrase": "insomma",
+      "match_at": "word",
+      "note": "insomma sums up an argument; it does not order steps"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "farina",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "farina - flour",
+      "bucket": "vocabulary.it.farina.translation"
+     }
+    }
+   },
+   {
+    "lemma": "mescolate",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "mescolare - to stir, to mix",
+      "bucket": "vocabulary.it.mescolare.translation"
+     }
+    }
+   },
+   {
+    "lemma": "infornate",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "infornare - to put in the oven",
+      "bucket": "vocabulary.it.infornare.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "Finally, put it in the oven for twenty minutes: Aggiungete la farina, mescolate; infine infornate per venti minuti. Infine is the last signpost in a sequence: first this, then that, finally the oven. Allora belongs to consequences and story-telling, not to step lists, which is exactly the classic mix-up.",
+  "version": 1,
+  "candidate_forms": [
+   "infine",
+   "allora"
+  ],
+  "correct_form": "infine"
+ },
+ {
+  "external_id": "conn_seq_06",
+  "language_code": "it",
+  "topic": "connective",
+  "subtopic": "discourse",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "prompt": "Completa: 'Cucina bene, è simpatico, aiuta tutti: ____, è perfetto.' [In short, he's perfect.]",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "info_display": "suppress",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "connective.discourse",
+    "label": "insomma sums the list up",
+    "any_phrases": [
+     {
+      "phrase": "insomma",
+      "match_at": "word"
+     },
+     {
+      "phrase": "in conclusione",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "fine; formal register"
+     },
+     {
+      "phrase": "in breve",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "fine; brisk"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "inoltre",
+      "match_at": "word",
+      "note": "inoltre would ADD another item; the colon announces a summing-up"
+     },
+     {
+      "phrase": "infine",
+      "match_at": "word",
+      "note": "infine closes a sequence of steps; this is a verdict on the whole list"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [],
+  "explanation": "He cooks well, he's likeable, he helps everyone: in short, he's perfect. Cucina bene, è simpatico, aiuta tutti: insomma, è perfetto. Insomma gathers a list into a verdict. It neither adds a fourth item (inoltre's job) nor marks a final step (infine's); it steps back and totals things up.",
+  "version": 1,
+  "candidate_forms": [
+   "insomma",
+   "inoltre",
+   "infine"
+  ],
+  "correct_form": "insomma"
+ }
+]
