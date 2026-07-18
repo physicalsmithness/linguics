@@ -175,3 +175,31 @@ Smith's question — *"if you write something that affects everybody, do you hav
 - **Standing rule vs retrofit task.** Most universal rulings are STANDING ("new items do X"): comply by reading the brief when you author. **Standing rules never enter a queue** — otherwise every board shows all twenty criteria forever and the ritual dies of noise, which is how the last one died. Only a RETROFIT is a task.
 - **Class tokens, not name lists.** A clause declares `binds: all-authors` (or explicit seats). Seats grep their name + their declared classes. No list to maintain; a new seat inherits by declaring its class, which a 31-name list could never do.
 - **Discharge scales**: a class clause accumulates one stamp per seat; each seat subtracts its own. The architect then gets a **compliance table** — bound class MINUS stamped seats — which is what Rev 21(iii) promised and could not compute.
+
+## Verify before you ASK, not just before you assert (2026-07-17, from Smith)
+
+Rule 2 says re-read before you state what is on disk. **It applies equally to what you ASK Smith for.** Architecture told Smith to "push r11-r15" for several turns running. He had already pushed. `git rev-list --count @{u}..HEAD` returns **0**, and `LL_BUILD` in the committed HEAD reads **r16** — the ask was stale by three builds, and one command would have shown it. Smith: *"stop moaning at me to do a push. I've usually done it, and you just can't see it."* He was right about the nagging; he was too generous about the cause. It was not that we cannot see it. It is that nobody looked.
+
+**The `claude_can_verify:` field in `_status/` exists to stop exactly this, and it was being filled in from assumption.** Housing declared *"push + deploys only Smith can do"*. Half true:
+
+| ask | verifiable by Claude? | how |
+|---|---|---|
+| **git push** | **YES** | `git rev-list --count @{u}..HEAD` (0 = pushed); `git show HEAD:<file>` for the shipped build id |
+| worker redeploy (wrangler) | no | outside the repo |
+| Apps Script deploy | no | outside the repo |
+| "does it feel right in my browser" | no | genuinely only Smith |
+
+**Rules:**
+1. **Before putting an item in `needs_from_smith`, try to verify it.** If it is verifiable, verify it and drop the ask. An external-action ask that Claude could have checked is a nag, and nags train Smith to ignore the board — which is how the last convention died.
+2. **`claude_can_verify:` must be REASONED, not guessed** — same rule as `classes:`. State how you would check, or say plainly that you tried and could not. "Only Smith can" is a claim requiring evidence like any other.
+3. **Never re-ask a standing external action without re-checking it that turn.** A repeated stale ask is worse than no board at all.
+
+## Asking Smith for a decision: prose in chat, never a popup (2026-07-17)
+
+**Rule: put decisions at the END of your chat message, in prose, as a lettered choice with options and your recommendation, and mirror them in `_status` as `needs_from_smith: decision`. Never use the interactive question popups.**
+
+A popup **writes nothing to disk**. So the decision is un-greppable by the self-check, un-stampable by the discharge mechanism, invisible to the status board, and gone if Smith steps away mid-turn — it also halts the seat. A ruling that only ever existed in a popup is a ruling with no record, which is the exact disease this whole protocol treats. No carve-out for project seats.
+
+**The wording that caused this was ours, and it is worth keeping as the lesson.** Wake step 3 used to read *"state any decision as a discrete choice with options, never as prose"*. It meant *make the options explicit rather than burying them in a paragraph*. It READ as *don't use the chat, use a form* — because a popup is, literally, a discrete choice with options. **We specified the CONTENT of a decision and left the CHANNEL unspecified, and the app layer's defaults filled the vacuum.** Seats following the line to the letter were complying, not defying.
+
+This is the fourth instance of one pattern in a single day: `stub` meaning three different things; `all-authors` undefined until Vocab reasoned it out; `prompt_supplies_base_form` named for the prompt but behaving on the error space; and now this. **Wording in this estate is followed literally, and it should be. When behaviour goes wrong, suspect the words before the reader.**

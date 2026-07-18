@@ -60,3 +60,25 @@ Coverage feels honest for the six active leaves: every rule is hit from multiple
 ## Post-write note: manifest registration
 
 First content for this topic has now landed (`grammar_questions_pronominal_verbs.json`, `translation_items_pronominal_verbs.json`), so by the standing ruling the topic name `pronominal_verbs` now qualifies to enter `data/manifest.json`. I have not edited the manifest — it is architecture-owned loader config, and several sibling topics whose content also landed today (piacere, present_usage, ...) are likewise not yet registered, so this reads as a batched commit-time action. Flagging for whoever runs the commit.
+
+---
+
+## Addendum: frozen-tail idioms pass (2026-07-18, commissioned by Smith)
+
+Smith commissioned the flag-2 seam. Delivered: **10 new grammar (`pv_ft_*`) + 3 translation**, plus `pv_adv_frozentail_01` **re-homed** off *-sela verbs* onto the new leaf (external_id kept per §2, version bumped to 2). Topic totals now **56 grammar / 23 translation**.
+
+| Leaf (friendly label) | CEFR at target | Grammar | Translation |
+|---|---|---|---|
+| Frozen-tail idioms | C1 core | 11 | 3 |
+
+Idioms covered, each as tail-supply and (where it earns it) stem/auxiliary: mettercela tutta; darsela a gambe (tail + essere-auxiliary + frozen feminine *data*); legarsela al dito; tirarla per le lunghe (tail + stem); dirne di tutti i colori (tail + ne-participle agreement); buttarla sul tragico; farla finita.
+
+**Design decisions on this pass:**
+
+1. **Terse leaf label ("Frozen-tail idioms"), so these 11 items carry NO `info_display: suppress`** — unlike the 38 suppressed elsewhere in this topic. My own original proposal embedded the worked example in the label, the exact Rev-12 anti-pattern I flagged on the other six leaves; fixed before authoring. Naming the class leaks nothing; the specific tail is what's tested.
+2. **Bracketed English glosses throughout (criterion 20)**, including converting the re-homed item's Italian gloss "(impegnarsi al massimo)" to "[to give it your all]" on the touch.
+3. **Word-anchoring on 12 phrases (criterion 18)** where the target embeds in a plausible wrong attempt: `la tira` inside `la tirava`, `ce la mette` inside `ce la metteva`, `tutta` inside `tuttavia`. `a gambe` is anchored yet still accepts the standard variant `a gambe levate`.
+4. **`pv_ft_dirne_02` cites `pronoun.ne.with_pp_agreement`, not this tree**, per the cite-not-duplicate contract: the tested skill is the pronoun tree's. Tail coverage for dirne sits on `pv_ft_dirne_01`.
+5. **Cues name stems only, never tails** — `pv_ft_farla_01` cues `(farla)`, never `(farla finita)`, or the cue would hand over the answer.
+
+**Status: the leaf is FORWARD-REFERENCED and awaits Architecture ratification** (brief §2 permits this at authoring; production load strict-rejects until the bucket exists). Contract thread: `inter_chat/Architecture_PronominalVerbsAuthor_frozen_tail_idioms.md`. Re-validated fold-aware: 0 errors, 0 dead guards.

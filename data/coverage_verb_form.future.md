@@ -83,3 +83,16 @@ Per criterion 13's cue-economy note (Rev 9): the cue parenthetical names the per
 - **Cross-tree stems.** bere's future is built on the short ber- (berrò), not the bev- stem of its present and imperfect; I flag this in the bere explanation, paralleling the present tree's bev- note. The two stems genuinely diverge in the future.
 - **The avrò / sarò overlap with the futuro anteriore.** The 1sg avere and essere futures (avrò, sarò) are also the auxiliaries for the compound, so they get double duty: a learner shaky on avrò will miss both the syncopated leaf and the futuro anteriore. Worth keeping in mind when sequencing.
 - **Pending glossary dependency.** The essere explanations use "suppletive", which PresentFormationAuthor already proposed (still pending merge into `data/glossary.json`); I did not re-propose it. The four terms I do propose (theme vowel, syncopation, assimilation, future perfect) are new.
+
+---
+
+## Post-delivery revisions (2026-07-18)
+
+- **Criterion 17 (gloss):** all 50 grammar items glossed by Cr17Sweep, gloss-first, zero marking delta.
+- **Criterion 18 (anchoring):** all 53 any_phrases now `match_at: "word"` (central gate); Cr17Sweep substring gate found 0 future hits.
+- **Criterion 19 (accent):** 16 dead accent twins removed; `accent_load_bearing` thread CLOSED (soft guard confirmed live, no futuro flags needed).
+- **Criterion 13 (chip audit):** run, clean, 0 rewrites (no rule-names in any cue); reported to Architecture for stamp.
+- **POS buckets:** all vocab_help buckets POS-segmented by the estate migration.
+- **già dropped** from the five futuro anteriore prompts (single blank, native surface; già redundant with the compound form + anteriority cue, and criterion 9 prefers a single slot).
+- **pagare** (`fut_orth_cg_pagare_1pl_01`) gains the resumptive clitic: "Il conto lo pagheremo noi", cue trimmed to `(pagare)`.
+- **Open:** vedrò content bug (`fut_irr_sync_vedere_1sg_01`) — "Ci vedrò" with an io subject means "I'll be able to see", not "I'll see you". Repair pick handed to Architecture (recommend `Ti vedrò`, which keeps the 1sg syncope test).

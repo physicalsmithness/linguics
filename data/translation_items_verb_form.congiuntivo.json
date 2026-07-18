@@ -714,5 +714,629 @@
     ],
     "explanation": "Italian uses stare for physical/health states: sta meglio = is feeling better. The subjunctive of stare is stia; spero che requires it over the indicative sta.",
     "version": 1
+  },
+  {
+    "external_id": "trans_cong_en_it_imp_reg_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I thought he talked too much.",
+    "reference_translations": [
+      {
+        "text": "Pensavo che parlasse troppo.",
+        "register": "neutral",
+        "notes": "Standard, subject pronoun dropped. A past-tense trigger (pensavo che) selects the imperfect subjunctive: parlasse."
+      },
+      {
+        "text": "Pensavo che lui parlasse troppo.",
+        "register": "neutral",
+        "notes": "Subject pronoun lui included."
+      },
+      {
+        "text": "Pensavo che parlava troppo.",
+        "register": "neutral",
+        "polarity": "negative",
+        "notes": "WRONG: imperfect indicative parlava after pensavo che. Guards the indicative-instead-of-subjunctive miss."
+      }
+    ],
+    "topic": "verb_form.congiuntivo",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "verb_form.congiuntivo.formation.imperfetto.regular"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "talk",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to talk / to speak - parlare",
+            "bucket": "vocabulary.it.parlare.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "A past-tense opinion verb pulls the che-clause into the imperfect subjunctive, not the present: pensavo che parlasse. The -are imperfect subjunctive is the stem plus -asse in the 3rd singular.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_cong_en_it_imp_reg_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I wanted you to make a decision.",
+    "reference_translations": [
+      {
+        "text": "Volevo che tu prendessi una decisione.",
+        "register": "neutral",
+        "notes": "Standard. volevo che (past verb of will) selects the imperfect subjunctive; prendere gives prendessi."
+      },
+      {
+        "text": "Volevo che prendessi una decisione.",
+        "register": "neutral",
+        "notes": "Subject pronoun tu dropped."
+      }
+    ],
+    "topic": "verb_form.congiuntivo",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "verb_form.congiuntivo.formation.imperfetto.regular"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "make",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to make (a decision) / to take - prendere",
+            "bucket": "vocabulary.it.prendere.verb.translation"
+          }
+        }
+      },
+      {
+        "lemma": "decision",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "decision - decisione",
+            "bucket": "vocabulary.it.decisione.noun.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "English 'wanted you to do' becomes volevo che + imperfect subjunctive. Each conjugation keeps its class vowel: -ere gives -essi, so prendessi (not prendassi).",
+    "version": 1
+  },
+  {
+    "external_id": "trans_cong_en_it_imp_reg_03",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "If I had more time, I would read more.",
+    "reference_translations": [
+      {
+        "text": "Se avessi più tempo, leggerei di più.",
+        "register": "neutral",
+        "notes": "Standard. The unreal if-clause takes the imperfect subjunctive (avessi) and the main clause the present conditional (leggerei)."
+      },
+      {
+        "text": "Se io avessi più tempo, leggerei di più.",
+        "register": "neutral",
+        "notes": "Subject pronoun io included."
+      },
+      {
+        "text": "Se avrei più tempo, leggerei di più.",
+        "register": "neutral",
+        "polarity": "negative",
+        "notes": "WRONG: conditional in the if-clause. The signature 'se avrei' error; the if-clause must take the imperfect subjunctive."
+      }
+    ],
+    "topic": "verb_form.congiuntivo",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "verb_form.congiuntivo.formation.imperfetto.regular"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "had",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to have - avere",
+            "bucket": "vocabulary.it.avere.verb.translation"
+          }
+        }
+      },
+      {
+        "lemma": "read",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to read - leggere",
+            "bucket": "vocabulary.it.leggere.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "In an unreal 'if' sentence Italian puts the imperfect subjunctive in the if-clause and the conditional in the main clause: se avessi ..., leggerei. Never se avrei. Avere is regular here: av- + -essi.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_cong_en_it_imp_irr_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I hoped they were already home.",
+    "reference_translations": [
+      {
+        "text": "Speravo che fossero già a casa.",
+        "register": "neutral",
+        "notes": "Standard. essere has the irregular imperfect subjunctive fossero."
+      },
+      {
+        "text": "Speravo che loro fossero già a casa.",
+        "register": "neutral",
+        "notes": "Subject pronoun loro included."
+      },
+      {
+        "text": "Speravo che erano già a casa.",
+        "register": "neutral",
+        "polarity": "negative",
+        "notes": "WRONG: imperfect indicative erano after speravo che. Guards the indicative miss."
+      }
+    ],
+    "topic": "verb_form.congiuntivo",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "verb_form.congiuntivo.formation.imperfetto.irregular"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "were",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to be - essere",
+            "bucket": "vocabulary.it.essere.verb.translation"
+          }
+        }
+      },
+      {
+        "lemma": "home",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "home / house - casa",
+            "bucket": "vocabulary.it.casa.noun.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Essere is the one truly irregular imperfect subjunctive: fossi, fossi, fosse, fossimo, foste, fossero. It is not derivable from era; it is learned outright.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_cong_en_it_imp_irr_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I didn't think she did it on purpose.",
+    "reference_translations": [
+      {
+        "text": "Non pensavo che lo facesse apposta.",
+        "register": "neutral",
+        "notes": "Standard. fare restores the fac- stem: facesse."
+      },
+      {
+        "text": "Non pensavo che lei lo facesse apposta.",
+        "register": "neutral",
+        "notes": "Subject pronoun lei included."
+      }
+    ],
+    "topic": "verb_form.congiuntivo",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "verb_form.congiuntivo.formation.imperfetto.irregular"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "did",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to do / to make - fare",
+            "bucket": "vocabulary.it.fare.verb.translation"
+          }
+        }
+      },
+      {
+        "lemma": "on purpose",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "on purpose - apposta",
+            "bucket": "vocabulary.it.apposta.adverb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Fare expands to the longer fac- stem, the same one behind the imperfect indicative facevo: fac- + -esse gives facesse. If you know facevo, you know facesse.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_cong_en_it_imp_irr_03",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I hoped your father was feeling better.",
+    "reference_translations": [
+      {
+        "text": "Speravo che tuo padre stesse meglio.",
+        "register": "neutral",
+        "notes": "Standard. stare contracts to stes-: stesse. Italian uses stare for how someone feels."
+      },
+      {
+        "text": "Speravo che tuo padre stesse meglio adesso.",
+        "register": "neutral",
+        "notes": "With adesso; equivalent."
+      }
+    ],
+    "topic": "verb_form.congiuntivo",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "verb_form.congiuntivo.formation.imperfetto.irregular"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "feeling",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to feel (well/unwell) / to stay - stare",
+            "bucket": "vocabulary.it.stare.verb.translation"
+          }
+        }
+      },
+      {
+        "lemma": "father",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "father - padre",
+            "bucket": "vocabulary.it.padre.noun.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Italian uses stare for physical and health states. Its imperfect subjunctive contracts to stes-: stesse, not the regularised stasse. Speravo che (past trigger) selects the imperfect subjunctive over the indicative stava.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_cong_en_it_pass_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I think Marco has already spoken to her.",
+    "reference_translations": [
+      {
+        "text": "Penso che Marco le abbia già parlato.",
+        "register": "neutral",
+        "notes": "Standard. Present trigger + past action = compound past subjunctive; auxiliary in the present subjunctive (abbia)."
+      },
+      {
+        "text": "Penso che Marco abbia già parlato con lei.",
+        "register": "neutral",
+        "notes": "con lei instead of the indirect clitic le; both natural."
+      },
+      {
+        "text": "Penso che Marco ha già parlato con lei.",
+        "register": "neutral",
+        "polarity": "negative",
+        "notes": "WRONG: indicative auxiliary ha. The defining compound miss."
+      }
+    ],
+    "topic": "verb_form.congiuntivo",
+    "register": "neutral",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "verb_form.congiuntivo.formation.passato"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "spoken",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to speak / to talk - parlare",
+            "bucket": "vocabulary.it.parlare.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "The compound past subjunctive is the PRESENT subjunctive of the auxiliary plus the participle: abbia parlato. After penso che the auxiliary cannot stay indicative (ha parlato).",
+    "version": 1
+  },
+  {
+    "external_id": "trans_cong_en_it_pass_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I think the girls arrived on time.",
+    "reference_translations": [
+      {
+        "text": "Penso che le ragazze siano arrivate in orario.",
+        "register": "neutral",
+        "notes": "Standard. arrivare takes essere: auxiliary siano (present subjunctive), participle agrees feminine plural (arrivate)."
+      },
+      {
+        "text": "Penso che le ragazze siano arrivate puntuali.",
+        "register": "neutral",
+        "notes": "puntuali for in orario; equivalent."
+      },
+      {
+        "text": "Penso che le ragazze sono arrivate in orario.",
+        "register": "neutral",
+        "polarity": "negative",
+        "notes": "WRONG: indicative auxiliary sono after penso che."
+      }
+    ],
+    "topic": "verb_form.congiuntivo",
+    "register": "neutral",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "verb_form.congiuntivo.formation.passato",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_plural"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "arrived",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to arrive - arrivare",
+            "bucket": "vocabulary.it.arrivare.verb.translation"
+          }
+        }
+      },
+      {
+        "lemma": "girls",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "girl - ragazza",
+            "bucket": "vocabulary.it.ragazza.noun.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Two things at once: the essere auxiliary goes into the present subjunctive (siano), and with essere the participle agrees with the subject (le ragazze, feminine plural: arrivate).",
+    "version": 1
+  },
+  {
+    "external_id": "trans_cong_en_it_pass_03",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I'm sorry that I couldn't help you yesterday.",
+    "reference_translations": [
+      {
+        "text": "Mi dispiace che io non abbia potuto aiutarti ieri.",
+        "register": "neutral",
+        "notes": "Standard. Emotion trigger + past action = abbia potuto."
+      },
+      {
+        "text": "Mi dispiace di non averti potuto aiutare ieri.",
+        "register": "neutral",
+        "notes": "Same-subject infinitive alternative, very natural, but sidesteps the subjunctive. The intended target is abbia potuto."
+      }
+    ],
+    "topic": "verb_form.congiuntivo",
+    "register": "neutral",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "verb_form.congiuntivo.formation.passato"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "could",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to be able / can - potere",
+            "bucket": "vocabulary.it.potere.verb.translation"
+          }
+        }
+      },
+      {
+        "lemma": "help",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to help - aiutare",
+            "bucket": "vocabulary.it.aiutare.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "An emotion trigger (mi dispiace che) takes the subjunctive; because the action is past relative to a present main clause, it is the compound past subjunctive: abbia potuto.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_cong_en_it_trap_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "If I had known earlier, I would have come.",
+    "reference_translations": [
+      {
+        "text": "Se avessi saputo prima, sarei venuto.",
+        "register": "neutral",
+        "notes": "Standard. Impossible past condition: trapassato subjunctive in the if-clause, past conditional in the main clause."
+      },
+      {
+        "text": "Se lo avessi saputo prima, sarei venuto.",
+        "register": "neutral",
+        "notes": "With the object clitic lo; very natural."
+      },
+      {
+        "text": "Se avrei saputo prima, sarei venuto.",
+        "register": "neutral",
+        "polarity": "negative",
+        "notes": "WRONG: conditional in the if-clause. The signature 'se avrei' error."
+      }
+    ],
+    "topic": "verb_form.congiuntivo",
+    "register": "neutral",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "verb_form.congiuntivo.formation.trapassato"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "known",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to know - sapere",
+            "bucket": "vocabulary.it.sapere.verb.translation"
+          }
+        }
+      },
+      {
+        "lemma": "come",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to come - venire",
+            "bucket": "vocabulary.it.venire.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "An impossible past condition puts the trapassato subjunctive in the if-clause: the IMPERFECT subjunctive of the auxiliary plus the participle (avessi saputo). The conditional never goes in the if-clause.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_cong_en_it_trap_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I thought Maria had gone out with her friends.",
+    "reference_translations": [
+      {
+        "text": "Credevo che Maria fosse uscita con gli amici.",
+        "register": "neutral",
+        "notes": "Standard. uscire takes essere: fosse (imperfect subjunctive) + uscita (agrees, feminine singular)."
+      },
+      {
+        "text": "Pensavo che Maria fosse uscita con le sue amiche.",
+        "register": "neutral",
+        "notes": "pensavo for credevo, le sue amiche for gli amici; equivalent."
+      },
+      {
+        "text": "Credevo che Maria era uscita con gli amici.",
+        "register": "neutral",
+        "polarity": "negative",
+        "notes": "WRONG: imperfect indicative auxiliary era. The defining trapassato miss."
+      }
+    ],
+    "topic": "verb_form.congiuntivo",
+    "register": "neutral",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "verb_form.congiuntivo.formation.trapassato",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_singular"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "gone out",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to go out / to leave - uscire",
+            "bucket": "vocabulary.it.uscire.verb.translation"
+          }
+        }
+      },
+      {
+        "lemma": "friends",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "friend - amico",
+            "bucket": "vocabulary.it.amico.noun.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "A past main clause plus an earlier action gives the trapassato subjunctive: the imperfect subjunctive of the auxiliary (fosse) plus the participle, which agrees with Maria under essere: uscita.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_cong_en_it_trap_03",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I didn't know they had finished the work.",
+    "reference_translations": [
+      {
+        "text": "Non sapevo che avessero finito il lavoro.",
+        "register": "neutral",
+        "notes": "Standard, subject pronoun dropped. avere auxiliary in the imperfect subjunctive: avessero."
+      },
+      {
+        "text": "Non sapevo che loro avessero finito il lavoro.",
+        "register": "neutral",
+        "notes": "Subject pronoun loro included."
+      }
+    ],
+    "topic": "verb_form.congiuntivo",
+    "register": "neutral",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "verb_form.congiuntivo.formation.trapassato"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "finished",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to finish - finire",
+            "bucket": "vocabulary.it.finire.verb.translation"
+          }
+        }
+      },
+      {
+        "lemma": "work",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "work - lavoro",
+            "bucket": "vocabulary.it.lavoro.noun.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "The auxiliary takes the imperfect subjunctive (avessero), not the imperfect indicative (avevano). With avere the participle stays invariable: finito.",
+    "version": 1
   }
 ]

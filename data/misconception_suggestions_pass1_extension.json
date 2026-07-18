@@ -1,0 +1,456 @@
+{
+  "$schema_note": "PASS-1 EXTENSION. Harvested by MisconceptionAnalyst from the 132 common_miss buckets across the 19 topics whose bucket trees postdate the June harvest (thread v14 finding). Combined file keyed by topic rather than 19 separate files, on the precedent Architecture set for misconception_tag_lists.json ('the one combined file keyed by topic is the right shape'); say the word and I will split. PENDING ratification. Thread: inter_chat/Architecture_MisconceptionAnalyst_registry_harvest.md v15.",
+  "generated": "2026-07-17",
+  "scope": {
+    "topics": 19,
+    "common_miss_buckets_read": 132,
+    "topics_list": [
+      "adverb",
+      "article",
+      "comparison",
+      "connective",
+      "demonstrative",
+      "existential",
+      "indefinite",
+      "negation",
+      "noun",
+      "orthography",
+      "passive",
+      "piacere",
+      "possessive",
+      "preposition",
+      "pronominal_verbs",
+      "relative_pronoun",
+      "reported_speech",
+      "si_constructions",
+      "word_formation"
+    ]
+  },
+  "headline_finding": "Three of the 17 family DESCRIPTIONS name cases that were never minted as specifics. clitic_cluster named 'joined-when-separate' at v2 E (v13). regularisation's description names BOTH 'irregular plurals' AND 'irregular comparatives' - the estate now has live guards for both and ids for neither. This is a systematic delivery gap, not three coincidences: a family description is where a case goes to be forgotten. Recommend auditing all 17 descriptions for named-but-unminted cases.",
+  "proposed_broadenings": [
+    {
+      "id": "agreement.prenominal_allomorph",
+      "action": "BROADEN — highest-value item in this pass",
+      "current": "bello/buono adjectives only (my pass-1 id, carrying the note 'CROSS-KIND-IN-WAITING: same sound-conditioned selection as the articles il/lo/l'').",
+      "proposed": "Any pre-nominal form whose allomorph is selected by the FOLLOWING SOUND: definite/indefinite articles (il studente, un'amico, una amica), demonstratives (quello libro, quei studenti), the adjectives (bel/bello, buon/buono, san/santo, gran/grande), and articulated prepositions (al stadio for allo stadio, dello pane for del pane, dei uccelli for degli uccelli).",
+      "why": "The cross-kind-in-waiting note has come true. One rule, five surfaces, currently one narrow id. This is the DESIGN §15 payoff in its purest form and it is sitting unclaimed.",
+      "harvested_from": [
+        "article.definite.forms",
+        "article.indefinite.forms",
+        "demonstrative.quello",
+        "preposition.articulated.formation",
+        "preposition.articulated.di_partitive",
+        "adjective_agreement.special.santo_san",
+        "adjective_agreement.special.grande_prenominal",
+        "adjective_agreement.special.quello"
+      ]
+    },
+    {
+      "id": "transfer",
+      "action": "BROADEN the family definition",
+      "current": "'the learner's first language (English)'.",
+      "proposed": "L1 or prior-language interference generally, not English alone.",
+      "why": "The corpus contains non-English calques the current definition excludes: 'libros'/'amicos'/'casas' (Spanish-shaped -s plurals), 'la citta la piu bella' (French-style article repetition, comparison.superlative.relative), 'per' from English-by via Spanish (passive.formation.agent_da, which the bucket prose itself attributes to Spanish). Under the current wording these are not taggable as transfer at all.",
+      "harvested_from": [
+        "noun.plural.regular",
+        "comparison.superlative.relative",
+        "passive.formation.agent_da"
+      ]
+    },
+    {
+      "id": "regularisation.invariable_adjective",
+      "action": "BROADEN to invariable WORDS",
+      "current": "invariable adjectives (rosa, verde scuro).",
+      "proposed": "Any invariable word wrongly inflected: nouns (le citta's, i films italianised, filmi), adverbs (molte stanche - agreement leaking onto the adverb), indefinites (nessuni, ciascuni, qualunqui, ogni inflected as ogna/ognie).",
+      "why": "Same error, four word classes. Cheaper than four siblings.",
+      "harvested_from": [
+        "noun.plural.invariable",
+        "adverb.usage.invariable_vs_adjective",
+        "indefinite.pronouns.nessuno_niente",
+        "indefinite.free_choice.qualunque_qualsiasi",
+        "indefinite.core.ogni"
+      ]
+    },
+    {
+      "id": "agreement.auxiliary_person",
+      "action": "BROADEN or add a sibling — see agreement.subject_verb_finite below",
+      "current": "'subject-verb agreement failure on the AUXILIARY'.",
+      "proposed": "Either widen to any finite verb, or mint the sibling. Live guards are main-verb, not auxiliary.",
+      "harvested_from": []
+    }
+  ],
+  "proposed_new_specifics": [
+    {
+      "$status": "PENDING",
+      "proposed_id": "agreement.subject_verb_finite",
+      "family": "agreement",
+      "proposed_label": "Finite verb not agreeing with its subject",
+      "proposed_description": "A finite main verb conjugated for the wrong person/number relative to its grammatical subject. Distinct from agreement.auxiliary_person, which its description scopes to the auxiliary only.",
+      "examples": [
+        "mi piace i libri / mi piacciono la pizza",
+        "c'e due camere (existential)",
+        "si vende libri (si passivante)",
+        "ci vuole due ore (volerci)",
+        "plural verb after qualcuno / ognuno / chiunque"
+      ],
+      "harvested_from": [
+        "piacere.form.agreement",
+        "piacere.form.with_infinitive",
+        "existential.form.plural",
+        "existential.form.past",
+        "si_constructions.passivante.agreement",
+        "si_constructions.passivante.vs_impersonal",
+        "si_constructions.impersonal.basic",
+        "pronominal_verbs.mechanics.ci_type",
+        "indefinite.pronouns.qualcuno_qualcosa",
+        "indefinite.pronouns.ognuno_ciascuno",
+        "indefinite.free_choice.chiunque"
+      ],
+      "note": "BIG cross-kind: five topics, one agreement rule. Probably the largest single uncovered pattern after preposition choice."
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "paradigm_confusion.preposition_choice",
+      "family": "paradigm_confusion",
+      "proposed_label": "Wrong preposition chosen",
+      "proposed_description": "Selecting the wrong member of the closed preposition set for the role: place, motion, time, means/manner, and the di/da/che contrasts. The chosen preposition is a real word, wrong for the job — the paradigm_confusion shape.",
+      "examples": [
+        "in Roma (for a Roma); a Italia (for in Italia)",
+        "da for destination; a for origin",
+        "con treno (for in treno); in piedi (for a piedi)",
+        "piu alto che Luca (for di Luca)",
+        "da for possession (for di)"
+      ],
+      "harvested_from": [
+        "preposition.simple.forms",
+        "preposition.usage.place",
+        "preposition.usage.time",
+        "preposition.usage.motion",
+        "preposition.usage.means_manner",
+        "preposition.usage.di_uses",
+        "preposition.usage.da_special",
+        "preposition.discrimination.a_vs_in_place",
+        "preposition.discrimination.di_vs_da",
+        "comparison.comparative.piu_meno_di",
+        "comparison.comparative.di_vs_che"
+      ],
+      "note": "THE largest uncovered surface: 123 live guards in preposition alone, plus comparison's di/che. Currently no id anywhere in the registry names a preposition error."
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "paradigm_confusion.preposition_verb_governed",
+      "family": "paradigm_confusion",
+      "proposed_label": "Wrong preposition after a governing verb",
+      "proposed_description": "The preposition a verb lexically governs, got wrong (di studiare for a studiare). Kept separate from preposition_choice because it is a different learner state: memorised per-verb, not derivable from a rule, so the drill-down should not blur it with the rule-governed cases.",
+      "examples": [
+        "di studiare (for a studiare)",
+        "a lavorare (for di lavorare)",
+        "mi ha detto venire (missing di)"
+      ],
+      "harvested_from": [
+        "preposition.usage.verb_governed",
+        "reported_speech.commands"
+      ],
+      "note": ""
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "paradigm_confusion.relative_choice",
+      "family": "paradigm_confusion",
+      "proposed_label": "Wrong relative pronoun chosen",
+      "proposed_description": "Selecting the wrong member of the relative paradigm: che/cui/il quale/chi/dove.",
+      "examples": [
+        "cui for a direct object",
+        "che used after a preposition",
+        "che for a place instead of dove/in cui",
+        "che for chi"
+      ],
+      "harvested_from": [
+        "relative_pronoun.che.direct_object",
+        "relative_pronoun.cui.with_preposition",
+        "relative_pronoun.chi",
+        "relative_pronoun.neuter",
+        "relative_pronoun.dove",
+        "relative_pronoun.il_quale.for_clarity"
+      ],
+      "note": ""
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "paradigm_confusion.connective_choice",
+      "family": "paradigm_confusion",
+      "proposed_label": "Wrong connective chosen",
+      "proposed_description": "Selecting the wrong member of the connective set, including direction flips (quindi where a cause is meant) and register mismatches within the set.",
+      "examples": [
+        "quindi where a cause is being given",
+        "invece for plain objection",
+        "infine for allora",
+        "poiche in casual speech"
+      ],
+      "harvested_from": [
+        "connective.result.quindi_percio",
+        "connective.contrast.pero_invece",
+        "connective.discourse",
+        "connective.cause.register_set",
+        "connective.cause.siccome_perche"
+      ],
+      "note": ""
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "paradigm_confusion.adverb_vs_adjective",
+      "family": "paradigm_confusion",
+      "proposed_label": "Adjective used where the adverb is required",
+      "proposed_description": "Reaching for the adjective form where Italian needs the adverb (or the reverse), chiefly bene/buono.",
+      "examples": [
+        "cucina buono (for cucina bene)",
+        "parlo italiano molto buono",
+        "sto buono (means 'I behave')"
+      ],
+      "harvested_from": [
+        "adverb.usage.bene_vs_buono"
+      ],
+      "note": ""
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "regularisation.irregular_plural",
+      "family": "regularisation",
+      "proposed_label": "Irregular noun plural regularised",
+      "proposed_description": "Forming an irregular plural by the regular rule: suppletive plurals, the -o/-a body-part plurals, and irregular compounds.",
+      "examples": [
+        "uomos / uomi / omini (for uomini)",
+        "uovi (for uova)",
+        "bracci for the body part (for braccia)",
+        "capilavori (for capolavori)"
+      ],
+      "harvested_from": [
+        "noun.plural.irregular",
+        "noun.plural.compound"
+      ],
+      "note": "NAMED-BUT-UNMINTED: the regularisation family description already lists 'irregular plurals' as in scope. Live guards, no id, since the family was written."
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "regularisation.irregular_comparative",
+      "family": "regularisation",
+      "proposed_label": "Irregular comparative/superlative regularised",
+      "proposed_description": "Building a periphrastic comparative on an adjective that has a suppletive one, or stacking the two.",
+      "examples": [
+        "piu migliore / piu peggiore (the double comparative)",
+        "piu maggiore / piu minore",
+        "buonissimo forced where ottimo is idiomatic; cattivissimo for pessimo",
+        "molto bellissimo (stacking)"
+      ],
+      "harvested_from": [
+        "comparison.comparative.irregular_adjectives",
+        "comparison.superlative.irregular",
+        "comparison.superlative.absolute"
+      ],
+      "note": "NAMED-BUT-UNMINTED: the regularisation family description already lists 'irregular comparatives'. Second instance in the same family."
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "regularisation.noun_class_plural",
+      "family": "regularisation",
+      "proposed_label": "Noun pluralised on the wrong class",
+      "proposed_description": "Applying another declension class's plural ending (casi for case, libre for libri, fiore for fiori).",
+      "examples": [
+        "casi (for case)",
+        "libre (for libri)",
+        "studentes / fiores"
+      ],
+      "harvested_from": [
+        "noun.plural.regular"
+      ],
+      "note": "Sibling of conjugation_class.* on the noun side; architecture may prefer it under conjugation_class if that family is read as 'wrong inflectional class' generally."
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "transfer.foreign_s_plural",
+      "family": "transfer",
+      "proposed_label": "Plural formed with -s",
+      "proposed_description": "Forming an Italian plural by adding -s, from English/Spanish. Depends on the transfer broadening above (Spanish-shaped, not English).",
+      "examples": [
+        "libros / casas / amicos / uomos",
+        "citta's / films / res / cittas"
+      ],
+      "harvested_from": [
+        "noun.plural.regular",
+        "noun.plural.spelling",
+        "noun.plural.invariable"
+      ],
+      "note": ""
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "agreement.noun_gender_lexical",
+      "family": "agreement",
+      "proposed_label": "Wrong lexical gender assigned to the noun",
+      "proposed_description": "Assigning the noun the wrong gender - typically misled by its ending - after which the article and adjectives agree correctly with the WRONG gender. The error is lexical knowledge, not the agreement operation.",
+      "examples": [
+        "la problema / il mano / la tema",
+        "la libro / il casa",
+        "assuming every -e noun is feminine"
+      ],
+      "harvested_from": [
+        "noun.gender.regular",
+        "noun.gender.e_ending",
+        "noun.gender.irregular"
+      ],
+      "note": "FLAG: sits awkwardly in agreement (the agreement itself is executed correctly). The misleading-ending mechanism is closer to the reserved-and-empty false_friend family. Architecture's call."
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "discrimination.no_backshift_over_extension",
+      "family": "discrimination",
+      "proposed_label": "Backshift applied where none is needed",
+      "proposed_description": "Back-shifting the embedded clause after a PRESENT reporting verb, where the original tense should stand. The mirror of discrimination.sequence_of_tenses; the learner has learnt the rule and over-applies it.",
+      "examples": [
+        "dice che era stanco (for dice che e stanco)"
+      ],
+      "harvested_from": [
+        "reported_speech.tense_shift.no_shift"
+      ],
+      "note": "Minted as a MIRROR from birth per the v5 direction rule, rather than merged into sequence_of_tenses - which is the mistake I made in pass 1 and am not repeating."
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "discrimination.deixis_not_shifted",
+      "family": "discrimination",
+      "proposed_label": "Deictics not shifted inside a report",
+      "proposed_description": "Leaving time/place/person deictics anchored to the original utterance inside a report made later.",
+      "examples": [
+        "domani left in place inside a report anchored days later",
+        "possessives failing to shift person"
+      ],
+      "harvested_from": [
+        "reported_speech.deixis"
+      ],
+      "note": ""
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "word_order.negation_elements",
+      "family": "word_order",
+      "proposed_label": "Negation elements misplaced",
+      "proposed_description": "Misplacing non or its partner: clitic before non, English adverb order, dropping non in the bipartite frame, or keeping non with a preverbal negative.",
+      "examples": [
+        "Lo non vedo (clitic before non)",
+        "bevo mai (non dropped) / mai bevo (English order)",
+        "Non nessuno e venuto",
+        "c'e non tempo",
+        "mica before the verb with non"
+      ],
+      "harvested_from": [
+        "negation.core.non_position",
+        "negation.core.bipartite",
+        "negation.core.concord",
+        "negation.correlative",
+        "negation.mica",
+        "existential.form.negative"
+      ],
+      "note": "word_order already hosts adjective/clitic/adverb-aux placement; this is the negation arm."
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "word_order.adverb_position",
+      "family": "word_order",
+      "proposed_label": "Adverb misplaced relative to the verb",
+      "proposed_description": "English-style pre-verb adverb placement, and adverb wedged between verb and direct object.",
+      "examples": [
+        "lei bene parla (for lei parla bene)"
+      ],
+      "harvested_from": [
+        "adverb.usage.position"
+      ],
+      "note": "Co-tags transfer. Distinct from word_order.adverb_aux_participle (which is the aux+participle block)."
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "derivation.mente_formation",
+      "family": "derivation",
+      "proposed_label": "-mente adverb built on the wrong base",
+      "proposed_description": "Building the -mente adverb on the masculine rather than the feminine adjective, failing to drop the final -e of -le/-re adjectives, or inventing -mente forms where none exists.",
+      "examples": [
+        "lentomente (masculine base)",
+        "facilemente / regolaremente (undropped e)",
+        "benemente (invented)"
+      ],
+      "harvested_from": [
+        "adverb.formation.mente_regular",
+        "adverb.formation.mente_le_re",
+        "adverb.formation.primary"
+      ],
+      "note": ""
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "derivation.alterato_misuse",
+      "family": "derivation",
+      "proposed_label": "Evaluative suffix misused or misread",
+      "proposed_description": "Free-generating alterato suffixes on nouns that do not take them, missing the gender shift, or reading a lexicalised form as an alterato.",
+      "examples": [
+        "free-generating diminutives on any noun",
+        "la portona (missed gender shift to il portone)",
+        "reading every -etto/-accia as an alterato",
+        "-accio read as size rather than pejorative"
+      ],
+      "harvested_from": [
+        "word_formation.alterati.diminutives",
+        "word_formation.alterati.augmentative_pejorative",
+        "word_formation.alterati.falsi",
+        "word_formation.alterati.augmentative_pejorative.gender_shift"
+      ],
+      "note": ""
+    },
+    {
+      "$status": "PENDING",
+      "proposed_id": "derivation.prefix_misuse",
+      "family": "derivation",
+      "proposed_label": "Derivational prefix misused or misread",
+      "proposed_description": "Applying an intensifier prefix where it does not go, or misreading a prefix's contribution.",
+      "examples": [
+        "stra- on verbs/nouns where it does not go",
+        "missing that arcistufo IS a superlative",
+        "neo- read as a meaning change rather than newness"
+      ],
+      "harvested_from": [
+        "word_formation.prefixes.intensifiers",
+        "word_formation.prefixes.neo_ex"
+      ],
+      "note": ""
+    }
+  ],
+  "proposed_new_family": {
+    "family": "derivation",
+    "label": "Word formation / derivation",
+    "cross_kind": true,
+    "description": "Errors in building a word from another word: evaluative suffixes (alterati), derivational prefixes, and the -mente adverb. Distinct from inflection (agreement, conjugation_class, regularisation), which varies a word within its paradigm; derivation makes a NEW lexeme. The word_formation topic and the adverb tree's -mente formation have no home in the current 17.",
+    "harvested_from": [
+      "word_formation.*",
+      "adverb.formation.*"
+    ]
+  },
+  "deferred_not_forced": [
+    {
+      "buckets": [
+        "negation.restrictive",
+        "negation.pleonastic.finche_flip",
+        "negation.pleonastic.a_meno_che",
+        "pronominal_verbs.meaning.core_set",
+        "existential.usage.idioms",
+        "si_constructions.usage.which_si",
+        "si_constructions.usage.attached_signs",
+        "piacere.usage.liking_people",
+        "piacere.usage.dispiacere",
+        "comparison.comparative.migliore_vs_meglio",
+        "connective.contrast.comunque_anzi",
+        "passive.formation.andare",
+        "passive.formation.venire",
+        "word_formation.alterati.falsi"
+      ],
+      "reason": "These are COMPREHENSION/reading misses ('reading non...che as a real negation', 'ce l'ha con me parsed as possession', 'reading mi piaci as you like me'). discrimination.narrative_imperfect_reading is the only reading-side id in the registry and Architecture flagged it as such at v4. There is a real question here - does the registry want a reading-side arm, or are comprehension misses out of scope? - and it is too big to answer by minting quietly. Raised at thread v15; not forced into a production-side id."
+    }
+  ]
+}

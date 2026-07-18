@@ -725,7 +725,15 @@ main {
    the learner is looking at the tile when it fires. Slower and stronger than
    the old 600ms wash, which was over before the scroll arrived. */
 .live-bucket-row.fresh-flash,
-.overview-cell.fresh-flash { animation: fresh-flash-strong 1400ms ease-in-out 1; }
+.overview-mini.fresh-flash { animation: fresh-flash-strong 1400ms ease-in-out 1; }
+.overview-dot.fresh-flash { animation: fresh-dot-flash 1400ms ease-in-out 1; position: relative; z-index: 3; }
+@keyframes fresh-dot-flash {
+  0%   { transform: scale(1);   box-shadow: none; }
+  20%  { transform: scale(1.9); box-shadow: 0 0 0 3px var(--accent); }
+  45%  { transform: scale(1.2); box-shadow: 0 0 0 1px var(--accent); }
+  65%  { transform: scale(1.9); box-shadow: 0 0 0 3px var(--accent); }
+  100% { transform: scale(1);   box-shadow: none; }
+}
 @keyframes fresh-flash-strong {
   0%   { background: transparent;      box-shadow: none; }
   18%  { background: var(--amber-soft); box-shadow: 0 0 0 3px var(--accent); }
@@ -754,6 +762,13 @@ main {
 .entry-vocab-summary { color: var(--muted); font-size: 13px; margin: 6px 0 2px; }
 .entry-special-drills { border: 1px solid rgba(128,128,128,0.35); border-radius: 8px; padding: 8px 12px 10px; margin-top: 14px; }
 .entry-special-drills .entry-config-head { margin-top: 0; }
+
+/* In-session level toggles (entry_load_and_level_strip v4): set semantics in
+   the filter bar, matching the welcome strip's mental model. */
+.filter-chip-levels { display: inline-flex; align-items: center; gap: 3px; }
+.level-toggle { font-size: 12px; padding: 2px 7px; border-radius: 10px; border: 1px solid var(--line); background: transparent; cursor: pointer; color: var(--muted); }
+.level-toggle.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+.level-toggle:hover { border-color: var(--accent); }
 
 /* Ratified category picker (display_theme_grouping v3/v4): section headers,
    sub-theme rows, and the "..." expander that reveals them. */

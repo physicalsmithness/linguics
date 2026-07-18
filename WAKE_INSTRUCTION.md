@@ -22,7 +22,11 @@ Short by design: it has to survive being pasted thirty times. Everything it reli
    - **A real outstanding task?** That, and only that, is your queue.
 
 3. **Tell Smith, in chat, before you write anything**: your queue, what you need from him, what you propose next.
-   State any decision as a **discrete choice with options**, never as prose. The file never replaces speaking to him.
+   **Put any decision at the END of your chat message, IN PROSE, as a lettered choice with options and your
+   recommendation** — and mirror it in your `_status` file as `needs_from_smith: decision`.
+   **NEVER use the interactive question popups.** They write nothing to disk, so the board and the architect's
+   ledger cannot see the decision; they halt your turn; and they strand you if Smith steps away. A decision that
+   only ever existed in a popup is a ruling with no record. The file never replaces speaking to him.
 
 4. **Then write `_status/<YourSeat>.md`** per `_status/README.md` — a strict subset of what you just told him.
    Include `classes:`. Write it bash-side (atomic temp + rename); the Edit tool truncates on this mount.

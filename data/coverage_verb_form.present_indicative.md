@@ -73,6 +73,21 @@ This convention is now **criterion 15 in AUTHOR_BRIEF Revision 8** (Architecture
 
 Per `inter_chat/Architecture_PresentFormationAuthor_cue_person_redundancy.md` (CLOSED) and AUTHOR_BRIEF criterion 13 cue-economy note (Rev 9): the cue parenthetical names the person only when the prompt does not already supply the subject. **75 items** drop the person (67 with an explicit subject pronoun, 8 with an unambiguous nominal subject); **16 pro-drop items** keep it (no surface subject, so the person is the only thing fixing the wanted form). The verb stays in every cue; marking is unaffected (the cue is not matched). Three kept-cued items lean on the cue to exclude a competing reading (aprire 2pl, cominciare 2sg, svegliarsi 2sg); see the thread.
 
+## Update 2026-07-17: Rev 25 cue-level retrofit + sedere reword
+
+Thread: `inter_chat/Architecture_PresentFormationAuthor_rev25_and_stamps.md`.
+
+**Rev 25** conditions criterion 20's citation-form exemption on LEVEL. Audit of all 91 cues found **6** whose cue is a lemma-with-attached-clitic (the `esserci` shape): `chiamarsi`, `svegliarsi`, `lavarsi` ×2, `alzarsi` (A1) and `vestirsi` (A2). Smith ruled: gloss all six. They now carry a bracketed English target and `prompt_supplies_base_form: false`. The other 85 cue a plain infinitive to conjugate — the honest operand, still exempt.
+
+Two authoring notes worth keeping for anyone glossing reflexives:
+
+- The gloss must **pin the reflexive**. A bare `[washes]` on `pres_refl_lavarsi_3sg_01` would invite `lava`, which is that item's own guard — luring the learner into the miss and misdiagnosing it as failed reflexive assembly. Hence `[washes her own hands]`, `[wash themselves]`.
+- The Italian `-si` lemma left `vocab_help` (a button label re-leaks what the gloss removed) and returned keyed on the English gloss word (`lemma: "wake up"`, `language: "en"`, reveal `to wake up - svegliarsi`). Without that, a learner who doesn't know the verb takes a **reflexive_assembly** miss for a **vocabulary** gap. Glossing moves knowledge out of the prompt; `vocab_help` is where it has to land.
+
+**Cr17Sweep observation actioned**: `pres_irr_ditt_sedere_1pl_01` reworded from "Noi sediamo in giardino a chiacchierare" (an action, which pulls Italian to `ci sediamo`) to **"Noi sediamo sempre in prima fila."** — the stative frame the accepted 1sg item uses, so the pair now differs only in person.
+
+**Criterion 17**: discharged for this topic by Cr17Sweep (all 91 bare items glossed, marker replica identical, zero marking deltas). **Criterion 13**: self-audit run, 91 prompts, zero rule-naming hits. Both awaiting Architecture stamps; seats do not stamp themselves.
+
 ## Notes for later dispatches
 
 - **PresentUsage** (the `verb_form.present_indicative.usage` stub) will own: habitual / gnomic / now readings, present-for-near-future, historic present, polite/performative uses, impersonal `si`, and the `stare + gerundio` progressive (which cross-references the gerundio tree). None authored here.

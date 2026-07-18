@@ -4037,7 +4037,7 @@
     "subtopic": "formation.irregular.dittongo",
     "difficulty": 3,
     "cefr_level_target": "B1",
-    "prompt": "Completa: 'Noi ____ in giardino a chiacchierare.' (sedere)",
+    "prompt": "Completa: 'Noi ____ sempre in prima fila.' (sedere)",
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": true,
@@ -4066,27 +4066,27 @@
         "aspects": {
           "translation": {
             "reveal": "sedere - to sit",
-            "bucket": "vocabulary.it.sedere.verb.translation"
+            "bucket": "vocabulary.it.sedere.translation"
           }
         }
       },
       {
-        "lemma": "giardino",
+        "lemma": "fila",
         "language": "it",
         "aspects": {
           "translation": {
-            "reveal": "giardino - garden",
-            "bucket": "vocabulary.it.giardino.noun.translation"
+            "reveal": "fila - row / line",
+            "bucket": "vocabulary.it.fila.translation"
           },
           "gender": {
-            "reveal": "masculine (m)",
-            "bucket": "vocabulary.it.giardino.noun.gender"
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.fila.gender"
           }
         }
       }
     ],
-    "explanation": "'We sit in the garden chatting': Noi sediamo in giardino a chiacchierare. With the stress on the ending, the diphthong collapses back to a plain e: sed- + -iamo gives sediamo. The ie only survives in the four stem-stressed forms, never in noi or voi.",
-    "version": 1
+    "explanation": "'We always sit in the front row': Noi sediamo sempre in prima fila. With the stress on the ending, the diphthong collapses back to a plain e: sed- + -iamo gives sediamo. The ie only survives in the four stem-stressed forms, never in noi or voi.",
+    "version": 2
   },
   {
     "external_id": "pres_irr_ditt_morire_1sg_01",
@@ -4543,10 +4543,10 @@
     "subtopic": "formation.reflexive_assembly",
     "difficulty": 1,
     "cefr_level_target": "A1",
-    "prompt": "Completa: 'Io ____ Marco.' (chiamarsi)",
+    "prompt": "Completa: 'Io ____ Marco.' [my name is]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "prompt_supplies_base_form": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -4568,18 +4568,18 @@
     ],
     "vocab_help": [
       {
-        "lemma": "chiamarsi",
-        "language": "it",
+        "lemma": "my name is",
+        "language": "en",
         "aspects": {
           "translation": {
-            "reveal": "chiamarsi - to be called / to call oneself",
-            "bucket": "vocabulary.it.chiamarsi.verb.translation"
+            "reveal": "to be called - chiamarsi",
+            "bucket": "vocabulary.it.chiamarsi.translation"
           }
         }
       }
     ],
     "explanation": "'My name is Marco': Io mi chiamo Marco. A reflexive verb pairs the verb with a reflexive pronoun that matches the subject. For io the pronoun is mi, placed before the conjugated verb: mi chiamo, literally 'I call myself'. The pronoun is what makes it 'my name is'.",
-    "version": 1,
+    "version": 2,
     "examiner_note": "One skill: the pronoun-plus-verb assembly. Single combined slot."
   },
   {
@@ -4589,10 +4589,10 @@
     "subtopic": "formation.reflexive_assembly",
     "difficulty": 1,
     "cefr_level_target": "A1",
-    "prompt": "Completa: 'A che ora ____ la mattina?' (svegliarsi, tu)",
+    "prompt": "Completa: 'A che ora ____ la mattina?' [do you wake up, informal]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "prompt_supplies_base_form": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -4614,18 +4614,32 @@
     ],
     "vocab_help": [
       {
-        "lemma": "svegliarsi",
+        "lemma": "wake up",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to wake up - svegliarsi",
+            "bucket": "vocabulary.it.svegliarsi.translation"
+          }
+        }
+      },
+      {
+        "lemma": "mattina",
         "language": "it",
         "aspects": {
           "translation": {
-            "reveal": "svegliarsi - to wake up",
-            "bucket": "vocabulary.it.svegliarsi.verb.translation"
+            "reveal": "mattina - morning",
+            "bucket": "vocabulary.it.mattina.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.mattina.gender"
           }
         }
       }
     ],
     "explanation": "'What time do you wake up in the morning?': A che ora ti svegli la mattina? For tu the reflexive pronoun is ti, and the verb takes its own tu ending: ti svegli. Both pieces have to agree with the subject, so a tu sentence needs ti and the -i verb form together.",
-    "version": 1
+    "version": 2
   },
   {
     "external_id": "pres_refl_lavarsi_3sg_01",
@@ -4634,10 +4648,10 @@
     "subtopic": "formation.reflexive_assembly",
     "difficulty": 1,
     "cefr_level_target": "A1",
-    "prompt": "Completa: 'Lei ____ le mani prima di mangiare.' (lavarsi)",
+    "prompt": "Completa: 'Lei ____ le mani prima di mangiare.' [washes her own hands]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "prompt_supplies_base_form": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -4659,32 +4673,32 @@
     ],
     "vocab_help": [
       {
-        "lemma": "lavarsi",
-        "language": "it",
+        "lemma": "washes",
+        "language": "en",
         "aspects": {
           "translation": {
-            "reveal": "lavarsi - to wash (oneself)",
-            "bucket": "vocabulary.it.lavarsi.verb.translation"
+            "reveal": "to wash (oneself) - lavarsi",
+            "bucket": "vocabulary.it.lavarsi.translation"
           }
         }
       },
       {
-        "lemma": "mano",
+        "lemma": "mani",
         "language": "it",
         "aspects": {
           "translation": {
             "reveal": "mano - hand (mani = hands)",
-            "bucket": "vocabulary.it.mano.noun.translation"
+            "bucket": "vocabulary.it.mano.translation"
           },
           "gender": {
             "reveal": "feminine (f)",
-            "bucket": "vocabulary.it.mano.noun.gender"
+            "bucket": "vocabulary.it.mano.gender"
           }
         }
       }
     ],
     "explanation": "'She washes her hands before eating': Lei si lava le mani prima di mangiare. For lui / lei the reflexive pronoun is si, before the verb: si lava. The pronoun marks the action as turning back on the subject, the difference between 'lava' (washes something) and 'si lava' (washes herself).",
-    "version": 1
+    "version": 2
   },
   {
     "external_id": "pres_refl_alzarsi_1pl_01",
@@ -4693,10 +4707,10 @@
     "subtopic": "formation.reflexive_assembly",
     "difficulty": 1,
     "cefr_level_target": "A1",
-    "prompt": "Completa: 'Noi ____ presto ogni giorno.' (alzarsi)",
+    "prompt": "Completa: 'Noi ____ presto ogni giorno.' [we get up]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "prompt_supplies_base_form": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -4718,18 +4732,18 @@
     ],
     "vocab_help": [
       {
-        "lemma": "alzarsi",
-        "language": "it",
+        "lemma": "get up",
+        "language": "en",
         "aspects": {
           "translation": {
-            "reveal": "alzarsi - to get up / to stand up",
-            "bucket": "vocabulary.it.alzarsi.verb.translation"
+            "reveal": "to get up - alzarsi",
+            "bucket": "vocabulary.it.alzarsi.translation"
           }
         }
       }
     ],
     "explanation": "'We get up early every day': Noi ci alziamo presto ogni giorno. For noi the reflexive pronoun is ci, paired with the -iamo verb form: ci alziamo. The pronoun and the ending both carry the 'we' meaning, so they must match.",
-    "version": 1
+    "version": 2
   },
   {
     "external_id": "pres_refl_lavarsi_3pl_01",
@@ -4738,10 +4752,10 @@
     "subtopic": "formation.reflexive_assembly",
     "difficulty": 1,
     "cefr_level_target": "A1",
-    "prompt": "Completa: 'I bambini ____ prima di cena.' (lavarsi)",
+    "prompt": "Completa: 'I bambini ____ prima di cena.' [wash themselves]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "prompt_supplies_base_form": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -4763,22 +4777,22 @@
     ],
     "vocab_help": [
       {
-        "lemma": "lavarsi",
-        "language": "it",
+        "lemma": "wash themselves",
+        "language": "en",
         "aspects": {
           "translation": {
-            "reveal": "lavarsi - to wash (oneself)",
-            "bucket": "vocabulary.it.lavarsi.verb.translation"
+            "reveal": "to wash (oneself) - lavarsi",
+            "bucket": "vocabulary.it.lavarsi.translation"
           }
         }
       },
       {
-        "lemma": "bambino",
+        "lemma": "bambini",
         "language": "it",
         "aspects": {
           "translation": {
             "reveal": "bambino - child",
-            "bucket": "vocabulary.it.bambino.noun.translation"
+            "bucket": "vocabulary.it.bambino.translation"
           }
         }
       },
@@ -4788,17 +4802,17 @@
         "aspects": {
           "translation": {
             "reveal": "cena - dinner / supper",
-            "bucket": "vocabulary.it.cena.noun.translation"
+            "bucket": "vocabulary.it.cena.translation"
           },
           "gender": {
             "reveal": "feminine (f)",
-            "bucket": "vocabulary.it.cena.noun.gender"
+            "bucket": "vocabulary.it.cena.gender"
           }
         }
       }
     ],
     "explanation": "'The children have a wash before dinner': I bambini si lavano prima di cena. For loro the reflexive pronoun is si, the same word as the singular, paired with the -ano verb form: si lavano. Context and the verb ending tell the singular si lava from the plural si lavano.",
-    "version": 1
+    "version": 2
   },
   {
     "external_id": "pres_refl_vestirsi_2pl_01",
@@ -4807,10 +4821,10 @@
     "subtopic": "formation.reflexive_assembly",
     "difficulty": 2,
     "cefr_level_target": "A2",
-    "prompt": "Completa: 'Per la festa voi ____ sempre eleganti.' (vestirsi)",
+    "prompt": "Completa: 'Per la festa voi ____ sempre eleganti.' [you dress]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "prompt_supplies_base_form": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -4832,28 +4846,28 @@
     ],
     "vocab_help": [
       {
-        "lemma": "vestirsi",
-        "language": "it",
+        "lemma": "dress",
+        "language": "en",
         "aspects": {
           "translation": {
-            "reveal": "vestirsi - to get dressed / to dress",
-            "bucket": "vocabulary.it.vestirsi.verb.translation"
+            "reveal": "to get dressed - vestirsi",
+            "bucket": "vocabulary.it.vestirsi.translation"
           }
         }
       },
       {
-        "lemma": "elegante",
+        "lemma": "eleganti",
         "language": "it",
         "aspects": {
           "translation": {
             "reveal": "elegante - elegant / smart",
-            "bucket": "vocabulary.it.elegante.adjective.translation"
+            "bucket": "vocabulary.it.elegante.translation"
           }
         }
       }
     ],
     "explanation": "'For the party you always dress smartly': Per la festa voi vi vestite sempre eleganti. For voi the reflexive pronoun is vi, with the third-conjugation -ite ending: vi vestite. As always the pronoun has to match the subject, so a voi sentence pairs vi with the voi verb form.",
-    "version": 1
+    "version": 2
   },
   {
     "external_id": "pu_hab_01",

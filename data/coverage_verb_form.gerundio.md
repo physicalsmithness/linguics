@@ -5,7 +5,7 @@
 **Date:** 2026-06-09
 **Brief revision applied:** authored against AUTHOR_BRIEF Rev 9 (the revision the dispatch supplied); **reconciled to Rev 19 on 2026-07-15**. See the reconciliation section below and `inter_chat/Architecture_GerundioAuthor_batch_delivery.md` (OPEN) for the asks arising, per Rev 18.
 
-**Totals:** 35 grammar questions + 14 translation items (EN→IT only), of which **21 grammar items carry `info_display: "suppress"`** (see chip-suppression section). Every active formation leaf is covered; no zero-coverage leaves. The usage and discrimination branches were left untouched (they are stubs owned by GerundioUsage and TenseChoice). No new buckets were needed, so `bucket_suggestions_verb_form.gerundio.json` is empty. Two glossary terms are proposed (the progressive, and the compound gerund).
+**Totals:** 35 grammar questions + 14 translation items (EN→IT only), of which **12 grammar items carry `info_display: "suppress"`** (retrofitted from 21 on 2026-07-18 after Architecture shortened the leaf labels at source; see chip-suppression section). Every active formation leaf is covered; no zero-coverage leaves. The usage and discrimination branches were left untouched (they are stubs owned by GerundioUsage and TenseChoice). No new buckets were needed, so `bucket_suggestions_verb_form.gerundio.json` is empty. Two glossary terms are proposed (the progressive, and the compound gerund).
 
 All translation items are EN→IT, because the formation buckets are `direction: "production"`: a formation bucket only fires when the learner *produces* the Italian form. English's progressive ("I am reading") maps straight onto the present progressive, which makes EN→IT the natural fit for this tree, and the bulk of the translation items exercise the progressive build.
 
@@ -65,13 +65,22 @@ The **compound-gerund items are split** (two markpoints), because there the two 
 
 ## Chip suppression (`info_display: "suppress"`)
 
-Applying criterion 15 (Rev 8) with the leak-vs-trap test:
+Applying criterion 15 with the Rev 12 terse-label rule and the Rev 19 recoverability condition. **Retrofitted 2026-07-18 from 21 to 12** per the per-leaf table ratified at `inter_chat/Architecture_GerundioAuthor_batch_delivery.md` v3.
 
-**21 grammar items suppressed**, by leaf:
+The original 21 existed because the leaf labels packed worked examples into the label slot (`-are gerund: -ando (parlando, mangiando, lavorando)`), so the breadcrumb spelled out the very ending under test. **Architecture shortened all five labels at source on 2026-07-15**, which is Rev 12's stated preference (shorten before you suppress). Against the terse labels the leak test resolves per leaf, not per batch:
 
-- **-are gerund (6), -ere/-ire gerund (8), stem-expansion irregulars (7)** — all suppressed. For the regular leaves, the breadcrumb label spells out the output ending (-ando / -endo), which *is* the skill (choosing the right ending), and its canonical examples model the stem-plus-ending operation, including for the -isc- verbs (the dormendo example hands over by analogy that -ire just adds -endo). For the irregulars, the breadcrumb names a stem class the contracted infinitive does not reveal (facendo from fare). Both are leaks, so suppressed.
+**12 grammar items suppressed:**
 
-**The 14 visible items:** all 10 progressive-assembly items and all 4 compound-gerund items. These breadcrumbs describe a *construction* (stare + gerund; avendo/essendo + participle) that the prompt's own framing already establishes (the prompt says "al presente progressivo", "il gerundio passato"), so the breadcrumb restates the cue rather than handing over a hidden class. I also avoided using `parlare` as the tested verb on any progressive item, so the breadcrumb's canonical example (`sto parlando`) never coincides with an item's answer.
+- **-ere / -ire gerund — 5 of 8.** The terse label `-ere / -ire gerund` *groups the two classes*, and that grouping is itself the teaching point: it tells an -ire learner that -ire patterns with -ere and therefore takes -endo. So it leaks on the two plain -ire items (dormire, partire) and the three -isc- items (capire, finire, preferire), which stay suppressed.
+- **Stem-expansion irregulars — all 7.** Terse or not, the label names a class membership the contracted infinitive does not reveal: nothing in `fare` says the stem expands to `fac-`, and that expansion IS the skill. This is the `-ire with -isc-` shape criterion 15 was written for.
+
+**23 visible items:**
+
+- **-are gerund (6)** — the terse label restates what the cue already gives; `(mangiare)` shows the class, and the label does not name the -ando output.
+- **Plain -ere (3: prendere, scrivere, leggere)** — same reasoning; the -ere class is visible in the cue and the grouping hint is inert for a verb already in the -ere class.
+- **Progressive (10) and compound gerund (4)** — these describe a construction the prompt's own framing already establishes ("al presente progressivo", "il gerundio passato"), so the breadcrumb restates the cue. `parlare` is deliberately never the tested verb on a progressive item, so the label's canonical example never coincided with an answer even before shortening.
+
+Rev 19's recoverability condition is satisfied throughout: every one of these is a formation item whose base form the cue supplies, so the candidate set is recoverable pre-answer and suppression remains legitimate where it is still needed.
 
 ---
 

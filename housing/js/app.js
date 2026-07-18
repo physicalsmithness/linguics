@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-18-r16";
+  const LL_BUILD = "2026-07-18-r17";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // Touch-first device (no hover, coarse pointer): tap interactions replace
   // keyboard ones. Computed once; used for tap-to-mark on MCQ.
@@ -419,42 +419,54 @@
     tSel.addEventListener("change", () => {
       if (tSel.value === "__custom__") return;   // no-op: it's the current composed state
       filterObj.topic = tSel.value;
-      filterObj.clauses = null; filterObj.cefrRange = null; filterObj.cefrLevels = null;  // in-session edit reverts to scalar
+      filterObj.clauses = null; filterObj.cefrRange = null;  // topic edit replaces the composed scope; the LEVEL SET survives (2026-07-18)
       onChange();
     });
     tChip.appendChild(tSel);
     bar.appendChild(tChip);
 
-    // ---- Level chip ----
-    const cChip = document.createElement("label");
-    cChip.className = "filter-chip" + ((filterObj.cefr || hasRange) ? " active" : "");
+    // ---- Level chip: toggle cells, same set semantics as the entry strip ----
+    // Smith (2026-07-18, live): "tried to do a1b1a2... should be allowed" - the
+    // old single-choice dropdown couldn't express a set in session. Each cell
+    // toggles that level in filterObj.cefrLevels (OR'd by the engine). A level
+    // edit PRESERVES filterObj.clauses: narrowing the level must not nuke a
+    // composed Custom mix (the old dropdown silently did exactly that).
+    const setActive = Array.isArray(filterObj.cefrLevels) && filterObj.cefrLevels.length > 0;
+    const pureRange = Array.isArray(filterObj.cefrRange) && filterObj.cefrRange.length === 2;
+    const cChip = document.createElement("span");
+    cChip.className = "filter-chip filter-chip-levels" + ((filterObj.cefr || hasRange) ? " active" : "");
     const cLbl = document.createElement("span");
     cLbl.className = "filter-chip-key";
     cLbl.textContent = "Level";
+    cLbl.title = "Tap levels to include or drop them. None selected = all levels.";
     cChip.appendChild(cLbl);
-    const cSel = document.createElement("select");
-    if (hasRange) {
-      const cr = document.createElement("option");
-      cr.value = "__custom__"; cr.textContent = cefrLabelFor(filterObj); cr.selected = true;
-      cSel.appendChild(cr);
+    const levelsPresent = uniqueValues(sourceArr, "cefr_level_target")
+      .slice().sort((a, b) => cefrIndex(a) - cefrIndex(b));
+    for (const c of levelsPresent) {
+      const idx = cefrIndex(c);
+      const on = setActive ? filterObj.cefrLevels.includes(idx)
+        : (filterObj.cefr === c || (pureRange && idx >= filterObj.cefrRange[0] && idx <= filterObj.cefrRange[1]));
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "level-toggle" + (on ? " on" : "");
+      b.textContent = c;
+      b.title = on ? "Drop " + c : "Add " + c;
+      b.addEventListener("click", () => {
+        // Migrate any scalar/range remnant into the set once, then toggle.
+        let L = Array.isArray(filterObj.cefrLevels) ? filterObj.cefrLevels.slice() : [];
+        if (!L.length) {
+          if (filterObj.cefr) { const i0 = cefrIndex(filterObj.cefr); if (i0 >= 0) L.push(i0); }
+          else if (pureRange) { for (let k = filterObj.cefrRange[0]; k <= filterObj.cefrRange[1]; k++) L.push(k); }
+        }
+        const at = L.indexOf(idx);
+        if (at >= 0) L.splice(at, 1); else L.push(idx);
+        L.sort((x, y) => x - y);
+        filterObj.cefrLevels = L.length ? L : null;
+        filterObj.cefr = ""; filterObj.cefrRange = null;
+        onChange();
+      });
+      cChip.appendChild(b);
     }
-    const cAny = document.createElement("option");
-    cAny.value = ""; cAny.textContent = "all levels";
-    if (!hasRange && !filterObj.cefr) cAny.selected = true;
-    cSel.appendChild(cAny);
-    for (const c of uniqueValues(sourceArr, "cefr_level_target")) {
-      const o = document.createElement("option");
-      o.value = c; o.textContent = c;
-      if (c === filterObj.cefr) o.selected = true;
-      cSel.appendChild(o);
-    }
-    cSel.addEventListener("change", () => {
-      if (cSel.value === "__custom__") return;
-      filterObj.cefr = cSel.value;
-      filterObj.clauses = null; filterObj.cefrRange = null; filterObj.cefrLevels = null;
-      onChange();
-    });
-    cChip.appendChild(cSel);
     bar.appendChild(cChip);
 
     // ---- Drill chip (same row, so all three restrictions read together) ----
@@ -5042,6 +5054,10 @@
     const hasEvents = !!stats;
     const mini = document.createElement("div");
     mini.className = "overview-mini";
+    // The pulse lands on the SMALL surfaces (mini-cell + the leaf dot that
+    // actually changed), not the whole topic tile - Smith's live feedback on
+    // r15 (grammar_view v9). The tile keeps .fresh as the scroll target only.
+    if (bucketIsFresh(node.id)) mini.classList.add("fresh");
     mini.title = friendlyOverviewTitle(node, stats);
     // Mid-level mini-cell also carries no rolled-up background; texture comes
     // from the leaf dots inside. The rollup signal is preserved in the
@@ -5059,6 +5075,7 @@
       const leafStats = aggregateNodeStats(leaf);
       const dot = document.createElement("span");
       dot.className = "overview-dot";
+      if (recentlyChangedBuckets.has(leaf.id)) dot.classList.add("fresh");
       dot.title = friendlyOverviewTitle(leaf, leafStats);
       dot.style.background = rwgColour(leafStats ? leafStats.correctness : 0, !!leafStats);
       dot.addEventListener("click", (e) => {
@@ -5153,7 +5170,10 @@
     // v7's mistake: .fresh animated at render, up to ~1.5s before the scroll
     // arrived, so the pulse was over before the tile was on screen (v8).
     const flashFresh = () => {
-      document.querySelectorAll("#live-stats .fresh").forEach(el => {
+      // Small surfaces only (mini-cell, leaf dot, tree row) - the whole-tile
+      // pulse read as "the big box flashing" (Smith on r15, grammar_view v9).
+      // The .overview-cell keeps .fresh purely as the scroll target.
+      document.querySelectorAll("#live-stats .overview-mini.fresh, #live-stats .overview-dot.fresh, #live-stats-content .live-bucket-row.fresh").forEach(el => {
         el.classList.remove("fresh-flash");
         void el.offsetWidth;   // restart the animation even on repeated Marks
         el.classList.add("fresh-flash");
