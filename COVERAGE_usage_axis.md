@@ -50,3 +50,18 @@ The key test: **`tense_choice` covers a function whenever that function has a CO
 ## Answer to Smith's question
 
 **Does tense_choice give us the coverage?** For CONTRASTS, yes — completely, 17 leaves, 185 items. What it structurally cannot cover is the non-contrast functions, and there are only **three high-value ones** unbuilt (future of probability, adverbial gerund, conditional politeness). Not a systemic hole; a short, nameable list — and each belongs to an author who already owns that tense's formation tree, so none needs a new seat.
+
+## EXECUTED 2026-07-17 (Smith: "a or b... why not do the thin ones now too?")
+
+Smith ruled the full build, including the two I had called thin — correctly, because they are not empty, only smaller, and I had under-rated congiuntivo especially.
+
+**Superseded (empty by right):** `passato_remoto.usage`, `trapassato_prossimo.usage`. `passato_prossimo` gets no usage branch.
+
+**Defined and dispatched (DISPATCH_usage_wave2.md), to the existing formation owners:**
+- future.usage: probability / command_promise / temporal_subordinate (3)
+- gerundio.usage: modal_means / temporal_causal (2)
+- condizionale.usage: polite / reported_future_in_past / hypothetical_apodosis (3, leaves pre-existed)
+- congiuntivo.usage: independent_exhortative / optative_wish / fixed_concessive (3)
+- imperativo.usage: pragmatic_softening (1, deliberately the only one) + the tu/Lei register leaf
+
+**On "why not the thin ones now":** agreed, and the reason I hedged was overlap-risk, not emptiness — imperativo.usage could have duplicated present.usage.instructions, congiuntivo.usage could have been mistaken for the trigger-choice. The fix for overlap-risk is drawing the boundary at dispatch, which every leaf above now carries, not deferral. Congiuntivo's independent subjunctive turned out to be the cleanest of all five: no trigger reaches it, so tense_choice structurally cannot own it. Doing them together also stops them sitting in the ambiguous stub state that caused the phantom-stub confusion in the first place.

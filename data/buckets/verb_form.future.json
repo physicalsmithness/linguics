@@ -331,7 +331,7 @@
     "parent_id": "verb_form.future",
     "language_code": "it",
     "label": "Usage",
-    "description": "STUB. When the future is the right choice and what it conveys: prediction and scheduling ('Partiremo domani'), promises and intentions, mild commands ('Farai i compiti'), and the future-of-probability / supposition about the present ('Saranno le tre', it must be about three o'clock; 'Avra fame', he's probably hungry). The present-for-future overlap (Italian often uses the plain present for a scheduled future) is a discrimination matter and lives in the discrimination branch and in tense_choice. Left at stub level for a later FutureUsage dispatch; no usage leaves are authored in the FutureFormation dispatch.",
+    "description": "When the future is the right choice and what it conveys: prediction and scheduling ('Partiremo domani'), promises and intentions, mild commands ('Farai i compiti'), and the future-of-probability / supposition about the present ('Saranno le tre', it must be about three o'clock; 'Avra fame', he's probably hungry). The present-for-future overlap (Italian often uses the plain present for a scheduled future) is a discrimination matter and lives in the discrimination branch and in tense_choice. Left at stub level for a later FutureUsage dispatch; no usage leaves are authored in the FutureFormation dispatch.",
     "cefr_importance": {
       "A1": "arcane",
       "A2": "core",
@@ -343,11 +343,84 @@
     "prerequisites": [],
     "attributes": {
       "is_aggregate": true,
-      "direction": "bidirectional",
-      "stub": true
+      "direction": "bidirectional"
     },
     "active": true,
-    "version": 1
+    "version": 1,
+    "children": [
+      {
+        "id": "verb_form.future.usage.probability",
+        "parent_id": "verb_form.future.usage",
+        "language_code": "it",
+        "label": "Future of probability",
+        "description": "The future marking a guess about the PRESENT (saranno le tre = it must be three). No contrast partner: this is the future's own function, not future-vs-present.",
+        "cefr_importance": {
+          "A1": "arcane",
+          "A2": "preview",
+          "B1": "core",
+          "B2": "review",
+          "C1": "fluency",
+          "C2": "fluency"
+        },
+        "prerequisites": [],
+        "attributes": {
+          "is_aggregate": false,
+          "direction": "bidirectional",
+          "canonical_example": "Saranno le tre; Marco avra' vent'anni",
+          "stub": true
+        },
+        "active": true,
+        "version": 1
+      },
+      {
+        "id": "verb_form.future.usage.command_promise",
+        "parent_id": "verb_form.future.usage",
+        "language_code": "it",
+        "label": "Commands and promises",
+        "description": "Emphatic / legalistic future for orders and pledges (Non ucciderai; Farai come dico; Ti prometto che verro').",
+        "cefr_importance": {
+          "A1": "arcane",
+          "A2": "arcane",
+          "B1": "preview",
+          "B2": "core",
+          "C1": "review",
+          "C2": "fluency"
+        },
+        "prerequisites": [],
+        "attributes": {
+          "is_aggregate": false,
+          "direction": "bidirectional",
+          "canonical_example": "Farai i compiti; Ti prometto che ti aiutero'",
+          "stub": true
+        },
+        "active": true,
+        "version": 1
+      },
+      {
+        "id": "verb_form.future.usage.temporal_subordinate",
+        "parent_id": "verb_form.future.usage",
+        "language_code": "it",
+        "label": "After quando / appena / finche'",
+        "description": "The future required in a temporal subordinate where English uses the present (Quando arriverai, ti chiamero').",
+        "cefr_importance": {
+          "A1": "arcane",
+          "A2": "preview",
+          "B1": "core",
+          "B2": "review",
+          "C1": "fluency",
+          "C2": "fluency"
+        },
+        "prerequisites": [],
+        "attributes": {
+          "is_aggregate": false,
+          "direction": "bidirectional",
+          "canonical_example": "Quando arriverai, chiamami; Appena potro', verro'",
+          "stub": true
+        },
+        "active": true,
+        "version": 1
+      }
+    ]
   },
   {
     "id": "verb_form.future.discrimination",

@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-18-r18";
+  const LL_BUILD = "2026-07-18-r19";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // Touch-first device (no hover, coarse pointer): tap interactions replace
   // keyboard ones. Computed once; used for tap-to-mark on MCQ.
@@ -6476,7 +6476,7 @@
 
     const sub = document.createElement("p");
     sub.className = "coverage-sub";
-    sub.textContent = "Each strip is one area at that level; it takes colour as you practise it. Tap a cell to drill in.";
+    sub.textContent = "Each stripe is one area at that level. Practised ones sink to the bottom and take colour - red through green - so the box fills as you cover the topic. Tap a cell to drill in.";
     col.appendChild(sub);
 
     const topics = grammarTopicRows();
@@ -6523,15 +6523,22 @@
           // the coverage progress.
           const leaves = bucketLeavesInScope([topic.id], level);
           const strips = document.createElement("div");
-          // Dense topics (15+ areas at one level) drop the gaps so the strips
+          // Dense topics (15+ areas at one level) drop the gaps so the stripes
           // compress into contiguous colour bands rather than overflowing.
           strips.className = "coverage-strips" + (leaves.length > 14 ? " dense" : "");
+          // HORIZONTAL stripes, sediment order (Smith 2026-07-18, v6):
+          // practised areas drop to the BOTTOM of the box so colour pools
+          // upward like a fill; unpractised faint stripes float above.
+          // Tree order is kept within each band. Colour is rwgColour - the
+          // sidebar's red-yellow-green - NOT coverageColour, whose cream-to-
+          // green ramp has no red and hid wrong answers entirely.
+          const withStats = leaves.map(leaf => ({ leaf, st: aggregateNodeStats(leaf) }));
+          const ordered = withStats.filter(x => !x.st).concat(withStats.filter(x => x.st));
           let touched = 0;
-          for (const leaf of leaves) {
-            const st = aggregateNodeStats(leaf);
+          for (const { leaf, st } of ordered) {
             const s = document.createElement("i");
             s.className = "coverage-strip" + (st ? " touched" : "");
-            if (st) { s.style.background = coverageColour(st.correctness, true); touched++; }
+            if (st) { s.style.background = rwgColour(st.correctness, true); touched++; }
             s.title = (leaf.label || leaf.id) + " · " + level + ": "
               + (st ? Math.round(st.correctness * 100) + "% (" + st.hits + " hits / " + st.n + " events)" : "not practised yet");
             strips.appendChild(s);

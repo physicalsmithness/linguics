@@ -147,7 +147,7 @@
     "parent_id": "verb_form.imperativo",
     "language_code": "it",
     "label": "Usage",
-    "description": "STUB. What the imperative does and its variants: giving commands, instructions, directions, and invitations (Vieni con me!); the softened imperative; the infinitive-as-impersonal-imperative of recipes and public signs (Mescolare bene; Non fumare); and the politeness gradient between tu and Lei. Left at stub level for a later ImperativoUsage dispatch; no usage leaves are authored in the formation dispatch.",
+    "description": "What the imperative does and its variants: giving commands, instructions, directions, and invitations (Vieni con me!); the softened imperative; the infinitive-as-impersonal-imperative of recipes and public signs (Mescolare bene; Non fumare); and the politeness gradient between tu and Lei. Left at stub level for a later ImperativoUsage dispatch; no usage leaves are authored in the formation dispatch.",
     "cefr_importance": {
       "A1": "arcane",
       "A2": "core",
@@ -159,11 +159,36 @@
     "prerequisites": [],
     "attributes": {
       "is_aggregate": true,
-      "direction": "bidirectional",
-      "stub": true
+      "direction": "bidirectional"
     },
     "active": true,
-    "version": 1
+    "version": 1,
+    "children": [
+      {
+        "id": "verb_form.imperativo.usage.pragmatic_softening",
+        "parent_id": "verb_form.imperativo.usage",
+        "language_code": "it",
+        "label": "Softeners and discourse markers",
+        "description": "Imperatives used pragmatically: frozen markers (senti, guarda, dai, forza) and softened requests (dimmi pure, si accomodi). Deliberately the ONLY usage leaf: direct instructions live in present_indicative.usage.instructions and the tu/Lei choice is the register discrimination leaf. Propose a second leaf only if the grammar demands one that duplicates neither.",
+        "cefr_importance": {
+          "A1": "arcane",
+          "A2": "preview",
+          "B1": "core",
+          "B2": "review",
+          "C1": "fluency",
+          "C2": "fluency"
+        },
+        "prerequisites": [],
+        "attributes": {
+          "is_aggregate": false,
+          "direction": "bidirectional",
+          "canonical_example": "Senti, ti va un caffe'?; Dimmi pure; Dai, andiamo!",
+          "stub": true
+        },
+        "active": true,
+        "version": 1
+      }
+    ]
   },
   {
     "id": "verb_form.imperativo.discrimination",
