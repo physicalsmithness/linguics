@@ -1688,10 +1688,17 @@ body.coverage-active #entry-screen { display: none; }
 .coverage-fill { position: absolute; bottom: 0; left: 0; right: 0; }
 /* Per-area strips (coverage_matrix_2d v5): one strip per leaf in scope,
    colour = that leaf's own state, faint when untouched. No aggregate colour. */
-.coverage-strips { display: flex; flex-direction: column; height: 100%; width: 100%; gap: 1px; align-items: stretch; }
-.coverage-strip { flex: 1 1 0; width: 100%; min-height: 1px; background: #ece7d7; }
-.coverage-strips.dense { gap: 0; }
-.coverage-strips.dense .coverage-strip { min-height: 0; }
+.coverage-strips { display: flex; flex-direction: column; height: 100%; width: 100%; gap: 0; align-items: stretch; justify-content: flex-end; }
+/* Immiscible-liquid layers (Smith): gapless, uniform 4px everywhere. The
+   coloured layers pack at the BOTTOM, the grey unpractised band sits directly
+   above them, empty cell space above that - nothing interleaves and the
+   "gas" of unpractised never holds colour up. Neighbouring same-colour
+   layers merging into a band is the intended liquid look; tooltips stay
+   per-layer. Unpractised = GREY, visible against the cream cell. */
+.coverage-strip { flex: 0 0 4px; width: 100%; background: #c9c6ba; }
+.coverage-strips.dense .coverage-strip { flex: 1 1 0; min-height: 0; }
+.coverage-group-row th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); padding: 12px 6px 3px; background: transparent; border: 0; }
+.coverage-cat-head th { font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); border: 0; }
 .coverage-strip.touched { /* background set inline per leaf */ }
 .coverage-na { background: repeating-linear-gradient(45deg, #f3efe2, #f3efe2 4px, #ece7d7 4px, #ece7d7 8px); cursor: default; opacity: .6; }
 .entry-coverage-link { display: block; width: 100%; margin-top: 18px; background: transparent; border: none; color: var(--accent); font-family: inherit; font-size: 14px; text-align: center; cursor: pointer; padding: 10px; }

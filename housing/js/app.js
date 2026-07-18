@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-18-r19";
+  const LL_BUILD = "2026-07-18-r21";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // Touch-first device (no hover, coarse pointer): tap interactions replace
   // keyboard ones. Computed once; used for tap-to-mark on MCQ.
@@ -5733,7 +5733,7 @@
       col.appendChild(panel);
     }
 
-    if (LL.state && Array.isArray(LL.state.attempts) && LL.state.attempts.length > 0) {
+    if (!LL.contentLoading && LL.state && Array.isArray(LL.state.attempts) && LL.state.attempts.length > 0) {
       const cov = document.createElement("button");
       cov.type = "button"; cov.className = "entry-coverage-link";
       cov.textContent = "See your coverage \u2192";
@@ -6457,6 +6457,16 @@
     const host = document.getElementById("coverage-view");
     if (!host) return;
     host.innerHTML = "";
+    if (LL.contentLoading) {
+      // Never render the matrix off the inline samples (four sample rows
+      // presented as your whole coverage). The loader re-renders this view
+      // in place when real content lands.
+      const wait = document.createElement("p");
+      wait.className = "entry-loading";
+      wait.textContent = "Loading your exercises\u2026";
+      host.appendChild(wait);
+      return;
+    }
     const col = document.createElement("div");
     col.className = "coverage-col";
 
@@ -6476,7 +6486,7 @@
 
     const sub = document.createElement("p");
     sub.className = "coverage-sub";
-    sub.textContent = "Each stripe is one area at that level. Practised ones sink to the bottom and take colour - red through green - so the box fills as you cover the topic. Tap a cell to drill in.";
+    sub.textContent = "Each stripe is one area: grey until practised, then red through green, sinking to the bottom as the box fills. Taller boxes hold more areas; hatched cells aren\u2019t in scope at that level. Tap a cell to drill in.";
     col.appendChild(sub);
 
     const topics = grammarTopicRows();
@@ -6500,38 +6510,74 @@
     thead.appendChild(htr); table.appendChild(thead);
 
     const tbody = document.createElement("tbody");
+    // Uniform stripe unit + per-row heights (coverage_matrix_2d v8): a stripe
+    // is the same thickness EVERYWHERE, so stripe count is comparable at a
+    // glance and a taller box means more areas. Row height = the row's
+    // biggest cell, capped; a cell that still can't fit compresses (dense).
+    const UNIT = 4;                 // one 4px layer per area, gapless (liquid layers)
+    const ROW_MIN = 34, ROW_MAX = 140;
+    const scopeOf = (topic, level) => bucketLeavesInScope([topic.id], level);
+    // Transposed: a category header row spanning each part's topic columns.
+    if (coverageTransposed) {
+      const ctr = document.createElement("tr");
+      ctr.className = "coverage-cat-head";
+      ctr.appendChild(document.createElement("th"));
+      let k = 0;
+      while (k < colAxis.length) {
+        const part = colAxis[k].part;
+        let span = 1;
+        while (k + span < colAxis.length && colAxis[k + span].part === part) span++;
+        const th = document.createElement("th");
+        th.colSpan = span; th.textContent = part || "";
+        ctr.appendChild(th);
+        k += span;
+      }
+      thead.insertBefore(ctr, htr);
+    }
+    let prevPart = null;
     for (const r of rowAxis) {
+      // Normal orientation: a full-width group row when the family changes.
+      if (!coverageTransposed && r.part !== prevPart) {
+        prevPart = r.part;
+        const gtr = document.createElement("tr");
+        gtr.className = "coverage-group-row";
+        const gth = document.createElement("th");
+        gth.colSpan = colAxis.length + 1;
+        gth.textContent = r.part || "";
+        gtr.appendChild(gth);
+        tbody.appendChild(gtr);
+      }
       const tr = document.createElement("tr");
       const rh = document.createElement("th");
       rh.className = "coverage-rowhead";
       rh.textContent = r.label;
       tr.appendChild(rh);
-      for (const c of colAxis) {
+      // Row height from the row's largest in-scope cell.
+      const cellLeaves = colAxis.map(c => {
+        const topic = coverageTransposed ? c : r;
+        const level = coverageTransposed ? r.level : c.level;
+        return scopeOf(topic, level);
+      });
+      const maxCount = Math.max(0, ...cellLeaves.map(l => l.length));
+      const rowH = Math.min(ROW_MAX, Math.max(ROW_MIN, maxCount * UNIT + 2));
+      for (let ci = 0; ci < colAxis.length; ci++) {
+        const c = colAxis[ci];
         const topic = coverageTransposed ? c : r;
         const level = coverageTransposed ? r.level : c.level;
         const td = document.createElement("td");
         td.className = "coverage-cell";
-        const m = masteryForScope([topic.id], level);
-        if (m.empty) {
+        td.style.height = rowH + "px";
+        const leaves = cellLeaves[ci];
+        if (!leaves.length) {
           td.classList.add("coverage-na");
           td.title = topic.label + " · " + level + ": not in scope at this level";
         } else {
-          // One strip per in-scope area, each wearing its OWN state - no
-          // aggregation into a single percentage (Smith, 2026-07-18; coverage
-          // matrix v5). The box still fills with coverage: untouched areas
-          // are faint empty strips, so colour spreading across the box IS
-          // the coverage progress.
-          const leaves = bucketLeavesInScope([topic.id], level);
           const strips = document.createElement("div");
-          // Dense topics (15+ areas at one level) drop the gaps so the stripes
-          // compress into contiguous colour bands rather than overflowing.
-          strips.className = "coverage-strips" + (leaves.length > 14 ? " dense" : "");
-          // HORIZONTAL stripes, sediment order (Smith 2026-07-18, v6):
-          // practised areas drop to the BOTTOM of the box so colour pools
-          // upward like a fill; unpractised faint stripes float above.
-          // Tree order is kept within each band. Colour is rwgColour - the
-          // sidebar's red-yellow-green - NOT coverageColour, whose cream-to-
-          // green ramp has no red and hid wrong answers entirely.
+          // Dense = this cell cannot fit uniform stripes even at row height.
+          strips.className = "coverage-strips" + (leaves.length * UNIT > rowH ? " dense" : "");
+          // Sediment order: practised areas sink to the bottom, faint GREY
+          // unpractised stripes float above (grey so scope is VISIBLE against
+          // the cream cell - Smith v8: "they're just not showing").
           const withStats = leaves.map(leaf => ({ leaf, st: aggregateNodeStats(leaf) }));
           const ordered = withStats.filter(x => !x.st).concat(withStats.filter(x => x.st));
           let touched = 0;
@@ -6604,6 +6650,7 @@
       // Fallback settled: the samples ARE the content now and the failure
       // banner explains why. Refresh the entry screen out of its loading state.
       if (document.body.classList.contains("entry-active")) showEntry();
+      if (document.body.classList.contains("coverage-active")) renderCoverage();
       return;
     }
     // Name any skipped file to the learner instead of skipping it silently.
@@ -6654,6 +6701,11 @@
     // The right-hand stats panel shows PROGRESS (buckets practised / total).
     // Two surfaces, two distinct measurements, each labelled.
     if (document.body.classList.contains("entry-active")) showEntry();  // refresh derived parts from real content
+    // An open coverage view rendered during the load window shows the inline
+    // SAMPLE tree (four odd rows, sample labels) and nothing else re-rendered
+    // it - Smith's "reduced coverage / fixed on a transpose-transpose",
+    // 2026-07-18. Same provisional-as-final family as entry_load Defect 2.
+    if (document.body.classList.contains("coverage-active")) renderCoverage();
     setStatus(`Real content: ${grammarQuestions.length} grammar, ${translationItems.length} translation${vocabBit}, ${allBuckets.length} buckets. ${topicsDesc ? "Items per topic: " + topicsDesc : ""}`);
   });
 
