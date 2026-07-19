@@ -1,0 +1,960 @@
+[
+  {
+    "external_id": "impv_use_soft_pure_entri_01",
+    "language_code": "it",
+    "topic": "verb_form.imperativo",
+    "subtopic": "usage.pragmatic_softening",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Un cliente esita sulla soglia; lo inviti a entrare con cortesia: 'Prego, ____!' (entrare, Lei, + un marcatore che dà via libera)",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.usage.pragmatic_softening",
+        "label": "softener 'pure' (go right ahead)",
+        "any_phrases": [
+          {
+            "phrase": "pure",
+            "match_at": "word"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.formation.formal",
+        "label": "formal Lei form entri",
+        "any_phrases": [
+          {
+            "phrase": "entri",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "entra",
+            "match_at": "word",
+            "misconception": "register.tu_lei_mismatch"
+          },
+          {
+            "phrase": "entrate",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "entrare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "entrare - to enter / to come in",
+            "bucket": "vocabulary.it.entrare.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Entri pure!' means 'Do come in!'. A bare command can sound abrupt, so Italian softens it. The particle pure after an imperative gives permission and warmth, turning an order into an invitation ('go right ahead'). The verb still carries the register: to someone you address as Lei the form is entri, and pure follows it.",
+    "examiner_note": "Cross-credit (Rev 27): pure = the softening skill, entri = the formal form. Wrong-register 'entra' is tagged register.tu_lei_mismatch on the formation markpoint.",
+    "version": 1
+  },
+  {
+    "external_id": "impv_use_soft_pure_faccia_02",
+    "language_code": "it",
+    "topic": "verb_form.imperativo",
+    "subtopic": "usage.pragmatic_softening",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Un ospite chiede se può servirsi da solo; glielo concedi con gentilezza: 'Certo, ____!' (fare, Lei, + un marcatore che dà via libera)",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.usage.pragmatic_softening",
+        "label": "softener 'pure'",
+        "any_phrases": [
+          {
+            "phrase": "pure",
+            "match_at": "word"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.formation.formal",
+        "label": "formal Lei form faccia",
+        "any_phrases": [
+          {
+            "phrase": "faccia",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "fai",
+            "match_at": "word",
+            "misconception": "register.tu_lei_mismatch"
+          },
+          {
+            "phrase": "fa'",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "fare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "fare - to do / to make",
+            "bucket": "vocabulary.it.fare.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Faccia pure!' means 'Go right ahead!'. Faccia is the command form for someone you address as Lei, and pure softens it into permission rather than an order. It is the standard warm way to tell a guest to help themselves.",
+    "version": 1
+  },
+  {
+    "external_id": "impv_use_soft_pure_prendi_03",
+    "language_code": "it",
+    "topic": "verb_form.imperativo",
+    "subtopic": "usage.pragmatic_softening",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Un amico chiede se può prendere una fetta di torta; glielo concedi: 'Certo, ____!' (prendere, tu, + un marcatore che dà via libera)",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.usage.pragmatic_softening",
+        "label": "softener 'pure'",
+        "any_phrases": [
+          {
+            "phrase": "pure",
+            "match_at": "word"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.formation.informal_affirmative",
+        "label": "informal tu form prendi",
+        "any_phrases": [
+          {
+            "phrase": "prendi",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "prenda",
+            "match_at": "word",
+            "misconception": "register.tu_lei_mismatch"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "prendere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "prendere - to take",
+            "bucket": "vocabulary.it.prendere.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Prendi pure!' means 'Go ahead and take some!'. To a friend (tu) the form is prendi, and pure turns the command into a friendly go-ahead. Same softener as the formal faccia pure, just with the informal verb.",
+    "version": 1
+  },
+  {
+    "external_id": "impv_use_soft_pure_dica_04",
+    "language_code": "it",
+    "topic": "verb_form.imperativo",
+    "subtopic": "usage.pragmatic_softening",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Un signore vuole dirti una cosa ma esita; lo incoraggi a parlare: 'Mi ____ ____!' (dire, Lei, + un marcatore che dà via libera)",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.usage.pragmatic_softening",
+        "label": "softener 'pure'",
+        "any_phrases": [
+          {
+            "phrase": "pure",
+            "match_at": "word"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.formation.formal",
+        "label": "formal Lei form dica",
+        "any_phrases": [
+          {
+            "phrase": "dica",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "di'",
+            "match_at": "word",
+            "misconception": "register.tu_lei_mismatch"
+          },
+          {
+            "phrase": "dici",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "dire",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "dire - to say / to tell",
+            "bucket": "vocabulary.it.dire.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Mi dica pure!' means 'Please, do tell me!'. Dica is the form for someone you address as Lei, and pure invites them to go ahead without hesitation. It is the classic gentle prompt a shopkeeper or clerk uses.",
+    "examiner_note": "'mi' is a clitic (pronoun tree); the markpoints target dica + pure only, not clitic placement.",
+    "version": 1
+  },
+  {
+    "external_id": "impv_use_soft_dai_05",
+    "language_code": "it",
+    "topic": "verb_form.imperativo",
+    "subtopic": "usage.pragmatic_softening",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Un amico sta per rinunciare a una gara; lo incoraggi a insistere: '____, ce la puoi fare!' (marcatore di incoraggiamento, informale)",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperativo.usage.pragmatic_softening",
+        "label": "encouragement marker (dai / su / forza)",
+        "any_phrases": [
+          {
+            "phrase": "dai",
+            "match_at": "word"
+          },
+          {
+            "phrase": "su",
+            "match_at": "word"
+          },
+          {
+            "phrase": "forza",
+            "match_at": "word"
+          },
+          {
+            "phrase": "coraggio",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "vai",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "dare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "dare - to give",
+            "bucket": "vocabulary.it.dare.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Dai, ce la puoi fare!' means 'Come on, you can do it!'. Some imperatives have frozen into pure encouragement markers: dai (literally 'give'), su ('up'), forza ('strength') and coraggio all mean 'come on' here, with no trace of their literal sense. Any of them fits; the skill is reaching for the marker, not conjugating a verb.",
+    "examiner_note": "Interchangeable encouragement set accepted at full credit; the leaf tests deploying a frozen marker, not a specific form. No misconception tag (a lexical choice among synonyms is not a miss).",
+    "version": 1
+  },
+  {
+    "external_id": "impv_use_soft_su_06",
+    "language_code": "it",
+    "topic": "verb_form.imperativo",
+    "subtopic": "usage.pragmatic_softening",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "I bambini indugiano e dovete uscire; li solleciti con affetto ma con un po' di fretta: '____, andiamo, è tardi!' (marcatore di sollecito, informale)",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperativo.usage.pragmatic_softening",
+        "label": "chivvying marker (su / dai / forza)",
+        "any_phrases": [
+          {
+            "phrase": "su",
+            "match_at": "word"
+          },
+          {
+            "phrase": "dai",
+            "match_at": "word"
+          },
+          {
+            "phrase": "forza",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'Su, andiamo!' means 'Come on, let's go!'. Su, dai and forza all work as a nudge to get moving. Like the encouragement use, these are frozen markers: su here has nothing to do with 'up', it simply chivvies.",
+    "version": 1
+  },
+  {
+    "external_id": "impv_use_soft_senti_07",
+    "language_code": "it",
+    "topic": "verb_form.imperativo",
+    "subtopic": "usage.pragmatic_softening",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Vuoi introdurre un'obiezione mentre parli con un amico: '____, non sono d'accordo.' (marcatore per prendere la parola, informale)",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperativo.usage.pragmatic_softening",
+        "label": "attention marker senti / guarda",
+        "any_phrases": [
+          {
+            "phrase": "senti",
+            "match_at": "word"
+          },
+          {
+            "phrase": "guarda",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "ascolta",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "sentire",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "sentire - to hear / to feel",
+            "bucket": "vocabulary.it.sentire.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Senti, non sono d'accordo' means 'Look, I don't agree'. Senti ('listen') and guarda ('look') have frozen into markers for taking the floor or flagging a point, softening what follows. The plain ascolta ('listen') is the literal verb, not this discourse marker, so it does not fit here.",
+    "version": 1
+  },
+  {
+    "external_id": "impv_use_soft_senta_08",
+    "language_code": "it",
+    "topic": "verb_form.imperativo",
+    "subtopic": "usage.pragmatic_softening",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Fermi un signore per strada per chiedere un'informazione: '____, scusi, sa dov'è la stazione?' (marcatore per attirare l'attenzione, formale)",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.usage.pragmatic_softening",
+        "label": "formal attention marker 'senta'",
+        "any_phrases": [
+          {
+            "phrase": "senta",
+            "match_at": "word"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.formation.formal",
+        "label": "formal Lei form of sentire",
+        "any_phrases": [
+          {
+            "phrase": "senta",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "senti",
+            "match_at": "word",
+            "misconception": "register.tu_lei_mismatch"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "sentire",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "sentire - to hear / to feel",
+            "bucket": "vocabulary.it.sentire.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Senta, scusi...' means 'Excuse me...' (literally 'listen'). To get the attention of someone you address as Lei, the frozen marker takes the formal form senta, not the informal senti. It is the standard polite opener to a stranger. Using senti to a stranger mixes the registers.",
+    "examiner_note": "Cross-credit: senta as the softening/attention marker AND as the formal form; senti here is a register slip, tagged register.tu_lei_mismatch.",
+    "version": 1
+  },
+  {
+    "external_id": "impv_use_soft_guarda_09",
+    "language_code": "it",
+    "topic": "verb_form.imperativo",
+    "subtopic": "usage.pragmatic_softening",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Vuoi sottolineare un punto a un amico che dubita di te: '____, te lo giuro, è vero.' (marcatore per enfatizzare, informale)",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperativo.usage.pragmatic_softening",
+        "label": "emphasis marker guarda / senti",
+        "any_phrases": [
+          {
+            "phrase": "guarda",
+            "match_at": "word"
+          },
+          {
+            "phrase": "senti",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "guardare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "guardare - to look / to watch",
+            "bucket": "vocabulary.it.guardare.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Guarda, te lo giuro' means 'Look, I swear'. Guarda ('look') has frozen into an emphasis marker that presses a point home; senti works the same way. Neither is really telling the friend to look or listen.",
+    "version": 1
+  },
+  {
+    "external_id": "impv_use_soft_dai_incoraggia_10",
+    "language_code": "it",
+    "topic": "verb_form.imperativo",
+    "subtopic": "usage.pragmatic_softening",
+    "difficulty": 1,
+    "cefr_level_target": "B1",
+    "prompt": "Un amico ha paura di buttarsi in piscina; lo incoraggi con una parola sola: '____!' (marcatore di incoraggiamento, informale)",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperativo.usage.pragmatic_softening",
+        "label": "one-word encouragement (dai / forza / su / coraggio)",
+        "any_phrases": [
+          {
+            "phrase": "dai",
+            "match_at": "word"
+          },
+          {
+            "phrase": "forza",
+            "match_at": "word"
+          },
+          {
+            "phrase": "su",
+            "match_at": "word"
+          },
+          {
+            "phrase": "coraggio",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'Dai!' means 'Come on!' / 'Go on!'. On its own, dai (or forza, su, coraggio) is a complete word of encouragement. These frozen markers carry the push all by themselves, with no verb to conjugate.",
+    "version": 1
+  },
+  {
+    "external_id": "impv_use_inf_spingere_01",
+    "language_code": "it",
+    "topic": "verb_form.imperativo",
+    "subtopic": "usage.impersonal_infinitive",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "prompt": "Su un cartello sulla porta di un negozio, per dire 'push': '____' (spingere, istruzione impersonale su un cartello)",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperativo.usage.impersonal_infinitive",
+        "label": "impersonal infinitive on a sign",
+        "any_phrases": [
+          {
+            "phrase": "spingere",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "spingi",
+            "match_at": "word"
+          },
+          {
+            "phrase": "spinga",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "spingere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "spingere - to push",
+            "bucket": "vocabulary.it.spingere.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Spingere' means 'Push'. On signs and in instructions addressed to no one in particular, Italian uses the bare infinitive, not a personal command. So a door says Spingere ('push') and Tirare ('pull'), never spingi or spinga. The infinitive is the impersonal, everyone-and-no-one form.",
+    "examiner_note": "Breadcrumb 'impersonal infinitive' names the form-class under test -> suppress (criterion 15).",
+    "version": 1
+  },
+  {
+    "external_id": "impv_use_inf_tirare_02",
+    "language_code": "it",
+    "topic": "verb_form.imperativo",
+    "subtopic": "usage.impersonal_infinitive",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "prompt": "Sull'altra porta, il cartello per dire 'pull': '____' (tirare, istruzione impersonale su un cartello)",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperativo.usage.impersonal_infinitive",
+        "label": "impersonal infinitive on a sign",
+        "any_phrases": [
+          {
+            "phrase": "tirare",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "tira",
+            "match_at": "word"
+          },
+          {
+            "phrase": "tiri",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "tirare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "tirare - to pull",
+            "bucket": "vocabulary.it.tirare.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Tirare' means 'Pull'. Like Spingere, it is the bare infinitive: signs give impersonal instructions with the infinitive, not with a tu or Lei command.",
+    "version": 1
+  },
+  {
+    "external_id": "impv_use_inf_mescolare_03",
+    "language_code": "it",
+    "topic": "verb_form.imperativo",
+    "subtopic": "usage.impersonal_infinitive",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "prompt": "In una ricetta, la prima istruzione: '____ bene gli ingredienti.' (mescolare, istruzione impersonale in una ricetta)",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperativo.usage.impersonal_infinitive",
+        "label": "impersonal infinitive in a recipe",
+        "any_phrases": [
+          {
+            "phrase": "mescolare",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "mescola",
+            "match_at": "word"
+          },
+          {
+            "phrase": "mescoli",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "mescolare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "mescolare - to mix / to stir",
+            "bucket": "vocabulary.it.mescolare.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Mescolare bene gli ingredienti' means 'Mix the ingredients well'. Recipes address no particular reader, so each step is a bare infinitive: Mescolare ('mix'), Aggiungere ('add'), Cuocere ('cook'). It is the same impersonal instruction form used on signs.",
+    "version": 1
+  },
+  {
+    "external_id": "impv_use_inf_cuocere_04",
+    "language_code": "it",
+    "topic": "verb_form.imperativo",
+    "subtopic": "usage.impersonal_infinitive",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Istruzioni sulla confezione: '____ a fuoco lento per venti minuti.' (cuocere, istruzione impersonale)",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperativo.usage.impersonal_infinitive",
+        "label": "impersonal infinitive in instructions",
+        "any_phrases": [
+          {
+            "phrase": "cuocere",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "cuoci",
+            "match_at": "word"
+          },
+          {
+            "phrase": "cuocia",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "cuocere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "cuocere - to cook",
+            "bucket": "vocabulary.it.cuocere.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Cuocere a fuoco lento' means 'Cook over a low heat'. Packet and recipe instructions use the bare infinitive throughout, so it is cuocere, not the personal cuoci or cuocia.",
+    "version": 1
+  },
+  {
+    "external_id": "impv_use_inf_non_fumare_05",
+    "language_code": "it",
+    "topic": "verb_form.imperativo",
+    "subtopic": "usage.impersonal_infinitive",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "prompt": "Un cartello di divieto in un locale pubblico: '____' (fumare, divieto impersonale su un cartello)",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperativo.usage.impersonal_infinitive",
+        "label": "impersonal negative infinitive on a sign",
+        "any_phrases": [
+          {
+            "phrase": "non fumare",
+            "match_at": "word"
+          },
+          {
+            "phrase": "vietato fumare",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "non fumi",
+            "match_at": "word"
+          },
+          {
+            "phrase": "non fumate",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "fumare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "fumare - to smoke",
+            "bucket": "vocabulary.it.fumare.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Non fumare' means 'No smoking'. Public prohibitions use non + the bare infinitive, the impersonal form, never a personal command like non fumi. It matches the affirmative sign form (Spingere): infinitive throughout.",
+    "version": 1
+  },
+  {
+    "external_id": "impv_use_inf_aggiungere_06",
+    "language_code": "it",
+    "topic": "verb_form.imperativo",
+    "subtopic": "usage.impersonal_infinitive",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Passo successivo della ricetta: '____ il sale e il pepe.' (aggiungere, istruzione impersonale in una ricetta)",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperativo.usage.impersonal_infinitive",
+        "label": "impersonal infinitive in a recipe",
+        "any_phrases": [
+          {
+            "phrase": "aggiungere",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "aggiungi",
+            "match_at": "word"
+          },
+          {
+            "phrase": "aggiunga",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "aggiungere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "aggiungere - to add",
+            "bucket": "vocabulary.it.aggiungere.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Aggiungere il sale e il pepe' means 'Add the salt and pepper'. Another recipe step, another bare infinitive: the impersonal instruction form stays consistent from line to line.",
+    "version": 1
+  },
+  {
+    "external_id": "impv_use_inf_conservare_07",
+    "language_code": "it",
+    "topic": "verb_form.imperativo",
+    "subtopic": "usage.impersonal_infinitive",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Avvertenza sull'etichetta di un prodotto: '____ in luogo fresco e asciutto.' (conservare, istruzione impersonale)",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperativo.usage.impersonal_infinitive",
+        "label": "impersonal infinitive on a label",
+        "any_phrases": [
+          {
+            "phrase": "conservare",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "conserva",
+            "match_at": "word"
+          },
+          {
+            "phrase": "conservi",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "conservare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "conservare - to keep / to store",
+            "bucket": "vocabulary.it.conservare.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Conservare in luogo fresco e asciutto' means 'Store in a cool, dry place'. Product labels speak to no one in particular, so the instruction is the bare infinitive conservare, not a personal command.",
+    "version": 1
+  },
+  {
+    "external_id": "impv_use_inf_non_toccare_08",
+    "language_code": "it",
+    "topic": "verb_form.imperativo",
+    "subtopic": "usage.impersonal_infinitive",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "prompt": "Un cartello accanto a un'opera in un museo: '____' (toccare, divieto impersonale su un cartello)",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.imperativo.usage.impersonal_infinitive",
+        "label": "impersonal negative infinitive on a sign",
+        "any_phrases": [
+          {
+            "phrase": "non toccare",
+            "match_at": "word"
+          },
+          {
+            "phrase": "vietato toccare",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "non tocchi",
+            "match_at": "word"
+          },
+          {
+            "phrase": "non toccate",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "toccare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "toccare - to touch",
+            "bucket": "vocabulary.it.toccare.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Non toccare' means 'Do not touch'. As with 'Non fumare', a public prohibition uses non + the infinitive, the impersonal form that addresses every visitor and none in particular.",
+    "version": 1
+  }
+]

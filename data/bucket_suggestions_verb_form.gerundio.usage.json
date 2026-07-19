@@ -1,0 +1,30 @@
+[
+  {
+    "proposed_id": "verb_form.gerundio.usage.modal_means",
+    "proposed_parent_id": "verb_form.gerundio.usage",
+    "proposed_label": "Adverbial gerund: manner / means",
+    "proposed_description": "The bare (non-progressive) gerund used adverbially to say HOW or BY WHAT MEANS the main action happens: è entrato correndo (he came in running), sbagliando s'impara (one learns by making mistakes), si mantiene in forma nuotando (he keeps fit by swimming). English 'by ...-ing' for means maps here, NOT onto per + infinitive (which is purpose). Governed by the same-subject constraint: the gerund's implicit subject must be the main clause's subject. B1 core.",
+    "proposed_cefr_importance": { "A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "fluency", "C2": "fluency" },
+    "proposed_prerequisites": ["verb_form.gerundio.formation"],
+    "proposed_attributes": {
+      "canonical_example": "sbagliando s'impara, è entrato correndo, imparo guardando i film",
+      "common_miss": "using per + infinitive for means (per parlare instead of parlando); violating the same-subject constraint",
+      "direction": "bidirectional"
+    },
+    "rationale": "Commissioned by DISPATCH_usage_wave2.md (GerundioAuthor, verb_form.gerundio.usage, 2 leaves). The parent verb_form.gerundio.usage exists as an aggregate but the two functional leaves are not yet on disk; the dispatch says they carry stub:true until items land, then Architecture clears the flag on acceptance. Authored 15 grammar markpoints + 6 translation required-bucket citations against this id; please mint it (or confirm the id) and destub on acceptance."
+  },
+  {
+    "proposed_id": "verb_form.gerundio.usage.temporal_causal",
+    "proposed_parent_id": "verb_form.gerundio.usage",
+    "proposed_label": "Adverbial gerund: time / cause / condition",
+    "proposed_description": "The bare gerund heading a subordinate of time, cause, condition or (with pur/pure) concession: tornando a casa (while coming home), essendo tardi (since it was late), volendo (if you want), pur essendo stanco (although tired). When the gerund's action precedes the main one, the compound gerund is used instead (avendo finito, essendo andato), so items here cross-evidence verb_form.gerundio.formation.gerundio_passato. Governed by the same-subject constraint. B2.",
+    "proposed_cefr_importance": { "A1": "arcane", "A2": "arcane", "B1": "preview", "B2": "core", "C1": "core", "C2": "fluency" },
+    "proposed_prerequisites": ["verb_form.gerundio.formation", "verb_form.gerundio.formation.gerundio_passato"],
+    "proposed_attributes": {
+      "canonical_example": "tornando a casa ho incontrato Lia, essendo tardi siamo andati via, pur essendo stanco ha finito",
+      "common_miss": "violating the same-subject constraint (using a gerund when the subjects differ); using the simple gerund where anteriority needs the compound (finendo for avendo finito)",
+      "direction": "bidirectional"
+    },
+    "rationale": "Commissioned by DISPATCH_usage_wave2.md. Same status as modal_means: parent exists, leaf not yet on disk. Authored against this id; please mint and destub on acceptance. Note the genuine cross-credit found is with FORMATION (compound gerund), not with tense_choice (the adverbial gerund has no progressive contrast partner) - two grammar items and one translation item dual-cite formation.gerundio_passato per Rev 27."
+  }
+]

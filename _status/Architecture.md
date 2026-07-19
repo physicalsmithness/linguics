@@ -1,17 +1,15 @@
 seat: Architecture
 classes: [all-seats]
 project: Linguics
-updated: 2026-07-17
-waiting: blocked
-needs_from_smith: decision
-blocked_by: Smith — the 16 phantom stub duplicates (queue item 1)
-claude_can_verify: yes — verifiable from disk (per-tense discrimination stub ids vs tense_choice's live leaves)
-summary: Cr17Sweep unblocked — ImperfectAuthor's 3 threads verified from disk and CLOSED, so imperfect's last 52 items are GO. 4 topic reports stamped (366 glossed, zero replica deltas). Both content bugs routed. Additive-error engine fix put to Housing with a survey gate. One ruling still with Smith.
+updated: 2026-07-18
+waiting: parked
+needs_from_smith: none
+claude_can_verify: yes — every figure below is a command in ARCHITECTURE_HANDOFF.md; re-derive, do not trust the snapshot
+summary: HANDOFF to a fresh Architecture chat. See ARCHITECTURE_HANDOFF.md. State is clean (all JSON parses, brief Rev 27, 0 unstarted topics, 15 stubs all defined). ~43 threads Next:Architecture are mostly wake-walk discharge stamps to triage, plus a few real rulings and the person-field migration.
 queue:
-  - Phantom stub duplication: 16 per-tense discrimination stubs duplicate tense_choice's live leaves; ruling needed before any dispatch   [STUB_CENSUS.md — Smith]
-  - Housing cue_placement FLAG ruling (a/b/c in their v2)   [inter_chat, my turn]
-  - Cr17Sweep's crit-20 estate-net choice — asked them to raise it as its own thread with discrete options   [awaiting Cr17Sweep]
-  - Discharge-stamp backfill as seats declare   [ongoing]
+  - Triage the ~43 Next:Architecture threads: stamp verified discharges, rule the few real questions   [inter_chat]
+  - person-field migration for the six-person split (ratify field name with Smith, then migrate derivable + work-order residue)   [specced, not executed]
+  - cue-notation retrofit routing (138 items) + usage wave-2 (3 authors unfired)   [DECISIONS, dispatches]
+  - stamp backfill as seats declare   [ongoing]
 notes:
-  - 8 seats declared. Board's first real payoff: it showed Cr17Sweep blocked -> ImperfectAuthor done awaiting stamps -> Architecture was the actual blocker.
-  - pos worklist wants RE-DERIVING from disk, not decrementing by arithmetic from memory (ImperfectAuthor's cluster is now clear, 0 old-shape refs).
+  - THE RULE: derive from disk, never quote a remembered number. ESTATE_STATE.md / STUB_CENSUS.md / the Next-grep are the sources.

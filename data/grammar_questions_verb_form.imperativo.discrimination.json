@@ -1,0 +1,929 @@
+[
+  {
+    "external_id": "impv_disc_reg_parli_01",
+    "language_code": "it",
+    "topic": "verb_form.imperativo",
+    "subtopic": "discrimination.register_informal_vs_formal",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Signora, per favore, ____ più lentamente, non La capisco! (parlare)",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "candidate_forms": [
+      "parla (informal, tu)",
+      "parli (formal, Lei)"
+    ],
+    "correct_form": "parli (formal, Lei)",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.discrimination.register_informal_vs_formal",
+        "label": "chose the correct register form",
+        "any_phrases": [
+          {
+            "phrase": "parli",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "parla",
+            "match_at": "word",
+            "misconception": "register.tu_lei_mismatch"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.formation.formal",
+        "label": "formal Lei form",
+        "any_phrases": [
+          {
+            "phrase": "parli",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "parlare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "parlare - to speak",
+            "bucket": "vocabulary.it.parlare.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Signora, parli più lentamente!' means 'Madam, please speak more slowly!'. Signora signals someone you address as Lei, so the imperative takes the formal form parli, not the informal parla. You have to read the register from who is being addressed and produce the matching form.",
+    "examiner_note": "Register cue = 'Signora' (formal). Cross-credit: register choice + formal formation.",
+    "version": 1
+  },
+  {
+    "external_id": "impv_disc_reg_aspetti_02",
+    "language_code": "it",
+    "topic": "verb_form.imperativo",
+    "subtopic": "discrimination.register_informal_vs_formal",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Signor Rossi, ____ un momento, arrivo subito! (aspettare)",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "candidate_forms": [
+      "aspetta (informal, tu)",
+      "aspetti (formal, Lei)"
+    ],
+    "correct_form": "aspetti (formal, Lei)",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.discrimination.register_informal_vs_formal",
+        "label": "chose the correct register form",
+        "any_phrases": [
+          {
+            "phrase": "aspetti",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "aspetta",
+            "match_at": "word",
+            "misconception": "register.tu_lei_mismatch"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.formation.formal",
+        "label": "formal Lei form",
+        "any_phrases": [
+          {
+            "phrase": "aspetti",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "aspettare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "aspettare - to wait",
+            "bucket": "vocabulary.it.aspettare.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Signor Rossi, aspetti un momento!' means 'Mr Rossi, wait a moment!'. Addressing 'Signor Rossi' is formal (Lei), so the command is aspetti, not the informal aspetta. You have to read the register from who is being addressed and produce the matching form.",
+    "version": 1
+  },
+  {
+    "external_id": "impv_disc_reg_vada_03",
+    "language_code": "it",
+    "topic": "verb_form.imperativo",
+    "subtopic": "discrimination.register_informal_vs_formal",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Mi scusi, ____ sempre dritto fino al semaforo. (andare)",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "candidate_forms": [
+      "va' (informal, tu)",
+      "vada (formal, Lei)"
+    ],
+    "correct_form": "vada (formal, Lei)",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.discrimination.register_informal_vs_formal",
+        "label": "chose the correct register form",
+        "any_phrases": [
+          {
+            "phrase": "vada",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "va'",
+            "match_at": "word",
+            "misconception": "register.tu_lei_mismatch"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.formation.formal",
+        "label": "formal Lei form",
+        "any_phrases": [
+          {
+            "phrase": "vada",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "andare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "andare - to go",
+            "bucket": "vocabulary.it.andare.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Mi scusi, vada sempre dritto.' means 'Excuse me, go straight on.'. 'Mi scusi' to a stranger is formal, so andare takes the Lei form vada, not the informal va'/vai. You have to read the register from who is being addressed and produce the matching form.",
+    "version": 1
+  },
+  {
+    "external_id": "impv_disc_reg_faccia_04",
+    "language_code": "it",
+    "topic": "verb_form.imperativo",
+    "subtopic": "discrimination.register_informal_vs_formal",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Professore, ____ con calma, non c'è fretta. (fare)",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "candidate_forms": [
+      "fa' (informal, tu)",
+      "faccia (formal, Lei)"
+    ],
+    "correct_form": "faccia (formal, Lei)",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.discrimination.register_informal_vs_formal",
+        "label": "chose the correct register form",
+        "any_phrases": [
+          {
+            "phrase": "faccia",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "fa'",
+            "match_at": "word",
+            "misconception": "register.tu_lei_mismatch"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.formation.formal",
+        "label": "formal Lei form",
+        "any_phrases": [
+          {
+            "phrase": "faccia",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "fare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "fare - to do / to make",
+            "bucket": "vocabulary.it.fare.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Professore, faccia con calma.' means 'Professor, take your time.'. Addressing a 'Professore' is formal, so fare takes faccia, the Lei form, not fa'/fai. You have to read the register from who is being addressed and produce the matching form.",
+    "version": 1
+  },
+  {
+    "external_id": "impv_disc_reg_abbia_05",
+    "language_code": "it",
+    "topic": "verb_form.imperativo",
+    "subtopic": "discrimination.register_informal_vs_formal",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Dottore, ____ pazienza, la pratica è quasi pronta. (avere)",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "candidate_forms": [
+      "abbi (informal, tu)",
+      "abbia (formal, Lei)"
+    ],
+    "correct_form": "abbia (formal, Lei)",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.discrimination.register_informal_vs_formal",
+        "label": "chose the correct register form",
+        "any_phrases": [
+          {
+            "phrase": "abbia",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "abbi",
+            "match_at": "word",
+            "misconception": "register.tu_lei_mismatch"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.formation.formal",
+        "label": "formal Lei form",
+        "any_phrases": [
+          {
+            "phrase": "abbia",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "avere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "avere - to have",
+            "bucket": "vocabulary.it.avere.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Dottore, abbia pazienza.' means 'Doctor, please be patient.'. 'Dottore' is a formal address, so avere takes abbia, not the informal abbi. You have to read the register from who is being addressed and produce the matching form.",
+    "version": 1
+  },
+  {
+    "external_id": "impv_disc_reg_sia_06",
+    "language_code": "it",
+    "topic": "verb_form.imperativo",
+    "subtopic": "discrimination.register_informal_vs_formal",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Signor Bianchi, ____ gentile, mi passi il documento. (essere)",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "candidate_forms": [
+      "sii (informal, tu)",
+      "sia (formal, Lei)"
+    ],
+    "correct_form": "sia (formal, Lei)",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.discrimination.register_informal_vs_formal",
+        "label": "chose the correct register form",
+        "any_phrases": [
+          {
+            "phrase": "sia",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "sii",
+            "match_at": "word",
+            "misconception": "register.tu_lei_mismatch"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.formation.formal",
+        "label": "formal Lei form",
+        "any_phrases": [
+          {
+            "phrase": "sia",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "essere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "essere - to be",
+            "bucket": "vocabulary.it.essere.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Signor Bianchi, sia gentile.' means 'Mr Bianchi, please be kind.'. 'Signor Bianchi' is formal (Lei), so essere takes sia, not the informal sii. You have to read the register from who is being addressed and produce the matching form.",
+    "version": 1
+  },
+  {
+    "external_id": "impv_disc_reg_prenda_07",
+    "language_code": "it",
+    "topic": "verb_form.imperativo",
+    "subtopic": "discrimination.register_informal_vs_formal",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Signora, ____ pure una sedia, si accomodi. (prendere)",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "candidate_forms": [
+      "prendi (informal, tu)",
+      "prenda (formal, Lei)"
+    ],
+    "correct_form": "prenda (formal, Lei)",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.discrimination.register_informal_vs_formal",
+        "label": "chose the correct register form",
+        "any_phrases": [
+          {
+            "phrase": "prenda",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "prendi",
+            "match_at": "word",
+            "misconception": "register.tu_lei_mismatch"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.formation.formal",
+        "label": "formal Lei form",
+        "any_phrases": [
+          {
+            "phrase": "prenda",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "prendere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "prendere - to take",
+            "bucket": "vocabulary.it.prendere.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Signora, prenda pure una sedia.' means 'Madam, do take a seat.'. Addressing 'Signora' is formal, so prendere takes prenda, not the informal prendi. You have to read the register from who is being addressed and produce the matching form.",
+    "version": 1
+  },
+  {
+    "external_id": "impv_disc_reg_parla_08",
+    "language_code": "it",
+    "topic": "verb_form.imperativo",
+    "subtopic": "discrimination.register_informal_vs_formal",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Marco, ____ più piano, ti sento benissimo! (parlare)",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "candidate_forms": [
+      "parla (informal, tu)",
+      "parli (formal, Lei)"
+    ],
+    "correct_form": "parla (informal, tu)",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.discrimination.register_informal_vs_formal",
+        "label": "chose the correct register form",
+        "any_phrases": [
+          {
+            "phrase": "parla",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "parli",
+            "match_at": "word",
+            "misconception": "register.tu_lei_mismatch"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.formation.informal_affirmative",
+        "label": "informal tu form",
+        "any_phrases": [
+          {
+            "phrase": "parla",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "parlare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "parlare - to speak",
+            "bucket": "vocabulary.it.parlare.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Marco, parla più piano!' means 'Marco, speak more quietly!'. Marco is addressed by first name, so this is informal (tu): the command is parla, not the formal parli. You have to read the register from who is being addressed and produce the matching form.",
+    "version": 1
+  },
+  {
+    "external_id": "impv_disc_reg_apri_09",
+    "language_code": "it",
+    "topic": "verb_form.imperativo",
+    "subtopic": "discrimination.register_informal_vs_formal",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Anna, ____ la finestra, per favore, fa caldo! (aprire)",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "candidate_forms": [
+      "apri (informal, tu)",
+      "apra (formal, Lei)"
+    ],
+    "correct_form": "apri (informal, tu)",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.discrimination.register_informal_vs_formal",
+        "label": "chose the correct register form",
+        "any_phrases": [
+          {
+            "phrase": "apri",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "apra",
+            "match_at": "word",
+            "misconception": "register.tu_lei_mismatch"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.formation.informal_affirmative",
+        "label": "informal tu form",
+        "any_phrases": [
+          {
+            "phrase": "apri",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "aprire",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "aprire - to open",
+            "bucket": "vocabulary.it.aprire.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Anna, apri la finestra!' means 'Anna, open the window!'. A first name signals the informal tu, so aprire takes apri, not the formal apra. You have to read the register from who is being addressed and produce the matching form.",
+    "version": 1
+  },
+  {
+    "external_id": "impv_disc_reg_vai_10",
+    "language_code": "it",
+    "topic": "verb_form.imperativo",
+    "subtopic": "discrimination.register_informal_vs_formal",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Luca, ____ a casa, è tardi ormai. (andare)",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "candidate_forms": [
+      "va' (informal, tu)",
+      "vada (formal, Lei)"
+    ],
+    "correct_form": "va' (informal, tu)",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.discrimination.register_informal_vs_formal",
+        "label": "chose the correct register form",
+        "any_phrases": [
+          {
+            "phrase": "va'",
+            "match_at": "word"
+          },
+          {
+            "phrase": "vai",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "vada",
+            "match_at": "word",
+            "misconception": "register.tu_lei_mismatch"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.formation.irregular_tu",
+        "label": "informal tu form",
+        "any_phrases": [
+          {
+            "phrase": "va'",
+            "match_at": "word"
+          },
+          {
+            "phrase": "vai",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "andare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "andare - to go",
+            "bucket": "vocabulary.it.andare.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Luca, va' a casa.' means 'Luca, go home.'. Luca is a friend (tu), so andare takes the informal va' (or vai), not the formal vada. You have to read the register from who is being addressed and produce the matching form.",
+    "version": 1
+  },
+  {
+    "external_id": "impv_disc_reg_sii_11",
+    "language_code": "it",
+    "topic": "verb_form.imperativo",
+    "subtopic": "discrimination.register_informal_vs_formal",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Gianni, ____ gentile con tua sorella! (essere)",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "candidate_forms": [
+      "sii (informal, tu)",
+      "sia (formal, Lei)"
+    ],
+    "correct_form": "sii (informal, tu)",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.discrimination.register_informal_vs_formal",
+        "label": "chose the correct register form",
+        "any_phrases": [
+          {
+            "phrase": "sii",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "sia",
+            "match_at": "word",
+            "misconception": "register.tu_lei_mismatch"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.formation.informal_affirmative",
+        "label": "informal tu form",
+        "any_phrases": [
+          {
+            "phrase": "sii",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "essere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "essere - to be",
+            "bucket": "vocabulary.it.essere.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Gianni, sii gentile!' means 'Gianni, be kind!'. A first name is informal (tu), so essere takes sii, not the formal sia. You have to read the register from who is being addressed and produce the matching form.",
+    "version": 1
+  },
+  {
+    "external_id": "impv_disc_reg_abbi_12",
+    "language_code": "it",
+    "topic": "verb_form.imperativo",
+    "subtopic": "discrimination.register_informal_vs_formal",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Tesoro, ____ pazienza, arriviamo tra poco. (avere)",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "candidate_forms": [
+      "abbi (informal, tu)",
+      "abbia (formal, Lei)"
+    ],
+    "correct_form": "abbi (informal, tu)",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.discrimination.register_informal_vs_formal",
+        "label": "chose the correct register form",
+        "any_phrases": [
+          {
+            "phrase": "abbi",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "abbia",
+            "match_at": "word",
+            "misconception": "register.tu_lei_mismatch"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.formation.irregular_tu",
+        "label": "informal tu form",
+        "any_phrases": [
+          {
+            "phrase": "abbi",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "avere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "avere - to have",
+            "bucket": "vocabulary.it.avere.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Tesoro, abbi pazienza.' means 'Sweetheart, be patient.'. 'Tesoro' to a loved one is informal (tu), so avere takes abbi, not the formal abbia. You have to read the register from who is being addressed and produce the matching form.",
+    "version": 1
+  },
+  {
+    "external_id": "impv_disc_reg_stai_13",
+    "language_code": "it",
+    "topic": "verb_form.imperativo",
+    "subtopic": "discrimination.register_informal_vs_formal",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Sofia, ____ ferma un attimo, ti allaccio la scarpa. (stare)",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "candidate_forms": [
+      "sta' (informal, tu)",
+      "stia (formal, Lei)"
+    ],
+    "correct_form": "sta' (informal, tu)",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.discrimination.register_informal_vs_formal",
+        "label": "chose the correct register form",
+        "any_phrases": [
+          {
+            "phrase": "sta'",
+            "match_at": "word"
+          },
+          {
+            "phrase": "stai",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "stia",
+            "match_at": "word",
+            "misconception": "register.tu_lei_mismatch"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.formation.irregular_tu",
+        "label": "informal tu form",
+        "any_phrases": [
+          {
+            "phrase": "sta'",
+            "match_at": "word"
+          },
+          {
+            "phrase": "stai",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "stare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "stare - to stay",
+            "bucket": "vocabulary.it.stare.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Sofia, sta' ferma un attimo.' means 'Sofia, keep still for a moment.'. Sofia is addressed informally (tu), so stare takes sta' (or stai), not the formal stia. You have to read the register from who is being addressed and produce the matching form.",
+    "version": 1
+  },
+  {
+    "external_id": "impv_disc_reg_scrivi_14",
+    "language_code": "it",
+    "topic": "verb_form.imperativo",
+    "subtopic": "discrimination.register_informal_vs_formal",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Dai Paolo, ____ il tuo numero qui, così ti chiamo. (scrivere)",
+    "type": "short",
+    "marks": 1.0,
+    "prompt_supplies_base_form": true,
+    "info_display": "suppress",
+    "candidate_forms": [
+      "scrivi (informal, tu)",
+      "scriva (formal, Lei)"
+    ],
+    "correct_form": "scrivi (informal, tu)",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.discrimination.register_informal_vs_formal",
+        "label": "chose the correct register form",
+        "any_phrases": [
+          {
+            "phrase": "scrivi",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "scriva",
+            "match_at": "word",
+            "misconception": "register.tu_lei_mismatch"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.imperativo.formation.informal_affirmative",
+        "label": "informal tu form",
+        "any_phrases": [
+          {
+            "phrase": "scrivi",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "scrivere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "scrivere - to write",
+            "bucket": "vocabulary.it.scrivere.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Paolo, scrivi il tuo numero qui.' means 'Paolo, write your number here.'. A first name signals the informal tu, so scrivere takes scrivi, not the formal scriva. You have to read the register from who is being addressed and produce the matching form.",
+    "version": 1
+  }
+]

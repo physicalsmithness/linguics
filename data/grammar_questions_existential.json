@@ -6,10 +6,10 @@
     "subtopic": "form.singular",
     "difficulty": 1,
     "cefr_level_target": "A1",
-    "prompt": "In piazza ____ un bar. (esserci)",
+    "prompt": "In piazza ____ un bar. [There's a bar in the square]",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "prompt_supplies_base_form": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -55,7 +55,8 @@
       }
     ],
     "explanation": "'In piazza c'è un bar' means 'There's a bar in the square.' When you say that something is there or exists, Italian uses the existential esserci, not plain essere. For one thing the existential is c'è, which is ci + è always run together. The ci is fixed, so 'ci è' unelided and a bare 'è' for existence are both wrong.",
-    "version": 1
+    "version": 2,
+    "wrong_answer_is_form_error_only": false
   },
   {
     "external_id": "ex_form_sg_02",
@@ -64,10 +65,10 @@
     "subtopic": "form.singular",
     "difficulty": 1,
     "cefr_level_target": "A1",
-    "prompt": "Dai, non correre: ____ ancora tempo. (esserci)",
+    "prompt": "Dai, non correre: ____ ancora tempo. [There's still time]",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "prompt_supplies_base_form": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -103,7 +104,8 @@
       }
     ],
     "explanation": "'C'è ancora tempo' means 'There's still time.' Existence and availability are stated with the existential esserci. Even with an uncountable noun like tempo the existential is singular c'è, ci + è run together, not a bare è.",
-    "version": 1
+    "version": 2,
+    "wrong_answer_is_form_error_only": false
   },
   {
     "external_id": "ex_form_sg_03",
@@ -171,10 +173,10 @@
     "subtopic": "form.singular",
     "difficulty": 1,
     "cefr_level_target": "A1",
-    "prompt": "Guarda, ____ un gatto sul muro! (esserci)",
+    "prompt": "Guarda, ____ un gatto sul muro! [There's a cat on the wall]",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "prompt_supplies_base_form": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -220,7 +222,8 @@
       }
     ],
     "explanation": "'C'è un gatto sul muro' means 'There's a cat on the wall.' Pointing out that something is there uses the existential esserci; for one thing it is c'è. Written in full it would be ci + è, but that pair always elides to c'è, so 'ci è' is never written out.",
-    "version": 1
+    "version": 2,
+    "wrong_answer_is_form_error_only": false
   },
   {
     "external_id": "ex_form_pl_01",
@@ -229,10 +232,10 @@
     "subtopic": "form.plural",
     "difficulty": 1,
     "cefr_level_target": "A1",
-    "prompt": "Nel frigo ____ tre uova. (esserci)",
+    "prompt": "Nel frigo ____ tre uova. [There are three eggs in the fridge]",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "prompt_supplies_base_form": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -278,7 +281,8 @@
       }
     ],
     "explanation": "'Nel frigo ci sono tre uova' means 'There are three eggs in the fridge.' The existential esserci agrees in number with the things that exist. Tre uova is plural, so the existential is plural: ci sono. With one egg it would be c'è un uovo.",
-    "version": 1
+    "version": 2,
+    "wrong_answer_is_form_error_only": false
   },
   {
     "external_id": "ex_form_pl_02",
@@ -365,10 +369,10 @@
     "subtopic": "form.plural",
     "difficulty": 1,
     "cefr_level_target": "A1",
-    "prompt": "In agosto ____ molti turisti in città. (esserci)",
+    "prompt": "In agosto ____ molti turisti in città. [In August there are a lot of tourists]",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "prompt_supplies_base_form": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -414,7 +418,8 @@
       }
     ],
     "explanation": "'In agosto ci sono molti turisti in città' means 'In August there are a lot of tourists in the city.' The existential esserci agrees with the plural molti turisti, so it is ci sono. English 'there's a lot of' invites the singular, but Italian counts the things: plural things, plural ci sono.",
-    "version": 1
+    "version": 2,
+    "wrong_answer_is_form_error_only": false
   },
   {
     "external_id": "ex_form_pl_04",
@@ -599,32 +604,51 @@
     "subtopic": "form.negative",
     "difficulty": 1,
     "cefr_level_target": "A1",
-    "prompt": "Rispondi di no: 'Hai tempo per un caffè?' 'No, mi dispiace, ____ tempo.' (esserci)",
+    "prompt": "Rispondi di no: 'Hai tempo per un caffè?' 'No, mi dispiace, ____.' [there's no time]",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "prompt_supplies_base_form": false,
     "info_display": "suppress",
     "markpoints": [
       {
         "order_index": 0,
-        "credit": 1.0,
+        "credit": 0.5,
         "bucket": "existential.form.negative",
-        "label": "negative non c'è / non ci sono",
+        "label": "negative existential",
         "any_phrases": [
           {
-            "phrase": "non c'è",
+            "phrase": "non c'è tempo",
             "match_at": "word"
           }
         ],
         "must_not_include": [
           {
-            "phrase": "c'è non",
-            "note": "non goes before the whole cluster: non c'è",
+            "phrase": "non c'è del tempo",
+            "note": "transfer.existential_bare_noun (proposed: English any/some over-translated as an Italian partitive/quantifier where the bare noun is wanted)",
             "match_at": "word"
           },
           {
-            "phrase": "non è",
-            "note": "keep the ci: non c'è, not non è",
+            "phrase": "c'è non tempo",
+            "note": "non goes before the whole cluster: non c'è",
+            "match_at": "word"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "existential.form.singular",
+        "label": "singular agreement (c'è)",
+        "any_phrases": [
+          {
+            "phrase": "non c'è tempo",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "non ci sono tempo",
+            "note": "tempo is uncountable and singular: non c'è",
             "match_at": "word"
           }
         ]
@@ -642,8 +666,9 @@
         }
       }
     ],
-    "explanation": "'Non c'è tempo' means 'There isn't time.' To negate the existential esserci, non goes in front of the whole cluster: non c'è. The ci stays attached, so 'c'è non' and a bare 'non è' are both wrong.",
-    "version": 1
+    "explanation": "'Non c'è tempo' means 'There's no time.' The existential is negated by putting non before the whole cluster: non c'è. Tempo is uncountable and singular, so it stays c'è, and Italian needs no word for 'any': non c'è tempo, not non c'è del tempo.",
+    "version": 2,
+    "wrong_answer_is_form_error_only": false
   },
   {
     "external_id": "ex_form_neg_02",
@@ -652,32 +677,56 @@
     "subtopic": "form.negative",
     "difficulty": 2,
     "cefr_level_target": "A1",
-    "prompt": "Rispondi di no: 'Ci sono problemi?' 'No, tranquillo, ____ problemi.' (esserci)",
+    "prompt": "Rispondi di no: 'Qualche problema?' 'No, tranquillo, ____.' [there are no problems]",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "prompt_supplies_base_form": false,
     "info_display": "suppress",
     "markpoints": [
       {
         "order_index": 0,
-        "credit": 1.0,
+        "credit": 0.5,
         "bucket": "existential.form.negative",
-        "label": "negative non c'è / non ci sono",
+        "label": "negative existential",
         "any_phrases": [
           {
-            "phrase": "non ci sono",
+            "phrase": "non ci sono problemi",
             "match_at": "word"
           }
         ],
         "must_not_include": [
           {
-            "phrase": "non c'è",
-            "note": "problemi is plural: non ci sono",
+            "phrase": "non ci sono dei problemi",
+            "note": "transfer.existential_bare_noun (proposed: English any/some over-translated as an Italian partitive/quantifier where the bare noun is wanted)",
             "match_at": "word"
           },
           {
-            "phrase": "ci sono non",
-            "note": "non goes before the cluster: non ci sono",
+            "phrase": "non ci sono alcuni problemi",
+            "note": "transfer.existential_bare_noun (proposed: English any/some over-translated as an Italian partitive/quantifier where the bare noun is wanted)",
+            "match_at": "word"
+          },
+          {
+            "phrase": "ci sono non problemi",
+            "note": "non goes before the whole cluster: non ci sono",
+            "match_at": "word"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "existential.form.plural",
+        "label": "plural agreement (ci sono)",
+        "any_phrases": [
+          {
+            "phrase": "non ci sono problemi",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "non c'è problemi",
+            "note": "problemi is plural: non ci sono",
             "match_at": "word"
           }
         ]
@@ -695,8 +744,9 @@
         }
       }
     ],
-    "explanation": "'Non ci sono problemi' means 'There aren't any problems.' The negative existential still agrees in number: problemi is plural, so it is non ci sono. Non sits in front of the whole cluster, and the plural keeps sono.",
-    "version": 1
+    "explanation": "'Non ci sono problemi' means 'There are no problems.' Non goes before the whole cluster, and problemi is plural, so ci sono. Italian uses the bare plural with no word for 'any': non ci sono problemi, not non ci sono dei problemi.",
+    "version": 2,
+    "wrong_answer_is_form_error_only": false
   },
   {
     "external_id": "ex_form_neg_03",
@@ -764,10 +814,10 @@
     "subtopic": "form.negative",
     "difficulty": 1,
     "cefr_level_target": "A1",
-    "prompt": "Ho aperto il frigo e ____ niente da mangiare. (esserci)",
+    "prompt": "Ho aperto il frigo e ____ niente da mangiare. [there's nothing to eat]",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "prompt_supplies_base_form": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -803,7 +853,8 @@
       }
     ],
     "explanation": "'Non c'è niente da mangiare' means 'There's nothing to eat.' Like nessuno, the word niente keeps the existential esserci singular: non c'è niente. Non comes before the whole cluster.",
-    "version": 1
+    "version": 2,
+    "wrong_answer_is_form_error_only": false
   },
   {
     "external_id": "ex_form_q_01",
@@ -812,10 +863,10 @@
     "subtopic": "form.questions",
     "difficulty": 1,
     "cefr_level_target": "A1",
-    "prompt": "Bussi alla porta e chiedi se Marco è presente: '____ Marco?' (esserci)",
+    "prompt": "Bussi alla porta e chiedi se Marco è presente: '____ Marco?' [Is Marco in?]",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "prompt_supplies_base_form": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -850,7 +901,8 @@
       }
     ],
     "explanation": "'C'è Marco?' means 'Is Marco in?' Asking whether a person is present or around uses the same existential esserci: c'è Marco? The ci is fixed, so it is c'è, not 'ci è' and not a bare 'è Marco?' for this 'is he in' sense.",
-    "version": 1
+    "version": 2,
+    "wrong_answer_is_form_error_only": false
   },
   {
     "external_id": "ex_form_q_02",
@@ -859,26 +911,55 @@
     "subtopic": "form.questions",
     "difficulty": 1,
     "cefr_level_target": "A1",
-    "prompt": "Alla fine della lezione il professore chiede se qualcuno ha dubbi: '____ domande?' (esserci)",
+    "prompt": "Alla fine della lezione il professore chiede se qualcuno ha dubbi: '____?' [Are there any questions?]",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "prompt_supplies_base_form": false,
     "markpoints": [
       {
         "order_index": 0,
-        "credit": 1.0,
+        "credit": 0.5,
         "bucket": "existential.form.questions",
-        "label": "asking about existence, plural",
+        "label": "existential question",
         "any_phrases": [
           {
-            "phrase": "ci sono",
+            "phrase": "ci sono domande",
             "match_at": "word"
           }
         ],
         "must_not_include": [
           {
-            "phrase": "c'è",
-            "note": "domande is plural, so ci sono domande?",
+            "phrase": "ci sono delle domande",
+            "note": "transfer.existential_bare_noun (proposed: English any/some over-translated as an Italian partitive/quantifier where the bare noun is wanted)",
+            "match_at": "word"
+          },
+          {
+            "phrase": "ci sono alcune domande",
+            "note": "transfer.existential_bare_noun (proposed: English any/some over-translated as an Italian partitive/quantifier where the bare noun is wanted)",
+            "match_at": "word"
+          },
+          {
+            "phrase": "ci sono qualche domanda",
+            "note": "transfer.existential_bare_noun (proposed: English any/some over-translated as an Italian partitive/quantifier where the bare noun is wanted)",
+            "match_at": "word"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "existential.form.plural",
+        "label": "plural agreement (ci sono)",
+        "any_phrases": [
+          {
+            "phrase": "ci sono domande",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "c'è domande",
+            "note": "domande is plural, so the verb is plural: ci sono",
             "match_at": "word"
           }
         ]
@@ -896,8 +977,10 @@
         }
       }
     ],
-    "explanation": "'Ci sono domande?' means 'Are there any questions?' A question about plural things still agrees in number: domande is plural, so it is ci sono domande?, not c'è.",
-    "version": 1
+    "explanation": "'Ci sono domande?' means 'Are there any questions?' Italian states the existence of plural things with the plural existential ci sono, and it uses the bare plural noun, with no word for 'any': ci sono domande, not ci sono delle domande. With one thing it would be c'è una domanda.",
+    "version": 2,
+    "wrong_answer_is_form_error_only": false,
+    "info_display": "suppress"
   },
   {
     "external_id": "ex_form_q_03",
@@ -906,10 +989,10 @@
     "subtopic": "form.questions",
     "difficulty": 2,
     "cefr_level_target": "A1",
-    "prompt": "Un cliente chiede: 'Un bancomat qui vicino?' Rispondi di sì: '____, in fondo alla strada.' (esserci)",
+    "prompt": "Un cliente chiede: 'Un bancomat qui vicino?' Rispondi di sì: '____, in fondo alla strada.' [Yes, there is]",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "prompt_supplies_base_form": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -954,7 +1037,8 @@
     ],
     "explanation": "'Sì, c'è, in fondo alla strada' means 'Yes, there is, at the end of the street.' A short answer about existence echoes the existential esserci, not plain essere: the reply is Sì, c'è, never Sì, è.",
     "examiner_note": "Answer covers 'Sì, c'è'; the 'Sì, è' calque is caught because any_phrases (positive) is checked before must_not_include.",
-    "version": 1
+    "version": 2,
+    "wrong_answer_is_form_error_only": false
   },
   {
     "external_id": "ex_form_q_04",
@@ -963,10 +1047,10 @@
     "subtopic": "form.questions",
     "difficulty": 2,
     "cefr_level_target": "A1",
-    "prompt": "Rispondi di sì, sono due: 'Hai domande?' '____ due.' (esserci)",
+    "prompt": "Rispondi di sì, sono due: 'Hai domande?' '____ due.' [Yes, there are two]",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "prompt_supplies_base_form": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -1009,7 +1093,8 @@
       }
     ],
     "explanation": "'Ci sono due domande' means 'There are two.' Answering about plural things keeps the plural existential: ci sono due, not c'è.",
-    "version": 1
+    "version": 2,
+    "wrong_answer_is_form_error_only": false
   },
   {
     "external_id": "ex_form_past_01",
@@ -2024,10 +2109,10 @@
     "subtopic": "form.plural",
     "difficulty": 3,
     "cefr_level_target": "A2",
-    "prompt": "Nel cappuccino ____ latte e caffè. (esserci)",
+    "prompt": "Nel cappuccino ____. [there's milk and coffee]",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "prompt_supplies_base_form": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -2037,14 +2122,19 @@
         "label": "ci sono with plural things",
         "any_phrases": [
           {
-            "phrase": "ci sono",
+            "phrase": "ci sono latte e caffè",
             "match_at": "word"
           }
         ],
         "must_not_include": [
           {
-            "phrase": "c'è",
-            "note": "two things joined by e count as more than one, so ci sono, even though latte and caffè are each singular",
+            "phrase": "c'è latte e caffè",
+            "note": "two things joined by e take the plural: ci sono",
+            "match_at": "word"
+          },
+          {
+            "phrase": "ci sono del latte e del caffè",
+            "note": "transfer.existential_bare_noun (proposed: English any/some over-translated as an Italian partitive/quantifier where the bare noun is wanted)",
             "match_at": "word"
           }
         ]
@@ -2072,8 +2162,9 @@
         }
       }
     ],
-    "explanation": "'Nel cappuccino ci sono latte e caffè' means 'In the cappuccino there's milk and coffee.' Two things joined by e count as more than one, so the existential is plural ci sono, even though latte and caffè are each uncountable singulars. The joining e is what makes it plural.",
-    "version": 1
+    "explanation": "'Ci sono latte e caffè' means 'There's milk and coffee.' Two things joined by e count as more than one, so the plural existential ci sono, even though latte and caffè are each uncountable. Italian uses the bare nouns: ci sono latte e caffè, not ci sono del latte e del caffè.",
+    "version": 2,
+    "wrong_answer_is_form_error_only": false
   },
   {
     "external_id": "ex_form_pl_08",
@@ -2130,10 +2221,10 @@
     "subtopic": "form.plural",
     "difficulty": 1,
     "cefr_level_target": "A1",
-    "prompt": "In Egitto ____ le piramidi. (esserci)",
+    "prompt": "In Egitto ____ le piramidi. [In Egypt there are the pyramids]",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "prompt_supplies_base_form": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -2169,7 +2260,8 @@
       }
     ],
     "explanation": "'In Egitto ci sono le piramidi' means 'In Egypt there are the pyramids.' The thing that exists, le piramidi, is plural, so the existential is plural ci sono.",
-    "version": 1
+    "version": 2,
+    "wrong_answer_is_form_error_only": false
   },
   {
     "external_id": "ex_form_pl_10",
@@ -2178,10 +2270,10 @@
     "subtopic": "form.plural",
     "difficulty": 2,
     "cefr_level_target": "A1",
-    "prompt": "In Finlandia ____ molti laghi. (esserci)",
+    "prompt": "In Finlandia ____ molti laghi. [In Finland there are many lakes]",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "prompt_supplies_base_form": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -2217,7 +2309,8 @@
       }
     ],
     "explanation": "'In Finlandia ci sono molti laghi' means 'In Finland there are many lakes.' Molti laghi is plural, so the existential is plural ci sono. Compare an uncountable like neve, which stays singular: c'è tanta neve.",
-    "version": 1
+    "version": 2,
+    "wrong_answer_is_form_error_only": false
   },
   {
     "external_id": "ex_form_neg_05",
@@ -2226,32 +2319,51 @@
     "subtopic": "form.negative",
     "difficulty": 2,
     "cefr_level_target": "A2",
-    "prompt": "Rispondi di no: 'Abbiamo ancora latte?' 'No, mi dispiace, ____ latte.' (esserci)",
+    "prompt": "Rispondi di no: 'Abbiamo ancora latte?' 'No, mi dispiace, ____.' [there's no milk]",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "prompt_supplies_base_form": false,
     "info_display": "suppress",
     "markpoints": [
       {
         "order_index": 0,
-        "credit": 1.0,
+        "credit": 0.5,
         "bucket": "existential.form.negative",
-        "label": "negative non c'è / non ci sono",
+        "label": "negative existential",
         "any_phrases": [
           {
-            "phrase": "non c'è",
+            "phrase": "non c'è latte",
             "match_at": "word"
           }
         ],
         "must_not_include": [
           {
-            "phrase": "non ci sono",
-            "note": "latte is uncountable and singular: non c'è latte",
+            "phrase": "non c'è del latte",
+            "note": "transfer.existential_bare_noun (proposed: English any/some over-translated as an Italian partitive/quantifier where the bare noun is wanted)",
             "match_at": "word"
           },
           {
-            "phrase": "c'è non",
+            "phrase": "c'è non latte",
             "note": "non goes before the whole cluster: non c'è",
+            "match_at": "word"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "existential.form.singular",
+        "label": "singular agreement (c'è)",
+        "any_phrases": [
+          {
+            "phrase": "non c'è latte",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "non ci sono latte",
+            "note": "latte is uncountable and singular: non c'è",
             "match_at": "word"
           }
         ]
@@ -2269,7 +2381,8 @@
         }
       }
     ],
-    "explanation": "'Non c'è latte' means 'There isn't any milk.' Latte is uncountable and singular, so the negative existential is non c'è latte, with non in front of the whole cluster.",
-    "version": 1
+    "explanation": "'Non c'è latte' means 'There's no milk.' Non precedes the whole cluster, and latte is uncountable and singular, so c'è. Italian needs no word for 'any': non c'è latte, not non c'è del latte.",
+    "version": 2,
+    "wrong_answer_is_form_error_only": false
   }
 ]

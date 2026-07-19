@@ -6,9 +6,9 @@ waiting: parked
 needs_from_smith: review
 blocked_by:
 claude_can_verify: yes — 75/75 items award full marks on their correct answer under housing/js engine; all guards reject; every formation leaf covered, zero zero-coverage
-summary: FORMATION BRANCH COMPLETE — all three waves delivered and verified: 75 grammar + 26 translation, engine-green (75/75 full marks on correct answers, all guards reject). Nothing owed. One flag open to Architecture on compound leaf labels.
+summary: FORMATION (3 waves) + USAGE branch both delivered and verified: 90 grammar + 33 translation, engine-green (90/90 full marks; Rev-27 usage co-credit confirmed 15/15). Owed: nothing to author; awaiting Architecture to mint 3 usage leaves + rule on 2 flags.
 queue:
-  - (none owed)
+  - Architecture to MINT 3 usage leaves (independent_exhortative, optative_wish, fixed_concessive) + clear usage stub [Architecture_CongiuntivoFormationAuthor_usage_leaf_minting v1, Next: Architecture] — items forward-reference them, strict-reject at production until minted
 notes:
   - Self-check: name-grep + class tokens (all-authors, all-seats) across inter_chat, DECISIONS, AUTHOR_BRIEF, OPEN_QUESTIONS, my DISPATCH. All hits triaged as discharged or standing.
   - Discharged: criterion 17 glosses [Cr17Sweep congiuntivo v1, 43/43]; dovere deva 0.9 [DECISIONS 2026-07-12, "already conform, no change"]; vocab POS bucket-ids [applied centrally to both files]; criterion 18 positive-anchoring [prior gate pass; verified against real engine].
@@ -18,3 +18,4 @@ notes:
   - Wave 3 (compounds) DELIVERED 2026-07-18: 16 grammar (8 passato / 8 trapassato) + 6 translation. Criterion 8: 13 items use TWO markpoints (subjunctive auxiliary + participle, the latter cross-referencing verb_form.passato_prossimo which owns participle form/agreement); 3 aux-only-blank items use one. Verified: 16/16 full marks, 67/67 guards reject, decomposition probes correct (hanno detto -> 1/2 aux miss + participle hit).
   - RAISED to Architecture 2026-07-18: the two congiuntivo compound leaf LABELS embed the worked answer ('che io abbia parlato'), violating DECISIONS 2026-07-12 breadcrumb hygiene, which was applied to trapassato_prossimo/imperativo but missed this tree. All 16 wave-3 items suppressed as interim cover; labels are Architecture's to edit. [Architecture_CongiuntivoFormationAuthor_compound_leaf_label_hygiene v1, Next: Architecture]
   - Open for ruling: veduto graded 0.8 (archaic, mirrors passato prossimo tree) vs the 0.9 secondary-standard tier; and whether compound participle misses may attribute to the passato_prossimo tree.
+  - USAGE branch DELIVERED 2026-07-18 (DISPATCH_usage_wave2): 15 grammar (exh 6 / opt 5 / fixed 4) + 7 translation, independent-clause subjunctive. Rev-27 dual-cite (usage leaf + formation leaf, 0.5 each): verified 1/1 marks AND full correctness on both bucket events, 15/15. 3 leaves proposed (not in tree), forward-referenced.

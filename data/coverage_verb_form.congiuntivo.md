@@ -1,15 +1,15 @@
-# Coverage: subjunctive (congiuntivo), formation branch
+# Coverage: subjunctive (congiuntivo), formation + usage
 
-**Dispatch:** Congiuntivo formation (formation branch only, authored in three waves; usage and discrimination are stubs owned by a later CongiuntivoUsage dispatch and by TenseChoice).
+**Dispatch:** Congiuntivo formation (3 waves) + the congiuntivo slice of the usage-axis wave 2 (DISPATCH_usage_wave2.md). Discrimination stays with TenseChoice.
 **Author:** CongiuntivoFormationAuthor
 **Date:** wave 1 2026-06-09; waves 2 and 3 2026-07-18.
 **Brief revision applied:** wave 1 authored at Rev 9; waves 2 and 3 at Rev 25.
-**This file:** **ALL THREE WAVES DELIVERED.** Presente (wave 1), imperfetto (wave 2), and the two compounds (wave 3). The formation branch is complete: every active leaf is covered, no zero-coverage leaves.
+**This file:** **FORMATION branch complete (3 waves) + USAGE branch delivered.** Formation: presente / imperfetto / compounds. Usage (2026-07-18, per DISPATCH_usage_wave2.md): the three independent-clause leaves (exhortative, optative, fixed/concessive). Discrimination remains TenseChoice's.
 **Brief revision at wave 2:** Rev 25 (wave 2 authored natively against criteria 17-20; wave 1 was authored at Rev 9 and brought up by later central passes).
 
-**Final totals: 75 grammar questions + 26 translation items** (EN→IT only). Wave 1 (presente): 43 grammar + 14 translation, 29 suppressed / 14 visible. Wave 2 (imperfetto): 16 grammar + 6 translation, 8 suppressed / 8 visible. Wave 3 (compounds): 16 grammar + 6 translation, all 16 suppressed. **53 of 75 grammar items carry `info_display: "suppress"`.** Every active formation leaf across all three waves is covered; no zero-coverage leaves. No new buckets were needed in any wave (the dispatch tree already had a leaf for every distinction authored), so `bucket_suggestions_verb_form.congiuntivo.json` is an empty array. Two glossary terms are proposed (present subjunctive, suppletive), both from wave 1.
+**Totals: 90 grammar questions + 33 translation items** (EN→IT only). Formation 75+26; usage 15+7. Wave 1 (presente): 43 grammar + 14 translation, 29 suppressed / 14 visible. Wave 2 (imperfetto): 16 grammar + 6 translation, 8 suppressed / 8 visible. Wave 3 (compounds): 16 grammar + 6 translation, all 16 suppressed. **53 of 75 grammar items carry `info_display: "suppress"`.** Every active formation leaf across all three waves is covered; no zero-coverage leaves. The formation waves needed no new buckets (the tree had every formation leaf). The usage branch needed three: `bucket_suggestions_verb_form.congiuntivo.json` now proposes independent_exhortative, optative_wish, fixed_concessive for Architecture to mint. Two glossary terms are proposed (present subjunctive, suppletive), both from wave 1.
 
-All translation items are EN→IT, because the formation buckets are `direction: "production"`: a formation bucket only fires when the learner *produces* the Italian subjunctive form. Every item sits behind a trigger so the subjunctive is contextually required; the trigger is scaffolding, the form is the test. Wave 1 (presente) uses present-tense triggers (penso che, voglio che, spero che, dubito che, è importante che, bisogna che, non credo che, sembra che, mi dispiace che, è strano che). Wave 2 (imperfetto) uses the past and conditional triggers that select it (pensavo che, volevo che, speravo che, non credevo che, bisognava che, era meglio che, vorrei che, and the unreal se-clause). Wave 3 (compounds) uses a present trigger for the passato (penso che, credo che, spero che, mi dispiace che) and a past trigger or unreal past se-clause for the trapassato (pensavo che, credevo che, non sapevo che, se avessi/fosse). Choosing whether to use the subjunctive is left to the usage/discrimination stubs, out of scope here.
+All translation items are EN→IT, because the formation buckets are `direction: "production"`: a formation bucket only fires when the learner *produces* the Italian subjunctive form. Every item sits behind a trigger so the subjunctive is contextually required; the trigger is scaffolding, the form is the test. Wave 1 (presente) uses present-tense triggers (penso che, voglio che, spero che, dubito che, è importante che, bisogna che, non credo che, sembra che, mi dispiace che, è strano che). Wave 2 (imperfetto) uses the past and conditional triggers that select it (pensavo che, volevo che, speravo che, non credevo che, bisognava che, era meglio che, vorrei che, and the unreal se-clause). Wave 3 (compounds) uses a present trigger for the passato (penso che, credo che, spero che, mi dispiace che) and a past trigger or unreal past se-clause for the trapassato (pensavo che, credevo che, non sapevo che, se avessi/fosse). Choosing whether to use the subjunctive (the subordinate trigger-based indicative-vs-subjunctive contrast) remains TenseChoice's discrimination territory, out of scope here. The independent-clause usage functions ARE authored below (Usage branch).
 
 ---
 
@@ -102,9 +102,9 @@ Run against `housing/js/norm.js` + `grammar_engine.js`:
 
 No new buckets needed (the tree's two imperfetto leaves covered every distinction), so `bucket_suggestions` stays empty. No new glossary terms proposed: the wave-1 proposals (present subjunctive, suppletive) plus the existing "imperfect indicative" and "stem expansion" entries carry wave 2. **Possible term for Architecture's call:** "imperfect subjunctive" as a sibling to the proposed "present subjunctive" — I did not add it, since the wave-1 "present subjunctive" entry already contrasts the two. Flag if you want it split out.
 
-## Status: formation branch COMPLETE
+## Status: formation branch COMPLETE + usage branch DELIVERED
 
-All three waves delivered (75 grammar + 26 translation). Every active formation leaf is covered; no zero-coverage leaves:
+Formation: 75 grammar + 26 translation, every leaf covered. Usage: 15 grammar + 7 translation across the 3 proposed independent-clause leaves (awaiting Architecture minting). Every active formation leaf is covered; no zero-coverage leaves:
 
 | Leaf | Items |
 |---|--:|
@@ -112,7 +112,7 @@ All three waves delivered (75 grammar + 26 translation). Every active formation 
 | imperfetto.regular / irregular | 8 / 8 |
 | passato / trapassato | 8 / 8 |
 
-Usage and discrimination remain stubs, owned by a later CongiuntivoUsage dispatch and by TenseChoice — untouched here, as the dispatch scoped.
+The usage branch is now authored (this file's Usage section). Discrimination (subjunctive-vs-indicative subordinate choice) remains TenseChoice's, untouched here.
 
 ---
 
@@ -174,6 +174,45 @@ A learner shown that breadcrumb pre-answer has been handed `abbia parlato` verba
 
 1. **`veduto` at 0.8, not 0.9.** DECISIONS 2026-07-12 puts a *secondary standard* variant at 0.9 and says archaic variants are "rejected or scored low". veduto is archaic, so 0.8 mirrors the passato prossimo tree rather than the 0.9 tier. **Ruling wanted** if you'd rather archaic variants take a single estate-wide number.
 2. **Participle markpoints cite the passato prossimo tree.** This is deliberate (that tree owns participle form/agreement) and the brief permits forward references, but it means a congiuntivo item can register a miss against a passato_prossimo bucket. Flag if you'd rather compound misses stay inside the congiuntivo tree.
+
+---
+
+## Coverage: the USAGE branch (independent-clause subjunctive)
+
+Delivered 2026-07-18 against DISPATCH_usage_wave2.md and brief Rev 27. These leaves are the subjunctive standing alone in a main clause, which **no subordinating trigger reaches** — that is why they are usage functions of their own and not a tense_choice contrast. The subordinate trigger-based choice (penso che, benché) stays with `tense_choice.indicative_vs_subjunctive`, untouched here.
+
+**The three leaves I proposed** (they did not exist in the tree; the parent `verb_form.congiuntivo.usage` did). Full definitions are in `bucket_suggestions_verb_form.congiuntivo.json`; **Architecture to mint and clear the stub** — see `inter_chat/Architecture_CongiuntivoFormationAuthor_usage_leaf_minting.md`:
+
+| G | T | Proposed leaf | What it teaches |
+|--:|--:|---|---|
+| 6 | 2 | independent_exhortative (B2) | che + 3rd-person present subjunctive as the command the imperative can't give: Che venga!, Che lo faccia lui!, Che riposi in pace |
+| 5 | 3 | optative_wish (B2-C1) | Magari / Se solo + imperfect subjunctive for an out-of-reach wish (Magari fosse vero!), trapassato for a past regret (Magari mi avessi ascoltato!) |
+| 4 | 2 | fixed_concessive (C1) | frozen formulae: che io sappia, costi quel che costi, sia come sia, vada come vada |
+
+CEFR: grammar 11 × B2, 4 × C1 (the fixed formulae); translation 5 × B2, 2 × C1.
+
+### The Rev-27 co-credit, applied throughout
+
+Every usage grammar item carries **two markpoints on the one correct form**, each `credit: 0.5`: one on the usage-function leaf, one on the formation leaf whose form the learner produced (e.g. `faccia` credits both `usage.independent_exhortative` and `formation.presente.irregular_from_1sg`). Verified on the engine: the correct answer scores **1/1 marks AND full correctness (1.0) on BOTH buckets** — marks normalise via the weight, mastery is not split. This is the usage↔formation overlap Rev 27 calls a feature; there is no tense_choice partner for the independent-clause subjunctive (the same shape GerundioAuthor reported for the adverbial gerund), so both markpoints stay inside the congiuntivo tree.
+
+### How the usage branch was weighted
+
+- **The exhortative is the most useful** (B2, everyday: "let him...", "may she..."), so it got the most items, across singular and plural and across regular / irregular / -are formation classes.
+- **The optative rides on the imperfect subjunctive**, which wave 2 drilled, so these items are where that form earns its keep. One translation item reaches into the **trapassato** for a past regret (Magari mi avessi ascoltato!), the only compound in the usage set.
+- **The fixed formulae are C1 and lexicalised**, so they are taught whole rather than derived; lighter coverage, and the "de-freezing to the indicative" miss (costa quel che costa) is guarded.
+- **The shared miss is the indicative** in the construction (Che va!, Magari è vero!, costa quel che costa), guarded on both markpoints of every item.
+
+### Breadcrumb display (a judgement call for Architecture)
+
+I left the usage items **visible** (no `info_display: "suppress"`). The proposed leaf labels name the FUNCTION (Independent exhortative, Optative / wish, Fixed formulae), not the answer form, and the cue supplies the verb, so per criterion 15 the breadcrumb restates the cue rather than leaking the diagnostic. But note each item's SECOND markpoint cites a formation leaf (some of them non-derivable classes, e.g. irregular_from_1sg) — if the housing surfaces every markpoint's bucket pre-answer rather than just the primary, that second breadcrumb could leak the form-class. I believe the housing shows the item's primary bucket only, so visible is right; flag if the resolver surfaces all markpoint buckets, and I'll suppress the affected items.
+
+### Verification (usage, real engine in node)
+
+- 15/15 usage items: correct form scores 1/1 marks and full correctness on BOTH the usage and formation bucket events (Rev-27 co-credit confirmed).
+- 36/36 indicative-guard forms score 0.
+- Sentence-initial `Sia` / `Vada` credit correctly under case-insensitive matching.
+- Whole-file regression across formation + usage: 90/90 award full marks on the correct answer.
+- All buckets resolve against the tree plus my three proposed usage leaves; forward-references will strict-resolve once Architecture mints them.
 
 ---
 

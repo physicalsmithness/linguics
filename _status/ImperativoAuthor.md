@@ -1,20 +1,16 @@
 seat: ImperativoAuthor
 classes: [all-seats, all-authors]
-  # Reasoning (Rev 24 asks for it stated, not guessed): this seat ORIGINATES grammar items
-  # carrying markpoints, cue chips, must_not_include guards, prompts and explanations, plus
-  # translation items. By the "what a seat originates, not what it touches" test, criteria
-  # 13-20 all reach it, so all-authors applies. Awaiting architect ratification.
 project: Linguics
 updated: 2026-07-18
-waiting: closed
-needs_from_smith: external-action
+waiting: parked
+needs_from_smith: none
 blocked_by:
-claude_can_verify: yes - all four discharges are checkable on disk (audit reruns + the tagged guards)
-summary: Imperativo formation branch complete and reconciled to Rev 25; queue empty; both class-token retrofits (crit 13, Rev 25) ran clean with zero rewrites; four discharges await Architecture stamps.
+claude_can_verify: yes - all items on disk, batch validates 0 errors
+summary: Wave-2 usage+register delivered (32 grammar + 16 translation, 0 errors, 19 Rev-27 cross-credit items). Formation branch complete. Awaiting Architecture acceptance of the new batch.
 queue:
-  - none
-awaiting_stamp:                # discharged, reported, NOT self-stamped
-  - Criterion 13 retrofit (all-authors): 37 prompts x 17 rule-name tokens, 0 hits   [AUTHOR_BRIEF binding register]
-  - Rev 25 next-touch (all-authors): 18 cued citation forms vs item level, all core-band, 0 reframes   [AUTHOR_BRIEF Rev 25]
-  - DECISIONS 2026-07-15 (night): retag impv_neg_06/07 + dire guard - done at tagging v6, 3 guards on disk
-  - Architecture_ImperativoAuthor_discharges.md v1   [inter_chat, Next: Architecture]
+  - none (wave-2 delivered; awaiting Architecture acceptance)
+awaiting_architecture:
+  - Accept wave-2 batch + manifest-wire 4 files + destub register leaf   [Architecture_ImperativoAuthor_usage_wave2_delivery.md]
+  - Mint/confirm 2 proposed leaves (pragmatic_softening, impersonal_infinitive) + destub
+  - Add verb_form.imperativo to register.tu_lei_mismatch topics
+  - Fix stale verb_form.imperativo.usage parent description

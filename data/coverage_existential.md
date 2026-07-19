@@ -62,3 +62,16 @@ The tree covers the whole scope. The colloquial availability reading of "c'è il
 - **manifest.json is now ready for "existential".** Content has landed, so the standing "no empty-count noise" gate is satisfied and the housing can load the topic. Adding it is a housing/architecture action; as the topic author I have not touched manifest.json (stay-in-role). Flagging it as ready.
 - **Misconception axis** (for the architect, not implemented here): the "c'è + plural" agreement miss and the "è for existence" calque are the two named candidates, both live across this batch's `must_not_include` notes.
 - Batch was authored against Rev 13 and reconciled to Rev 15 (criterion 18 anchoring) and Rev 14 (OIC techniques) mid-session after those landed; noting in case any other in-flight batch needs the same reconciliation.
+
+
+## Rev-25/27 cue-level + additive-credit rework (2026-07-18)
+
+Reworked 16 form items after Smith's live catch on `ex_form_q_02` (thread `Architecture_ExistentialAuthor_cue_level_and_additive_credit` v2).
+
+- **Cue level (Rev 25).** All 14 A1 `(esserci)` cues replaced with bracketed English glosses; `prompt_supplies_base_form` and `wrong_answer_is_form_error_only` both false. The 16 A2/B1 esserci cues left in place (esserci judged within reach by A2/B1; flagged to Architecture for override).
+- **Additive over-translation (the marking bug).** The 5 bare-noun traps (q_02, neg_01, neg_02, neg_05, pl_07) widened so the blank swallows the noun; `any_phrases` is now the full phrase, so the over-translation (delle / dei / del / alcune / qualche) no longer substring-hits the positive. Verified each positive is not inside its guard. Partitive and number guards added.
+- **Cross-credit (Rev 27).** The 4 negative/question traps carry two co-crediting markpoints (home leaf + number leaf, 0.5 each, both on the full phrase); pl_07 stays single. Caveat flagged to Architecture: the atomic blank means a number error false-misses the co-credited bucket (never a false credit); collapse to home-only on request.
+- **Misconception.** Proposed `transfer.partitive_for_bare_noun` (`data/misconception_suggestions_existential.json`), guard population = the 5 traps.
+- **`ex_form_neg_01`.** The new-field set also discharges the `cue_placement` unset.
+- **Rev 23 accent recheck post-gloss.** No `accent_load_bearing`: no existential answer has an accent-stripped twin that is a plausible alternative answer (c'è->ce, non c'è->non ce).
+- Marks unchanged (1.0 per item); grammar item count unchanged at 43.

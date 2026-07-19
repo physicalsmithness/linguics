@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-18-r21";
+  const LL_BUILD = "2026-07-18-r23";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // Touch-first device (no hover, coarse pointer): tap interactions replace
   // keyboard ones. Computed once; used for tap-to-mark on MCQ.
@@ -4707,10 +4707,17 @@
   const MASTERY_W_LAST = 7;
   const MASTERY_W_PRIOR = 3;
   const MASTERY_LOOKBACK_IF_RIGHT = 3;
+  // Smith's denominator floor (mastery_confidence_damping v1): one correct
+  // answer must not read as full green; two earn it. Any floor in (7, 10]
+  // damps ONLY the lone first correct (wA=7) and touches nothing with 2+
+  // attempts (wA>=10). 9.5 -> 0.737 on the first correct. Smith's dial:
+  // 9.0 -> 0.778, 10.0 -> 0.700. Grammar surfaces only - the vocab paths
+  // call the kernel WITHOUT the floor, per the ruling's scope.
+  const MASTERY_DENOM_FLOOR = 9.5;
 
   // Reusable kernel. `events` must already be sorted oldest -> newest and have
   // the shape {ev, timestamp} that eventsForNode produces.
-  function recencyWeightedCorrectness(events) {
+  function recencyWeightedCorrectness(events, useDenomFloor) {
     const attemptedEvents = events.filter(e => (e.ev.attempted_credit || 0) > 0);
     if (attemptedEvents.length === 0) return { correctness: 0, hasEvents: false, nAttempted: 0 };
 
@@ -4733,7 +4740,8 @@
       wA += MASTERY_W_PRIOR * pAtt;
       wC += MASTERY_W_PRIOR * pCC;
     }
-    const correctness = wA > 0 ? wC / wA : 0;
+    const denom = useDenomFloor ? Math.max(wA, MASTERY_DENOM_FLOOR) : wA;
+    const correctness = denom > 0 ? wC / denom : 0;
     return { correctness, hasEvents: true, nAttempted: attemptedEvents.length };
   }
 
@@ -4750,7 +4758,7 @@
     const n = events.length;
     const attempted_rate = attempted / n;
 
-    const { correctness } = recencyWeightedCorrectness(events);
+    const { correctness } = recencyWeightedCorrectness(events, true);  // grammar surfaces take the floor
 
     // Keep the all-time ratio available too, for places that want it.
     const correctness_alltime = attempted > 0 ? correct / attempted : 0;
@@ -4840,7 +4848,7 @@
     }
     let sum = 0, touched = 0;
     for (const leaf of leaves) {
-      const wc = recencyWeightedCorrectness(eventsForNode(leaf));
+      const wc = recencyWeightedCorrectness(eventsForNode(leaf), true);  // grammar surfaces take the floor
       if (wc.hasEvents) { sum += wc.correctness; touched++; }
       else { sum += vocabUnattemptedBaseline; }
     }
@@ -6387,6 +6395,10 @@
   // See inter_chat/Architecture_Housing_coverage_matrix_2d. Shares masteryForScope
   // with the competence strip, so the two are identical in formula and colour.
   let coverageTransposed = false;
+  // Two coverage views (Smith's ruling, coverage_matrix_2d v10): "fill" is his
+  // model - equal boxes, each dividing its height by its area count; "layers"
+  // is the r21 sized-boxes model. Toggleable; fill is the default.
+  let coverageView = "fill";
 
   // Coverage colour ramp: white-to-green only, NO red, cream baseline for
   // untouched, intensity capped so black text stays readable. Estate
@@ -6481,12 +6493,19 @@
     trBtn.type = "button"; trBtn.className = "coverage-transpose"; trBtn.textContent = "Transpose";
     trBtn.title = "Swap the axes";
     trBtn.addEventListener("click", () => { coverageTransposed = !coverageTransposed; renderCoverage(); });
-    bar.appendChild(back); bar.appendChild(title); bar.appendChild(trBtn);
+    const vwBtn = document.createElement("button");
+    vwBtn.type = "button"; vwBtn.className = "coverage-viewtoggle";
+    vwBtn.textContent = coverageView === "fill" ? "View: equal boxes" : "View: sized boxes";
+    vwBtn.title = "Switch between equal boxes (each divides by its areas) and boxes sized by how many areas they hold";
+    vwBtn.addEventListener("click", () => { coverageView = (coverageView === "fill") ? "layers" : "fill"; renderCoverage(); });
+    bar.appendChild(back); bar.appendChild(title); bar.appendChild(vwBtn); bar.appendChild(trBtn);
     col.appendChild(bar);
 
     const sub = document.createElement("p");
     sub.className = "coverage-sub";
-    sub.textContent = "Each stripe is one area: grey until practised, then red through green, sinking to the bottom as the box fills. Taller boxes hold more areas; hatched cells aren\u2019t in scope at that level. Tap a cell to drill in.";
+    sub.textContent = coverageView === "fill"
+      ? "Every box is the same size and divides by its areas: colour fills from the bottom as you practise, cream is what\u2019s left to get, grey boxes aren\u2019t achievable at that level. Tap a cell to drill in."
+      : "Each 4px layer is one area, so taller boxes hold more. Colour sinks to the bottom, cream is what\u2019s left to get, grey boxes aren\u2019t achievable at that level. Tap a cell to drill in.";
     col.appendChild(sub);
 
     const topics = grammarTopicRows();
@@ -6514,8 +6533,8 @@
     // is the same thickness EVERYWHERE, so stripe count is comparable at a
     // glance and a taller box means more areas. Row height = the row's
     // biggest cell, capped; a cell that still can't fit compresses (dense).
-    const UNIT = 4;                 // one 4px layer per area, gapless (liquid layers)
-    const ROW_MIN = 34, ROW_MAX = 140;
+    const UNIT = 4;                 // one 4px layer per area in "layers" view, gapless
+    const ROW_MIN = 34, ROW_MAX = 140, FILL_H = 40;   // FILL_H: the equal box of "fill" view
     const scopeOf = (topic, level) => bucketLeavesInScope([topic.id], level);
     // Transposed: a category header row spanning each part's topic columns.
     if (coverageTransposed) {
@@ -6559,7 +6578,9 @@
         return scopeOf(topic, level);
       });
       const maxCount = Math.max(0, ...cellLeaves.map(l => l.length));
-      const rowH = Math.min(ROW_MAX, Math.max(ROW_MIN, maxCount * UNIT + 2));
+      const rowH = (coverageView === "fill")
+        ? FILL_H
+        : Math.min(ROW_MAX, Math.max(ROW_MIN, maxCount * UNIT + 2));
       for (let ci = 0; ci < colAxis.length; ci++) {
         const c = colAxis[ci];
         const topic = coverageTransposed ? c : r;
@@ -6573,8 +6594,10 @@
           td.title = topic.label + " · " + level + ": not in scope at this level";
         } else {
           const strips = document.createElement("div");
-          // Dense = this cell cannot fit uniform stripes even at row height.
-          strips.className = "coverage-strips" + (leaves.length * UNIT > rowH ? " dense" : "");
+          // "fill" view: ALWAYS divide the box by its area count (dense flex).
+          // "layers" view: uniform 4px layers; dense only past the row cap.
+          const divide = (coverageView === "fill") || (leaves.length * UNIT > rowH);
+          strips.className = "coverage-strips" + (divide ? " dense" : "");
           // Sediment order: practised areas sink to the bottom, faint GREY
           // unpractised stripes float above (grey so scope is VISIBLE against
           // the cream cell - Smith v8: "they're just not showing").

@@ -3,11 +3,12 @@ classes: [all-seats, all-authors]   # reasoning: I originate grammar + translati
 project: Linguics
 updated: 2026-07-18
 waiting: parked
-needs_from_smith: decision
-blocked_by: ex_form_neg_01 unset waits on Architecture's 1,665-item migration to wrong_answer_is_form_error_only (Architecture_Housing_cue_placement, Next: Architecture)
-claude_can_verify: reframe + cr13 audit verifiable from disk/engine; the scope call is Smith's
-summary: 2026-07-14 batch accepted. My turn on the esserci cue-level + additive-credit thread; 32 esserci cues (14 A1) to audit, 5 bare-noun items carry a verified additive-over-translation false-credit. cr13 chip audit run, clean. Proposing the Rev-25 reframe; awaiting a scope decision.
+needs_from_smith: none
+blocked_by: none (my 27 remaining legacy-key esserci items await Architecture's central field migration, but that is Architecture's action, not a block on me)
+claude_can_verify: rework verified from disk (full-phrase positives not inside their guards; 0 A1 esserci cues remain; marks/anchoring/accent all checked)
+summary: Rev-25/27 cue-level + additive-credit rework delivered (16 items). Thread v2 posted, Next: Architecture. Ball is with Architecture to mint the misconception + accept; nothing owed to Smith.
 queue:
-  - Rev 25 esserci cue-level + additive-credit reframe: gloss the A1 esserci cues in English; widen the 5 bare-noun blanks (q_02, neg_01, neg_02, pl_07, neg_05) to full-phrase any_phrases + over-translation guards; likely 2 markpoints (crit 8); propose a transfer.* misconception id if a guard population results   [inter_chat Architecture_ExistentialAuthor_cue_level_and_additive_credit, Next: me]
-  - ex_form_neg_01 flag unset   [inter_chat Architecture_Housing_cue_placement, BLOCKED on Architecture's central migration; converges with the reframe since neg_01 is one of the 5]
-  - Criterion 13 chip audit: RUN 2026-07-18, CLEAN (0 rule-naming cues; "(esserci)" names the operand/output form, vs_ecco cues are bracketed situations). Evidence on disk; Architecture stamps, not me   [AUTHOR_BRIEF binding register, all-authors]
+  - DELIVERED, awaiting Architecture: Rev-25 English glosses on 14 A1 cues + additive full-phrase fix on 5 traps + Rev-27 cross-credit + transfer.partitive_for_bare_noun proposal   [inter_chat Architecture_ExistentialAuthor_cue_level_and_additive_credit v2, Next: Architecture]
+  - DISCHARGED (stamp pending): ex_form_neg_01 unset done ahead of the migration; new field set   [inter_chat Architecture_Housing_cue_placement, my discharge note 2026-07-18]
+  - NOT QUEUE (superseded): criterion 13 retrofit was discharged CENTRALLY for 26/29 topics by Architecture's Rev-26 audit (real exposure 5 chips, all in pronoun); existential is covered, my own chip audit was clean
+open_decision_for_architecture: cross-credit vs single-markpoint on the 4 atomic-blank traps (mastery-on-both signal vs clean miss attribution) — my v2 flags it; either is one edit away

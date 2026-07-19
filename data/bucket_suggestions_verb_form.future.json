@@ -1,1 +1,66 @@
-[]
+[
+  {
+    "proposed_id": "verb_form.future.usage.probability",
+    "proposed_parent_id": "verb_form.future.usage",
+    "proposed_label": "Future of probability (present guess)",
+    "proposed_description": "The future used not for time to come but to express a SUPPOSITION about the present: Saranno le tre (it's probably three), Avrà vent'anni (he's about twenty), Sarà a casa (she's probably home). The futuro anteriore does the same for a completed past: Avrà perso il treno (he's probably missed the train), Saranno già usciti (they've probably gone out). English has no matching tense; it uses 'must be' or 'probably'. This function has NO contrast partner in tense_choice, which is precisely why it needs its own usage home (the headline gap the usage-axis coverage identified).",
+    "proposed_cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "proposed_prerequisites": ["verb_form.future.formation.irregular"],
+    "proposed_attributes": {
+      "canonical_example": "Saranno le tre; Avrà vent'anni; Sarà a casa; Avrà perso il treno",
+      "common_miss": "using the present (sono, ha, è) for a guess about the present, or the passato prossimo (ha perso) for a guess about the past",
+      "direction": "bidirectional"
+    },
+    "rationale": "Authored 6 grammar + 3 translation items against this leaf under the wave-2 usage dispatch; the leaf is named in the tree's prose but not registered as a bucket entry, so citations do not resolve. The past-guess items co-credit verb_form.future.formation.future_anteriore per Rev 27."
+  },
+  {
+    "proposed_id": "verb_form.future.usage.command_promise",
+    "proposed_parent_id": "verb_form.future.usage",
+    "proposed_label": "Emphatic / promissory future",
+    "proposed_description": "The future used for a firm promise or an insistent, legalistic or biblical command, in place of the present or the imperative: Ti prometto che verrò (I promise I'll come), Farai i compiti! (you'll do your homework!), Non ucciderai (thou shalt not kill). The future makes a promise firmer than the present and a command more absolute than the imperative. A register-marked function, mostly B2.",
+    "proposed_cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "proposed_prerequisites": [],
+    "proposed_attributes": {
+      "canonical_example": "Ti prometto che verrò; Farai i compiti!; Non ucciderai",
+      "common_miss": "using the present or the imperative where the emphatic / promissory future is meant",
+      "direction": "bidirectional"
+    },
+    "rationale": "Authored 4 grammar + 2 translation items against this leaf. Register is stated in the prompts (criterion 11) since the emphatic future is register-conditional."
+  },
+  {
+    "proposed_id": "verb_form.future.usage.temporal_subordinate",
+    "proposed_parent_id": "verb_form.future.usage",
+    "proposed_label": "Future in a temporal subordinate (quando / appena / finché)",
+    "proposed_description": "The future REQUIRED in a subordinate clause of time introduced by quando, appena, finché (non) or dopo che, when the action is still to come: Quando arriverai, ti chiamerò; Appena finirò, ti farò sapere; Finché non finirà il temporale, aspettiamo. Where English uses the present after 'when / as soon as / until', Italian keeps the future in both clauses. This is a standalone grammatical requirement (a function), and it ALSO evidences the future-over-present choice; items credit both this leaf and tense_choice.future_vs_present per Rev 27.",
+    "proposed_cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "proposed_prerequisites": ["verb_form.future.formation"],
+    "proposed_attributes": {
+      "canonical_example": "Quando arriverai, ti chiamerò; Appena finirò, ti farò sapere",
+      "common_miss": "using the present after quando/appena as in English (quando arrivi, appena finisco)",
+      "direction": "bidirectional",
+      "cross_reference": "tense_choice.future_vs_present"
+    },
+    "rationale": "Authored 5 grammar + 3 translation items. Each grammar item carries two markpoints (this leaf + tense_choice.future_vs_present.future_for_unambiguous_future) at 0.5 each per Rev 27, plus candidate_tenses per criterion 16. This is a usage function that overlaps a tense_choice contrast, not a pure contrast item; flagged for ratification in the wave-2 thread."
+  }
+]

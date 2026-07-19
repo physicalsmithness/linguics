@@ -1214,5 +1214,381 @@
     ],
     "explanation": "Sua agrees with moglie (feminine); owner Paolo, so 'his wife'. Sua moglie drops the article (family noun).",
     "version": 1
+  },
+  {
+    "external_id": "trans_poss_en_it_pred_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Whose is this pen? It's mine.",
+    "reference_translations": [
+      {
+        "text": "Di chi è questa penna? È mia.",
+        "register": "neutral",
+        "notes": "Standard; predicate ownership drops the article."
+      },
+      {
+        "text": "Di chi è questa penna? È la mia.",
+        "register": "neutral",
+        "notes": "WRONG for plain ownership: the article intrudes; è mia is the idiom.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "possessive",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "possessive.predicate"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "pen",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "pen - penna",
+            "bucket": "vocabulary.it.penna.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.penna.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "After essere for plain ownership the possessive drops the article: è mia (agreeing with penna, feminine). È la mia is the article-bearing pronoun, a different meaning.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_poss_en_it_pred_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "This house isn't yours, it's ours.",
+    "reference_translations": [
+      {
+        "text": "Questa casa non è tua, è nostra.",
+        "register": "neutral",
+        "notes": "Standard; both predicates drop the article."
+      }
+    ],
+    "topic": "possessive",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "possessive.predicate"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "house",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "house - casa",
+            "bucket": "vocabulary.it.casa.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.casa.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "Ownership after essere is article-less: non è tua, è nostra, each agreeing with casa (feminine singular).",
+    "version": 1
+  },
+  {
+    "external_id": "trans_poss_it_en_pred_03",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Questi guanti sono suoi.",
+    "reference_translations": [
+      {
+        "text": "These gloves are his.",
+        "register": "neutral",
+        "notes": "Owner male."
+      },
+      {
+        "text": "These gloves are hers.",
+        "register": "neutral",
+        "notes": "Owner female; suo carries no owner-gender."
+      }
+    ],
+    "topic": "possessive",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "possessive.predicate"
+    ],
+    "optional_buckets": [
+      "possessive.discrimination.suo"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "guanti",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "guanto - glove",
+            "bucket": "vocabulary.it.guanto.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.guanto.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "Sono suoi is the predicate of ownership, no article; suoi agrees with guanti (masculine plural). His or hers both fit, since suo does not encode the owner.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_poss_en_it_post_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Come to my place tonight.",
+    "reference_translations": [
+      {
+        "text": "Vieni a casa mia stasera.",
+        "register": "neutral",
+        "notes": "Standard; the fixed a casa + possessive pattern, postposed and article-less."
+      },
+      {
+        "text": "Vieni alla mia casa stasera.",
+        "register": "neutral",
+        "notes": "WRONG idiom: a casa mia is the set pattern, not alla mia casa.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "possessive",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "possessive.postposed"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "place",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "house, home - casa",
+            "bucket": "vocabulary.it.casa.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.casa.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "The fixed pattern a casa mia is postposed with no article: word order carries the idiom. Alla mia casa is a calque of the English order.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_poss_en_it_post_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "It's not my fault.",
+    "reference_translations": [
+      {
+        "text": "Non è colpa mia.",
+        "register": "neutral",
+        "notes": "Standard; colpa mia is postposed and article-less."
+      }
+    ],
+    "topic": "possessive",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "possessive.postposed"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "fault",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "fault - colpa",
+            "bucket": "vocabulary.it.colpa.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.colpa.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "The set expression colpa mia puts the possessive after the noun with no article: non è colpa mia.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_poss_it_en_post_03",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Stasera restiamo a casa nostra.",
+    "reference_translations": [
+      {
+        "text": "Tonight we're staying at our place.",
+        "register": "neutral",
+        "notes": "Standard."
+      }
+    ],
+    "topic": "possessive",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "possessive.postposed"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "casa",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "casa - house, home",
+            "bucket": "vocabulary.it.casa.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.casa.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "A casa nostra is the postposed fixed pattern, article-less; rendered 'at our place / at our house'.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_poss_en_it_prop_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Everyone must do their own duty.",
+    "reference_translations": [
+      {
+        "text": "Ognuno deve fare il proprio dovere.",
+        "register": "neutral",
+        "notes": "Standard; impersonal subject takes proprio."
+      },
+      {
+        "text": "Ognuno deve fare il suo dovere.",
+        "register": "neutral",
+        "notes": "WRONG by the standard: with the impersonal ognuno, proprio is required, not suo.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "possessive",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "possessive.proprio"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "duty",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "duty - dovere",
+            "bucket": "vocabulary.it.dovere.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.dovere.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "With an impersonal subject (ognuno) the reflexive proprio is required: il proprio dovere. Suo would point at a specific person.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_poss_en_it_prop_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "One must defend one's own rights.",
+    "reference_translations": [
+      {
+        "text": "Bisogna difendere i propri diritti.",
+        "register": "neutral",
+        "notes": "Standard; impersonal bisogna takes proprio."
+      }
+    ],
+    "topic": "possessive",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "possessive.proprio"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "rights",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "right - diritto",
+            "bucket": "vocabulary.it.diritto.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.diritto.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "The impersonal bisogna calls for the reflexive proprio: i propri diritti, plural so the article stays.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_poss_it_en_prop_03",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Ciascuno ha le proprie idee.",
+    "reference_translations": [
+      {
+        "text": "Everyone has their own ideas.",
+        "register": "neutral",
+        "notes": "Standard."
+      }
+    ],
+    "topic": "possessive",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "possessive.proprio"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "idee",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "idea - idea",
+            "bucket": "vocabulary.it.idea.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.idea.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "Ciascuno is impersonal, so proprio: le proprie idee. English renders it 'their own ideas'.",
+    "version": 1
   }
 ]

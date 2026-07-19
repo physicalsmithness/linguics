@@ -1,23 +1,23 @@
 seat: GerundioAuthor
 classes: [all-seats, all-authors]
-# Reasoning (stated, not guessed, per Rev 24; architect to ratify): I ORIGINATE grammar and
-# translation items carrying markpoints, cue chips, must_not_include guards and item
-# explanations, so criteria 13-20 all reach me -> all-authors. The test is what a seat
-# originates, not what it touches (Cr17Sweep's ratified model).
+# I ORIGINATE grammar+translation items (markpoints, chips, guards, explanations) -> all-authors. Architect to ratify.
 project: Linguics
 updated: 2026-07-18
 waiting: parked
 needs_from_smith: none
 blocked_by:
-claude_can_verify: yes — flag count, cue/level table and chip audit are all re-runnable from disk
-summary: Queue clear. The one ratified-but-undelivered item (suppress flags 21->12) is DONE and verified; batch itself was ACCEPTED and CLOSED at v3 on 2026-07-15. Three items now sit with Architecture for stamps/ruling at Architecture_GerundioAuthor_selfcheck_discharge.md (Next: Architecture).
+claude_can_verify: yes — counts, engine replica, anchoring audit all re-runnable from disk
+summary: Usage branch (adverbial gerund) delivered today per DISPATCH_usage_wave2 - 16 grammar + 12 translation across 2 leaves, verified via engine port. Awaiting Architecture on TWO threads (see below). Formation batch remains accepted/closed.
 queue:
-  - nothing owed
-awaiting_architecture:            # not my work; stamps and one ruling, per thread selfcheck_discharge v1
-  - Stamp the DECISIONS clause for the 21->12 flag retrofit (done 2026-07-18, kept set asserted against the ratified table)
-  - Stamp criterion 13 for this seat (self-audit run 2026-06-09, zero hits; register shows compliance 1 of ~25)
-  - Rule (a)/(b)/(c) on porre/tradurre cues at B1 under Rev 25, then stamp Rev 25 for this seat. Smith routed this call to Architecture 2026-07-18. If (b)/(c), Rev 23 binds me to re-run the criterion-19 check AFTER glossing
-  - Ratify classes: [all-seats, all-authors]
-not_queue:
-  - Criteria 15 (standing), 16 (discharged; I author no discrimination items), 17 (my 35 glossed 2026-07-15; Cr17Sweep's 418/5 topics does not name gerundio), 18 (discharged; 155 anchors), 19 (discharged; starò is the rule's explicit do-nothing case), 20 (binds PrepositionAuthor/ComparisonAuthor only)
-  - OPEN_QUESTIONS.md:508 names me but commissions a sweep of OTHER pre-Rev-13 batches, not my work
+  - nothing owed (both deliveries complete; the open items are Architecture's, not mine)
+awaiting_architecture:
+  - usage_delivery v1: mint verb_form.gerundio.usage.modal_means + .temporal_causal (proposed, not on disk) and destub on acceptance; confirm the Rev-27 usage<->formation dual-citation reading; batch disposition
+  - selfcheck_discharge v1 (from formation): stamp the 21->12 flag retrofit; stamp criterion 13; rule porre/tradurre cues at B1 under Rev 25; ratify classes
+delivered_today:
+  - grammar_questions_verb_form.gerundio.usage.json (16: 13 short + 3 mcq)
+  - translation_items_verb_form.gerundio.usage.json (12: 7 en->it, 5 it->en)
+  - bucket_suggestions_verb_form.gerundio.usage.json (2 leaves), glossary_suggestions_verb_form.gerundio.usage.json (adverbial gerund)
+  - coverage_verb_form.gerundio.usage.md
+key_findings:
+  - The adverbial gerund has NO tense_choice contrast partner; the genuine Rev-27 overlap is usage<->formation (compound gerund), applied via dual-citation on 2 items
+  - Same-subject constraint is the headline diagnostic; tested by items where the gerund is WRONG (2 MCQ + 1 translation anti-anchor)

@@ -1,0 +1,48 @@
+[
+  {
+    "proposed_id": "verb_form.imperativo.usage.pragmatic_softening",
+    "proposed_parent_id": "verb_form.imperativo.usage",
+    "proposed_label": "Pragmatic softening: frozen markers and softened requests",
+    "proposed_description": "Imperatives that have grammaticalised into discourse/pragmatic markers, plus commands softened by a particle. Frozen markers: senti / senta ('listen', to take the floor or get attention), guarda ('look', for emphasis), dai / su / forza / coraggio ('come on', encouragement or chivvying) - these carry no literal sense of hearing, looking, giving. Softened requests: the particle pure after an imperative turns an order into warm permission (entri pure, prendi pure, mi dica pure = 'do go right ahead'). This is the imperative's PRAGMATIC layer; the plain command forms are formation's, direct instructions are present_indicative.usage.instructions, and the tu/Lei choice is the register discrimination leaf. B1.",
+    "proposed_cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "proposed_prerequisites": [
+      "verb_form.imperativo.formation"
+    ],
+    "proposed_attributes": {
+      "canonical_example": "dai, ce la fai!; senta, scusi; entri pure; guarda, te lo giuro",
+      "common_miss": "using the literal verb (ascolta) instead of the frozen marker (senti); mixing register on the frozen marker (senti to a stranger for senta)",
+      "direction": "bidirectional"
+    },
+    "rationale": "Commissioned by DISPATCH_usage_wave2.md (ImperativoAuthor: this is deliberately the ONLY usage leaf). The parent verb_form.imperativo.usage exists as an aggregate but this functional leaf is not on disk; the dispatch says leaves carry stub:true until items land. Authored 10 grammar + 6 translation against this id. Please mint (or confirm the id) and destub on acceptance. NOTE: the parent verb_form.imperativo.usage still carries its stale pre-narrowing description (commands/directions/invitations/recipe-infinitive/softened) and is not flagged stub; it needs updating to the narrowed scope - flagged in the thread."
+  },
+  {
+    "proposed_id": "verb_form.imperativo.usage.impersonal_infinitive",
+    "proposed_parent_id": "verb_form.imperativo.usage",
+    "proposed_label": "Impersonal infinitive: recipes and signs",
+    "proposed_description": "The bare infinitive used as an impersonal instruction addressed to no one in particular: signs (Spingere 'push', Tirare 'pull', Non fumare 'no smoking', Non toccare 'do not touch') and recipes / labels (Mescolare bene, Aggiungere il sale, Cuocere a fuoco lento, Conservare in luogo fresco). Affirmative = bare infinitive; prohibition = non + infinitive. Distinct from present_indicative.usage.instructions, which owns the SI-IMPERSONAL recipe form (si mescola, si taglia) - a different construction for the same function. Distinct from the personal tu/Lei/voi commands, which are formation's. A2-B1.",
+    "proposed_cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "proposed_prerequisites": [
+      "verb_form.imperativo.formation"
+    ],
+    "proposed_attributes": {
+      "canonical_example": "Spingere; Tirare; Non fumare; Mescolare bene; Conservare in luogo fresco",
+      "common_miss": "using a personal command on a sign/recipe (spingi/spinga for Spingere); using non + positive imperative instead of non + infinitive on a prohibition sign",
+      "direction": "production"
+    },
+    "rationale": "SECOND leaf, proposed under the dispatch's explicit test 'propose a second leaf ONLY if it duplicates neither' [present_indicative.usage.instructions nor the register leaf]. The recipe/sign INFINITIVE duplicates neither: present-usage owns the si-impersonal (si mescola), this owns the bare infinitive (Mescolare), and it is not a register choice. It is also the construction the stale usage parent description still names but no leaf covers. Authored 8 grammar + 4 translation against this id. If Architecture would rather fold recipe/sign instructions into present_indicative.usage.instructions or leave imperativo.usage single-leaf, say so and I will re-home these 12 items; the content stands either way."
+  }
+]

@@ -1,0 +1,352 @@
+[
+  {
+    "external_id": "trans_fu_en_it_prob_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "It must be about three o'clock by now.",
+    "reference_translations": [
+      {
+        "text": "Saranno le tre ormai.",
+        "register": "neutral",
+        "notes": "Standard. The future of probability renders English 'must be / probably'."
+      },
+      {
+        "text": "Ormai saranno le tre.",
+        "register": "neutral",
+        "notes": "Adverb fronted; same meaning."
+      },
+      {
+        "text": "Sono le tre ormai.",
+        "register": "neutral",
+        "polarity": "negative",
+        "notes": "WRONG for the meaning: the present states the time as a fact, losing the 'must be / probably' guess that the future carries."
+      }
+    ],
+    "topic": "verb_form.future",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": ["verb_form.future.usage.probability"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "o'clock",
+        "language": "en",
+        "aspects": {
+          "translation": { "reveal": "to be ... o'clock - essere le ...", "bucket": "vocabulary.it.essere.verb.translation" }
+        }
+      }
+    ],
+    "explanation": "'Must be / probably' about the present is the future of probability in Italian: 'saranno le tre' = 'it's probably three'. The present 'sono le tre' would assert the time as known fact; the English 'must be' signals a guess, so Italian takes the future.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_fu_it_en_prob_01",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Sarà stanco dopo un viaggio così lungo.",
+    "reference_translations": [
+      {
+        "text": "He must be tired after such a long trip.",
+        "register": "neutral",
+        "notes": "Standard. The future 'sarà' expresses a present supposition: 'must be / is probably'."
+      },
+      {
+        "text": "He's probably tired after such a long journey.",
+        "register": "neutral",
+        "notes": "'probably' captures the same supposition."
+      },
+      {
+        "text": "He will be tired after such a long trip.",
+        "register": "neutral",
+        "polarity": "negative",
+        "notes": "WRONG reading: a literal future misses the point. 'Sarà' here is a guess about the present, not a prediction about the future."
+      }
+    ],
+    "topic": "verb_form.future",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": ["verb_form.future.usage.probability"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "stanco",
+        "language": "it",
+        "aspects": {
+          "translation": { "reveal": "stanco - tired", "bucket": "vocabulary.it.stanco.adjective.translation" }
+        }
+      },
+      {
+        "lemma": "viaggio",
+        "language": "it",
+        "aspects": {
+          "translation": { "reveal": "viaggio - trip / journey", "bucket": "vocabulary.it.viaggio.noun.translation" }
+        }
+      }
+    ],
+    "explanation": "This item tests reading the future of probability, not producing it: 'sarà stanco' is a guess about the present ('he must be / is probably tired'), so the natural English is 'must be' or 'probably', not the literal 'he will be'.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_fu_en_it_prob_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "They've probably already left, the house is dark.",
+    "reference_translations": [
+      {
+        "text": "Saranno già partiti, la casa è buia.",
+        "register": "neutral",
+        "notes": "Standard. Past guess = futuro anteriore; partire takes essere, participle agrees (partiti)."
+      },
+      {
+        "text": "Sono già partiti, la casa è buia.",
+        "register": "neutral",
+        "polarity": "negative",
+        "notes": "WRONG for the meaning: the passato prossimo states it as fact and drops the 'probably' guess the futuro anteriore carries."
+      }
+    ],
+    "topic": "verb_form.future",
+    "register": "neutral",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "required_buckets": ["verb_form.future.usage.probability"],
+    "optional_buckets": ["verb_form.future.formation.future_anteriore"],
+    "vocab_help": [
+      {
+        "lemma": "leave",
+        "language": "en",
+        "aspects": {
+          "translation": { "reveal": "to leave / to depart - partire", "bucket": "vocabulary.it.partire.verb.translation" }
+        }
+      }
+    ],
+    "explanation": "A guess about a completed past uses the futuro anteriore: 'saranno già partiti' = 'they've probably already left'. Partire takes essere, so the participle agrees (partiti). The passato prossimo 'sono partiti' would state it as known; the compound future marks the inference.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_fu_en_it_cmd_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I promise I'll call you tomorrow.",
+    "reference_translations": [
+      {
+        "text": "Ti prometto che ti chiamerò domani.",
+        "register": "neutral",
+        "notes": "Standard. The promise takes the future."
+      },
+      {
+        "text": "Prometto che ti chiamerò domani.",
+        "register": "neutral",
+        "notes": "Subject/indirect pronoun trimmed; same meaning."
+      }
+    ],
+    "topic": "verb_form.future",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": ["verb_form.future.usage.command_promise"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "promise",
+        "language": "en",
+        "aspects": {
+          "translation": { "reveal": "to promise - promettere", "bucket": "vocabulary.it.promettere.verb.translation" }
+        }
+      },
+      {
+        "lemma": "call",
+        "language": "en",
+        "aspects": {
+          "translation": { "reveal": "to call / to phone - chiamare", "bucket": "vocabulary.it.chiamare.verb.translation" }
+        }
+      }
+    ],
+    "explanation": "A promise commits to a future action, so Italian uses the future: 'prometto che ti chiamerò'. The chiamerò is a regular -are future (a-to-e shift), and 'domani' anchors the promise in time to come.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_fu_en_it_cmd_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "You'll finish your vegetables before you leave the table!",
+    "reference_translations": [
+      {
+        "text": "Finirai le verdure prima di alzarti da tavola!",
+        "register": "neutral",
+        "notes": "Standard emphatic future as a parental command."
+      },
+      {
+        "text": "Finisci le verdure prima di alzarti da tavola!",
+        "register": "neutral",
+        "polarity": "negative",
+        "notes": "Not wrong Italian, but it renders a plain imperative; the English 'You'll finish' is the emphatic future, firmer than the imperative."
+      }
+    ],
+    "topic": "verb_form.future",
+    "register": "neutral",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "required_buckets": ["verb_form.future.usage.command_promise"],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "finish",
+        "language": "en",
+        "aspects": {
+          "translation": { "reveal": "to finish - finire", "bucket": "vocabulary.it.finire.verb.translation" }
+        }
+      },
+      {
+        "lemma": "vegetables",
+        "language": "en",
+        "aspects": {
+          "translation": { "reveal": "vegetables - verdure", "bucket": "vocabulary.it.verdura.noun.translation" }
+        }
+      }
+    ],
+    "explanation": "'You'll finish' as an insistent order is the emphatic future: 'finirai le verdure' sounds more absolute than the plain imperative 'finisci'. Italian, like English here, can use the future to lay down a non-negotiable command.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_fu_en_it_tsub_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "When you get to Rome, you'll see the Colosseum.",
+    "reference_translations": [
+      {
+        "text": "Quando arriverai a Roma, vedrai il Colosseo.",
+        "register": "neutral",
+        "notes": "Standard. Both verbs future; note arriverai (not the English-style present)."
+      },
+      {
+        "text": "Quando arrivi a Roma, vedrai il Colosseo.",
+        "register": "neutral",
+        "polarity": "negative",
+        "notes": "WRONG: the present 'arrivi' after quando copies the English pattern; Italian requires the future for the still-future arrival."
+      }
+    ],
+    "topic": "verb_form.future",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "verb_form.future.usage.temporal_subordinate",
+      "tense_choice.future_vs_present.future_for_unambiguous_future"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "get to",
+        "language": "en",
+        "aspects": {
+          "translation": { "reveal": "to arrive / to get to - arrivare", "bucket": "vocabulary.it.arrivare.verb.translation" }
+        }
+      },
+      {
+        "lemma": "see",
+        "language": "en",
+        "aspects": {
+          "translation": { "reveal": "to see - vedere", "bucket": "vocabulary.it.vedere.verb.translation" }
+        }
+      }
+    ],
+    "explanation": "English uses the present after 'when' ('when you get to Rome'), but Italian puts the still-future arrival in the future: 'quando arriverai... vedrai'. Both clauses look ahead, so both are future. The item evidences both the temporal-subordinate rule and the future-over-present choice.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_fu_en_it_tsub_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "As soon as I know something, I'll tell you.",
+    "reference_translations": [
+      {
+        "text": "Appena saprò qualcosa, te lo dirò.",
+        "register": "neutral",
+        "notes": "Standard. Future after appena; saprò is the syncopated future of sapere."
+      },
+      {
+        "text": "Appena so qualcosa, te lo dirò.",
+        "register": "neutral",
+        "polarity": "negative",
+        "notes": "WRONG: the present 'so' after appena copies the English pattern; Italian keeps the future."
+      }
+    ],
+    "topic": "verb_form.future",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "verb_form.future.usage.temporal_subordinate",
+      "tense_choice.future_vs_present.future_for_unambiguous_future"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "know",
+        "language": "en",
+        "aspects": {
+          "translation": { "reveal": "to know - sapere", "bucket": "vocabulary.it.sapere.verb.translation" }
+        }
+      },
+      {
+        "lemma": "tell",
+        "language": "en",
+        "aspects": {
+          "translation": { "reveal": "to tell / to say - dire", "bucket": "vocabulary.it.dire.verb.translation" }
+        }
+      }
+    ],
+    "explanation": "Italian keeps the future after 'appena' for an action still to come: 'appena saprò... te lo dirò', where English uses the present 'as soon as I know'. Saprò is the syncopated future of sapere.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_fu_it_en_tsub_01",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Quando sarai grande, capirai queste cose.",
+    "reference_translations": [
+      {
+        "text": "When you grow up, you'll understand these things.",
+        "register": "neutral",
+        "notes": "Standard. Italian's double future maps to English present ('grow up') + future ('will understand')."
+      },
+      {
+        "text": "When you're older, you'll understand these things.",
+        "register": "neutral",
+        "notes": "Natural variant."
+      },
+      {
+        "text": "When you will be grown up, you will understand these things.",
+        "register": "neutral",
+        "polarity": "negative",
+        "notes": "WRONG English: English does not use 'will' in the 'when' clause. The item tests mapping Italian's future-after-quando to an English present."
+      }
+    ],
+    "topic": "verb_form.future",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": ["verb_form.future.usage.temporal_subordinate"],
+    "optional_buckets": ["tense_choice.future_vs_present.future_for_unambiguous_future"],
+    "vocab_help": [
+      {
+        "lemma": "grande",
+        "language": "it",
+        "aspects": {
+          "translation": { "reveal": "grande - big / grown-up", "bucket": "vocabulary.it.grande.adjective.translation" }
+        }
+      },
+      {
+        "lemma": "capire",
+        "language": "it",
+        "aspects": {
+          "translation": { "reveal": "capire - to understand", "bucket": "vocabulary.it.capire.verb.translation" }
+        }
+      }
+    ],
+    "explanation": "The mirror of the production items: Italian uses the future in both clauses ('quando sarai grande, capirai'), but English uses the present in the 'when' clause ('when you grow up') and the future only in the main clause. Rendering the Italian future as an English 'will' in the subordinate is the trap.",
+    "version": 1
+  }
+]

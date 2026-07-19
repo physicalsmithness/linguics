@@ -1,1 +1,32 @@
-[]
+[
+  {
+    "proposed_id": "verb_form.congiuntivo.usage.independent_exhortative",
+    "proposed_parent_id": "verb_form.congiuntivo.usage",
+    "proposed_label": "Independent exhortative (che + 3rd person)",
+    "proposed_description": "The subjunctive standing alone in a main clause introduced by che to give a third-person command or exhortation, the slot the imperative cannot fill (it has no true third person): Che venga!, Che lo faccia lui!, Che restino pure!, Che riposi in pace. Present subjunctive. No subordinating trigger reaches it, which is why it is a usage function of its own rather than a subordinate-clause choice. The defining miss is the plain indicative (Che va! for Che vada!).",
+    "proposed_cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "preview", "B2": "core", "C1": "review", "C2": "fluency"},
+    "proposed_prerequisites": ["verb_form.congiuntivo.formation.presente"],
+    "proposed_attributes": {"canonical_example": "Che venga! / Che lo faccia lui!", "common_miss": "using the indicative in the main clause (Che va! for Che vada!)", "direction": "bidirectional"},
+    "rationale": "Named in DISPATCH_usage_wave2.md for CongiuntivoFormationAuthor; the parent verb_form.congiuntivo.usage exists but this leaf does not yet. Proposed so my usage items have a home; Architecture to mint and clear the stub on acceptance. Label kept terse per Rev 12 (worked example lives here in canonical_example, not the label)."
+  },
+  {
+    "proposed_id": "verb_form.congiuntivo.usage.optative_wish",
+    "proposed_parent_id": "verb_form.congiuntivo.usage",
+    "proposed_label": "Optative / wish",
+    "proposed_description": "The subjunctive expressing a wish or longing in an independent clause, typically introduced by Magari or Se solo (present or unreachable wish, imperfect subjunctive: Magari fosse vero!, Se solo sapessi!) or as a past regret (trapassato subjunctive: Magari fossi venuto!). Also the set frame Volesse il cielo che... The tense carries the modality: the imperfect subjunctive marks a present/counterfactual wish, the trapassato a past one. The defining miss is the indicative or conditional (Magari è vero / Magari sarebbe vero for Magari fosse vero).",
+    "proposed_cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "preview", "B2": "core", "C1": "core", "C2": "fluency"},
+    "proposed_prerequisites": ["verb_form.congiuntivo.formation.imperfetto"],
+    "proposed_attributes": {"canonical_example": "Magari fosse vero! / Se solo sapessi!", "common_miss": "indicative or conditional for the imperfect subjunctive (Magari è vero / Magari sarebbe vero)", "direction": "bidirectional"},
+    "rationale": "Named in DISPATCH_usage_wave2.md. Proposed leaf under the existing usage parent; Architecture to mint. The optative rides on the imperfect subjunctive (and trapassato for past regret), so items dual-cite the imperfetto formation leaf per brief Rev 27."
+  },
+  {
+    "proposed_id": "verb_form.congiuntivo.usage.fixed_concessive",
+    "proposed_parent_id": "verb_form.congiuntivo.usage",
+    "proposed_label": "Fixed / concessive formulae",
+    "proposed_description": "Frozen and semi-frozen formulae carrying the subjunctive: the hedging che io sappia (as far as I know), the concessive costi quel che costi (cost what it may), sia come sia (be that as it may), vada come vada (however it turns out), and the correlative sia... sia (whether... or). Largely lexicalised; the skill is recognising and producing the subjunctive inside the set expression rather than deriving it from a rule. C1. The defining miss is de-freezing the formula into the indicative (costa quel che costa).",
+    "proposed_cefr_importance": {"A1": "arcane", "A2": "arcane", "B1": "arcane", "B2": "preview", "C1": "core", "C2": "fluency"},
+    "proposed_prerequisites": ["verb_form.congiuntivo.formation.presente"],
+    "proposed_attributes": {"canonical_example": "che io sappia / costi quel che costi / sia come sia", "common_miss": "de-freezing the formula to the indicative (costa quel che costa; sia come è)", "direction": "bidirectional"},
+    "rationale": "Named in DISPATCH_usage_wave2.md. Proposed leaf under the existing usage parent; Architecture to mint. These are C1 set phrases; items dual-cite the presente formation leaf where a clean subjunctive form is produced (sappia, costi, sia)."
+  }
+]
