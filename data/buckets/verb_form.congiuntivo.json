@@ -352,81 +352,76 @@
       "direction": "bidirectional"
     },
     "active": true,
-    "version": 1,
-    "children": [
-      {
-        "id": "verb_form.congiuntivo.usage.independent_exhortative",
-        "parent_id": "verb_form.congiuntivo.usage",
-        "language_code": "it",
-        "label": "Independent commands (che + subjunctive)",
-        "description": "Third-person command/hortative in a main clause (Che venga!; Che lo faccia lui). No trigger, so tense_choice.indicative_vs_subjunctive (all subordinate) cannot reach it.",
-        "cefr_importance": {
-          "A1": "arcane",
-          "A2": "arcane",
-          "B1": "preview",
-          "B2": "core",
-          "C1": "review",
-          "C2": "fluency"
-        },
-        "prerequisites": [],
-        "attributes": {
-          "is_aggregate": false,
-          "direction": "bidirectional",
-          "canonical_example": "Che venga pure!; Che lo dicano loro",
-          "stub": true
-        },
-        "active": true,
-        "version": 1
-      },
-      {
-        "id": "verb_form.congiuntivo.usage.optative_wish",
-        "parent_id": "verb_form.congiuntivo.usage",
-        "language_code": "it",
-        "label": "Wishes (magari, volesse il cielo)",
-        "description": "Optative independent subjunctive expressing a wish (Magari fosse vero!; Volesse il cielo).",
-        "cefr_importance": {
-          "A1": "arcane",
-          "A2": "arcane",
-          "B1": "preview",
-          "B2": "core",
-          "C1": "review",
-          "C2": "fluency"
-        },
-        "prerequisites": [],
-        "attributes": {
-          "is_aggregate": false,
-          "direction": "bidirectional",
-          "canonical_example": "Magari fosse vero!; Volesse il cielo che...",
-          "stub": true
-        },
-        "active": true,
-        "version": 1
-      },
-      {
-        "id": "verb_form.congiuntivo.usage.fixed_concessive",
-        "parent_id": "verb_form.congiuntivo.usage",
-        "language_code": "it",
-        "label": "Fixed and concessive formulae",
-        "description": "Set independent-subjunctive expressions (sia... sia; costi quel che costi; che io sappia).",
-        "cefr_importance": {
-          "A1": "arcane",
-          "A2": "arcane",
-          "B1": "arcane",
-          "B2": "preview",
-          "C1": "core",
-          "C2": "review"
-        },
-        "prerequisites": [],
-        "attributes": {
-          "is_aggregate": false,
-          "direction": "bidirectional",
-          "canonical_example": "Costi quel che costi; Che io sappia, no",
-          "stub": true
-        },
-        "active": true,
-        "version": 1
-      }
-    ]
+    "version": 1
+  },
+  {
+    "id": "verb_form.congiuntivo.usage.independent_exhortative",
+    "parent_id": "verb_form.congiuntivo.usage",
+    "language_code": "it",
+    "label": "Independent commands (che + subjunctive)",
+    "description": "Third-person command/hortative in a main clause (Che venga!; Che lo faccia lui). No trigger, so tense_choice.indicative_vs_subjunctive (all subordinate) cannot reach it.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "Che venga pure!; Che lo dicano loro"
+    },
+    "active": true,
+    "version": 2
+  },
+  {
+    "id": "verb_form.congiuntivo.usage.optative_wish",
+    "parent_id": "verb_form.congiuntivo.usage",
+    "language_code": "it",
+    "label": "Wishes (magari, volesse il cielo)",
+    "description": "Optative independent subjunctive expressing a wish (Magari fosse vero!; Volesse il cielo).",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "Magari fosse vero!; Volesse il cielo che..."
+    },
+    "active": true,
+    "version": 2
+  },
+  {
+    "id": "verb_form.congiuntivo.usage.fixed_concessive",
+    "parent_id": "verb_form.congiuntivo.usage",
+    "language_code": "it",
+    "label": "Fixed and concessive formulae",
+    "description": "Set independent-subjunctive expressions (sia... sia; costi quel che costi; che io sappia).",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "arcane",
+      "B2": "preview",
+      "C1": "core",
+      "C2": "review"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "Costi quel che costi; Che io sappia, no"
+    },
+    "active": true,
+    "version": 2
   },
   {
     "id": "verb_form.congiuntivo.discrimination",

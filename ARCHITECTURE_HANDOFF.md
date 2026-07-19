@@ -48,3 +48,7 @@ Smith for anything (the push is checkable with `git rev-list --count @{u}..HEAD`
 
 ## Rulings NOT to re-litigate (all in DECISIONS, dated 2026-07-16/17)
 Rev 21 next-touch clause; Rev 22 cue-by-meaning; Rev 23 crit-20-disarms-crit-19; Rev 24 class tokens + standing-vs-retrofit; Rev 25 cue-level; Rev 26 crit-13 trigger/context/diagnostic; **Rev 27 one-answer-credits-many-buckets** (marks and mastery are separate currencies — verified in the engine). Phantom stubs superseded. "Label is the bug" recurred ~7x — when behaviour is wrong, suspect the wording before the reader.
+
+## STANDING ORDER — first act of every wake (adopted 2026-07-19, Smith's design via MetaProject v9)
+
+**Before touching any design thread, spawn a verify-and-stamp agent** over all non-CLOSED `Next: Architecture` threads. Spawn it in a READ-ONLY agent class. Its brief: classify each thread as DRAFT-STAMP (mechanically verified from disk, with evidence pointer + command), RULING-NEEDED, CANNOT-VERIFY, or STALE; it verifies, never rules. You spot-audit a sample of its drafts against disk before applying the stamps. Anything ambiguous stays unstamped. Rationale and calibration record: DECISIONS 2026-07-19; thread Architecture_MetaProject_status_board_pilot v9-v10. This exists because a spawned agent has no cache to be stale — the hub's disease is structurally impossible for it.

@@ -188,57 +188,55 @@
       "direction": "bidirectional"
     },
     "active": true,
-    "version": 1,
-    "children": [
-      {
-        "id": "verb_form.gerundio.usage.modal_means",
-        "parent_id": "verb_form.gerundio.usage",
-        "language_code": "it",
-        "label": "Manner and means",
-        "description": "The adverbial gerund of how/by-doing (Impari sbagliando; e' entrato correndo). NOT the stare+gerundio progressive, which tense_choice.progressive_vs_simple owns.",
-        "cefr_importance": {
-          "A1": "arcane",
-          "A2": "preview",
-          "B1": "core",
-          "B2": "review",
-          "C1": "fluency",
-          "C2": "fluency"
-        },
-        "prerequisites": [],
-        "attributes": {
-          "is_aggregate": false,
-          "direction": "bidirectional",
-          "canonical_example": "Sbagliando s'impara; e' uscito sbattendo la porta",
-          "stub": true
-        },
-        "active": true,
-        "version": 1
-      },
-      {
-        "id": "verb_form.gerundio.usage.temporal_causal",
-        "parent_id": "verb_form.gerundio.usage",
-        "language_code": "it",
-        "label": "While / by / since (subordinating)",
-        "description": "The gerund heading a subordinate clause of time, cause or condition (Tornando a casa...; Essendo tardi...).",
-        "cefr_importance": {
-          "A1": "arcane",
-          "A2": "arcane",
-          "B1": "preview",
-          "B2": "core",
-          "C1": "review",
-          "C2": "fluency"
-        },
-        "prerequisites": [],
-        "attributes": {
-          "is_aggregate": false,
-          "direction": "bidirectional",
-          "canonical_example": "Tornando a casa ho visto Marco; Essendo stanco, sono rimasto",
-          "stub": true
-        },
-        "active": true,
-        "version": 1
-      }
-    ]
+    "version": 1
+  },
+  {
+    "id": "verb_form.gerundio.usage.modal_means",
+    "parent_id": "verb_form.gerundio.usage",
+    "language_code": "it",
+    "label": "Manner and means",
+    "description": "The adverbial gerund of how/by-doing (Impari sbagliando; e' entrato correndo). NOT the stare+gerundio progressive, which tense_choice.progressive_vs_simple owns.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "Sbagliando s'impara; e' uscito sbattendo la porta",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.gerundio.usage.temporal_causal",
+    "parent_id": "verb_form.gerundio.usage",
+    "language_code": "it",
+    "label": "While / by / since (subordinating)",
+    "description": "The gerund heading a subordinate clause of time, cause or condition (Tornando a casa...; Essendo tardi...).",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "preview",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "Tornando a casa ho visto Marco; Essendo stanco, sono rimasto",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
   },
   {
     "id": "verb_form.gerundio.discrimination",

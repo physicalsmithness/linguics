@@ -251,5 +251,36 @@
     },
     "active": true,
     "version": 1
+  },
+  {
+    "id": "pronominal_verbs.meaning.frozen_tail_idioms",
+    "parent_id": "pronominal_verbs.meaning",
+    "language_code": "it",
+    "label": "Frozen-tail idioms",
+    "description": "A closed set of idioms whose frozen clitic is followed by fixed lexical material, the 'tail': mettercela tutta (to give it everything), darsela a gambe (to run for it), legarsela al dito (to hold a grudge), tirarla per le lunghe (to drag things out), dirne di tutti i colori (to hurl abuse), buttarla sul tragico (to overdramatise), farla finita (to put an end to it). The tail (a gambe, al dito, sul tragico) is arbitrary lexical material: knowing it is vocabulary-shaped, not rule-shaped, which is why the leaf lives under meaning. The frozen-clitic agreement mechanics stay with mechanics.sela_type and the pronoun tree.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "arcane",
+      "B1": "arcane",
+      "B2": "preview",
+      "C1": "core",
+      "C2": "review"
+    },
+    "prerequisites": [
+      "pronominal_verbs.mechanics.sela_type"
+    ],
+    "attributes": {
+      "direction": "bidirectional",
+      "common_miss": "dropping or literally translating the frozen tail (darsi a gambe, fare finita), or inflecting the frozen la",
+      "canonical_examples": [
+        "Ce l'ho messa tutta.",
+        "Se l'è data a gambe.",
+        "Me ne ha dette di tutti i colori.",
+        "Falla finita!"
+      ],
+      "is_aggregate": false
+    },
+    "active": true,
+    "version": 1
   }
 ]

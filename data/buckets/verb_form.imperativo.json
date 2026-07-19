@@ -162,33 +162,58 @@
       "direction": "bidirectional"
     },
     "active": true,
-    "version": 1,
-    "children": [
-      {
-        "id": "verb_form.imperativo.usage.pragmatic_softening",
-        "parent_id": "verb_form.imperativo.usage",
-        "language_code": "it",
-        "label": "Softeners and discourse markers",
-        "description": "Imperatives used pragmatically: frozen markers (senti, guarda, dai, forza) and softened requests (dimmi pure, si accomodi). Deliberately the ONLY usage leaf: direct instructions live in present_indicative.usage.instructions and the tu/Lei choice is the register discrimination leaf. Propose a second leaf only if the grammar demands one that duplicates neither.",
-        "cefr_importance": {
-          "A1": "arcane",
-          "A2": "preview",
-          "B1": "core",
-          "B2": "review",
-          "C1": "fluency",
-          "C2": "fluency"
-        },
-        "prerequisites": [],
-        "attributes": {
-          "is_aggregate": false,
-          "direction": "bidirectional",
-          "canonical_example": "Senti, ti va un caffe'?; Dimmi pure; Dai, andiamo!",
-          "stub": true
-        },
-        "active": true,
-        "version": 1
-      }
-    ]
+    "version": 1
+  },
+  {
+    "id": "verb_form.imperativo.usage.pragmatic_softening",
+    "parent_id": "verb_form.imperativo.usage",
+    "language_code": "it",
+    "label": "Softeners and discourse markers",
+    "description": "Imperatives used pragmatically: frozen markers (senti, guarda, dai, forza) and softened requests (dimmi pure, si accomodi). Deliberately the ONLY usage leaf: direct instructions live in present_indicative.usage.instructions and the tu/Lei choice is the register discrimination leaf. Propose a second leaf only if the grammar demands one that duplicates neither.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "canonical_example": "Senti, ti va un caffe'?; Dimmi pure; Dai, andiamo!",
+      "stub": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "verb_form.imperativo.usage.impersonal_infinitive",
+    "parent_id": "verb_form.imperativo.usage",
+    "language_code": "it",
+    "label": "Impersonal infinitive: recipes and signs",
+    "description": "The bare infinitive used as an impersonal instruction addressed to no one in particular: signs (Spingere 'push', Tirare 'pull', Non fumare 'no smoking', Non toccare 'do not touch') and recipes / labels (Mescolare bene, Aggiungere il sale, Cuocere a fuoco lento, Conservare in luogo fresco). Affirmative = bare infinitive; prohibition = non + infinitive. Distinct from present_indicative.usage.instructions, which owns the SI-IMPERSONAL recipe form (si mescola, si taglia) - a different construction for the same function. Distinct from the personal tu/Lei/voi commands, which are formation's. A2-B1.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.imperativo.formation"
+    ],
+    "attributes": {
+      "canonical_example": "Spingere; Tirare; Non fumare; Mescolare bene; Conservare in luogo fresco",
+      "common_miss": "using a personal command on a sign/recipe (spingi/spinga for Spingere); using non + positive imperative instead of non + infinitive on a prohibition sign",
+      "direction": "production",
+      "is_aggregate": false,
+      "stub": true
+    },
+    "active": true,
+    "version": 1
   },
   {
     "id": "verb_form.imperativo.discrimination",
