@@ -782,6 +782,18 @@ main {
 .row-person-bands { display: inline-flex; gap: 1px; margin-left: 8px; vertical-align: middle; }
 .row-person-bands .person-band { width: 9px; height: 11px; border-radius: 2px; background: #f3efe2; border: 1px solid var(--line); }
 
+/* Wide paradigms wrap into a small grid (paradigm_bands v1); the dot grows. */
+.overview-dot-bands.paradigm-grid { flex-wrap: wrap; gap: 1px; }
+.overview-dot-bands.paradigm-grid .person-band { flex: 0 0 3px; height: 4px; }
+.overview-dot.person-split.grid { width: 34px; height: 18px; }
+.row-person-bands.paradigm-grid { flex-wrap: wrap; max-width: 130px; }
+.row-person-bands.paradigm-grid .person-band { width: 7px; height: 7px; }
+
+/* Stable drilled-state anchor (drill_into_reach v2 defect 1): the box you
+   are drilled into keeps a steady outline, so the single-box state reads as
+   "you are here", not just a pulse per Mark. */
+.live-bucket-row.drilled, .overview-cell.drilled { outline: 2px solid var(--accent); outline-offset: 1px; border-radius: 4px; }
+
 /* In-session level toggles (entry_load_and_level_strip v4): set semantics in
    the filter bar, matching the welcome strip's mental model. */
 .filter-chip-levels { display: inline-flex; align-items: center; gap: 3px; }

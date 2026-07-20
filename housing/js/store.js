@@ -78,8 +78,11 @@
     // event of a person-carrying item is tagged so per-person mastery can
     // aggregate within a leaf. Items without the field produce untagged
     // events, exactly as before - the render side treats absent as unsplit.
-    const itemPerson = (item_or_question && item_or_question.person !== undefined)
-      ? item_or_question.person : undefined;
+    // Generalised for leaf-declared paradigms (paradigm_bands v1): "person"
+    // for verb formation, "slot" for form-paradigm leaves (articles,
+    // articulated prepositions, demonstratives, possessives). The leaf
+    // DECLARES which field matters; the store just carries what the item has.
+    const PARADIGM_FIELDS = ["person", "slot"];
     const rawEvents = (result.markpoints || []).map(mp => {
       const ev = {
         bucket: mp.bucket,
@@ -90,7 +93,9 @@
         source: strand === "grammar" ? "engine" : "ai_stub",
         bucket_proposed: !!mp.bucket_proposed
       };
-      if (itemPerson !== undefined) ev.person = itemPerson;
+      for (const pf of PARADIGM_FIELDS) {
+        if (item_or_question && item_or_question[pf] !== undefined) ev[pf] = item_or_question[pf];
+      }
       return ev;
     });
     const events = rawEvents.filter(ev => {

@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-20-r26";
+  const LL_BUILD = "2026-07-20-r27";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // Touch-first device (no hover, coarse pointer): tap interactions replace
   // keyboard ones. Computed once; used for tap-to-mark on MCQ.
@@ -193,7 +193,20 @@
   // drilled SWITCHES the drill and does not re-snapshot, so undo always returns
   // to the pre-drill scope. See inter_chat/
   // Architecture_Housing_drill_filter_ux_and_dropdown_labels.md.
+  function drillOutOneLevel() {
+    const bp = grammarFilter.bucketPath || translationFilter.bucketPath;
+    if (!bp) return;
+    const i = bp.lastIndexOf(".");
+    if (i <= 0) { clearBucketFilter(); return; }
+    const parent = bp.slice(0, i);
+    grammarFilter.bucketPath = parent;
+    translationFilter.bucketPath = parent;
+    resetDecksAndRender();
+  }
   function setBucketFilter(bucketId) {
+    // Clicking the bucket you are already drilled into steps OUT one level
+    // (drill_into_reach v2 defect 2: "drill in and drill back out").
+    if (grammarFilter.bucketPath === bucketId) { drillOutOneLevel(); return; }
     const alreadyDrilled = !!grammarFilter.bucketPath;
     if (!alreadyDrilled) {
       _preDrillScope = {
@@ -502,17 +515,26 @@
       const dVal = document.createElement("strong");
       dVal.textContent = drillChipLabel(filterObj);
       dChip.appendChild(dVal);
+      // The undo affordance renders WHETHER OR NOT the pre-drill scope had a
+      // label: drilling from "all topics" used to leave only the tiny x,
+      // which is Smith's invisible drill-out (drill_into_reach v2 defect 2).
+      const note = document.createElement("span");
+      note.className = "drill-note";
       if (_preDrillScope && _preDrillScope.label) {
-        const note = document.createElement("span");
-        note.className = "drill-note";
-        note.textContent = "topic widened from " + _preDrillScope.label + " ";
-        const undo = document.createElement("button");
-        undo.type = "button"; undo.className = "linkish"; undo.textContent = "undo";
-        undo.title = "Restore the previous topic scope and drop the drill";
-        undo.addEventListener("click", undoDrillWiden);
-        note.appendChild(undo);
-        dChip.appendChild(note);
+        note.appendChild(document.createTextNode("topic widened from " + _preDrillScope.label + " "));
       }
+      const up = document.createElement("button");
+      up.type = "button"; up.className = "linkish"; up.textContent = "out \u25b4";
+      up.title = "Drill out one level (or click the drilled box again)";
+      up.addEventListener("click", drillOutOneLevel);
+      note.appendChild(up);
+      note.appendChild(document.createTextNode(" \u00b7 "));
+      const undo = document.createElement("button");
+      undo.type = "button"; undo.className = "linkish"; undo.textContent = "undo";
+      undo.title = "Restore the previous topic scope and drop the drill";
+      undo.addEventListener("click", undoDrillWiden);
+      note.appendChild(undo);
+      dChip.appendChild(note);
       const x = document.createElement("button");
       x.type = "button"; x.className = "chip-x"; x.textContent = "\u00d7";
       x.title = "Clear the drill";
@@ -1776,17 +1798,32 @@
     if (id.indexOf("verb_form.imperativo") === 0) return PERSON_ORDER.slice(1);  // no 1sg
     return PERSON_ORDER;
   }
-  // Per-person mastery within a leaf, from person-tagged events only. Events
-  // predating the person migration carry no tag and stay out of the bands
-  // (they still feed the leaf's overall colour) - do not invent a band.
-  function personBandsFor(leaf) {
-    const persons = personsForLeaf(leaf.id);
+  // A leaf's paradigm: DECLARED on the bucket ("paradigm": {field, slots,
+  // labels}) per paradigm_bands v1, with the verb-formation person rules as
+  // the built-in fallback until Architecture's declarations land. The leaf
+  // declares; the renderer never infers from item spread.
+  function paradigmForLeaf(leaf) {
+    const decl = leaf && (leaf.paradigm || (leaf.attributes && leaf.attributes.paradigm));
+    if (decl && Array.isArray(decl.slots) && decl.slots.length > 1) {
+      const labels = (Array.isArray(decl.labels) && decl.labels.length === decl.slots.length)
+        ? decl.labels : decl.slots;
+      return { field: decl.field || "slot", slots: decl.slots, labels };
+    }
+    const persons = personsForLeaf(leaf && leaf.id);
     if (!persons) return null;
+    return { field: "person", slots: persons, labels: persons.map(p => PERSON_LABELS[p]) };
+  }
+  // Per-slot mastery within a leaf, from tagged events only. Events without
+  // the declared field stay out of the bands (they still feed the leaf's
+  // overall colour) - never invent a band.
+  function personBandsFor(leaf) {
+    const para = paradigmForLeaf(leaf);
+    if (!para) return null;
     const events = eventsForNode(leaf);
-    return persons.map(p => {
-      const pe = events.filter(x => x.ev && x.ev.person === p);
+    return para.slots.map((slot, i) => {
+      const pe = events.filter(x => x.ev && x.ev[para.field] === slot);
       const wc = recencyWeightedCorrectness(pe, true);   // grammar floor applies per band
-      return { person: p, label: PERSON_LABELS[p], hasEvents: wc.hasEvents, correctness: wc.correctness, n: wc.nAttempted || 0 };
+      return { person: slot, label: para.labels[i], hasEvents: wc.hasEvents, correctness: wc.correctness, n: wc.nAttempted || 0 };
     });
   }
   // Compact band strip element, shared by the overview dot and the tree row.
@@ -1794,7 +1831,9 @@
     const bands = personBandsFor(leaf);
     if (!bands) return null;
     const host = document.createElement("span");
-    host.className = cls;
+    // Wide paradigms (articulated prepositions' 35 cells, say) wrap into a
+    // grid rather than sub-pixel slivers; Smith authorised bigger rectangles.
+    host.className = cls + (bands.length > 8 ? " paradigm-grid" : "");
     for (const b of bands) {
       const seg = document.createElement("i");
       seg.className = "person-band" + (b.hasEvents ? " touched" : "");
@@ -5124,6 +5163,7 @@
     // (grammar_view_space_and_scroll v6): this is the shallowest fresh
     // surface and the scroll target in the default overview view.
     if (bucketIsFresh(root.id)) cell.classList.add("fresh");
+    if (grammarFilter.bucketPath && root.id === grammarFilter.bucketPath) cell.classList.add("drilled");
     cell.title = friendlyOverviewTitle(root, stats);
     // Top-level cell carries no rolled-up background; the texture comes from
     // the mini-cells and micro-dots inside. An overall colour would smooth
@@ -5223,6 +5263,7 @@
       const pb = buildPersonBands(leaf, "overview-dot-bands");
       if (pb) {
         dot.classList.add("person-split");
+        if (pb.className.indexOf("paradigm-grid") >= 0) dot.classList.add("grid");
         dot.appendChild(pb);
       } else {
         dot.style.background = rwgColour(leafStats ? leafStats.correctness : 0, !!leafStats);
@@ -5405,6 +5446,7 @@
     const row = document.createElement("div");
     row.className = "live-bucket-row " + (hasChildren ? "aggregate" : "leaf");
     if (hasEvents && bucketIsFresh(node.id)) row.classList.add("fresh");
+    if (grammarFilter.bucketPath && node.id === grammarFilter.bucketPath) row.classList.add("drilled");
     // Friendly label in the tooltip (DECISIONS.md 2026-05-15); fall back to id
     // only when the bucket has no label. The dotted id is engine-facing.
     // Honour info_display: "suppress" by using the topic-generic label when
