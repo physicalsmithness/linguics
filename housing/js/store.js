@@ -73,15 +73,26 @@
     // and surfaces the upstream cause (a markpoint missing .bucket) via
     // console.warn. See inter_chat/
     // Architecture_Housing_eventsForNode_TypeError_and_state_hygiene.md.
-    const rawEvents = (result.markpoints || []).map(mp => ({
-      bucket: mp.bucket,
-      attempted_credit: mp.attempted_credit,
-      correctness_credit: mp.correctness_credit,
-      outcome: mp.outcome,
-      evidence: mp.evidence || mp.evidence_in_attempt,
-      source: strand === "grammar" ? "engine" : "ai_stub",
-      bucket_proposed: !!mp.bucket_proposed
-    }));
+    // Person tag (verb_formation_person_split v2): formation items carry a
+    // structured `person` (1sg..3pl; explicit null on non-finite). Every
+    // event of a person-carrying item is tagged so per-person mastery can
+    // aggregate within a leaf. Items without the field produce untagged
+    // events, exactly as before - the render side treats absent as unsplit.
+    const itemPerson = (item_or_question && item_or_question.person !== undefined)
+      ? item_or_question.person : undefined;
+    const rawEvents = (result.markpoints || []).map(mp => {
+      const ev = {
+        bucket: mp.bucket,
+        attempted_credit: mp.attempted_credit,
+        correctness_credit: mp.correctness_credit,
+        outcome: mp.outcome,
+        evidence: mp.evidence || mp.evidence_in_attempt,
+        source: strand === "grammar" ? "engine" : "ai_stub",
+        bucket_proposed: !!mp.bucket_proposed
+      };
+      if (itemPerson !== undefined) ev.person = itemPerson;
+      return ev;
+    });
     const events = rawEvents.filter(ev => {
       if (typeof ev.bucket !== "string" || ev.bucket.length === 0) {
         console.warn("[Linguics] recordAttempt: skipping event with bad bucket field", ev);

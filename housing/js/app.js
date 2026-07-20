@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-20-r24";
+  const LL_BUILD = "2026-07-20-r26";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // Touch-first device (no hover, coarse pointer): tap interactions replace
   // keyboard ones. Computed once; used for tap-to-mark on MCQ.
@@ -1763,6 +1763,50 @@
     return VOCAB_SUBBANDS.find(s => s.id === id) || null;
   }
 
+  // ---- paradigm-person split (verb_formation_person_split v2) ----
+  const PERSON_ORDER = ["1sg", "2sg", "3sg", "1pl", "2pl", "3pl"];
+  const PERSON_LABELS = { "1sg": "io", "2sg": "tu", "3sg": "lui/lei", "1pl": "noi", "2pl": "voi", "3pl": "loro" };
+  // Which paradigm slots a finite-formation leaf splits into. null = no split
+  // (non-formation, usage/discrimination, non-finite gerundio, or non-verb).
+  function personsForLeaf(leafId) {
+    const id = String(leafId || "");
+    if (id.indexOf("verb_form.") !== 0) return null;
+    if (/\.(usage|discrimination)(\.|$)/.test(id)) return null;
+    if (id.indexOf("verb_form.gerundio") === 0) return null;   // non-finite
+    if (id.indexOf("verb_form.imperativo") === 0) return PERSON_ORDER.slice(1);  // no 1sg
+    return PERSON_ORDER;
+  }
+  // Per-person mastery within a leaf, from person-tagged events only. Events
+  // predating the person migration carry no tag and stay out of the bands
+  // (they still feed the leaf's overall colour) - do not invent a band.
+  function personBandsFor(leaf) {
+    const persons = personsForLeaf(leaf.id);
+    if (!persons) return null;
+    const events = eventsForNode(leaf);
+    return persons.map(p => {
+      const pe = events.filter(x => x.ev && x.ev.person === p);
+      const wc = recencyWeightedCorrectness(pe, true);   // grammar floor applies per band
+      return { person: p, label: PERSON_LABELS[p], hasEvents: wc.hasEvents, correctness: wc.correctness, n: wc.nAttempted || 0 };
+    });
+  }
+  // Compact band strip element, shared by the overview dot and the tree row.
+  function buildPersonBands(leaf, cls) {
+    const bands = personBandsFor(leaf);
+    if (!bands) return null;
+    const host = document.createElement("span");
+    host.className = cls;
+    for (const b of bands) {
+      const seg = document.createElement("i");
+      seg.className = "person-band" + (b.hasEvents ? " touched" : "");
+      if (b.hasEvents) seg.style.background = rwgColour(b.correctness, true);
+      seg.title = b.label + ": " + (b.hasEvents
+        ? Math.round(b.correctness * 100) + "% (" + b.n + " attempt" + (b.n === 1 ? "" : "s") + ")"
+        : "not practised yet");
+      host.appendChild(seg);
+    }
+    return host;
+  }
+
   // The RATIFIED category chip list (Architecture_Vocab_display_theme_grouping
   // v3, ratified v4): 94 chips - 30 parents + 64 sub-themes - in 4 sections.
   // Labels are Vocab's editorial deliverable and render verbatim; ids are the
@@ -2600,6 +2644,9 @@
         const aspect = c.aspect || "translation";
 
         cell.style.cursor = "pointer";
+        cell.title = (lemmaCount > VOCAB_CELL_DOT_THRESHOLD)
+          ? "Click to expand; click again to focus your deck on this group."
+          : "Click to focus your deck on this group; click again to clear.";
         // Mark the cell as active if it currently matches the filter, so CSS
         // can highlight it.
         const isActiveThemes = axisKind === "themes" && vocabFilter.theme === c.key;
@@ -5169,7 +5216,17 @@
       dot.className = "overview-dot";
       if (recentlyChangedBuckets.has(leaf.id)) dot.classList.add("fresh");
       dot.title = friendlyOverviewTitle(leaf, leafStats);
-      dot.style.background = rwgColour(leafStats ? leafStats.correctness : 0, !!leafStats);
+      // Finite-formation leaves split into the classic paradigm slots: the
+      // dot becomes a micro barcode, one sliver per person, so a tense only
+      // reads green once the persons are individually proven (person_split
+      // v2 - the structural half of two-for-green).
+      const pb = buildPersonBands(leaf, "overview-dot-bands");
+      if (pb) {
+        dot.classList.add("person-split");
+        dot.appendChild(pb);
+      } else {
+        dot.style.background = rwgColour(leafStats ? leafStats.correctness : 0, !!leafStats);
+      }
       dot.addEventListener("click", (e) => {
         e.stopPropagation();
         setBucketFilter(leaf.id);
@@ -5362,7 +5419,22 @@
       });
       if (touches) tooltipLabel = LL.inFlightSuppress.topicLabel;
     }
-    row.title = tooltipLabel + (node.description ? "\n\n" + node.description : "");
+    row.title = tooltipLabel + (node.description ? "\n\n" + node.description : "") + "\n\nDrill into this.";
+    if (!hasChildren) {
+      const rowBands = buildPersonBands(node, "row-person-bands");
+      if (rowBands) row.appendChild(rowBands);
+    }
+    // The rows have advertised clickability since the styling pass (cursor:
+    // pointer + hover at style.css ~1763/1768) but never had a handler - the
+    // dead click Smith reported (drill_into_reach thread, diagnosis (c)).
+    // Vocabulary rows route to the vocab tab, mirroring the overview tile.
+    row.addEventListener("click", () => {
+      if (node.id === "vocabulary" || node.id.indexOf("vocabulary.") === 0) {
+        showStrand("vocab");
+      } else {
+        setBucketFilter(node.id);
+      }
+    });
 
     const chev = document.createElement("span");
     chev.className = "chev";
