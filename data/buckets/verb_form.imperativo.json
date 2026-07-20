@@ -147,7 +147,7 @@
     "parent_id": "verb_form.imperativo",
     "language_code": "it",
     "label": "Usage",
-    "description": "What the imperative does and its variants: giving commands, instructions, directions, and invitations (Vieni con me!); the softened imperative; the infinitive-as-impersonal-imperative of recipes and public signs (Mescolare bene; Non fumare); and the politeness gradient between tu and Lei. Left at stub level for a later ImperativoUsage dispatch; no usage leaves are authored in the formation dispatch.",
+    "description": "The imperative's layers beyond plain command formation. Two authored leaves: the PRAGMATIC layer (frozen markers senti/guarda/dai and the pure softener: entri pure, mi dica pure) and the IMPERSONAL INFINITIVE of recipes and signs (Spingere; Non fumare; Mescolare bene). Direct instructions live in present_indicative.usage.instructions; the tu/Lei choice is the register discrimination leaf. Narrowed from the pre-wave-2 prose 2026-07-19; wave-2 batch accepted same day.",
     "cefr_importance": {
       "A1": "arcane",
       "A2": "core",
@@ -162,31 +162,33 @@
       "direction": "bidirectional"
     },
     "active": true,
-    "version": 1
+    "version": 2
   },
   {
     "id": "verb_form.imperativo.usage.pragmatic_softening",
     "parent_id": "verb_form.imperativo.usage",
     "language_code": "it",
     "label": "Softeners and discourse markers",
-    "description": "Imperatives used pragmatically: frozen markers (senti, guarda, dai, forza) and softened requests (dimmi pure, si accomodi). Deliberately the ONLY usage leaf: direct instructions live in present_indicative.usage.instructions and the tu/Lei choice is the register discrimination leaf. Propose a second leaf only if the grammar demands one that duplicates neither.",
+    "description": "Imperatives that have grammaticalised into discourse/pragmatic markers, plus commands softened by a particle. Frozen markers: senti / senta ('listen', to take the floor or get attention), guarda ('look', for emphasis), dai / su / forza / coraggio ('come on', encouragement or chivvying) - these carry no literal sense of hearing, looking, giving. Softened requests: the particle pure after an imperative turns an order into warm permission (entri pure, prendi pure, mi dica pure = 'do go right ahead'). This is the imperative's PRAGMATIC layer; the plain command forms are formation's, direct instructions are present_indicative.usage.instructions, and the tu/Lei choice is the register discrimination leaf. B1.",
     "cefr_importance": {
       "A1": "arcane",
       "A2": "preview",
       "B1": "core",
-      "B2": "review",
+      "B2": "core",
       "C1": "fluency",
       "C2": "fluency"
     },
-    "prerequisites": [],
+    "prerequisites": [
+      "verb_form.imperativo.formation"
+    ],
     "attributes": {
-      "is_aggregate": false,
+      "canonical_example": "dai, ce la fai!; senta, scusi; entri pure; guarda, te lo giuro",
+      "common_miss": "using the literal verb (ascolta) instead of the frozen marker (senti); mixing register on the frozen marker (senti to a stranger for senta)",
       "direction": "bidirectional",
-      "canonical_example": "Senti, ti va un caffe'?; Dimmi pure; Dai, andiamo!",
-      "stub": true
+      "is_aggregate": false
     },
     "active": true,
-    "version": 1
+    "version": 2
   },
   {
     "id": "verb_form.imperativo.usage.impersonal_infinitive",
@@ -209,11 +211,10 @@
       "canonical_example": "Spingere; Tirare; Non fumare; Mescolare bene; Conservare in luogo fresco",
       "common_miss": "using a personal command on a sign/recipe (spingi/spinga for Spingere); using non + positive imperative instead of non + infinitive on a prohibition sign",
       "direction": "production",
-      "is_aggregate": false,
-      "stub": true
+      "is_aggregate": false
     },
     "active": true,
-    "version": 1
+    "version": 2
   },
   {
     "id": "verb_form.imperativo.discrimination",
@@ -232,11 +233,10 @@
     "prerequisites": [],
     "attributes": {
       "is_aggregate": true,
-      "direction": "bidirectional",
-      "stub": true
+      "direction": "bidirectional"
     },
     "active": true,
-    "version": 1
+    "version": 2
   },
   {
     "id": "verb_form.imperativo.discrimination.register_informal_vs_formal",
@@ -256,10 +256,9 @@
       "verb_form.congiuntivo"
     ],
     "attributes": {
-      "direction": "bidirectional",
-      "stub": true
+      "direction": "bidirectional"
     },
     "active": true,
-    "version": 1
+    "version": 2
   }
 ]

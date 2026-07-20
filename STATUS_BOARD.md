@@ -1,6 +1,6 @@
 # STATUS BOARD - Linguics
 
-Generated 2026-07-19 by `MetaProject\status_board.py` (read-only aggregator; the only
+Generated 2026-07-20 by `MetaProject\status_board.py` (read-only aggregator; the only
 writer of this file). Derived from disk at run time, never remembered. Regenerate
 at will; editing this file by hand is pointless, the next run overwrites it.
 Seat queues are SEAT-ASSERTED (each seat judged its own grep hits); standing
@@ -21,11 +21,13 @@ rules never appear here as tasks, only their retrofit/compliance state does.
 - **DemonstrativeAuthor** needs **external-action** (blocked by: Architecture (3 stamps to apply + the cio/criterion-20 ruling))
   - Demonstrative batch (44 grammar + 20 translation) is live and Rev-25 compliant; three class/next-touch clauses discharged and awaiting Architecture stamps; one criterion-20 exposure on the two cio cues routed to Architecture for a ruling.
 - **Housing** needs **external-action**
-  - r23 - architect specs landed + acted on: denominator floor SHIPPED (9.5, opt-in per call site - kernel is shared with 4 vocab sites, scope correction on record) + residue survey DELIVERED (1,839 answers, ZERO flips both rules, instrument validated; awaiting go + 2 rulings). Person-split queued behind Architecture's migration. r22 - coverage views TOGGLEABLE per Smith's ruling: equal-boxes (his model, default) vs sized-boxes (r21), cream=unobtained / grey=unobtainable glossary, hatch retired; scoring-formula discussion Smith->Architecture pending. r21 - matrix legibility round: uniform gapless 4px liquid layers (contiguous colour at bottom), scope-scaled row heights, grey unpractised vs hatched NA, family subgroups; A2/B2 counts verified REAL from data. r20 - 'reduced coverage' = matrix rendered off SAMPLE tree during load window (transpose = re-render); coverage now load-gated + refreshed by the loader. r19 - coverage stripes horizontal + sediment-bottom fill + rwg colours (coverageColour had NO red - wrong answers were invisible in the matrix). r18 - coverage matrix cells de-aggregated per Smith (one strip per area, own colours, coverage = colour spread; dense topics band). r17 - Smith's live round: scroll CONFIRMED, pulse moved to the small cell/dot, in-session multi-level toggles (a1b1a2) + composed-scope preservation, accent policy CONFIRMED live (0.9, caffe named). r16 - cue_placement v3 ruling acted on same-day: field renamed wrong_answer_is_form_error_only (claim-named), engine read live with legacy tripwire, migration ball with Architecture. r15 - Smith-direct scroll regression fixed same turn (v7 scrolled the wrong scrollbox + flashed pre-scroll; now ancestor-walk box choice + scroll-then-flash, geometry-mocked harness). Previously: queue cleared at r14 - 8 threads closed/advanced today (scroll fix, entry load race, level picker set, AI-marker accent policy, vocab builder two-lens + ratified 94-chip category picker, cue placement CSS, feedback widget mounted); cue-placement FLAG ruling awaits Architecture
+  - r24 - live-round UI thread closed same-day: vocab parenthetical inline (flex-column bug family), choose-or-type chips (prompt-stated sets only, 129 items; candidate_forms excluded to honour crit-16 suppression - flagged to Architecture) + Input preference, MCQ number badges. r23 - architect specs landed + acted on: denominator floor SHIPPED (9.5, opt-in per call site - kernel is shared with 4 vocab sites, scope correction on record) + residue survey DELIVERED (1,839 answers, ZERO flips both rules, instrument validated; awaiting go + 2 rulings). Person-split queued behind Architecture's migration. r22 - coverage views TOGGLEABLE per Smith's ruling: equal-boxes (his model, default) vs sized-boxes (r21), cream=unobtained / grey=unobtainable glossary, hatch retired; scoring-formula discussion Smith->Architecture pending. r21 - matrix legibility round: uniform gapless 4px liquid layers (contiguous colour at bottom), scope-scaled row heights, grey unpractised vs hatched NA, family subgroups; A2/B2 counts verified REAL from data. r20 - 'reduced coverage' = matrix rendered off SAMPLE tree during load window (transpose = re-render); coverage now load-gated + refreshed by the loader. r19 - coverage stripes horizontal + sediment-bottom fill + rwg colours (coverageColour had NO red - wrong answers were invisible in the matrix). r18 - coverage matrix cells de-aggregated per Smith (one strip per area, own colours, coverage = colour spread; dense topics band). r17 - Smith's live round: scroll CONFIRMED, pulse moved to the small cell/dot, in-session multi-level toggles (a1b1a2) + composed-scope preservation, accent policy CONFIRMED live (0.9, caffe named). r16 - cue_placement v3 ruling acted on same-day: field renamed wrong_answer_is_form_error_only (claim-named), engine read live with legacy tripwire, migration ball with Architecture. r15 - Smith-direct scroll regression fixed same turn (v7 scrolled the wrong scrollbox + flashed pre-scroll; now ancestor-walk box choice + scroll-then-flash, geometry-mocked harness). Previously: queue cleared at r14 - 8 threads closed/advanced today (scroll fix, entry load race, level picker set, AI-marker accent policy, vocab builder two-lens + ratified 94-chip category picker, cue placement CSS, feedback widget mounted); cue-placement FLAG ruling awaits Architecture
 - **PronominalVerbsAuthor** needs **external-action** (blocked by: Architecture — ratify/place pronominal_verbs.meaning.frozen_tail_idioms (11 grammar + 3 translation forward-reference it; production load strict-rejects until it exists))
   - Original batch ACCEPTED 2026-07-15. Smith commissioned the frozen-tail idioms C1 pass 2026-07-18; authored and on disk (10 new grammar + 3 translation, pv_adv_frozentail_01 re-homed, topic now 56/23), validates clean, forward-referencing a leaf Architecture must place. Two all-authors class retrofits (crit 13, Rev 25) re-run clean and reported for stamping.
 - **RelativePronounAuthor** needs **external-action**
   - batch live and settled; wake self-check found two unstamped class retrofits (crit 13, Rev 25), both audited clean same turn, evidence filed for stamping; pos-worklist census decrement still pending
+- **ConditionalFormationAuthor** needs **review**
+  - Wave-2 usage batch delivered (3 leaves, 23 grammar + 19 bidirectional translation, verifier green, Rev 27 cross-credits held to the tense_choice boundary). Two soft formation triggers hardened. Two asks parked in the usage thread; formation batch remains ACCEPTED.
 - **CongiuntivoFormationAuthor** needs **review**
   - FORMATION (3 waves) + USAGE branch both delivered and verified: 90 grammar + 33 translation, engine-green (90/90 full marks; Rev-27 usage co-credit confirmed 15/15). Owed: nothing to author; awaiting Architecture to mint 3 usage leaves + rule on 2 flags.
 - **ConnectiveAuthor** needs **review**
@@ -51,14 +53,14 @@ No seat is a pure "reopen and say go" right now.
 - Classes: all-seats, all-authors
 - Batch accepted; my finding is criterion 15's recoverability condition (Rev 19). Rev 25 retrofit run and discharged (26 cued items, 26 exempt, 3 vocab_help'd); adv_bb_07 repaired per Smith; one collision ruling asked of Architecture.
 
-### Architecture - active / decision (triage order for the 19 rulings — lettered options in chat) (updated 2026-07-19)
+### Architecture - active / none (updated 2026-07-19)
 - Classes: all-seats
-- Fresh Architecture chat took the seat 2026-07-19. Ruled ADOPT on MetaProject v9 (spawn verify-and-stamp agent on every wake) and ran it: 45 threads -> 15 stamps applied (3 held), 19 rulings isolated, 5 cannot-verify (Cr17Sweep needs marker-replica re-run), 3 stale (Preposition thread closed). Push verified clean.
-  - Make the 19 isolated rulings (batch acceptances: Connective, Indefinite, Gerundio usage, Imperativo usage, Existential rework, Possessive x2, PronominalVerbs frozen-tail; leaf mints: congiuntivo usage x3, future usage x3, gerundio usage x2, imperativo destub; design: residue go, person schema, free-choice seam, vedere_ci repair, candidate_forms A/B/C, label hygiene, NegationAuthor crit-20 extension)   [inter_chat]
-  - wrong_answer_is_form_error_only migration of 1,665 items   [Architecture_Housing_cue_placement v4]
-  - person-field migration (~350 derivable central + ~96 work-order residue) after Smith ratifies field name   [specced]
-  - cue-notation retrofit routing (138 items, eight named authors)   [DECISIONS]
-  - re-run marker replica over Cr17Sweep's five topics, then stamp or query   [cannot-verify class]
+- Wave 2 FULLY LANDED. Gerundio (16+12) + imperativo (32+16) accepted and merged (topics now 51+26 / 69+32); all usage leaves flat+destubbed; register.tu_lei_mismatch extended to imperativo; glossary v9 (adverbial gerund); 4 acceptance-rulings recorded (no-partner confirmed, dual-cite ratified, anti-anchor design, absolute gerund parked). Stubs 15 -> 4. Earlier today: flat-canonical ratified by Smith; live-round routing (Housing/Demonstrative/Negation); 17 stamps total applied.
+  - Remaining rulings: Connective + Indefinite acceptance, Existential rework + partitive mint, Possessive x2, vedere_ci repair, residue go, free-choice seam, candidate_forms A/B/C, congiuntivo label hygiene, Negation crit-20 extension, GerundioAuthor porre/tradurre (selfcheck thread), Cr17Sweep replica re-run
+  - Migrations: wrong_answer_is_form_error_only x1,665; person x~350 central + ~96 work-order
+  - Mint vocabulary.it.mano.noun.gender when DemonstrativeAuthor's markpoint lands
+  - Phantom translation bucket ids central mapping (27 ids / ~35 items)
+  - cue-notation retrofit routing (138 items, eight authors)
 
 ### ArticleAuthor - parked / none (updated 2026-07-18)
 - Blocked by: none
@@ -72,6 +74,13 @@ No seat is a pure "reopen and say go" right now.
 - Classes: all-seats, all-authors
 - Comparison batch live and ACCEPTED (51 grammar + 24 translation, all 8 leaves), reconciled Rev 16->22 and re-checked against Rev 25 today. Self-check run across name + classes; queue is EMPTY. Two class-bound audits run today, both clean; three items await Architecture's stamp.
   - none — nothing owed. (name-grep MINUS discharged = 0)
+
+### ConditionalFormationAuthor - parked / review (updated 2026-07-20)
+- Classes: all-seats, all-authors
+- Wave-2 usage batch delivered (3 leaves, 23 grammar + 19 bidirectional translation, verifier green, Rev 27 cross-credits held to the tense_choice boundary). Two soft formation triggers hardened. Two asks parked in the usage thread; formation batch remains ACCEPTED.
+  - Architecture_ConditionalFormationAuthor_usage_wave2 v1: 2 asks open (reported-future dual-credit y/n; stub-flag clearance)   [inter_chat, Next: Architecture — their turn]
+  - Criterion 13 audit: 0 hits, clean, awaiting Architecture stamp for this seat   [AUTHOR_BRIEF binding register]
+  - Criterion 25 audit: 0 exposed, clean, awaiting Architecture stamp for this seat   [AUTHOR_BRIEF binding register]
 
 ### CongiuntivoFormationAuthor - parked / review (updated 2026-07-18)
 - Classes: all-seats, all-authors
@@ -120,10 +129,10 @@ No seat is a pure "reopen and say go" right now.
 - Usage branch (adverbial gerund) delivered today per DISPATCH_usage_wave2 - 16 grammar + 12 translation across 2 leaves, verified via engine port. Awaiting Architecture on TWO threads (see below). Formation batch remains accepted/closed.
   - nothing owed (both deliveries complete; the open items are Architecture's, not mine)
 
-### Housing - parked / external-action (updated 2026-07-18 (evening pass))
-- r23 - architect specs landed + acted on: denominator floor SHIPPED (9.5, opt-in per call site - kernel is shared with 4 vocab sites, scope correction on record) + residue survey DELIVERED (1,839 answers, ZERO flips both rules, instrument validated; awaiting go + 2 rulings). Person-split queued behind Architecture's migration. r22 - coverage views TOGGLEABLE per Smith's ruling: equal-boxes (his model, default) vs sized-boxes (r21), cream=unobtained / grey=unobtainable glossary, hatch retired; scoring-formula discussion Smith->Architecture pending. r21 - matrix legibility round: uniform gapless 4px liquid layers (contiguous colour at bottom), scope-scaled row heights, grey unpractised vs hatched NA, family subgroups; A2/B2 counts verified REAL from data. r20 - 'reduced coverage' = matrix rendered off SAMPLE tree during load window (transpose = re-render); coverage now load-gated + refreshed by the loader. r19 - coverage stripes horizontal + sediment-bottom fill + rwg colours (coverageColour had NO red - wrong answers were invisible in the matrix). r18 - coverage matrix cells de-aggregated per Smith (one strip per area, own colours, coverage = colour spread; dense topics band). r17 - Smith's live round: scroll CONFIRMED, pulse moved to the small cell/dot, in-session multi-level toggles (a1b1a2) + composed-scope preservation, accent policy CONFIRMED live (0.9, caffe named). r16 - cue_placement v3 ruling acted on same-day: field renamed wrong_answer_is_form_error_only (claim-named), engine read live with legacy tripwire, migration ball with Architecture. r15 - Smith-direct scroll regression fixed same turn (v7 scrolled the wrong scrollbox + flashed pre-scroll; now ancestor-walk box choice + scroll-then-flash, geometry-mocked harness). Previously: queue cleared at r14 - 8 threads closed/advanced today (scroll fix, entry load race, level picker set, AI-marker accent policy, vocab builder two-lens + ratified 94-chip category picker, cue placement CSS, feedback widget mounted); cue-placement FLAG ruling awaits Architecture
+### Housing - parked / external-action (updated 2026-07-20)
+- r24 - live-round UI thread closed same-day: vocab parenthetical inline (flex-column bug family), choose-or-type chips (prompt-stated sets only, 129 items; candidate_forms excluded to honour crit-16 suppression - flagged to Architecture) + Input preference, MCQ number badges. r23 - architect specs landed + acted on: denominator floor SHIPPED (9.5, opt-in per call site - kernel is shared with 4 vocab sites, scope correction on record) + residue survey DELIVERED (1,839 answers, ZERO flips both rules, instrument validated; awaiting go + 2 rulings). Person-split queued behind Architecture's migration. r22 - coverage views TOGGLEABLE per Smith's ruling: equal-boxes (his model, default) vs sized-boxes (r21), cream=unobtained / grey=unobtainable glossary, hatch retired; scoring-formula discussion Smith->Architecture pending. r21 - matrix legibility round: uniform gapless 4px liquid layers (contiguous colour at bottom), scope-scaled row heights, grey unpractised vs hatched NA, family subgroups; A2/B2 counts verified REAL from data. r20 - 'reduced coverage' = matrix rendered off SAMPLE tree during load window (transpose = re-render); coverage now load-gated + refreshed by the loader. r19 - coverage stripes horizontal + sediment-bottom fill + rwg colours (coverageColour had NO red - wrong answers were invisible in the matrix). r18 - coverage matrix cells de-aggregated per Smith (one strip per area, own colours, coverage = colour spread; dense topics band). r17 - Smith's live round: scroll CONFIRMED, pulse moved to the small cell/dot, in-session multi-level toggles (a1b1a2) + composed-scope preservation, accent policy CONFIRMED live (0.9, caffe named). r16 - cue_placement v3 ruling acted on same-day: field renamed wrong_answer_is_form_error_only (claim-named), engine read live with legacy tripwire, migration ball with Architecture. r15 - Smith-direct scroll regression fixed same turn (v7 scrolled the wrong scrollbox + flashed pre-scroll; now ancestor-walk box choice + scroll-then-flash, geometry-mocked harness). Previously: queue cleared at r14 - 8 threads closed/advanced today (scroll fix, entry load race, level picker set, AI-marker accent policy, vocab builder two-lens + ratified 94-chip category picker, cue placement CSS, feedback widget mounted); cue-placement FLAG ruling awaits Architecture
   - DISCHARGED 2026-07-18: worker deployed by Smith (wrangler output on record); accent policy live-verified on a real attempt
-  - push r20-r23 (sample-matrix cure, two coverage views, denominator floor)   [external-action, Smith]
+  - push r20-r24 (sample-matrix cure, two coverage views, denominator floor, live-round UI trio)   [external-action, Smith]
   - cue_placement: rename DONE r16; awaiting Architecture's 1,665-item key migration, then ExistentialAuthor's ex_form_neg_01 unset   [inter_chat, Next: Architecture]
   - also_credits markpoint field - future Housing pass   [OPEN_QUESTIONS, parked]
   - whole-answer anchoring match_at "exact" - future Housing pass   [OPEN_QUESTIONS, parked]
@@ -247,146 +256,147 @@ No seat is a pure "reopen and say go" right now.
 
 ## Thread ledger (open threads, whose turn, sitting how long)
 
-159 threads on disk, 52 open. Sorted oldest-last-write first.
+164 threads on disk, 51 open. Sorted oldest-last-write first.
 
-### Turn: Architecture (42)
-- `Architecture_NegationAuthor_criterion20_retrofit.md` - last wrote NegationAuthor on 2026-07-15 (4d sitting) [Next:]
+### Turn: Architecture (38)
+- `Architecture_NegationAuthor_criterion20_retrofit.md` - last wrote NegationAuthor on 2026-07-15 (5d sitting) [Next:]
   - Next: Architecture (accept the retrofit; rule the proposed criterion-20 extension; route adv_bb_07)
-- `Architecture_NegationAuthor_scope_ratified.md` - last wrote NegationAuthor on 2026-07-15 (4d sitting) [inferred from last author]
-- `Architecture_Cr17Sweep_adjective_agreement.md` - last wrote Cr17Sweep on 2026-07-17 (2d sitting) [Next:]
+- `Architecture_NegationAuthor_scope_ratified.md` - last wrote NegationAuthor on 2026-07-15 (5d sitting) [inferred from last author]
+- `Architecture_Cr17Sweep_adjective_agreement.md` - last wrote Cr17Sweep on 2026-07-17 (3d sitting) [Next:]
   - Next: Architecture (route the buono_02 bug to AdjectiveAuthor; stamp when satisfied)
-- `Architecture_Cr17Sweep_congiuntivo.md` - last wrote Cr17Sweep on 2026-07-17 (2d sitting) [Next:]
+- `Architecture_Cr17Sweep_congiuntivo.md` - last wrote Cr17Sweep on 2026-07-17 (3d sitting) [Next:]
   - Next: Architecture (route the pagare observation to CongiuntivoFormationAuthor if you agree; stamp when satisfied)
-- `Architecture_Cr17Sweep_future.md` - last wrote Cr17Sweep on 2026-07-17 (2d sitting) [Next:]
+- `Architecture_Cr17Sweep_future.md` - last wrote Cr17Sweep on 2026-07-17 (3d sitting) [Next:]
   - Next: Architecture (route the vedrò bug + two observations to FutureFormationAuthor; stamp when satisfied)
-- `Architecture_Cr17Sweep_imperfect.md` - last wrote Cr17Sweep on 2026-07-17 (2d sitting) [Next:]
+- `Architecture_Cr17Sweep_imperfect.md` - last wrote Cr17Sweep on 2026-07-17 (3d sitting) [Next:]
   - Next: Architecture (route the volere flag + two answer-leak observations to ImperfectAuthor; stamp when satisfied)
-- `Architecture_Cr17Sweep_present_indicative.md` - last wrote Cr17Sweep on 2026-07-17 (2d sitting) [Next:]
+- `Architecture_Cr17Sweep_present_indicative.md` - last wrote Cr17Sweep on 2026-07-17 (3d sitting) [Next:]
   - Next: Architecture (stamp or query; two observations routed to PresentFormationAuthor)
-- `Architecture_Housing_verb_formation_person_split.md` - last wrote Architecture on 2026-07-17 (2d sitting) [Next:]
+- `Architecture_Housing_verb_formation_person_split.md` - last wrote Architecture on 2026-07-17 (3d sitting) [Next:]
   - Next: Architecture (ratify schema + run the derivable migration), then Housing (6-band render), then authors (backfill residue)
-- `Architecture_PassiveAuthor_criterion20_cue_leak.md` - last wrote PassiveAuthor on 2026-07-17 (2d sitting) [inferred from last author]
-- `Architecture_PassiveAuthor_usage_branch_delivery.md` - last wrote PassiveAuthor on 2026-07-17 (2d sitting) [inferred from last author]
-- `Architecture_PresentFormationAuthor_rev25_and_stamps.md` - last wrote PresentFormationAuthor on 2026-07-17 (2d sitting) [Next:]
+- `Architecture_PassiveAuthor_criterion20_cue_leak.md` - last wrote PassiveAuthor on 2026-07-17 (3d sitting) [inferred from last author]
+- `Architecture_PassiveAuthor_usage_branch_delivery.md` - last wrote PassiveAuthor on 2026-07-17 (3d sitting) [inferred from last author]
+- `Architecture_PresentFormationAuthor_rev25_and_stamps.md` - last wrote PresentFormationAuthor on 2026-07-17 (3d sitting) [Next:]
   - Next: Architecture (two stamps + one ratification)
-- `Architecture_PronounAuthor_brief_rev19_audit.md` - last wrote PronounAuthor on 2026-07-17 (2d sitting) [Next:]
+- `Architecture_PronounAuthor_brief_rev19_audit.md` - last wrote PronounAuthor on 2026-07-17 (3d sitting) [Next:]
   - Next: Architecture (close thread + stamp 3 discharged clauses)
-- `AdjectiveAuthor_Cr17Sweep_hygiene_work_order.md` - last wrote AdjectiveAuthor on 2026-07-18 (1d sitting) [Next:]
+- `AdjectiveAuthor_Cr17Sweep_hygiene_work_order.md` - last wrote AdjectiveAuthor on 2026-07-18 (2d sitting) [Next:]
   - Next: Architecture
-- `AdverbAuthor_Architecture_rev25_cue_level_retrofit.md` - last wrote AdverbAuthor on 2026-07-18 (1d sitting) [Next:]
+- `AdverbAuthor_Architecture_rev25_cue_level_retrofit.md` - last wrote AdverbAuthor on 2026-07-18 (2d sitting) [Next:]
   - Next: Architecture (stamp the Rev 25 discharge for this seat; rule the remedy collision; adv_bb_07 needs no routing, it is fixed)
-- `Architecture_AdjectiveAuthor_buono_02_prompt_bug.md` - last wrote AdjectiveAuthor on 2026-07-18 (1d sitting) [Next:]
+- `Architecture_AdjectiveAuthor_buono_02_prompt_bug.md` - last wrote AdjectiveAuthor on 2026-07-18 (2d sitting) [Next:]
   - Next: Architecture
-- `Architecture_ArticleAuthor_class_retrofit_audits.md` - last wrote ArticleAuthor on 2026-07-18 (1d sitting) [Next:]
+- `Architecture_ArticleAuthor_class_retrofit_audits.md` - last wrote ArticleAuthor on 2026-07-18 (2d sitting) [Next:]
   - Next: Architecture
-- `Architecture_ArticleAuthor_discrimination_candidate_forms.md` - last wrote ArticleAuthor on 2026-07-18 (1d sitting) [Next:]
+- `Architecture_ArticleAuthor_discrimination_candidate_forms.md` - last wrote ArticleAuthor on 2026-07-18 (2d sitting) [Next:]
   - Next: Architecture
-- `Architecture_CongiuntivoFormationAuthor_compound_leaf_label_hygiene.md` - last wrote CongiuntivoFormationAuthor on 2026-07-18 (1d sitting) [Next:]
+- `Architecture_CongiuntivoFormationAuthor_compound_leaf_label_hygiene.md` - last wrote CongiuntivoFormationAuthor on 2026-07-18 (2d sitting) [Next:]
   - Next: Architecture (rule on the relabel; stamp when satisfied)
-- `Architecture_CongiuntivoFormationAuthor_usage_leaf_minting.md` - last wrote CongiuntivoFormationAuthor on 2026-07-18 (1d sitting) [Next:]
-  - Next: Architecture (mint the 3 leaves, clear the usage stub, strict-resolve the forward-refs)
-- `Architecture_ConnectiveAuthor_batch_delivery.md` - last wrote ConnectiveAuthor on 2026-07-18 (1d sitting) [Next:]
+- `Architecture_ConnectiveAuthor_batch_delivery.md` - last wrote ConnectiveAuthor on 2026-07-18 (2d sitting) [Next:]
   - Next: Architecture
-- `Architecture_DemonstrativeAuthor_class_retrofit_audits.md` - last wrote DemonstrativeAuthor on 2026-07-18 (1d sitting) [Next:]
+- `Architecture_DemonstrativeAuthor_class_retrofit_audits.md` - last wrote DemonstrativeAuthor on 2026-07-18 (2d sitting) [Next:]
   - Next: Architecture (three stamps to apply + one ruling to make)
-- `Architecture_ExistentialAuthor_cue_level_and_additive_credit.md` - last wrote ExistentialAuthor on 2026-07-18 (1d sitting) [Next:]
+- `Architecture_ExistentialAuthor_cue_level_and_additive_credit.md` - last wrote ExistentialAuthor on 2026-07-18 (2d sitting) [Next:]
   - Next: Architecture
-- `Architecture_FutureFormationAuthor_class_retrofit_audits.md` - last wrote FutureFormationAuthor on 2026-07-18 (1d sitting) [Next:]
+- `Architecture_FutureFormationAuthor_class_retrofit_audits.md` - last wrote FutureFormationAuthor on 2026-07-18 (2d sitting) [Next:]
   - Next: Architecture
-- `Architecture_FutureFormationAuthor_usage_wave2.md` - last wrote FutureFormationAuthor on 2026-07-18 (1d sitting) [Next:]
+- `Architecture_FutureFormationAuthor_vedere_ci_bug.md` - last wrote FutureFormationAuthor on 2026-07-18 (2d sitting) [Next:]
   - Next: Architecture
-- `Architecture_FutureFormationAuthor_vedere_ci_bug.md` - last wrote FutureFormationAuthor on 2026-07-18 (1d sitting) [Next:]
+- `Architecture_GerundioAuthor_selfcheck_discharge.md` - last wrote GerundioAuthor on 2026-07-18 (2d sitting) [Next:]
   - Next: Architecture
-- `Architecture_GerundioAuthor_selfcheck_discharge.md` - last wrote GerundioAuthor on 2026-07-18 (1d sitting) [Next:]
-  - Next: Architecture
-- `Architecture_GerundioAuthor_usage_delivery.md` - last wrote GerundioAuthor on 2026-07-18 (1d sitting) [Next:]
-  - Next: Architecture
-- `Architecture_Housing_cue_placement.md` - last wrote Housing on 2026-07-18 (1d sitting) [Next:]
+- `Architecture_Housing_cue_placement.md` - last wrote Housing on 2026-07-18 (2d sitting) [Next:]
   - Next: Architecture (migrate the 1,665 items to the new key; same push as r16); then ExistentialAuthor (unset ex_form_neg_01) + Cr17Sweep (straggler net)
-- `Architecture_Housing_extraneous_word_residue.md` - last wrote Housing on 2026-07-18 (1d sitting) [Next:]
+- `Architecture_Housing_extraneous_word_residue.md` - last wrote Housing on 2026-07-18 (2d sitting) [Next:]
   - Next: Architecture (rule on the go + the two design choices in v2: all-matches subtraction, whole-prompt token licensing)
-- `Architecture_ImperativoAuthor_discharges.md` - last wrote ImperativoAuthor on 2026-07-18 (1d sitting) [Next:]
+- `Architecture_ImperativoAuthor_discharges.md` - last wrote ImperativoAuthor on 2026-07-18 (2d sitting) [Next:]
   - Next: Architecture (stamp 4 clauses)
-- `Architecture_ImperativoAuthor_usage_wave2_delivery.md` - last wrote ImperativoAuthor on 2026-07-18 (1d sitting) [Next:]
-  - Next: Architecture (accept + mint/destub + 1 registry topic-add + 1 parent-description fix)
-- `Architecture_IndefiniteAuthor_batch_delivery.md` - last wrote IndefiniteAuthor on 2026-07-18 (1d sitting) [Next:]
+- `Architecture_IndefiniteAuthor_batch_delivery.md` - last wrote IndefiniteAuthor on 2026-07-18 (2d sitting) [Next:]
   - Next: Architecture
-- `Architecture_IndefiniteAuthor_free_choice_mood_seam.md` - last wrote IndefiniteAuthor on 2026-07-18 (1d sitting) [Next:]
+- `Architecture_IndefiniteAuthor_free_choice_mood_seam.md` - last wrote IndefiniteAuthor on 2026-07-18 (2d sitting) [Next:]
   - Next: Architecture
-- `Architecture_PiacereAuthor_class_retrofit_audits.md` - last wrote PiacereAuthor on 2026-07-18 (1d sitting) [Next:]
+- `Architecture_PiacereAuthor_class_retrofit_audits.md` - last wrote PiacereAuthor on 2026-07-18 (2d sitting) [Next:]
   - Next: Architecture (two stamps + one class ratification requested)
-- `Architecture_PossessiveAuthor_class_retrofit_audits.md` - last wrote PossessiveAuthor on 2026-07-18 (1d sitting) [Next:]
+- `Architecture_PossessiveAuthor_class_retrofit_audits.md` - last wrote PossessiveAuthor on 2026-07-18 (2d sitting) [Next:]
   - Next: Architecture (stamp the compliance table)
-- `Architecture_PossessiveAuthor_edge_patterns.md` - last wrote PossessiveAuthor on 2026-07-18 (1d sitting) [Next:]
+- `Architecture_PossessiveAuthor_edge_patterns.md` - last wrote PossessiveAuthor on 2026-07-18 (2d sitting) [Next:]
   - Next: Architecture (accept + clear the three stubs)
-- `Architecture_PossessiveAuthor_suo_leaf_and_discrimination_fields.md` - last wrote PossessiveAuthor on 2026-07-18 (1d sitting) [Next:]
+- `Architecture_PossessiveAuthor_suo_leaf_and_discrimination_fields.md` - last wrote PossessiveAuthor on 2026-07-18 (2d sitting) [Next:]
   - Next: Architecture (accept + close)
-- `Architecture_PronominalVerbsAuthor_class_retrofit_audits.md` - last wrote PronominalVerbsAuthor on 2026-07-18 (1d sitting) [Next:]
+- `Architecture_PronominalVerbsAuthor_class_retrofit_audits.md` - last wrote PronominalVerbsAuthor on 2026-07-18 (2d sitting) [Next:]
   - Next: Architecture (stamps)
-- `Architecture_PronominalVerbsAuthor_frozen_tail_idioms.md` - last wrote PronominalVerbsAuthor on 2026-07-18 (1d sitting) [Next:]
-  - Next: Architecture (ratify/place the leaf)
-- `Architecture_RelativePronounAuthor_class_retrofit_audits.md` - last wrote RelativePronounAuthor on 2026-07-18 (1d sitting) [Next:]
+- `Architecture_RelativePronounAuthor_class_retrofit_audits.md` - last wrote RelativePronounAuthor on 2026-07-18 (2d sitting) [Next:]
   - Next: Architecture
-- `Architecture_TenseChoiceAuthor_class_retrofit_audits.md` - last wrote TenseChoiceAuthor on 2026-07-18 (1d sitting) [Next:]
+- `Architecture_TenseChoiceAuthor_class_retrofit_audits.md` - last wrote TenseChoiceAuthor on 2026-07-18 (2d sitting) [Next:]
   - Next: Architecture
-- `Architecture_TenseChoiceAuthor_criterion_compliance.md` - last wrote TenseChoiceAuthor on 2026-07-18 (1d sitting) [Next:]
+- `Architecture_TenseChoiceAuthor_criterion_compliance.md` - last wrote TenseChoiceAuthor on 2026-07-18 (2d sitting) [Next:]
   - Next: Architecture
+- `Architecture_ConditionalFormationAuthor_usage_wave2.md` - last wrote ConditionalFormationAuthor on 2026-07-20 (0d sitting) [Next:]
+  - Next: Architecture
+
+### Turn: (unknown) (2)
+- `Architecture_AdverbAuthor_batch_disposition.md` - last wrote ? on ? (? sitting) [inferred from last author]
+- `EdTechOverview_Architecture_shared_login_and_pulse_adoption.md` - last wrote ? on ? (? sitting) [inferred from last author]
 
 ### Turn: none (1)
-- `Architecture_Coverage_denominators_and_policy.md` - last wrote Architecture on 2026-05-28 (52d sitting) [Next:]
+- `Architecture_Coverage_denominators_and_policy.md` - last wrote Architecture on 2026-05-28 (53d sitting) [Next:]
   - Next: none (reference doc)
 
 ### Turn: ConditionalFormationAuthor (1)
-- `Architecture_ConditionalFormationAuthor_batch_delivery.md` - last wrote Architecture on 2026-07-15 (4d sitting) [inferred from last author]
+- `Architecture_ConditionalFormationAuthor_batch_delivery.md` - last wrote Architecture on 2026-07-15 (5d sitting) [inferred from last author]
 
 ### Turn: ImperativoAuthor (1)
-- `Architecture_ImperativoAuthor_short_form_marker_apostrophe.md` - last wrote Architecture on 2026-07-15 (4d sitting) [inferred from last author]
+- `Architecture_ImperativoAuthor_short_form_marker_apostrophe.md` - last wrote Architecture on 2026-07-15 (5d sitting) [inferred from last author]
 
 ### Turn: ReportedSpeechAuthor (1)
-- `Architecture_ReportedSpeechAuthor_batch_disposition.md` - last wrote Architecture on 2026-07-15 (4d sitting) [Next:]
+- `Architecture_ReportedSpeechAuthor_batch_disposition.md` - last wrote Architecture on 2026-07-15 (5d sitting) [Next:]
   - Next: ReportedSpeechAuthor (four ruled asks to absorb)
 
 ### Turn: the (1)
-- `Architecture_ALLAUTHORS_cue_notation_renders_use_english.md` - last wrote Architecture on 2026-07-17 (2d sitting) [Next:]
+- `Architecture_ALLAUTHORS_cue_notation_renders_use_english.md` - last wrote Architecture on 2026-07-17 (3d sitting) [Next:]
   - Next: the eight named authors below (pronoun 80, possessive 29, piacere 12, adverb 7, relative_pronoun 4, imperfect 2, adjective_agreement 1, preposition 1)
 
 ### Turn: ImperfectAuthor (1)
-- `Architecture_ImperfectAuthor_vol_01_prompt_bug.md` - last wrote Architecture on 2026-07-17 (2d sitting) [Next:]
+- `Architecture_ImperfectAuthor_vol_01_prompt_bug.md` - last wrote Architecture on 2026-07-17 (3d sitting) [Next:]
   - Next: ImperfectAuthor
 
 ### Turn: MisconceptionAnalyst (1)
-- `Architecture_MisconceptionAnalyst_registry_harvest.md` - last wrote Architecture on 2026-07-17 (2d sitting) [Next:]
+- `Architecture_MisconceptionAnalyst_registry_harvest.md` - last wrote Architecture on 2026-07-17 (3d sitting) [Next:]
   - Next: MisconceptionAnalyst (fill the ~152 tag-lists thoroughly; then bring v13's proposals as a discrete list)
 
 ### Turn: PronounAuthor (1)
-- `Architecture_PronounAuthor_criterion13_chip_audit.md` - last wrote Architecture on 2026-07-17 (2d sitting) [Next:]
+- `Architecture_PronounAuthor_criterion13_chip_audit.md` - last wrote Architecture on 2026-07-17 (3d sitting) [Next:]
   - Next: PronounAuthor (judge 5 chips; the other 5 hits are triaged as false positives, no action)
 
+### Turn: DemonstrativeAuthor (1)
+- `Architecture_DemonstrativeAuthor_live_round_mano_and_meaning.md` - last wrote Architecture on 2026-07-19 (1d sitting) [Next:]
+  - Next: DemonstrativeAuthor
+
 ### Turn: MetaProject (1)
-- `Architecture_MetaProject_status_board_pilot.md` - last wrote Architecture on 2026-07-19 (0d sitting) [Next:]
+- `Architecture_MetaProject_status_board_pilot.md` - last wrote MetaProject on 2026-07-19 (1d sitting) [Next:]
   - Next: MetaProject (regenerate the board; before/after is the pilot evidence) + Smith (the two Waiting-on-Smith decisions stand)
 
-### Turn: (unknown) (1)
-- `Architecture_AdverbAuthor_batch_disposition.md` - last wrote ? on ? (? sitting) [inferred from last author]
+### Turn: NegationAuthor (1)
+- `Architecture_NegationAuthor_finche_non_explanation.md` - last wrote Architecture on 2026-07-19 (1d sitting) [Next:]
+  - Next: NegationAuthor
 
 ## Staleness audit (open, no write for 14+ days)
 
-- `Architecture_Coverage_denominators_and_policy.md` - 52 days silent, turn: none
+- `Architecture_Coverage_denominators_and_policy.md` - 53 days silent, turn: none
 
 ## Class clauses (`binds:`) and discharge stamps
 
 - **binds: all-authors** (DECISIONS.md) - stamps: AdverbAuthor, ArticleAuthor, FutureFormationAuthor, PiacereAuthor, PossessiveAuthor, PresentFormationAuthor, PronominalVerbsAuthor, RelativePronounAuthor, TenseChoiceAuthor
   - ecomes a gate rather than a scaffold. **Where the citation form is above the item's level, gloss in English instead.** `binds: all-authors`; ExistentialAuthor first (32 esserci cues, 14 at A1). [discharged: PresentFormationAuthor, 2026-07-17, rev25_and_stamps v1 — 6 clitic-lemma cues reglossed to
-  - Compliance (of seats declaring `all-authors`): 9/26 stamped; missing: AdjectiveAuthor, ComparisonAuthor, CongiuntivoFormationAuthor, ConnectiveAuthor, DemonstrativeAuthor, ExistentialAuthor, GerundioAuthor, ImperativoAuthor, ImperfectAuthor, IndefiniteAuthor, NegationAuthor, NounAuthor, PrepositionAuthor, PronounAuthor, ReportedSpeechAuthor, SiConstructionsAuthor, WordFormationAuthor
+  - Compliance (of seats declaring `all-authors`): 9/27 stamped; missing: AdjectiveAuthor, ComparisonAuthor, ConditionalFormationAuthor, CongiuntivoFormationAuthor, ConnectiveAuthor, DemonstrativeAuthor, ExistentialAuthor, GerundioAuthor, ImperativoAuthor, ImperfectAuthor, IndefiniteAuthor, NegationAuthor, NounAuthor, PrepositionAuthor, PronounAuthor, ReportedSpeechAuthor, SiConstructionsAuthor, WordFormationAuthor
 - **binds: all-authors** (DECISIONS.md) - stamps: all-authors except PronounAuthor
   - `[discharged: all-authors except PronounAuthor, 2026-07-17, central chip audit]`. **This is the general shape for any `binds: all-authors` retrofit that is mechanically detectable: Architecture runs it once, stamps the class, routes the residue.** A per-seat self-audit is for judgement work only.
-  - Compliance (of seats declaring `all-authors`): 0/26 stamped; missing: AdjectiveAuthor, AdverbAuthor, ArticleAuthor, ComparisonAuthor, CongiuntivoFormationAuthor, ConnectiveAuthor, DemonstrativeAuthor, ExistentialAuthor, FutureFormationAuthor, GerundioAuthor, ImperativoAuthor, ImperfectAuthor, IndefiniteAuthor, NegationAuthor, NounAuthor, PiacereAuthor, PossessiveAuthor, PrepositionAuthor, PresentFormationAuthor, PronominalVerbsAuthor, PronounAuthor, RelativePronounAuthor, ReportedSpeechAuthor, SiConstructionsAuthor, TenseChoiceAuthor, WordFormationAuthor
+  - Compliance (of seats declaring `all-authors`): 0/27 stamped; missing: AdjectiveAuthor, AdverbAuthor, ArticleAuthor, ComparisonAuthor, ConditionalFormationAuthor, CongiuntivoFormationAuthor, ConnectiveAuthor, DemonstrativeAuthor, ExistentialAuthor, FutureFormationAuthor, GerundioAuthor, ImperativoAuthor, ImperfectAuthor, IndefiniteAuthor, NegationAuthor, NounAuthor, PiacereAuthor, PossessiveAuthor, PrepositionAuthor, PresentFormationAuthor, PronominalVerbsAuthor, PronounAuthor, RelativePronounAuthor, ReportedSpeechAuthor, SiConstructionsAuthor, TenseChoiceAuthor, WordFormationAuthor
 - **binds: all-authors** (AUTHOR_BRIEF.md) - stamps: none yet
   - greement item names the diagnostic; "'i libri' is masculine plural" gives the context the learner needs to perform it. `binds: all-authors`; `retrofit:` **DISCHARGED CENTRALLY** for 26 of 29 topics by the audit — real exposure is 5 chips, all in `pronoun`, routed to PronounAuthor. **Revision 25**
-  - Compliance (of seats declaring `all-authors`): 0/26 stamped; missing: AdjectiveAuthor, AdverbAuthor, ArticleAuthor, ComparisonAuthor, CongiuntivoFormationAuthor, ConnectiveAuthor, DemonstrativeAuthor, ExistentialAuthor, FutureFormationAuthor, GerundioAuthor, ImperativoAuthor, ImperfectAuthor, IndefiniteAuthor, NegationAuthor, NounAuthor, PiacereAuthor, PossessiveAuthor, PrepositionAuthor, PresentFormationAuthor, PronominalVerbsAuthor, PronounAuthor, RelativePronounAuthor, ReportedSpeechAuthor, SiConstructionsAuthor, TenseChoiceAuthor, WordFormationAuthor
+  - Compliance (of seats declaring `all-authors`): 0/27 stamped; missing: AdjectiveAuthor, AdverbAuthor, ArticleAuthor, ComparisonAuthor, ConditionalFormationAuthor, CongiuntivoFormationAuthor, ConnectiveAuthor, DemonstrativeAuthor, ExistentialAuthor, FutureFormationAuthor, GerundioAuthor, ImperativoAuthor, ImperfectAuthor, IndefiniteAuthor, NegationAuthor, NounAuthor, PiacereAuthor, PossessiveAuthor, PrepositionAuthor, PresentFormationAuthor, PronominalVerbsAuthor, PronounAuthor, RelativePronounAuthor, ReportedSpeechAuthor, SiConstructionsAuthor, TenseChoiceAuthor, WordFormationAuthor
 - **binds: all-authors** (AUTHOR_BRIEF.md) - stamps: none yet
   - level, gloss the target in English instead** ("[Are there any questions?]"), per criterion 20's main rule. Next-touch: `binds: all-authors`; `retrofit:` audit your cues against your items' levels — ExistentialAuthor first (32 esserci-cued items, 14 of them A1). **Revision 24** (2026-07-17). From S
-  - Compliance (of seats declaring `all-authors`): 0/26 stamped; missing: AdjectiveAuthor, AdverbAuthor, ArticleAuthor, ComparisonAuthor, CongiuntivoFormationAuthor, ConnectiveAuthor, DemonstrativeAuthor, ExistentialAuthor, FutureFormationAuthor, GerundioAuthor, ImperativoAuthor, ImperfectAuthor, IndefiniteAuthor, NegationAuthor, NounAuthor, PiacereAuthor, PossessiveAuthor, PrepositionAuthor, PresentFormationAuthor, PronominalVerbsAuthor, PronounAuthor, RelativePronounAuthor, ReportedSpeechAuthor, SiConstructionsAuthor, TenseChoiceAuthor, WordFormationAuthor
+  - Compliance (of seats declaring `all-authors`): 0/27 stamped; missing: AdjectiveAuthor, AdverbAuthor, ArticleAuthor, ComparisonAuthor, ConditionalFormationAuthor, CongiuntivoFormationAuthor, ConnectiveAuthor, DemonstrativeAuthor, ExistentialAuthor, FutureFormationAuthor, GerundioAuthor, ImperativoAuthor, ImperfectAuthor, IndefiniteAuthor, NegationAuthor, NounAuthor, PiacereAuthor, PossessiveAuthor, PrepositionAuthor, PresentFormationAuthor, PronominalVerbsAuthor, PronounAuthor, RelativePronounAuthor, ReportedSpeechAuthor, SiConstructionsAuthor, TenseChoiceAuthor, WordFormationAuthor
 
 Declared classes so far: all-authors, all-seats. Seats without a `_status/` file are invisible
 to compliance; the walk-the-seats step is what fixes that.

@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-18-r23";
+  const LL_BUILD = "2026-07-20-r24";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // Touch-first device (no hover, coarse pointer): tap interactions replace
   // keyboard ones. Computed once; used for tap-to-mark on MCQ.
@@ -468,6 +468,27 @@
       cChip.appendChild(b);
     }
     bar.appendChild(cChip);
+
+    // ---- Input-mode chip (grammar only): type + tap / type only / tap only ----
+    if (strandName === "grammar") {
+      const iChip = document.createElement("label");
+      iChip.className = "filter-chip";
+      const iLbl = document.createElement("span");
+      iLbl.className = "filter-chip-key";
+      iLbl.textContent = "Input";
+      iChip.appendChild(iLbl);
+      const iSel = document.createElement("select");
+      for (const [v, label] of [["both", "type + tap"], ["type", "type only"], ["select", "tap only"]]) {
+        const o = document.createElement("option");
+        o.value = v; o.textContent = label;
+        if (getInputMode() === v) o.selected = true;
+        iSel.appendChild(o);
+      }
+      iSel.title = "How to answer items that offer a stated choice: tappable chips, typing, or both";
+      iSel.addEventListener("change", () => { setInputMode(iSel.value); onChange(); });
+      iChip.appendChild(iSel);
+      bar.appendChild(iChip);
+    }
 
     // ---- Drill chip (same row, so all three restrictions read together) ----
     if (filterObj.bucketPath) {
@@ -1041,6 +1062,28 @@
   // Stem-overlap test: returns true if the learner's answer doesn't share a
   // 3-character prefix with the chip lemma. The mismatch is the trigger for
   // the second-chance prompt.
+  // Choose-or-type (live_round thread, ask 2): items whose PROMPT states a
+  // small choice set ("Choose: che / a cui") get tappable chips beside the
+  // input. Prompt-stated ONLY - candidate_forms stays post-answer per
+  // criterion 16's suppression; chips must never leak what the breadcrumb
+  // hides. A tapped chip submits exactly the string typing would have.
+  function statedChoicesFor(q) {
+    if (!q || q.type === "mcq") return null;
+    const m = String(q.prompt || "").match(/\b(?:Choose|Scegli|Pick one)\s*:\s*([^\n.?]+)/i);
+    if (!m || m[1].indexOf("/") < 0) return null;
+    const parts = m[1].split("/").map(s => s.trim()).filter(Boolean);
+    if (parts.length < 2 || parts.length > 6) return null;
+    if (parts.some(p => p.length > 24)) return null;
+    return parts;
+  }
+  // Input-mode preference: "both" (default) | "type" | "select".
+  function getInputMode() {
+    try { return localStorage.getItem("ll_input_mode") || "both"; } catch (e) { return "both"; }
+  }
+  function setInputMode(v) {
+    try { localStorage.setItem("ll_input_mode", v); } catch (e) {}
+  }
+
   let _legacyBaseFormWarned = false;
   function wrongAnswerIsFormErrorOnly(q) {
     if (q.wrong_answer_is_form_error_only !== undefined) return !!q.wrong_answer_is_form_error_only;
@@ -1209,7 +1252,15 @@
         const btn = document.createElement("button");
         btn.type = "button";
         btn.className = "mcq-choice";
-        btn.textContent = choiceText;
+        const keyBadge = document.createElement("span");
+        keyBadge.className = "mcq-key-badge";
+        keyBadge.textContent = String(idx + 1);
+        keyBadge.setAttribute("aria-hidden", "true");
+        btn.appendChild(keyBadge);
+        const choiceLabel = document.createElement("span");
+        choiceLabel.className = "mcq-choice-text";
+        choiceLabel.textContent = choiceText;
+        btn.appendChild(choiceLabel);
         btn.addEventListener("click", () => {
           if (marked) return; // choice is locked once marked
           selectedChoiceIdx = idx;
@@ -1266,7 +1317,34 @@
       grammarInputRef = input;
       // Grammar answers are typed in the question's language_code (usually 'it').
       // Apostrophe-rewrite only makes sense when the target is Italian.
-      card.appendChild(buildAccentBar(input, { rewriteApostrophes: (q.language_code || "it") === "it" }));
+      const accentBar = buildAccentBar(input, { rewriteApostrophes: (q.language_code || "it") === "it" });
+      card.appendChild(accentBar);
+      // Choose-or-type chips for prompt-stated sets (live_round ask 2).
+      const statedOpts = (getInputMode() !== "type") ? statedChoicesFor(q) : null;
+      if (statedOpts) {
+        const scRow = document.createElement("div");
+        scRow.className = "stated-choice-row";
+        for (const opt of statedOpts) {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className = "stated-choice";
+          b.textContent = opt;
+          b.title = "Answer with \u201c" + opt + "\u201d";
+          b.addEventListener("click", () => {
+            if (marked) return;
+            input.value = opt;
+            doMark();
+          });
+          scRow.appendChild(b);
+        }
+        card.appendChild(scRow);
+        if (getInputMode() === "select") {
+          // Tap-only preference: the chips ARE the input on chip-capable
+          // items; typing stays available on every item without chips.
+          input.style.display = "none";
+          accentBar.style.display = "none";
+        }
+      }
 
       const helpBar = buildVocabHelpBar(q, vocabHelpsUsed);
       if (helpBar) card.appendChild(helpBar);
@@ -2158,35 +2236,41 @@
 
     const prompt = document.createElement("div");
     prompt.className = "prompt";
+    // One span wrapper: .qcard .prompt is a flex COLUMN, so bare inline
+    // children each become their own flex row - Smith's "( / as a numeral / )"
+    // stacking (live_round thread, ask 1). A single span child = one flex
+    // item; everything inside flows inline. Same family as the segmenter fix.
+    const line = document.createElement("span");
     if (isItEn) {
       const strong = document.createElement("strong");
       strong.textContent = displayedLemma;
-      prompt.appendChild(document.createTextNode("What does "));
-      prompt.appendChild(strong);
+      line.appendChild(document.createTextNode("What does "));
+      line.appendChild(strong);
       if (showPos) {
-        prompt.appendChild(document.createTextNode(" mean ("));
+        line.appendChild(document.createTextNode(" mean ("));
         const posEm = document.createElement("em");
         posEm.textContent = posPhrase;
-        prompt.appendChild(posEm);
-        prompt.appendChild(document.createTextNode(")?"));
+        line.appendChild(posEm);
+        line.appendChild(document.createTextNode(")?"));
       } else {
-        prompt.appendChild(document.createTextNode(" mean?"));
+        line.appendChild(document.createTextNode(" mean?"));
       }
     } else {
       const strong = document.createElement("strong");
       strong.textContent = entry.translation_en;
-      prompt.appendChild(document.createTextNode("What's the Italian for "));
-      prompt.appendChild(strong);
+      line.appendChild(document.createTextNode("What's the Italian for "));
+      line.appendChild(strong);
       if (showPos) {
-        prompt.appendChild(document.createTextNode(" ("));
+        line.appendChild(document.createTextNode(" ("));
         const posEm = document.createElement("em");
         posEm.textContent = posPhrase;
-        prompt.appendChild(posEm);
-        prompt.appendChild(document.createTextNode(")?"));
+        line.appendChild(posEm);
+        line.appendChild(document.createTextNode(")?"));
       } else {
-        prompt.appendChild(document.createTextNode("?"));
+        line.appendChild(document.createTextNode("?"));
       }
     }
+    prompt.appendChild(line);
     card.appendChild(prompt);
 
     const input = document.createElement("input");

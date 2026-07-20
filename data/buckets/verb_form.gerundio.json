@@ -173,7 +173,7 @@
     "parent_id": "verb_form.gerundio",
     "language_code": "it",
     "label": "Usage",
-    "description": "When the bare (non-progressive) gerund is the right choice and what it conveys: the adverbial gerund of manner, means, time, cause, or condition (camminando, by/while walking; sbagliando si impara, one learns by making mistakes), and the same-subject constraint (the gerund's implicit subject must match the main clause, so 'vedendo Maria, l'ho salutata' means I saw her, not she saw me). Left at stub level for a later GerundioUsage dispatch; no usage leaves are authored in the GerundioFormation dispatch.",
+    "description": "When the bare (non-progressive) gerund is the right choice and what it conveys: the adverbial gerund of manner, means, time, cause, or condition (camminando, by/while walking; sbagliando si impara, one learns by making mistakes), and the same-subject constraint (the gerund's implicit subject must match the main clause, so 'vedendo Maria, l'ho salutata' means I saw her, not she saw me). Two authored leaves: manner/means (B1) and time/cause/condition incl. pur-concession (B2). Wave-2 usage batch accepted 2026-07-19.",
     "cefr_importance": {
       "A1": "arcane",
       "A2": "preview",
@@ -188,55 +188,60 @@
       "direction": "bidirectional"
     },
     "active": true,
-    "version": 1
+    "version": 2
   },
   {
     "id": "verb_form.gerundio.usage.modal_means",
     "parent_id": "verb_form.gerundio.usage",
     "language_code": "it",
-    "label": "Manner and means",
-    "description": "The adverbial gerund of how/by-doing (Impari sbagliando; e' entrato correndo). NOT the stare+gerundio progressive, which tense_choice.progressive_vs_simple owns.",
+    "label": "Adverbial gerund: manner / means",
+    "description": "The bare (non-progressive) gerund used adverbially to say HOW or BY WHAT MEANS the main action happens: è entrato correndo (he came in running), sbagliando s'impara (one learns by making mistakes), si mantiene in forma nuotando (he keeps fit by swimming). English 'by ...-ing' for means maps here, NOT onto per + infinitive (which is purpose). Governed by the same-subject constraint: the gerund's implicit subject must be the main clause's subject. B1 core.",
     "cefr_importance": {
       "A1": "arcane",
       "A2": "preview",
       "B1": "core",
-      "B2": "review",
+      "B2": "core",
       "C1": "fluency",
       "C2": "fluency"
     },
-    "prerequisites": [],
+    "prerequisites": [
+      "verb_form.gerundio.formation"
+    ],
     "attributes": {
-      "is_aggregate": false,
+      "canonical_example": "sbagliando s'impara, è entrato correndo, imparo guardando i film",
+      "common_miss": "using per + infinitive for means (per parlare instead of parlando); violating the same-subject constraint",
       "direction": "bidirectional",
-      "canonical_example": "Sbagliando s'impara; e' uscito sbattendo la porta",
-      "stub": true
+      "is_aggregate": false
     },
     "active": true,
-    "version": 1
+    "version": 2
   },
   {
     "id": "verb_form.gerundio.usage.temporal_causal",
     "parent_id": "verb_form.gerundio.usage",
     "language_code": "it",
-    "label": "While / by / since (subordinating)",
-    "description": "The gerund heading a subordinate clause of time, cause or condition (Tornando a casa...; Essendo tardi...).",
+    "label": "Adverbial gerund: time / cause / condition",
+    "description": "The bare gerund heading a subordinate of time, cause, condition or (with pur/pure) concession: tornando a casa (while coming home), essendo tardi (since it was late), volendo (if you want), pur essendo stanco (although tired). When the gerund's action precedes the main one, the compound gerund is used instead (avendo finito, essendo andato), so items here cross-evidence verb_form.gerundio.formation.gerundio_passato. Governed by the same-subject constraint. B2.",
     "cefr_importance": {
       "A1": "arcane",
       "A2": "arcane",
       "B1": "preview",
       "B2": "core",
-      "C1": "review",
+      "C1": "core",
       "C2": "fluency"
     },
-    "prerequisites": [],
+    "prerequisites": [
+      "verb_form.gerundio.formation",
+      "verb_form.gerundio.formation.gerundio_passato"
+    ],
     "attributes": {
-      "is_aggregate": false,
+      "canonical_example": "tornando a casa ho incontrato Lia, essendo tardi siamo andati via, pur essendo stanco ha finito",
+      "common_miss": "violating the same-subject constraint (using a gerund when the subjects differ); using the simple gerund where anteriority needs the compound (finendo for avendo finito)",
       "direction": "bidirectional",
-      "canonical_example": "Tornando a casa ho visto Marco; Essendo stanco, sono rimasto",
-      "stub": true
+      "is_aggregate": false
     },
     "active": true,
-    "version": 1
+    "version": 2
   },
   {
     "id": "verb_form.gerundio.discrimination",

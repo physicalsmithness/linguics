@@ -763,6 +763,16 @@ main {
 .entry-special-drills { border: 1px solid rgba(128,128,128,0.35); border-radius: 8px; padding: 8px 12px 10px; margin-top: 14px; }
 .entry-special-drills .entry-config-head { margin-top: 0; }
 
+/* Choose-or-type chips (live_round ask 2): tappable stated choices beside
+   the input; a tap submits exactly what typing would have. */
+.stated-choice-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 2px; }
+.stated-choice { font-size: 16px; padding: 8px 16px; border: 1px solid var(--accent); border-radius: 8px; background: var(--accent-soft); color: var(--ink); cursor: pointer; }
+.stated-choice:hover { background: var(--accent); color: #fff; }
+
+/* MCQ key badges (live_round ask 3): the number that selects each choice. */
+.mcq-key-badge { display: inline-flex; align-items: center; justify-content: center; min-width: 18px; height: 18px; margin-right: 9px; border: 1px solid var(--line); border-radius: 50%; font-size: 11px; color: var(--muted); flex: 0 0 auto; }
+.mcq-choice { display: flex; align-items: center; text-align: left; }
+
 /* In-session level toggles (entry_load_and_level_strip v4): set semantics in
    the filter bar, matching the welcome strip's mental model. */
 .filter-chip-levels { display: inline-flex; align-items: center; gap: 3px; }
