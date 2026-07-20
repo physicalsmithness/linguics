@@ -9,7 +9,6 @@ summary: NEW 2026-07-19 evening — formation-trigger audit: 142/571 formation i
 queue:
   - Item-shape review #1: adjective_agreement one-pager (the template)   [B(a) ruled]
   - Variant expansion + gates when PronounAuthor's seed frames land   [A(a) pilot]
-  - Write DISPATCH_accent_drill + DISPATCH_stress (two new seats, Smith-ruled) + fire placement-class taxonomy agent   [DESIGN_accent_and_stress_drills.md]
   - Sincerity-words central fix (~12 strings) + stamp MetaProject thread   [next pass]
   - Point PronominalVerbsAuthor at the order battery thread   [with its false-miss packet]
   - False-miss routing: 12 per-author packets from AUDIT_false_miss_2026-07-20.md   [next pass]

@@ -1,0 +1,1002 @@
+{
+  "_meta": "StressAuthor v0 PROPOSAL — not canonical. Field names/leaf placement ratified by Architecture; entries owned by Vocab (propose, do not mass-edit).",
+  "author": "StressAuthor",
+  "date": "2026-07-20",
+  "design_ref": "DESIGN_accent_and_stress_drills.md §B; DISPATCH_stress.md",
+  "field_spec": {
+    "stress_pos": "int 1..4 from the END (dispatch's name; design doc §B called it stress_syllable — flag to reconcile). 1 tronca 2 piana 3 sdrucciola 4 bisdrucciola.",
+    "stress_source": "orthographic | dictionary | author | rule_default | derived. 'orthographic' = a final written accent self-declares it (free, high conf). 'rule_default' = penult assumed, LOW conf, must be dictionary-confirmed before shipping.",
+    "stress_confidence": "high | medium | low. The dispatch's 'mark confidence rather than assert'.",
+    "syllables": "ordered orthographic syllables. Produced by the rule-based syllabifier (Code seat) + hand-fix on hiatus. Needed because you cannot embolden 'syllable N' without boundaries.",
+    "derived": "stress_class label; option_count = min(syllable_count,4) = every phonologically-possible position, and ONLY those.",
+    "syllable_count": "STORED (not just derived): Smith wants the report filterable by word length (2-syllable vs 4-plus)."
+  },
+  "drill_generation_rule": {
+    "items_are_derived": "generated from (form,syllables,stress_pos); provenance 'derived'.",
+    "options": "word rendered once per option, a different syllable bold; option set = last min(syllable_count,4) positions; correct = stress_pos.",
+    "short_words": "2 syll->2 options, 3->3, >=4->4; never an impossible position.",
+    "matrix": "4x4 true x answered, row-normalised (DESIGN B2)."
+  },
+  "lemma_seed": [
+    {
+      "unit": "lemma",
+      "form": "città",
+      "syllables": [
+        "cit",
+        "tà"
+      ],
+      "syllable_count": 2,
+      "stress_pos": 1,
+      "stress_class": "tronca",
+      "stress_source": "orthographic",
+      "stress_confidence": "high",
+      "rank": 283,
+      "pos": "noun",
+      "note": "final written accent self-declares the stress; -tà class"
+    },
+    {
+      "unit": "lemma",
+      "form": "università",
+      "syllables": [
+        "u",
+        "ni",
+        "ver",
+        "si",
+        "tà"
+      ],
+      "syllable_count": 5,
+      "stress_pos": 1,
+      "stress_class": "tronca",
+      "stress_source": "orthographic",
+      "stress_confidence": "high",
+      "rank": 1203,
+      "pos": "noun",
+      "note": "-tà class"
+    },
+    {
+      "unit": "lemma",
+      "form": "perché",
+      "syllables": [
+        "per",
+        "ché"
+      ],
+      "syllable_count": 2,
+      "stress_pos": 1,
+      "stress_class": "tronca",
+      "stress_source": "orthographic",
+      "stress_confidence": "high",
+      "rank": 81,
+      "pos": "adverb",
+      "note": "-ché class (acute é)"
+    },
+    {
+      "unit": "lemma",
+      "form": "caffè",
+      "syllables": [
+        "caf",
+        "fè"
+      ],
+      "syllable_count": 2,
+      "stress_pos": 1,
+      "stress_class": "tronca",
+      "stress_source": "orthographic",
+      "stress_confidence": "high",
+      "rank": 1269,
+      "pos": "noun",
+      "note": "grave è"
+    },
+    {
+      "unit": "lemma",
+      "form": "papà",
+      "syllables": [
+        "pa",
+        "pà"
+      ],
+      "syllable_count": 2,
+      "stress_pos": 1,
+      "stress_class": "tronca",
+      "stress_source": "orthographic",
+      "stress_confidence": "high",
+      "rank": 1197,
+      "pos": "noun"
+    },
+    {
+      "unit": "lemma",
+      "form": "però",
+      "syllables": [
+        "pe",
+        "rò"
+      ],
+      "syllable_count": 2,
+      "stress_pos": 1,
+      "stress_class": "tronca",
+      "stress_source": "orthographic",
+      "stress_confidence": "high",
+      "rank": 344,
+      "pos": "conjunction"
+    },
+    {
+      "unit": "lemma",
+      "form": "virtù",
+      "syllables": [
+        "vir",
+        "tù"
+      ],
+      "syllable_count": 2,
+      "stress_pos": 1,
+      "stress_class": "tronca",
+      "stress_source": "orthographic",
+      "stress_confidence": "high",
+      "rank": 3826,
+      "pos": "noun"
+    },
+    {
+      "unit": "lemma",
+      "form": "lunedì",
+      "syllables": [
+        "lu",
+        "ne",
+        "dì"
+      ],
+      "syllable_count": 3,
+      "stress_pos": 1,
+      "stress_class": "tronca",
+      "stress_source": "orthographic",
+      "stress_confidence": "high",
+      "rank": 1562,
+      "pos": "noun",
+      "note": "weekday -dì"
+    },
+    {
+      "unit": "lemma",
+      "form": "così",
+      "syllables": [
+        "co",
+        "sì"
+      ],
+      "syllable_count": 2,
+      "stress_pos": 1,
+      "stress_class": "tronca",
+      "stress_source": "orthographic",
+      "stress_confidence": "high",
+      "rank": 99,
+      "pos": "adverb"
+    },
+    {
+      "unit": "lemma",
+      "form": "qualità",
+      "syllables": [
+        "qua",
+        "li",
+        "tà"
+      ],
+      "syllable_count": 3,
+      "stress_pos": 1,
+      "stress_class": "tronca",
+      "stress_source": "orthographic",
+      "stress_confidence": "high",
+      "rank": 1093,
+      "pos": "noun",
+      "note": "-tà class"
+    },
+    {
+      "unit": "lemma",
+      "form": "verità",
+      "syllables": [
+        "ve",
+        "ri",
+        "tà"
+      ],
+      "syllable_count": 3,
+      "stress_pos": 1,
+      "stress_class": "tronca",
+      "stress_source": "orthographic",
+      "stress_confidence": "high",
+      "rank": 606,
+      "pos": "noun",
+      "note": "-tà class"
+    },
+    {
+      "unit": "lemma",
+      "form": "libertà",
+      "syllables": [
+        "li",
+        "ber",
+        "tà"
+      ],
+      "syllable_count": 3,
+      "stress_pos": 1,
+      "stress_class": "tronca",
+      "stress_source": "orthographic",
+      "stress_confidence": "high",
+      "rank": 852,
+      "pos": "noun",
+      "note": "-tà class"
+    },
+    {
+      "unit": "lemma",
+      "form": "metà",
+      "syllables": [
+        "me",
+        "tà"
+      ],
+      "syllable_count": 2,
+      "stress_pos": 1,
+      "stress_class": "tronca",
+      "stress_source": "orthographic",
+      "stress_confidence": "high",
+      "rank": 861,
+      "pos": "noun"
+    },
+    {
+      "unit": "lemma",
+      "form": "felicità",
+      "syllables": [
+        "fe",
+        "li",
+        "ci",
+        "tà"
+      ],
+      "syllable_count": 4,
+      "stress_pos": 1,
+      "stress_class": "tronca",
+      "stress_source": "orthographic",
+      "stress_confidence": "high",
+      "rank": 2552,
+      "pos": "noun",
+      "note": "-tà, 4 syll"
+    },
+    {
+      "unit": "lemma",
+      "form": "casa",
+      "syllables": [
+        "ca",
+        "sa"
+      ],
+      "syllable_count": 2,
+      "stress_pos": 2,
+      "stress_class": "piana",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "rank": 119,
+      "pos": "noun",
+      "note": "2-syll -> only 2 options"
+    },
+    {
+      "unit": "lemma",
+      "form": "cosa",
+      "syllables": [
+        "co",
+        "sa"
+      ],
+      "syllable_count": 2,
+      "stress_pos": 2,
+      "stress_class": "piana",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "rank": 40,
+      "pos": "noun",
+      "note": "2-syll"
+    },
+    {
+      "unit": "lemma",
+      "form": "amore",
+      "syllables": [
+        "a",
+        "mo",
+        "re"
+      ],
+      "syllable_count": 3,
+      "stress_pos": 2,
+      "stress_class": "piana",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "rank": 340,
+      "pos": "noun"
+    },
+    {
+      "unit": "lemma",
+      "form": "ragazzo",
+      "syllables": [
+        "ra",
+        "gaz",
+        "zo"
+      ],
+      "syllable_count": 3,
+      "stress_pos": 2,
+      "stress_class": "piana",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "rank": 269,
+      "pos": "noun",
+      "note": "zz splits"
+    },
+    {
+      "unit": "lemma",
+      "form": "momento",
+      "syllables": [
+        "mo",
+        "men",
+        "to"
+      ],
+      "syllable_count": 3,
+      "stress_pos": 2,
+      "stress_class": "piana",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "rank": 168,
+      "pos": "noun"
+    },
+    {
+      "unit": "lemma",
+      "form": "lavoro",
+      "syllables": [
+        "la",
+        "vo",
+        "ro"
+      ],
+      "syllable_count": 3,
+      "stress_pos": 2,
+      "stress_class": "piana",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "rank": 106,
+      "pos": "noun"
+    },
+    {
+      "unit": "lemma",
+      "form": "parola",
+      "syllables": [
+        "pa",
+        "ro",
+        "la"
+      ],
+      "syllable_count": 3,
+      "stress_pos": 2,
+      "stress_class": "piana",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "rank": 217,
+      "pos": "noun"
+    },
+    {
+      "unit": "lemma",
+      "form": "signore",
+      "syllables": [
+        "si",
+        "gno",
+        "re"
+      ],
+      "syllable_count": 3,
+      "stress_pos": 2,
+      "stress_class": "piana",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "rank": 623,
+      "pos": "noun",
+      "note": "gn stays together"
+    },
+    {
+      "unit": "lemma",
+      "form": "parlare",
+      "syllables": [
+        "par",
+        "la",
+        "re"
+      ],
+      "syllable_count": 3,
+      "stress_pos": 2,
+      "stress_class": "piana",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "rank": 86,
+      "pos": "verb",
+      "note": "-are infinitive always piana"
+    },
+    {
+      "unit": "lemma",
+      "form": "cane",
+      "syllables": [
+        "ca",
+        "ne"
+      ],
+      "syllable_count": 2,
+      "stress_pos": 2,
+      "stress_class": "piana",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "rank": 748,
+      "pos": "noun",
+      "note": "2-syll"
+    },
+    {
+      "unit": "lemma",
+      "form": "tempo",
+      "syllables": [
+        "tem",
+        "po"
+      ],
+      "syllable_count": 2,
+      "stress_pos": 2,
+      "stress_class": "piana",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "rank": 90,
+      "pos": "noun",
+      "note": "2-syll"
+    },
+    {
+      "unit": "lemma",
+      "form": "donna",
+      "syllables": [
+        "don",
+        "na"
+      ],
+      "syllable_count": 2,
+      "stress_pos": 2,
+      "stress_class": "piana",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "rank": 172,
+      "pos": "noun",
+      "note": "2-syll nn"
+    },
+    {
+      "unit": "lemma",
+      "form": "mano",
+      "syllables": [
+        "ma",
+        "no"
+      ],
+      "syllable_count": 2,
+      "stress_pos": 2,
+      "stress_class": "piana",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "rank": 232,
+      "pos": "noun",
+      "note": "2-syll"
+    },
+    {
+      "unit": "lemma",
+      "form": "storia",
+      "syllables": [
+        "sto",
+        "ria"
+      ],
+      "syllable_count": 2,
+      "stress_pos": 2,
+      "stress_class": "piana",
+      "stress_source": "dictionary",
+      "stress_confidence": "medium",
+      "rank": "~",
+      "pos": "noun",
+      "note": "-ia DIPHTHONG -> 2 syll; contrast farmacia (hiatus). Dictionaries occasionally list sto-ri-a."
+    },
+    {
+      "unit": "lemma",
+      "form": "tavolo",
+      "syllables": [
+        "ta",
+        "vo",
+        "lo"
+      ],
+      "syllable_count": 3,
+      "stress_pos": 3,
+      "stress_class": "sdrucciola",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "rank": 1327,
+      "pos": "noun"
+    },
+    {
+      "unit": "lemma",
+      "form": "telefono",
+      "syllables": [
+        "te",
+        "le",
+        "fo",
+        "no"
+      ],
+      "syllable_count": 4,
+      "stress_pos": 3,
+      "stress_class": "sdrucciola",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "rank": 1519,
+      "pos": "noun",
+      "note": "4 syll, antepenult"
+    },
+    {
+      "unit": "lemma",
+      "form": "musica",
+      "syllables": [
+        "mu",
+        "si",
+        "ca"
+      ],
+      "syllable_count": 3,
+      "stress_pos": 3,
+      "stress_class": "sdrucciola",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "rank": 474,
+      "pos": "noun"
+    },
+    {
+      "unit": "lemma",
+      "form": "medico",
+      "syllables": [
+        "me",
+        "di",
+        "co"
+      ],
+      "syllable_count": 3,
+      "stress_pos": 3,
+      "stress_class": "sdrucciola",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "rank": 522,
+      "pos": "noun"
+    },
+    {
+      "unit": "lemma",
+      "form": "numero",
+      "syllables": [
+        "nu",
+        "me",
+        "ro"
+      ],
+      "syllable_count": 3,
+      "stress_pos": 3,
+      "stress_class": "sdrucciola",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "rank": 222,
+      "pos": "noun"
+    },
+    {
+      "unit": "lemma",
+      "form": "sabato",
+      "syllables": [
+        "sa",
+        "ba",
+        "to"
+      ],
+      "syllable_count": 3,
+      "stress_pos": 3,
+      "stress_class": "sdrucciola",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "rank": 1212,
+      "pos": "noun"
+    },
+    {
+      "unit": "lemma",
+      "form": "difficile",
+      "syllables": [
+        "dif",
+        "fi",
+        "ci",
+        "le"
+      ],
+      "syllable_count": 4,
+      "stress_pos": 3,
+      "stress_class": "sdrucciola",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "rank": 391,
+      "pos": "adjective",
+      "note": "-cile sdrucciola"
+    },
+    {
+      "unit": "lemma",
+      "form": "possibile",
+      "syllables": [
+        "pos",
+        "si",
+        "bi",
+        "le"
+      ],
+      "syllable_count": 4,
+      "stress_pos": 3,
+      "stress_class": "sdrucciola",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "rank": 239,
+      "pos": "adjective",
+      "note": "-bile class"
+    },
+    {
+      "unit": "lemma",
+      "form": "macchina",
+      "syllables": [
+        "mac",
+        "chi",
+        "na"
+      ],
+      "syllable_count": 3,
+      "stress_pos": 3,
+      "stress_class": "sdrucciola",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "rank": 478,
+      "pos": "noun",
+      "note": "cch -> mac-chi"
+    },
+    {
+      "unit": "lemma",
+      "form": "giovane",
+      "syllables": [
+        "gio",
+        "va",
+        "ne"
+      ],
+      "syllable_count": 3,
+      "stress_pos": 3,
+      "stress_class": "sdrucciola",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "rank": 384,
+      "pos": "noun",
+      "note": "io diphthong = 1 syll gio"
+    },
+    {
+      "unit": "lemma",
+      "form": "isola",
+      "syllables": [
+        "i",
+        "so",
+        "la"
+      ],
+      "syllable_count": 3,
+      "stress_pos": 3,
+      "stress_class": "sdrucciola",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "rank": 1008,
+      "pos": "noun"
+    },
+    {
+      "unit": "lemma",
+      "form": "ultimo",
+      "syllables": [
+        "ul",
+        "ti",
+        "mo"
+      ],
+      "syllable_count": 3,
+      "stress_pos": 3,
+      "stress_class": "sdrucciola",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "rank": 488,
+      "pos": "adjective"
+    },
+    {
+      "unit": "lemma",
+      "form": "farmacia",
+      "syllables": [
+        "far",
+        "ma",
+        "ci",
+        "a"
+      ],
+      "syllable_count": 4,
+      "stress_pos": 2,
+      "stress_class": "piana",
+      "stress_source": "dictionary",
+      "stress_confidence": "medium",
+      "rank": "~",
+      "pos": "noun",
+      "note": "-ia HIATUS (stressed i) -> ci-a two syll, 4 total, piana. THE syllabifier edge case: hiatus vs diphthong needs stress to resolve -> circular."
+    },
+    {
+      "unit": "lemma",
+      "form": "subito",
+      "syllables": [
+        "su",
+        "bi",
+        "to"
+      ],
+      "syllable_count": 3,
+      "stress_pos": 3,
+      "stress_class": "sdrucciola",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "rank": 118,
+      "pos": "adverb",
+      "note": "SU-bi-to 'immediately'; pairs with subito past participle (wordform ext)"
+    },
+    {
+      "unit": "lemma",
+      "form": "prendere",
+      "syllables": [
+        "pren",
+        "de",
+        "re"
+      ],
+      "syllable_count": 3,
+      "stress_pos": 3,
+      "stress_class": "sdrucciola",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "rank": 96,
+      "pos": "verb",
+      "note": "-ere infinitive = SDRUCCIOLA; mis-stressed prendere(piana) by learners. High-value."
+    },
+    {
+      "unit": "lemma",
+      "form": "scrivere",
+      "syllables": [
+        "scri",
+        "ve",
+        "re"
+      ],
+      "syllable_count": 3,
+      "stress_pos": 3,
+      "stress_class": "sdrucciola",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "rank": 276,
+      "pos": "verb",
+      "note": "-ere trap"
+    },
+    {
+      "unit": "lemma",
+      "form": "vivere",
+      "syllables": [
+        "vi",
+        "ve",
+        "re"
+      ],
+      "syllable_count": 3,
+      "stress_pos": 3,
+      "stress_class": "sdrucciola",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "rank": 221,
+      "pos": "verb",
+      "note": "-ere trap"
+    },
+    {
+      "unit": "lemma",
+      "form": "credere",
+      "syllables": [
+        "cre",
+        "de",
+        "re"
+      ],
+      "syllable_count": 3,
+      "stress_pos": 3,
+      "stress_class": "sdrucciola",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "rank": 137,
+      "pos": "verb",
+      "note": "-ere trap"
+    },
+    {
+      "unit": "lemma",
+      "form": "essere",
+      "syllables": [
+        "es",
+        "se",
+        "re"
+      ],
+      "syllable_count": 3,
+      "stress_pos": 3,
+      "stress_class": "sdrucciola",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "rank": 3,
+      "pos": "verb",
+      "note": "-ere trap; rank 3"
+    }
+  ],
+  "wordform_extension": [
+    {
+      "unit": "wordform",
+      "form": "àbitano",
+      "gloss": "abitare (they dwell)",
+      "syllables": [
+        "a",
+        "bi",
+        "ta",
+        "no"
+      ],
+      "syllable_count": 4,
+      "stress_pos": 4,
+      "stress_class": "bisdrucciola",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "note": "BISDRUCCIOLA; only inflected verbs reach the 4th class"
+    },
+    {
+      "unit": "wordform",
+      "form": "càpitano",
+      "gloss": "capitare (they happen)",
+      "syllables": [
+        "ca",
+        "pi",
+        "ta",
+        "no"
+      ],
+      "syllable_count": 4,
+      "stress_pos": 4,
+      "stress_class": "bisdrucciola",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "note": "bisdrucciola; spelling = noun capitàno (piana) -> minimal pair"
+    },
+    {
+      "unit": "wordform",
+      "form": "capitàno",
+      "gloss": "noun (captain)",
+      "syllables": [
+        "ca",
+        "pi",
+        "ta",
+        "no"
+      ],
+      "syllable_count": 4,
+      "stress_pos": 2,
+      "stress_class": "piana",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "note": "piana; pairs with verb càpitano"
+    },
+    {
+      "unit": "wordform",
+      "form": "telèfonano",
+      "gloss": "telefonare (they phone)",
+      "syllables": [
+        "te",
+        "le",
+        "fo",
+        "na",
+        "no"
+      ],
+      "syllable_count": 5,
+      "stress_pos": 4,
+      "stress_class": "bisdrucciola",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "note": "bisdrucciola, 5 syll"
+    },
+    {
+      "unit": "wordform",
+      "form": "desìderano",
+      "gloss": "desiderare (they desire)",
+      "syllables": [
+        "de",
+        "si",
+        "de",
+        "ra",
+        "no"
+      ],
+      "syllable_count": 5,
+      "stress_pos": 4,
+      "stress_class": "bisdrucciola",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "note": "bisdrucciola"
+    },
+    {
+      "unit": "wordform",
+      "form": "compràtemelo",
+      "gloss": "imperative+clitics",
+      "syllables": [
+        "com",
+        "pra",
+        "te",
+        "me",
+        "lo"
+      ],
+      "syllable_count": 5,
+      "stress_pos": 4,
+      "stress_class": "bisdrucciola",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "note": "clitic cluster -> 4th from end"
+    },
+    {
+      "unit": "wordform",
+      "form": "àncora",
+      "gloss": "noun (anchor)",
+      "syllables": [
+        "an",
+        "co",
+        "ra"
+      ],
+      "syllable_count": 3,
+      "stress_pos": 3,
+      "stress_class": "sdrucciola",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "note": "sdrucciola; spelling = ancóra (piana) -> minimal pair"
+    },
+    {
+      "unit": "wordform",
+      "form": "ancóra",
+      "gloss": "adverb (again/still)",
+      "syllables": [
+        "an",
+        "co",
+        "ra"
+      ],
+      "syllable_count": 3,
+      "stress_pos": 2,
+      "stress_class": "piana",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "note": "piana; pairs with àncora"
+    },
+    {
+      "unit": "wordform",
+      "form": "sùbito",
+      "gloss": "adverb (immediately)",
+      "syllables": [
+        "su",
+        "bi",
+        "to"
+      ],
+      "syllable_count": 3,
+      "stress_pos": 3,
+      "stress_class": "sdrucciola",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "note": "sdrucciola; pairs with subìto"
+    },
+    {
+      "unit": "wordform",
+      "form": "subìto",
+      "gloss": "past participle of subire",
+      "syllables": [
+        "su",
+        "bi",
+        "to"
+      ],
+      "syllable_count": 3,
+      "stress_pos": 2,
+      "stress_class": "piana",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "note": "piana; lemma IS in corpus (rank 118) -> lemma-level ambiguity"
+    },
+    {
+      "unit": "wordform",
+      "form": "abitò",
+      "gloss": "abitare (dwelt, remoto 3sg)",
+      "syllables": [
+        "a",
+        "bi",
+        "tò"
+      ],
+      "syllable_count": 3,
+      "stress_pos": 1,
+      "stress_class": "tronca",
+      "stress_source": "author",
+      "stress_confidence": "high",
+      "note": "tronca; same verb as àbitano -> stress SHIFTS across one paradigm"
+    }
+  ],
+  "counts": {
+    "lemma": 47,
+    "wordform": 11,
+    "lemma_class_distribution": {
+      "tronca": 14,
+      "piana": 15,
+      "sdrucciola": 18
+    }
+  },
+  "stress_mechanisms_sources": {
+    "_note": "Stress in Italian is not one phenomenon. Source tier drives confidence + who can assign it. Applied in order; later tiers confirm earlier.",
+    "1_orthographic": "Final written accent IS the stress (città, perché, andò) -> tronca. Free, high.",
+    "2_derivational_suffix": "Suffix fixes the class: -tà(final), -zione/-mente(piana), -issimo/-ico/-ibile(sdrucciola), dim. -ino/-etto/-one attract stress. Rule-assign, high.",
+    "3_inflectional_paradigm": "Verb stress moves by tense/person given conjugation class: present 3pl is stem-stressed (pàrlano, telèfonano, àbitano => the sdrucciole/bisdrucciole source); remoto 3sg -ò (parlò, tronca); future/cond stress the ending. Derivable from a conjugation model -> powers the wordform layer. LEXICAL EXCEPTION: the -ere infinitive split (prèndere/scrìvere sdrucciole vs temére/dovére piane) is not predictable from spelling; mark per verb.",
+    "4_pronunciation_lexicon": "Lexical residue (càmera, ìsola, tàvolo) + confirmation of 1-3. Sources: Wiktionary IPA, DOP, PhonItalia (~120k stress-marked), Morph-it!, espeak-ng.",
+    "5_etymological_prior": "Learned/Greek words skew antepenult (mèdico, mùsica, tèlefono). Flag low-confidence only; never assert.",
+    "syllabification_entanglement": "-ia hiatus (farmacìa) vs diphthong (stòria) is stress-dependent -> resolve stress FIRST, then syllabify."
+  }
+}

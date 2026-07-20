@@ -1,0 +1,164 @@
+[
+ {
+  "proposed_id": "orthography.accent.italian.placement",
+  "proposed_parent_id": "orthography.accent.italian",
+  "proposed_label": "Where accents live",
+  "proposed_description": "Aggregate for the placement-class axis: WHERE in the language written accents (or their absence) do their work. Second lens over the same slip/drill events as the error-mode leaves (.missing/.added/.wrong_mark): error mode says what happened, placement class says where in the system it happened. Events tag both; Rev 27 cross-credit makes the double event legal.",
+  "proposed_cefr_importance": {
+   "A1": "core",
+   "A2": "core",
+   "B1": "core",
+   "B2": "review",
+   "C1": "fluency",
+   "C2": "fluency"
+  },
+  "proposed_prerequisites": [],
+  "proposed_attributes": {
+   "is_aggregate": true,
+   "topic_short": "accents",
+   "note": "Children are word-classes, not error-modes. Every accented (or temptingly accentable) word in the drill corpus belongs to exactly ONE placement class."
+  },
+  "rationale": "The report's grouping toggle (DESIGN A1) and scoped practice both need per-class mastery; a class living only in extra_json is invisible to the coverage matrix and the drill's scope filter. See AccentAuthor_Architecture_taxonomy.md for the attribute-only alternative."
+ },
+ {
+  "proposed_id": "orthography.accent.italian.placement.meaning_pair",
+  "proposed_parent_id": "orthography.accent.italian.placement",
+  "proposed_label": "Same word, different meaning (e / è)",
+  "proposed_description": "The accent separates two different LEXEMES: an unaccented twin exists and means something else. Monosyllables e/è, da/dà, la/là, li/lì, ne/né, se/sé, si/sì, te/tè, di/dì(day), do/dò(tolerated); polysyllables papa/papà, meta/metà, casino/casinò. Omission and insertion both produce a real other word, so this is the highest-stakes class in both directions.",
+  "proposed_cefr_importance": {
+   "A1": "core",
+   "A2": "core",
+   "B1": "core",
+   "B2": "review",
+   "C1": "fluency",
+   "C2": "fluency"
+  },
+  "proposed_prerequisites": [],
+  "proposed_attributes": {
+   "canonical_example": "è (is) vs e (and); papà (dad) vs papa (pope)",
+   "common_miss": "e for è; dà for the preposition da (insertion direction)",
+   "pron_effect": "stress_shift on polysyllables; minimal on monosyllables",
+   "members_closed_set": true
+  },
+  "rationale": "Smith's seed class, dictation 2026-07-20. Closed set, enumerable; both drill directions live. Corpus: 13 pair types present in items/vocab."
+ },
+ {
+  "proposed_id": "orthography.accent.italian.placement.tense_bearing",
+  "proposed_parent_id": "orthography.accent.italian.placement",
+  "proposed_label": "Accent carries the tense (parlo / parlò)",
+  "proposed_description": "The accent separates FORMS OF THE SAME VERB (or the twin is another live verb form): remoto 3sg parlò/parlo, credé/crede, partì/parti; futuro 1sg/3sg parlerò/parlerà, sarà, avrò. Dropping it changes tense or person, not just spelling — Smith: 'a change of tense, quite major'. Includes the acute remoto -é (credé, poté): the one tense-bearing wrong-kind site.",
+  "proposed_cefr_importance": {
+   "A1": "review",
+   "A2": "core",
+   "B1": "core",
+   "B2": "core",
+   "C1": "fluency",
+   "C2": "fluency"
+  },
+  "proposed_prerequisites": [],
+  "proposed_attributes": {
+   "canonical_example": "parlò (he spoke, remoto) vs parlo (I speak)",
+   "common_miss": "parlo for parlò; parlero for parlerò",
+   "pron_effect": "stress_shift",
+   "note": "Criterion-19 territory inside grammar topics stays with their authors; this class is the DRILL's coverage of the same ground, index-scored so accent_load_bearing mechanics never arise."
+  },
+  "rationale": "Smith's seed class. Corpus: ~110 futuro/remoto accented types across item files. UK A-level marking (Edexcel 9IN0) rejects exactly this class ('c'e' as conjugation accent) while tolerating others — external validation the boundary is real."
+ },
+ {
+  "proposed_id": "orthography.accent.italian.placement.che_compound",
+  "proposed_parent_id": "orthography.accent.italian.placement",
+  "proposed_label": "The -ché family (perché)",
+  "proposed_description": "Polysyllabic -ché conjunctions/compounds, always ACUTE: perché, poiché, finché, benché, affinché, sicché, giacché, nonché, anziché, purché, cosicché, dopodiché, granché, macché. THE wrong-kind hotspot: perchè* is common even in native print (Italian keyboards give è a dedicated key; é needs a modifier). Distinct from c'è, whose accent belongs to the meaning-bearing è (Smith's dictation).",
+  "proposed_cefr_importance": {
+   "A1": "core",
+   "A2": "core",
+   "B1": "core",
+   "B2": "review",
+   "C1": "fluency",
+   "C2": "fluency"
+  },
+  "proposed_prerequisites": [],
+  "proposed_attributes": {
+   "canonical_example": "perché, poiché, finché",
+   "common_miss": "perchè (grave for acute)",
+   "pron_effect": "vowel_quality",
+   "members_closed_set": true,
+   "note": "né and sé are acute but file under meaning_pair (the twin is what defines them); their wrong-kind outcomes still land on .wrong_mark via the outcome axis."
+  },
+  "rationale": "Smith's seed class. Corpus: 22 -ché types incl. the wrong-kind guard forms (perchè, finchè, anzichè) already authored as traps elsewhere."
+ },
+ {
+  "proposed_id": "orthography.accent.italian.placement.lexical_final",
+  "proposed_parent_id": "orthography.accent.italian.placement",
+  "proposed_label": "Fixed final stress (città, caffè, lunedì)",
+  "proposed_description": "Oxytones whose final accent is lexically fixed: no twin, no tense — the accent just IS the spelling. Subfamilies worth surfacing in items: -tà/-tù abstract nouns (città, università, virtù — invariable in the plural, a vocab tie-in), the -dì weekdays (lunedì...venerdì), vowel-cluster monosyllables (già, giù, più, può, ciò), and loan/lexical stragglers (caffè, però, perciò, così, laggiù, ragù, menù).",
+  "proposed_cefr_importance": {
+   "A1": "core",
+   "A2": "core",
+   "B1": "review",
+   "B2": "review",
+   "C1": "fluency",
+   "C2": "fluency"
+  },
+  "proposed_prerequisites": [],
+  "proposed_attributes": {
+   "canonical_example": "città, caffè, lunedì, più",
+   "common_miss": "citta, piu (omission); cittá (acute on a non-e vowel, wrong-kind by keyboard)",
+   "pron_effect": "stress_shift",
+   "subfamilies": [
+    "ita_tu_nouns",
+    "di_weekdays",
+    "vowel_cluster_monosyllables",
+    "lexical_other"
+   ],
+   "members_closed_set": false
+  },
+  "rationale": "The corpus's biggest class by far: ~270 -tà/-tù/-dì types plus più/già/così etc. among the highest-frequency words in the registry. Productive (-ità), so open-set; subfamily attribute keeps the report groupable without four thin leaves."
+ },
+ {
+  "proposed_id": "orthography.accent.italian.placement.no_accent",
+  "proposed_parent_id": "orthography.accent.italian.placement",
+  "proposed_label": "No accent belongs here (qui, sta, fu)",
+  "proposed_description": "Words learners are TEMPTED to accent where standard orthography forbids it — the insertion-slice class. Analogy is the engine: qui/qua pulled by là/lì; sta/fa/va/do/so/sto pulled by dà/è; su pulled by giù; blu, tre, re, no. The existing .added leaf's canonical examples (hò, fù, stò) all live here.",
+  "proposed_cefr_importance": {
+   "A1": "core",
+   "A2": "core",
+   "B1": "review",
+   "B2": "review",
+   "C1": "fluency",
+   "C2": "fluency"
+  },
+  "proposed_prerequisites": [],
+  "proposed_attributes": {
+   "canonical_example": "qui (never quì), sta, fu, su, blu",
+   "common_miss": "quì, quà, stò, fù, sù",
+   "pron_effect": "none",
+   "members_closed_set": true,
+   "note": "Only two outcomes exist here: correct (left bare) and inserted. Judgement items on this class credit the accent TYPE of the mark under temptation (quì -> ì row), per the tagging contract."
+  },
+  "rationale": "The report's insertion slice needs a home class for hypercorrection targets with no twin; the corpus already carries the wrong forms (stà, và, sò, sà, fù) as authored guards, evidencing the class is live in learner data."
+ },
+ {
+  "proposed_id": "orthography.accent.italian.placement.apostrophe_not_accent",
+  "proposed_parent_id": "orthography.accent.italian.placement",
+  "proposed_label": "Apostrophe, not accent (po', va')",
+  "proposed_description": "Truncation apostrophes learners replace with accents: po' (never pò), and the imperatives va'/fa'/sta'/da'/di'. The di' triple (di' say-imperative / dì day / di preposition) is the corpus's densest single teaching site. BOUNDARY FLAG: arguably orthography.apostrophe territory, not .accent — proposed here because the ERROR surfaces as an accent (pò is an accent typed where an apostrophe belongs) and the drill's options can hold apostrophe vs accent vs bare side by side, index-scored, which the substring marker never could (norm() folds apostrophes).",
+  "proposed_cefr_importance": {
+   "A1": "review",
+   "A2": "core",
+   "B1": "core",
+   "B2": "review",
+   "C1": "fluency",
+   "C2": "fluency"
+  },
+  "proposed_prerequisites": [],
+  "proposed_attributes": {
+   "canonical_example": "un po' (never un pò); va' / dà / da",
+   "common_miss": "pò for po'; và for va'",
+   "pron_effect": "none",
+   "members_closed_set": true,
+   "placement_uncertain": true
+  },
+  "rationale": "Empirically the most common single accent-adjacent error in Italian writing (un pò). Index-scoring finally makes it gradable in this estate — the apostrophe-fold made it undrillable in grammar topics (ArticleAuthor's open flag, 2026-07-14). Architecture rules on placement."
+ }
+]

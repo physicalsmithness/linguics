@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-20-r31";
+  const LL_BUILD = "2026-07-21-r32";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -559,21 +559,19 @@
 
     return bar;
   }
-  // ---- grammar pulse strip (Smith direct, 2026-07-20) ----
-  // A thin always-there strip above the grammar drill: a mini map of vocab
-  // rank space (three chunky 3x3 boxes for the first 5,000, thin slivers for
-  // the next 15,000), a grammar micro-box and an accent micro-box. Cells
-  // flash when the last answer touched them - "some part of it's being loved
-  // and it's being tracked" - and the vocab map click-throughs to the full
-  // vocab coverage. Indicative, not a heatmap: base fill is a faint wash
-  // where ANY practice exists; the live flash is the point.
-  const STRIP_BOX_SPAN = 5000 / 3;      // each 3x3 box ~1,667 ranks
-  const STRIP_CELL_SPAN = STRIP_BOX_SPAN / 9;   // ~185 ranks per chunky cell
-  const STRIP_SLIVER_SPAN = 1000;       // 15 slivers cover 5,001-20,000
+  // ---- pulse strip (Smith direct, 2026-07-20; reworked same day to his
+  // live feedback) ----
+  // Above the drill on BOTH grammar and translation strands: a "Vocabulary"
+  // mini map - FIVE gapless 3x3 boxes, each box 1,000 ranks (cell ~111), then
+  // thin slivers for 5,001-20,000 at the same height - plus three micro
+  // boxes: ACC (fires on accent verdicts), STR (stress: inert until the
+  // stress drill exists - the link is the point), GEN (fires on gender
+  // events). Quiet base, brief fires, click-through to vocab coverage.
+  const STRIP_CELL_SPAN = 1000 / 9;     // ~111 ranks per chunky cell
   function stripCellForRank(rank) {
     if (!rank || rank < 1) return null;
-    if (rank <= 5000) return { kind: "cell", index: Math.min(26, Math.floor((rank - 1) / STRIP_CELL_SPAN)) };
-    if (rank <= 20000) return { kind: "sliver", index: Math.min(14, Math.floor((rank - 5001) / STRIP_SLIVER_SPAN)) };
+    if (rank <= 5000) return { kind: "cell", index: Math.min(44, Math.floor((rank - 1) / STRIP_CELL_SPAN)) };
+    if (rank <= 20000) return { kind: "sliver", index: Math.min(14, Math.floor((rank - 5001) / 1000)) };
     return { kind: "sliver", index: 14 };
   }
   let _lemmaMinRank = null;
@@ -589,102 +587,119 @@
     return _lemmaMinRank.get(String(lemma || "").toLowerCase()) || null;
   }
   const ACCENTED_STRIP_RE = /[\u00e0\u00e8\u00e9\u00ec\u00f2\u00f9\u00c0\u00c8\u00c9\u00cc\u00d2\u00d9]/;
-  function buildPulseStrip() {
-    const strand = document.getElementById("strand-grammar");
+  const STRIP_STRANDS = ["grammar", "translation"];
+  function buildPulseStrip(strandName) {
+    const strand = document.getElementById("strand-" + strandName);
     if (!strand) return null;
-    let strip = document.getElementById("pulse-strip");
+    let strip = strand.querySelector(".pulse-strip");
     if (strip) return strip;
     strip = document.createElement("div");
-    strip.id = "pulse-strip";
-    strip.title = "Live: vocabulary ranks (click for your vocab coverage) \u00b7 grammar \u00b7 accents";
+    strip.className = "pulse-strip";
+    const cap = document.createElement("span");
+    cap.className = "strip-caption";
+    cap.textContent = "Vocabulary";
+    strip.appendChild(cap);
     const vocabMap = document.createElement("span");
     vocabMap.className = "strip-vocab";
+    vocabMap.title = "Words 1\u20135,000 in five boxes of 1,000, then 1,000-word slivers to 20,000. Click for your vocab coverage.";
     vocabMap.addEventListener("click", () => showStrand("vocab"));
-    for (let b = 0; b < 3; b++) {
+    for (let b = 0; b < 5; b++) {
       const box = document.createElement("span");
       box.className = "strip-box";
       for (let c = 0; c < 9; c++) {
+        const idx = b * 9 + c;
         const cell = document.createElement("i");
         cell.className = "strip-cell";
-        cell.dataset.idx = String(b * 9 + c);
-        const lo = Math.round((b * 9 + c) * STRIP_CELL_SPAN) + 1;
-        cell.title = "words ~" + lo + "\u2013" + Math.round((b * 9 + c + 1) * STRIP_CELL_SPAN);
+        cell.dataset.idx = String(idx);
+        cell.title = "words ~" + (Math.round(idx * STRIP_CELL_SPAN) + 1) + "\u2013" + Math.round((idx + 1) * STRIP_CELL_SPAN);
         box.appendChild(cell);
       }
       vocabMap.appendChild(box);
     }
     const slivers = document.createElement("span");
     slivers.className = "strip-slivers";
-    for (let i = 0; i < 15; i++) {
+    for (let i2 = 0; i2 < 15; i2++) {
       const sl = document.createElement("i");
       sl.className = "strip-sliver";
-      sl.dataset.idx = String(i);
-      sl.title = "words " + (5001 + i * 1000) + "\u2013" + (5000 + (i + 1) * 1000);
+      sl.dataset.idx = String(i2);
+      sl.title = "words " + (5001 + i2 * 1000) + "\u2013" + (5000 + (i2 + 1) * 1000);
       slivers.appendChild(sl);
     }
     vocabMap.appendChild(slivers);
     strip.appendChild(vocabMap);
-    const gBox = document.createElement("span");
-    gBox.className = "strip-mini strip-grammar";
-    gBox.title = "Grammar: flashes with each marked answer";
-    strip.appendChild(gBox);
-    const aBox = document.createElement("span");
-    aBox.className = "strip-mini strip-accent";
-    aBox.title = "Accents: green when an accented answer lands right, amber on a slip";
-    strip.appendChild(aBox);
+    const mk = (cls, label, title) => {
+      const el = document.createElement("span");
+      el.className = "strip-mini " + cls;
+      el.textContent = label;
+      el.title = title;
+      strip.appendChild(el);
+    };
+    mk("strip-acc", "ACC", "Accents: fires green when an accented answer lands right, amber on a slip.");
+    mk("strip-str", "STR", "Stress: waiting for the stress drill - this light will fire when it exists.");
+    mk("strip-gen", "GEN", "Gender: fires with each gender verdict.");
     strand.insertBefore(strip, strand.firstChild);
     return strip;
   }
+  function eachStrip(fn) {
+    for (const s of STRIP_STRANDS) {
+      const strip = buildPulseStrip(s);
+      if (strip) fn(strip);
+    }
+  }
   function paintStripBase() {
-    const strip = buildPulseStrip();
-    if (!strip) return;
-    // Faint wash where any vocab practice exists, by rank span.
     const spans = new Set();
     for (const a of ((LL.state && LL.state.attempts) || [])) {
       for (const ev of (a.events || [])) {
         if (typeof ev.bucket === "string" && ev.bucket.indexOf("vocabulary.it.") === 0) {
-          const lemma = ev.bucket.split(".")[2];
-          const cell = stripCellForRank(lemmaMinRank(lemma));
+          const cell = stripCellForRank(lemmaMinRank(ev.bucket.split(".")[2]));
           if (cell) spans.add(cell.kind + cell.index);
         }
       }
     }
-    strip.querySelectorAll(".strip-cell").forEach(el => el.classList.toggle("seen", spans.has("cell" + el.dataset.idx)));
-    strip.querySelectorAll(".strip-sliver").forEach(el => el.classList.toggle("seen", spans.has("sliver" + el.dataset.idx)));
+    eachStrip(strip => {
+      strip.querySelectorAll(".strip-cell").forEach(el => el.classList.toggle("seen", spans.has("cell" + el.dataset.idx)));
+      strip.querySelectorAll(".strip-sliver").forEach(el => el.classList.toggle("seen", spans.has("sliver" + el.dataset.idx)));
+    });
   }
   function pulseStripFlash() {
-    const strip = buildPulseStrip();
     const a = LL.lastAttempt;
-    if (!strip || !a) return;
-    const flash = (el, cls) => {
+    if (!a) return;
+    const doFlash = (el, cls) => {
       if (!el) return;
       el.classList.remove("flash-good", "flash-bad", "flash-warm");
       void el.offsetWidth;
       el.classList.add(cls);
     };
-    let grammarGood = null, sawAccentRight = false, sawSlip = false;
+    let sawAccentRight = false, sawSlip = false, genderGood = null;
+    const vocabFires = [];
     for (const ev of (a.events || [])) {
       const b = String(ev.bucket || "");
       if (b.indexOf("vocabulary.it.") === 0) {
         const cell = stripCellForRank(lemmaMinRank(b.split(".")[2]));
-        if (cell) {
-          const el = strip.querySelector(cell.kind === "cell"
-            ? '.strip-cell[data-idx="' + cell.index + '"]'
-            : '.strip-sliver[data-idx="' + cell.index + '"]');
-          flash(el, (ev.correctness_credit || 0) > 0 ? "flash-good" : "flash-bad");
-          if (el) el.classList.add("seen");
+        if (cell) vocabFires.push({ cell, good: (ev.correctness_credit || 0) > 0 });
+        if (b.indexOf(".gender") >= 0) {
+          const right = (ev.correctness_credit || 0) > 0;
+          genderGood = (genderGood === null) ? right : (genderGood && right);
         }
       } else if (b.indexOf("orthography.") === 0) {
         sawSlip = true;
       } else {
         const right = (ev.correctness_credit || 0) >= (ev.attempted_credit || 1);
-        grammarGood = (grammarGood === null) ? right : (grammarGood && right);
         if (right && ACCENTED_STRIP_RE.test(String(ev.evidence || ""))) sawAccentRight = true;
       }
     }
-    if (grammarGood !== null) flash(strip.querySelector(".strip-grammar"), grammarGood ? "flash-good" : "flash-bad");
-    if (sawSlip) flash(strip.querySelector(".strip-accent"), "flash-warm");
-    else if (sawAccentRight) flash(strip.querySelector(".strip-accent"), "flash-good");
+    eachStrip(strip => {
+      for (const f of vocabFires) {
+        const el = strip.querySelector(f.cell.kind === "cell"
+          ? '.strip-cell[data-idx="' + f.cell.index + '"]'
+          : '.strip-sliver[data-idx="' + f.cell.index + '"]');
+        doFlash(el, f.good ? "flash-good" : "flash-bad");
+        if (el) el.classList.add("seen");
+      }
+      if (sawSlip) doFlash(strip.querySelector(".strip-acc"), "flash-warm");
+      else if (sawAccentRight) doFlash(strip.querySelector(".strip-acc"), "flash-good");
+      if (genderGood !== null) doFlash(strip.querySelector(".strip-gen"), genderGood ? "flash-good" : "flash-bad");
+    });
   }
   function renderPulseStrip() {
     paintStripBase();
@@ -2833,6 +2848,10 @@
           : "Click to focus your deck on this group; click again to clear.";
         // Mark the cell as active if it currently matches the filter, so CSS
         // can highlight it.
+        // Restriction focus (Smith 2026-07-20): an active theme/gender filter
+        // shows ONLY its own cell - the rest of the axis hides entirely.
+        if (axisKind === "themes" && vocabFilter.theme && c.key !== vocabFilter.theme) continue;
+        if (axisKind === "gender" && vocabFilter.genderClass && c.key !== vocabFilter.genderClass) continue;
         const isActiveThemes = axisKind === "themes" && vocabFilter.theme === c.key;
         const isActiveGender = axisKind === "gender" && vocabFilter.genderClass === c.key;
         if (isActiveThemes || isActiveGender) cell.classList.add("filter-active");
@@ -3047,25 +3066,7 @@
     header.appendChild(buildColourInput("pgr",  () => RWG_PALE_GREEN, (v) => { RWG_PALE_GREEN = v; }));
     header.appendChild(buildColourInput("100%", () => RWG_GREEN,      (v) => { RWG_GREEN = v; }));
 
-    const report = document.createElement("button");
-    report.type = "button";
-    report.className = "vocab-palette-report";
-    report.textContent = "report palette";
-    report.title = "Print the current palette + stops to the console and copy as JSON.";
-    report.addEventListener("click", () => {
-      const txt = paletteAsJson();
-      console.log("LINGUICS PALETTE\n" + txt);
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(txt).then(() => {
-          report.textContent = "copied";
-          setTimeout(() => { report.textContent = "report palette"; }, 1500);
-        });
-      } else {
-        report.textContent = "see console";
-        setTimeout(() => { report.textContent = "report palette"; }, 1500);
-      }
-    });
-    header.appendChild(report);
+    // Palette report button retired from the learner page (Smith 2026-07-20).
 
     if (vocabFilter.band || vocabFilter.theme || vocabFilter.genderClass || vocabFilter.rankRange) {
       const filtRow = document.createElement("div");
@@ -5146,6 +5147,7 @@
     const onlyTouched = document.getElementById("live-only-touched").checked;
 
     for (const root of bucketIndex.roots) {
+      if (!rootInLevelScope(root.id)) continue;
       const node = renderLiveNode(root, onlyTouched);
       if (node) host.appendChild(node);
     }
@@ -5217,6 +5219,21 @@
       attempted_share: touched / leaves.length,
       touched, total: leaves.length, empty: false
     };
+  }
+
+  // Level scoping for the sidebar (Smith 2026-07-20): with levels selected,
+  // topics with nothing in scope at ANY selected level disappear - no
+  // subjunctive tiles glaring at an A1 learner. Vocabulary roots exempt
+  // (their leaves carry bands, not cefr_importance).
+  function rootInLevelScope(rootId) {
+    if (String(rootId).indexOf("vocabulary") === 0) return true;
+    const lv = grammarFilter.cefrLevels;
+    if (!Array.isArray(lv) || !lv.length) return true;
+    for (const i2 of lv) {
+      const level = CEFR_ORDER[i2];
+      if (level && bucketLeavesInScope([rootId], level).length > 0) return true;
+    }
+    return false;
   }
 
   // Category derivation from a top-level bucket id. Data-driven so future
@@ -5324,6 +5341,7 @@
       const group = document.createElement("div");
       group.className = "overview-category-group";
       for (const root of roots) {
+        if (!rootInLevelScope(root.id)) continue;
         group.appendChild(renderOverviewCell(root));
       }
       host.appendChild(group);
@@ -5691,23 +5709,20 @@
     //   Green cell: shade = hits / attempted (correct out of attempted).
     //   Blue cell:  shade = hits / total     (correct out of total events).
     // White at 0, full colour at 1.
+    // Green cell retired (Smith 2026-07-20): the last-N tick strip already
+    // shows correctness-of-attempted, so the green shade was duplication.
+    // Blue (correct of total) stays.
     const cellPair = document.createElement("span");
     cellPair.className = "live-cell-pair";
-    const cellG = document.createElement("span");
-    cellG.className = "live-cell-green";
     const cellB = document.createElement("span");
     cellB.className = "live-cell-blue";
     if (agg) {
-      const greenT = agg.attempted > 0 ? (agg.correct / agg.attempted) : 0;
-      const blueT  = agg.n > 0        ? (agg.correct / agg.n)         : 0;
-      cellG.style.background = shadeWhiteTo(greenT, GREEN_END);
+      const blueT = agg.n > 0 ? (agg.correct / agg.n) : 0;
       cellB.style.background = shadeWhiteTo(blueT, BLUE_END);
-      cellG.title = `correct of attempted: ${Math.round(greenT * 100)}% (${agg.hits} of ${Math.round(agg.attempted)} tried)`;
       cellB.title = `correct of total: ${Math.round(blueT * 100)}% (${agg.hits} of ${agg.n} events)`;
     } else {
-      cellG.title = cellB.title = "no events yet";
+      cellB.title = "no events yet";
     }
-    cellPair.appendChild(cellG);
     cellPair.appendChild(cellB);
     row.appendChild(cellPair);
 
@@ -6188,6 +6203,51 @@
     if (!host) return;
     if (!entrySel) entrySel = defaultEntrySel();
     host.innerHTML = "";
+
+    // Compulsory sign-in (Smith 2026-07-20): light - a name and a class,
+    // Test is always available - but required, so every pulse row carries an
+    // identity and the class sheet is never anonymous.
+    if (LL.pulse && !LL.pulse.signedIn()) {
+      const gcol = document.createElement("div");
+      gcol.className = "entry-col entry-gate";
+      const gh = document.createElement("h2");
+      gh.className = "entry-greeting";
+      gh.textContent = "Who\u2019s practising?";
+      const gp = document.createElement("p");
+      gp.className = "entry-subhead";
+      gp.textContent = "Your name and your class, so your practice counts.";
+      gcol.appendChild(gh); gcol.appendChild(gp);
+      const form = document.createElement("div");
+      form.className = "entry-gate-form";
+      const nameInp = document.createElement("input");
+      nameInp.type = "text"; nameInp.placeholder = "Your name";
+      nameInp.className = "identity-name";
+      const cls = document.createElement("select");
+      cls.className = "identity-class";
+      const ph = document.createElement("option");
+      ph.value = ""; ph.textContent = "Class\u2026";
+      cls.appendChild(ph);
+      for (const c of LL.pulse.classes()) {
+        const o = document.createElement("option");
+        o.value = c; o.textContent = c;
+        cls.appendChild(o);
+      }
+      const go = document.createElement("button");
+      go.type = "button"; go.className = "identity-save"; go.textContent = "Start";
+      const tryGo = () => {
+        if (!nameInp.value.trim() || !cls.value) return;
+        LL.pulse.signIn(nameInp.value.trim(), cls.value);
+        renderIdentityBox();
+        renderEntryScreen();
+      };
+      go.addEventListener("click", tryGo);
+      nameInp.addEventListener("keydown", e => { if (e.key === "Enter") tryGo(); });
+      form.appendChild(nameInp); form.appendChild(cls); form.appendChild(go);
+      gcol.appendChild(form);
+      host.appendChild(gcol);
+      setTimeout(() => nameInp.focus(), 0);
+      return;
+    }
 
     const col = document.createElement("div");
     col.className = "entry-col";
