@@ -3,7 +3,7 @@ classes: [all-seats]
 project: Linguics
 updated: 2026-07-19
 waiting: active
-needs_from_smith: none (B ruled; 7 work orders dispatched)
+needs_from_smith: decision (lemma-retrieval rollout a/b/c — lettered in chat 2026-07-20)
 claude_can_verify: yes — all counts in this declaration re-derived post-merge this turn
 summary: NEW 2026-07-19 evening — formation-trigger audit: 142/571 formation items ambiguous (25%), Rev 28 + criterion 21 minted, remedy A/B/C with Smith; AUDIT_formation_trigger_2026-07-19.md is the record. Prior: Wave 2 FULLY LANDED. Gerundio (16+12) + imperativo (32+16) accepted and merged (topics now 51+26 / 69+32); all usage leaves flat+destubbed; register.tu_lei_mismatch extended to imperativo; glossary v9 (adverbial gerund); 4 acceptance-rulings recorded (no-partner confirmed, dual-cite ratified, anti-anchor design, absolute gerund parked). Stubs 15 -> 4. Earlier today: flat-canonical ratified by Smith; live-round routing (Housing/Demonstrative/Negation); 17 stamps total applied.
 queue:
