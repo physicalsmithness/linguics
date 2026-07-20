@@ -168,7 +168,7 @@
     function close() { panel.hidden = true; btn.focus(); }
 
     function thanks() {
-      panel.innerHTML = '<h2>Thank you</h2><p id="wk-fb-done">Noted. That genuinely helps.</p>';
+      panel.innerHTML = '<h2>Thank you</h2><p id="wk-fb-done">Noted.</p>';
       setTimeout(function () {
         panel.hidden = true;
         panel.innerHTML = FORM_HTML;
