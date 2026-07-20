@@ -1315,3 +1315,30 @@ Smith asked why the six-person bands have not appeared and what the true state i
 
 **Rollout options put to Smith in chat (recommendation: a): (a)** pilot on present_indicative (~15 items, PresentFormationAuthor holds the lightest criterion-21 load), judge live, then standing pattern for new items + gradual retrofit; **(b)** standing pattern for new items only, no retrofit; **(c)** ride the criterion-21 touches estate-wide now — advised against: it doubles the size of an in-flight retrofit and mixes two redesigns in one diff. Not executed pending his letter.
 
+## Live round 2: seven findings, one new defect class, three agent sweeps ruled (2026-07-20)
+
+Smith ran real learners through the site. Findings and dispositions:
+1. **No shuffle** — items served in authoring order. Housing (live_round2 thread).
+2. **False-miss class, agent-swept the same hour** (his ask: "stop pinging people wrong when they're correct"): a write-capable fresh-context agent judged all 1,966 short items against a replica of the marker; **39 items + one 5-item class zero fully-correct natural Italian** (20 TOP-severity), machine-verified, itemised in AUDIT_false_miss_2026-07-20.md. **New structural class named: BLANK-BOUNDARY ZEROS (12 items)** — accepted phrases span words the prompt already prints, so the exact correct blank content scores 0; pv_celho_02 and imp_isp_int_03 even credit answers that read back ungrammatically (non non / per per). Type cases: pv_celho_03 (bare "hai il passaporto?" is fully standard — the chip's claim that bare hai "sounds unfinished" is linguistically false), pia_fam_04 (mi pare ≡ mi sembra, zeroed). **Routing: per-author packets next architect pass** (piacere 8, preposition 6, pronoun 5, negation 4, connective 4, pronominal_verbs 3, comparison 3, si_constructions 2+5, existential 1, indefinite 1, imperfect 1, remoto 1). Remedies per audit: graded 0.9 additions, blank-only phrase widening, prompt reframes, or the new multi-select qtype (feasibility with Housing).
+3. **Prompt-layout break** on operand cues (the stranded "me") — Housing, same segmentPrompt family as r24's vocab fix.
+4. **Duplicate-supplied-word bugs** (pv_celho_02's non) — the blank-boundary class above; owning authors fix with the false-miss packets.
+5. **Accent slips invisible**: ruled — never dock marks, but the verdict must make the slip unmissable, and the slip event must record word + accent class so per-class slip analytics are reconstitutable. Housing.
+6. **Jargon labels: 523 markpoint labels across 13 topics** say IOP/DOP/3sg/masc (grep-derived). Violates the friendly-labels rule. **Ruled: central rewrite staged as an Architecture pass** (labels are display-only; no marking impact), per-topic tables issued for author confirmation on next touch — the crit-13 central-discharge shape.
+7. **Explanations too paragraphy** (Smith: re-paragraph/light bullets to make good long explanations digestible). **Staged as a pilot**: check renderer support for structure, reformat ~10 samples for Smith's approval, THEN sweep — a mass editorial rewrite without an approved sample is how house style drifts.
+
+## Shared login + pulse ADOPTED; four rulings from Smith (2026-07-20)
+
+EdTechOverview's commissioned packet (estate sign-in, one-workbook attempt pulse, scoped class dropdown) is adopted; Housing builds (Architecture_Housing_shared_login_and_pulse v1). **Smith's rulings: (1) same login as physics** — shared identity key, anonymous_id + display_name common; **(2) classes differ per project** — cohort scoped per the addendum, dropdown interim-hardcoded until TeacherViewer M2's doGet; **(3) maximal payload from day one** ("absolutely as much information as possible so you don't have to retro-add anything") — per-markpoint bucket results, misconception + direction, classed accent slips, graded credit as status half + exact score, person, build, input mode, duration, all in extra_json; **(4) teacher view dealt with elsewhere** — TeacherViewer reads the workbook; Linguics builds no teacher surface. No parallel sheet.
+
+## The wake-fire lapse, owned and repaired (2026-07-20, from Smith)
+
+Smith caught it: the verify-and-stamp sweep ran ONCE at seat takeover and never again, so EdTech's login packet (and MetaProject's sincerity retrofit) sat unread while the architect worked a queue it remembered. That is the stale-cache failure, committed by the seat that polices it, again. **Repair, added to the standing order: the sweep fires on every wake AND the architect re-derives the inbound delta (inter_chat mtimes + Next-grep) at every pass where other seats may have written — Smith runs seats in parallel; a mid-session estate is a moving estate.** Constitution principle 3 already said this ("re-read your threads before EVERY post"); the standing order now points at it. Also adopted at Smith's instruction: the session task list, used from this pass on, so multi-item turns stop relying on the architect's memory of its own plan.
+
+## Banned sincerity-words retrofit: accepted, central fix queued (2026-07-20)
+
+MetaProject's new estate law (genuinely/honestly/truly/frankly etc. banned in user-facing copy) reached Linguics with ~12 itemised learner-facing hits. **Ruled: fix centrally** (display prose, no marking impact; crit-13 central shape), next architect pass, then stamp. **Canonical-copy answer for MetaProject: `C:\Claude (not on Gdrive, nor OneDrive)\Linguics` is canonical; the OneDrive Language Learning folder is a decommissioning mirror — do not keep it in sync, migrate anything unique.** Exemptions honoured (glosses where the word IS the content).
+
+## Pronoun order battery commissioned (2026-07-20, from Smith's live learner)
+
+A real learner was stuck on clitic ORDER; Smith commissioned imaginative which-of-these-are-correct order items (permutation distractors, both-correct enclitic/climbing pairs). Dispatched to PronounAuthor as a creative brief (Architecture_PronounAuthor_order_imagination_battery v1); PronominalVerbsAuthor to be pointed at it for the ci-heavy topic; multi-select qtype feasibility already with Housing.
+

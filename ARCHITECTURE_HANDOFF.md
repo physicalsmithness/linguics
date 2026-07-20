@@ -52,3 +52,6 @@ Rev 21 next-touch clause; Rev 22 cue-by-meaning; Rev 23 crit-20-disarms-crit-19;
 ## STANDING ORDER — first act of every wake (adopted 2026-07-19, Smith's design via MetaProject v9)
 
 **Before touching any design thread, spawn a verify-and-stamp agent** over all non-CLOSED `Next: Architecture` threads. Spawn it in a READ-ONLY agent class. Its brief: classify each thread as DRAFT-STAMP (mechanically verified from disk, with evidence pointer + command), RULING-NEEDED, CANNOT-VERIFY, or STALE; it verifies, never rules. You spot-audit a sample of its drafts against disk before applying the stamps. Anything ambiguous stays unstamped. Rationale and calibration record: DECISIONS 2026-07-19; thread Architecture_MetaProject_status_board_pilot v9-v10. This exists because a spawned agent has no cache to be stale — the hub's disease is structurally impossible for it.
+
+**Amendment 2026-07-20 (after the lapse):** "first act of every wake" is NOT "once per takeover". Smith routes seats in parallel; inter_chat moves mid-session. Re-derive the inbound delta (inter_chat mtimes + the Next-grep) at every pass where another seat may have written, and re-run the full sweep whenever Smith signals something you have not seen. Constitution principle 3 is the law here. Also: use the session task list on multi-item passes; the architect does not get to keep its plan in its head.
+

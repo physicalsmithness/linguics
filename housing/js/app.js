@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-20-r27";
+  const LL_BUILD = "2026-07-20-r28";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // Touch-first device (no hover, coarse pointer): tap interactions replace
   // keyboard ones. Computed once; used for tap-to-mark on MCQ.
@@ -4951,6 +4951,7 @@
   }
 
   function renderLiveStats() {
+    renderStreakGrid();
     renderLiveOverview();
     const host = document.getElementById("live-stats-content");
     host.innerHTML = "";
@@ -5855,6 +5856,63 @@
     if (g.pronouns && g.pronouns.on) on.push("pronouns");
     if (g.adjectives && g.adjectives.on) on.push("adjectives");
     return on.join(",") || "all";
+  }
+
+  // Quiet 30-day practice grid in the footer corner (Smith 2026-07-20):
+  // 6 wide x 5 tall, one cell per day ending today, filled when any attempt
+  // was recorded that day. A tiny muted "N-day streak" beside it. No
+  // celebration, no numbers on cells, nobody is made to dance.
+  function renderStreakGrid() {
+    const footer = document.querySelector("footer");
+    if (!footer) return;
+    let host = document.getElementById("streak-host");
+    if (!host) {
+      host = document.createElement("span");
+      host.id = "streak-host";
+      const bv = document.getElementById("build-version");
+      if (bv && bv.parentNode === footer) footer.insertBefore(host, bv);
+      else footer.appendChild(host);
+    }
+    host.innerHTML = "";
+    const attempts = (LL.state && LL.state.attempts) || [];
+    const byDay = new Set();
+    const countByDay = {};
+    for (const a of attempts) {
+      const t = a.timestamp ? new Date(a.timestamp) : null;
+      if (!t || isNaN(t)) continue;
+      const key = t.getFullYear() + "-" + String(t.getMonth() + 1).padStart(2, "0") + "-" + String(t.getDate()).padStart(2, "0");
+      byDay.add(key);
+      countByDay[key] = (countByDay[key] || 0) + 1;
+    }
+    const dayKey = d => d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+    const today = new Date();
+    // current streak: consecutive days ending today (or yesterday, so an
+    // unfinished today doesn't read as a broken streak)
+    let streak = 0;
+    const probe = new Date(today);
+    if (!byDay.has(dayKey(probe))) probe.setDate(probe.getDate() - 1);
+    while (byDay.has(dayKey(probe))) { streak++; probe.setDate(probe.getDate() - 1); }
+    const grid = document.createElement("span");
+    grid.className = "streak-grid";
+    grid.title = "Your last 30 days";
+    for (let i = 29; i >= 0; i--) {
+      const d = new Date(today);
+      d.setDate(d.getDate() - i);
+      const key = dayKey(d);
+      const cell = document.createElement("i");
+      cell.className = "streak-day" + (byDay.has(key) ? " did" : "") + (i === 0 ? " today" : "");
+      const n = countByDay[key] || 0;
+      cell.title = d.toLocaleDateString(undefined, { day: "numeric", month: "short" }) + ": "
+        + (n ? n + " answer" + (n === 1 ? "" : "s") : "no practice");
+      grid.appendChild(cell);
+    }
+    host.appendChild(grid);
+    if (streak >= 2) {
+      const lbl = document.createElement("span");
+      lbl.className = "streak-label";
+      lbl.textContent = streak + "-day streak";
+      host.appendChild(lbl);
+    }
   }
 
   function showEntry() {
@@ -6927,7 +6985,11 @@
     // it - Smith's "reduced coverage / fixed on a transpose-transpose",
     // 2026-07-18. Same provisional-as-final family as entry_load Defect 2.
     if (document.body.classList.contains("coverage-active")) renderCoverage();
-    setStatus(`Real content: ${grammarQuestions.length} grammar, ${translationItems.length} translation${vocabBit}, ${allBuckets.length} buckets. ${topicsDesc ? "Items per topic: " + topicsDesc : ""}`);
+    // Per-topic inventory retired from the footer (Smith 2026-07-20: "no
+    // need for the long count"); it stays in the console.info above for
+    // diagnostics. The footer keeps one short totals line.
+    setStatus(`Real content: ${grammarQuestions.length} grammar, ${translationItems.length} translation${vocabBit}, ${allBuckets.length} buckets.`);
+    renderStreakGrid();
   });
 
 })();
