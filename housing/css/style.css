@@ -1367,6 +1367,18 @@ body.strand-vocab-active #live-stats { display: none; }
 .streak-day.today { box-shadow: 0 0 0 1px var(--accent); }
 .streak-label { font-size: 11px; color: var(--muted); white-space: nowrap; }
 
+/* Inline segment lines (live_round2 ask 2): operand quotes flow with their
+   instruction; the italian styling still marks them out within the line. */
+.prompt-segment-line { display: block; }
+.prompt-segment-line .prompt-segment { display: inline; }
+
+/* Unmissable accent banner (live_round2 ask 3): full marks stand, the slip
+   does not hide. Amber family, distinct from right/wrong colouring. */
+.accent-slip-banner { display: flex; align-items: baseline; gap: 8px; margin: 8px 0; padding: 8px 12px; background: #fdf3d7; border-left: 4px solid #d99a1b; border-radius: 4px; font-size: 15px; }
+.accent-slip-tag { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: #a06f0a; font-weight: 600; }
+.accent-slip-banner s { opacity: 0.7; }
+.accent-slip-word { font-size: 17px; color: #7a5502; }
+
 /* Second-chance prompt — inline beneath the input on a chip-stem-mismatch
    wrong answer. Kind tone, never chiding. Enter confirms, Esc retries.
    See inter_chat/Architecture_Housing_second_chance_on_chip_mismatch.md. */

@@ -41,7 +41,14 @@
       }
       const hits = [["missing", missing], ["added", added], ["wrong_mark", wrong]].filter(x => x[1] > 0);
       if (hits.length !== 1) return null;                  // none or mixed classes: parent
-      return hits[0][0];
+      // Enriched return (live_round2 ask 3 + pulse payload): the learner's
+      // actual span and WHICH accented characters were involved, so per-class
+      // analytics are reconstitutable from the event, not just a count.
+      const chars = [];
+      for (let k = 0; k < pNorm.length; k++) {
+        if (pNorm[k] !== aSpan[k]) chars.push(ACCENTED_RE.test(pNorm[k]) ? pNorm[k] : aSpan[k]);
+      }
+      return { cls: hits[0][0], written: aSpan, chars };
     } catch (e) { return null; }
   }
 
@@ -161,8 +168,12 @@
           awarded += credit * phraseCredit;
           const slip = classifyAccentSlip(hay, hayFolded, foldedStr);
           orthographyHits.push({
-            bucket: "orthography.accent.italian" + (slip ? "." + slip : ""),
-            evidence: foldedStr
+            bucket: "orthography.accent.italian" + (slip && slip.cls ? "." + slip.cls : ""),
+            evidence: foldedStr,
+            expected: foldedStr,
+            written: (slip && slip.written) || LL.foldAccents(LL.norm(foldedStr)),
+            accent_class: (slip && slip.cls) || null,
+            accent_chars: (slip && slip.chars) || []
           });
         }
         // 3. Wrong-attempt: must_not_include phrases present

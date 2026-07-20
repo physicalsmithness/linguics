@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-20-r28";
+  const LL_BUILD = "2026-07-20-r29";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // Touch-first device (no hover, coarse pointer): tap interactions replace
   // keyboard ones. Computed once; used for tap-to-mark on MCQ.
@@ -4129,28 +4129,49 @@
       return div;
     }
 
-    // Multi-segment: each on its own line, styled by kind.
-    for (const seg of segments) {
-      const block = document.createElement("div");
-      block.className = "prompt-segment prompt-" + seg.kind;
+    // Multi-segment, grouped into visual LINES (live_round2 ask 2): a short
+    // operand quote ('me', 'a Roma') stays INLINE with the instruction that
+    // names it, so "the pronoun for 'me'" reads as one line. Only full
+    // clause quotes (containing the blank, or long) and the trailing cue
+    // stand alone - the cue must stay its own flex child for the order:2
+    // placement (cue_placement thread) to keep working.
+    const fill = (el, seg) => {
       if (seg.kind === "italian") {
-        renderTextWithLemmas(block, seg.text, lemmaMap, item, vocabHelpsUsedRef);
+        renderTextWithLemmas(el, seg.text, lemmaMap, item, vocabHelpsUsedRef);
       } else if (seg.kind === "cue") {
-        // Render as "Use: <word>" with a label span so CSS can style the
-        // "Use:" prefix muted and the cue word prominent.
         const labelSpan = document.createElement("span");
         labelSpan.className = "prompt-cue-label";
         labelSpan.textContent = "Use ";
         const valSpan = document.createElement("span");
         valSpan.className = "prompt-cue-word";
         valSpan.textContent = seg.text;
-        block.appendChild(labelSpan);
-        block.appendChild(valSpan);
+        el.appendChild(labelSpan);
+        el.appendChild(valSpan);
       } else {
-        block.textContent = seg.text;
+        el.textContent = seg.text;
       }
-      div.appendChild(block);
+    };
+    let line = null;
+    const flushLine = () => { if (line && line.childNodes.length) div.appendChild(line); line = null; };
+    for (const seg of segments) {
+      const standalone = seg.kind === "cue"
+        || (seg.kind === "italian" && (seg.text.indexOf("____") >= 0 || seg.text.length > 24));
+      if (standalone) {
+        flushLine();
+        const block = document.createElement("div");
+        block.className = "prompt-segment prompt-" + seg.kind;
+        fill(block, seg);
+        div.appendChild(block);
+      } else {
+        if (!line) { line = document.createElement("div"); line.className = "prompt-segment-line"; }
+        const span = document.createElement("span");
+        span.className = "prompt-segment prompt-" + seg.kind;
+        fill(span, seg);
+        line.appendChild(span);
+        line.appendChild(document.createTextNode(" "));
+      }
     }
+    flushLine();
     return div;
   }
 
@@ -4555,6 +4576,27 @@
       youWrote.appendChild(document.createTextNode(" "));
       youWrote.appendChild(val);
       root.appendChild(youWrote);
+    }
+
+    // Accent slips are UNMISSABLE (live_round2 ask 3): marks stand in full -
+    // Smith: an accent slip is "in some sense fully correct" - but the slip
+    // gets its own coloured banner naming written -> correct, never a
+    // footnote the eye can skate over.
+    if (Array.isArray(result.orthography) && result.orthography.length) {
+      for (const o of result.orthography) {
+        const b = document.createElement("div");
+        b.className = "accent-slip-banner";
+        const tag = document.createElement("span");
+        tag.className = "accent-slip-tag";
+        tag.textContent = "accents";
+        b.appendChild(tag);
+        const txt = document.createElement("span");
+        const wrote = o.written || "";
+        txt.innerHTML = (wrote ? "you wrote <s>" + escapeHtml(wrote) + "</s> \u2014 " : "")
+          + "it\u2019s <strong class=\"accent-slip-word\">" + escapeHtml(o.expected || o.evidence || "") + "</strong>";
+        b.appendChild(txt);
+        root.appendChild(b);
+      }
     }
 
     for (const mp of (result.markpoints || [])) {

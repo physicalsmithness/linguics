@@ -108,14 +108,20 @@
     // accent slips (grammar only)
     if (result.orthography) {
       for (const o of result.orthography) {
-        events.push({
+        const oe = {
           bucket: o.bucket,
           attempted_credit: 1,
           correctness_credit: 0,
           outcome: "miss",
           evidence: o.evidence,
           source: "engine_orthography"
-        });
+        };
+        // Classed slip payload (live_round2 ask 3 / pulse maximal payload):
+        // which word, what they wrote, which accent characters, what class.
+        for (const k of ["expected", "written", "accent_class", "accent_chars"]) {
+          if (o[k] !== undefined) oe[k] = o[k];
+        }
+        events.push(oe);
       }
     }
     const attempt = {

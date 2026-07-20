@@ -1342,3 +1342,10 @@ MetaProject's new estate law (genuinely/honestly/truly/frankly etc. banned in us
 
 A real learner was stuck on clitic ORDER; Smith commissioned imaginative which-of-these-are-correct order items (permutation distractors, both-correct enclitic/climbing pairs). Dispatched to PronounAuthor as a creative brief (Architecture_PronounAuthor_order_imagination_battery v1); PronominalVerbsAuthor to be pointed at it for the ci-heavy topic; multi-select qtype feasibility already with Housing.
 
+## Smith's third live pass: lemma pilot GO, pari redesign, aspettare referent rule (2026-07-20)
+
+1. **Lemma retrieval: option (a) RATIFIED.** Pilot dispatched to PresentFormationAuthor (~15 items). Notation ruled: untranslated qualifiers in SQUARE BRACKETS or distinct typeface (*I eat [generally]*) so they are visibly not-for-translation — consistent with the estate bracket-gloss convention; contextual steering ("beginning with m", "i.e. ...") encouraged where two verbs are plausible.
+2. **pari/dispari/impari redesigned** (AdjectiveAuthor): candidate-set framing (Rev 19 visible-candidates) replaces the Use-pari chip Smith called "giving it on a plate"; English meaning up front with the target word EMPHASISED; leaf declares paradigm slots [pari,dispari,impari] (first non-verb use of the paradigm-band design; taller cells authorised); more items per lemma; vocab cross-credit per lemma ("linked to knowing the word").
+3. **Aspettare-class rule** (PronounAuthor): the wait-FOR transfer trap is only testable with 3rd-person referents (mi/ti collapse the DO/IO contrast); items use lo/la/li vs gli/le; volume of variants ruled legitimate. 
+4. Confirmed for the record: the learner misreading "Right answer: non ce l'ho" as requiring a second non is real harm from the blank-boundary class; the 12 itemised blank-boundary items ship with the false-miss author packets (the sweep Smith asked for is AUDIT_false_miss_2026-07-20.md — no additional sweep needed, the class is already itemised).
+
