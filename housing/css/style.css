@@ -1379,6 +1379,39 @@ body.strand-vocab-active #live-stats { display: none; }
 .accent-slip-banner s { opacity: 0.7; }
 .accent-slip-word { font-size: 17px; color: #7a5502; }
 
+/* Estate sign-in (shared_login_and_pulse v1): quiet identity block in the
+   header; the pill says whether pulses are reaching the class sheet. */
+#identity-box { float: right; display: flex; align-items: center; gap: 8px; font-size: 13px; margin-top: 4px; }
+.identity-who { color: var(--ink); }
+.identity-signin, .identity-save { border: 1px solid var(--accent); background: var(--accent-soft); border-radius: 6px; padding: 4px 12px; cursor: pointer; font-size: 13px; }
+.identity-name { width: 120px; font-size: 13px; padding: 3px 6px; }
+.identity-class { font-size: 13px; }
+.identity-edit { font-size: 11px; }
+.pulse-pill { font-size: 11px; padding: 1px 7px; border-radius: 9px; border: 1px solid var(--line); color: var(--muted); }
+.pulse-pill.ok { border-color: #7fae7f; color: #2e6b2e; }
+.pulse-pill.bad { border-color: #c98383; color: #8c3232; }
+
+/* Grammar pulse strip (Smith 2026-07-20): thin, indicative, always at the
+   top of the drill. Three chunky 3x3 boxes = words 1-5000, slivers = the
+   next 15,000; a grammar micro-box and an accent micro-box. Quiet until an
+   answer lands, then the touched cell fires briefly. */
+#pulse-strip { display: flex; align-items: center; gap: 10px; margin: 2px 0 8px; }
+.strip-vocab { display: inline-flex; align-items: center; gap: 5px; cursor: pointer; }
+.strip-box { display: grid; grid-template-columns: repeat(3, 6px); grid-auto-rows: 6px; gap: 1px; }
+.strip-cell { background: #eceadf; border-radius: 1px; }
+.strip-slivers { display: inline-flex; gap: 1px; margin-left: 3px; }
+.strip-sliver { width: 3px; height: 14px; background: #eceadf; border-radius: 1px; }
+.strip-cell.seen, .strip-sliver.seen { background: #cfd8e8; }
+.strip-mini { width: 20px; height: 20px; border-radius: 4px; background: #eceadf; border: 1px solid var(--line); }
+.strip-accent { position: relative; }
+.strip-accent::after { content: "\u00b4"; position: absolute; inset: 0; text-align: center; line-height: 18px; color: var(--muted); font-size: 14px; }
+.flash-good { animation: strip-good 900ms ease-out 1; }
+.flash-bad { animation: strip-bad 900ms ease-out 1; }
+.flash-warm { animation: strip-warm 900ms ease-out 1; }
+@keyframes strip-good { 0% { background: #2f8f4e; } 100% {} }
+@keyframes strip-bad { 0% { background: #d04848; } 100% {} }
+@keyframes strip-warm { 0% { background: #d99a1b; } 100% {} }
+
 /* Second-chance prompt — inline beneath the input on a chip-stem-mismatch
    wrong answer. Kind tone, never chiding. Enter confirms, Esc retries.
    See inter_chat/Architecture_Housing_second_chance_on_chip_mismatch.md. */

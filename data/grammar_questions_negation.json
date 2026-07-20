@@ -1872,5 +1872,53 @@
     "explanation": "'Neither he nor she knows': Né lui né lei lo sanno. Fronting the né...né pair removes non, the same drop as Nessuno lo sa.",
     "version": 1,
     "examiner_note": "Blank widened to include the verb so the guard is reachable: with a bare 'né lui né lei' answer the correct string nests inside the wrong 'né lui né lei non lo sanno' and the positive would credit the error (criterion 18)."
+  },
+  {
+    "external_id": "neg_corr_06",
+    "language_code": "it",
+    "topic": "negation",
+    "subtopic": "correlative",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "prompt": "Completa (neither Marco nor Luca lives here): 'Né Marco né Luca ____ qui.' (abitare)",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "negation.correlative",
+        "label": "né...né takes a plural verb",
+        "any_phrases": [
+          {
+            "phrase": "abitano",
+            "match_at": "word"
+          },
+          {
+            "phrase": "abita",
+            "match_at": "word",
+            "credit": 0.9,
+            "note": "singular is heard with né...né, but the plural (abitano) is the standard agreement and the safer choice"
+          }
+        ],
+        "must_not_include": []
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "abitare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "to live (reside) - abitare",
+            "bucket": "vocabulary.it.abitare.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Neither Marco nor Luca lives here': Né Marco né Luca abitano qui. When two singular subjects are joined by né...né, standard Italian puts the verb in the plural (abitano), reading the two together. The singular (abita) is heard and not an outright error, which is why it still earns most of the credit, but the plural is the standard agreement.",
+    "examiner_note": "Boundary note for Architecture: the number-agreement diagnostic sits inside the né...né construction, so it is authored on negation.correlative; if you would rather subject-verb number live in an agreement tree, it re-homes cleanly (flag, not blocking). Singular graded 0.9, not flatly wrong, because Italian genuinely tolerates it; Rev 20(i) checked, singular is not the correlative leaf's named common_miss (that is the o...o calque and the preverbal non-drop), so the 0.9 stands. Crit 18: word-anchored, so 'abita' does not match inside 'abitano'. Crit 19: no accents.",
+    "version": 1
   }
 ]

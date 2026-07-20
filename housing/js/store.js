@@ -171,6 +171,10 @@
       attempt.misconception_hits = result.misconceptions.slice();
     }
     state.attempts.push(attempt);
+    LL.lastAttempt = attempt;   // read by the grammar pulse strip (live flashes)
+    // Attempt pulse to the estate workbook (shared_login_and_pulse v1).
+    // Fail-soft by contract: a pulse must never break marking or storage.
+    try { if (LL.pulse) LL.pulse.reportAttempt(strand, item_or_question, result, attempt); } catch (e) {}
 
     // Track any bucket proposals that came through
     for (const mp of (result.markpoints || [])) {

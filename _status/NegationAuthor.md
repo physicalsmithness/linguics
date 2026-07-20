@@ -5,15 +5,16 @@ classes: [all-seats, all-authors]
 #   must_not_include guards and item explanations. The register's test is what a seat originates,
 #   not what it touches, so criteria 13-20 all bind me. I am not in the Vocab/Cr17Sweep non-author class.
 project: Linguics
-updated: 2026-07-18
+updated: 2026-07-20
 waiting: parked
 needs_from_smith: decision
 blocked_by:
 claude_can_verify:
-summary: Negation live and accepted (41 grammar + 22 translation, 9 leaves, validation 0/0, replica clean). Nothing to author. Raw name-grep showed 6; after triage the queue is two all-authors retrofits, both RUN clean this turn and awaiting Architecture's stamp, plus one thread on Architecture's side. Nothing owed by me.
+summary: Negation live (42 grammar + 23 translation, 9 leaves, validation 0/0, replica clean). Nothing to author. Raw name-grep showed 6; after triage the queue is two all-authors retrofits, both RUN clean this turn and awaiting Architecture's stamp, plus one thread on Architecture's side. Nothing owed by me.
 queue:
   - Criterion 13 chip self-audit — RUN this turn, ZERO hits, zero rewrites. Register says RUNNING, compliance 1 of ~25 author seats; my name never appears, only the class token found it. Awaiting Architecture stamp.   [AUTHOR_BRIEF binding register]
   - Rev 25 citation-form-level audit — RUN this turn. Two citation cues (neg_ameno_01 "(piovere)", neg_ameno_02 "(essere)"), both on C1 items with A1 lemmas, so the exemption holds and no gloss is needed. Zero changes. Awaiting Architecture stamp.   [AUTHOR_BRIEF Rev 25, binds all-authors]
+  - Architecture_NegationAuthor_scope_ratified.md v9 — REOPENED 2026-07-20, Next: Architecture: accept the né...né agreement addendum (neg_corr_06 + trans_corr_03) + boundary call on where number-agreement lives.
   - Architecture_NegationAuthor_criterion20_retrofit.md — OPEN, Next: Architecture, not my turn. Two live asks: Rev 22's next-touch clause missed negation (11 items); proposed criterion-20 extension for one-to-one glosses.   [inter_chat]
 discharged_awaiting_stamp:   # reported, NOT self-stamped (per protocol, Architecture stamps)
   - DECISIONS.md:897 "NegationAuthor reads its scope thread and DISPATCH_negation.md and starts on the concord hot spot" — full batch delivered and ACCEPTED; scope thread CLOSED at v8.

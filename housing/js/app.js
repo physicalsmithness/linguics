@@ -9,8 +9,17 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-20-r29";
+  const LL_BUILD = "2026-07-20-r31";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
+  // App-side context merged into every pulse row's extra_json (maximal
+  // payload ruling) without coupling pulse.js to app internals.
+  LL.pulseContext = function () {
+    const ctx = { input_mode: getInputMode() };
+    try { ctx.grammar_scope = filterSig(grammarFilter); } catch (e) {}
+    try { ctx.translation_scope = filterSig(translationFilter); } catch (e) {}
+    try { ctx.vocab_scope = JSON.stringify({ theme: vocabFilter.theme, themes: vocabFilter.themes, ranges: vocabFilter.rankRanges, gender: vocabFilter.genderDrill }); } catch (e) {}
+    return ctx;
+  };
   // Touch-first device (no hover, coarse pointer): tap interactions replace
   // keyboard ones. Computed once; used for tap-to-mark on MCQ.
   const TOUCH_FIRST = !!(window.matchMedia
@@ -550,6 +559,138 @@
 
     return bar;
   }
+  // ---- grammar pulse strip (Smith direct, 2026-07-20) ----
+  // A thin always-there strip above the grammar drill: a mini map of vocab
+  // rank space (three chunky 3x3 boxes for the first 5,000, thin slivers for
+  // the next 15,000), a grammar micro-box and an accent micro-box. Cells
+  // flash when the last answer touched them - "some part of it's being loved
+  // and it's being tracked" - and the vocab map click-throughs to the full
+  // vocab coverage. Indicative, not a heatmap: base fill is a faint wash
+  // where ANY practice exists; the live flash is the point.
+  const STRIP_BOX_SPAN = 5000 / 3;      // each 3x3 box ~1,667 ranks
+  const STRIP_CELL_SPAN = STRIP_BOX_SPAN / 9;   // ~185 ranks per chunky cell
+  const STRIP_SLIVER_SPAN = 1000;       // 15 slivers cover 5,001-20,000
+  function stripCellForRank(rank) {
+    if (!rank || rank < 1) return null;
+    if (rank <= 5000) return { kind: "cell", index: Math.min(26, Math.floor((rank - 1) / STRIP_CELL_SPAN)) };
+    if (rank <= 20000) return { kind: "sliver", index: Math.min(14, Math.floor((rank - 5001) / STRIP_SLIVER_SPAN)) };
+    return { kind: "sliver", index: 14 };
+  }
+  let _lemmaMinRank = null;
+  function lemmaMinRank(lemma) {
+    if (!_lemmaMinRank) {
+      _lemmaMinRank = new Map();
+      for (const e of (vocabEntries || [])) {
+        if (!e || !e.lemma || typeof e.rank !== "number") continue;
+        const k = e.lemma.toLowerCase();
+        if (!_lemmaMinRank.has(k) || e.rank < _lemmaMinRank.get(k)) _lemmaMinRank.set(k, e.rank);
+      }
+    }
+    return _lemmaMinRank.get(String(lemma || "").toLowerCase()) || null;
+  }
+  const ACCENTED_STRIP_RE = /[\u00e0\u00e8\u00e9\u00ec\u00f2\u00f9\u00c0\u00c8\u00c9\u00cc\u00d2\u00d9]/;
+  function buildPulseStrip() {
+    const strand = document.getElementById("strand-grammar");
+    if (!strand) return null;
+    let strip = document.getElementById("pulse-strip");
+    if (strip) return strip;
+    strip = document.createElement("div");
+    strip.id = "pulse-strip";
+    strip.title = "Live: vocabulary ranks (click for your vocab coverage) \u00b7 grammar \u00b7 accents";
+    const vocabMap = document.createElement("span");
+    vocabMap.className = "strip-vocab";
+    vocabMap.addEventListener("click", () => showStrand("vocab"));
+    for (let b = 0; b < 3; b++) {
+      const box = document.createElement("span");
+      box.className = "strip-box";
+      for (let c = 0; c < 9; c++) {
+        const cell = document.createElement("i");
+        cell.className = "strip-cell";
+        cell.dataset.idx = String(b * 9 + c);
+        const lo = Math.round((b * 9 + c) * STRIP_CELL_SPAN) + 1;
+        cell.title = "words ~" + lo + "\u2013" + Math.round((b * 9 + c + 1) * STRIP_CELL_SPAN);
+        box.appendChild(cell);
+      }
+      vocabMap.appendChild(box);
+    }
+    const slivers = document.createElement("span");
+    slivers.className = "strip-slivers";
+    for (let i = 0; i < 15; i++) {
+      const sl = document.createElement("i");
+      sl.className = "strip-sliver";
+      sl.dataset.idx = String(i);
+      sl.title = "words " + (5001 + i * 1000) + "\u2013" + (5000 + (i + 1) * 1000);
+      slivers.appendChild(sl);
+    }
+    vocabMap.appendChild(slivers);
+    strip.appendChild(vocabMap);
+    const gBox = document.createElement("span");
+    gBox.className = "strip-mini strip-grammar";
+    gBox.title = "Grammar: flashes with each marked answer";
+    strip.appendChild(gBox);
+    const aBox = document.createElement("span");
+    aBox.className = "strip-mini strip-accent";
+    aBox.title = "Accents: green when an accented answer lands right, amber on a slip";
+    strip.appendChild(aBox);
+    strand.insertBefore(strip, strand.firstChild);
+    return strip;
+  }
+  function paintStripBase() {
+    const strip = buildPulseStrip();
+    if (!strip) return;
+    // Faint wash where any vocab practice exists, by rank span.
+    const spans = new Set();
+    for (const a of ((LL.state && LL.state.attempts) || [])) {
+      for (const ev of (a.events || [])) {
+        if (typeof ev.bucket === "string" && ev.bucket.indexOf("vocabulary.it.") === 0) {
+          const lemma = ev.bucket.split(".")[2];
+          const cell = stripCellForRank(lemmaMinRank(lemma));
+          if (cell) spans.add(cell.kind + cell.index);
+        }
+      }
+    }
+    strip.querySelectorAll(".strip-cell").forEach(el => el.classList.toggle("seen", spans.has("cell" + el.dataset.idx)));
+    strip.querySelectorAll(".strip-sliver").forEach(el => el.classList.toggle("seen", spans.has("sliver" + el.dataset.idx)));
+  }
+  function pulseStripFlash() {
+    const strip = buildPulseStrip();
+    const a = LL.lastAttempt;
+    if (!strip || !a) return;
+    const flash = (el, cls) => {
+      if (!el) return;
+      el.classList.remove("flash-good", "flash-bad", "flash-warm");
+      void el.offsetWidth;
+      el.classList.add(cls);
+    };
+    let grammarGood = null, sawAccentRight = false, sawSlip = false;
+    for (const ev of (a.events || [])) {
+      const b = String(ev.bucket || "");
+      if (b.indexOf("vocabulary.it.") === 0) {
+        const cell = stripCellForRank(lemmaMinRank(b.split(".")[2]));
+        if (cell) {
+          const el = strip.querySelector(cell.kind === "cell"
+            ? '.strip-cell[data-idx="' + cell.index + '"]'
+            : '.strip-sliver[data-idx="' + cell.index + '"]');
+          flash(el, (ev.correctness_credit || 0) > 0 ? "flash-good" : "flash-bad");
+          if (el) el.classList.add("seen");
+        }
+      } else if (b.indexOf("orthography.") === 0) {
+        sawSlip = true;
+      } else {
+        const right = (ev.correctness_credit || 0) >= (ev.attempted_credit || 1);
+        grammarGood = (grammarGood === null) ? right : (grammarGood && right);
+        if (right && ACCENTED_STRIP_RE.test(String(ev.evidence || ""))) sawAccentRight = true;
+      }
+    }
+    if (grammarGood !== null) flash(strip.querySelector(".strip-grammar"), grammarGood ? "flash-good" : "flash-bad");
+    if (sawSlip) flash(strip.querySelector(".strip-accent"), "flash-warm");
+    else if (sawAccentRight) flash(strip.querySelector(".strip-accent"), "flash-good");
+  }
+  function renderPulseStrip() {
+    paintStripBase();
+    pulseStripFlash();
+  }
+
   function renderGrammarFilterBar() {
     const host = document.getElementById("grammar-filter-bar");
     host.innerHTML = "";
@@ -1245,6 +1386,7 @@
     // item is marked. See inter_chat/Architecture_Housing_info_display_suppress.md.
     setInFlightSuppress(q);
 
+    LL._cardShownAt = Date.now();   // attempt duration for the pulse payload
     const card = document.createElement("div");
     card.className = "qcard";
 
@@ -1592,6 +1734,7 @@
     const vocabHelpsUsed = [];
     setInFlightSuppress(it);
 
+    LL._cardShownAt = Date.now();   // attempt duration for the pulse payload
     const card = document.createElement("div");
     card.className = "qcard";
 
@@ -2256,6 +2399,7 @@
       : vocabFilter.direction;
     const isItEn = effDir === "it_en";
 
+    LL._cardShownAt = Date.now();   // attempt duration for the pulse payload
     const card = document.createElement("div");
     card.className = "qcard";
 
@@ -2587,6 +2731,7 @@
   }
   function invalidateVocabCaches() {
     _themeChildren = null;
+    _lemmaMinRank = null;
     _bandLemmasCache = null;
     _bandLemmasCacheLen = -1;
     _bandListCache = null;
@@ -4994,6 +5139,7 @@
 
   function renderLiveStats() {
     renderStreakGrid();
+    try { renderPulseStrip(); } catch (e) {}
     renderLiveOverview();
     const host = document.getElementById("live-stats-content");
     host.innerHTML = "";
@@ -5904,6 +6050,72 @@
   // 6 wide x 5 tall, one cell per day ending today, filled when any attempt
   // was recorded that day. A tiny muted "N-day streak" beside it. No
   // celebration, no numbers on cells, nobody is made to dance.
+  // ---- estate sign-in UI (shared_login_and_pulse v1) ----
+  function renderIdentityBox() {
+    if (!LL.pulse) return;
+    const header = document.querySelector("header");
+    if (!header) return;
+    let box = document.getElementById("identity-box");
+    if (!box) {
+      box = document.createElement("div");
+      box.id = "identity-box";
+      header.appendChild(box);
+    }
+    box.innerHTML = "";
+    const id = LL.pulse.identity();
+    if (LL.pulse.signedIn()) {
+      const who = document.createElement("span");
+      who.className = "identity-who";
+      who.textContent = id.display_name + " \u00b7 " + id.cohort;
+      box.appendChild(who);
+      const pill = document.createElement("span");
+      pill.id = "pulse-pill";
+      pill.className = "pulse-pill";
+      pill.title = "Whether your answers are reaching the class sheet";
+      box.appendChild(pill);
+      const edit = document.createElement("button");
+      edit.type = "button"; edit.className = "linkish identity-edit"; edit.textContent = "change";
+      edit.addEventListener("click", () => renderIdentityForm(box));
+      box.appendChild(edit);
+    } else {
+      const btn = document.createElement("button");
+      btn.type = "button"; btn.className = "identity-signin"; btn.textContent = "Sign in";
+      btn.title = "Type your name and pick your class so your practice reaches your teacher";
+      btn.addEventListener("click", () => renderIdentityForm(box));
+      box.appendChild(btn);
+    }
+  }
+  function renderIdentityForm(box) {
+    box.innerHTML = "";
+    const id = LL.pulse.identity();
+    const nameInp = document.createElement("input");
+    nameInp.type = "text"; nameInp.placeholder = "Your name";
+    nameInp.value = id.display_name || "";
+    nameInp.className = "identity-name";
+    const cls = document.createElement("select");
+    cls.className = "identity-class";
+    const ph = document.createElement("option");
+    ph.value = ""; ph.textContent = "Class\u2026";
+    cls.appendChild(ph);
+    for (const c of LL.pulse.classes()) {
+      const o = document.createElement("option");
+      o.value = c; o.textContent = c;
+      if (c === id.cohort) o.selected = true;
+      cls.appendChild(o);
+    }
+    const go = document.createElement("button");
+    go.type = "button"; go.textContent = "Save";
+    go.className = "identity-save";
+    go.addEventListener("click", () => {
+      const nm = nameInp.value.trim();
+      if (!nm || !cls.value) return;
+      LL.pulse.signIn(nm, cls.value);
+      renderIdentityBox();
+    });
+    box.appendChild(nameInp); box.appendChild(cls); box.appendChild(go);
+    nameInp.focus();
+  }
+
   function renderStreakGrid() {
     const footer = document.querySelector("footer");
     if (!footer) return;
@@ -6954,6 +7166,13 @@
   renderMarkerConfig();
   renderSessionCost();
   renderLiveStats();
+  renderIdentityBox();
+  if (LL.pulse) LL.pulse.onStatus(st => {
+    const pill = document.getElementById("pulse-pill");
+    if (!pill) return;
+    pill.textContent = st === "sent" ? "sent \u2713" : "offline";
+    pill.className = "pulse-pill " + (st === "sent" ? "ok" : "bad");
+  });
   LL.contentLoading = true;  // entry screen shows a loading state, never sample-derived counts (entry_load Defect 2)
   showEntry();  // land on the welcome / session builder, not straight into a strand
   {

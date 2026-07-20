@@ -6,7 +6,7 @@ Per brief Rev 18, this doc is the RECORD; every ask below is also live on `inter
 
 ## Totals
 
-**41 grammar + 22 translation** across all 9 active leaves.
+**42 grammar + 23 translation** across all 9 active leaves.
 
 | Leaf (friendly label) | id | Grammar | Trans |
 |---|---|---|---|
@@ -15,7 +15,7 @@ Per brief Rev 18, this doc is the RECORD; every ask below is also live on `inter
 | Two-part negatives (non... mai/più/ancora) | negation.core.bipartite | 6 | 4 |
 | Neanche, nemmeno, neppure | negation.responses | 4 | 3 |
 | Non... che: only | negation.restrictive | 4 | 2 |
-| Né... né | negation.correlative | 5 | 2 |
+| Né... né | negation.correlative | 6 | 3 |
 | Finché and finché non | negation.pleonastic.finche_flip | 3 | 1 |
 | A meno che non, and friends | negation.pleonastic.a_meno_che | 3 | 1 |
 | Mica | negation.mica | 4 | 1 |
@@ -68,4 +68,4 @@ The teaching point that grammar could not grade is exactly the one these carry: 
 
 ## Notes for next pass
 
-Né...né could take a verb-agreement item (Né Marco né Luca sono/è venuti) if that is negation's rather than agreement's. Mica would benefit from a chunk-reorder format if Housing ships one, since the error is positional. The non-position leaf could gain B1 items on non with clitic clusters in compound tenses once the passato_prossimo.adverb_placement boundary is comfortable.
+Né...né verb-agreement item AUTHORED 2026-07-20 (neg_corr_06 + trans_neg_en_it_corr_03): plural abitano at full credit, singular abita graded 0.9 (Italian tolerates it), boundary flagged to Architecture. Remaining next-pass ideas: Mica would benefit from a chunk-reorder format if Housing ships one, since the error is positional. The non-position leaf could gain B1 items on non with clitic clusters in compound tenses once the passato_prossimo.adverb_placement boundary is comfortable.
