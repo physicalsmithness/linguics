@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-21-r51";
+  const LL_BUILD = "2026-07-21-r52";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -5008,7 +5008,7 @@
     const out = [];
     for (const att of LL.state.attempts) {
       for (const ev of att.events) {
-        if (ev.bucket === bucketId) out.push({ ev, timestamp: att.timestamp });
+        if (ev.bucket === bucketId) out.push({ ev, timestamp: att.timestamp, item: att.question_id || att.item_id || null });
       }
     }
     return out;
@@ -5042,7 +5042,7 @@
         if (typeof ev.bucket !== "string") continue;
         if (seen.has(ev.bucket)) continue;
         if (ev.bucket.startsWith(prefix)) {
-          out.push({ ev, timestamp: att.timestamp });
+          out.push({ ev, timestamp: att.timestamp, item: att.question_id || att.item_id || null });
           seen.add(ev.bucket);
         }
       }
@@ -5084,7 +5084,23 @@
 
   // Reusable kernel. `events` must already be sorted oldest -> newest and have
   // the shape {ev, timestamp} that eventsForNode produces.
+  function dedupeSpammedEvents(events) {
+    // Anti-spam (Smith 2026-07-21): repeated attempts on the SAME item at the
+    // SAME bucket collapse to their most recent event, so a learner cannot make
+    // a cell dark-green by spamming one question. DISTINCT items still stack.
+    const byKey = new Map(); const kept = [];
+    for (const e of events) {
+      const item = e && e.item; const bucket = e && e.ev && e.ev.bucket;
+      if (item == null || bucket == null) { kept.push(e); continue; }
+      const key = item + "\u0001" + bucket; const prev = byKey.get(key);
+      if (!prev || String(e.timestamp || "") >= String(prev.timestamp || "")) byKey.set(key, e);
+    }
+    const out = kept.concat([...byKey.values()]);
+    out.sort((a, b) => String(a.timestamp || "").localeCompare(String(b.timestamp || "")));
+    return out;
+  }
   function recencyWeightedCorrectness(events, useDenomFloor) {
+    events = dedupeSpammedEvents(events);
     const attemptedEvents = events.filter(e => (e.ev.attempted_credit || 0) > 0);
     if (attemptedEvents.length === 0) return { correctness: 0, hasEvents: false, nAttempted: 0 };
 
@@ -5650,8 +5666,7 @@
       // Diagnostic-only trees (orthography.*): no items target them directly.
       summary = "\n" + ((stats && stats.n) || 0) + " events recorded (no questions target this directly)";
     }
-    const desc = node.description ? "\n\n" + node.description : "";
-    return label + summary + desc + "\n\nDrill into this.";
+    return label + summary;
   }
 
   // For top-level groups with no tree children (like the demo vocabulary
