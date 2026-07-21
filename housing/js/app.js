@@ -1962,6 +1962,8 @@
     rankRanges: null,   // list of {start,end} OR'd - the entry builder's frequency selection (vocab_session_builder v2: non-contiguous bands)
     drillLevel: null,   // null | "thousand" | "hundred" | "ten"
     genderDrill: false, // nouns-only production focus (Smith gender ask)
+    spellingDrill: false, // orthography MCQ drill (Smith spelling ask)  QoderWork 2026-07-22
+    spellingClass: "",    // "" = all classes; else e.g. "doubling"  QoderWork 2026-07-22
     topN: 0,            // 0 = all; else max rank to include in scope
     subBand: ""         // "" | "A1-core" | "A1-secure" | ... | "C1-stretch"
   };
@@ -2307,7 +2309,7 @@
       if (vocabFilter.genderDrill && v.pos !== "noun") return false;
       if (vocabFilter.genderClass) {
         if (v.pos !== "noun") return false;
-        const cls = v.noun_class || (v.gender === "m" ? "unspecified_m" : v.gender === "f" ? "unspecified_f" : "unspecified");
+        const cls = v.noun_class || nounClassFallback(v);   // QoderWork 2026-07-22
         if (cls !== vocabFilter.genderClass) return false;
       }
       return true;
@@ -2470,6 +2472,18 @@
     { n: 5, key: "m_sg_f_pl",       label: "M singular,\nF plural" },
     { n: 6, key: "f_sg_m_pl",       label: "F singular,\nM plural" },
     { n: 7, key: "two_plurals",     label: "M singular\nF plural OR M plural,\ndepending on meaning" }
+  ];
+  // Spelling drill error classes (SpellingAuthor dispatch, 2026-07-21).  QoderWork 2026-07-22
+  // id matches the subtopic suffix in grammar_questions_orthography.json ("spelling.<id>").
+  const SPELLING_CLASSES = [
+    { id: "doubling",           label: "Doubling (doppie)" },
+    { id: "digraph",            label: "Digraphs (gl/gn/sc)" },
+    { id: "c_g_softening",      label: "C/G softening" },
+    { id: "qu_cu_cqu",          label: "qu/cu/cqu" },
+    { id: "silent_h",           label: "Silent h (avere)" },
+    { id: "apostrophe_elision", label: "Apostrophe & elision" },
+    { id: "capitalization",     label: "Capitalization" },
+    { id: "vowel_confusion",    label: "Vowel confusion" }
   ];
   // Prefers an explicit `gender_class` tag (Vocab populates it when the noun db
   // is cleaned - Smith: "imagine the dbase will be fixed"); else a best-effort
@@ -2645,11 +2659,140 @@
     if (!keepAxes) renderVocabAxes();
   }
 
+  // ---- Spelling drill (Smith spelling ask; SpellingAuthor MCQ bank)  QoderWork 2026-07-22 ----
+  let spellingDeck = [];
+  let spellingIndex = 0;
+
+  function buildSpellingDeck() {
+    const cls = vocabFilter.spellingClass;
+    spellingDeck = shuffle(grammarQuestions.filter(q =>
+      q.topic === "orthography" &&
+      typeof q.subtopic === "string" && q.subtopic.indexOf("spelling.") === 0 &&
+      q.type === "mcq" &&
+      (!cls || q.subtopic === "spelling." + cls)
+    ));
+    spellingIndex = 0;
+  }
+
+  function renderSpellingDrillCard(keepAxes) {
+    const host = document.getElementById("vocab-host");
+    if (!host) return;
+    host.innerHTML = "";
+    if (!spellingDeck.length) {
+      const msg = document.createElement("p");
+      msg.className = "muted";
+      msg.style.cssText = "padding:18px;font-style:italic";
+      msg.textContent = "No spelling items match the current filter.";
+      host.appendChild(msg);
+      return;
+    }
+    if (spellingIndex >= spellingDeck.length) { spellingDeck = shuffle(spellingDeck); spellingIndex = 0; }
+    const q = spellingDeck[spellingIndex];
+    LL._cardShownAt = Date.now();
+
+    const card = document.createElement("div");
+    card.className = "qcard spelling-drill-card";
+    card.tabIndex = -1;
+
+    // Meta line: class label
+    const clsId = (q.subtopic || "").replace("spelling.", "");
+    const clsLabel = (SPELLING_CLASSES.find(c => c.id === clsId) || {}).label || clsId;
+    const meta = document.createElement("div");
+    meta.className = "meta faint";
+    meta.textContent = "Spelling drill · " + clsLabel;
+    card.appendChild(meta);
+
+    // Prompt
+    const prompt = document.createElement("div");
+    prompt.className = "prompt";
+    prompt.textContent = q.prompt || "Choose the correct spelling:";
+    card.appendChild(prompt);
+
+    // Choices
+    const choicesWrap = document.createElement("div");
+    choicesWrap.className = "mcq-choices spelling-choices";
+    const resultHost = document.createElement("div");
+    const buttons = [];
+    let marked = false;
+
+    const doNext = () => {
+      spellingIndex++;
+      if (spellingIndex >= spellingDeck.length) { spellingDeck = shuffle(spellingDeck); spellingIndex = 0; }
+      renderVocab(true);
+    };
+    const next = document.createElement("button");
+    next.type = "button"; next.className = "btn"; next.textContent = "Skip"; next.title = "Next item";
+    next.addEventListener("click", doNext);
+    next.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); doNext(); } });
+
+    const commit = (pickedIdx) => {
+      if (marked) return;
+      marked = true;
+      const result = buildMcqResult(q, pickedIdx);
+      const attempt = LL.store.recordAttempt("vocab",
+        { id: q.external_id || ("spelling_" + spellingIndex), prompt: q.prompt },
+        q.choices[pickedIdx], result);
+      recentlyChangedBuckets = new Set(attempt.events.map(e => e.bucket));
+      buttons.forEach((b, i) => {
+        if (i === q.answer_index) b.classList.add("gc-correct");
+        if (i === pickedIdx && pickedIdx !== q.answer_index) b.classList.add("gc-wrong");
+        b.disabled = true;
+      });
+      resultHost.innerHTML = "";
+      resultHost.appendChild(renderResult(result));
+      // Show explanation if present
+      if (q.explanation) {
+        const expl = document.createElement("div");
+        expl.className = "gd-declension";
+        expl.textContent = q.explanation;
+        resultHost.appendChild(expl);
+      }
+      renderLiveStats();
+      next.textContent = "Next";
+      setTimeout(() => next.focus({ preventScroll: true }), 0);
+    };
+
+    (q.choices || []).forEach((ch, i) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "mcq-choice spelling-choice";
+      const num = document.createElement("span"); num.className = "gc-num"; num.textContent = i + 1;
+      const lbl = document.createElement("span"); lbl.className = "gc-label"; lbl.textContent = ch;
+      b.appendChild(num); b.appendChild(lbl);
+      b.addEventListener("click", () => commit(i));
+      choicesWrap.appendChild(b);
+      buttons.push(b);
+    });
+    card.appendChild(choicesWrap);
+
+    const actions = document.createElement("div");
+    actions.className = "actions";
+    actions.appendChild(next);
+    const hint = document.createElement("span");
+    hint.className = "kbd-hint";
+    hint.textContent = "Press 1-" + (q.choices || []).length + " or click. Enter to advance.";
+    actions.appendChild(hint);
+    card.appendChild(actions);
+    card.appendChild(resultHost);
+
+    card.addEventListener("keydown", (e) => {
+      if (marked) { if (e.key === "Enter") { e.preventDefault(); doNext(); } return; }
+      const n = parseInt(e.key, 10);
+      if (n >= 1 && n <= (q.choices || []).length) { e.preventDefault(); commit(n - 1); }
+    });
+
+    host.appendChild(card);
+    setTimeout(() => { ensureCardVisible(card); card.focus(); }, 0);
+    if (!keepAxes) renderVocabAxes();
+  }
+
   function renderVocab(keepAxes) {
     renderVocabFilterBar();
     const host = document.getElementById("vocab-host");
     if (!host) return;
     host.innerHTML = "";
+    // Spelling drill: uses its own MCQ deck, not vocab entries.  QoderWork 2026-07-22
+    if (vocabFilter.spellingDrill) { renderSpellingDrillCard(keepAxes); return; }
     if (!vocabEntries.length) {
       const msg = document.createElement("p");
       msg.className = "muted";
@@ -3079,10 +3222,23 @@
     const idx = Object.create(null);
     for (const v of vocabEntriesInScope()) {
       if (v.pos !== "noun") continue;
-      const cls = v.noun_class || (v.gender === "m" ? "unspecified_m" : v.gender === "f" ? "unspecified_f" : "unspecified");
+      const cls = v.noun_class || nounClassFallback(v);   // QoderWork 2026-07-22
       (idx[cls] = idx[cls] || []).push(v.lemma);
     }
     return idx;
+  }
+
+  // Fallback noun-class assignment for the vocab analysis display.  QoderWork 2026-07-22
+  // Classifies by ending so -o/m, -a/f and -e nouns land in the right bucket
+  // instead of everything falling through to "unspecified".
+  function nounClassFallback(v) {
+    const lem = String(v.lemma || ""), g = String(v.gender);
+    if (/o$/.test(lem) && g === "m") return "regular_o_masc";
+    if (/a$/.test(lem) && g === "f") return "regular_a_fem";
+    if (/e$/.test(lem)) return "e_ambiguous";
+    if (g === "m") return "unspecified_m";
+    if (g === "f") return "unspecified_f";
+    return "unspecified";
   }
 
   const GENDER_CLASS_LABELS = {
@@ -3095,9 +3251,9 @@
     gender_shift_plural:       "gender shifts in plural",
     invariable_accented_final: "invariable (final accented)",
     invariable_loanword:       "invariable loanword",
-    unspecified_m:             "uncategorised (m)",
-    unspecified_f:             "uncategorised (f)",
-    unspecified:               "uncategorised"
+    unspecified_m:             "Masculine",          // QoderWork 2026-07-22
+    unspecified_f:             "Feminine",           // QoderWork 2026-07-22
+    unspecified:               "—"                   // QoderWork 2026-07-22
   };
 
   function themeKindLabel(kind) {
@@ -3274,7 +3430,7 @@
     }
     // Gender axis cell (nouns only).
     if (entry.pos === "noun") {
-      const cls = entry.noun_class || (entry.gender === "m" ? "unspecified_m" : entry.gender === "f" ? "unspecified_f" : "unspecified");
+      const cls = entry.noun_class || nounClassFallback(entry);   // QoderWork 2026-07-22
       const gCell = host.querySelector('.vocab-cell[data-axis="gender"][data-key="' + cssEscape(cls) + '"]');
       if (gCell) targets.push(gCell);
     }
@@ -6511,7 +6667,7 @@
         verbMode: "form",   // "form" | "use"
         parts: {}           // partId -> { on, topics: {topic:true}, kinds: {bucketPath:true} }
       },
-      vocab: { direction: "it_en", subBand: "", genderDrill: false, lens: "numeric", rankRanges: [], cefr: "", theme: "", catIds: null, catLabel: "" },
+      vocab: { direction: "it_en", subBand: "", genderDrill: false, spellingDrill: false, lens: "numeric", rankRanges: [], cefr: "", theme: "", catIds: null, catLabel: "" },
       translation: { grammarPoint: "", way: "" },
       cefrLevels: []
     };
@@ -7187,11 +7343,68 @@
       }
     }
 
+    // ---- gender drill: a mode, set apart (Ruling 2; kept at bottom per Smith 2026-07-21) ----
+    const drills = document.createElement("div");
+    drills.className = "entry-special-drills";
+    const hDrill = document.createElement("h3");
+    hDrill.className = "entry-config-head";
+    hDrill.textContent = "Gender drill";
+    drills.appendChild(hDrill);
+    const drillRow = document.createElement("div");
+    drillRow.className = "entry-chip-row";
+    drillRow.appendChild(entryChip("Gender drill (nouns)", v.genderDrill,
+      () => { v.genderDrill = !v.genderDrill; if (v.genderDrill) v.spellingDrill = false; renderEntryScreen(); },
+      { title: "Identify each noun's gender behaviour from a fixed list" }));
+    drills.appendChild(drillRow);
+    const dNote = document.createElement("p");
+    dNote.className = "entry-config-hint";
+    dNote.textContent = v.genderDrill
+      ? "nouns only; pick each noun's gender behaviour from a fixed list; frequency and category still apply"
+      : "changes what the session is, not just which words are in it";
+    drills.appendChild(dNote);
+    panel.appendChild(drills);
+
+    // ---- spelling drill: MCQ orthography practice (Smith spelling ask)  QoderWork 2026-07-22 ----
+    const spDrills = document.createElement("div");
+    spDrills.className = "entry-special-drills";
+    const hSp = document.createElement("h3");
+    hSp.className = "entry-config-head";
+    hSp.textContent = "Spelling drill";
+    spDrills.appendChild(hSp);
+    const spRow = document.createElement("div");
+    spRow.className = "entry-chip-row";
+    spRow.appendChild(entryChip("Spelling drill", v.spellingDrill,
+      () => { v.spellingDrill = !v.spellingDrill; if (v.spellingDrill) v.genderDrill = false; renderEntryScreen(); },
+      { title: "Pick the correct spelling from plausible distractors" }));
+    spDrills.appendChild(spRow);
+    // Category chips (the 8 spelling error classes)
+    if (v.spellingDrill) {
+      const catRow = document.createElement("div");
+      catRow.className = "entry-chip-row";
+      catRow.style.cssText = "flex-wrap:wrap";
+      catRow.appendChild(entryChip("All classes", !v.spellingClass,
+        () => { v.spellingClass = ""; renderEntryScreen(); }));
+      for (const sc of SPELLING_CLASSES) {
+        catRow.appendChild(entryChip(sc.label, v.spellingClass === sc.id,
+          () => { v.spellingClass = (v.spellingClass === sc.id ? "" : sc.id); renderEntryScreen(); }));
+      }
+      spDrills.appendChild(catRow);
+    }
+    const spNote = document.createElement("p");
+    spNote.className = "entry-config-hint";
+    spNote.textContent = v.spellingDrill
+      ? "multiple-choice spelling discrimination; pick the correct form from plausible errors"
+      : "uses the SpellingAuthor's MCQ bank across 8 error classes";
+    spDrills.appendChild(spNote);
+    panel.appendChild(spDrills);
+
     appendStart(panel, () => startVocabSession());
   }
   function startVocabSession() {
     const v = entrySel.vocab;
     vocabFilter.genderDrill = !!v.genderDrill;
+    vocabFilter.spellingDrill = !!v.spellingDrill;   // QoderWork 2026-07-22
+    vocabFilter.spellingClass = v.spellingClass || "";   // QoderWork 2026-07-22
     vocabFilter.direction = v.genderDrill ? "en_it" : v.direction;   // gender drill: direction unused by the classifier
     // The builder's frequency selection replaces the legacy subBand/topN caps.
     vocabFilter.subBand = "";
@@ -7202,8 +7415,9 @@
     vocabFilter.themes = (v.catIds && v.catIds.length) ? v.catIds.slice() : null;
     vocabFilter.theme = (v.catIds && v.catIds.length === 1) ? v.catIds[0] : "";  // single-id picks light the in-session themes axis
     vocabDeck = []; vocabDeckDirs = []; vocabIndex = 0;
+    if (vocabFilter.spellingDrill) buildSpellingDeck();   // QoderWork 2026-07-22
     saveLastSession("vocab");
-    track("session_start", { strand: "vocab", source: "welcome", direction: vocabFilter.direction, gender_drill: vocabFilter.genderDrill, lens: v.lens || "numeric", category: v.catLabel || "", ranges: (v.rankRanges || []).map(r => r.start + "-" + r.end).join("+") });
+    track("session_start", { strand: "vocab", source: "welcome", direction: vocabFilter.direction, gender_drill: vocabFilter.genderDrill, spelling_drill: vocabFilter.spellingDrill, spelling_class: vocabFilter.spellingClass, lens: v.lens || "numeric", category: v.catLabel || "", ranges: (v.rankRanges || []).map(r => r.start + "-" + r.end).join("+") });
     renderVocab();
     showStrand("vocab");
   }

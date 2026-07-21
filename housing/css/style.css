@@ -1060,6 +1060,14 @@ body.strand-vocab-active #live-stats { display: none; }
 .gd-lemma { color: var(--accent); }
 .gd-declension { margin-top: 8px; padding: 8px 12px; font-size: 15px; background: var(--cream, #faf9f6); border-radius: 6px; border: 1px solid var(--border); }
 
+/* Spelling drill: MCQ discrimination choices.  QoderWork 2026-07-22 */
+.spelling-choices { border: 1.5px solid var(--border); border-radius: 8px; padding: 8px; background: var(--cream, #faf9f6); }
+.spelling-choice { display: flex; align-items: baseline; gap: 6px; text-align: left; font-size: 15px; padding: 7px 10px; }
+.spelling-choice .gc-num { font-weight: 700; color: var(--accent); font-size: 10px; min-width: 1.1em; opacity: 0.7; }
+.spelling-choice .gc-label { font-weight: 600; line-height: 1.3; }
+.spelling-choice.gc-correct { outline: 2px solid #2e7d4f; background: rgba(46,125,79,0.09); }
+.spelling-choice.gc-wrong { outline: 2px solid #b03030; background: rgba(176,48,48,0.09); }
+
 /* Tick row */
 .freq-tick-row {
   display: flex;
@@ -1397,7 +1405,7 @@ body.strand-vocab-active #live-stats { display: none; }
 
 /* Estate sign-in (shared_login_and_pulse v1): quiet identity block in the
    header; the pill says whether pulses are reaching the class sheet. */
-#identity-box { float: right; display: flex; align-items: center; gap: 8px; font-size: 13px; margin-top: 4px; }
+#identity-box { position: absolute; top: 18px; right: 28px; display: flex; align-items: center; gap: 8px; font-size: 13px; z-index: 41; }
 .identity-who { color: var(--ink); }
 .identity-signin, .identity-save { border: 1px solid var(--accent); background: var(--accent-soft); border-radius: 6px; padding: 4px 12px; cursor: pointer; font-size: 13px; }
 .identity-name { width: 120px; font-size: 13px; padding: 3px 6px; }
