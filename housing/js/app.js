@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-21-r63";
+  const LL_BUILD = "2026-07-21-r64";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -1550,7 +1550,7 @@
     const hint = document.createElement("span"); hint.className = "kbd-hint";
     hint.textContent = isMcq
       ? "Click a choice or press 1-" + q.choices.length + ". Enter to mark. Enter again to advance."
-      : "Enter to mark · Enter again to advance";
+      : "Enter to mark · enter again to advance";
     actions.appendChild(mark); actions.appendChild(next); actions.appendChild(hint);
     card.appendChild(actions);
 
@@ -2407,7 +2407,7 @@
     host.appendChild(count);
   }
 
-  function renderVocab() {
+  function renderVocab(keepAxes) {
     renderVocabFilterBar();
     const host = document.getElementById("vocab-host");
     if (!host) return;
@@ -2562,7 +2562,7 @@
     actions.appendChild(nextBtn);
     const helpHint = document.createElement("span");
     helpHint.className = "kbd-hint";
-    helpHint.textContent = "Enter to mark · Enter again to advance";
+    helpHint.textContent = "Enter to mark · enter again to advance";
     actions.appendChild(helpHint);
     card.appendChild(actions);
 
@@ -2578,10 +2578,12 @@
       resultHost.innerHTML = "";
       resultHost.appendChild(renderResult(result));
       renderLiveStats();
-      // Refresh the right-hand axes (frequency heatmap, gender, themes) so
-      // the cells containing this lemma re-colour immediately. Then flash
-      // every cell the lemma belongs to across all three axes.
-      renderVocabAxes();
+      // Recolour just the cells this lemma belongs to (focused dot + its
+      // flanking cell + gender/theme lemma dots), in place. The old
+      // renderVocabAxes() here rebuilt ~990 dots + every flanking block on
+      // EVERY mark (the slowness) and left flanking cells reading as
+      // untouched (the "practised skill flashed then vanished" bug). Then flash.
+      recolourAxisCellsFor(entry);
       flashAxisCellsFor(entry, result.overall && result.overall.marks_awarded >= result.overall.marks_possible);
       nextBtn.textContent = "Next";
       nextBtn.title = "Advance to the next word";
@@ -2593,7 +2595,7 @@
         vocabDeck = weightedVocabShuffle(filteredVocabEntries());
         vocabIndex = 0;
       }
-      renderVocab();
+      renderVocab(true);   // keepAxes: advancing doesn't change the heatmap
     };
 
     markBtn.addEventListener("click", doMark);
@@ -2616,7 +2618,7 @@
       ensureCardVisible(card);
       input.focus({ preventScroll: true });
     }, 0);
-    renderVocabAxes();
+    if (!keepAxes) renderVocabAxes();
   }
 
   function focusVocabInput() { if (vocabInputRef) vocabInputRef.focus(); }
@@ -3018,6 +3020,49 @@
       setTimeout(() => el.classList.remove(flashClass), FLASH_MS);
     }
   }
+
+  // Per-answer in-place recolour of just the axis cells this lemma touches,
+  // replacing the old full renderVocabAxes() rebuild that ran on EVERY mark
+  // (the vocab-screen slowness). Sets the SETTLED background (not just a
+  // transient flash) so a practised skill persists instead of reverting to
+  // untouched. Smith 2026-07-21 (slowness + "flashed then vanished").
+  function recolourAxisCellsFor(entry) {
+    if (!entry) return;
+    const host = document.getElementById("vocab-axes-host");
+    if (!host) return;
+    const activeDir = (vocabFilter && vocabFilter.direction === "it_en") ? "passive" : "active";
+    // Focused-grid dot (exact rank): a single hit settles to full colour.
+    if (typeof entry.rank === "number") {
+      const dot = host.querySelector('.freq-dot[data-rank="' + entry.rank + '"]');
+      if (dot) {
+        const wc = recencyWeightedCorrectness(eventsForEntry(entry, { direction: activeDir }));
+        dot.style.background = rwgColour(wc.correctness, wc.hasEvents);
+        dot.classList.toggle("untouched", !wc.hasEvents);
+      }
+      // Flanking cell whose range contains this rank: recompute its aggregate
+      // and mark it touched so it never reads identical to an untouched cell.
+      host.querySelectorAll(".freq-flanking .freq-flank-cell").forEach(function (cell) {
+        const s = parseInt(cell.dataset.rangeStart || "0", 10);
+        const e = parseInt(cell.dataset.rangeEnd || "0", 10);
+        if (entry.rank < s || entry.rank > e) return;
+        const lemmas = [];
+        for (const v of vocabEntries) {
+          if (typeof v.rank === "number" && v.rank >= s && v.rank <= e) lemmas.push(v.lemma);
+        }
+        const m = averageCorrectnessAcrossLemmas(lemmas, activeDir);
+        cell.style.background = rwgColour(m.correctness, m.total > 0);
+        cell.classList.toggle("has-practice", m.touched > 0);
+      });
+    }
+    // Inner per-lemma dots inside gender/theme cells (lemma-keyed).
+    if (entry.lemma) {
+      const wc = recencyWeightedCorrectness(eventsForEntry(entry, { direction: activeDir }));
+      host.querySelectorAll('.vocab-lemma-dot[data-lemma="' + cssEscape(entry.lemma) + '"]').forEach(function (el) {
+        el.style.background = rwgColour(wc.correctness, wc.hasEvents);
+        el.classList.toggle("has-practice", wc.hasEvents);
+      });
+    }
+  }
   function cssEscape(s) {
     return String(s).replace(/(["\\\]])/g, "\\$1");
   }
@@ -3076,9 +3121,9 @@
       return wrap;
     }
 
-    header.appendChild(buildNumberInput(
-      "Yellow stop", () => vocabYellowStop, (v) => { vocabYellowStop = v; }, 0, 1, 0.01
-    ));
+    // "Yellow stop" tuning control removed from the learner page (Smith
+    // 2026-07-21); vocabYellowStop keeps its default. Rest of the palette-
+    // tuning row (baseline + colour pickers) pending Smith's call.
     header.appendChild(buildNumberInput(
       "Untouched baseline", () => vocabUnattemptedBaseline, (v) => { vocabUnattemptedBaseline = v; }, 0, 1, 0.01
     ));
@@ -3424,6 +3469,7 @@
         } else {
           const m = averageCorrectnessAcrossLemmas(lemmas, dirFilter || "any");
           cell.style.background = rwgColour(m.correctness, true);
+          if (m.touched > 0) cell.classList.add("has-practice");
         }
         cell.title = "ranks " + cStart + "-" + cEnd + " (~" + lemmas.length + " curated)";
         wrap.appendChild(cell);

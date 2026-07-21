@@ -1045,6 +1045,11 @@ body.strand-vocab-active #live-stats { display: none; }
 .freq-flank-cell {
   background: rgb(236, 229, 210);
 }
+/* A flanking cell / lemma dot containing ANY practised lemma stays marked
+   even when the aggregate colour is diluted (Smith 2026-07-21: a practised
+   skill must not read as untouched). */
+.freq-flank-cell.has-practice { box-shadow: inset 0 0 0 1px rgba(27,138,74,.85); }
+.vocab-lemma-dot.has-practice { box-shadow: inset 0 0 0 1px rgba(27,138,74,.85); }
 
 /* Tick row */
 .freq-tick-row {

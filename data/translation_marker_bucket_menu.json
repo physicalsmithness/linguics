@@ -1,7 +1,8 @@
 {
- "$note": "Standing bucket MENU for the cross-topic translation marker (Architecture_Housing_translation_crosstopic_marking v2, task 41). Aggregate skill-area nodes (non-leaf, depth<=2) across grammar topics; the marker may tag any of these PLUS the item's required_buckets (finer leaves). Derived from data/buckets/*.json - regenerate when the tree changes. Architecture-owned contract.",
+ "$note": "Standing bucket MENU for the cross-topic translation marker (crosstopic v9). FULL real-id set: ALL non-vocabulary tree nodes (aggregates + leaves) from data/buckets/*.json, so the marker selects only REAL bucket ids and NO reconciliation/mapping step is needed. Vocabulary excluded (dynamic vocab[] channel). Orthography included (accent + spelling categories). Marker tags the finest id it is confident of; every id here is real, so coverage aggregates directly. Regenerate on tree change (nightly/cached, embedded in the worker, not fetched live). Prompt may send id+label only and should PROMPT-CACHE this static prefix. Open-ended detection BEYOND the tree is deferred. Architecture-owned contract.",
  "generated": "2026-07-21",
- "count": 136,
+ "supersedes": "136 aggregate-only menu (v2)",
+ "count": 581,
  "menu": [
   {
    "id": "adjective_agreement",
@@ -12,24 +13,116 @@
    "label": "Class II adjectives (ending in -e)"
   },
   {
+   "id": "adjective_agreement.e_class.feminine_plural",
+   "label": "Class II, feminine plural (-i)"
+  },
+  {
+   "id": "adjective_agreement.e_class.feminine_singular",
+   "label": "Class II, feminine singular (-e)"
+  },
+  {
+   "id": "adjective_agreement.e_class.masculine_plural",
+   "label": "Class II, masculine plural (-i)"
+  },
+  {
+   "id": "adjective_agreement.e_class.masculine_singular",
+   "label": "Class II, masculine singular (-e)"
+  },
+  {
    "id": "adjective_agreement.invariable",
    "label": "Invariable adjectives"
+  },
+  {
+   "id": "adjective_agreement.invariable.colour_from_noun",
+   "label": "Invariable colour adjectives from nouns"
+  },
+  {
+   "id": "adjective_agreement.invariable.compound_colour",
+   "label": "Invariable compound colour expressions"
+  },
+  {
+   "id": "adjective_agreement.invariable.pari_family",
+   "label": "pari, dispari, impari"
+  },
+  {
+   "id": "adjective_agreement.mixed_gender_plural_defaults_masculine",
+   "label": "Mixed-gender plural defaults to masculine"
   },
   {
    "id": "adjective_agreement.o_class",
    "label": "Class I adjectives (ending in -o)"
   },
   {
+   "id": "adjective_agreement.o_class.feminine_plural",
+   "label": "Class I, feminine plural (-e)"
+  },
+  {
+   "id": "adjective_agreement.o_class.feminine_singular",
+   "label": "Class I, feminine singular (-a)"
+  },
+  {
+   "id": "adjective_agreement.o_class.masculine_plural",
+   "label": "Class I, masculine plural (-i)"
+  },
+  {
+   "id": "adjective_agreement.o_class.masculine_singular",
+   "label": "Class I, masculine singular (-o)"
+  },
+  {
    "id": "adjective_agreement.position",
    "label": "Adjective position relative to noun"
+  },
+  {
+   "id": "adjective_agreement.position.post_noun_default",
+   "label": "Post-noun position (the default)"
+  },
+  {
+   "id": "adjective_agreement.position.pre_noun_canonical",
+   "label": "Adjectives that canonically precede the noun"
   },
   {
    "id": "adjective_agreement.position.semantic_shift",
    "label": "Position changes meaning"
   },
   {
+   "id": "adjective_agreement.position.semantic_shift.grande",
+   "label": "Grande before or after"
+  },
+  {
+   "id": "adjective_agreement.position.semantic_shift.povero",
+   "label": "Povero before or after"
+  },
+  {
+   "id": "adjective_agreement.position.semantic_shift.vecchio",
+   "label": "Vecchio before or after"
+  },
+  {
    "id": "adjective_agreement.special",
    "label": "Word-specific exceptions"
+  },
+  {
+   "id": "adjective_agreement.special.bello",
+   "label": "bello (behaves like the definite article)"
+  },
+  {
+   "id": "adjective_agreement.special.buono",
+   "label": "buono (behaves like the indefinite article in the singular)"
+  },
+  {
+   "id": "adjective_agreement.special.grande_prenominal",
+   "label": "grande → gran before some pre-noun positions"
+  },
+  {
+   "id": "adjective_agreement.special.mezzo",
+   "label": "mezzo (variable agreement)"
+  },
+  {
+   "id": "adjective_agreement.special.quello",
+   "label": "quello (parallels the definite article when attributive)"
+  },
+  {
+   "id": "adjective_agreement.special.santo_san",
+   "label": "santo → san before consonants (and elision before vowels)"
   },
   {
    "id": "adjective_agreement.stem_changes",
@@ -40,12 +133,60 @@
    "label": "Harder stem-change cases"
   },
   {
+   "id": "adjective_agreement.stem_changes.harder.co_ci_vs_chi_stress",
+   "label": "-co plurals: -chi vs -ci by stress"
+  },
+  {
    "id": "adjective_agreement.stem_changes.irregular",
    "label": "Irregular stem changes"
   },
   {
+   "id": "adjective_agreement.stem_changes.irregular.amico_amici",
+   "label": "amico → amici (irregular -ci despite penult stress)"
+  },
+  {
+   "id": "adjective_agreement.stem_changes.irregular.antico_antichi",
+   "label": "antico → antichi (regular -chi despite antepenult feel)"
+  },
+  {
+   "id": "adjective_agreement.stem_changes.irregular.greco_greci",
+   "label": "greco → greci (irregular -ci)"
+  },
+  {
    "id": "adjective_agreement.stem_changes.predictable",
    "label": "Predictable stem changes"
+  },
+  {
+   "id": "adjective_agreement.stem_changes.predictable.ca_che",
+   "label": "-ca → -che (feminine plural)"
+  },
+  {
+   "id": "adjective_agreement.stem_changes.predictable.cia_ce",
+   "label": "-cia → -ce (feminine plural, unstressed -i drops)"
+  },
+  {
+   "id": "adjective_agreement.stem_changes.predictable.cio_ci",
+   "label": "-cio → -ci (masculine plural, lose unstressed -i)"
+  },
+  {
+   "id": "adjective_agreement.stem_changes.predictable.co_chi",
+   "label": "-co → -chi (masculine plural)"
+  },
+  {
+   "id": "adjective_agreement.stem_changes.predictable.ga_ghe",
+   "label": "-ga → -ghe (feminine plural)"
+  },
+  {
+   "id": "adjective_agreement.stem_changes.predictable.gia_ge",
+   "label": "-gia → -ge (feminine plural, unstressed -i drops)"
+  },
+  {
+   "id": "adjective_agreement.stem_changes.predictable.gio_gi",
+   "label": "-gio → -gi (masculine plural, lose unstressed -i)"
+  },
+  {
+   "id": "adjective_agreement.stem_changes.predictable.go_ghi",
+   "label": "-go → -ghi (masculine plural)"
   },
   {
    "id": "adverb",
@@ -56,8 +197,36 @@
    "label": "Forming adverbs"
   },
   {
+   "id": "adverb.formation.mente_le_re",
+   "label": "-le and -re drop the e"
+  },
+  {
+   "id": "adverb.formation.mente_regular",
+   "label": "-mente from the feminine"
+  },
+  {
+   "id": "adverb.formation.primary",
+   "label": "Bene, male, presto and friends"
+  },
+  {
+   "id": "adverb.locuzioni_avverbiali",
+   "label": "Fixed adverbial phrases"
+  },
+  {
    "id": "adverb.usage",
    "label": "Using adverbs well"
+  },
+  {
+   "id": "adverb.usage.bene_vs_buono",
+   "label": "Bene or buono?"
+  },
+  {
+   "id": "adverb.usage.invariable_vs_adjective",
+   "label": "molto / molta / molti / molte"
+  },
+  {
+   "id": "adverb.usage.position",
+   "label": "Where the adverb goes"
   },
   {
    "id": "article",
@@ -68,12 +237,32 @@
    "label": "Definite article"
   },
   {
+   "id": "article.definite.forms",
+   "label": "Choosing the definite form"
+  },
+  {
+   "id": "article.definite.usage_omission",
+   "label": "Using and omitting the definite article"
+  },
+  {
    "id": "article.discrimination",
    "label": "Article choices"
   },
   {
+   "id": "article.discrimination.with_or_without",
+   "label": "With or without the article"
+  },
+  {
    "id": "article.indefinite",
    "label": "Indefinite article"
+  },
+  {
+   "id": "article.indefinite.forms",
+   "label": "Choosing the indefinite form"
+  },
+  {
+   "id": "article.indefinite.usage",
+   "label": "Using and omitting the indefinite article"
   },
   {
    "id": "comparison",
@@ -84,8 +273,40 @@
    "label": "Comparatives"
   },
   {
+   "id": "comparison.comparative.di_vs_che",
+   "label": "Di or che?"
+  },
+  {
+   "id": "comparison.comparative.equality",
+   "label": "As...as: come and quanto"
+  },
+  {
+   "id": "comparison.comparative.irregular_adjectives",
+   "label": "Migliore, peggiore, maggiore, minore"
+  },
+  {
+   "id": "comparison.comparative.migliore_vs_meglio",
+   "label": "Migliore or meglio?"
+  },
+  {
+   "id": "comparison.comparative.piu_meno_di",
+   "label": "Più and meno with di"
+  },
+  {
    "id": "comparison.superlative",
    "label": "Superlatives"
+  },
+  {
+   "id": "comparison.superlative.absolute",
+   "label": "-issimo: utterly, extremely"
+  },
+  {
+   "id": "comparison.superlative.irregular",
+   "label": "Ottimo, pessimo, benissimo"
+  },
+  {
+   "id": "comparison.superlative.relative",
+   "label": "Il più... di: the most in a group"
   },
   {
    "id": "connective",
@@ -96,16 +317,56 @@
    "label": "Because-family"
   },
   {
+   "id": "connective.cause.register_set",
+   "label": "Poiché, dato che, visto che"
+  },
+  {
+   "id": "connective.cause.siccome_perche",
+   "label": "Siccome or perché: position"
+  },
+  {
    "id": "connective.contrast",
    "label": "But-family"
+  },
+  {
+   "id": "connective.contrast.comunque_anzi",
+   "label": "Comunque, tuttavia, eppure, anzi"
+  },
+  {
+   "id": "connective.contrast.mood_pairs",
+   "label": "Concessive connector choice"
+  },
+  {
+   "id": "connective.contrast.pero_invece",
+   "label": "Però, invece, ma"
+  },
+  {
+   "id": "connective.discourse",
+   "label": "Sequencers"
   },
   {
    "id": "connective.result",
    "label": "So-family"
   },
   {
+   "id": "connective.result.che_vs_da",
+   "label": "Result: che + verb or da + infinitive"
+  },
+  {
+   "id": "connective.result.quindi_percio",
+   "label": "Quindi, perciò, allora"
+  },
+  {
    "id": "connective.time",
    "label": "Time connectors"
+  },
+  {
+   "id": "connective.time.mentre_appena",
+   "label": "mentre / (non) appena"
+  },
+  {
+   "id": "connective.time.prima_dopo",
+   "label": "Prima di, prima che, dopo (che)"
   },
   {
    "id": "demonstrative",
@@ -116,6 +377,22 @@
    "label": "this vs that (near / far)"
   },
   {
+   "id": "demonstrative.discrimination.questo_vs_quello",
+   "label": "questo / quello"
+  },
+  {
+   "id": "demonstrative.pronoun",
+   "label": "Demonstrative pronouns"
+  },
+  {
+   "id": "demonstrative.quello",
+   "label": "quello (that, far)"
+  },
+  {
+   "id": "demonstrative.questo",
+   "label": "questo (this, near)"
+  },
+  {
    "id": "existential",
    "label": "C'è and ci sono"
   },
@@ -124,8 +401,40 @@
    "label": "Forming c'è and ci sono"
   },
   {
+   "id": "existential.form.negative",
+   "label": "Negative: non c'è, non ci sono"
+  },
+  {
+   "id": "existential.form.past",
+   "label": "Past: c'era, c'erano, c'è stato"
+  },
+  {
+   "id": "existential.form.plural",
+   "label": "Ci sono with plural things"
+  },
+  {
+   "id": "existential.form.questions",
+   "label": "Questions and short answers"
+  },
+  {
+   "id": "existential.form.singular",
+   "label": "C'è with a singular thing"
+  },
+  {
    "id": "existential.usage",
    "label": "When to use c'è (and when not)"
+  },
+  {
+   "id": "existential.usage.idioms",
+   "label": "Fixed expressions with esserci"
+  },
+  {
+   "id": "existential.usage.vs_ecco",
+   "label": "C'è or ecco? Existing vs pointing"
+  },
+  {
+   "id": "existential.usage.vs_essere",
+   "label": "C'è or è? New things vs known things"
   },
   {
    "id": "indefinite",
@@ -136,16 +445,76 @@
    "label": "The everyday quantifiers"
   },
   {
+   "id": "indefinite.core.alcuni",
+   "label": "Alcuni / alcune"
+  },
+  {
+   "id": "indefinite.core.ogni",
+   "label": "Ogni + singular"
+  },
+  {
+   "id": "indefinite.core.qualche",
+   "label": "Qualche + singular"
+  },
+  {
+   "id": "indefinite.core.tutto",
+   "label": "Tutto + article"
+  },
+  {
    "id": "indefinite.free_choice",
    "label": "Free choice: qualunque, qualsiasi, chiunque"
+  },
+  {
+   "id": "indefinite.free_choice.chiunque",
+   "label": "Chiunque"
+  },
+  {
+   "id": "indefinite.free_choice.qualunque_qualsiasi",
+   "label": "Qualunque / qualsiasi + noun"
   },
   {
    "id": "indefinite.pronouns",
    "label": "The pronoun set"
   },
   {
+   "id": "indefinite.pronouns.nessuno_niente",
+   "label": "Nessuno, niente, nulla"
+  },
+  {
+   "id": "indefinite.pronouns.ognuno_ciascuno",
+   "label": "Ognuno and ciascuno"
+  },
+  {
+   "id": "indefinite.pronouns.qualcuno_qualcosa",
+   "label": "Qualcuno and qualcosa"
+  },
+  {
    "id": "interrogatives",
    "label": "Question words (interrogatives)"
+  },
+  {
+   "id": "interrogatives.adverbs",
+   "label": "Interrogative adverbs (come, dove, quando, perche)"
+  },
+  {
+   "id": "interrogatives.che_cosa",
+   "label": "che / cosa / che cosa (what)"
+  },
+  {
+   "id": "interrogatives.chi",
+   "label": "chi (who)"
+  },
+  {
+   "id": "interrogatives.discrimination",
+   "label": "chi vs che vs quale (choosing the question word)"
+  },
+  {
+   "id": "interrogatives.quale",
+   "label": "quale (which, agrees in number)"
+  },
+  {
+   "id": "interrogatives.quanto",
+   "label": "quanto (how much / how many, agrees)"
   },
   {
    "id": "negation",
@@ -156,8 +525,44 @@
    "label": "The non system"
   },
   {
+   "id": "negation.core.bipartite",
+   "label": "Two-part negatives: non... mai, più, ancora"
+  },
+  {
+   "id": "negation.core.concord",
+   "label": "Double negation is the norm"
+  },
+  {
+   "id": "negation.core.non_position",
+   "label": "Where non goes"
+  },
+  {
+   "id": "negation.correlative",
+   "label": "Né... né"
+  },
+  {
+   "id": "negation.mica",
+   "label": "Mica"
+  },
+  {
    "id": "negation.pleonastic",
    "label": "Pleonastic non"
+  },
+  {
+   "id": "negation.pleonastic.a_meno_che",
+   "label": "A meno che non, and friends"
+  },
+  {
+   "id": "negation.pleonastic.finche_flip",
+   "label": "Finché and finché non"
+  },
+  {
+   "id": "negation.responses",
+   "label": "Neanche, nemmeno, neppure"
+  },
+  {
+   "id": "negation.restrictive",
+   "label": "Non... che: only"
   },
   {
    "id": "noun",
@@ -168,8 +573,84 @@
    "label": "Gender"
   },
   {
+   "id": "noun.gender.e_ending",
+   "label": "-e nouns (gender to learn)"
+  },
+  {
+   "id": "noun.gender.irregular",
+   "label": "Irregular gender"
+  },
+  {
+   "id": "noun.gender.regular",
+   "label": "-o masculine, -a feminine"
+  },
+  {
    "id": "noun.plural",
    "label": "Plural"
+  },
+  {
+   "id": "noun.plural.compound",
+   "label": "Plural of compound nouns"
+  },
+  {
+   "id": "noun.plural.invariable",
+   "label": "Invariable nouns"
+  },
+  {
+   "id": "noun.plural.irregular",
+   "label": "Irregular plurals"
+  },
+  {
+   "id": "noun.plural.regular",
+   "label": "Regular plurals"
+  },
+  {
+   "id": "noun.plural.spelling",
+   "label": "Spelling shifts in the plural"
+  },
+  {
+   "id": "orthography.accent.italian",
+   "label": "Italian accent slip"
+  },
+  {
+   "id": "orthography.accent.italian.added",
+   "label": "accent added (hypercorrection)"
+  },
+  {
+   "id": "orthography.accent.italian.missing",
+   "label": "accent dropped"
+  },
+  {
+   "id": "orthography.accent.italian.placement",
+   "label": "Where accents live"
+  },
+  {
+   "id": "orthography.accent.italian.placement.apostrophe_not_accent",
+   "label": "Apostrophe, not accent (po', va')"
+  },
+  {
+   "id": "orthography.accent.italian.placement.che_compound",
+   "label": "The -ché family (perché)"
+  },
+  {
+   "id": "orthography.accent.italian.placement.lexical_final",
+   "label": "Fixed final stress (città, caffè, lunedì)"
+  },
+  {
+   "id": "orthography.accent.italian.placement.meaning_pair",
+   "label": "Same word, different meaning (e / è)"
+  },
+  {
+   "id": "orthography.accent.italian.placement.no_accent",
+   "label": "No accent belongs here (qui, sta, fu)"
+  },
+  {
+   "id": "orthography.accent.italian.placement.tense_bearing",
+   "label": "Accent carries the tense (parlo / parlò)"
+  },
+  {
+   "id": "orthography.accent.italian.wrong_mark",
+   "label": "wrong accent mark"
   },
   {
    "id": "passive",
@@ -180,8 +661,32 @@
    "label": "Forming the passive"
   },
   {
+   "id": "passive.formation.agent_da",
+   "label": "The agent with da"
+  },
+  {
+   "id": "passive.formation.andare",
+   "label": "Andare + participle: must be done"
+  },
+  {
+   "id": "passive.formation.essere",
+   "label": "Essere + participle"
+  },
+  {
+   "id": "passive.formation.venire",
+   "label": "Venire + participle"
+  },
+  {
    "id": "passive.usage",
    "label": "When to go passive"
+  },
+  {
+   "id": "passive.usage.vs_si_passivante",
+   "label": "Passive or si passivante?"
+  },
+  {
+   "id": "passive.usage.when_to_use",
+   "label": "Passive or active?"
   },
   {
    "id": "piacere",
@@ -192,8 +697,48 @@
    "label": "Building piacere sentences"
   },
   {
+   "id": "piacere.form.agreement",
+   "label": "Piace or piacciono? Agreeing with the liked thing"
+  },
+  {
+   "id": "piacere.form.experiencer_a_phrase",
+   "label": "A Marco piace: the a-phrase experiencer"
+  },
+  {
+   "id": "piacere.form.experiencer_clitic",
+   "label": "Who likes it: mi, ti, gli, le, Le, ci, vi"
+  },
+  {
+   "id": "piacere.form.past",
+   "label": "Past: mi è piaciuto, mi sono piaciuti"
+  },
+  {
+   "id": "piacere.form.with_infinitive",
+   "label": "Piace + infinitive"
+  },
+  {
    "id": "piacere.usage",
    "label": "Using piacere well"
+  },
+  {
+   "id": "piacere.usage.agreeing_responses",
+   "label": "Anche a me, neanche a me"
+  },
+  {
+   "id": "piacere.usage.dispiacere",
+   "label": "Dispiacere is not 'to dislike'"
+  },
+  {
+   "id": "piacere.usage.family_verbs",
+   "label": "Verbs that work like piacere"
+  },
+  {
+   "id": "piacere.usage.liking_people",
+   "label": "Mi piaci: liking people"
+  },
+  {
+   "id": "piacere.usage.subject_flip",
+   "label": "The 'I like' trap"
   },
   {
    "id": "possessive",
@@ -204,8 +749,36 @@
    "label": "Possessive adjectives"
   },
   {
+   "id": "possessive.adjective.family_exception",
+   "label": "Family nouns drop the article"
+  },
+  {
+   "id": "possessive.adjective.forms",
+   "label": "Possessive + article, agreeing"
+  },
+  {
    "id": "possessive.discrimination",
    "label": "suo: his, her, your (formal)"
+  },
+  {
+   "id": "possessive.discrimination.suo",
+   "label": "suo/sua: his, her, your (formal)"
+  },
+  {
+   "id": "possessive.postposed",
+   "label": "Postposed: casa mia, colpa mia"
+  },
+  {
+   "id": "possessive.predicate",
+   "label": "Predicate: è mio"
+  },
+  {
+   "id": "possessive.pronoun",
+   "label": "Possessive pronouns"
+  },
+  {
+   "id": "possessive.proprio",
+   "label": "Proprio"
   },
   {
    "id": "preposition",
@@ -216,20 +789,76 @@
    "label": "Articulated prepositions"
   },
   {
+   "id": "preposition.articulated.di_partitive",
+   "label": "Partitive 'some'"
+  },
+  {
+   "id": "preposition.articulated.formation",
+   "label": "Combining preposition + article"
+  },
+  {
    "id": "preposition.discrimination",
    "label": "Choosing between prepositions"
+  },
+  {
+   "id": "preposition.discrimination.a_vs_in_place",
+   "label": "a vs in for places"
+  },
+  {
+   "id": "preposition.discrimination.di_vs_da",
+   "label": "di vs da"
   },
   {
    "id": "preposition.simple",
    "label": "Simple prepositions"
   },
   {
+   "id": "preposition.simple.forms",
+   "label": "The eight forms"
+  },
+  {
    "id": "preposition.usage",
    "label": "Choosing the right preposition"
   },
   {
+   "id": "preposition.usage.da_special",
+   "label": "Special uses of da"
+  },
+  {
+   "id": "preposition.usage.di_uses",
+   "label": "Uses of di"
+  },
+  {
+   "id": "preposition.usage.means_manner",
+   "label": "Means and manner"
+  },
+  {
+   "id": "preposition.usage.motion",
+   "label": "Motion: destination and origin"
+  },
+  {
+   "id": "preposition.usage.place",
+   "label": "Prepositions of place"
+  },
+  {
+   "id": "preposition.usage.time",
+   "label": "Prepositions of time"
+  },
+  {
    "id": "preposition.usage.verb_governed",
    "label": "Verb + preposition"
+  },
+  {
+   "id": "preposition.usage.verb_governed.a_infinitive",
+   "label": "Verbs taking a + infinitive"
+  },
+  {
+   "id": "preposition.usage.verb_governed.di_infinitive",
+   "label": "Verbs taking di + infinitive"
+  },
+  {
+   "id": "preposition.usage.verb_governed.object_governed",
+   "label": "Verb + preposition + object"
   },
   {
    "id": "pronominal_verbs",
@@ -240,8 +869,36 @@
    "label": "What they mean"
   },
   {
+   "id": "pronominal_verbs.meaning.ce_lho_possession",
+   "label": "Ce l'ho: the have-it answer"
+  },
+  {
+   "id": "pronominal_verbs.meaning.core_set",
+   "label": "The core set, recognised"
+  },
+  {
+   "id": "pronominal_verbs.meaning.frozen_tail_idioms",
+   "label": "Frozen-tail idioms"
+  },
+  {
+   "id": "pronominal_verbs.meaning.volerci_vs_metterci",
+   "label": "Volerci or metterci?"
+  },
+  {
    "id": "pronominal_verbs.mechanics",
    "label": "Conjugating them"
+  },
+  {
+   "id": "pronominal_verbs.mechanics.ci_type",
+   "label": "Ci verbs: ci vuole, ci metto, ce l'ho"
+  },
+  {
+   "id": "pronominal_verbs.mechanics.sela_type",
+   "label": "-sela verbs: me la cavo, ce l'ho fatta"
+  },
+  {
+   "id": "pronominal_verbs.mechanics.sene_type",
+   "label": "-sene verbs: me ne vado"
   },
   {
    "id": "pronoun",
@@ -252,44 +909,268 @@
    "label": "ci (locative / 'there' / idiomatic)"
   },
   {
+   "id": "pronoun.ci_locative.existential",
+   "label": "c'è / ci sono (there is / there are)"
+  },
+  {
    "id": "pronoun.ci_locative.idiomatic_verbs",
    "label": "Idiomatic verbs with built-in ci (tenerci, metterci, volerci, farcela)"
+  },
+  {
+   "id": "pronoun.ci_locative.idiomatic_verbs.farcela",
+   "label": "farcela (to manage / cope with it)"
+  },
+  {
+   "id": "pronoun.ci_locative.location",
+   "label": "ci as 'there' (replacing a location)"
+  },
+  {
+   "id": "pronoun.ci_locative.topic",
+   "label": "ci as 'about it / in it' (pronominal of a-noun)"
+  },
+  {
+   "id": "pronoun.ci_vs_ne_disambiguation",
+   "label": "Distinguishing ci vs ne (a- vs di-)"
   },
   {
    "id": "pronoun.combined",
    "label": "Combined pronouns (clitic clusters)"
   },
   {
+   "id": "pronoun.combined.glielo_family",
+   "label": "gli/le + lo/la/li/le → glielo, gliela, glieli, gliele (written attached)"
+  },
+  {
+   "id": "pronoun.combined.joined_when_should_be_separate",
+   "label": "Joined when they should be separate"
+  },
+  {
+   "id": "pronoun.combined.me_ne_family",
+   "label": "me ne, te ne, ce ne, ve ne (IOP + partitive ne)"
+  },
+  {
+   "id": "pronoun.combined.order_iop_before_dop",
+   "label": "Order: IOP before DOP"
+  },
+  {
+   "id": "pronoun.combined.vowel_changes",
+   "label": "Vowel change: mi/ti/ci/vi → me/te/ce/ve before lo/la/li/le/ne"
+  },
+  {
    "id": "pronoun.direct_object",
    "label": "Direct object pronouns (DOPs)"
+  },
+  {
+   "id": "pronoun.direct_object.ci_us",
+   "label": "ci (us, 1pl), DOP sense"
+  },
+  {
+   "id": "pronoun.direct_object.elision_before_vowel",
+   "label": "Elision: lo/la → l' before a vowel"
+  },
+  {
+   "id": "pronoun.direct_object.formal_La",
+   "label": "La (formal Lei, you-formal-sg DOP)"
+  },
+  {
+   "id": "pronoun.direct_object.la",
+   "label": "la (her / it, fem 3sg)"
+  },
+  {
+   "id": "pronoun.direct_object.le",
+   "label": "le (them, fem 3pl)"
+  },
+  {
+   "id": "pronoun.direct_object.li",
+   "label": "li (them, masc 3pl)"
+  },
+  {
+   "id": "pronoun.direct_object.lo",
+   "label": "lo (him / it, masc 3sg)"
+  },
+  {
+   "id": "pronoun.direct_object.mi",
+   "label": "mi (me, 1sg)"
+  },
+  {
+   "id": "pronoun.direct_object.ti",
+   "label": "ti (you-informal, 2sg)"
+  },
+  {
+   "id": "pronoun.direct_object.vi_you",
+   "label": "vi (you, 2pl)"
   },
   {
    "id": "pronoun.discrimination",
    "label": "Discrimination"
   },
   {
+   "id": "pronoun.discrimination.clitic_ordering",
+   "label": "Clitic ordering and position"
+  },
+  {
    "id": "pronoun.indirect_object",
    "label": "Indirect object pronouns (IOPs)"
+  },
+  {
+   "id": "pronoun.indirect_object.ci_us",
+   "label": "ci (to us, 1pl)"
+  },
+  {
+   "id": "pronoun.indirect_object.formal_Le",
+   "label": "Le (formal Lei, to-you-formal-sg)"
+  },
+  {
+   "id": "pronoun.indirect_object.gli_masc",
+   "label": "gli (to him, masc 3sg)"
+  },
+  {
+   "id": "pronoun.indirect_object.gli_them",
+   "label": "gli or loro (to them, 3pl)"
+  },
+  {
+   "id": "pronoun.indirect_object.le_fem",
+   "label": "le (to her, fem 3sg)"
+  },
+  {
+   "id": "pronoun.indirect_object.mi",
+   "label": "mi (to me, 1sg)"
+  },
+  {
+   "id": "pronoun.indirect_object.ti",
+   "label": "ti (to you-informal, 2sg)"
   },
   {
    "id": "pronoun.indirect_object.verbs_taking_iop",
    "label": "Verbs whose 'subject' surfaces as an IOP (piacere, mancare, etc.)"
   },
   {
+   "id": "pronoun.indirect_object.verbs_taking_iop.with_essere_in_pp",
+   "label": "Piacere-family verbs in passato prossimo: essere + participle agrees with grammatical subject"
+  },
+  {
+   "id": "pronoun.indirect_object.vi_you",
+   "label": "vi (to you, 2pl)"
+  },
+  {
    "id": "pronoun.ne",
    "label": "ne (partitive / pronominal)"
+  },
+  {
+   "id": "pronoun.ne.motion_andarsene",
+   "label": "ne in motion expressions (andarsene, venirsene)"
+  },
+  {
+   "id": "pronoun.ne.partitive_quantity",
+   "label": "Partitive ne (some of X, three of them, etc.)"
+  },
+  {
+   "id": "pronoun.ne.pronominal_di",
+   "label": "Pronominal ne (of it / about it)"
+  },
+  {
+   "id": "pronoun.ne.pronominal_idiomatic_verbs",
+   "label": "Idiomatic pronominal verbs with ne (starsene, fregarsene, etc.)"
+  },
+  {
+   "id": "pronoun.ne.with_pp_agreement",
+   "label": "ne with passato prossimo participle agreement"
   },
   {
    "id": "pronoun.position",
    "label": "Pronoun positioning rules"
   },
   {
+   "id": "pronoun.position.formal_imperative_pre_verb",
+   "label": "Formal Lei imperative: clitic goes BEFORE the verb"
+  },
+  {
+   "id": "pronoun.position.modal_plus_infinitive_either",
+   "label": "With modal + infinitive: either pre-modal or attached to infinitive"
+  },
+  {
+   "id": "pronoun.position.negative_imperative",
+   "label": "Negative tu imperative: clitic before the infinitive form (non mi parlare / non parlarmi)"
+  },
+  {
+   "id": "pronoun.position.post_gerund_attached",
+   "label": "Attached to a gerund (vedendolo, parlandogli)"
+  },
+  {
+   "id": "pronoun.position.post_imperative_consonant_doubling",
+   "label": "Consonant doubling on monosyllabic imperatives (dammi, fammelo)"
+  },
+  {
+   "id": "pronoun.position.post_imperative_tu_attached",
+   "label": "Attached to a tu / noi / voi imperative (positive)"
+  },
+  {
+   "id": "pronoun.position.post_infinitive_attached",
+   "label": "Attached to an infinitive (vederlo, parlargli)"
+  },
+  {
+   "id": "pronoun.position.pre_finite_verb",
+   "label": "Pre-verb (default for finite tenses)"
+  },
+  {
    "id": "pronoun.reflexive",
    "label": "Reflexive pronouns"
   },
   {
+   "id": "pronoun.reflexive.ci",
+   "label": "ci (ourselves, 1pl)"
+  },
+  {
+   "id": "pronoun.reflexive.essere_in_compound",
+   "label": "Reflexive verbs always take essere in compound tenses"
+  },
+  {
+   "id": "pronoun.reflexive.mi",
+   "label": "mi (myself, 1sg)"
+  },
+  {
+   "id": "pronoun.reflexive.si_pl",
+   "label": "si (themselves, 3pl)"
+  },
+  {
+   "id": "pronoun.reflexive.si_sg",
+   "label": "si (himself/herself/oneself/yourself-formal, 3sg)"
+  },
+  {
+   "id": "pronoun.reflexive.ti",
+   "label": "ti (yourself-informal, 2sg)"
+  },
+  {
+   "id": "pronoun.reflexive.vi",
+   "label": "vi (yourselves, 2pl)"
+  },
+  {
+   "id": "pronoun.reflexive.with_object",
+   "label": "Reflexive plus an object pronoun (me lo lavo)"
+  },
+  {
    "id": "pronoun.special",
    "label": "Special uses (lo neutral, stressed forms, etc.)"
+  },
+  {
+   "id": "pronoun.special.formal_lei_capitalisation",
+   "label": "Capitalisation convention: Lei / La / Le / Loro in formal writing"
+  },
+  {
+   "id": "pronoun.special.left_dislocation_with_pp_agreement",
+   "label": "Left-dislocation with PP participle agreement"
+  },
+  {
+   "id": "pronoun.special.lo_neutral",
+   "label": "Neuter lo (replacing a clause or a predicate)"
+  },
+  {
+   "id": "pronoun.special.pronoun_then_subject_noun",
+   "label": "Left-dislocation with clitic resumption (Maria, l'ho vista)"
+  },
+  {
+   "id": "pronoun.special.stressed_forms",
+   "label": "Stressed object pronouns (a me, a te, a lui, a lei)"
   },
   {
    "id": "relative_pronoun",
@@ -300,24 +1181,100 @@
    "label": "che (who, which, that)"
   },
   {
+   "id": "relative_pronoun.che.direct_object",
+   "label": "che as direct object"
+  },
+  {
+   "id": "relative_pronoun.che.subject",
+   "label": "che as subject"
+  },
+  {
+   "id": "relative_pronoun.chi",
+   "label": "chi (the one who, whoever)"
+  },
+  {
    "id": "relative_pronoun.cui",
    "label": "cui (after a preposition; whose)"
+  },
+  {
+   "id": "relative_pronoun.cui.possessive",
+   "label": "il cui (whose)"
+  },
+  {
+   "id": "relative_pronoun.cui.with_preposition",
+   "label": "preposition + cui"
   },
   {
    "id": "relative_pronoun.discrimination",
    "label": "Choosing the right relative"
   },
   {
+   "id": "relative_pronoun.discrimination.che_vs_cui",
+   "label": "che vs cui"
+  },
+  {
+   "id": "relative_pronoun.discrimination.che_vs_il_quale",
+   "label": "che vs il quale"
+  },
+  {
+   "id": "relative_pronoun.dove",
+   "label": "dove (relative where)"
+  },
+  {
    "id": "relative_pronoun.il_quale",
    "label": "il quale (agreeing relative)"
+  },
+  {
+   "id": "relative_pronoun.il_quale.after_preposition",
+   "label": "preposition + il quale"
+  },
+  {
+   "id": "relative_pronoun.il_quale.for_clarity",
+   "label": "il quale to disambiguate"
+  },
+  {
+   "id": "relative_pronoun.neuter",
+   "label": "quello che / cio che (what)"
   },
   {
    "id": "reported_speech",
    "label": "Reported speech"
   },
   {
+   "id": "reported_speech.commands",
+   "label": "Reporting commands"
+  },
+  {
+   "id": "reported_speech.deixis",
+   "label": "Deixis: time and place words"
+  },
+  {
+   "id": "reported_speech.questions",
+   "label": "Reporting questions"
+  },
+  {
    "id": "reported_speech.tense_shift",
    "label": "The tense shifts"
+  },
+  {
+   "id": "reported_speech.tense_shift.future_to_past_conditional",
+   "label": "Future in the past"
+  },
+  {
+   "id": "reported_speech.tense_shift.no_shift",
+   "label": "No shift after a present reporter"
+  },
+  {
+   "id": "reported_speech.tense_shift.optional_no_shift_persisting_fact",
+   "label": "Still true: shift optional"
+  },
+  {
+   "id": "reported_speech.tense_shift.past_to_trapassato",
+   "label": "Past becomes trapassato"
+  },
+  {
+   "id": "reported_speech.tense_shift.present_to_imperfect",
+   "label": "Present becomes imperfect"
   },
   {
    "id": "si_constructions",
@@ -328,12 +1285,36 @@
    "label": "Impersonal si"
   },
   {
+   "id": "si_constructions.impersonal.advanced",
+   "label": "Si è stanchi: the strange agreements"
+  },
+  {
+   "id": "si_constructions.impersonal.basic",
+   "label": "Si mangia bene: the basic impersonal"
+  },
+  {
    "id": "si_constructions.passivante",
    "label": "Si passivante"
   },
   {
+   "id": "si_constructions.passivante.agreement",
+   "label": "Si vendono libri: agreeing with the noun"
+  },
+  {
+   "id": "si_constructions.passivante.vs_impersonal",
+   "label": "Passivante or impersonal? When si agrees"
+  },
+  {
    "id": "si_constructions.usage",
    "label": "Si in the wild"
+  },
+  {
+   "id": "si_constructions.usage.attached_signs",
+   "label": "Affittasi, cercasi, vendesi"
+  },
+  {
+   "id": "si_constructions.usage.which_si",
+   "label": "Which si is this?"
   },
   {
    "id": "tense_choice",
@@ -344,32 +1325,108 @@
    "label": "Conditional vs imperfetto in counterfactuals"
   },
   {
+   "id": "tense_choice.conditional_vs_imperfect_counterfactual.colloquial_imperfect",
+   "label": "Colloquial: imperfetto + imperfetto (se avevo tempo, venivo)"
+  },
+  {
+   "id": "tense_choice.conditional_vs_imperfect_counterfactual.prescriptive_conditional",
+   "label": "Prescriptive: subjunctive + conditional (se avessi tempo, verrei)"
+  },
+  {
    "id": "tense_choice.future_vs_present",
    "label": "Future vs present-for-future (parlerò vs parlo)"
+  },
+  {
+   "id": "tense_choice.future_vs_present.future_for_unambiguous_future",
+   "label": "Future for unambiguous future (parlerò)"
+  },
+  {
+   "id": "tense_choice.future_vs_present.present_for_near_future",
+   "label": "Present for near-future (parto domani)"
   },
   {
    "id": "tense_choice.indicative_vs_subjunctive",
    "label": "Indicative vs subjunctive in subordinates"
   },
   {
+   "id": "tense_choice.indicative_vs_subjunctive.emotion_triggers",
+   "label": "Emotion verbs (sono contento che, mi dispiace che)"
+  },
+  {
+   "id": "tense_choice.indicative_vs_subjunctive.free_choice_triggers",
+   "label": "Free-choice triggers (chiunque, qualunque, dovunque + subjunctive)"
+  },
+  {
+   "id": "tense_choice.indicative_vs_subjunctive.hypothetical_triggers",
+   "label": "Hypothetical conjunctions (sebbene, benché, prima che, affinché)"
+  },
+  {
+   "id": "tense_choice.indicative_vs_subjunctive.negative_triggers",
+   "label": "Negation triggering subjunctive (non penso che, non è vero che)"
+  },
+  {
+   "id": "tense_choice.indicative_vs_subjunctive.opinion_triggers",
+   "label": "Opinion verbs (penso che, credo che, mi sembra che)"
+  },
+  {
    "id": "tense_choice.passato_remoto_vs_passato_prossimo",
    "label": "Passato remoto vs passato prossimo"
+  },
+  {
+   "id": "tense_choice.passato_remoto_vs_passato_prossimo.narrative_literary",
+   "label": "Passato remoto for literary / historical narration"
+  },
+  {
+   "id": "tense_choice.passato_remoto_vs_passato_prossimo.spoken_recent",
+   "label": "Passato prossimo for spoken / present-relevant past"
+  },
+  {
+   "id": "tense_choice.periodo_ipotetico",
+   "label": "Periodo ipotetico (integrated: real / possible / impossible + mixed)"
   },
   {
    "id": "tense_choice.present_vs_imperfect",
    "label": "Present vs imperfect"
   },
   {
+   "id": "tense_choice.present_vs_imperfect.habitual_frame",
+   "label": "Present vs imperfect habitual"
+  },
+  {
    "id": "tense_choice.present_vs_passato_prossimo",
    "label": "Present vs passato prossimo"
+  },
+  {
+   "id": "tense_choice.present_vs_passato_prossimo.completed_event",
+   "label": "Passato prossimo for a completed event"
+  },
+  {
+   "id": "tense_choice.present_vs_passato_prossimo.da_durative_present",
+   "label": "Present with da for ongoing-since"
   },
   {
    "id": "tense_choice.progressive_vs_simple",
    "label": "Progressive vs simple form (sto parlando vs parlo)"
   },
   {
+   "id": "tense_choice.progressive_vs_simple.past_progressive_vs_imperfetto",
+   "label": "Past progressive (stavo parlando) vs imperfetto (parlavo)"
+  },
+  {
+   "id": "tense_choice.progressive_vs_simple.present_progressive_vs_present",
+   "label": "Present progressive (sto parlando) vs present (parlo)"
+  },
+  {
    "id": "tense_choice.trapassato_vs_imperfect",
    "label": "Trapassato prossimo vs imperfetto (had done vs was doing)"
+  },
+  {
+   "id": "tense_choice.trapassato_vs_imperfect.completed_prior_to_prior",
+   "label": "Trapassato for completed-prior-to-prior (quando sono arrivato, aveva già mangiato)"
+  },
+  {
+   "id": "tense_choice.trapassato_vs_imperfect.ongoing_background",
+   "label": "Imperfetto for ongoing background (mangiavo quando sei entrato)"
   },
   {
    "id": "verb_form.condizionale",
@@ -380,12 +1437,76 @@
    "label": "Discrimination"
   },
   {
+   "id": "verb_form.condizionale.discrimination.vs_imperfect_counterfactual",
+   "label": "Conditional vs imperfect in counterfactuals"
+  },
+  {
    "id": "verb_form.condizionale.formation",
    "label": "Formation"
   },
   {
+   "id": "verb_form.condizionale.formation.condizionale_passato",
+   "label": "Condizionale passato (compound)"
+  },
+  {
+   "id": "verb_form.condizionale.formation.irregular",
+   "label": "Irregular stems (same as the future)"
+  },
+  {
+   "id": "verb_form.condizionale.formation.irregular.dare_stare_fare",
+   "label": "dare / stare / fare keep -ar-"
+  },
+  {
+   "id": "verb_form.condizionale.formation.irregular.double_r",
+   "label": "Assimilated double-r stems"
+  },
+  {
+   "id": "verb_form.condizionale.formation.irregular.essere",
+   "label": "essere"
+  },
+  {
+   "id": "verb_form.condizionale.formation.irregular.syncopated",
+   "label": "Syncopated stems"
+  },
+  {
+   "id": "verb_form.condizionale.formation.orthographic",
+   "label": "Orthographic adjustments"
+  },
+  {
+   "id": "verb_form.condizionale.formation.orthographic.care_gare",
+   "label": "-care / -gare add h"
+  },
+  {
+   "id": "verb_form.condizionale.formation.orthographic.ciare_giare",
+   "label": "-ciare / -giare drop the i"
+  },
+  {
+   "id": "verb_form.condizionale.formation.regular_are",
+   "label": "Regular -are"
+  },
+  {
+   "id": "verb_form.condizionale.formation.regular_ere",
+   "label": "Regular -ere"
+  },
+  {
+   "id": "verb_form.condizionale.formation.regular_ire",
+   "label": "Regular -ire"
+  },
+  {
    "id": "verb_form.condizionale.usage",
    "label": "Usage"
+  },
+  {
+   "id": "verb_form.condizionale.usage.hypothetical_apodosis",
+   "label": "Apodosis of a hypothetical"
+  },
+  {
+   "id": "verb_form.condizionale.usage.polite",
+   "label": "Polite requests and wishes"
+  },
+  {
+   "id": "verb_form.condizionale.usage.reported_future_in_past",
+   "label": "Reported future-in-the-past"
   },
   {
    "id": "verb_form.congiuntivo",
@@ -396,12 +1517,76 @@
    "label": "Discrimination"
   },
   {
+   "id": "verb_form.congiuntivo.discrimination.vs_indicative",
+   "label": "Subjunctive vs indicative"
+  },
+  {
    "id": "verb_form.congiuntivo.formation",
    "label": "Formation"
   },
   {
+   "id": "verb_form.congiuntivo.formation.imperfetto",
+   "label": "Imperfect subjunctive"
+  },
+  {
+   "id": "verb_form.congiuntivo.formation.imperfetto.irregular",
+   "label": "Irregular: essere fossi; stem-expansion facessi / dessi / stessi / dicessi / bevessi"
+  },
+  {
+   "id": "verb_form.congiuntivo.formation.imperfetto.regular",
+   "label": "Regular: parlassi / prendessi / dormissi"
+  },
+  {
+   "id": "verb_form.congiuntivo.formation.passato",
+   "label": "Congiuntivo passato (compound)"
+  },
+  {
+   "id": "verb_form.congiuntivo.formation.presente",
+   "label": "Present subjunctive"
+  },
+  {
+   "id": "verb_form.congiuntivo.formation.presente.ire_isc",
+   "label": "-ire with -isc-: capisca / capisca / capisca / capiamo / capiate / capiscano"
+  },
+  {
+   "id": "verb_form.congiuntivo.formation.presente.irregular_from_1sg",
+   "label": "Irregular from the 1sg present: vengo gives venga, faccio gives faccia, vado gives vada"
+  },
+  {
+   "id": "verb_form.congiuntivo.formation.presente.irregular_suppletive",
+   "label": "Suppletive irregulars: sia, abbia, sappia, dia, stia"
+  },
+  {
+   "id": "verb_form.congiuntivo.formation.presente.orthographic",
+   "label": "Orthographic: -care/-gare add h (cerchi), -ciare/-giare drop i (cominci)"
+  },
+  {
+   "id": "verb_form.congiuntivo.formation.presente.regular_are",
+   "label": "Regular -are: parli / parli / parli / parliamo / parliate / parlino"
+  },
+  {
+   "id": "verb_form.congiuntivo.formation.presente.regular_ere_ire",
+   "label": "Regular -ere / -ire: prenda / dorma ... prendano / dormano"
+  },
+  {
+   "id": "verb_form.congiuntivo.formation.trapassato",
+   "label": "Congiuntivo trapassato (compound)"
+  },
+  {
    "id": "verb_form.congiuntivo.usage",
    "label": "Usage"
+  },
+  {
+   "id": "verb_form.congiuntivo.usage.fixed_concessive",
+   "label": "Fixed and concessive formulae"
+  },
+  {
+   "id": "verb_form.congiuntivo.usage.independent_exhortative",
+   "label": "Independent commands (che + subjunctive)"
+  },
+  {
+   "id": "verb_form.congiuntivo.usage.optative_wish",
+   "label": "Wishes (magari, volesse il cielo)"
   },
   {
    "id": "verb_form.future",
@@ -412,12 +1597,76 @@
    "label": "Discrimination"
   },
   {
+   "id": "verb_form.future.discrimination.vs_present",
+   "label": "Future vs present-for-future"
+  },
+  {
    "id": "verb_form.future.formation",
    "label": "Formation"
   },
   {
+   "id": "verb_form.future.formation.future_anteriore",
+   "label": "Futuro anteriore (compound): avrò finito, sarò andato/a"
+  },
+  {
+   "id": "verb_form.future.formation.irregular",
+   "label": "Irregular stems"
+  },
+  {
+   "id": "verb_form.future.formation.irregular.dare_stare_fare",
+   "label": "dare / stare / fare keep -ar-: darò, starò, farò"
+  },
+  {
+   "id": "verb_form.future.formation.irregular.double_r",
+   "label": "Assimilated double-r stems: vorrò, verrò, terrò, rimarrò, berrò"
+  },
+  {
+   "id": "verb_form.future.formation.irregular.essere",
+   "label": "essere: sarò / sarai / sarà / saremo / sarete / saranno"
+  },
+  {
+   "id": "verb_form.future.formation.irregular.syncopated",
+   "label": "Syncopated stems (drop the theme vowel): avrò, andrò, dovrò, potrò, saprò, vedrò"
+  },
+  {
+   "id": "verb_form.future.formation.orthographic",
+   "label": "Orthographic adjustments"
+  },
+  {
+   "id": "verb_form.future.formation.orthographic.care_gare",
+   "label": "-care / -gare add h: cercherò, pagherò"
+  },
+  {
+   "id": "verb_form.future.formation.orthographic.ciare_giare",
+   "label": "-ciare / -giare drop the i: comincerò, mangerò"
+  },
+  {
+   "id": "verb_form.future.formation.regular_are",
+   "label": "Regular -are: parlerò / parlerai / parlerà / parleremo / parlerete / parleranno"
+  },
+  {
+   "id": "verb_form.future.formation.regular_ere",
+   "label": "Regular -ere: prenderò / prenderai / prenderà / prenderemo / prenderete / prenderanno"
+  },
+  {
+   "id": "verb_form.future.formation.regular_ire",
+   "label": "Regular -ire: dormirò / dormirai / dormirà / dormiremo / dormirete / dormiranno"
+  },
+  {
    "id": "verb_form.future.usage",
    "label": "Usage"
+  },
+  {
+   "id": "verb_form.future.usage.command_promise",
+   "label": "Commands and promises"
+  },
+  {
+   "id": "verb_form.future.usage.probability",
+   "label": "Future of probability"
+  },
+  {
+   "id": "verb_form.future.usage.temporal_subordinate",
+   "label": "After quando / appena / finché"
   },
   {
    "id": "verb_form.gerundio",
@@ -428,12 +1677,44 @@
    "label": "Discrimination"
   },
   {
+   "id": "verb_form.gerundio.discrimination.vs_simple_present",
+   "label": "Progressive vs simple present"
+  },
+  {
    "id": "verb_form.gerundio.formation",
    "label": "Formation"
   },
   {
+   "id": "verb_form.gerundio.formation.gerundio_passato",
+   "label": "Gerundio passato"
+  },
+  {
+   "id": "verb_form.gerundio.formation.irregular",
+   "label": "Stem-expansion irregulars"
+  },
+  {
+   "id": "verb_form.gerundio.formation.progressive_assembly",
+   "label": "Progressive"
+  },
+  {
+   "id": "verb_form.gerundio.formation.regular_ando",
+   "label": "-are gerund"
+  },
+  {
+   "id": "verb_form.gerundio.formation.regular_endo",
+   "label": "-ere / -ire gerund"
+  },
+  {
    "id": "verb_form.gerundio.usage",
    "label": "Usage"
+  },
+  {
+   "id": "verb_form.gerundio.usage.modal_means",
+   "label": "Adverbial gerund: manner / means"
+  },
+  {
+   "id": "verb_form.gerundio.usage.temporal_causal",
+   "label": "Adverbial gerund: time / cause / condition"
   },
   {
    "id": "verb_form.imperativo",
@@ -444,12 +1725,40 @@
    "label": "Discrimination"
   },
   {
+   "id": "verb_form.imperativo.discrimination.register_informal_vs_formal",
+   "label": "Informal (tu) vs formal (Lei) imperative"
+  },
+  {
    "id": "verb_form.imperativo.formation",
    "label": "Formation"
   },
   {
+   "id": "verb_form.imperativo.formation.formal",
+   "label": "Formal Lei"
+  },
+  {
+   "id": "verb_form.imperativo.formation.informal_affirmative",
+   "label": "Informal affirmative (tu / noi / voi)"
+  },
+  {
+   "id": "verb_form.imperativo.formation.informal_negative",
+   "label": "Informal negative (tu / noi / voi)"
+  },
+  {
+   "id": "verb_form.imperativo.formation.irregular_tu",
+   "label": "Apocopated / irregular tu"
+  },
+  {
    "id": "verb_form.imperativo.usage",
    "label": "Usage"
+  },
+  {
+   "id": "verb_form.imperativo.usage.impersonal_infinitive",
+   "label": "Impersonal infinitive: recipes and signs"
+  },
+  {
+   "id": "verb_form.imperativo.usage.pragmatic_softening",
+   "label": "Softeners and discourse markers"
   },
   {
    "id": "verb_form.imperfect",
@@ -460,36 +1769,332 @@
    "label": "Imperfect vs passato prossimo (the key discrimination)"
   },
   {
+   "id": "verb_form.imperfect.discrimination.modals",
+   "label": "Modal verbs: imperfect vs PP shifts meaning"
+  },
+  {
+   "id": "verb_form.imperfect.discrimination.modals.conoscere",
+   "label": "Conoscere: conoscevo (knew, was acquainted) vs ho conosciuto (met for the first time)"
+  },
+  {
+   "id": "verb_form.imperfect.discrimination.modals.dovere",
+   "label": "Dovere: dovevo (had to, was supposed to) vs ho dovuto (had to, and did)"
+  },
+  {
+   "id": "verb_form.imperfect.discrimination.modals.potere",
+   "label": "Potere: potevo (could, was able to) vs ho potuto (was able to, and did)"
+  },
+  {
+   "id": "verb_form.imperfect.discrimination.modals.sapere",
+   "label": "Sapere: sapevo (I knew, state) vs ho saputo (I found out, event)"
+  },
+  {
+   "id": "verb_form.imperfect.discrimination.modals.volere",
+   "label": "Volere: volevo (wanted to) vs ho voluto (insisted on, got my way)"
+  },
+  {
+   "id": "verb_form.imperfect.discrimination.vs_passato_prossimo_general",
+   "label": "Choosing imperfect or PP (general aspect rule)"
+  },
+  {
    "id": "verb_form.imperfect.formation",
    "label": "Formation"
+  },
+  {
+   "id": "verb_form.imperfect.formation.irregular",
+   "label": "Irregular forms"
+  },
+  {
+   "id": "verb_form.imperfect.formation.irregular.essere",
+   "label": "Essere: ero / eri / era / eravamo / eravate / erano"
+  },
+  {
+   "id": "verb_form.imperfect.formation.irregular.stem_expansion",
+   "label": "Stem-expansion verbs (fare, dire, bere, porre, tradurre)"
+  },
+  {
+   "id": "verb_form.imperfect.formation.irregular.stem_expansion.bere",
+   "label": "Bere: bevevo / bevevi / beveva / bevevamo / bevevate / bevevano"
+  },
+  {
+   "id": "verb_form.imperfect.formation.irregular.stem_expansion.dire",
+   "label": "Dire: dicevo / dicevi / diceva / dicevamo / dicevate / dicevano"
+  },
+  {
+   "id": "verb_form.imperfect.formation.irregular.stem_expansion.fare",
+   "label": "Fare: facevo / facevi / faceva / facevamo / facevate / facevano"
+  },
+  {
+   "id": "verb_form.imperfect.formation.irregular.stem_expansion.porre",
+   "label": "Porre and -porre compounds: ponevo / componevo / opponevo / supponevo / proponevo"
+  },
+  {
+   "id": "verb_form.imperfect.formation.irregular.stem_expansion.tradurre",
+   "label": "Tradurre and -durre compounds: traducevo / producevo / introducevo / riducevo"
+  },
+  {
+   "id": "verb_form.imperfect.formation.regular_are",
+   "label": "Regular -are: parlavo / parlavi / parlava / parlavamo / parlavate / parlavano"
+  },
+  {
+   "id": "verb_form.imperfect.formation.regular_ere",
+   "label": "Regular -ere: vedevo / vedevi / vedeva / vedevamo / vedevate / vedevano"
+  },
+  {
+   "id": "verb_form.imperfect.formation.regular_ire",
+   "label": "Regular -ire: dormivo / dormivi / dormiva / dormivamo / dormivate / dormivano"
   },
   {
    "id": "verb_form.imperfect.indirect_speech",
    "label": "Imperfect in indirect speech"
   },
   {
+   "id": "verb_form.imperfect.indirect_speech.reported_intention",
+   "label": "Reported intention or future plan becomes imperfect (or imperfect of stare + per)"
+  },
+  {
+   "id": "verb_form.imperfect.indirect_speech.reported_present",
+   "label": "Reported present-tense speech becomes imperfect"
+  },
+  {
    "id": "verb_form.imperfect.stylistic",
    "label": "Stylistic and register uses"
+  },
+  {
+   "id": "verb_form.imperfect.stylistic.colloquial_counterfactual",
+   "label": "Colloquial counterfactual (substitute for subjunctive + conditional)"
+  },
+  {
+   "id": "verb_form.imperfect.stylistic.narrative",
+   "label": "Narrative imperfect (vivid storytelling)"
   },
   {
    "id": "verb_form.imperfect.usage",
    "label": "Usage (what imperfect is for)"
   },
   {
+   "id": "verb_form.imperfect.usage.age_time_weather",
+   "label": "Age, time of day, and weather in the past"
+  },
+  {
+   "id": "verb_form.imperfect.usage.background_with_pp",
+   "label": "Background with a foregrounded passato prossimo event"
+  },
+  {
+   "id": "verb_form.imperfect.usage.duration",
+   "label": "Duration in the past (da + time + imperfect)"
+  },
+  {
+   "id": "verb_form.imperfect.usage.habitual",
+   "label": "Habitual / repeated past ('used to', 'would')"
+  },
+  {
+   "id": "verb_form.imperfect.usage.ongoing_descriptive",
+   "label": "Ongoing or descriptive past ('was doing', 'was')"
+  },
+  {
+   "id": "verb_form.imperfect.usage.polite",
+   "label": "Polite imperfect (softening a request)"
+  },
+  {
    "id": "verb_form.passato_prossimo",
    "label": "Passato prossimo (compound past)"
+  },
+  {
+   "id": "verb_form.passato_prossimo.adverb_placement",
+   "label": "Adverb between auxiliary and participle (già, ancora, mai, sempre, appena, anche)"
   },
   {
    "id": "verb_form.passato_prossimo.auxiliary",
    "label": "Auxiliary choice (essere vs avere)"
   },
   {
+   "id": "verb_form.passato_prossimo.auxiliary.ambiguous",
+   "label": "Verbs that take either auxiliary, with meaning shift"
+  },
+  {
+   "id": "verb_form.passato_prossimo.auxiliary.avere_default",
+   "label": "Avere (default for transitive and many intransitive verbs)"
+  },
+  {
+   "id": "verb_form.passato_prossimo.auxiliary.essere_motion_intransitive",
+   "label": "Essere with intransitive verbs of motion / change"
+  },
+  {
+   "id": "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
+   "label": "Essere with other intransitives (no motion/change)"
+  },
+  {
+   "id": "verb_form.passato_prossimo.auxiliary.essere_reflexive",
+   "label": "Essere with reflexive verbs"
+  },
+  {
+   "id": "verb_form.passato_prossimo.auxiliary.modal_inheritance",
+   "label": "Modal verbs inherit the auxiliary of the dependent infinitive"
+  },
+  {
+   "id": "verb_form.passato_prossimo.auxiliary.person_agreement",
+   "label": "Auxiliary in correct person/number for the subject"
+  },
+  {
+   "id": "verb_form.passato_prossimo.negation",
+   "label": "Negation"
+  },
+  {
    "id": "verb_form.passato_prossimo.participle_agreement",
    "label": "Past participle agreement"
   },
   {
+   "id": "verb_form.passato_prossimo.participle_agreement.with_avere",
+   "label": "Agreement with avere (default invariable, agrees with preceding DOP)"
+  },
+  {
+   "id": "verb_form.passato_prossimo.participle_agreement.with_avere.no_preceding_dop",
+   "label": "No preceding DOP: participle invariable"
+  },
+  {
+   "id": "verb_form.passato_prossimo.participle_agreement.with_avere.preceding_dop_la",
+   "label": "Preceding DOP la: -a agreement"
+  },
+  {
+   "id": "verb_form.passato_prossimo.participle_agreement.with_avere.preceding_dop_le",
+   "label": "Preceding DOP le: -e agreement"
+  },
+  {
+   "id": "verb_form.passato_prossimo.participle_agreement.with_avere.preceding_dop_li",
+   "label": "Preceding DOP li: -i agreement"
+  },
+  {
+   "id": "verb_form.passato_prossimo.participle_agreement.with_avere.preceding_dop_lo",
+   "label": "Preceding DOP lo: -o agreement"
+  },
+  {
+   "id": "verb_form.passato_prossimo.participle_agreement.with_avere.preceding_dop_mi_ti_ci_vi",
+   "label": "Preceding mi/ti/ci/vi: agreement optional"
+  },
+  {
+   "id": "verb_form.passato_prossimo.participle_agreement.with_avere.preceding_partitive_ne",
+   "label": "Preceding partitive 'ne': agreement with implicit referent"
+  },
+  {
+   "id": "verb_form.passato_prossimo.participle_agreement.with_essere",
+   "label": "Agreement with subject (essere auxiliary)"
+  },
+  {
+   "id": "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_plural",
+   "label": "Fem pl subject (-e)"
+  },
+  {
+   "id": "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_singular",
+   "label": "Fem sg subject (-a)"
+  },
+  {
+   "id": "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_plural",
+   "label": "Masc pl subject (-i)"
+  },
+  {
+   "id": "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
+   "label": "Masc sg subject (-o)"
+  },
+  {
+   "id": "verb_form.passato_prossimo.participle_agreement.with_essere.mixed_gender_default",
+   "label": "Mixed-gender plural subject → masculine plural participle"
+  },
+  {
    "id": "verb_form.passato_prossimo.participle_form",
    "label": "Past participle form"
+  },
+  {
+   "id": "verb_form.passato_prossimo.participle_form.irregular",
+   "label": "Irregular past participles"
+  },
+  {
+   "id": "verb_form.passato_prossimo.participle_form.irregular.aprire_aperto",
+   "label": "aprire → aperto"
+  },
+  {
+   "id": "verb_form.passato_prossimo.participle_form.irregular.bere_bevuto",
+   "label": "bere → bevuto"
+  },
+  {
+   "id": "verb_form.passato_prossimo.participle_form.irregular.chiudere_chiuso",
+   "label": "chiudere → chiuso"
+  },
+  {
+   "id": "verb_form.passato_prossimo.participle_form.irregular.conosciuto",
+   "label": "conoscere → conosciuto"
+  },
+  {
+   "id": "verb_form.passato_prossimo.participle_form.irregular.dire_detto",
+   "label": "dire → detto"
+  },
+  {
+   "id": "verb_form.passato_prossimo.participle_form.irregular.essere_stato",
+   "label": "essere → stato (and stare → stato)"
+  },
+  {
+   "id": "verb_form.passato_prossimo.participle_form.irregular.fare_fatto",
+   "label": "fare → fatto"
+  },
+  {
+   "id": "verb_form.passato_prossimo.participle_form.irregular.leggere_letto",
+   "label": "leggere → letto"
+  },
+  {
+   "id": "verb_form.passato_prossimo.participle_form.irregular.mettere_messo",
+   "label": "mettere → messo"
+  },
+  {
+   "id": "verb_form.passato_prossimo.participle_form.irregular.morire_morto",
+   "label": "morire → morto (essere)"
+  },
+  {
+   "id": "verb_form.passato_prossimo.participle_form.irregular.nascere_nato",
+   "label": "nascere → nato (essere)"
+  },
+  {
+   "id": "verb_form.passato_prossimo.participle_form.irregular.prendere_preso",
+   "label": "prendere → preso"
+  },
+  {
+   "id": "verb_form.passato_prossimo.participle_form.irregular.saputo",
+   "label": "sapere → saputo"
+  },
+  {
+   "id": "verb_form.passato_prossimo.participle_form.irregular.scrivere_scritto",
+   "label": "scrivere → scritto"
+  },
+  {
+   "id": "verb_form.passato_prossimo.participle_form.irregular.vedere_visto",
+   "label": "vedere → visto (also veduto, regular but rare)"
+  },
+  {
+   "id": "verb_form.passato_prossimo.participle_form.irregular.venire_venuto",
+   "label": "venire → venuto (essere)"
+  },
+  {
+   "id": "verb_form.passato_prossimo.participle_form.regular",
+   "label": "Regular participles by conjugation"
+  },
+  {
+   "id": "verb_form.passato_prossimo.participle_form.regular.are_ato",
+   "label": "-are → -ato"
+  },
+  {
+   "id": "verb_form.passato_prossimo.participle_form.regular.ere_uto",
+   "label": "-ere → -uto"
+  },
+  {
+   "id": "verb_form.passato_prossimo.participle_form.regular.ire_ito",
+   "label": "-ire → -ito"
+  },
+  {
+   "id": "verb_form.passato_prossimo.translation_mapping.en_present_perfect",
+   "label": "Maps to English present perfect when no definite past-time adverb"
+  },
+  {
+   "id": "verb_form.passato_prossimo.translation_mapping.en_simple_past",
+   "label": "Maps to English simple past with definite past-time adverb"
   },
   {
    "id": "verb_form.passato_remoto",
@@ -500,8 +2105,40 @@
    "label": "Discrimination"
   },
   {
+   "id": "verb_form.passato_remoto.discrimination.vs_passato_prossimo",
+   "label": "Passato remoto vs passato prossimo"
+  },
+  {
    "id": "verb_form.passato_remoto.formation",
    "label": "Formation"
+  },
+  {
+   "id": "verb_form.passato_remoto.formation.irregular_strong_ere",
+   "label": "Strong 1-3-3 -ere"
+  },
+  {
+   "id": "verb_form.passato_remoto.formation.irregular_suppletive",
+   "label": "Suppletive"
+  },
+  {
+   "id": "verb_form.passato_remoto.formation.regular_are",
+   "label": "Regular -are"
+  },
+  {
+   "id": "verb_form.passato_remoto.formation.regular_ere",
+   "label": "Regular -ere (dual endings)"
+  },
+  {
+   "id": "verb_form.passato_remoto.formation.regular_ire",
+   "label": "Regular -ire"
+  },
+  {
+   "id": "verb_form.passato_remoto.formation.trapassato_remoto",
+   "label": "Trapassato remoto"
+  },
+  {
+   "id": "verb_form.passato_remoto.usage",
+   "label": "Usage"
   },
   {
    "id": "verb_form.present_indicative",
@@ -512,12 +2149,116 @@
    "label": "Discrimination"
   },
   {
+   "id": "verb_form.present_indicative.discrimination.vs_future",
+   "label": "Present vs future (present-for-future)"
+  },
+  {
+   "id": "verb_form.present_indicative.discrimination.vs_imperfect",
+   "label": "Present vs imperfect"
+  },
+  {
+   "id": "verb_form.present_indicative.discrimination.vs_passato_prossimo",
+   "label": "Present vs passato prossimo"
+  },
+  {
    "id": "verb_form.present_indicative.formation",
    "label": "Formation"
   },
   {
+   "id": "verb_form.present_indicative.formation.ire_isc",
+   "label": "-ire with -isc-: capisco / capisci / capisce / capiamo / capite / capiscono"
+  },
+  {
+   "id": "verb_form.present_indicative.formation.irregular",
+   "label": "Irregular core"
+  },
+  {
+   "id": "verb_form.present_indicative.formation.irregular.avere",
+   "label": "avere: ho / hai / ha / abbiamo / avete / hanno"
+  },
+  {
+   "id": "verb_form.present_indicative.formation.irregular.bere",
+   "label": "bere: bevo / bevi / beve / beviamo / bevete / bevono"
+  },
+  {
+   "id": "verb_form.present_indicative.formation.irregular.dire",
+   "label": "dire: dico / dici / dice / diciamo / dite / dicono"
+  },
+  {
+   "id": "verb_form.present_indicative.formation.irregular.dittongo",
+   "label": "Stem-vowel / dittongo shifts: uscire/esco, sedere/siedo, morire/muoio"
+  },
+  {
+   "id": "verb_form.present_indicative.formation.irregular.essere",
+   "label": "essere: sono / sei / è / siamo / siete / sono"
+  },
+  {
+   "id": "verb_form.present_indicative.formation.irregular.go_verbs",
+   "label": "-go verbs: venire/vengo, tenere/tengo, salire/salgo, rimanere/rimango"
+  },
+  {
+   "id": "verb_form.present_indicative.formation.irregular.monosyllabic_core",
+   "label": "Contracted core: andare/vado, dare/do, stare/sto, sapere/so, fare/faccio"
+  },
+  {
+   "id": "verb_form.present_indicative.formation.modal_verbs",
+   "label": "Modal verbs: dovere/devo, potere/posso, volere/voglio"
+  },
+  {
+   "id": "verb_form.present_indicative.formation.orthographic",
+   "label": "Orthographic adjustments"
+  },
+  {
+   "id": "verb_form.present_indicative.formation.orthographic.care_gare",
+   "label": "-care / -gare add h: cerco / cerchi, pago / paghi"
+  },
+  {
+   "id": "verb_form.present_indicative.formation.orthographic.ciare_giare",
+   "label": "-ciare / -giare drop the i: comincio / cominci, mangio / mangi"
+  },
+  {
+   "id": "verb_form.present_indicative.formation.orthographic.iare_stress",
+   "label": "-iare i-retention by stress: studio / studi, but invio / invii"
+  },
+  {
+   "id": "verb_form.present_indicative.formation.reflexive_assembly",
+   "label": "Reflexive assembly: mi lavo / ti lavi / si lava / ci laviamo / vi lavate / si lavano"
+  },
+  {
+   "id": "verb_form.present_indicative.formation.regular_are",
+   "label": "Regular -are: parlo / parli / parla / parliamo / parlate / parlano"
+  },
+  {
+   "id": "verb_form.present_indicative.formation.regular_ere",
+   "label": "Regular -ere: prendo / prendi / prende / prendiamo / prendete / prendono"
+  },
+  {
+   "id": "verb_form.present_indicative.formation.regular_ire",
+   "label": "Regular -ire (non-isc): dormo / dormi / dorme / dormiamo / dormite / dormono"
+  },
+  {
    "id": "verb_form.present_indicative.usage",
    "label": "Usage"
+  },
+  {
+   "id": "verb_form.present_indicative.usage.general_habitual",
+   "label": "Habitual and general truths"
+  },
+  {
+   "id": "verb_form.present_indicative.usage.instructions",
+   "label": "Instructions and directions"
+  },
+  {
+   "id": "verb_form.present_indicative.usage.ongoing_now",
+   "label": "Happening now"
+  },
+  {
+   "id": "verb_form.present_indicative.usage.states_facts",
+   "label": "States and facts"
+  },
+  {
+   "id": "verb_form.present_or_future.dare",
+   "label": "Dare: present or future both fine"
   },
   {
    "id": "verb_form.trapassato_prossimo",
@@ -528,8 +2269,24 @@
    "label": "Discrimination"
   },
   {
+   "id": "verb_form.trapassato_prossimo.discrimination.vs_imperfect_pp",
+   "label": "Pluperfect vs imperfect / passato prossimo"
+  },
+  {
    "id": "verb_form.trapassato_prossimo.formation",
    "label": "Formation"
+  },
+  {
+   "id": "verb_form.trapassato_prossimo.formation.avere",
+   "label": "avere auxiliary"
+  },
+  {
+   "id": "verb_form.trapassato_prossimo.formation.essere",
+   "label": "essere auxiliary"
+  },
+  {
+   "id": "verb_form.trapassato_prossimo.usage",
+   "label": "Usage"
   },
   {
    "id": "word_formation",
@@ -544,8 +2301,32 @@
    "label": "Augmentative -one, pejorative -accio"
   },
   {
+   "id": "word_formation.alterati.augmentative_pejorative.gender_shift",
+   "label": "-one gender shift (la porta, il portone)"
+  },
+  {
+   "id": "word_formation.alterati.diminutives",
+   "label": "Diminutives: -ino, -etto, -ello, -uccio"
+  },
+  {
+   "id": "word_formation.alterati.falsi",
+   "label": "Falsi alterati"
+  },
+  {
    "id": "word_formation.prefixes",
    "label": "Prefixes"
+  },
+  {
+   "id": "word_formation.prefixes.intensifiers",
+   "label": "Stra-, arci-, super-, ultra-"
+  },
+  {
+   "id": "word_formation.prefixes.neo_ex",
+   "label": "Neo-, ex-"
+  },
+  {
+   "id": "word_formation.relational_adjectives",
+   "label": "Relational adjectives (stub)"
   }
  ]
 }
