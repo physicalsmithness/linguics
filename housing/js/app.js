@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-21-r45";
+  const LL_BUILD = "2026-07-21-r48";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -715,6 +715,7 @@
       grammarIndex = 0;
       renderGrammarFilterBar(); // refresh the count
       renderGrammar();
+      try { renderLiveStats(); } catch (e) {}   // a level/topic change must RE-SCOPE the coverage panel too (Smith: CEFR wasn't reducing it) - before, the panel only re-rendered on Mark
     }));
   }
   function renderTranslationFilterBar() {
@@ -7171,7 +7172,7 @@
   // of view-sections (analyst's data/misconception_canvas_views.md). The findable,
   // roomy home; the coverage matrix below is Canvas A's heatmap. Views render
   // whatever data exists and fill in as it lands (Smith: the data catches up).
-  let analysisCanvas = "coverage";   // "coverage" | "misconceptions"
+  let analysisCanvas = "grammar";   // "grammar" | "vocabulary" | "misconceptions"
 
   // In-place cell detail (Smith: "we don't want to leave this page"). Clicking a
   // coverage cell opens this on-page rather than jumping into the drill; a
@@ -7266,12 +7267,12 @@
   }
   function buildAnalysisHeader() {
     const bar = document.createElement("div"); bar.className = "analysis-header";
-    const back = document.createElement("button"); back.type = "button"; back.className = "coverage-back"; back.textContent = "← Back";
+    const back = document.createElement("button"); back.type = "button"; back.className = "coverage-back"; back.textContent = "← Back to practice";
     back.addEventListener("click", () => { hideCoverage(); showEntry(); });
     const title = document.createElement("h2"); title.className = "coverage-title"; title.textContent = "Analysis";
     const sw = document.createElement("div"); sw.className = "analysis-switch";
     const mk = (id, label) => { const b = document.createElement("button"); b.type = "button"; b.textContent = label; if (analysisCanvas === id) b.className = "active"; b.addEventListener("click", () => { analysisCanvas = id; renderCoverage(); }); return b; };
-    sw.appendChild(mk("coverage", "Coverage")); sw.appendChild(mk("misconceptions", "Misconceptions"));
+    sw.appendChild(mk("grammar", "Grammar")); sw.appendChild(mk("vocabulary", "Vocabulary")); sw.appendChild(mk("misconceptions", "Misconceptions"));
     bar.appendChild(back); bar.appendChild(title); bar.appendChild(sw);
     return bar;
   }
@@ -7397,6 +7398,11 @@
     } catch (e) { wrap.textContent = "(lenses unavailable)"; }
     return wrap;
   }
+  function renderVocabularyCanvas(col) {
+    const body = document.createElement("div"); body.className = "analysis-placeholder";
+    body.textContent = "The vocabulary analysis — frequency bands, gender by noun class, stress, accents, themes — is still to be developed. Your vocab practice is already recorded and will fill these in.";
+    col.appendChild(sectionWrap("Vocabulary analysis", body, "to be developed"));
+  }
   function renderMisconceptionCanvas(col) {
     col.appendChild(sectionWrap("Top recurring errors", buildTopErrors()));
     col.appendChild(sectionWrap("Misconception family heatmap", buildFamilyHeatmap()));
@@ -7422,7 +7428,11 @@
       return;
     }
     const col = document.createElement("div");
-    col.className = "coverage-col";
+    col.className = "coverage-col analysis-col";
+    col.appendChild(buildAnalysisHeader());
+    if (analysisCanvas === "misconceptions") { renderMisconceptionCanvas(col); host.appendChild(col); return; }
+    if (analysisCanvas === "vocabulary") { renderVocabularyCanvas(col); host.appendChild(col); return; }
+    col.appendChild(sectionWrap("Snapshot", buildKpiStrip()));
 
     const bar = document.createElement("div");
     bar.className = "coverage-bar";
@@ -7440,12 +7450,7 @@
     vwBtn.textContent = coverageView === "fill" ? "View: equal boxes" : "View: sized boxes";
     vwBtn.title = "Switch between equal boxes (each divides by its areas) and boxes sized by how many areas they hold";
     vwBtn.addEventListener("click", () => { coverageView = (coverageView === "fill") ? "layers" : "fill"; renderCoverage(); });
-    const palBtn = document.createElement("button");
-    palBtn.type = "button"; palBtn.className = "coverage-palette";
-    palBtn.textContent = coveragePalette === "clear" ? "Palette: clear" : "Palette: classic";
-    palBtn.title = "Temporary A/B: 'clear' = white where coverage is still to get, grey where nothing's achievable; 'classic' = old cream. Will be removed once chosen.";
-    palBtn.addEventListener("click", () => { coveragePalette = (coveragePalette === "clear") ? "classic" : "clear"; renderCoverage(); });
-    bar.appendChild(vwBtn); bar.appendChild(trBtn); bar.appendChild(palBtn);
+    bar.appendChild(vwBtn); bar.appendChild(trBtn);
     col.appendChild(bar);
 
     const sub = document.createElement("p");
