@@ -894,12 +894,13 @@
         Foptional("../data/vocab_themes.json"),
         Foptional("../data/misconceptions.json"),
         Foptional("../data/misconception_lenses.json"),
-        Foptional("../data/translation_marker_bucket_menu.json")
+        Foptional("../data/translation_marker_bucket_menu.json"),
+        Foptional("../data/grammar_questions_accent.json") // QoderWork 2026-07-22: accent drill items
       ]);
       const workers = [];
       for (let w = 0; w < Math.min(POOL, topics.length); w++) workers.push(worker());
       await Promise.all(workers);
-      const [glossary, vocab, parts, themes, misconceptions, lenses, markerMenu] = await tail;
+      const [glossary, vocab, parts, themes, misconceptions, lenses, markerMenu, accentGrammar] = await tail;
 
       // Flatten strictly in manifest order.
       const buckets = [];
@@ -920,6 +921,8 @@
           bucketsOnly: r.isBucketsOnly
         });
       }
+      // QoderWork 2026-07-22: merge accent drill items (separate file, topic=orthography)
+      if (accentGrammar) for (const q of accentGrammar) grammar.push(q);
 
       if (glossary) {
         LL.glossary = buildGlossaryIndex(glossary);
@@ -1051,25 +1054,9 @@
   let RWG_PALE_GREEN = [163, 210, 163];
   let RWG_GREEN      = [ 25, 110,  58];
 
-  function rgbToHex(rgb) {
-    const h = (n) => n.toString(16).padStart(2, "0");
-    return "#" + h(rgb[0]) + h(rgb[1]) + h(rgb[2]);
-  }
-  function hexToRgb(hex) {
-    const m = /^#?([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(String(hex || "").trim());
-    if (!m) return null;
-    return [parseInt(m[1],16), parseInt(m[2],16), parseInt(m[3],16)];
-  }
-  function paletteAsJson() {
-    return JSON.stringify({
-      red:        rgbToHex(RWG_RED),
-      yellow:     rgbToHex(RWG_YELLOW),
-      paleGreen:  rgbToHex(RWG_PALE_GREEN),
-      green:      rgbToHex(RWG_GREEN),
-      yellowStop: vocabYellowStop,
-      baseline:   vocabUnattemptedBaseline
-    }, null, 2);
-  }
+  // rgbToHex / hexToRgb / paletteAsJson removed — dead code after palette-tuning
+  // row + report button retired (Smith 2026-07-20/21).  QoderWork 2026-07-22
+
   // Untouched fill — a neutral that reads as "empty slot" against the cream
   // page bg (#fdfaf4). Slightly cooler / darker so the eye registers it as
   // distinct from the page background.
@@ -1976,6 +1963,7 @@
     genderDrill: false, // nouns-only production focus (Smith gender ask)
     spellingDrill: false, // orthography MCQ drill (Smith spelling ask)  QoderWork 2026-07-22
     spellingClass: "",    // "" = all classes; else e.g. "doubling"  QoderWork 2026-07-22
+    accentDrill: false,   // accent MCQ drill (AccentAuthor variant pipeline)  QoderWork 2026-07-22
     topN: 0,            // 0 = all; else max rank to include in scope
     subBand: ""         // "" | "A1-core" | "A1-secure" | ... | "C1-stretch"
   };
@@ -2383,27 +2371,77 @@
     const host = document.getElementById("vocab-filter-bar");
     if (!host) return;
     host.innerHTML = "";
+
+    // Mode switcher: allows mid-session toggling between vocab / gender / spelling / accent.  QoderWork 2026-07-22
+    const modeRow = document.createElement("div");
+    modeRow.className = "filter-mode-row";
+    const modes = [
+      { key: "vocab", label: "Words" },
+      { key: "gender", label: "Gender drill" },
+      { key: "spelling", label: "Spelling drill" },
+      { key: "accent", label: "Accent drill" }
+    ];
+    const activeMode = vocabFilter.accentDrill ? "accent" : vocabFilter.spellingDrill ? "spelling" : vocabFilter.genderDrill ? "gender" : "vocab";
+    modes.forEach(m => {
+      const chip = document.createElement("button");
+      chip.type = "button";
+      chip.className = "filter-mode-chip" + (m.key === activeMode ? " active" : "");
+      chip.textContent = m.label;
+      chip.addEventListener("click", () => {
+        if (m.key === activeMode) return;
+        vocabFilter.genderDrill = m.key === "gender";
+        vocabFilter.spellingDrill = m.key === "spelling";
+        vocabFilter.accentDrill = m.key === "accent";
+        if (m.key === "spelling") buildSpellingDeck();
+        if (m.key === "accent") buildAccentDeck();
+        vocabDeck = []; vocabIndex = 0;
+        renderVocab();
+      });
+      modeRow.appendChild(chip);
+    });
+    host.appendChild(modeRow);
+
+    // Spelling drill: vocab controls are irrelevant; show a compact info bar.  QoderWork 2026-07-22
+    if (vocabFilter.spellingDrill) {
+      const lbl = document.createElement("span");
+      const cls = vocabFilter.spellingClass;
+      const clsLabel = cls ? (SPELLING_CLASSES.find(c => c.id === cls) || {}).label || cls : "all classes";
+      lbl.textContent = "Spelling drill \u2014 " + clsLabel + " \u2014 " + spellingDeck.length + " items";
+      lbl.style.fontWeight = "600";
+      host.appendChild(lbl);
+      return;
+    }
+    // Accent drill: vocab controls are irrelevant; show a compact info bar.  QoderWork 2026-07-22
+    if (vocabFilter.accentDrill) {
+      const lbl = document.createElement("span");
+      lbl.textContent = "Accent drill \u2014 " + accentDeck.length + " items";
+      lbl.style.fontWeight = "600";
+      host.appendChild(lbl);
+      return;
+    }
     if (!vocabEntries.length) return;
 
-    // Direction toggle
-    const dirLabel = document.createElement("label");
-    dirLabel.textContent = "Direction:";
-    host.appendChild(dirLabel);
-    const dirSel = document.createElement("select");
-    [["it_en", "Italian → English"], ["en_it", "English → Italian"], ["mix", "Mixed"]].forEach(([v, t]) => {
-      const o = document.createElement("option");
-      o.value = v; o.textContent = t;
-      if (vocabFilter.direction === v) o.selected = true;
-      dirSel.appendChild(o);
-    });
-    dirSel.addEventListener("change", () => {
-      vocabFilter.direction = dirSel.value;
-      // Reshuffle so the next card isn't the same lemma in reverse
-      // (otherwise the learner can peek at the answer by toggling direction).
-      vocabDeck = []; vocabIndex = 0;
-      renderVocab();
-    });
-    host.appendChild(dirSel);
+    // Direction toggle (hidden during gender drill — direction is irrelevant there)  QoderWork 2026-07-22
+    if (!vocabFilter.genderDrill) {
+      const dirLabel = document.createElement("label");
+      dirLabel.textContent = "Direction:";
+      host.appendChild(dirLabel);
+      const dirSel = document.createElement("select");
+      [["it_en", "Italian → English"], ["en_it", "English → Italian"], ["mix", "Mixed"]].forEach(([v, t]) => {
+        const o = document.createElement("option");
+        o.value = v; o.textContent = t;
+        if (vocabFilter.direction === v) o.selected = true;
+        dirSel.appendChild(o);
+      });
+      dirSel.addEventListener("change", () => {
+        vocabFilter.direction = dirSel.value;
+        // Reshuffle so the next card isn't the same lemma in reverse
+        // (otherwise the learner can peek at the answer by toggling direction).
+        vocabDeck = []; vocabIndex = 0;
+        renderVocab();
+      });
+      host.appendChild(dirSel);
+    }
 
     // Top-N cutoff: restricts the entire universe (axes + deck).
     const topLbl = document.createElement("label");
@@ -2649,6 +2687,7 @@
       buttons.push(b);
     });
     card.appendChild(choicesWrap);
+    card.appendChild(resultHost);
 
     const actions = document.createElement("div");
     actions.className = "actions";
@@ -2658,7 +2697,6 @@
     hint.textContent = "Press 1-" + GENDER_CLASSES.length + " or click. Enter to advance.";
     actions.appendChild(hint);
     card.appendChild(actions);
-    card.appendChild(resultHost);
 
     card.addEventListener("keydown", (e) => {
       if (marked) { if (e.key === "Enter") { e.preventDefault(); doNext(); } return; }
@@ -2706,12 +2744,10 @@
     card.className = "qcard spelling-drill-card";
     card.tabIndex = -1;
 
-    // Meta line: class label
-    const clsId = (q.subtopic || "").replace("spelling.", "");
-    const clsLabel = (SPELLING_CLASSES.find(c => c.id === clsId) || {}).label || clsId;
+    // Meta line: neutral — don't reveal the error class (gives away the pattern).  QoderWork 2026-07-22
     const meta = document.createElement("div");
     meta.className = "meta faint";
-    meta.textContent = "Spelling drill · " + clsLabel;
+    meta.textContent = "Spelling drill";
     card.appendChild(meta);
 
     // Prompt
@@ -2737,17 +2773,23 @@
     next.addEventListener("click", doNext);
     next.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); doNext(); } });
 
-    const commit = (pickedIdx) => {
+    // Shuffle choice positions so the correct answer isn't always #2.  QoderWork 2026-07-22
+    const choiceCount = (q.choices || []).length;
+    const order = shuffle([...Array(choiceCount).keys()]); // e.g. [1,0] or [0,2,1]
+    const correctDisplayIdx = order.indexOf(q.answer_index);
+
+    const commit = (displayIdx) => {
       if (marked) return;
       marked = true;
-      const result = buildMcqResult(q, pickedIdx);
+      const origIdx = order[displayIdx];
+      const result = buildMcqResult(q, origIdx);
       const attempt = LL.store.recordAttempt("vocab",
         { id: q.external_id || ("spelling_" + spellingIndex), prompt: q.prompt },
-        q.choices[pickedIdx], result);
+        q.choices[origIdx], result);
       recentlyChangedBuckets = new Set(attempt.events.map(e => e.bucket));
       buttons.forEach((b, i) => {
-        if (i === q.answer_index) b.classList.add("gc-correct");
-        if (i === pickedIdx && pickedIdx !== q.answer_index) b.classList.add("gc-wrong");
+        if (i === correctDisplayIdx) b.classList.add("gc-correct");
+        if (i === displayIdx && displayIdx !== correctDisplayIdx) b.classList.add("gc-wrong");
         b.disabled = true;
       });
       resultHost.innerHTML = "";
@@ -2764,28 +2806,159 @@
       setTimeout(() => next.focus({ preventScroll: true }), 0);
     };
 
-    (q.choices || []).forEach((ch, i) => {
+    order.forEach((origIdx, displayIdx) => {
       const b = document.createElement("button");
       b.type = "button";
       b.className = "mcq-choice spelling-choice";
-      const num = document.createElement("span"); num.className = "gc-num"; num.textContent = i + 1;
-      const lbl = document.createElement("span"); lbl.className = "gc-label"; lbl.textContent = ch;
+      const num = document.createElement("span"); num.className = "gc-num"; num.textContent = displayIdx + 1;
+      const lbl = document.createElement("span"); lbl.className = "gc-label"; lbl.textContent = q.choices[origIdx];
       b.appendChild(num); b.appendChild(lbl);
-      b.addEventListener("click", () => commit(i));
+      b.addEventListener("click", () => commit(displayIdx));
       choicesWrap.appendChild(b);
       buttons.push(b);
     });
     card.appendChild(choicesWrap);
+
+    card.appendChild(resultHost);
 
     const actions = document.createElement("div");
     actions.className = "actions";
     actions.appendChild(next);
     const hint = document.createElement("span");
     hint.className = "kbd-hint";
-    hint.textContent = "Press 1-" + (q.choices || []).length + " or click. Enter to advance.";
+    hint.textContent = "Press 1-" + choiceCount + " or click. Enter to advance.";
     actions.appendChild(hint);
     card.appendChild(actions);
+
+    card.addEventListener("keydown", (e) => {
+      if (marked) { if (e.key === "Enter") { e.preventDefault(); doNext(); } return; }
+      const n = parseInt(e.key, 10);
+      if (n >= 1 && n <= (q.choices || []).length) { e.preventDefault(); commit(n - 1); }
+    });
+
+    host.appendChild(card);
+    setTimeout(() => { ensureCardVisible(card); card.focus(); }, 0);
+    if (!keepAxes) renderVocabAxes();
+  }
+
+  // ---- Accent drill (AccentAuthor variant pipeline; index-scored MCQ)  QoderWork 2026-07-22 ----
+  let accentDeck = [];
+  let accentIndex = 0;
+
+  function buildAccentDeck() {
+    accentDeck = shuffle(grammarQuestions.filter(q =>
+      q.topic === "orthography" &&
+      typeof q.subtopic === "string" && q.subtopic.indexOf("accent.") === 0 &&
+      q.type === "mcq"
+    ));
+    accentIndex = 0;
+  }
+
+  function renderAccentDrillCard(keepAxes) {
+    const host = document.getElementById("vocab-host");
+    if (!host) return;
+    host.innerHTML = "";
+    if (!accentDeck.length) {
+      const msg = document.createElement("p");
+      msg.className = "muted";
+      msg.style.cssText = "padding:18px;font-style:italic";
+      msg.textContent = "No accent items loaded. Run the variant pipeline (tools/expand_accent_seeds.js).";
+      host.appendChild(msg);
+      return;
+    }
+    if (accentIndex >= accentDeck.length) { accentDeck = shuffle(accentDeck); accentIndex = 0; }
+    const q = accentDeck[accentIndex];
+    LL._cardShownAt = Date.now();
+
+    const card = document.createElement("div");
+    card.className = "qcard accent-drill-card";
+    card.tabIndex = -1;
+
+    // Meta line: neutral — don't reveal the placement class.  QoderWork 2026-07-22
+    const meta = document.createElement("div");
+    meta.className = "meta faint";
+    meta.textContent = "Accent drill";
+    card.appendChild(meta);
+
+    // Prompt
+    const prompt = document.createElement("div");
+    prompt.className = "prompt";
+    prompt.textContent = q.prompt || "Which is spelled correctly?";
+    card.appendChild(prompt);
+
+    // Choices
+    const choicesWrap = document.createElement("div");
+    choicesWrap.className = "mcq-choices accent-choices";
+    const resultHost = document.createElement("div");
+    const buttons = [];
+    let marked = false;
+
+    const doNext = () => {
+      accentIndex++;
+      if (accentIndex >= accentDeck.length) { accentDeck = shuffle(accentDeck); accentIndex = 0; }
+      renderVocab(true);
+    };
+    const next = document.createElement("button");
+    next.type = "button"; next.className = "btn"; next.textContent = "Skip"; next.title = "Next item";
+    next.addEventListener("click", doNext);
+    next.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); doNext(); } });
+
+    // Shuffle choice positions so the correct answer isn't always in the same slot.  QoderWork 2026-07-22
+    const choiceCount = (q.choices || []).length;
+    const order = shuffle([...Array(choiceCount).keys()]);
+    const correctDisplayIdx = order.indexOf(q.answer_index);
+
+    const commit = (displayIdx) => {
+      if (marked) return;
+      marked = true;
+      const origIdx = order[displayIdx];
+      const result = buildMcqResult(q, origIdx);
+      const attempt = LL.store.recordAttempt("vocab",
+        { id: q.external_id || ("accent_" + accentIndex), prompt: q.prompt },
+        q.choices[origIdx], result);
+      recentlyChangedBuckets = new Set(attempt.events.map(e => e.bucket));
+      buttons.forEach((b, i) => {
+        if (i === correctDisplayIdx) b.classList.add("gc-correct");
+        if (i === displayIdx && displayIdx !== correctDisplayIdx) b.classList.add("gc-wrong");
+        b.disabled = true;
+      });
+      resultHost.innerHTML = "";
+      resultHost.appendChild(renderResult(result));
+      // Show explanation if present
+      if (q.explanation) {
+        const expl = document.createElement("div");
+        expl.className = "gd-declension";
+        expl.textContent = q.explanation;
+        resultHost.appendChild(expl);
+      }
+      renderLiveStats();
+      next.textContent = "Next";
+      setTimeout(() => next.focus({ preventScroll: true }), 0);
+    };
+
+    order.forEach((origIdx, displayIdx) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "mcq-choice accent-choice";
+      const num = document.createElement("span"); num.className = "gc-num"; num.textContent = displayIdx + 1;
+      const lbl = document.createElement("span"); lbl.className = "gc-label"; lbl.textContent = q.choices[origIdx];
+      b.appendChild(num); b.appendChild(lbl);
+      b.addEventListener("click", () => commit(displayIdx));
+      choicesWrap.appendChild(b);
+      buttons.push(b);
+    });
+    card.appendChild(choicesWrap);
+
     card.appendChild(resultHost);
+
+    const actions = document.createElement("div");
+    actions.className = "actions";
+    actions.appendChild(next);
+    const hint = document.createElement("span");
+    hint.className = "kbd-hint";
+    hint.textContent = "Press 1-" + choiceCount + " or click. Enter to advance.";
+    actions.appendChild(hint);
+    card.appendChild(actions);
 
     card.addEventListener("keydown", (e) => {
       if (marked) { if (e.key === "Enter") { e.preventDefault(); doNext(); } return; }
@@ -2805,6 +2978,8 @@
     host.innerHTML = "";
     // Spelling drill: uses its own MCQ deck, not vocab entries.  QoderWork 2026-07-22
     if (vocabFilter.spellingDrill) { renderSpellingDrillCard(keepAxes); return; }
+    // Accent drill: uses its own MCQ deck, not vocab entries.  QoderWork 2026-07-22
+    if (vocabFilter.accentDrill) { renderAccentDrillCard(keepAxes); return; }
     if (!vocabEntries.length) {
       const msg = document.createElement("p");
       msg.className = "muted";
@@ -3379,9 +3554,17 @@
           const m = averageCorrectnessAcrossLemmas(lemmas, dirFilter, aspect);
           cell.classList.add("avg-mode");
           cell.style.background = rwgColour(m.correctness, true);
-          const pct = Math.round(m.correctness * 100) + "%";
-          meta.textContent = lemmaCount + " words - " + m.touched + " touched - avg " + pct;
-          cell.title = c.label + " (averaged) - click to expand";
+          // Ticks/crosses for touched lemmas instead of "avg X%".  QoderWork 2026-07-22
+          let tc = "";
+          let shown = 0;
+          for (const lemma of lemmas) {
+            if (shown >= 12) break;
+            const ev = eventsForLemmas([lemma], { direction: dirFilter || "any", aspect: aspect || "translation" });
+            const wc = recencyWeightedCorrectness(ev);
+            if (wc.hasEvents) { tc += wc.correctness >= 0.5 ? "\u2713" : "\u2717"; shown++; }
+          }
+          meta.textContent = lemmaCount + " words" + (tc ? "  " + tc : "");
+          cell.title = c.label + " - click to expand";
         } else {
           cell.classList.add("dot-mode");
           const dots = document.createElement("div");
@@ -3542,45 +3725,12 @@
       return;
     }
 
-    // -------- header: number inputs + palette pickers --------
+    // -------- header --------
     const header = document.createElement("div");
     header.className = "vocab-axes-header";
 
-    function buildNumberInput(labelText, getter, setter, min, max, step) {
-      const wrap = document.createElement("label");
-      wrap.className = "vocab-numinput";
-      const lbl = document.createElement("span");
-      lbl.className = "vocab-input-label";
-      lbl.textContent = labelText;
-      const num = document.createElement("input");
-      num.type = "number";
-      num.min = String(min); num.max = String(max); num.step = String(step);
-      num.value = String(getter());
-      num.addEventListener("input", () => {
-        const v = parseFloat(num.value);
-        if (!isNaN(v)) { setter(v); renderVocabAxes(); }
-      });
-      wrap.appendChild(lbl);
-      wrap.appendChild(num);
-      return wrap;
-    }
-    function buildColourInput(labelText, getter, setter) {
-      const wrap = document.createElement("label");
-      wrap.className = "vocab-colinput";
-      const lbl = document.createElement("span");
-      lbl.className = "vocab-input-label";
-      lbl.textContent = labelText;
-      const inp = document.createElement("input");
-      inp.type = "color";
-      inp.value = rgbToHex(getter());
-      inp.addEventListener("input", () => {
-        const rgb = hexToRgb(inp.value);
-        if (rgb) { setter(rgb); renderVocabAxes(); }
-      });
-      wrap.appendChild(lbl);
-      wrap.appendChild(inp);
-      return wrap;
-    }
+    // buildNumberInput / buildColourInput removed — dead code after palette-tuning
+    // row retired (Smith 2026-07-21).  QoderWork 2026-07-22
 
     // Palette-tuning row (Untouched baseline + colour pickers) REMOVED
     // per Smith 2026-07-21: "that whole thing is not linked to anything and
@@ -4799,12 +4949,28 @@
       if (seg.kind === "italian") {
         renderTextWithLemmas(el, seg.text, lemmaMap, item, vocabHelpsUsedRef);
       } else if (seg.kind === "cue") {
+        // Cue-label heuristic (Architecture_Housing_cue_notation_renderer):  QoderWork 2026-07-22
+        // "Use X" fires ONLY for a single Italian citation form that is the
+        // learner's OPERAND. English glosses, aspect triggers, and context
+        // lemmas (auxiliary-fill items) get different treatment.
+        const txt = String(seg.text).trim();
+        const isMulti = /\s/.test(txt);
+        const endsVowel = /[aeiouàèéìòù]$/.test(txt.toLowerCase());
+        const looksItalian = !isMulti && endsVowel && !/^(usually|early|already|only|always|never|sometimes|often|now|today|here|there|where|when|why|how|still|just|also|very|more|less|quite|rather|enough|almost|about|again|once|twice)$/i.test(txt);
+        // Auxiliary-context: the cued lemma is context, not the operand.
+        const isAuxItem = item && Array.isArray(item.markpoints) &&
+          item.markpoints.some(mp => /auxiliary|agreement/.test(mp.bucket || ""));
+        let label;
+        if (isMulti) label = "Meaning: ";
+        else if (!looksItalian) label = "";
+        else if (isAuxItem) label = "Verb: ";
+        else label = "Use ";
         const labelSpan = document.createElement("span");
         labelSpan.className = "prompt-cue-label";
-        labelSpan.textContent = /\s/.test(String(seg.text).trim()) ? "Register: " : "Use ";
+        labelSpan.textContent = label;
         const valSpan = document.createElement("span");
         valSpan.className = "prompt-cue-word";
-        valSpan.textContent = seg.text;
+        valSpan.textContent = txt;
         el.appendChild(labelSpan);
         el.appendChild(valSpan);
       } else {

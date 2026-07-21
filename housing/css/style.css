@@ -105,9 +105,10 @@ main {
   align-items: center;
   margin-bottom: 14px;
   padding: 8px 12px;
-  background: white;
-  border: 1px solid var(--line);
-  border-radius: 4px;
+  background: var(--bg);
+  border: none;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
   font-size: 13px;
   flex-wrap: wrap;
   position: sticky; top: 110px; z-index: 35;   /* QoderWork 2026-07-22: direction sticky; clears the ~110px sticky header */
@@ -129,6 +130,14 @@ main {
   color: var(--faint);
   font-size: 12px;
 }
+/* Mid-session mode switcher chips.  QoderWork 2026-07-22 */
+.filter-mode-row { display: flex; gap: 4px; width: 100%; margin-bottom: 4px; }
+.filter-mode-chip {
+  font: inherit; font-size: 12px; padding: 3px 10px;
+  border: 1px solid var(--line); border-radius: 999px;
+  background: var(--bg); color: var(--muted); cursor: pointer;
+}
+.filter-mode-chip.active { background: var(--accent); color: #fff; border-color: var(--accent); font-weight: 600; }
 
 /* Question card */
 .qcard {
@@ -1056,15 +1065,15 @@ body.strand-vocab-active #live-stats { display: none; }
    skill must not read as untouched). */
 .freq-flank-cell.has-practice { box-shadow: inset 0 0 0 1px rgba(27,138,74,.85); }
 .vocab-lemma-dot.has-practice { box-shadow: inset 0 0 0 1px rgba(27,138,74,.85); }
-/* Gender drill: fixed-option classifier choices. */
-.gender-choices { border: 1.5px solid var(--border); border-radius: 8px; padding: 8px; background: var(--cream, #faf9f6); }
-.gender-choice { display: flex; align-items: baseline; gap: 6px; text-align: left; font-size: 14px; padding: 7px 10px; }
+/* Gender drill: fixed-option classifier choices — compact 2-col grid.  QoderWork 2026-07-22 */
+.gender-choices { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; border: 1.5px solid var(--border); border-radius: 8px; padding: 6px; background: var(--cream, #faf9f6); }
+.gender-choice { display: flex; align-items: baseline; gap: 5px; text-align: left; font-size: 13px; padding: 5px 8px; }
 .gender-choice .gc-num { font-weight: 700; color: var(--accent); font-size: 10px; min-width: 1.1em; opacity: 0.7; }
-.gender-choice .gc-label { font-weight: 600; line-height: 1.3; }
+.gender-choice .gc-label { font-weight: 600; line-height: 1.25; }
 .gender-choice.gc-correct { outline: 2px solid #2e7d4f; background: rgba(46,125,79,0.09); }
 .gender-choice.gc-wrong { outline: 2px solid #b03030; background: rgba(176,48,48,0.09); }
 .gd-lemma { color: var(--accent); }
-.gd-declension { margin-top: 8px; padding: 8px 12px; font-size: 15px; background: var(--cream, #faf9f6); border-radius: 6px; border: 1px solid var(--border); }
+.gd-declension { margin-top: 6px; padding: 10px 14px; font-size: 16px; font-weight: 600; background: var(--cream, #faf9f6); border-radius: 6px; border: 1px solid var(--border); border-left: 4px solid var(--accent); }
 
 /* Spelling drill: MCQ discrimination choices.  QoderWork 2026-07-22 */
 .spelling-choices { border: 1.5px solid var(--border); border-radius: 8px; padding: 8px; background: var(--cream, #faf9f6); }
