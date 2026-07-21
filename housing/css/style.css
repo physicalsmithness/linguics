@@ -110,7 +110,10 @@ main {
   border-radius: 4px;
   font-size: 13px;
   flex-wrap: wrap;
-  position: sticky; top: 0; z-index: 35;   /* QoderWork 2026-07-22: direction sticky */
+  position: sticky; top: 110px; z-index: 35;   /* QoderWork 2026-07-22: direction sticky; clears the ~110px sticky header */
+}
+@media (max-width:600px) {
+  .filter-bar { top: 78px; }   /* QoderWork 2026-07-22: shorter header on mobile (no nav tabs) */
 }
 .filter-bar label { color: var(--muted); }
 .filter-bar select {
