@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-21-r58";
+  const LL_BUILD = "2026-07-21-r59";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -1584,6 +1584,7 @@
       }
       renderLiveStats();
       marked = true;
+      if (input) input.readOnly = true;   // lock the answer once marked (Smith 2026-07-21)
       next.textContent = "Next";
       next.title = "Advance to the next question";
       // Deferring focus past the current event-loop tick is more reliable
@@ -1592,6 +1593,7 @@
     };
 
     const doMark = () => {
+      if (marked) return;   // already committed - no re-marking to overwrite a miss (Smith 2026-07-21)
       let result;
       if (isMcq) {
         if (selectedChoiceIdx === null) {
