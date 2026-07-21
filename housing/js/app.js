@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-21-r59";
+  const LL_BUILD = "2026-07-21-r61";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -589,9 +589,11 @@
   const ACCENTED_STRIP_RE = /[\u00e0\u00e8\u00e9\u00ec\u00f2\u00f9\u00c0\u00c8\u00c9\u00cc\u00d2\u00d9]/;
   const STRIP_STRANDS = ["grammar", "translation"];
   function buildPulseStrip(strandName) {
-    const strand = document.getElementById("strand-" + strandName);
-    if (!strand) return null;
-    let strip = strand.querySelector(".pulse-strip");
+    // Mounted in the stats pane's sticky header now (Smith 2026-07-21): the
+    // vocab strip belongs top-right and must not vanish on scroll. One shared strip.
+    const host = document.querySelector("#live-stats .live-header");
+    if (!host) return null;
+    let strip = host.querySelector(".pulse-strip");
     if (strip) return strip;
     strip = document.createElement("div");
     strip.className = "pulse-strip";
@@ -637,7 +639,7 @@
     mk("strip-acc", "ACC", "Accents: fires green when an accented answer lands right, amber on a slip.");
     mk("strip-str", "STR", "Stress: waiting for the stress drill - this light will fire when it exists.");
     mk("strip-gen", "GEN", "Gender: fires with each gender verdict.");
-    strand.insertBefore(strip, strand.firstChild);
+    host.insertBefore(strip, host.firstChild);
     return strip;
   }
   function eachStrip(fn) {
@@ -1832,7 +1834,7 @@
       // Use live AI marker when a Worker URL is configured; otherwise fall
       // back to the substring-tells stub.
       const markerUrl = (typeof LL.markerUrl === "function") ? LL.markerUrl() : "";
-      let result, costLine = null;
+      let result, costLine = null, aiError = null;
       if (markerUrl) {
         // Show a "marking..." indicator while the AI thinks
         resultHost.innerHTML = '<div class="muted" style="padding:14px;font-style:italic">Marking via AI...</div>';
@@ -1854,8 +1856,10 @@
           costLine.className = "marker-cost";
           costLine.textContent = `${modelShort} · ${payload.usage.input_tokens} in, ${payload.usage.output_tokens} out · ${LL.formatCost(payload.cost_usd)}`;
         } catch (e) {
-          // Fallback to stub on error so the learner still gets a result
-          resultHost.innerHTML = '<div class="muted" style="padding:8px;font-style:italic;color:#b03030">Live marker failed: ' + (e.message || e) + '. Falling back to stub.</div>';
+          // Surface WHY the AI marker didn't fire (Smith 2026-07-21: the note
+          // used to be wiped by the resultHost reset below, so it looked silent),
+          // then fall back to the stub so the learner still gets a result.
+          aiError = "AI marker didn't fire — " + (e.message || e) + ". Showing the stub estimate instead.";
           result = LL.markTranslationStub(it, raw, intent);
         }
       } else {
@@ -1867,6 +1871,7 @@
       const attempt = LL.store.recordAttempt("translation", it, raw, result, intent);
       recentlyChangedBuckets = new Set(attempt.events.map(e => e.bucket));
       resultHost.innerHTML = "";
+      if (aiError) { const aw = document.createElement("div"); aw.className = "marker-ai-error"; aw.textContent = aiError; resultHost.appendChild(aw); }
       resultHost.appendChild(renderResult(result));
       const tenseRowT = renderCandidateTensesRow(it);
       if (tenseRowT) resultHost.appendChild(tenseRowT);
@@ -5269,8 +5274,8 @@
           const marks = document.createElement("span");
           marks.className = "last10-marks";
           l10.appendChild(marks);
-          const ov = document.getElementById("live-overview");
-          if (ov && ov.parentNode === host0) host0.insertBefore(l10, ov);
+          const hdr = host0.querySelector(".live-header");
+          if (hdr) hdr.appendChild(l10);
           else host0.appendChild(l10);
         }
         const marksHost = l10.querySelector(".last10-marks");

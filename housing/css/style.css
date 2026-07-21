@@ -1965,3 +1965,12 @@ h1, h2, h3, .wordmark, .coverage-title, .analysis-section-title { font-family: F
 
 /* Sub-aspect label on each overview mini-cell (Smith 2026-07-21) */
 .overview-mini-label { font-size: 8.5px; color: var(--muted); line-height: 1.1; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+
+/* Stats-pane top pinned + last-10 coloured (Smith 2026-07-21) */
+#live-stats .live-header { position: sticky; top: 0; z-index: 5; background: var(--bg, #fdfaf4); padding-bottom: 4px; }
+#live-stats .live-header .pulse-strip { margin-top: 0; }
+#last10-row .mark.hit { color: var(--green, #2e7d4f); font-weight: 600; }
+#last10-row .mark.miss { color: var(--red, #b03030); font-weight: 600; }
+
+/* Surface why the AI translation marker didn't fire (Smith 2026-07-21) */
+.marker-ai-error { color: var(--red, #b03030); background: var(--red-soft, #f7e4e4); border: 1px solid #e6b8b8; border-radius: 6px; padding: 8px 12px; margin-bottom: 10px; font-size: 13px; }
