@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-21-r48";
+  const LL_BUILD = "2026-07-21-r49";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -1163,6 +1163,7 @@
     // Body class drives whether live-stats aside is visible. Vocab tab claims
     // the whole right side for the multi-axis heatmap.
     document.body.classList.toggle("strand-vocab-active", name === "vocab");
+    document.querySelectorAll("#mobile-tabs button").forEach(b => b.classList.toggle("active", b.dataset.mtab === name));
     if (name === "buckets") renderBucketsBrowse();
     if (name === "grammar") focusGrammarInput();
     if (name === "translation") focusTranslationInput();
@@ -1170,6 +1171,8 @@
   }
   document.querySelectorAll("nav#strand-nav button").forEach(b =>
     b.addEventListener("click", () => showStrand(b.dataset.strand)));
+  document.querySelectorAll("#mobile-tabs button").forEach(b =>
+    b.addEventListener("click", () => { const t = b.dataset.mtab; if (t === "analysis") showCoverage(); else showStrand(t); }));
 
   // -------------------- accent bar (shared) --------------------
   // opts.rewriteApostrophes: if false, don't auto-rewrite `e'` -> `è` etc.
@@ -7143,6 +7146,7 @@
 
   function showCoverage() {
     document.body.classList.add("coverage-active");
+    document.querySelectorAll("#mobile-tabs button").forEach(b => b.classList.toggle("active", b.dataset.mtab === "analysis"));
     const el = document.getElementById("coverage-view");
     if (el) el.hidden = false;
     renderCoverage();
