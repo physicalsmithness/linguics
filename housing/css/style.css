@@ -1422,25 +1422,17 @@ body.strand-vocab-active #live-stats { display: none; }
 .entry-gate-form .identity-save { font-size: 16px; padding: 8px 20px; }
 .proficient-note { font-size: 11px; color: var(--muted); }   /* QoderWork 2026-07-22 */
 
-/* Pulse strip (Smith 2026-07-20, geometry per his live feedback): five
-   GAPLESS 3x3 boxes of 1,000 words each, thin slivers at matching height,
-   ACC / STR / GEN micro-boxes. Lives on grammar AND translation. */
-.pulse-strip { display: flex; align-items: center; gap: 8px; margin: 2px 0 8px; }
-.strip-caption { font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); }
-.strip-vocab { display: inline-flex; align-items: center; gap: 3px; cursor: pointer; }
-.strip-box { display: grid; grid-template-columns: repeat(3, 5px); grid-auto-rows: 5px; gap: 0; }
-.strip-cell { background: #eceadf; }
-.strip-cell + .strip-cell { border-left: none; }
-.strip-slivers { display: inline-flex; gap: 1px; margin-left: 2px; }
-.strip-sliver { width: 2px; height: 15px; background: #eceadf; }
-.strip-cell.seen, .strip-sliver.seen { background: #cfd8e8; }
-.strip-mini { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 16px; border-radius: 3px; background: #eceadf; border: 1px solid var(--line); font-size: 8px; letter-spacing: 0.05em; color: var(--muted); }
+/* Pulse strip: 9 full-width boxes (5 vocab + ACC/STR/GEN/SP).  QoderWork 2026-07-22 */
+.pulse-strip { display: flex; gap: 3px; margin: 2px 0 8px; width: 100%; }
+.strip-box9 { flex: 1; display: flex; align-items: center; justify-content: center; height: 28px; border-radius: 4px; background: #eceadf; border: 1px solid var(--line); cursor: default; position: relative; overflow: hidden; }
+.strip-box9[data-kind="vocab"] { cursor: pointer; }
+.strip-box9-label { font-size: 9px; font-weight: 700; letter-spacing: 0.06em; color: var(--muted); text-transform: uppercase; z-index: 1; }
 .flash-good { animation: strip-good 900ms ease-out 1; }
 .flash-bad { animation: strip-bad 900ms ease-out 1; }
 .flash-warm { animation: strip-warm 900ms ease-out 1; }
-@keyframes strip-good { 0% { background: #2f8f4e; color: #fff; } 100% {} }
-@keyframes strip-bad { 0% { background: #d04848; color: #fff; } 100% {} }
-@keyframes strip-warm { 0% { background: #d99a1b; color: #fff; } 100% {} }
+@keyframes strip-good { 0% { background: #2f8f4e; } 100% {} }
+@keyframes strip-bad { 0% { background: #d04848; } 100% {} }
+@keyframes strip-warm { 0% { background: #d99a1b; } 100% {} }
 
 /* Second-chance prompt — inline beneath the input on a chip-stem-mismatch
    wrong answer. Kind tone, never chiding. Enter confirms, Esc retries.

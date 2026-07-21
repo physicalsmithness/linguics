@@ -559,21 +559,10 @@
 
     return bar;
   }
-  // ---- pulse strip (Smith direct, 2026-07-20; reworked same day to his
-  // live feedback) ----
-  // Above the drill on BOTH grammar and translation strands: a "Vocabulary"
-  // mini map - FIVE gapless 3x3 boxes, each box 1,000 ranks (cell ~111), then
-  // thin slivers for 5,001-20,000 at the same height - plus three micro
-  // boxes: ACC (fires on accent verdicts), STR (stress: inert until the
-  // stress drill exists - the link is the point), GEN (fires on gender
-  // events). Quiet base, brief fires, click-through to vocab coverage.
-  const STRIP_CELL_SPAN = 1000 / 9;     // ~111 ranks per chunky cell
-  function stripCellForRank(rank) {
-    if (!rank || rank < 1) return null;
-    if (rank <= 5000) return { kind: "cell", index: Math.min(44, Math.floor((rank - 1) / STRIP_CELL_SPAN)) };
-    if (rank <= 20000) return { kind: "sliver", index: Math.min(14, Math.floor((rank - 5001) / 1000)) };
-    return { kind: "sliver", index: 14 };
-  }
+  // ---- pulse strip (Smith direct, 2026-07-20; redesigned 2026-07-22) ----  QoderWork 2026-07-22
+  // 9 full-width boxes in the sticky header: 5 vocab frequency boxes (1k-5k)
+  // + ACC + STR + GEN + SP. Each box shows a gradient by mastery and fires
+  // individually on relevant events. Vocab boxes click through to vocab strand.
   let _lemmaMinRank = null;
   function lemmaMinRank(lemma) {
     if (!_lemmaMinRank) {
@@ -586,59 +575,43 @@
     }
     return _lemmaMinRank.get(String(lemma || "").toLowerCase()) || null;
   }
-  const ACCENTED_STRIP_RE = /[\u00e0\u00e8\u00e9\u00ec\u00f2\u00f9\u00c0\u00c8\u00c9\u00cc\u00d2\u00d9]/;
   const STRIP_STRANDS = ["grammar", "translation"];
+  // 9-box pulse strip: 5 vocab frequency boxes (1k-5k) + ACC + STR + GEN + SP.  QoderWork 2026-07-22
+  // Each box shows a gradient background reflecting mastery, and fires individually on relevant events.
+  const STRIP_BOX_DEFS = [
+    { id: "vocab1", label: "1k",    kind: "vocab", lo: 1,    hi: 1000 },
+    { id: "vocab2", label: "2k",    kind: "vocab", lo: 1001, hi: 2000 },
+    { id: "vocab3", label: "3k",    kind: "vocab", lo: 2001, hi: 3000 },
+    { id: "vocab4", label: "4k",    kind: "vocab", lo: 3001, hi: 4000 },
+    { id: "vocab5", label: "5k",    kind: "vocab", lo: 4001, hi: 5000 },
+    { id: "acc",    label: "ACC",   kind: "accent" },
+    { id: "str",    label: "STR",   kind: "stress" },
+    { id: "gen",    label: "GEN",   kind: "gender" },
+    { id: "sp",     label: "SP",    kind: "spelling" }
+  ];
   function buildPulseStrip(strandName) {
-    // Mounted in the stats pane's sticky header now (Smith 2026-07-21): the
-    // vocab strip belongs top-right and must not vanish on scroll. One shared strip.
     const host = document.querySelector("#live-stats .live-header");
     if (!host) return null;
     let strip = host.querySelector(".pulse-strip");
     if (strip) return strip;
     strip = document.createElement("div");
     strip.className = "pulse-strip";
-    const cap = document.createElement("span");
-    cap.className = "strip-caption";
-    cap.textContent = "Vocabulary";
-    strip.appendChild(cap);
-    const vocabMap = document.createElement("span");
-    vocabMap.className = "strip-vocab";
-    vocabMap.title = "Words 1\u20135,000 in five boxes of 1,000, then 1,000-word slivers to 20,000. Click for your vocab coverage.";
-    vocabMap.addEventListener("click", () => showStrand("vocab"));
-    for (let b = 0; b < 5; b++) {
-      const box = document.createElement("span");
-      box.className = "strip-box";
-      for (let c = 0; c < 9; c++) {
-        const idx = b * 9 + c;
-        const cell = document.createElement("i");
-        cell.className = "strip-cell";
-        cell.dataset.idx = String(idx);
-        cell.title = "words ~" + (Math.round(idx * STRIP_CELL_SPAN) + 1) + "\u2013" + Math.round((idx + 1) * STRIP_CELL_SPAN);
-        box.appendChild(cell);
-      }
-      vocabMap.appendChild(box);
+    for (const def of STRIP_BOX_DEFS) {
+      const box = document.createElement("div");
+      box.className = "strip-box9 strip-" + def.id;
+      box.dataset.kind = def.kind;
+      box.dataset.id = def.id;
+      if (def.kind === "vocab") { box.dataset.lo = def.lo; box.dataset.hi = def.hi; }
+      box.title = def.kind === "vocab"
+        ? "Words " + def.lo + "\u2013" + def.hi + ": click for vocab coverage"
+        : def.label + " mastery";
+      if (def.kind === "vocab") box.addEventListener("click", () => showStrand("vocab"));
+      const lbl = document.createElement("span");
+      lbl.className = "strip-box9-label";
+      lbl.textContent = def.label;
+      box.appendChild(lbl);
+      strip.appendChild(box);
     }
-    const slivers = document.createElement("span");
-    slivers.className = "strip-slivers";
-    for (let i2 = 0; i2 < 15; i2++) {
-      const sl = document.createElement("i");
-      sl.className = "strip-sliver";
-      sl.dataset.idx = String(i2);
-      sl.title = "words " + (5001 + i2 * 1000) + "\u2013" + (5000 + (i2 + 1) * 1000);
-      slivers.appendChild(sl);
-    }
-    vocabMap.appendChild(slivers);
-    strip.appendChild(vocabMap);
-    const mk = (cls, label, title) => {
-      const el = document.createElement("span");
-      el.className = "strip-mini " + cls;
-      el.textContent = label;
-      el.title = title;
-      strip.appendChild(el);
-    };
-    mk("strip-acc", "ACC", "Accents: fires green when an accented answer lands right, amber on a slip.");
-    mk("strip-str", "STR", "Stress: waiting for the stress drill - this light will fire when it exists.");
-    mk("strip-gen", "GEN", "Gender: fires with each gender verdict.");
     host.insertBefore(strip, host.firstChild);
     return strip;
   }
@@ -648,19 +621,56 @@
       if (strip) fn(strip);
     }
   }
+  // Mastery ratio for a set of events: correctness of attempted.
+  function stripMastery(events) {
+    let att = 0, cor = 0;
+    for (const ev of events) {
+      att += (ev.attempted_credit || 1);
+      cor += (ev.correctness_credit || 0);
+    }
+    return att > 0 ? cor / att : 0;
+  }
   function paintStripBase() {
-    const spans = new Set();
+    const allEvents = [];
     for (const a of ((LL.state && LL.state.attempts) || [])) {
-      for (const ev of (a.events || [])) {
-        if (typeof ev.bucket === "string" && ev.bucket.indexOf("vocabulary.it.") === 0) {
-          const cell = stripCellForRank(lemmaMinRank(ev.bucket.split(".")[2]));
-          if (cell) spans.add(cell.kind + cell.index);
+      for (const ev of (a.events || [])) allEvents.push(ev);
+    }
+    // Bucket events by box kind.
+    const byBox = {};
+    for (const def of STRIP_BOX_DEFS) byBox[def.id] = [];
+    for (const ev of allEvents) {
+      const b = String(ev.bucket || "");
+      if (b.indexOf("vocabulary.it.") === 0) {
+        const lemma = b.split(".")[2];
+        const rank = lemmaMinRank(lemma);
+        if (rank != null) {
+          for (const def of STRIP_BOX_DEFS) {
+            if (def.kind === "vocab" && rank >= def.lo && rank <= def.hi) { byBox[def.id].push(ev); break; }
+          }
         }
+        if (b.indexOf(".gender") >= 0) byBox.gen.push(ev);
+      } else if (b.indexOf("orthography.accent") === 0) {
+        byBox.acc.push(ev);
+      } else if (b.indexOf("orthography.spelling") === 0) {
+        byBox.sp.push(ev);
       }
+      // STR: no events yet (stress drill not built)
     }
     eachStrip(strip => {
-      strip.querySelectorAll(".strip-cell").forEach(el => el.classList.toggle("seen", spans.has("cell" + el.dataset.idx)));
-      strip.querySelectorAll(".strip-sliver").forEach(el => el.classList.toggle("seen", spans.has("sliver" + el.dataset.idx)));
+      for (const def of STRIP_BOX_DEFS) {
+        const el = strip.querySelector('.strip-box9[data-id="' + def.id + '"]');
+        if (!el) continue;
+        const m = stripMastery(byBox[def.id]);
+        const n = byBox[def.id].length;
+        // Gradient: base cream -> green by mastery; opacity scales with attempts.
+        const alpha = n === 0 ? 0 : Math.min(0.15 + m * 0.55, 0.7);
+        el.style.background = n === 0
+          ? ""
+          : "linear-gradient(to top, rgba(47,143,78," + alpha.toFixed(2) + ") 0%, rgba(47,143,78," + (alpha * 0.3).toFixed(2) + ") 100%)";
+        el.title = (def.kind === "vocab"
+          ? "Words " + def.lo + "\u2013" + def.hi
+          : def.label) + ": " + n + " events, " + Math.round(m * 100) + "% correct";
+      }
     });
   }
   function pulseStripFlash() {
@@ -672,35 +682,37 @@
       void el.offsetWidth;
       el.classList.add(cls);
     };
-    let sawAccentRight = false, sawSlip = false, genderGood = null;
-    const vocabFires = [];
+    // Collect which boxes fire.
+    const vocabFires = {};   // boxId -> good|bad
+    let accFire = null, genFire = null, spFire = null;
     for (const ev of (a.events || [])) {
       const b = String(ev.bucket || "");
+      const good = (ev.correctness_credit || 0) > 0;
       if (b.indexOf("vocabulary.it.") === 0) {
-        const cell = stripCellForRank(lemmaMinRank(b.split(".")[2]));
-        if (cell) vocabFires.push({ cell, good: (ev.correctness_credit || 0) > 0 });
-        if (b.indexOf(".gender") >= 0) {
-          const right = (ev.correctness_credit || 0) > 0;
-          genderGood = (genderGood === null) ? right : (genderGood && right);
+        const lemma = b.split(".")[2];
+        const rank = lemmaMinRank(lemma);
+        if (rank != null) {
+          for (const def of STRIP_BOX_DEFS) {
+            if (def.kind === "vocab" && rank >= def.lo && rank <= def.hi) {
+              vocabFires[def.id] = (vocabFires[def.id] === "bad") ? "bad" : (good ? "good" : "bad");
+              break;
+            }
+          }
         }
-      } else if (b.indexOf("orthography.") === 0) {
-        sawSlip = true;
-      } else {
-        const right = (ev.correctness_credit || 0) >= (ev.attempted_credit || 1);
-        if (right && ACCENTED_STRIP_RE.test(String(ev.evidence || ""))) sawAccentRight = true;
+        if (b.indexOf(".gender") >= 0) genFire = (genFire === "bad") ? "bad" : (good ? "good" : "bad");
+      } else if (b.indexOf("orthography.accent") === 0) {
+        accFire = good ? "good" : "warm";
+      } else if (b.indexOf("orthography.spelling") === 0) {
+        spFire = good ? "good" : "bad";
       }
     }
     eachStrip(strip => {
-      for (const f of vocabFires) {
-        const el = strip.querySelector(f.cell.kind === "cell"
-          ? '.strip-cell[data-idx="' + f.cell.index + '"]'
-          : '.strip-sliver[data-idx="' + f.cell.index + '"]');
-        doFlash(el, f.good ? "flash-good" : "flash-bad");
-        if (el) el.classList.add("seen");
+      for (const [id, verdict] of Object.entries(vocabFires)) {
+        doFlash(strip.querySelector('.strip-box9[data-id="' + id + '"]'), verdict === "good" ? "flash-good" : "flash-bad");
       }
-      if (sawSlip) doFlash(strip.querySelector(".strip-acc"), "flash-warm");
-      else if (sawAccentRight) doFlash(strip.querySelector(".strip-acc"), "flash-good");
-      if (genderGood !== null) doFlash(strip.querySelector(".strip-gen"), genderGood ? "flash-good" : "flash-bad");
+      if (accFire) doFlash(strip.querySelector('.strip-box9[data-id="acc"]'), accFire === "good" ? "flash-good" : "flash-warm");
+      if (genFire) doFlash(strip.querySelector('.strip-box9[data-id="gen"]'), genFire === "good" ? "flash-good" : "flash-bad");
+      if (spFire) doFlash(strip.querySelector('.strip-box9[data-id="sp"]'), spFire === "good" ? "flash-good" : "flash-bad");
     });
   }
   function renderPulseStrip() {
