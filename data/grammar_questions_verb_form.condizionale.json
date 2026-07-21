@@ -9,7 +9,7 @@
     "prompt": "Completa: 'Al posto tuo, ____ con il direttore.' (parlare, io)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -61,7 +61,7 @@
     "prompt": "Completa: 'Se non fossi così stanco, tu ____ di più.' (lavorare)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -113,7 +113,7 @@
     "prompt": "Completa: 'Con più soldi, Marco ____ una casa al mare.' (comprare)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -175,7 +175,7 @@
     "prompt": "Completa: 'Al posto vostro, ____ in centro.' (abitare, noi)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -227,7 +227,7 @@
     "prompt": "Completa: 'Se non fossero così timidi, ____ con noi.' (cantare, loro)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -279,7 +279,7 @@
     "prompt": "Completa: 'Se potessimo, ____ subito a casa.' (tornare, noi)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -328,10 +328,10 @@
     "subtopic": "formation.regular_ere",
     "difficulty": 2,
     "cefr_level_target": "B1",
-    "prompt": "Completa: 'Grazie, ____ volentieri un tè.' (prendere, io)",
+    "prompt": "Completa: 'Grazie, ____ volentieri un tè.' (prendere, io, condizionale)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -352,6 +352,10 @@
           {
             "phrase": "prenderebbe",
             "match_at": "word"
+          },
+          {
+            "phrase": "prendo",
+            "match_at": "word"
           }
         ]
       }
@@ -369,9 +373,10 @@
       }
     ],
     "explanation": "\"Grazie, prenderei volentieri un tè.\" (Thank you, I would gladly have a tea.) Accepting an offer politely ('grazie, volentieri') takes the conditional. An -ere verb drops only the final -e of the infinitive to give the future stem prender-, with nothing dropped from inside, and adds the io ending -ei: prenderei. Cutting the stem down to prendr- (prendrei) wrongly treats a regular -ere verb as if it syncopated.",
-    "examiner_note": "prendrei guards against false syncope (treating a regular -ere verb like avere/dovere).",
-    "version": 2,
-    "person": "1sg"
+    "examiner_note": "prendrei guards against false syncope (treating a regular -ere verb like avere/dovere). [Crit-21 retrofit 2026-07-20: cue names the tense (condizionale) as the Rev-26 trigger; present competitor 'prendo' guarded in must_not.]",
+    "version": 3,
+    "person": "1sg",
+    "prompt_supplies_base_form": true
   },
   {
     "external_id": "cond_ere_scrivere_3sg_01",
@@ -383,7 +388,7 @@
     "prompt": "Completa: 'Marco ti ____ una lettera, se avesse tempo.' (scrivere)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -435,7 +440,7 @@
     "prompt": "Completa: 'Al posto tuo, ____ il contratto due volte.' (leggere, noi)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -487,7 +492,7 @@
     "prompt": "Completa: 'Al posto mio, voi cosa ____, il treno o l'aereo?' (prendere)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -537,10 +542,10 @@
     "subtopic": "formation.regular_ire",
     "difficulty": 2,
     "cefr_level_target": "B1",
-    "prompt": "Completa: 'Con un po' di calma, ____ meglio la lezione.' (capire, io)",
+    "prompt": "Completa: 'Con un po' di calma, ____ meglio la lezione.' (capire, io, condizionale)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -561,6 +566,10 @@
           {
             "phrase": "capirebbe",
             "match_at": "word"
+          },
+          {
+            "phrase": "capisco",
+            "match_at": "word"
           }
         ]
       }
@@ -578,9 +587,10 @@
       }
     ],
     "explanation": "\"Con un po' di calma, capirei meglio la lezione.\" (With a little calm, I would understand the lesson better.) Capire takes the -isc- insert in the present (capisco), but the conditional has no -isc- at all: it is built on the future stem capir-, which keeps the infinitive's i, plus the io ending -ei, giving capirei. Carrying the present's insert into the conditional (capiscirei) is the slip this item guards against.",
-    "examiner_note": "Suppressed: a 'Regular -ire' breadcrumb would tell the learner capire is regular here (no -isc-), the very thing tested. capiscirei is the diagnostic miss.",
-    "version": 2,
-    "person": "1sg"
+    "examiner_note": "Suppressed: a 'Regular -ire' breadcrumb would tell the learner capire is regular here (no -isc-), the very thing tested. capiscirei is the diagnostic miss. [Crit-21 retrofit 2026-07-20: cue names the tense (condizionale) as the Rev-26 trigger; present competitor 'capisco' guarded in must_not.]",
+    "version": 3,
+    "person": "1sg",
+    "prompt_supplies_base_form": true
   },
   {
     "external_id": "cond_ire_finire_3sg_01",
@@ -590,10 +600,10 @@
     "subtopic": "formation.regular_ire",
     "difficulty": 2,
     "cefr_level_target": "B1",
-    "prompt": "Completa: 'Da solo, il lavoro non ____ mai.' (finire)",
+    "prompt": "Completa: 'Da solo, il lavoro non ____ mai.' (finire, condizionale)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -613,6 +623,10 @@
           },
           {
             "phrase": "finirebe",
+            "match_at": "word"
+          },
+          {
+            "phrase": "finisce",
             "match_at": "word"
           }
         ]
@@ -641,9 +655,10 @@
       }
     ],
     "explanation": "\"Da solo, il lavoro non finirebbe mai.\" (On its own, the work would never get finished.) Finire also takes -isc- in the present (finisco), yet the conditional drops it entirely: the stem is finir-, and the 3sg ending is the double-b -ebbe, giving finirebbe. Two misses lurk here, so the item guards both: the present's -isc- dragged in (finiscirebbe) and the single b (finirebe).",
-    "examiner_note": "Suppressed (same reasoning as capirei). Subject 'il lavoro' explicit, cue names the verb alone. Tests no-isc- and the -ebbe double-b.",
-    "version": 2,
-    "person": "3sg"
+    "examiner_note": "Suppressed (same reasoning as capirei). Subject 'il lavoro' explicit, cue names the verb alone. Tests no-isc- and the -ebbe double-b. [Crit-21 retrofit 2026-07-20: cue names the tense (condizionale) as the Rev-26 trigger; present competitor 'finisce' guarded in must_not.]",
+    "version": 3,
+    "person": "3sg",
+    "prompt_supplies_base_form": true
   },
   {
     "external_id": "cond_ire_partire_1pl_01",
@@ -655,7 +670,7 @@
     "prompt": "Completa: 'Al posto vostro, ____ subito.' (partire, noi)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -708,7 +723,7 @@
     "prompt": "Completa: 'Molti ____ restare a casa, se potessero.' (preferire)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -761,7 +776,7 @@
     "prompt": "Completa: 'Al posto tuo, ____ un altro lavoro.' (cercare, io)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -824,7 +839,7 @@
     "prompt": "Completa: 'Chi ____ il conto, al posto suo?' (pagare)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -887,7 +902,7 @@
     "prompt": "Completa: 'Volentieri ____ a carte, ma è già tardi.' (giocare, noi)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -940,7 +955,7 @@
     "prompt": "Completa: 'I professori ti ____ tutto, se glielo chiedessi.' (spiegare)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -993,7 +1008,7 @@
     "prompt": "Completa: 'Al posto tuo, ____ subito.' (cominciare, io)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1043,10 +1058,10 @@
     "subtopic": "formation.orthographic.ciare_giare",
     "difficulty": 3,
     "cefr_level_target": "B1",
-    "prompt": "Completa: 'Senza un buon motivo, lui non ____ mai la carne.' (mangiare)",
+    "prompt": "Completa: 'Senza un buon motivo, lui non ____ mai la carne.' (mangiare, condizionale)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1066,6 +1081,10 @@
           },
           {
             "phrase": "mangerebe",
+            "match_at": "word"
+          },
+          {
+            "phrase": "mangia",
             "match_at": "word"
           }
         ]
@@ -1094,9 +1113,10 @@
       }
     ],
     "explanation": "\"Senza un buon motivo, lui non mangerebbe mai la carne.\" (Without a good reason, he would never eat meat.) Mangiare ends in -giare, so the redundant i drops before the conditional stem: the stem is manger-, and the 3sg ending is the double-b -ebbe, giving mangerebbe. The item guards both the kept i (mangierebbe) and the single b (mangerebe).",
-    "examiner_note": "Suppressed. Subject 'lui' explicit, cue names the verb alone.",
-    "version": 2,
-    "person": "3sg"
+    "examiner_note": "Suppressed. Subject 'lui' explicit, cue names the verb alone. [Crit-21 retrofit 2026-07-20: cue names the tense (condizionale) as the Rev-26 trigger; present competitor 'mangia' guarded in must_not.]",
+    "version": 3,
+    "person": "3sg",
+    "prompt_supplies_base_form": true
   },
   {
     "external_id": "cond_orth_ciare_viaggiare_1pl_01",
@@ -1109,7 +1129,7 @@
     "prompt": "Completa: 'Con più tempo libero, ____ molto di più.' (viaggiare, noi)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1159,10 +1179,10 @@
     "subtopic": "formation.orthographic.ciare_giare",
     "difficulty": 3,
     "cefr_level_target": "B1",
-    "prompt": "Completa: 'Voi ____ davvero tutto per un sogno?' (lasciare)",
+    "prompt": "Completa: 'Voi ____ davvero tutto per un sogno?' (lasciare, condizionale)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1183,6 +1203,10 @@
           {
             "phrase": "lascereeste",
             "match_at": "word"
+          },
+          {
+            "phrase": "lasciate",
+            "match_at": "word"
           }
         ]
       }
@@ -1200,9 +1224,10 @@
       }
     ],
     "explanation": "\"Voi lascereste davvero tutto per un sogno?\" (Would you really give up everything for a dream?) Lasciare ends in -sciare, so the redundant i drops before the conditional stem lascer-, and the voi ending -este attaches: lascereste. Subject Voi is already shown; keep the i out (not lasciereste).",
-    "examiner_note": "Suppressed. Subject Voi explicit, cue names the verb alone. Covers the 2pl -este.",
-    "version": 2,
-    "person": "2pl"
+    "examiner_note": "Suppressed. Subject Voi explicit, cue names the verb alone. Covers the 2pl -este. [Crit-21 retrofit 2026-07-20: cue names the tense (condizionale) as the Rev-26 trigger; present competitor 'lasciate' guarded in must_not.]",
+    "version": 3,
+    "person": "2pl",
+    "prompt_supplies_base_form": true
   },
   {
     "external_id": "cond_irr_sync_avere_1sg_01",
@@ -1215,7 +1240,7 @@
     "prompt": "Completa: 'Con più tempo libero, ____ voglia di studiare.' (avere, io)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1265,10 +1290,10 @@
     "subtopic": "formation.irregular.syncopated",
     "difficulty": 3,
     "cefr_level_target": "B1",
-    "prompt": "Completa: 'Scusa, ____ aiutarmi un momento?' (potere, tu)",
+    "prompt": "Completa: 'Scusa, ____ aiutarmi un momento?' (potere, tu, condizionale)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1289,6 +1314,10 @@
           {
             "phrase": "potrebbe",
             "match_at": "word"
+          },
+          {
+            "phrase": "puoi",
+            "match_at": "word"
           }
         ]
       }
@@ -1306,9 +1335,10 @@
       }
     ],
     "explanation": "\"Scusa, potresti aiutarmi un momento?\" (Excuse me, could you help me for a moment?) A softened request ('scusa, ... un momento?') is one of the conditional's commonest jobs. Potere syncopates: the theme vowel drops to give the stem potr- (as in potrò), and the tu ending is -esti, giving potresti. Keeping the vowel (poteresti) is the slip. Potresti is one of the highest-frequency conditional forms a learner meets.",
-    "examiner_note": "Suppressed. Subject pro-dropped, cue keeps the person (potere, tu). High-frequency polite form.",
-    "version": 2,
-    "person": "2sg"
+    "examiner_note": "Suppressed. Subject pro-dropped, cue keeps the person (potere, tu). High-frequency polite form. [Crit-21 retrofit 2026-07-20: cue names the tense (condizionale) as the Rev-26 trigger; present competitor 'puoi' guarded in must_not.]",
+    "version": 3,
+    "person": "2sg",
+    "prompt_supplies_base_form": true
   },
   {
     "external_id": "cond_irr_sync_dovere_3sg_01",
@@ -1318,10 +1348,10 @@
     "subtopic": "formation.irregular.syncopated",
     "difficulty": 3,
     "cefr_level_target": "B1",
-    "prompt": "Completa: 'Secondo me, Marco ____ riposare di più.' (dovere)",
+    "prompt": "Completa: 'Secondo me, Marco ____ riposare di più.' (dovere, condizionale)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1342,6 +1372,10 @@
           {
             "phrase": "dovrebe",
             "match_at": "word"
+          },
+          {
+            "phrase": "deve",
+            "match_at": "word"
           }
         ]
       }
@@ -1359,9 +1393,10 @@
       }
     ],
     "explanation": "\"Secondo me, Marco dovrebbe riposare di più.\" (In my view, Marco should rest more.) Giving advice ('secondo me, ... dovrebbe') is classic conditional territory. Dovere syncopates: the vowel drops to the stem dovr- (as in dovrò), and the 3sg ending is the double-b -ebbe, giving dovrebbe. The item guards the kept vowel (doverebbe) and the single b (dovrebe).",
-    "examiner_note": "Suppressed. Subject Marco explicit, cue names the verb alone. Tests syncope plus -ebbe.",
-    "version": 2,
-    "person": "3sg"
+    "examiner_note": "Suppressed. Subject Marco explicit, cue names the verb alone. Tests syncope plus -ebbe. [Crit-21 retrofit 2026-07-20: cue names the tense (condizionale) as the Rev-26 trigger; present competitor 'deve' guarded in must_not.]",
+    "version": 3,
+    "person": "3sg",
+    "prompt_supplies_base_form": true
   },
   {
     "external_id": "cond_irr_sync_andare_1pl_01",
@@ -1374,7 +1409,7 @@
     "prompt": "Completa: 'Al posto vostro, ci ____ subito.' (andare, noi)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1424,10 +1459,10 @@
     "subtopic": "formation.irregular.syncopated",
     "difficulty": 3,
     "cefr_level_target": "B1",
-    "prompt": "Completa: 'Da solo non ____ proprio cosa fare.' (sapere, io)",
+    "prompt": "Completa: 'Da solo non ____ proprio cosa fare.' (sapere, io, condizionale)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1465,9 +1500,10 @@
       }
     ],
     "explanation": "\"Da solo non saprei proprio cosa fare.\" (On my own I really wouldn't know what to do.) Sapere syncopates: the theme vowel drops to give the stem sapr- (as in saprò), and the io ending -ei attaches: saprei. Keeping the vowel (saperei) is the miss. Saprei sits in many everyday phrases ('non saprei', I wouldn't know).",
-    "examiner_note": "Suppressed. Subject pro-dropped, cue keeps the person (sapere, io).",
-    "version": 2,
-    "person": "1sg"
+    "examiner_note": "Suppressed. Subject pro-dropped, cue keeps the person (sapere, io). [Crit-21 retrofit 2026-07-20: cue names the tense (condizionale) as the Rev-26 trigger; no short-safe present guard added, cue-naming carries it.]",
+    "version": 3,
+    "person": "1sg",
+    "prompt_supplies_base_form": true
   },
   {
     "external_id": "cond_irr_sync_vedere_3pl_01",
@@ -1477,10 +1513,10 @@
     "subtopic": "formation.irregular.syncopated",
     "difficulty": 3,
     "cefr_level_target": "B1",
-    "prompt": "Completa: 'Con gli occhiali nuovi, ____ molto meglio.' (vedere, loro)",
+    "prompt": "Completa: 'Con gli occhiali nuovi, ____ molto meglio.' (vedere, loro, condizionale)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1501,6 +1537,10 @@
           {
             "phrase": "vedrebero",
             "match_at": "word"
+          },
+          {
+            "phrase": "vedono",
+            "match_at": "word"
           }
         ]
       }
@@ -1518,9 +1558,10 @@
       }
     ],
     "explanation": "\"Con gli occhiali nuovi, vedrebbero molto meglio.\" (With new glasses, they would see much better.) Vedere syncopates to the stem vedr- (as in vedrò), and the 3pl ending is -ebbero, giving vedrebbero. The item guards both the kept vowel (vederebbero) and the single-b 3pl (vedrebero).",
-    "examiner_note": "Suppressed. Subject pro-dropped, cue keeps the person (vedere, loro).",
-    "version": 2,
-    "person": "3pl"
+    "examiner_note": "Suppressed. Subject pro-dropped, cue keeps the person (vedere, loro). [Crit-21 retrofit 2026-07-20: cue names the tense (condizionale) as the Rev-26 trigger; present competitor 'vedono' guarded in must_not.]",
+    "version": 3,
+    "person": "3pl",
+    "prompt_supplies_base_form": true
   },
   {
     "external_id": "cond_irr_sync_potere_1sg_01",
@@ -1530,10 +1571,10 @@
     "subtopic": "formation.irregular.syncopated",
     "difficulty": 2,
     "cefr_level_target": "A2",
-    "prompt": "Completa: '____ avere il conto, per favore?' (potere, io)",
+    "prompt": "Completa: '____ avere il conto, per favore?' (potere, io, condizionale)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1553,6 +1594,10 @@
           },
           {
             "phrase": "potrebbe",
+            "match_at": "word"
+          },
+          {
+            "phrase": "posso",
             "match_at": "word"
           }
         ]
@@ -1581,9 +1626,10 @@
       }
     ],
     "explanation": "\"Potrei avere il conto, per favore?\" (Could I have the bill, please?) Potrei ('could I / I could') is among the first conditional forms learners meet, as a fixed polite phrase. Potere syncopates to the stem potr- (as in potrò), and the io ending -ei gives potrei. Keeping the vowel (poterei) is the slip.",
-    "examiner_note": "Suppressed. Tagged A2 because potrei is met early as a fixed polite request, though the system is B1. Subject pro-dropped, cue keeps the person.",
-    "version": 2,
-    "person": "1sg"
+    "examiner_note": "Suppressed. Tagged A2 because potrei is met early as a fixed polite request, though the system is B1. Subject pro-dropped, cue keeps the person. [Crit-21 retrofit 2026-07-20: cue names the tense (condizionale) as the Rev-26 trigger; present competitor 'posso' guarded in must_not.]",
+    "version": 3,
+    "person": "1sg",
+    "prompt_supplies_base_form": true
   },
   {
     "external_id": "cond_irr_dr_volere_1sg_01",
@@ -1593,10 +1639,10 @@
     "subtopic": "formation.irregular.double_r",
     "difficulty": 2,
     "cefr_level_target": "A2",
-    "prompt": "Completa: '____ un caffè, per favore.' (volere, io)",
+    "prompt": "Completa: '____ un caffè, per favore.' (volere, io, condizionale)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1617,6 +1663,10 @@
           {
             "phrase": "volerei",
             "match_at": "word"
+          },
+          {
+            "phrase": "voglio",
+            "match_at": "word"
           }
         ]
       }
@@ -1634,9 +1684,10 @@
       }
     ],
     "explanation": "\"Vorrei un caffè, per favore.\" (I would like a coffee, please.) Vorrei ('I would like') is the single most frequent conditional form in everyday Italian, the polite way to ask for something. Volere first drops its theme vowel, then the left-over consonant assimilates into a doubled r; this matching of one sound to its neighbour is assimilation. The stem is vorr- (as in vorrò), plus -ei: vorrei. Writing one r (vorei) is the signature miss.",
-    "examiner_note": "Suppressed. Highest-frequency conditional form; tagged A2 as a fixed polite phrase. vorei (single-r) is the load-bearing guard.",
-    "version": 2,
-    "person": "1sg"
+    "examiner_note": "Suppressed. Highest-frequency conditional form; tagged A2 as a fixed polite phrase. vorei (single-r) is the load-bearing guard. [Crit-21 retrofit 2026-07-20: cue names the tense (condizionale) as the Rev-26 trigger; present competitor 'voglio' guarded in must_not.]",
+    "version": 3,
+    "person": "1sg",
+    "prompt_supplies_base_form": true
   },
   {
     "external_id": "cond_irr_dr_volere_2sg_01",
@@ -1646,10 +1697,10 @@
     "subtopic": "formation.irregular.double_r",
     "difficulty": 2,
     "cefr_level_target": "A2",
-    "prompt": "Completa: '____ qualcosa da bere?' (volere, tu)",
+    "prompt": "Completa: '____ qualcosa da bere?' (volere, tu, condizionale)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1670,6 +1721,10 @@
           {
             "phrase": "voleresti",
             "match_at": "word"
+          },
+          {
+            "phrase": "vuoi",
+            "match_at": "word"
           }
         ]
       }
@@ -1687,9 +1742,10 @@
       }
     ],
     "explanation": "\"Vorresti qualcosa da bere?\" (Would you like something to drink?) Offering something politely ('would you like ...?') uses the conditional of volere. The stem assimilates to the doubled-r vorr- (as in vorrò), and the tu ending is -esti: vorresti. One r (voresti) is the slip; keeping the whole infinitive (voleresti) misses the assimilation entirely.",
-    "examiner_note": "Suppressed. Subject pro-dropped, cue keeps the person (volere, tu). Single-r voresti guarded.",
-    "version": 2,
-    "person": "2sg"
+    "examiner_note": "Suppressed. Subject pro-dropped, cue keeps the person (volere, tu). Single-r voresti guarded. [Crit-21 retrofit 2026-07-20: cue names the tense (condizionale) as the Rev-26 trigger; present competitor 'vuoi' guarded in must_not.]",
+    "version": 3,
+    "person": "2sg",
+    "prompt_supplies_base_form": true
   },
   {
     "external_id": "cond_irr_dr_venire_1pl_01",
@@ -1702,7 +1758,7 @@
     "prompt": "Completa: 'Volentieri ____ alla festa, ma non possiamo.' (venire, noi)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1755,7 +1811,7 @@
     "prompt": "Completa: 'Lui ____ il segreto, se glielo chiedessi.' (tenere)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1818,7 +1874,7 @@
     "prompt": "Completa: 'Al posto tuo, ____ a casa stasera.' (rimanere, io)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1868,10 +1924,10 @@
     "subtopic": "formation.irregular.double_r",
     "difficulty": 3,
     "cefr_level_target": "B1",
-    "prompt": "Completa: 'Con questo caldo, ____ litri d'acqua.' (bere, loro)",
+    "prompt": "Completa: 'Con questo caldo, ____ litri d'acqua.' (bere, loro, condizionale)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1892,6 +1948,10 @@
           {
             "phrase": "beverebbero",
             "match_at": "word"
+          },
+          {
+            "phrase": "bevono",
+            "match_at": "word"
           }
         ]
       }
@@ -1909,9 +1969,10 @@
       }
     ],
     "explanation": "\"Con questo caldo, berrebbero litri d'acqua.\" (In this heat, they would drink litres of water.) Bere builds its future and conditional on the short stem ber-, which assimilates to the double-r berr- (as in berrò), with the 3pl ending -ebbero: berrebbero. Note the stem is ber-, not the bev- of the present (bevo): a bev- form (beverebbero) is wrong here, as is the single r (berebbero).",
-    "examiner_note": "Suppressed. bere's cond/future stem is the short ber- (not present bev-); beverebbero guards that, berebbero guards the single-r.",
-    "version": 2,
-    "person": "3pl"
+    "examiner_note": "Suppressed. bere's cond/future stem is the short ber- (not present bev-); beverebbero guards that, berebbero guards the single-r. [Crit-21 retrofit 2026-07-20: cue names the tense (condizionale) as the Rev-26 trigger; present competitor 'bevono' guarded in must_not.]",
+    "version": 3,
+    "person": "3pl",
+    "prompt_supplies_base_form": true
   },
   {
     "external_id": "cond_irr_ess_essere_1sg_01",
@@ -1924,7 +1985,7 @@
     "prompt": "Completa: 'Al posto tuo, ____ più prudente.' (essere, io)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1974,10 +2035,10 @@
     "subtopic": "formation.irregular.essere",
     "difficulty": 3,
     "cefr_level_target": "B1",
-    "prompt": "Completa: 'Senza di te, tutto ____ più difficile.' (essere)",
+    "prompt": "Completa: 'Senza di te, tutto ____ più difficile.' (essere, condizionale)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -2015,9 +2076,10 @@
       }
     ],
     "explanation": "\"Senza di te, tutto sarebbe più difficile.\" (Without you, everything would be harder.) Essere uses the suppletive stem sar- (as in sarà), and the 3sg ending is the double-b -ebbe, giving sarebbe. The item guards the infinitive-built form (esserebbe) and the single b (sarebe).",
-    "examiner_note": "Suppressed. Subject 'tutto' explicit, cue names the verb alone. Tests the suppletive stem plus -ebbe.",
-    "version": 2,
-    "person": "3sg"
+    "examiner_note": "Suppressed. Subject 'tutto' explicit, cue names the verb alone. Tests the suppletive stem plus -ebbe. [Crit-21 retrofit 2026-07-20: cue names the tense (condizionale) as the Rev-26 trigger; no short-safe present guard added, cue-naming carries it.]",
+    "version": 3,
+    "person": "3sg",
+    "prompt_supplies_base_form": true
   },
   {
     "external_id": "cond_irr_ess_essere_1pl_01",
@@ -2030,7 +2092,7 @@
     "prompt": "Completa: 'Con un po' di aiuto, ____ felici di partecipare.' (essere, noi)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -2080,10 +2142,10 @@
     "subtopic": "formation.irregular.essere",
     "difficulty": 3,
     "cefr_level_target": "B1",
-    "prompt": "Completa: 'Loro ____ certamente contenti di vederti.' (essere)",
+    "prompt": "Completa: 'Loro ____ certamente contenti di vederti.' (essere, condizionale)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -2104,6 +2166,10 @@
           {
             "phrase": "esserebbero",
             "match_at": "word"
+          },
+          {
+            "phrase": "sono",
+            "match_at": "word"
           }
         ]
       }
@@ -2121,9 +2187,10 @@
       }
     ],
     "explanation": "\"Loro sarebbero certamente contenti di vederti.\" (They would certainly be glad to see you.) Essere uses the suppletive stem sar-, and the 3pl ending is -ebbero, giving sarebbero. The item guards the single-b 3pl (sarebero) and the infinitive-built form (esserebbero).",
-    "examiner_note": "Suppressed. Subject Loro explicit, cue names the verb alone.",
-    "version": 2,
-    "person": "3pl"
+    "examiner_note": "Suppressed. Subject Loro explicit, cue names the verb alone. [Crit-21 retrofit 2026-07-20: cue names the tense (condizionale) as the Rev-26 trigger; present competitor 'sono' guarded in must_not.]",
+    "version": 3,
+    "person": "3pl",
+    "prompt_supplies_base_form": true
   },
   {
     "external_id": "cond_irr_dsf_fare_1sg_01",
@@ -2136,7 +2203,7 @@
     "prompt": "Completa: 'Al posto tuo, non lo ____.' (fare, io)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -2186,10 +2253,10 @@
     "subtopic": "formation.irregular.dare_stare_fare",
     "difficulty": 3,
     "cefr_level_target": "B1",
-    "prompt": "Completa: 'Mi ____ un favore, per cortesia?' (fare, tu)",
+    "prompt": "Completa: 'Mi ____ un favore, per cortesia?' (fare, tu, condizionale)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -2210,6 +2277,10 @@
           {
             "phrase": "farebbe",
             "match_at": "word"
+          },
+          {
+            "phrase": "fai",
+            "match_at": "word"
           }
         ]
       }
@@ -2227,9 +2298,10 @@
       }
     ],
     "explanation": "\"Mi faresti un favore, per cortesia?\" (Would you do me a favour, please?) Asking a favour politely uses the conditional. Fare keeps the -ar- against the usual shift, giving the stem far- (as in farò), and the tu ending is -esti: faresti. Shifting the vowel (feresti) is the slip.",
-    "examiner_note": "Suppressed. Subject pro-dropped, cue keeps the person (fare, tu).",
-    "version": 2,
-    "person": "2sg"
+    "examiner_note": "Suppressed. Subject pro-dropped, cue keeps the person (fare, tu). [Crit-21 retrofit 2026-07-20: cue names the tense (condizionale) as the Rev-26 trigger; present competitor 'fai' guarded in must_not.]",
+    "version": 3,
+    "person": "2sg",
+    "prompt_supplies_base_form": true
   },
   {
     "external_id": "cond_irr_dsf_dare_3sg_01",
@@ -2242,7 +2314,7 @@
     "prompt": "Completa: 'Lei ti ____ una mano, se potesse.' (dare)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -2295,7 +2367,7 @@
     "prompt": "Completa: 'In una casa più grande, ____ molto meglio.' (stare, noi)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -2348,7 +2420,7 @@
     "prompt": "Completa: 'Cosa ____ i tuoi genitori al posto mio?' (fare)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -2397,10 +2469,10 @@
     "subtopic": "formation.condizionale_passato",
     "difficulty": 3,
     "cefr_level_target": "B1",
-    "prompt": "Completa: 'Con un'ora in più, ____ tutto il lavoro.' (finire, io)",
+    "prompt": "Completa: 'Con un'ora in più, ____ tutto il lavoro.' (finire, io, condizionale passato)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -2424,6 +2496,10 @@
           },
           {
             "phrase": "avrei finita",
+            "match_at": "word"
+          },
+          {
+            "phrase": "finirei",
             "match_at": "word"
           }
         ]
@@ -2452,9 +2528,10 @@
       }
     ],
     "explanation": "\"Con un'ora in più, avrei finito tutto il lavoro.\" (With an extra hour, I would have finished all the work.) To say what you would have done, Italian uses the compound conditional, the conditional perfect: the conditional of the auxiliary plus the past participle. Finire takes avere, whose conditional is avrei, with the participle finito: avrei finito. The participle stays invariable with avere here (not finita), and the auxiliary is the syncopated avrei, not averei.",
-    "examiner_note": "Single markpoint: avere is invariable here (no preceding DOP), so this tests the compound formation as one skill. Guards wrong aux (sarei), un-syncopated aux (averei), and false agreement (finita).",
-    "version": 2,
-    "person": "1sg"
+    "examiner_note": "Single markpoint: avere is invariable here (no preceding DOP), so this tests the compound formation as one skill. Guards wrong aux (sarei), un-syncopated aux (averei), and false agreement (finita). [Crit-21 retrofit 2026-07-20: cue names the tense (condizionale passato) as the Rev-26 trigger; present competitor 'finirei' guarded in must_not.]",
+    "version": 3,
+    "person": "1sg",
+    "prompt_supplies_base_form": true
   },
   {
     "external_id": "cond_passato_andare_3sg_fem_01",
@@ -2466,7 +2543,7 @@
     "prompt": "Completa: 'Maria aveva detto che ____ volentieri alla festa.' (andare)",
     "type": "short",
     "marks": 2,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -2543,10 +2620,10 @@
     "subtopic": "formation.condizionale_passato",
     "difficulty": 4,
     "cefr_level_target": "B2",
-    "prompt": "Completa: 'Maria, senza la sveglia non ____ in tempo.' (partire)",
+    "prompt": "Completa: 'Maria, senza la sveglia non ____ in tempo.' (partire, condizionale passato)",
     "type": "short",
     "marks": 2,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -2562,6 +2639,10 @@
         "must_not_include": [
           {
             "phrase": "avresti",
+            "match_at": "word"
+          },
+          {
+            "phrase": "partiresti",
             "match_at": "word"
           }
         ]
@@ -2608,9 +2689,10 @@
       }
     ],
     "explanation": "\"Maria, senza la sveglia non saresti partita in tempo.\" (Maria, without the alarm you would not have left in time.) This is a counterfactual about the past ('without the alarm you would not have left in time'), which takes the conditional perfect. Partire takes essere, whose conditional 2sg is saresti, and the participle agrees with the addressee Maria, giving partita: saresti partita. The auxiliary is essere (saresti), not avere.",
-    "examiner_note": "Address to a feminine subject (Maria) pins f.sg agreement. Two markpoints: conditional essere auxiliary + f.sg participle agreement. Cue names the verb alone.",
-    "version": 2,
-    "person": "2sg"
+    "examiner_note": "Address to a feminine subject (Maria) pins f.sg agreement. Two markpoints: conditional essere auxiliary + f.sg participle agreement. Cue names the verb alone. [Crit-21 retrofit 2026-07-20: cue names the tense (condizionale passato) as the Rev-26 trigger; present competitor 'partiresti' guarded in must_not.]",
+    "version": 3,
+    "person": "2sg",
+    "prompt_supplies_base_form": true
   },
   {
     "external_id": "cond_passato_arrivare_1pl_mpl_01",
@@ -2619,10 +2701,10 @@
     "subtopic": "formation.condizionale_passato",
     "difficulty": 4,
     "cefr_level_target": "B2",
-    "prompt": "Completa: 'Con il treno veloce, ____ molto prima.' (arrivare, noi)",
+    "prompt": "Completa: 'Con il treno veloce, ____ molto prima.' (arrivare, noi, condizionale passato)",
     "type": "short",
     "marks": 2,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -2642,6 +2724,10 @@
           },
           {
             "phrase": "avremmo",
+            "match_at": "word"
+          },
+          {
+            "phrase": "arriveremmo",
             "match_at": "word"
           }
         ]
@@ -2692,9 +2778,10 @@
       }
     ],
     "explanation": "\"Con il treno veloce, saremmo arrivati molto prima.\" (With the fast train, we would have arrived much earlier.) A counterfactual about the past ('we would have arrived much earlier') takes the conditional perfect. Arrivare takes essere, whose conditional 1pl is the double-m saremmo, and the participle agrees with the plural subject noi, giving arrivati: saremmo arrivati. Note the auxiliary keeps the doubled m (saremmo, not the future saremo) and the verb is essere, not avere.",
-    "examiner_note": "Combines the double-m conditional auxiliary with m.pl agreement. Two markpoints. Subject pro-dropped, cue keeps the person. Future saremo guards the double-m on the auxiliary.",
-    "version": 2,
-    "person": "1pl"
+    "examiner_note": "Combines the double-m conditional auxiliary with m.pl agreement. Two markpoints. Subject pro-dropped, cue keeps the person. Future saremo guards the double-m on the auxiliary. [Crit-21 retrofit 2026-07-20: cue names the tense (condizionale passato) as the Rev-26 trigger; present competitor 'arriveremmo' guarded in must_not.]",
+    "version": 3,
+    "person": "1pl",
+    "prompt_supplies_base_form": true
   },
   {
     "external_id": "cond_passato_dare_3sg_avere_01",
@@ -2706,7 +2793,7 @@
     "prompt": "Completa: 'Aveva promesso che ci ____ una mano.' (dare)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -2751,5 +2838,1392 @@
     "examiner_note": "Single markpoint: avere with an indirect object stays invariable, so this is one skill. Guards wrong aux (sarebbe), un-syncopated aux (averebbe), and false agreement (data).",
     "version": 2,
     "person": "3sg"
+  },
+  {
+    "external_id": "cond_use_pol_volere_1sg_01",
+    "language_code": "it",
+    "topic": "verb_form.condizionale",
+    "subtopic": "usage.polite",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "prompt": "Rendi la richiesta più cortese: 'Voglio un caffè.' → '____ un caffè, per favore.' (volere, io)",
+    "type": "short",
+    "marks": 1.0,
+    "wrong_answer_is_form_error_only": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.condizionale.usage.polite",
+        "label": "polite conditional softens the request (vorrei, not voglio)",
+        "any_phrases": [
+          {
+            "phrase": "vorrei",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "voglio",
+            "match_at": "word"
+          },
+          {
+            "phrase": "vorei",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "volere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "volere - to want / to would like",
+            "bucket": "vocabulary.it.volere.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "\"Vorrei un caffè, per favore.\" (I would like a coffee, please.) The blunt present 'voglio' (I want) sounds abrupt; Italian softens a request by shifting to the conditional, so 'voglio' becomes 'vorrei' (I would like). This is the single most useful job the conditional does in everyday speech. (The single-r vorei is the formation slip; voglio is the un-softened miss the item is really testing.)",
+    "examiner_note": "Usage leaf: the diagnostic is choosing the conditional for politeness, so the blunt present voglio is the load-bearing must_not_include. vorei guards the double-r formation as a courtesy.",
+    "version": 1
+  },
+  {
+    "external_id": "cond_use_pol_potere_2sg_01",
+    "language_code": "it",
+    "topic": "verb_form.condizionale",
+    "subtopic": "usage.polite",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "prompt": "Rendi la domanda più gentile: 'Puoi aiutarmi?' → '____ aiutarmi?' (potere, tu)",
+    "type": "short",
+    "marks": 1.0,
+    "wrong_answer_is_form_error_only": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.condizionale.usage.polite",
+        "label": "polite conditional softens the question (potresti, not puoi)",
+        "any_phrases": [
+          {
+            "phrase": "potresti",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "puoi",
+            "match_at": "word"
+          },
+          {
+            "phrase": "poteresti",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "potere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "potere - can / to be able to",
+            "bucket": "vocabulary.it.potere.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "\"Potresti aiutarmi?\" (Could you help me?) The direct present 'puoi' (can you) is fine among friends but the conditional 'potresti' (could you) is gentler and more polite. Softening a request is the conditional's core social use.",
+    "examiner_note": "Diagnostic: puoi -> potresti (politeness). Blunt present puoi is the key guard.",
+    "version": 1
+  },
+  {
+    "external_id": "cond_use_pol_potere_3sg_01",
+    "language_code": "it",
+    "topic": "verb_form.condizionale",
+    "subtopic": "usage.polite",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Rendi la richiesta formale (a un estraneo): 'Mi passa il sale?' → 'Mi ____ il sale, per favore?' (potere, Lei)",
+    "type": "short",
+    "marks": 1.0,
+    "wrong_answer_is_form_error_only": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.condizionale.usage.polite",
+        "label": "polite conditional in formal address (potrebbe)",
+        "any_phrases": [
+          {
+            "phrase": "potrebbe",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "passa",
+            "match_at": "word"
+          },
+          {
+            "phrase": "puo",
+            "match_at": "word"
+          },
+          {
+            "phrase": "può",
+            "match_at": "word"
+          },
+          {
+            "phrase": "poterebbe",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "potere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "potere - can / to be able to",
+            "bucket": "vocabulary.it.potere.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "\"Mi potrebbe passare il sale, per favore?\" (Could you pass me the salt, please?) To a stranger you use the formal Lei, and the conditional 'potrebbe' makes the request courteous where the plain present 'passa/può' would sound curt. Register and the softening conditional work together here.",
+    "examiner_note": "Formal register stated in the prompt (criterion 11). Diagnostic: the softening conditional in Lei address.",
+    "version": 1
+  },
+  {
+    "external_id": "cond_use_pol_piacere_3sg_01",
+    "language_code": "it",
+    "topic": "verb_form.condizionale",
+    "subtopic": "usage.polite",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Esprimi il desiderio con gentilezza: 'Voglio visitare Roma.' → 'Mi ____ visitare Roma.' (piacere)",
+    "type": "short",
+    "marks": 1.0,
+    "wrong_answer_is_form_error_only": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.condizionale.usage.polite",
+        "label": "mi piacerebbe for a softened wish",
+        "any_phrases": [
+          {
+            "phrase": "piacerebbe",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "piace",
+            "match_at": "word"
+          },
+          {
+            "phrase": "voglio",
+            "match_at": "word"
+          },
+          {
+            "phrase": "piacerebe",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "piacere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "piacere - to be pleasing / to like",
+            "bucket": "vocabulary.it.piacere.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "\"Mi piacerebbe visitare Roma.\" (I would like / love to visit Rome.) A wish stated with 'voglio' (I want) is blunt; 'mi piacerebbe' (I would like) frames it as a gentle desire. The impersonal piacere puts the thing wished-for as its subject, so the form is third person (piacerebbe), not first.",
+    "examiner_note": "Diagnostic: softened wish. piace (present) and voglio (blunt) are the misses; piacerebe guards the double-b.",
+    "version": 1
+  },
+  {
+    "external_id": "cond_use_pol_dovere_2sg_01",
+    "language_code": "it",
+    "topic": "verb_form.condizionale",
+    "subtopic": "usage.polite",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Dai un consiglio con tatto: 'Devi riposare.' → '____ riposare un po'.' (dovere, tu)",
+    "type": "short",
+    "marks": 1.0,
+    "wrong_answer_is_form_error_only": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.condizionale.usage.polite",
+        "label": "advice softened with the conditional (dovresti, not devi)",
+        "any_phrases": [
+          {
+            "phrase": "dovresti",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "devi",
+            "match_at": "word"
+          },
+          {
+            "phrase": "doveresti",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "dovere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "dovere - must / to have to / should",
+            "bucket": "vocabulary.it.dovere.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "\"Dovresti riposare un po'.\" (You should rest a little.) A flat 'devi' (you must) is an order; the conditional 'dovresti' (you should) turns it into advice you can decline. Advice and gentle recommendation are a standard job of the conditional, close cousins of the polite request.",
+    "examiner_note": "Advice sense of the polite leaf. devi (blunt obligation) is the diagnostic miss.",
+    "version": 1
+  },
+  {
+    "external_id": "cond_use_pol_volere_2sg_01",
+    "language_code": "it",
+    "topic": "verb_form.condizionale",
+    "subtopic": "usage.polite",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "prompt": "Offri qualcosa con cortesia: 'Vuoi qualcosa da bere?' → '____ qualcosa da bere?' (volere, tu)",
+    "type": "short",
+    "marks": 1.0,
+    "wrong_answer_is_form_error_only": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.condizionale.usage.polite",
+        "label": "polite offer with the conditional (vorresti)",
+        "any_phrases": [
+          {
+            "phrase": "vorresti",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "vuoi",
+            "match_at": "word"
+          },
+          {
+            "phrase": "voresti",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "volere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "volere - to want / to would like",
+            "bucket": "vocabulary.it.volere.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "\"Vorresti qualcosa da bere?\" (Would you like something to drink?) Offering with the present 'vuoi' (do you want) is direct; the conditional 'vorresti' (would you like) is the courteous way to offer. Same softening move as vorrei, in the second person.",
+    "examiner_note": "Polite offer. vuoi (blunt present) is the diagnostic; voresti guards the double-r.",
+    "version": 1
+  },
+  {
+    "external_id": "cond_use_pol_dispiacere_3sg_01",
+    "language_code": "it",
+    "topic": "verb_form.condizionale",
+    "subtopic": "usage.polite",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "Chiedi un favore con la massima cortesia: 'Chiudi la finestra?' → 'Ti ____ chiudere la finestra?' (dispiacere)",
+    "type": "short",
+    "marks": 1.0,
+    "wrong_answer_is_form_error_only": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.condizionale.usage.polite",
+        "label": "ti dispiacerebbe for an extra-polite request",
+        "any_phrases": [
+          {
+            "phrase": "dispiacerebbe",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "dispiace",
+            "match_at": "word"
+          },
+          {
+            "phrase": "chiudi",
+            "match_at": "word"
+          },
+          {
+            "phrase": "dispiacerebe",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "dispiacere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "dispiacere - to mind / to be sorry",
+            "bucket": "vocabulary.it.dispiacere.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "\"Ti dispiacerebbe chiudere la finestra?\" (Would you mind closing the window?) The idiom 'ti dispiacerebbe' (would it displease you / would you mind) is one of the most deferential ways to ask, and it only works in the conditional; the present 'ti dispiace' is noticeably more direct. Literally it asks whether the favour would bother the listener.",
+    "examiner_note": "High-politeness idiom. dispiace (present) is the miss; dispiacerebe guards the double-b.",
+    "version": 1
+  },
+  {
+    "external_id": "cond_use_pol_sapere_2sg_01",
+    "language_code": "it",
+    "topic": "verb_form.condizionale",
+    "subtopic": "usage.polite",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Chiedi un'informazione con gentilezza: 'Sai dov'è la stazione?' → '____ dirmi dov'è la stazione?' (sapere, tu)",
+    "type": "short",
+    "marks": 1.0,
+    "wrong_answer_is_form_error_only": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.condizionale.usage.polite",
+        "label": "polite request for information (sapresti)",
+        "any_phrases": [
+          {
+            "phrase": "sapresti",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "sai",
+            "match_at": "word"
+          },
+          {
+            "phrase": "saperesti",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "sapere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "sapere - to know / to know how to",
+            "bucket": "vocabulary.it.sapere.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "\"Sapresti dirmi dov'è la stazione?\" (Could you tell me where the station is?) Asking with the present 'sai' (do you know) is plain; the conditional 'sapresti' (would you know / could you) softens it into a courteous request for help. Sapere syncopates to sapr-, so the polite form is sapresti.",
+    "examiner_note": "Polite information request. sai (blunt) is the diagnostic miss.",
+    "version": 1
+  },
+  {
+    "external_id": "cond_use_pol_gradire_3sg_01",
+    "language_code": "it",
+    "topic": "verb_form.condizionale",
+    "subtopic": "usage.polite",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "Offri in modo formale (a un ospite): 'Vuole un caffè?' → '____ un caffè?' (gradire, Lei)",
+    "type": "short",
+    "marks": 1.0,
+    "wrong_answer_is_form_error_only": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.condizionale.usage.polite",
+        "label": "formal offer with gradire in the conditional (gradirebbe)",
+        "any_phrases": [
+          {
+            "phrase": "gradirebbe",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "gradisce",
+            "match_at": "word"
+          },
+          {
+            "phrase": "vuole",
+            "match_at": "word"
+          },
+          {
+            "phrase": "gradirebe",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "gradire",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "gradire - to appreciate / to care for",
+            "bucket": "vocabulary.it.gradire.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "\"Gradirebbe un caffè?\" (Would you care for a coffee?) In formal hospitality the verb gradire (to appreciate / care for) in the conditional is the courteous way to offer, more refined than 'vuole'. It keeps no -isc- in the conditional, so the form is gradirebbe.",
+    "examiner_note": "Formal register stated. Diagnostic: formal conditional offer; gradisce/vuole are the misses, gradirebe guards -ebbe.",
+    "version": 1
+  },
+  {
+    "external_id": "cond_use_pol_potere_1pl_01",
+    "language_code": "it",
+    "topic": "verb_form.condizionale",
+    "subtopic": "usage.polite",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Proponi qualcosa con garbo: 'Possiamo uscire stasera?' → '____ uscire stasera?' (potere, noi)",
+    "type": "short",
+    "marks": 1.0,
+    "wrong_answer_is_form_error_only": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.condizionale.usage.polite",
+        "label": "softened suggestion (potremmo, not possiamo)",
+        "any_phrases": [
+          {
+            "phrase": "potremmo",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "possiamo",
+            "match_at": "word"
+          },
+          {
+            "phrase": "poteremmo",
+            "match_at": "word"
+          },
+          {
+            "phrase": "potremo",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "potere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "potere - can / to be able to",
+            "bucket": "vocabulary.it.potere.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "\"Potremmo uscire stasera?\" (Could we go out tonight?) A suggestion put as 'possiamo' (can we) is flat; the conditional 'potremmo' (could we) floats it gently as a proposal. Note the double-m potremmo: the single-m potremo would be the future.",
+    "examiner_note": "Softened suggestion. possiamo (blunt) is the diagnostic; potremo guards the single-m future, poteremmo the theme vowel.",
+    "version": 1
+  },
+  {
+    "external_id": "cond_use_rfp_venire_3sg_01",
+    "language_code": "it",
+    "topic": "verb_form.condizionale",
+    "subtopic": "usage.reported_future_in_past",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Riporta le parole di Marco al passato: dice 'Verrò domani.' → 'Marco ha detto che ____ il giorno dopo.' (venire)",
+    "type": "short",
+    "marks": 1.0,
+    "wrong_answer_is_form_error_only": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.condizionale.usage.reported_future_in_past",
+        "label": "future-in-the-past = compound conditional (sarebbe venuto)",
+        "any_phrases": [
+          {
+            "phrase": "sarebbe venuto",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "verrà",
+            "match_at": "word"
+          },
+          {
+            "phrase": "verrebbe",
+            "match_at": "word"
+          },
+          {
+            "phrase": "sarebbe venire",
+            "match_at": "word"
+          },
+          {
+            "phrase": "avrebbe venuto",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "venire",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "venire - to come",
+            "bucket": "vocabulary.it.venire.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "\"Marco ha detto che sarebbe venuto il giorno dopo.\" (Marco said he would come the next day.) When you report in the past a thing that was still future at the time, Italian does not use the simple future or the simple conditional: it uses the compound conditional (condizionale passato), sarebbe venuto, exactly where English keeps 'would come'. The simple future verrà and simple conditional verrebbe are both wrong here.",
+    "examiner_note": "Core usage diagnostic: the compound conditional for reported future-in-the-past. verrà/verrebbe are the tempting wrong tenses; avrebbe venuto guards the auxiliary (venire takes essere).",
+    "version": 1
+  },
+  {
+    "external_id": "cond_use_rfp_telefonare_3sg_01",
+    "language_code": "it",
+    "topic": "verb_form.condizionale",
+    "subtopic": "usage.reported_future_in_past",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "Riporta al passato: 'Ti telefonerò più tardi.' → 'Ha detto che mi ____ più tardi.' (telefonare)",
+    "type": "short",
+    "marks": 1.0,
+    "wrong_answer_is_form_error_only": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.condizionale.usage.reported_future_in_past",
+        "label": "compound conditional for reported future (avrebbe telefonato)",
+        "any_phrases": [
+          {
+            "phrase": "avrebbe telefonato",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "telefonerà",
+            "match_at": "word"
+          },
+          {
+            "phrase": "telefonerebbe",
+            "match_at": "word"
+          },
+          {
+            "phrase": "sarebbe telefonato",
+            "match_at": "word"
+          },
+          {
+            "phrase": "averebbe telefonato",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "telefonare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "telefonare - to phone / to call",
+            "bucket": "vocabulary.it.telefonare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "\"Ha detto che mi avrebbe telefonato più tardi.\" (He said he would call me later.) Reported future-in-the-past again: the compound conditional avrebbe telefonato renders English 'would call'. Telefonare takes avere, so the auxiliary is avrebbe (not sarebbe), and the participle stays invariable.",
+    "examiner_note": "avere-auxiliary version. sarebbe telefonato guards the wrong auxiliary; telefonerà/telefonerebbe the wrong tense.",
+    "version": 1
+  },
+  {
+    "external_id": "cond_use_rfp_partire_3sg_fem_01",
+    "language_code": "it",
+    "topic": "verb_form.condizionale",
+    "subtopic": "usage.reported_future_in_past",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Riporta al passato le parole di Anna: 'Partirò presto.' → 'Anna disse che ____ presto.' (partire)",
+    "type": "short",
+    "marks": 1.0,
+    "wrong_answer_is_form_error_only": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "verb_form.condizionale.usage.reported_future_in_past",
+        "label": "compound conditional for reported future (auxiliary sarebbe)",
+        "any_phrases": [
+          {
+            "phrase": "sarebbe",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "partirà",
+            "match_at": "word"
+          },
+          {
+            "phrase": "partirebbe",
+            "match_at": "word"
+          },
+          {
+            "phrase": "avrebbe",
+            "match_at": "word"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_singular",
+        "label": "participle agrees with Anna (partita)",
+        "any_phrases": [
+          {
+            "phrase": "partita",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "partito",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "partire",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "partire - to leave / to depart",
+            "bucket": "vocabulary.it.partire.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "\"Anna disse che sarebbe partita presto.\" (Anna said she would leave soon.) The reported future-in-the-past takes the compound conditional; partire takes essere, so the auxiliary is sarebbe and the participle agrees with the feminine Anna: sarebbe partita. Two skills, credited separately: choosing the construction, and agreeing the participle.",
+    "examiner_note": "Two markpoints (criterion 8 + Rev 27): the usage construction and the essere participle agreement. Subject Anna explicit, cue names the verb alone.",
+    "version": 1
+  },
+  {
+    "external_id": "cond_use_rfp_finire_3pl_01",
+    "language_code": "it",
+    "topic": "verb_form.condizionale",
+    "subtopic": "usage.reported_future_in_past",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Riporta al passato: 'Finiranno il lavoro entro venerdì.' → 'Promisero che ____ il lavoro entro venerdì.' (finire)",
+    "type": "short",
+    "marks": 1.0,
+    "wrong_answer_is_form_error_only": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.condizionale.usage.reported_future_in_past",
+        "label": "compound conditional for reported future (avrebbero finito)",
+        "any_phrases": [
+          {
+            "phrase": "avrebbero finito",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "finiranno",
+            "match_at": "word"
+          },
+          {
+            "phrase": "finirebbero",
+            "match_at": "word"
+          },
+          {
+            "phrase": "sarebbero finito",
+            "match_at": "word"
+          },
+          {
+            "phrase": "avrebbero finita",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "finire",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "finire - to finish / to end",
+            "bucket": "vocabulary.it.finire.translation"
+          }
+        }
+      },
+      {
+        "lemma": "lavoro",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "lavoro - work / job",
+            "bucket": "vocabulary.it.lavoro.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "\"Promisero che avrebbero finito il lavoro entro venerdì.\" (They promised they would finish the work by Friday.) Reported future-in-the-past in the plural: avrebbero finito. Finire takes avere, so the participle stays invariable (finito, not finita), and the auxiliary is avrebbero, never sarebbero.",
+    "examiner_note": "Plural avere case. sarebbero finito guards the auxiliary; the wrong tenses guard the choice.",
+    "version": 1
+  },
+  {
+    "external_id": "cond_use_rfp_essere_3sg_01",
+    "language_code": "it",
+    "topic": "verb_form.condizionale",
+    "subtopic": "usage.reported_future_in_past",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "Riporta al passato: 'Sarò a casa per le otto.' → 'Aveva detto che ____ a casa per le otto.' (essere)",
+    "type": "short",
+    "marks": 1.0,
+    "wrong_answer_is_form_error_only": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.condizionale.usage.reported_future_in_past",
+        "label": "compound conditional of essere for reported future (sarebbe stato)",
+        "any_phrases": [
+          {
+            "phrase": "sarebbe stato",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "sarà",
+            "match_at": "word"
+          },
+          {
+            "phrase": "avrebbe stato",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "essere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "essere - to be",
+            "bucket": "vocabulary.it.essere.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "\"Aveva detto che sarebbe stato a casa per le otto.\" (He had said he would be home by eight.) Even essere itself takes the compound conditional in reported future-in-the-past: sarebbe stato (would be / would have been). The simple sarebbe alone is incomplete here, and the future sarà reports it wrongly.",
+    "examiner_note": "essere as the reported verb: the compound sarebbe stato, not the simple sarebbe. Tests that the construction is compound.",
+    "version": 2
+  },
+  {
+    "external_id": "cond_use_rfp_scrivere_3sg_01",
+    "language_code": "it",
+    "topic": "verb_form.condizionale",
+    "subtopic": "usage.reported_future_in_past",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "prompt": "Riporta al passato: 'Ti scriverò appena posso.' → 'Mi assicurò che mi ____ appena possibile.' (scrivere)",
+    "type": "short",
+    "marks": 1.0,
+    "wrong_answer_is_form_error_only": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.condizionale.usage.reported_future_in_past",
+        "label": "compound conditional for reported future (avrebbe scritto)",
+        "any_phrases": [
+          {
+            "phrase": "avrebbe scritto",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "scriverà",
+            "match_at": "word"
+          },
+          {
+            "phrase": "scriverebbe",
+            "match_at": "word"
+          },
+          {
+            "phrase": "sarebbe scritto",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "scrivere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "scrivere - to write",
+            "bucket": "vocabulary.it.scrivere.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "\"Mi assicurò che mi avrebbe scritto appena possibile.\" (He assured me he would write to me as soon as possible.) The verb of saying is in the past (assicurò), so the promised future becomes the compound conditional avrebbe scritto. Scrivere takes avere; the participle is the irregular scritto.",
+    "examiner_note": "Irregular participle scritto. Diagnostic: compound conditional for the reported future.",
+    "version": 1
+  },
+  {
+    "external_id": "cond_use_apo_venire_1sg_01",
+    "language_code": "it",
+    "topic": "verb_form.condizionale",
+    "subtopic": "usage.hypothetical_apodosis",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "Completa la principale: 'Se avessi tempo, ____ volentieri.' (venire, io)",
+    "type": "short",
+    "marks": 1.0,
+    "wrong_answer_is_form_error_only": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.condizionale.usage.hypothetical_apodosis",
+        "label": "apodosis takes the (present) conditional after se + congiuntivo (verrei)",
+        "any_phrases": [
+          {
+            "phrase": "verrei",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "vengo",
+            "match_at": "word"
+          },
+          {
+            "phrase": "verrò",
+            "match_at": "word"
+          },
+          {
+            "phrase": "venivo",
+            "match_at": "word"
+          },
+          {
+            "phrase": "verei",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "venire",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "venire - to come",
+            "bucket": "vocabulary.it.venire.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "\"Se avessi tempo, verrei volentieri.\" (If I had time, I would gladly come.) In a present-unreal period the protasis takes the congiuntivo imperfetto (se avessi) and the main clause takes the present conditional: verrei. The present vengo and future verrò both break the pattern, and the colloquial venivo belongs to informal speech, not the standard written apodosis.",
+    "examiner_note": "Core apodosis function: the protasis is supplied, the item tests producing the conditional in the main clause. venivo (colloquial imperfect) sits in must_not as a wrong form here; the prescriptive-vs-colloquial CHOICE itself is tense_choice's, so this item does not cross-credit it.",
+    "version": 1
+  },
+  {
+    "external_id": "cond_use_apo_essere_3sg_01",
+    "language_code": "it",
+    "topic": "verb_form.condizionale",
+    "subtopic": "usage.hypothetical_apodosis",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "Completa la principale: 'Se studiassi di più, ____ più facile.' (essere)",
+    "type": "short",
+    "marks": 1.0,
+    "wrong_answer_is_form_error_only": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.condizionale.usage.hypothetical_apodosis",
+        "label": "apodosis conditional after se + congiuntivo (sarebbe)",
+        "any_phrases": [
+          {
+            "phrase": "sarebbe",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "è",
+            "match_at": "word"
+          },
+          {
+            "phrase": "sarà",
+            "match_at": "word"
+          },
+          {
+            "phrase": "era",
+            "match_at": "word"
+          },
+          {
+            "phrase": "sarebe",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "essere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "essere - to be",
+            "bucket": "vocabulary.it.essere.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "\"Se studiassi di più, sarebbe più facile.\" (If you studied more, it would be easier.) The unreal condition se studiassi (congiuntivo imperfetto) sets up a main clause in the conditional: sarebbe. The present è and future sarà would both misread the sentence as real rather than hypothetical.",
+    "examiner_note": "essere apodosis. Present/future guards test that the learner reads the period as unreal and reaches for the conditional.",
+    "version": 1
+  },
+  {
+    "external_id": "cond_use_apo_comprare_1sg_01",
+    "language_code": "it",
+    "topic": "verb_form.condizionale",
+    "subtopic": "usage.hypothetical_apodosis",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Completa la principale in stile scritto standard: 'Se vincessi alla lotteria, ____ una casa.' (comprare, io)",
+    "type": "short",
+    "marks": 1.0,
+    "wrong_answer_is_form_error_only": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.6,
+        "bucket": "verb_form.condizionale.usage.hypothetical_apodosis",
+        "label": "apodosis conditional (comprerei)",
+        "any_phrases": [
+          {
+            "phrase": "comprerei",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "compro",
+            "match_at": "word"
+          },
+          {
+            "phrase": "comprerò",
+            "match_at": "word"
+          },
+          {
+            "phrase": "compravo",
+            "match_at": "word"
+          },
+          {
+            "phrase": "comprarei",
+            "match_at": "word"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.4,
+        "bucket": "tense_choice.conditional_vs_imperfect_counterfactual.prescriptive_conditional",
+        "label": "standard prescriptive apodosis (conditional, not colloquial imperfect)",
+        "any_phrases": [
+          {
+            "phrase": "comprerei",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "compravo",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "comprare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "comprare - to buy",
+            "bucket": "vocabulary.it.comprare.translation"
+          }
+        }
+      },
+      {
+        "lemma": "casa",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "casa - house",
+            "bucket": "vocabulary.it.casa.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "\"Se vincessi alla lotteria, comprerei una casa.\" (If I won the lottery, I would buy a house.) The main clause of an unreal period takes the conditional, comprerei. In careful/written Italian this is the prescriptive form; the colloquial 'se vincevo... compravo' exists in speech but is marked as informal, which is why the register is stated. This item evidences both the apodosis function and the standard-over-colloquial choice, so it credits both.",
+    "examiner_note": "Register stated (criterion 11). Rev 27 cross-credit: markpoint A on the apodosis function (usage), markpoint B on the tense_choice prescriptive bucket, weights 0.6/0.4 summing to 1. compravo (colloquial imperfect) is the shared wrong form.",
+    "version": 1
+  },
+  {
+    "external_id": "cond_use_apo_dovere_2sg_01",
+    "language_code": "it",
+    "topic": "verb_form.condizionale",
+    "subtopic": "usage.hypothetical_apodosis",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "Completa la principale: 'Se fossi in te, ____ accettare l'offerta.' (dovere, tu)",
+    "type": "short",
+    "marks": 1.0,
+    "wrong_answer_is_form_error_only": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.condizionale.usage.hypothetical_apodosis",
+        "label": "apodosis conditional in advice-hypothetical (dovresti)",
+        "any_phrases": [
+          {
+            "phrase": "dovresti",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "devi",
+            "match_at": "word"
+          },
+          {
+            "phrase": "dovrai",
+            "match_at": "word"
+          },
+          {
+            "phrase": "dovevi",
+            "match_at": "word"
+          },
+          {
+            "phrase": "doveresti",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "dovere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "dovere - must / to have to / should",
+            "bucket": "vocabulary.it.dovere.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "\"Se fossi in te, dovresti accettare l'offerta.\" (If I were you, you should accept the offer.) The fixed hypothetical 'se fossi in te' (if I were you) opens an unreal period, so the main clause takes the conditional dovresti. The present devi would state a flat obligation, missing the tentative, hypothetical framing.",
+    "examiner_note": "Advice-flavoured apodosis. Function leaf: produce the conditional given the supplied protasis.",
+    "version": 1
+  },
+  {
+    "external_id": "cond_use_apo_andare_3pl_01",
+    "language_code": "it",
+    "topic": "verb_form.condizionale",
+    "subtopic": "usage.hypothetical_apodosis",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "Completa la principale: 'Se non piovesse, ____ al mare.' (andare, loro)",
+    "type": "short",
+    "marks": 1.0,
+    "wrong_answer_is_form_error_only": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.condizionale.usage.hypothetical_apodosis",
+        "label": "apodosis conditional (andrebbero)",
+        "any_phrases": [
+          {
+            "phrase": "andrebbero",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "vanno",
+            "match_at": "word"
+          },
+          {
+            "phrase": "andranno",
+            "match_at": "word"
+          },
+          {
+            "phrase": "andavano",
+            "match_at": "word"
+          },
+          {
+            "phrase": "andrebero",
+            "match_at": "word"
+          },
+          {
+            "phrase": "anderebbero",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "andare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "andare - to go",
+            "bucket": "vocabulary.it.andare.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "\"Se non piovesse, andrebbero al mare.\" (If it weren't raining, they would go to the sea.) The unreal protasis se non piovesse pairs with a conditional main clause: andrebbero. The present vanno and future andranno both treat a hypothetical as if it were a plan.",
+    "examiner_note": "3pl apodosis. andrebero guards single-b, anderebbero the theme vowel; present/future guard the reading.",
+    "version": 1
+  },
+  {
+    "external_id": "cond_use_apo_potere_1pl_01",
+    "language_code": "it",
+    "topic": "verb_form.condizionale",
+    "subtopic": "usage.hypothetical_apodosis",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Completa la principale in stile scritto standard: 'Se avessimo più tempo, ____ finire il progetto.' (potere, noi)",
+    "type": "short",
+    "marks": 1.0,
+    "wrong_answer_is_form_error_only": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.6,
+        "bucket": "verb_form.condizionale.usage.hypothetical_apodosis",
+        "label": "apodosis conditional (potremmo)",
+        "any_phrases": [
+          {
+            "phrase": "potremmo",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "possiamo",
+            "match_at": "word"
+          },
+          {
+            "phrase": "potremo",
+            "match_at": "word"
+          },
+          {
+            "phrase": "potevamo",
+            "match_at": "word"
+          },
+          {
+            "phrase": "poteremmo",
+            "match_at": "word"
+          }
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.4,
+        "bucket": "tense_choice.conditional_vs_imperfect_counterfactual.prescriptive_conditional",
+        "label": "standard prescriptive apodosis (conditional, not colloquial imperfect)",
+        "any_phrases": [
+          {
+            "phrase": "potremmo",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "potevamo",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "potere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "potere - can / to be able to",
+            "bucket": "vocabulary.it.potere.translation"
+          }
+        }
+      },
+      {
+        "lemma": "progetto",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "progetto - project",
+            "bucket": "vocabulary.it.progetto.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "\"Se avessimo più tempo, potremmo finire il progetto.\" (If we had more time, we could finish the project.) The main clause of the unreal period takes the conditional potremmo (note the double-m against the future potremo). In careful Italian this prescriptive apodosis is preferred to the colloquial 'se avevamo... potevamo', so the item credits both the apodosis function and the standard choice.",
+    "examiner_note": "Rev 27 cross-credit (0.6/0.4). potevamo (colloquial imperfect) is the shared wrong form; potremo guards the single-m future.",
+    "version": 1
+  },
+  {
+    "external_id": "cond_use_apo_compound_3sg_fem_01",
+    "language_code": "it",
+    "topic": "verb_form.condizionale",
+    "subtopic": "usage.hypothetical_apodosis",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "prompt": "Completa la principale: 'Se avesse studiato, Maria ____ l'esame.' (superare)",
+    "type": "short",
+    "marks": 1.0,
+    "wrong_answer_is_form_error_only": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.condizionale.usage.hypothetical_apodosis",
+        "label": "past-unreal apodosis takes the compound conditional (avrebbe superato)",
+        "any_phrases": [
+          {
+            "phrase": "avrebbe superato",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          {
+            "phrase": "supererebbe",
+            "match_at": "word"
+          },
+          {
+            "phrase": "superava",
+            "match_at": "word"
+          },
+          {
+            "phrase": "superò",
+            "match_at": "word"
+          },
+          {
+            "phrase": "sarebbe superato",
+            "match_at": "word"
+          },
+          {
+            "phrase": "avrebbe superata",
+            "match_at": "word"
+          }
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "superare",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "superare - to pass / to overcome",
+            "bucket": "vocabulary.it.superare.translation"
+          }
+        }
+      },
+      {
+        "lemma": "esame",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "esame - exam",
+            "bucket": "vocabulary.it.esame.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "\"Se avesse studiato, Maria avrebbe superato l'esame.\" (If she had studied, Maria would have passed the exam.) When the condition is about the unreal PAST (se avesse studiato, congiuntivo trapassato), the apodosis takes the COMPOUND conditional: avrebbe superato. The simple conditional supererebbe would wrongly place it in the present. Superare takes avere, so the auxiliary is avrebbe and the participle is invariable (superato).",
+    "examiner_note": "Past-unreal period: the apodosis is the COMPOUND conditional, the boundary case that shows this leaf owns the apodosis form across both present- and past-unreal periods. sarebbe superato guards the auxiliary; supererebbe the tense.",
+    "version": 1
   }
 ]

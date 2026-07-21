@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-21-r32";
+  const LL_BUILD = "2026-07-21-r35";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -5072,6 +5072,9 @@
   // 9.0 -> 0.778, 10.0 -> 0.700. Grammar surfaces only - the vocab paths
   // call the kernel WITHOUT the floor, per the ruling's scope.
   const MASTERY_DENOM_FLOOR = 9.5;
+  // What "proficient" means on the tiles (Smith 2026-07-20); stated in the
+  // Live stats header so the number is never mysterious.
+  const PROFICIENT_MIN = 0.7;
 
   // Reusable kernel. `events` must already be sorted oldest -> newest and have
   // the shape {ev, timestamp} that eventsForNode produces.
@@ -5101,6 +5104,65 @@
     const denom = useDenomFloor ? Math.max(wA, MASTERY_DENOM_FLOOR) : wA;
     const correctness = denom > 0 ? wC / denom : 0;
     return { correctness, hasEvents: true, nAttempted: attemptedEvents.length };
+  }
+
+  // How many QUESTIONS target a node, and how the learner has done on them
+  // (Smith 2026-07-21: hover should say "0 attempted out of 45 questions",
+  // questions not leaves, plus "2 correct out of 3 attempted"). An item
+  // counts for every ancestor of every bucket it cites; correct = its most
+  // recent attempt scored full marks.
+  let _itemsByPrefix = null, _itemsByPrefixSig = "";
+  function itemsByPrefix() {
+    const sig = grammarQuestions.length + "|" + translationItems.length;
+    if (_itemsByPrefix && _itemsByPrefixSig === sig) return _itemsByPrefix;
+    const m = new Map();
+    const addItem = (q) => {
+      const id = q.external_id || q.id;
+      if (!id) return;
+      const seen = new Set();
+      for (const b of getItemBuckets(q)) {
+        const parts = String(b).split(".");
+        let prefix = "";
+        for (const seg of parts) {
+          prefix = prefix ? prefix + "." + seg : seg;
+          if (seen.has(prefix)) continue;
+          seen.add(prefix);
+          if (!m.has(prefix)) m.set(prefix, new Set());
+          m.get(prefix).add(id);
+        }
+      }
+    };
+    for (const q of grammarQuestions) addItem(q);
+    for (const it of translationItems) addItem(it);
+    _itemsByPrefix = m; _itemsByPrefixSig = sig;
+    return m;
+  }
+  let _attemptOutcomeByItem = null, _attemptSig = -1;
+  function attemptOutcomeByItem() {
+    const attempts = (LL.state && LL.state.attempts) || [];
+    if (_attemptOutcomeByItem && _attemptSig === attempts.length) return _attemptOutcomeByItem;
+    const m = new Map();
+    for (const a of attempts) {
+      const id = a.question_id || a.item_id;
+      if (!id) continue;
+      const full = a.overall && a.overall.marks_possible > 0 && a.overall.marks_awarded >= a.overall.marks_possible;
+      m.set(id, !!full);   // last attempt wins
+    }
+    _attemptOutcomeByItem = m; _attemptSig = attempts.length;
+    return m;
+  }
+  function nodeQuestionStats(nodeId) {
+    const ids = itemsByPrefix().get(nodeId);
+    if (!ids || !ids.size) return { total: 0, attempted: 0, correct: 0 };
+    const outcomes = attemptOutcomeByItem();
+    let attempted = 0, correct = 0;
+    for (const id of ids) {
+      if (outcomes.has(id)) {
+        attempted++;
+        if (outcomes.get(id)) correct++;
+      }
+    }
+    return { total: ids.size, attempted, correct };
   }
 
   function aggregateNodeStats(node) {
@@ -5140,7 +5202,50 @@
 
   function renderLiveStats() {
     renderStreakGrid();
+    // One-time threshold note beside the only-touched checkbox.
+    const lc = document.querySelector(".live-controls");
+    if (lc && !document.getElementById("proficient-note")) {
+      const note = document.createElement("span");
+      note.id = "proficient-note";
+      note.className = "proficient-note";
+      note.textContent = "proficient \u2265 " + Math.round(PROFICIENT_MIN * 100) + "%";
+      note.title = "A bucket counts as proficient when its colour reaches this level.";
+      lc.appendChild(note);
+    }
     try { renderPulseStrip(); } catch (e) {}
+    // ONE global "last 10" report row (Smith 2026-07-21: the per-bucket
+    // strips are gone; this is the report, not the key): the last ten marked
+    // attempts across all strands, oldest to newest.
+    try {
+      const host0 = document.getElementById("live-stats");
+      if (host0) {
+        let l10 = document.getElementById("last10-row");
+        if (!l10) {
+          l10 = document.createElement("div");
+          l10.id = "last10-row";
+          const lbl = document.createElement("span");
+          lbl.className = "last10-label";
+          lbl.textContent = "last 10";
+          l10.appendChild(lbl);
+          const marks = document.createElement("span");
+          marks.className = "last10-marks";
+          l10.appendChild(marks);
+          const ov = document.getElementById("live-overview");
+          if (ov && ov.parentNode === host0) host0.insertBefore(l10, ov);
+          else host0.appendChild(l10);
+        }
+        const marksHost = l10.querySelector(".last10-marks");
+        marksHost.innerHTML = "";
+        for (const a of (((LL.state && LL.state.attempts) || []).slice(-10))) {
+          const full = a.overall && a.overall.marks_possible > 0 && a.overall.marks_awarded >= a.overall.marks_possible;
+          const m = document.createElement("span");
+          m.className = "mark " + (full ? "hit" : "miss");
+          m.textContent = full ? "\u2713" : "\u2717";
+          marksHost.appendChild(m);
+        }
+        l10.title = "Your last ten answers, oldest to newest, across everything.";
+      }
+    } catch (e) {}
     renderLiveOverview();
     const host = document.getElementById("live-stats-content");
     host.innerHTML = "";
@@ -5408,11 +5513,18 @@
     const allLeaves = getLeavesUnder(root);
     const leaves = allLeaves.filter(l => !l.stub);
     const touchedLeafCount = leaves.filter(l => !!aggregateNodeStats(l)).length;
-    meta.textContent = touchedLeafCount + " / " + leaves.length;
+    // Second line per Smith 2026-07-20: touched was never wrong, just unclear
+    // - so it now SAYS tried, and a proficient count sits beside it (floored
+    // recency-weighted correctness at or above PROFICIENT_MIN, stated once in
+    // the Live stats header).
+    const proficientCount = leaves.filter(l => {
+      const s = aggregateNodeStats(l);
+      return s && s.correctness >= PROFICIENT_MIN;
+    }).length;
+    meta.textContent = touchedLeafCount + "/" + leaves.length + " tried \u00b7 " + proficientCount + " proficient";
     const stubCount = allLeaves.length - leaves.length;
-    meta.title = "buckets practised" + (stubCount > 0
-      ? " (excludes " + stubCount + " stub leaves not yet content-filled)"
-      : "");
+    meta.title = "tried = answered at least once; proficient = colour at " + Math.round(PROFICIENT_MIN * 100) + "%+"
+      + (stubCount > 0 ? " (excludes " + stubCount + " stub leaves not yet content-filled)" : "");
     header.appendChild(meta);
     cell.appendChild(header);
 
@@ -5490,14 +5602,17 @@
   // Uses the bucket label (not the id) and a conversational stats summary.
   function friendlyOverviewTitle(node, stats) {
     const label = node.label || node.id;
-    let summary = "";
-    if (stats) {
-      const pct = Math.round(stats.correctness * 100);
-      // The visible tile reads "hits / events". Spell out both so the
-      // semantic isn't mysterious (Issue 3, 2026-05-29).
-      summary = `\n${stats.hits} hits / ${stats.n} events (${pct}% recency-weighted)`;
+    // Question-shaped lines (Smith 2026-07-21): attempted out of the
+    // QUESTIONS that target this node, then correct out of attempted (the
+    // colours already carry correctness; the counts carry reach).
+    const qs = nodeQuestionStats(node.id);
+    let summary;
+    if (qs.total > 0) {
+      summary = "\n" + qs.attempted + " attempted out of " + qs.total + " questions";
+      if (qs.attempted > 0) summary += "\n" + qs.correct + " correct out of " + qs.attempted + " attempted";
     } else {
-      summary = "\nNo events yet (0/0)";
+      // Diagnostic-only trees (orthography.*): no items target them directly.
+      summary = "\n" + ((stats && stats.n) || 0) + " events recorded (no questions target this directly)";
     }
     const desc = node.description ? "\n\n" + node.description : "";
     return label + summary + desc + "\n\nDrill into this.";
@@ -5668,7 +5783,12 @@
       });
       if (touches) tooltipLabel = LL.inFlightSuppress.topicLabel;
     }
-    row.title = tooltipLabel + (node.description ? "\n\n" + node.description : "") + "\n\nDrill into this.";
+    const rowQs = nodeQuestionStats(node.id);
+    const rowQLine = rowQs.total > 0
+      ? "\n" + rowQs.attempted + " attempted out of " + rowQs.total + " questions"
+        + (rowQs.attempted > 0 ? "\n" + rowQs.correct + " correct out of " + rowQs.attempted + " attempted" : "")
+      : "";
+    row.title = tooltipLabel + rowQLine + (node.description ? "\n\n" + node.description : "") + "\n\nDrill into this.";
     if (!hasChildren) {
       const rowBands = buildPersonBands(node, "row-person-bands");
       if (rowBands) row.appendChild(rowBands);
@@ -5709,22 +5829,9 @@
     //   Green cell: shade = hits / attempted (correct out of attempted).
     //   Blue cell:  shade = hits / total     (correct out of total events).
     // White at 0, full colour at 1.
-    // Green cell retired (Smith 2026-07-20): the last-N tick strip already
-    // shows correctness-of-attempted, so the green shade was duplication.
-    // Blue (correct of total) stays.
-    const cellPair = document.createElement("span");
-    cellPair.className = "live-cell-pair";
-    const cellB = document.createElement("span");
-    cellB.className = "live-cell-blue";
-    if (agg) {
-      const blueT = agg.n > 0 ? (agg.correct / agg.n) : 0;
-      cellB.style.background = shadeWhiteTo(blueT, BLUE_END);
-      cellB.title = `correct of total: ${Math.round(blueT * 100)}% (${agg.hits} of ${agg.n} events)`;
-    } else {
-      cellB.title = "no events yet";
-    }
-    cellPair.appendChild(cellB);
-    row.appendChild(cellPair);
+    // Shade cells fully retired (Smith 2026-07-21, "I'm typing it now so it
+    // doesn't get lost"): green went in r32, BLUE goes here. The row keeps
+    // the ratio and the last-N ticks; the colour story lives in the dots.
 
     // hits / total ratio
     const ratio = document.createElement("span");
@@ -5737,28 +5844,8 @@
     }
     row.appendChild(ratio);
 
-    // Last-N tick/cross strip
-    const lastN = document.createElement("span");
-    lastN.className = "last-n";
-    if (agg) {
-      const recent = agg.events.slice(-LAST_N);
-      for (const { ev } of recent) {
-        const m = document.createElement("span");
-        m.className = "mark";
-        if (ev.outcome === "hit") {
-          m.classList.add("hit");
-          m.textContent = "✓";
-        } else if (ev.outcome === "miss" || ev.outcome === "partial") {
-          m.classList.add("miss");
-          m.textContent = "✗";
-        } else {
-          m.classList.add("dot");
-          m.textContent = "·";
-        }
-        lastN.appendChild(m);
-      }
-    }
-    row.appendChild(lastN);
+    // Last-N ticks retired (Smith 2026-07-21: "not in grammar, for sure" -
+    // and the grammar rows were their only surface, so the strip goes).
 
     div.appendChild(row);
 
@@ -6092,6 +6179,15 @@
       edit.type = "button"; edit.className = "linkish identity-edit"; edit.textContent = "change";
       edit.addEventListener("click", () => renderIdentityForm(box));
       box.appendChild(edit);
+      const out = document.createElement("button");
+      out.type = "button"; out.className = "linkish identity-edit"; out.textContent = "log out";
+      out.title = "Sign out of Linguics (your name stays remembered for next time)";
+      out.addEventListener("click", () => {
+        LL.pulse.signOut();
+        renderIdentityBox();
+        showEntry();   // back to the gate
+      });
+      box.appendChild(out);
     } else {
       const btn = document.createElement("button");
       btn.type = "button"; btn.className = "identity-signin"; btn.textContent = "Sign in";
@@ -6222,6 +6318,7 @@
       const nameInp = document.createElement("input");
       nameInp.type = "text"; nameInp.placeholder = "Your name";
       nameInp.className = "identity-name";
+      nameInp.value = (LL.pulse.identity().display_name || "");   // remembered across sessions
       const cls = document.createElement("select");
       cls.className = "identity-class";
       const ph = document.createElement("option");

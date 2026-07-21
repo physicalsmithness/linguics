@@ -34,9 +34,9 @@ The brief advanced three revisions during this pass. Audited item-by-item, mecha
 - **Criterion 19 (Rev 16), accent as morpheme - no action, per the ruling's own second limb.** Two accented answers exist (`citta`, `caffe`, written with their accents in the data). Their accent-stripped twins are not words, so neither is "a plausible alternative ANSWER to the same prompt". The ruling states that where the stripped form is not a candidate answer, do nothing: the standard fold-rescue plus orthography miss is the right verdict. `accent_load_bearing` is set nowhere in this batch. Noun minimal pairs that *would* trigger it (papa with and without the accent, pero) are not in this batch.
 - **Criterion 17 (Rev 13), explanations translate the sentence - carried throughout.** All 52 explanations open with or contain a plain English gloss of the completed sentence.
 - **Rev 17 (iv), the 0.9-for-dodges rule - no exposure found.** No item here admits correct Italian that sidesteps the drilled pattern: the plural drills demand the plural form outright, and the gender items demand an article or an agreeing adjective. Nothing to grade at 0.9. Recorded as checked, not skipped.
-- **Rev 17 (iii), candidate_forms for non-tense discriminations - read as NOT binding; see the open question below.**
+- **Rev 17 (iii), candidate_forms for non-tense discriminations - RULED by Architecture 2026-07-15 (make them candidate_forms), APPLIED 2026-07-21. See the residual-pass section at the end.**
 
-## info_display: suppress rationale (26 of 52 grammar items)
+## info_display: suppress rationale (30 of 52 grammar items; was 26 before the 4 meaning-pair items became candidate_forms discriminations on 2026-07-21)
 
 Applied per criterion 15's leak-vs-trap test, decided per item, not per leaf:
 
@@ -79,3 +79,14 @@ If you disagree, the change is mechanical but not mine to make unilaterally: it 
 - `glossary_suggestions_noun.json` proposes three new terms - **gender**, **suppletive plural**, **clipped word**. `agreement`, `invariable` and `articulated preposition` already exist and are reused, not re-proposed.
 - **`data/manifest.json` needs `noun` added** to the topics list so the loader discovers the two item files. I have **not** touched the manifest (shared/architecture-owned per stay-in-role); flagging it here, as the relative_pronoun, piacere, existential and passive batches each did.
 - **No engine ask, and no brief errata outstanding.** The `match_at` documentation errata that the relative_pronoun coverage and my own first draft both flagged was **resolved in Rev 17 (i)**; that note is withdrawn.
+
+## Residual pass, 2026-07-21 (reconciliation to brief Rev 28, on wake)
+
+The brief advanced 17 -> 28 after delivery; Architecture ACCEPTED the batch (disposition thread v1, 2026-07-15) and answered both coverage-doc asks. This pass delivers the residuals. Evidence and stamp requests are in `inter_chat/Architecture_NounAuthor_batch_disposition.md` v2 (the thread is the contract, per Rev 18; this doc is the record).
+
+**candidate_forms applied to the 4 meaning-pair items** (Architecture ruled YES on the open question this doc raised). `noun_gen_e_08`/`_09` carry `candidate_forms: ["la capitale (capital city)","il capitale (money, funds)"]`; `noun_plur_irr_03`/`_04` carry `["braccia (parts of the body)","bracci (mechanical arms)"]`; each `correct_form` is the asked sense; `info_display: suppress` added (count 26 -> 30). **Rev 19 recoverability is satisfied on all four** — the prompt pins the sense pre-answer (sentence context for capitale; the explicit `(parte del corpo)`/`(di una macchina)` gloss for braccio) and supplies the base — so suppress is answerable, not a bene/buono-style lexical guess. Marking is unchanged (the fields are display-only); harness re-run 0 fails. This overrides the earlier "stays visible" call recorded above for the braccia/bracci pair.
+
+**Misconception tags applied inline to the spelling leaf** (9 must_not entries): `orthography.cg_plural_stress_misapplied` x6 (amichi, medichi, agi, fuoci, amice, barce) and `orthography.cia_gia_plural_i` x3 (camice, arancie, pioggie) — both confirmed registry ids (Architecture created cia_gia_plural_i after last pass's flag). Because `noun` is not yet a topic in `misconception_tag_lists.json`, provenance is filed in `misconception_suggestions_noun.json`. **One new gap flagged, not invented:** the -io i-count misses `figlii`/`zi` have no registry home (the -ciare/-giare and -iare tags are verb-only); `orthography.io_plural_i_count` proposed, those two left untagged pending Architecture's ruling.
+
+**Cue / class-token retrofits, audited plain-substring (never word-anchored, per PassiveAuthor's paren-boundary warning) — all no-ops:** crit 13 centrally discharged for noun (all-authors except PronounAuthor); crit 25 no-op (every cue is the target's own singular or base, <= item level; the one base cue `(dito)` on a B1 item is A1); crit 20 no-op (0 fragment-cue-equals-answer; Rev 23 predictor confirms bare cues yield visibly-broken Italian); crit 19 no-op and recorded NOT FIRED (no crit-20 gloss, so Rev 23's disarm path never triggered); crit 21 (Rev 28) N/A (noun plural has no tense/aspect axis). Evidence in thread v2, stamps requested.
+

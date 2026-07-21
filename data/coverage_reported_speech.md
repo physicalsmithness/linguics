@@ -80,3 +80,23 @@ The tension worth Architecture's eye: this puts *one* skill on *two* markpoints,
 2. **The condizionale non-shift is deliberately absent.** The OIC bank offers "Mi dispiacerebbe tanto..." as non-shift bait, since a quoted conditional is supposed to stay put. Whether a quoted *present* conditional under a past reporter genuinely stays or moves to the condizionale passato is contested enough that I did not author it without a ruling. It is a good item if Architecture settles the call.
 3. **Two-rules-in-one items are only half-exploited.** `rep_futcond_07` and several translation items carry a shift plus a deixis move, but with the second rule supplied in the stem. Once the dual-citation mechanism is ratified, deliberate two-markpoint items testing both at once (the OIC "Da oggi in poi non commetterò più sciocchezze" pattern) become authorable.
 4. **The manifest is untouched**, per the standing ruling that new trees enter `data/manifest.json` only when the housing is ready to surface them.
+
+
+---
+
+## Addendum — Wave 1b (2026-07-20), reconciled Rev 14 -> Rev 25
+
+Batch grew 39 -> 45 grammar on the v4 ruling (thread `Architecture_ReportedSpeechAuthor_batch_disposition` v4). Translation unchanged at 20.
+
+**New items (6):**
+
+| id(s) | leaf | note |
+|---|---|---|
+| rep_persist_01..04 | Still true: shift optional | Accept-both (è/era, abita/abitava at full credit each); NOT a discrimination, so no candidate_tenses (v4 ruling 4). Visible. The persistence cue is the inverse of the criterion-10a exclusion on present_to_imperfect. |
+| rep_futcond_08..09 | Future in the past | Condizionale non-shift (v4 closing ruling): a hypothetical conditional STAYS (dispiacerebbe, farebbe); the compound over-shift is guarded and its meaning-change taught. Single markpoint, **no reported_intention co-cite** — a hypothetical is not a reported intention. |
+
+**Leaf home flag (future_to_past):** the two stays-items live on future_to_past as boundary cases (testing when the shift does NOT apply), per the v4 wording "cited to your future_to_past leaf". If Architecture would rather they had a dedicated "conditional stays / already-back-far-enough" leaf, say so; I cited the existing leaf rather than mint one.
+
+**Suppression flip.** Architecture shortened the four leaking labels at source, so the 15 commands/questions/deixis items suppressed ONLY for the leak are now visible (Rev 19: over-suppression is itself a fault). **`rep_deixis_05` held suppressed** — it co-fires `demonstrative.quello` ("quello (that, far)"), the one item where a shown breadcrumb could hint the travel target beyond the prompt. The 23 tense-shift discrimination items stay suppressed (candidate_tenses, Rev 10/15).
+
+**Standing-criteria reconciliation (all clean, evidence in the thread v5):** uniform per-phrase `match_at: "word"` (crit 18); dead-guard engine-sim 0/45; crit-13 chip audit 0 rule-naming cues; Rev-25 cue-level audit 0 citation-form cues (prompt_supplies_base_form false on all 45); crit-19 no-op by carve-out. Batch now: 45 grammar, 20 translation, 0 dead guards, all anchored.

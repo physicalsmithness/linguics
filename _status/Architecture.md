@@ -1,25 +1,20 @@
 seat: Architecture
 classes: [all-seats]
 project: Linguics
-updated: 2026-07-19
+updated: 2026-07-21
 waiting: active
-needs_from_smith: only the interim class list (Housing will ask)
-claude_can_verify: yes — all counts in this declaration re-derived post-merge this turn
-summary: NEW 2026-07-19 evening — formation-trigger audit: 142/571 formation items ambiguous (25%), Rev 28 + criterion 21 minted, remedy A/B/C with Smith; AUDIT_formation_trigger_2026-07-19.md is the record. Prior: Wave 2 FULLY LANDED. Gerundio (16+12) + imperativo (32+16) accepted and merged (topics now 51+26 / 69+32); all usage leaves flat+destubbed; register.tu_lei_mismatch extended to imperativo; glossary v9 (adverbial gerund); 4 acceptance-rulings recorded (no-partner confirmed, dual-cite ratified, anti-anchor design, absolute gerund parked). Stubs 15 -> 4. Earlier today: flat-canonical ratified by Smith; live-round routing (Housing/Demonstrative/Negation); 17 stamps total applied.
+needs_from_smith: prism pick (lens+person+top-recurring recommended); lemma-taster live feel (after next push); plus the standing three (order-leak repro, 13/23 sentence, class list) — three quick items — (1) order-leak repro for Housing: footer build id + first three items seen, or name it as same-leaf clustering; (2) one sentence on the 13/23 counts question (pulse_strip v2 tail); (3) the interim class list when Housing asks
+claude_can_verify: yes — migration verified by grep (0 legacy / 1,936 new), sincerity scan 0 residual, packets on disk
+summary: 2026-07-21 delta pass: usage axis COMPLETE (condizionale accepted); 17 stamps applied; dual-credit (b) ruled; vocab fork ruled (4-segment canonical, ~640 legacy refs dropping events — migration queued); Ti vedrò ratified. Prior: Desk cleared 2026-07-21: 1,936-key migration DONE (tripwire-clean console = acceptance); pulse LIVE + EdTech thread stamped (+ visible-answer-column proposal to EdTech); multi-select ruled (scoring + opt-in per-choice tags) and building; 12 false-miss packets dispatched; sincerity retrofit done + thread closed; PresentUsage stamped + closed; AccentAuthor/StressAuthor dispatches live.
 queue:
-  - Item-shape review #1: adjective_agreement one-pager (the template)   [B(a) ruled]
+  - Item-shape review #1: adjective_agreement one-pager (the template)   [B(a)]
   - Variant expansion + gates when PronounAuthor's seed frames land   [A(a) pilot]
-  - Sincerity-words central fix (~12 strings) + stamp MetaProject thread   [next pass]
-  - Point PronominalVerbsAuthor at the order battery thread   [with its false-miss packet]
-  - False-miss routing: 12 per-author packets from AUDIT_false_miss_2026-07-20.md   [next pass]
-  - Jargon-label central rewrite (523 labels, 13 topics) + per-topic confirm tables   [staged]
-  - Explanation re-paragraph pilot (10 samples for Smith)   [staged]
-  - Paradigm-band rollout (after Housing generalises render): declare paradigms + central slot migrations for preposition.articulated, article forms, demonstrative questo/quello, possessive forms   [Architecture_Housing_paradigm_bands v1]
-  - Remaining rulings: Connective + Indefinite acceptance, Existential rework + partitive mint, Possessive x2, vedere_ci repair, residue go, free-choice seam, candidate_forms A/B/C, congiuntivo label hygiene, Negation crit-20 extension, GerundioAuthor porre/tradurre (selfcheck thread), Cr17Sweep replica re-run
-  - Migrations: wrong_answer_is_form_error_only x1,665; person x~350 central + ~96 work-order
-  - Mint vocabulary.it.mano.noun.gender when DemonstrativeAuthor's markpoint lands
+  - Misconception-tag rollout work order (221/4,944 guards tagged) after MisconceptionAnalyst's lists   [cut next]
+  - Jargon-label central rewrite (523 labels) + per-topic confirm tables   [staged]
+  - Explanation re-paragraph pilot (10 samples)   [staged]
   - Phantom translation bucket ids central mapping (27 ids / ~35 items)
-  - cue-notation retrofit routing (138 items, eight authors)
+  - Cr17Sweep replica re-run (5 topics), then stamp or query
+  - cue-notation retrofit routing rides authors' open touches (8 seats)
 notes:
-  - Wave-2 usage axis: all five branches now authored and live (future, congiuntivo, gerundio, imperativo, condizionale still stubbed x3 = the remaining defined backlog with relational_adjectives).
-  - Board regeneration owed MetaProject-side.
+  - Wake sweep + per-pass delta rule in force (ARCHITECTURE_HANDOFF amendment 2026-07-20).
+  - Accent report consumes Housing's enriched slip events (expected/written/class/chars) — schema aligned, no rework.

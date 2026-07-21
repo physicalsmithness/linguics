@@ -2,18 +2,19 @@ seat: ConditionalFormationAuthor
 classes: [all-seats, all-authors]
 project: Linguics
 updated: 2026-07-20
-waiting: parked            # usage batch delivered; sits with Smith/Architecture for review + stub-clear
+waiting: parked            # both jobs done and merged-live; sits with Architecture for stamps/acceptance
 needs_from_smith: review
 blocked_by:
 claude_can_verify: yes
-summary: Wave-2 usage batch delivered (3 leaves, 23 grammar + 19 bidirectional translation, verifier green, Rev 27 cross-credits held to the tense_choice boundary). Two soft formation triggers hardened. Two asks parked in the usage thread; formation batch remains ACCEPTED.
+summary: Sorted the two things Smith flagged that my self-check missed. Criterion-21 formation-trigger retrofit (19 items, cue-naming + competitor guards) done and handed back. Wave-2 usage items were orphaned in an unwired _usage file; merged into the topic files (72 grammar + 38 translation now load). Merged verifier green 0/0.
 queue:                     # DERIVED from the six-surface name-grep + class tokens, MINUS discharged
-  - Architecture_ConditionalFormationAuthor_usage_wave2 v1: 2 asks open (reported-future dual-credit y/n; stub-flag clearance)   [inter_chat, Next: Architecture — their turn]
-  - Criterion 13 audit: 0 hits, clean, awaiting Architecture stamp for this seat   [AUTHOR_BRIEF binding register]
-  - Criterion 25 audit: 0 exposed, clean, awaiting Architecture stamp for this seat   [AUTHOR_BRIEF binding register]
+  - Architecture_ConditionalFormationAuthor_formation_trigger_retrofit v2: 19 items reworked, per-item table filed   [inter_chat, Next: Architecture — stamp crit-21 register row]
+  - Architecture_ConditionalFormationAuthor_usage_wave2 v2: merge-correction noted; 2 asks still open (reported-future dual-credit y/n; stub clearance)   [inter_chat, Next: Architecture]
+  - Criterion 13 audit: 0 hits, clean, awaiting Architecture stamp   [AUTHOR_BRIEF binding register]
+  - Criterion 25 audit: 0 exposed, clean, awaiting Architecture stamp   [AUTHOR_BRIEF binding register]
 discharged_this_turn:
-  - Hardened cond_are_lavorare_2sg_01 + cond_are_cantare_3pl_01 to se+congiuntivo (Architecture ruling, batch_delivery v2); versions -> 3, verifier green
-  - Authored verb_form.condizionale.usage (polite / reported_future_in_past / hypothetical_apodosis): 23 grammar + 19 translation, coverage/thread written
-notes:
-  - Usage translation is bidirectional (10 en->it, 9 it->en) per the leaves' direction:bidirectional.
-  - The imperfect + reported_speech batches' 5 citations into these leaves now have live items; stub:true clearance is Architecture's on acceptance.
+  - Criterion-21 retrofit: 19 formation items reworked (cue names the tense; present/simple-cond competitor guarded on 17), flags honest, crit-18/19/25 re-checked, verifier green
+  - Wave-2 merge: 23 grammar + 19 translation usage items folded into the topic files; 3 orphaned _usage files deleted; usage coverage folded into the main coverage doc
+  - Fixed a self-caught crit-18 slip in cond_use_rfp_essere_3sg_01 (must_not 'sarebbe' was a substring of correct 'sarebbe stato')
+process_miss:
+  - I walked past the formation_trigger_retrofit thread (Next: me) on my 2026-07-20 wake self-check by truncating the class-token grep before reaching criterion 21. Smith caught it. The universal-ruling-names-nobody trap; owned on the retrofit thread.

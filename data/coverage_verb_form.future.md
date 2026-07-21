@@ -96,3 +96,10 @@ Per criterion 13's cue-economy note (Rev 9): the cue parenthetical names the per
 - **già dropped** from the five futuro anteriore prompts (single blank, native surface; già redundant with the compound form + anteriority cue, and criterion 9 prefers a single slot).
 - **pagare** (`fut_orth_cg_pagare_1pl_01`) gains the resumptive clitic: "Il conto lo pagheremo noi", cue trimmed to `(pagare)`.
 - **Open:** vedrò content bug (`fut_irr_sync_vedere_1sg_01`) — "Ci vedrò" with an io subject means "I'll be able to see", not "I'll see you". Repair pick handed to Architecture (recommend `Ti vedrò`, which keeps the 1sg syncope test).
+
+## Criterion-21 retrofit (2026-07-20)
+
+- **All 45 formation items now force the tense**: the cue names `futuro` (Rev-26 trigger), fixing the criterion-21 mis-attribution where a bare "Domani ..." let a learner write the natural present-for-future and take formation misses they never attempted. Mechanism was cue-naming throughout (the present-for-future competitor beats any frame); the optional present guard was declined (it would mis-attribute a tense error to formation). prompt_supplies_base_form stays true and is now honest. Criterion-19 re-checked after the reframe: clean.
+- **vedere repaired**: fut_irr_sync_vedere_1sg_01 is now "Ti ____ domani in ufficio" (Ti vedrò), fixing the ci-reciprocal bug; repair choice awaiting Architecture ratification.
+- **person field**: set on all 65 items (the 7 futuro-anteriore / past-probability items and the 13 merged usage items the central migration missed; the 45 formation items were already migrated).
+

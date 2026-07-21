@@ -1,13 +1,24 @@
-# Coverage: conditional, formation branch
+# Coverage: conditional (formation + usage, one merged topic file)
 
-**Dispatch:** ConditionalFormation (formation branch only; usage and discrimination left as stubs for later dispatches).
+**Dispatch:** ConditionalFormation (formation) + the wave-2 usage dispatch (usage branch, same seat).
 **Author:** ConditionalFormationAuthor
-**Date:** 2026-06-09; reconciled to Rev 19 on 2026-07-15.
-**Brief revision applied:** authored against AUTHOR_BRIEF Rev 9; **reconciled to Rev 19** (see "Rev 19 reconciliation" below).
+**Date:** 2026-06-09 (formation); reconciled to Rev 19 on 2026-07-15; usage branch + criterion-21 retrofit 2026-07-20.
+**Brief revision applied:** formation authored against Rev 9, reconciled to Rev 19; usage + retrofit against Rev 28.
+**File layout:** formation and usage items live together in `grammar_questions_verb_form.condizionale.json` (72 = 49 formation + 23 usage) and `translation_items_verb_form.condizionale.json` (38 = 19 formation + 19 usage), because the loader derives the filename from the topic id and does not read a `_usage`-suffixed file. (The usage items were briefly mis-shipped as separate `_usage` files on 2026-07-20 and merged in the same day.)
 **Threads (Rev 18: this doc is the record, the threads are the channel):**
-- `inter_chat/Architecture_ConditionalFormationAuthor_batch_delivery.md` — delivery, the reconciliation, and the five asks in "Items flagged uncertain" below.
-- `inter_chat/Architecture_ConditionalFormationAuthor_breadcrumb_label_leak.md` — the leaf labels spell the double-m / double-b answer (Rev 12 retrofit missed this tree).
-- `inter_chat/Architecture_ConditionalFormationAuthor_broken_usage_citations.md` — three imperfect-batch citations into this tree do not resolve.
+- `inter_chat/Architecture_ConditionalFormationAuthor_batch_delivery.md` — formation delivery + reconciliation (CLOSED, ACCEPTED).
+- `inter_chat/Architecture_ConditionalFormationAuthor_breadcrumb_label_leak.md` — leaf labels shortened at source (CLOSED).
+- `inter_chat/Architecture_ConditionalFormationAuthor_broken_usage_citations.md` — usage stub-leaves minted (CLOSED).
+- `inter_chat/Architecture_ConditionalFormationAuthor_usage_wave2.md` — the usage branch delivery + the manifest-merge correction (OPEN, Next: Architecture).
+- `inter_chat/Architecture_ConditionalFormationAuthor_formation_trigger_retrofit.md` — criterion-21 retrofit of 19 ambiguous formation items (OPEN, Next: Architecture).
+
+## Usage branch (wave 2, 2026-07-20)
+
+23 grammar + 19 translation across three leaves, translation **bidirectional** (10 EN→IT, 9 IT→EN): `usage.polite` (A2 core, heaviest: 10G+7T), `usage.reported_future_in_past` (B1-B2: 6G+6T), `usage.hypothetical_apodosis` (B2: 7G+6T). The diagnostic is the functional CHOICE (blunt present vs polite conditional; simple future/conditional vs compound in reported speech; present/future vs conditional in an apodosis), not formation. Three items cross-credit `tense_choice…prescriptive_conditional` per Rev 27, weighted to sum to 1, and the choice bucket never appears without a usage leaf beside it (the dispatch boundary). Two asks parked in the usage thread: whether reported-future items should also dual-credit the formation compound leaf, and the stub-flag clearance.
+
+## Criterion-21 formation-trigger retrofit (Rev 28, 2026-07-20)
+
+The estate-wide 2026-07-19 audit found 19 of the 49 formation items ambiguous — a well-formed competing tense (mostly the present indicative on the polite/gnomic items; the simple conditional on the three compound items) fitted the frame, so a learner choosing that competitor took formation misses on skills they never engaged. Fixed by cue-naming: the tense is now named in the cue (`(potere, tu, condizionale)`, `(finire, io, condizionale passato)`), Rev-26-licensed as the trigger, and the named competitor is guarded in `must_not_include` (word-anchored) on 17 of 19. Per-item disposition table is in the retrofit thread. The `Al posto tuo…` / `se + congiuntivo` items were already excluding frames and were not in scope.
 
 **Totals:** 49 grammar questions + 19 translation items (EN→IT only), of which **33 grammar items carry `info_display: "suppress"`** (see chip-suppression section). Every active formation leaf is covered; no zero-coverage leaves. The usage and discrimination branches were left untouched (they are stubs owned by ConditionalUsage and TenseChoice). No new buckets were needed, so `bucket_suggestions_verb_form.condizionale.json` is empty. One glossary term is proposed (the conditional perfect / condizionale passato); three more that the explanations lean on are already proposed by sibling dispatches and were not re-proposed (see the glossary note at the end).
 

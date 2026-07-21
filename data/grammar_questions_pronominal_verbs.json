@@ -1,2266 +1,2266 @@
 [
- {
-  "external_id": "pv_mech_sela_01",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "mechanics.sela_type",
-  "difficulty": 2,
-  "cefr_level_target": "B1",
-  "prompt": "Non sono uno chef, ma in cucina ____ bene. (cavarsela)",
-  "type": "short",
-  "marks": 2,
-  "prompt_supplies_base_form": true,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronoun.reflexive.with_object",
-    "label": "reflexive part conjugates: me la",
-    "any_phrases": [
-     {
-      "phrase": "me la",
-      "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     "mi la",
-     "si la"
-    ]
-   },
-   {
-    "order_index": 1,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.mechanics.sela_type",
-    "label": "cavarsela, 1sg: cavo",
-    "any_phrases": [
-     {
-      "phrase": "cavo",
-      "match_at": "word"
-     }
-    ]
-   }
-  ],
-  "vocab_help": [
-   {
-    "lemma": "cucina",
-    "language": "it",
-    "aspects": {
-     "translation": {
-      "translation": {
-       "reveal": "cucina - kitchen",
-       "bucket": "vocabulary.it.cucina.noun.translation"
+  {
+    "external_id": "pv_mech_sela_01",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "mechanics.sela_type",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Non sono uno chef, ma in cucina ____ bene. (cavarsela)",
+    "type": "short",
+    "marks": 2,
+    "wrong_answer_is_form_error_only": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronoun.reflexive.with_object",
+        "label": "reflexive part conjugates: me la",
+        "any_phrases": [
+          {
+            "phrase": "me la",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "mi la",
+          "si la"
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.mechanics.sela_type",
+        "label": "cavarsela, 1sg: cavo",
+        "any_phrases": [
+          {
+            "phrase": "cavo",
+            "match_at": "word"
+          }
+        ]
       }
-     }
-    }
-   }
-  ],
-  "explanation": "'Me la cavo bene in cucina' means 'I get by fine in the kitchen.' Some Italian verbs come with their little pronouns baked in; grammarians call them pronominal verbs. In a pronominal verb like cavarsela the reflexive piece still changes with the person (me, te, se, ce, ve, se) while la stays frozen, so the run is me la cavo, te la cavi, se la cava. The verb body conjugates as normal: cav-o.",
-  "examiner_note": "Two markpoints: the me-la cluster (pronoun tree, reflexive+object) and the cavarsela verb body (this leaf). 'mi la cavo' misses the cluster but still credits the verb, isolating the unconjugated-reflexive miss.",
-  "version": 1
- },
- {
-  "external_id": "pv_mech_sela_02",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "mechanics.sela_type",
-  "difficulty": 2,
-  "cefr_level_target": "B1",
-  "prompt": "Come ____ con l'italiano, ormai? (cavarsela, tu)",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": true,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.mechanics.sela_type",
-    "label": "cavarsela, 2sg: te la cavi",
-    "any_phrases": [
-     {
-      "phrase": "te la cavi",
-      "match_at": "word"
-     }
     ],
-    "must_not_include": [
-     "ti la cavi",
-     "te la cava"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Come te la cavi con l'italiano?' means 'How are you getting on with Italian?' Cavarsela is a pronominal verb, so the reflexive bit tracks the person while la stays put: te la cavi for tu. The subject is not written out, so the ending -i on cavi is what carries the 'you'.",
-  "examiner_note": "Subject pro-dropped, so the person is named in the cue (cue economy). Full-phrase markpoint because 'cavi' alone is too short to mark safely.",
-  "version": 1
- },
- {
-  "external_id": "pv_mech_sela_03",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "mechanics.sela_type",
-  "difficulty": 2,
-  "cefr_level_target": "B1",
-  "prompt": "Marco non parla benissimo l'inglese, ma ____. (cavarsela)",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": true,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.mechanics.sela_type",
-    "label": "cavarsela, 3sg: se la cava",
-    "any_phrases": [
-     {
-      "phrase": "se la cava",
-      "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     "si la cava",
-     "se lo cava"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'...ma se la cava' means '...but he gets by.' In this pronominal verb the reflexive piece for lui/lei is se, and la never moves, giving se la cava. Marco is already the subject, so the verb just needs its third-person form.",
-  "examiner_note": "Subject (Marco) explicit, so the cue drops the person.",
-  "version": 1
- },
- {
-  "external_id": "pv_mech_sela_04",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "mechanics.sela_type",
-  "difficulty": 3,
-  "cefr_level_target": "B2",
-  "prompt": "È stato un anno durissimo, ma alla fine ce l'ho ____! (farcela)",
-  "type": "short",
-  "marks": 2,
-  "prompt_supplies_base_form": true,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronoun.combined",
-    "label": "frozen cluster ce l'ho",
-    "any_phrases": [
-     {
-      "phrase": "ce l'ho",
-      "match_at": "word"
-     },
-     {
-      "phrase": "ce l' ho",
-      "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     "ce la ho",
-     "ce lo ho"
-    ]
-   },
-   {
-    "order_index": 1,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.mechanics.sela_type",
-    "label": "farcela past: invariably feminine fatta",
-    "any_phrases": [
-     {
-      "phrase": "fatta",
-      "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     "fatto",
-     "fatti"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Ce l'ho fatta!' means 'I made it / I managed it!' This is the past of farcela, a pronominal verb whose la is a frozen pronoun, not a real object. In compound tenses the participle agrees with that la, so it is feminine whoever the speaker is: a man says ce l'ho fatta just as a woman does. Writing fatto is the single most common advanced slip here.",
-  "examiner_note": "Split marking isolates the #1 slip: 'ce l'ho fatto' credits the cluster (pronoun.combined) but misses the frozen-feminine agreement on this leaf. 'ce la ho fatta' (no elision) fails the cluster guard instead.",
-  "version": 1
- },
- {
-  "external_id": "pv_mech_sela_05",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "mechanics.sela_type",
-  "difficulty": 3,
-  "cefr_level_target": "B2",
-  "prompt": "L'esame di guida era difficile, ma alla fine ____ bene. (cavarsela, lei, passato)",
-  "type": "short",
-  "marks": 2,
-  "prompt_supplies_base_form": true,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "verb_form.passato_prossimo.auxiliary.essere_reflexive",
-    "label": "reflexive auxiliary è (not ha)",
-    "any_phrases": [
-     {
-      "phrase": "se l'è",
-      "match_at": "word"
-     },
-     {
-      "phrase": "se l' è",
-      "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     "se l'ha",
-     "se l' ha",
-     "se la è"
-    ]
-   },
-   {
-    "order_index": 1,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.mechanics.sela_type",
-    "label": "frozen feminine participle cavata",
-    "any_phrases": [
-     {
-      "phrase": "cavata",
-      "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     "cavato"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Se l'è cavata bene' means 'She got through it fine.' Cavarsela is reflexive, so its compound past takes essere: se l'è cavata. And because the frozen la governs agreement, the participle is feminine cavata no matter who the subject is. Two traps sit here: reaching for ha instead of è, and writing cavato.",
-  "examiner_note": "Cross-cites the essere-reflexive auxiliary bucket; second markpoint keeps the frozen-feminine agreement on this leaf. Both misses are attributable.",
-  "version": 1
- },
- {
-  "external_id": "pv_mech_sela_06",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "mechanics.sela_type",
-  "difficulty": 2,
-  "cefr_level_target": "B1",
-  "prompt": "Sono troppo stanco: ____ di guidare stanotte. (sentirsela, io, negativo)",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": true,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.mechanics.sela_type",
-    "label": "non me la sento (sentirsela, 1sg neg)",
-    "any_phrases": [
-     {
-      "phrase": "non me la sento",
-      "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     "non mi la sento",
-     "non me lo sento"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Non me la sento di guidare stanotte' means 'I don't feel up to driving tonight.' Sentirsela is the pronominal verb for feeling able to face something; the reflexive piece is me for io and la stays frozen, so the whole run is me la sento. Negation just wraps non around the front.",
-  "examiner_note": "Full-phrase markpoint (the parts are too short to mark in isolation).",
-  "version": 1
- },
- {
-  "external_id": "pv_mech_sela_07",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "mechanics.sela_type",
-  "difficulty": 3,
-  "cefr_level_target": "B2",
-  "prompt": "I bambini ____ un mondo alla festa di ieri. (godersela, passato)",
-  "type": "short",
-  "marks": 2,
-  "prompt_supplies_base_form": true,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "verb_form.passato_prossimo.auxiliary.essere_reflexive",
-    "label": "reflexive auxiliary: se la sono",
-    "any_phrases": [
-     {
-      "phrase": "se la sono",
-      "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     "si la sono",
-     "se la hanno",
-     "se l'hanno"
-    ]
-   },
-   {
-    "order_index": 1,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.mechanics.sela_type",
-    "label": "frozen feminine participle goduta",
-    "any_phrases": [
-     {
-      "phrase": "goduta",
-      "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     "goduti",
-     "goduto"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Se la sono goduta un mondo' means 'They had a wonderful time.' Godersela is reflexive, so the compound past is se la sono goduta with essere. The striking bit: the subject is i bambini (masculine plural) yet the participle is feminine singular goduta, because it agrees with the frozen la, not with the boys. That is the signature of this whole family.",
-  "examiner_note": "Deliberate clash: masc-pl subject, fem-sg participle. 'goduti' (agreeing with bambini) is the diagnostic miss and is caught on this leaf.",
-  "version": 1
- },
- {
-  "external_id": "pv_mech_sene_01",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "mechanics.sene_type",
-  "difficulty": 2,
-  "cefr_level_target": "B1",
-  "prompt": "È tardi, ____. (andarsene, io)",
-  "type": "short",
-  "marks": 2,
-  "prompt_supplies_base_form": true,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronoun.combined.vowel_changes",
-    "label": "vowel shift mi -> me",
-    "any_phrases": [
-     {
-      "phrase": "me ne",
-      "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     "mi ne"
-    ]
-   },
-   {
-    "order_index": 1,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.mechanics.sene_type",
-    "label": "andarsene, 1sg: vado",
-    "any_phrases": [
-     {
-      "phrase": "vado",
-      "match_at": "word"
-     }
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Me ne vado' means 'I'm off / I'm leaving.' Andarsene bundles the reflexive with ne. Before ne the reflexive mi changes its vowel to me, which is why it is me ne vado and never 'mi ne vado'. The verb andare then conjugates normally: vado.",
-  "examiner_note": "Cross-cites the vowel-change bucket. 'mi ne vado' fails the cluster but keeps the verb credit (vado), isolating the unshifted-vowel miss.",
-  "version": 1
- },
- {
-  "external_id": "pv_mech_sene_02",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "mechanics.sene_type",
-  "difficulty": 2,
-  "cefr_level_target": "B1",
-  "prompt": "Perché ____ così presto dalla festa? (andarsene, tu)",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": true,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.mechanics.sene_type",
-    "label": "andarsene, 2sg: te ne vai",
-    "any_phrases": [
-     {
-      "phrase": "te ne vai",
-      "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     "ti ne vai",
-     "te ne va"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Perché te ne vai così presto?' means 'Why are you leaving so early?' For tu the reflexive te sits before ne (again the vowel has shifted from ti to te), and andare gives vai: te ne vai.",
-  "examiner_note": "Full-phrase markpoint.",
-  "version": 1
- },
- {
-  "external_id": "pv_mech_sene_03",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "mechanics.sene_type",
-  "difficulty": 2,
-  "cefr_level_target": "B1",
-  "prompt": "Ogni sera lui ____ dall'ufficio alle sei in punto. (andarsene)",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": true,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.mechanics.sene_type",
-    "label": "andarsene, 3sg: se ne va",
-    "any_phrases": [
-     {
-      "phrase": "se ne va",
-      "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     "si ne va"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Ogni sera se ne va alle sei' means 'Every evening he leaves at six.' The third-person reflexive is se, so the run is se ne va. 'Ogni sera' fixes it as a habit in the present.",
-  "examiner_note": "Subject (lui) explicit, so the cue omits the person.",
-  "version": 1
- },
- {
-  "external_id": "pv_mech_sene_04",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "mechanics.sene_type",
-  "difficulty": 3,
-  "cefr_level_target": "B2",
-  "prompt": "Maria era offesa: ____ senza salutare nessuno. (andarsene, passato)",
-  "type": "short",
-  "marks": 2,
-  "prompt_supplies_base_form": true,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "verb_form.passato_prossimo.auxiliary.essere_reflexive",
-    "label": "auxiliary essere: se n'è",
-    "any_phrases": [
-     {
-      "phrase": "se n'è",
-      "match_at": "word"
-     },
-     {
-      "phrase": "se n' è",
-      "match_at": "word"
-     },
-     {
-      "phrase": "se ne è",
-      "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     "se n'ha",
-     "se ne ha"
-    ]
-   },
-   {
-    "order_index": 1,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.mechanics.sene_type",
-    "label": "subject agreement: andata",
-    "any_phrases": [
-     {
-      "phrase": "andata",
-      "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     "andato"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Se n'è andata senza salutare' means 'She left without saying goodbye to anyone.' Andarsene is reflexive, so its past takes essere: se n'è andata. Unlike the -sela verbs, the participle here agrees with the subject, so for Maria it is andata. Contrast ce l'ho fatta (frozen feminine) with se n'è andata (agrees with her): the -sene family agrees, the -sela family does not.",
-  "examiner_note": "Second markpoint tests genuine subject agreement (andata for Maria). The explanation draws the sela-vs-sene agreement contrast explicitly.",
-  "version": 1
- },
- {
-  "external_id": "pv_mech_sene_05",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "mechanics.sene_type",
-  "difficulty": 2,
-  "cefr_level_target": "B1",
-  "prompt": "Stasera non esco: ____ tranquillo a casa. (starsene, io)",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": true,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.mechanics.sene_type",
-    "label": "starsene, 1sg: me ne sto",
-    "any_phrases": [
-     {
-      "phrase": "me ne sto",
-      "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     "mi ne sto"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Me ne sto tranquillo a casa' means 'I'm staying quietly at home.' Starsene is the pronominal cousin of stare, adding a shade of 'keeping oneself' somewhere. Same shape as andarsene: me ne sto, with the vowel shifted to me.",
-  "examiner_note": "starsene is an idiomatic-ne pronominal verb; cross-references pronoun.ne.pronominal_idiomatic_verbs. No accent on sto (guard 'stò').",
-  "version": 2
- },
- {
-  "external_id": "pv_mech_sene_06",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "mechanics.sene_type",
-  "difficulty": 3,
-  "cefr_level_target": "B2",
-  "prompt": "Della politica non m'importa niente: ____ completamente. (fregarsene, io)",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": true,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.mechanics.sene_type",
-    "label": "fregarsene, 1sg: me ne frego",
-    "any_phrases": [
-     {
-      "phrase": "me ne frego",
-      "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     "mi ne frego",
-     "me ne freco"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Me ne frego completamente' means 'I couldn't care less.' Fregarsene is the colloquial pronominal verb for not caring; like the others in its family it runs me ne frego, with the reflexive vowel shifted before ne.",
-  "examiner_note": "Idiomatic-ne pronominal verb (cross-ref pronoun.ne.pronominal_idiomatic_verbs). Register is casual but not vulgar; flagged for the learner in the explanation's 'colloquial'.",
-  "version": 1
- },
- {
-  "external_id": "pv_mech_sene_07",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "mechanics.sene_type",
-  "difficulty": 2,
-  "cefr_level_target": "B1",
-  "prompt": "Quando finisce il film, ____ subito a dormire. (andarsene, noi)",
-  "type": "short",
-  "marks": 2,
-  "prompt_supplies_base_form": true,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronoun.combined.vowel_changes",
-    "label": "vowel shift ci -> ce",
-    "any_phrases": [
-     {
-      "phrase": "ce ne",
-      "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     "ci ne"
-    ]
-   },
-   {
-    "order_index": 1,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.mechanics.sene_type",
-    "label": "andarsene, 1pl: andiamo",
-    "any_phrases": [
-     {
-      "phrase": "andiamo",
-      "match_at": "word"
-     }
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Ce ne andiamo subito a dormire' means 'We go straight off to bed.' For noi the reflexive ci shifts to ce before ne, giving ce ne andiamo. The same vowel change that turns mi into me turns ci into ce.",
-  "examiner_note": "Cross-cites the vowel-change bucket for the ci->ce case; 'ci ne andiamo' fails the cluster, keeps the verb credit.",
-  "version": 1
- },
- {
-  "external_id": "pv_mech_ci_01",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "mechanics.ci_type",
-  "difficulty": 2,
-  "cefr_level_target": "B1",
-  "prompt": "Per arrivare in centro a piedi ____ mezz'ora. (volerci)",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": true,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.mechanics.ci_type",
-    "label": "volerci, singular requirement: ci vuole",
-    "any_phrases": [
-     {
-      "phrase": "ci vuole",
-      "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     "ci vogliono",
-     "ci vole",
-     "vuole"
-    ]
-   }
-  ],
-  "vocab_help": [
-   {
-    "lemma": "centro",
-    "language": "it",
-    "aspects": {
-     "translation": {
-      "translation": {
-       "reveal": "centro - centre (of town)",
-       "bucket": "vocabulary.it.centro.noun.translation"
+    "vocab_help": [
+      {
+        "lemma": "cucina",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "translation": {
+              "reveal": "cucina - kitchen",
+              "bucket": "vocabulary.it.cucina.noun.translation"
+            }
+          }
+        }
       }
-     }
-    }
-   }
-  ],
-  "explanation": "'Ci vuole mezz'ora' means 'It takes half an hour.' Volerci says what is needed, impersonally, and it agrees with the thing needed. Half an hour is singular, so the verb is singular: ci vuole. The ci here is part of the verb, not a place.",
-  "examiner_note": "'vuole' listed in must_not as the bare (ci-less) form; the any_phrase 'ci vuole' is checked first so a correct answer is unaffected.",
-  "version": 1
- },
- {
-  "external_id": "pv_mech_ci_02",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "mechanics.ci_type",
-  "difficulty": 2,
-  "cefr_level_target": "B1",
-  "prompt": "Per questa ricetta ____ tre uova fresche. (volerci)",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": true,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.mechanics.ci_type",
-    "label": "volerci, plural requirement: ci vogliono",
-    "any_phrases": [
-     {
-      "phrase": "ci vogliono",
-      "match_at": "word"
-     }
     ],
-    "must_not_include": [
-     "ci vuole",
-     "ci vogliano"
-    ]
-   }
-  ],
-  "vocab_help": [
-   {
-    "lemma": "uovo",
-    "language": "it",
-    "aspects": {
-     "translation": {
-      "translation": {
-       "reveal": "uovo - egg",
-       "bucket": "vocabulary.it.uovo.noun.translation"
+    "explanation": "'Me la cavo bene in cucina' means 'I get by fine in the kitchen.' Some Italian verbs come with their little pronouns baked in; grammarians call them pronominal verbs. In a pronominal verb like cavarsela the reflexive piece still changes with the person (me, te, se, ce, ve, se) while la stays frozen, so the run is me la cavo, te la cavi, se la cava. The verb body conjugates as normal: cav-o.",
+    "examiner_note": "Two markpoints: the me-la cluster (pronoun tree, reflexive+object) and the cavarsela verb body (this leaf). 'mi la cavo' misses the cluster but still credits the verb, isolating the unconjugated-reflexive miss.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_mech_sela_02",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "mechanics.sela_type",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Come ____ con l'italiano, ormai? (cavarsela, tu)",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.mechanics.sela_type",
+        "label": "cavarsela, 2sg: te la cavi",
+        "any_phrases": [
+          {
+            "phrase": "te la cavi",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "ti la cavi",
+          "te la cava"
+        ]
       }
-     }
-    }
-   }
-  ],
-  "explanation": "'Ci vogliono tre uova' means 'You need three eggs.' Volerci agrees with what is required, and three eggs is plural, so the verb goes plural: ci vogliono. Keeping it singular (ci vuole) with a plural requirement is the classic miss.",
-  "examiner_note": "The number-agreement pair with pv_mech_ci_01. 'ci vuole' is the diagnostic miss.",
-  "version": 1
- },
- {
-  "external_id": "pv_mech_ci_03",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "mechanics.ci_type",
-  "difficulty": 2,
-  "cefr_level_target": "B1",
-  "prompt": "Di solito ____ venti minuti per arrivare al lavoro. (metterci, io)",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": true,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.mechanics.ci_type",
-    "label": "metterci, 1sg: ci metto",
-    "any_phrases": [
-     {
-      "phrase": "ci metto",
-      "match_at": "word"
-     }
     ],
-    "must_not_include": [
-     "ci mette",
-     "ci metti"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Ci metto venti minuti' means 'It takes me twenty minutes / I take twenty minutes.' Metterci is the personal counterpart of volerci: a person is the subject and spends the time. For io it is ci metto.",
-  "examiner_note": "Subject pro-dropped, so the cue names the person. Contrast with volerci handled in the volerci_vs_metterci leaf.",
-  "version": 1
- },
- {
-  "external_id": "pv_mech_ci_04",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "mechanics.ci_type",
-  "difficulty": 2,
-  "cefr_level_target": "B1",
-  "prompt": "Cosa c'entra il prezzo? Questo ____ niente con la qualità. (entrarci)",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": true,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.mechanics.ci_type",
-    "label": "entrarci, 3sg negative: non c'entra",
-    "any_phrases": [
-     {
-      "phrase": "non c'entra",
-      "match_at": "word"
-     },
-     {
-      "phrase": "non c' entra",
-      "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     "non centra",
-     "non ci entra",
-     "non entra"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Questo non c'entra niente' means 'This has nothing to do with it.' Entrarci means to be relevant or connected; with ci it stops being about walking in. The 3sg is c'entra (ci + entra, elided), and the whole thing is written with the apostrophe: non c'entra.",
-  "examiner_note": "Common spelling miss 'non centra' (no apostrophe) is guarded; so is the over-literal 'non ci entra'.",
-  "version": 1
- },
- {
-  "external_id": "pv_mech_ci_05",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "mechanics.ci_type",
-  "difficulty": 2,
-  "cefr_level_target": "B1",
-  "prompt": "Questa foto è di mia nonna: ____ moltissimo. (tenerci, io)",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": true,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.mechanics.ci_type",
-    "label": "tenerci, 1sg: ci tengo",
-    "any_phrases": [
-     {
-      "phrase": "ci tengo",
-      "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     "ci tiengo",
-     "lo tengo",
-     "ci tenglio"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Ci tengo moltissimo' means 'I care about it very much.' Tenerci a qualcosa is the pronominal verb for holding something dear. For io the present is ci tengo (tenere is irregular: teng-o).",
-  "examiner_note": "Idiomatic ci verb (cross-ref pronoun.ci_locative.idiomatic_verbs). 'lo tengo' (I hold it) is the literal-reading miss.",
-  "version": 1
- },
- {
-  "external_id": "pv_mech_ci_06",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "mechanics.ci_type",
-  "difficulty": 3,
-  "cefr_level_target": "B2",
-  "prompt": "Da giorni Luca non mi rivolge la parola: ____ con me, credo. (avercela)",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": true,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.mechanics.ci_type",
-    "label": "avercela con: ce l'ha",
-    "any_phrases": [
-     {
-      "phrase": "ce l'ha",
-      "match_at": "word"
-     },
-     {
-      "phrase": "ce l' ha",
-      "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     "ci l'ha",
-     "c'è l'ha",
-     "ce la ha"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Ce l'ha con me' means 'He's got it in for me / he's cross with me.' Avercela con qualcuno is a fixed pronominal idiom; the ci shifts to ce before the l', giving ce l'ha. It has nothing to do with possessing an object.",
-  "examiner_note": "Guards the two spelling errors 'ci l'ha' (unshifted) and 'c'è l'ha' (wrong word entirely). Recognition of this sense also lives in core_set.",
-  "version": 1
- },
- {
-  "external_id": "pv_mech_ci_07",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "mechanics.ci_type",
-  "difficulty": 2,
-  "cefr_level_target": "B1",
-  "prompt": "Senza occhiali non ____ bene da lontano. (vederci, io)",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": true,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.mechanics.ci_type",
-    "label": "vederci, 1sg: ci vedo",
-    "any_phrases": [
-     {
-      "phrase": "non ci vedo",
-      "match_at": "word"
-     },
-     {
-      "phrase": "ci vedo",
-      "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     "non lo vedo",
-     "non ci veggo"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Non ci vedo bene da lontano' means 'I can't see well far away.' Vederci (like sentirci for hearing) uses ci to talk about the faculty of sight itself, not seeing a particular thing. For io it is ci vedo.",
-  "examiner_note": "'non lo vedo' (I can't see it) is the literal-object miss and is distinguished from the faculty sense.",
-  "version": 1
- },
- {
-  "external_id": "pv_mech_ci_08",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "mechanics.ci_type",
-  "difficulty": 3,
-  "cefr_level_target": "B2",
-  "prompt": "Alla fine ____ tre ore per finire tutto il lavoro. (volerci, passato)",
-  "type": "short",
-  "marks": 2,
-  "prompt_supplies_base_form": true,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "verb_form.passato_prossimo.auxiliary.essere_reflexive",
-    "label": "volerci past takes essere: ci sono",
-    "any_phrases": [
-     {
-      "phrase": "ci sono",
-      "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     "ci ha",
-     "c'ha",
-     "ci è"
-    ]
-   },
-   {
-    "order_index": 1,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.mechanics.ci_type",
-    "label": "past agreement: volute (fem pl)",
-    "any_phrases": [
-     {
-      "phrase": "volute",
-      "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     "voluto",
-     "voluti"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Ci sono volute tre ore' means 'It took three hours.' In the past, volerci takes essere, not avere: ci sono volute, ci è voluto. And it still agrees with the requirement, so with tre ore (feminine plural) the participle is volute. Reaching for 'ci ha voluto' is the standard error.",
-  "examiner_note": "Splits the auxiliary choice (essere) from the agreement (volute). 'ci ha voluto' misses the auxiliary; 'ci sono voluto' misses the agreement.",
-  "version": 1
- },
- {
-  "external_id": "pv_core_farcela_01",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "meaning.core_set",
-  "difficulty": 2,
-  "cefr_level_target": "B1",
-  "prompt": "Che cosa significa qui: 'Non ce la faccio più'?",
-  "type": "mcq",
-  "marks": 1,
-  "prompt_supplies_base_form": false,
-  "choices": [
-   "I can't take it any more",
-   "I'm not doing it again",
-   "I don't make it myself",
-   "I'm no longer lucky"
-  ],
-  "answer_index": 0,
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.meaning.core_set",
-    "label": "farcela = to manage/cope",
-    "any_phrases": [
-     "I can't take it any more"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Non ce la faccio più' means 'I can't take it any more / I can't cope any longer.' Farcela is the pronominal verb for managing or coping; ce la is frozen and carries no literal 'it'. Read literally as 'making' it, the sentence makes no sense, which is the giveaway that an idiom is in play.",
-  "examiner_note": "Recognition item. Distractor 2 is the literal fare = to make reading.",
-  "version": 1
- },
- {
-  "external_id": "pv_core_avercela_01",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "meaning.core_set",
-  "difficulty": 2,
-  "cefr_level_target": "B1",
-  "prompt": "Un amico ti dice: 'Perché ce l'hai con me?'. Cosa ti sta chiedendo?",
-  "type": "mcq",
-  "marks": 1,
-  "prompt_supplies_base_form": false,
-  "choices": [
-   "Why do you have it in for me?",
-   "Why do you have it (a thing) for me?",
-   "Why are you here with me?",
-   "Why do you agree with me?"
-  ],
-  "answer_index": 0,
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.meaning.core_set",
-    "label": "avercela con = to have it in for",
-    "any_phrases": [
-     "Why do you have it in for me?"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Perché ce l'hai con me?' means 'Why have you got it in for me?' Avercela con qualcuno means to be angry at someone. Although it looks like avere (to have) plus an object, the ce l' is idiomatic and there is no thing being possessed.",
-  "examiner_note": "Distractor 2 is the literal possession reading, the exact trap the bucket names.",
-  "version": 1
- },
- {
-  "external_id": "pv_core_cavarsela_01",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "meaning.core_set",
-  "difficulty": 2,
-  "cefr_level_target": "B1",
-  "prompt": "'In matematica se la cava.' Cosa vuol dire di questa persona?",
-  "type": "mcq",
-  "marks": 1,
-  "prompt_supplies_base_form": false,
-  "choices": [
-   "They get by / manage OK",
-   "They give up",
-   "They take it personally",
-   "They run away"
-  ],
-  "answer_index": 0,
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.meaning.core_set",
-    "label": "cavarsela = to get by/manage",
-    "any_phrases": [
-     "They get by / manage OK"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'In matematica se la cava' means 'In maths he gets by / does OK.' Cavarsela means to manage or cope with something, often at a modest 'good enough' level. It is not about escaping or taking offence.",
-  "version": 1
- },
- {
-  "external_id": "pv_core_prendersela_01",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "meaning.core_set",
-  "difficulty": 2,
-  "cefr_level_target": "B1",
-  "prompt": "Vedi un amico deluso e gli dici: 'Non prendertela!'. Cosa gli stai dicendo?",
-  "type": "mcq",
-  "marks": 1,
-  "prompt_supplies_base_form": false,
-  "choices": [
-   "Don't take it to heart",
-   "Don't take it with you",
-   "Don't take what's yours",
-   "Don't catch it"
-  ],
-  "answer_index": 0,
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.meaning.core_set",
-    "label": "prendersela = to take offence / get upset",
-    "any_phrases": [
-     "Don't take it to heart"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Non prendertela!' means 'Don't take it to heart / don't get upset!' Prendersela means to get offended or upset. The la is frozen, so it is not about taking a physical thing.",
-  "version": 1
- },
- {
-  "external_id": "pv_core_sentirsela_01",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "meaning.core_set",
-  "difficulty": 2,
-  "cefr_level_target": "B1",
-  "prompt": "'Non me la sento di affrontarlo adesso.' Come si sente chi parla?",
-  "type": "mcq",
-  "marks": 1,
-  "prompt_supplies_base_form": false,
-  "choices": [
-   "They don't feel up to it",
-   "They can't feel their hands",
-   "They can't hear it",
-   "They don't want to be heard"
-  ],
-  "answer_index": 0,
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.meaning.core_set",
-    "label": "sentirsela = to feel up to it",
-    "any_phrases": [
-     "They don't feel up to it"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Non me la sento di affrontarlo adesso' means 'I don't feel up to facing it right now.' Sentirsela di fare qualcosa means to feel able or willing to do something. It is about readiness, not about physically hearing or feeling.",
-  "version": 1
- },
- {
-  "external_id": "pv_core_andarsene_01",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "meaning.core_set",
-  "difficulty": 2,
-  "cefr_level_target": "B1",
-  "prompt": "'Se n'è andato senza salutare.' Cosa ha fatto questa persona?",
-  "type": "mcq",
-  "marks": 1,
-  "prompt_supplies_base_form": false,
-  "choices": [
-   "Left without saying goodbye",
-   "Went mad without warning",
-   "Gave it away for free",
-   "Lost his way"
-  ],
-  "answer_index": 0,
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.meaning.core_set",
-    "label": "andarsene = to leave / go off",
-    "any_phrases": [
-     "Left without saying goodbye"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Se n'è andato senza salutare' means 'He left without saying goodbye.' Andarsene means to go away or take oneself off; it carries a shade more finality and attitude than plain andare.",
-  "version": 1
- },
- {
-  "external_id": "pv_core_entrarci_01",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "meaning.core_set",
-  "difficulty": 2,
-  "cefr_level_target": "B1",
-  "prompt": "Durante una discussione qualcuno dice: 'Questo non c'entra niente.'. Cosa intende?",
-  "type": "mcq",
-  "marks": 1,
-  "prompt_supplies_base_form": false,
-  "choices": [
-   "This has nothing to do with it",
-   "This doesn't fit inside",
-   "Nobody goes in there",
-   "This doesn't come up"
-  ],
-  "answer_index": 0,
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.meaning.core_set",
-    "label": "entrarci = to have to do with it",
-    "any_phrases": [
-     "This has nothing to do with it"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Questo non c'entra niente' means 'This has nothing to do with it.' Entrarci means to be relevant or connected. Read literally as 'entering', it would be about walking in somewhere, which is not the sense here.",
-  "version": 1
- },
- {
-  "external_id": "pv_core_recall_01",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "meaning.core_set",
-  "difficulty": 3,
-  "cefr_level_target": "B2",
-  "prompt": "Quale espressione italiana significa 'I can't cope any more'?",
-  "type": "mcq",
-  "marks": 1,
-  "prompt_supplies_base_form": false,
-  "choices": [
-   "Non ce la faccio più",
-   "Non ci vado più",
-   "Non me lo faccio più",
-   "Non ci sto più"
-  ],
-  "answer_index": 0,
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.meaning.core_set",
-    "label": "recall farcela form",
-    "any_phrases": [
-     "Non ce la faccio più"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Non ce la faccio più' is the idiom for 'I can't cope any more.' The other options are real Italian but mean different things: non ci vado più = I don't go there any more; non ci sto più = I'm not in / not up for it any more. Farcela is the one about managing.",
-  "examiner_note": "Reverse-direction (en->it) recognition, so the bidirectional core_set leaf is exercised both ways.",
-  "version": 1
- },
- {
-  "external_id": "pv_disc_vvm_01",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "meaning.volerci_vs_metterci",
-  "difficulty": 2,
-  "cefr_level_target": "B1",
-  "prompt": "'I take an hour to get to the office with traffic.' Completa: 'Con il traffico, io ____ un'ora ad arrivare in ufficio.'",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": false,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.meaning.volerci_vs_metterci",
-    "label": "personal subject -> metterci",
-    "any_phrases": [
-     {
-      "phrase": "ci metto",
-      "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     "ci vuole",
-     "ci voglio",
-     "ci vogliono"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Io ci metto un'ora' means 'I take an hour.' When a person is the subject and spends the time, Italian uses metterci: io ci metto. Volerci would be wrong here because it is impersonal ('it takes'), and you cannot pin it to io.",
-  "examiner_note": "The explicit personal subject io pins metterci; discrimination leaf, so suppressed. English gloss supplies the meaning, not the verb.",
-  "version": 1
- },
- {
-  "external_id": "pv_disc_vvm_02",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "meaning.volerci_vs_metterci",
-  "difficulty": 2,
-  "cefr_level_target": "B1",
-  "prompt": "'It takes an hour to get to Rome.' Completa: 'Per arrivare a Roma ____ un'ora.'",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": false,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.meaning.volerci_vs_metterci",
-    "label": "impersonal, singular -> ci vuole",
-    "any_phrases": [
-     {
-      "phrase": "ci vuole",
-      "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     "ci metto",
-     "ci mette",
-     "ci vogliono"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Ci vuole un'ora' means 'It takes an hour.' With no personal subject, just the journey and the time, Italian uses the impersonal volerci: ci vuole. It agrees with un'ora, which is singular.",
-  "examiner_note": "No personal subject in view, so the impersonal volerci is forced. Pairs with vvm_01 as a same-frame contrast.",
-  "version": 1
- },
- {
-  "external_id": "pv_disc_vvm_03",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "meaning.volerci_vs_metterci",
-  "difficulty": 2,
-  "cefr_level_target": "B1",
-  "prompt": "'By car it takes two hours.' Completa: 'In macchina ____ due ore.'",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": false,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.meaning.volerci_vs_metterci",
-    "label": "impersonal, plural -> ci vogliono",
-    "any_phrases": [
-     {
-      "phrase": "ci vogliono",
-      "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     "ci vuole",
-     "ci mette",
-     "ci metto"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Ci vogliono due ore' means 'It takes two hours.' Still impersonal (no one is named), so volerci; and because two hours is plural, it agrees as plural: ci vogliono. The pull toward the singular ci vuole is the classic slip.",
-  "examiner_note": "Tests impersonal choice AND plural agreement together, but both are the volerci skill; single markpoint is correct.",
-  "version": 1
- },
- {
-  "external_id": "pv_disc_vvm_04",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "meaning.volerci_vs_metterci",
-  "difficulty": 2,
-  "cefr_level_target": "B1",
-  "prompt": "'Marco takes twenty minutes on foot.' Completa: 'Marco ____ venti minuti a piedi.'",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": false,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.meaning.volerci_vs_metterci",
-    "label": "named personal subject -> metterci",
-    "any_phrases": [
-     {
-      "phrase": "ci mette",
-      "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     "ci vuole",
-     "ci vogliono",
-     "ci metto"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Marco ci mette venti minuti' means 'Marco takes twenty minutes.' Marco is a personal subject doing the travelling, so metterci: ci mette. Volerci cannot take Marco as its subject.",
-  "examiner_note": "Named subject (Marco) pins metterci in the third person.",
-  "version": 1
- },
- {
-  "external_id": "pv_disc_vvm_05",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "meaning.volerci_vs_metterci",
-  "difficulty": 3,
-  "cefr_level_target": "B2",
-  "prompt": "'I took two hours to finish it.' Completa: 'Ci ____ due ore per finirlo. (io, passato)'",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": false,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.meaning.volerci_vs_metterci",
-    "label": "metterci past takes avere: ci ho messo",
-    "any_phrases": [
-     {
-      "phrase": "ho messo",
-      "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     "sono voluto",
-     "sono volute",
-     "e voluto",
-     "sono messo"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Ci ho messo due ore' means 'I took two hours.' Personal subject, so metterci; and metterci forms its past with avere: ci ho messo. This is the mirror of volerci, which would take essere (ci sono volute). The auxiliary follows the verb you pick.",
-  "examiner_note": "Past-tense discrimination: personal metterci (avere) vs impersonal volerci (essere). Guards the essere forms as wrong here.",
-  "version": 1
- },
- {
-  "external_id": "pv_disc_vvm_06",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "meaning.volerci_vs_metterci",
-  "difficulty": 3,
-  "cefr_level_target": "B2",
-  "prompt": "'How long does it take (in general) to learn Italian?' Completa: 'Quanto tempo ____ per imparare l'italiano?'",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": false,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.meaning.volerci_vs_metterci",
-    "label": "general/impersonal -> volerci",
-    "any_phrases": [
-     {
-      "phrase": "ci vuole",
-      "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     "ci metti",
-     "ci mette",
-     "ci metto"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Quanto tempo ci vuole?' means 'How long does it take?' Asked in general, with nobody specific doing the learning, the question is impersonal and takes volerci: ci vuole. If it named a person ('quanto tempo ci metti tu?') metterci would return.",
-  "examiner_note": "General question with no personal subject -> volerci. The paired metterci version is noted in the explanation to make the conditioning factor explicit.",
-  "version": 1
- },
- {
-  "external_id": "pv_celho_01",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "meaning.ce_lho_possession",
-  "difficulty": 1,
-  "cefr_level_target": "A2",
-  "prompt": "'Hai una penna?' 'Sì, ____.' (avere, rispondi)",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": true,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.meaning.ce_lho_possession",
-    "label": "ce l'ho (have-it answer)",
-    "any_phrases": [
-     {
-      "phrase": "ce l'ho",
-      "match_at": "word"
-     },
-     {
-      "phrase": "ce l' ho",
-      "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     "l'ho",
-     "ci l'ho",
-     "ce lo ho"
-    ]
-   }
-  ],
-  "vocab_help": [
-   {
-    "lemma": "penna",
-    "language": "it",
-    "aspects": {
-     "translation": {
-      "translation": {
-       "reveal": "penna - pen",
-       "bucket": "vocabulary.it.penna.noun.translation"
+    "vocab_help": [],
+    "explanation": "'Come te la cavi con l'italiano?' means 'How are you getting on with Italian?' Cavarsela is a pronominal verb, so the reflexive bit tracks the person while la stays put: te la cavi for tu. The subject is not written out, so the ending -i on cavi is what carries the 'you'.",
+    "examiner_note": "Subject pro-dropped, so the person is named in the cue (cue economy). Full-phrase markpoint because 'cavi' alone is too short to mark safely.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_mech_sela_03",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "mechanics.sela_type",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Marco non parla benissimo l'inglese, ma ____. (cavarsela)",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.mechanics.sela_type",
+        "label": "cavarsela, 3sg: se la cava",
+        "any_phrases": [
+          {
+            "phrase": "se la cava",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "si la cava",
+          "se lo cava"
+        ]
       }
-     }
-    }
-   }
-  ],
-  "explanation": "'Sì, ce l'ho' means 'Yes, I've got one.' To answer that you have something, everyday Italian says ce l'ho, not the bare l'ho, which sounds unfinished. The ce is a fixed part of the pattern (from a pleonastic ci), and lo elides to l' before ho.",
-  "examiner_note": "Guards the bare 'l'ho' and the mis-spelling 'ci l'ho'. Full-phrase markpoint because l'ho is a substring risk.",
-  "version": 1
- },
- {
-  "external_id": "pv_celho_02",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "meaning.ce_lho_possession",
-  "difficulty": 1,
-  "cefr_level_target": "A2",
-  "prompt": "'Hai il biglietto del treno?' 'No, non ____.' (avere, rispondi)",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": true,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.meaning.ce_lho_possession",
-    "label": "negative: non ce l'ho",
-    "any_phrases": [
-     {
-      "phrase": "non ce l'ho",
-      "match_at": "word"
-     },
-     {
-      "phrase": "non ce l' ho",
-      "match_at": "word"
-     }
     ],
-    "must_not_include": [
-     "non l'ho",
-     "non ci l'ho",
-     "non ce lo ho"
-    ]
-   }
-  ],
-  "vocab_help": [
-   {
-    "lemma": "biglietto",
-    "language": "it",
-    "aspects": {
-     "translation": {
-      "translation": {
-       "reveal": "biglietto - ticket",
-       "bucket": "vocabulary.it.biglietto.noun.translation"
+    "vocab_help": [],
+    "explanation": "'...ma se la cava' means '...but he gets by.' In this pronominal verb the reflexive piece for lui/lei is se, and la never moves, giving se la cava. Marco is already the subject, so the verb just needs its third-person form.",
+    "examiner_note": "Subject (Marco) explicit, so the cue drops the person.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_mech_sela_04",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "mechanics.sela_type",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "È stato un anno durissimo, ma alla fine ce l'ho ____! (farcela)",
+    "type": "short",
+    "marks": 2,
+    "wrong_answer_is_form_error_only": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronoun.combined",
+        "label": "frozen cluster ce l'ho",
+        "any_phrases": [
+          {
+            "phrase": "ce l'ho",
+            "match_at": "word"
+          },
+          {
+            "phrase": "ce l' ho",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "ce la ho",
+          "ce lo ho"
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.mechanics.sela_type",
+        "label": "farcela past: invariably feminine fatta",
+        "any_phrases": [
+          {
+            "phrase": "fatta",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "fatto",
+          "fatti"
+        ]
       }
-     }
-    }
-   }
-  ],
-  "explanation": "'No, non ce l'ho' means 'No, I haven't got it.' The negative simply wraps non around the same fixed pattern: non ce l'ho. Dropping to 'non l'ho' is the usual slip.",
-  "version": 1
- },
- {
-  "external_id": "pv_celho_03",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "meaning.ce_lho_possession",
-  "difficulty": 2,
-  "cefr_level_target": "A2",
-  "prompt": "Chiedi a un amico se ha il passaporto con sé: '____ il passaporto?' (avere, tu)",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": true,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.meaning.ce_lho_possession",
-    "label": "question 2sg: ce l'hai",
-    "any_phrases": [
-     {
-      "phrase": "ce l'hai",
-      "match_at": "word"
-     },
-     {
-      "phrase": "ce l' hai",
-      "match_at": "word"
-     }
     ],
-    "must_not_include": [
-     "l'hai",
-     "ci l'hai",
-     "ce lo hai"
-    ]
-   }
-  ],
-  "vocab_help": [
-   {
-    "lemma": "passaporto",
-    "language": "it",
-    "aspects": {
-     "translation": {
-      "translation": {
-       "reveal": "passaporto - passport",
-       "bucket": "vocabulary.it.passaporto.noun.translation"
+    "vocab_help": [],
+    "explanation": "'Ce l'ho fatta!' means 'I made it / I managed it!' This is the past of farcela, a pronominal verb whose la is a frozen pronoun, not a real object. In compound tenses the participle agrees with that la, so it is feminine whoever the speaker is: a man says ce l'ho fatta just as a woman does. Writing fatto is the single most common advanced slip here.",
+    "examiner_note": "Split marking isolates the #1 slip: 'ce l'ho fatto' credits the cluster (pronoun.combined) but misses the frozen-feminine agreement on this leaf. 'ce la ho fatta' (no elision) fails the cluster guard instead.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_mech_sela_05",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "mechanics.sela_type",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "L'esame di guida era difficile, ma alla fine ____ bene. (cavarsela, lei, passato)",
+    "type": "short",
+    "marks": 2,
+    "wrong_answer_is_form_error_only": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.passato_prossimo.auxiliary.essere_reflexive",
+        "label": "reflexive auxiliary è (not ha)",
+        "any_phrases": [
+          {
+            "phrase": "se l'è",
+            "match_at": "word"
+          },
+          {
+            "phrase": "se l' è",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "se l'ha",
+          "se l' ha",
+          "se la è"
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.mechanics.sela_type",
+        "label": "frozen feminine participle cavata",
+        "any_phrases": [
+          {
+            "phrase": "cavata",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "cavato"
+        ]
       }
-     }
-    }
-   }
-  ],
-  "explanation": "'Ce l'hai il passaporto?' means 'Have you got your passport?' In speech Italians front the ce l'hai and then name the thing: ce l'hai il passaporto? The ce stays fixed and hai is just avere for tu.",
-  "examiner_note": "The colloquial 'ce l'hai + noun' dislocation is standard spoken register; stated in the explanation.",
-  "version": 1
- },
- {
-  "external_id": "pv_celho_04",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "meaning.ce_lho_possession",
-  "difficulty": 2,
-  "cefr_level_target": "B1",
-  "prompt": "'Marco ha la macchina oggi?' 'Sì, ____.' (avere, rispondi)",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": true,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.meaning.ce_lho_possession",
-    "label": "3sg: ce l'ha",
-    "any_phrases": [
-     {
-      "phrase": "ce l'ha",
-      "match_at": "word"
-     },
-     {
-      "phrase": "ce l' ha",
-      "match_at": "word"
-     }
     ],
-    "must_not_include": [
-     "l'ha",
-     "ci l'ha",
-     "ce la ha"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Sì, ce l'ha' means 'Yes, he's got it.' Third person is ce l'ha. The l' hides either lo or la (here la macchina), because both elide to l' before a vowel, so ce l'ha covers both.",
-  "examiner_note": "Feminine object (la macchina) still elides to ce l'ha; the point that l' masks both genders is in the explanation.",
-  "version": 1
- },
- {
-  "external_id": "pv_celho_05",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "meaning.ce_lho_possession",
-  "difficulty": 2,
-  "cefr_level_target": "B1",
-  "prompt": "'Hai i documenti dell'auto?' 'Sì, ____.' (avere, rispondi)",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": true,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.meaning.ce_lho_possession",
-    "label": "plural object, no elision: ce li ho",
-    "any_phrases": [
-     {
-      "phrase": "ce li ho",
-      "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     "ce l'ho",
-     "li ho",
-     "ce gli ho"
-    ]
-   }
-  ],
-  "vocab_help": [
-   {
-    "lemma": "documenti",
-    "language": "it",
-    "aspects": {
-     "translation": {
-      "translation": {
-       "reveal": "documento - document",
-       "bucket": "vocabulary.it.documento.noun.translation"
+    "vocab_help": [],
+    "explanation": "'Se l'è cavata bene' means 'She got through it fine.' Cavarsela is reflexive, so its compound past takes essere: se l'è cavata. And because the frozen la governs agreement, the participle is feminine cavata no matter who the subject is. Two traps sit here: reaching for ha instead of è, and writing cavato.",
+    "examiner_note": "Cross-cites the essere-reflexive auxiliary bucket; second markpoint keeps the frozen-feminine agreement on this leaf. Both misses are attributable.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_mech_sela_06",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "mechanics.sela_type",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Sono troppo stanco: ____ di guidare stanotte. (sentirsela, io, negativo)",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.mechanics.sela_type",
+        "label": "non me la sento (sentirsela, 1sg neg)",
+        "any_phrases": [
+          {
+            "phrase": "non me la sento",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "non mi la sento",
+          "non me lo sento"
+        ]
       }
-     }
-    }
-   }
-  ],
-  "explanation": "'Sì, ce li ho' means 'Yes, I've got them.' Here the thing is plural (i documenti), so the pronoun is li, and li does not elide: it stays ce li ho, three separate words. Answering ce l'ho would be wrong, because that is the singular.",
-  "examiner_note": "Key extension: with plural li/le there is no elision, and 'ce l'ho' (singular) becomes the diagnostic miss.",
-  "version": 1
- },
- {
-  "external_id": "pv_celho_06",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "meaning.ce_lho_possession",
-  "difficulty": 2,
-  "cefr_level_target": "B1",
-  "prompt": "'Hai le chiavi di casa?' 'Sì, ____.' (avere, rispondi)",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": true,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.meaning.ce_lho_possession",
-    "label": "feminine plural object: ce le ho",
-    "any_phrases": [
-     {
-      "phrase": "ce le ho",
-      "match_at": "word"
-     }
     ],
-    "must_not_include": [
-     "ce l'ho",
-     "le ho",
-     "ce le o"
-    ]
-   }
-  ],
-  "vocab_help": [
-   {
-    "lemma": "chiavi",
-    "language": "it",
-    "aspects": {
-     "translation": {
-      "translation": {
-       "reveal": "chiave - key",
-       "bucket": "vocabulary.it.chiave.noun.translation"
+    "vocab_help": [],
+    "explanation": "'Non me la sento di guidare stanotte' means 'I don't feel up to driving tonight.' Sentirsela is the pronominal verb for feeling able to face something; the reflexive piece is me for io and la stays frozen, so the whole run is me la sento. Negation just wraps non around the front.",
+    "examiner_note": "Full-phrase markpoint (the parts are too short to mark in isolation).",
+    "version": 1
+  },
+  {
+    "external_id": "pv_mech_sela_07",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "mechanics.sela_type",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "I bambini ____ un mondo alla festa di ieri. (godersela, passato)",
+    "type": "short",
+    "marks": 2,
+    "wrong_answer_is_form_error_only": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.passato_prossimo.auxiliary.essere_reflexive",
+        "label": "reflexive auxiliary: se la sono",
+        "any_phrases": [
+          {
+            "phrase": "se la sono",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "si la sono",
+          "se la hanno",
+          "se l'hanno"
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.mechanics.sela_type",
+        "label": "frozen feminine participle goduta",
+        "any_phrases": [
+          {
+            "phrase": "goduta",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "goduti",
+          "goduto"
+        ]
       }
-     }
-    }
-   }
-  ],
-  "explanation": "'Sì, ce le ho' means 'Yes, I've got them.' Le chiavi is feminine plural, so the pronoun is le and again there is no elision: ce le ho. As with ce li ho, the singular ce l'ho would not fit a plural thing.",
-  "version": 1
- },
- {
-  "external_id": "pv_adv_contrast_01",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "mechanics.sela_type",
-  "difficulty": 3,
-  "cefr_level_target": "C1",
-  "prompt": "Completa (noi, passato): 'Ce l'abbiamo ____ a finire tutto, e poi ce ne siamo ____ contenti.' (farcela; andarsene)",
-  "type": "short",
-  "marks": 2,
-  "prompt_supplies_base_form": true,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.mechanics.sela_type",
-    "label": "farcela: frozen feminine fatta",
-    "any_phrases": [
-     {
-      "phrase": "fatta",
-      "match_at": "word"
-     }
     ],
-    "must_not_include": [
-     "fatto",
-     "fatti"
-    ]
-   },
-   {
-    "order_index": 1,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.mechanics.sene_type",
-    "label": "andarsene: subject agreement andati/e",
-    "any_phrases": [
-     {
-      "phrase": "andati",
-      "match_at": "word"
-     },
-     {
-      "phrase": "andate",
-      "match_at": "word"
-     }
+    "vocab_help": [],
+    "explanation": "'Se la sono goduta un mondo' means 'They had a wonderful time.' Godersela is reflexive, so the compound past is se la sono goduta with essere. The striking bit: the subject is i bambini (masculine plural) yet the participle is feminine singular goduta, because it agrees with the frozen la, not with the boys. That is the signature of this whole family.",
+    "examiner_note": "Deliberate clash: masc-pl subject, fem-sg participle. 'goduti' (agreeing with bambini) is the diagnostic miss and is caught on this leaf.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_mech_sene_01",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "mechanics.sene_type",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "È tardi, ____. (andarsene, io)",
+    "type": "short",
+    "marks": 2,
+    "wrong_answer_is_form_error_only": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronoun.combined.vowel_changes",
+        "label": "vowel shift mi -> me",
+        "any_phrases": [
+          {
+            "phrase": "me ne",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "mi ne"
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.mechanics.sene_type",
+        "label": "andarsene, 1sg: vado",
+        "any_phrases": [
+          {
+            "phrase": "vado",
+            "match_at": "word"
+          }
+        ]
+      }
     ],
-    "must_not_include": [
-     "andato",
-     "andata"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Ce l'abbiamo fatta a finire tutto, e poi ce ne siamo andati contenti' means 'We managed to finish everything, and then we left happy.' The same sentence shows the two agreement rules side by side: farcela freezes its participle feminine (fatta, always), while andarsene agrees with the subject (andati for a mixed or male group, andate for an all-female one). One frozen, one agreeing.",
-  "examiner_note": "The head-to-head participle contrast. Both plural-subject participle options accepted for andarsene; fatta must stay singular feminine.",
-  "version": 1
- },
- {
-  "external_id": "pv_adv_farcela_pres_01",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "mechanics.ci_type",
-  "difficulty": 3,
-  "cefr_level_target": "B2",
-  "prompt": "Rispondi (io): 'Riesci a finire il progetto per stasera?' 'Sì, ____.' (farcela)",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": true,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.mechanics.ci_type",
-    "label": "farcela present, 1sg: ce la faccio",
-    "any_phrases": [
-     {
-      "phrase": "ce la faccio",
-      "match_at": "word"
-     }
+    "vocab_help": [],
+    "explanation": "'Me ne vado' means 'I'm off / I'm leaving.' Andarsene bundles the reflexive with ne. Before ne the reflexive mi changes its vowel to me, which is why it is me ne vado and never 'mi ne vado'. The verb andare then conjugates normally: vado.",
+    "examiner_note": "Cross-cites the vowel-change bucket. 'mi ne vado' fails the cluster but keeps the verb credit (vado), isolating the unshifted-vowel miss.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_mech_sene_02",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "mechanics.sene_type",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Perché ____ così presto dalla festa? (andarsene, tu)",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.mechanics.sene_type",
+        "label": "andarsene, 2sg: te ne vai",
+        "any_phrases": [
+          {
+            "phrase": "te ne vai",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "ti ne vai",
+          "te ne va"
+        ]
+      }
     ],
-    "must_not_include": [
-     "ci la faccio",
-     "ce la faccia",
-     "la faccio"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Sì, ce la faccio' means 'Yes, I can manage it.' Riuscire a fare and farcela are close in meaning, and the natural short reply to a riuscire question is farcela: ce la faccio. The ci has shifted to ce before la, and fare gives faccio.",
-  "examiner_note": "Cross-references pronoun.ci_locative.idiomatic_verbs.farcela. Present tense, so bucketed with the ci mechanics (the frozen-feminine past sits in sela_type).",
-  "version": 1
- },
- {
-  "external_id": "pv_adv_shell_01",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "mechanics.sene_type",
-  "difficulty": 3,
-  "cefr_level_target": "C1",
-  "prompt": "'I couldn't care less about what they say about me.' Completa: 'Di quello che dicono di me, ____. (io)'",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": false,
-  "info_display": "suppress",
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.mechanics.sene_type",
-    "label": "correct shell -sene: me ne frego/infischio",
-    "any_phrases": [
-     {
-      "phrase": "me ne frego",
-      "match_at": "word"
-     },
-     {
-      "phrase": "me ne infischio",
-      "match_at": "word"
-     }
+    "vocab_help": [],
+    "explanation": "'Perché te ne vai così presto?' means 'Why are you leaving so early?' For tu the reflexive te sits before ne (again the vowel has shifted from ti to te), and andare gives vai: te ne vai.",
+    "examiner_note": "Full-phrase markpoint.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_mech_sene_03",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "mechanics.sene_type",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Ogni sera lui ____ dall'ufficio alle sei in punto. (andarsene)",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.mechanics.sene_type",
+        "label": "andarsene, 3sg: se ne va",
+        "any_phrases": [
+          {
+            "phrase": "se ne va",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "si ne va"
+        ]
+      }
     ],
-    "must_not_include": [
-     "me la frego",
-     "me lo frego",
-     "me ne cavo"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Me ne frego' means 'I couldn't care less.' The trap is the shell: not caring is fregarsene, built on ne (me ne frego), not on la. Me la frego borrows the wrong cluster from the -sela family; me ne cavo invents a verb. Picking the right frozen shell is the whole skill at this level.",
-  "examiner_note": "Shell discrimination -sene vs -sela. Accepts the near-synonym infischiarsene. Casual register, flagged by the English gloss's idiom.",
-  "version": 1
- },
- {
-  "external_id": "pv_adv_frozentail_01",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "meaning.frozen_tail_idioms",
-  "difficulty": 3,
-  "cefr_level_target": "C1",
-  "prompt": "Completa il modo di dire [to give it your all]: 'Per superare l'esame ce l'ho messa ____.' (mettercela)",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": true,
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.meaning.frozen_tail_idioms",
-    "label": "frozen feminine tail: tutta",
-    "any_phrases": [
-     {
-      "phrase": "tutta",
-      "match_at": "word"
-     }
+    "vocab_help": [],
+    "explanation": "'Ogni sera se ne va alle sei' means 'Every evening he leaves at six.' The third-person reflexive is se, so the run is se ne va. 'Ogni sera' fixes it as a habit in the present.",
+    "examiner_note": "Subject (lui) explicit, so the cue omits the person.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_mech_sene_04",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "mechanics.sene_type",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "Maria era offesa: ____ senza salutare nessuno. (andarsene, passato)",
+    "type": "short",
+    "marks": 2,
+    "wrong_answer_is_form_error_only": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.passato_prossimo.auxiliary.essere_reflexive",
+        "label": "auxiliary essere: se n'è",
+        "any_phrases": [
+          {
+            "phrase": "se n'è",
+            "match_at": "word"
+          },
+          {
+            "phrase": "se n' è",
+            "match_at": "word"
+          },
+          {
+            "phrase": "se ne è",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "se n'ha",
+          "se ne ha"
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.mechanics.sene_type",
+        "label": "subject agreement: andata",
+        "any_phrases": [
+          {
+            "phrase": "andata",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "andato"
+        ]
+      }
     ],
-    "must_not_include": [
-     "tutto",
-     "tutti",
-     "tutte"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Ce l'ho messa tutta' means 'I gave it everything I had.' Mettercela tutta is a set idiom for trying your hardest, and both pronouns are frozen: the participle is messa and the tail is tutta, feminine because it echoes the frozen la. Neither agrees with the speaker.",
-  "examiner_note": "Re-homed from mechanics.sela_type to the frozen-tail leaf on Smith's commission 2026-07-18. Prompt gloss converted from Italian to bracketed English per criterion 20. 'tutta' word-anchored (it sits inside 'tuttavia').",
-  "version": 2
- },
- {
-  "external_id": "pv_ft_mettercela_01",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "meaning.frozen_tail_idioms",
-  "difficulty": 3,
-  "cefr_level_target": "C1",
-  "prompt": "Non è il più talentuoso della squadra, ma ____ tutta a ogni partita. [he gives it his all] (mettercela)",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": true,
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.meaning.frozen_tail_idioms",
-    "label": "mettercela, 3sg: ce la mette",
-    "any_phrases": [
-     {
-      "phrase": "ce la mette",
-      "match_at": "word"
-     }
+    "vocab_help": [],
+    "explanation": "'Se n'è andata senza salutare' means 'She left without saying goodbye to anyone.' Andarsene is reflexive, so its past takes essere: se n'è andata. Unlike the -sela verbs, the participle here agrees with the subject, so for Maria it is andata. Contrast ce l'ho fatta (frozen feminine) with se n'è andata (agrees with her): the -sene family agrees, the -sela family does not.",
+    "examiner_note": "Second markpoint tests genuine subject agreement (andata for Maria). The explanation draws the sela-vs-sene agreement contrast explicitly.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_mech_sene_05",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "mechanics.sene_type",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Stasera non esco: ____ tranquillo a casa. (starsene, io)",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.mechanics.sene_type",
+        "label": "starsene, 1sg: me ne sto",
+        "any_phrases": [
+          {
+            "phrase": "me ne sto",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "mi ne sto"
+        ]
+      }
     ],
-    "must_not_include": [
-     "ci la mette",
-     "se la mette"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Ce la mette tutta a ogni partita' means 'He gives it his all in every match.' Mettercela tutta is a set idiom: both little pronouns are frozen (ce la) and the tail tutta is obligatory. Only the verb body moves with the person: ce la metto, ce la mette.",
-  "examiner_note": "Word-anchored: bare 'ce la mette' sits inside the imperfect 'ce la metteva', a plausible wrong-tense attempt.",
-  "version": 1
- },
- {
-  "external_id": "pv_ft_darsela_01",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "meaning.frozen_tail_idioms",
-  "difficulty": 3,
-  "cefr_level_target": "C1",
-  "prompt": "Appena hanno visto la polizia, se la sono data ____. [they legged it] (darsela)",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": true,
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.meaning.frozen_tail_idioms",
-    "label": "darsela: obligatory tail a gambe",
-    "any_phrases": [
-     {
-      "phrase": "a gambe",
-      "match_at": "word"
-     }
+    "vocab_help": [],
+    "explanation": "'Me ne sto tranquillo a casa' means 'I'm staying quietly at home.' Starsene is the pronominal cousin of stare, adding a shade of 'keeping oneself' somewhere. Same shape as andarsene: me ne sto, with the vowel shifted to me.",
+    "examiner_note": "starsene is an idiomatic-ne pronominal verb; cross-references pronoun.ne.pronominal_idiomatic_verbs. No accent on sto (guard 'stò').",
+    "version": 2
+  },
+  {
+    "external_id": "pv_mech_sene_06",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "mechanics.sene_type",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "Della politica non m'importa niente: ____ completamente. (fregarsene, io)",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.mechanics.sene_type",
+        "label": "fregarsene, 1sg: me ne frego",
+        "any_phrases": [
+          {
+            "phrase": "me ne frego",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "mi ne frego",
+          "me ne freco"
+        ]
+      }
     ],
-    "must_not_include": [
-     "alle gambe",
-     "in gambe",
-     "a gamba"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Se la sono data a gambe' means 'They legged it / they took to their heels.' Darsela a gambe is frozen end to end: the la is a frozen pronoun standing for nothing, and the tail a gambe cannot be varied. The optional intensifier is a gambe levate.",
-  "examiner_note": "'a gambe' is word-anchored and still matches the longer standard variant 'a gambe levate', which is accepted.",
-  "version": 1
- },
- {
-  "external_id": "pv_ft_darsela_02",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "meaning.frozen_tail_idioms",
-  "difficulty": 3,
-  "cefr_level_target": "C1",
-  "prompt": "Appena hanno visto i vigili, ____ a gambe. (darsela, loro, passato)",
-  "type": "short",
-  "marks": 2,
-  "prompt_supplies_base_form": true,
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "verb_form.passato_prossimo.auxiliary.essere_reflexive",
-    "label": "reflexive auxiliary: se la sono",
-    "any_phrases": [
-     {
-      "phrase": "se la sono",
-      "match_at": "word"
-     }
+    "vocab_help": [],
+    "explanation": "'Me ne frego completamente' means 'I couldn't care less.' Fregarsene is the colloquial pronominal verb for not caring; like the others in its family it runs me ne frego, with the reflexive vowel shifted before ne.",
+    "examiner_note": "Idiomatic-ne pronominal verb (cross-ref pronoun.ne.pronominal_idiomatic_verbs). Register is casual but not vulgar; flagged for the learner in the explanation's 'colloquial'.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_mech_sene_07",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "mechanics.sene_type",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Quando finisce il film, ____ subito a dormire. (andarsene, noi)",
+    "type": "short",
+    "marks": 2,
+    "wrong_answer_is_form_error_only": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronoun.combined.vowel_changes",
+        "label": "vowel shift ci -> ce",
+        "any_phrases": [
+          {
+            "phrase": "ce ne",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "ci ne"
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.mechanics.sene_type",
+        "label": "andarsene, 1pl: andiamo",
+        "any_phrases": [
+          {
+            "phrase": "andiamo",
+            "match_at": "word"
+          }
+        ]
+      }
     ],
-    "must_not_include": [
-     "si la sono",
-     "se l'hanno",
-     "se la hanno"
-    ]
-   },
-   {
-    "order_index": 1,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.meaning.frozen_tail_idioms",
-    "label": "frozen feminine participle: data",
-    "any_phrases": [
-     {
-      "phrase": "data",
-      "match_at": "word"
-     }
+    "vocab_help": [],
+    "explanation": "'Ce ne andiamo subito a dormire' means 'We go straight off to bed.' For noi the reflexive ci shifts to ce before ne, giving ce ne andiamo. The same vowel change that turns mi into me turns ci into ce.",
+    "examiner_note": "Cross-cites the vowel-change bucket for the ci->ce case; 'ci ne andiamo' fails the cluster, keeps the verb credit.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_mech_ci_01",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "mechanics.ci_type",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Per arrivare in centro a piedi ____ mezz'ora. (volerci)",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.mechanics.ci_type",
+        "label": "volerci, singular requirement: ci vuole",
+        "any_phrases": [
+          {
+            "phrase": "ci vuole",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "ci vogliono",
+          "ci vole",
+          "vuole"
+        ]
+      }
     ],
-    "must_not_include": [
-     "dato",
-     "dati"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Se la sono data a gambe' means 'They legged it as soon as they saw the traffic police.' Darsela is reflexive, so the past takes essere (se la sono), and the participle is feminine data because it answers to the frozen la, not to the plural subject.",
-  "examiner_note": "Splits the auxiliary (pronoun/PP tree) from the frozen-feminine agreement (this leaf). 'se l'hanno data' misses the auxiliary but keeps the agreement mark.",
-  "version": 1
- },
- {
-  "external_id": "pv_ft_legarsela_01",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "meaning.frozen_tail_idioms",
-  "difficulty": 3,
-  "cefr_level_target": "C1",
-  "prompt": "Non dimentica mai un torto: se l'è legata ____. [he bears a grudge] (legarsela)",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": true,
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.meaning.frozen_tail_idioms",
-    "label": "legarsela: obligatory tail al dito",
-    "any_phrases": [
-     {
-      "phrase": "al dito",
-      "match_at": "word"
-     }
+    "vocab_help": [
+      {
+        "lemma": "centro",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "translation": {
+              "reveal": "centro - centre (of town)",
+              "bucket": "vocabulary.it.centro.noun.translation"
+            }
+          }
+        }
+      }
     ],
-    "must_not_include": [
-     "al ditto",
-     "alle dita",
-     "sul dito"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Se l'è legata al dito' means 'He bore a grudge about it.' Legarsela al dito pictures tying a string round your finger so you do not forget a wrong. The tail al dito is fixed and singular: alle dita is not an option.",
-  "examiner_note": "Tail item; the stem (se l'è legata) is supplied so the diagnostic is the frozen tail alone.",
-  "version": 1
- },
- {
-  "external_id": "pv_ft_tirarla_01",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "meaning.frozen_tail_idioms",
-  "difficulty": 3,
-  "cefr_level_target": "C1",
-  "prompt": "Decidi adesso, per favore: non tirarla ____. [don't drag it out] (tirarla)",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": true,
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.meaning.frozen_tail_idioms",
-    "label": "tirarla: obligatory tail per le lunghe",
-    "any_phrases": [
-     {
-      "phrase": "per le lunghe",
-      "match_at": "word"
-     }
+    "explanation": "'Ci vuole mezz'ora' means 'It takes half an hour.' Volerci says what is needed, impersonally, and it agrees with the thing needed. Half an hour is singular, so the verb is singular: ci vuole. The ci here is part of the verb, not a place.",
+    "examiner_note": "'vuole' listed in must_not as the bare (ci-less) form; the any_phrase 'ci vuole' is checked first so a correct answer is unaffected.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_mech_ci_02",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "mechanics.ci_type",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Per questa ricetta ____ tre uova fresche. (volerci)",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.mechanics.ci_type",
+        "label": "volerci, plural requirement: ci vogliono",
+        "any_phrases": [
+          {
+            "phrase": "ci vogliono",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "ci vuole",
+          "ci vogliano"
+        ]
+      }
     ],
-    "must_not_include": [
-     "per le lunge",
-     "per la lunga",
-     "alle lunghe"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Non tirarla per le lunghe' means 'Don't drag it out.' Tirarla per le lunghe is a frozen idiom whose la refers to nothing nameable; the tail per le lunghe is fixed, feminine plural, and cannot be rebuilt from its parts.",
-  "examiner_note": "Tail item. 'per le lunge' guards the common spelling slip (missing h).",
-  "version": 1
- },
- {
-  "external_id": "pv_ft_tirarla_02",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "meaning.frozen_tail_idioms",
-  "difficulty": 3,
-  "cefr_level_target": "C1",
-  "prompt": "Ogni volta che deve prendere una decisione, ____ per le lunghe. (tirarla)",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": true,
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.meaning.frozen_tail_idioms",
-    "label": "tirarla, 3sg: la tira",
-    "any_phrases": [
-     {
-      "phrase": "la tira",
-      "match_at": "word"
-     }
+    "vocab_help": [
+      {
+        "lemma": "uovo",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "translation": {
+              "reveal": "uovo - egg",
+              "bucket": "vocabulary.it.uovo.noun.translation"
+            }
+          }
+        }
+      }
     ],
-    "must_not_include": [
-     "lo tira",
-     "ne tira",
-     "si tira"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'La tira per le lunghe' means 'He drags it out every time he has to make a decision.' Here the frozen pronoun is a bare la (not a -sela cluster), so the present is simply la tira. 'Ogni volta' fixes it as a habit in the present.",
-  "examiner_note": "Word-anchored: 'la tira' sits inside the imperfect 'la tirava', which the habitual-present frame makes a plausible wrong attempt.",
-  "version": 1
- },
- {
-  "external_id": "pv_ft_dirne_01",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "meaning.frozen_tail_idioms",
-  "difficulty": 3,
-  "cefr_level_target": "C1",
-  "prompt": "Era furioso: me ne ha dette ____! [he gave me an earful] (dirne)",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": true,
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.meaning.frozen_tail_idioms",
-    "label": "dirne: obligatory tail di tutti i colori",
-    "any_phrases": [
-     {
-      "phrase": "di tutti i colori",
-      "match_at": "word"
-     }
+    "explanation": "'Ci vogliono tre uova' means 'You need three eggs.' Volerci agrees with what is required, and three eggs is plural, so the verb goes plural: ci vogliono. Keeping it singular (ci vuole) with a plural requirement is the classic miss.",
+    "examiner_note": "The number-agreement pair with pv_mech_ci_01. 'ci vuole' is the diagnostic miss.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_mech_ci_03",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "mechanics.ci_type",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Di solito ____ venti minuti per arrivare al lavoro. (metterci, io)",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.mechanics.ci_type",
+        "label": "metterci, 1sg: ci metto",
+        "any_phrases": [
+          {
+            "phrase": "ci metto",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "ci mette",
+          "ci metti"
+        ]
+      }
     ],
-    "must_not_include": [
-     "di tutti colori",
-     "dei colori",
-     "di tutto il colore"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Me ne ha dette di tutti i colori' means 'He gave me an earful / he called me every name under the sun.' Dirne di tutti i colori is frozen: the ne stands for no nameable thing, and the tail keeps its article (di tutti I colori).",
-  "examiner_note": "Tail item; the dropped article ('di tutti colori') is the usual slip and is guarded.",
-  "version": 1
- },
- {
-  "external_id": "pv_ft_dirne_02",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "meaning.frozen_tail_idioms",
-  "difficulty": 3,
-  "cefr_level_target": "C1",
-  "prompt": "Era furiosa e me ne ha ____ di tutti i colori. (dirne, passato)",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": true,
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronoun.ne.with_pp_agreement",
-    "label": "participle agrees with ne: dette",
-    "any_phrases": [
-     {
-      "phrase": "dette",
-      "match_at": "word"
-     }
+    "vocab_help": [],
+    "explanation": "'Ci metto venti minuti' means 'It takes me twenty minutes / I take twenty minutes.' Metterci is the personal counterpart of volerci: a person is the subject and spends the time. For io it is ci metto.",
+    "examiner_note": "Subject pro-dropped, so the cue names the person. Contrast with volerci handled in the volerci_vs_metterci leaf.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_mech_ci_04",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "mechanics.ci_type",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Cosa c'entra il prezzo? Questo ____ niente con la qualità. (entrarci)",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.mechanics.ci_type",
+        "label": "entrarci, 3sg negative: non c'entra",
+        "any_phrases": [
+          {
+            "phrase": "non c'entra",
+            "match_at": "word"
+          },
+          {
+            "phrase": "non c' entra",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "non centra",
+          "non ci entra",
+          "non entra"
+        ]
+      }
     ],
-    "must_not_include": [
-     "detto",
-     "detti",
-     "detta"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Me ne ha dette di tutti i colori' means 'She said all sorts of things to me.' Even with avere, a preceding ne pulls agreement onto the participle, and the understood things said are feminine plural, so it is dette, never detto. The idiom's frozen tail follows.",
-  "examiner_note": "Cite-both contract: the tested skill here is ne + participle agreement, which the pronoun tree owns, so the markpoint cites it; the item sits on the frozen-tail leaf because the idiom is what carries it. Tail coverage is on pv_ft_dirne_01.",
-  "version": 1
- },
- {
-  "external_id": "pv_ft_buttarla_01",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "meaning.frozen_tail_idioms",
-  "difficulty": 3,
-  "cefr_level_target": "C1",
-  "prompt": "Ogni piccolo contrattempo diventa un dramma: lui la butta sempre ____. [he makes a drama of it] (buttarla)",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": true,
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.meaning.frozen_tail_idioms",
-    "label": "buttarla: obligatory tail sul tragico",
-    "any_phrases": [
-     {
-      "phrase": "sul tragico",
-      "match_at": "word"
-     }
+    "vocab_help": [],
+    "explanation": "'Questo non c'entra niente' means 'This has nothing to do with it.' Entrarci means to be relevant or connected; with ci it stops being about walking in. The 3sg is c'entra (ci + entra, elided), and the whole thing is written with the apostrophe: non c'entra.",
+    "examiner_note": "Common spelling miss 'non centra' (no apostrophe) is guarded; so is the over-literal 'non ci entra'.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_mech_ci_05",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "mechanics.ci_type",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Questa foto è di mia nonna: ____ moltissimo. (tenerci, io)",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.mechanics.ci_type",
+        "label": "tenerci, 1sg: ci tengo",
+        "any_phrases": [
+          {
+            "phrase": "ci tengo",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "ci tiengo",
+          "lo tengo",
+          "ci tenglio"
+        ]
+      }
     ],
-    "must_not_include": [
-     "in tragico",
-     "al tragico",
-     "sulla tragedia"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'La butta sempre sul tragico' means 'He always makes a drama out of it.' Buttarla sul tragico is frozen: the la names nothing, and the tail takes sul, not in or al. The same frame gives buttarla sul ridere (to laugh it off).",
-  "examiner_note": "Tail item; the preposition is the diagnostic and the wrong ones are guarded.",
-  "version": 1
- },
- {
-  "external_id": "pv_ft_farla_01",
-  "language_code": "it",
-  "topic": "pronominal_verbs",
-  "subtopic": "meaning.frozen_tail_idioms",
-  "difficulty": 3,
-  "cefr_level_target": "C1",
-  "prompt": "Basta con questa storia: voglio farla ____ una volta per tutte. [I want to have done with it] (farla)",
-  "type": "short",
-  "marks": 1,
-  "prompt_supplies_base_form": true,
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronominal_verbs.meaning.frozen_tail_idioms",
-    "label": "farla finita: obligatory tail finita",
-    "any_phrases": [
-     {
-      "phrase": "finita",
-      "match_at": "word"
-     }
+    "vocab_help": [],
+    "explanation": "'Ci tengo moltissimo' means 'I care about it very much.' Tenerci a qualcosa is the pronominal verb for holding something dear. For io the present is ci tengo (tenere is irregular: teng-o).",
+    "examiner_note": "Idiomatic ci verb (cross-ref pronoun.ci_locative.idiomatic_verbs). 'lo tengo' (I hold it) is the literal-reading miss.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_mech_ci_06",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "mechanics.ci_type",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "Da giorni Luca non mi rivolge la parola: ____ con me, credo. (avercela)",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.mechanics.ci_type",
+        "label": "avercela con: ce l'ha",
+        "any_phrases": [
+          {
+            "phrase": "ce l'ha",
+            "match_at": "word"
+          },
+          {
+            "phrase": "ce l' ha",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "ci l'ha",
+          "c'è l'ha",
+          "ce la ha"
+        ]
+      }
     ],
-    "must_not_include": [
-     "finito",
-     "finire",
-     "finite"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Voglio farla finita una volta per tutte' means 'I want to have done with it once and for all.' Farla finita is frozen: the la refers to nothing, and the tail finita is invariably feminine singular because it agrees with that frozen la, whoever is speaking.",
-  "examiner_note": "Cue gives only the stem (farla), never the tail, so the tail stays the test.",
-  "version": 1
- }
+    "vocab_help": [],
+    "explanation": "'Ce l'ha con me' means 'He's got it in for me / he's cross with me.' Avercela con qualcuno is a fixed pronominal idiom; the ci shifts to ce before the l', giving ce l'ha. It has nothing to do with possessing an object.",
+    "examiner_note": "Guards the two spelling errors 'ci l'ha' (unshifted) and 'c'è l'ha' (wrong word entirely). Recognition of this sense also lives in core_set.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_mech_ci_07",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "mechanics.ci_type",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Senza occhiali non ____ bene da lontano. (vederci, io)",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.mechanics.ci_type",
+        "label": "vederci, 1sg: ci vedo",
+        "any_phrases": [
+          {
+            "phrase": "non ci vedo",
+            "match_at": "word"
+          },
+          {
+            "phrase": "ci vedo",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "non lo vedo",
+          "non ci veggo"
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'Non ci vedo bene da lontano' means 'I can't see well far away.' Vederci (like sentirci for hearing) uses ci to talk about the faculty of sight itself, not seeing a particular thing. For io it is ci vedo.",
+    "examiner_note": "'non lo vedo' (I can't see it) is the literal-object miss and is distinguished from the faculty sense.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_mech_ci_08",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "mechanics.ci_type",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "Alla fine ____ tre ore per finire tutto il lavoro. (volerci, passato)",
+    "type": "short",
+    "marks": 2,
+    "wrong_answer_is_form_error_only": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.passato_prossimo.auxiliary.essere_reflexive",
+        "label": "volerci past takes essere: ci sono",
+        "any_phrases": [
+          {
+            "phrase": "ci sono",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "ci ha",
+          "c'ha",
+          "ci è"
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.mechanics.ci_type",
+        "label": "past agreement: volute (fem pl)",
+        "any_phrases": [
+          {
+            "phrase": "volute",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "voluto",
+          "voluti"
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'Ci sono volute tre ore' means 'It took three hours.' In the past, volerci takes essere, not avere: ci sono volute, ci è voluto. And it still agrees with the requirement, so with tre ore (feminine plural) the participle is volute. Reaching for 'ci ha voluto' is the standard error.",
+    "examiner_note": "Splits the auxiliary choice (essere) from the agreement (volute). 'ci ha voluto' misses the auxiliary; 'ci sono voluto' misses the agreement.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_core_farcela_01",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "meaning.core_set",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Che cosa significa qui: 'Non ce la faccio più'?",
+    "type": "mcq",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": false,
+    "choices": [
+      "I can't take it any more",
+      "I'm not doing it again",
+      "I don't make it myself",
+      "I'm no longer lucky"
+    ],
+    "answer_index": 0,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.meaning.core_set",
+        "label": "farcela = to manage/cope",
+        "any_phrases": [
+          "I can't take it any more"
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'Non ce la faccio più' means 'I can't take it any more / I can't cope any longer.' Farcela is the pronominal verb for managing or coping; ce la is frozen and carries no literal 'it'. Read literally as 'making' it, the sentence makes no sense, which is the giveaway that an idiom is in play.",
+    "examiner_note": "Recognition item. Distractor 2 is the literal fare = to make reading.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_core_avercela_01",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "meaning.core_set",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Un amico ti dice: 'Perché ce l'hai con me?'. Cosa ti sta chiedendo?",
+    "type": "mcq",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": false,
+    "choices": [
+      "Why do you have it in for me?",
+      "Why do you have it (a thing) for me?",
+      "Why are you here with me?",
+      "Why do you agree with me?"
+    ],
+    "answer_index": 0,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.meaning.core_set",
+        "label": "avercela con = to have it in for",
+        "any_phrases": [
+          "Why do you have it in for me?"
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'Perché ce l'hai con me?' means 'Why have you got it in for me?' Avercela con qualcuno means to be angry at someone. Although it looks like avere (to have) plus an object, the ce l' is idiomatic and there is no thing being possessed.",
+    "examiner_note": "Distractor 2 is the literal possession reading, the exact trap the bucket names.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_core_cavarsela_01",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "meaning.core_set",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "'In matematica se la cava.' Cosa vuol dire di questa persona?",
+    "type": "mcq",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": false,
+    "choices": [
+      "They get by / manage OK",
+      "They give up",
+      "They take it personally",
+      "They run away"
+    ],
+    "answer_index": 0,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.meaning.core_set",
+        "label": "cavarsela = to get by/manage",
+        "any_phrases": [
+          "They get by / manage OK"
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'In matematica se la cava' means 'In maths he gets by / does OK.' Cavarsela means to manage or cope with something, often at a modest 'good enough' level. It is not about escaping or taking offence.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_core_prendersela_01",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "meaning.core_set",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Vedi un amico deluso e gli dici: 'Non prendertela!'. Cosa gli stai dicendo?",
+    "type": "mcq",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": false,
+    "choices": [
+      "Don't take it to heart",
+      "Don't take it with you",
+      "Don't take what's yours",
+      "Don't catch it"
+    ],
+    "answer_index": 0,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.meaning.core_set",
+        "label": "prendersela = to take offence / get upset",
+        "any_phrases": [
+          "Don't take it to heart"
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'Non prendertela!' means 'Don't take it to heart / don't get upset!' Prendersela means to get offended or upset. The la is frozen, so it is not about taking a physical thing.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_core_sentirsela_01",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "meaning.core_set",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "'Non me la sento di affrontarlo adesso.' Come si sente chi parla?",
+    "type": "mcq",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": false,
+    "choices": [
+      "They don't feel up to it",
+      "They can't feel their hands",
+      "They can't hear it",
+      "They don't want to be heard"
+    ],
+    "answer_index": 0,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.meaning.core_set",
+        "label": "sentirsela = to feel up to it",
+        "any_phrases": [
+          "They don't feel up to it"
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'Non me la sento di affrontarlo adesso' means 'I don't feel up to facing it right now.' Sentirsela di fare qualcosa means to feel able or willing to do something. It is about readiness, not about physically hearing or feeling.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_core_andarsene_01",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "meaning.core_set",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "'Se n'è andato senza salutare.' Cosa ha fatto questa persona?",
+    "type": "mcq",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": false,
+    "choices": [
+      "Left without saying goodbye",
+      "Went mad without warning",
+      "Gave it away for free",
+      "Lost his way"
+    ],
+    "answer_index": 0,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.meaning.core_set",
+        "label": "andarsene = to leave / go off",
+        "any_phrases": [
+          "Left without saying goodbye"
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'Se n'è andato senza salutare' means 'He left without saying goodbye.' Andarsene means to go away or take oneself off; it carries a shade more finality and attitude than plain andare.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_core_entrarci_01",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "meaning.core_set",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "Durante una discussione qualcuno dice: 'Questo non c'entra niente.'. Cosa intende?",
+    "type": "mcq",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": false,
+    "choices": [
+      "This has nothing to do with it",
+      "This doesn't fit inside",
+      "Nobody goes in there",
+      "This doesn't come up"
+    ],
+    "answer_index": 0,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.meaning.core_set",
+        "label": "entrarci = to have to do with it",
+        "any_phrases": [
+          "This has nothing to do with it"
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'Questo non c'entra niente' means 'This has nothing to do with it.' Entrarci means to be relevant or connected. Read literally as 'entering', it would be about walking in somewhere, which is not the sense here.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_core_recall_01",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "meaning.core_set",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "Quale espressione italiana significa 'I can't cope any more'?",
+    "type": "mcq",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": false,
+    "choices": [
+      "Non ce la faccio più",
+      "Non ci vado più",
+      "Non me lo faccio più",
+      "Non ci sto più"
+    ],
+    "answer_index": 0,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.meaning.core_set",
+        "label": "recall farcela form",
+        "any_phrases": [
+          "Non ce la faccio più"
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'Non ce la faccio più' is the idiom for 'I can't cope any more.' The other options are real Italian but mean different things: non ci vado più = I don't go there any more; non ci sto più = I'm not in / not up for it any more. Farcela is the one about managing.",
+    "examiner_note": "Reverse-direction (en->it) recognition, so the bidirectional core_set leaf is exercised both ways.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_disc_vvm_01",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "meaning.volerci_vs_metterci",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "'I take an hour to get to the office with traffic.' Completa: 'Con il traffico, io ____ un'ora ad arrivare in ufficio.'",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.meaning.volerci_vs_metterci",
+        "label": "personal subject -> metterci",
+        "any_phrases": [
+          {
+            "phrase": "ci metto",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "ci vuole",
+          "ci voglio",
+          "ci vogliono"
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'Io ci metto un'ora' means 'I take an hour.' When a person is the subject and spends the time, Italian uses metterci: io ci metto. Volerci would be wrong here because it is impersonal ('it takes'), and you cannot pin it to io.",
+    "examiner_note": "The explicit personal subject io pins metterci; discrimination leaf, so suppressed. English gloss supplies the meaning, not the verb.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_disc_vvm_02",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "meaning.volerci_vs_metterci",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "'It takes an hour to get to Rome.' Completa: 'Per arrivare a Roma ____ un'ora.'",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.meaning.volerci_vs_metterci",
+        "label": "impersonal, singular -> ci vuole",
+        "any_phrases": [
+          {
+            "phrase": "ci vuole",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "ci metto",
+          "ci mette",
+          "ci vogliono"
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'Ci vuole un'ora' means 'It takes an hour.' With no personal subject, just the journey and the time, Italian uses the impersonal volerci: ci vuole. It agrees with un'ora, which is singular.",
+    "examiner_note": "No personal subject in view, so the impersonal volerci is forced. Pairs with vvm_01 as a same-frame contrast.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_disc_vvm_03",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "meaning.volerci_vs_metterci",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "'By car it takes two hours.' Completa: 'In macchina ____ due ore.'",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.meaning.volerci_vs_metterci",
+        "label": "impersonal, plural -> ci vogliono",
+        "any_phrases": [
+          {
+            "phrase": "ci vogliono",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "ci vuole",
+          "ci mette",
+          "ci metto"
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'Ci vogliono due ore' means 'It takes two hours.' Still impersonal (no one is named), so volerci; and because two hours is plural, it agrees as plural: ci vogliono. The pull toward the singular ci vuole is the classic slip.",
+    "examiner_note": "Tests impersonal choice AND plural agreement together, but both are the volerci skill; single markpoint is correct.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_disc_vvm_04",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "meaning.volerci_vs_metterci",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "'Marco takes twenty minutes on foot.' Completa: 'Marco ____ venti minuti a piedi.'",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.meaning.volerci_vs_metterci",
+        "label": "named personal subject -> metterci",
+        "any_phrases": [
+          {
+            "phrase": "ci mette",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "ci vuole",
+          "ci vogliono",
+          "ci metto"
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'Marco ci mette venti minuti' means 'Marco takes twenty minutes.' Marco is a personal subject doing the travelling, so metterci: ci mette. Volerci cannot take Marco as its subject.",
+    "examiner_note": "Named subject (Marco) pins metterci in the third person.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_disc_vvm_05",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "meaning.volerci_vs_metterci",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "'I took two hours to finish it.' Completa: 'Ci ____ due ore per finirlo. (io, passato)'",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.meaning.volerci_vs_metterci",
+        "label": "metterci past takes avere: ci ho messo",
+        "any_phrases": [
+          {
+            "phrase": "ho messo",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "sono voluto",
+          "sono volute",
+          "e voluto",
+          "sono messo"
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'Ci ho messo due ore' means 'I took two hours.' Personal subject, so metterci; and metterci forms its past with avere: ci ho messo. This is the mirror of volerci, which would take essere (ci sono volute). The auxiliary follows the verb you pick.",
+    "examiner_note": "Past-tense discrimination: personal metterci (avere) vs impersonal volerci (essere). Guards the essere forms as wrong here.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_disc_vvm_06",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "meaning.volerci_vs_metterci",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "'How long does it take (in general) to learn Italian?' Completa: 'Quanto tempo ____ per imparare l'italiano?'",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.meaning.volerci_vs_metterci",
+        "label": "general/impersonal -> volerci",
+        "any_phrases": [
+          {
+            "phrase": "ci vuole",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "ci metti",
+          "ci mette",
+          "ci metto"
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'Quanto tempo ci vuole?' means 'How long does it take?' Asked in general, with nobody specific doing the learning, the question is impersonal and takes volerci: ci vuole. If it named a person ('quanto tempo ci metti tu?') metterci would return.",
+    "examiner_note": "General question with no personal subject -> volerci. The paired metterci version is noted in the explanation to make the conditioning factor explicit.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_celho_01",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "meaning.ce_lho_possession",
+    "difficulty": 1,
+    "cefr_level_target": "A2",
+    "prompt": "'Hai una penna?' 'Sì, ____.' (avere, rispondi)",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.meaning.ce_lho_possession",
+        "label": "ce l'ho (have-it answer)",
+        "any_phrases": [
+          {
+            "phrase": "ce l'ho",
+            "match_at": "word"
+          },
+          {
+            "phrase": "ce l' ho",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "l'ho",
+          "ci l'ho",
+          "ce lo ho"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "penna",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "translation": {
+              "reveal": "penna - pen",
+              "bucket": "vocabulary.it.penna.noun.translation"
+            }
+          }
+        }
+      }
+    ],
+    "explanation": "'Sì, ce l'ho' means 'Yes, I've got one.' To answer that you have something, everyday Italian says ce l'ho, not the bare l'ho, which sounds unfinished. The ce is a fixed part of the pattern (from a pleonastic ci), and lo elides to l' before ho.",
+    "examiner_note": "Guards the bare 'l'ho' and the mis-spelling 'ci l'ho'. Full-phrase markpoint because l'ho is a substring risk.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_celho_02",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "meaning.ce_lho_possession",
+    "difficulty": 1,
+    "cefr_level_target": "A2",
+    "prompt": "'Hai il biglietto del treno?' 'No, non ____.' (avere, rispondi)",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.meaning.ce_lho_possession",
+        "label": "negative: non ce l'ho",
+        "any_phrases": [
+          {
+            "phrase": "non ce l'ho",
+            "match_at": "word"
+          },
+          {
+            "phrase": "non ce l' ho",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "non l'ho",
+          "non ci l'ho",
+          "non ce lo ho"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "biglietto",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "translation": {
+              "reveal": "biglietto - ticket",
+              "bucket": "vocabulary.it.biglietto.noun.translation"
+            }
+          }
+        }
+      }
+    ],
+    "explanation": "'No, non ce l'ho' means 'No, I haven't got it.' The negative simply wraps non around the same fixed pattern: non ce l'ho. Dropping to 'non l'ho' is the usual slip.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_celho_03",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "meaning.ce_lho_possession",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "prompt": "Chiedi a un amico se ha il passaporto con sé: '____ il passaporto?' (avere, tu)",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.meaning.ce_lho_possession",
+        "label": "question 2sg: ce l'hai",
+        "any_phrases": [
+          {
+            "phrase": "ce l'hai",
+            "match_at": "word"
+          },
+          {
+            "phrase": "ce l' hai",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "l'hai",
+          "ci l'hai",
+          "ce lo hai"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "passaporto",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "translation": {
+              "reveal": "passaporto - passport",
+              "bucket": "vocabulary.it.passaporto.noun.translation"
+            }
+          }
+        }
+      }
+    ],
+    "explanation": "'Ce l'hai il passaporto?' means 'Have you got your passport?' In speech Italians front the ce l'hai and then name the thing: ce l'hai il passaporto? The ce stays fixed and hai is just avere for tu.",
+    "examiner_note": "The colloquial 'ce l'hai + noun' dislocation is standard spoken register; stated in the explanation.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_celho_04",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "meaning.ce_lho_possession",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "'Marco ha la macchina oggi?' 'Sì, ____.' (avere, rispondi)",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.meaning.ce_lho_possession",
+        "label": "3sg: ce l'ha",
+        "any_phrases": [
+          {
+            "phrase": "ce l'ha",
+            "match_at": "word"
+          },
+          {
+            "phrase": "ce l' ha",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "l'ha",
+          "ci l'ha",
+          "ce la ha"
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'Sì, ce l'ha' means 'Yes, he's got it.' Third person is ce l'ha. The l' hides either lo or la (here la macchina), because both elide to l' before a vowel, so ce l'ha covers both.",
+    "examiner_note": "Feminine object (la macchina) still elides to ce l'ha; the point that l' masks both genders is in the explanation.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_celho_05",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "meaning.ce_lho_possession",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "'Hai i documenti dell'auto?' 'Sì, ____.' (avere, rispondi)",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.meaning.ce_lho_possession",
+        "label": "plural object, no elision: ce li ho",
+        "any_phrases": [
+          {
+            "phrase": "ce li ho",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "ce l'ho",
+          "li ho",
+          "ce gli ho"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "documenti",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "translation": {
+              "reveal": "documento - document",
+              "bucket": "vocabulary.it.documento.noun.translation"
+            }
+          }
+        }
+      }
+    ],
+    "explanation": "'Sì, ce li ho' means 'Yes, I've got them.' Here the thing is plural (i documenti), so the pronoun is li, and li does not elide: it stays ce li ho, three separate words. Answering ce l'ho would be wrong, because that is the singular.",
+    "examiner_note": "Key extension: with plural li/le there is no elision, and 'ce l'ho' (singular) becomes the diagnostic miss.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_celho_06",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "meaning.ce_lho_possession",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "prompt": "'Hai le chiavi di casa?' 'Sì, ____.' (avere, rispondi)",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.meaning.ce_lho_possession",
+        "label": "feminine plural object: ce le ho",
+        "any_phrases": [
+          {
+            "phrase": "ce le ho",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "ce l'ho",
+          "le ho",
+          "ce le o"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "chiavi",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "translation": {
+              "reveal": "chiave - key",
+              "bucket": "vocabulary.it.chiave.noun.translation"
+            }
+          }
+        }
+      }
+    ],
+    "explanation": "'Sì, ce le ho' means 'Yes, I've got them.' Le chiavi is feminine plural, so the pronoun is le and again there is no elision: ce le ho. As with ce li ho, the singular ce l'ho would not fit a plural thing.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_adv_contrast_01",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "mechanics.sela_type",
+    "difficulty": 3,
+    "cefr_level_target": "C1",
+    "prompt": "Completa (noi, passato): 'Ce l'abbiamo ____ a finire tutto, e poi ce ne siamo ____ contenti.' (farcela; andarsene)",
+    "type": "short",
+    "marks": 2,
+    "wrong_answer_is_form_error_only": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.mechanics.sela_type",
+        "label": "farcela: frozen feminine fatta",
+        "any_phrases": [
+          {
+            "phrase": "fatta",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "fatto",
+          "fatti"
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.mechanics.sene_type",
+        "label": "andarsene: subject agreement andati/e",
+        "any_phrases": [
+          {
+            "phrase": "andati",
+            "match_at": "word"
+          },
+          {
+            "phrase": "andate",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "andato",
+          "andata"
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'Ce l'abbiamo fatta a finire tutto, e poi ce ne siamo andati contenti' means 'We managed to finish everything, and then we left happy.' The same sentence shows the two agreement rules side by side: farcela freezes its participle feminine (fatta, always), while andarsene agrees with the subject (andati for a mixed or male group, andate for an all-female one). One frozen, one agreeing.",
+    "examiner_note": "The head-to-head participle contrast. Both plural-subject participle options accepted for andarsene; fatta must stay singular feminine.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_adv_farcela_pres_01",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "mechanics.ci_type",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "prompt": "Rispondi (io): 'Riesci a finire il progetto per stasera?' 'Sì, ____.' (farcela)",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": true,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.mechanics.ci_type",
+        "label": "farcela present, 1sg: ce la faccio",
+        "any_phrases": [
+          {
+            "phrase": "ce la faccio",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "ci la faccio",
+          "ce la faccia",
+          "la faccio"
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'Sì, ce la faccio' means 'Yes, I can manage it.' Riuscire a fare and farcela are close in meaning, and the natural short reply to a riuscire question is farcela: ce la faccio. The ci has shifted to ce before la, and fare gives faccio.",
+    "examiner_note": "Cross-references pronoun.ci_locative.idiomatic_verbs.farcela. Present tense, so bucketed with the ci mechanics (the frozen-feminine past sits in sela_type).",
+    "version": 1
+  },
+  {
+    "external_id": "pv_adv_shell_01",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "mechanics.sene_type",
+    "difficulty": 3,
+    "cefr_level_target": "C1",
+    "prompt": "'I couldn't care less about what they say about me.' Completa: 'Di quello che dicono di me, ____. (io)'",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": false,
+    "info_display": "suppress",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.mechanics.sene_type",
+        "label": "correct shell -sene: me ne frego/infischio",
+        "any_phrases": [
+          {
+            "phrase": "me ne frego",
+            "match_at": "word"
+          },
+          {
+            "phrase": "me ne infischio",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "me la frego",
+          "me lo frego",
+          "me ne cavo"
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'Me ne frego' means 'I couldn't care less.' The trap is the shell: not caring is fregarsene, built on ne (me ne frego), not on la. Me la frego borrows the wrong cluster from the -sela family; me ne cavo invents a verb. Picking the right frozen shell is the whole skill at this level.",
+    "examiner_note": "Shell discrimination -sene vs -sela. Accepts the near-synonym infischiarsene. Casual register, flagged by the English gloss's idiom.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_adv_frozentail_01",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "meaning.frozen_tail_idioms",
+    "difficulty": 3,
+    "cefr_level_target": "C1",
+    "prompt": "Completa il modo di dire [to give it your all]: 'Per superare l'esame ce l'ho messa ____.' (mettercela)",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.meaning.frozen_tail_idioms",
+        "label": "frozen feminine tail: tutta",
+        "any_phrases": [
+          {
+            "phrase": "tutta",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "tutto",
+          "tutti",
+          "tutte"
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'Ce l'ho messa tutta' means 'I gave it everything I had.' Mettercela tutta is a set idiom for trying your hardest, and both pronouns are frozen: the participle is messa and the tail is tutta, feminine because it echoes the frozen la. Neither agrees with the speaker.",
+    "examiner_note": "Re-homed from mechanics.sela_type to the frozen-tail leaf on Smith's commission 2026-07-18. Prompt gloss converted from Italian to bracketed English per criterion 20. 'tutta' word-anchored (it sits inside 'tuttavia').",
+    "version": 2
+  },
+  {
+    "external_id": "pv_ft_mettercela_01",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "meaning.frozen_tail_idioms",
+    "difficulty": 3,
+    "cefr_level_target": "C1",
+    "prompt": "Non è il più talentuoso della squadra, ma ____ tutta a ogni partita. [he gives it his all] (mettercela)",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.meaning.frozen_tail_idioms",
+        "label": "mettercela, 3sg: ce la mette",
+        "any_phrases": [
+          {
+            "phrase": "ce la mette",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "ci la mette",
+          "se la mette"
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'Ce la mette tutta a ogni partita' means 'He gives it his all in every match.' Mettercela tutta is a set idiom: both little pronouns are frozen (ce la) and the tail tutta is obligatory. Only the verb body moves with the person: ce la metto, ce la mette.",
+    "examiner_note": "Word-anchored: bare 'ce la mette' sits inside the imperfect 'ce la metteva', a plausible wrong-tense attempt.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_ft_darsela_01",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "meaning.frozen_tail_idioms",
+    "difficulty": 3,
+    "cefr_level_target": "C1",
+    "prompt": "Appena hanno visto la polizia, se la sono data ____. [they legged it] (darsela)",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.meaning.frozen_tail_idioms",
+        "label": "darsela: obligatory tail a gambe",
+        "any_phrases": [
+          {
+            "phrase": "a gambe",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "alle gambe",
+          "in gambe",
+          "a gamba"
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'Se la sono data a gambe' means 'They legged it / they took to their heels.' Darsela a gambe is frozen end to end: the la is a frozen pronoun standing for nothing, and the tail a gambe cannot be varied. The optional intensifier is a gambe levate.",
+    "examiner_note": "'a gambe' is word-anchored and still matches the longer standard variant 'a gambe levate', which is accepted.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_ft_darsela_02",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "meaning.frozen_tail_idioms",
+    "difficulty": 3,
+    "cefr_level_target": "C1",
+    "prompt": "Appena hanno visto i vigili, ____ a gambe. (darsela, loro, passato)",
+    "type": "short",
+    "marks": 2,
+    "wrong_answer_is_form_error_only": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "verb_form.passato_prossimo.auxiliary.essere_reflexive",
+        "label": "reflexive auxiliary: se la sono",
+        "any_phrases": [
+          {
+            "phrase": "se la sono",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "si la sono",
+          "se l'hanno",
+          "se la hanno"
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.meaning.frozen_tail_idioms",
+        "label": "frozen feminine participle: data",
+        "any_phrases": [
+          {
+            "phrase": "data",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "dato",
+          "dati"
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'Se la sono data a gambe' means 'They legged it as soon as they saw the traffic police.' Darsela is reflexive, so the past takes essere (se la sono), and the participle is feminine data because it answers to the frozen la, not to the plural subject.",
+    "examiner_note": "Splits the auxiliary (pronoun/PP tree) from the frozen-feminine agreement (this leaf). 'se l'hanno data' misses the auxiliary but keeps the agreement mark.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_ft_legarsela_01",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "meaning.frozen_tail_idioms",
+    "difficulty": 3,
+    "cefr_level_target": "C1",
+    "prompt": "Non dimentica mai un torto: se l'è legata ____. [he bears a grudge] (legarsela)",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.meaning.frozen_tail_idioms",
+        "label": "legarsela: obligatory tail al dito",
+        "any_phrases": [
+          {
+            "phrase": "al dito",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "al ditto",
+          "alle dita",
+          "sul dito"
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'Se l'è legata al dito' means 'He bore a grudge about it.' Legarsela al dito pictures tying a string round your finger so you do not forget a wrong. The tail al dito is fixed and singular: alle dita is not an option.",
+    "examiner_note": "Tail item; the stem (se l'è legata) is supplied so the diagnostic is the frozen tail alone.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_ft_tirarla_01",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "meaning.frozen_tail_idioms",
+    "difficulty": 3,
+    "cefr_level_target": "C1",
+    "prompt": "Decidi adesso, per favore: non tirarla ____. [don't drag it out] (tirarla)",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.meaning.frozen_tail_idioms",
+        "label": "tirarla: obligatory tail per le lunghe",
+        "any_phrases": [
+          {
+            "phrase": "per le lunghe",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "per le lunge",
+          "per la lunga",
+          "alle lunghe"
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'Non tirarla per le lunghe' means 'Don't drag it out.' Tirarla per le lunghe is a frozen idiom whose la refers to nothing nameable; the tail per le lunghe is fixed, feminine plural, and cannot be rebuilt from its parts.",
+    "examiner_note": "Tail item. 'per le lunge' guards the common spelling slip (missing h).",
+    "version": 1
+  },
+  {
+    "external_id": "pv_ft_tirarla_02",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "meaning.frozen_tail_idioms",
+    "difficulty": 3,
+    "cefr_level_target": "C1",
+    "prompt": "Ogni volta che deve prendere una decisione, ____ per le lunghe. (tirarla)",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.meaning.frozen_tail_idioms",
+        "label": "tirarla, 3sg: la tira",
+        "any_phrases": [
+          {
+            "phrase": "la tira",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "lo tira",
+          "ne tira",
+          "si tira"
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'La tira per le lunghe' means 'He drags it out every time he has to make a decision.' Here the frozen pronoun is a bare la (not a -sela cluster), so the present is simply la tira. 'Ogni volta' fixes it as a habit in the present.",
+    "examiner_note": "Word-anchored: 'la tira' sits inside the imperfect 'la tirava', which the habitual-present frame makes a plausible wrong attempt.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_ft_dirne_01",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "meaning.frozen_tail_idioms",
+    "difficulty": 3,
+    "cefr_level_target": "C1",
+    "prompt": "Era furioso: me ne ha dette ____! [he gave me an earful] (dirne)",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.meaning.frozen_tail_idioms",
+        "label": "dirne: obligatory tail di tutti i colori",
+        "any_phrases": [
+          {
+            "phrase": "di tutti i colori",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "di tutti colori",
+          "dei colori",
+          "di tutto il colore"
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'Me ne ha dette di tutti i colori' means 'He gave me an earful / he called me every name under the sun.' Dirne di tutti i colori is frozen: the ne stands for no nameable thing, and the tail keeps its article (di tutti I colori).",
+    "examiner_note": "Tail item; the dropped article ('di tutti colori') is the usual slip and is guarded.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_ft_dirne_02",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "meaning.frozen_tail_idioms",
+    "difficulty": 3,
+    "cefr_level_target": "C1",
+    "prompt": "Era furiosa e me ne ha ____ di tutti i colori. (dirne, passato)",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronoun.ne.with_pp_agreement",
+        "label": "participle agrees with ne: dette",
+        "any_phrases": [
+          {
+            "phrase": "dette",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "detto",
+          "detti",
+          "detta"
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'Me ne ha dette di tutti i colori' means 'She said all sorts of things to me.' Even with avere, a preceding ne pulls agreement onto the participle, and the understood things said are feminine plural, so it is dette, never detto. The idiom's frozen tail follows.",
+    "examiner_note": "Cite-both contract: the tested skill here is ne + participle agreement, which the pronoun tree owns, so the markpoint cites it; the item sits on the frozen-tail leaf because the idiom is what carries it. Tail coverage is on pv_ft_dirne_01.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_ft_buttarla_01",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "meaning.frozen_tail_idioms",
+    "difficulty": 3,
+    "cefr_level_target": "C1",
+    "prompt": "Ogni piccolo contrattempo diventa un dramma: lui la butta sempre ____. [he makes a drama of it] (buttarla)",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.meaning.frozen_tail_idioms",
+        "label": "buttarla: obligatory tail sul tragico",
+        "any_phrases": [
+          {
+            "phrase": "sul tragico",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "in tragico",
+          "al tragico",
+          "sulla tragedia"
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'La butta sempre sul tragico' means 'He always makes a drama out of it.' Buttarla sul tragico is frozen: the la names nothing, and the tail takes sul, not in or al. The same frame gives buttarla sul ridere (to laugh it off).",
+    "examiner_note": "Tail item; the preposition is the diagnostic and the wrong ones are guarded.",
+    "version": 1
+  },
+  {
+    "external_id": "pv_ft_farla_01",
+    "language_code": "it",
+    "topic": "pronominal_verbs",
+    "subtopic": "meaning.frozen_tail_idioms",
+    "difficulty": 3,
+    "cefr_level_target": "C1",
+    "prompt": "Basta con questa storia: voglio farla ____ una volta per tutte. [I want to have done with it] (farla)",
+    "type": "short",
+    "marks": 1,
+    "wrong_answer_is_form_error_only": true,
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 1.0,
+        "bucket": "pronominal_verbs.meaning.frozen_tail_idioms",
+        "label": "farla finita: obligatory tail finita",
+        "any_phrases": [
+          {
+            "phrase": "finita",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "finito",
+          "finire",
+          "finite"
+        ]
+      }
+    ],
+    "vocab_help": [],
+    "explanation": "'Voglio farla finita una volta per tutte' means 'I want to have done with it once and for all.' Farla finita is frozen: the la refers to nothing, and the tail finita is invariably feminine singular because it agrees with that frozen la, whoever is speaking.",
+    "examiner_note": "Cue gives only the stem (farla), never the tail, so the tail stays the test.",
+    "version": 1
+  }
 ]

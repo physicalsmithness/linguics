@@ -1,0 +1,283 @@
+{
+  "pilot_meta": {
+    "purpose": "Mechanical-variant pilot per Architecture_PronounAuthor_aspettare_class_referents v2 (2026-07-20).",
+    "author_role": "PronounAuthor authors seed frames + declares axes; Architecture expands mechanically; PronounAuthor reviews a ~20% sample.",
+    "referent_axis_rule": "3rd-person only (per v1: mi/ti hide the DO/IO contrast, so the item can't catch the very error it exists for).",
+    "misconception_target": "transfer.dop_iop_confusion (English 'wait FOR / listen TO / look FOR / pay FOR' cues Italian IOP where the correct form is DOP).",
+    "flag_default": "wrong_answer_is_form_error_only = false (this class of item tests LEXICAL/argument-structure knowledge, not a form error).",
+    "seed_count": 7,
+    "verbs_covered": [
+      "ascoltare",
+      "aspettare",
+      "cercare",
+      "guardare",
+      "pagare"
+    ],
+    "expansion_estimate": "6 short-answer seeds x 4 referent variants = 24 items; +1 multi-select seed x 4 referent x up to 5 lemma swaps = up to 20 items. Total ceiling around 44 items pending Arch's expansion policy on lemma-swap density."
+  },
+  "referent_axis": [
+    {
+      "key": "3sg_masc",
+      "antecedent_display": "Marco",
+      "dop": "lo",
+      "wrong_iop": "gli",
+      "referent_leaf": "pronoun.direct_object.lo"
+    },
+    {
+      "key": "3sg_fem",
+      "antecedent_display": "Sofia",
+      "dop": "la",
+      "wrong_iop": "le",
+      "referent_leaf": "pronoun.direct_object.la"
+    },
+    {
+      "key": "3pl_masc",
+      "antecedent_display": "i ragazzi",
+      "dop": "li",
+      "wrong_iop": "gli",
+      "referent_leaf": "pronoun.direct_object.li"
+    },
+    {
+      "key": "3pl_fem",
+      "antecedent_display": "le ragazze",
+      "dop": "le",
+      "wrong_iop": "gli",
+      "referent_leaf": "pronoun.direct_object.le"
+    }
+  ],
+  "lemma_axis": {
+    "aspettare": {
+      "pres_3sg": "aspetta",
+      "pres_1sg": "aspetto",
+      "pres_1pl": "aspettiamo",
+      "gerundio": "aspettando",
+      "english_gloss": "wait for"
+    },
+    "cercare": {
+      "pres_3sg": "cerca",
+      "pres_1sg": "cerco",
+      "pres_1pl": "cerchiamo",
+      "gerundio": "cercando",
+      "english_gloss": "look for"
+    },
+    "guardare": {
+      "pres_3sg": "guarda",
+      "pres_1sg": "guardo",
+      "pres_1pl": "guardiamo",
+      "gerundio": "guardando",
+      "english_gloss": "look at / watch"
+    },
+    "ascoltare": {
+      "pres_3sg": "ascolta",
+      "pres_1sg": "ascolto",
+      "pres_1pl": "ascoltiamo",
+      "gerundio": "ascoltando",
+      "english_gloss": "listen to"
+    },
+    "pagare": {
+      "pres_3sg": "paga",
+      "pres_1sg": "pago",
+      "pres_1pl": "paghiamo",
+      "gerundio": "pagando",
+      "english_gloss": "pay for"
+    }
+  },
+  "seeds": [
+    {
+      "seed_id": "op_aspclass_ASP_wait_place_seed",
+      "seed_verb": "aspettare",
+      "frame_template": "{antecedent} arriva sempre in ritardo; ____ {pres_1sg} in piazza da mezz'ora.",
+      "cue": "[direct-object pronoun for '{antecedent}']",
+      "target_slot": "{dop}",
+      "seed_cefr": "A2",
+      "declared_axes": {
+        "referent": [
+          "3sg_masc",
+          "3sg_fem",
+          "3pl_masc",
+          "3pl_fem"
+        ],
+        "lemma_swap": [
+          "aspettare",
+          "cercare"
+        ]
+      },
+      "notes": "Frame reads naturally for aspettare and cercare (both allow 'in piazza' as a plausible waiting/looking spot). Do NOT swap to guardare/ascoltare/pagare here - 'guardare in piazza da mezz'ora' is odd, 'pagare in piazza' means something specific."
+    },
+    {
+      "seed_id": "op_aspclass_ASP_wait_bar_seed",
+      "seed_verb": "aspettare",
+      "frame_template": "____ {pres_1pl} davanti al bar da venti minuti, ma {antecedent} non arriva.",
+      "cue": "[direct-object pronoun for '{antecedent}']",
+      "target_slot": "{dop}",
+      "seed_cefr": "A2",
+      "declared_axes": {
+        "referent": [
+          "3sg_masc",
+          "3sg_fem",
+          "3pl_masc",
+          "3pl_fem"
+        ],
+        "lemma_swap": [
+          "aspettare",
+          "cercare"
+        ]
+      },
+      "notes": "Sentence-initial clitic (Lo / La / Li / Le, capital). Lemma swap OK for cercare ('we look for X in front of the bar' works). Aspettare-only would be safer if in doubt."
+    },
+    {
+      "seed_id": "op_aspclass_CER_lost_thing_seed",
+      "seed_verb": "cercare",
+      "frame_template": "Ho perso {antecedent}; ____ {pres_1sg} da un'ora ma non {pres_1sg}_riesco a trovare.",
+      "cue": "[direct-object pronoun for '{antecedent}']",
+      "target_slot": "{dop}",
+      "seed_cefr": "A2",
+      "declared_axes": {
+        "referent": [
+          "3sg_masc",
+          "3sg_fem",
+          "3pl_masc",
+          "3pl_fem"
+        ],
+        "lemma_swap": [
+          "cercare"
+        ]
+      },
+      "notes": "Frame requires an inanimate antecedent for 'ho perso'. Rotate the antecedent axis with inanimate substitutions: 3sg_masc = 'il portafogli', 3sg_fem = 'la chiave', 3pl_masc = 'i documenti', 3pl_fem = 'le chiavi'. Not lemma-swappable (aspettare/guardare would be nonsensical with 'ho perso')."
+    },
+    {
+      "seed_id": "op_aspclass_GUA_watch_attentively_seed",
+      "seed_verb": "guardare",
+      "frame_template": "Quando {antecedent} parla in televisione, ____ {pres_1sg} sempre con attenzione.",
+      "cue": "[direct-object pronoun for '{antecedent}']",
+      "target_slot": "{dop}",
+      "seed_cefr": "B1",
+      "declared_axes": {
+        "referent": [
+          "3sg_masc",
+          "3sg_fem",
+          "3pl_masc",
+          "3pl_fem"
+        ],
+        "lemma_swap": [
+          "guardare",
+          "ascoltare"
+        ]
+      },
+      "notes": "'guardare qualcuno in televisione' and 'ascoltare qualcuno' both natural. Not for aspettare/cercare/pagare (nonsensical)."
+    },
+    {
+      "seed_id": "op_aspclass_ASC_lecture_seed",
+      "seed_verb": "ascoltare",
+      "frame_template": "{antecedent} parla molto bene; ____ {pres_1pl} sempre volentieri.",
+      "cue": "[direct-object pronoun for '{antecedent}']",
+      "target_slot": "{dop}",
+      "seed_cefr": "B1",
+      "declared_axes": {
+        "referent": [
+          "3sg_masc",
+          "3sg_fem",
+          "3pl_masc",
+          "3pl_fem"
+        ],
+        "lemma_swap": [
+          "ascoltare",
+          "guardare"
+        ]
+      },
+      "notes": "Speaking well applies to both watching and listening. Not for aspettare/cercare/pagare."
+    },
+    {
+      "seed_id": "op_aspclass_PAG_bill_seed",
+      "seed_verb": "pagare",
+      "frame_template": "Il conto e' arrivato; {antecedent}, ____ {pres_1sg} io questa volta!",
+      "cue": "[direct-object pronoun for '{antecedent}' - transitive: 'pay someone']",
+      "target_slot": "{dop}",
+      "seed_cefr": "B1",
+      "declared_axes": {
+        "referent": [
+          "3sg_masc",
+          "3sg_fem",
+          "3pl_masc",
+          "3pl_fem"
+        ],
+        "lemma_swap": [
+          "pagare"
+        ]
+      },
+      "notes": "Pagare transitive: 'I pay YOU' (not 'I pay FOR you' which is 'pagare per te'). Antecedent must be a person addressable directly (Marco/Sofia/ragazzi/ragazze). Not lemma-swappable."
+    },
+    {
+      "seed_id": "op_aspclass_MULTI_which_correct_seed",
+      "seed_verb": "aspettare",
+      "seed_type": "multi_select",
+      "frame_template": "You want to say 'I'm waiting for {antecedent_english}' (informal, present). Which of these are correct? (Select all that apply.)",
+      "choices_template": [
+        {
+          "text": "{dop} aspetto.",
+          "correct": true,
+          "buckets": [
+            "{referent_leaf}",
+            "pronoun.position.pre_finite_verb"
+          ]
+        },
+        {
+          "text": "Aspetto {stressed}.",
+          "correct": true,
+          "buckets": [
+            "pronoun.special.stressed_forms"
+          ]
+        },
+        {
+          "text": "{wrong_iop} aspetto.",
+          "correct": false,
+          "note": "Transfer error from English 'wait FOR'; aspettare is transitive in Italian."
+        },
+        {
+          "text": "Aspetto per {stressed}.",
+          "correct": false,
+          "note": "'per' preposition transferred from English; not needed."
+        }
+      ],
+      "referent_axis_extra": [
+        {
+          "key": "3sg_masc",
+          "antecedent_english": "him",
+          "stressed": "lui"
+        },
+        {
+          "key": "3sg_fem",
+          "antecedent_english": "her",
+          "stressed": "lei"
+        },
+        {
+          "key": "3pl_masc",
+          "antecedent_english": "them",
+          "stressed": "loro"
+        },
+        {
+          "key": "3pl_fem",
+          "antecedent_english": "them",
+          "stressed": "loro"
+        }
+      ],
+      "seed_cefr": "A2",
+      "declared_axes": {
+        "referent": [
+          "3sg_masc",
+          "3sg_fem",
+          "3pl_masc",
+          "3pl_fem"
+        ],
+        "lemma_swap": [
+          "aspettare",
+          "cercare",
+          "guardare",
+          "ascoltare",
+          "pagare"
+        ]
+      },
+      "notes": "The multi-select pilot instrument for the whole class - each item drills the transfer misconception (English preposition -> Italian IOP) and rewards the correct DOP AND the stressed alternative. Lemma-swappable across the whole class because the frame is a translation prompt, not a sentence to inflect."
+    }
+  ]
+}

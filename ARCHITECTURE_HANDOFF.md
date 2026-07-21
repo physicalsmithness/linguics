@@ -55,3 +55,14 @@ Rev 21 next-touch clause; Rev 22 cue-by-meaning; Rev 23 crit-20-disarms-crit-19;
 
 **Amendment 2026-07-20 (after the lapse):** "first act of every wake" is NOT "once per takeover". Smith routes seats in parallel; inter_chat moves mid-session. Re-derive the inbound delta (inter_chat mtimes + the Next-grep) at every pass where another seat may have written, and re-run the full sweep whenever Smith signals something you have not seen. Constitution principle 3 is the law here. Also: use the session task list on multi-item passes; the architect does not get to keep its plan in its head.
 
+**Task-list practice corrected 2026-07-21 (Smith):** capture on ARRIVAL, not at execution. The moment an instruction
+lands — especially a multi-item dictation — it goes on the list, including items blocked on other seats, so the
+outstanding board is visible to both sides and nothing relies on the architect's focus surviving the next dump.
+Complete only on verified done. A list that is created-and-ticked inside one turn is a work log, not a memory.
+
+**Sweep output goes on the board (2026-07-21, Smith):** every wake-sweep finding becomes a TASK at sweep time —
+one task per RULING-NEEDED thread, one per returned delivery awaiting verification+stamp, one per CANNOT-VERIFY
+to chase; draft-stamps batch as a single apply-task per run. When many seats report back at once the board is
+SUPPOSED to swell — that is the estate being visible, not the list failing. Prune only by completing or by
+Smith's explicit deprioritisation.
+

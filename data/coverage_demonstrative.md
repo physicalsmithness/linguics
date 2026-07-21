@@ -30,6 +30,8 @@ Translation split 10 EN→IT / 10 IT→EN. CEFR weighting: grammar A1 2 / A2 17 
 
 **this vs that (near / far)** is a stub: 5 context-only items where an adverbial (adesso / qui vs in fondo / laggiù / all'orizzonte) forces the choice. Per Rev 19's recoverability condition these are `info_display: "show"`, not suppressed: the candidate set is lexical (questo vs quello) and nothing in "Prendi ____ penna" reveals it, so suppression would have made them guessing games. They carry `candidate_forms` + `correct_form` (Rev 17 iii) with the item-specific competing surfaces, so the post-answer tick names what could actually have filled the blank. No item in this batch is suppressed.
 
+**Update 2026-07-20 (Smith live-round rulings).** (1) Deceptive-gender co-credit (Rev 27): the two designed gender-trap items (mano, problema) now carry a second markpoint crediting `vocabulary.it.<noun>.noun.gender` at 0.5, marks kept at 1, gender aspect removed from their vocab_help; Architecture mints the two buckets on landing. foto audited but co-credit declined (its item is a pronoun-form test, not a gender trap) - reported to Architecture. (2) Meaning up front: all 31 questo/quello agreement prompts now state the English target (`Complete, to mean '<English>': '<Italian>' (<cue>)`), gloss lifted from each item's crit-17 explanation; discrimination (leak) and cio (already glossed) and pronoun (already contrastive) excluded; elision-leak check clean. Thread: `Architecture_DemonstrativeAuthor_live_round_mano_and_meaning` v2.
+
 ## Flagged / needs Architecture
 
 1. ~~Register `demonstrative.discrimination.questo_vs_quello`~~ — **DONE** (thread v2, registered verbatim; aggregate stub cleared, all forward refs resolve against the live registry).

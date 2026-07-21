@@ -1,0 +1,33 @@
+{
+  "$comment": "NounAuthor Phase-3 misconception proposals. The 9 plural-spelling misses are ALREADY TAGGED inline in grammar_questions_noun.json (cg_plural_stress_misapplied x6, cia_gia_plural_i x3) using confirmed registry ids. This file (a) records that provenance for MisconceptionAnalyst's tag-list build, since 'noun' is not yet a topic in misconception_tag_lists.json, and (b) proposes ids for the classes with NO confirmed registry home. Registry is architecture-owned; nothing here is invented into it.",
+  "version": 1,
+  "topic": "noun",
+  "already_tagged_inline": {
+    "orthography.cg_plural_stress_misapplied": ["amichi (noun_plur_sp_01)", "medichi (noun_plur_sp_02)", "agi (noun_plur_sp_03)", "fuoci (noun_plur_sp_04)", "amice (noun_plur_sp_05)", "barce (noun_plur_sp_06)"],
+    "orthography.cia_gia_plural_i": ["camice (noun_plur_sp_07)", "arancie (noun_plur_sp_08)", "pioggie (noun_plur_sp_09)"]
+  },
+  "gaps_needing_a_registry_id": [
+    {
+      "class": "noun -io plural i-count by stress",
+      "misses": ["figlii (noun_plur_sp_10, unstressed -io wrongly doubled)", "zi (noun_plur_sp_11, stressed -io wrongly single)"],
+      "why_no_existing_tag": "orthography.double_i_retained is defined for -ciare/-giare VERBS and orthography.i_retention_error for -iare VERBS; neither covers the noun -io plural (figlio->figli vs zio->zii). This is the noun analogue, same shape as the cia_gia_plural_i gap I flagged last pass which Architecture then created.",
+      "proposed_id": "orthography.io_plural_i_count",
+      "proposed_label": "Noun -io plural: wrong i-count by stress (figlii / zi)",
+      "left_untagged_pending_ruling": true
+    }
+  ],
+  "proposals_for_other_leaves_not_in_the_confirmed_ask": [
+    {
+      "class": "English -s plural transferred onto Italian nouns",
+      "misses": ["libros", "casas", "fiores", "studentes", "canes", "cittas/cittades", "films", "fotos", "uovos ...", "and the -os variants across the spelling leaf"],
+      "note": "regular + invariable + several spelling items carry an anglicised -s guard. No 'anglicisation' orthography id exists in the registry. Proposing transfer.english_s_plural (or an orthography sibling) for MisconceptionAnalyst to rule; NOT tagged inline since unconfirmed.",
+      "proposed_id": "transfer.english_s_plural"
+    },
+    {
+      "class": "Wrong lexical gender on a noun (article/agreement follows)",
+      "misses": ["la problema, la programma, la tema (masc -ma read as fem)", "il mano, il foto, il radio (fem -o read as masc)", "la poeta (masc -a person read as fem)"],
+      "note": "the gender-leaf must_not entries (wrong article la/il, una/un). agreement.adjective_noun and agreement.clitic_gender_number exist but neither fits a NOUN's own lexical gender being misremembered. Proposing agreement.noun_lexical_gender for a ruling; NOT tagged inline.",
+      "proposed_id": "agreement.noun_lexical_gender"
+    }
+  ]
+}

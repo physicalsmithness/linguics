@@ -1,15 +1,14 @@
 seat: ReportedSpeechAuthor
-classes: [all-seats, all-authors]   # originates grammar + translation items (markpoints, guards, item explanations). Not merely touched: authored 39 grammar + 20 translation. Reasoning per Rev 24's "what a seat ORIGINATES" test; awaiting ratification.
+classes: [all-seats, all-authors]   # originates grammar + translation items (markpoints, guards, item explanations). Rev 24 "what a seat ORIGINATES" test; awaiting ratification.
 project: Linguics
-updated: 2026-07-18
-waiting: blocked
-needs_from_smith: decision          # suppression scope; it governs the flag on the ~10 items I am about to author, so deciding first avoids authoring twice
-blocked_by: Smith - suppression-scope decision (options A/B/C given in chat)
-claude_can_verify: yes - all evidence is on disk (audits are greps over the item file; they regenerate)
-summary: thread v4 ruled all four asks in my favour and ordered two authoring tasks; both class retrofits (crit 13, Rev 25) audited clean this turn with zero exposure, evidence ready to file for stamping; one decision owed before I author
+updated: 2026-07-20
+waiting: parked
+needs_from_smith: external-action   # route Architecture to thread v5 to stamp the two class retrofits, accept the 6 new items, and rule deixis_05
+blocked_by:
+claude_can_verify: yes - all evidence regenerates from the item file (audits are greps/engine-sim over disk)
+summary: v4 fully delivered - persisting-fact leaf populated (4), condizionale non-shift authored (2), 15 items unsuppressed after label-shortening (deixis_05 held); both class retrofits audited 0-exposure; nothing owed by me, waiting on Architecture stamps
 queue:
-  - Author 4-6 items on the persisting-fact leaf "Still true: shift optional" - registered, active, ZERO items today   [thread v4 ruling 4]
-  - Author the condizionale non-shift item (hypothetical stays put; futurity shifts, cited to future_to_past)          [thread v4 closing ruling]
-  - crit-13 chip self-audit: RUN, 0 cue chips in 39 items, 0 rule-naming, 0 rewrites - awaiting Architecture stamp     [class clause, all-authors, no stamp for this seat]
-  - Rev 25 cue-level audit: RUN, prompt_supplies_base_form false on all 39, zero citation-form cues - awaiting stamp    [class clause, all-authors, no stamp for this seat]
-  - decision: unsuppress the 16 commands/questions/deixis items now the labels are shortened at source                  [chat, options A/B/C]
+  - crit-13 chip audit: DONE 0/45 rule-naming, stamp proposed in thread v5     [class all-authors, no stamp for this seat]
+  - Rev-25 cue-level audit: DONE 0 citation-form cues, stamp proposed in v5     [class all-authors, no stamp for this seat]
+  - 6 new items: DELIVERED, awaiting Architecture acceptance                    [thread v5, Next: Architecture]
+  - decision parked with Smith/Architecture: rep_deixis_05 show vs hold         [thread v5]

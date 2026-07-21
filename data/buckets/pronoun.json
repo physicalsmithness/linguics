@@ -1646,5 +1646,50 @@
     },
     "active": true,
     "version": 1
+  },
+  {
+    "id": "pronoun.discrimination",
+    "parent_id": "pronoun",
+    "language_code": "it",
+    "label": "Discrimination",
+    "description": "Choosing between clitic strategies where more than one is grammatical, or judging which of several orderings are legal. Minted 2026-07-21 with one leaf (clitic_ordering, the multi-select battery); further discrimination leaves join here rather than scattering.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "direction": "bidirectional"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "pronoun.discrimination.clitic_ordering",
+    "parent_id": "pronoun.discrimination",
+    "language_code": "it",
+    "label": "Clitic ordering and position",
+    "description": "Which of these render X? Multi-select items testing cluster fusion, IOP-before-DOP order, vowel changes, and enclitic/climbing choice points. Umbrella leaf under which multi-select items live; individual answers also credit their form-specific leaves under combined.* and position.* per Rev 27.",
+    "cefr_importance": {
+      "A1": "arcane",
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": false,
+      "direction": "bidirectional",
+      "info_display": "suppress"
+    },
+    "active": true,
+    "version": 1
   }
 ]

@@ -1,15 +1,21 @@
 seat: CongiuntivoFormationAuthor
 classes: [all-seats, all-authors]
 project: Linguics
-updated: 2026-07-18
+updated: 2026-07-20
 waiting: parked
 needs_from_smith: review
 blocked_by:
 claude_can_verify: yes — 75/75 items award full marks on their correct answer under housing/js engine; all guards reject; every formation leaf covered, zero zero-coverage
-summary: FORMATION (3 waves) + USAGE branch both delivered and verified: 90 grammar + 33 translation, engine-green (90/90 full marks; Rev-27 usage co-credit confirmed 15/15). Owed: nothing to author; awaiting Architecture to mint 3 usage leaves + rule on 2 flags.
+summary: FORMATION + USAGE delivered, usage branch ACCEPTED by Architecture. 90 grammar + 33 translation. person-field backfill done (11 residue -> 3sg). Nothing to author; Rev-28 crit-21 audit clears congiuntivo 0/90. Awaiting Architecture: person stamp + compound-label ruling.
 queue:
-  - Architecture to MINT 3 usage leaves (independent_exhortative, optative_wish, fixed_concessive) + clear usage stub [Architecture_CongiuntivoFormationAuthor_usage_leaf_minting v1, Next: Architecture] — items forward-reference them, strict-reject at production until minted
+  - (nothing to author)
+  - awaiting Architecture STAMP on person_backfill [thread v2, Next: Architecture] — my side done
+  - awaiting Architecture RULING on compound-leaf label hygiene [thread v1, Next: Architecture]
 notes:
+  - 2026-07-20 self-check ('new stuff'): usage_leaf_minting CLOSED — Architecture minted the 3 leaves (they were nested in an unread children[] array, hence the strict-reject), destubbed, batch ACCEPTED, delivery stamped in DECISIONS. Usage branch is live.
+  - 2026-07-20: person field (1sg..3pl, null non-finite) ratified; 78 items migrated centrally, 11 residue set by me to 3sg (all exhortatives/optatives/fixed formulae + one no-agree, all genuinely 3sg). 90/90 now carry person; marking regression 90/90 clean. Replied on thread, awaiting stamp.
+  - 2026-07-20: brief Rev 28 = criterion 21 (formation forces its target). AUDIT_formation_trigger clears congiuntivo 0/90 — my per-item governing triggers already comply. Standing rule, no retrofit. AUDIT_false_miss_2026-07-20 does not touch congiuntivo.
+  - dovere_variant_policy CLOSED v2 (deva stays 0.9).
   - Self-check: name-grep + class tokens (all-authors, all-seats) across inter_chat, DECISIONS, AUTHOR_BRIEF, OPEN_QUESTIONS, my DISPATCH. All hits triaged as discharged or standing.
   - Discharged: criterion 17 glosses [Cr17Sweep congiuntivo v1, 43/43]; dovere deva 0.9 [DECISIONS 2026-07-12, "already conform, no change"]; vocab POS bucket-ids [applied centrally to both files]; criterion 18 positive-anchoring [prior gate pass; verified against real engine].
   - Parked, not mine: pagare prompt-clarity nit on cong_pres_orth_pagare_3pl_01 [Architecture_Cr17Sweep_congiuntivo v1, Next: Architecture — awaiting their route before I reword].

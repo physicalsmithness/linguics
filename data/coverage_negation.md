@@ -51,6 +51,13 @@ The 17 remaining "must_not inside correct" hits are all the dropped-non guards (
 - **20(iii) instruction-pinned guards**: no guard here false-flags a compliant answer, so the mitigation is unused.
 - **§3 explicit `credit` on references** (previously undocumented to me): applied. Four references now carry `credit: 0.9` with steering notes rather than leaving the AI marker to infer from prose.
 
+## Rev 26-28 pass (2026-07-20)
+
+- **Rev 27 (cross-credit) — retrofit applied.** neg_ameno_01 and neg_ameno_02 were single markpoints that bundled the pleonastic non and the subjunctive, crediting congiuntivo nothing. Rev 27 retires the split-credit fear: each is now two markpoints at credit 0.5 (marks sum to 1) so the answer records a FULL correctness event on both negation.pleonastic.a_meno_che AND the congiuntivo present-subjunctive formation leaf. Word-anchored "non" makes the split criterion-18-safe, which is what I wrongly thought impossible when I bundled. Marker replica: "non piova" = 1.0 both hit; "non piove" = 0.5 (non right, mood wrong); "piova" = 0.5 (mood right, non dropped). This resolves scope-thread Q3 (a_meno_che bundling) better than the earlier "accepted as bundled".
+- **Rev 26 (criterion 13 sharpened) — nothing owed.** The central chip audit cleared negation (real exposure was 5 chips, all pronoun). My own chip audit last pass was already clean. Standing rule for new items: a chip may name the TRIGGER and CONTEXT, never the DIAGNOSTIC.
+- **Rev 28 (criterion 21, formation forces its target) — N/A.** Negation is not a formation topic; no item is pinned only by a bare temporal adverb (scanned, zero hits).
+- **Candidate, flagged not acted:** neg_resp_02 ("Neanche a me") arguably evidences piacere.usage.agreeing_responses too; under Rev 27 that could be a second markpoint. Left for Architecture since the dative-echo diagnostic is hard to isolate by substring and sits in piacere's territory.
+
 ## Resolved (scope thread v7, CLOSED)
 
 1. **Elliptical dodge**: ruled unauthorable in grammar, covered in translation instead, which is now done (see below). The engine ask for whole-answer anchoring (`match_at "exact"`) is logged in OPEN_QUESTIONS with this case and ComparisonAuthor's molto+issimo as the motivating pair; it gets built if a third class appears.

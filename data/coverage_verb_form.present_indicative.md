@@ -88,6 +88,16 @@ Two authoring notes worth keeping for anyone glossing reflexives:
 
 **Criterion 17**: discharged for this topic by Cr17Sweep (all 91 bare items glossed, marker replica identical, zero marking deltas). **Criterion 13**: self-audit run, 91 prompts, zero rule-naming hits. Both awaiting Architecture stamps; seats do not stamp themselves.
 
+## Update 2026-07-20: criterion-21 retrofit + lemma-retrieval pilot taster
+
+Threads: `Architecture_PresentFormationAuthor_formation_trigger_retrofit.md` (v2, delivered) and `Architecture_PresentFormationAuthor_lemma_retrieval_pilot.md` (v2, taster).
+
+**Criterion 21 (Rev 28) — 7 items reframed.** All 7 flagged in AUDIT_formation_trigger_2026-07-19 carried a smuggled future adverb (domani/stasera) where the futuro competes. Fixed by frame-strengthening: the adverb swapped for a present-time / habitual frame (Ogni anno, di solito, sempre, il sabato, ogni sera, adesso). `prompt_supplies_base_form` now honestly true; crit-19 re-checked clean (no accented answers); marking byte-identical. Items: partire_3pl, fare_2pl, venire_3pl, rimanere_1sg, dovere_1sg, dovere_1pl, avere_2pl.
+
+**Lemma-retrieval pilot (Smith's proposal, option a) — 3-item taster added.** New `pres_lr_*` items (`provenance: lemma_retrieval_pilot`): the cue is an English meaning with a bracketed tense frame instead of the Italian infinitive, so the learner retrieves the verb as well as conjugates it. Two co-crediting markpoints per Rev 27 (formation 0.5 + `vocabulary.it.<lemma>.verb.translation` 0.5, the latter matching the verb stem so a right-verb/wrong-person answer still ticks vocabulary). One item (alzarsi) carries a competitor guard (mi sveglio graded 0.5 + steer) for the get-up/wake-up ambiguity. Held at 3 pending Smith's feel-judgment and one replica check on weight composition; full ~15 in v3. Total item count now 106 grammar (91 original + 12 PresentUsage + 3 pilot).
+
+Item count note: the 91 formation + 32 translation batch is unchanged in scope; the pilot adds 3 experimental items on top, not yet part of the accepted coverage.
+
 ## Notes for later dispatches
 
 - **PresentUsage** (the `verb_form.present_indicative.usage` stub) will own: habitual / gnomic / now readings, present-for-near-future, historic present, polite/performative uses, impersonal `si`, and the `stare + gerundio` progressive (which cross-references the gerundio tree). None authored here.

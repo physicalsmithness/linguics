@@ -1,13 +1,12 @@
 seat: RelativePronounAuthor
-classes: [all-seats, all-authors]   # originates grammar+translation items (markpoints, cues, guards, explanations); reasoning in class_retrofit_audits v1, awaiting ratification
+classes: [all-seats, all-authors]   # originates grammar+translation items; declared in class_retrofit_audits v1, uncontested
 project: Linguics
-updated: 2026-07-18
-waiting: parked
-needs_from_smith: external-action   # route Architecture to my two open threads (stamps + census decrement + class ratification)
+updated: 2026-07-20
+waiting: closed
+needs_from_smith: none
 blocked_by:
-claude_can_verify: yes - all evidence is on disk (thread tables regenerate from the item files)
-summary: batch live and settled; wake self-check found two unstamped class retrofits (crit 13, Rev 25), both audited clean same turn, evidence filed for stamping; pos-worklist census decrement still pending
-queue:
-  - crit-13 chip self-audit: DONE, evidence filed, awaiting Architecture stamp   [class_retrofit_audits v1]
-  - Rev 25 cue-level audit: DONE, evidence filed, awaiting Architecture stamp    [class_retrofit_audits v1]
-  - pos-migration worklist: cleared 2026-07-17, awaiting census decrement 175->169   [pos_worklist_cleared v1]
+claude_can_verify: yes - stamps grepped from DECISIONS.md and the brief register this turn
+summary: self-check re-run 2026-07-20: queue EMPTY. Rev-25 stamp landed (DECISIONS, cites my v1); crit-13 discharged centrally for all-authors-except-PronounAuthor so my per-seat evidence is moot; Rev 26/27/28 are standing rules (not formation-bound topic, no crit-21 exposure); no false-miss packet, no dispatch, no Next: me anywhere.
+queue: []
+notes:
+  - class_retrofit_audits thread still reads OPEN / Next: Architecture though both its asks are settled elsewhere (Rev-25 stamp in DECISIONS, crit-13 central discharge); closing it is Architecture bookkeeping, nothing owed by me.

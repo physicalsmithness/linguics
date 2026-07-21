@@ -131,34 +131,50 @@
     payload.level = (item && item.cefr_level_target) || "";
     payload.status = statusFor(result);
     payload.picked_id = (item && item.type === "mcq" && attempt) ? String(attempt.raw_response || "") : "";
-    payload.misconception_id = (attempt && Array.isArray(attempt.misconception_hits) && attempt.misconception_hits.length)
-      ? String(attempt.misconception_hits[0]) : "";
+    // Hits are OBJECTS {id, bucket, evidence}; the column takes the ID (the
+    // old String() would have sent "[object Object]" the day a tag fired).
+    const mh = (attempt && Array.isArray(attempt.misconception_hits)) ? attempt.misconception_hits : [];
+    payload.misconception_id = mh.length ? String(mh[0].id || mh[0]) : "";
 
-    const extra = {
-      build: LL.build || "",
-      score: result && result.overall ? result.overall.marks_awarded : null,
-      marks_possible: result && result.overall ? result.overall.marks_possible : null,
-      raw_response: (attempt && attempt.raw_response) || "",
-      markpoints: (result && result.markpoints || []).map(mp => ({
-        bucket: mp.bucket, outcome: mp.outcome,
-        attempted: mp.attempted_credit, correctness: mp.correctness_credit,
-        evidence: mp.evidence || ""
-      })),
-      orthography: (result && result.orthography || []).map(o => ({
-        bucket: o.bucket, expected: o.expected, written: o.written,
-        accent_class: o.accent_class, accent_chars: o.accent_chars
-      })),
-      misconceptions: (attempt && attempt.misconception_hits) || [],
-      person: item && item.person !== undefined ? item.person : null,
-      slot: item && item.slot !== undefined ? item.slot : null,
-      intent: (attempt && attempt.intent) || null,
-      duration_ms: (LL._cardShownAt ? Math.max(0, Date.now() - LL._cardShownAt) : null),
-      events_n: (attempt && attempt.events && attempt.events.length) || 0
-    };
-    // App-side context (input mode, active scopes) without hard coupling.
-    try { if (typeof LL.pulseContext === "function") Object.assign(extra, LL.pulseContext()); } catch (e) {}
-    payload.extra_json = JSON.stringify(extra);
+    // LIVE FINDING (Smith, 2026-07-21): a client-built extra_json string
+    // arrives EMPTY in the sheet - the estate script owns that column and
+    // fills it by sweeping UNRECOGNISED top-level keys. So everything
+    // Linguics-specific now travels as top-level keys (the packet's other
+    // blessed route); complex structures pre-stringified.
+    payload.answer = (attempt && attempt.raw_response) || "";
+    payload.expected_answer = expectedAnswerFor(item);
+    payload.build = LL.build || "";
+    payload.score = result && result.overall ? result.overall.marks_awarded : "";
+    payload.marks_possible = result && result.overall ? result.overall.marks_possible : "";
+    payload.duration_ms = LL._cardShownAt ? Math.max(0, Date.now() - LL._cardShownAt) : "";
+    payload.person = (item && item.person !== undefined && item.person !== null) ? item.person : "";
+    payload.slot = (item && item.slot !== undefined && item.slot !== null) ? item.slot : "";
+    payload.intent = (attempt && attempt.intent) || "";
+    payload.events_n = (attempt && attempt.events && attempt.events.length) || 0;
+    payload.markpoints_json = JSON.stringify((result && result.markpoints || []).map(mp => ({
+      bucket: mp.bucket, outcome: mp.outcome,
+      attempted: mp.attempted_credit, correctness: mp.correctness_credit,
+      evidence: mp.evidence || ""
+    })));
+    payload.orthography_json = JSON.stringify((result && result.orthography || []).map(o => ({
+      bucket: o.bucket, expected: o.expected, written: o.written,
+      accent_class: o.accent_class, accent_chars: o.accent_chars
+    })));
+    payload.misconceptions_json = JSON.stringify(mh);
+    // App-side context (input mode, active scopes) - also top-level.
+    try { if (typeof LL.pulseContext === "function") Object.assign(payload, LL.pulseContext()); } catch (e) {}
     return payload;
+  }
+
+  function expectedAnswerFor(item) {
+    try {
+      if (item && item.type === "mcq" && Array.isArray(item.choices)) {
+        return String(item.choices[item.answer_index] !== undefined ? item.choices[item.answer_index] : "");
+      }
+      const mp = item && item.markpoints && item.markpoints[0];
+      const ph = mp && mp.any_phrases && mp.any_phrases[0];
+      return typeof ph === "string" ? ph : (ph && ph.phrase) || "";
+    } catch (e) { return ""; }
   }
 
   function firstBucketRoot(result) {
@@ -176,14 +192,20 @@
       payload.item_id = ""; payload.topic = ""; payload.qtype = ""; payload.mode = "";
       payload.level = ""; payload.picked_id = ""; payload.misconception_id = "";
       payload.status = "session_start";
-      payload.extra_json = JSON.stringify({ build: LL.build || "" });
+      payload.build = LL.build || "";
       post(payload);
     } catch (e) {}
   }
 
+  // Log out = clear the LINGUICS class only (the gate reasks; the shared
+  // name + anonymous_id stay, so physics is untouched and the name prefills).
+  function signOut() {
+    try { localStorage.removeItem(COHORT_KEY); } catch (e) {}
+  }
+
   LL.pulse = {
     classes: () => INTERIM_CLASSES.slice(),
-    identity, signedIn, signIn, onStatus, reportAttempt, sendSessionStart,
+    identity, signedIn, signIn, signOut, onStatus, reportAttempt, sendSessionStart,
     _buildAttemptPayload: buildAttemptPayload,   // exposed for the test harness
     _statusFor: statusFor
   };

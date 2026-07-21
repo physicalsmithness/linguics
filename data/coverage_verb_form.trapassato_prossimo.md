@@ -103,3 +103,17 @@ The batch was authored against brief Rev 9 and shipped 2026-06-09. The brief has
 - **TrapassatoUsage** owns the usage leaf (the stub): when the pluperfect is the right choice for an action completed before another past point, and the reported-speech backshift ("Disse che era già partito"). My formation items deliberately keep the past-before-past context fixed by the sentence so the learner only builds the form; the *choosing* is usage's job.
 - **TenseChoice** owns the discrimination leaf (the stub `Pluperfect vs imperfect / passato prossimo`). My items are never tense-choice items: the context always already calls for the pluperfect. If TenseChoice wants formation items to cite as prerequisites, the avere and essere leaves here are stable.
 - The tree leans hard on the passato prossimo (participle, agreement, auxiliary choice) and the imperfect (the auxiliary's own conjugation). If either of those trees renames the cross-referenced buckets, the agreement and preceding-pronoun markpoints here will need the same rename.
+
+## Misconception item-tagging (2026-07-20, PluperfectAuthor)
+
+Phase-3 tagging applied. All 88 `must_not_include` guard entries across the 34 grammar items now carry a single registry id (object shape `{phrase, match_at, misconception}`, per the 2026-07-15 schema ruling), following MisconceptionAnalyst's pass-2 tag-list for this tree (which was built by reading the live guards, not inferred):
+
+- 34 present-auxiliary guards to `auxiliary_choice.wrong_auxiliary_tense` (the specific harvested from these two leaves: "ho parlato" for "avevo parlato", "sono andato" for "ero andato").
+- 48 essere agreement guards to `agreement.participle_essere_subject`.
+- 6 preceding-direct-object-pronoun agreement guards to `agreement.participle_preceding_dop`.
+
+Marking is untouched (tags are display/stats only): re-simulated 34/34 correct answers scoring full marks and the present-auxiliary miss firing, under both accent normalisations. `match_at: "word"` anchoring preserved on every entry. `any_phrases` deliberately untagged (dodges are never tagged, and they are the correct answers). Versions bumped to 3.
+
+Two judgement calls flagged to Architecture / MisconceptionAnalyst rather than decided here (both in the thread):
+1. The tag-list lists `auxiliary_choice.avere_for_essere` on the essere leaf, but no guard in this batch catches an avere-for-essere error (the guards catch the present-tense auxiliary, not the wrong auxiliary). Per "tag the guard that catches the miss", it is unused. Correct, or is a guard expected?
+2. The mixed-gender item (`tpp_es_mixed_01`) took the generic `participle_essere_subject` per the uniform bucket-list, though a more specific `agreement.mixed_gender_default` exists in the registry and the item's own agreement bucket is the mixed-gender leaf. Followed the ruled tag-list rather than improvising a per-item refinement; flagging in case the finer tag is wanted.

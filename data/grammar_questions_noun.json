@@ -9,7 +9,7 @@
     "prompt": "Completa con l'articolo giusto: 'Metti ____ libro sul tavolo.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -74,7 +74,7 @@
     "prompt": "Completa con l'articolo giusto: 'Ho comprato ____ casa nuova.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -139,7 +139,7 @@
     "prompt": "Completa con la forma giusta di 'buono': 'La pizza napoletana è molto ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -204,7 +204,7 @@
     "prompt": "Completa con l'articolo giusto: 'Conosci ____ ragazzo di Anna?'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -268,7 +268,7 @@
     "prompt": "Completa con l'articolo giusto: 'Che profumo ha ____ fiore!'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -333,7 +333,7 @@
     "prompt": "Completa con l'articolo giusto: '____ notte porta consiglio.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -397,7 +397,7 @@
     "prompt": "Completa con l'articolo giusto: 'Dov'è ____ pane che ho comprato?'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -461,7 +461,7 @@
     "prompt": "Completa con l'articolo giusto: 'Non trovo più ____ chiave della macchina.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -525,7 +525,7 @@
     "prompt": "Completa con l'articolo giusto: 'Abbiamo attraversato ____ fiume a piedi.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -589,7 +589,7 @@
     "prompt": "Completa con l'articolo giusto: '____ nave parte dal porto alle otto.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -653,7 +653,7 @@
     "prompt": "Completa con l'articolo giusto: 'Non riesco a ricordare ____ nome di quel ristorante.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -717,7 +717,7 @@
     "prompt": "Completa con l'articolo giusto: 'Roma è ____ capitale d'Italia.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -770,7 +770,13 @@
     ],
     "explanation": "'Roma è la capitale d'Italia' means 'Rome is the capital of Italy.' In the sense 'capital city' capitale is feminine: la capitale. The same spelling is masculine when it means money (see the next item), so meaning, not spelling, fixes the gender.",
     "examiner_note": "Same-surface opposite pair with noun_gen_e_09 (il capitale = financial capital). Meaning conditions the gender.",
-    "version": 1
+    "version": 1,
+    "candidate_forms": [
+      "la capitale (capital city)",
+      "il capitale (money, funds)"
+    ],
+    "correct_form": "la capitale (capital city)",
+    "info_display": "suppress"
   },
   {
     "external_id": "noun_gen_e_09",
@@ -782,7 +788,7 @@
     "prompt": "Completa con l'articolo giusto: 'In economia, ____ capitale è il denaro che si investe.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -835,7 +841,13 @@
     ],
     "explanation": "'In economia, il capitale è il denaro che si investe' means 'In economics, capital is the money you invest.' In the financial sense capitale is masculine: il capitale. Compare la capitale (a capital city) in the previous item: one spelling, two genders, split by meaning.",
     "examiner_note": "Same-surface opposite pair with noun_gen_e_08. The sentence forces the financial reading, hence masculine.",
-    "version": 1
+    "version": 1,
+    "candidate_forms": [
+      "la capitale (capital city)",
+      "il capitale (money, funds)"
+    ],
+    "correct_form": "il capitale (money, funds)",
+    "info_display": "suppress"
   },
   {
     "external_id": "noun_gen_irr_01",
@@ -847,7 +859,7 @@
     "prompt": "Completa con l'articolo giusto: '____ problema di matematica è difficile.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -913,7 +925,7 @@
     "prompt": "Completa con l'articolo giusto: 'Ho registrato ____ programma di ieri sera.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -978,7 +990,7 @@
     "prompt": "Completa con l'articolo giusto: '____ tema dell'esame era molto attuale.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -1043,7 +1055,7 @@
     "prompt": "Completa con l'articolo giusto: 'Marco ha alzato ____ mano per rispondere.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -1109,7 +1121,7 @@
     "prompt": "Completa con l'articolo giusto: 'Ti mando ____ foto appena posso.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -1174,7 +1186,7 @@
     "prompt": "Completa con l'articolo giusto: '____ radio in cucina non funziona.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -1239,7 +1251,7 @@
     "prompt": "Completa con l'articolo giusto: 'Leopardi è ____ poeta che preferisco.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -1304,7 +1316,7 @@
     "prompt": "Metti al plurale: 'Un libro, due ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1354,7 +1366,7 @@
     "prompt": "Metti al plurale: 'Una casa, tre ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1404,7 +1416,7 @@
     "prompt": "Metti al plurale: 'Un fiore, molti ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1454,7 +1466,7 @@
     "prompt": "Metti al plurale: 'Uno studente, venti ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1504,7 +1516,7 @@
     "prompt": "Metti al plurale: 'Una ragazza, due ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1555,7 +1567,7 @@
     "prompt": "Metti al plurale: 'Un cane, tanti ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1605,7 +1617,7 @@
     "prompt": "Metti al plurale: 'Un amico, molti ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1621,7 +1633,8 @@
         "must_not_include": [
           {
             "phrase": "amichi",
-            "match_at": "word"
+            "match_at": "word",
+            "misconception": "orthography.cg_plural_stress_misapplied"
           },
           {
             "phrase": "amicos",
@@ -1656,7 +1669,7 @@
     "prompt": "Metti al plurale: 'Un medico, molti ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1672,7 +1685,8 @@
         "must_not_include": [
           {
             "phrase": "medichi",
-            "match_at": "word"
+            "match_at": "word",
+            "misconception": "orthography.cg_plural_stress_misapplied"
           },
           {
             "phrase": "medicos",
@@ -1706,7 +1720,7 @@
     "prompt": "Metti al plurale: 'Un ago, due ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -1723,7 +1737,8 @@
         "must_not_include": [
           {
             "phrase": "agi",
-            "match_at": "word"
+            "match_at": "word",
+            "misconception": "orthography.cg_plural_stress_misapplied"
           },
           {
             "phrase": "agos",
@@ -1758,7 +1773,7 @@
     "prompt": "Metti al plurale: 'Un fuoco, due ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -1775,7 +1790,8 @@
         "must_not_include": [
           {
             "phrase": "fuoci",
-            "match_at": "word"
+            "match_at": "word",
+            "misconception": "orthography.cg_plural_stress_misapplied"
           },
           {
             "phrase": "fuocos",
@@ -1809,7 +1825,7 @@
     "prompt": "Metti al plurale: 'Un'amica, due ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -1826,7 +1842,8 @@
         "must_not_include": [
           {
             "phrase": "amice",
-            "match_at": "word"
+            "match_at": "word",
+            "misconception": "orthography.cg_plural_stress_misapplied"
           },
           {
             "phrase": "amicas",
@@ -1861,7 +1878,7 @@
     "prompt": "Metti al plurale: 'Una barca, tre ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -1878,7 +1895,8 @@
         "must_not_include": [
           {
             "phrase": "barce",
-            "match_at": "word"
+            "match_at": "word",
+            "misconception": "orthography.cg_plural_stress_misapplied"
           },
           {
             "phrase": "barcas",
@@ -1912,7 +1930,7 @@
     "prompt": "Metti al plurale: 'Una camicia, due ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1928,7 +1946,8 @@
         "must_not_include": [
           {
             "phrase": "camice",
-            "match_at": "word"
+            "match_at": "word",
+            "misconception": "orthography.cia_gia_plural_i"
           },
           {
             "phrase": "camicias",
@@ -1963,7 +1982,7 @@
     "prompt": "Metti al plurale: 'Un'arancia, due ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -1980,7 +1999,8 @@
         "must_not_include": [
           {
             "phrase": "arancie",
-            "match_at": "word"
+            "match_at": "word",
+            "misconception": "orthography.cia_gia_plural_i"
           },
           {
             "phrase": "arancias",
@@ -2015,7 +2035,7 @@
     "prompt": "Metti al plurale: 'Una pioggia, molte ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -2032,7 +2052,8 @@
         "must_not_include": [
           {
             "phrase": "pioggie",
-            "match_at": "word"
+            "match_at": "word",
+            "misconception": "orthography.cia_gia_plural_i"
           },
           {
             "phrase": "pioggias",
@@ -2066,7 +2087,7 @@
     "prompt": "Metti al plurale: 'Un figlio, due ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -2117,7 +2138,7 @@
     "prompt": "Metti al plurale: 'Uno zio, due ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -2172,7 +2193,7 @@
     "prompt": "Metti al plurale: 'Una città, due ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -2228,7 +2249,7 @@
     "prompt": "Metti al plurale: 'Un film, molti ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -2279,7 +2300,7 @@
     "prompt": "Metti al plurale: 'Un re, tre ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -2331,7 +2352,7 @@
     "prompt": "Metti al plurale: 'Una crisi, due ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -2382,7 +2403,7 @@
     "prompt": "Metti al plurale: 'Un caffè, due ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -2433,7 +2454,7 @@
     "prompt": "Metti al plurale: 'Una foto, tante ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -2484,7 +2505,7 @@
     "prompt": "Metti al plurale: 'Un uomo, molti ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -2539,7 +2560,7 @@
     "prompt": "Metti al plurale: 'Un uovo, sei ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -2590,7 +2611,7 @@
     "prompt": "Metti al plurale (parte del corpo): 'Un braccio, due ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -2629,7 +2650,13 @@
     ],
     "explanation": "'Un braccio, due braccia' means 'one arm, two arms.' For the parts of the body, braccio takes the feminine plural braccia. The regular-looking bracci exists too, but it means mechanical arms (of a crane, a record player), not the body's, as the next item shows.",
     "examiner_note": "VISIBLE: meaning (parte del corpo) conditions the answer, not the breadcrumb. Same-surface opposite pair with noun_plur_irr_04.",
-    "version": 1
+    "version": 1,
+    "candidate_forms": [
+      "braccia (parts of the body)",
+      "bracci (mechanical arms)"
+    ],
+    "correct_form": "braccia (parts of the body)",
+    "info_display": "suppress"
   },
   {
     "external_id": "noun_plur_irr_04",
@@ -2641,7 +2668,7 @@
     "prompt": "Metti al plurale (di una macchina): 'Un braccio, due ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -2680,7 +2707,13 @@
     ],
     "explanation": "'Un braccio, due bracci' means 'one arm, two arms' of a machine. When braccio means a mechanical arm, the plural is the regular masculine bracci; the feminine braccia is reserved for the body. One word, two plurals, split by meaning.",
     "examiner_note": "VISIBLE, pair with irr_03. 'bracci' is a prefix of 'braccia', so it is anchored match_at word (criterion 18 default): without it, a learner typing the wrong 'braccia' would false-match the 'bracci' phrase and be wrongly credited.",
-    "version": 1
+    "version": 1,
+    "candidate_forms": [
+      "braccia (parts of the body)",
+      "bracci (mechanical arms)"
+    ],
+    "correct_form": "bracci (mechanical arms)",
+    "info_display": "suppress"
   },
   {
     "external_id": "noun_plur_irr_05",
@@ -2692,7 +2725,7 @@
     "prompt": "Metti al plurale: 'Una mano ha cinque ____.' (dito)",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -2754,7 +2787,7 @@
     "prompt": "Metti al plurale: 'Un paio di scarpe, due ____ di scarpe.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -2809,7 +2842,7 @@
     "prompt": "Metti al plurale: 'Un capolavoro, molti ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -2860,7 +2893,7 @@
     "prompt": "Metti al plurale: 'Un asciugamano, tre ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -2911,7 +2944,7 @@
     "prompt": "Metti al plurale: 'Un portachiavi, due ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "info_display": "suppress",
     "markpoints": [
       {

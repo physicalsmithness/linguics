@@ -10,6 +10,7 @@ waiting: parked
 needs_from_smith: decision
 blocked_by:
 claude_can_verify:
+note_2026-07-20: Rev 26-28 caught up — Rev 27 cross-credit split neg_ameno_01/02 (congiuntivo now full-credited); Rev 26 nothing owed; Rev 28 N/A. resp_02 piacere dual-cite flagged.
 summary: Negation live (42 grammar + 23 translation, 9 leaves, validation 0/0, replica clean). Nothing to author. Raw name-grep showed 6; after triage the queue is two all-authors retrofits, both RUN clean this turn and awaiting Architecture's stamp, plus one thread on Architecture's side. Nothing owed by me.
 queue:
   - Criterion 13 chip self-audit — RUN this turn, ZERO hits, zero rewrites. Register says RUNNING, compliance 1 of ~25 author seats; my name never appears, only the class token found it. Awaiting Architecture stamp.   [AUTHOR_BRIEF binding register]

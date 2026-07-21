@@ -4,13 +4,16 @@ classes: [all-seats, all-authors]   # all-authors declared deliberately: this se
                                     # item explanations (51 + 24 live). Criteria 13-20 all bind all-authors
                                     # and name nobody, so under-claiming would silently hide every one of them.
 project: Linguics
-updated: 2026-07-18
-waiting: closed
+updated: 2026-07-21
+waiting: parked
 needs_from_smith: none
 blocked_by:            # none
 claude_can_verify: yes — both audits below are re-runnable greps over data/grammar_questions_comparison.json.
-summary: Comparison batch live and ACCEPTED (51 grammar + 24 translation, all 8 leaves), reconciled Rev 16->22 and re-checked against Rev 25 today. Self-check run across name + classes; queue is EMPTY. Two class-bound audits run today, both clean; three items await Architecture's stamp.
-queue: none — nothing owed. (name-grep MINUS discharged = 0)
+summary: Batch live + ACCEPTED. False-miss packet (3 items, Next: me) dispositioned + verified today: quanto me / bello quanto accepted 1.0, oltre venti 0.9; crit-18 clean. One notation question open to Architecture (34 mid-prompt English-paren glosses the central audit missed). Queue otherwise empty.
+queue:
+  - false-miss packet: DONE, awaiting Architecture verify+stamp (Architecture_ComparisonAuthor_false_miss_packet v2)   [not blocked]
+decision_for_smith_or_architect:
+  - 34 items carry an English gloss in MID-prompt parens (e.g. "Complete (as tall as me): '...' (io)"). No render bug (only TRAILING parens become "Use X"), but the notation rule says English -> [brackets]. Central audit keyed on trailing parens and did not see these. Options: (a) I convert ( )->[ ] on next touch, display-only; (b) leave as prose-equivalent; (c) Architecture re-runs the notation audit estate-wide without the trailing-only filter first. Parked with Architecture.
 
 discharged_awaiting_architecture_stamp:   # reported, not self-stamped
   - criterion 13 (binds all-authors; register says RUNNING, unstamped for this seat) — chip self-audit RUN today: 0 rule-naming cues across all 51 prompts. Every cue names a lemma, a surface form, or an English meaning. Evidence: re-runnable grep; nearest judgement call is cmp_irr_03's "(usa la forma di 'grande' per l'età)", which names the selecting condition (age), not the rule.

@@ -1056,7 +1056,7 @@
     "prompt": "'Questo modulo va compilato a mano' vuol dire: 'This form ____ filled in by hand.'",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -1212,7 +1212,7 @@
     "explanation": "'Le medicine vanno prese a stomaco pieno' means 'The medicines must be taken on a full stomach.' Andare plus a participle expresses obligation, so vanno prese = must be taken. It agrees like any passive: medicine is feminine plural, giving prese, after the plural vanno. Working: vanno prese.",
     "examiner_note": "Criterion 20 (Rev 22): the earlier Italian gloss '(l'idea: devono essere prese)' handed over BOTH the agreement answer 'prese' (markpoint 1's whole test) and the 0.9 dodge phrase verbatim, so a learner could copy the cue for 1.9/2 without reaching for andare. Recued by bracketed English meaning; the citation-form trigger '(prendere, con andare)' is exempt and stays, so prompt_supplies_base_form is true. Rev 17 0.9-for-dodges: 'devono essere prese' stays a 0.9 dodge with a steering note, now a genuine sidestep rather than a copy of the cue. Two markpoints: obligation-auxiliary and agreement.",
     "version": 1,
-    "prompt_supplies_base_form": true
+    "wrong_answer_is_form_error_only": true
   },
   {
     "external_id": "pas_and_03",
@@ -1360,7 +1360,7 @@
     "prompt": "'Questa lettera va spedita subito' vuol dire: 'This letter ____ sent immediately.'",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -1438,7 +1438,7 @@
     "prompt": "Completa con la preposizione dell'agente: 'Il ritratto è stato dipinto ____ Caravaggio.'",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -1500,7 +1500,7 @@
     "prompt": "Completa con la preposizione articolata dell'agente: 'La decisione è stata presa ____ direttore.'",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -1566,7 +1566,7 @@
     "prompt": "Completa con la preposizione articolata dell'agente: 'Il progetto sarà approvato ____ commissione.'",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -1628,7 +1628,7 @@
     "prompt": "Completa con la preposizione dell'agente: 'I fiori sono stati mandati ____ Marco.'",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -1690,7 +1690,7 @@
     "prompt": "Completa con la preposizione articolata dell'agente: 'La legge è stata approvata ____ deputati.'",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -1846,7 +1846,7 @@
     "prompt": "Riscrivi come lo diresti a un amico al bar (parlato quotidiano): 'Il presidente è stato eletto ieri.' -> '____ il presidente ieri.'",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -1898,7 +1898,7 @@
     "prompt": "Riscrivi per un avviso ufficiale in aeroporto (registro formale), mettendo il volo in primo piano: 'Hanno cancellato il volo delle 18.' -> '____'",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -1956,7 +1956,7 @@
     "prompt": "Riscrivi per il parlato quotidiano: 'Il pane è fatto qui ogni giorno.' -> 'Qui ____ il pane ogni giorno.'",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "candidate_forms": [
       "si fa",
       "è fatto"
@@ -2054,7 +2054,7 @@
     "prompt": "Riscrivi per un titolo di giornale (registro formale, notizia): 'La polizia ha arrestato due uomini.' -> '____'",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -2112,7 +2112,7 @@
     "prompt": "Completa: 'I libri ____ dalla libreria Feltrinelli.' (vendere)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "candidate_forms": [
       "sono venduti",
       "si vendono"
@@ -2179,7 +2179,7 @@
     "prompt": "Su un cartello in vetrina: 'Qui ____ libri usati.' (vendere)",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "candidate_forms": [
       "si vendono",
       "sono venduti"
@@ -2285,7 +2285,7 @@
         }
       }
     ],
-    "explanation": "'Si vendono libri da Marco' is the impossible one. The si construction hides the doer by design, so it cannot then name one: bolt a da-phrase on and the sentence breaks. To name Marco you need either the full passive ('I libri sono venduti da Marco', 'The books are sold by Marco') or the plain active ('Marco vende libri', 'Marco sells books'). This is the single sharpest test for telling the two constructions apart.",
+    "explanation": "All three sentences try to say 'Books are sold by Marco.' The impossible one is 'Si vendono libri da Marco'. The si construction hides the doer by design, so it cannot then name one: bolt a da-phrase on and the sentence breaks. To name Marco you need either the full passive ('I libri sono venduti da Marco') or the plain active ('Marco vende libri'). This is the single sharpest test for telling the two constructions apart.",
     "examiner_note": "MCQ, index-scored: 'pick the impossible one' cannot be marked by substring. This is the leaf's hot spot, the agent test, stated directly.",
     "version": 1
   },
@@ -2299,7 +2299,7 @@
     "prompt": "Su un cartello: 'Qui ____ camere.' (affittare)",
     "type": "short",
     "marks": 2,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "candidate_forms": [
       "si affittano",
       "sono affittate"
@@ -2400,7 +2400,7 @@
     "prompt": "'Qui si vendono libri usati' vuol dire: 'Second-hand books ____ here.'",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -2474,7 +2474,7 @@
     "prompt": "Riscrivi nominando chi vende: 'Qui si vendono libri usati.' -> 'I libri usati ____ da questa libreria.'",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "candidate_forms": [
       "sono venduti",
       "si vendono"

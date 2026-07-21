@@ -1,15 +1,17 @@
 seat: DemonstrativeAuthor
-classes: [all-seats, all-authors]   # originates items with markpoints/cues/must_not/explanations = the all-authors test. Ratification requested: Architecture_DemonstrativeAuthor_class_retrofit_audits
+classes: [all-seats, all-authors]   # originates items with markpoints/cues/must_not/explanations. Ratification: Architecture_DemonstrativeAuthor_class_retrofit_audits
 project: Linguics
-updated: 2026-07-18
+updated: 2026-07-20
 waiting: parked
 needs_from_smith: none
-blocked_by: Architecture (3 stamps + ratify/redirect the cio reframe + ratify classes) — none of it blocks live items
+blocked_by: Architecture (mint 2 gender buckets; 3 open asks from class_retrofit_audits) — none blocks live items on disk
 claude_can_verify: n/a
-summary: Demonstrative batch (44 grammar + 20 translation) live and Rev-25 compliant. cio items reframed under crit 20 (option a, acting default, revertible). Three class/next-touch clauses discharged, awaiting Architecture stamps; cio a/b/c ruling with Architecture.
+summary: Demonstrative batch (44 grammar + 20 translation) live and current to brief Rev 28. Smith's two live-round rulings applied — deceptive-gender co-credit on mano/problema (2 buckets to mint), meaning-up-front on 31 agreement prompts. All re-audited green.
 queue:
-  - cio reframe: option (a) applied as acting default; Architecture to ratify or redirect to (b)/(c)   [class_retrofit_audits v2, Next: Architecture]
-  # below: discharged, awaiting stamp = NOT work; listed so the compliance table can subtract.
-  - Criterion 13 class retrofit: RUN clean, 44 items, 3 bare-lemma cues, 0 rule-naming   [AUTHOR_BRIEF register row 13]
-  - Rev 25 class retrofit: RUN clean, 44 items, all citation forms at/below item level   [DECISIONS.md Rev 25]
-  - Rev 19 five-flag flip: discharged 2026-07-15, 5 show / 0 suppressed on disk   [DECISIONS.md:987]
+  - Mint vocabulary.it.mano.noun.gender + vocabulary.it.problema.noun.gender (markpoints live on disk, forward-ref until minted)   [live_round v2, Next: Architecture]
+  - Rule: vocab_help gender id .noun.gender vs .gender (namespace fork); foto co-credit yes/no   [live_round v2]
+  - cio a/b/c grading ruling + Rev-25 stamp + ratify [all-seats, all-authors]   [class_retrofit_audits v2, Next: Architecture]
+  # done this touch, no action owed:
+  - Ruling 1 co-credit (mano, problema): 2 markpoints 0.5/0.5, gender aspect stripped, marks=1
+  - Ruling 2 meaning-up-front: 31 agreement prompts, gloss from crit-17, elision-leak clean
+  - Rev 28/crit 21 (formation-only) does NOT bind demonstratives; Rev 26 crit-13 relaxed, centrally discharged

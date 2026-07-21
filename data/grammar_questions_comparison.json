@@ -9,7 +9,7 @@
     "prompt": "Complete (taller than Luca): 'Marco è ____ Luca.' (alto)",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -56,7 +56,7 @@
     "prompt": "Complete (less expensive than that one): 'Questo vino è ____ quello.' (caro)",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -103,7 +103,7 @@
     "prompt": "Complete (bigger than mine): 'Il tuo cane è ____ mio.' (grande)",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -151,7 +151,7 @@
     "prompt": "Complete (more than twenty): 'In classe ci sono ____ studenti.' (venti)",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -161,6 +161,12 @@
         "any_phrases": [
           {
             "phrase": "più di venti",
+            "match_at": "word"
+          },
+          {
+            "phrase": "oltre venti",
+            "credit": 0.9,
+            "note": "correct and natural (oltre = over/more than), but this leaf drills the più-di pattern; più di venti is the target",
             "match_at": "word"
           }
         ],
@@ -189,7 +195,7 @@
         }
       }
     ],
-    "explanation": "'In classe ci sono più di venti studenti' means 'There are more than twenty students in the class.' Before a bare number, 'more than / fewer than' is always più di / meno di, never che.",
+    "explanation": "'In classe ci sono più di venti studenti' means 'There are more than twenty students in the class.' Before a bare number, 'more than' is più di, never più che. (Oltre venti is also correct and natural, credited just below full as an off-pattern dodge.)",
     "version": 1
   },
   {
@@ -202,7 +208,7 @@
     "prompt": "Complete (fewer than ten): 'Ho letto ____ libri quest'anno.' (dieci)",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -253,7 +259,7 @@
     "prompt": "Complete (taller than me): 'Mia sorella è più alta ____.' (io)",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -309,7 +315,7 @@
     "prompt": "Complete (it's easier to criticise than to act): 'È più facile criticare ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -362,7 +368,7 @@
     "prompt": "Complete (for me, playing is more fun than watching): 'Per me è più divertente giocare ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -415,7 +421,7 @@
     "prompt": "Complete (this actor is more famous than talented): 'Questo attore è più famoso ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -468,7 +474,7 @@
     "prompt": "Complete (this house is more comfortable than elegant): 'Questa casa è più comoda ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -521,7 +527,7 @@
     "prompt": "Complete (in this city there are more tourists than inhabitants): 'In questa città ci sono più turisti ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -574,7 +580,7 @@
     "prompt": "Complete (at breakfast I drink more coffee than tea): 'A colazione bevo più caffè ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -631,7 +637,7 @@
     "prompt": "Complete (I go to Rome more often than to Milan): 'Vado più spesso a Roma ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -684,7 +690,7 @@
     "prompt": "Complete (I'm calmer in the countryside than in the city): 'Sono più tranquillo in campagna ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -737,7 +743,7 @@
     "prompt": "Complete (Marco is taller than Luca): 'Marco è più alto ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -790,7 +796,7 @@
     "prompt": "Complete: 'Alla festa c'erano più ____.' (venti persone)",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -847,7 +853,7 @@
     "prompt": "Complete: 'Mia figlia è più curiosa ____.' (io)",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -900,7 +906,7 @@
     "prompt": "Complete (sometimes it's better to keep quiet than to speak): 'A volte è meglio tacere ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -953,7 +959,7 @@
     "prompt": "Complete (as tall as me): 'Mia sorella è alta ____.' (io)",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -964,12 +970,21 @@
           {
             "phrase": "come me",
             "match_at": "word"
+          },
+          {
+            "phrase": "quanto me",
+            "match_at": "word"
           }
         ],
         "must_not_include": [
           {
             "phrase": "come io",
             "note": "after come use the stressed pronoun me, not io",
+            "match_at": "word"
+          },
+          {
+            "phrase": "quanto io",
+            "note": "after quanto use the stressed pronoun me, not io",
             "match_at": "word"
           }
         ]
@@ -987,7 +1002,7 @@
         }
       }
     ],
-    "explanation": "'Mia sorella è alta come me' means 'My sister is as tall as me.' Equality is stated with come, and the pronoun after it is stressed: come me (not come io).",
+    "explanation": "'Mia sorella è alta come me' means 'My sister is as tall as me.' Equality of degree takes come or quanto interchangeably here, and the pronoun after either is stressed: come me / quanto me, never come io.",
     "version": 1
   },
   {
@@ -1000,7 +1015,7 @@
     "prompt": "Complete (as much as you): 'Lavora ____.' (tu)",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1047,7 +1062,7 @@
     "prompt": "Complete (as beautiful as it is useful): 'Il libro è ____ utile.' (bello)",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1058,17 +1073,16 @@
           {
             "phrase": "tanto bello quanto",
             "match_at": "word"
+          },
+          {
+            "phrase": "bello quanto",
+            "match_at": "word"
           }
         ],
         "must_not_include": [
           {
             "phrase": "tanto bello come",
             "note": "tanto pairs with quanto, not come",
-            "match_at": "word"
-          },
-          {
-            "phrase": "così bello quanto",
-            "note": "the pair is tanto...quanto (or così...come), not così...quanto",
             "match_at": "word"
           }
         ]
@@ -1086,7 +1100,7 @@
         }
       }
     ],
-    "explanation": "'Il libro è tanto bello quanto utile' means 'The book is as beautiful as it is useful.' When both halves are present, the pair is tanto...quanto: tanto + first quality + quanto + second.",
+    "explanation": "'Il libro è (tanto) bello quanto utile' means 'The book is as beautiful as it is useful.' The correlative is tanto...quanto, but tanto is optional, so bare 'bello quanto utile' is fully standard. What stays wrong is crossing the pairs (tanto...come).",
     "version": 1
   },
   {
@@ -1099,7 +1113,7 @@
     "prompt": "Complete (as serious as it seems): 'La situazione è ____ grave sembra.' (usa: cosi ... come)",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1146,7 +1160,7 @@
     "prompt": "Complete (as generous as your father): 'Sei ____ generoso come tuo padre.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1194,7 +1208,7 @@
     "prompt": "Complete (this restaurant is better than that one): 'Questo ristorante ____ di quello.' (buono)",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -1247,7 +1261,7 @@
     "prompt": "Complete (the traffic today is worse than yesterday): 'Il traffico oggi ____ di ieri.' (cattivo)",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -1300,7 +1314,7 @@
     "prompt": "Complete (my sister is older than me): 'Mia sorella ____ di me.' (usa la forma di 'grande' per l'età)",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -1351,7 +1365,7 @@
     "prompt": "Complete (the damage is less than expected): 'Per fortuna il danno ____ del previsto.' (usa la forma di 'piccolo')",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -1402,7 +1416,7 @@
     "prompt": "Complete (this pizza is tastier than that one): 'Secondo me questa pizza ____ di quella.' (buono)",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -1458,7 +1472,7 @@
     "prompt": "Complete (better): 'Questo vino è ____ di quello.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1515,7 +1529,7 @@
     "prompt": "Complete (better): 'Maria canta ____ di me.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1568,7 +1582,7 @@
     "prompt": "Complete (better): 'È ____ partire presto.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1621,7 +1635,7 @@
     "prompt": "Complete (better): 'La tua idea è ____ della mia.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1678,7 +1692,7 @@
     "prompt": "Complete (better): 'Dopo le vacanze mi sento ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1731,7 +1745,7 @@
     "prompt": "Complete (better): 'Il nonno oggi sta ____.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1788,7 +1802,7 @@
     "prompt": "Complete (the best student in the class): 'Marta è la studentessa migliore ____ classe.'",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1845,7 +1859,7 @@
     "prompt": "Complete the whole phrase (the most beautiful city in Italy): 'Firenze è ____ d'Italia.' (città, bella)",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1896,7 +1910,7 @@
     "prompt": "Complete (the longest day of the year): 'Il 21 giugno è il giorno ____ dell'anno.' (lungo)",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1940,7 +1954,7 @@
     "prompt": "Complete the whole phrase (the best pizza in the world): 'Molti dicono che Napoli fa ____.' (pizza, buona)",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -1991,7 +2005,7 @@
     "prompt": "Complete (the least expensive of these): 'Tra questi modelli, questo è ____ caro.' (meno)",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -2038,7 +2052,7 @@
     "prompt": "Complete (extremely beautiful): 'Il film era ____.' (bello)",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -2078,7 +2092,7 @@
     "prompt": "Complete (extremely beautiful): 'La vista era ____.' (bello)",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -2130,7 +2144,7 @@
     "prompt": "Complete (extremely tired): 'Dopo la gara siamo ____.' (stanco)",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -2178,7 +2192,7 @@
     "prompt": "Complete (extremely tired): 'Sono ____ per il lungo viaggio.' (stanco)",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -2226,7 +2240,7 @@
     "prompt": "Complete (extremely nice): 'Il tuo amico è ____.' (simpatico)",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -2274,7 +2288,7 @@
     "prompt": "Complete (extremely long): 'Le vacanze sono state ____.' (lungo)",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -2322,7 +2336,7 @@
     "prompt": "Say the same thing more mildly than 'bellissimo': 'un panorama ____ bello.' (una parola)",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -2367,7 +2381,7 @@
     "prompt": "Complete (an excellent idea, one word): 'Che ____ idea!' (buono)",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -2417,7 +2431,7 @@
     "prompt": "Complete (dreadful, one word): 'Il servizio era ____.' (cattivo)",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -2467,7 +2481,7 @@
     "prompt": "Complete (very well): 'Come stai? Sto ____.' (bene)",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -2514,7 +2528,7 @@
     "prompt": "Complete (very badly): 'Ho dormito ____.' (male)",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
@@ -2561,7 +2575,7 @@
     "prompt": "Complete (his utmost, one word): 'Ha dato il ____.' (usa la forma di 'grande')",
     "type": "short",
     "marks": 1.0,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "markpoints": [
       {
         "order_index": 0,
