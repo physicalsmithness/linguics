@@ -1,17 +1,20 @@
 seat: PassatoAuthor
 classes: [all-seats, all-authors]   # reasoning: this seat originates grammar and translation items — markpoints, must_not_include guards, prompts, item explanations, vocab_help. That is what all-authors is defined as. Criteria 13-20 all reach me. Architect to ratify.
 project: Linguics
-updated: 2026-07-18
+updated: 2026-07-21
 waiting: parked
 needs_from_smith: none
 blocked_by:
 claude_can_verify:
-summary: Rev 5/8/9/13/15 catch-up applied 2026-07-15; two discharge requests queued for Architecture at inter_chat/Architecture_PassatoAuthor_criteria_13_17_discharge.md v1. Nothing owed on this seat.
+summary: Rev 5/8/9/13/15 catch-up 2026-07-15; crit-21 retrofit + person backfill 2026-07-21 (22 items reframed, 70 persons set, 1 frame rework on pp_reg_ere_04). Two threads awaiting Architecture stamps.
 queue:
-  - Architecture_PassatoAuthor_criteria_13_17_discharge v1 — stamp criterion 13 + criterion 17 discharge lines [Next: Architecture]
+  - Architecture_PassatoAuthor_formation_trigger_retrofit v3 — stamp crit-21 register row [Next: Architecture]
+  - Architecture_PassatoAuthor_criteria_13_17_discharge v2 — stamp crit-17 (crit-13 line withdrawn) [Next: Architecture]
+  - Architecture_PassatoAuthor_status_file_misfiled v1 — informational, close on read [Next: Architecture]
 notes:
-  - Batch shipped 103 grammar + 50 translation items across the passato_prossimo tree (initial 2026-05-13, extended 2026-05-15 after Rev-2 feedback).
-  - Prior closed threads: Architecture_PassatoAuthor_prompt_leak (CLOSED v2), _slot_count_collapse (CLOSED v3), _nul_attribution (CLOSED v2), plus one Housing mention in _atomic_write_nul_padding (CLOSED, no ask on me).
-  - Same-session catch-up covered rev 5 (112 vocab_help buckets got the pos slot), rev 8/15 (info_display suppress applied per item under the leak-vs-trap test — 92 suppress, 11 visible on auxiliary.ambiguous / auxiliary.person_agreement / negation), rev 9 (7 candidates for redundant person cue audited — all doing genuine gender/number disambiguation, zero rewrites), and rev 13 (all 103 grammar explanations gained the criterion 17 sentence gloss). Documented in data/coverage_verb_form.passato_prossimo.md.
-  - Cr17Sweep's 2026-07-17 exposure survey scanned passato_prossimo clean — the self-gloss landed before their survey ran.
-  - Prompt sweep for the criterion 13 rule-name tokens: 10 hits, all `past participle` in the fragment-only "Form the past participle: <verb> → ____" shape, all output-form naming (not rule-under-test naming), same triage as PrepositionAuthor's discharge stamp.
+  - 2026-07-21 touch: crit-21 mechanism (a) cue-name on 21 of 22 items ((verb) → (verb, passato prossimo)); one frame rework on pp_reg_ere_04 (Alla fine io ____ alla tua storia senza esitazione, credere); all 22 got prompt_supplies_base_form: true; 70 items got person: field per the ratified schema; no markpoints changed; explanation gloss on pp_reg_ere_04 updated. Full per-item disposition in the retrofit thread v3.
+  - crit-19 accent recheck after reframe: only pp_reg_ere_04 was reframed; ho creduto has no accent-strippable competitor. Clean.
+  - Rev 25 gloss-when-cite-above-level: cues use A1-B1 infinitives, items are A1-B1, exemption applies. No English glosses needed.
+  - Imperfetto attribution guards (criterion 21 requirement 2 — optional): NOT added this pass. Cue-name alone unambiguates; adding 22 imperfetto guards is a separate touch worth its own thread if Architecture wants attribution at the guard level.
+  - Prior closed threads: prompt_leak (v2), slot_count_collapse (v3), nul_attribution (v2). Historical Housing mention in atomic_write_nul_padding CLOSED (no ask on me).
+  - Batch shipped 103 grammar + 50 translation items across the passato_prossimo tree (initial 2026-05-13, extended 2026-05-15 after Rev-2 feedback, revs 5/8/9/13/15 catch-up 2026-07-15, crit-21 + person backfill 2026-07-21).

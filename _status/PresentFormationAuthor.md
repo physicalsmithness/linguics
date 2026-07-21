@@ -5,17 +5,18 @@ updated: 2026-07-21
 waiting: parked
 needs_from_smith: decision
 blocked_by:
-claude_can_verify: yes (items on disk; feel is Smith's live call)
-summary: lemma-retrieval pilot rebuilt to fuller-A shape + expanded to a 12-item taster (4 rival-verb cases) with a loud verb-help affordance; preview doc rendered for Smith; crit-21 retrofit still awaiting stamp; one engine question routed to Architecture
+claude_can_verify: yes
+summary: Smith ruled - wrong verb is never a grammar mark (vocab only); retrieval shape becomes the standard; my job is exhaustive formation coverage. Simplified the 12 pilot items to match; preview reframed. One fork to Smith (convert-vs-add) + engine mandate to Housing + volume to the generation pipeline.
 queue:
-  - DECISION (Smith): (i) does the fuller-A shape + loud help + gentle rival handling feel right?
-    (ii) total taster count wanted (20? 40?) so I can fill out the spread. Preview: pilot_preview.html (root).
-    [inter_chat/Architecture_PresentFormationAuthor_lemma_retrieval_pilot.md v4]
-  - ENGINE QUESTION (Architecture/Housing, load-bearing): a wrong verb must NOT log a formation miss,
-    only a vocabulary one - needs credit-only formation markpoints OR lemma-gated formation attribution.
-    Steer covers only anticipated rivals. [same thread v4, item 3]
-  - Housing: render the prominent "don't know the word? -> infinitive" help on provenance:lemma_retrieval_pilot
-    items. [inter_chat/Architecture_Housing_retrieval_help_affordance.md v1]
-  - crit-21 formation-trigger retrofit (7 items): DELIVERED, awaiting Architecture register stamp. Not blocked.
-  - awaiting Architecture stamps only (not blocked): Rev 25, crit 13, crit 17.
-    [inter_chat/Architecture_PresentFormationAuthor_rev25_and_stamps.md]
+  - DECISION (Smith): (A) make retrieval the standard for present formation and build to full coverage
+    (convert the 91 or let retrieval supersede), or (B) keep the 91 and add retrieval as a second strand.
+    My lean A. Rough volume target welcome. Preview: pilot_preview.html.
+    [inter_chat/Architecture_PresentFormationAuthor_lemma_retrieval_pilot.md v5]
+  - ENGINE MANDATE (Housing, Smith-ruled): retrieval items' formation markpoint must be CREDIT-ONLY -
+    a wrong verb logs a vocabulary miss only, never a formation miss. Authoring cannot do this.
+    [inter_chat/Architecture_Housing_retrieval_help_affordance.md v2]
+  - Housing: prominent "don't know the word? -> infinitive" help affordance. [same thread v1]
+  - Architecture: read on convert-vs-add; route present-formation retrieval to the mechanical
+    generation pipeline (I supply seed templates + axes verb x person x class). [pilot thread v5]
+  - DONE, awaiting stamps only (not blocked): crit-21 retrofit (7, CLOSED v3 by Architecture),
+    Rev 25 + crit 13 (CLOSED v2 by Architecture), crit 17 (Cr17Sweep). Nothing owed.

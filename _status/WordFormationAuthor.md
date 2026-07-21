@@ -4,14 +4,15 @@ classes: [all-seats, all-authors]
   # carrying markpoints, must_not_include guards, cue text and explanations (39 grammar + 11 translation).
   # By the Rev 24 test (what a seat originates, not what it touches) that is all-authors. Architect to ratify.
 project: Linguics
-updated: 2026-07-20
-waiting: parked
-needs_from_smith: none
+updated: 2026-07-20  (thread opened)
+waiting: parked   # open thread awaiting Architecture
+needs_from_smith: none   # Smith to route Architecture to the thread
 blocked_by:
 claude_can_verify: done — the three audits below were run over my 39 items this turn; all clean.
 summary: Batch complete and ACCEPTED (thread CLOSED v6, 39 grammar + 11 translation). Nothing owed on any thread. The two all-authors retrofits that bind me (crit 13, Rev 25 crit-20 level) plus the uncommissioned crit-20 exposure check are now RUN and clean. Awaiting only architect discharge stamps (seats do not self-stamp).
 
 queue: []                  # nothing outstanding requiring my action
+open_thread: inter_chat/Architecture_WordFormationAuthor_discharge_and_class.md (v1, Next: Architecture) — class ratification, 3 retrofit stamps, DECISIONS-996 stamp, crit-17 (a)/(b) ruling
 
 run_this_turn:             # audits executed 2026-07-20, evidence on disk, pending architect stamps
   - Criterion 13 (rule-naming cue audit): CLEAN. Cues name the output-form category (diminutivo/accrescitivo/peggiorativo), which is allowed output-form naming like "form the past participle"; no cue names the rule that produces the answer. Same verdict shape as PrepositionAuthor. [binds: all-authors]
