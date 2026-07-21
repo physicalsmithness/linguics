@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-21-r69";
+  const LL_BUILD = "2026-07-21-r70";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -1902,7 +1902,7 @@
       recentlyChangedBuckets = new Set(attempt.events.map(e => e.bucket));
       resultHost.innerHTML = "";
       if (aiError) { const aw = document.createElement("div"); aw.className = "marker-ai-error"; aw.textContent = aiError; resultHost.appendChild(aw); }
-      resultHost.appendChild(renderResult(result));
+      resultHost.appendChild(renderResult(result, { skillCount: true }));
       const tenseRowT = renderCandidateTensesRow(it);
       if (tenseRowT) resultHost.appendChild(tenseRowT);
       if (costLine) resultHost.appendChild(costLine);
@@ -5004,7 +5004,7 @@
 
   LL.renderCandidateRow = renderCandidateTensesRow;  // exposed for tests
 
-  function renderResult(result) {
+  function renderResult(result, opts) {
     const root = document.createElement("div");
     root.className = "result";
 
@@ -5012,7 +5012,17 @@
     overall.className = "overall";
     const score = document.createElement("span");
     score.className = "score num";
-    score.textContent = `${fmtMark(result.overall.marks_awarded)} / ${fmtMark(result.overall.marks_possible)}`;
+    const _shownMps = (result.markpoints || []).filter(mp => !mp.suppress_display);
+    if (opts && opts.skillCount && _shownMps.length) {
+      // Translation is multi-skill and its overall score is normalised to 0-1,
+      // so "1 / 1" hid how many skills actually fired. Surface the skill count
+      // instead (Smith; Architecture_Housing_translation_crosstopic_marking:
+      // "surface it as X / count").
+      const _hits = _shownMps.filter(mp => mp.outcome === "hit").length;
+      score.textContent = `${_hits} / ${_shownMps.length}`;
+    } else {
+      score.textContent = `${fmtMark(result.overall.marks_awarded)} / ${fmtMark(result.overall.marks_possible)}`;
+    }
     overall.appendChild(score);
     const summary = document.createElement("span");
     summary.textContent = result.overall.summary || "";
