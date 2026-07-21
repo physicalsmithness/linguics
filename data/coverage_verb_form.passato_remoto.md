@@ -144,3 +144,17 @@ With the tense forced on every item, `wrong_answer_is_form_error_only: true` is 
 **False-miss (AUDIT_false_miss_2026-07-20) — prem_trap_partire_3sg_02.** The old prompt printed "partito" after the blank, so the participle markpoint required the learner to retype a word already on screen and capped a correct answer at 1/2. Fixed by restructuring the blank to cover the whole "fu partito" compound (single combined slot, criterion 9), which also supplies the criterion-21 trigger and forces the trapassato remoto over the simpler "partì". Both markpoints now earn on what the learner types; marker replica confirms 2/2.
 
 **Rails re-run, all green:** criterion 18 containment clean (144 phrases anchored, the new compound blank included); criterion 19 unchanged by the reframe (Rev 23 re-arm check — still one flag, credé; parlò/dormì stay no_flag); Rev 25 holds (lemmas unchanged, temere B1 ≤ C1). Dispositions reported on both threads (formation_trigger v2, false_miss v2), now `Next: Architecture` for verify + the criterion-21 register stamp.
+
+---
+
+## Addendum 3: volume-formation wave (2026-07-21)
+
+Executed `DISPATCH_volume_formation.md` (Smith's drill-volume ruling: more basic formation reps so a learner builds fluency faster, and to populate the person×class grids). **+29 items, batch now 68 grammar** (13 translation unchanged).
+
+**The weighting judgement (flagged to Architecture on the volume_wave thread).** The dispatch weights to A1/A2 core verbs and warns "depth over exotica" — but passato remoto has no A1/A2 tier, and its regular classes (vendei, dormii) are its *least*-met forms, while the irregulars (fu, ebbe, fece, disse, prese) are what a reader meets constantly. Mechanically doubling the regular grid would manufacture the exotica the dispatch says to avoid. So the wave applies the dispatch's intent, not its arithmetic: **suppletives and strong -ere carry it (21 of 29 items), thickened across persons; the three regular classes get single six-person completion, not 2-per-cell doubling.** Recommendation to hold the regulars at single coverage is on the thread for ruling.
+
+**Person coverage after the wave:** essere, avere, fare, dire now span all six persons (the narrative backbone); strong -ere thickened on prendere/vedere/scrivere/mettere; regular classes complete their six-person paradigm once each; trapassato left at 3 (rare literary compound — padding it is not fluency).
+
+**Gates (all seven, non-negotiable):** every new phrase `match_at: "word"`; **guard-verdict gate run strict AND folded across all 68 — zero false-credit, zero dead-guard, every positive credits**; crit-21 tense-named cue on every item (flag honest); crit-13 cue economy; crit-20 citation-form cues (no invariables); `person` on every finite item; Rev-27 single-markpoint items need no split. crit-17 gloss opens every new explanation; crit-19 introduces no new accent flag (batch still carries one, credé). The strong-person-suppress / middle-person-visible split is preserved and extended.
+
+The main "Coverage by leaf" table above reflects the original 39-item delivery; this addendum is the volume-wave delta. The grammar file is the source of truth for per-leaf and per-person counts.

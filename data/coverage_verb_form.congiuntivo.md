@@ -7,7 +7,7 @@
 **This file:** **FORMATION branch complete (3 waves) + USAGE branch delivered.** Formation: presente / imperfetto / compounds. Usage (2026-07-18, per DISPATCH_usage_wave2.md): the three independent-clause leaves (exhortative, optative, fixed/concessive). Discrimination remains TenseChoice's.
 **Brief revision at wave 2:** Rev 25 (wave 2 authored natively against criteria 17-20; wave 1 was authored at Rev 9 and brought up by later central passes).
 
-**Totals: 92 grammar questions + 33 translation items** (EN→IT only). Formation 75+26; usage 17+7. Wave 1 (presente): 43 grammar + 14 translation, 29 suppressed / 14 visible. Wave 2 (imperfetto): 16 grammar + 6 translation, 8 suppressed / 8 visible. Wave 3 (compounds): 16 grammar + 6 translation, all 16 suppressed. **53 of 75 grammar items carry `info_display: "suppress"`.** Every active formation leaf across all three waves is covered; no zero-coverage leaves. The formation waves needed no new buckets (the tree had every formation leaf). The usage branch needed three: `bucket_suggestions_verb_form.congiuntivo.json` now proposes independent_exhortative, optative_wish, fixed_concessive for Architecture to mint. Two glossary terms are proposed (present subjunctive, suppletive), both from wave 1.
+**Totals: 136 grammar questions + 33 translation items** (EN→IT only). Formation 119+26; usage 17+7. (Formation grew from 75 to 119 in the 2026-07-21 volume wave, +44 fluency-rep items.) Wave 1 (presente): 43 grammar + 14 translation, 29 suppressed / 14 visible. Wave 2 (imperfetto): 16 grammar + 6 translation, 8 suppressed / 8 visible. Wave 3 (compounds): 16 grammar + 6 translation, all 16 suppressed. **53 of 75 grammar items carry `info_display: "suppress"`.** Every active formation leaf across all three waves is covered; no zero-coverage leaves. The formation waves needed no new buckets (the tree had every formation leaf). The usage branch needed three: `bucket_suggestions_verb_form.congiuntivo.json` now proposes independent_exhortative, optative_wish, fixed_concessive for Architecture to mint. Two glossary terms are proposed (present subjunctive, suppletive), both from wave 1.
 
 All translation items are EN→IT, because the formation buckets are `direction: "production"`: a formation bucket only fires when the learner *produces* the Italian subjunctive form. Every item sits behind a trigger so the subjunctive is contextually required; the trigger is scaffolding, the form is the test. Wave 1 (presente) uses present-tense triggers (penso che, voglio che, spero che, dubito che, è importante che, bisogna che, non credo che, sembra che, mi dispiace che, è strano che). Wave 2 (imperfetto) uses the past and conditional triggers that select it (pensavo che, volevo che, speravo che, non credevo che, bisognava che, era meglio che, vorrei che, and the unreal se-clause). Wave 3 (compounds) uses a present trigger for the passato (penso che, credo che, spero che, mi dispiace che) and a past trigger or unreal past se-clause for the trapassato (pensavo che, credevo che, non sapevo che, se avessi/fosse). Choosing whether to use the subjunctive (the subordinate trigger-based indicative-vs-subjunctive contrast) remains TenseChoice's discrimination territory, out of scope here. The independent-clause usage functions ARE authored below (Usage branch).
 
@@ -213,6 +213,37 @@ I left the usage items **visible** (no `info_display: "suppress"`). The proposed
 - Sentence-initial `Sia` / `Vada` credit correctly under case-insensitive matching.
 - Whole-file regression across formation + usage: 90/90 award full marks on the correct answer.
 - All buckets resolve against the tree plus my three proposed usage leaves; forward-references will strict-resolve once Architecture mints them.
+
+---
+
+## Volume formation wave (2026-07-21, DISPATCH_volume_formation)
+
+Smith's drill-volume ruling: more basic, high-frequency formation items so a learner gets fluency reps and the person×tense / person×class grids fill in. **+44 grammar items**, weighted to core A1/A2-frequency verbs across the six persons, all `person`-tagged.
+
+**First, a bug fix the grid surfaced.** All 12 `irregular_from_1sg` items were carrying `person: "1sg"` — the central person migration had parsed the `_1sg_` in my external_id *leaf* prefix (`cong_pres_1sg_venire_3sg_01`, where "1sg" names the from-the-1sg leaf) as the person token. Their true persons (3sg×6, 3pl×4, 2sg×2) are in the id suffix; reset by hand. Flagged to Architecture as a migration-parser collision that may hit any topic whose external_ids carry a person-shaped leaf token. New volume items avoid it (leaf shorthand `irr`, no digits).
+
+**Two-for-green achieved across the fluency core.** Every person×leaf cell in the seven core leaves now holds ≥2 items, so each band can green on repeat visits:
+
+| Leaf | 1sg | 2sg | 3sg | 1pl | 2pl | 3pl |
+|---|--:|--:|--:|--:|--:|--:|
+| presente.regular_are | 2 | 2 | 2 | 2 | 2 | 2 |
+| presente.regular_ere_ire | 2 | 2 | 2 | 2 | 2 | 2 |
+| presente.ire_isc | 2 | 2 | 2 | 2 | 2 | 2 |
+| presente.irregular_from_1sg | 2 | 2 | 6 | 2 | 2 | 4 |
+| presente.irregular_suppletive | 2 | 2 | 5 | 2 | 2 | 4 |
+| imperfetto.regular | 2 | 2 | 2 | 2 | 2 | 2 |
+| imperfetto.irregular | 2 | 2 | 6 | 2 | 2 | 2 |
+
+The compounds (passato/trapassato, B2-C1) were left as-is: the dispatch weights to basic-tier fluency, and the compounds are advanced.
+
+**What the reps deliberately drill.** The regular classes get every person with a fresh high-frequency verb (chiamare, tornare, credere, mettere, leggere, sentire, ...). The noi/voi reps double as the reversion diagnostics the singular can't show: the -isc- verbs drop the insert (puliamo not pulisciamo, capiate not capisciate), and the from-1sg irregulars drop the -g-/revert the stem (veniamo not vengiamo, usciamo not esciamo). The suppletive noi/voi (siamo/siate, abbiamo/abbiate) are among the highest-frequency subjunctive forms a learner needs.
+
+### Verification (volume wave, real engine)
+
+- **Guard-verdict gate (dispatch gate 2): 401 guards checked, 0 false credits** — every `must_not_include` form scores a miss, so no positive is nested in a guard.
+- 136/136 correct answers award full marks.
+- `person` set on every finite formation item (no nulls); all positives `match_at: "word"`; no duplicate ids.
+- crit-21: every item carries a governing trigger (Penso che / Bisogna che / Se+cong / Vorrei che), so the target mood/tense is forced. crit-13: cues name the verb only. No new buckets.
 
 ---
 

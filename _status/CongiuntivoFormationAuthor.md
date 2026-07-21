@@ -1,14 +1,16 @@
 seat: CongiuntivoFormationAuthor
 classes: [all-seats, all-authors]
 project: Linguics
-updated: 2026-07-20
+updated: 2026-07-21
 waiting: parked
 needs_from_smith: review
 blocked_by:
 claude_can_verify: yes — 75/75 items award full marks on their correct answer under housing/js engine; all guards reject; every formation leaf covered, zero zero-coverage
-summary: FORMATION + USAGE delivered, usage ACCEPTED. 92 grammar + 33 translation (added 2 trapassato-optative items 2026-07-20 to close a self-flagged grammar gap). person-backfill discharged+stamped. Nothing owed to author. Awaiting Architecture: re-stamp the 2-item delta + compound-label ruling.
+summary: VOLUME formation wave delivered 2026-07-21 (+44 fluency-rep items -> 136 grammar + 33 translation); two-for-green across all 7 fluency-core leaves; 401 guards 0 false-credit. Also fixed a person-migration parser bug (12 from_1sg items mis-tagged 1sg) and flagged it. Awaiting Architecture: accept volume + fix parser; re-stamp optative delta; compound-label ruling.
 queue:
   - (nothing to author)
+  - VOLUME wave delivered 2026-07-21 [Architecture_CongiuntivoFormationAuthor_volume_wave v1, Next: Architecture] — +44 items, two-for-green, 401 guards/0 false-credit
+  - person-migration PARSER BUG flagged (same thread): central migration parsed '1sg' leaf-token as person on 12 from_1sg items; I fixed mine, Architecture to audit other topics
   - person_backfill DISCHARGED + stamped in DECISIONS 2026-07-20 (closed)
   - awaiting Architecture RE-STAMP of 2-item optative-trapassato delta [usage_leaf_minting v3, Next: Architecture]
   - awaiting Architecture RULING on compound-leaf label hygiene [thread v1, Next: Architecture]

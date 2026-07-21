@@ -1,13 +1,13 @@
 seat: FutureFormationAuthor
-classes: [all-seats, all-authors]   # originates grammar + translation ITEMS => all-authors; a seat => all-seats
+classes: [all-seats, all-authors]
 project: Linguics
-updated: 2026-07-20
+updated: 2026-07-21
 waiting: parked
 needs_from_smith: none
-blocked_by: none (all pending items sit with Architecture: crit-21 stamp, vedere repair ratification, crit-13 stamp)
-claude_can_verify: yes (retrofit verified from disk: 45 cues force futuro, person on all 65, crit-18/19 clean, marks balance, JSON valid)
-summary: Criterion-21 retrofit done (45 formation cues now name futuro; present-for-future mis-attribution closed), vedere repaired as Ti vedro on the same touch, person backfilled on all 65 (7 named + 13 merged usage items). Usage wave-2 batch was ACCEPTED and closed. Nothing owed to Smith.
+blocked_by: none (volume wave delivered; verify/accept sits with Architecture)
+claude_can_verify: yes (marker replica strict+folded over all 118 items: 0 guard false-credits, all correct hit, crit-21/18 clean, person on all)
+summary: Volume-formation wave delivered — 53 basic A1/A2 items bring the three regular classes plus essere/avere/dare-stare-fare/double_r to two-for-green in every person band (grammar file 65->118). All seven dispatch gates pass. Orthographic held at 1/band (zero-free) and futuro anteriore left, per depth-over-exotica.
 queue:
-  - criterion-21 retrofit (45 items + person): delivered, awaiting Architecture verify + register stamp   [inter_chat/Architecture_FutureFormationAuthor_formation_trigger_retrofit.md, Next: Architecture]
-  - vedere repair (Ti vedro applied): awaiting Architecture ratification of the clitic choice   [inter_chat/Architecture_FutureFormationAuthor_vedere_ci_bug.md, Next: Architecture]
-  - (carried) criterion-13 chip audit: reported clean, awaiting Architecture stamp   [inter_chat/Architecture_FutureFormationAuthor_class_retrofit_audits.md, Next: Architecture]
+  - volume-formation wave: delivered, awaiting Architecture verify + accept   [inter_chat/Architecture_FutureFormationAuthor_volume_formation.md, Next: Architecture]
+  - OPTIONAL follow-up offered: +12 to green orthographic bands, Architecture's call   [same thread]
+  - (carried) criterion-21 retrofit + vedere repair + crit-13 audit: awaiting Architecture stamps   [three prior threads, Next: Architecture]

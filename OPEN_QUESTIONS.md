@@ -534,3 +534,7 @@ From REFERENCE_cefr_placement_harvest.md. Smith: "everything that can be, these 
 - **Connector+subjunctive / free-choice-indefinite+subjunctive** (qualora/malgrado/per quanto/...; chiunque/qualunque cosa): harvest the italianlanguagetest bank into the connective + indefinite seats; couples to the purpose-connective ruling.
 - **Small morphology** (verify then place): participio assoluto; stare per + inf; futuro anteriore placement; bello/quello prenominal allomorphs.
 - **PENDING Smith (decision, not auto-fill):** reading-comprehension item type; functional/pragmatic item type; the error-identification recognition shape (Transparent).
+
+## Micro-gaps surfaced by the phantom-bucket cleanup (2026-07-21)
+- **Exclamative che/come/quanto** (Che bel libro! / Come sei gentile! / Quanto sei alto!) — no home; same words as the interrogatives topic in an exclamative function, so a candidate leaf under `interrogatives` (or its own small topic). Was an orphan optional tag on trans_aa_en_it_12.
+- **Telling the time** (Sono le sei e mezza) — a functional/vocab skill with no grammar bucket; likely a vocab-theme item, not a grammar leaf. Was an orphan optional tag on trans_aa_it_en_09.

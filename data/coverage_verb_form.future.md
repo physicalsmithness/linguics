@@ -103,3 +103,26 @@ Per criterion 13's cue-economy note (Rev 9): the cue parenthetical names the per
 - **vedere repaired**: fut_irr_sync_vedere_1sg_01 is now "Ti ____ domani in ufficio" (Ti vedrò), fixing the ci-reciprocal bug; repair choice awaiting Architecture ratification.
 - **person field**: set on all 65 items (the 7 futuro-anteriore / past-probability items and the 13 merged usage items the central migration missed; the 45 formation items were already migrated).
 
+## Volume wave (2026-07-21, DISPATCH_volume_formation)
+
+Added **53 basic A1/A2 fluency-rep formation items** (grammar file now 118: 103 formation + 15 usage), populating the person×conjugation-class grid to the two-for-green floor. Weighted to core verbs; depth over exotica.
+
+Person×leaf after the wave (every band, target >=2):
+
+| leaf | 1sg | 2sg | 3sg | 1pl | 2pl | 3pl | status |
+|---|--:|--:|--:|--:|--:|--:|---|
+| regular_are | 2 | 2 | 2 | 2 | 2 | 2 | all >=2 |
+| regular_ere | 2 | 2 | 2 | 2 | 2 | 2 | all >=2 |
+| regular_ire | 2 | 2 | 2 | 2 | 2 | 2 | all >=2 |
+| irregular.essere | 2 | 2 | 2 | 2 | 2 | 2 | all >=2 |
+| irregular.syncopated | 2 | 3 | 2 | 2 | 2 | 3 | all >=2 (avere paradigm added) |
+| irregular.dare_stare_fare | 2 | 2 | 2 | 2 | 2 | 2 | all >=2 |
+| irregular.double_r | 2 | 2 | 2 | 2 | 2 | 2 | all >=2 (volere/venire) |
+| orthographic.care_gare | 1 | 1 | 1 | 1 | 1 | 1 | zero-free, at 1/band |
+| orthographic.ciare_giare | 1 | 1 | 1 | 1 | 1 | 1 | zero-free, at 1/band |
+| future_anteriore | 1 | 0 | 1 | 1 | 0 | 2 | left (B1-B2, not basic fluency) |
+
+**Held back deliberately:** orthographic is now zero-free but sits at one item per band; greening it fully is +12 spelling drills, held per "depth over exotica" (flagged to Architecture as an optional follow-up). Futuro anteriore is B1-B2, outside the basic-fluency remit.
+
+**Gates (marker replica, strict + accent-folded, all 118 items):** 0 guard false-credits; every guard a live miss; every correct answer a hit; all any_phrases match_at word (crit 18); crit-21 futuro forced in every formation cue; person on all 118; marks == sum(credit); all buckets resolve. Reported in `inter_chat/Architecture_FutureFormationAuthor_volume_formation.md`.
+
