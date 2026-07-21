@@ -158,15 +158,18 @@
             ? foldedHit.credit
             : 1;
           const foldedStr = phraseStr(foldedHit);
+          const slip = classifyAccentSlip(hay, hayFolded, foldedStr);
+          const ACCENT_DOCK = { missing: 0.5, wrong_mark: 0.8, added: 0.8 };   // Smith/Architecture 2026-07-21: docking supersedes never-dock
+          const dock = (slip && ACCENT_DOCK[slip.cls] !== undefined) ? ACCENT_DOCK[slip.cls] : 0.8;
+          const dockedCredit = phraseCredit * dock;
           result.attempted_credit = 1;
-          result.correctness_credit = phraseCredit;
-          result.outcome = phraseCredit >= 1 ? "hit" : "partial";
+          result.correctness_credit = dockedCredit;
+          result.outcome = dockedCredit >= 0.999 ? "hit" : "partial";
           result.evidence = foldedStr + " (accents off)";
           if (typeof foldedHit === "object" && foldedHit.note) {
             result.phrase_note = foldedHit.note;
           }
-          awarded += credit * phraseCredit;
-          const slip = classifyAccentSlip(hay, hayFolded, foldedStr);
+          awarded += credit * dockedCredit;
           orthographyHits.push({
             bucket: "orthography.accent.italian" + (slip && slip.cls ? "." + slip.cls : ""),
             evidence: foldedStr,
@@ -223,6 +226,36 @@
       }
 
       mpResults.push(result);
+    }
+
+    // Residue engine (Architecture_Housing_extraneous_word_residue v3, GO given):
+    // a SINGLE-markpoint answer that contains the positive PLUS extra unlicensed
+    // words scores a named miss. Residue = norm(answer) tokens MINUS every
+    // matching any_phrase's tokens (all-matches, order-proof) MINUS the whole
+    // visible prompt's tokens (blanks/brackets stripped). Multi-markpoint items
+    // keep today's substring semantics (their fragments are legitimate).
+    if (points.length === 1 && q.type !== "mcq" && inputWasNonEmpty
+        && mpResults[0] && mpResults[0].correctness_credit > 0) {
+      const mp0 = points[0];
+      const bag = LL.norm(raw).split(" ").filter(Boolean);
+      const normAns = LL.norm(raw);
+      const drop = (toks) => { for (const t of toks) { const i = bag.indexOf(t); if (i >= 0) bag.splice(i, 1); } };
+      for (const p of (mp0.any_phrases || [])) {
+        const ph = LL.norm((typeof p === "object" && p && p.phrase) ? p.phrase : p);
+        if (ph && normAns.indexOf(ph) >= 0) drop(ph.split(" ").filter(Boolean));
+      }
+      const promptText = String(q.prompt || "").replace(/_+/g, " ").replace(/\[[^\]]*\]/g, " ").replace(/[()]/g, " ");
+      drop(LL.norm(promptText).split(" ").filter(Boolean));
+      const residue = bag.filter(t => /[a-z\u00e0-\u00ff]/i.test(t));
+      if (residue.length > 0) {
+        const r0 = mpResults[0];
+        r0.correctness_credit = 0;
+        r0.outcome = "miss";
+        r0.residue = residue.slice();
+        r0.evidence = (r0.evidence ? r0.evidence + " \u00b7 " : "") + "extra word" + (residue.length > 1 ? "s" : "") + ": " + residue.join(" ");
+        awarded = 0;
+        correctnessSum = 0;
+      }
     }
 
     if (awarded > possible) awarded = possible;

@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-21-r53";
+  const LL_BUILD = "2026-07-21-r56";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -5618,6 +5618,12 @@
       setBucketFilter(node.id);
     });
 
+    // Sub-aspect label (Smith 2026-07-21): an unlabelled empty row reads as a
+    // bug; naming it makes clear e.g. "participle agreement" is just unpractised.
+    const miniLabel = document.createElement("div");
+    miniLabel.className = "overview-mini-label";
+    miniLabel.textContent = node.label || String(node.id).split(".").pop().replace(/_/g, " ");
+    mini.appendChild(miniLabel);
     // Micro-dots: one per leaf under this mini-cell.
     const leaves = getLeavesUnder(node);
     const dots = document.createElement("div");
@@ -7093,7 +7099,7 @@
       const b = document.createElement("button");
       b.type = "button";
       b.className = "entry-quick entry-quick-mistakes";
-      b.innerHTML = '<span class="quick-title">Practise your mistakes</span>' +
+      b.innerHTML = '<span class="quick-title">Work on recent weaknesses</span>' +
         '<span class="quick-sub">the words and rules you most often miss</span>';
       b.addEventListener("click", () => startMistakesSession());
       wrap.appendChild(b);
