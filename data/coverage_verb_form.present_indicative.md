@@ -108,7 +108,9 @@ Fluency-rep wave: basic high-frequency formation items filling the person×class
 
 **Wave 2 (+23):** irregular person-band depth — bere +3 (beve/beviamo/bevete), dire +3 (dici/dice/diciamo), dittongo +4 (uscire esci/esce/uscite, sedere siede), go_verbs +4 (venire vieni/viene/venite, tenere tieni), monosyllabic +6 (vai/andiamo/fai/facciamo/stai/sai), modals +3 (dovete/potete/volete). Formation 121 → 144; the irregular leaves now cover most person-bands. (Self-caught: required accents restored — verità/caffè/sì/dov'è/più/venerdì.)
 
-Remaining to ~double basic tier: Wave 3 (regular-class breadth ~35). Non-diagnostic slots (care_gare/ciare_giare beyond 2sg/1pl; iare_stress beyond 2sg) not padded. Possible crit-21 straggler flagged to Architecture: potere_3sg "stasera".
+**Wave 3 (+24):** regular-class breadth (+19: aiutare/chiamare/ascoltare/pensare/trovare/lavorare, perdere/ricevere/vendere/correre/ripetere, dormire 3pl/partire 2sg/servire/aprire 1pl, finisco/preferisci, mi lavo/si mettono) + **orthographic hypercorrection catchers (+5)**: cerca/pagano/gioca/mangia/cominciano correct with no over-applied h and the i kept, guards catch cercha/paghano/giocha/manga/comincano. Bucketed on the orthographic leaf so over-application records a miss — the previously-"empty" persons DO catch hypercorrection (Smith's ruling).
+
+**Volume dispatch COMPLETE: formation 91 → 168 (1.85×), every person-band populated.** iare_stress stays 2sg-only (the stress rule surfaces nowhere else). Spelling-asymmetry principle (correct spelling shouldn't inflate mastery; only errors inform) flagged to Architecture as a bucket-semantics/reporting call. Straggler flagged: potere_3sg "stasera".
 
 ## Notes for later dispatches
 

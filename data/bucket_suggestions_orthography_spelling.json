@@ -1,0 +1,158 @@
+[
+ {
+  "proposed_id": "orthography.spelling",
+  "proposed_parent_id": null,
+  "proposed_label": "Italian spelling slip",
+  "proposed_description": "Aggregate for non-accent Italian orthography: phonemic and sound-preserving spelling. Sibling axis of orthography.accent (AccentAuthor owns the accent MARK; this seat owns everything orthographic that is not the mark). Children are error-CLASS leaves. Every drill item is index-scored MCQ discrimination, so the apostrophe/accent fold in the grammar marker's norm() never bites (that fold is exactly why typed spelling is not deterministically gradable and MCQ is the correct instrument).",
+  "proposed_cefr_importance": {
+   "A1": "core", "A2": "core", "B1": "core", "B2": "review", "C1": "fluency", "C2": "fluency"
+  },
+  "proposed_prerequisites": [],
+  "proposed_attributes": {
+   "is_aggregate": true,
+   "topic_short": "sp",
+   "note": "ID-FORM FLAG for Architecture: the accent sibling is orthography.accent.italian.* (carries a language segment); DISPATCH_spelling.md writes orthography.spelling.<class>, which I have followed here and in all 141 item markpoints. If you want strict parallelism, rename root -> orthography.spelling.italian and each leaf -> orthography.spelling.italian.<class>; it is a mechanical find-replace across this file + grammar_questions_orthography.json. Your call — I did not want to diverge from the dispatch unilaterally."
+  },
+  "rationale": "Gives the eight spelling error classes a home aggregate parallel to accent, so the coverage matrix and the drill's scope filter can address spelling as its own axis. The manifest topic 'orthography' already loads grammar_questions_orthography.json (created this session)."
+ },
+ {
+  "proposed_id": "orthography.spelling.doubling",
+  "proposed_parent_id": "orthography.spelling",
+  "proposed_label": "Double consonants (le doppie)",
+  "proposed_description": "Phonemic geminate consonants written single (bellissimo -> bellisimo, cappello -> capello) OR a spurious double added where none belongs (dopo -> doppo, sabato -> sabbato). Italian's single biggest spelling-error source, and frequently meaning-bearing: cappello/capello (hat/hair), penna/pena (pen/pain), nonno/nono (grandfather/ninth), sette/sete (seven/thirst), cane/canne (dog/reeds), donna/dona.",
+  "proposed_cefr_importance": {
+   "A1": "core", "A2": "core", "B1": "core", "B2": "review", "C1": "fluency", "C2": "fluency"
+  },
+  "proposed_prerequisites": [],
+  "proposed_attributes": {
+   "canonical_example": "cappello (hat) vs capello (hair)",
+   "common_miss": "geminate written single (bellisimo); spurious double (doppo)",
+   "members_closed_set": false,
+   "registry": "gemination.geminate_simplified (existing); gemination.spurious_double (PROPOSED — the add-a-double direction has no specific yet)"
+  },
+  "rationale": "30 items delivered. The doppie are phonemic, so this is a sound-distinction class (registry family 'gemination'), not merely visual. Minimal pairs make the strongest discrimination items."
+ },
+ {
+  "proposed_id": "orthography.spelling.digraph",
+  "proposed_parent_id": "orthography.spelling",
+  "proposed_label": "Digraphs (gl, gn, sc)",
+  "proposed_description": "The consonant digraphs/trigraph: gl(i) = /ly/ (famiglia, figlio), gn = /ny/ (bagno, sogno), sc + e/i = /sh/ (pesce, sciare, scienza). The error reduces the digraph to a plain letter (famiglia -> familia, bagno -> banio) or mis-selects it (pesce/pesche, where sce=/she/ vs sche=/ske/ separates fish from peaches).",
+  "proposed_cefr_importance": {
+   "A1": "core", "A2": "core", "B1": "core", "B2": "review", "C1": "fluency", "C2": "fluency"
+  },
+  "proposed_prerequisites": [],
+  "proposed_attributes": {
+   "canonical_example": "famiglia (not familia); bagno (not banio)",
+   "common_miss": "digraph spelled out with a plain letter + i",
+   "members_closed_set": false,
+   "registry": "orthography.digraph_reduced (PROPOSED — no digraph specific in the registry yet)"
+  },
+  "rationale": "16 items delivered. gl/gn have no English equivalent spelling, so L1-transfer errors (familia, banio) are systematic, not random."
+ },
+ {
+  "proposed_id": "orthography.spelling.c_g_softening",
+  "proposed_parent_id": "orthography.spelling",
+  "proposed_label": "Hard vs soft c / g",
+  "proposed_description": "Keeping the hard or soft value of c/g across inflection. Plurals: amica -> amiche (h keeps hard c) vs the soft exceptions amico -> amici, medico -> medici, biologo -> biologi; adjectives lungo -> lunghi / lunga -> lunghe. Verbs: -care/-gare insert h before e/i (cerchi, cercherò, paghi, paghiamo) while -ciare/-giare do NOT (mangiamo). Silent-i plurals cia/gia: drop after a consonant (arance) vs keep after a vowel (camicie). Lexical -cie- (cielo, scienza, efficiente).",
+  "proposed_cefr_importance": {
+   "A1": "review", "A2": "core", "B1": "core", "B2": "review", "C1": "fluency", "C2": "fluency"
+  },
+  "proposed_prerequisites": [],
+  "proposed_attributes": {
+   "canonical_example": "amiche (h) vs amici (soft exception); cerchi (-care h)",
+   "common_miss": "amichi (over-hardening); cerci (dropped h); efficente (dropped i)",
+   "members_closed_set": false,
+   "registry": "orthography.cg_plural_stress_misapplied, orthography.omitted_h_hard_cg, orthography.cia_gia_plural_i, orthography.double_i_retained (ALL existing) — this class is already well-served",
+   "note": "Deliberate cross-tie: these forms are also produced under verb-formation and adjective/noun agreement. Per Rev 27 an item may carry a second markpoint on the owning grammar leaf where it genuinely evidences both; wave-1 items keep a single spelling markpoint (the drill's job is the spelling discrimination, index-scored)."
+  },
+  "rationale": "24 items delivered. The richest class linguistically and the best-covered in the existing registry; overlaps verb-formation (cerchi) and agreement (lunghe) intentionally."
+ },
+ {
+  "proposed_id": "orthography.spelling.qu_cu_cqu",
+  "proposed_parent_id": "orthography.spelling",
+  "proposed_label": "qu / cu / cqu",
+  "proposed_description": "The three ways Italian writes /kw/-ish sequences: default qu (quando, quale, cinque); cu in a closed lexical set (cuore, scuola, cui, innocuo); and the very small cqu family (acqua, acquisto, nacque, piacque). Errors: squola for scuola, quore for cuore (qu-overreach), aqua/acua for acqua (cqu reduced), and the over-correction aquila -> acquila.",
+  "proposed_cefr_importance": {
+   "A1": "core", "A2": "core", "B1": "review", "B2": "review", "C1": "fluency", "C2": "fluency"
+  },
+  "proposed_prerequisites": [],
+  "proposed_attributes": {
+   "canonical_example": "acqua (cqu); scuola (cu); quando (qu)",
+   "common_miss": "squola; quore; aqua; acquila (over-correction)",
+   "members_closed_set": false,
+   "registry": "orthography.qu_cu_confusion, orthography.cqu_error (both PROPOSED)"
+  },
+  "rationale": "15 items delivered. cu and cqu are near-closed sets worth enumerating; qu is the productive default."
+ },
+ {
+  "proposed_id": "orthography.spelling.silent_h",
+  "proposed_parent_id": "orthography.spelling",
+  "proposed_label": "Silent h (avere)",
+  "proposed_description": "The silent, non-etymological h that distinguishes four present-tense forms of avere from ordinary words: ho/hai/ha/hanno vs o (or) / ai (to the) / a (to,at) / anno (year). Both directions: dropping the h (ho -> o) and adding it where it does not belong (anno -> hanno, a -> ha). Exclamative ah/oh sit here too.",
+  "proposed_cefr_importance": {
+   "A1": "core", "A2": "core", "B1": "review", "B2": "review", "C1": "fluency", "C2": "fluency"
+  },
+  "proposed_prerequisites": [],
+  "proposed_attributes": {
+   "canonical_example": "ha (has) vs a (to); hanno (they have) vs anno (year)",
+   "common_miss": "a for ha (dropped); hanno for anno (added/hypercorrection)",
+   "members_closed_set": true,
+   "registry": "accent_silent_letter.silent_h_omitted (existing); accent_silent_letter.silent_h_added (PROPOSED — the add-direction)",
+   "note": "Registry family is accent_silent_letter (shared with AccentAuthor); the h is not an accent but the family already groups 'silent letters'. Boundary is clean: I own the h, AccentAuthor owns the accent mark."
+  },
+  "rationale": "12 items delivered. A closed four-form set, each with a real homophone word, so every item is a genuine two-way discrimination."
+ },
+ {
+  "proposed_id": "orthography.spelling.apostrophe_elision",
+  "proposed_parent_id": "orthography.spelling",
+  "proposed_label": "Apostrophe and elision",
+  "proposed_description": "The elision apostrophe: lo/la + vowel -> l' (l'acqua, l'uomo), una + vowel -> un' (un'amica) BUT masculine un takes NO apostrophe (un amico, un esame); di -> d' (d'accordo), preposition+article (all'una, dell'acqua), mezz'ora, senz'altro, Sant'Antonio, anch'io. Plus the truncation po' (poco) and the no-apostrophe qual è (qual'e is the error). The gender split (un' feminine vs un masculine) is the highest-value contrast.",
+  "proposed_cefr_importance": {
+   "A1": "core", "A2": "core", "B1": "core", "B2": "review", "C1": "fluency", "C2": "fluency"
+  },
+  "proposed_prerequisites": [],
+  "proposed_attributes": {
+   "canonical_example": "un'amica (f) vs un amico (m); qual è (no apostrophe)",
+   "common_miss": "un'amico (apostrophe on masculine); una amica (unelided); qual'è (spurious)",
+   "members_closed_set": false,
+   "registry": "orthography.failed_elision (existing — scope currently 'clitic not elided'; PROPOSE widening to cover un-elided articles); orthography.elision_gender_error, orthography.spurious_apostrophe (both PROPOSED)",
+   "boundary": "po'/va' truncation apostrophes are ALSO claimed by AccentAuthor's proposed orthography.accent.italian.placement.apostrophe_not_accent. Smith 2026-07-21: 'author away for apostrophes ... doesn't matter who makes the qs' — so I have authored the elision set (incl. one po' item) here; Architecture to decide final placement / de-dupe. No double coverage intended."
+  },
+  "rationale": "24 items delivered. Smith's seed class ('un amica / un'amica / una amica'). The un'/un gender rule is the sharpest single teaching point and is undrillable typed (norm() folds the apostrophe), so MCQ is the only correct instrument."
+ },
+ {
+  "proposed_id": "orthography.spelling.capitalization",
+  "proposed_parent_id": "orthography.spelling",
+  "proposed_label": "Capitalisation",
+  "proposed_description": "Italian lower-cases what English capitalises: weekdays (lunedì), months (gennaio), languages and nationalities whether adjective or noun (italiano, gli italiani, l'inglese), and courtesy titles (signor Rossi). The error is English-transfer over-capitalisation mid-sentence.",
+  "proposed_cefr_importance": {
+   "A1": "review", "A2": "core", "B1": "core", "B2": "review", "C1": "fluency", "C2": "fluency"
+  },
+  "proposed_prerequisites": [],
+  "proposed_attributes": {
+   "canonical_example": "lunedì, gennaio, italiano (all lower case mid-sentence)",
+   "common_miss": "Lunedì / Gennaio / Italiano (English-habit capitals)",
+   "members_closed_set": false,
+   "registry": "orthography.overcapitalization (PROPOSED)",
+   "note": "Items are whole-sentence choices differing only in one word's case, and the target word is placed MID-sentence so lower case is unambiguously correct (sentence-initial capitals are legitimate)."
+  },
+  "rationale": "12 items delivered. Pure L1-transfer error; a recognition instrument (whole-sentence MCQ) fits it exactly."
+ },
+ {
+  "proposed_id": "orthography.spelling.vowel_confusion",
+  "proposed_parent_id": "orthography.spelling",
+  "proposed_label": "Vowel confusion (i/e, o/u)",
+  "proposed_description": "Lexical confusion of unstressed vowels: i/e (difficile not difficele, dicembre not decembre, minuto not menuto) and o/u (comprare not cumprare, novembre not nuvembre). Minor and item-specific rather than rule-governed; lower priority than the phonemic classes above.",
+  "proposed_cefr_importance": {
+   "A1": "review", "A2": "review", "B1": "review", "B2": "fluency", "C1": "fluency", "C2": "fluency"
+  },
+  "proposed_prerequisites": [],
+  "proposed_attributes": {
+   "canonical_example": "difficile (not difficele); dicembre (not decembre)",
+   "common_miss": "unstressed i heard/written as e; o as u",
+   "members_closed_set": false,
+   "registry": "orthography.vowel_confusion (PROPOSED — the existing io_plural_i_count and i_retention_error are narrower morphological cases, not this lexical one)"
+  },
+  "rationale": "8 items delivered (kept small, per the dispatch's 'minor, lexical' note). Included so the class has a coverage cell rather than falling into an aggregate."
+ }
+]

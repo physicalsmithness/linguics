@@ -966,18 +966,6 @@
         "text": "Ho già mangiato.",
         "register": "neutral",
         "notes": "Standard. Adverb 'già' between auxiliary and participle."
-      },
-      {
-        "text": "Già ho mangiato.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: pre-positioned adverb. Anglophone interference pattern."
-      },
-      {
-        "text": "Ho mangiato già.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: post-positioned adverb. Anglophone interference pattern."
       }
     ],
     "topic": "verb_form.passato_prossimo",
@@ -1013,7 +1001,17 @@
       }
     ],
     "explanation": "Italian's adverb placement rule puts già between the auxiliary and the past participle: ho già mangiato. The negative anchors flag the two common Anglophone misses, pre-posing ('già ho mangiato') and post-posing ('ho mangiato già').",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Già ho mangiato.",
+        "note": "WRONG: pre-positioned adverb. Anglophone interference pattern."
+      },
+      {
+        "text": "Ho mangiato già.",
+        "note": "WRONG: post-positioned adverb. Anglophone interference pattern."
+      }
+    ]
   },
   {
     "external_id": "trans_pp_adv_02",
@@ -1089,12 +1087,6 @@
         "text": "I saw a beautiful film at the cinema yesterday.",
         "register": "neutral",
         "notes": "Adverb in final position; otherwise identical."
-      },
-      {
-        "text": "Yesterday I have seen a beautiful film at the cinema.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: English present perfect is ungrammatical with a definite past-time adverb. Common Anglophone-learner-of-Italian-then-translating-back miss."
       }
     ],
     "topic": "verb_form.passato_prossimo",
@@ -1144,7 +1136,13 @@
       }
     ],
     "explanation": "When Italian's passato prossimo carries a definite past-time adverb like ieri, the tense mapping into English picks simple past. So 'I saw', not 'I have seen'. English present perfect with 'yesterday' is ungrammatical, which is why the negative anchor is included.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Yesterday I have seen a beautiful film at the cinema.",
+        "note": "WRONG: English present perfect is ungrammatical with a definite past-time adverb. Common Anglophone-learner-of-Italian-then-translating-back miss."
+      }
+    ]
   },
   {
     "external_id": "trans_pp_map_sp_02",
@@ -1161,12 +1159,6 @@
         "text": "Maria went to Rome two weeks ago.",
         "register": "neutral",
         "notes": "Adverbial in final position."
-      },
-      {
-        "text": "Two weeks ago Maria has gone to Rome.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: present perfect with definite past-time adverb."
       }
     ],
     "topic": "verb_form.passato_prossimo",
@@ -1207,7 +1199,13 @@
       }
     ],
     "explanation": "'Due settimane fa' (= two weeks ago) is a definite past-time adverbial, so the tense mapping into English picks simple past: 'went'. Italian side: andare is a verb of motion and takes essere, with the past participle agreeing with f.sg Maria as andata.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Two weeks ago Maria has gone to Rome.",
+        "note": "WRONG: present perfect with definite past-time adverb."
+      }
+    ]
   },
   {
     "external_id": "trans_pp_map_sp_03",
@@ -1224,12 +1222,6 @@
         "text": "My brother changed jobs last year.",
         "register": "neutral",
         "notes": "Adverbial in final position."
-      },
-      {
-        "text": "Last year my brother has changed jobs.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: present perfect with 'last year'."
       }
     ],
     "topic": "verb_form.passato_prossimo",
@@ -1283,7 +1275,13 @@
       }
     ],
     "explanation": "'L'anno scorso' (= last year) is a definite past-time adverbial, so the tense mapping into English picks simple past: 'changed', not 'has changed'. Italian side: cambiare here is transitive (taking lavoro as object) and takes avere; regular -ato participle.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Last year my brother has changed jobs.",
+        "note": "WRONG: present perfect with 'last year'."
+      }
+    ]
   },
   {
     "external_id": "trans_pp_map_sp_04",
@@ -1300,12 +1298,6 @@
         "text": "We took the eight o'clock train this morning.",
         "register": "neutral",
         "notes": "Slight idiomatic shift but same tense logic."
-      },
-      {
-        "text": "This morning at eight we have taken the train.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: present perfect with definite past-time adverb."
       }
     ],
     "topic": "verb_form.passato_prossimo",
@@ -1355,7 +1347,13 @@
       }
     ],
     "explanation": "'Stamattina alle otto' anchors a specific moment in the past, so the tense mapping into English picks simple past: 'we took', not 'we have taken'. Italian side: prendere is transitive and takes avere, with the irregular past participle preso.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "This morning at eight we have taken the train.",
+        "note": "WRONG: present perfect with definite past-time adverb."
+      }
+    ]
   },
   {
     "external_id": "trans_pp_map_pp_01",
@@ -1372,12 +1370,6 @@
         "text": "I have already done my homework.",
         "register": "neutral",
         "notes": "Uncontracted; same meaning."
-      },
-      {
-        "text": "I already did my homework yesterday.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: only correct if 'yesterday' is present in the source; here it isn't. Simple past would need a past-time anchor."
       }
     ],
     "topic": "verb_form.passato_prossimo",
@@ -1424,7 +1416,13 @@
       }
     ],
     "explanation": "Già is an up-to-now adverb, so the tense mapping into English picks present perfect: 'have already done'. Italian side: adverb placement puts già between the auxiliary and the past participle (ho già fatto), and fare's past participle is the irregular fatto.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "I already did my homework yesterday.",
+        "note": "WRONG: only correct if 'yesterday' is present in the source; here it isn't. Simple past would need a past-time anchor."
+      }
+    ]
   },
   {
     "external_id": "trans_pp_map_pp_02",
@@ -1631,12 +1629,6 @@
         "text": "Hai letto questi libri? Sì, ne ho letti tre.",
         "register": "neutral",
         "notes": "Standard rendering. Second clause uses partitive 'ne' with participle agreement: letti (masc pl, agreeing with libri)."
-      },
-      {
-        "text": "Hai letto questi libri? Sì, ne ho letto tre.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: missing agreement. Common miss when learners forget that 'ne' triggers participle agreement."
       }
     ],
     "topic": "verb_form.passato_prossimo",
@@ -1679,7 +1671,13 @@
     ],
     "explanation": "English 'of them' maps to Italian's partitive ne. When ne precedes the verb in the passato prossimo, the past participle agrees with the implicit referent: libri is m.pl, so letti. The negative anchor flags the no-agreement miss (letto), which is the most common error on this rule.",
     "examiner_note": "Negative anchor flags the no-agreement miss explicitly. This is the most common error on this skill.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Hai letto questi libri? Sì, ne ho letto tre.",
+        "note": "WRONG: missing agreement. Common miss when learners forget that 'ne' triggers participle agreement."
+      }
+    ]
   },
   {
     "external_id": "trans_pp_mix_01",
@@ -1691,12 +1689,6 @@
         "text": "Anna e i suoi due fratelli sono andati al cinema insieme.",
         "register": "neutral",
         "notes": "Mixed-gender plural subject → masc pl participle (andati)."
-      },
-      {
-        "text": "Anna e i suoi due fratelli sono andate al cinema insieme.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: fem pl agreement applied to a mixed-gender group. Common modern-language-aware miss."
       }
     ],
     "topic": "verb_form.passato_prossimo",
@@ -1762,7 +1754,13 @@
       }
     ],
     "explanation": "Anna (f) + due fratelli (m.pl) is a mixed-gender plural subject. Italian doesn't count proportions: any masculine in the group triggers the mixed-gender default, so the past participle takes m.pl agreement: andati. Andare is motion and takes essere.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Anna e i suoi due fratelli sono andate al cinema insieme.",
+        "note": "WRONG: fem pl agreement applied to a mixed-gender group. Common modern-language-aware miss."
+      }
+    ]
   },
   {
     "external_id": "trans_pp_modal_01",
@@ -1779,12 +1777,6 @@
         "text": "Ieri Maria ha dovuto partire presto.",
         "register": "informal",
         "notes": "Colloquial: dovere uses its own auxiliary (avere). Widely accepted in spoken Italian; less so in written/formal."
-      },
-      {
-        "text": "Ieri Maria è dovuto partire presto.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: essere is right (prescriptive) but the participle fails to agree with the feminine singular subject."
       }
     ],
     "topic": "verb_form.passato_prossimo",
@@ -1822,7 +1814,13 @@
     ],
     "explanation": "Dovere is a modal verb here governing partire. Partire is a verb of motion and takes essere, so prescriptive Italian shows modal auxiliary inheritance: dovere takes essere too. The participle agrees with f.sg Maria: è dovuta partire. Colloquial Italian also accepts ha dovuto partire.",
     "examiner_note": "Score the prescriptive form at full credit and the colloquial form at full credit too (both are current Italian); the negative anchor catches the no-agreement miss.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Ieri Maria è dovuto partire presto.",
+        "note": "WRONG: essere is right (prescriptive) but the participle fails to agree with the feminine singular subject."
+      }
+    ]
   },
   {
     "external_id": "trans_pp_modal_02",
@@ -1901,12 +1899,6 @@
         "text": "Le ragazze hanno comprato i biglietti la settimana scorsa.",
         "register": "neutral",
         "notes": "Adverbial in final position."
-      },
-      {
-        "text": "La settimana scorsa le ragazze ha comprato i biglietti.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: right family (avere) but wrong person (singular ha for plural subject). Common person-agreement miss."
       }
     ],
     "topic": "verb_form.passato_prossimo",
@@ -1961,7 +1953,13 @@
       }
     ],
     "explanation": "Comprare is a transitive verb that takes avere. 'Le ragazze' is 3pl, so person agreement gives hanno: hanno comprato. The negative anchor flags the right-family-wrong-person miss (singular ha for plural subject), which is the diagnostic the person agreement bucket was created to catch.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "La settimana scorsa le ragazze ha comprato i biglietti.",
+        "note": "WRONG: right family (avere) but wrong person (singular ha for plural subject). Common person-agreement miss."
+      }
+    ]
   },
   {
     "external_id": "trans_pp_person_02",
@@ -1978,12 +1976,6 @@
         "text": "Ieri sera tu e Maria avete visto il film?",
         "register": "neutral",
         "notes": "Adverbial fronted."
-      },
-      {
-        "text": "Tu e Maria hanno visto il film ieri sera?",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: defaulting to 3rd-plural hanno because Maria is 3rd. The 'tu e X → voi' collapse is the diagnostic."
       }
     ],
     "topic": "verb_form.passato_prossimo",
@@ -2024,7 +2016,13 @@
       }
     ],
     "explanation": "When Italian combines tu with another person ('tu e X'), the resulting subject becomes voi (2pl) — that's the tu-X collapse. Vedere takes avere, so person agreement gives avete, not hanno. The diagnostic miss is defaulting to 3rd person because of Maria.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Tu e Maria hanno visto il film ieri sera?",
+        "note": "WRONG: defaulting to 3rd-plural hanno because Maria is 3rd. The 'tu e X → voi' collapse is the diagnostic."
+      }
+    ]
   },
   {
     "external_id": "trans_pp_dire_01",
@@ -2109,12 +2107,6 @@
         "text": "Their cat passed away last week.",
         "register": "formal",
         "notes": "Euphemistic register; same tense logic."
-      },
-      {
-        "text": "Their cat has died last week.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: present perfect with 'last week' is ungrammatical in English."
       }
     ],
     "topic": "verb_form.passato_prossimo",
@@ -2155,7 +2147,13 @@
       }
     ],
     "explanation": "Morire is a verb of change of state and takes essere; the past participle is the irregular morto, agreeing with m.sg gatto. Tense mapping: 'la settimana scorsa' is a definite past-time adverb, so English picks simple past 'died' (or the more euphemistic 'passed away').",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Their cat has died last week.",
+        "note": "WRONG: present perfect with 'last week' is ungrammatical in English."
+      }
+    ]
   },
   {
     "external_id": "trans_pp_venire_01",
@@ -2172,12 +2170,6 @@
         "text": "Gli amici di Anna sono venuti alla festa insieme ai loro genitori.",
         "register": "neutral",
         "notes": "'Insieme ai' slightly more emphatic on accompaniment."
-      },
-      {
-        "text": "Gli amici di Anna hanno venuto alla festa con i loro genitori.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: avere with venire is the default-avere over-application. Venire takes essere."
       }
     ],
     "topic": "verb_form.passato_prossimo",
@@ -2233,7 +2225,13 @@
       }
     ],
     "explanation": "Venire is a verb of motion and takes essere. The past participle is irregular: venuto (it looks like a regular -uto but the stem changes from veni- to venu-). 'Gli amici' is m.pl, so the participle agrees: venuti. Working: sono venuti alla festa.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Gli amici di Anna hanno venuto alla festa con i loro genitori.",
+        "note": "WRONG: avere with venire is the default-avere over-application. Venire takes essere."
+      }
+    ]
   },
   {
     "external_id": "trans_pp_dop_la_01",
@@ -2250,12 +2248,6 @@
         "text": "L'hai scritta la lettera? Sì, l'ho scritta stamattina.",
         "register": "informal",
         "notes": "Topicalised first clause (clitic doubling); the agreement pattern is the same."
-      },
-      {
-        "text": "Hai scritto la lettera? Sì, l'ho scritto stamattina.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: no agreement on the participle in the second clause. The preceding DOP l' (= la) requires fem sg agreement."
       }
     ],
     "topic": "verb_form.passato_prossimo",
@@ -2297,6 +2289,12 @@
     ],
     "explanation": "Same verb, two agreement outcomes side by side. First clause: avere with the direct object (la lettera) following the verb, so the past participle stays invariable: scritto. Second clause: the preceding DOP l' (= la, f.sg) forces participle agreement: scritta. Negative anchor catches the no-agreement miss.",
     "examiner_note": "The contrast is the diagnostic: a learner who writes 'l'ho scritto' has missed the preceding-DOP rule even though they got the first clause right.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Hai scritto la lettera? Sì, l'ho scritto stamattina.",
+        "note": "WRONG: no agreement on the participle in the second clause. The preceding DOP l' (= la) requires fem sg agreement."
+      }
+    ]
   }
 ]

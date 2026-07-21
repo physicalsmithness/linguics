@@ -9,12 +9,6 @@
         "text": "Marco, parla più lentamente, per favore!",
         "register": "neutral",
         "notes": "Standard informal tu command; -are verb takes -a."
-      },
-      {
-        "text": "Marco, parli più lentamente, per favore!",
-        "register": "neutral",
-        "notes": "WRONG: parli is the present tu / formal Lei, not the informal command parla.",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.imperativo",
@@ -48,7 +42,13 @@
       }
     ],
     "explanation": "Addressing Marco by name signals the informal tu. The informal tu command of an -are verb ends in -a: parlare gives parla. The present-tense tu parli would be the wrong choice here.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Marco, parli più lentamente, per favore!",
+        "note": "WRONG: parli is the present tu / formal Lei, not the informal command parla."
+      }
+    ]
   },
   {
     "external_id": "trans_impv_en_it_aff_02",
@@ -250,12 +250,6 @@
         "text": "Giulia, non parlare con la bocca piena!",
         "register": "neutral",
         "notes": "Negative tu = non + infinitive (non parlare)."
-      },
-      {
-        "text": "Giulia, non parla con la bocca piena!",
-        "register": "neutral",
-        "notes": "WRONG: negates the positive command; the negative tu uses the infinitive, non parlare.",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.imperativo",
@@ -289,7 +283,13 @@
       }
     ],
     "explanation": "Telling Giulia (informal tu) NOT to do something uses non plus the infinitive: non parlare. The infinitive parlare, not the positive command parla, drives the negative tu form.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Giulia, non parla con la bocca piena!",
+        "note": "WRONG: negates the positive command; the negative tu uses the infinitive, non parlare."
+      }
+    ]
   },
   {
     "external_id": "trans_impv_en_it_neg_02",
@@ -969,12 +969,6 @@
         "text": "Mescolare bene gli ingredienti.",
         "register": "neutral",
         "notes": "Recipe register: bare infinitive mescolare."
-      },
-      {
-        "text": "Mescola bene gli ingredienti.",
-        "register": "neutral",
-        "notes": "Only if addressing one person directly (tu); the recipe norm is the infinitive.",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.imperativo",
@@ -987,7 +981,13 @@
     "optional_buckets": [],
     "vocab_help": [],
     "explanation": "A recipe step is an impersonal instruction, so Italian uses the bare infinitive: Mescolare, not a personal command.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Mescola bene gli ingredienti.",
+        "note": "Only if addressing one person directly (tu); the recipe norm is the infinitive."
+      }
+    ]
   },
   {
     "external_id": "trans_impv_use_en_it_inf_02",
@@ -1076,12 +1076,6 @@
         "text": "Signora, parli più lentamente, per favore.",
         "register": "neutral",
         "notes": "'Signora' -> formal, so the Lei form parli."
-      },
-      {
-        "text": "Signora, parla più lentamente.",
-        "register": "neutral",
-        "notes": "WRONG register: parla is the informal tu, but Signora takes Lei.",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.imperativo",
@@ -1095,7 +1089,13 @@
     "optional_buckets": [],
     "vocab_help": [],
     "explanation": "'Signora' is a formal address, so the imperative is the Lei form parli, not the informal parla.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Signora, parla più lentamente.",
+        "note": "WRONG register: parla is the informal tu, but Signora takes Lei."
+      }
+    ]
   },
   {
     "external_id": "trans_impv_disc_en_it_reg_02",
@@ -1107,12 +1107,6 @@
         "text": "Marco, parla più lentamente!",
         "register": "neutral",
         "notes": "A first name -> informal tu, so parla."
-      },
-      {
-        "text": "Marco, parli più lentamente!",
-        "register": "neutral",
-        "notes": "WRONG register: parli is the formal Lei; a first name takes tu.",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.imperativo",
@@ -1126,7 +1120,13 @@
     "optional_buckets": [],
     "vocab_help": [],
     "explanation": "Addressing Marco by name is informal (tu), so the command is parla, not the formal parli. The same English sentence flips form with the addressee.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Marco, parli più lentamente!",
+        "note": "WRONG register: parli is the formal Lei; a first name takes tu."
+      }
+    ]
   },
   {
     "external_id": "trans_impv_disc_en_it_reg_03",
@@ -1138,12 +1138,6 @@
         "text": "Mi scusi, vada sempre dritto fino al semaforo.",
         "register": "neutral",
         "notes": "To a stranger (Lei): vada."
-      },
-      {
-        "text": "Scusa, va' sempre dritto fino al semaforo.",
-        "register": "neutral",
-        "notes": "Informal variant if addressing a friend; the polite version uses vada.",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.imperativo",
@@ -1157,7 +1151,13 @@
     "optional_buckets": [],
     "vocab_help": [],
     "explanation": "Stopping a stranger is formal, so andare takes the Lei form vada, not the informal va'.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Scusa, va' sempre dritto fino al semaforo.",
+        "note": "Informal variant if addressing a friend; the polite version uses vada."
+      }
+    ]
   },
   {
     "external_id": "trans_impv_disc_en_it_reg_04",
@@ -1169,12 +1169,6 @@
         "text": "Anna, abbi pazienza!",
         "register": "neutral",
         "notes": "First name -> tu, so abbi."
-      },
-      {
-        "text": "Anna, abbia pazienza!",
-        "register": "neutral",
-        "notes": "WRONG register: abbia is the formal Lei.",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.imperativo",
@@ -1188,7 +1182,13 @@
     "optional_buckets": [],
     "vocab_help": [],
     "explanation": "A first name is informal, so avere takes abbi, not the formal abbia.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Anna, abbia pazienza!",
+        "note": "WRONG register: abbia is the formal Lei."
+      }
+    ]
   },
   {
     "external_id": "trans_impv_disc_en_it_reg_05",
@@ -1200,12 +1200,6 @@
         "text": "Dottore, sia gentile, per favore.",
         "register": "neutral",
         "notes": "'Dottore' -> formal, so sia."
-      },
-      {
-        "text": "Dottore, sii gentile.",
-        "register": "neutral",
-        "notes": "WRONG register: sii is the informal tu.",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.imperativo",
@@ -1219,7 +1213,13 @@
     "optional_buckets": [],
     "vocab_help": [],
     "explanation": "'Dottore' is a formal address, so essere takes the Lei form sia, not the informal sii.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Dottore, sii gentile.",
+        "note": "WRONG register: sii is the informal tu."
+      }
+    ]
   },
   {
     "external_id": "trans_impv_disc_en_it_reg_06",

@@ -49,12 +49,6 @@
         "text": "I bambini cantano una canzone in giardino.",
         "register": "neutral",
         "notes": "Standard."
-      },
-      {
-        "text": "I bambini cantono una canzone in giardino.",
-        "register": "neutral",
-        "notes": "WRONG: -are takes -ano, not -ono, in the 3pl.",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.present_indicative",
@@ -102,7 +96,13 @@
       }
     ],
     "explanation": "Cantare is a regular -are verb; the loro form takes -ano: cantano. The cross-class slip cantono borrows the -ere/-ire ending and is wrong here.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "I bambini cantono una canzone in giardino.",
+        "note": "WRONG: -are takes -ano, not -ono, in the 3pl."
+      }
+    ]
   },
   {
     "external_id": "trans_pres_en_it_ere_01",
@@ -114,12 +114,6 @@
         "text": "Prendono il treno ogni mattina.",
         "register": "neutral",
         "notes": "Standard; subject pronoun dropped."
-      },
-      {
-        "text": "Prendano il treno ogni mattina.",
-        "register": "neutral",
-        "notes": "WRONG: -ere 3pl is -ono, not -ano.",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.present_indicative",
@@ -157,7 +151,13 @@
       }
     ],
     "explanation": "Prendere is a regular -ere verb; its loro form is prend- + -ono: prendono. Using prendano wrongly borrows the first-conjugation -ano.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Prendano il treno ogni mattina.",
+        "note": "WRONG: -ere 3pl is -ono, not -ano."
+      }
+    ]
   },
   {
     "external_id": "trans_pres_en_it_ere_02",
@@ -233,12 +233,6 @@
         "text": "Dormo otto ore a notte.",
         "register": "neutral",
         "notes": "Standard."
-      },
-      {
-        "text": "Dormisco otto ore a notte.",
-        "register": "neutral",
-        "notes": "WRONG: dormire is a plain -ire verb and takes no -isc-.",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.present_indicative",
@@ -276,7 +270,13 @@
       }
     ],
     "explanation": "Dormire is a plain third-conjugation verb, so the io form is just dorm- + -o: dormo. Only the -isc- pattern adds -isc-, and dormire is not in it.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Dormisco otto ore a notte.",
+        "note": "WRONG: dormire is a plain -ire verb and takes no -isc-."
+      }
+    ]
   },
   {
     "external_id": "trans_pres_en_it_isc_01",
@@ -288,12 +288,6 @@
         "text": "Non capisco questa parola.",
         "register": "neutral",
         "notes": "Standard; -isc- in the io form."
-      },
-      {
-        "text": "Non capo questa parola.",
-        "register": "neutral",
-        "notes": "WRONG: capire takes the -isc- insert in the io form.",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.present_indicative",
@@ -331,7 +325,13 @@
       }
     ],
     "explanation": "Capire is an -isc- verb, so the io form inserts -isc-: cap- + -isc- + -o gives capisco. The insert appears in the io / tu / lui / loro forms.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Non capo questa parola.",
+        "note": "WRONG: capire takes the -isc- insert in the io form."
+      }
+    ]
   },
   {
     "external_id": "trans_pres_en_it_isc_02",
@@ -343,12 +343,6 @@
         "text": "Finiamo di lavorare alle sei.",
         "register": "neutral",
         "notes": "Standard; NO -isc- in the noi form."
-      },
-      {
-        "text": "Finisciamo di lavorare alle sei.",
-        "register": "neutral",
-        "notes": "WRONG: the -isc- pattern skips the noi form.",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.present_indicative",
@@ -382,7 +376,13 @@
       }
     ],
     "explanation": "Finire is an -isc- verb, but the insert never appears in the noi form: fin- + -iamo gives finiamo, not finisciamo. The pattern is boot-shaped, skipping noi and voi.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Finisciamo di lavorare alle sei.",
+        "note": "WRONG: the -isc- pattern skips the noi form."
+      }
+    ]
   },
   {
     "external_id": "trans_pres_en_it_isc_03",
@@ -462,12 +462,6 @@
         "text": "Sono un'insegnante e mia sorella è una studentessa.",
         "register": "neutral",
         "notes": "Standard; note the accent on è."
-      },
-      {
-        "text": "Sono un'insegnante e mia sorella e una studentessa.",
-        "register": "neutral",
-        "notes": "WRONG: 'e' without the accent is 'and', not the verb 'is'.",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.present_indicative",
@@ -523,7 +517,13 @@
       }
     ],
     "explanation": "Essere is suppletive: the io form is sono and the lui / lei form is è, with a written accent. The accent distinguishes è (is) from e (and), two different words.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Sono un'insegnante e mia sorella e una studentessa.",
+        "note": "WRONG: 'e' without the accent is 'and', not the verb 'is'."
+      }
+    ]
   },
   {
     "external_id": "trans_pres_en_it_essere_02",
@@ -585,12 +585,6 @@
         "text": "Hanno due figli e un cane.",
         "register": "neutral",
         "notes": "Standard; the silent h is obligatory."
-      },
-      {
-        "text": "Anno due figli e un cane.",
-        "register": "neutral",
-        "notes": "WRONG: without the h, 'anno' is the noun 'year'.",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.present_indicative",
@@ -638,7 +632,13 @@
       }
     ],
     "explanation": "The loro form of avere is hanno, with a silent but obligatory h. Drop it and 'anno' means 'year', a different word.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Anno due figli e un cane.",
+        "note": "WRONG: without the h, 'anno' is the noun 'year'."
+      }
+    ]
   },
   {
     "external_id": "trans_pres_en_it_avere_02",
@@ -650,12 +650,6 @@
         "text": "Ho fame e tu hai sete.",
         "register": "neutral",
         "notes": "Standard; Italian uses avere for hunger and thirst."
-      },
-      {
-        "text": "O fame e tu ai sete.",
-        "register": "neutral",
-        "notes": "WRONG: both forms drop the obligatory silent h.",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.present_indicative",
@@ -689,7 +683,13 @@
       }
     ],
     "explanation": "Italian expresses hunger and thirst with avere: ho fame (io) and hai sete (tu). Both forms carry the silent h that marks them off from 'o' (or) and 'ai' (to the).",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "O fame e tu ai sete.",
+        "note": "WRONG: both forms drop the obligatory silent h."
+      }
+    ]
   },
   {
     "external_id": "trans_pres_en_it_avere_03",
@@ -701,12 +701,6 @@
         "text": "Abbiamo molta fame stasera.",
         "register": "neutral",
         "notes": "Standard; the noi form has no h."
-      },
-      {
-        "text": "Habbiamo molta fame stasera.",
-        "register": "neutral",
-        "notes": "WRONG: the noi form abbiamo never takes an h.",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.present_indicative",
@@ -730,7 +724,13 @@
       }
     ],
     "explanation": "The noi form of avere is abbiamo, with no h: the silent h belongs only to ho, hai, ha and hanno, the four forms that would otherwise collide with another word.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Habbiamo molta fame stasera.",
+        "note": "WRONG: the noi form abbiamo never takes an h."
+      }
+    ]
   },
   {
     "external_id": "trans_pres_en_it_mono_01",
@@ -742,12 +742,6 @@
         "text": "Ogni giorno vado al lavoro in bici.",
         "register": "neutral",
         "notes": "Standard; vado is the contracted io form."
-      },
-      {
-        "text": "Ogni giorno ando al lavoro in bici.",
-        "register": "neutral",
-        "notes": "WRONG: andare has no regular 'ando'; the io form is vado.",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.present_indicative",
@@ -799,7 +793,13 @@
       }
     ],
     "explanation": "Andare has a contracted, irregular present: the io form is vado, not the regular-looking ando. These high-frequency verbs are learned as whole paradigms.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Ogni giorno ando al lavoro in bici.",
+        "note": "WRONG: andare has no regular 'ando'; the io form is vado."
+      }
+    ]
   },
   {
     "external_id": "trans_pres_en_it_mono_02",
@@ -811,12 +811,6 @@
         "text": "Mi dà una mano ogni giorno.",
         "register": "neutral",
         "notes": "Standard; note the accent on dà."
-      },
-      {
-        "text": "Mi da una mano ogni giorno.",
-        "register": "neutral",
-        "notes": "WRONG: without the accent, 'da' is the preposition 'from'.",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.present_indicative",
@@ -856,7 +850,13 @@
       }
     ],
     "explanation": "The lui / lei form of dare is dà, with a written accent that keeps it apart from da, the preposition 'from'.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Mi da una mano ogni giorno.",
+        "note": "WRONG: without the accent, 'da' is the preposition 'from'."
+      }
+    ]
   },
   {
     "external_id": "trans_pres_en_it_mono_03",
@@ -922,12 +922,6 @@
         "text": "Voglio un caffè, per favore.",
         "register": "neutral",
         "notes": "Standard; voglio + noun."
-      },
-      {
-        "text": "Vorrei un caffè, per favore.",
-        "register": "neutral",
-        "notes": "Conditional 'I would like' is more polite but is a different tense, not the plain present.",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.present_indicative",
@@ -961,7 +955,13 @@
       }
     ],
     "explanation": "The io form of volere is voglio. Unlike the other modals, volere takes a noun directly: voglio un caffè. The polite 'vorrei' is the conditional, a separate form.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Vorrei un caffè, per favore.",
+        "note": "Conditional 'I would like' is more polite but is a different tense, not the plain present."
+      }
+    ]
   },
   {
     "external_id": "trans_pres_en_it_modal_02",
@@ -973,12 +973,6 @@
         "text": "Puoi venire con noi stasera?",
         "register": "neutral",
         "notes": "Standard; puoi + infinitive."
-      },
-      {
-        "text": "Poi venire con noi stasera?",
-        "register": "neutral",
-        "notes": "WRONG: 'poi' is the adverb 'then'; the verb is puoi.",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.present_indicative",
@@ -1012,7 +1006,13 @@
       }
     ],
     "explanation": "The tu form of potere is puoi, with the diphthong uo, followed straight by an infinitive: puoi venire. The look-alike 'poi' means 'then'.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Poi venire con noi stasera?",
+        "note": "WRONG: 'poi' is the adverb 'then'; the verb is puoi."
+      }
+    ]
   },
   {
     "external_id": "trans_pres_en_it_modal_03",
@@ -1074,12 +1074,6 @@
         "text": "Vogliono andare al mare ad agosto.",
         "register": "neutral",
         "notes": "Standard; a + il = al, and 'ad' before a vowel."
-      },
-      {
-        "text": "Volono andare al mare ad agosto.",
-        "register": "neutral",
-        "notes": "WRONG: the loro form keeps the gli of voglio: vogliono.",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.present_indicative",
@@ -1127,7 +1121,13 @@
       }
     ],
     "explanation": "The loro form of volere is vogliono, keeping the gli sound of the singular voglio. The regular-looking volono is not a form.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Volono andare al mare ad agosto.",
+        "note": "WRONG: the loro form keeps the gli of voglio: vogliono."
+      }
+    ]
   },
   {
     "external_id": "trans_pres_en_it_dire_01",
@@ -1139,12 +1139,6 @@
         "text": "Dico sempre la verità.",
         "register": "neutral",
         "notes": "Standard; io form on the dic- stem."
-      },
-      {
-        "text": "Dio sempre la verità.",
-        "register": "neutral",
-        "notes": "WRONG: the io form restores the dic- stem: dico.",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.present_indicative",
@@ -1182,7 +1176,13 @@
       }
     ],
     "explanation": "Dire restores the older dic- stem in the present: the io form is dic- + -o, dico. The contracted infinitive hides that stem.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Dio sempre la verità.",
+        "note": "WRONG: the io form restores the dic- stem: dico."
+      }
+    ]
   },
   {
     "external_id": "trans_pres_en_it_bere_01",
@@ -1194,12 +1194,6 @@
         "text": "La mattina bevo un caffè e leggo il giornale.",
         "register": "neutral",
         "notes": "Standard; bere opens out to bev-."
-      },
-      {
-        "text": "La mattina bero un caffè e leggo il giornale.",
-        "register": "neutral",
-        "notes": "WRONG: bere conjugates on the bev- stem: bevo.",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.present_indicative",
@@ -1249,7 +1243,13 @@
       }
     ],
     "explanation": "Bere opens out to the older stem bev- in the present: the io form is bev- + -o, bevo. Leggere alongside it is a plain -ere verb (leggo).",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "La mattina bero un caffè e leggo il giornale.",
+        "note": "WRONG: bere conjugates on the bev- stem: bevo."
+      }
+    ]
   },
   {
     "external_id": "trans_pres_en_it_go_01",
@@ -1261,12 +1261,6 @@
         "text": "Vengo dalla Spagna ma vivo a Roma.",
         "register": "neutral",
         "notes": "Standard; vengo has the -g- insert, da + la = dalla."
-      },
-      {
-        "text": "Veno dalla Spagna ma vivo a Roma.",
-        "register": "neutral",
-        "notes": "WRONG: venire inserts -g- in the io form: vengo.",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.present_indicative",
@@ -1302,7 +1296,13 @@
       }
     ],
     "explanation": "Venire inserts a -g- in the io form: ven- + g + -o gives vengo. Vivere beside it is a plain -ere verb (vivo).",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Veno dalla Spagna ma vivo a Roma.",
+        "note": "WRONG: venire inserts -g- in the io form: vengo."
+      }
+    ]
   },
   {
     "external_id": "trans_pres_en_it_go_02",
@@ -1314,12 +1314,6 @@
         "text": "Di solito veniamo a piedi.",
         "register": "neutral",
         "notes": "Standard; the noi form has no -g-."
-      },
-      {
-        "text": "Di solito vengiamo a piedi.",
-        "register": "neutral",
-        "notes": "WRONG: the -g- never appears in the noi form: veniamo.",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.present_indicative",
@@ -1343,7 +1337,13 @@
       }
     ],
     "explanation": "The -g- of venire appears only in the io and loro forms, never in noi: ven- + -iamo gives veniamo. Vengiamo over-extends the insert.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Di solito vengiamo a piedi.",
+        "note": "WRONG: the -g- never appears in the noi form: veniamo."
+      }
+    ]
   },
   {
     "external_id": "trans_pres_en_it_ditt_01",
@@ -1355,12 +1355,6 @@
         "text": "La sera esco con gli amici.",
         "register": "neutral",
         "notes": "Standard; uscire shifts u to e under stress."
-      },
-      {
-        "text": "La sera uscio con gli amici.",
-        "register": "neutral",
-        "notes": "WRONG: the io form shifts the stem vowel: esco.",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.present_indicative",
@@ -1394,7 +1388,13 @@
       }
     ],
     "explanation": "Uscire changes its stressed stem vowel from u to e in the singular and loro: the io form is esco, not uscio.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "La sera uscio con gli amici.",
+        "note": "WRONG: the io form shifts the stem vowel: esco."
+      }
+    ]
   },
   {
     "external_id": "trans_pres_en_it_ditt_02",
@@ -1406,12 +1406,6 @@
         "text": "Usciamo alle otto ogni sera.",
         "register": "neutral",
         "notes": "Standard; the noi form keeps the plain u-stem."
-      },
-      {
-        "text": "Esciamo alle otto ogni sera.",
-        "register": "neutral",
-        "notes": "WRONG: the e-stem reverts to u in the noi form: usciamo.",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.present_indicative",
@@ -1435,7 +1429,13 @@
       }
     ],
     "explanation": "In the noi form the stress moves to the ending and the stem reverts to u: usc- + -iamo gives usciamo. Keeping the e-stem (esciamo) is the common slip.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Esciamo alle otto ogni sera.",
+        "note": "WRONG: the e-stem reverts to u in the noi form: usciamo."
+      }
+    ]
   },
   {
     "external_id": "trans_pres_en_it_cg_01",
@@ -1447,12 +1447,6 @@
         "text": "Cerchi sempre le chiavi la mattina.",
         "register": "neutral",
         "notes": "Standard; the h keeps the c hard before -i."
-      },
-      {
-        "text": "Ceri sempre le chiavi la mattina.",
-        "register": "neutral",
-        "notes": "WRONG: -care verbs add an h before the -i ending: cerchi.",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.present_indicative",
@@ -1490,7 +1484,13 @@
       }
     ],
     "explanation": "Cercare adds an h before the tu ending to keep the c hard: cerc- + h + -i gives cerchi. Without the h, ceri would be read with a soft c.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Ceri sempre le chiavi la mattina.",
+        "note": "WRONG: -care verbs add an h before the -i ending: cerchi."
+      }
+    ]
   },
   {
     "external_id": "trans_pres_en_it_cig_01",
@@ -1502,12 +1502,6 @@
         "text": "Mangiamo alle otto di sera.",
         "register": "neutral",
         "notes": "Standard; the stem i drops before the i-initial ending."
-      },
-      {
-        "text": "Mangiiamo alle otto di sera.",
-        "register": "neutral",
-        "notes": "WRONG: -giare verbs drop the stem i before -iamo: mangiamo.",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.present_indicative",
@@ -1531,7 +1525,13 @@
       }
     ],
     "explanation": "Mangiare drops its stem i before the i-initial noi ending: mang- + -iamo gives mangiamo. One i both softens the g and forms the ending.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Mangiiamo alle otto di sera.",
+        "note": "WRONG: -giare verbs drop the stem i before -iamo: mangiamo."
+      }
+    ]
   },
   {
     "external_id": "trans_pres_en_it_iare_01",
@@ -1543,12 +1543,6 @@
         "text": "Invii molte email ogni giorno.",
         "register": "neutral",
         "notes": "Standard; the stressed stem i is kept, giving a double i."
-      },
-      {
-        "text": "Invi molte email ogni giorno.",
-        "register": "neutral",
-        "notes": "WRONG: inviare stresses its stem i, so it is kept: invii.",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.present_indicative",
@@ -1572,7 +1566,13 @@
       }
     ],
     "explanation": "Inviare stresses its stem i (in-VI-o), so it is kept and the tu ending adds another: invii. Reducing it to invi would drop the stressed vowel.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Invi molte email ogni giorno.",
+        "note": "WRONG: inviare stresses its stem i, so it is kept: invii."
+      }
+    ]
   },
   {
     "external_id": "trans_pres_en_it_refl_01",
@@ -1584,12 +1584,6 @@
         "text": "Mi chiamo Anna e mi alzo presto.",
         "register": "neutral",
         "notes": "Standard; reflexive pronoun mi for io."
-      },
-      {
-        "text": "Chiamo Anna e alzo presto.",
-        "register": "neutral",
-        "notes": "WRONG: both verbs are reflexive and need the pronoun mi.",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.present_indicative",
@@ -1623,7 +1617,13 @@
       }
     ],
     "explanation": "Both verbs are reflexive, so each needs the io pronoun mi before it: mi chiamo, mi alzo. Dropping the pronoun changes the meaning.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Chiamo Anna e alzo presto.",
+        "note": "WRONG: both verbs are reflexive and need the pronoun mi."
+      }
+    ]
   },
   {
     "external_id": "trans_pres_en_it_refl_02",
@@ -1635,12 +1635,6 @@
         "text": "I bambini si lavano le mani prima di cena.",
         "register": "neutral",
         "notes": "Standard; reflexive si with the -ano form."
-      },
-      {
-        "text": "I bambini lavano le mani prima di cena.",
-        "register": "neutral",
-        "notes": "Without si this means they wash someone else's hands, not their own.",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.present_indicative",
@@ -1702,7 +1696,13 @@
       }
     ],
     "explanation": "For loro the reflexive pronoun is si, paired with the -ano verb form: si lavano. The pronoun marks the washing as turning back on the subject (their own hands).",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "I bambini lavano le mani prima di cena.",
+        "note": "Without si this means they wash someone else's hands, not their own."
+      }
+    ]
   },
   {
     "external_id": "trans_pres_en_it_refl_03",
@@ -1714,12 +1714,6 @@
         "text": "Ci alziamo presto ogni giorno.",
         "register": "neutral",
         "notes": "Standard; reflexive ci with the -iamo form."
-      },
-      {
-        "text": "Si alziamo presto ogni giorno.",
-        "register": "neutral",
-        "notes": "WRONG: the noi reflexive pronoun is ci, not si.",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.present_indicative",
@@ -1743,7 +1737,13 @@
       }
     ],
     "explanation": "For noi the reflexive pronoun is ci, paired with the -iamo ending: ci alziamo. The pronoun and the verb ending both carry the 'we' meaning and must match.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Si alziamo presto ogni giorno.",
+        "note": "WRONG: the noi reflexive pronoun is ci, not si."
+      }
+    ]
   },
   {
     "external_id": "trans_pu_en_it_hab_01",
@@ -1760,12 +1760,6 @@
         "text": "Lavoro a Milano ma vivo a Como.",
         "register": "neutral",
         "notes": "vivere and abitare are both fine for 'live' with a place."
-      },
-      {
-        "text": "Sto lavorando a Milano ma vivo a Como.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "MARKER GUIDANCE: grammatical Italian, but the English simple present states a settled habit, and sto lavorando recasts the job as a temporary arrangement. The habitual context makes the plain present clearly the right rendering, so per the context-dependent progressive policy give partial credit (around 0.6) on the habitual bucket, with the full not-wrong-but explanation."
       }
     ],
     "topic": "verb_form.present_indicative",
@@ -1802,7 +1796,13 @@
       }
     ],
     "explanation": "Lavoro a Milano ma abito a Como ('I work in Milan but I live in Como'). Where you work and where you live are standing facts about your life, habits in the broad sense, and Italian states them in the plain present: lavoro, abito. English's simple present maps straight onto it. Reaching for sto lavorando is not ungrammatical, but it changes the meaning: it presents the Milan job as a temporary state of affairs rather than the settled one the English states.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Sto lavorando a Milano ma vivo a Como.",
+        "note": "MARKER GUIDANCE: grammatical Italian, but the English simple present states a settled habit, and sto lavorando recasts the job as a temporary arrangement. The habitual context makes the plain present clearly the right rendering, so per the context-dependent progressive policy give partial credit (around 0.6) on the habitual bucket, with the full not-wrong-but explanation."
+      }
+    ]
   },
   {
     "external_id": "trans_pu_en_it_hab_02",
@@ -1819,12 +1819,6 @@
         "text": "L'acqua bolle a 100 gradi.",
         "register": "neutral",
         "notes": "Digits acceptable."
-      },
-      {
-        "text": "L'acqua sta bollendo a cento gradi.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "MARKER GUIDANCE: grammatical, but it turns a timeless truth into one pot boiling right now. A general truth is squarely a plain-present context, so per the context-dependent progressive policy give partial credit (around 0.6) on the habitual bucket, with the full explanation."
       }
     ],
     "topic": "verb_form.present_indicative",
@@ -1870,7 +1864,13 @@
       }
     ],
     "explanation": "L'acqua bolle a cento gradi ('Water boils at a hundred degrees'). A fact that is always true, a general truth, lives in the plain present in both languages: bolle. There is nothing happening at any particular moment, so the progressive sta bollendo would mis-describe the physics lesson as a kitchen scene. Note the article: generic subjects in Italian still take the definite article, l'acqua.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "L'acqua sta bollendo a cento gradi.",
+        "note": "MARKER GUIDANCE: grammatical, but it turns a timeless truth into one pot boiling right now. A general truth is squarely a plain-present context, so per the context-dependent progressive policy give partial credit (around 0.6) on the habitual bucket, with the full explanation."
+      }
+    ]
   },
   {
     "external_id": "trans_pu_it_en_hab_01",
@@ -1887,12 +1887,6 @@
         "text": "Every summer we go to the beach at our grandparents'.",
         "register": "neutral",
         "notes": "Slightly more literal; acceptable."
-      },
-      {
-        "text": "Every summer we are going to the seaside to our grandparents'.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "MARKER GUIDANCE: 'ogni estate' marks a habit, and habitual English requires the simple present 'we go'. 'We are going' misses the habitual reading (it suggests a plan for this summer). Miss on the habitual bucket."
       }
     ],
     "topic": "verb_form.present_indicative",
@@ -1936,7 +1930,13 @@
       }
     ],
     "explanation": "Ogni estate andiamo al mare dai nonni means 'Every summer we go to the seaside to our grandparents'.' The marker ogni estate makes this a habit, and habits demand the simple present in English: 'we go', never 'we are going', which would read as a plan for one particular summer. Going the other way this is where English speakers over-trust the -ing form; coming this way the trap is the same in reverse. Da + a person means at or to that person's place: dai nonni, 'at our grandparents'.'",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Every summer we are going to the seaside to our grandparents'.",
+        "note": "MARKER GUIDANCE: 'ogni estate' marks a habit, and habitual English requires the simple present 'we go'. 'We are going' misses the habitual reading (it suggests a plan for this summer). Miss on the habitual bucket."
+      }
+    ]
   },
   {
     "external_id": "trans_pu_en_it_now_01",
@@ -2074,12 +2074,6 @@
         "text": "Where are you? I'm in the kitchen making dinner.",
         "register": "neutral",
         "notes": "Fused rendering, very natural."
-      },
-      {
-        "text": "Where are you? I'm in the kitchen, I make dinner.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "MARKER GUIDANCE: 'I make dinner' is the classic reverse error: the English simple present turns a happening-now action into a habit ('I'm the one who cooks around here'). Miss on the ongoing-now bucket."
       }
     ],
     "topic": "verb_form.present_indicative",
@@ -2123,7 +2117,13 @@
       }
     ],
     "explanation": "Sono in cucina, preparo la cena means 'I'm in the kitchen, I'm making dinner.' The Italian plain present preparo is doing happening-now work here, so English must render it with the progressive: 'I'm making dinner'. The simple present 'I make dinner' would flip the meaning into a habit, who usually cooks, which is not what the speaker on the phone is saying. Italian gets to be relaxed about this distinction; English does not.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Where are you? I'm in the kitchen, I make dinner.",
+        "note": "MARKER GUIDANCE: 'I make dinner' is the classic reverse error: the English simple present turns a happening-now action into a habit ('I'm the one who cooks around here'). Miss on the ongoing-now bucket."
+      }
+    ]
   },
   {
     "external_id": "trans_pu_it_en_now_02",
@@ -2140,12 +2140,6 @@
         "text": "From the window I see the mountains and hear the bells.",
         "register": "neutral",
         "notes": "Correct, slightly flatter than the 'can see' rendering; full credit."
-      },
-      {
-        "text": "From the window I am seeing the mountains and hearing the bells.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "MARKER GUIDANCE: English perception verbs resist the progressive just as Italian ones do; 'I am seeing' is wrong here. Miss on the ongoing-now bucket."
       }
     ],
     "topic": "verb_form.present_indicative",
@@ -2199,7 +2193,13 @@
       }
     ],
     "explanation": "Dalla finestra vedo le montagne e sento le campane means 'From the window I can see the mountains and hear the bells.' Seeing and hearing are states of perceiving, not activities, and both languages keep such stative verbs out of the progressive: Italian says the plain vedo and sento, and English says 'I see' or, most naturally, 'I can see'. That little 'can' is the idiomatic English dressing for present perception; what English must not do is say 'I am seeing the mountains'.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "From the window I am seeing the mountains and hearing the bells.",
+        "note": "MARKER GUIDANCE: English perception verbs resist the progressive just as Italian ones do; 'I am seeing' is wrong here. Miss on the ongoing-now bucket."
+      }
+    ]
   },
   {
     "external_id": "trans_pu_en_it_state_01",
@@ -2221,12 +2221,6 @@
         "text": "Sono affamato e assetato dopo il viaggio.",
         "register": "neutral",
         "notes": "MARKER GUIDANCE: grammatical and understandable, but marked: the adjectives are stronger (nearer 'starving and parched') and the everyday rendering is the avere idiom. Full credit, with an explanation steering to ho fame e sete as the natural default."
-      },
-      {
-        "text": "Sono fame e sete dopo il viaggio.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "MARKER GUIDANCE: the word-for-word calque of English 'to be'; ungrammatical. Miss on the states bucket."
       }
     ],
     "topic": "verb_form.present_indicative",
@@ -2252,7 +2246,13 @@
       }
     ],
     "explanation": "Ho fame e sete dopo il viaggio ('I'm hungry and thirsty after the journey'). Physical states, hunger, thirst, heat, cold, sleepiness, are things you have in Italian, so the idiom is avere + noun in the plain present: ho fame, ho sete, literally 'I have hunger, I have thirst'. Sono affamato e assetato exists but is stronger and less everyday; sono fame is the direct English calque and is never said. No vocab help is offered for 'hungry' and 'thirsty' because reaching for the idiom is exactly what the item tests.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Sono fame e sete dopo il viaggio.",
+        "note": "MARKER GUIDANCE: the word-for-word calque of English 'to be'; ungrammatical. Miss on the states bucket."
+      }
+    ]
   },
   {
     "external_id": "trans_pu_en_it_state_02",
@@ -2264,12 +2264,6 @@
         "text": "Mia sorella ha sette anni.",
         "register": "neutral",
         "notes": "Standard: age with avere, no article on the singular family member with mia."
-      },
-      {
-        "text": "Mia sorella è sette anni.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "MARKER GUIDANCE: the essere calque of English 'is seven years old'; ungrammatical. Miss on the states bucket."
       }
     ],
     "topic": "verb_form.present_indicative",
@@ -2309,7 +2303,13 @@
       }
     ],
     "explanation": "Mia sorella ha sette anni ('My sister is seven years old'). Age is a state you have in Italian: avere + number + anni, literally 'to have seven years', in the plain present. The essere rendering è sette anni is the classic English calque and always wrong. Note also that anni must appear: unlike English, which can drop 'years old' ('she is seven'), Italian keeps the noun, ha sette anni.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Mia sorella è sette anni.",
+        "note": "MARKER GUIDANCE: the essere calque of English 'is seven years old'; ungrammatical. Miss on the states bucket."
+      }
+    ]
   },
   {
     "external_id": "trans_pu_it_en_state_01",
@@ -2326,12 +2326,6 @@
         "text": "We are cold and want to go back home.",
         "register": "neutral",
         "notes": "Equally fine."
-      },
-      {
-        "text": "We have cold and want to return home.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "MARKER GUIDANCE: 'we have cold' is the calque of the Italian idiom and wrong in English. Miss on the states bucket. ('return home' alone is stiff but acceptable; the miss is 'have cold'.)"
       }
     ],
     "topic": "verb_form.present_indicative",
@@ -2365,7 +2359,13 @@
       }
     ],
     "explanation": "Abbiamo freddo e vogliamo tornare a casa means 'We're cold and we want to go home.' The avere idiom runs in both directions: Italian has states (abbiamo freddo, 'we have cold'), English is them ('we're cold'), and a translator must swap the verb, not the words. Both verbs stay in the plain present: being cold and wanting are states, so neither language reaches for a progressive here ('we are wanting' is as bad in English as stiamo volendo is in Italian).",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "We have cold and want to return home.",
+        "note": "MARKER GUIDANCE: 'we have cold' is the calque of the Italian idiom and wrong in English. Miss on the states bucket. ('return home' alone is stiff but acceptable; the miss is 'have cold'.)"
+      }
+    ]
   },
   {
     "external_id": "trans_pu_en_it_instr_01",
@@ -2382,12 +2382,6 @@
         "text": "Aggiungi il sale alla fine.",
         "register": "informal",
         "notes": "The informal tu present, also a standard recipe voice; full credit. The voi form (aggiungete) is likewise acceptable."
-      },
-      {
-        "text": "Si aggiungono il sale alla fine.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "MARKER GUIDANCE: agreement slip: il sale is singular, so the si-impersonal verb must be 3sg (si aggiunge). Miss on the instructions bucket."
       }
     ],
     "topic": "verb_form.present_indicative",
@@ -2425,7 +2419,13 @@
       }
     ],
     "explanation": "Si aggiunge il sale alla fine ('You add the salt at the end'). The 'you' of instructions is nobody in particular, it means 'one', and Italian's favourite way to say what-one-does is the si-impersonal: si plus the verb in the plain present, si aggiunge. The verb agrees with the thing added, singular il sale, so 3sg. The direct address forms, tu aggiungi or voi aggiungete, are also standard recipe voices and fully acceptable; what the plain present must not become is a future or a laboured command.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Si aggiungono il sale alla fine.",
+        "note": "MARKER GUIDANCE: agreement slip: il sale is singular, so the si-impersonal verb must be 3sg (si aggiunge). Miss on the instructions bucket."
+      }
+    ]
   },
   {
     "external_id": "trans_pu_it_en_instr_01",
@@ -2442,12 +2442,6 @@
         "text": "From here one sees the cathedral and reaches the square in five minutes.",
         "register": "formal",
         "notes": "The 'one' rendering: correct but stiff in everyday English; full credit."
-      },
-      {
-        "text": "From here it sees the cathedral and it arrives in the square in five minutes.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "MARKER GUIDANCE: mis-parse of the si-impersonal as 'it'; wrong. Miss on the instructions bucket."
       }
     ],
     "topic": "verb_form.present_indicative",
@@ -2493,6 +2487,12 @@
       }
     ],
     "explanation": "Da qui si vede il duomo e si arriva in piazza in cinque minuti means 'From here you can see the cathedral and you get to the square in five minutes.' The si-impersonal states what one does or what generally holds, and English renders it with generic 'you' (or the stiffer 'one'): si vede becomes 'you can see', si arriva becomes 'you get there'. What si never means is 'it': the sentence has no hidden subject doing the seeing. Both verbs stay in the present, the tense of standing fact and instruction alike.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "From here it sees the cathedral and it arrives in the square in five minutes.",
+        "note": "MARKER GUIDANCE: mis-parse of the si-impersonal as 'it'; wrong. Miss on the instructions bucket."
+      }
+    ]
   }
 ]

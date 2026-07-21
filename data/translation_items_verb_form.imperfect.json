@@ -14,12 +14,6 @@
         "text": "Da bambini, c'erano molti gatti nel nostro giardino.",
         "register": "neutral",
         "notes": "Natural alternative with 'da bambini' for 'when we were children'."
-      },
-      {
-        "text": "Quando siamo stati bambini, ci sono stati molti gatti...",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: defaults to passato prossimo for both states. The miss is using PP for past states/durations rather than imperfect."
       }
     ],
     "topic": "verb_form.imperfect",
@@ -74,7 +68,13 @@
       }
     ],
     "explanation": "Both clauses describe past states, so Italian uses the imperfect indicative for each. 'Were children' takes eravamo (1pl of essere); 'there were' takes the plural existential c'erano (3pl of essere with locative ci). Note the articulated preposition nel (in + il).",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Quando siamo stati bambini, ci sono stati molti gatti...",
+        "note": "WRONG: defaults to passato prossimo for both states. The miss is using PP for past states/durations rather than imperfect."
+      }
+    ]
   },
   {
     "external_id": "trans_imp_en_it_form_essere_02",
@@ -179,12 +179,6 @@
         "text": "When we lived in Tuscany, we drank the house wine at every dinner.",
         "register": "neutral",
         "notes": "Acceptable: bare simple past 'drank' is unmarked English for a habit, though it loses the explicit habitual reading."
-      },
-      {
-        "text": "When we have lived in Tuscany, we have drunk the house wine...",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: English present perfect doesn't fit a definite past period. Tense-mapping error."
       }
     ],
     "topic": "verb_form.imperfect",
@@ -253,7 +247,13 @@
     ],
     "explanation": "Italian's imperfect indicative covers both English's past habitual ('used to', 'would') and bare simple past for repeated actions. Here 'a ogni cena' (at every dinner) signals habitual, so 'used to drink' or 'would drink' are the most natural renderings; 'drank' is also acceptable. Note bevevamo from bere (stem-expansion: bev-) and vivevamo from vivere (regular -ere).",
     "examiner_note": "Marker should credit any of the three habitual renderings. Penalise present perfect ('have drunk') which doesn't fit a closed past period.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "When we have lived in Tuscany, we have drunk the house wine...",
+        "note": "WRONG: English present perfect doesn't fit a definite past period. Tense-mapping error."
+      }
+    ]
   },
   {
     "external_id": "trans_imp_en_it_form_dire_01",
@@ -270,12 +270,6 @@
         "text": "Il nonno diceva sempre le stesse cose a cena.",
         "register": "neutral",
         "notes": "Variant: 'a cena' (at dinner) narrows from 'at the table' to specifically dinner."
-      },
-      {
-        "text": "Nonno ha sempre detto le stesse cose a tavola.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: passato prossimo doesn't fit the habitual reading. PP would mean 'has always said' as a present-perfect summary, not 'used to say' as a habit."
       }
     ],
     "topic": "verb_form.imperfect",
@@ -336,7 +330,13 @@
       }
     ],
     "explanation": "'Always used to say' is a habitual past in English, mapped directly to Italian imperfect indicative. The 3sg of dire in the imperfect is diceva (expanded stem dic- + -ev- + -a). The fixed expression 'a tavola' refers to the dining table as a setting, distinct from 'al tavolo' which would specify a particular table.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Nonno ha sempre detto le stesse cose a tavola.",
+        "note": "WRONG: passato prossimo doesn't fit the habitual reading. PP would mean 'has always said' as a present-perfect summary, not 'used to say' as a habit."
+      }
+    ]
   },
   {
     "external_id": "trans_imp_en_it_form_fare_01",
@@ -353,12 +353,6 @@
         "text": "Di domenica facevamo una lunga passeggiata in campagna.",
         "register": "neutral",
         "notes": "Variant: 'di domenica' is interchangeable with 'la domenica' for habitual 'on Sundays'."
-      },
-      {
-        "text": "Le domeniche abbiamo fatto una lunga passeggiata in campagna.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: PP (abbiamo fatto) for a habitual action over an open past period. Should be imperfect."
       }
     ],
     "topic": "verb_form.imperfect",
@@ -421,7 +415,13 @@
       }
     ],
     "explanation": "'On Sundays... used to make' is a habit, so Italian uses the imperfect indicative. The 1pl of fare in the imperfect is facevamo (expanded stem fac- + -ev- + -amo). The idiom is 'fare una passeggiata' (literally 'to make a walk'); English 'take a walk' becomes 'fare' in Italian, not 'prendere'.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Le domeniche abbiamo fatto una lunga passeggiata in campagna.",
+        "note": "WRONG: PP (abbiamo fatto) for a habitual action over an open past period. Should be imperfect."
+      }
+    ]
   },
   {
     "external_id": "trans_imp_en_it_use_hab_01",
@@ -438,12 +438,6 @@
         "text": "Quando ero giovane, giocavo a tennis ogni fine settimana.",
         "register": "neutral",
         "notes": "Variant: 'quando ero giovane' is interchangeable with 'da giovane'; 'fine settimana' is the native Italian for 'weekend'."
-      },
-      {
-        "text": "Quando sono stato giovane, ho giocato a tennis ogni weekend.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: both PPs ('sono stato giovane', 'ho giocato') for a habitual past frame. Should be imperfect throughout."
       }
     ],
     "topic": "verb_form.imperfect",
@@ -488,7 +482,13 @@
       }
     ],
     "explanation": "'Used to play' is the English habitual past, mapped directly to Italian imperfect indicative. The 1sg of giocare is giocavo; the 'a' is required when 'giocare' is followed by a sport (giocare a calcio, giocare a tennis).",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Quando sono stato giovane, ho giocato a tennis ogni weekend.",
+        "note": "WRONG: both PPs ('sono stato giovane', 'ho giocato') for a habitual past frame. Should be imperfect throughout."
+      }
+    ]
   },
   {
     "external_id": "trans_imp_en_it_use_hab_02",
@@ -570,12 +570,6 @@
         "text": "My grandfather smoked a pipe on the balcony after dinner.",
         "register": "neutral",
         "notes": "Acceptable: bare simple past 'smoked' is unmarked English for a habit."
-      },
-      {
-        "text": "My grandfather has smoked a pipe on the balcony after dinner.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: present perfect doesn't fit a closed past habit."
       }
     ],
     "topic": "verb_form.imperfect",
@@ -634,7 +628,13 @@
     ],
     "explanation": "There's no explicit adverb here, but 'sul balcone dopo cena' reads as a recurring scene rather than a one-off event, so the imperfect's habitual reading is the natural one. English allows 'used to smoke', 'would smoke', or bare 'smoked' for the same idea.",
     "examiner_note": "Marker accepts any of the three habitual renderings. The diagnostic is reading the implicit habitual from context.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "My grandfather has smoked a pipe on the balcony after dinner.",
+        "note": "WRONG: present perfect doesn't fit a closed past habit."
+      }
+    ]
   },
   {
     "external_id": "trans_imp_en_it_use_ong_01",
@@ -717,12 +717,6 @@
         "text": "Lei era molto alta e aveva i capelli corti e scuri.",
         "register": "neutral",
         "notes": "Variant: optional subject pronoun lei for emphasis or disambiguation."
-      },
-      {
-        "text": "È stata molto alta e ha avuto i capelli corti e scuri.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: PP for both states. 'Ha avuto i capelli' would suggest a discrete event of having hair, which is nonsensical."
       }
     ],
     "topic": "verb_form.imperfect",
@@ -778,7 +772,13 @@
       }
     ],
     "explanation": "Descriptive past states take the imperfect indicative: era (3sg essere, agreeing in gender — alta f.sg — with the female subject), aveva (3sg avere). Italian 'avere i capelli + adjective' is the standard 'to have X hair' construction.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "È stata molto alta e ha avuto i capelli corti e scuri.",
+        "note": "WRONG: PP for both states. 'Ha avuto i capelli' would suggest a discrete event of having hair, which is nonsensical."
+      }
+    ]
   },
   {
     "external_id": "trans_imp_it_en_use_ong_01",
@@ -865,12 +865,6 @@
         "text": "Mentre stavo guardando la TV, è suonato il telefono.",
         "register": "neutral",
         "notes": "Variant: 'stavo guardando' (stare + gerund) is a more explicit progressive."
-      },
-      {
-        "text": "Mentre ho guardato la TV, è suonato il telefono.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: PP in the mentre-clause. The mentre-clause must be imperfect because it sets the background."
       }
     ],
     "topic": "verb_form.imperfect",
@@ -935,7 +929,13 @@
     ],
     "explanation": "The mentre-clause sets the ongoing background ('was watching TV') and takes the imperfect indicative. The main clause names the punctuating event ('the phone rang') and takes the passato prossimo. Note that suonare here is intransitive (the phone made a sound) and idiomatically takes essere: è suonato il telefono.",
     "examiner_note": "Suonare's auxiliary can vary (essere for ringing on its own, avere when someone rings something). In this 'the phone rang' context, essere is the natural choice.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Mentre ho guardato la TV, è suonato il telefono.",
+        "note": "WRONG: PP in the mentre-clause. The mentre-clause must be imperfect because it sets the background."
+      }
+    ]
   },
   {
     "external_id": "trans_imp_en_it_use_bg_02",
@@ -1180,12 +1180,6 @@
         "text": "Aspettavamo il treno da due ore quando finalmente è arrivato.",
         "register": "neutral",
         "notes": "Variant: 'aspettare' fronted with direct object 'il treno', then the arrival as a bare verb."
-      },
-      {
-        "text": "Abbiamo aspettato per due ore quando il treno è finalmente arrivato.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: PP with 'per' doesn't capture the 'had been waiting' duration-up-to-event reading. Italian uses imperfect + da for this."
       }
     ],
     "topic": "verb_form.imperfect",
@@ -1254,7 +1248,13 @@
     ],
     "explanation": "English past perfect continuous 'had been waiting for X hours' maps to Italian imperfect + da + time-phrase: aspettavamo da due ore. The arrival is the foregrounded event in the PP (è arrivato). Italian doesn't use 'per' here; that would shift the reading to a bounded duration (we waited for two hours then stopped).",
     "examiner_note": "The duration construction is one of the highest-payoff bits of imperfect knowledge; English speakers consistently default to PP + per, which produces a different reading.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Abbiamo aspettato per due ore quando il treno è finalmente arrivato.",
+        "note": "WRONG: PP with 'per' doesn't capture the 'had been waiting' duration-up-to-event reading. Italian uses imperfect + da for this."
+      }
+    ]
   },
   {
     "external_id": "trans_imp_it_en_use_dur_01",
@@ -1332,18 +1332,6 @@
         "text": "Avevo dodici anni quando ci siamo trasferiti a Milano.",
         "register": "neutral",
         "notes": "Variant: 'ci siamo trasferiti' (we moved) — common rephrasing if the speaker includes themselves."
-      },
-      {
-        "text": "Sono stato dodici anni quando la mia famiglia si è trasferita a Milano.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: 'sono stato dodici anni' uses essere instead of avere for age. Italian uses 'avere X anni'."
-      },
-      {
-        "text": "Ho avuto dodici anni quando la mia famiglia si è trasferita a Milano.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: PP 'ho avuto X anni' would mean 'I had X years' as an event, which is nonsensical. Age in the past takes imperfect."
       }
     ],
     "topic": "verb_form.imperfect",
@@ -1394,7 +1382,17 @@
     ],
     "explanation": "Two distinct misses to dodge here. First, Italian uses 'avere' for age, not 'essere' ('avevo dodici anni', not 'ero dodici anni'). Second, age in the past is a state, so it takes the imperfect indicative, not the passato prossimo. The moving-to-Milan event correctly takes PP.",
     "examiner_note": "Hot-spot item: combines two common English-influenced misses. Both negative references are worth tracking.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Sono stato dodici anni quando la mia famiglia si è trasferita a Milano.",
+        "note": "WRONG: 'sono stato dodici anni' uses essere instead of avere for age. Italian uses 'avere X anni'."
+      },
+      {
+        "text": "Ho avuto dodici anni quando la mia famiglia si è trasferita a Milano.",
+        "note": "WRONG: PP 'ho avuto X anni' would mean 'I had X years' as an event, which is nonsensical. Age in the past takes imperfect."
+      }
+    ]
   },
   {
     "external_id": "trans_imp_en_it_use_atw_02",
@@ -1538,12 +1536,6 @@
         "text": "When my mother was twenty years old, she used to work in a bookshop downtown.",
         "register": "neutral",
         "notes": "Variant: explicit 'twenty years old' and 'used to work' for the habit."
-      },
-      {
-        "text": "When my mother had twenty years, she has worked in a bookshop in the centre.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: literal 'had twenty years' (Italian → English calque); 'has worked' present perfect with a closed past frame."
       }
     ],
     "topic": "verb_form.imperfect",
@@ -1597,7 +1589,13 @@
     ],
     "explanation": "The two imperfects in the Italian both shift to English past forms. 'Aveva vent'anni' → 'was twenty' (age, English uses essere-equivalent); 'lavorava' → 'worked' or 'used to work' (habit). Note the false friend: libreria is a bookshop in Italian, not a library (which is biblioteca).",
     "examiner_note": "Two anti-misses worth catching: 'had twenty years' (literal calque) and 'library' (false friend).",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "When my mother had twenty years, she has worked in a bookshop in the centre.",
+        "note": "WRONG: literal 'had twenty years' (Italian → English calque); 'has worked' present perfect with a closed past frame."
+      }
+    ]
   },
   {
     "external_id": "trans_imp_en_it_use_pol_01",
@@ -1671,12 +1669,6 @@
         "text": "Scusi, vorrei farLe una domanda.",
         "register": "formal",
         "notes": "Variant: vorrei (conditional) is interchangeable with volevo here."
-      },
-      {
-        "text": "Scusi, ho voluto farLe una domanda.",
-        "register": "formal",
-        "polarity": "negative",
-        "notes": "WRONG: PP 'ho voluto' means 'I insisted on' (modal-discrimination meaning), not 'I wanted (politely)'. The polite-present requires the imperfect."
       }
     ],
     "topic": "verb_form.imperfect",
@@ -1728,7 +1720,13 @@
     ],
     "explanation": "Polite-present imperfect: 'volevo farLe una domanda' is the standard polite way to introduce a question. The conditional vorrei is interchangeable. Note that this is a place where the imperfect/PP modal discrimination matters: 'ho voluto farLe una domanda' would shift to 'I insisted on asking you' (the strong-will reading of volere in PP), which is rude in a polite request.",
     "examiner_note": "Borderline with discrimination.modals.volere. The polite-present reading is the dominant one here; the modal-discrimination reading is the contrast.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Scusi, ho voluto farLe una domanda.",
+        "note": "WRONG: PP 'ho voluto' means 'I insisted on' (modal-discrimination meaning), not 'I wanted (politely)'. The polite-present requires the imperfect."
+      }
+    ]
   },
   {
     "external_id": "trans_imp_en_it_disc_gen_01",
@@ -1745,12 +1743,6 @@
         "text": "Da studenti, mangiavamo in mensa ogni giorno.",
         "register": "neutral",
         "notes": "Variant: 'da studenti' for 'when we were students'."
-      },
-      {
-        "text": "Quando siamo stati studenti, abbiamo mangiato in mensa tutti i giorni.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: PPs for both states. Closed-bounded period would need different framing."
       }
     ],
     "topic": "verb_form.imperfect",
@@ -1790,7 +1782,13 @@
       }
     ],
     "explanation": "'When we were students' frames a sustained past period; 'every day' makes the eating habitual within it. Italian uses imperfect for both. Eravamo + mangiavamo.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Quando siamo stati studenti, abbiamo mangiato in mensa tutti i giorni.",
+        "note": "WRONG: PPs for both states. Closed-bounded period would need different framing."
+      }
+    ]
   },
   {
     "external_id": "trans_imp_en_it_disc_gen_02",
@@ -2244,12 +2242,6 @@
         "text": "I should have studied but I went out with friends.",
         "register": "neutral",
         "notes": "Variant: 'should have' for the unfulfilled obligation reading."
-      },
-      {
-        "text": "I had to study but I went out with friends.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "MARGINAL: 'had to' implies obligation followed through; doesn't quite fit the unfulfilled reading. The right rendering is 'was supposed to'."
       }
     ],
     "topic": "verb_form.imperfect",
@@ -2284,7 +2276,13 @@
     ],
     "explanation": "The imperfect dovevo with the 'ma sono uscito' clause makes it clear the obligation wasn't met. English 'was supposed to' is the closest natural rendering. 'Had to' is more aligned with the PP and would mismatch the meaning here.",
     "examiner_note": "Negative reference flags the 'had to' as a likely English-speaker miss.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "I had to study but I went out with friends.",
+        "note": "MARGINAL: 'had to' implies obligation followed through; doesn't quite fit the unfulfilled reading. The right rendering is 'was supposed to'."
+      }
+    ]
   },
   {
     "external_id": "trans_imp_en_it_disc_dov_02",
@@ -2415,12 +2413,6 @@
         "text": "Sotto i dieci anni si poteva entrare gratis al museo.",
         "register": "neutral",
         "notes": "Variant: impersonal 'si poteva' construction."
-      },
-      {
-        "text": "I bambini sotto i dieci anni sapevano entrare al museo gratuitamente.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: sapere is for skills (knowing how to do something). 'Knowing how to enter for free' isn't a skill; entering for free is a permission. Italian needs potere here."
       }
     ],
     "topic": "verb_form.imperfect",
@@ -2481,7 +2473,13 @@
     ],
     "explanation": "A past permission-state — children under a certain age were allowed to enter for free — is the canonical potere reading. Italian uses the imperfect of potere for that sustained permission. The sapere alternative would be the skill reading ('knew how to enter for free'), which doesn't fit; entering for free isn't a skill anyone needs to learn. The mistake is the mirror of the language-skill case in sap_03.",
     "examiner_note": "Cleanly potere, no sapere ambiguity, no counterfactual reading. The negative reference flags the sapere miss for symmetry with sap_03.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "I bambini sotto i dieci anni sapevano entrare al museo gratuitamente.",
+        "note": "WRONG: sapere is for skills (knowing how to do something). 'Knowing how to enter for free' isn't a skill; entering for free is a permission. Italian needs potere here."
+      }
+    ]
   },
   {
     "external_id": "trans_imp_it_en_disc_pot_01",
@@ -2548,12 +2546,6 @@
         "text": "La mamma sapeva parlare correttamente tre lingue quando aveva vent'anni.",
         "register": "neutral",
         "notes": "Variant: adverb placement before the object."
-      },
-      {
-        "text": "La mamma poteva parlare tre lingue correttamente quando aveva vent'anni.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: poteva parlare would mean 'was allowed / able to speak (in some situation)' — the permission/circumstance reading, not the skill reading. For language-skill ability, Italian uses sapere."
       }
     ],
     "topic": "verb_form.imperfect",
@@ -2591,7 +2583,13 @@
     ],
     "explanation": "English 'could' is ambiguous in a way Italian isn't. For a skill ability — speaking a language, swimming, playing an instrument — Italian uses sapere ('sapeva parlare tre lingue'). For permission or situation-dependent ability — being allowed to do something, being free to — Italian uses potere. Mum's language skills are the skill reading, so sapere. Saperva at this age (vent'anni) is a past skill-state, so imperfect.",
     "examiner_note": "English-speaker sleeper miss: defaulting to poteva because 'could' looks closer to potere. The negative reference flags it.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "La mamma poteva parlare tre lingue correttamente quando aveva vent'anni.",
+        "note": "WRONG: poteva parlare would mean 'was allowed / able to speak (in some situation)' — the permission/circumstance reading, not the skill reading. For language-skill ability, Italian uses sapere."
+      }
+    ]
   },
   {
     "external_id": "trans_imp_en_it_disc_vol_01",
@@ -2945,12 +2943,6 @@
         "text": "Disse che era stanca e voleva andare a casa.",
         "register": "formal",
         "notes": "Variant with passato remoto reporting verb (literary register)."
-      },
-      {
-        "text": "Ha detto che è stanca e vuole andare a casa.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: leaves the embedded clauses in present tense. Indirect speech under past reporting requires the present-to-imperfect shift."
       }
     ],
     "topic": "verb_form.imperfect",
@@ -2986,7 +2978,13 @@
     ],
     "explanation": "Direct speech: 'Sono stanca e voglio andare a casa'. Under past reporting (ha detto), both embedded present verbs shift to imperfect: era + voleva. Note that the participle 'stanca' agrees in feminine singular with the female speaker.",
     "examiner_note": "Diagnostic of the indirect-speech present→imperfect shift; the negative reference flags the leave-in-present miss.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Ha detto che è stanca e vuole andare a casa.",
+        "note": "WRONG: leaves the embedded clauses in present tense. Indirect speech under past reporting requires the present-to-imperfect shift."
+      }
+    ]
   },
   {
     "external_id": "trans_imp_it_en_isp_pres_01",
@@ -3363,12 +3361,6 @@
         "text": "Buongiorno, volevo un cappuccino e un cornetto, per favore.",
         "register": "neutral",
         "notes": "Standard polite-present imperfect of volere. The conditional vorrei would also be polite, but the constraint excludes it."
-      },
-      {
-        "text": "Buongiorno, vorrei un cappuccino e un cornetto, per favore.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG under this constraint: vorrei is the conditional, which the prompt instructs the learner to avoid. Italian is correct; the constraint is not met."
       }
     ],
     "topic": "verb_form.imperfect",
@@ -3413,7 +3405,13 @@
     ],
     "explanation": "The constraint excludes the conditional vorrei, leaving the polite-present imperfect volevo as the natural rendering. Both are equally polite in Italian; the item tests the learner's ability to produce the imperfect-polite specifically when the conditional is not an option. Recast from the original imp_use_pol_01 grammar item under the architect's Option C ruling on the chip_suppression thread.",
     "examiner_note": "Constraint embedded in source_text. If a future schema gains a dedicated constraint field, migrate.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Buongiorno, vorrei un cappuccino e un cornetto, per favore.",
+        "note": "WRONG under this constraint: vorrei is the conditional, which the prompt instructs the learner to avoid. Italian is correct; the constraint is not met."
+      }
+    ]
   },
   {
     "external_id": "trans_imp_en_it_use_pol_04",
@@ -3430,12 +3428,6 @@
         "text": "Scusi, volevo chiederLe una cosa importante.",
         "register": "formal",
         "notes": "Formal: scusi (Lei) + chiederLe (formal indirect object). Same polite-present imperfect volevo."
-      },
-      {
-        "text": "Scusa, vorrei chiederti una cosa importante.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG under this constraint: vorrei is the conditional, which the prompt excludes."
       }
     ],
     "topic": "verb_form.imperfect",
@@ -3470,7 +3462,13 @@
     ],
     "explanation": "The constraint excludes the conditional vorrei, forcing volevo. Both informal (Scusa/chiederti) and formal (Scusi/chiederLe) registers are acceptable; the polite-imperfect form is the same. Recast from the original imp_use_pol_02 grammar item under Option C.",
     "examiner_note": "Constraint embedded in source_text. Marker should credit any register-appropriate volevo phrasing.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Scusa, vorrei chiederti una cosa importante.",
+        "note": "WRONG under this constraint: vorrei is the conditional, which the prompt excludes."
+      }
+    ]
   },
   {
     "external_id": "trans_imp_en_it_use_pol_05",
@@ -3482,12 +3480,6 @@
         "text": "Buongiorno, potevo avere un'informazione, per favore?",
         "register": "formal",
         "notes": "Polite-present imperfect of potere. Less common than volevo but attested in service contexts."
-      },
-      {
-        "text": "Buongiorno, potrei avere un'informazione, per favore?",
-        "register": "formal",
-        "polarity": "negative",
-        "notes": "WRONG under this constraint: potrei is the conditional, which the prompt excludes. (In free Italian, potrei is in fact more common than potevo in this context.)"
       }
     ],
     "topic": "verb_form.imperfect",
@@ -3522,6 +3514,12 @@
     ],
     "explanation": "The constraint excludes potrei (conditional), forcing potevo (imperfect-polite). Potere-polite is less common than volere-polite in everyday Italian; this item tests that the construction exists and the learner can produce it. Recast from imp_use_pol_03 under Option C.",
     "examiner_note": "Borderline-natural item: native Italians frequently default to potrei in this exact context. The conditional-exclusion constraint preserves the item's diagnostic of testing the rare-but-real potere-polite imperfect.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Buongiorno, potrei avere un'informazione, per favore?",
+        "note": "WRONG under this constraint: potrei is the conditional, which the prompt excludes. (In free Italian, potrei is in fact more common than potevo in this context.)"
+      }
+    ]
   }
 ]

@@ -9,12 +9,6 @@
         "text": "Questa è la mia casa.",
         "register": "neutral",
         "notes": "Standard. Both article and possessive are feminine singular."
-      },
-      {
-        "text": "Questa è mia casa.",
-        "register": "neutral",
-        "notes": "WRONG: casa is not a family noun, so the article is required: la mia casa.",
-        "polarity": "negative"
       }
     ],
     "topic": "possessive",
@@ -42,7 +36,13 @@
       }
     ],
     "explanation": "Casa is feminine singular, so the possessive adjective and its definite article agree: la mia casa. Casa is not a family noun, so the article stays.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Questa è mia casa.",
+        "note": "WRONG: casa is not a family noun, so the article is required: la mia casa."
+      }
+    ]
   },
   {
     "external_id": "trans_poss_en_it_forms_02",
@@ -54,12 +54,6 @@
         "text": "Marco ama la sua macchina.",
         "register": "neutral",
         "notes": "Standard. sua agrees with macchina (f), not with Marco."
-      },
-      {
-        "text": "Marco ama il suo macchina.",
-        "register": "neutral",
-        "notes": "WRONG: suo must agree with macchina (feminine), giving la sua, not il suo.",
-        "polarity": "negative"
       }
     ],
     "topic": "possessive",
@@ -89,7 +83,13 @@
       }
     ],
     "explanation": "Suo agrees with the thing owned, not the owner: macchina is feminine, so la sua macchina, even though Marco is male.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Marco ama il suo macchina.",
+        "note": "WRONG: suo must agree with macchina (feminine), giving la sua, not il suo."
+      }
+    ]
   },
   {
     "external_id": "trans_poss_it_en_forms_03",
@@ -328,12 +328,6 @@
         "text": "Mia madre lavora a Roma.",
         "register": "neutral",
         "notes": "Standard: singular family noun, no article."
-      },
-      {
-        "text": "La mia madre lavora a Roma.",
-        "register": "neutral",
-        "notes": "WRONG: a singular, unmodified family noun drops the article.",
-        "polarity": "negative"
       }
     ],
     "topic": "possessive",
@@ -361,7 +355,13 @@
       }
     ],
     "explanation": "Madre is a singular family noun, so no article: mia madre. La mia madre is the classic error.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "La mia madre lavora a Roma.",
+        "note": "WRONG: a singular, unmodified family noun drops the article."
+      }
+    ]
   },
   {
     "external_id": "trans_poss_en_it_fam_02",
@@ -378,12 +378,6 @@
         "text": "Mio fratello è medico.",
         "register": "neutral",
         "notes": "Also fine: essere + profession without article."
-      },
-      {
-        "text": "Il mio fratello fa il medico.",
-        "register": "neutral",
-        "notes": "WRONG: the possessive's article drops before the family noun fratello.",
-        "polarity": "negative"
       }
     ],
     "topic": "possessive",
@@ -411,7 +405,13 @@
       }
     ],
     "explanation": "Mio fratello drops the article (singular family noun). 'Fa il medico' states a profession; that article belongs to medico, not to the possessive.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Il mio fratello fa il medico.",
+        "note": "WRONG: the possessive's article drops before the family noun fratello."
+      }
+    ]
   },
   {
     "external_id": "trans_poss_en_it_fam_03",
@@ -423,12 +423,6 @@
         "text": "I miei fratelli vivono all'estero.",
         "register": "neutral",
         "notes": "Standard: plural restores the article."
-      },
-      {
-        "text": "Miei fratelli vivono all'estero.",
-        "register": "neutral",
-        "notes": "WRONG: the family exception is singular only; the plural takes the article.",
-        "polarity": "negative"
       }
     ],
     "topic": "possessive",
@@ -456,7 +450,13 @@
       }
     ],
     "explanation": "In the plural the exception lapses: i miei fratelli, article restored.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Miei fratelli vivono all'estero.",
+        "note": "WRONG: the family exception is singular only; the plural takes the article."
+      }
+    ]
   },
   {
     "external_id": "trans_poss_en_it_fam_04",
@@ -468,12 +468,6 @@
         "text": "Sua sorella parla francese.",
         "register": "neutral",
         "notes": "Standard: singular family noun, no article; sua = his."
-      },
-      {
-        "text": "La sua sorella parla francese.",
-        "register": "neutral",
-        "notes": "WRONG: sorella is a singular family noun and drops the article.",
-        "polarity": "negative"
       }
     ],
     "topic": "possessive",
@@ -503,7 +497,13 @@
       }
     ],
     "explanation": "Sorella is a singular family noun, so sua sorella with no article. Sua is 'his' here, agreeing with sorella (feminine).",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "La sua sorella parla francese.",
+        "note": "WRONG: sorella is a singular family noun and drops the article."
+      }
+    ]
   },
   {
     "external_id": "trans_poss_en_it_fam_05",
@@ -515,12 +515,6 @@
         "text": "Il loro padre fa l'ingegnere.",
         "register": "neutral",
         "notes": "Standard; loro keeps the article."
-      },
-      {
-        "text": "Loro padre fa l'ingegnere.",
-        "register": "neutral",
-        "notes": "WRONG: with loro the article never drops, even for a singular relative.",
-        "polarity": "negative"
       }
     ],
     "topic": "possessive",
@@ -548,7 +542,13 @@
       }
     ],
     "explanation": "With loro the article never drops, even for a singular family noun: il loro padre.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Loro padre fa l'ingegnere.",
+        "note": "WRONG: with loro the article never drops, even for a singular relative."
+      }
+    ]
   },
   {
     "external_id": "trans_poss_en_it_fam_06",
@@ -560,12 +560,6 @@
         "text": "La mia sorellina si chiama Sofia.",
         "register": "neutral",
         "notes": "Standard: the diminutive is altered, so the article returns."
-      },
-      {
-        "text": "Mia sorellina si chiama Sofia.",
-        "register": "neutral",
-        "notes": "WRONG: the diminutive sorellina counts as altered and takes the article.",
-        "polarity": "negative"
       }
     ],
     "topic": "possessive",
@@ -593,7 +587,13 @@
       }
     ],
     "explanation": "The diminutive sorellina counts as altered, so the article returns: la mia sorellina, unlike bare mia sorella.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Mia sorellina si chiama Sofia.",
+        "note": "WRONG: the diminutive sorellina counts as altered and takes the article."
+      }
+    ]
   },
   {
     "external_id": "trans_poss_it_en_fam_07",
@@ -654,12 +654,6 @@
         "text": "La mia macchina è vecchia, la tua è nuova.",
         "register": "neutral",
         "notes": "Standard; la tua stands alone with its article."
-      },
-      {
-        "text": "La mia macchina è vecchia, tua è nuova.",
-        "register": "neutral",
-        "notes": "WRONG: the standalone possessive keeps the article: la tua.",
-        "polarity": "negative"
       }
     ],
     "topic": "possessive",
@@ -689,7 +683,13 @@
       }
     ],
     "explanation": "Standalone la tua keeps the article and agrees with the understood macchina (feminine singular).",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "La mia macchina è vecchia, tua è nuova.",
+        "note": "WRONG: the standalone possessive keeps the article: la tua."
+      }
+    ]
   },
   {
     "external_id": "trans_poss_en_it_pron_02",
@@ -1036,12 +1036,6 @@
         "text": "Lei cerca suo marito.",
         "register": "neutral",
         "notes": "Subject pronoun kept for emphasis."
-      },
-      {
-        "text": "Cerca il suo marito.",
-        "register": "neutral",
-        "notes": "WRONG: marito is a singular family noun, so no article.",
-        "polarity": "negative"
       }
     ],
     "topic": "possessive",
@@ -1071,7 +1065,13 @@
       }
     ],
     "explanation": "Her -> suo, agreeing with marito (masculine). Marito is a singular family noun, so suo marito, no article.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Cerca il suo marito.",
+        "note": "WRONG: marito is a singular family noun, so no article."
+      }
+    ]
   },
   {
     "external_id": "trans_poss_en_it_disc_suo_06",
@@ -1088,12 +1088,6 @@
         "text": "Lui ama le sue sorelle.",
         "register": "neutral",
         "notes": "Subject pronoun kept."
-      },
-      {
-        "text": "Ama sue sorelle.",
-        "register": "neutral",
-        "notes": "WRONG: the plural family noun restores the article: le sue sorelle.",
-        "polarity": "negative"
       }
     ],
     "topic": "possessive",
@@ -1123,7 +1117,13 @@
       }
     ],
     "explanation": "His -> sue, agreeing with sorelle (feminine plural). Plural restores the article: le sue sorelle.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Ama sue sorelle.",
+        "note": "WRONG: the plural family noun restores the article: le sue sorelle."
+      }
+    ]
   },
   {
     "external_id": "trans_poss_it_en_disc_suo_07",
@@ -1225,12 +1225,6 @@
         "text": "Di chi è questa penna? È mia.",
         "register": "neutral",
         "notes": "Standard; predicate ownership drops the article."
-      },
-      {
-        "text": "Di chi è questa penna? È la mia.",
-        "register": "neutral",
-        "notes": "WRONG for plain ownership: the article intrudes; è mia is the idiom.",
-        "polarity": "negative"
       }
     ],
     "topic": "possessive",
@@ -1258,7 +1252,13 @@
       }
     ],
     "explanation": "After essere for plain ownership the possessive drops the article: è mia (agreeing with penna, feminine). È la mia is the article-bearing pronoun, a different meaning.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Di chi è questa penna? È la mia.",
+        "note": "WRONG for plain ownership: the article intrudes; è mia is the idiom."
+      }
+    ]
   },
   {
     "external_id": "trans_poss_en_it_pred_02",
@@ -1355,12 +1355,6 @@
         "text": "Vieni a casa mia stasera.",
         "register": "neutral",
         "notes": "Standard; the fixed a casa + possessive pattern, postposed and article-less."
-      },
-      {
-        "text": "Vieni alla mia casa stasera.",
-        "register": "neutral",
-        "notes": "WRONG idiom: a casa mia is the set pattern, not alla mia casa.",
-        "polarity": "negative"
       }
     ],
     "topic": "possessive",
@@ -1388,7 +1382,13 @@
       }
     ],
     "explanation": "The fixed pattern a casa mia is postposed with no article: word order carries the idiom. Alla mia casa is a calque of the English order.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Vieni alla mia casa stasera.",
+        "note": "WRONG idiom: a casa mia is the set pattern, not alla mia casa."
+      }
+    ]
   },
   {
     "external_id": "trans_poss_en_it_post_02",
@@ -1478,12 +1478,6 @@
         "text": "Ognuno deve fare il proprio dovere.",
         "register": "neutral",
         "notes": "Standard; impersonal subject takes proprio."
-      },
-      {
-        "text": "Ognuno deve fare il suo dovere.",
-        "register": "neutral",
-        "notes": "WRONG by the standard: with the impersonal ognuno, proprio is required, not suo.",
-        "polarity": "negative"
       }
     ],
     "topic": "possessive",
@@ -1511,7 +1505,13 @@
       }
     ],
     "explanation": "With an impersonal subject (ognuno) the reflexive proprio is required: il proprio dovere. Suo would point at a specific person.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Ognuno deve fare il suo dovere.",
+        "note": "WRONG by the standard: with the impersonal ognuno, proprio is required, not suo."
+      }
+    ]
   },
   {
     "external_id": "trans_poss_en_it_prop_02",

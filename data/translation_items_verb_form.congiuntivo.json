@@ -14,12 +14,6 @@
         "text": "Credo che Maria parli troppo.",
         "register": "neutral",
         "notes": "credo che is an equivalent opinion trigger."
-      },
-      {
-        "text": "Penso che Maria parla troppo.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: indicative parla after penso che. Guards the indicative-instead-of-subjunctive miss."
       }
     ],
     "topic": "verb_form.congiuntivo",
@@ -53,7 +47,13 @@
       }
     ],
     "explanation": "After an opinion verb (penso che, credo che) Italian uses the present subjunctive in the che-clause. parlare takes -i in the singular: parli, not the indicative parla.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Penso che Maria parla troppo.",
+        "note": "WRONG: indicative parla after penso che. Guards the indicative-instead-of-subjunctive miss."
+      }
+    ]
   },
   {
     "external_id": "trans_cong_en_it_are_02",
@@ -214,12 +214,6 @@
         "text": "Non credo che lui capisca il problema.",
         "register": "neutral",
         "notes": "Subject pronoun lui included for emphasis or clarity."
-      },
-      {
-        "text": "Non credo che capisce il problema.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: indicative capisce after non credo che. Guards the indicative miss."
       }
     ],
     "topic": "verb_form.congiuntivo",
@@ -257,7 +251,13 @@
       }
     ],
     "explanation": "capire belongs to the -isc- group, which inserts -isc- in the singular: capisca. non credo che (negated opinion) strongly favours the subjunctive.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Non credo che capisce il problema.",
+        "note": "WRONG: indicative capisce after non credo che. Guards the indicative miss."
+      }
+    ]
   },
   {
     "external_id": "trans_cong_en_it_isc_02",
@@ -436,12 +436,6 @@
         "text": "Spero che Marco venga alla festa questa sera.",
         "register": "neutral",
         "notes": "questa sera for stasera; equivalent."
-      },
-      {
-        "text": "Spero che Marco viene alla festa stasera.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: indicative viene after spero che. Guards the indicative miss."
       }
     ],
     "topic": "verb_form.congiuntivo",
@@ -479,7 +473,13 @@
       }
     ],
     "explanation": "This irregular group builds the present subjunctive from the io indicative: vengo gives venga. spero che requires the subjunctive, ruling out the indicative viene.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Spero che Marco viene alla festa stasera.",
+        "note": "WRONG: indicative viene after spero che. Guards the indicative miss."
+      }
+    ]
   },
   {
     "external_id": "trans_cong_en_it_1sg_02",
@@ -576,12 +576,6 @@
         "text": "Credo che sia una buona idea.",
         "register": "neutral",
         "notes": "credo che, an equivalent trigger."
-      },
-      {
-        "text": "Penso che è una buona idea.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: indicative è after penso che. Guards the very common essere indicative miss."
       }
     ],
     "topic": "verb_form.congiuntivo",
@@ -619,7 +613,13 @@
       }
     ],
     "explanation": "essere has its own subjunctive, sia, not derivable from any other form. After penso che it replaces the indicative è. This is the highest-frequency subjunctive form to master.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Penso che è una buona idea.",
+        "note": "WRONG: indicative è after penso che. Guards the very common essere indicative miss."
+      }
+    ]
   },
   {
     "external_id": "trans_cong_en_it_supp_02",
@@ -730,12 +730,6 @@
         "text": "Pensavo che lui parlasse troppo.",
         "register": "neutral",
         "notes": "Subject pronoun lui included."
-      },
-      {
-        "text": "Pensavo che parlava troppo.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: imperfect indicative parlava after pensavo che. Guards the indicative-instead-of-subjunctive miss."
       }
     ],
     "topic": "verb_form.congiuntivo",
@@ -759,7 +753,13 @@
       }
     ],
     "explanation": "A past-tense opinion verb pulls the che-clause into the imperfect subjunctive, not the present: pensavo che parlasse. The -are imperfect subjunctive is the stem plus -asse in the 3rd singular.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Pensavo che parlava troppo.",
+        "note": "WRONG: imperfect indicative parlava after pensavo che. Guards the indicative-instead-of-subjunctive miss."
+      }
+    ]
   },
   {
     "external_id": "trans_cong_en_it_imp_reg_02",
@@ -826,12 +826,6 @@
         "text": "Se io avessi più tempo, leggerei di più.",
         "register": "neutral",
         "notes": "Subject pronoun io included."
-      },
-      {
-        "text": "Se avrei più tempo, leggerei di più.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: conditional in the if-clause. The signature 'se avrei' error; the if-clause must take the imperfect subjunctive."
       }
     ],
     "topic": "verb_form.congiuntivo",
@@ -865,7 +859,13 @@
       }
     ],
     "explanation": "In an unreal 'if' sentence Italian puts the imperfect subjunctive in the if-clause and the conditional in the main clause: se avessi ..., leggerei. Never se avrei. Avere is regular here: av- + -essi.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Se avrei più tempo, leggerei di più.",
+        "note": "WRONG: conditional in the if-clause. The signature 'se avrei' error; the if-clause must take the imperfect subjunctive."
+      }
+    ]
   },
   {
     "external_id": "trans_cong_en_it_imp_irr_01",
@@ -882,12 +882,6 @@
         "text": "Speravo che loro fossero già a casa.",
         "register": "neutral",
         "notes": "Subject pronoun loro included."
-      },
-      {
-        "text": "Speravo che erano già a casa.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: imperfect indicative erano after speravo che. Guards the indicative miss."
       }
     ],
     "topic": "verb_form.congiuntivo",
@@ -921,7 +915,13 @@
       }
     ],
     "explanation": "Essere is the only irregular imperfect subjunctive: fossi, fossi, fosse, fossimo, foste, fossero. It is not derivable from era; it is learned outright.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Speravo che erano già a casa.",
+        "note": "WRONG: imperfect indicative erano after speravo che. Guards the indicative miss."
+      }
+    ]
   },
   {
     "external_id": "trans_cong_en_it_imp_irr_02",
@@ -1038,12 +1038,6 @@
         "text": "Penso che Marco abbia già parlato con lei.",
         "register": "neutral",
         "notes": "con lei instead of the indirect clitic le; both natural."
-      },
-      {
-        "text": "Penso che Marco ha già parlato con lei.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: indicative auxiliary ha. The defining compound miss."
       }
     ],
     "topic": "verb_form.congiuntivo",
@@ -1067,7 +1061,13 @@
       }
     ],
     "explanation": "The compound past subjunctive is the PRESENT subjunctive of the auxiliary plus the participle: abbia parlato. After penso che the auxiliary cannot stay indicative (ha parlato).",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Penso che Marco ha già parlato con lei.",
+        "note": "WRONG: indicative auxiliary ha. The defining compound miss."
+      }
+    ]
   },
   {
     "external_id": "trans_cong_en_it_pass_02",
@@ -1084,12 +1084,6 @@
         "text": "Penso che le ragazze siano arrivate puntuali.",
         "register": "neutral",
         "notes": "puntuali for in orario; equivalent."
-      },
-      {
-        "text": "Penso che le ragazze sono arrivate in orario.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: indicative auxiliary sono after penso che."
       }
     ],
     "topic": "verb_form.congiuntivo",
@@ -1124,7 +1118,13 @@
       }
     ],
     "explanation": "Two things at once: the essere auxiliary goes into the present subjunctive (siano), and with essere the participle agrees with the subject (le ragazze, feminine plural: arrivate).",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Penso che le ragazze sono arrivate in orario.",
+        "note": "WRONG: indicative auxiliary sono after penso che."
+      }
+    ]
   },
   {
     "external_id": "trans_cong_en_it_pass_03",
@@ -1191,12 +1191,6 @@
         "text": "Se lo avessi saputo prima, sarei venuto.",
         "register": "neutral",
         "notes": "With the object clitic lo; very natural."
-      },
-      {
-        "text": "Se avrei saputo prima, sarei venuto.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: conditional in the if-clause. The signature 'se avrei' error."
       }
     ],
     "topic": "verb_form.congiuntivo",
@@ -1230,7 +1224,13 @@
       }
     ],
     "explanation": "An impossible past condition puts the trapassato subjunctive in the if-clause: the IMPERFECT subjunctive of the auxiliary plus the participle (avessi saputo). The conditional never goes in the if-clause.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Se avrei saputo prima, sarei venuto.",
+        "note": "WRONG: conditional in the if-clause. The signature 'se avrei' error."
+      }
+    ]
   },
   {
     "external_id": "trans_cong_en_it_trap_02",
@@ -1247,12 +1247,6 @@
         "text": "Pensavo che Maria fosse uscita con le sue amiche.",
         "register": "neutral",
         "notes": "pensavo for credevo, le sue amiche for gli amici; equivalent."
-      },
-      {
-        "text": "Credevo che Maria era uscita con gli amici.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: imperfect indicative auxiliary era. The defining trapassato miss."
       }
     ],
     "topic": "verb_form.congiuntivo",
@@ -1287,7 +1281,13 @@
       }
     ],
     "explanation": "A past main clause plus an earlier action gives the trapassato subjunctive: the imperfect subjunctive of the auxiliary (fosse) plus the participle, which agrees with Maria under essere: uscita.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Credevo che Maria era uscita con gli amici.",
+        "note": "WRONG: imperfect indicative auxiliary era. The defining trapassato miss."
+      }
+    ]
   },
   {
     "external_id": "trans_cong_en_it_trap_03",
@@ -1354,12 +1354,6 @@
         "text": "Che se la sbrighi da solo, allora!",
         "register": "colloquial",
         "notes": "Idiomatic alternative (sbrigarsela); still the exhortative subjunctive."
-      },
-      {
-        "text": "Che lo fa lui, allora!",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: indicative fa in the exhortative. The defining miss."
       }
     ],
     "topic": "verb_form.congiuntivo",
@@ -1385,7 +1379,13 @@
       }
     ],
     "explanation": "Italian has no third-person imperative, so 'let him do it' is che + the present subjunctive: Che lo faccia. The indicative fa is wrong here.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Che lo fa lui, allora!",
+        "note": "WRONG: indicative fa in the exhortative. The defining miss."
+      }
+    ]
   },
   {
     "external_id": "trans_cong_en_it_use_exh_02",
@@ -1444,12 +1444,6 @@
         "text": "Se solo fosse vero!",
         "register": "neutral",
         "notes": "Se solo, an equivalent optative opener."
-      },
-      {
-        "text": "Magari è vero!",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: indicative è. Magari with the indicative means 'maybe', not a wish; the wish needs fosse."
       }
     ],
     "topic": "verb_form.congiuntivo",
@@ -1475,7 +1469,13 @@
       }
     ],
     "explanation": "A wish about something not real takes Magari + the imperfect subjunctive: Magari fosse vero. With the indicative (Magari è vero) the sense flips to 'maybe it's true'.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Magari è vero!",
+        "note": "WRONG: indicative è. Magari with the indicative means 'maybe', not a wish; the wish needs fosse."
+      }
+    ]
   },
   {
     "external_id": "trans_cong_en_it_use_opt_02",
@@ -1534,12 +1534,6 @@
         "text": "Se solo mi avessi ascoltato!",
         "register": "neutral",
         "notes": "Se solo variant."
-      },
-      {
-        "text": "Magari mi avresti ascoltato!",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: conditional avresti. A past wish/regret takes the trapassato subjunctive, not the conditional."
       }
     ],
     "topic": "verb_form.congiuntivo",
@@ -1565,7 +1559,13 @@
       }
     ],
     "explanation": "A regret about the past takes the trapassato subjunctive: Magari avessi ascoltato (imperfect subjunctive of avere + participle). The present wish would be the imperfect subjunctive; the past one is the compound.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Magari mi avresti ascoltato!",
+        "note": "WRONG: conditional avresti. A past wish/regret takes the trapassato subjunctive, not the conditional."
+      }
+    ]
   },
   {
     "external_id": "trans_cong_en_it_use_fix_01",

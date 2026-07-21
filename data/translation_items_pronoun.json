@@ -75,12 +75,6 @@
         "text": "Ieri Anna l'ha visto al cinema.",
         "register": "neutral",
         "notes": "Fronted time adverbial."
-      },
-      {
-        "text": "Anna lo ha visto al cinema ieri.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG in standard register: 'lo ha' must elide to 'l'ha'."
       }
     ],
     "topic": "pronoun",
@@ -127,7 +121,13 @@
       }
     ],
     "explanation": "Vedere is transitive, so 'him' is the direct object. The m.sg DOP is lo, which undergoes elision to l' before ho/ha/hai. With a preceding-DOP cluster the participle agrees: m.sg → visto. Stack: l' + ha + visto.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Anna lo ha visto al cinema ieri.",
+        "note": "WRONG in standard register: 'lo ha' must elide to 'l'ha'."
+      }
+    ]
   },
   {
     "external_id": "trans_op_en_it_03",
@@ -676,12 +676,6 @@
         "text": "Hai mangiato le mele? Sì, ne ho mangiate tre.",
         "register": "neutral",
         "notes": "Partitive ne triggers participle agreement with the implicit antecedent (le mele, f.pl) → mangiate."
-      },
-      {
-        "text": "Hai mangiato le mele? Sì, ne ho mangiato tre.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG in standard register: agreement is expected with partitive ne."
       }
     ],
     "topic": "pronoun",
@@ -716,7 +710,13 @@
       }
     ],
     "explanation": "The partitive ne carries the gender and number of its antecedent (le mele, f.pl) through to participle agreement, exactly parallel to the preceding-DOP rule. Stack: ne + ho + mangiate (f.pl). The invariable 'ne ho mangiato' is the common error and is rejected.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Hai mangiato le mele? Sì, ne ho mangiato tre.",
+        "note": "WRONG in standard register: agreement is expected with partitive ne."
+      }
+    ]
   },
   {
     "external_id": "trans_op_en_it_15",
@@ -1109,12 +1109,6 @@
         "text": "Lo so.",
         "register": "neutral",
         "notes": "Neuter lo replaces the clause. Stock response."
-      },
-      {
-        "text": "So.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG (or at best very marked): the lo is obligatory as resumption."
       }
     ],
     "topic": "pronoun",
@@ -1138,7 +1132,13 @@
       }
     ],
     "explanation": "When 'it' refers back to a whole clause (a fact, a piece of information), Italian uses the neuter lo. The lo is obligatory with verbs like sapere, pensare, credere: 'So' alone isn't grammatical; 'Lo so' is.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "So.",
+        "note": "WRONG (or at best very marked): the lo is obligatory as resumption."
+      }
+    ]
   },
   {
     "external_id": "trans_op_en_it_24",
@@ -2836,12 +2836,6 @@
         "text": "Il film ti e' piaciuto?",
         "register": "neutral",
         "notes": "Fronted subject for emphasis, same structure."
-      },
-      {
-        "text": "Ti ha piaciuto il film?",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: piacere in compound tenses takes essere, never avere."
       }
     ],
     "topic": "pronoun",
@@ -2879,7 +2873,13 @@
       }
     ],
     "explanation": "Italian piacere inverts the English argument frame: the liked thing is the grammatical subject and the liker becomes an indirect object. In the passato prossimo piacere is a piacere-family verb, so it takes essere and the participle agrees with the grammatical subject. Stack: ti + e' + piaciuto (m.sg to match 'il film').",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Ti ha piaciuto il film?",
+        "note": "WRONG: piacere in compound tenses takes essere, never avere."
+      }
+    ]
   },
   {
     "external_id": "trans_op_en_it_45",
@@ -3134,12 +3134,6 @@
         "text": "Anna vuole lavarsi le mani, ma non se le lava mai per bene.",
         "register": "neutral",
         "notes": "Slight register lift with 'per bene'."
-      },
-      {
-        "text": "Anna vuole lavarsi le mani, ma non si le lava mai bene.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: si must change to se before another clitic (vowel change rule)."
       }
     ],
     "topic": "pronoun",
@@ -3177,7 +3171,13 @@
       }
     ],
     "explanation": "A reflexive verb can co-occur with a direct-object pronoun (the body part or possession being acted on). The reflexive plus DOP cluster undergoes a vowel change: 3sg reflexive si becomes se before another clitic, giving se + le for f.pl 'them (the hands)'. Stack: se + le + lava. The cluster sits pre-verb because lava is finite.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Anna vuole lavarsi le mani, ma non si le lava mai bene.",
+        "note": "WRONG: si must change to se before another clitic (vowel change rule)."
+      }
+    ]
   },
   {
     "external_id": "trans_op_en_it_49",
@@ -3194,12 +3194,6 @@
         "text": "Le lettere, le ho gia' lette tutte.",
         "register": "neutral",
         "notes": "Comma variant, same structure."
-      },
-      {
-        "text": "Le lettere? Le ho gia' letto tutte.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: the preceding DOP le (f.pl) triggers agreement letto -> lette; leaving letto invariant is a common mistake."
       }
     ],
     "topic": "pronoun",
@@ -3237,6 +3231,12 @@
       }
     ],
     "explanation": "Italian frequently fronts a definite object as a topic and resumes it inside the clause with a matching clitic; this is left dislocation with clitic resumption. The resuming clitic (here f.pl le) is a preceding direct-object pronoun, so it triggers passato prossimo participle agreement: letto -> lette. Stack: le + ho + gia' + lette.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Le lettere? Le ho gia' letto tutte.",
+        "note": "WRONG: the preceding DOP le (f.pl) triggers agreement letto -> lette; leaving letto invariant is a common mistake."
+      }
+    ]
   }
 ]

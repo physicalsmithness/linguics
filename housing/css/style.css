@@ -1367,12 +1367,12 @@ body.strand-vocab-active #live-stats { display: none; }
 
 /* Quiet 30-day practice grid (Smith 2026-07-20): 6x5, one cell per day,
    newest bottom-right; today gets a faint ring. Deliberately undemonstrative. */
-#streak-host { display: inline-flex; align-items: center; gap: 8px; margin-left: 12px; }
-.streak-grid { display: grid; grid-template-columns: repeat(6, 7px); grid-auto-rows: 7px; gap: 2px; }
+#streak-host { display: inline-flex; align-items: center; gap: 8px; margin-left: 12px; margin-top: 4px; }
+.streak-grid { display: grid; grid-template-columns: repeat(6, 6px); grid-auto-rows: 6px; gap: 2px; }
 .streak-day { background: #e9e5d8; border-radius: 1.5px; }
 .streak-day.did { background: var(--accent); opacity: 0.55; }
 .streak-day.today { box-shadow: 0 0 0 1px var(--accent); }
-.streak-label { font-size: 11px; color: var(--muted); white-space: nowrap; }
+.streak-label { font-size: 10px; color: var(--muted); white-space: nowrap; }
 
 /* Inline segment lines (live_round2 ask 2): operand quotes flow with their
    instruction; the italian styling still marks them out within the line. */

@@ -6,9 +6,12 @@ waiting: parked
 needs_from_smith: none
 blocked_by:
 claude_can_verify: yes
-summary: Volume dispatch, wave 2 delivered (+23 irregular-depth). Wave 1 accepted by Architecture's harness. Formation 91 -> 144; ~35 more (wave 3, regular breadth) to hit the doubling target. Continuing unless redirected.
+summary: Volume dispatch COMPLETE for present_indicative - 3 waves, formation 91->168 (1.85x), every person-band populated + orthographic hypercorrection catchers. Wave 1 accepted; waves 2/3 awaiting the central harness. Nothing owed to Smith.
 queue:
-  - VOLUME WAVE (approved): wave 1 ACCEPTED, wave 2 delivered (144 formation items, grid near-full).
-    Wave 3 = regular-class breadth + light depth (~35). [inter_chat/Architecture_PresentFormationAuthor_volume_wave.md v3]
-  - lemma-retrieval pilot: parallel strand, blocked on Housing (loud help + credit-only engine); Smith A/B fork open, lower priority. [pilot thread v5; Housing thread v2]
-  - all retrofit stamps CLOSED. Nothing owed to Smith.
+  - VOLUME WAVE (approved) COMPLETE: waves 1(accepted)/2/3 delivered, 168 formation items. Awaiting
+    Architecture harness on waves 2-3. [inter_chat/Architecture_PresentFormationAuthor_volume_wave.md v4]
+  - lemma-retrieval pilot: parallel strand, blocked on Housing (loud help + credit-only formation engine
+    mandate; Smith's vocab-ping confirmation recorded). Smith A/B fork still open, low priority.
+  - FLAGGED to Architecture (not mine to implement): Smith's spelling-asymmetry - orthography buckets
+    should be miss-weighted (correct spelling shouldn't inflate mastery). Bucket-semantics/Housing call.
+  - all retrofit stamps CLOSED. Nothing owed.

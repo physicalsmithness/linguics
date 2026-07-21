@@ -66,12 +66,6 @@
         "text": "Ci sono tre uova nel frigo.",
         "register": "neutral",
         "notes": "Order variation, equally natural."
-      },
-      {
-        "text": "Nel frigo c'è tre uova.",
-        "register": "neutral",
-        "notes": "WRONG: tre uova is plural, so ci sono, not c'è.",
-        "polarity": "negative"
       }
     ],
     "topic": "existential",
@@ -105,7 +99,13 @@
       }
     ],
     "explanation": "'Ci sono tre uova' uses the plural existential because tre uova is plural. The existential esserci agrees with the things counted, so three eggs force ci sono.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Nel frigo c'è tre uova.",
+        "note": "WRONG: tre uova is plural, so ci sono, not c'è."
+      }
+    ]
   },
   {
     "external_id": "trans_ex_en_it_pl_02",
@@ -122,12 +122,6 @@
         "text": "In agosto ci sono tanti turisti.",
         "register": "neutral",
         "notes": "tanti for molti, same sense."
-      },
-      {
-        "text": "In agosto c'è molti turisti.",
-        "register": "neutral",
-        "notes": "WRONG: molti turisti is plural, so ci sono.",
-        "polarity": "negative"
       }
     ],
     "topic": "existential",
@@ -161,7 +155,13 @@
       }
     ],
     "explanation": "'Ci sono molti turisti' keeps the plural existential even though English says 'there is a lot of'. Italian counts the things: many tourists are plural, so ci sono.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "In agosto c'è molti turisti.",
+        "note": "WRONG: molti turisti is plural, so ci sono."
+      }
+    ]
   },
   {
     "external_id": "trans_ex_en_it_neg_01",
@@ -218,12 +218,6 @@
         "text": "In ufficio non c'è nessuno.",
         "register": "neutral",
         "notes": "Place fronted, equally natural."
-      },
-      {
-        "text": "Non ci sono nessuno in ufficio.",
-        "register": "neutral",
-        "notes": "WRONG: nessuno keeps the existential singular: non c'è nessuno.",
-        "polarity": "negative"
       }
     ],
     "topic": "existential",
@@ -257,7 +251,13 @@
       }
     ],
     "explanation": "'Non c'è nessuno' keeps the existential singular with nessuno, even though 'nobody' feels like many. Non goes before the cluster and the verb does not turn plural.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Non ci sono nessuno in ufficio.",
+        "note": "WRONG: nessuno keeps the existential singular: non c'è nessuno."
+      }
+    ]
   },
   {
     "external_id": "trans_ex_en_it_q_01",
@@ -311,12 +311,6 @@
         "text": "C'erano due lettere per te.",
         "register": "neutral",
         "notes": "Standard imperfetto; plural things take c'erano."
-      },
-      {
-        "text": "C'era due lettere per te.",
-        "register": "neutral",
-        "notes": "WRONG: two letters are plural, so c'erano.",
-        "polarity": "negative"
       }
     ],
     "topic": "existential",
@@ -340,7 +334,13 @@
       }
     ],
     "explanation": "'C'erano due lettere' uses the plural past existential: the imperfetto of esserci agrees in number, so two letters give c'erano, not c'era.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "C'era due lettere per te.",
+        "note": "WRONG: two letters are plural, so c'erano."
+      }
+    ]
   },
   {
     "external_id": "trans_ex_en_it_past_02",
@@ -352,12 +352,6 @@
         "text": "Ieri c'è stato un incidente su questa strada.",
         "register": "neutral",
         "notes": "Standard; a completed event takes the passato prossimo c'è stato."
-      },
-      {
-        "text": "Ieri c'era un incidente su questa strada.",
-        "register": "neutral",
-        "notes": "WRONG here: a single completed event is c'è stato, not the ongoing c'era.",
-        "polarity": "negative"
       }
     ],
     "topic": "existential",
@@ -393,7 +387,13 @@
       }
     ],
     "explanation": "'Ieri c'è stato un incidente' treats the accident as one completed event, so the existential is the passato prossimo c'è stato, built with essere. The imperfetto c'era would describe an ongoing background, not the one-off event.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Ieri c'era un incidente su questa strada.",
+        "note": "WRONG here: a single completed event is c'è stato, not the ongoing c'era."
+      }
+    ]
   },
   {
     "external_id": "trans_ex_it_en_past_03",
@@ -460,12 +460,6 @@
         "text": "Sul tavolo c'è un libro.",
         "register": "neutral",
         "notes": "Place fronted, equally natural."
-      },
-      {
-        "text": "Un libro è sul tavolo.",
-        "register": "neutral",
-        "notes": "WRONG: introducing a new indefinite thing takes c'è, not a fronted bare è.",
-        "polarity": "negative"
       }
     ],
     "topic": "existential",
@@ -501,7 +495,13 @@
       }
     ],
     "explanation": "'C'è un libro sul tavolo' introduces a new, indefinite thing, so Italian uses the existential c'è. The calque 'Un libro è sul tavolo' wrongly treats the new book as a known subject to locate.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Un libro è sul tavolo.",
+        "note": "WRONG: introducing a new indefinite thing takes c'è, not a fronted bare è."
+      }
+    ]
   },
   {
     "external_id": "trans_ex_en_it_vsess_02",
@@ -513,12 +513,6 @@
         "text": "Il libro è sul tavolo.",
         "register": "neutral",
         "notes": "Standard; a known, definite thing is located with plain essere."
-      },
-      {
-        "text": "C'è il libro sul tavolo.",
-        "register": "neutral",
-        "notes": "WRONG as a locating sentence: a known, definite book is located with è; c'è il libro only works as a separate 'the book is available' reading.",
-        "polarity": "negative"
       }
     ],
     "topic": "existential",
@@ -554,7 +548,13 @@
       }
     ],
     "explanation": "'Il libro è sul tavolo' locates a known, definite thing, so Italian uses plain essere with the book as subject. This is the mirror of the existential: c'è introduces new things, è places known ones. (Colloquially c'è il libro can mean 'the book is available', a different reading, so context decides.)",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "C'è il libro sul tavolo.",
+        "note": "WRONG as a locating sentence: a known, definite book is located with è; c'è il libro only works as a separate 'the book is available' reading."
+      }
+    ]
   },
   {
     "external_id": "trans_ex_en_it_vsess_03",
@@ -614,12 +614,6 @@
         "text": "Ci sono due errori nel testo.",
         "register": "neutral",
         "notes": "Standard; new indefinite plural things take ci sono."
-      },
-      {
-        "text": "Due errori sono nel testo.",
-        "register": "neutral",
-        "notes": "WRONG: new information is introduced with ci sono, not a fronted bare sono.",
-        "polarity": "negative"
       }
     ],
     "topic": "existential",
@@ -656,7 +650,13 @@
       }
     ],
     "explanation": "'Ci sono due errori nel testo' introduces new, indefinite things, so the existential is used, plural ci sono. The bare-sono calque wrongly treats the new mistakes as a known subject.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Due errori sono nel testo.",
+        "note": "WRONG: new information is introduced with ci sono, not a fronted bare sono."
+      }
+    ]
   },
   {
     "external_id": "trans_ex_it_en_vsess_05",
@@ -768,12 +768,6 @@
         "text": "Ecco a te il caffè!",
         "register": "neutral",
         "notes": "Colloquial variant with a te."
-      },
-      {
-        "text": "C'è il tuo caffè!",
-        "register": "neutral",
-        "notes": "WRONG for handing it over: that states the coffee exists somewhere, losing the here-you-go sense.",
-        "polarity": "negative"
       }
     ],
     "topic": "existential",
@@ -797,7 +791,13 @@
       }
     ],
     "explanation": "'Ecco il tuo caffè!' presents something in the moment, so Italian uses ecco, not the existential c'è. Ecco points and hands over; c'è would merely report that coffee exists.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "C'è il tuo caffè!",
+        "note": "WRONG for handing it over: that states the coffee exists somewhere, losing the here-you-go sense."
+      }
+    ]
   },
   {
     "external_id": "trans_ex_it_en_vsecco_02",
@@ -971,12 +971,6 @@
         "text": "Nel cappuccino ci sono latte e caffè.",
         "register": "neutral",
         "notes": "Standard; two things joined by e take the plural ci sono."
-      },
-      {
-        "text": "Nel cappuccino c'è latte e caffè.",
-        "register": "neutral",
-        "notes": "WRONG: latte and caffè joined by e count as more than one, so ci sono.",
-        "polarity": "negative"
       }
     ],
     "topic": "existential",
@@ -1010,6 +1004,12 @@
       }
     ],
     "explanation": "'Ci sono latte e caffè' uses the plural existential because two things joined by e count as more than one, even though latte and caffè are each uncountable singulars.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Nel cappuccino c'è latte e caffè.",
+        "note": "WRONG: latte and caffè joined by e count as more than one, so ci sono."
+      }
+    ]
   }
 ]

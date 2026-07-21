@@ -9,12 +9,6 @@
         "text": "Domani parlerò con il direttore.",
         "register": "neutral",
         "notes": "Standard. Subject pronoun dropped, the natural default."
-      },
-      {
-        "text": "Domani parlarò con il direttore.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: keeps the -are a instead of shifting to e. Guards against the commonest regular-future slip."
       }
     ],
     "topic": "verb_form.future",
@@ -48,7 +42,13 @@
       }
     ],
     "explanation": "Parlare is a regular -are verb, so its future shifts the theme vowel a to e: parler- plus the io ending -ò gives parlerò. 'Domani' (tomorrow) fixes the future. Italian normally drops the subject pronoun, so parlerò alone already means 'I will speak'.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Domani parlarò con il direttore.",
+        "note": "WRONG: keeps the -are a instead of shifting to e. Guards against the commonest regular-future slip."
+      }
+    ]
   },
   {
     "external_id": "trans_fut_en_it_are_02",
@@ -65,12 +65,6 @@
         "text": "L'anno prossimo loro lavoreranno in centro.",
         "register": "neutral",
         "notes": "Subject pronoun loro included for emphasis."
-      },
-      {
-        "text": "L'anno prossimo lavorerano in centro.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: single n in the 3pl ending; it must be -anno."
       }
     ],
     "topic": "verb_form.future",
@@ -94,7 +88,13 @@
       }
     ],
     "explanation": "Lavorare shifts a to e and takes the loro ending -anno with its double n: lavoreranno. 'L'anno prossimo' (next year) fixes the future.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "L'anno prossimo lavorerano in centro.",
+        "note": "WRONG: single n in the 3pl ending; it must be -anno."
+      }
+    ]
   },
   {
     "external_id": "trans_fut_en_it_ere_01",
@@ -106,12 +106,6 @@
         "text": "Prenderò il treno delle nove.",
         "register": "neutral",
         "notes": "Standard."
-      },
-      {
-        "text": "Prendrò il treno delle nove.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: prendere is regular in the future and must not be syncopated; the e stays."
       }
     ],
     "topic": "verb_form.future",
@@ -145,7 +139,13 @@
       }
     ],
     "explanation": "A regular -ere verb keeps its theme vowel e (no shift) and adds -ò: prenderò. The contraction prendrò belongs only to the irregular syncopated set (avrò, vedrò), not to a regular -ere verb.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Prendrò il treno delle nove.",
+        "note": "WRONG: prendere is regular in the future and must not be syncopated; the e stays."
+      }
+    ]
   },
   {
     "external_id": "trans_fut_en_it_ere_02",
@@ -207,12 +207,6 @@
         "text": "Con il tempo capirai tutto.",
         "register": "neutral",
         "notes": "Standard."
-      },
-      {
-        "text": "Con il tempo capiscirai tutto.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: the present's -isc- insert does not appear in the future."
       }
     ],
     "topic": "verb_form.future",
@@ -236,7 +230,13 @@
       }
     ],
     "explanation": "Capire takes -isc- in the present (capisco) but never in the future: the stem is simply capir-, giving capirai for tu. Carrying the insert across (capiscirai) is the slip to avoid.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Con il tempo capiscirai tutto.",
+        "note": "WRONG: the present's -isc- insert does not appear in the future."
+      }
+    ]
   },
   {
     "external_id": "trans_fut_en_it_orth_cg_01",
@@ -248,12 +248,6 @@
         "text": "Domani cercherò un nuovo lavoro.",
         "register": "neutral",
         "notes": "Standard."
-      },
-      {
-        "text": "Domani cercerò un nuovo lavoro.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: -care needs an h before the future -er- to keep the hard c."
       }
     ],
     "topic": "verb_form.future",
@@ -287,7 +281,13 @@
       }
     ],
     "explanation": "Cercare ends in -care, where the c is hard. The future ending starts with e, so an h is inserted to keep the hard sound: cercherò. Without the h (cercerò) the c would soften.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Domani cercerò un nuovo lavoro.",
+        "note": "WRONG: -care needs an h before the future -er- to keep the hard c."
+      }
+    ]
   },
   {
     "external_id": "trans_fut_en_it_orth_cig_01",
@@ -299,12 +299,6 @@
         "text": "L'estate prossima viaggeremo in Asia.",
         "register": "neutral",
         "notes": "Standard."
-      },
-      {
-        "text": "L'estate prossima viaggieremo in Asia.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: -giare drops the redundant i before the future -er-."
       }
     ],
     "topic": "verb_form.future",
@@ -328,7 +322,13 @@
       }
     ],
     "explanation": "Viaggiare ends in -giare; the i only softened the g in the infinitive, and the future e does that job, so the i is dropped: viaggeremo. Keeping it (viaggieremo) is the typical miss.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "L'estate prossima viaggieremo in Asia.",
+        "note": "WRONG: -giare drops the redundant i before the future -er-."
+      }
+    ]
   },
   {
     "external_id": "trans_fut_en_it_irr_sync_01",
@@ -340,12 +340,6 @@
         "text": "Domani avrò più tempo libero.",
         "register": "neutral",
         "notes": "Standard."
-      },
-      {
-        "text": "Domani averò più tempo libero.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: avere syncopates to avr-; the theme vowel drops."
       }
     ],
     "topic": "verb_form.future",
@@ -369,7 +363,13 @@
       }
     ],
     "explanation": "Avere is syncopated in the future: the theme vowel drops, giving the stem avr- and then -ò: avrò. Keeping the vowel (averò) is the slip. This same avrò is also the auxiliary for the futuro anteriore.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Domani averò più tempo libero.",
+        "note": "WRONG: avere syncopates to avr-; the theme vowel drops."
+      }
+    ]
   },
   {
     "external_id": "trans_fut_en_it_irr_sync_02",
@@ -381,12 +381,6 @@
         "text": "Non potranno venire.",
         "register": "neutral",
         "notes": "Standard. potere syncopated (potr-) + venire double-r is incidental here."
-      },
-      {
-        "text": "Non poteranno venire.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: potere syncopates to potr-; the theme vowel drops."
       }
     ],
     "topic": "verb_form.future",
@@ -423,7 +417,13 @@
     ],
     "explanation": "Potere syncopates to the stem potr- and takes the loro ending -anno: potranno. The infinitive venire that follows stays in its dictionary form, so only potere is conjugated here.",
     "examiner_note": "The required skill is potere's syncope; venire's double-r future is optional (it appears only if the learner expands the infinitive, which they should not).",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Non poteranno venire.",
+        "note": "WRONG: potere syncopates to potr-; the theme vowel drops."
+      }
+    ]
   },
   {
     "external_id": "trans_fut_en_it_irr_sync_03",
@@ -435,12 +435,6 @@
         "text": "Dovremo partire presto.",
         "register": "neutral",
         "notes": "Standard."
-      },
-      {
-        "text": "Doveremo partire presto.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: dovere syncopates to dovr-; the theme vowel drops."
       }
     ],
     "topic": "verb_form.future",
@@ -474,7 +468,13 @@
       }
     ],
     "explanation": "Dovere syncopates to the stem dovr- and takes the noi ending -emo: dovremo. The infinitive partire that follows is not conjugated.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Doveremo partire presto.",
+        "note": "WRONG: dovere syncopates to dovr-; the theme vowel drops."
+      }
+    ]
   },
   {
     "external_id": "trans_fut_en_it_irr_rr_01",
@@ -486,12 +486,6 @@
         "text": "Verrà alla festa con noi.",
         "register": "neutral",
         "notes": "Standard. Subject pronoun dropped."
-      },
-      {
-        "text": "Verà alla festa con noi.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: venire assimilates to verr-; a single r is the classic slip."
       }
     ],
     "topic": "verb_form.future",
@@ -525,7 +519,13 @@
       }
     ],
     "explanation": "Venire is a double-r verb in the future: the stem assimilates to verr- and takes -à, giving verrà. The doubled r is the signature; a single r (verà) is the miss. The accent on -à is obligatory. Note 'alla' = a + la.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Verà alla festa con noi.",
+        "note": "WRONG: venire assimilates to verr-; a single r is the classic slip."
+      }
+    ]
   },
   {
     "external_id": "trans_fut_en_it_irr_rr_02",
@@ -537,12 +537,6 @@
         "text": "Vorrò sapere tutta la verità.",
         "register": "neutral",
         "notes": "Standard."
-      },
-      {
-        "text": "Vorò sapere tutta la verità.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: volere assimilates to vorr-; a single r is the slip."
       }
     ],
     "topic": "verb_form.future",
@@ -576,7 +570,13 @@
       }
     ],
     "explanation": "Volere is a double-r verb: the stem assimilates to vorr- and takes -ò, giving vorrò. The infinitive sapere that follows is not conjugated. The doubled r is the whole point; vorò is the miss.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Vorò sapere tutta la verità.",
+        "note": "WRONG: volere assimilates to vorr-; a single r is the slip."
+      }
+    ]
   },
   {
     "external_id": "trans_fut_en_it_irr_ess_01",
@@ -588,12 +588,6 @@
         "text": "Domani sarò a casa tutto il giorno.",
         "register": "neutral",
         "notes": "Standard."
-      },
-      {
-        "text": "Domani esserò a casa tutto il giorno.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: essere uses the suppletive stem sar-, not a stem built from the infinitive."
       }
     ],
     "topic": "verb_form.future",
@@ -617,7 +611,13 @@
       }
     ],
     "explanation": "Essere has the suppletive future stem sar-, which you cannot derive from the infinitive, then the regular endings: sarò. Building from the infinitive (esserò) is the natural but wrong move. The accent on -ò is obligatory.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Domani esserò a casa tutto il giorno.",
+        "note": "WRONG: essere uses the suppletive stem sar-, not a stem built from the infinitive."
+      }
+    ]
   },
   {
     "external_id": "trans_fut_en_it_irr_ess_02",
@@ -629,12 +629,6 @@
         "text": "I bambini saranno stanchi dopo il viaggio.",
         "register": "neutral",
         "notes": "Standard. stanchi is the masculine plural of stanco (note the h)."
-      },
-      {
-        "text": "I bambini esseranno stanchi dopo il viaggio.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: essere uses the suppletive stem sar-."
       }
     ],
     "topic": "verb_form.future",
@@ -668,7 +662,13 @@
       }
     ],
     "explanation": "I bambini is they, so essere's suppletive stem sar- takes the loro ending -anno: saranno. The infinitive-built esseranno is the slip.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "I bambini esseranno stanchi dopo il viaggio.",
+        "note": "WRONG: essere uses the suppletive stem sar-."
+      }
+    ]
   },
   {
     "external_id": "trans_fut_en_it_irr_dsf_01",
@@ -680,12 +680,6 @@
         "text": "Domani farò i compiti.",
         "register": "neutral",
         "notes": "Standard. Italian uses the definite article i, not a possessive, for one's own homework."
-      },
-      {
-        "text": "Domani ferò i compiti.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: fare keeps -ar- and does not take the -are a-to-e shift."
       }
     ],
     "topic": "verb_form.future",
@@ -719,7 +713,13 @@
       }
     ],
     "explanation": "Fare keeps -ar- in the future, against the usual -are shift: far- plus -ò gives farò. Applying the shift (ferò) over-generalises the regular rule. Contrast with parlerò, where the shift IS required.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Domani ferò i compiti.",
+        "note": "WRONG: fare keeps -ar- and does not take the -are a-to-e shift."
+      }
+    ]
   },
   {
     "external_id": "trans_fut_en_it_irr_dsf_02",
@@ -731,12 +731,6 @@
         "text": "Ti darà una mano con il trasloco.",
         "register": "neutral",
         "notes": "Standard. 'dare una mano' = to give a hand / to help."
-      },
-      {
-        "text": "Ti derà una mano con il trasloco.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: dare keeps -ar- and does not take the -are a-to-e shift."
       }
     ],
     "topic": "verb_form.future",
@@ -770,7 +764,13 @@
       }
     ],
     "explanation": "Dare keeps -ar- against the usual -are shift: dar- plus -à gives darà. Shifting the vowel (derà) treats dare like an ordinary -are verb, which here it is not. The accent on -à is obligatory.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Ti derà una mano con il trasloco.",
+        "note": "WRONG: dare keeps -ar- and does not take the -are a-to-e shift."
+      }
+    ]
   },
   {
     "external_id": "trans_fut_en_it_fant_01",
@@ -782,12 +782,6 @@
         "text": "Quando arriverai, avrò già finito.",
         "register": "neutral",
         "notes": "Standard. Subject pronoun dropped."
-      },
-      {
-        "text": "Quando arriverai, finirò già.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: the simple future says 'I will finish', not 'I will have finished'; the action completed before another future point needs the futuro anteriore."
       }
     ],
     "topic": "verb_form.future",
@@ -824,7 +818,13 @@
     ],
     "explanation": "The action finished before another future moment is the futuro anteriore: the future of avere (avrò) plus the participle finito gives avrò finito. The subordinate clause uses the simple future (arriverai). Two future tenses sit side by side: the simple future for the later event, the compound for the one already over.",
     "examiner_note": "arrivare's simple future in the 'quando' clause is optional; the required skill is the futuro anteriore.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Quando arriverai, finirò già.",
+        "note": "WRONG: the simple future says 'I will finish', not 'I will have finished'; the action completed before another future point needs the futuro anteriore."
+      }
+    ]
   },
   {
     "external_id": "trans_fut_en_it_fant_02",
@@ -836,18 +836,6 @@
         "text": "Quando tornerai, Maria sarà già partita.",
         "register": "neutral",
         "notes": "Standard. essere auxiliary, participle agrees with feminine singular Maria."
-      },
-      {
-        "text": "Quando tornerai, Maria sarà già partito.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: with essere the participle must agree with the feminine subject (partita, not partito)."
-      },
-      {
-        "text": "Quando tornerai, Maria avrà già partito.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: partire is a motion verb and takes essere, not avere."
       }
     ],
     "topic": "verb_form.future",
@@ -884,7 +872,17 @@
       }
     ],
     "explanation": "The futuro anteriore of partire uses essere (a motion verb): the future of essere (sarà) plus the participle gives the compound. With essere the participle agrees with the subject, and Maria is feminine singular, so it is sarà partita. Using avere (avrà partito) or a non-agreeing participle (sarà partito) are the two misses.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Quando tornerai, Maria sarà già partito.",
+        "note": "WRONG: with essere the participle must agree with the feminine subject (partita, not partito)."
+      },
+      {
+        "text": "Quando tornerai, Maria avrà già partito.",
+        "note": "WRONG: partire is a motion verb and takes essere, not avere."
+      }
+    ]
   },
   {
     "external_id": "trans_fut_en_it_fant_03",
@@ -896,12 +894,6 @@
         "text": "Per domani mattina le ragazze saranno arrivate.",
         "register": "neutral",
         "notes": "Standard. essere auxiliary, participle agrees with feminine plural le ragazze."
-      },
-      {
-        "text": "Per domani mattina le ragazze saranno arrivati.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: the participle must agree feminine plural (arrivate, not arrivati)."
       }
     ],
     "topic": "verb_form.future",
@@ -938,7 +930,13 @@
       }
     ],
     "explanation": "The futuro anteriore of arrivare uses essere: the future of essere (saranno) plus the participle gives the compound. With essere the participle agrees with the subject, and le ragazze is feminine plural, so it is saranno arrivate.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Per domani mattina le ragazze saranno arrivati.",
+        "note": "WRONG: the participle must agree feminine plural (arrivate, not arrivati)."
+      }
+    ]
   },
   {
     "external_id": "trans_fu_en_it_prob_01",
@@ -955,12 +953,6 @@
         "text": "Ormai saranno le tre.",
         "register": "neutral",
         "notes": "Adverb fronted; same meaning."
-      },
-      {
-        "text": "Sono le tre ormai.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG for the meaning: the present states the time as a fact, losing the 'must be / probably' guess that the future carries."
       }
     ],
     "topic": "verb_form.future",
@@ -984,7 +976,13 @@
       }
     ],
     "explanation": "'Must be / probably' about the present is the future of probability in Italian: 'saranno le tre' = 'it's probably three'. The present 'sono le tre' would assert the time as known fact; the English 'must be' signals a guess, so Italian takes the future.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Sono le tre ormai.",
+        "note": "WRONG for the meaning: the present states the time as a fact, losing the 'must be / probably' guess that the future carries."
+      }
+    ]
   },
   {
     "external_id": "trans_fu_it_en_prob_01",
@@ -1001,12 +999,6 @@
         "text": "He's probably tired after such a long journey.",
         "register": "neutral",
         "notes": "'probably' captures the same supposition."
-      },
-      {
-        "text": "He will be tired after such a long trip.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG reading: a literal future misses the point. 'Sarà' here is a guess about the present, not a prediction about the future."
       }
     ],
     "topic": "verb_form.future",
@@ -1040,7 +1032,13 @@
       }
     ],
     "explanation": "This item tests reading the future of probability, not producing it: 'sarà stanco' is a guess about the present ('he must be / is probably tired'), so the natural English is 'must be' or 'probably', not the literal 'he will be'.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "He will be tired after such a long trip.",
+        "note": "WRONG reading: a literal future misses the point. 'Sarà' here is a guess about the present, not a prediction about the future."
+      }
+    ]
   },
   {
     "external_id": "trans_fu_en_it_prob_02",
@@ -1052,12 +1050,6 @@
         "text": "Saranno già partiti, la casa è buia.",
         "register": "neutral",
         "notes": "Standard. Past guess = futuro anteriore; partire takes essere, participle agrees (partiti)."
-      },
-      {
-        "text": "Sono già partiti, la casa è buia.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG for the meaning: the passato prossimo states it as fact and drops the 'probably' guess the futuro anteriore carries."
       }
     ],
     "topic": "verb_form.future",
@@ -1083,7 +1075,13 @@
       }
     ],
     "explanation": "A guess about a completed past uses the futuro anteriore: 'saranno già partiti' = 'they've probably already left'. Partire takes essere, so the participle agrees (partiti). The passato prossimo 'sono partiti' would state it as known; the compound future marks the inference.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Sono già partiti, la casa è buia.",
+        "note": "WRONG for the meaning: the passato prossimo states it as fact and drops the 'probably' guess the futuro anteriore carries."
+      }
+    ]
   },
   {
     "external_id": "trans_fu_en_it_cmd_01",
@@ -1145,12 +1143,6 @@
         "text": "Finirai le verdure prima di alzarti da tavola!",
         "register": "neutral",
         "notes": "Standard emphatic future as a parental command."
-      },
-      {
-        "text": "Finisci le verdure prima di alzarti da tavola!",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "Not wrong Italian, but it renders a plain imperative; the English 'You'll finish' is the emphatic future, firmer than the imperative."
       }
     ],
     "topic": "verb_form.future",
@@ -1184,7 +1176,13 @@
       }
     ],
     "explanation": "'You'll finish' as an insistent order is the emphatic future: 'finirai le verdure' sounds more absolute than the plain imperative 'finisci'. Italian, like English here, can use the future to lay down a non-negotiable command.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Finisci le verdure prima di alzarti da tavola!",
+        "note": "Not wrong Italian, but it renders a plain imperative; the English 'You'll finish' is the emphatic future, firmer than the imperative."
+      }
+    ]
   },
   {
     "external_id": "trans_fu_en_it_tsub_01",
@@ -1196,12 +1194,6 @@
         "text": "Quando arriverai a Roma, vedrai il Colosseo.",
         "register": "neutral",
         "notes": "Standard. Both verbs future; note arriverai (not the English-style present)."
-      },
-      {
-        "text": "Quando arrivi a Roma, vedrai il Colosseo.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: the present 'arrivi' after quando copies the English pattern; Italian requires the future for the still-future arrival."
       }
     ],
     "topic": "verb_form.future",
@@ -1236,7 +1228,13 @@
       }
     ],
     "explanation": "English uses the present after 'when' ('when you get to Rome'), but Italian puts the still-future arrival in the future: 'quando arriverai... vedrai'. Both clauses look ahead, so both are future. The item evidences both the temporal-subordinate rule and the future-over-present choice.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Quando arrivi a Roma, vedrai il Colosseo.",
+        "note": "WRONG: the present 'arrivi' after quando copies the English pattern; Italian requires the future for the still-future arrival."
+      }
+    ]
   },
   {
     "external_id": "trans_fu_en_it_tsub_02",
@@ -1248,12 +1246,6 @@
         "text": "Appena saprò qualcosa, te lo dirò.",
         "register": "neutral",
         "notes": "Standard. Future after appena; saprò is the syncopated future of sapere."
-      },
-      {
-        "text": "Appena so qualcosa, te lo dirò.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: the present 'so' after appena copies the English pattern; Italian keeps the future."
       }
     ],
     "topic": "verb_form.future",
@@ -1288,7 +1280,13 @@
       }
     ],
     "explanation": "Italian keeps the future after 'appena' for an action still to come: 'appena saprò... te lo dirò', where English uses the present 'as soon as I know'. Saprò is the syncopated future of sapere.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Appena so qualcosa, te lo dirò.",
+        "note": "WRONG: the present 'so' after appena copies the English pattern; Italian keeps the future."
+      }
+    ]
   },
   {
     "external_id": "trans_fu_it_en_tsub_01",
@@ -1305,12 +1303,6 @@
         "text": "When you're older, you'll understand these things.",
         "register": "neutral",
         "notes": "Natural variant."
-      },
-      {
-        "text": "When you will be grown up, you will understand these things.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG English: English does not use 'will' in the 'when' clause. The item tests mapping Italian's future-after-quando to an English present."
       }
     ],
     "topic": "verb_form.future",
@@ -1346,6 +1338,12 @@
       }
     ],
     "explanation": "The mirror of the production items: Italian uses the future in both clauses ('quando sarai grande, capirai'), but English uses the present in the 'when' clause ('when you grow up') and the future only in the main clause. Rendering the Italian future as an English 'will' in the subordinate is the trap.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "When you will be grown up, you will understand these things.",
+        "note": "WRONG English: English does not use 'will' in the 'when' clause. The item tests mapping Italian's future-after-quando to an English present."
+      }
+    ]
   }
 ]

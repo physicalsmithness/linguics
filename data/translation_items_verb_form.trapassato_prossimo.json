@@ -9,12 +9,6 @@
         "text": "Non avevo fame perché avevo mangiato prima.",
         "register": "neutral",
         "notes": "Standard. avevo fame is the imperfect background; avevo mangiato is the prior action."
-      },
-      {
-        "text": "Non avevo fame perché ho mangiato prima.",
-        "register": "neutral",
-        "notes": "WRONG: ho mangiato is the passato prossimo and loses the before relationship; the prior action needs the imperfect auxiliary (avevo).",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.trapassato_prossimo",
@@ -50,7 +44,13 @@
       }
     ],
     "explanation": "The eating happened before the not-being-hungry, so Italian uses the trapassato prossimo: the imperfect of avere plus the participle, avevo mangiato. The auxiliary must be the imperfect (avevo), not the present (ho), which would only give a plain passato prossimo.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Non avevo fame perché ho mangiato prima.",
+        "note": "WRONG: ho mangiato is the passato prossimo and loses the before relationship; the prior action needs the imperfect auxiliary (avevo)."
+      }
+    ]
   },
   {
     "external_id": "trans_tpp_en_it_av_02",
@@ -112,12 +112,6 @@
         "text": "Avevano lavorato tutto il giorno, quindi erano molto stanchi.",
         "register": "neutral",
         "notes": "Standard. avevano lavorato is the prior action; erano stanchi is the resulting past state."
-      },
-      {
-        "text": "Hanno lavorato tutto il giorno, quindi erano molto stanchi.",
-        "register": "neutral",
-        "notes": "WRONG: hanno lavorato is the passato prossimo; the action before the tiredness needs the imperfect auxiliary (avevano).",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.trapassato_prossimo",
@@ -153,7 +147,13 @@
       }
     ],
     "explanation": "The working leads up to the tiredness, an action complete before another past point, so the trapassato prossimo: avevano lavorato, the imperfect of avere plus the participle. Hanno lavorato would be a plain passato prossimo.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Hanno lavorato tutto il giorno, quindi erano molto stanchi.",
+        "note": "WRONG: hanno lavorato is the passato prossimo; the action before the tiredness needs the imperfect auxiliary (avevano)."
+      }
+    ]
   },
   {
     "external_id": "trans_tpp_en_it_av_04",
@@ -315,12 +315,6 @@
         "text": "Le chiavi? Le avevo lasciate sul tavolo.",
         "register": "neutral",
         "notes": "Standard. The preceding direct-object pronoun le (le chiavi, feminine plural) makes the participle agree: lasciate."
-      },
-      {
-        "text": "Le chiavi? Le avevo lasciato sul tavolo.",
-        "register": "neutral",
-        "notes": "WRONG: with a preceding direct-object pronoun the participle must agree (lasciate), not stay invariable.",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.trapassato_prossimo",
@@ -355,7 +349,13 @@
       }
     ],
     "explanation": "Leaving the keys is prior to the present mention, so the trapassato prossimo: avevo lasciato, the imperfect of avere plus the participle. Because the direct object (le chiavi) comes first as the pronoun le, the participle agrees as feminine plural, giving le avevo lasciate. The agreement rule is inherited from the passato prossimo.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Le chiavi? Le avevo lasciato sul tavolo.",
+        "note": "WRONG: with a preceding direct-object pronoun the participle must agree (lasciate), not stay invariable."
+      }
+    ]
   },
   {
     "external_id": "trans_tpp_en_it_es_01",
@@ -367,12 +367,6 @@
         "text": "Quando sono arrivato alla stazione, il treno era già partito.",
         "register": "neutral",
         "notes": "Standard. era partito is the trapassato prossimo of an essere verb; the train left before the arrival."
-      },
-      {
-        "text": "Quando sono arrivato alla stazione, il treno è già partito.",
-        "register": "neutral",
-        "notes": "WRONG: è partito is the passato prossimo; the prior departure needs the imperfect auxiliary (era).",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.trapassato_prossimo",
@@ -421,7 +415,13 @@
       }
     ],
     "explanation": "The train's departure precedes the arrival, so the trapassato prossimo. With an essere verb it is the imperfect of essere plus the agreeing participle: il treno (masculine singular) gives era partito. The auxiliary is the imperfect (era), not the present (è).",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Quando sono arrivato alla stazione, il treno è già partito.",
+        "note": "WRONG: è partito is the passato prossimo; the prior departure needs the imperfect auxiliary (era)."
+      }
+    ]
   },
   {
     "external_id": "trans_tpp_en_it_es_02",
@@ -663,12 +663,6 @@
         "text": "Le donne erano uscite prima di mezzogiorno.",
         "register": "neutral",
         "notes": "Standard. uscite agrees with the feminine plural subject."
-      },
-      {
-        "text": "Le donne sono uscite prima di mezzogiorno.",
-        "register": "neutral",
-        "notes": "WRONG: sono uscite is the passato prossimo; the prior action needs the imperfect auxiliary (erano).",
-        "polarity": "negative"
       }
     ],
     "topic": "verb_form.trapassato_prossimo",
@@ -707,7 +701,13 @@
       }
     ],
     "explanation": "Going out is prior to noon as a past reference, so the trapassato prossimo: the imperfect of essere plus the agreeing participle. The feminine plural subject gives erano uscite. The imperfect auxiliary (erano), not the present (sono), marks the action as earlier.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Le donne sono uscite prima di mezzogiorno.",
+        "note": "WRONG: sono uscite is the passato prossimo; the prior action needs the imperfect auxiliary (erano)."
+      }
+    ]
   },
   {
     "external_id": "trans_tpp_en_it_es_mixed_01",

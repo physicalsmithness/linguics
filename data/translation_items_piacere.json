@@ -9,12 +9,6 @@
         "text": "Mi piacciono gli spaghetti.",
         "register": "neutral",
         "notes": "In Italian spaghetti is plural (gli spaghetti), so the verb is plural piacciono."
-      },
-      {
-        "text": "Mi piace lo spaghetto.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG in normal use: nobody likes a single strand. Anti-anchor: the dish is plural in Italian."
       }
     ],
     "topic": "piacere",
@@ -38,7 +32,13 @@
       }
     ],
     "explanation": "'I like spaghetti' becomes 'Mi piacciono gli spaghetti.' The catch is that spaghetti is grammatically plural in Italian (gli spaghetti), so the verb has to be the plural piacciono, not piace.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Mi piace lo spaghetto.",
+        "note": "WRONG in normal use: nobody likes a single strand. Anti-anchor: the dish is plural in Italian."
+      }
+    ]
   },
   {
     "external_id": "trans_pia_en_it_agr_02",
@@ -131,12 +131,6 @@
         "text": "A Marco piace il calcio.",
         "register": "neutral",
         "notes": "Named experiencer takes a; singular liked thing gives piace."
-      },
-      {
-        "text": "Marco piace il calcio.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: without a, this means 'people like Marco'. Anti-anchor for the dropped preposition."
       }
     ],
     "topic": "piacere",
@@ -162,7 +156,13 @@
       }
     ],
     "explanation": "'Marco likes football' becomes 'A Marco piace il calcio.' A named liker is introduced with a (a Marco). Drop the a and the sentence says people like Marco instead.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Marco piace il calcio.",
+        "note": "WRONG: without a, this means 'people like Marco'. Anti-anchor for the dropped preposition."
+      }
+    ]
   },
   {
     "external_id": "trans_pia_en_it_clit_01",
@@ -256,12 +256,6 @@
         "text": "Mi manchi.",
         "register": "neutral",
         "notes": "You are the subject (manchi); mi is 'to me'. Literally 'you are missing to me'."
-      },
-      {
-        "text": "Ti manco.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG for 'I miss you': this means 'you miss me'. Anti-anchor for the direction flip."
       }
     ],
     "topic": "piacere",
@@ -274,7 +268,13 @@
     "optional_buckets": [],
     "vocab_help": [],
     "explanation": "'I miss you' becomes 'Mi manchi.' Mancare flips like piacere: you are the one missing (manchi), and mi marks the person doing the missing. 'Ti manco' would say you miss me.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Ti manco.",
+        "note": "WRONG for 'I miss you': this means 'you miss me'. Anti-anchor for the direction flip."
+      }
+    ]
   },
   {
     "external_id": "trans_pia_en_it_flip_01",
@@ -291,12 +291,6 @@
         "text": "A me piace il mare.",
         "register": "neutral",
         "notes": "Stressed a-phrase for emphasis or contrast; also correct."
-      },
-      {
-        "text": "Io piaccio il mare.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: word-for-word mapping. 'Io piaccio' means 'I am likeable'. Anti-anchor for the subject flip."
       }
     ],
     "topic": "piacere",
@@ -320,7 +314,13 @@
       }
     ],
     "explanation": "'I like the sea' becomes 'Mi piace il mare.' Italian flips the roles: the sea is the grammatical subject and 'I' surfaces as the indirect object mi. The trap is 'io piaccio il mare', which would mean 'I am pleasing to the sea'.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Io piaccio il mare.",
+        "note": "WRONG: word-for-word mapping. 'Io piaccio' means 'I am likeable'. Anti-anchor for the subject flip."
+      }
+    ]
   },
   {
     "external_id": "trans_pia_en_it_flip_02",
@@ -512,12 +512,6 @@
         "text": "Le è piaciuto il film?",
         "register": "formal",
         "notes": "Formal address."
-      },
-      {
-        "text": "Ti ha piaciuto il film?",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: piacere takes essere, not avere. Anti-anchor for the auxiliary miss."
       }
     ],
     "topic": "piacere",
@@ -541,7 +535,13 @@
       }
     ],
     "explanation": "'Did you like the film?' becomes 'Ti è piaciuto il film?' Piacere in the past uses essere (è piaciuto), and the participle agrees with the liked thing, il film, which is masculine singular.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Ti ha piaciuto il film?",
+        "note": "WRONG: piacere takes essere, not avere. Anti-anchor for the auxiliary miss."
+      }
+    ]
   },
   {
     "external_id": "trans_pia_en_it_past_02",
@@ -558,12 +558,6 @@
         "text": "Non mi sono piaciute le scarpe.",
         "register": "neutral",
         "notes": "Same, liked thing after the verb."
-      },
-      {
-        "text": "Non mi hanno piaciuto le scarpe.",
-        "register": "neutral",
-        "polarity": "negative",
-        "notes": "WRONG: avere instead of essere, and no agreement. Anti-anchor."
       }
     ],
     "topic": "piacere",
@@ -587,7 +581,13 @@
       }
     ],
     "explanation": "'I didn't like the shoes' becomes 'Le scarpe non mi sono piaciute.' Piacere uses essere in the past, so the auxiliary is sono, and the participle agrees with the liked thing (le scarpe, feminine plural): piaciute.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Non mi hanno piaciuto le scarpe.",
+        "note": "WRONG: avere instead of essere, and no agreement. Anti-anchor."
+      }
+    ]
   },
   {
     "external_id": "trans_pia_it_en_agree_01",

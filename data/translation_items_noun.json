@@ -14,12 +14,6 @@
         "text": "La casa è grande e il libro è nuovo, come vedi.",
         "register": "neutral",
         "notes": "Padding aside, same core."
-      },
-      {
-        "text": "Il casa è grande e la libro è nuovo.",
-        "register": "neutral",
-        "notes": "WRONG genders: casa is feminine (la), libro masculine (il).",
-        "polarity": "negative"
       }
     ],
     "topic": "noun",
@@ -73,7 +67,13 @@
       }
     ],
     "explanation": "'The house is big and the book is new' becomes 'La casa è grande e il libro è nuovo.' Casa is feminine (la casa) and libro masculine (il libro); the endings -a and -o set the default gender and the articles follow.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Il casa è grande e la libro è nuovo.",
+        "note": "WRONG genders: casa is feminine (la), libro masculine (il)."
+      }
+    ]
   },
   {
     "external_id": "trans_noun_en_it_gen_e_01",
@@ -85,12 +85,6 @@
         "text": "Il fiore sul tavolo è rosso.",
         "register": "neutral",
         "notes": "Standard. fiore is masculine, so il fiore and rosso."
-      },
-      {
-        "text": "La fiore sul tavolo è rossa.",
-        "register": "neutral",
-        "notes": "WRONG: fiore is masculine, not feminine.",
-        "polarity": "negative"
       }
     ],
     "topic": "noun",
@@ -134,7 +128,13 @@
       }
     ],
     "explanation": "'The flower on the table is red' becomes 'Il fiore sul tavolo è rosso.' Fiore ends in -e, and its gender must be learned: it is masculine, so il fiore and rosso (not la / rossa).",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "La fiore sul tavolo è rossa.",
+        "note": "WRONG: fiore is masculine, not feminine."
+      }
+    ]
   },
   {
     "external_id": "trans_noun_it_en_gen_e_01",
@@ -206,12 +206,6 @@
         "text": "Il problema è serio ma il programma funziona.",
         "register": "neutral",
         "notes": "Standard. Both are masculine Greek -ma nouns."
-      },
-      {
-        "text": "La problema è seria ma la programma funziona.",
-        "register": "neutral",
-        "notes": "WRONG: problema and programma are masculine despite -a.",
-        "polarity": "negative"
       }
     ],
     "topic": "noun",
@@ -255,7 +249,13 @@
       }
     ],
     "explanation": "'The problem is serious but the program works' becomes 'Il problema è serio ma il programma funziona.' Problema and programma end in -a but are masculine (the Greek -ma group), so il problema, il programma, and serio agrees masculine.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "La problema è seria ma la programma funziona.",
+        "note": "WRONG: problema and programma are masculine despite -a."
+      }
+    ]
   },
   {
     "external_id": "trans_noun_en_it_gen_irr_02",
@@ -272,12 +272,6 @@
         "text": "Mi sono fatta male alla mano al lavoro.",
         "register": "neutral",
         "notes": "Female speaker; participle fatta."
-      },
-      {
-        "text": "Mi sono fatto male al mano al lavoro.",
-        "register": "neutral",
-        "notes": "WRONG: mano is feminine, so alla, not al.",
-        "polarity": "negative"
       }
     ],
     "topic": "noun",
@@ -313,7 +307,13 @@
       }
     ],
     "explanation": "'I hurt my hand at work' becomes 'Mi sono fatto/a male alla mano al lavoro.' Mano ends in -o but is feminine, so the articulated preposition is alla (a + la), not al; the feminine surfaces on the little words around the noun.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Mi sono fatto male al mano al lavoro.",
+        "note": "WRONG: mano is feminine, so alla, not al."
+      }
+    ]
   },
   {
     "external_id": "trans_noun_it_en_gen_irr_03",
@@ -385,12 +385,6 @@
         "text": "I libri sono sui tavoli.",
         "register": "neutral",
         "notes": "Standard. -o to -i on both nouns; su + i = sui."
-      },
-      {
-        "text": "I libros sono sui tavolos.",
-        "register": "neutral",
-        "notes": "WRONG: English -s; Italian is libri, tavoli.",
-        "polarity": "negative"
       }
     ],
     "topic": "noun",
@@ -426,7 +420,13 @@
       }
     ],
     "explanation": "'The books are on the tables' becomes 'I libri sono sui tavoli.' Both libro and tavolo are masculine -o nouns, so the plural is -i: libri, tavoli.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "I libros sono sui tavolos.",
+        "note": "WRONG: English -s; Italian is libri, tavoli."
+      }
+    ]
   },
   {
     "external_id": "trans_noun_en_it_plur_reg_02",
@@ -438,12 +438,6 @@
         "text": "Le mie sorelle hanno tre gatti.",
         "register": "neutral",
         "notes": "Standard. sorella to sorelle (-a/-e), gatto to gatti (-o/-i)."
-      },
-      {
-        "text": "Le mie sorelli hanno tre gatte.",
-        "register": "neutral",
-        "notes": "WRONG: sorella is feminine, plural sorelle, not sorelli.",
-        "polarity": "negative"
       }
     ],
     "topic": "noun",
@@ -477,7 +471,13 @@
       }
     ],
     "explanation": "'My sisters have three cats' becomes 'Le mie sorelle hanno tre gatti.' Feminine sorella takes -e (sorelle); masculine gatto takes -i (gatti): the two regular endings side by side.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Le mie sorelli hanno tre gatte.",
+        "note": "WRONG: sorella is feminine, plural sorelle, not sorelli."
+      }
+    ]
   },
   {
     "external_id": "trans_noun_it_en_plur_reg_01",
@@ -549,12 +549,6 @@
         "text": "Ho comprato due chili di arance.",
         "register": "neutral",
         "notes": "Standard. chilo to chili; arancia to arance (i dropped)."
-      },
-      {
-        "text": "Ho comprato due chili di arancie.",
-        "register": "neutral",
-        "notes": "WRONG: consonant before -cia, so the i is dropped: arance.",
-        "polarity": "negative"
       }
     ],
     "topic": "noun",
@@ -598,7 +592,13 @@
       }
     ],
     "explanation": "'I bought two kilos of oranges' becomes 'Ho comprato due chili di arance.' Arancia has a consonant before the -cia, so the plural drops the i: arance, not arancie.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Ho comprato due chili di arancie.",
+        "note": "WRONG: consonant before -cia, so the i is dropped: arance."
+      }
+    ]
   },
   {
     "external_id": "trans_noun_en_it_plur_sp_02",
@@ -610,12 +610,6 @@
         "text": "I miei amici sono greci.",
         "register": "neutral",
         "notes": "Standard. Both keep the soft sound: amici, greci."
-      },
-      {
-        "text": "I miei amichi sono grechi.",
-        "register": "neutral",
-        "notes": "WRONG: no h here; amico to amici, greco to greci.",
-        "polarity": "negative"
       }
     ],
     "topic": "noun",
@@ -649,7 +643,13 @@
       }
     ],
     "explanation": "'My friends are Greek' becomes 'I miei amici sono greci.' Amico and greco both take the soft -ci plural (no h): amici, greci.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "I miei amichi sono grechi.",
+        "note": "WRONG: no h here; amico to amici, greco to greci."
+      }
+    ]
   },
   {
     "external_id": "trans_noun_it_en_plur_sp_03",
@@ -721,12 +721,6 @@
         "text": "I laghi in montagna sono freddi.",
         "register": "neutral",
         "notes": "Standard. lago to laghi keeps the hard g with h."
-      },
-      {
-        "text": "I lagi in montagna sono freddi.",
-        "register": "neutral",
-        "notes": "WRONG: without h the g goes soft; the plural is laghi.",
-        "polarity": "negative"
       }
     ],
     "topic": "noun",
@@ -770,7 +764,13 @@
       }
     ],
     "explanation": "'The lakes in the mountains are cold' becomes 'I laghi in montagna sono freddi.' Lago adds an h to keep the hard g: laghi.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "I lagi in montagna sono freddi.",
+        "note": "WRONG: without h the g goes soft; the plural is laghi."
+      }
+    ]
   },
   {
     "external_id": "trans_noun_en_it_plur_inv_01",
@@ -782,12 +782,6 @@
         "text": "Le città italiane sono belle.",
         "register": "neutral",
         "notes": "Standard. città is invariable; the article and adjective carry the plural."
-      },
-      {
-        "text": "Le cittàs italiane sono belle.",
-        "register": "neutral",
-        "notes": "WRONG: accented finals never add -s; città stays città.",
-        "polarity": "negative"
       }
     ],
     "topic": "noun",
@@ -821,7 +815,13 @@
       }
     ],
     "explanation": "'Italian cities are beautiful' becomes 'Le città italiane sono belle.' Città has a stressed accented final and does not change; only le and belle show the plural.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Le cittàs italiane sono belle.",
+        "note": "WRONG: accented finals never add -s; città stays città."
+      }
+    ]
   },
   {
     "external_id": "trans_noun_it_en_plur_inv_02",
@@ -893,12 +893,6 @@
         "text": "Abbiamo mangiato le uova a colazione.",
         "register": "neutral",
         "notes": "Standard. uovo to uova (masculine to feminine plural)."
-      },
-      {
-        "text": "Abbiamo mangiato gli uovi a colazione.",
-        "register": "neutral",
-        "notes": "WRONG: the plural is le uova, not gli uovi.",
-        "polarity": "negative"
       }
     ],
     "topic": "noun",
@@ -932,7 +926,13 @@
       }
     ],
     "explanation": "'We ate eggs for breakfast' becomes 'Abbiamo mangiato le uova a colazione.' Uovo is masculine but its plural is the feminine uova, so le uova.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Abbiamo mangiato gli uovi a colazione.",
+        "note": "WRONG: the plural is le uova, not gli uovi."
+      }
+    ]
   },
   {
     "external_id": "trans_noun_en_it_plur_irr_02",
@@ -949,12 +949,6 @@
         "text": "Lei ha le mani forti.",
         "register": "neutral",
         "notes": "Subject pronoun kept."
-      },
-      {
-        "text": "Ha i mani forti.",
-        "register": "neutral",
-        "notes": "WRONG: mani is feminine, so le mani, not i mani.",
-        "polarity": "negative"
       }
     ],
     "topic": "noun",
@@ -990,7 +984,13 @@
       }
     ],
     "explanation": "'She has strong hands' becomes 'Ha le mani forti.' Mano is feminine and its plural is the irregular mani; the article le confirms the feminine.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Ha i mani forti.",
+        "note": "WRONG: mani is feminine, so le mani, not i mani."
+      }
+    ]
   },
   {
     "external_id": "trans_noun_it_en_plur_irr_03",
@@ -1042,12 +1042,6 @@
         "text": "Ci sono molti uomini in piazza.",
         "register": "neutral",
         "notes": "Standard. uomo to uomini (suppletive)."
-      },
-      {
-        "text": "Ci sono molti uomi in piazza.",
-        "register": "neutral",
-        "notes": "WRONG: the plural is uomini, not uomi.",
-        "polarity": "negative"
       }
     ],
     "topic": "noun",
@@ -1081,7 +1075,13 @@
       }
     ],
     "explanation": "'There are many men in the square' becomes 'Ci sono molti uomini in piazza.' Uomo has the suppletive plural uomini, so molti uomini.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Ci sono molti uomi in piazza.",
+        "note": "WRONG: the plural is uomini, not uomi."
+      }
+    ]
   },
   {
     "external_id": "trans_noun_en_it_plur_comp_01",
@@ -1093,12 +1093,6 @@
         "text": "Mi servono due portachiavi.",
         "register": "neutral",
         "notes": "Standard. portachiavi is invariable (the noun part chiavi is already plural)."
-      },
-      {
-        "text": "Mi servono due portachiavii.",
-        "register": "neutral",
-        "notes": "WRONG: portachiavi cannot pluralise; it is invariable.",
-        "polarity": "negative"
       }
     ],
     "topic": "noun",
@@ -1122,7 +1116,13 @@
       }
     ],
     "explanation": "'I need two keyrings' becomes 'Mi servono due portachiavi.' Portachiavi (porta + chiavi) already contains a plural noun, so the compound is invariable: due portachiavi.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Mi servono due portachiavii.",
+        "note": "WRONG: portachiavi cannot pluralise; it is invariable."
+      }
+    ]
   },
   {
     "external_id": "trans_noun_it_en_plur_sp_05",

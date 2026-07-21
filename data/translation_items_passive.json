@@ -14,12 +14,6 @@
         "text": "La pizza venne inventata a Napoli.",
         "register": "neutral",
         "notes": "Passato remoto with venire, more narrative; also correct."
-      },
-      {
-        "text": "La pizza ha inventata a Napoli.",
-        "register": "neutral",
-        "notes": "WRONG: the passive is built on essere, not avere.",
-        "polarity": "negative"
       }
     ],
     "topic": "passive",
@@ -54,7 +48,13 @@
       }
     ],
     "explanation": "The passive of a past event uses essere in the past plus the participle: è stata inventata, with both participles feminine to agree with pizza. Avere never builds the passive.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "La pizza ha inventata a Napoli.",
+        "note": "WRONG: the passive is built on essere, not avere."
+      }
+    ]
   },
   {
     "external_id": "trans_pas_en_it_ess_02",
@@ -174,12 +174,6 @@
         "text": "Il ritratto fu dipinto da Caravaggio.",
         "register": "neutral",
         "notes": "Passato remoto, natural for a historical fact."
-      },
-      {
-        "text": "Il ritratto è stato dipinto di Caravaggio.",
-        "register": "neutral",
-        "notes": "WRONG: the agent takes da, not di (which reads as possessive).",
-        "polarity": "negative"
       }
     ],
     "topic": "passive",
@@ -214,7 +208,13 @@
       }
     ],
     "explanation": "The doer named after a passive is the agent, introduced by da: da Caravaggio. Di would sound possessive ('of Caravaggio'). Ritratto is masculine singular, so dipinto stays -o.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Il ritratto è stato dipinto di Caravaggio.",
+        "note": "WRONG: the agent takes da, not di (which reads as possessive)."
+      }
+    ]
   },
   {
     "external_id": "trans_pas_en_it_agt_02",
@@ -387,12 +387,6 @@
         "text": "The medicines have to be taken on a full stomach.",
         "register": "neutral",
         "notes": "Equivalent."
-      },
-      {
-        "text": "The medicines go taken on a full stomach.",
-        "register": "neutral",
-        "notes": "WRONG: va/vanno here is obligation, not motion.",
-        "polarity": "negative"
       }
     ],
     "topic": "passive",
@@ -426,7 +420,13 @@
       }
     ],
     "explanation": "vanno prese uses andare for obligation: must/have to be taken. Reading vanno as 'go' is the trap the negative reference guards against.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "The medicines go taken on a full stomach.",
+        "note": "WRONG: va/vanno here is obligation, not motion."
+      }
+    ]
   },
   {
     "external_id": "trans_pas_en_it_and_02",
@@ -685,12 +685,6 @@
         "text": "Qui i libri usati sono venduti.",
         "register": "neutral",
         "notes": "Grammatical full passive, but stiff for a sign."
-      },
-      {
-        "text": "Qui si vende libri usati.",
-        "register": "neutral",
-        "notes": "WRONG as standard: the verb agrees with the plural noun, si vendono.",
-        "polarity": "negative"
       }
     ],
     "topic": "passive",
@@ -725,7 +719,13 @@
       }
     ],
     "explanation": "With no doer to name, Italian prefers si. The verb agrees with the thing: libri is plural, so si vendono.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Qui si vende libri usati.",
+        "note": "WRONG as standard: the verb agrees with the plural noun, si vendono."
+      }
+    ]
   },
   {
     "external_id": "trans_pas_en_it_vsi_02",
@@ -737,12 +737,6 @@
         "text": "I libri sono venduti dalla libreria Feltrinelli.",
         "register": "neutral",
         "notes": "Named agent, so the full passive is the only option."
-      },
-      {
-        "text": "Si vendono libri dalla libreria Feltrinelli.",
-        "register": "neutral",
-        "notes": "WRONG: si can never take a da-agent.",
-        "polarity": "negative"
       }
     ],
     "topic": "passive",
@@ -769,7 +763,13 @@
       }
     ],
     "explanation": "Naming the seller rules the si construction out: si exists to leave the doer unnamed. The full passive takes the agent after da, contracted with the article: da + la = dalla.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Si vendono libri dalla libreria Feltrinelli.",
+        "note": "WRONG: si can never take a da-agent."
+      }
+    ]
   },
   {
     "external_id": "trans_pas_it_en_vsi_03",

@@ -1533,3 +1533,37 @@ Resolves the v7 open colour choice. COLOUR = CORRECTNESS dominant (green right /
 ## Fence dropped: full real-id marker menu (581), reconciliation CUT (2026-07-21, from Smith)
 
 Smith ruled against a reconciliation/mapping layer ("a step that will go wrong"). The translation-marker menu widens from 136 aggregates to the FULL real-id set - 581 ids = all non-vocabulary tree nodes (aggregates + leaves; vocabulary stays in its dynamic vocab[] channel; orthography included for accent+spelling). Every id the marker can return is real, so coverage aggregates directly and no mapping step exists. data/translation_marker_bucket_menu.json regenerated. Menu identical per call -> prompt-cache the static prefix (near-free after first call); build-time/nightly artifact, not live-fetched. Marker fires a markpoint for EVERY agreement/skill instance including obvious correct ones (volume of clean "-o matches -o" is the base-rate/mastery signal; the rare real miss becomes legible). DEFERRED: open-ended detection beyond the tree + candidate-mint-on-detection (powerful, later). Routed crosstopic v9; Housing to update the generator to full-node + prompt-cache + drop the mapping stub.
+## Spin out SpellingAuthor (orthography beyond accent); matched-bucket accumulation noted (2026-07-21, from Smith)
+
+Smith: get more orthographic error coverage; spin out a dedicated chat to pick up spelling mistakes. NEW SEAT commissioned - SpellingAuthor - owning non-accent orthography: doubling (doppie), digraphs (gl/gn/sc), c/g softening (incl. -care/-gare h + silent-i cia/gia), qu/cu/cqu, silent h (avere), apostrophe/elision (incl. qual e, po'), capitalization, vowel confusion. Boundary: accent stays AccentAuthor, stress stays StressAuthor. The seat supplies the AI marker's Spelling error-class taxonomy (8-class enumerated backbone the free AI label normalises to - resolves free-vs-enumerated), authors items per class, and proposes orthography.spelling.* leaves (Architecture mints; tree has ~9 orthography leaves today, mostly accent). Dispatch: DISPATCH_spelling.md. Separately: matched-bucket ACCUMULATION (save per-item/per-learner evidenced buckets, seed the marker so it converges) recorded as a DEFERRED efficiency layer (crosstopic v10); the menu itself is static + prompt-cached, no live fetch.
+
+## Spelling seat: MCQ-first, because norm() folds apostrophe/accent (typed ungradable) (2026-07-21, from Smith)
+
+SpellingAuthor authors HIGH-VOLUME multiple-choice discrimination items (e.g. un amica / un'amica / una amica -> un'amica), index-scored, with each distractor tagged to its error class. Rationale (the technical why): the marker's norm() folds the apostrophe (and partly the accent) to a space, so un'/un, l'/lo, città/citta are not deterministically gradable typed; MCQ is the correct instrument, not a fallback. Typed permitted only where it survives norm() (doppie). Added to DISPATCH_spelling.md authoring directions.
+
+## Verify-and-stamp sweep, batch 1 (2026-07-21, Architecture)
+
+Three owed threads actioned; each claim verified on disk before stamping.
+Indefinite free-choice seam: leaf confirmed minted; authorship RULED via Rev 27 (IndefiniteAuthor authors one cross-crediting set, not two trees); next-touch clause set; dovunque mint + ogni note ruled (Architecture to execute). Thread -> IndefiniteAuthor + Architecture.
+
+## Vocab marking needs AI adjudication (valid alternatives + ambiguous prompts) (2026-07-21, from Smith live)
+
+"Orange (as a noun)" -> arancia (fruit, a valid noun) marked Wrong; key wanted arancione (colour). Both are nouns, so the tag doesn't disambiguate and a valid answer failed. Direction: the deterministic vocab grader keeps the exact-match fast path but is NOT the sole judge - on a MISS the AI adjudicates validity (synonym / register / fruit-vs-colour) and classifies accent/spelling near-misses, parallel to the translation contract (code can't be alone in the ambiguous cases). Content: split "orange" into arancia (fruit) / arancione (colour) with disambiguated prompts (split-by-function), audit other multi-valid prompts. Routed Architecture_Vocab_marker_semantics; extends the grammar-grading-strategy open question to the vocab strand.
+
+[correction: the two stamps above were briefly skipped by a first check that looked for fields 'id'/'suppress'; this schema uses external_id + info_display. Re-derived and verified.]
+[discharged: GerundioAuthor, 2026-07-21, selfcheck_discharge - 21->12 verified via info_display=12; crit-13 + Rev-25(a) stamped; classes ratified]
+[discharged: WordFormationAuthor, 2026-07-21, discharge_and_class - classes ratified; crit-13/Rev-25/crit-20 stamped; DECISIONS-996 verified (wf_aug_02='il portone'); crit-17 (a)]
+
+## CORRECTION: vocab stays deterministic; arancia is an `alternatives`/data fix, not AI (2026-07-21, Architecture)
+
+Supersedes the vocab-AI-adjudication note above. Verified in code (Smith: "we don't use AI for vocab, do we?"): AI marking is translation-only; markVocab() is deterministic and ALREADY accepts an `alternatives` array (surfaces "Also accepted:"). So arancia-for-"orange" is a DATA gap: split "orange" into fruit (arancia) / colour (arancione, arancio) with disambiguated prompts + populate each entry's alternatives. AI-for-vocab withdrawn (unneeded; costly on a high-volume strand). The over-reach: I proposed AI before checking the vocab marker already handled alternatives - verify-before-asserting, again.
+
+## Reference hygiene DONE: 476 negative-polarity refs -> common_errors (2026-07-21, Architecture, task 10)
+
+The "wrong-form references" were NOT typos - they are deliberate anti-anchors carrying polarity:"negative" + a WRONG note (corrects the earlier "stray wrong forms" framing). Per the v2 crosstopic contract (wrong variants live in a separate field, never in references), migrated ALL polarity:negative entries out of reference_translations into a new `common_errors` [{text,note}] field: 476 across 31 files. reference_translations now holds only accepted-correct exemplars. FOLLOW-UP (Housing/Code): worker/src/index.ts reads `references` with polarity but NOT common_errors - wire common_errors into the marker (AI: known-wrong variants to penalise/classify; stub: never overlap-credit them). Routed on the crosstopic thread v11.
+
+## Misconception event schema reconciled + gender/plural drill routed (2026-07-21, Architecture)
+
+**#16:** the four-key misconception-event model (reporting_prisms v2 decision 1) is SUPERSEDED by the join-key/rich-descriptor schema (Smith, 2026-07-21): the event carries a join key to the item's descriptor set; stats join + group by any descriptor. Surface-lens go stands (analyst-authored, unaffected); guard-tag rollout continues (221/4944; PluperfectAuthor 88 first) as the ~152 tag-lists land. Threads reporting_prisms v6 + event_keys updated.
+
+**Gender/plural drill (Smith):** NO new author - gender/plural rules are NounAuthor's, per-lemma data is on the vocab entries. Drill = ~7 gender/plural classes (masc-reg, fem-reg, ambiguous-e, common-gender, gender-switch-plural braccia/uova, invariable citta/caffe, deceptive-ending mano/problema/pianista-split), each carrying its misconceptions, as a gender surface-lens; selector "all nouns" vs "interesting + a handful of normal" (in-place multi-select, per the vocab-picker model). Orthographic-plural spelling cross-credits SpellingAuthor. Routed Architecture_Housing_gender_plural_drill.

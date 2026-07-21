@@ -14,12 +14,6 @@
         "text": "Marco, mio fratello, è più alto del suo amico Luca.",
         "register": "neutral",
         "notes": "Apposition fronted; same grammar."
-      },
-      {
-        "text": "Mio fratello Marco è più alto che il suo amico Luca.",
-        "register": "neutral",
-        "notes": "WRONG: two people measured against one quality take di, not che.",
-        "polarity": "negative"
       }
     ],
     "topic": "comparison",
@@ -59,7 +53,13 @@
       }
     ],
     "explanation": "Two different people are compared against one quality (height), so the connector is di, and di + il contracts to del.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Mio fratello Marco è più alto che il suo amico Luca.",
+        "note": "WRONG: two people measured against one quality take di, not che."
+      }
+    ]
   },
   {
     "external_id": "trans_cmp_en_it_pmd_02",
@@ -76,12 +76,6 @@
         "text": "Questo vino rosso costa meno di quello francese.",
         "register": "neutral",
         "notes": "Verb-based rendering; natural and idiomatic."
-      },
-      {
-        "text": "Questo vino rosso è meno caro che quello francese.",
-        "register": "neutral",
-        "notes": "WRONG: two entities, one quality: di.",
-        "polarity": "negative"
       }
     ],
     "topic": "comparison",
@@ -109,7 +103,13 @@
       }
     ],
     "explanation": "Meno works like più: meno + adjective, then di before the thing compared.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Questo vino rosso è meno caro che quello francese.",
+        "note": "WRONG: two entities, one quality: di."
+      }
+    ]
   },
   {
     "external_id": "trans_cmp_en_it_pmd_03",
@@ -126,12 +126,6 @@
         "text": "Alla festa di ieri sera c'erano più di trenta persone.",
         "register": "neutral",
         "notes": "Time phrase attached to festa; same grammar."
-      },
-      {
-        "text": "Ieri sera alla festa c'erano più che trenta persone.",
-        "register": "neutral",
-        "notes": "WRONG: before a bare number the comparison takes di.",
-        "polarity": "negative"
       }
     ],
     "topic": "comparison",
@@ -161,7 +155,13 @@
       }
     ],
     "explanation": "Before a bare number, 'more than' is always più di, never più che, even though a quantity is in play.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Ieri sera alla festa c'erano più che trenta persone.",
+        "note": "WRONG: before a bare number the comparison takes di."
+      }
+    ]
   },
   {
     "external_id": "trans_cmp_en_it_dvc_01",
@@ -178,12 +178,6 @@
         "text": "È più facile criticare gli altri che agire in prima persona.",
         "register": "neutral",
         "notes": "Fuller rendering of 'yourself'."
-      },
-      {
-        "text": "È più facile criticare gli altri di agire.",
-        "register": "neutral",
-        "notes": "WRONG: two verbs compared take che.",
-        "polarity": "negative"
       }
     ],
     "topic": "comparison",
@@ -217,7 +211,13 @@
       }
     ],
     "explanation": "Two infinitives are weighed against each other, so the connector is che, not di.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "È più facile criticare gli altri di agire.",
+        "note": "WRONG: two verbs compared take che."
+      }
+    ]
   },
   {
     "external_id": "trans_cmp_en_it_dvc_02",
@@ -234,12 +234,6 @@
         "text": "In questa cittadina ci sono più turisti che abitanti.",
         "register": "neutral",
         "notes": "cittadina for 'small city'; same grammar."
-      },
-      {
-        "text": "In questa piccola città ci sono più turisti di abitanti.",
-        "register": "neutral",
-        "notes": "WRONG: two nouns compared in quantity take che.",
-        "polarity": "negative"
       }
     ],
     "topic": "comparison",
@@ -275,7 +269,13 @@
       }
     ],
     "explanation": "Two nouns weighed for quantity take che. (Di would be right only if two entities were measured against one quality.)",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "In questa piccola città ci sono più turisti di abitanti.",
+        "note": "WRONG: two nouns compared in quantity take che."
+      }
+    ]
   },
   {
     "external_id": "trans_cmp_en_it_dvc_03",
@@ -292,12 +292,6 @@
         "text": "Quest'attore è molto più famoso che bravo.",
         "register": "neutral",
         "notes": "Elided quest'; same grammar."
-      },
-      {
-        "text": "Questo attore è molto più famoso di bravo.",
-        "register": "neutral",
-        "notes": "WRONG: two qualities of the same person take che.",
-        "polarity": "negative"
       }
     ],
     "topic": "comparison",
@@ -331,7 +325,13 @@
       }
     ],
     "explanation": "Two qualities of one and the same person are compared, so the connector is che.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Questo attore è molto più famoso di bravo.",
+        "note": "WRONG: two qualities of the same person take che."
+      }
+    ]
   },
   {
     "external_id": "trans_cmp_it_en_dvc_01",
@@ -481,12 +481,6 @@
         "text": "Mia sorella minore è già alta quanto me.",
         "register": "neutral",
         "notes": "quanto for come; equally standard."
-      },
-      {
-        "text": "Mia sorella minore è già alta come io.",
-        "register": "neutral",
-        "notes": "WRONG: after come the pronoun is stressed: come me.",
-        "polarity": "negative"
       }
     ],
     "topic": "comparison",
@@ -516,7 +510,13 @@
       }
     ],
     "explanation": "Equality is (così)...come or (tanto)...quanto, with the first half usually dropped. After come/quanto the pronoun is stressed: come me, not come io.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Mia sorella minore è già alta come io.",
+        "note": "WRONG: after come the pronoun is stressed: come me."
+      }
+    ]
   },
   {
     "external_id": "trans_cmp_en_it_eq_02",
@@ -533,12 +533,6 @@
         "text": "Questo libro è bello quanto utile.",
         "register": "neutral",
         "notes": "First half dropped; natural."
-      },
-      {
-        "text": "Questo libro è così bello quanto utile.",
-        "register": "neutral",
-        "notes": "WRONG: così pairs with come, tanto with quanto.",
-        "polarity": "negative"
       }
     ],
     "topic": "comparison",
@@ -562,7 +556,13 @@
       }
     ],
     "explanation": "When both halves are present the pair must match: tanto...quanto (or così...come). Mixing them (così...quanto) is the classic slip.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Questo libro è così bello quanto utile.",
+        "note": "WRONG: così pairs with come, tanto with quanto."
+      }
+    ]
   },
   {
     "external_id": "trans_cmp_en_it_irr_01",
@@ -579,12 +579,6 @@
         "text": "Questo ristorante è più buono di quello vicino alla stazione.",
         "register": "neutral",
         "notes": "Correct Italian, but it sidesteps the drilled inherited comparative; più buono leans concrete (tastier)."
-      },
-      {
-        "text": "Questo ristorante è più migliore di quello vicino alla stazione.",
-        "register": "neutral",
-        "notes": "WRONG: migliore is already comparative; never più migliore.",
-        "polarity": "negative"
       }
     ],
     "topic": "comparison",
@@ -622,7 +616,13 @@
       }
     ],
     "explanation": "Buono's inherited one-word comparative is migliore. The regular più buono survives with a concrete flavour, but più migliore is never possible.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Questo ristorante è più migliore di quello vicino alla stazione.",
+        "note": "WRONG: migliore is already comparative; never più migliore."
+      }
+    ]
   },
   {
     "external_id": "trans_cmp_en_it_irr_02",
@@ -639,12 +639,6 @@
         "text": "Mio fratello più grande abita a Roma con la sua famiglia.",
         "register": "neutral",
         "notes": "Common and acceptable, but it sidesteps maggiore, the drilled form."
-      },
-      {
-        "text": "Mio fratello più maggiore abita a Roma con la sua famiglia.",
-        "register": "neutral",
-        "notes": "WRONG: maggiore is already comparative.",
-        "polarity": "negative"
       }
     ],
     "topic": "comparison",
@@ -684,7 +678,13 @@
       }
     ],
     "explanation": "For age and rank, grande's inherited comparative maggiore does the work: fratello maggiore. Note no article before mio fratello (singular family member).",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Mio fratello più maggiore abita a Roma con la sua famiglia.",
+        "note": "WRONG: maggiore is already comparative."
+      }
+    ]
   },
   {
     "external_id": "trans_cmp_en_it_mvm_01",
@@ -701,12 +701,6 @@
         "text": "Maria canta molto meglio di quanto canti io.",
         "register": "neutral",
         "notes": "Fuller comparative clause; more formal."
-      },
-      {
-        "text": "Maria canta molto migliore di me.",
-        "register": "neutral",
-        "notes": "WRONG: how an action is done takes the adverb meglio, not the adjective migliore.",
-        "polarity": "negative"
       }
     ],
     "topic": "comparison",
@@ -730,7 +724,13 @@
       }
     ],
     "explanation": "'Better' here describes the action of singing, so it is the adverb meglio. Migliore is the adjective and would need a noun to describe.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Maria canta molto migliore di me.",
+        "note": "WRONG: how an action is done takes the adverb meglio, not the adjective migliore."
+      }
+    ]
   },
   {
     "external_id": "trans_cmp_en_it_mvm_02",
@@ -747,12 +747,6 @@
         "text": "Secondo me la tua idea è meglio della mia.",
         "register": "colloquial",
         "notes": "Very common in speech, but with a noun subject standard Italian wants migliore."
-      },
-      {
-        "text": "Secondo me la tua idea è più migliore della mia.",
-        "register": "neutral",
-        "notes": "WRONG: never più migliore.",
-        "polarity": "negative"
       }
     ],
     "topic": "comparison",
@@ -782,7 +776,13 @@
       }
     ],
     "explanation": "The subject is a noun (idea), so 'better' is the adjective migliore. The colloquial meglio is widespread but non-standard here, and is credited only partially.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Secondo me la tua idea è più migliore della mia.",
+        "note": "WRONG: never più migliore."
+      }
+    ]
   },
   {
     "external_id": "trans_cmp_it_en_mvm_01",
@@ -903,12 +903,6 @@
         "text": "Firenze è la più bella città di tutta l'Italia.",
         "register": "neutral",
         "notes": "Adjective before the noun; also standard."
-      },
-      {
-        "text": "Firenze è la città la più bella di tutta l'Italia.",
-        "register": "neutral",
-        "notes": "WRONG: a calque from French; Italian does not repeat the article after the noun.",
-        "polarity": "negative"
       }
     ],
     "topic": "comparison",
@@ -938,7 +932,13 @@
       }
     ],
     "explanation": "The relative superlative is article + più + adjective, with di for the group. When the adjective follows the noun the article appears once: la città più bella.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Firenze è la città la più bella di tutta l'Italia.",
+        "note": "WRONG: a calque from French; Italian does not repeat the article after the noun."
+      }
+    ]
   },
   {
     "external_id": "trans_cmp_en_it_rel_02",
@@ -1001,12 +1001,6 @@
         "text": "Dopo la corsa eravamo tutti stanchissimi.",
         "register": "neutral",
         "notes": "corsa for gara; same grammar."
-      },
-      {
-        "text": "Dopo la gara eravamo tutti stancissimi.",
-        "register": "neutral",
-        "notes": "WRONG: the spelling must keep the hard c: stanchissimi.",
-        "polarity": "negative"
       }
     ],
     "topic": "comparison",
@@ -1046,7 +1040,13 @@
       }
     ],
     "explanation": "The absolute superlative drops the final vowel and adds -issimo, agreeing like an adjective. Stanco keeps its hard c by inserting an h: stanchissimi.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Dopo la gara eravamo tutti stancissimi.",
+        "note": "WRONG: the spelling must keep the hard c: stanchissimi."
+      }
+    ]
   },
   {
     "external_id": "trans_cmp_en_it_abs_02",
@@ -1063,12 +1063,6 @@
         "text": "Il film che abbiamo visto ieri era bello bello.",
         "register": "colloquial",
         "notes": "Reduplication; colloquial but genuine Italian for the same intensity."
-      },
-      {
-        "text": "Il film che abbiamo visto ieri era molto bellissimo.",
-        "register": "neutral",
-        "notes": "WRONG: -issimo already means 'extremely'; molto must not be stacked on it.",
-        "polarity": "negative"
       }
     ],
     "topic": "comparison",
@@ -1096,7 +1090,13 @@
       }
     ],
     "explanation": "-issimo already carries 'extremely', so it is never stacked with molto. Say either molto bello (milder) or bellissimo (strong), never molto bellissimo.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Il film che abbiamo visto ieri era molto bellissimo.",
+        "note": "WRONG: -issimo already means 'extremely'; molto must not be stacked on it."
+      }
+    ]
   },
   {
     "external_id": "trans_cmp_en_it_supirr_01",
@@ -1113,12 +1113,6 @@
         "text": "Che buonissima idea, grazie mille!",
         "register": "neutral",
         "notes": "Understood, but it sidesteps ottima, which is the idiomatic 'excellent' here."
-      },
-      {
-        "text": "Che molto ottima idea, grazie mille!",
-        "register": "neutral",
-        "notes": "WRONG: ottimo is already a superlative; molto must not be stacked on it.",
-        "polarity": "negative"
       }
     ],
     "topic": "comparison",
@@ -1156,7 +1150,13 @@
       }
     ],
     "explanation": "Ottimo is the inherited absolute superlative of buono and is already at full strength, so molto ottimo is impossible. It is warmer and more idiomatic than buonissimo.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Che molto ottima idea, grazie mille!",
+        "note": "WRONG: ottimo is already a superlative; molto must not be stacked on it."
+      }
+    ]
   },
   {
     "external_id": "trans_cmp_it_en_supirr_01",

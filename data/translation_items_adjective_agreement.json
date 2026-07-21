@@ -66,12 +66,6 @@
         "register": "neutral",
         "notes": "Optional adverbial; same agreement test.",
         "polarity": "positive"
-      },
-      {
-        "text": "Ho due gatti nero.",
-        "register": "neutral",
-        "notes": "Classic no-agreement miss.",
-        "polarity": "negative"
       }
     ],
     "topic": "adjective_agreement",
@@ -110,7 +104,13 @@
       }
     ],
     "explanation": "Gatti is m.pl. Nero is Class I, so the m.pl form takes -i: neri. Colour adjectives sit in post-noun position by default: gatti neri.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Ho due gatti nero.",
+        "note": "Classic no-agreement miss."
+      }
+    ]
   },
   {
     "external_id": "trans_aa_en_it_03",
@@ -122,12 +122,6 @@
         "text": "Le ragazze sono molto intelligenti.",
         "register": "neutral",
         "notes": "Standard."
-      },
-      {
-        "text": "Le ragazze sono molto intelligente.",
-        "register": "neutral",
-        "notes": "Classic miss for the tree-noted hardest case: no number agreement on Class II adjective.",
-        "polarity": "negative"
       }
     ],
     "topic": "adjective_agreement",
@@ -165,7 +159,13 @@
       }
     ],
     "explanation": "The tree-noted hardest case for English learners: Class II f.pl takes -i, not -e. Ragazze is f.pl, intelligente is Class II, so the form is intelligenti. The classic miss leaves intelligente unchanged.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Le ragazze sono molto intelligente.",
+        "note": "Classic miss for the tree-noted hardest case: no number agreement on Class II adjective."
+      }
+    ]
   },
   {
     "external_id": "trans_aa_en_it_04",
@@ -183,12 +183,6 @@
         "register": "neutral",
         "notes": "Pareti (f.pl) is also a valid translation of 'walls' (interior walls particularly).",
         "polarity": "positive"
-      },
-      {
-        "text": "I muri della cucina sono bianci.",
-        "register": "neutral",
-        "notes": "Soft-c miss: forgets to insert h.",
-        "polarity": "negative"
       }
     ],
     "topic": "adjective_agreement",
@@ -239,7 +233,13 @@
       }
     ],
     "explanation": "Muri is m.pl. Bianco is a penult-stressed -co adjective: stem change inserts h to preserve the hard c-sound, giving bianchi. Pareti (the alternative for 'walls') is f.pl and would take bianche by the parallel rule.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "I muri della cucina sono bianci.",
+        "note": "Soft-c miss: forgets to insert h."
+      }
+    ]
   },
   {
     "external_id": "trans_aa_en_it_05",
@@ -251,12 +251,6 @@
         "text": "I miei colleghi sono molto simpatici.",
         "register": "neutral",
         "notes": "Standard."
-      },
-      {
-        "text": "I miei colleghi sono molto simpatichi.",
-        "register": "neutral",
-        "notes": "Over-application of -chi rule (forgets antepenult-stress exception).",
-        "polarity": "negative"
       }
     ],
     "topic": "adjective_agreement",
@@ -296,7 +290,13 @@
       }
     ],
     "explanation": "Simpatico has antepenult stress (sim-pa-ti-co), so the stress rule gives m.pl simpatici with soft c, not simpatichi. Compare with bianchi: there, penult stress preserves the hard c through h-insertion.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "I miei colleghi sono molto simpatichi.",
+        "note": "Over-application of -chi rule (forgets antepenult-stress exception)."
+      }
+    ]
   },
   {
     "external_id": "trans_aa_en_it_06",
@@ -308,12 +308,6 @@
         "text": "Marco e Luigi sono amici da molti anni.",
         "register": "neutral",
         "notes": "Standard; note Italian uses present + 'da' for ongoing duration."
-      },
-      {
-        "text": "Marco e Luigi sono amichi da molti anni.",
-        "register": "neutral",
-        "notes": "Over-application of the predictable -chi rule.",
-        "polarity": "negative"
       }
     ],
     "topic": "adjective_agreement",
@@ -353,7 +347,13 @@
       }
     ],
     "explanation": "Amico is irregular in the m.pl: the actual form is amici with soft c, despite penultimate stress that would predict amichi. This is a learned exception to the regular h-insertion rule.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Marco e Luigi sono amichi da molti anni.",
+        "note": "Over-application of the predictable -chi rule."
+      }
+    ]
   },
   {
     "external_id": "trans_aa_en_it_07",
@@ -365,12 +365,6 @@
         "text": "I ragazzi e le ragazze sono italiani.",
         "register": "neutral",
         "notes": "Standard. Mixed-gender plural defaults to masculine."
-      },
-      {
-        "text": "I ragazzi e le ragazze sono italiane.",
-        "register": "neutral",
-        "notes": "Proximity-agreement miss (matches the closest noun).",
-        "polarity": "negative"
       }
     ],
     "topic": "adjective_agreement",
@@ -422,7 +416,13 @@
       }
     ],
     "explanation": "Italian defaults to the masculine plural form for mixed-gender groups, even when the closest noun is feminine. So i ragazzi e le ragazze sono italiani, not italiane.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "I ragazzi e le ragazze sono italiane.",
+        "note": "Proximity-agreement miss (matches the closest noun)."
+      }
+    ]
   },
   {
     "external_id": "trans_aa_en_it_08",
@@ -440,12 +440,6 @@
         "register": "neutral",
         "notes": "Subject pronoun optional but possible for emphasis.",
         "polarity": "positive"
-      },
-      {
-        "text": "Ha delle scarpe rose.",
-        "register": "neutral",
-        "notes": "Over-applies Class I plural to an invariable colour adjective. Note 'rose' is also the noun 'roses'.",
-        "polarity": "negative"
       }
     ],
     "topic": "adjective_agreement",
@@ -485,7 +479,13 @@
       }
     ],
     "explanation": "Rosa is an invariable adjective borrowed from the noun 'rose' (the flower). It doesn't inflect for gender or number, so scarpe rosa stays unchanged in the plural.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Ha delle scarpe rose.",
+        "note": "Over-applies Class I plural to an invariable colour adjective. Note 'rose' is also the noun 'roses'."
+      }
+    ]
   },
   {
     "external_id": "trans_aa_en_it_09",
@@ -503,12 +503,6 @@
         "register": "neutral",
         "notes": "Conditional 'vorrei' is more polite; same agreement test.",
         "polarity": "positive"
-      },
-      {
-        "text": "Voglio una verde macchina.",
-        "register": "neutral",
-        "notes": "English-style fronting of the colour adjective.",
-        "polarity": "negative"
       }
     ],
     "topic": "adjective_agreement",
@@ -557,7 +551,13 @@
       }
     ],
     "explanation": "Macchina is f.sg. Verde is a Class II adjective: same form for both genders in the singular, so still verde. Colour adjectives sit in post-noun position by default: una macchina verde.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Voglio una verde macchina.",
+        "note": "English-style fronting of the colour adjective."
+      }
+    ]
   },
   {
     "external_id": "trans_aa_en_it_10",
@@ -575,12 +575,6 @@
         "register": "neutral",
         "notes": "Without 'mio', still good; the pre-noun position carries the same meaning.",
         "polarity": "positive"
-      },
-      {
-        "text": "È un mio amico vecchio.",
-        "register": "neutral",
-        "notes": "Wrong reading: post-noun vecchio means 'elderly friend', not 'long-standing'.",
-        "polarity": "negative"
       }
     ],
     "topic": "adjective_agreement",
@@ -618,7 +612,13 @@
     ],
     "explanation": "Vecchio shifts meaning by position. Pre-noun is the relational reading: long-standing. Un mio vecchio amico = a friend of many years. Post-noun (un amico vecchio) would mean physically elderly.",
     "examiner_note": "Tests both the canonical pre-noun position and the semantic shift. The negative reference illustrates the reading the learner must avoid.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "È un mio amico vecchio.",
+        "note": "Wrong reading: post-noun vecchio means 'elderly friend', not 'long-standing'."
+      }
+    ]
   },
   {
     "external_id": "trans_aa_en_it_11",
@@ -636,12 +636,6 @@
         "register": "formal",
         "notes": "Passato remoto register, common in historical/narrative context.",
         "polarity": "positive"
-      },
-      {
-        "text": "Leonardo è stato un uomo grande.",
-        "register": "neutral",
-        "notes": "Wrong reading: post-noun grande means 'physically big/tall'.",
-        "polarity": "negative"
       }
     ],
     "topic": "adjective_agreement",
@@ -682,7 +676,13 @@
       }
     ],
     "explanation": "Grande shifts meaning by position. Pre-noun is the figurative reading: great in stature, achievement. Un grande uomo = a great man, like Leonardo. Post-noun (un uomo grande) would mean physically big. The shortened gran uomo also exists but is rarer.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Leonardo è stato un uomo grande.",
+        "note": "Wrong reading: post-noun grande means 'physically big/tall'."
+      }
+    ]
   },
   {
     "external_id": "trans_aa_en_it_12",
@@ -694,12 +694,6 @@
         "text": "Che bel libro!",
         "register": "neutral",
         "notes": "Standard exclamative. Bel before m.sg consonant."
-      },
-      {
-        "text": "Che bello libro!",
-        "register": "neutral",
-        "notes": "Wrong allomorph: bello stays full only before s+consonant/z, not before regular consonants.",
-        "polarity": "negative"
       }
     ],
     "topic": "adjective_agreement",
@@ -738,7 +732,13 @@
       }
     ],
     "explanation": "Pre-noun bello has an allomorph series paralleling the definite article. Before m.sg nouns taking il (most consonants), bello becomes bel: che bel libro, parallel to il libro.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Che bello libro!",
+        "note": "Wrong allomorph: bello stays full only before s+consonant/z, not before regular consonants."
+      }
+    ]
   },
   {
     "external_id": "trans_aa_en_it_13",
@@ -756,12 +756,6 @@
         "register": "neutral",
         "notes": "If 'day' is paraphrased as 'afternoon'; tests the m.sg buon form.",
         "polarity": "positive"
-      },
-      {
-        "text": "Buono giornata!",
-        "register": "neutral",
-        "notes": "Over-applies the full form; should be buona.",
-        "polarity": "negative"
       }
     ],
     "topic": "adjective_agreement",
@@ -795,7 +789,13 @@
       }
     ],
     "explanation": "Pre-noun buono takes the f.sg form buona before a consonant: buona giornata, a standard greeting/farewell. The wrong buono giornata over-applies the m.sg form.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Buono giornata!",
+        "note": "Over-applies the full form; should be buona."
+      }
+    ]
   },
   {
     "external_id": "trans_aa_en_it_14",
@@ -807,12 +807,6 @@
         "text": "Quegli zaini sono molto pesanti.",
         "register": "neutral",
         "notes": "Standard. Quegli before m.pl vowel/s+cons/z."
-      },
-      {
-        "text": "Quei zaini sono molto pesanti.",
-        "register": "neutral",
-        "notes": "Wrong allomorph: quei is for m.pl consonant; before z-initial nouns, use quegli.",
-        "polarity": "negative"
       }
     ],
     "topic": "adjective_agreement",
@@ -851,7 +845,13 @@
       }
     ],
     "explanation": "Pre-noun quello has an allomorph series like the definite article. Before m.pl nouns taking gli (vowel-initial, s+consonant, z), the form is quegli — parallel to gli zaini. Pesante is Class II: m.pl pesanti.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Quei zaini sono molto pesanti.",
+        "note": "Wrong allomorph: quei is for m.pl consonant; before z-initial nouns, use quegli."
+      }
+    ]
   },
   {
     "external_id": "trans_aa_en_it_15",
@@ -869,12 +869,6 @@
         "register": "neutral",
         "notes": "Avere as a possessive paraphrase of 'wearing'.",
         "polarity": "positive"
-      },
-      {
-        "text": "Indossava un vestito blu marini.",
-        "register": "neutral",
-        "notes": "Over-applied agreement on a compound colour.",
-        "polarity": "negative"
       }
     ],
     "topic": "adjective_agreement",
@@ -914,7 +908,13 @@
       }
     ],
     "explanation": "Compound colours like blu marino are invariable as a unit: they don't inflect for the noun's gender or number. Un vestito blu marino stays unchanged.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Indossava un vestito blu marini.",
+        "note": "Over-applied agreement on a compound colour."
+      }
+    ]
   },
   {
     "external_id": "trans_aa_it_en_01",
@@ -1080,12 +1080,6 @@
         "register": "neutral",
         "notes": "Pragmatically equivalent; close = dear in the affective sense.",
         "polarity": "positive"
-      },
-      {
-        "text": "Carlo is an expensive friend.",
-        "register": "neutral",
-        "notes": "Wrong reading: 'expensive' is the post-noun (literal/price) meaning.",
-        "polarity": "negative"
       }
     ],
     "topic": "adjective_agreement",
@@ -1119,7 +1113,13 @@
       }
     ],
     "explanation": "Caro shifts meaning by position. Pre-noun is the figurative/affective reading: dear, beloved. Un caro amico = a dear friend. Post-noun (un amico caro) would mean financially expensive — concrete and almost humorous in context.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Carlo is an expensive friend.",
+        "note": "Wrong reading: 'expensive' is the post-noun (literal/price) meaning."
+      }
+    ]
   },
   {
     "external_id": "trans_aa_it_en_04",
@@ -1399,12 +1399,6 @@
         "register": "neutral",
         "notes": "Makes the pre-noun reading explicit.",
         "polarity": "positive"
-      },
-      {
-        "text": "The boy with little money fell off his bicycle.",
-        "register": "neutral",
-        "notes": "Wrong reading: that would be 'un ragazzo povero' (post-noun, literal financial meaning).",
-        "polarity": "negative"
       }
     ],
     "topic": "adjective_agreement",
@@ -1458,7 +1452,13 @@
       }
     ],
     "explanation": "Povero shifts meaning by position. Pre-noun is the empathetic reading: unfortunate, to be pitied. Il povero ragazzo è caduto = the boy (poor thing) fell. Post-noun would mean financially poor.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "The boy with little money fell off his bicycle.",
+        "note": "Wrong reading: that would be 'un ragazzo povero' (post-noun, literal financial meaning)."
+      }
+    ]
   },
   {
     "external_id": "trans_aa_it_en_09",
@@ -1810,12 +1810,6 @@
         "register": "neutral",
         "notes": "Idiomatic English: 'old friend' defaults to the long-standing reading.",
         "polarity": "positive"
-      },
-      {
-        "text": "The professor is an elderly friend of mine.",
-        "register": "neutral",
-        "notes": "Wrong reading: would correspond to 'un amico vecchio' (post-noun).",
-        "polarity": "negative"
       }
     ],
     "topic": "adjective_agreement",
@@ -1870,7 +1864,13 @@
     ],
     "explanation": "Vecchio pre-noun is the relational reading: long-standing. Un mio vecchio amico = a friend of many years, not a friend who is elderly. The English 'old friend' carries the same default idiomatically.",
     "examiner_note": "References proposed bucket position.semantic_shift.vecchio.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "The professor is an elderly friend of mine.",
+        "note": "Wrong reading: would correspond to 'un amico vecchio' (post-noun)."
+      }
+    ]
   },
   {
     "external_id": "trans_aa_it_en_15",
@@ -1888,12 +1888,6 @@
         "register": "neutral",
         "notes": "Condottiero glossed more broadly.",
         "polarity": "positive"
-      },
-      {
-        "text": "Garibaldi was a big commander.",
-        "register": "neutral",
-        "notes": "Wrong reading: literal/physical, would require 'un condottiero grande'.",
-        "polarity": "negative"
       }
     ],
     "topic": "adjective_agreement",
@@ -1935,7 +1929,13 @@
     ],
     "explanation": "Grande pre-noun gives the figurative reading: great in stature, reputation, achievement. Garibaldi un grande condottiero — recognised for his leadership, not his physical size. Post-noun grande would be the literal physical reading.",
     "examiner_note": "References proposed bucket position.semantic_shift.grande.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Garibaldi was a big commander.",
+        "note": "Wrong reading: literal/physical, would require 'un condottiero grande'."
+      }
+    ]
   },
   {
     "external_id": "trans_aa_it_en_16",
@@ -1953,12 +1953,6 @@
         "register": "neutral",
         "notes": "Makes the pre-noun reading explicit.",
         "polarity": "positive"
-      },
-      {
-        "text": "The lady with little money has lost her car keys.",
-        "register": "neutral",
-        "notes": "Wrong reading: post-noun (impoverished) would be 'una signora povera'.",
-        "polarity": "negative"
       }
     ],
     "topic": "adjective_agreement",
@@ -2013,6 +2007,12 @@
     ],
     "explanation": "Povero pre-noun is the empathetic reading: unfortunate, to be pitied. La povera signora ha perso le chiavi — sympathy with her predicament. Post-noun (una signora povera) would mean financially poor.",
     "examiner_note": "References proposed bucket position.semantic_shift.povero.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "The lady with little money has lost her car keys.",
+        "note": "Wrong reading: post-noun (impoverished) would be 'una signora povera'."
+      }
+    ]
   }
 ]

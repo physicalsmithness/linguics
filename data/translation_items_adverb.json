@@ -9,12 +9,6 @@
         "text": "Lucia cucina molto bene.",
         "register": "neutral",
         "notes": "Standard. Bene is the adverb for how she cooks; molto stays invariable."
-      },
-      {
-        "text": "Lucia cucina molto buono.",
-        "register": "neutral",
-        "notes": "WRONG: buono is an adjective and cannot describe the action of cooking; the adverb is bene.",
-        "polarity": "negative"
       }
     ],
     "topic": "adverb",
@@ -38,7 +32,13 @@
       }
     ],
     "explanation": "Cooking is an action, so 'well' is the adverb bene, strengthened by molto: cucina molto bene. The frequent slip 'cucina molto buono' uses the adjective buono, which can only describe a thing.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Lucia cucina molto buono.",
+        "note": "WRONG: buono is an adjective and cannot describe the action of cooking; the adverb is bene."
+      }
+    ]
   },
   {
     "external_id": "trans_adv_bb_en_it_02",
@@ -55,12 +55,6 @@
         "text": "Questo caffè è molto buono.",
         "register": "neutral",
         "notes": "Also fine; molto buono = very good."
-      },
-      {
-        "text": "Questo caffè è molto bene.",
-        "register": "neutral",
-        "notes": "WRONG: describing a thing needs the adjective buono, not the adverb bene.",
-        "polarity": "negative"
       }
     ],
     "topic": "adverb",
@@ -73,7 +67,13 @@
     "optional_buckets": [],
     "vocab_help": [],
     "explanation": "The coffee is a thing, so 'good' is the adjective buono (it agrees with the thing). Bene, an adverb, cannot describe a thing.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Questo caffè è molto bene.",
+        "note": "WRONG: describing a thing needs the adjective buono, not the adverb bene."
+      }
+    ]
   },
   {
     "external_id": "trans_adv_bb_en_it_03",
@@ -90,12 +90,6 @@
         "text": "Come sta? Sto bene, grazie.",
         "register": "formal",
         "notes": "Formal address (Lei)."
-      },
-      {
-        "text": "Come stai? Sto buono, grazie.",
-        "register": "informal",
-        "notes": "WRONG: sto buono means 'I behave', not 'I feel well'; wellbeing uses bene.",
-        "polarity": "negative"
       }
     ],
     "topic": "adverb",
@@ -108,7 +102,13 @@
     "optional_buckets": [],
     "vocab_help": [],
     "explanation": "Feeling well uses the adverb bene: sto bene. Sto buono exists but means 'I'm being good / I behave', so it changes the meaning entirely.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Come stai? Sto buono, grazie.",
+        "note": "WRONG: sto buono means 'I behave', not 'I feel well'; wellbeing uses bene."
+      }
+    ]
   },
   {
     "external_id": "trans_adv_bb_it_en_01",
@@ -154,12 +154,6 @@
         "text": "È stata un'ottima idea.",
         "register": "neutral",
         "notes": "ottima = excellent, a natural intensified variant."
-      },
-      {
-        "text": "È stata una bene idea.",
-        "register": "neutral",
-        "notes": "WRONG: a noun needs the adjective buona, never the adverb bene.",
-        "polarity": "negative"
       }
     ],
     "topic": "adverb",
@@ -174,7 +168,13 @@
     ],
     "vocab_help": [],
     "explanation": "Idea is a thing, so 'good' is the adjective buona, agreeing with the feminine noun. Bene never agrees and cannot sit on a noun.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "È stata una bene idea.",
+        "note": "WRONG: a noun needs the adjective buona, never the adverb bene."
+      }
+    ]
   },
   {
     "external_id": "trans_adv_inv_en_it_01",
@@ -186,12 +186,6 @@
         "text": "Le ragazze sono molto stanche.",
         "register": "neutral",
         "notes": "Standard; molto stays invariable before the adjective, stanche agrees."
-      },
-      {
-        "text": "Le ragazze sono molte stanche.",
-        "register": "neutral",
-        "notes": "WRONG: molto before an adjective is an adverb and does not agree; only stanche agrees.",
-        "polarity": "negative"
       }
     ],
     "topic": "adverb",
@@ -217,7 +211,13 @@
       }
     ],
     "explanation": "Molto before an adjective is an adverb and stays molto; the adjective stanche does the agreeing (feminine plural). So molto stanche, not molte stanche.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Le ragazze sono molte stanche.",
+        "note": "WRONG: molto before an adjective is an adverb and does not agree; only stanche agrees."
+      }
+    ]
   },
   {
     "external_id": "trans_adv_inv_en_it_02",
@@ -470,12 +470,6 @@
         "text": "Lei arriva sempre in ritardo.",
         "register": "neutral",
         "notes": "With subject pronoun for emphasis."
-      },
-      {
-        "text": "Sempre arriva in ritardo.",
-        "register": "neutral",
-        "notes": "WRONG order: the adverb should follow the verb, not precede it.",
-        "polarity": "negative"
       }
     ],
     "topic": "adverb",
@@ -488,7 +482,13 @@
     "optional_buckets": [],
     "vocab_help": [],
     "explanation": "In a simple tense the adverb follows the verb: arriva sempre in ritardo. The English order 'always arrives' (adverb first) does not carry over.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Sempre arriva in ritardo.",
+        "note": "WRONG order: the adverb should follow the verb, not precede it."
+      }
+    ]
   },
   {
     "external_id": "trans_adv_pos_en_it_02",
@@ -500,12 +500,6 @@
         "text": "Ho già mangiato.",
         "register": "neutral",
         "notes": "già sits between the auxiliary and the participle."
-      },
-      {
-        "text": "Ho mangiato già.",
-        "register": "neutral",
-        "notes": "Marked/dispreferred: già belongs between ho and mangiato.",
-        "polarity": "negative"
       }
     ],
     "topic": "adverb",
@@ -520,6 +514,12 @@
     ],
     "vocab_help": [],
     "explanation": "With a compound tense, short adverbs like già sit between the auxiliary and the participle: ho già mangiato. This placement skill lives with the passato prossimo, so it is credited there; the adverb topic owns only simple-tense placement.",
-    "version": 1
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Ho mangiato già.",
+        "note": "Marked/dispreferred: già belongs between ho and mangiato."
+      }
+    ]
   }
 ]

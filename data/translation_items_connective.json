@@ -1,1120 +1,1120 @@
 [
- {
-  "external_id": "trans_conn_en_it_cause_01",
-  "source_lang": "en",
-  "target_lang": "it",
-  "source_text": "Since it was cold, we stayed home.",
-  "reference_translations": [
-   {
-    "text": "Siccome faceva freddo, siamo rimasti a casa.",
+  {
+    "external_id": "trans_conn_en_it_cause_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Since it was cold, we stayed home.",
+    "reference_translations": [
+      {
+        "text": "Siccome faceva freddo, siamo rimasti a casa.",
+        "register": "neutral",
+        "notes": "Standard: siccome owns the front slot."
+      },
+      {
+        "text": "Dato che faceva freddo, siamo rimasti a casa.",
+        "register": "neutral",
+        "notes": "Fine: dato che shares the front slot."
+      }
+    ],
+    "topic": "connective",
     "register": "neutral",
-    "notes": "Standard: siccome owns the front slot."
-   },
-   {
-    "text": "Dato che faceva freddo, siamo rimasti a casa.",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "connective.cause.siccome_perche"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "cold",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "cold - freddo",
+            "bucket": "vocabulary.it.freddo.translation"
+          }
+        }
+      },
+      {
+        "lemma": "stayed",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to stay - rimanere",
+            "bucket": "vocabulary.it.rimanere.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Siccome faceva freddo, siamo rimasti a casa. The English signals the front slot with Since, and the front slot belongs to siccome (or dato che / visto che), never to perché. The perché version needs the clauses reversed: Siamo rimasti a casa perché faceva freddo, which is also accepted.",
+    "version": 1,
+    "examiner_note": "A clause-reversed perché rendering (Siamo rimasti a casa perché faceva freddo) is correct Italian and should collect the bucket; the negative anchor only catches cause-FIRST perché.",
+    "common_errors": [
+      {
+        "text": "Perché faceva freddo, siamo rimasti a casa.",
+        "note": "WRONG: cause-first perché is the classic slot miss; perché follows the main clause."
+      }
+    ]
+  },
+  {
+    "external_id": "trans_conn_en_it_cause_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I didn't call you because I didn't have your number.",
+    "reference_translations": [
+      {
+        "text": "Non ti ho chiamato perché non avevo il tuo numero.",
+        "register": "neutral",
+        "notes": "Standard: perché after the main clause."
+      },
+      {
+        "text": "Siccome non avevo il tuo numero, non ti ho chiamato.",
+        "register": "neutral",
+        "notes": "Equally good: same facts wired front-first with siccome."
+      }
+    ],
+    "topic": "connective",
     "register": "neutral",
-    "notes": "Fine: dato che shares the front slot."
-   },
-   {
-    "text": "Perché faceva freddo, siamo rimasti a casa.",
-    "register": "neutral",
-    "notes": "WRONG: cause-first perché is the classic slot miss; perché follows the main clause.",
-    "polarity": "negative"
-   }
-  ],
-  "topic": "connective",
-  "register": "neutral",
-  "difficulty": 2,
-  "cefr_level_target": "A2",
-  "required_buckets": [
-   "connective.cause.siccome_perche"
-  ],
-  "optional_buckets": [],
-  "vocab_help": [
-   {
-    "lemma": "cold",
-    "language": "en",
-    "aspects": {
-     "translation": {
-      "reveal": "cold - freddo",
-      "bucket": "vocabulary.it.freddo.translation"
-     }
-    }
-   },
-   {
-    "lemma": "stayed",
-    "language": "en",
-    "aspects": {
-     "translation": {
-      "reveal": "to stay - rimanere",
-      "bucket": "vocabulary.it.rimanere.verb.translation"
-     }
-    }
-   }
-  ],
-  "explanation": "Siccome faceva freddo, siamo rimasti a casa. The English signals the front slot with Since, and the front slot belongs to siccome (or dato che / visto che), never to perché. The perché version needs the clauses reversed: Siamo rimasti a casa perché faceva freddo, which is also accepted.",
-  "version": 1,
-  "examiner_note": "A clause-reversed perché rendering (Siamo rimasti a casa perché faceva freddo) is correct Italian and should collect the bucket; the negative anchor only catches cause-FIRST perché."
- },
- {
-  "external_id": "trans_conn_en_it_cause_02",
-  "source_lang": "en",
-  "target_lang": "it",
-  "source_text": "I didn't call you because I didn't have your number.",
-  "reference_translations": [
-   {
-    "text": "Non ti ho chiamato perché non avevo il tuo numero.",
-    "register": "neutral",
-    "notes": "Standard: perché after the main clause."
-   },
-   {
-    "text": "Siccome non avevo il tuo numero, non ti ho chiamato.",
-    "register": "neutral",
-    "notes": "Equally good: same facts wired front-first with siccome."
-   },
-   {
-    "text": "Non ti ho chiamato siccome non avevo il tuo numero.",
-    "register": "neutral",
-    "notes": "WRONG: post-slot siccome; after the main clause the because-word is perché.",
-    "polarity": "negative"
-   }
-  ],
-  "topic": "connective",
-  "register": "neutral",
-  "difficulty": 2,
-  "cefr_level_target": "A2",
-  "required_buckets": [
-   "connective.cause.siccome_perche"
-  ],
-  "optional_buckets": [],
-  "vocab_help": [
-   {
-    "lemma": "number",
-    "language": "en",
-    "aspects": {
-     "translation": {
-      "reveal": "number - numero",
-      "bucket": "vocabulary.it.numero.noun.translation"
-     }
-    }
-   },
-   {
-    "lemma": "call",
-    "language": "en",
-    "aspects": {
-     "translation": {
-      "reveal": "to call - chiamare",
-      "bucket": "vocabulary.it.chiamare.verb.translation"
-     }
-    }
-   }
-  ],
-  "explanation": "Non ti ho chiamato perché non avevo il tuo numero. Both slot patterns translate the English faithfully; what Italian resists is siccome trailing after the main clause, which is exactly the swap the negative anchor catches.",
-  "version": 1
- },
- {
-  "external_id": "trans_conn_en_it_reg_01",
-  "source_lang": "en",
-  "target_lang": "it",
-  "source_text": "Since the data were incomplete, the analysis was postponed. [formal report]",
-  "reference_translations": [
-   {
-    "text": "Poiché i dati erano incompleti, l'analisi è stata rinviata.",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "connective.cause.siccome_perche"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "number",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "number - numero",
+            "bucket": "vocabulary.it.numero.noun.translation"
+          }
+        }
+      },
+      {
+        "lemma": "call",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to call - chiamare",
+            "bucket": "vocabulary.it.chiamare.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Non ti ho chiamato perché non avevo il tuo numero. Both slot patterns translate the English faithfully; what Italian resists is siccome trailing after the main clause, which is exactly the swap the negative anchor catches.",
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Non ti ho chiamato siccome non avevo il tuo numero.",
+        "note": "WRONG: post-slot siccome; after the main clause the because-word is perché."
+      }
+    ]
+  },
+  {
+    "external_id": "trans_conn_en_it_reg_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Since the data were incomplete, the analysis was postponed. [formal report]",
+    "reference_translations": [
+      {
+        "text": "Poiché i dati erano incompleti, l'analisi è stata rinviata.",
+        "register": "formal",
+        "notes": "Standard formal rendering."
+      },
+      {
+        "text": "Dato che i dati erano incompleti, l'analisi è stata rinviata.",
+        "register": "formal",
+        "notes": "Fine in formal writing."
+      },
+      {
+        "text": "Visto che i dati erano incompleti, l'analisi è stata rinviata.",
+        "register": "informal",
+        "notes": "Right slot, conversational register where the bracket asks formal.",
+        "credit": 0.8
+      }
+    ],
+    "topic": "connective",
     "register": "formal",
-    "notes": "Standard formal rendering."
-   },
-   {
-    "text": "Dato che i dati erano incompleti, l'analisi è stata rinviata.",
-    "register": "formal",
-    "notes": "Fine in formal writing."
-   },
-   {
-    "text": "Visto che i dati erano incompleti, l'analisi è stata rinviata.",
-    "register": "informal",
-    "notes": "Right slot, conversational register where the bracket asks formal.",
-    "credit": 0.8
-   }
-  ],
-  "topic": "connective",
-  "register": "formal",
-  "difficulty": 3,
-  "cefr_level_target": "B1",
-  "required_buckets": [
-   "connective.cause.register_set"
-  ],
-  "optional_buckets": [],
-  "vocab_help": [
-   {
-    "lemma": "postponed",
-    "language": "en",
-    "aspects": {
-     "translation": {
-      "reveal": "to postpone - rinviare",
-      "bucket": "vocabulary.it.rinviare.verb.translation"
-     }
-    }
-   },
-   {
-    "lemma": "data",
-    "language": "en",
-    "aspects": {
-     "translation": {
-      "reveal": "data - i dati",
-      "bucket": "vocabulary.it.dato.translation"
-     }
-    }
-   }
-  ],
-  "explanation": "Poiché i dati erano incompleti, l'analisi è stata rinviata. The bracketed instruction pins the register, and in a formal report the front-slot because is poiché (dato che passes; visto che sounds like corridor talk). Register is the only thing this item is listening for.",
-  "version": 1
- },
- {
-  "external_id": "trans_conn_en_it_cons_01",
-  "source_lang": "en",
-  "target_lang": "it",
-  "source_text": "I was tired, so I went to bed early.",
-  "reference_translations": [
-   {
-    "text": "Ero stanco, quindi sono andato a letto presto.",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "connective.cause.register_set"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "postponed",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to postpone - rinviare",
+            "bucket": "vocabulary.it.rinviare.verb.translation"
+          }
+        }
+      },
+      {
+        "lemma": "data",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "data - i dati",
+            "bucket": "vocabulary.it.dato.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Poiché i dati erano incompleti, l'analisi è stata rinviata. The bracketed instruction pins the register, and in a formal report the front-slot because is poiché (dato che passes; visto che sounds like corridor talk). Register is the only thing this item is listening for.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_conn_en_it_cons_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I was tired, so I went to bed early.",
+    "reference_translations": [
+      {
+        "text": "Ero stanco, quindi sono andato a letto presto.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "Ero stanca, perciò sono andata a letto presto.",
+        "register": "neutral",
+        "notes": "Fine: perciò equivalent; feminine speaker equally valid."
+      }
+    ],
+    "topic": "connective",
     "register": "neutral",
-    "notes": "Standard."
-   },
-   {
-    "text": "Ero stanca, perciò sono andata a letto presto.",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "connective.result.quindi_percio"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "tired",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "tired - stanco",
+            "bucket": "vocabulary.it.stanco.adjective.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Ero stanco, quindi sono andato a letto presto. So announces the consequence, which is quindi or perciò territory. The direction is the whole game: perché in that joint would run the causal arrow backwards.",
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Ero stanco perché sono andato a letto presto.",
+        "note": "WRONG: direction flipped; perché would make the tiredness a result of going to bed."
+      }
+    ]
+  },
+  {
+    "external_id": "trans_conn_en_it_pi_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "I like the sea; my sister, on the other hand, prefers the mountains.",
+    "reference_translations": [
+      {
+        "text": "A me piace il mare; mia sorella invece preferisce la montagna.",
+        "register": "neutral",
+        "notes": "Standard: invece after the switched referent."
+      },
+      {
+        "text": "Mi piace il mare, mentre mia sorella preferisce la montagna.",
+        "register": "neutral",
+        "notes": "Fine: contrastive mentre does the same job."
+      },
+      {
+        "text": "Mi piace il mare; mia sorella però preferisce la montagna.",
+        "register": "neutral",
+        "notes": "Grammatical; però registers an objection where invece draws the substitution. The drilled tool is invece.",
+        "credit": 0.9
+      }
+    ],
+    "topic": "connective",
     "register": "neutral",
-    "notes": "Fine: perciò equivalent; feminine speaker equally valid."
-   },
-   {
-    "text": "Ero stanco perché sono andato a letto presto.",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "connective.contrast.pero_invece"
+    ],
+    "optional_buckets": [
+      "piacere"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "prefers",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to prefer - preferire",
+            "bucket": "vocabulary.it.preferire.verb.translation"
+          }
+        }
+      },
+      {
+        "lemma": "mountains",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "mountain - la montagna",
+            "bucket": "vocabulary.it.montagna.noun.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "A me piace il mare; mia sorella invece preferisce la montagna. Two referents doing opposite things is invece's home ground, and it sits comfortably right after the new subject. Contrastive mentre is an equally idiomatic wiring of the same thought.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_conn_en_it_mood_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Although he was rich, he lived very simply. [use benché]",
+    "reference_translations": [
+      {
+        "text": "Benché fosse ricco, viveva in modo molto semplice.",
+        "register": "neutral",
+        "notes": "Standard: benché + imperfect subjunctive."
+      },
+      {
+        "text": "Benché fosse ricco, viveva molto semplicemente.",
+        "register": "neutral",
+        "notes": "Fine: adverb instead of in modo + adjective."
+      }
+    ],
+    "topic": "connective",
     "register": "neutral",
-    "notes": "WRONG: direction flipped; perché would make the tiredness a result of going to bed.",
-    "polarity": "negative"
-   }
-  ],
-  "topic": "connective",
-  "register": "neutral",
-  "difficulty": 2,
-  "cefr_level_target": "A2",
-  "required_buckets": [
-   "connective.result.quindi_percio"
-  ],
-  "optional_buckets": [],
-  "vocab_help": [
-   {
-    "lemma": "tired",
-    "language": "en",
-    "aspects": {
-     "translation": {
-      "reveal": "tired - stanco",
-      "bucket": "vocabulary.it.stanco.adjective.translation"
-     }
-    }
-   }
-  ],
-  "explanation": "Ero stanco, quindi sono andato a letto presto. So announces the consequence, which is quindi or perciò territory. The direction is the whole game: perché in that joint would run the causal arrow backwards.",
-  "version": 1
- },
- {
-  "external_id": "trans_conn_en_it_pi_01",
-  "source_lang": "en",
-  "target_lang": "it",
-  "source_text": "I like the sea; my sister, on the other hand, prefers the mountains.",
-  "reference_translations": [
-   {
-    "text": "A me piace il mare; mia sorella invece preferisce la montagna.",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "connective.contrast.mood_pairs"
+    ],
+    "optional_buckets": [
+      "tense_choice.indicative_vs_subjunctive"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "rich",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "rich - ricco",
+            "bucket": "vocabulary.it.ricco.translation"
+          }
+        }
+      },
+      {
+        "lemma": "simply",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "simply - semplicemente",
+            "bucket": "vocabulary.it.semplicemente.adverb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Benché fosse ricco, viveva in modo molto semplice. The bracket pins the connector, so the test becomes the dance partner: benché governs the subjunctive, here imperfect fosse. Anche se era ricco says the same thing, but the instruction asks for the benché machinery.",
+    "version": 1,
+    "examiner_note": "Square-bracket meta-instruction per Rev 20 / §3: [use benché] is an instruction, not text to translate. The benché+indicative anchor is the bucket's named common_miss.",
+    "common_errors": [
+      {
+        "text": "Benché era ricco, viveva in modo molto semplice.",
+        "note": "WRONG: benché with the indicative; benché governs the subjunctive (fosse)."
+      }
+    ]
+  },
+  {
+    "external_id": "trans_conn_en_it_mood_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Despite the rain, we went out.",
+    "reference_translations": [
+      {
+        "text": "Nonostante la pioggia, siamo usciti.",
+        "register": "neutral",
+        "notes": "Standard: nonostante + bare noun."
+      },
+      {
+        "text": "Malgrado la pioggia, siamo usciti.",
+        "register": "neutral",
+        "notes": "Fine: malgrado is the slightly more formal twin."
+      }
+    ],
+    "topic": "connective",
     "register": "neutral",
-    "notes": "Standard: invece after the switched referent."
-   },
-   {
-    "text": "Mi piace il mare, mentre mia sorella preferisce la montagna.",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "connective.contrast.mood_pairs"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "rain",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "rain - la pioggia",
+            "bucket": "vocabulary.it.pioggia.noun.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Nonostante la pioggia, siamo usciti. English despite + noun maps straight onto nonostante (or malgrado) + noun. The trap is inserting a conjugated verb after nonostante; give it either the bare noun or a subjunctive clause.",
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Nonostante pioveva, siamo usciti.",
+        "note": "WRONG: nonostante with a conjugated indicative; it wants a noun (la pioggia) or a subjunctive clause (nonostante piovesse)."
+      }
+    ]
+  },
+  {
+    "external_id": "trans_conn_en_it_time_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Before leaving, turn off the lights.",
+    "reference_translations": [
+      {
+        "text": "Prima di uscire, spegni le luci.",
+        "register": "neutral",
+        "notes": "Standard: same subject, prima di + infinitive."
+      },
+      {
+        "text": "Prima di partire, spegni le luci.",
+        "register": "neutral",
+        "notes": "Fine: partire if leaving is read as departing."
+      }
+    ],
+    "topic": "connective",
     "register": "neutral",
-    "notes": "Fine: contrastive mentre does the same job."
-   },
-   {
-    "text": "Mi piace il mare; mia sorella però preferisce la montagna.",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "connective.time.prima_dopo"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "turn off",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to turn off - spegnere",
+            "bucket": "vocabulary.it.spegnere.verb.translation"
+          }
+        }
+      },
+      {
+        "lemma": "lights",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "light - la luce",
+            "bucket": "vocabulary.it.luce.noun.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Prima di uscire, spegni le luci. One person both leaves and switches off, and same subject means prima di plus the infinitive. Prima che would drag in the subjunctive and a second subject that this sentence does not have.",
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Prima che esci, spegni le luci.",
+        "note": "WRONG: prima che takes the subjunctive and expects a DIFFERENT subject; same subject wants prima di + infinitive."
+      }
+    ]
+  },
+  {
+    "external_id": "trans_conn_en_it_time_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "After eating, they went for a walk.",
+    "reference_translations": [
+      {
+        "text": "Dopo aver mangiato, hanno fatto una passeggiata.",
+        "register": "neutral",
+        "notes": "Standard: dopo + past infinitive."
+      },
+      {
+        "text": "Dopo avere mangiato, sono andati a fare una passeggiata.",
+        "register": "neutral",
+        "notes": "Fine: unelided avere and the andare periphrasis."
+      }
+    ],
+    "topic": "connective",
     "register": "neutral",
-    "notes": "Grammatical; però registers an objection where invece draws the substitution. The drilled tool is invece.",
-    "credit": 0.9
-   }
-  ],
-  "topic": "connective",
-  "register": "neutral",
-  "difficulty": 3,
-  "cefr_level_target": "B1",
-  "required_buckets": [
-   "connective.contrast.pero_invece"
-  ],
-  "optional_buckets": [
-   "piacere"
-  ],
-  "vocab_help": [
-   {
-    "lemma": "prefers",
-    "language": "en",
-    "aspects": {
-     "translation": {
-      "reveal": "to prefer - preferire",
-      "bucket": "vocabulary.it.preferire.verb.translation"
-     }
-    }
-   },
-   {
-    "lemma": "mountains",
-    "language": "en",
-    "aspects": {
-     "translation": {
-      "reveal": "mountain - la montagna",
-      "bucket": "vocabulary.it.montagna.noun.translation"
-     }
-    }
-   }
-  ],
-  "explanation": "A me piace il mare; mia sorella invece preferisce la montagna. Two referents doing opposite things is invece's home ground, and it sits comfortably right after the new subject. Contrastive mentre is an equally idiomatic wiring of the same thought.",
-  "version": 1
- },
- {
-  "external_id": "trans_conn_en_it_mood_01",
-  "source_lang": "en",
-  "target_lang": "it",
-  "source_text": "Although he was rich, he lived very simply. [use benché]",
-  "reference_translations": [
-   {
-    "text": "Benché fosse ricco, viveva in modo molto semplice.",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "connective.time.prima_dopo"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "walk",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "walk - la passeggiata (fare una passeggiata = to go for a walk)",
+            "bucket": "vocabulary.it.passeggiata.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Dopo aver mangiato, hanno fatto una passeggiata. English after eating tempts a bare infinitive, but Italian's joint is the past infinitive: dopo aver(e) plus the participle. The colloquial clip dopo mangiato exists in speech; dopo mangiare exists nowhere.",
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Dopo mangiare, hanno fatto una passeggiata.",
+        "note": "WRONG: dopo + bare infinitive is the classic calque; the machinery is dopo aver(e) + past participle."
+      }
+    ]
+  },
+  {
+    "external_id": "trans_conn_en_it_cvd_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "He was so tired that he couldn't speak.",
+    "reference_translations": [
+      {
+        "text": "Era così stanco che non riusciva a parlare.",
+        "register": "neutral",
+        "notes": "Standard: così ... che + conjugated verb."
+      },
+      {
+        "text": "Era così stanco da non riuscire a parlare.",
+        "register": "neutral",
+        "notes": "Equally standard: così ... da + infinitive."
+      }
+    ],
+    "topic": "connective",
     "register": "neutral",
-    "notes": "Standard: benché + imperfect subjunctive."
-   },
-   {
-    "text": "Benché fosse ricco, viveva molto semplicemente.",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "connective.result.che_vs_da"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "speak",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to speak - parlare",
+            "bucket": "vocabulary.it.parlare.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Era così stanco che non riusciva a parlare, or equally Era così stanco da non riuscire a parlare. Italian offers two result machines and both translate the English perfectly; the only sin is mixing them, da with a conjugated verb or che with an infinitive.",
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Era così stanco da non riusciva a parlare.",
+        "note": "WRONG: da wired to a conjugated verb; the two result machines must not be mixed."
+      }
+    ]
+  },
+  {
+    "external_id": "trans_conn_en_it_seq_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "First of all, read the instructions; then call me.",
+    "reference_translations": [
+      {
+        "text": "Innanzitutto leggi le istruzioni; poi chiamami.",
+        "register": "neutral",
+        "notes": "Standard sequencer pair."
+      },
+      {
+        "text": "Prima di tutto leggi le istruzioni, poi chiamami.",
+        "register": "neutral",
+        "notes": "Fine: prima di tutto opens equally well."
+      },
+      {
+        "text": "Per prima cosa leggete le istruzioni; poi chiamatemi.",
+        "register": "neutral",
+        "notes": "Fine: plural imperative reading."
+      }
+    ],
+    "topic": "connective",
     "register": "neutral",
-    "notes": "Fine: adverb instead of in modo + adjective."
-   },
-   {
-    "text": "Benché era ricco, viveva in modo molto semplice.",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "connective.discourse"
+    ],
+    "optional_buckets": [
+      "verb_form.imperativo"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "instructions",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "instruction - l'istruzione",
+            "bucket": "vocabulary.it.istruzione.noun.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Innanzitutto leggi le istruzioni; poi chiamami. Two signposts order the text: innanzitutto (or prima di tutto) opens, poi carries on. English then maps to poi here, not to allora, which draws conclusions rather than marking the next step.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_conn_it_en_cause_01",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Siccome non avevo il numero, non ti ho chiamato.",
+    "reference_translations": [
+      {
+        "text": "Since I didn't have the number, I didn't call you.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "As I didn't have your number, I didn't call you.",
+        "register": "neutral",
+        "notes": "Fine: As carries the same front-slot because."
+      }
+    ],
+    "topic": "connective",
     "register": "neutral",
-    "notes": "WRONG: benché with the indicative; benché governs the subjunctive (fosse).",
-    "polarity": "negative"
-   }
-  ],
-  "topic": "connective",
-  "register": "neutral",
-  "difficulty": 4,
-  "cefr_level_target": "B2",
-  "required_buckets": [
-   "connective.contrast.mood_pairs"
-  ],
-  "optional_buckets": [
-   "tense_choice.indicative_vs_subjunctive"
-  ],
-  "vocab_help": [
-   {
-    "lemma": "rich",
-    "language": "en",
-    "aspects": {
-     "translation": {
-      "reveal": "rich - ricco",
-      "bucket": "vocabulary.it.ricco.translation"
-     }
-    }
-   },
-   {
-    "lemma": "simply",
-    "language": "en",
-    "aspects": {
-     "translation": {
-      "reveal": "simply - semplicemente",
-      "bucket": "vocabulary.it.semplicemente.adverb.translation"
-     }
-    }
-   }
-  ],
-  "explanation": "Benché fosse ricco, viveva in modo molto semplice. The bracket pins the connector, so the test becomes the dance partner: benché governs the subjunctive, here imperfect fosse. Anche se era ricco says the same thing, but the instruction asks for the benché machinery.",
-  "version": 1,
-  "examiner_note": "Square-bracket meta-instruction per Rev 20 / §3: [use benché] is an instruction, not text to translate. The benché+indicative anchor is the bucket's named common_miss."
- },
- {
-  "external_id": "trans_conn_en_it_mood_02",
-  "source_lang": "en",
-  "target_lang": "it",
-  "source_text": "Despite the rain, we went out.",
-  "reference_translations": [
-   {
-    "text": "Nonostante la pioggia, siamo usciti.",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "connective.cause.siccome_perche"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "chiamato",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "chiamare - to call",
+            "bucket": "vocabulary.it.chiamare.verb.translation"
+          }
+        }
+      },
+      {
+        "lemma": "numero",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "numero - number",
+            "bucket": "vocabulary.it.numero.noun.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Since I didn't have the number, I didn't call you. Siccome is a front-slot because (since, as), never a so. Decoding it as a result-word is the classic reading miss, and it turns the sentence into nonsense in English.",
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "So I didn't have the number, I didn't call you.",
+        "note": "WRONG: siccome decoded as so; it means since. The result-word reading garbles the sentence."
+      }
+    ]
+  },
+  {
+    "external_id": "trans_conn_it_en_cons_01",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Aveva dimenticato il portafoglio, perciò è tornato indietro.",
+    "reference_translations": [
+      {
+        "text": "He had forgotten his wallet, so he went back.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "He'd forgotten his wallet and therefore turned back.",
+        "register": "neutral",
+        "notes": "Fine: therefore is a shade more formal."
+      }
+    ],
+    "topic": "connective",
     "register": "neutral",
-    "notes": "Standard: nonostante + bare noun."
-   },
-   {
-    "text": "Malgrado la pioggia, siamo usciti.",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "connective.result.quindi_percio"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "portafoglio",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "portafoglio - wallet",
+            "bucket": "vocabulary.it.portafoglio.noun.translation"
+          }
+        }
+      },
+      {
+        "lemma": "indietro",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "indietro - back (tornare indietro = to go back)",
+            "bucket": "vocabulary.it.indietro.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "He had forgotten his wallet, so he went back. Perciò draws the consequence, and English so (or therefore) is its direct counterpart. The trapassato aveva dimenticato sets up the prior event; the connective then hangs the result on it.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_conn_it_en_ca_01",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Non mi hai disturbato affatto. Anzi, mi ha fatto piacere sentirti.",
+    "reference_translations": [
+      {
+        "text": "You didn't disturb me at all. On the contrary, it was a pleasure to hear from you.",
+        "register": "neutral",
+        "notes": "Standard: negative prior sentence, so anzi reverses."
+      },
+      {
+        "text": "You didn't bother me at all. Quite the opposite: it was lovely to hear from you.",
+        "register": "neutral",
+        "notes": "Fine: freer but faithful."
+      }
+    ],
+    "topic": "connective",
     "register": "neutral",
-    "notes": "Fine: malgrado is the slightly more formal twin."
-   },
-   {
-    "text": "Nonostante pioveva, siamo usciti.",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "connective.contrast.comunque_anzi"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "disturbato",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "disturbare - to disturb",
+            "bucket": "vocabulary.it.disturbare.verb.translation"
+          }
+        }
+      },
+      {
+        "lemma": "affatto",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "affatto - at all (non ... affatto = not at all)",
+            "bucket": "vocabulary.it.affatto.adverb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "You didn't disturb me at all. On the contrary, it was a pleasure to hear from you. After a negative sentence anzi does a full reversal (on the contrary), which anyway cannot carry: comunque shrugs past an obstacle, anzi overturns the statement before it.",
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "You didn't disturb me at all. Anyway, it was nice to hear from you.",
+        "note": "WRONG: anzi read as comunque; anyway shrugs, anzi flips the negative."
+      }
+    ]
+  },
+  {
+    "external_id": "trans_conn_it_en_ca_02",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Il concerto mi è piaciuto, anzi, è stato il migliore dell'anno.",
+    "reference_translations": [
+      {
+        "text": "I liked the concert; in fact, it was the best of the year.",
+        "register": "neutral",
+        "notes": "Standard: positive prior clause, so anzi escalates."
+      },
+      {
+        "text": "I enjoyed the concert. Indeed, it was the best one all year.",
+        "register": "neutral",
+        "notes": "Fine."
+      }
+    ],
+    "topic": "connective",
     "register": "neutral",
-    "notes": "WRONG: nonostante with a conjugated indicative; it wants a noun (la pioggia) or a subjunctive clause (nonostante piovesse).",
-    "polarity": "negative"
-   }
-  ],
-  "topic": "connective",
-  "register": "neutral",
-  "difficulty": 3,
-  "cefr_level_target": "B2",
-  "required_buckets": [
-   "connective.contrast.mood_pairs"
-  ],
-  "optional_buckets": [],
-  "vocab_help": [
-   {
-    "lemma": "rain",
-    "language": "en",
-    "aspects": {
-     "translation": {
-      "reveal": "rain - la pioggia",
-      "bucket": "vocabulary.it.pioggia.noun.translation"
-     }
-    }
-   }
-  ],
-  "explanation": "Nonostante la pioggia, siamo usciti. English despite + noun maps straight onto nonostante (or malgrado) + noun. The trap is inserting a conjugated verb after nonostante; give it either the bare noun or a subjunctive clause.",
-  "version": 1
- },
- {
-  "external_id": "trans_conn_en_it_time_01",
-  "source_lang": "en",
-  "target_lang": "it",
-  "source_text": "Before leaving, turn off the lights.",
-  "reference_translations": [
-   {
-    "text": "Prima di uscire, spegni le luci.",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "connective.contrast.comunque_anzi"
+    ],
+    "optional_buckets": [
+      "piacere"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "migliore",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "migliore - best",
+            "bucket": "vocabulary.it.migliore.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "I liked the concert; in fact, it was the best of the year. After a positive statement anzi raises the stakes rather than reversing them: in fact, indeed, better still. The polarity of what precedes is the only thing that decides between anzi's two readings.",
+    "version": 1,
+    "examiner_note": "Deliberate mirror of trans_conn_it_en_ca_01: same connective, opposite prior polarity, opposite correct reading.",
+    "common_errors": [
+      {
+        "text": "I liked the concert; on the contrary, it was the best of the year.",
+        "note": "WRONG: reversal reading after a positive clause; this anzi intensifies (in fact, indeed)."
+      }
+    ]
+  },
+  {
+    "external_id": "trans_conn_it_en_ca_03",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Ero stanco, ma sono venuto comunque.",
+    "reference_translations": [
+      {
+        "text": "I was tired, but I came anyway.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "I was tired; I came all the same.",
+        "register": "neutral",
+        "notes": "Fine: all the same carries comunque well."
+      }
+    ],
+    "topic": "connective",
     "register": "neutral",
-    "notes": "Standard: same subject, prima di + infinitive."
-   },
-   {
-    "text": "Prima di partire, spegni le luci.",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "connective.contrast.comunque_anzi"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "venuto",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "venire - to come",
+            "bucket": "vocabulary.it.venire.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "I was tired, but I came anyway. Comunque at the end of the clause is the dismissive anyway: the obstacle is conceded and walked past. However would misfire here; English however contrasts statements, while this comunque shrugs within one.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_conn_it_en_pi_01",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Io ho preso la pasta; Luca invece ha scelto la pizza.",
+    "reference_translations": [
+      {
+        "text": "I had the pasta; Luca, on the other hand, chose pizza.",
+        "register": "neutral",
+        "notes": "Standard: on the other hand carries invece."
+      },
+      {
+        "text": "I had pasta, whereas Luca chose pizza.",
+        "register": "neutral",
+        "notes": "Fine: whereas folds the contrast into one sentence."
+      },
+      {
+        "text": "I had the pasta; Luca instead chose pizza.",
+        "register": "neutral",
+        "notes": "Fine: instead works in English here."
+      }
+    ],
+    "topic": "connective",
     "register": "neutral",
-    "notes": "Fine: partire if leaving is read as departing."
-   },
-   {
-    "text": "Prima che esci, spegni le luci.",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "connective.contrast.pero_invece"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "scelto",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "scegliere - to choose",
+            "bucket": "vocabulary.it.scegliere.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "I had the pasta; Luca, on the other hand, chose pizza. Invece after the new subject signals substitutive contrast: a second referent making the opposite choice. On the other hand, whereas and instead are all faithful carriers.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_conn_it_en_mood_01",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Sebbene avesse chiamato a tutte le ore, nessuno le rispose.",
+    "reference_translations": [
+      {
+        "text": "Although she had called at all hours, no one answered her.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "Even though she had called at every hour of the day, nobody replied to her.",
+        "register": "neutral",
+        "notes": "Fine: freer rendering."
+      }
+    ],
+    "topic": "connective",
     "register": "neutral",
-    "notes": "WRONG: prima che takes the subjunctive and expects a DIFFERENT subject; same subject wants prima di + infinitive.",
-    "polarity": "negative"
-   }
-  ],
-  "topic": "connective",
-  "register": "neutral",
-  "difficulty": 3,
-  "cefr_level_target": "B1",
-  "required_buckets": [
-   "connective.time.prima_dopo"
-  ],
-  "optional_buckets": [],
-  "vocab_help": [
-   {
-    "lemma": "turn off",
-    "language": "en",
-    "aspects": {
-     "translation": {
-      "reveal": "to turn off - spegnere",
-      "bucket": "vocabulary.it.spegnere.verb.translation"
-     }
-    }
-   },
-   {
-    "lemma": "lights",
-    "language": "en",
-    "aspects": {
-     "translation": {
-      "reveal": "light - la luce",
-      "bucket": "vocabulary.it.luce.noun.translation"
-     }
-    }
-   }
-  ],
-  "explanation": "Prima di uscire, spegni le luci. One person both leaves and switches off, and same subject means prima di plus the infinitive. Prima che would drag in the subjunctive and a second subject that this sentence does not have.",
-  "version": 1
- },
- {
-  "external_id": "trans_conn_en_it_time_02",
-  "source_lang": "en",
-  "target_lang": "it",
-  "source_text": "After eating, they went for a walk.",
-  "reference_translations": [
-   {
-    "text": "Dopo aver mangiato, hanno fatto una passeggiata.",
+    "difficulty": 4,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "connective.contrast.mood_pairs"
+    ],
+    "optional_buckets": [
+      "tense_choice.indicative_vs_subjunctive"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "rispose",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "rispondere - to answer",
+            "bucket": "vocabulary.it.rispondere.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Although she had called at all hours, no one answered her. Sebbene governs the subjunctive (avesse chiamato), and English folds that machinery into a plain although-clause. The le before rispose is a dative: answered HER.",
+    "version": 1,
+    "examiner_note": "Adapted from the OIC idea bank sentence; passato remoto narration retained."
+  },
+  {
+    "external_id": "trans_conn_it_en_time_01",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Prima che arrivino gli ospiti, apparecchiamo la tavola.",
+    "reference_translations": [
+      {
+        "text": "Before the guests arrive, let's set the table.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "Let's set the table before the guests get here.",
+        "register": "neutral",
+        "notes": "Fine: clause order swapped."
+      }
+    ],
+    "topic": "connective",
     "register": "neutral",
-    "notes": "Standard: dopo + past infinitive."
-   },
-   {
-    "text": "Dopo avere mangiato, sono andati a fare una passeggiata.",
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "connective.time.prima_dopo"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "apparecchiamo",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "apparecchiare - to set the table",
+            "bucket": "vocabulary.it.apparecchiare.verb.translation"
+          }
+        }
+      },
+      {
+        "lemma": "ospiti",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "ospite - guest",
+            "bucket": "vocabulary.it.ospite.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Before the guests arrive, let's set the table. Prima che plus subjunctive (arrivino) signals a different subject about to act, and English renders it as a plain finite clause. The calque before arriving the guests is the give-away that the machinery went untranslated.",
+    "version": 1,
+    "common_errors": [
+      {
+        "text": "Before arriving the guests, let's set the table.",
+        "note": "WRONG: word-for-word calque of prima che + subjunctive; English needs a finite clause, before the guests arrive."
+      }
+    ]
+  },
+  {
+    "external_id": "trans_conn_it_en_seq_01",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Insomma, è troppo caro e non possiamo permettercelo.",
+    "reference_translations": [
+      {
+        "text": "In short, it's too expensive and we can't afford it.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "All in all, it costs too much and we simply can't afford it.",
+        "register": "neutral",
+        "notes": "Fine: freer summing-up."
+      }
+    ],
+    "topic": "connective",
     "register": "neutral",
-    "notes": "Fine: unelided avere and the andare periphrasis."
-   },
-   {
-    "text": "Dopo mangiare, hanno fatto una passeggiata.",
+    "difficulty": 2,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "connective.discourse"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "permettercelo",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "permettersi - to afford (permettercelo = to afford it)",
+            "bucket": "vocabulary.it.permettersi.verb.translation"
+          }
+        }
+      },
+      {
+        "lemma": "caro",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "caro - expensive",
+            "bucket": "vocabulary.it.caro.adjective.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "In short, it's too expensive and we can't afford it: Insomma, è troppo caro e non possiamo permettercelo. Insomma steps back and totals up the reasons already on the table: in short, all things considered. Permettercelo packs three pieces into one word: permettere plus ce plus lo, to allow ourselves it.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_conn_it_en_reg_01",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Visto che eri d'accordo, abbiamo firmato il contratto.",
+    "reference_translations": [
+      {
+        "text": "Since you agreed, we signed the contract.",
+        "register": "neutral",
+        "notes": "Standard."
+      },
+      {
+        "text": "Seeing as you were in agreement, we signed the contract.",
+        "register": "neutral",
+        "notes": "Fine: seeing as matches visto che's conversational register."
+      }
+    ],
+    "topic": "connective",
     "register": "neutral",
-    "notes": "WRONG: dopo + bare infinitive is the classic calque; the machinery is dopo aver(e) + past participle.",
-    "polarity": "negative"
-   }
-  ],
-  "topic": "connective",
-  "register": "neutral",
-  "difficulty": 3,
-  "cefr_level_target": "B2",
-  "required_buckets": [
-   "connective.time.prima_dopo"
-  ],
-  "optional_buckets": [],
-  "vocab_help": [
-   {
-    "lemma": "walk",
-    "language": "en",
-    "aspects": {
-     "translation": {
-      "reveal": "walk - la passeggiata (fare una passeggiata = to go for a walk)",
-      "bucket": "vocabulary.it.passeggiata.translation"
-     }
-    }
-   }
-  ],
-  "explanation": "Dopo aver mangiato, hanno fatto una passeggiata. English after eating tempts a bare infinitive, but Italian's joint is the past infinitive: dopo aver(e) plus the participle. The colloquial clip dopo mangiato exists in speech; dopo mangiare exists nowhere.",
-  "version": 1
- },
- {
-  "external_id": "trans_conn_en_it_cvd_01",
-  "source_lang": "en",
-  "target_lang": "it",
-  "source_text": "He was so tired that he couldn't speak.",
-  "reference_translations": [
-   {
-    "text": "Era così stanco che non riusciva a parlare.",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "connective.cause.register_set"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "firmato",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "firmare - to sign",
+            "bucket": "vocabulary.it.firmare.verb.translation"
+          }
+        }
+      },
+      {
+        "lemma": "contratto",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "contratto - contract",
+            "bucket": "vocabulary.it.contratto.noun.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "Since you agreed, we signed the contract. Visto che is the conversational front-slot because; seeing as is its closest English register match, with since as the neutral default. Essere d'accordo is the idiom for agreeing.",
+    "version": 1
+  },
+  {
+    "external_id": "trans_conn_it_en_cvd_01",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Ha parlato tanto da perdere la voce.",
+    "reference_translations": [
+      {
+        "text": "He talked so much that he lost his voice.",
+        "register": "neutral",
+        "notes": "Standard: the da + infinitive result machine unpacks into an English that-clause."
+      },
+      {
+        "text": "She talked so much she lost her voice.",
+        "register": "neutral",
+        "notes": "Fine: subject gender is unspecified in the Italian; the that is droppable."
+      }
+    ],
+    "topic": "connective",
     "register": "neutral",
-    "notes": "Standard: così ... che + conjugated verb."
-   },
-   {
-    "text": "Era così stanco da non riuscire a parlare.",
-    "register": "neutral",
-    "notes": "Equally standard: così ... da + infinitive."
-   },
-   {
-    "text": "Era così stanco da non riusciva a parlare.",
-    "register": "neutral",
-    "notes": "WRONG: da wired to a conjugated verb; the two result machines must not be mixed.",
-    "polarity": "negative"
-   }
-  ],
-  "topic": "connective",
-  "register": "neutral",
-  "difficulty": 4,
-  "cefr_level_target": "B2",
-  "required_buckets": [
-   "connective.result.che_vs_da"
-  ],
-  "optional_buckets": [],
-  "vocab_help": [
-   {
-    "lemma": "speak",
-    "language": "en",
-    "aspects": {
-     "translation": {
-      "reveal": "to speak - parlare",
-      "bucket": "vocabulary.it.parlare.verb.translation"
-     }
-    }
-   }
-  ],
-  "explanation": "Era così stanco che non riusciva a parlare, or equally Era così stanco da non riuscire a parlare. Italian offers two result machines and both translate the English perfectly; the only sin is mixing them, da with a conjugated verb or che with an infinitive.",
-  "version": 1
- },
- {
-  "external_id": "trans_conn_en_it_seq_01",
-  "source_lang": "en",
-  "target_lang": "it",
-  "source_text": "First of all, read the instructions; then call me.",
-  "reference_translations": [
-   {
-    "text": "Innanzitutto leggi le istruzioni; poi chiamami.",
-    "register": "neutral",
-    "notes": "Standard sequencer pair."
-   },
-   {
-    "text": "Prima di tutto leggi le istruzioni, poi chiamami.",
-    "register": "neutral",
-    "notes": "Fine: prima di tutto opens equally well."
-   },
-   {
-    "text": "Per prima cosa leggete le istruzioni; poi chiamatemi.",
-    "register": "neutral",
-    "notes": "Fine: plural imperative reading."
-   }
-  ],
-  "topic": "connective",
-  "register": "neutral",
-  "difficulty": 3,
-  "cefr_level_target": "B1",
-  "required_buckets": [
-   "connective.discourse"
-  ],
-  "optional_buckets": [
-   "verb_form.imperativo"
-  ],
-  "vocab_help": [
-   {
-    "lemma": "instructions",
-    "language": "en",
-    "aspects": {
-     "translation": {
-      "reveal": "instruction - l'istruzione",
-      "bucket": "vocabulary.it.istruzione.noun.translation"
-     }
-    }
-   }
-  ],
-  "explanation": "Innanzitutto leggi le istruzioni; poi chiamami. Two signposts order the text: innanzitutto (or prima di tutto) opens, poi carries on. English then maps to poi here, not to allora, which draws conclusions rather than marking the next step.",
-  "version": 1
- },
- {
-  "external_id": "trans_conn_it_en_cause_01",
-  "source_lang": "it",
-  "target_lang": "en",
-  "source_text": "Siccome non avevo il numero, non ti ho chiamato.",
-  "reference_translations": [
-   {
-    "text": "Since I didn't have the number, I didn't call you.",
-    "register": "neutral",
-    "notes": "Standard."
-   },
-   {
-    "text": "As I didn't have your number, I didn't call you.",
-    "register": "neutral",
-    "notes": "Fine: As carries the same front-slot because."
-   },
-   {
-    "text": "So I didn't have the number, I didn't call you.",
-    "register": "neutral",
-    "notes": "WRONG: siccome decoded as so; it means since. The result-word reading garbles the sentence.",
-    "polarity": "negative"
-   }
-  ],
-  "topic": "connective",
-  "register": "neutral",
-  "difficulty": 2,
-  "cefr_level_target": "A2",
-  "required_buckets": [
-   "connective.cause.siccome_perche"
-  ],
-  "optional_buckets": [],
-  "vocab_help": [
-   {
-    "lemma": "chiamato",
-    "language": "it",
-    "aspects": {
-     "translation": {
-      "reveal": "chiamare - to call",
-      "bucket": "vocabulary.it.chiamare.verb.translation"
-     }
-    }
-   },
-   {
-    "lemma": "numero",
-    "language": "it",
-    "aspects": {
-     "translation": {
-      "reveal": "numero - number",
-      "bucket": "vocabulary.it.numero.noun.translation"
-     }
-    }
-   }
-  ],
-  "explanation": "Since I didn't have the number, I didn't call you. Siccome is a front-slot because (since, as), never a so. Decoding it as a result-word is the classic reading miss, and it turns the sentence into nonsense in English.",
-  "version": 1
- },
- {
-  "external_id": "trans_conn_it_en_cons_01",
-  "source_lang": "it",
-  "target_lang": "en",
-  "source_text": "Aveva dimenticato il portafoglio, perciò è tornato indietro.",
-  "reference_translations": [
-   {
-    "text": "He had forgotten his wallet, so he went back.",
-    "register": "neutral",
-    "notes": "Standard."
-   },
-   {
-    "text": "He'd forgotten his wallet and therefore turned back.",
-    "register": "neutral",
-    "notes": "Fine: therefore is a shade more formal."
-   }
-  ],
-  "topic": "connective",
-  "register": "neutral",
-  "difficulty": 2,
-  "cefr_level_target": "A2",
-  "required_buckets": [
-   "connective.result.quindi_percio"
-  ],
-  "optional_buckets": [],
-  "vocab_help": [
-   {
-    "lemma": "portafoglio",
-    "language": "it",
-    "aspects": {
-     "translation": {
-      "reveal": "portafoglio - wallet",
-      "bucket": "vocabulary.it.portafoglio.noun.translation"
-     }
-    }
-   },
-   {
-    "lemma": "indietro",
-    "language": "it",
-    "aspects": {
-     "translation": {
-      "reveal": "indietro - back (tornare indietro = to go back)",
-      "bucket": "vocabulary.it.indietro.translation"
-     }
-    }
-   }
-  ],
-  "explanation": "He had forgotten his wallet, so he went back. Perciò draws the consequence, and English so (or therefore) is its direct counterpart. The trapassato aveva dimenticato sets up the prior event; the connective then hangs the result on it.",
-  "version": 1
- },
- {
-  "external_id": "trans_conn_it_en_ca_01",
-  "source_lang": "it",
-  "target_lang": "en",
-  "source_text": "Non mi hai disturbato affatto. Anzi, mi ha fatto piacere sentirti.",
-  "reference_translations": [
-   {
-    "text": "You didn't disturb me at all. On the contrary, it was a pleasure to hear from you.",
-    "register": "neutral",
-    "notes": "Standard: negative prior sentence, so anzi reverses."
-   },
-   {
-    "text": "You didn't bother me at all. Quite the opposite: it was lovely to hear from you.",
-    "register": "neutral",
-    "notes": "Fine: freer but faithful."
-   },
-   {
-    "text": "You didn't disturb me at all. Anyway, it was nice to hear from you.",
-    "register": "neutral",
-    "notes": "WRONG: anzi read as comunque; anyway shrugs, anzi flips the negative.",
-    "polarity": "negative"
-   }
-  ],
-  "topic": "connective",
-  "register": "neutral",
-  "difficulty": 3,
-  "cefr_level_target": "B2",
-  "required_buckets": [
-   "connective.contrast.comunque_anzi"
-  ],
-  "optional_buckets": [],
-  "vocab_help": [
-   {
-    "lemma": "disturbato",
-    "language": "it",
-    "aspects": {
-     "translation": {
-      "reveal": "disturbare - to disturb",
-      "bucket": "vocabulary.it.disturbare.verb.translation"
-     }
-    }
-   },
-   {
-    "lemma": "affatto",
-    "language": "it",
-    "aspects": {
-     "translation": {
-      "reveal": "affatto - at all (non ... affatto = not at all)",
-      "bucket": "vocabulary.it.affatto.adverb.translation"
-     }
-    }
-   }
-  ],
-  "explanation": "You didn't disturb me at all. On the contrary, it was a pleasure to hear from you. After a negative sentence anzi does a full reversal (on the contrary), which anyway cannot carry: comunque shrugs past an obstacle, anzi overturns the statement before it.",
-  "version": 1
- },
- {
-  "external_id": "trans_conn_it_en_ca_02",
-  "source_lang": "it",
-  "target_lang": "en",
-  "source_text": "Il concerto mi è piaciuto, anzi, è stato il migliore dell'anno.",
-  "reference_translations": [
-   {
-    "text": "I liked the concert; in fact, it was the best of the year.",
-    "register": "neutral",
-    "notes": "Standard: positive prior clause, so anzi escalates."
-   },
-   {
-    "text": "I enjoyed the concert. Indeed, it was the best one all year.",
-    "register": "neutral",
-    "notes": "Fine."
-   },
-   {
-    "text": "I liked the concert; on the contrary, it was the best of the year.",
-    "register": "neutral",
-    "notes": "WRONG: reversal reading after a positive clause; this anzi intensifies (in fact, indeed).",
-    "polarity": "negative"
-   }
-  ],
-  "topic": "connective",
-  "register": "neutral",
-  "difficulty": 3,
-  "cefr_level_target": "B2",
-  "required_buckets": [
-   "connective.contrast.comunque_anzi"
-  ],
-  "optional_buckets": [
-   "piacere"
-  ],
-  "vocab_help": [
-   {
-    "lemma": "migliore",
-    "language": "it",
-    "aspects": {
-     "translation": {
-      "reveal": "migliore - best",
-      "bucket": "vocabulary.it.migliore.translation"
-     }
-    }
-   }
-  ],
-  "explanation": "I liked the concert; in fact, it was the best of the year. After a positive statement anzi raises the stakes rather than reversing them: in fact, indeed, better still. The polarity of what precedes is the only thing that decides between anzi's two readings.",
-  "version": 1,
-  "examiner_note": "Deliberate mirror of trans_conn_it_en_ca_01: same connective, opposite prior polarity, opposite correct reading."
- },
- {
-  "external_id": "trans_conn_it_en_ca_03",
-  "source_lang": "it",
-  "target_lang": "en",
-  "source_text": "Ero stanco, ma sono venuto comunque.",
-  "reference_translations": [
-   {
-    "text": "I was tired, but I came anyway.",
-    "register": "neutral",
-    "notes": "Standard."
-   },
-   {
-    "text": "I was tired; I came all the same.",
-    "register": "neutral",
-    "notes": "Fine: all the same carries comunque well."
-   }
-  ],
-  "topic": "connective",
-  "register": "neutral",
-  "difficulty": 2,
-  "cefr_level_target": "B1",
-  "required_buckets": [
-   "connective.contrast.comunque_anzi"
-  ],
-  "optional_buckets": [],
-  "vocab_help": [
-   {
-    "lemma": "venuto",
-    "language": "it",
-    "aspects": {
-     "translation": {
-      "reveal": "venire - to come",
-      "bucket": "vocabulary.it.venire.verb.translation"
-     }
-    }
-   }
-  ],
-  "explanation": "I was tired, but I came anyway. Comunque at the end of the clause is the dismissive anyway: the obstacle is conceded and walked past. However would misfire here; English however contrasts statements, while this comunque shrugs within one.",
-  "version": 1
- },
- {
-  "external_id": "trans_conn_it_en_pi_01",
-  "source_lang": "it",
-  "target_lang": "en",
-  "source_text": "Io ho preso la pasta; Luca invece ha scelto la pizza.",
-  "reference_translations": [
-   {
-    "text": "I had the pasta; Luca, on the other hand, chose pizza.",
-    "register": "neutral",
-    "notes": "Standard: on the other hand carries invece."
-   },
-   {
-    "text": "I had pasta, whereas Luca chose pizza.",
-    "register": "neutral",
-    "notes": "Fine: whereas folds the contrast into one sentence."
-   },
-   {
-    "text": "I had the pasta; Luca instead chose pizza.",
-    "register": "neutral",
-    "notes": "Fine: instead works in English here."
-   }
-  ],
-  "topic": "connective",
-  "register": "neutral",
-  "difficulty": 2,
-  "cefr_level_target": "B1",
-  "required_buckets": [
-   "connective.contrast.pero_invece"
-  ],
-  "optional_buckets": [],
-  "vocab_help": [
-   {
-    "lemma": "scelto",
-    "language": "it",
-    "aspects": {
-     "translation": {
-      "reveal": "scegliere - to choose",
-      "bucket": "vocabulary.it.scegliere.verb.translation"
-     }
-    }
-   }
-  ],
-  "explanation": "I had the pasta; Luca, on the other hand, chose pizza. Invece after the new subject signals substitutive contrast: a second referent making the opposite choice. On the other hand, whereas and instead are all faithful carriers.",
-  "version": 1
- },
- {
-  "external_id": "trans_conn_it_en_mood_01",
-  "source_lang": "it",
-  "target_lang": "en",
-  "source_text": "Sebbene avesse chiamato a tutte le ore, nessuno le rispose.",
-  "reference_translations": [
-   {
-    "text": "Although she had called at all hours, no one answered her.",
-    "register": "neutral",
-    "notes": "Standard."
-   },
-   {
-    "text": "Even though she had called at every hour of the day, nobody replied to her.",
-    "register": "neutral",
-    "notes": "Fine: freer rendering."
-   }
-  ],
-  "topic": "connective",
-  "register": "neutral",
-  "difficulty": 4,
-  "cefr_level_target": "B2",
-  "required_buckets": [
-   "connective.contrast.mood_pairs"
-  ],
-  "optional_buckets": [
-   "tense_choice.indicative_vs_subjunctive"
-  ],
-  "vocab_help": [
-   {
-    "lemma": "rispose",
-    "language": "it",
-    "aspects": {
-     "translation": {
-      "reveal": "rispondere - to answer",
-      "bucket": "vocabulary.it.rispondere.verb.translation"
-     }
-    }
-   }
-  ],
-  "explanation": "Although she had called at all hours, no one answered her. Sebbene governs the subjunctive (avesse chiamato), and English folds that machinery into a plain although-clause. The le before rispose is a dative: answered HER.",
-  "version": 1,
-  "examiner_note": "Adapted from the OIC idea bank sentence; passato remoto narration retained."
- },
- {
-  "external_id": "trans_conn_it_en_time_01",
-  "source_lang": "it",
-  "target_lang": "en",
-  "source_text": "Prima che arrivino gli ospiti, apparecchiamo la tavola.",
-  "reference_translations": [
-   {
-    "text": "Before the guests arrive, let's set the table.",
-    "register": "neutral",
-    "notes": "Standard."
-   },
-   {
-    "text": "Let's set the table before the guests get here.",
-    "register": "neutral",
-    "notes": "Fine: clause order swapped."
-   },
-   {
-    "text": "Before arriving the guests, let's set the table.",
-    "register": "neutral",
-    "notes": "WRONG: word-for-word calque of prima che + subjunctive; English needs a finite clause, before the guests arrive.",
-    "polarity": "negative"
-   }
-  ],
-  "topic": "connective",
-  "register": "neutral",
-  "difficulty": 3,
-  "cefr_level_target": "B2",
-  "required_buckets": [
-   "connective.time.prima_dopo"
-  ],
-  "optional_buckets": [],
-  "vocab_help": [
-   {
-    "lemma": "apparecchiamo",
-    "language": "it",
-    "aspects": {
-     "translation": {
-      "reveal": "apparecchiare - to set the table",
-      "bucket": "vocabulary.it.apparecchiare.verb.translation"
-     }
-    }
-   },
-   {
-    "lemma": "ospiti",
-    "language": "it",
-    "aspects": {
-     "translation": {
-      "reveal": "ospite - guest",
-      "bucket": "vocabulary.it.ospite.translation"
-     }
-    }
-   }
-  ],
-  "explanation": "Before the guests arrive, let's set the table. Prima che plus subjunctive (arrivino) signals a different subject about to act, and English renders it as a plain finite clause. The calque before arriving the guests is the give-away that the machinery went untranslated.",
-  "version": 1
- },
- {
-  "external_id": "trans_conn_it_en_seq_01",
-  "source_lang": "it",
-  "target_lang": "en",
-  "source_text": "Insomma, è troppo caro e non possiamo permettercelo.",
-  "reference_translations": [
-   {
-    "text": "In short, it's too expensive and we can't afford it.",
-    "register": "neutral",
-    "notes": "Standard."
-   },
-   {
-    "text": "All in all, it costs too much and we simply can't afford it.",
-    "register": "neutral",
-    "notes": "Fine: freer summing-up."
-   }
-  ],
-  "topic": "connective",
-  "register": "neutral",
-  "difficulty": 2,
-  "cefr_level_target": "B1",
-  "required_buckets": [
-   "connective.discourse"
-  ],
-  "optional_buckets": [],
-  "vocab_help": [
-   {
-    "lemma": "permettercelo",
-    "language": "it",
-    "aspects": {
-     "translation": {
-      "reveal": "permettersi - to afford (permettercelo = to afford it)",
-      "bucket": "vocabulary.it.permettersi.verb.translation"
-     }
-    }
-   },
-   {
-    "lemma": "caro",
-    "language": "it",
-    "aspects": {
-     "translation": {
-      "reveal": "caro - expensive",
-      "bucket": "vocabulary.it.caro.adjective.translation"
-     }
-    }
-   }
-  ],
-  "explanation": "In short, it's too expensive and we can't afford it: Insomma, è troppo caro e non possiamo permettercelo. Insomma steps back and totals up the reasons already on the table: in short, all things considered. Permettercelo packs three pieces into one word: permettere plus ce plus lo, to allow ourselves it.",
-  "version": 1
- },
- {
-  "external_id": "trans_conn_it_en_reg_01",
-  "source_lang": "it",
-  "target_lang": "en",
-  "source_text": "Visto che eri d'accordo, abbiamo firmato il contratto.",
-  "reference_translations": [
-   {
-    "text": "Since you agreed, we signed the contract.",
-    "register": "neutral",
-    "notes": "Standard."
-   },
-   {
-    "text": "Seeing as you were in agreement, we signed the contract.",
-    "register": "neutral",
-    "notes": "Fine: seeing as matches visto che's conversational register."
-   }
-  ],
-  "topic": "connective",
-  "register": "neutral",
-  "difficulty": 3,
-  "cefr_level_target": "B1",
-  "required_buckets": [
-   "connective.cause.register_set"
-  ],
-  "optional_buckets": [],
-  "vocab_help": [
-   {
-    "lemma": "firmato",
-    "language": "it",
-    "aspects": {
-     "translation": {
-      "reveal": "firmare - to sign",
-      "bucket": "vocabulary.it.firmare.verb.translation"
-     }
-    }
-   },
-   {
-    "lemma": "contratto",
-    "language": "it",
-    "aspects": {
-     "translation": {
-      "reveal": "contratto - contract",
-      "bucket": "vocabulary.it.contratto.noun.translation"
-     }
-    }
-   }
-  ],
-  "explanation": "Since you agreed, we signed the contract. Visto che is the conversational front-slot because; seeing as is its closest English register match, with since as the neutral default. Essere d'accordo is the idiom for agreeing.",
-  "version": 1
- },
- {
-  "external_id": "trans_conn_it_en_cvd_01",
-  "source_lang": "it",
-  "target_lang": "en",
-  "source_text": "Ha parlato tanto da perdere la voce.",
-  "reference_translations": [
-   {
-    "text": "He talked so much that he lost his voice.",
-    "register": "neutral",
-    "notes": "Standard: the da + infinitive result machine unpacks into an English that-clause."
-   },
-   {
-    "text": "She talked so much she lost her voice.",
-    "register": "neutral",
-    "notes": "Fine: subject gender is unspecified in the Italian; the that is droppable."
-   }
-  ],
-  "topic": "connective",
-  "register": "neutral",
-  "difficulty": 3,
-  "cefr_level_target": "B2",
-  "required_buckets": [
-   "connective.result.che_vs_da"
-  ],
-  "optional_buckets": [],
-  "vocab_help": [
-   {
-    "lemma": "voce",
-    "language": "it",
-    "aspects": {
-     "translation": {
-      "reveal": "voce - voice",
-      "bucket": "vocabulary.it.voce.noun.translation"
-     }
-    }
-   },
-   {
-    "lemma": "perdere",
-    "language": "it",
-    "aspects": {
-     "translation": {
-      "reveal": "perdere - to lose",
-      "bucket": "vocabulary.it.perdere.verb.translation"
-     }
-    }
-   }
-  ],
-  "explanation": "He talked so much that he lost his voice. Tanto da plus the infinitive is the compact result machine, and English has no infinitive equivalent here: it must unpack into a full that-clause. Both he and she are faithful, since the Italian subject is unexpressed.",
-  "version": 1
- }
+    "difficulty": 3,
+    "cefr_level_target": "B2",
+    "required_buckets": [
+      "connective.result.che_vs_da"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "voce",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "voce - voice",
+            "bucket": "vocabulary.it.voce.noun.translation"
+          }
+        }
+      },
+      {
+        "lemma": "perdere",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "perdere - to lose",
+            "bucket": "vocabulary.it.perdere.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "He talked so much that he lost his voice. Tanto da plus the infinitive is the compact result machine, and English has no infinitive equivalent here: it must unpack into a full that-clause. Both he and she are faithful, since the Italian subject is unexpressed.",
+    "version": 1
+  }
 ]

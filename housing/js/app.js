@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-21-r64";
+  const LL_BUILD = "2026-07-21-r68";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -1174,6 +1174,16 @@
   }
   document.querySelectorAll("nav#strand-nav button").forEach(b =>
     b.addEventListener("click", () => showStrand(b.dataset.strand)));
+  // Click the brand (logo + wordmark) to return to the start screen (Smith:
+  // "there should be a chance to get back to the front page").
+  (function wireBrandHome() {
+    const brand = document.querySelector("header .brand-row");
+    if (brand) {
+      brand.style.cursor = "pointer";
+      brand.title = "Back to the start screen";
+      brand.addEventListener("click", () => { if (LL.showEntry) LL.showEntry(); });
+    }
+  })();
   document.querySelectorAll("#mobile-tabs button").forEach(b =>
     b.addEventListener("click", () => { const t = b.dataset.mtab; if (t === "analysis") showCoverage(); else showStrand(t); }));
 
@@ -1723,6 +1733,24 @@
       if (correct) awarded += credit;
     }
     if (awarded > possible) awarded = possible;
+    // MCQ wrong-answer misconception firing (Smith 2026-07-21: "lots of chats
+    // asking for mcq wrong answer misconception firing"). choice_tags is an
+    // array parallel to choices; each entry is null or {class, misconception,
+    // proposed}. On a WRONG pick whose choice carries a misconception id, record
+    // {id, bucket, evidence} so it persists as attempt.misconception_hits -
+    // exactly the r10 free-text guard mechanism, just index-keyed for MCQ.
+    const misconceptions = [];
+    if (!correct && Array.isArray(q.choice_tags)) {
+      const tag = q.choice_tags[pickedIdx];
+      if (tag && tag.misconception) {
+        misconceptions.push({
+          id: tag.misconception,
+          bucket: (points[0] && points[0].bucket) || (Array.isArray(q.buckets) && q.buckets[0]) || null,
+          evidence: choice,
+          proposed: !!tag.proposed
+        });
+      }
+    }
     return {
       raw_response: choice,
       overall: {
@@ -1736,7 +1764,8 @@
         examiner_note: q.examiner_note || null
       },
       markpoints: mpResults,
-      orthography: []
+      orthography: [],
+      misconceptions: misconceptions
     };
   }
   function focusGrammarInput() { if (grammarInputRef) grammarInputRef.focus(); }
@@ -2733,6 +2762,47 @@
     return out;
   }
 
+  // Frequency-heatmap direction lens. it_en shows passive (recognition), en_it
+  // shows active (production); MIX (or unset) shows BOTH, so a practised word
+  // lights regardless of which direction it was drilled in. (Previously mix
+  // mapped to active-only, silently hiding every passive event.)
+  function vocabHeatmapDir() {
+    const d = vocabFilter && vocabFilter.direction;
+    return d === "it_en" ? "passive" : d === "en_it" ? "active" : "any";
+  }
+
+  // Rank -> ALL entries at that rank. Many ranks carry >1 entry (homographs /
+  // distinct-POS lemmas share a rank, e.g. largo+toccare @ 1015): 480 ranks
+  // estate-wide, 175 in the 1000-2000 window. The old byRank kept only the
+  // FIRST entry, so practice on any non-first entry never lit its dot - it
+  // flashed then reverted to untouched (Smith 2026-07-21 "some stick, others
+  // just flash"). Cached; invalidated on vocab (re)load.
+  let _byRankAll = null;
+  function byRankAllMap() {
+    if (_byRankAll) return _byRankAll;
+    const m = new Map();
+    for (const v of vocabEntries) {
+      if (typeof v.rank === "number" && v.lemma) {
+        let arr = m.get(v.rank);
+        if (!arr) { arr = []; m.set(v.rank, arr); }
+        arr.push(v);
+      }
+    }
+    _byRankAll = m;
+    return m;
+  }
+  // Events across EVERY entry at a rank, chronologically merged, so a dot
+  // reflects any practice at that frequency position.
+  function eventsForRank(rank, dir) {
+    const ents = byRankAllMap().get(rank);
+    if (!ents || !ents.length) return [];
+    if (ents.length === 1) return eventsForEntry(ents[0], { direction: dir });
+    let all = [];
+    for (const e of ents) all = all.concat(eventsForEntry(e, { direction: dir }));
+    all.sort((a, b) => a.timestamp.localeCompare(b.timestamp));
+    return all;
+  }
+
   // Convenience: frequency-band events. Active + passive both count toward
   // band correctness (frequency is bidirectional).
   function eventsForBand(bandId) {
@@ -2775,6 +2845,7 @@
     _bandListCache = null;
     _themeLemmasCache = null;
     _genderClassLemmasCache = null;
+    _byRankAll = null;
   }
 
   // theme.id -> [lemma]
@@ -2871,16 +2942,27 @@
           : "Click to focus your deck on this group; click again to clear.";
         // Mark the cell as active if it currently matches the filter, so CSS
         // can highlight it.
-        // Restriction focus (Smith 2026-07-20): an active theme/gender filter
-        // shows ONLY its own cell - the rest of the axis hides entirely.
-        if (axisKind === "themes" && vocabFilter.theme && c.key !== vocabFilter.theme) continue;
-        if (axisKind === "gender" && vocabFilter.genderClass && c.key !== vocabFilter.genderClass) continue;
+        // Restriction-focus removed 2026-07-21 (Smith retracted the 2026-07-20
+        // ask): an active theme/gender filter no longer hides the other cells.
+        // All cells stay visible; the drilled one is highlighted (.filter-active)
+        // and clears on re-click. The DECK still narrows to the chosen group.
         const isActiveThemes = axisKind === "themes" && vocabFilter.theme === c.key;
         const isActiveGender = axisKind === "gender" && vocabFilter.genderClass === c.key;
         if (isActiveThemes || isActiveGender) cell.classList.add("filter-active");
 
         cell.addEventListener("click", (ev) => {
           if (ev.target && ev.target.classList && ev.target.classList.contains("vocab-lemma-dot")) return;
+          // Click the highlighted (active) cell to UNDO the drill - always,
+          // regardless of expand state, so you can never get stuck in it.
+          const isActiveFilter = (axisKind === "themes" && vocabFilter.theme === c.key)
+                              || (axisKind === "gender" && vocabFilter.genderClass === c.key);
+          if (isActiveFilter) {
+            if (axisKind === "themes") vocabFilter.theme = "";
+            else vocabFilter.genderClass = "";
+            vocabDeck = []; vocabIndex = 0;
+            renderVocab();
+            return;
+          }
           // Expand-on-first-click for cells in averaged mode (both themes
           // and gender) when over the threshold.
           if (lemmaCount > VOCAB_CELL_DOT_THRESHOLD) {
@@ -3030,12 +3112,13 @@
     if (!entry) return;
     const host = document.getElementById("vocab-axes-host");
     if (!host) return;
-    const activeDir = (vocabFilter && vocabFilter.direction === "it_en") ? "passive" : "active";
-    // Focused-grid dot (exact rank): a single hit settles to full colour.
+    const activeDir = vocabHeatmapDir();
+    // Focused-grid dot (exact rank): aggregate ALL entries at the rank so a
+    // homograph sister's unpractised state can't leave the dot reading untouched.
     if (typeof entry.rank === "number") {
       const dot = host.querySelector('.freq-dot[data-rank="' + entry.rank + '"]');
       if (dot) {
-        const wc = recencyWeightedCorrectness(eventsForEntry(entry, { direction: activeDir }));
+        const wc = recencyWeightedCorrectness(eventsForRank(entry.rank, activeDir));
         dot.style.background = rwgColour(wc.correctness, wc.hasEvents);
         dot.classList.toggle("untouched", !wc.hasEvents);
       }
@@ -3170,8 +3253,8 @@
 
     // Direction-aware: the current vocab toggle drives which event variant
     // (.active vs .passive) populates the heatmaps. EN->IT shows production
-    // signal; IT->EN shows recognition signal.
-    const activeDir = (vocabFilter && vocabFilter.direction === "it_en") ? "passive" : "active";
+    // signal; IT->EN shows recognition signal; MIX shows both (see vocabHeatmapDir).
+    const activeDir = vocabHeatmapDir();
 
     // -------- frequency axis --------
     const freqAxis = document.createElement("div");
@@ -3196,14 +3279,7 @@
     freqAxis.appendChild(freqTitle);
 
     // Build rank -> entry index from vocabEntries.
-    const byRank = new Map();
-    for (const v of vocabEntries) {
-      if (typeof v.rank === "number" && v.lemma) {
-        // Take the first entry per rank (homographs share ranks - we just
-        // colour by the first one's events for now).
-        if (!byRank.has(v.rank)) byRank.set(v.rank, v);
-      }
-    }
+    const byRank = byRankAllMap();   // rank -> ALL entries at that rank (homographs included)
 
     // Determine total rank universe. Use max rank from buckets or entries.
     let maxRank = 0;
@@ -3390,17 +3466,17 @@
             const dot = document.createElement("div");
             dot.className = "freq-dot";
             dot.dataset.rank = rank;
-            const entry = byRank.get(rank);
-            if (entry) {
-              const events = eventsForEntry(entry, { direction: dirFilter || "any" });
-              const wc = recencyWeightedCorrectness(events);
+            const entries = byRank.get(rank);
+            if (entries && entries.length) {
+              const wc = recencyWeightedCorrectness(eventsForRank(rank, dirFilter || "any"));
               dot.style.background = rwgColour(wc.correctness, wc.hasEvents);
               if (!wc.hasEvents) dot.classList.add("untouched");
               const pct = wc.hasEvents ? Math.round(wc.correctness * 100) + "%" : "untouched";
+              const lemmaList = entries.map(function (e) { return e.lemma; }).join(", ");
               const nextDrill = nextDrillLevelFor(rank);
               const drillHint = nextDrill.hint;
-              dot.title = entry.lemma + " (rank " + rank + ")\n" + pct + " - " + wc.nAttempted + " attempts" + (drillHint ? "\n(click to " + drillHint + ")" : "");
-              dot.dataset.lemma = entry.lemma;
+              dot.title = lemmaList + " (rank " + rank + ")\n" + pct + " - " + wc.nAttempted + " attempts" + (drillHint ? "\n(click to " + drillHint + ")" : "");
+              dot.dataset.lemma = entries[0].lemma;
               if (nextDrill.action) dot.style.cursor = "pointer";
               dot.addEventListener("click", () => {
                 drillDownFromRank(rank);
@@ -3457,8 +3533,8 @@
         const cEnd = Math.min(blockEnd, cStart + perCell - 1);
         const lemmas = [];
         for (let r = cStart; r <= cEnd; r++) {
-          const e = byRank.get(r);
-          if (e) lemmas.push(e.lemma);
+          const arr = byRank.get(r);
+          if (arr) for (const e of arr) lemmas.push(e.lemma);
         }
         const cell = document.createElement("div");
         cell.className = "freq-flank-cell";
