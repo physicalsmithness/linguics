@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-21-r38";
+  const LL_BUILD = "2026-07-21-r39";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -7085,6 +7085,11 @@
   // model - equal boxes, each dividing its height by its area count; "layers"
   // is the r21 sized-boxes model. Toggleable; fill is the default.
   let coverageView = "fill";
+  // Temporary A/B toggle (Smith 2026-07-21): "clear" makes in-scope-but-unpractised
+  // cells WHITE (so partial coverage stops reading as untouched) and non-existent-area
+  // gaps GREY (same status as wholly-unobtainable cells); "classic" is the old cream.
+  // Scaffolding - once "clear" is blessed, drop the toggle and keep it.
+  let coveragePalette = "clear";
 
   // Coverage colour ramp: white-to-green only, NO red, cream baseline for
   // untouched, intensity capped so black text stays readable. Estate
@@ -7184,14 +7189,20 @@
     vwBtn.textContent = coverageView === "fill" ? "View: equal boxes" : "View: sized boxes";
     vwBtn.title = "Switch between equal boxes (each divides by its areas) and boxes sized by how many areas they hold";
     vwBtn.addEventListener("click", () => { coverageView = (coverageView === "fill") ? "layers" : "fill"; renderCoverage(); });
-    bar.appendChild(back); bar.appendChild(title); bar.appendChild(vwBtn); bar.appendChild(trBtn);
+    const palBtn = document.createElement("button");
+    palBtn.type = "button"; palBtn.className = "coverage-palette";
+    palBtn.textContent = coveragePalette === "clear" ? "Palette: clear" : "Palette: classic";
+    palBtn.title = "Temporary A/B: 'clear' = white where coverage is still to get, grey where nothing's achievable; 'classic' = old cream. Will be removed once chosen.";
+    palBtn.addEventListener("click", () => { coveragePalette = (coveragePalette === "clear") ? "classic" : "clear"; renderCoverage(); });
+    bar.appendChild(back); bar.appendChild(title); bar.appendChild(vwBtn); bar.appendChild(trBtn); bar.appendChild(palBtn);
     col.appendChild(bar);
 
     const sub = document.createElement("p");
     sub.className = "coverage-sub";
-    sub.textContent = coverageView === "fill"
-      ? "Every box is the same size and divides by its areas: colour fills from the bottom as you practise, cream is what\u2019s left to get, grey boxes aren\u2019t achievable at that level. Tap a cell to drill in."
-      : "Each 4px layer is one area, so taller boxes hold more. Colour sinks to the bottom, cream is what\u2019s left to get, grey boxes aren\u2019t achievable at that level. Tap a cell to drill in.";
+    const emptyWord = coveragePalette === "clear" ? "white" : "cream";
+    sub.textContent = (coverageView === "fill"
+      ? "Every box is the same size and divides by its areas: colour fills from the bottom as you practise, " + emptyWord + " is what\u2019s left to get, grey is what isn\u2019t achievable at that level."
+      : "Each 4px layer is one area, so taller boxes hold more. Colour sinks to the bottom (darkest = best known), " + emptyWord + " is what\u2019s left to get, grey is what isn\u2019t achievable at that level.");
     col.appendChild(sub);
 
     const topics = grammarTopicRows();
@@ -7202,7 +7213,7 @@
     const scroll = document.createElement("div");
     scroll.className = "coverage-scroll" + (coverageTransposed ? " wide" : "");
     const table = document.createElement("table");
-    table.className = "coverage-matrix";
+    table.className = "coverage-matrix" + (coveragePalette === "clear" ? " palette-clear" : "");
 
     const thead = document.createElement("thead");
     const htr = document.createElement("tr");
