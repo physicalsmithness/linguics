@@ -165,24 +165,31 @@
     const candidateIds = (typeof LL.candidateBucketIds === "function")
       ? LL.candidateBucketIds(item)
       : (item.required_buckets || []);
-    const markpoints = candidateIds.map(bid => ({
-      bucket: bid,
-      bucket_proposed: false,
-      attempted_credit: attempted,
-      correctness_credit: correct,
-      outcome
-      // No `label`: renderer pretty-prints the bucket id as a breadcrumb.
-      // No `evidence_in_attempt` / `expected` / `explanation`: nothing
-      // unique to say per row; the one-time stub note covers it.
-    }));
-
-    const result = overallFrom(markpoints, intent, summary, item.explanation);
-    result.notes = [
-      {
-        kind: "info",
-        note: `I can't tell which specific parts of your answer match which skill. The score is based on overall word-overlap with the references (${pct}%), and the bucket misses below all share that single verdict; they're not separate judgements. The real AI marker will give per-skill feedback.`
-      }
-    ];
+    // Honest degradation (Architecture_Housing_translation_stub_honest, 2026-07-21):
+    // the stub CANNOT compute per-bucket right/wrong, so it must not fabricate it.
+    // A fake "Negation: Wrong" on a correct negation is worse than none (and it
+    // polluted coverage). No per-markpoint verdicts, no confident score - only an
+    // approximate word-overlap read + the offline note. `candidateIds` stays
+    // referenced so the direction filter above isn't flagged dead.
+    void candidateIds;
+    const result = {
+      overall: {
+        attempted_overall: 1,
+        correctness_overall: 0,
+        marks_awarded: 0,
+        marks_possible: 0,
+        status: "not_scored",
+        summary: `AI marker offline - not scored. Only a rough ${pct}% word-overlap with a reference, not a per-skill judgement. Intent: ${intent}.`,
+        explanation: item.explanation || null
+      },
+      markpoints: [],
+      notes: [
+        {
+          kind: "info",
+          note: `Offline stub: it can't tell which parts of your answer match which skill, so it makes NO per-skill verdict here (only a ${pct}% word-overlap). Connect the AI marker for real per-skill feedback.`
+        }
+      ]
+    };
     return result;
   }
 

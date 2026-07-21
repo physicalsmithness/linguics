@@ -501,6 +501,18 @@
       const b = bucketById[id] || bucketById[resolvedId];
       if (b) ctx[resolvedId] = { label: b.label || resolvedId, description: b.description || "" };
     }
+    // Cross-topic menu (task 41, Architecture_Housing_translation_crosstopic_marking):
+    // the marker may tag ANY grammar element it detects from the standing bucket
+    // menu, not just this item's required_buckets (the mandatory FLOOR). Menu adds
+    // breadth; direction-filtered like the rest.
+    const menu = (LL.markerMenu && Array.isArray(LL.markerMenu.menu)) ? LL.markerMenu.menu : [];
+    for (const node of menu) {
+      const mid = node && node.id;
+      if (!mid || ctx[mid]) continue;
+      if (!LL.isCandidateForDirection(mid, direction)) continue;
+      const mb = bucketById[mid];
+      ctx[mid] = { label: (mb && mb.label) || node.label || mid, description: (mb && mb.description) || "" };
+    }
     // For IT→EN items, inject vocabulary recognition buckets based on the
     // source text. The chats authored these items without listing vocab
     // buckets in required_buckets (they assumed vocab was production-only),

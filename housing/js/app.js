@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-21-r61";
+  const LL_BUILD = "2026-07-21-r63";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -881,12 +881,13 @@
         Foptional("../data/parts.json"),
         Foptional("../data/vocab_themes.json"),
         Foptional("../data/misconceptions.json"),
-        Foptional("../data/misconception_lenses.json")
+        Foptional("../data/misconception_lenses.json"),
+        Foptional("../data/translation_marker_bucket_menu.json")
       ]);
       const workers = [];
       for (let w = 0; w < Math.min(POOL, topics.length); w++) workers.push(worker());
       await Promise.all(workers);
-      const [glossary, vocab, parts, themes, misconceptions, lenses] = await tail;
+      const [glossary, vocab, parts, themes, misconceptions, lenses, markerMenu] = await tail;
 
       // Flatten strictly in manifest order.
       const buckets = [];
@@ -916,7 +917,7 @@
       }
 
       console.info("Loaded per topic:", perTopicCounts);
-      return { buckets, grammar, translation, perTopicCounts, vocab, themes, parts, misconceptions, lenses, failures: loadFailures };
+      return { buckets, grammar, translation, perTopicCounts, vocab, themes, parts, misconceptions, lenses, markerMenu, failures: loadFailures };
     } catch (e) {
       const cause = e && e.message ? e.message : String(e);
       console.error("[Linguics] Real content fetch failed; using inline samples. Cause:", cause);
@@ -7706,6 +7707,7 @@
     if (real.parts && Array.isArray(real.parts.parts)) LL.partsConfig = real.parts;
     LL.misconceptions = real.misconceptions || null;   // registry: families + specifics (analysis surface)
     LL.lenses = real.lenses || null;                   // surface-lens layer
+    LL.markerMenu = real.markerMenu || null;            // cross-topic translation marker menu (task 41)
     if (real.vocab && Array.isArray(real.vocab)) {
       vocabEntries = real.vocab;
       LL.vocabEntries = vocabEntries;

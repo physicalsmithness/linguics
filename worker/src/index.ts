@@ -190,6 +190,8 @@ CANDIDATE BUCKETS
 
 The bucket_context object lists ALL buckets you may fire as regular hits/misses (with bucket_proposed: false or omitted). The list has already been filtered to the buckets relevant to this item's direction. You MUST NOT fire a bucket that isn't in bucket_context as a regular hit. Specifically: on it_en items, do NOT fire grammar production buckets like adverb_placement, auxiliary choice, participle agreement, pronoun position, or adjective agreement — these have been filtered out because the learner isn't producing Italian.
 
+BREADTH (cross-topic marking, task 41): a translation evidences MANY skills at once (article, preposition, agreement, tense, adverb, vocabulary). Beyond the mandatory required_buckets, actively tag EVERY grammar element you detect in the answer that matches a bucket_context entry - fire it hit/miss/partial with a short evidence span - so the learner accumulates cross-topic signal. required_buckets are the FLOOR, not the ceiling. Still never fire a bucket that isn't in bucket_context.
+
 VOCABULARY RECOGNITION (it_en)
 
 On it_en items, vocabulary buckets for the source-text words have been injected into bucket_context. Each is named vocabulary.it.<lemma>.translation. Fire these:
@@ -448,13 +450,26 @@ export default {
       return errorResp(502, "malformed_response", "OpenRouter response missing content");
     }
 
-    // Parse the model's JSON output
+    // Parse the model's JSON output. Models (e.g. DeepSeek) often wrap the JSON
+    // in a markdown code fence (```json ... ```) or add stray prose; strip the
+    // fence and, failing that, extract the outermost { ... } before parsing.
     let result: any;
+    let jsonText = content.trim();
+    const fence = jsonText.match(/^```(?:json)?\s*([\s\S]*?)\s*```$/i);
+    if (fence) jsonText = fence[1].trim();
     try {
-      result = JSON.parse(content);
+      result = JSON.parse(jsonText);
     } catch (e: any) {
-      return errorResp(502, "malformed_json",
-        `Model output not valid JSON: ${e.message}. First 200 chars: ${content.slice(0, 200)}`);
+      const first = jsonText.indexOf("{");
+      const last = jsonText.lastIndexOf("}");
+      let recovered = false;
+      if (first >= 0 && last > first) {
+        try { result = JSON.parse(jsonText.slice(first, last + 1)); recovered = true; } catch (e2: any) {}
+      }
+      if (!recovered) {
+        return errorResp(502, "malformed_json",
+          `Model output not valid JSON: ${e.message}. First 200 chars: ${content.slice(0, 200)}`);
+      }
     }
 
     // Validate against our schema

@@ -1,0 +1,551 @@
+{
+ "$note": "Standing bucket MENU for the cross-topic translation marker (Architecture_Housing_translation_crosstopic_marking v2, task 41). Aggregate skill-area nodes (non-leaf, depth<=2) across grammar topics; the marker may tag any of these PLUS the item's required_buckets (finer leaves). Derived from data/buckets/*.json - regenerate when the tree changes. Architecture-owned contract.",
+ "generated": "2026-07-21",
+ "count": 136,
+ "menu": [
+  {
+   "id": "adjective_agreement",
+   "label": "Adjective agreement"
+  },
+  {
+   "id": "adjective_agreement.e_class",
+   "label": "Class II adjectives (ending in -e)"
+  },
+  {
+   "id": "adjective_agreement.invariable",
+   "label": "Invariable adjectives"
+  },
+  {
+   "id": "adjective_agreement.o_class",
+   "label": "Class I adjectives (ending in -o)"
+  },
+  {
+   "id": "adjective_agreement.position",
+   "label": "Adjective position relative to noun"
+  },
+  {
+   "id": "adjective_agreement.position.semantic_shift",
+   "label": "Position changes meaning"
+  },
+  {
+   "id": "adjective_agreement.special",
+   "label": "Word-specific exceptions"
+  },
+  {
+   "id": "adjective_agreement.stem_changes",
+   "label": "Stem changes in adjective plurals"
+  },
+  {
+   "id": "adjective_agreement.stem_changes.harder",
+   "label": "Harder stem-change cases"
+  },
+  {
+   "id": "adjective_agreement.stem_changes.irregular",
+   "label": "Irregular stem changes"
+  },
+  {
+   "id": "adjective_agreement.stem_changes.predictable",
+   "label": "Predictable stem changes"
+  },
+  {
+   "id": "adverb",
+   "label": "Adverbs"
+  },
+  {
+   "id": "adverb.formation",
+   "label": "Forming adverbs"
+  },
+  {
+   "id": "adverb.usage",
+   "label": "Using adverbs well"
+  },
+  {
+   "id": "article",
+   "label": "Articles"
+  },
+  {
+   "id": "article.definite",
+   "label": "Definite article"
+  },
+  {
+   "id": "article.discrimination",
+   "label": "Article choices"
+  },
+  {
+   "id": "article.indefinite",
+   "label": "Indefinite article"
+  },
+  {
+   "id": "comparison",
+   "label": "Comparatives and superlatives"
+  },
+  {
+   "id": "comparison.comparative",
+   "label": "Comparatives"
+  },
+  {
+   "id": "comparison.superlative",
+   "label": "Superlatives"
+  },
+  {
+   "id": "connective",
+   "label": "Connectives"
+  },
+  {
+   "id": "connective.cause",
+   "label": "Because-family"
+  },
+  {
+   "id": "connective.contrast",
+   "label": "But-family"
+  },
+  {
+   "id": "connective.result",
+   "label": "So-family"
+  },
+  {
+   "id": "connective.time",
+   "label": "Time connectors"
+  },
+  {
+   "id": "demonstrative",
+   "label": "Demonstratives"
+  },
+  {
+   "id": "demonstrative.discrimination",
+   "label": "this vs that (near / far)"
+  },
+  {
+   "id": "existential",
+   "label": "C'è and ci sono"
+  },
+  {
+   "id": "existential.form",
+   "label": "Forming c'è and ci sono"
+  },
+  {
+   "id": "existential.usage",
+   "label": "When to use c'è (and when not)"
+  },
+  {
+   "id": "indefinite",
+   "label": "Indefinites"
+  },
+  {
+   "id": "indefinite.core",
+   "label": "The everyday quantifiers"
+  },
+  {
+   "id": "indefinite.free_choice",
+   "label": "Free choice: qualunque, qualsiasi, chiunque"
+  },
+  {
+   "id": "indefinite.pronouns",
+   "label": "The pronoun set"
+  },
+  {
+   "id": "interrogatives",
+   "label": "Question words (interrogatives)"
+  },
+  {
+   "id": "negation",
+   "label": "Negation"
+  },
+  {
+   "id": "negation.core",
+   "label": "The non system"
+  },
+  {
+   "id": "negation.pleonastic",
+   "label": "Pleonastic non"
+  },
+  {
+   "id": "noun",
+   "label": "Nouns (gender and plural)"
+  },
+  {
+   "id": "noun.gender",
+   "label": "Gender"
+  },
+  {
+   "id": "noun.plural",
+   "label": "Plural"
+  },
+  {
+   "id": "passive",
+   "label": "The passive"
+  },
+  {
+   "id": "passive.formation",
+   "label": "Forming the passive"
+  },
+  {
+   "id": "passive.usage",
+   "label": "When to go passive"
+  },
+  {
+   "id": "piacere",
+   "label": "Piacere: saying what you like (and the like)"
+  },
+  {
+   "id": "piacere.form",
+   "label": "Building piacere sentences"
+  },
+  {
+   "id": "piacere.usage",
+   "label": "Using piacere well"
+  },
+  {
+   "id": "possessive",
+   "label": "Possessives"
+  },
+  {
+   "id": "possessive.adjective",
+   "label": "Possessive adjectives"
+  },
+  {
+   "id": "possessive.discrimination",
+   "label": "suo: his, her, your (formal)"
+  },
+  {
+   "id": "preposition",
+   "label": "Prepositions"
+  },
+  {
+   "id": "preposition.articulated",
+   "label": "Articulated prepositions"
+  },
+  {
+   "id": "preposition.discrimination",
+   "label": "Choosing between prepositions"
+  },
+  {
+   "id": "preposition.simple",
+   "label": "Simple prepositions"
+  },
+  {
+   "id": "preposition.usage",
+   "label": "Choosing the right preposition"
+  },
+  {
+   "id": "preposition.usage.verb_governed",
+   "label": "Verb + preposition"
+  },
+  {
+   "id": "pronominal_verbs",
+   "label": "Pronominal verbs: farcela, andarsene and friends"
+  },
+  {
+   "id": "pronominal_verbs.meaning",
+   "label": "What they mean"
+  },
+  {
+   "id": "pronominal_verbs.mechanics",
+   "label": "Conjugating them"
+  },
+  {
+   "id": "pronoun",
+   "label": "Pronouns (object, reflexive, ne, ci, combined, position)"
+  },
+  {
+   "id": "pronoun.ci_locative",
+   "label": "ci (locative / 'there' / idiomatic)"
+  },
+  {
+   "id": "pronoun.ci_locative.idiomatic_verbs",
+   "label": "Idiomatic verbs with built-in ci (tenerci, metterci, volerci, farcela)"
+  },
+  {
+   "id": "pronoun.combined",
+   "label": "Combined pronouns (clitic clusters)"
+  },
+  {
+   "id": "pronoun.direct_object",
+   "label": "Direct object pronouns (DOPs)"
+  },
+  {
+   "id": "pronoun.discrimination",
+   "label": "Discrimination"
+  },
+  {
+   "id": "pronoun.indirect_object",
+   "label": "Indirect object pronouns (IOPs)"
+  },
+  {
+   "id": "pronoun.indirect_object.verbs_taking_iop",
+   "label": "Verbs whose 'subject' surfaces as an IOP (piacere, mancare, etc.)"
+  },
+  {
+   "id": "pronoun.ne",
+   "label": "ne (partitive / pronominal)"
+  },
+  {
+   "id": "pronoun.position",
+   "label": "Pronoun positioning rules"
+  },
+  {
+   "id": "pronoun.reflexive",
+   "label": "Reflexive pronouns"
+  },
+  {
+   "id": "pronoun.special",
+   "label": "Special uses (lo neutral, stressed forms, etc.)"
+  },
+  {
+   "id": "relative_pronoun",
+   "label": "Relative pronouns"
+  },
+  {
+   "id": "relative_pronoun.che",
+   "label": "che (who, which, that)"
+  },
+  {
+   "id": "relative_pronoun.cui",
+   "label": "cui (after a preposition; whose)"
+  },
+  {
+   "id": "relative_pronoun.discrimination",
+   "label": "Choosing the right relative"
+  },
+  {
+   "id": "relative_pronoun.il_quale",
+   "label": "il quale (agreeing relative)"
+  },
+  {
+   "id": "reported_speech",
+   "label": "Reported speech"
+  },
+  {
+   "id": "reported_speech.tense_shift",
+   "label": "The tense shifts"
+  },
+  {
+   "id": "si_constructions",
+   "label": "Si: one does, one sells"
+  },
+  {
+   "id": "si_constructions.impersonal",
+   "label": "Impersonal si"
+  },
+  {
+   "id": "si_constructions.passivante",
+   "label": "Si passivante"
+  },
+  {
+   "id": "si_constructions.usage",
+   "label": "Si in the wild"
+  },
+  {
+   "id": "tense_choice",
+   "label": "Tense choice"
+  },
+  {
+   "id": "tense_choice.conditional_vs_imperfect_counterfactual",
+   "label": "Conditional vs imperfetto in counterfactuals"
+  },
+  {
+   "id": "tense_choice.future_vs_present",
+   "label": "Future vs present-for-future (parlerò vs parlo)"
+  },
+  {
+   "id": "tense_choice.indicative_vs_subjunctive",
+   "label": "Indicative vs subjunctive in subordinates"
+  },
+  {
+   "id": "tense_choice.passato_remoto_vs_passato_prossimo",
+   "label": "Passato remoto vs passato prossimo"
+  },
+  {
+   "id": "tense_choice.present_vs_imperfect",
+   "label": "Present vs imperfect"
+  },
+  {
+   "id": "tense_choice.present_vs_passato_prossimo",
+   "label": "Present vs passato prossimo"
+  },
+  {
+   "id": "tense_choice.progressive_vs_simple",
+   "label": "Progressive vs simple form (sto parlando vs parlo)"
+  },
+  {
+   "id": "tense_choice.trapassato_vs_imperfect",
+   "label": "Trapassato prossimo vs imperfetto (had done vs was doing)"
+  },
+  {
+   "id": "verb_form.condizionale",
+   "label": "Conditional (condizionale)"
+  },
+  {
+   "id": "verb_form.condizionale.discrimination",
+   "label": "Discrimination"
+  },
+  {
+   "id": "verb_form.condizionale.formation",
+   "label": "Formation"
+  },
+  {
+   "id": "verb_form.condizionale.usage",
+   "label": "Usage"
+  },
+  {
+   "id": "verb_form.congiuntivo",
+   "label": "Subjunctive (congiuntivo)"
+  },
+  {
+   "id": "verb_form.congiuntivo.discrimination",
+   "label": "Discrimination"
+  },
+  {
+   "id": "verb_form.congiuntivo.formation",
+   "label": "Formation"
+  },
+  {
+   "id": "verb_form.congiuntivo.usage",
+   "label": "Usage"
+  },
+  {
+   "id": "verb_form.future",
+   "label": "Future (futuro semplice)"
+  },
+  {
+   "id": "verb_form.future.discrimination",
+   "label": "Discrimination"
+  },
+  {
+   "id": "verb_form.future.formation",
+   "label": "Formation"
+  },
+  {
+   "id": "verb_form.future.usage",
+   "label": "Usage"
+  },
+  {
+   "id": "verb_form.gerundio",
+   "label": "Gerund (gerundio)"
+  },
+  {
+   "id": "verb_form.gerundio.discrimination",
+   "label": "Discrimination"
+  },
+  {
+   "id": "verb_form.gerundio.formation",
+   "label": "Formation"
+  },
+  {
+   "id": "verb_form.gerundio.usage",
+   "label": "Usage"
+  },
+  {
+   "id": "verb_form.imperativo",
+   "label": "Imperative (imperativo)"
+  },
+  {
+   "id": "verb_form.imperativo.discrimination",
+   "label": "Discrimination"
+  },
+  {
+   "id": "verb_form.imperativo.formation",
+   "label": "Formation"
+  },
+  {
+   "id": "verb_form.imperativo.usage",
+   "label": "Usage"
+  },
+  {
+   "id": "verb_form.imperfect",
+   "label": "Imperfect (imperfetto)"
+  },
+  {
+   "id": "verb_form.imperfect.discrimination",
+   "label": "Imperfect vs passato prossimo (the key discrimination)"
+  },
+  {
+   "id": "verb_form.imperfect.formation",
+   "label": "Formation"
+  },
+  {
+   "id": "verb_form.imperfect.indirect_speech",
+   "label": "Imperfect in indirect speech"
+  },
+  {
+   "id": "verb_form.imperfect.stylistic",
+   "label": "Stylistic and register uses"
+  },
+  {
+   "id": "verb_form.imperfect.usage",
+   "label": "Usage (what imperfect is for)"
+  },
+  {
+   "id": "verb_form.passato_prossimo",
+   "label": "Passato prossimo (compound past)"
+  },
+  {
+   "id": "verb_form.passato_prossimo.auxiliary",
+   "label": "Auxiliary choice (essere vs avere)"
+  },
+  {
+   "id": "verb_form.passato_prossimo.participle_agreement",
+   "label": "Past participle agreement"
+  },
+  {
+   "id": "verb_form.passato_prossimo.participle_form",
+   "label": "Past participle form"
+  },
+  {
+   "id": "verb_form.passato_remoto",
+   "label": "Past historic (passato remoto)"
+  },
+  {
+   "id": "verb_form.passato_remoto.discrimination",
+   "label": "Discrimination"
+  },
+  {
+   "id": "verb_form.passato_remoto.formation",
+   "label": "Formation"
+  },
+  {
+   "id": "verb_form.present_indicative",
+   "label": "Present indicative (presente indicativo)"
+  },
+  {
+   "id": "verb_form.present_indicative.discrimination",
+   "label": "Discrimination"
+  },
+  {
+   "id": "verb_form.present_indicative.formation",
+   "label": "Formation"
+  },
+  {
+   "id": "verb_form.present_indicative.usage",
+   "label": "Usage"
+  },
+  {
+   "id": "verb_form.trapassato_prossimo",
+   "label": "Pluperfect (trapassato prossimo)"
+  },
+  {
+   "id": "verb_form.trapassato_prossimo.discrimination",
+   "label": "Discrimination"
+  },
+  {
+   "id": "verb_form.trapassato_prossimo.formation",
+   "label": "Formation"
+  },
+  {
+   "id": "word_formation",
+   "label": "Word formation"
+  },
+  {
+   "id": "word_formation.alterati",
+   "label": "Alterati"
+  },
+  {
+   "id": "word_formation.alterati.augmentative_pejorative",
+   "label": "Augmentative -one, pejorative -accio"
+  },
+  {
+   "id": "word_formation.prefixes",
+   "label": "Prefixes"
+  }
+ ]
+}
