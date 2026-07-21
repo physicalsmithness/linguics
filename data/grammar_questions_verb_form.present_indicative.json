@@ -5767,11 +5767,12 @@
     "subtopic": "formation.regular_are",
     "difficulty": 1,
     "cefr_level_target": "A1",
-    "prompt": "Completa: 'Noi ____ italiano a casa.' [we speak - as a habit]",
+    "prompt": "Completa: 'Noi ____ italiano a casa.'  —  We speak Italian at home (as a habit).",
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": false,
     "provenance": "lemma_retrieval_pilot",
+    "retrieval_help_lemma": "parlare",
     "markpoints": [
       {
         "order_index": 0,
@@ -5790,7 +5791,7 @@
         ]
       },
       {
-        "order_index": 0,
+        "order_index": 1,
         "credit": 0.5,
         "bucket": "vocabulary.it.parlare.verb.translation",
         "label": "retrieved parlare",
@@ -5801,18 +5802,183 @@
     ],
     "vocab_help": [
       {
-        "lemma": "italiano",
-        "language": "it",
+        "lemma": "speak",
+        "language": "en",
         "aspects": {
           "translation": {
-            "reveal": "italiano - Italian (language)",
-            "bucket": "vocabulary.it.italiano.translation"
+            "reveal": "to speak = parlare",
+            "bucket": "vocabulary.it.parlare.verb.translation"
           }
         }
       }
     ],
-    "explanation": "'We speak Italian at home': Noi parliamo italiano a casa. The cue gives the English, so you retrieve the verb (parlare) as well as conjugate it. Parlare is a regular -are verb; the noi form is parl- + -iamo: parliamo.",
-    "examiner_note": "Lemma-retrieval pilot. Two co-crediting markpoints (Rev 27, 0.5 each): formation on the conjugated form, vocabulary on any parlare stem. 'we speak' is unambiguous, so no competitor guard.",
+    "explanation": "'We speak Italian at home': Noi parliamo italiano a casa. The cue is English, so you recall the verb (parlare) and build the noi form: parl- + -iamo = parliamo. Don't know the word? Tap the help — it reveals parlare and just notes the vocabulary for review.",
+    "version": 1
+  },
+  {
+    "external_id": "pres_lr_comprare_1sg_01",
+    "language_code": "it",
+    "topic": "verb_form.present_indicative",
+    "subtopic": "formation.regular_are",
+    "difficulty": 1,
+    "cefr_level_target": "A1",
+    "prompt": "Completa: 'La mattina ____ il giornale.'  —  In the morning I buy the newspaper (a daily habit).",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "provenance": "lemma_retrieval_pilot",
+    "retrieval_help_lemma": "comprare",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "verb_form.present_indicative.formation.regular_are",
+        "label": "1sg -o (compro)",
+        "any_phrases": [
+          {
+            "phrase": "compro",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "compra",
+          "compri"
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "vocabulary.it.comprare.verb.translation",
+        "label": "retrieved comprare",
+        "any_phrases": [
+          "compr"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "buy",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to buy = comprare",
+            "bucket": "vocabulary.it.comprare.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'In the morning I buy the newspaper': La mattina compro il giornale. Recall comprare from the English, then the io form: compr- + -o = compro.",
+    "version": 1
+  },
+  {
+    "external_id": "pres_lr_prendere_3pl_01",
+    "language_code": "it",
+    "topic": "verb_form.present_indicative",
+    "subtopic": "formation.regular_ere",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "prompt": "Completa: 'I turisti ____ il treno per Roma.'  —  The tourists take the train to Rome (usually).",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "provenance": "lemma_retrieval_pilot",
+    "retrieval_help_lemma": "prendere",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "verb_form.present_indicative.formation.regular_ere",
+        "label": "3pl -ono (prendono)",
+        "any_phrases": [
+          {
+            "phrase": "prendono",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "prendano",
+          "prendeno"
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "vocabulary.it.prendere.verb.translation",
+        "label": "retrieved prendere",
+        "any_phrases": [
+          "prend"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "take",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to take = prendere",
+            "bucket": "vocabulary.it.prendere.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'The tourists take the train to Rome': I turisti prendono il treno per Roma. Recall prendere, then the loro form: prend- + -ono = prendono (not -ano).",
+    "version": 1
+  },
+  {
+    "external_id": "pres_lr_capire_1sg_01",
+    "language_code": "it",
+    "topic": "verb_form.present_indicative",
+    "subtopic": "formation.ire_isc",
+    "difficulty": 1,
+    "cefr_level_target": "A1",
+    "prompt": "Completa: 'Non ____ questa parola.'  —  I don't understand this word (right now).",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "provenance": "lemma_retrieval_pilot",
+    "retrieval_help_lemma": "capire",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "verb_form.present_indicative.formation.ire_isc",
+        "label": "1sg -isco (capisco)",
+        "any_phrases": [
+          {
+            "phrase": "capisco",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "capo",
+          "capio",
+          "capisce"
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "vocabulary.it.capire.verb.translation",
+        "label": "retrieved capire",
+        "any_phrases": [
+          "cap"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "understand",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to understand = capire",
+            "bucket": "vocabulary.it.capire.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'I don't understand this word': Non capisco questa parola. Recall capire, then the -isc- io form: cap- + -isc- + -o = capisco.",
     "version": 1
   },
   {
@@ -5822,11 +5988,12 @@
     "subtopic": "formation.irregular.bere",
     "difficulty": 2,
     "cefr_level_target": "A2",
-    "prompt": "Completa: 'A cena loro ____ solo acqua.' [they drink - usually]",
+    "prompt": "Completa: 'A cena ____ solo acqua.'  —  At dinner they only drink water (usually).",
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": false,
     "provenance": "lemma_retrieval_pilot",
+    "retrieval_help_lemma": "bere",
     "markpoints": [
       {
         "order_index": 0,
@@ -5845,7 +6012,7 @@
         ]
       },
       {
-        "order_index": 0,
+        "order_index": 1,
         "credit": 0.5,
         "bucket": "vocabulary.it.bere.verb.translation",
         "label": "retrieved bere",
@@ -5856,18 +6023,392 @@
     ],
     "vocab_help": [
       {
-        "lemma": "acqua",
-        "language": "it",
+        "lemma": "drink",
+        "language": "en",
         "aspects": {
           "translation": {
-            "reveal": "acqua - water",
-            "bucket": "vocabulary.it.acqua.translation"
+            "reveal": "to drink = bere",
+            "bucket": "vocabulary.it.bere.verb.translation"
           }
         }
       }
     ],
-    "explanation": "'At dinner they only drink water': A cena loro bevono solo acqua. You retrieve the verb (bere) from the English, then conjugate it: bere opens out to the stem bev-, and the loro form is bev- + -ono: bevono. The vocabulary tick fires on any bev- form, the formation tick only on the correct bevono.",
-    "examiner_note": "Pilot. 'drink' is unambiguous -> bere; the bev- stem gives a clean retrieval substring across the whole present.",
+    "explanation": "'At dinner they only drink water': A cena bevono solo acqua. Recall bere; it opens to the stem bev-, and the loro form is bev- + -ono = bevono.",
+    "version": 1
+  },
+  {
+    "external_id": "pres_lr_fare_1sg_01",
+    "language_code": "it",
+    "topic": "verb_form.present_indicative",
+    "subtopic": "formation.irregular.monosyllabic_core",
+    "difficulty": 1,
+    "cefr_level_target": "A1",
+    "prompt": "Completa: 'Il sabato ____ la spesa.'  —  On Saturdays I do the shopping (a habit).",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "provenance": "lemma_retrieval_pilot",
+    "retrieval_help_lemma": "fare",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "verb_form.present_indicative.formation.irregular.monosyllabic_core",
+        "label": "fare 1sg faccio",
+        "any_phrases": [
+          {
+            "phrase": "faccio",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "fo",
+          "faco"
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "vocabulary.it.fare.verb.translation",
+        "label": "retrieved fare",
+        "any_phrases": [
+          "faccio",
+          "fai",
+          {
+            "phrase": "fa",
+            "match_at": "word"
+          },
+          "facciamo",
+          "fate",
+          "fanno"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "do",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to do / make = fare",
+            "bucket": "vocabulary.it.fare.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'On Saturdays I do the shopping': Il sabato faccio la spesa. Recall fare (Italian says fare la spesa for the grocery shop), then the io form faccio.",
+    "version": 1
+  },
+  {
+    "external_id": "pres_lr_andare_1sg_01",
+    "language_code": "it",
+    "topic": "verb_form.present_indicative",
+    "subtopic": "formation.irregular.monosyllabic_core",
+    "difficulty": 1,
+    "cefr_level_target": "A1",
+    "prompt": "Completa: 'Ogni giorno ____ al lavoro in bici.'  —  Every day I go to work by bike (a habit).",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "provenance": "lemma_retrieval_pilot",
+    "retrieval_help_lemma": "andare",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "verb_form.present_indicative.formation.irregular.monosyllabic_core",
+        "label": "andare 1sg vado",
+        "any_phrases": [
+          {
+            "phrase": "vado",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "ando",
+          "vo"
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "vocabulary.it.andare.verb.translation",
+        "label": "retrieved andare",
+        "any_phrases": [
+          "vado",
+          "vai",
+          {
+            "phrase": "va",
+            "match_at": "word"
+          },
+          "andiamo",
+          "andate",
+          "vanno"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "go",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to go = andare",
+            "bucket": "vocabulary.it.andare.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Every day I go to work by bike': Ogni giorno vado al lavoro in bici. Recall andare — its forms come from different roots, and the io form is vado.",
+    "version": 1,
+    "examiner_note": "Suppletive: vocab retrieval any_phrases enumerate the present forms (vad-/vai/va/and-/vanno) per Architecture's list-each-stem ruling."
+  },
+  {
+    "external_id": "pres_lr_cercare_2sg_01",
+    "language_code": "it",
+    "topic": "verb_form.present_indicative",
+    "subtopic": "formation.orthographic.care_gare",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "prompt": "Completa: 'Tu ____ sempre le chiavi.'  —  You are always looking for your keys (habit).",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "provenance": "lemma_retrieval_pilot",
+    "retrieval_help_lemma": "cercare",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "verb_form.present_indicative.formation.orthographic.care_gare",
+        "label": "2sg cerchi (h kept)",
+        "any_phrases": [
+          {
+            "phrase": "cerchi",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "ceri",
+          "cerci"
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "vocabulary.it.cercare.verb.translation",
+        "label": "retrieved cercare",
+        "any_phrases": [
+          "cerc"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "look for",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to look for = cercare",
+            "bucket": "vocabulary.it.cercare.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'You are always looking for your keys': Tu cerchi sempre le chiavi. Recall cercare, then the tu form keeps the hard c with an h: cerchi.",
+    "version": 1
+  },
+  {
+    "external_id": "pres_lr_sapere_1sg_01",
+    "language_code": "it",
+    "topic": "verb_form.present_indicative",
+    "subtopic": "formation.irregular.monosyllabic_core",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "prompt": "Completa: '____ la risposta giusta.'  —  I know the right answer (a fact I hold now).",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "provenance": "lemma_retrieval_pilot",
+    "retrieval_help_lemma": "sapere",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "verb_form.present_indicative.formation.irregular.monosyllabic_core",
+        "label": "sapere 1sg so",
+        "any_phrases": [
+          {
+            "phrase": "so",
+            "match_at": "word"
+          },
+          {
+            "phrase": "conosco",
+            "credit": 0.5,
+            "note": "close - sapere is knowing a fact; conoscere is knowing a person or place",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "sapo"
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "vocabulary.it.sapere.verb.translation",
+        "label": "retrieved sapere",
+        "any_phrases": [
+          {
+            "phrase": "so",
+            "match_at": "word"
+          },
+          "sai",
+          {
+            "phrase": "sa",
+            "match_at": "word"
+          },
+          "sappiamo",
+          "sapete",
+          "sanno"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "know",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to know (a fact) = sapere",
+            "bucket": "vocabulary.it.sapere.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'I know the right answer': So la risposta giusta. Recall sapere (know a fact), io form so. If you reach for conosco, that is conoscere — knowing a person or place — so you get partial credit and a steer.",
+    "version": 1,
+    "examiner_note": "Competitor conoscere. 'so' word-anchored so it does not match inside essere's 'sono'."
+  },
+  {
+    "external_id": "pres_lr_guardare_2sg_01",
+    "language_code": "it",
+    "topic": "verb_form.present_indicative",
+    "subtopic": "formation.regular_are",
+    "difficulty": 1,
+    "cefr_level_target": "A1",
+    "prompt": "Completa: 'Tu ____ troppa televisione.'  —  You watch too much television (in general).",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "provenance": "lemma_retrieval_pilot",
+    "retrieval_help_lemma": "guardare",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "verb_form.present_indicative.formation.regular_are",
+        "label": "2sg -i (guardi)",
+        "any_phrases": [
+          {
+            "phrase": "guardi",
+            "match_at": "word"
+          },
+          {
+            "phrase": "vedi",
+            "credit": 0.5,
+            "note": "close - guardare is to watch / look at; vedere is to see",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "guarda",
+          "guardo"
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "vocabulary.it.guardare.verb.translation",
+        "label": "retrieved guardare",
+        "any_phrases": [
+          "guard"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "watch",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to watch / look at = guardare",
+            "bucket": "vocabulary.it.guardare.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'You watch too much television': Tu guardi troppa televisione. Recall guardare (watch / look at), tu form guardi. If you write vedi, that is vedere — to see — so you get partial credit and a steer.",
+    "version": 1
+  },
+  {
+    "external_id": "pres_lr_partire_1pl_01",
+    "language_code": "it",
+    "topic": "verb_form.present_indicative",
+    "subtopic": "formation.regular_ire",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "prompt": "Completa: 'Ogni estate ____ per il mare.'  —  Every summer we leave for the seaside (a habit).",
+    "type": "short",
+    "marks": 1,
+    "prompt_supplies_base_form": false,
+    "provenance": "lemma_retrieval_pilot",
+    "retrieval_help_lemma": "partire",
+    "markpoints": [
+      {
+        "order_index": 0,
+        "credit": 0.5,
+        "bucket": "verb_form.present_indicative.formation.regular_ire",
+        "label": "1pl -iamo (partiamo)",
+        "any_phrases": [
+          {
+            "phrase": "partiamo",
+            "match_at": "word"
+          },
+          {
+            "phrase": "lasciamo",
+            "credit": 0.5,
+            "note": "close - partire is to leave / depart; lasciare is to leave something behind",
+            "match_at": "word"
+          }
+        ],
+        "must_not_include": [
+          "partamo"
+        ]
+      },
+      {
+        "order_index": 1,
+        "credit": 0.5,
+        "bucket": "vocabulary.it.partire.verb.translation",
+        "label": "retrieved partire",
+        "any_phrases": [
+          "part"
+        ]
+      }
+    ],
+    "vocab_help": [
+      {
+        "lemma": "leave",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to leave / depart = partire",
+            "bucket": "vocabulary.it.partire.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'Every summer we leave for the seaside': Ogni estate partiamo per il mare. Recall partire (leave / depart), noi form partiamo. If you write lasciamo, that is lasciare — to leave something behind — so you get partial credit and a steer.",
     "version": 1
   },
   {
@@ -5877,11 +6418,12 @@
     "subtopic": "formation.reflexive_assembly",
     "difficulty": 1,
     "cefr_level_target": "A1",
-    "prompt": "Completa: 'La mattina ____ molto presto.' [I get up (leave the bed) - every day]",
+    "prompt": "Completa: 'La mattina ____ molto presto.'  —  In the morning I get up very early - leave the bed (every day).",
     "type": "short",
     "marks": 1,
     "prompt_supplies_base_form": false,
     "provenance": "lemma_retrieval_pilot",
+    "retrieval_help_lemma": "alzarsi",
     "markpoints": [
       {
         "order_index": 0,
@@ -5907,7 +6449,7 @@
         ]
       },
       {
-        "order_index": 0,
+        "order_index": 1,
         "credit": 0.5,
         "bucket": "vocabulary.it.alzarsi.verb.translation",
         "label": "retrieved alzarsi",
@@ -5916,9 +6458,20 @@
         ]
       }
     ],
-    "vocab_help": [],
-    "explanation": "'In the morning I get up very early': La mattina mi alzo molto presto. You retrieve the verb from the English: 'get up (leave the bed)' is alzarsi, not svegliarsi ('wake up'). For io the reflexive pronoun is mi: mi alzo. If you reach for mi sveglio you formed a reflexive correctly but retrieved the wrong verb, so you get partial credit and a steer.",
-    "examiner_note": "Pilot competitor case. The steering hint '(leave the bed)' disambiguates alzarsi from svegliarsi; mi sveglio is carried as a graded 0.5 phrase so a wrong-verb-but-correct-reflexive answer is NOT recorded as a formation failure. NB for Architecture: please confirm on the marker replica how the 0.5 markpoint weight composes with the 0.5 phrase credit for the mi sveglio bucket event (marks + correctness), and whether the competitor is better modelled as a separate markpoint on vocabulary.it.svegliarsi.",
-    "version": 1
+    "vocab_help": [
+      {
+        "lemma": "get up",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to get up / leave the bed = alzarsi",
+            "bucket": "vocabulary.it.alzarsi.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "'In the morning I get up very early': La mattina mi alzo molto presto. Recall alzarsi (get up / leave the bed), io form mi alzo. If you reach for mi sveglio, that is svegliarsi — to wake up — a correctly built reflexive of the wrong verb, so partial credit and a steer, never a hard wrong.",
+    "version": 1,
+    "examiner_note": "Competitor svegliarsi. NB Architecture: confirm on the replica that a wrong-verb answer does NOT record a reflexive_assembly MISS (Smith: only assess formation against the intended verb). If the substring engine records a miss on non-match, gate formation attribution on target-verb presence."
   }
 ]

@@ -125,6 +125,11 @@
   function buildAttemptPayload(strand, item, result, attempt) {
     const payload = basePayload();
     payload.item_id = (item && (item.external_id || item.id)) || "";
+    // Join key (Smith 2026-07-21): the store mints a unique id per attempt;
+    // send it so every sheet row is uniquely keyed and any nested record can
+    // be JOINED back to the full row rather than copying its columns. See
+    // inter_chat/Architecture_Housing_misconception_event_keys.md.
+    payload.attempt_id = (attempt && attempt.id) || "";
     payload.topic = (item && item.topic) || firstBucketRoot(result) || "";
     payload.qtype = (item && item.type) || (strand === "vocab" ? "vocab_card" : "short");
     payload.mode = strand;
@@ -160,7 +165,14 @@
       bucket: o.bucket, expected: o.expected, written: o.written,
       accent_class: o.accent_class, accent_chars: o.accent_chars
     })));
-    payload.misconceptions_json = JSON.stringify(mh);
+    // Each misconception object also carries the attempt_id FK, so if they are
+    // ever lifted into their own tab they still join to the attempt that holds
+    // person, strand and everything else.
+    payload.misconceptions_json = JSON.stringify(mh.map(function (h) {
+      const aid = (attempt && attempt.id) || "";
+      return (h && typeof h === "object") ? Object.assign({ attempt_id: aid }, h)
+                                          : { attempt_id: aid, id: h };
+    }));
     // App-side context (input mode, active scopes) - also top-level.
     try { if (typeof LL.pulseContext === "function") Object.assign(payload, LL.pulseContext()); } catch (e) {}
     return payload;

@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-21-r35";
+  const LL_BUILD = "2026-07-21-r38";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -5249,7 +5249,7 @@
     renderLiveOverview();
     const host = document.getElementById("live-stats-content");
     host.innerHTML = "";
-    const onlyTouched = document.getElementById("live-only-touched").checked;
+    const onlyTouched = false;  // 'only touched' toggle removed 2026-07-21 (Smith); whole tree shows
 
     for (const root of bucketIndex.roots) {
       if (!rootInLevelScope(root.id)) continue;
@@ -5260,9 +5260,7 @@
       const empty = document.createElement("div");
       empty.className = "muted";
       empty.style.fontStyle = "italic";
-      empty.textContent = onlyTouched
-        ? "No events yet. Uncheck 'only touched' to see the whole tree."
-        : "No buckets loaded.";
+      empty.textContent = "No buckets loaded.";
       host.appendChild(empty);
     }
     // After rendering, bring the first recently-changed row into view.
@@ -5422,6 +5420,7 @@
     for (const root of bucketIndex.roots) {
       const cat = overviewCategoryFor(root.id);
       if (!cat) continue;
+      if (!rootInLevelScope(root.id)) continue;   // level filter thins the TILES too, not just the tree (Smith 2026-07-21)
       if (!byCategory.has(cat)) byCategory.set(cat, []);
       byCategory.get(cat).push(root);
     }
@@ -5521,10 +5520,33 @@
       const s = aggregateNodeStats(l);
       return s && s.correctness >= PROFICIENT_MIN;
     }).length;
-    meta.textContent = touchedLeafCount + "/" + leaves.length + " tried \u00b7 " + proficientCount + " proficient";
+    // Grammar/translation tiles get a QUESTION-shaped headline (Smith
+    // 2026-07-21): "N attempted of M available questions" + "K correct out of
+    // N attempted". The leaf-touched ratio and proficient count are dropped
+    // there - both leaf-based, and coverage is already in the colours
+    // ("ignore leaves touched - it's visible"). Tiles that NO question targets
+    // (vocabulary, diagnostic-only trees) keep the leaf line so they still say
+    // something meaningful. nodeQuestionStats counts DISTINCT items whose
+    // buckets fall under this node.
     const stubCount = allLeaves.length - leaves.length;
-    meta.title = "tried = answered at least once; proficient = colour at " + Math.round(PROFICIENT_MIN * 100) + "%+"
-      + (stubCount > 0 ? " (excludes " + stubCount + " stub leaves not yet content-filled)" : "");
+    const tileQs = nodeQuestionStats(root.id);
+    if (tileQs.total > 0) {
+      const metaLine1 = document.createElement("div");
+      metaLine1.textContent = tileQs.attempted + " attempted of " + tileQs.total + " available questions";
+      meta.appendChild(metaLine1);
+      if (tileQs.attempted > 0) {
+        const metaLine2 = document.createElement("div");
+        metaLine2.className = "overview-meta-sub";
+        metaLine2.textContent = tileQs.correct + " correct out of " + tileQs.attempted + " attempted";
+        meta.appendChild(metaLine2);
+      }
+      meta.title = "available = distinct questions whose grammar points fall under this topic; "
+        + "correct counts your most recent attempt at full marks";
+    } else {
+      meta.textContent = touchedLeafCount + "/" + leaves.length + " tried \u00b7 " + proficientCount + " proficient";
+      meta.title = "tried = answered at least once; proficient = colour at " + Math.round(PROFICIENT_MIN * 100) + "%+"
+        + (stubCount > 0 ? " (excludes " + stubCount + " stub leaves not yet content-filled)" : "");
+    }
     header.appendChild(meta);
     cell.appendChild(header);
 
@@ -5608,7 +5630,7 @@
     const qs = nodeQuestionStats(node.id);
     let summary;
     if (qs.total > 0) {
-      summary = "\n" + qs.attempted + " attempted out of " + qs.total + " questions";
+      summary = "\n" + qs.attempted + " attempted of " + qs.total + " available questions";
       if (qs.attempted > 0) summary += "\n" + qs.correct + " correct out of " + qs.attempted + " attempted";
     } else {
       // Diagnostic-only trees (orthography.*): no items target them directly.
@@ -5785,7 +5807,7 @@
     }
     const rowQs = nodeQuestionStats(node.id);
     const rowQLine = rowQs.total > 0
-      ? "\n" + rowQs.attempted + " attempted out of " + rowQs.total + " questions"
+      ? "\n" + rowQs.attempted + " attempted of " + rowQs.total + " available questions"
         + (rowQs.attempted > 0 ? "\n" + rowQs.correct + " correct out of " + rowQs.attempted + " attempted" : "")
       : "";
     row.title = tooltipLabel + rowQLine + (node.description ? "\n\n" + node.description : "") + "\n\nDrill into this.";
@@ -6016,10 +6038,7 @@
     LL.onCostUpdate = function (_total) { renderSessionCost(); };
   }
 
-  // -------------------- only-touched checkbox --------------------
-  document.getElementById("live-only-touched").addEventListener("change", () => {
-    renderLiveStats();
-  });
+  // -------------------- only-touched checkbox: removed 2026-07-21 (Smith) --------------------
 
   // ==================== entry / welcome screen ====================
   // Data-driven part + tense derivation. Reuses the same namespace categoriser
@@ -7269,7 +7288,13 @@
           // unpractised stripes float above (grey so scope is VISIBLE against
           // the cream cell - Smith v8: "they're just not showing").
           const withStats = leaves.map(leaf => ({ leaf, st: aggregateNodeStats(leaf) }));
-          const ordered = withStats.filter(x => !x.st).concat(withStats.filter(x => x.st));
+          // Sediment (Smith 2026-07-21): unpractised ("left to get") float on top;
+          // practised sink, sorted by correctness so the DARKEST green (best-
+          // covered) sits at the very floor and red/low rides just under the
+          // unpractised band. .coverage-strips is flex-end, so DOM order top->
+          // bottom = this array; putting highest correctness LAST = darkest lowest.
+          const practised = withStats.filter(x => x.st).sort((a, b) => a.st.correctness - b.st.correctness);
+          const ordered = withStats.filter(x => !x.st).concat(practised);
           let touched = 0;
           for (const { leaf, st } of ordered) {
             const s = document.createElement("i");

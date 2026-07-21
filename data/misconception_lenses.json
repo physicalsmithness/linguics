@@ -1,0 +1,163 @@
+{
+  "$note": "Surface-lens layer for the misconception canvas (Smith's favourite prism, P3; reporting_prisms thread). A LENS is a learner-facing grouping over the 17 families - the misconception twin of vocab themes over lemmas, and analyst-owned exactly as Vocab owns its chip list. A lens is computed as: event.misconception in this lens's member set. Lenses MAY overlap (a specific can sit in more than one), by design. Each lens is ALSO a Special Drill (its member set as a session filter). Rendered in Linguics house style (serif, cream, navy, CEFR tints, green/blue cells) not generic CDS. members reference the 75 ratified ids; pending_extension_members await the pass-1 extension ratification (harvest v15).",
+  "generated": "2026-07-20",
+  "registry_basis": "17 families / 75 specifics",
+  "governance": "analyst proposes this cut; Architecture ratifies; Housing renders it, inventing nothing.",
+  "lenses": [
+    {
+      "id": "accents_silent_letters",
+      "label": "Accents and silent letters",
+      "learner_blurb": "the little marks that change the word",
+      "members": {
+        "families": [
+          "accent_silent_letter"
+        ]
+      },
+      "within_lens_drill": "by host: verb / noun / monosyllable / preposition+article",
+      "the_sentence": "You drop written accents across the board, not in one topic.",
+      "pending_extension_members": [
+        "orthography added-accent / hypercorrection (Housing classifies this at runtime as orthography.accent.added; belongs to this lens, not spelling)"
+      ]
+    },
+    {
+      "id": "spelling_that_tracks_sound",
+      "label": "Spelling that tracks sound",
+      "learner_blurb": "small spelling slips where the letters follow the sound",
+      "members": {
+        "families": [
+          "orthography",
+          "gemination"
+        ]
+      },
+      "within_lens_drill": "by rule: hard c/g h-insertion / double-i / -cia--gia / -iare stress / geminate / elision",
+      "the_sentence": "Your spelling errors are the sound-preserving ones (cerchi, mangi, dammi), not random typos.",
+      "overlaps_with": [
+        "orthography.failed_elision + gemination.enclitic_doubling also appear in pronoun_machinery"
+      ]
+    },
+    {
+      "id": "word_order",
+      "label": "Word order",
+      "learner_blurb": "where each word goes",
+      "members": {
+        "families": [
+          "word_order"
+        ]
+      },
+      "within_lens_drill": "by structure: adjective / clitic / negation / adverb",
+      "the_sentence": "You place words in the English order where Italian differs.",
+      "pending_extension_members": [
+        "word_order.negation_elements, word_order.adverb_position (extension)"
+      ],
+      "overlaps_with": [
+        "word_order.clitic_position + clitic_cluster_order also in pronoun_machinery"
+      ]
+    },
+    {
+      "id": "agreement",
+      "label": "Agreement",
+      "learner_blurb": "making words match in gender, number and person",
+      "members": {
+        "families": [
+          "agreement"
+        ]
+      },
+      "within_lens_drill": "by locus: adjective / participle / article (prenominal) / clitic / subject-verb; and by feature: gender vs number vs person",
+      "the_sentence": "Your agreement slips show up on adjectives, participles, articles AND clitics alike.",
+      "pending_extension_members": [
+        "agreement.subject_verb_finite, agreement.noun_gender_lexical (extension)"
+      ],
+      "overlaps_with": [
+        "agreement.clitic_gender_number + participle_preceding_dop also in pronoun_machinery"
+      ]
+    },
+    {
+      "id": "building_irregular_forms",
+      "label": "Building irregular forms",
+      "learner_blurb": "making the awkward forms the language actually uses",
+      "members": {
+        "families": [
+          "regularisation",
+          "stem_change",
+          "conjugation_class"
+        ],
+        "specifics": [
+          "paradigm_confusion.wrong_person_as_imperative",
+          "paradigm_confusion.future_for_conditional_1pl"
+        ]
+      },
+      "within_lens_drill": "by tense; by conjugation class (-are / -ere / -ire); by individual irregular verb",
+      "the_sentence": "You regularise the irregulars - the exact forms that need memorising.",
+      "pending_extension_members": [
+        "regularisation.irregular_plural, regularisation.irregular_comparative, regularisation.noun_class_plural (extension)"
+      ]
+    },
+    {
+      "id": "choosing_the_right_form",
+      "label": "Choosing the right form",
+      "learner_blurb": "picking the right tense, mood or word for the meaning",
+      "members": {
+        "families": [
+          "discrimination",
+          "auxiliary_choice",
+          "mood"
+        ],
+        "specifics": [
+          "paradigm_confusion.ci_vs_ne"
+        ]
+      },
+      "within_lens_drill": "by contrast: tense choice / mood trigger / aspect / auxiliary",
+      "the_sentence": "When two forms are both well-built, you pick the wrong one for the context.",
+      "pending_extension_members": [
+        "paradigm_confusion.preposition_choice, paradigm_confusion.relative_choice, paradigm_confusion.connective_choice (extension) - the 'which word' choices"
+      ]
+    },
+    {
+      "id": "l1_interference",
+      "label": "English (or L1) interference",
+      "learner_blurb": "when English (or Spanish, French) leaks in",
+      "members": {
+        "families": [
+          "transfer"
+        ]
+      },
+      "within_lens_drill": "by construction: calque / clitic omission / foreign plural / word-order calque",
+      "the_sentence": "A cluster of your errors are direct mappings from another language.",
+      "pending_extension_members": [
+        "transfer.foreign_s_plural, transfer.construction_nonfinite variants (extension); note the family definition is being broadened past English-only"
+      ]
+    },
+    {
+      "id": "pronoun_machinery",
+      "label": "Pronoun machinery",
+      "learner_blurb": "the little words - clitics, ci, ne, glielo",
+      "members": {
+        "specifics": [
+          "clitic_cluster.form_change",
+          "word_order.clitic_position",
+          "word_order.clitic_cluster_order",
+          "paradigm_confusion.dop_iop",
+          "paradigm_confusion.clitic_vs_stressed",
+          "paradigm_confusion.ci_vs_ne",
+          "agreement.clitic_gender_number",
+          "agreement.participle_preceding_dop",
+          "orthography.failed_elision",
+          "gemination.enclitic_doubling",
+          "transfer.clitic_omission",
+          "transfer.dop_iop_confusion"
+        ]
+      },
+      "within_lens_drill": "by aspect: position / cluster form / case (DOP vs IOP) / gender-number / omission",
+      "the_sentence": "Your pronoun trouble is [position / cluster / case], not pronouns-in-general.",
+      "overlaps_with": [
+        "deliberately cross-family: this lens COLLECTS the pronoun surface that the family axis scatters across clitic_cluster, word_order, paradigm_confusion, agreement, orthography, gemination and transfer. It is the clearest demonstration of why the lens layer exists."
+      ]
+    }
+  ],
+  "notes_for_architecture": [
+    "Overlap is intentional (a specific in two lenses). If you want lenses to PARTITION instead, say so and I will assign each specific to exactly one - but I recommend overlap, matching vocab themes.",
+    "Each lens doubles as a Special Drill (member set as session filter) - but per Smith's steer the immediate drill need is just more basic formation ITEMS from the verb authors, so treat drill-generation as a later free consequence, not a blocker.",
+    "The within_lens_drill axis is the SKILL REGION (where it fired), which every event already carries - so the click-through works today wherever tagging exists.",
+    "false_friend, register, stress are not their own lens (too small); stress rides accents-or-building, register rides choosing, false_friend is reserved."
+  ]
+}

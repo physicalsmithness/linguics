@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lemma-retrieval taster — check the feel</title>
+<style>
+  :root{
+    --ink:#1f2430; --soft:#5b6472; --line:#e4e7ec; --bg:#f6f7f9; --card:#fff;
+    --green:#2f6f4f; --green-bg:#e8f3ec; --amber:#8a5a12; --amber-bg:#fbf1dd;
+    --help:#1f5673; --help-bg:#e7f0f5; --blank:#c9a227;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    padding:26px 16px 70px}
+  .wrap{max-width:780px;margin:0 auto}
+  h1{font-size:23px;margin:0 0 6px}
+  .lead{color:var(--soft);margin:0 0 8px;font-size:15.5px}
+  .lead b{color:var(--ink)}
+  .note{background:#fff;border:1px solid var(--line);border-left:4px solid var(--green);
+    border-radius:10px;padding:12px 15px;margin:14px 0 4px;font-size:14.5px;color:#333}
+  h2{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--soft);
+     margin:34px 0 6px;font-weight:800}
+  .sub{color:var(--soft);font-size:14px;margin:0 0 14px}
+
+  .q{background:var(--card);border:1px solid var(--line);border-radius:13px;
+    padding:16px 17px 15px;margin:0 0 14px;box-shadow:0 1px 2px rgba(20,30,50,.04)}
+  .q.weird{border-color:#e7d2a8;box-shadow:0 0 0 3px #fbf3e0}
+  .cue{font-size:15px;color:var(--soft);margin:0 0 9px}
+  .cue .paren{color:#96632a;font-style:italic}
+  .sent{font-size:20px;line-height:1.7;margin:0 0 4px}
+  .blank{display:inline-block;min-width:96px;border-bottom:2.5px solid var(--blank);margin:0 4px}
+  .ans{color:var(--green);font-weight:700}
+
+  .help{display:flex;align-items:center;gap:9px;background:var(--help-bg);
+    border:1px solid #cfe0ea;border-radius:9px;padding:9px 12px;margin:12px 0 0;font-size:14.5px;color:#204b63}
+  .help .i{flex:0 0 auto;width:20px;height:20px;border-radius:50%;background:var(--help);color:#fff;
+    font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
+  .help b{color:#123}
+  .help .rev{margin-left:auto;background:#fff;border:1px solid #cfe0ea;border-radius:7px;
+    padding:3px 9px;color:var(--help);font-weight:700;white-space:nowrap}
+
+  .steer{background:var(--amber-bg);border:1px solid #ecd9ad;border-radius:9px;
+    padding:9px 12px;margin:10px 0 0;font-size:14px;color:#6f4a12}
+  .steer b{color:#5a3c0e}
+
+  .foot{background:#111826;color:#fff;border-radius:13px;padding:18px 20px;margin-top:30px}
+  .foot h3{margin:0 0 8px;font-size:16px}
+  .foot p{margin:0 0 7px;font-size:15px;color:#d7dce4}
+  .foot b{color:#fff}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>The retrieval taster — pick holes in it</h1>
+  <p class="lead">New shape, as you asked: the cue is the <b>whole English sentence</b> with the tense in <span style="color:#96632a;font-style:italic">(parentheses)</span>. The learner only fills the verb. Twelve questions below — the last four are the ones with a rival verb, where it gets weird.</p>
+  <div class="note"><b>The help is loud on every question.</b> Below each blank sits a blue bar: <i>“Don’t know the Italian for ‘to speak’? → parlare”</i>. Nobody is stuck for not knowing a word — using it just quietly notes the vocabulary for review. That’s what makes this fair at A1.</div>
+
+  <h2>Straightforward — a clear verb</h2>
+  <p class="sub">Spread across the regular classes, the -isc- verbs, the irregulars and the spelling-change verbs.</p>
+
+  <!-- 1 -->
+  <div class="q">
+    <div class="cue">We speak Italian at home <span class="paren">(as a habit)</span></div>
+    <div class="sent">Noi <span class="blank"></span> italiano a casa. &nbsp;→&nbsp; <span class="ans">parliamo</span></div>
+    <div class="help"><span class="i">?</span><span>Don’t know the Italian for <b>“to speak”</b>?</span><span class="rev">→ parlare</span></div>
+  </div>
+  <!-- 2 -->
+  <div class="q">
+    <div class="cue">In the morning I buy the newspaper <span class="paren">(a daily habit)</span></div>
+    <div class="sent">La mattina <span class="blank"></span> il giornale. &nbsp;→&nbsp; <span class="ans">compro</span></div>
+    <div class="help"><span class="i">?</span><span>Don’t know the Italian for <b>“to buy”</b>?</span><span class="rev">→ comprare</span></div>
+  </div>
+  <!-- 3 -->
+  <div class="q">
+    <div class="cue">The tourists take the train to Rome <span class="paren">(usually)</span></div>
+    <div class="sent">I turisti <span class="blank"></span> il treno per Roma. &nbsp;→&nbsp; <span class="ans">prendono</span></div>
+    <div class="help"><span class="i">?</span><span>Don’t know the Italian for <b>“to take”</b>?</span><span class="rev">→ prendere</span></div>
+  </div>
+  <!-- 4 -->
+  <div class="q">
+    <div class="cue">I don’t understand this word <span class="paren">(right now)</span></div>
+    <div class="sent">Non <span class="blank"></span> questa parola. &nbsp;→&nbsp; <span class="ans">capisco</span></div>
+    <div class="help"><span class="i">?</span><span>Don’t know the Italian for <b>“to understand”</b>?</span><span class="rev">→ capire</span></div>
+  </div>
+  <!-- 5 -->
+  <div class="q">
+    <div class="cue">At dinner they only drink water <span class="paren">(usually)</span></div>
+    <div class="sent">A cena <span class="blank"></span> solo acqua. &nbsp;→&nbsp; <span class="ans">bevono</span></div>
+    <div class="help"><span class="i">?</span><span>Don’t know the Italian for <b>“to drink”</b>?</span><span class="rev">→ bere</span></div>
+  </div>
+  <!-- 6 -->
+  <div class="q">
+    <div class="cue">On Saturdays I do the shopping <span class="paren">(a habit)</span></div>
+    <div class="sent">Il sabato <span class="blank"></span> la spesa. &nbsp;→&nbsp; <span class="ans">faccio</span></div>
+    <div class="help"><span class="i">?</span><span>Don’t know the Italian for <b>“to do / make”</b>?</span><span class="rev">→ fare</span></div>
+  </div>
+  <!-- 7 -->
+  <div class="q">
+    <div class="cue">Every day I go to work by bike <span class="paren">(a habit)</span></div>
+    <div class="sent">Ogni giorno <span class="blank"></span> al lavoro in bici. &nbsp;→&nbsp; <span class="ans">vado</span></div>
+    <div class="help"><span class="i">?</span><span>Don’t know the Italian for <b>“to go”</b>?</span><span class="rev">→ andare</span></div>
+  </div>
+  <!-- 8 -->
+  <div class="q">
+    <div class="cue">You are always looking for your keys <span class="paren">(habit)</span></div>
+    <div class="sent">Tu <span class="blank"></span> sempre le chiavi. &nbsp;→&nbsp; <span class="ans">cerchi</span></div>
+    <div class="help"><span class="i">?</span><span>Don’t know the Italian for <b>“to look for”</b>?</span><span class="rev">→ cercare</span></div>
+  </div>
+
+  <h2>The weird ones — a rival verb is plausible</h2>
+  <p class="sub">Here the English could pull two ways. The cue steers, and if they still pick the rival they get <b>partial credit and a gentle note — never a hard “wrong” on the grammar</b>. Formation is only judged against the verb we meant.</p>
+
+  <!-- 9 sapere -->
+  <div class="q weird">
+    <div class="cue">I know the right answer <span class="paren">(a fact I hold now)</span></div>
+    <div class="sent"><span class="blank"></span> la risposta giusta. &nbsp;→&nbsp; <span class="ans">so</span></div>
+    <div class="help"><span class="i">?</span><span>Don’t know the Italian for <b>“to know (a fact)”</b>?</span><span class="rev">→ sapere</span></div>
+    <div class="steer"><b>If they write “conosco”:</b> close — <i>sapere</i> is knowing a fact; <i>conoscere</i> is knowing a person or place. Partial credit + this steer.</div>
+  </div>
+  <!-- 10 guardare -->
+  <div class="q weird">
+    <div class="cue">You watch too much television <span class="paren">(in general)</span></div>
+    <div class="sent">Tu <span class="blank"></span> troppa televisione. &nbsp;→&nbsp; <span class="ans">guardi</span></div>
+    <div class="help"><span class="i">?</span><span>Don’t know the Italian for <b>“to watch”</b>?</span><span class="rev">→ guardare</span></div>
+    <div class="steer"><b>If they write “vedi”:</b> close — <i>guardare</i> is to watch / look at; <i>vedere</i> is to see. Partial credit + steer.</div>
+  </div>
+  <!-- 11 partire -->
+  <div class="q weird">
+    <div class="cue">Every summer we leave for the seaside <span class="paren">(a habit)</span></div>
+    <div class="sent">Ogni estate <span class="blank"></span> per il mare. &nbsp;→&nbsp; <span class="ans">partiamo</span></div>
+    <div class="help"><span class="i">?</span><span>Don’t know the Italian for <b>“to leave / depart”</b>?</span><span class="rev">→ partire</span></div>
+    <div class="steer"><b>If they write “lasciamo”:</b> close — <i>partire</i> is to leave / depart; <i>lasciare</i> is to leave something behind. Partial credit + steer.</div>
+  </div>
+  <!-- 12 alzarsi -->
+  <div class="q weird">
+    <div class="cue">In the morning I get up very early <span class="paren">— leave the bed (every day)</span></div>
+    <div class="sent">La mattina <span class="blank"></span> molto presto. &nbsp;→&nbsp; <span class="ans">mi alzo</span></div>
+    <div class="help"><span class="i">?</span><span>Don’t know the Italian for <b>“to get up”</b>?</span><span class="rev">→ alzarsi</span></div>
+    <div class="steer"><b>If they write “mi sveglio”:</b> that’s a perfectly-built reflexive of the wrong verb (<i>svegliarsi</i> = wake up). So partial credit + a steer, and the grammar is <b>not</b> marked wrong — the miss is recorded as a vocabulary one. This is the case you flagged.</div>
+  </div>
+
+  <div class="foot">
+    <h3>What I need from you</h3>
+    <p><b>1. Does this feel right?</b> Especially the loud help bar and the gentle handling of the rivals.</p>
+    <p><b>2. How many in total?</b> You said “a lot more” — give me a number (20? 40?) and I’ll fill out the spread, heavy on the rival-verb cases since that’s where it gets weird.</p>
+    <p><b>3. One thing I can’t settle alone:</b> when a learner picks a wrong verb, the marker should <i>not</i> log a grammar miss — only a vocabulary one. I’ve built the steer, but making the engine truly never log a formation miss on a wrong verb is a Housing/engine change. I’ve routed it; flag if you feel strongly.</p>
+    <p style="margin-top:9px;color:#aab3c2">All twelve are live in the app now — try them and tell me how they feel, or just reply here.</p>
+  </div>
+</div>
+</body>
+</html>

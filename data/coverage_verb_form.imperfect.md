@@ -295,3 +295,33 @@ Item-level fields added to every `discrimination.*` grammar item (all 37 of my s
 - Marks/credit mismatches: 0
 
 One-sitting bundle complete. All three OPEN threads (chip_suppression, isc_overextension_coverage, vocab_lemma_hygiene) posted close-outs; awaiting Architecture CLOSED stamps.
+
+
+---
+
+## Update 2026-07-21: four-thread sitting (vol_01 + gen_09 + sap_02 + isp_int_03 + criterion 21 + person backfill)
+
+Full sitting completed in one pass covering three inter_chat threads:
+
+**vol_01_prompt_bug v2** — closes 3 items:
+- `imp_disc_vol_01` prose fix: `quando fossi cresciuto` → `da grande` (native phrasing; the subjunctive-under-temporal-quando was ungrammatical Italian).
+- `imp_disc_gen_09` answer-leak fix: prompt second clause rewritten from `ma era anche affettuoso` to `però anche affettuoso e paziente` (removed the verbatim `era`).
+- `imp_disc_sap_02` answer-leak fix: `ma non sapevo come parlartene` → `ma non trovavo il coraggio di parlartene` (removed the verbatim `sapevo`; kept imperfect scaffolding via `trovavo`).
+
+**false_miss_packet v2** — closes 1 item:
+- `imp_isp_int_03` blank-boundary: `any_phrases` narrowed from `"stavano per"` to `"stavano"` (with `match_at: word`); must_not similarly narrowed. The prompt-supplied `per` no longer bleeds into the accepted answer, so a correct blank fill (`stavano`) now scores full credit.
+
+**formation_trigger_retrofit v3** — closes 11 items + 52 person backfills:
+- Criterion 21 forcing via mechanism (a) named-tense-in-cue on 11 items. Chips gain `imperfetto` or `passato prossimo` (Rev-26 licensed as formation trigger, not crit-13 leak). Same 3 HIGH items (dov_05, vol_02, vol_04) plus 8 normal. No re-home to tense_choice proposed; items are already tense-choice-shaped via existing candidate_tenses/correct_tense/suppress fields.
+- Person field backfilled on 52 items (49 single-value derived from answer form, 3 null for multi-blank bg items). Distribution: 15×1sg, 11×3sg, 9×1pl, 9×3pl, 4×2sg, 1×2pl, 3×null.
+
+**Batch state after this sitting:**
+
+- Grammar items: 118, Translation items: 54
+- Items with `person` set: 54 (of 118 targeted; the remaining 64 outside architect's commissioned list)
+- Items with `info_display: "suppress"`: 57
+- Items with `candidate_tenses` + `correct_tense`: 37
+- All 118 carry `wrong_answer_is_form_error_only`
+- Marks/credit mismatches: 0
+
+All three sitting threads closed on my end; awaiting Architecture CLOSED stamps + DECISIONS discharge stamps on criterion 21 register.

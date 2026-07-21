@@ -670,7 +670,7 @@
     "subtopic": "formation.avere",
     "difficulty": 2,
     "cefr_level_target": "B1",
-    "prompt": "Paolo non era preoccupato perché ____ alle parole di Maria. (credere)",
+    "prompt": "Paolo non era preoccupato perché ____ alle parole di Maria. (credere, trapassato prossimo / pluperfect)",
     "type": "short",
     "marks": 1,
     "wrong_answer_is_form_error_only": true,
@@ -691,6 +691,11 @@
             "phrase": "ha creduto",
             "match_at": "word",
             "misconception": "auxiliary_choice.wrong_auxiliary_tense"
+          },
+          {
+            "phrase": "credeva",
+            "match_at": "word",
+            "note": "credeva is the imperfetto (an ongoing state); the cue asks for the trapassato prossimo, the completed prior action: aveva creduto"
           }
         ]
       }
@@ -707,8 +712,8 @@
         }
       }
     ],
-    "explanation": "'Paolo non era preoccupato perché aveva creduto alle parole di Maria.' means 'Paolo wasn't worried because he'd believed what Maria said.' Believing Maria's words came before the calm, so this is the past-before-past, the trapassato prossimo. Take the imperfect of avere plus the participle: aveva for Paolo (lui), and credere is a regular -ere verb whose participle is creduto, giving aveva creduto. Ha creduto would be the passato prossimo.",
-    "version": 3,
+    "explanation": "'Paolo non era preoccupato perché aveva creduto alle parole di Maria.' means 'Paolo wasn't worried because he'd believed what Maria said.' Believing Maria's words came before the calm, so this is the past-before-past, the trapassato prossimo (English 'pluperfect'). Take the imperfect of avere plus the participle: aveva for Paolo (lui), and credere is a regular -ere verb whose participle is creduto, giving aveva creduto. Ha creduto would be the passato prossimo; credeva would be the imperfect, an ongoing state rather than the completed prior action the cue asks for.",
+    "version": 5,
     "person": "3sg"
   },
   {
@@ -902,7 +907,7 @@
     "subtopic": "formation.avere",
     "difficulty": 3,
     "cefr_level_target": "B2",
-    "prompt": "La torta? Maria l'____ la sera prima. (fare)",
+    "prompt": "Quando siamo arrivati, la torta era già in tavola: Maria l'____ la sera prima. (fare)",
     "type": "short",
     "marks": 2,
     "wrong_answer_is_form_error_only": true,
@@ -978,9 +983,10 @@
         }
       }
     ],
-    "explanation": "'La torta? Maria l'aveva fatta la sera prima.' means 'The cake? Maria had made it the evening before.' The cake had been made the evening before, so the trapassato prossimo: the imperfect of avere (aveva for Maria) plus the participle. The elided l' is a preceding direct-object pronoun standing for la torta, and with a preceding direct-object pronoun the participle agrees, the passato prossimo rule inherited. La torta is feminine singular, so fare's irregular participle fatto becomes fatta, giving l'aveva fatta. The present auxiliary (ha) would be a passato prossimo, and fatto would miss the agreement.",
+    "explanation": "'Quando siamo arrivati, la torta era già in tavola: Maria l'aveva fatta la sera prima.' means 'When we arrived, the cake was already on the table: Maria had made it the evening before.' The cake had been made before we arrived, so the trapassato prossimo: the imperfect of avere (aveva for Maria) plus the participle. The elided l' is a preceding direct-object pronoun standing for la torta, and with a preceding direct-object pronoun the participle agrees, the passato prossimo rule inherited. La torta is feminine singular, so fare's irregular participle fatto becomes fatta, giving l'aveva fatta. The present auxiliary (ha) would be a passato prossimo, and fatto would miss the agreement.",
     "examiner_note": "Two skills: imperfect auxiliary (this tree) and preceding-DOP agreement (inherited, PP bucket). The aux markpoint matches the bare auxiliary.",
-    "version": 3
+    "version": 4,
+    "person": "3sg"
   },
   {
     "external_id": "tpp_es_lui_andato_01",
@@ -1010,6 +1016,11 @@
             "phrase": "è andato",
             "match_at": "word",
             "misconception": "auxiliary_choice.wrong_auxiliary_tense"
+          },
+          {
+            "phrase": "aveva",
+            "match_at": "word",
+            "misconception": "auxiliary_choice.avere_for_essere"
           }
         ]
       },
@@ -1061,7 +1072,7 @@
     ],
     "explanation": "'Quando sono arrivato, Marco non c'era più: era andato a casa poco prima.' means 'When I arrived, Marco was no longer there: he'd gone home a little earlier.' Marco's going home happened before the arrival, so the trapassato prossimo. With essere verbs it is the imperfect of essere plus the participle, agreeing with the subject. For lui the imperfect of essere is era, and andare gives andato, agreeing as masculine singular, so era andato. The present auxiliary (è) would be a passato prossimo, and a non-agreeing ending would miss the agreement.",
     "examiner_note": "Two skills: the imperfect auxiliary (this tree, the new skill) and participle agreement with essere (inherited, scored against the passato prossimo agreement bucket). The aux markpoint matches the imperfect auxiliary and the agreement markpoint matches the participle ending; they score independently. The aux markpoint tests imperfect-vs-present, not person, which the prompt's subject scaffolds.",
-    "version": 3,
+    "version": 4,
     "person": "3sg"
   },
   {
@@ -1092,6 +1103,11 @@
             "phrase": "è partita",
             "match_at": "word",
             "misconception": "auxiliary_choice.wrong_auxiliary_tense"
+          },
+          {
+            "phrase": "aveva",
+            "match_at": "word",
+            "misconception": "auxiliary_choice.avere_for_essere"
           }
         ]
       },
@@ -1143,7 +1159,7 @@
     ],
     "explanation": "'Quando ho telefonato, Lucia era partita da poco.' means 'When I phoned, Lucia had left a short time before.' Lucia had already left a little before the phone call, so the trapassato prossimo: the imperfect of essere plus the participle, agreeing with the subject. For lei the imperfect of essere is era, and partire gives partito, agreeing as feminine singular to partita, so era partita. The present auxiliary (è) would be a passato prossimo, and partito would not agree with the feminine subject.",
     "examiner_note": "Two skills: the imperfect auxiliary (this tree, the new skill) and participle agreement with essere (inherited, scored against the passato prossimo agreement bucket). The aux markpoint matches the imperfect auxiliary and the agreement markpoint matches the participle ending; they score independently. The aux markpoint tests imperfect-vs-present, not person, which the prompt's subject scaffolds.",
-    "version": 3,
+    "version": 4,
     "person": "3sg"
   },
   {
@@ -1174,6 +1190,11 @@
             "phrase": "siamo",
             "match_at": "word",
             "misconception": "auxiliary_choice.wrong_auxiliary_tense"
+          },
+          {
+            "phrase": "avevamo",
+            "match_at": "word",
+            "misconception": "auxiliary_choice.avere_for_essere"
           }
         ]
       },
@@ -1225,7 +1246,7 @@
     ],
     "explanation": "'Noi ragazzi eravamo stanchi perché eravamo venuti a piedi.' means 'We boys were tired because we'd come on foot.' Coming on foot happened before the tiredness, so the trapassato prossimo with essere: the imperfect of essere plus the participle, agreeing with the subject. For noi the imperfect of essere is eravamo, and venire gives venuto, agreeing as masculine plural to venuti, so eravamo venuti. Siamo venuti would be a passato prossimo, and a singular ending would miss the agreement. The subject noi ragazzi shows the person, so the cue names only the verb.",
     "examiner_note": "Two skills: the imperfect auxiliary (this tree, the new skill) and participle agreement with essere (inherited, scored against the passato prossimo agreement bucket). The aux markpoint matches the imperfect auxiliary and the agreement markpoint matches the participle ending; they score independently. The aux markpoint tests imperfect-vs-present, not person, which the prompt's subject scaffolds.",
-    "version": 3,
+    "version": 4,
     "person": "1pl"
   },
   {
@@ -1256,6 +1277,11 @@
             "phrase": "sono",
             "match_at": "word",
             "misconception": "auxiliary_choice.wrong_auxiliary_tense"
+          },
+          {
+            "phrase": "avevano",
+            "match_at": "word",
+            "misconception": "auxiliary_choice.avere_for_essere"
           }
         ]
       },
@@ -1307,7 +1333,7 @@
     ],
     "explanation": "'Le ragazze non c'erano: erano uscite poco prima.' means 'The girls weren't there: they'd gone out a little earlier.' The girls had gone out before they were found missing, so the trapassato prossimo: the imperfect of essere plus the participle, agreeing with the subject. For loro the imperfect of essere is erano, and uscire gives uscito, agreeing as feminine plural to uscite, so erano uscite. Sono uscite would be a passato prossimo, and uscito or usciti would miss the agreement with the feminine plural subject.",
     "examiner_note": "Two skills: the imperfect auxiliary (this tree, the new skill) and participle agreement with essere (inherited, scored against the passato prossimo agreement bucket). The aux markpoint matches the imperfect auxiliary and the agreement markpoint matches the participle ending; they score independently. The aux markpoint tests imperfect-vs-present, not person, which the prompt's subject scaffolds.",
-    "version": 3,
+    "version": 4,
     "person": "3pl"
   },
   {
@@ -1338,6 +1364,11 @@
             "phrase": "sei",
             "match_at": "word",
             "misconception": "auxiliary_choice.wrong_auxiliary_tense"
+          },
+          {
+            "phrase": "avevi",
+            "match_at": "word",
+            "misconception": "auxiliary_choice.avere_for_essere"
           }
         ]
       },
@@ -1389,7 +1420,7 @@
     ],
     "explanation": "'Anna, alla festa sembravi riposata: eri tornata a casa presto la sera prima?' means 'Anna, you looked rested at the party: had you got home early the evening before?' Returning home came before the party, so the trapassato prossimo with essere: the imperfect of essere plus the participle, agreeing with the subject. For tu the imperfect of essere is eri, and tornare gives tornato, agreeing with the feminine subject Anna to tornata, so eri tornata. Sei tornata would be a passato prossimo, and tornato would not agree.",
     "examiner_note": "Two skills: the imperfect auxiliary (this tree, the new skill) and participle agreement with essere (inherited, scored against the passato prossimo agreement bucket). The aux markpoint matches the imperfect auxiliary and the agreement markpoint matches the participle ending; they score independently. The aux markpoint tests imperfect-vs-present, not person, which the prompt's subject scaffolds. Subject Anna fixes feminine singular agreement.",
-    "version": 3,
+    "version": 4,
     "person": "2sg"
   },
   {
@@ -1420,6 +1451,11 @@
             "phrase": "siete",
             "match_at": "word",
             "misconception": "auxiliary_choice.wrong_auxiliary_tense"
+          },
+          {
+            "phrase": "avevate",
+            "match_at": "word",
+            "misconception": "auxiliary_choice.avere_for_essere"
           }
         ]
       },
@@ -1471,7 +1507,7 @@
     ],
     "explanation": "'Quando vi ho chiamati, eravate arrivati a casa da un'ora, vero?' means 'When I rang you, you'd got home an hour earlier, hadn't you?' Arriving home had happened an hour before the call, so the trapassato prossimo: the imperfect of essere plus the participle, agreeing with the subject. For voi the imperfect of essere is eravate, and arrivare gives arrivato, agreeing as masculine plural to arrivati, so eravate arrivati. Siete arrivati would be a passato prossimo, and a singular or feminine ending would miss the agreement.",
     "examiner_note": "Two skills: the imperfect auxiliary (this tree, the new skill) and participle agreement with essere (inherited, scored against the passato prossimo agreement bucket). The aux markpoint matches the imperfect auxiliary and the agreement markpoint matches the participle ending; they score independently. The aux markpoint tests imperfect-vs-present, not person, which the prompt's subject scaffolds.",
-    "version": 3,
+    "version": 4,
     "person": "2pl"
   },
   {
@@ -1502,6 +1538,11 @@
             "phrase": "è nato",
             "match_at": "word",
             "misconception": "auxiliary_choice.wrong_auxiliary_tense"
+          },
+          {
+            "phrase": "aveva",
+            "match_at": "word",
+            "misconception": "auxiliary_choice.avere_for_essere"
           }
         ]
       },
@@ -1563,7 +1604,8 @@
     ],
     "explanation": "'Il nonno raccontava che era nato in un piccolo paese.' means 'Grandad used to tell us that he'd been born in a small village.' Being born sits before the grandfather's telling, so the trapassato prossimo: the imperfect of essere plus the participle, agreeing with the subject. For lui the imperfect of essere is era, and nascere has the irregular participle nato, agreeing as masculine singular, so era nato. The present auxiliary (è) would be a passato prossimo, and a feminine or plural ending would miss the agreement.",
     "examiner_note": "Two skills: the imperfect auxiliary (this tree, the new skill) and participle agreement with essere (inherited, scored against the passato prossimo agreement bucket). The aux markpoint matches the imperfect auxiliary and the agreement markpoint matches the participle ending; they score independently. The aux markpoint tests imperfect-vs-present, not person, which the prompt's subject scaffolds.",
-    "version": 3
+    "version": 4,
+    "person": "3sg"
   },
   {
     "external_id": "tpp_es_morto_01",
@@ -1593,6 +1635,11 @@
             "phrase": "è morto",
             "match_at": "word",
             "misconception": "auxiliary_choice.wrong_auxiliary_tense"
+          },
+          {
+            "phrase": "aveva",
+            "match_at": "word",
+            "misconception": "auxiliary_choice.avere_for_essere"
           }
         ]
       },
@@ -1654,7 +1701,8 @@
     ],
     "explanation": "'Quando tornai al paese, il vecchio medico era morto da anni.' means 'When I went back to the village, the old doctor had been dead for years.' The doctor had died years before the return, so the trapassato prossimo: the imperfect of essere plus the participle, agreeing with the subject. For lui the imperfect of essere is era, and morire has the irregular participle morto, agreeing as masculine singular, so era morto. The present auxiliary (è) would be a passato prossimo, and a feminine or plural ending would miss the agreement.",
     "examiner_note": "Two skills: the imperfect auxiliary (this tree, the new skill) and participle agreement with essere (inherited, scored against the passato prossimo agreement bucket). The aux markpoint matches the imperfect auxiliary and the agreement markpoint matches the participle ending; they score independently. The aux markpoint tests imperfect-vs-present, not person, which the prompt's subject scaffolds.",
-    "version": 3
+    "version": 4,
+    "person": "3sg"
   },
   {
     "external_id": "tpp_es_rimasti_01",
@@ -1684,6 +1732,11 @@
             "phrase": "sono",
             "match_at": "word",
             "misconception": "auxiliary_choice.wrong_auxiliary_tense"
+          },
+          {
+            "phrase": "avevano",
+            "match_at": "word",
+            "misconception": "auxiliary_choice.avere_for_essere"
           }
         ]
       },
@@ -1735,7 +1788,8 @@
     ],
     "explanation": "'La festa era finita ma alcuni amici erano rimasti ad aiutare.' means 'The party was over but some friends had stayed behind to help.' Some friends had stayed on before the party was over, so the trapassato prossimo: the imperfect of essere plus the participle, agreeing with the subject. For loro the imperfect of essere is erano, and rimanere has the irregular participle rimasto, agreeing as masculine plural to rimasti, so erano rimasti. Sono rimasti would be a passato prossimo, and a singular ending would miss the agreement.",
     "examiner_note": "Two skills: the imperfect auxiliary (this tree, the new skill) and participle agreement with essere (inherited, scored against the passato prossimo agreement bucket). The aux markpoint matches the imperfect auxiliary and the agreement markpoint matches the participle ending; they score independently. The aux markpoint tests imperfect-vs-present, not person, which the prompt's subject scaffolds.",
-    "version": 3
+    "version": 4,
+    "person": "3pl"
   },
   {
     "external_id": "tpp_es_caduto_01",
@@ -1765,6 +1819,11 @@
             "phrase": "è caduto",
             "match_at": "word",
             "misconception": "auxiliary_choice.wrong_auxiliary_tense"
+          },
+          {
+            "phrase": "aveva",
+            "match_at": "word",
+            "misconception": "auxiliary_choice.avere_for_essere"
           }
         ]
       },
@@ -1826,7 +1885,8 @@
     ],
     "explanation": "'C'era acqua per terra: un bicchiere era caduto poco prima.' means 'There was water on the floor: a glass had fallen a little earlier.' A glass had fallen before the water was on the floor, so the trapassato prossimo: the imperfect of essere plus the participle, agreeing with the subject. For the singular subject un bicchiere the imperfect of essere is era, and cadere gives caduto, agreeing as masculine singular, so era caduto. The present auxiliary (è) would be a passato prossimo, and a feminine or plural ending would miss the agreement.",
     "examiner_note": "Two skills: the imperfect auxiliary (this tree, the new skill) and participle agreement with essere (inherited, scored against the passato prossimo agreement bucket). The aux markpoint matches the imperfect auxiliary and the agreement markpoint matches the participle ending; they score independently. The aux markpoint tests imperfect-vs-present, not person, which the prompt's subject scaffolds.",
-    "version": 3
+    "version": 4,
+    "person": "3sg"
   },
   {
     "external_id": "tpp_es_mixed_01",
@@ -1856,6 +1916,11 @@
             "phrase": "sono",
             "match_at": "word",
             "misconception": "auxiliary_choice.wrong_auxiliary_tense"
+          },
+          {
+            "phrase": "avevano",
+            "match_at": "word",
+            "misconception": "auxiliary_choice.avere_for_essere"
           }
         ]
       },
@@ -1874,7 +1939,7 @@
           {
             "phrase": "andate",
             "match_at": "word",
-            "misconception": "agreement.participle_essere_subject"
+            "misconception": "agreement.mixed_gender_default"
           },
           {
             "phrase": "andato",
@@ -1907,7 +1972,8 @@
     ],
     "explanation": "'Marco e Lucia non risposero: erano andati a dormire poco prima.' means 'Marco and Lucia didn't answer: they'd gone to bed a little earlier.' Marco and Lucia had gone to bed before failing to answer, so the trapassato prossimo: the imperfect of essere plus the participle, agreeing with the subject. For loro the imperfect of essere is erano, and a mixed-gender subject (a man and a woman) takes the masculine plural by default, so andare gives andati and the form is erano andati. Sono andati would be a passato prossimo, and andate would wrongly treat the pair as all feminine.",
     "examiner_note": "Two skills: the imperfect auxiliary (this tree, the new skill) and participle agreement with essere (inherited, scored against the passato prossimo agreement bucket). The aux markpoint matches the imperfect auxiliary and the agreement markpoint matches the participle ending; they score independently. The aux markpoint tests imperfect-vs-present, not person, which the prompt's subject scaffolds. Mixed-gender subject resolves to masculine plural.",
-    "version": 3
+    "version": 4,
+    "person": "3pl"
   },
   {
     "external_id": "tpp_es_sorelle_partite_01",
@@ -1916,7 +1982,7 @@
     "subtopic": "formation.essere",
     "difficulty": 2,
     "cefr_level_target": "B1",
-    "prompt": "Le mie sorelle ____ per Roma il giorno prima. (partire)",
+    "prompt": "Ho scoperto che le mie sorelle ____ per Roma il giorno prima. (partire)",
     "type": "short",
     "marks": 2,
     "wrong_answer_is_form_error_only": true,
@@ -1937,6 +2003,11 @@
             "phrase": "sono",
             "match_at": "word",
             "misconception": "auxiliary_choice.wrong_auxiliary_tense"
+          },
+          {
+            "phrase": "avevano",
+            "match_at": "word",
+            "misconception": "auxiliary_choice.avere_for_essere"
           }
         ]
       },
@@ -1996,9 +2067,10 @@
         }
       }
     ],
-    "explanation": "'Le mie sorelle erano partite per Roma il giorno prima.' means 'My sisters had left for Rome the day before.' The sisters had left the day before the reference moment, so the trapassato prossimo: the imperfect of essere plus the participle, agreeing with the subject. For loro the imperfect of essere is erano, and partire gives partito, agreeing as feminine plural to partite, so erano partite. Sono partite would be a passato prossimo, and partiti would miss the feminine agreement.",
+    "explanation": "'Ho scoperto che le mie sorelle erano partite per Roma il giorno prima.' means 'I found out that my sisters had left for Rome the day before.' The leaving happened before I found out, so the trapassato prossimo (English 'pluperfect'): the imperfect of essere plus the participle, agreeing with the subject. For loro the imperfect of essere is erano, and partire gives partito, agreeing as feminine plural to partite, so erano partite. Sono partite would be a passato prossimo, and partiti would miss the feminine agreement.",
     "examiner_note": "Two skills: the imperfect auxiliary (this tree, the new skill) and participle agreement with essere (inherited, scored against the passato prossimo agreement bucket). The aux markpoint matches the imperfect auxiliary and the agreement markpoint matches the participle ending; they score independently. The aux markpoint tests imperfect-vs-present, not person, which the prompt's subject scaffolds.",
-    "version": 3
+    "version": 6,
+    "person": "3pl"
   },
   {
     "external_id": "tpp_es_lei_arrivata_01",
@@ -2028,6 +2100,11 @@
             "phrase": "è arrivata",
             "match_at": "word",
             "misconception": "auxiliary_choice.wrong_auxiliary_tense"
+          },
+          {
+            "phrase": "aveva",
+            "match_at": "word",
+            "misconception": "auxiliary_choice.avere_for_essere"
           }
         ]
       },
@@ -2089,7 +2166,7 @@
     ],
     "explanation": "'Quando il film cominciò, Giulia era arrivata al cinema da dieci minuti.' means 'When the film started, Giulia had got to the cinema ten minutes earlier.' Giulia had arrived ten minutes before the film began, so the trapassato prossimo: the imperfect of essere plus the participle, agreeing with the subject. For lei the imperfect of essere is era, and arrivare gives arrivato, agreeing with the feminine subject to arrivata, so era arrivata. The present auxiliary (è) would be a passato prossimo, and arrivato would not agree.",
     "examiner_note": "Two skills: the imperfect auxiliary (this tree, the new skill) and participle agreement with essere (inherited, scored against the passato prossimo agreement bucket). The aux markpoint matches the imperfect auxiliary and the agreement markpoint matches the participle ending; they score independently. The aux markpoint tests imperfect-vs-present, not person, which the prompt's subject scaffolds.",
-    "version": 3,
+    "version": 4,
     "person": "3sg"
   },
   {
@@ -2120,6 +2197,11 @@
             "phrase": "è uscito",
             "match_at": "word",
             "misconception": "auxiliary_choice.wrong_auxiliary_tense"
+          },
+          {
+            "phrase": "aveva",
+            "match_at": "word",
+            "misconception": "auxiliary_choice.avere_for_essere"
           }
         ]
       },
@@ -2171,7 +2253,7 @@
     ],
     "explanation": "'Bussai ma non rispose nessuno: Paolo era uscito poco prima.' means 'I knocked but nobody answered: Paolo had gone out a little earlier.' Paolo had gone out before the knocking, so the trapassato prossimo: the imperfect of essere plus the participle, agreeing with the subject. For lui the imperfect of essere is era, and uscire gives uscito, agreeing as masculine singular, so era uscito. The present auxiliary (è) would be a passato prossimo, and a feminine or plural ending would miss the agreement.",
     "examiner_note": "Two skills: the imperfect auxiliary (this tree, the new skill) and participle agreement with essere (inherited, scored against the passato prossimo agreement bucket). The aux markpoint matches the imperfect auxiliary and the agreement markpoint matches the participle ending; they score independently. The aux markpoint tests imperfect-vs-present, not person, which the prompt's subject scaffolds.",
-    "version": 3,
+    "version": 4,
     "person": "3sg"
   },
   {
@@ -2202,6 +2284,11 @@
             "phrase": "siamo",
             "match_at": "word",
             "misconception": "auxiliary_choice.wrong_auxiliary_tense"
+          },
+          {
+            "phrase": "avevamo",
+            "match_at": "word",
+            "misconception": "auxiliary_choice.avere_for_essere"
           }
         ]
       },
@@ -2253,7 +2340,7 @@
     ],
     "explanation": "'Quando il capo entrò, noi ragazze eravamo arrivate da poco.' means 'When the boss came in, we girls had only arrived a short time before.' The arriving sits a little before the boss's entrance, so the trapassato prossimo: the imperfect of essere plus the participle, agreeing with the subject. For noi the imperfect of essere is eravamo, and arrivare gives arrivato, agreeing as feminine plural to arrivate, so eravamo arrivate. Siamo arrivate would be a passato prossimo, and arrivati would miss the feminine agreement.",
     "examiner_note": "Two skills: the imperfect auxiliary (this tree, the new skill) and participle agreement with essere (inherited, scored against the passato prossimo agreement bucket). The aux markpoint matches the imperfect auxiliary and the agreement markpoint matches the participle ending; they score independently. The aux markpoint tests imperfect-vs-present, not person, which the prompt's subject scaffolds. Subject noi ragazze fixes feminine plural agreement.",
-    "version": 3,
+    "version": 4,
     "person": "1pl"
   },
   {
@@ -2284,6 +2371,11 @@
             "phrase": "è entrato",
             "match_at": "word",
             "misconception": "auxiliary_choice.wrong_auxiliary_tense"
+          },
+          {
+            "phrase": "aveva",
+            "match_at": "word",
+            "misconception": "auxiliary_choice.avere_for_essere"
           }
         ]
       },
@@ -2335,6 +2427,7 @@
     ],
     "explanation": "'La casa era silenziosa: nessuno era entrato da ore.' means 'The house was silent: nobody had come in for hours.' No one had entered for hours before the silence, so the trapassato prossimo: the imperfect of essere plus the participle, agreeing with the subject. The subject nessuno is masculine singular, the imperfect of essere is era, and entrare gives entrato, so era entrato. The present auxiliary (è) would be a passato prossimo, and a feminine or plural ending would miss the agreement.",
     "examiner_note": "Two skills: the imperfect auxiliary (this tree, the new skill) and participle agreement with essere (inherited, scored against the passato prossimo agreement bucket). The aux markpoint matches the imperfect auxiliary and the agreement markpoint matches the participle ending; they score independently. The aux markpoint tests imperfect-vs-present, not person, which the prompt's subject scaffolds.",
-    "version": 3
+    "version": 4,
+    "person": "3sg"
   }
 ]
