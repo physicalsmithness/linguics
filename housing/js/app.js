@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-21-r49";
+  const LL_BUILD = "2026-07-21-r51";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -6442,11 +6442,15 @@
     }
 
     if (!LL.contentLoading && LL.state && Array.isArray(LL.state.attempts) && LL.state.attempts.length > 0) {
-      const cov = document.createElement("button");
-      cov.type = "button"; cov.className = "entry-coverage-link";
-      cov.textContent = "See your analysis \u2192";
-      cov.addEventListener("click", () => { hideEntry(); showCoverage(); });
-      col.appendChild(cov);
+      const mkAnalysisLink = (label, canvas) => {
+        const b = document.createElement("button");
+        b.type = "button"; b.className = "entry-coverage-link";
+        b.textContent = label;
+        b.addEventListener("click", () => { analysisCanvas = canvas; hideEntry(); showCoverage(); });
+        return b;
+      };
+      col.appendChild(mkAnalysisLink("full grammar analysis →", "grammar"));
+      col.appendChild(mkAnalysisLink("full vocabulary analysis →", "vocabulary"));
     }
 
     host.appendChild(col);
@@ -7592,6 +7596,10 @@
     col.appendChild(sectionWrap("Verb coverage: person × conjugation class", buildPersonClassGrid()));
     col.appendChild(placeholderSection("Tense-choice confusion matrix", "Chosen tense vs correct tense — the diagonal is right, off-diagonal shows what you reach for wrongly."));
     col.appendChild(placeholderSection("Piacere per-verb grid", "Direction (mi piaci vs ti piaccio), pluralisation, figurative use, per tested verb."));
+    const btLink = document.createElement("button"); btLink.type = "button"; btLink.className = "entry-coverage-link"; btLink.style.marginTop = "6px";
+    btLink.textContent = "Browse the atomised bucket tree →";
+    btLink.addEventListener("click", () => showStrand("buckets"));
+    col.appendChild(btLink);
     host.appendChild(col);
   }
 

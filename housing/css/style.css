@@ -36,6 +36,7 @@ body {
 }
 
 header {
+  position: sticky; top: 0; z-index: 40; background: var(--bg);   /* Linguics permanently there (Smith) */
   border-bottom: 1px solid var(--line);
   padding: 18px 28px 0 28px;
 }
@@ -1951,4 +1952,10 @@ h1, h2, h3, .wordmark, .coverage-title, .analysis-section-title { font-family: F
   #mobile-tabs button.active .mtab-ic { background: var(--accent, #8f2b45); color: #fff; border-color: var(--accent, #8f2b45); }
   nav#strand-nav { display: none; }
   body { padding-bottom: 62px; }
+}
+
+/* Keep the WEB_KIT feedback pill clear of the mobile tab bar (feedback.js not forked) */
+@media (max-width: 600px) {
+  #wk-fb-btn { bottom: 74px !important; }
+  #wk-fb-panel { bottom: 122px !important; }
 }
