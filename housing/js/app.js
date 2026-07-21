@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-21-r57";
+  const LL_BUILD = "2026-07-21-r58";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -2009,7 +2009,7 @@
       const seg = document.createElement("i");
       seg.className = "person-band" + (b.hasEvents ? " touched" : "");
       if (b.hasEvents) seg.style.background = rwgColour(b.correctness, true);
-      seg.title = b.label + ": " + (b.hasEvents
+      seg.title = ((leaf && (leaf.label || leaf.id)) ? (leaf.label || leaf.id) + " \u00b7 " : "") + b.label + ": " + (b.hasEvents
         ? Math.round(b.correctness * 100) + "% (" + b.n + " attempt" + (b.n === 1 ? "" : "s") + ")"
         : "not practised yet");
       host.appendChild(seg);
@@ -5852,7 +5852,7 @@
       ? "\n" + rowQs.attempted + " attempted of " + rowQs.total + " available questions"
         + (rowQs.attempted > 0 ? "\n" + rowQs.correct + " correct out of " + rowQs.attempted + " attempted" : "")
       : "";
-    row.title = tooltipLabel + rowQLine + (node.description ? "\n\n" + node.description : "") + "\n\nDrill into this.";
+    row.title = tooltipLabel + rowQLine;   // label + question counts only (Smith: hover was a mess)
     if (!hasChildren) {
       const rowBands = buildPersonBands(node, "row-person-bands");
       if (rowBands) row.appendChild(rowBands);
