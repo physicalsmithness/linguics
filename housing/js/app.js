@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-21-r52";
+  const LL_BUILD = "2026-07-21-r53";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -1422,7 +1422,8 @@
     meta.title = q.external_id || "";
     card.appendChild(meta);
 
-    card.appendChild(renderPromptElement(q.prompt, q, vocabHelpsUsed));
+    const promptEl = renderPromptElement(q.prompt, q, vocabHelpsUsed);
+    card.appendChild(promptEl);
 
     // Branch on item type: free-text vs multiple-choice.
     let input = null, selectedChoiceIdx = null, choiceButtons = [];
@@ -1532,7 +1533,7 @@
       }
 
       const helpBar = buildVocabHelpBar(q, vocabHelpsUsed);
-      if (helpBar) card.appendChild(helpBar);
+      if (helpBar) card.insertBefore(helpBar, promptEl.nextSibling);   // sit under the question, right-justified (Smith)
       attachVocabSlashMenu(input, q, vocabHelpsUsed);
     }
 

@@ -106,7 +106,9 @@ Fluency-rep wave: basic high-frequency formation items filling the person×class
 
 **Wave 1 (+18):** regular_are +6 (lavorare, portare, tornare, arrivare, cantare, abitare), regular_ere +5 (vedere, mettere, chiudere, chiedere, rispondere), regular_ire +3 (aprire, offrire, sentire), ire_isc +2 (pulire 1pl, capire 2pl — noi/voi sleeper), reflexive +2 (svegliarsi 1sg, vestirsi 3sg). Plus `person` backfilled on the 12 pilot items. Formation 91 → 121. Gates: match_at word (crit 18), present-time frames (crit 21), crit-17 glosses, person field. Delivery: `Architecture_PresentFormationAuthor_volume_wave.md`.
 
-Remaining to ~double basic tier: Wave 2 (irregular person-band depth — bere/dire/dittongo/go_verbs/monosyllabic/modals), Wave 3 (regular-class breadth). Non-diagnostic slots (care_gare/ciare_giare beyond 2sg/1pl; iare_stress beyond 2sg) not padded. Possible crit-21 straggler flagged to Architecture: potere_3sg "stasera".
+**Wave 2 (+23):** irregular person-band depth — bere +3 (beve/beviamo/bevete), dire +3 (dici/dice/diciamo), dittongo +4 (uscire esci/esce/uscite, sedere siede), go_verbs +4 (venire vieni/viene/venite, tenere tieni), monosyllabic +6 (vai/andiamo/fai/facciamo/stai/sai), modals +3 (dovete/potete/volete). Formation 121 → 144; the irregular leaves now cover most person-bands. (Self-caught: required accents restored — verità/caffè/sì/dov'è/più/venerdì.)
+
+Remaining to ~double basic tier: Wave 3 (regular-class breadth ~35). Non-diagnostic slots (care_gare/ciare_giare beyond 2sg/1pl; iare_stress beyond 2sg) not padded. Possible crit-21 straggler flagged to Architecture: potere_3sg "stasera".
 
 ## Notes for later dispatches
 
