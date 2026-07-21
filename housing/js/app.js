@@ -1197,17 +1197,18 @@
 
     const bar = document.createElement("div");
     bar.className = "accent-bar";
-    const accents = ["à", "è", "é", "ì", "ò", "ù", "À", "È", "É", "Ì", "Ò", "Ù"];
+    const accents = ["à", "è", "é", "ì", "ò", "ù"];
     for (const a of accents) {
       const btn = document.createElement("button");
       btn.type = "button";
       btn.textContent = a;
       btn.addEventListener("click", e => {
         e.preventDefault();
+        const ch = e.shiftKey ? a.toUpperCase() : a;
         const start = input.selectionStart, end = input.selectionEnd;
         const v = input.value;
-        input.value = v.slice(0, start) + a + v.slice(end);
-        input.selectionStart = input.selectionEnd = start + a.length;
+        input.value = v.slice(0, start) + ch + v.slice(end);
+        input.selectionStart = input.selectionEnd = start + ch.length;
         input.focus();
       });
       bar.appendChild(btn);
@@ -1222,10 +1223,10 @@
           input.selectionStart = input.selectionEnd = Math.max(0, start + delta);
         }
       });
-      // Inline hint so users know about the apostrophe shortcut.
+      // Inline hint: apostrophe shortcuts (Smith 2026-07-21).
       const hint = document.createElement("span");
       hint.className = "accent-hint";
-      hint.textContent = "or type a' e' i' o' u' for à è ì ò ù  ·  e'' for é";
+      hint.textContent = "e\u2019 = grave (\u00e8) \u00b7 e\u2019\u2019 = acute (\u00e9) \u00b7 e\u2019\u2019\u2019 = apostrophe (e\u2019) \u00b7 Shift+click = capital";
       bar.appendChild(hint);
     }
     return bar;
@@ -2274,13 +2275,21 @@
   function filteredVocabEntries() {
     if (vocabFilter.genderDrill) {
       // Gender drill deck: clean-gendered nouns only (exclude the 'ambiguous'
-      // gap-fill junk), default-focused on the interesting classes (3+) with a
-      // thinned baseline of plain m/f. Full per-class multi-select is a follow-up.
+      // gap-fill junk), focused on the interesting classes (3+) with a heavily
+      // thinned baseline of plain m/f. Surprising-ending nouns (fem -o, masc -a)
+      // always included since they test irregular gender knowledge.
+      // QoderWork 2026-07-21: thinned from %20 to %50; added ending-surprise rule.
       return vocabEntriesInScope().filter(v => {
         if (v.pos !== "noun") return false;
         const g = String(v.gender);
         if (g !== "m" && g !== "f" && g !== "mf") return false;
-        if (nounGenderClass(v) <= 2 && typeof v.rank === "number" && (v.rank % 20 !== 0)) return false;
+        const cls = nounGenderClass(v);
+        if (cls >= 3) return true;  // interesting classes always in play
+        // Classes 1-2: include surprising endings always, else thin to every 50th
+        const lem = String(v.lemma || "");
+        const surprising = (g === "f" && /o$/.test(lem)) || (g === "m" && /a$/.test(lem) && !/ista$/.test(lem));
+        if (surprising) return true;
+        if (typeof v.rank === "number" && (v.rank % 50 !== 0)) return false;
         return true;
       });
     }
@@ -2454,13 +2463,13 @@
   // every time; the correct answer is DERIVED from the entry, so no per-noun
   // authoring; a wrong pick records which class they mistook it for.
   const GENDER_CLASSES = [
-    { n: 1, key: "masculine",       label: "Masculine",                   eg: "libro, tavolo" },
-    { n: 2, key: "feminine",        label: "Feminine",                    eg: "casa, porta" },
-    { n: 3, key: "either",          label: "Either gender",               eg: "il/la giornalista" },
-    { n: 4, key: "depends_meaning", label: "Depends on meaning",          eg: "il fine / la fine" },
-    { n: 5, key: "m_sg_f_pl",       label: "Masc. singular, fem. plural", eg: "il braccio → le braccia" },
-    { n: 6, key: "f_sg_m_pl",       label: "Fem. singular, masc. plural", eg: "l'eco → gli echi" },
-    { n: 7, key: "two_plurals",     label: "Two plurals, diff. meaning",  eg: "i bracci / le braccia" }
+    { n: 1, key: "masculine",       label: "Masculine" },
+    { n: 2, key: "feminine",        label: "Feminine" },
+    { n: 3, key: "either",          label: "M or F, depending on gender" },
+    { n: 4, key: "depends_meaning", label: "M or F, depending on meaning" },
+    { n: 5, key: "m_sg_f_pl",       label: "M singular,\nF plural" },
+    { n: 6, key: "f_sg_m_pl",       label: "F singular,\nM plural" },
+    { n: 7, key: "two_plurals",     label: "M singular\nF plural OR M plural,\ndepending on meaning" }
   ];
   // Prefers an explicit `gender_class` tag (Vocab populates it when the noun db
   // is cleaned - Smith: "imagine the dbase will be fixed"); else a best-effort
@@ -2510,6 +2519,15 @@
     }
     return result;
   }
+  function gdArticles(lemma, gender) {
+    const l = (lemma || "").toLowerCase();
+    const startsVowel = /^[aeiouàèéìòù]/.test(l);
+    const startsImpure = /^(s[^aeiou]|z|gn|ps|pn|x|y|i[aeiou])/.test(l);
+    if (gender === "f" || gender === "mf") {
+      return { sg: startsVowel ? "l'" : "la", pl: "le" };
+    }
+    return { sg: startsVowel ? "l'" : (startsImpure ? "lo" : "il"), pl: (startsVowel || startsImpure) ? "gli" : "i" };
+  }
   function renderGenderDrillCard(entry, keepAxes) {
     const host = document.getElementById("vocab-host");
     if (!host) return;
@@ -2521,15 +2539,16 @@
 
     const meta = document.createElement("div");
     meta.className = "meta faint";
-    meta.textContent = (typeof entry.rank === "number" ? "rank " + entry.rank + " · " : "") + "noun · which gender?";
+    meta.textContent = (typeof entry.rank === "number" ? "rank " + entry.rank + " · " : "") + "Gender drill";
     card.appendChild(meta);
 
     const prompt = document.createElement("div");
     prompt.className = "prompt";
     const line = document.createElement("div");
     line.className = "prompt-inline";
-    line.appendChild(document.createTextNode("What gender is "));
+    line.appendChild(document.createTextNode("Which gender is "));
     const strong = document.createElement("strong");
+    strong.className = "gd-lemma";
     strong.textContent = entry.lemma;
     line.appendChild(strong);
     line.appendChild(document.createTextNode("?"));
@@ -2569,6 +2588,22 @@
       });
       resultHost.innerHTML = "";
       resultHost.appendChild(renderResult(result));
+      // Declension reveal: article + noun + translation, plural + translation
+      const g = String(entry.gender || "m");
+      const arts = gdArticles(entry.lemma, g);
+      const pl = entry.plural || "";
+      const tr = entry.translation_en || "";
+      let declLine = arts.sg + " " + entry.lemma + (tr ? " — " + tr : "");
+      if (pl) {
+        let plArt = arts.pl;
+        if (actualClass === 5) plArt = "le";       // m sg -> f pl
+        if (actualClass === 6) plArt = "gli";      // f sg -> m pl
+        declLine += "  ·  " + plArt + " " + pl;
+      }
+      const decl = document.createElement("div");
+      decl.className = "gd-declension";
+      decl.textContent = declLine;
+      resultHost.appendChild(decl);
       renderLiveStats();
       next.textContent = "Next";
       setTimeout(() => next.focus({ preventScroll: true }), 0);
@@ -2579,9 +2614,10 @@
       b.type = "button";
       b.className = "mcq-choice gender-choice";
       const num = document.createElement("span"); num.className = "gc-num"; num.textContent = c.n;
-      const lbl = document.createElement("span"); lbl.className = "gc-label"; lbl.textContent = c.label;
-      const eg = document.createElement("span"); eg.className = "gc-eg"; eg.textContent = c.eg;
-      b.appendChild(num); b.appendChild(lbl); b.appendChild(eg);
+      const lbl = document.createElement("span"); lbl.className = "gc-label";
+      const lines = c.label.split("\n");
+      lines.forEach((ln, i) => { if (i > 0) lbl.appendChild(document.createElement("br")); lbl.appendChild(document.createTextNode(ln)); });
+      b.appendChild(num); b.appendChild(lbl);
       b.addEventListener("click", () => commit(c.n));
       choicesWrap.appendChild(b);
       buttons.push(b);
@@ -3052,7 +3088,7 @@
   const GENDER_CLASS_LABELS = {
     regular_o_masc:            "regular -o (m)",
     regular_a_fem:             "regular -a (f)",
-    e_ambiguous:               "ends -e (gender varies)",
+    e_ambiguous:               "ends -e: some M, some F",
     greek_ma_masc:             "greek -ma (m)",
     ista_common_gender:        "-ista (common gender)",
     irregular_gender:          "irregular gender",
@@ -3378,16 +3414,9 @@
       return wrap;
     }
 
-    // "Yellow stop" tuning control removed from the learner page (Smith
-    // 2026-07-21); vocabYellowStop keeps its default. Rest of the palette-
-    // tuning row (baseline + colour pickers) pending Smith's call.
-    header.appendChild(buildNumberInput(
-      "Untouched baseline", () => vocabUnattemptedBaseline, (v) => { vocabUnattemptedBaseline = v; }, 0, 1, 0.01
-    ));
-    header.appendChild(buildColourInput("0%",   () => RWG_RED,        (v) => { RWG_RED = v; }));
-    header.appendChild(buildColourInput("yel",  () => RWG_YELLOW,     (v) => { RWG_YELLOW = v; }));
-    header.appendChild(buildColourInput("pgr",  () => RWG_PALE_GREEN, (v) => { RWG_PALE_GREEN = v; }));
-    header.appendChild(buildColourInput("100%", () => RWG_GREEN,      (v) => { RWG_GREEN = v; }));
+    // Palette-tuning row (Untouched baseline + colour pickers) REMOVED
+    // per Smith 2026-07-21: "that whole thing is not linked to anything and
+    // needs to go." Defaults remain in effect; no learner-facing control.
 
     // Palette report button retired from the learner page (Smith 2026-07-20).
 
@@ -7137,8 +7166,7 @@
           row.appendChild(entryChip(chip.label, v.catLabel === chip.label, () => pick(chip),
             { title: liveCount(chip.ids) + " words" }));
           if (chip.subs && chip.subs.length) {
-            const open = !!v._catExpanded[chip.label] || v.catLabel === chip.label
-              || chip.subs.some(s => s.label === v.catLabel);
+            const open = !!v._catExpanded[chip.label];
             const ex = entryChip(open ? "\u25be" : "\u2026", false,
               () => { v._catExpanded[chip.label] = !open; renderEntryScreen(); },
               { title: open ? "Hide sub-topics of " + chip.label : "Show sub-topics of " + chip.label });
@@ -7158,27 +7186,6 @@
         panel.appendChild(row);
       }
     }
-
-    // ---- special drills: a mode, set apart (Ruling 2) ----
-    const drills = document.createElement("div");
-    drills.className = "entry-special-drills";
-    const hDrill = document.createElement("h3");
-    hDrill.className = "entry-config-head";
-    hDrill.textContent = "Special drills";
-    drills.appendChild(hDrill);
-    const drillRow = document.createElement("div");
-    drillRow.className = "entry-chip-row";
-    drillRow.appendChild(entryChip("Gender drill (nouns)", v.genderDrill,
-      () => { v.genderDrill = !v.genderDrill; renderEntryScreen(); },
-      { title: "Identify each noun's gender behaviour from a fixed list" }));
-    drills.appendChild(drillRow);
-    const dNote = document.createElement("p");
-    dNote.className = "entry-config-hint";
-    dNote.textContent = v.genderDrill
-      ? "nouns only; pick each noun's gender behaviour from a fixed list; frequency and category still apply"
-      : "changes what the session is, not just which words are in it";
-    drills.appendChild(dNote);
-    panel.appendChild(drills);
 
     appendStart(panel, () => startVocabSession());
   }

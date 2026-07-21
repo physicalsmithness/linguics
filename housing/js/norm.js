@@ -27,7 +27,7 @@
     [/\bcenter\b/g, "centre"], [/\bcolor\b/g, "colour"]
   ];
 
-  // Apostrophe-style accent input: e' -> è, e'' -> é, etc.
+  // Apostrophe-style accent input: e' -> è, e'' -> é, e''' -> e' (literal).
   //
   // The è' and È' rules are listed first because the live-rewriter fires on
   // every keystroke. Typing "e''" in sequence is staged as e -> e' -> è -> è'
@@ -35,8 +35,15 @@
   // è' rule then upgrades the grave to acute so the user gets é. Without this,
   // typing e'' interactively gets stuck at è' because nothing matches that
   // two-character sequence.
+  // Triple-apostrophe (Smith 2026-07-21): after acute is formed, a further
+  // apostrophe downgrades to a literal vowel + apostrophe (e''' -> e').
   const ACCENT_FROM_APOSTROPHE = [
-    [/è'/g, "é"], [/È'/g, "É"],
+    [/é'/g, "e'"], [/É'/g, "E'"],   // triple: acute + ' -> literal
+    [/à'/g, "a'"], [/À'/g, "A'"],   // (grave + ' would be acute, handled below)
+    [/ì'/g, "i'"], [/Ì'/g, "I'"],
+    [/ò'/g, "o'"], [/Ò'/g, "O'"],
+    [/ù'/g, "u'"], [/Ù'/g, "U'"],
+    [/è'/g, "é"], [/È'/g, "É"],     // double: grave + ' -> acute
     [/e''/g, "é"], [/e'/g, "è"],
     [/E''/g, "É"], [/E'/g, "È"],
     [/a'/g, "à"],

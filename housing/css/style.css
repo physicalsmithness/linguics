@@ -1051,12 +1051,14 @@ body.strand-vocab-active #live-stats { display: none; }
 .freq-flank-cell.has-practice { box-shadow: inset 0 0 0 1px rgba(27,138,74,.85); }
 .vocab-lemma-dot.has-practice { box-shadow: inset 0 0 0 1px rgba(27,138,74,.85); }
 /* Gender drill: fixed-option classifier choices. */
-.gender-choice { display: flex; align-items: baseline; gap: 8px; text-align: left; }
-.gender-choice .gc-num { font-weight: 700; color: var(--accent); min-width: 1.3em; }
-.gender-choice .gc-label { font-weight: 600; }
-.gender-choice .gc-eg { color: var(--muted); font-size: 12px; font-style: italic; margin-left: auto; padding-left: 10px; }
+.gender-choices { border: 1.5px solid var(--border); border-radius: 8px; padding: 8px; background: var(--cream, #faf9f6); }
+.gender-choice { display: flex; align-items: baseline; gap: 6px; text-align: left; font-size: 14px; padding: 7px 10px; }
+.gender-choice .gc-num { font-weight: 700; color: var(--accent); font-size: 10px; min-width: 1.1em; opacity: 0.7; }
+.gender-choice .gc-label { font-weight: 600; line-height: 1.3; }
 .gender-choice.gc-correct { outline: 2px solid #2e7d4f; background: rgba(46,125,79,0.09); }
 .gender-choice.gc-wrong { outline: 2px solid #b03030; background: rgba(176,48,48,0.09); }
+.gd-lemma { color: var(--accent); }
+.gd-declension { margin-top: 8px; padding: 8px 12px; font-size: 15px; background: var(--cream, #faf9f6); border-radius: 6px; border: 1px solid var(--border); }
 
 /* Tick row */
 .freq-tick-row {
