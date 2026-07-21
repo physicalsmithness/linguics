@@ -523,3 +523,14 @@ Previously parked as a vague "would be nice". TenseChoiceAuthor's wave 2 gives i
 **The mechanism:** you cannot write a gloss without parsing the sentence, so a 17 retrofit is a proofread with a learner-facing by-product. **The base rate:** ~2 bugs per 124 items on a Rev-3-era batch. Pre-Rev-13 batches are the exposure.
 
 **The question is resourcing, not principle**: this is a seat's worth of work across the corpus, and that is Smith's call. Flagged rather than spawned.
+
+## CEFR placement-test harvest — coverage gaps (2026-07-21, green-lit by Smith to fill)
+
+From REFERENCE_cefr_placement_harvest.md. Smith: "everything that can be, these are all things that we should fill."
+- **Interrogatives** (chi?/che?/quale?/quanto?/come?/dove?): no bucket — mint a home + commission an author.
+- **Periodo ipotetico**: 7 nodes scattered (tense_choice/condizionale/imperfect), no owner — resolve ownership + integrated coverage.
+- **Orthography beyond accents** (double consonants, -cia/-cie, univerbation): broaden the orthography axis.
+- **Lexical/register discrimination** (paronyms; mi scusi/scusami): a vocab axis beyond frequency ranking.
+- **Connector+subjunctive / free-choice-indefinite+subjunctive** (qualora/malgrado/per quanto/...; chiunque/qualunque cosa): harvest the italianlanguagetest bank into the connective + indefinite seats; couples to the purpose-connective ruling.
+- **Small morphology** (verify then place): participio assoluto; stare per + inf; futuro anteriore placement; bello/quello prenominal allomorphs.
+- **PENDING Smith (decision, not auto-fill):** reading-comprehension item type; functional/pragmatic item type; the error-identification recognition shape (Transparent).

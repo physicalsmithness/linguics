@@ -2,13 +2,15 @@
 
 Authored across two dispatches (initial + post-architecture-feedback revision). Brief revision 2. Rev 5/8/9/13/15 catch-up applied 2026-07-14.
 
-**Totals**: 103 grammar questions, 50 translation items (24 en→it, 26 it→en).
+**Totals**: 135 grammar questions, 50 translation items (24 en→it, 26 it→en). Volume-formation wave 2026-07-21 added 32 items.
 
 **Prompt-leak fix (2026-05-15)**: rewrote prompts on `pp_aux_modal_01..05` (stripped "using prescriptive inheritance" and the redundant agreement cue) and `pp_aux_amb_01..03` (stripped "(transitive use ...)" and "(intransitive, motion)" parentheticals that named the bucket diagnostic). The diagnostic survives via participle agreement and sentence structure; the parentheticals now carry only the infinitive cue.
 
 **Criterion-21 formation-trigger retrofit (2026-07-21)**: 22 items reframed under AUTHOR_BRIEF criterion 21 (Rev 28) after the 2026-07-19 audit flagged them as ambiguous for the imperfetto competitor. 21 items got mechanism (a) — appended `, passato prossimo` to the existing verb parenthetical (Rev 26 licenses tense-name as trigger). One frame rework: `pp_reg_ere_04` (Smith's live type case) moved from `All'inizio io ____ alla tua storia, ma poi ho capito` to `Alla fine io ____ alla tua storia senza esitazione` — the "at first ... but then" contour was aspectually imperfective and no cue tag could honestly settle it; the new frame is decisively perfective. All 22 also gained `prompt_supplies_base_form: true` (they were the only PP items missing the key entirely per the audit). Markpoints untouched throughout. Explanation gloss on pp_reg_ere_04 updated to match the new sentence. Report in `inter_chat/Architecture_PassatoAuthor_formation_trigger_retrofit.md` v3.
 
 **Person field backfill (2026-07-21)**: same touch. 70 items got `person:` set per the newly-ratified schema (`1sg..3pl` for finite items, `null` for the 10 form-only fragments). Distribution: 12 × 1sg, 5 × 2sg, 24 × 3sg, 4 × 1pl, 3 × 2pl, 12 × 3pl, 10 × null. pp_aux_person_04 (`Tu e Maria ieri sera ____ visto il film`) tagged 2pl on the tu-and-X voi-collapse.
+
+**Volume-formation wave (2026-07-21)**: 32 new items authored under `DISPATCH_volume_formation.md`. **File total 103 → 135.** 27 regular items fill the 3-class × 6-person formation grid to the 2-for-green floor (every person×class cell now at 2 items; ID convention `pp_reg_<class>_<verb>_<person>_<nn>` for grep-by-band). 5 irregular items add a second person-band to the highest-frequency irregular verbs (fare, dire, essere_stato, venire, prendere). Every new item: cue-names passato prossimo per crit 21, carries `prompt_supplies_base_form: true`, sets `person`, uses two-markpoint aux+participle design with `credit: 1.0` each (Rev 27 cross-credit), `match_at: "word"` on all any_phrases, person-matched imperfetto competitor in `must_not_include` (crit 21 rider 2, guard-verdict verified against replica), `info_display: "suppress"`, and crit-17 English gloss. Two content fixes on eyeball pass (venire ieri/stamattina conflict; dire past-anchor); 30 auto-generated vocab_help translation reveals corrected. **Irregular residual flagged not authored**: 10 irregulars still at one person-band each; ~10 more items would round them out if Architecture wants a second touch. Report: `inter_chat/Architecture_PassatoAuthor_volume_wave.md` v1.
 
 **Slot-count collapse (2026-05-28)**: collapsed all 6 multi-slot prompts to single slot per AUTHOR_BRIEF §2 criterion 9 (multi-slot blanks cue compound-form-family). Affected items: `pp_aux_refl_05` (was 2-slot for `sono divertiti`) and `pp_adv_pos_01..05` (were 2-slot for auxiliary+adverb or adverb+participle pairings). Markpoints unchanged — substring matching handles the new format.
 
@@ -41,12 +43,12 @@ Counts are "dedicated items" + "co-fires" where the bucket is one of several ski
 
 | Bucket | Grammar | Translation | CEFR | Notes |
 |---|---|---|---|---|
-| `participle_form.regular.are_ato` | 5 dedicated + ~25 co-fires | ~15 | A1-A2 | |
-| `participle_form.regular.ere_uto` | 5 dedicated + co-fires | 2 | A2 | Vendere, ricevere, credere, dovere (citation form). |
-| `participle_form.regular.ire_ito` | 5 dedicated + co-fires | 3 | A2 | Dormire, finire, capire, sentire. |
-| `participle_form.irregular.fare_fatto` | 2 | 1 | A2 | |
-| `participle_form.irregular.dire_detto` | 2 | 1 (trans_pp_dire_01) | A2 | |
-| `participle_form.irregular.prendere_preso` | 1 | 2 | B1 | |
+| `participle_form.regular.are_ato` | 14 dedicated (5 pre-wave + 9 wave) + ~25 co-fires | ~15 | A1-A2 | Volume wave: 6-person band at 2 items/cell. |
+| `participle_form.regular.ere_uto` | 14 dedicated (5 pre-wave + 9 wave) + co-fires | 2 | A2 | Volume wave: 6-person band at 2 items/cell. Vendere, ricevere, credere; wave adds ricevere/vendere/credere across all persons. |
+| `participle_form.regular.ire_ito` | 14 dedicated (5 pre-wave + 9 wave) + co-fires | 3 | A2 | Volume wave: 6-person band at 2 items/cell. Dormire, finire, capire, sentire, pulire, preferire across all persons. |
+| `participle_form.irregular.fare_fatto` | 3 (wave +1 3sg) | 1 | A2 | |
+| `participle_form.irregular.dire_detto` | 3 (wave +1 3sg) | 1 (trans_pp_dire_01) | A2 | |
+| `participle_form.irregular.prendere_preso` | 2 (wave +1 1sg) | 2 | B1 | |
 | `participle_form.irregular.vedere_visto` | 2 | 3 | A2 | **Now uses graded any_phrases**: veduto = 0.8 partial credit (archaic form). |
 | `participle_form.irregular.scrivere_scritto` | 2 | 1 | B1 | |
 | `participle_form.irregular.leggere_letto` | 1 | 2 | B1 | |
@@ -55,8 +57,8 @@ Counts are "dedicated items" + "co-fires" where the bucket is one of several ski
 | `participle_form.irregular.chiudere_chiuso` | 1 | 1 | B1 | |
 | `participle_form.irregular.nascere_nato` | 1 | 1 | A2-B1 | |
 | `participle_form.irregular.morire_morto` | 1 | 1 (trans_pp_morire_01) | B1 | |
-| `participle_form.irregular.venire_venuto` | 1 | 1 (trans_pp_venire_01) | A2 | |
-| `participle_form.irregular.essere_stato` | 1 | 1 | A2 | |
+| `participle_form.irregular.venire_venuto` | 2 (wave +1 3sg) | 1 (trans_pp_venire_01) | A2 | |
+| `participle_form.irregular.essere_stato` | 2 (wave +1 3sg) | 1 | A2 | |
 | `participle_form.irregular.bere_bevuto` | 1 | 1 | B1 | |
 
 ### Participle agreement

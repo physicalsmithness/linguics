@@ -658,5 +658,26 @@
     },
     "active": true,
     "version": 2
+  },
+  {
+    "id": "tense_choice.periodo_ipotetico",
+    "parent_id": "tense_choice",
+    "language_code": "it",
+    "label": "Periodo ipotetico (integrated: real / possible / impossible + mixed)",
+    "description": "The integrated hypothetical-period system: which mood/tense the protasis (se-clause) and apodosis take across type 1 (real: se + present/future, indicative), type 2 (possible: se + congiuntivo imperfetto, condizionale presente), type 3 (impossible: se + congiuntivo trapassato, condizionale passato), and mixed types. Integrated LEAF (Smith 2026-07-21): one item cross-credits the component buckets it evidences per Rev 27 (condizionale.usage.hypothetical_apodosis, congiuntivo, the counterfactual tense_choice nodes) rather than duplicating them.",
+    "cefr_importance": {
+      "A2": "preview",
+      "B1": "core",
+      "B2": "core",
+      "C1": "review",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "verb_form.condizionale",
+      "verb_form.congiuntivo"
+    ],
+    "attributes": {},
+    "active": true,
+    "version": 1
   }
 ]

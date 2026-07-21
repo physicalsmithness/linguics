@@ -7,7 +7,7 @@
 **This file:** **FORMATION branch complete (3 waves) + USAGE branch delivered.** Formation: presente / imperfetto / compounds. Usage (2026-07-18, per DISPATCH_usage_wave2.md): the three independent-clause leaves (exhortative, optative, fixed/concessive). Discrimination remains TenseChoice's.
 **Brief revision at wave 2:** Rev 25 (wave 2 authored natively against criteria 17-20; wave 1 was authored at Rev 9 and brought up by later central passes).
 
-**Totals: 90 grammar questions + 33 translation items** (EN→IT only). Formation 75+26; usage 15+7. Wave 1 (presente): 43 grammar + 14 translation, 29 suppressed / 14 visible. Wave 2 (imperfetto): 16 grammar + 6 translation, 8 suppressed / 8 visible. Wave 3 (compounds): 16 grammar + 6 translation, all 16 suppressed. **53 of 75 grammar items carry `info_display: "suppress"`.** Every active formation leaf across all three waves is covered; no zero-coverage leaves. The formation waves needed no new buckets (the tree had every formation leaf). The usage branch needed three: `bucket_suggestions_verb_form.congiuntivo.json` now proposes independent_exhortative, optative_wish, fixed_concessive for Architecture to mint. Two glossary terms are proposed (present subjunctive, suppletive), both from wave 1.
+**Totals: 92 grammar questions + 33 translation items** (EN→IT only). Formation 75+26; usage 17+7. Wave 1 (presente): 43 grammar + 14 translation, 29 suppressed / 14 visible. Wave 2 (imperfetto): 16 grammar + 6 translation, 8 suppressed / 8 visible. Wave 3 (compounds): 16 grammar + 6 translation, all 16 suppressed. **53 of 75 grammar items carry `info_display: "suppress"`.** Every active formation leaf across all three waves is covered; no zero-coverage leaves. The formation waves needed no new buckets (the tree had every formation leaf). The usage branch needed three: `bucket_suggestions_verb_form.congiuntivo.json` now proposes independent_exhortative, optative_wish, fixed_concessive for Architecture to mint. Two glossary terms are proposed (present subjunctive, suppletive), both from wave 1.
 
 All translation items are EN→IT, because the formation buckets are `direction: "production"`: a formation bucket only fires when the learner *produces* the Italian subjunctive form. Every item sits behind a trigger so the subjunctive is contextually required; the trigger is scaffolding, the form is the test. Wave 1 (presente) uses present-tense triggers (penso che, voglio che, spero che, dubito che, è importante che, bisogna che, non credo che, sembra che, mi dispiace che, è strano che). Wave 2 (imperfetto) uses the past and conditional triggers that select it (pensavo che, volevo che, speravo che, non credevo che, bisognava che, era meglio che, vorrei che, and the unreal se-clause). Wave 3 (compounds) uses a present trigger for the passato (penso che, credo che, spero che, mi dispiace che) and a past trigger or unreal past se-clause for the trapassato (pensavo che, credevo che, non sapevo che, se avessi/fosse). Choosing whether to use the subjunctive (the subordinate trigger-based indicative-vs-subjunctive contrast) remains TenseChoice's discrimination territory, out of scope here. The independent-clause usage functions ARE authored below (Usage branch).
 
@@ -186,10 +186,10 @@ Delivered 2026-07-18 against DISPATCH_usage_wave2.md and brief Rev 27. These lea
 | G | T | Proposed leaf | What it teaches |
 |--:|--:|---|---|
 | 6 | 2 | independent_exhortative (B2) | che + 3rd-person present subjunctive as the command the imperative can't give: Che venga!, Che lo faccia lui!, Che riposi in pace |
-| 5 | 3 | optative_wish (B2-C1) | Magari / Se solo + imperfect subjunctive for an out-of-reach wish (Magari fosse vero!), trapassato for a past regret (Magari mi avessi ascoltato!) |
+| 7 | 3 | optative_wish (B2-C1) | Magari / Se solo + imperfect subjunctive for an out-of-reach wish (Magari fosse vero!); trapassato subjunctive for a past regret (Magari te lo avessi detto!, Magari fosse restato) |
 | 4 | 2 | fixed_concessive (C1) | frozen formulae: che io sappia, costi quel che costi, sia come sia, vada come vada |
 
-CEFR: grammar 11 × B2, 4 × C1 (the fixed formulae); translation 5 × B2, 2 × C1.
+CEFR: grammar 11 × B2, 6 × C1 (the fixed formulae + the two past-regret optatives); translation 5 × B2, 2 × C1.
 
 ### The Rev-27 co-credit, applied throughout
 
@@ -198,7 +198,7 @@ Every usage grammar item carries **two markpoints on the one correct form**, eac
 ### How the usage branch was weighted
 
 - **The exhortative is the most useful** (B2, everyday: "let him...", "may she..."), so it got the most items, across singular and plural and across regular / irregular / -are formation classes.
-- **The optative rides on the imperfect subjunctive**, which wave 2 drilled, so these items are where that form earns its keep. One translation item reaches into the **trapassato** for a past regret (Magari mi avessi ascoltato!), the only compound in the usage set.
+- **The optative rides on the imperfect subjunctive** for a present/out-of-reach wish, which wave 2 drilled, and on the **trapassato** for a past regret (Magari te lo avessi detto! with avere, Magari fosse restato with essere). Both auxiliaries covered; the past-regret pair added 2026-07-20 to close the grammar gap the leaf had (previously the trapassato-optative was translation-only).
 - **The fixed formulae are C1 and lexicalised**, so they are taught whole rather than derived; lighter coverage, and the "de-freezing to the indicative" miss (costa quel che costa) is guarded.
 - **The shared miss is the indicative** in the construction (Che va!, Magari è vero!, costa quel che costa), guarded on both markpoints of every item.
 

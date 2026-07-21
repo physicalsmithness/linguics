@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-21-r40";
+  const LL_BUILD = "2026-07-21-r43";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -876,12 +876,14 @@
         Foptional("../data/glossary.json"),
         Foptional("../data/vocabulary_it_frequency.json"),
         Foptional("../data/parts.json"),
-        Foptional("../data/vocab_themes.json")
+        Foptional("../data/vocab_themes.json"),
+        Foptional("../data/misconceptions.json"),
+        Foptional("../data/misconception_lenses.json")
       ]);
       const workers = [];
       for (let w = 0; w < Math.min(POOL, topics.length); w++) workers.push(worker());
       await Promise.all(workers);
-      const [glossary, vocab, parts, themes] = await tail;
+      const [glossary, vocab, parts, themes, misconceptions, lenses] = await tail;
 
       // Flatten strictly in manifest order.
       const buckets = [];
@@ -911,7 +913,7 @@
       }
 
       console.info("Loaded per topic:", perTopicCounts);
-      return { buckets, grammar, translation, perTopicCounts, vocab, themes, parts, failures: loadFailures };
+      return { buckets, grammar, translation, perTopicCounts, vocab, themes, parts, misconceptions, lenses, failures: loadFailures };
     } catch (e) {
       const cause = e && e.message ? e.message : String(e);
       console.error("[Linguics] Real content fetch failed; using inline samples. Cause:", cause);
@@ -1503,11 +1505,13 @@
       if (statedOpts) {
         const scRow = document.createElement("div");
         scRow.className = "stated-choice-row";
-        for (const opt of statedOpts) {
+        statedOpts.forEach((opt, idx) => {
           const b = document.createElement("button");
           b.type = "button";
           b.className = "stated-choice";
-          b.textContent = opt;
+          const num = document.createElement("span"); num.className = "stated-choice-num"; num.textContent = String(idx + 1);
+          const txt = document.createElement("span"); txt.className = "stated-choice-txt"; txt.textContent = opt;
+          b.appendChild(num); b.appendChild(txt);
           b.title = "Answer with \u201c" + opt + "\u201d";
           b.addEventListener("click", () => {
             if (marked) return;
@@ -1515,14 +1519,12 @@
             doMark();
           });
           scRow.appendChild(b);
-        }
+        });
         card.appendChild(scRow);
-        if (getInputMode() === "select") {
-          // Tap-only preference: the chips ARE the input on chip-capable
-          // items; typing stays available on every item without chips.
-          input.style.display = "none";
-          accentBar.style.display = "none";
-        }
+        // Chips present -> drop the accent bar (you're choosing, not typing
+        // accents), Smith 2026-07-21. In select mode the chips ARE the input.
+        accentBar.style.display = "none";
+        if (getInputMode() === "select") { input.style.display = "none"; }
       }
 
       const helpBar = buildVocabHelpBar(q, vocabHelpsUsed);
@@ -4287,7 +4289,7 @@
       } else if (seg.kind === "cue") {
         const labelSpan = document.createElement("span");
         labelSpan.className = "prompt-cue-label";
-        labelSpan.textContent = "Use ";
+        labelSpan.textContent = /\s/.test(String(seg.text).trim()) ? "Register: " : "Use ";
         const valSpan = document.createElement("span");
         valSpan.className = "prompt-cue-word";
         valSpan.textContent = seg.text;
@@ -7171,6 +7173,87 @@
   // whatever data exists and fill in as it lands (Smith: the data catches up).
   let analysisCanvas = "coverage";   // "coverage" | "misconceptions"
 
+  // In-place cell detail (Smith: "we don't want to leave this page"). Clicking a
+  // coverage cell opens this on-page rather than jumping into the drill; a
+  // "Practise these" button makes the drill opt-in.
+  function showCellDetail(topic, level) {
+    const slot = document.getElementById("coverage-cell-detail");
+    if (!slot) return;
+    slot.innerHTML = "";
+    const box = document.createElement("div"); box.className = "cell-detail";
+    const head = document.createElement("div"); head.className = "cell-detail-head";
+    const t = document.createElement("strong"); t.textContent = (topic.label || topic.id) + " · " + level;
+    const close = document.createElement("button"); close.type = "button"; close.className = "cell-detail-close"; close.textContent = "×"; close.title = "Close";
+    close.addEventListener("click", () => { slot.innerHTML = ""; });
+    head.appendChild(t); head.appendChild(close); box.appendChild(head);
+    try {
+      const leaves = bucketLeavesInScope([topic.id], level);
+      if (!leaves.length) { const pp = document.createElement("p"); pp.className = "analysis-note"; pp.textContent = "Nothing at this level."; box.appendChild(pp); }
+      else {
+        const ul = document.createElement("ul"); ul.className = "cell-detail-areas";
+        for (const leaf of leaves) {
+          const st = aggregateNodeStats(leaf);
+          const li = document.createElement("li");
+          li.textContent = (leaf.label || leaf.id) + " — " + (st ? Math.round(st.correctness * 100) + "% (" + st.n + " events)" : "not practised");
+          ul.appendChild(li);
+        }
+        box.appendChild(ul);
+      }
+      const mc = new Map();
+      for (const a of ((LL.state && LL.state.attempts) || [])) for (const h of (a.misconception_hits || [])) {
+        const b = h && h.bucket; if (typeof b === "string" && (b === topic.id || b.indexOf(topic.id + ".") === 0)) { const id = h.id || h; mc.set(id, (mc.get(id) || 0) + 1); }
+      }
+      const mcList = [...mc.entries()].sort((a, b) => b[1] - a[1]);
+      const sub = document.createElement("div"); sub.className = "cell-detail-sub";
+      sub.textContent = mcList.length ? "Misconceptions in this topic:" : "No tagged misconceptions here yet.";
+      box.appendChild(sub);
+      if (mcList.length) { const ul2 = document.createElement("ul"); ul2.className = "cell-detail-mc"; for (const [id, c] of mcList) { const li = document.createElement("li"); li.textContent = id + " — " + c + "×"; ul2.appendChild(li); } box.appendChild(ul2); }
+    } catch (e) { const pp = document.createElement("p"); pp.textContent = "(detail unavailable)"; box.appendChild(pp); }
+    const prac = document.createElement("button"); prac.type = "button"; prac.className = "cell-detail-practise"; prac.textContent = "Practise these →";
+    prac.addEventListener("click", () => coverageDrill(topic.id, level));
+    box.appendChild(prac);
+    slot.appendChild(box);
+    try { slot.scrollIntoView({ behavior: "smooth", block: "nearest" }); } catch (e) {}
+  }
+
+  function ptTenseLabel(t) {
+    const map = { present_indicative: "Present", passato_prossimo: "Pass. pross.", imperfect: "Imperfect", trapassato_prossimo: "Trapassato", future: "Future", condizionale: "Condiz.", congiuntivo: "Congiunt.", passato_remoto: "Pass. remoto", imperativo: "Imperativo" };
+    return map[t] || t;
+  }
+  function buildPersonTenseGrid() {
+    const wrap = document.createElement("div"); wrap.className = "pt-grid-wrap";
+    try {
+      const TENSES = ["present_indicative", "passato_prossimo", "imperfect", "trapassato_prossimo", "future", "condizionale", "congiuntivo", "passato_remoto", "imperativo"];
+      const agg = {};
+      for (const a of ((LL.state && LL.state.attempts) || [])) for (const ev of (a.events || [])) {
+        if (!ev || !ev.person || typeof ev.bucket !== "string" || ev.bucket.indexOf("verb_form.") !== 0) continue;
+        const tense = ev.bucket.split(".")[1];
+        const o = agg[ev.person + "|" + tense] || (agg[ev.person + "|" + tense] = { att: 0, cor: 0 });
+        o.att += (ev.attempted_credit || 0);
+        if (ev.correctness_credit != null) o.cor += ev.correctness_credit;
+      }
+      const table = document.createElement("table"); table.className = "pt-grid";
+      const thead = document.createElement("thead"); const htr = document.createElement("tr"); htr.appendChild(document.createElement("th"));
+      for (const t of TENSES) { const th = document.createElement("th"); th.textContent = ptTenseLabel(t); htr.appendChild(th); }
+      thead.appendChild(htr); table.appendChild(thead);
+      const tbody = document.createElement("tbody"); let any = false;
+      for (const pr of PERSON_ORDER) {
+        const tr = document.createElement("tr"); const rh = document.createElement("th"); rh.textContent = PERSON_LABELS[pr]; tr.appendChild(rh);
+        for (const t of TENSES) {
+          const o = agg[pr + "|" + t]; const td = document.createElement("td");
+          if (o && o.att > 0) { any = true; const c = o.cor / o.att; td.style.background = rwgColour(c, true); td.textContent = Math.round(c * 100) + "%"; td.title = PERSON_LABELS[pr] + " · " + ptTenseLabel(t) + ": " + Math.round(c * 100) + "%"; }
+          else { td.className = "pt-empty"; td.title = PERSON_LABELS[pr] + " · " + ptTenseLabel(t) + ": not practised"; }
+          tr.appendChild(td);
+        }
+        tbody.appendChild(tr);
+      }
+      table.appendChild(tbody);
+      const scroll = document.createElement("div"); scroll.className = "pt-scroll"; scroll.appendChild(table); wrap.appendChild(scroll);
+      if (!any) { const note = document.createElement("p"); note.className = "analysis-note"; note.textContent = "No person-tagged verb answers yet — practise some conjugations and this fills in."; wrap.appendChild(note); }
+    } catch (e) { wrap.textContent = "(person × tense unavailable)"; }
+    return wrap;
+  }
+
   function sectionWrap(title, bodyEl, statusText) {
     const sec = document.createElement("section"); sec.className = "analysis-section";
     const h = document.createElement("h3"); h.className = "analysis-section-title"; h.textContent = title;
@@ -7235,10 +7318,89 @@
     } catch (e) { wrap.textContent = "(top errors unavailable)"; }
     return wrap;
   }
+  function pcClassLabel(c) { const m = { regular_are: "-are", regular_ere: "-ere", regular_ire: "-ire", regular_ere_ire: "-ere/-ire", irregular: "irregular" }; return m[c] || String(c).replace(/_/g, " "); }
+  function buildPersonClassGrid() {
+    const wrap = document.createElement("div"); wrap.className = "pt-grid-wrap";
+    try {
+      const agg = {}; const cset = new Set();
+      for (const a of ((LL.state && LL.state.attempts) || [])) for (const ev of (a.events || [])) {
+        if (!ev || !ev.person || typeof ev.bucket !== "string" || ev.bucket.indexOf("verb_form.") !== 0) continue;
+        const cls = ev.bucket.split(".")[2]; if (!cls) continue; cset.add(cls);
+        const o = agg[ev.person + "|" + cls] || (agg[ev.person + "|" + cls] = { att: 0, cor: 0 });
+        o.att += (ev.attempted_credit || 0); if (ev.correctness_credit != null) o.cor += ev.correctness_credit;
+      }
+      const classes = [...cset].sort();
+      if (!classes.length) { const n = document.createElement("p"); n.className = "analysis-note"; n.textContent = "No person-tagged verb answers yet — fills in as you practise conjugations."; wrap.appendChild(n); return wrap; }
+      const table = document.createElement("table"); table.className = "pt-grid";
+      const thead = document.createElement("thead"); const htr = document.createElement("tr"); htr.appendChild(document.createElement("th"));
+      for (const c of classes) { const th = document.createElement("th"); th.textContent = pcClassLabel(c); htr.appendChild(th); }
+      thead.appendChild(htr); table.appendChild(thead);
+      const tbody = document.createElement("tbody");
+      for (const pr of PERSON_ORDER) {
+        const tr = document.createElement("tr"); const rh = document.createElement("th"); rh.textContent = PERSON_LABELS[pr]; tr.appendChild(rh);
+        for (const c of classes) {
+          const o = agg[pr + "|" + c]; const td = document.createElement("td");
+          if (o && o.att > 0) { const cc = o.cor / o.att; td.style.background = rwgColour(cc, true); td.textContent = Math.round(cc * 100) + "%"; td.title = PERSON_LABELS[pr] + " · " + pcClassLabel(c) + ": " + Math.round(cc * 100) + "%"; }
+          else { td.className = "pt-empty"; td.title = PERSON_LABELS[pr] + " · " + pcClassLabel(c) + ": not practised"; }
+          tr.appendChild(td);
+        }
+        tbody.appendChild(tr);
+      }
+      table.appendChild(tbody);
+      const scroll = document.createElement("div"); scroll.className = "pt-scroll"; scroll.appendChild(table); wrap.appendChild(scroll);
+    } catch (e) { wrap.textContent = "(person × class unavailable)"; }
+    return wrap;
+  }
+  function misconceptionFamilyCounts() {
+    const counts = new Map();
+    for (const a of ((LL.state && LL.state.attempts) || [])) for (const h of (a.misconception_hits || [])) { const id = (h && (h.id || h)) || ""; if (!id) continue; const fam = String(id).split(".")[0]; counts.set(fam, (counts.get(fam) || 0) + 1); }
+    return counts;
+  }
+  function buildFamilyHeatmap() {
+    const wrap = document.createElement("div"); wrap.className = "fam-heat";
+    try {
+      const counts = misconceptionFamilyCounts();
+      const famLabels = (LL.misconceptions && LL.misconceptions.families) || {};
+      const fams = Object.keys(famLabels).length ? Object.keys(famLabels) : [...counts.keys()];
+      if (!fams.length) { wrap.textContent = "No misconception-tagged errors yet — families fill in as tagged guards fire."; return wrap; }
+      const max = Math.max(1, ...[...counts.values()]);
+      const rows = fams.map(f => ({ f, label: (famLabels[f] && famLabels[f].label) || f, c: counts.get(f) || 0 })).sort((a, b) => b.c - a.c);
+      for (const r of rows) {
+        const row = document.createElement("div"); row.className = "fam-row";
+        const lab = document.createElement("span"); lab.className = "fam-label"; lab.textContent = r.label;
+        const track = document.createElement("span"); track.className = "fam-track";
+        const bar = document.createElement("span"); bar.className = "fam-bar"; bar.style.width = Math.round(100 * r.c / max) + "%"; if (!r.c) bar.style.opacity = "0"; track.appendChild(bar);
+        const cnt = document.createElement("span"); cnt.className = "fam-count"; cnt.textContent = r.c ? String(r.c) : "—";
+        row.appendChild(lab); row.appendChild(track); row.appendChild(cnt); wrap.appendChild(row);
+      }
+    } catch (e) { wrap.textContent = "(family heatmap unavailable)"; }
+    return wrap;
+  }
+  function buildLensStrip() {
+    const wrap = document.createElement("div"); wrap.className = "lens-strip";
+    try {
+      const lensesData = (LL.lenses && LL.lenses.lenses) || null;
+      if (!lensesData) { wrap.className = "analysis-placeholder"; wrap.textContent = "Surface lenses load from the analyst's lens file — not loaded yet."; return wrap; }
+      const counts = misconceptionFamilyCounts();
+      for (const lens of lensesData) {
+        const fams = (lens.members && lens.members.families) || [];
+        let c = 0; for (const f of fams) c += (counts.get(f) || 0);
+        const card = document.createElement("div"); card.className = "lens-card";
+        const h = document.createElement("div"); h.className = "lens-head";
+        const nm = document.createElement("strong"); nm.textContent = lens.label || lens.id;
+        const ct = document.createElement("span"); ct.className = "lens-count"; ct.textContent = c ? c + "×" : "—";
+        h.appendChild(nm); h.appendChild(ct); card.appendChild(h);
+        if (lens.learner_blurb) { const bl = document.createElement("div"); bl.className = "lens-blurb"; bl.textContent = lens.learner_blurb; card.appendChild(bl); }
+        if (lens.the_sentence) { const se = document.createElement("div"); se.className = "lens-sentence"; se.textContent = "“" + lens.the_sentence + "”"; card.appendChild(se); }
+        wrap.appendChild(card);
+      }
+    } catch (e) { wrap.textContent = "(lenses unavailable)"; }
+    return wrap;
+  }
   function renderMisconceptionCanvas(col) {
     col.appendChild(sectionWrap("Top recurring errors", buildTopErrors()));
-    col.appendChild(placeholderSection("Misconception family heatmap", "The 17 families × how well you handle each. Arrives with the family mapping."));
-    col.appendChild(placeholderSection("Surface lenses", "Accents, spelling, word order, agreement, building irregular forms, choosing the right form, L1 interference, pronoun machinery — wiring the analyst's lens file next."));
+    col.appendChild(sectionWrap("Misconception family heatmap", buildFamilyHeatmap()));
+    col.appendChild(sectionWrap("Surface lenses", buildLensStrip()));
     col.appendChild(placeholderSection("Cross-kind spotlight", "One family across every skill kind: you drop accents on verbs, nouns AND monosyllables."));
     col.appendChild(placeholderSection("Region × family", "Pick a region (verb formation, pronouns) and see its error-type mix."));
     col.appendChild(placeholderSection("Over- vs under-application", "Haven't-learnt-it vs learnt-and-over-applying. Needs the mirror pairs marked."));
@@ -7406,7 +7568,7 @@
           }
           td.appendChild(strips);
           td.title = topic.label + " · " + level + ": " + touched + "/" + leaves.length + " areas practised";
-          td.addEventListener("click", () => coverageDrill(topic.id, level));
+          td.addEventListener("click", () => showCellDetail(topic, level));
         }
         tr.appendChild(td);
       }
@@ -7415,9 +7577,10 @@
     table.appendChild(tbody);
     scroll.appendChild(table);
     col.appendChild(scroll);
+    const cellDetailSlot = document.createElement("div"); cellDetailSlot.id = "coverage-cell-detail"; col.appendChild(cellDetailSlot);
     col.appendChild(sectionWrap("Not yet attempted", buildCoverageGaps()));
-    col.appendChild(placeholderSection("Verb coverage: person × tense", "1sg…3pl down, tenses across. Builds from the person-tagged verb forms now and fills as the backfill lands."));
-    col.appendChild(placeholderSection("Verb coverage: person × conjugation class", "-are / -ere / -ire and the irregular families, per person."));
+    col.appendChild(sectionWrap("Verb coverage: person × tense", buildPersonTenseGrid()));
+    col.appendChild(sectionWrap("Verb coverage: person × conjugation class", buildPersonClassGrid()));
     col.appendChild(placeholderSection("Tense-choice confusion matrix", "Chosen tense vs correct tense — the diagonal is right, off-diagonal shows what you reach for wrongly."));
     col.appendChild(placeholderSection("Piacere per-verb grid", "Direction (mi piaci vs ti piaccio), pluralisation, figurative use, per tested verb."));
     host.appendChild(col);
@@ -7489,6 +7652,8 @@
     grammarQuestions = real.grammar;
     translationItems = real.translation;
     if (real.parts && Array.isArray(real.parts.parts)) LL.partsConfig = real.parts;
+    LL.misconceptions = real.misconceptions || null;   // registry: families + specifics (analysis surface)
+    LL.lenses = real.lenses || null;                   // surface-lens layer
     if (real.vocab && Array.isArray(real.vocab)) {
       vocabEntries = real.vocab;
       LL.vocabEntries = vocabEntries;

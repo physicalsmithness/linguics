@@ -325,3 +325,66 @@ Full sitting completed in one pass covering three inter_chat threads:
 - Marks/credit mismatches: 0
 
 All three sitting threads closed on my end; awaiting Architecture CLOSED stamps + DECISIONS discharge stamps on criterion 21 register.
+
+
+---
+
+## Update 2026-07-21 (second): volume formation wave (+34 items, DISPATCH_volume_formation)
+
+Delivered against Smith's drill-volume ruling per DISPATCH_volume_formation.md. Roughly doubles the basic-tier formation coverage; every regular-class × person cell now has ≥1 item (most have 2+); essere and core stem-expansion irregulars (fare, dire, bere) all reach ≥1 per person.
+
+### New items by leaf
+
+| Leaf | Was | Added | Now | Notes |
+|---|---|---|---|---|
+| formation.regular_are | 6 | +6 | 12 | Fills 1sg×2, 2sg×2, 3sg×2, 1pl×2, 2pl×2, 3pl×2. A1 core verbs (lavorare, abitare, mangiare, guardare, ascoltare, giocare). |
+| formation.regular_ere | 5 | +5 | 10 | Fills 1sg×2, 2sg×2, 3sg×2, 1pl×2, 2pl×1, 3pl×1. Adds credere, ricevere, vendere, perdere, rispondere. |
+| formation.regular_ire | 5 | +5 | 10 | Fills 1sg×2, 2sg×1, 3sg×2, 1pl×2, 2pl×1, 3pl×2. Adds partire, offrire, servire, aprire, pulire (pulire chosen deliberately to hit the -isc-drop-in-imperfect point again). |
+| irregular.essere | 8 | +8 | 16 | Every person now has ≥2 items (1sg, 2sg, 1pl, 2pl at 2; 3sg, 3pl at 4 including 2 existentials each). |
+| stem_expansion.fare | 4 | +4 | 8 | Adds 2sg (facevi) and 2pl (facevate); fac- stem reinforced. |
+| stem_expansion.dire | 3 | +3 | 6 | Adds 1sg (dicevo), 2sg (dicevi), 2pl (dicevate); dic- stem reinforced. |
+| stem_expansion.bere | 3 | +3 | 6 | Adds 2sg (bevevi), 3sg (beveva), 2pl (bevevate); bev- stem reinforced. |
+| stem_expansion.porre | 2 | +0 | 2 | Lower-freq; skipped per dispatch's A1/A2-core steer. |
+| stem_expansion.tradurre | 2 | +0 | 2 | Lower-freq; skipped per dispatch's A1/A2-core steer. |
+
+**Formation totals:** was 38 → now 72 (+34). Grammar file total: was 118 → now 152. Translation file untouched.
+
+### Person × class grid (formation only, post-wave)
+
+| Class | 1sg | 2sg | 3sg | 1pl | 2pl | 3pl |
+|---|---|---|---|---|---|---|
+| regular_are | 2 | 2 | 2 | 2 | 2 | 2 |
+| regular_ere | 2 | 2 | 2 | 2 | 1 | 1 |
+| regular_ire | 2 | 1 | 2 | 2 | 1 | 2 |
+| irregular.essere | 2 | 2 | 4 | 2 | 2 | 4 |
+| stem_expansion.fare | 2 | 1 | 2 | 1 | 1 | 1 |
+| stem_expansion.dire | 1 | 1 | 1 | 1 | 1 | 1 |
+| stem_expansion.bere | 1 | 1 | 1 | 1 | 1 | 1 |
+
+Every non-lower-freq cell green at ≥1; most at ≥2. The mastery floor (two items to green a cell on repeat visit) is met almost everywhere. Only `regular_ere.2pl`, `regular_ere.3pl`, `regular_ire.2sg`, `regular_ire.2pl` and all `stem_expansion.dire/bere` cells sit at exactly 1 — those are candidates for a follow-up top-up wave if Architecture wants.
+
+### Rails compliance (all 34 wave items)
+
+Marker replica ran (strict + folded normalization):
+- (a) correct-answer scores full mark: **34/34 PASS** (strict + folded)
+- (b) guard-verdict test — no `must_not` string false-credits: **PASS** (0 failures)
+- (b2) dead-guard scan — every guard fires as a `miss` when tested standalone: **PASS** (0 dead guards)
+- (c) match_at word — target string embedded in a false-positive candidate does NOT credit: **PASS** (0 failures)
+- crit-21: every cue names the tense (e.g. `(lavorare, 3sg, imperfetto)`).
+- crit-13: chips carry lemma + person + tense-name; never the answer form.
+- crit-20 / Rev 29/30: item prompts glossed only where an English or Italian bare fragment would read as the answer — not applied on these formation items because the tense-named cue in Italian is citation form.
+- `person` on every item (all 34 finite).
+- `wrong_answer_is_form_error_only: true` on every item.
+- Rev 27 cross-credit: not applicable to formation drills (single-skill items).
+
+### Batch state after this wave
+
+- Grammar items: 152 (was 118 + 34)
+- Translation items: 54 (unchanged)
+- Marks/credit mismatches: 0
+- Items with `person` set: 88 (54 pre-wave + 34 new)
+- Items with `info_display: "suppress"`: 57 (unchanged — formation items default visible)
+
+### Uncertain / borderline
+
+None flagged. All 34 items are drill-style basic-tier formation with a single narrow markpoint; no register calls, no auxiliary-inheritance ambiguities, no `sapessi`-style borderline cases.

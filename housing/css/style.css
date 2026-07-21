@@ -1888,3 +1888,40 @@ body.coverage-active #entry-screen { display: none; }
   .kpi { min-width:70px; padding:8px 10px; }
   .kpi-val { font-size:1.25rem; }
 }
+
+/* Analysis: in-place cell detail + person×tense grid (Smith 2026-07-21) */
+.cell-detail { border:1px solid var(--line,#e3ddc9); border-radius:8px; padding:12px 14px; margin:10px auto 0; max-width:720px; background:#fffdf7; }
+.cell-detail-head { display:flex; align-items:center; justify-content:space-between; }
+.cell-detail-close { border:none; background:none; font-size:1.3rem; cursor:pointer; color:#8a836f; line-height:1; }
+.cell-detail-areas { margin:6px 0; padding-left:20px; }
+.cell-detail-sub { font-weight:600; margin-top:8px; font-size:.9rem; }
+.cell-detail-mc { margin:4px 0; padding-left:20px; }
+.cell-detail-practise { margin-top:10px; font:inherit; padding:6px 14px; border:1px solid var(--accent,#3a4f8a); border-radius:6px; background:var(--accent,#3a4f8a); color:#fff; cursor:pointer; }
+.analysis-note { color:#8a836f; font-style:italic; }
+.pt-scroll { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+.pt-grid { border-collapse:collapse; }
+.pt-grid th, .pt-grid td { border:1px solid var(--line,#e3ddc9); padding:5px 8px; text-align:center; font-size:.85rem; min-width:52px; }
+.pt-grid thead th, .pt-grid tbody th { background:#f3efe2; font-weight:600; }
+.pt-grid td.pt-empty { background:#fff; color:#c9c3b0; }
+@media (max-width:600px){ .pt-grid th, .pt-grid td { min-width:44px; padding:4px 5px; font-size:.75rem; } }
+
+/* Analysis: family heatmap + surface lenses (Smith 2026-07-21) */
+.fam-heat { display:flex; flex-direction:column; gap:5px; }
+.fam-row { display:flex; align-items:center; gap:8px; }
+.fam-label { flex:0 0 42%; font-size:.85rem; }
+.fam-track { flex:1 1 auto; background:#f3efe2; border-radius:3px; height:14px; overflow:hidden; }
+.fam-bar { display:block; height:100%; background:#cc6a5a; }
+.fam-count { flex:0 0 30px; text-align:right; font-size:.8rem; color:#6b6552; }
+.lens-strip { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:10px; }
+.lens-card { border:1px solid var(--line,#e3ddc9); border-radius:8px; padding:10px 12px; background:#fff; }
+.lens-head { display:flex; justify-content:space-between; align-items:baseline; gap:8px; }
+.lens-count { color:#6b6552; font-size:.85rem; white-space:nowrap; }
+.lens-blurb { font-size:.85rem; color:#6b6552; margin-top:3px; }
+.lens-sentence { font-size:.8rem; font-style:italic; color:#8a836f; margin-top:6px; }
+@media (max-width:600px){ .lens-strip { grid-template-columns:1fr; } .fam-label { flex-basis:46%; } }
+
+/* Choose-or-type chips: stacked + numbered (Smith 2026-07-21) */
+.stated-choice-row { display:flex; flex-direction:column; align-items:stretch; gap:6px; }
+.stated-choice { display:flex; align-items:center; gap:10px; text-align:left; }
+.stated-choice-num { flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; border-radius:50%; background:var(--accent,#3a4f8a); color:#fff; font-size:.8rem; font-weight:600; }
+.stated-choice-txt { flex:1 1 auto; }

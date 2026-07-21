@@ -6,10 +6,11 @@ waiting: parked
 needs_from_smith: review
 blocked_by:
 claude_can_verify: yes — 75/75 items award full marks on their correct answer under housing/js engine; all guards reject; every formation leaf covered, zero zero-coverage
-summary: FORMATION + USAGE delivered, usage branch ACCEPTED by Architecture. 90 grammar + 33 translation. person-field backfill done (11 residue -> 3sg). Nothing to author; Rev-28 crit-21 audit clears congiuntivo 0/90. Awaiting Architecture: person stamp + compound-label ruling.
+summary: FORMATION + USAGE delivered, usage ACCEPTED. 92 grammar + 33 translation (added 2 trapassato-optative items 2026-07-20 to close a self-flagged grammar gap). person-backfill discharged+stamped. Nothing owed to author. Awaiting Architecture: re-stamp the 2-item delta + compound-label ruling.
 queue:
   - (nothing to author)
-  - awaiting Architecture STAMP on person_backfill [thread v2, Next: Architecture] — my side done
+  - person_backfill DISCHARGED + stamped in DECISIONS 2026-07-20 (closed)
+  - awaiting Architecture RE-STAMP of 2-item optative-trapassato delta [usage_leaf_minting v3, Next: Architecture]
   - awaiting Architecture RULING on compound-leaf label hygiene [thread v1, Next: Architecture]
 notes:
   - 2026-07-20 self-check ('new stuff'): usage_leaf_minting CLOSED — Architecture minted the 3 leaves (they were nested in an unread children[] array, hence the strict-reject), destubbed, batch ACCEPTED, delivery stamped in DECISIONS. Usage branch is live.
