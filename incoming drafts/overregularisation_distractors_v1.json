@@ -1,0 +1,3133 @@
+{
+  "$schema_note": "Over-regularisation MCQ distractor bank. Each record: the correct irregular form and the plausible over-regularised wrong form(s) a learner produces by applying a regular rule. Intended primarily as INDEX-SCORED MCQ distractors (see ingestion note): many distractors are real words (see 'collisions'), so they are UNSAFE as substring must_not_include guards.",
+  "version": 1,
+  "generated": "2026-07-21",
+  "generated_by": "OverRegularisationBank harvest+generate pass",
+  "misconception_registry_ref": "data/misconceptions.json",
+  "proposed_misconception_ids": [
+    {
+      "id": "regularisation.irregular_plural",
+      "reason": "family 'regularisation' claims irregular plurals as cross-kind but has no leaf; needed for braccia/uova/dita/uomini/paia and the sovrabbondanti"
+    },
+    {
+      "id": "regularisation.irregular_comparative",
+      "reason": "family 'regularisation' claims irregular comparatives as cross-kind but has no leaf; needed for migliore/peggiore/maggiore/minore/meglio/peggio"
+    },
+    {
+      "id": "regularisation.invariable_noun",
+      "reason": "no leaf for regularising an invariable noun (film->filmi, città->cittadi, foto->foti)"
+    }
+  ],
+  "records": [
+    {
+      "lemma": "andare",
+      "correct_form": "vado",
+      "cell": "present_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "ando",
+        "andao"
+      ],
+      "rule_misapplied": "conjugated andare as a regular -are verb on the stem 'and-' instead of the suppletive 'vad-'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "andare",
+      "correct_form": "vanno",
+      "cell": "present_3pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "andano"
+      ],
+      "rule_misapplied": "applied the regular -are 3pl ending to the suppletive stem",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "fare",
+      "correct_form": "faccio",
+      "cell": "present_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "faco",
+        "fao"
+      ],
+      "rule_misapplied": "conjugated fare regularly on the reduced stem 'fa-/fac-' instead of the irregular 'faccio'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "fare",
+      "correct_form": "fate",
+      "cell": "present_2pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "facete"
+      ],
+      "rule_misapplied": "built the 2pl on the full Latin stem 'fac-' (facete) instead of the contracted 'fate'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "fare",
+      "correct_form": "fanno",
+      "cell": "present_3pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "facono",
+        "faciono"
+      ],
+      "rule_misapplied": "applied a regular 3pl ending to 'fac-' instead of the irregular 'fanno'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "stare",
+      "correct_form": "sto",
+      "cell": "present_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "stao"
+      ],
+      "rule_misapplied": "treated stare as a fully regular -are verb (sta+o)",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "stare",
+      "correct_form": "stanno",
+      "cell": "present_3pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "stano"
+      ],
+      "rule_misapplied": "regular -are 3pl on 'sta-' instead of irregular 'stanno'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "sapere",
+      "correct_form": "so",
+      "cell": "present_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "sapo"
+      ],
+      "rule_misapplied": "conjugated sapere regularly (sap+o) instead of the irregular monosyllable 'so'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "sapere",
+      "correct_form": "sanno",
+      "cell": "present_3pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "sapono",
+        "sano"
+      ],
+      "rule_misapplied": "regular -ere 3pl on 'sap-' instead of irregular 'sanno'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true,
+      "collisions": [
+        {
+          "form": "sano",
+          "valid_as": "adjective 'sano' (healthy)"
+        }
+      ]
+    },
+    {
+      "lemma": "dire",
+      "correct_form": "dico",
+      "cell": "present_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "dicio",
+        "dio"
+      ],
+      "rule_misapplied": "regularised the -rre/-cere stem (dic- + io) mis-spelt, vs irregular 'dico'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "dire",
+      "correct_form": "dite",
+      "cell": "present_2pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "dicete",
+        "dicite"
+      ],
+      "rule_misapplied": "built 2pl on full stem 'dic-' (dicete) instead of contracted 'dite'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "bere",
+      "correct_form": "bevo",
+      "cell": "present_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "bero",
+        "beo"
+      ],
+      "rule_misapplied": "conjugated bere on the short stem 'be-' instead of the Latin-expanded 'bev-'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "bere",
+      "correct_form": "bevono",
+      "cell": "present_3pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "berono",
+        "beono"
+      ],
+      "rule_misapplied": "regular 3pl on short stem 'be-' instead of 'bev-'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "uscire",
+      "correct_form": "esco",
+      "cell": "present_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "usco",
+        "uscio"
+      ],
+      "rule_misapplied": "failed to diphthongise the stressed stem u->uo->e (esco); kept the infinitive vowel",
+      "misconception_id": "stem_change.dittongo_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "uscire",
+      "correct_form": "usciamo",
+      "cell": "present_1pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "esciamo",
+        "escamo"
+      ],
+      "rule_misapplied": "carried the stressed-stem 'esc-' into the 1pl, where stress moves to the ending and 'usc-' returns",
+      "misconception_id": "stem_change.dittongo_over_extension",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "uscire",
+      "correct_form": "escono",
+      "cell": "present_3pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "uscono",
+        "esciono"
+      ],
+      "rule_misapplied": "failed to diphthongise the stressed 3pl stem (escono)",
+      "misconception_id": "stem_change.dittongo_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "sedere",
+      "correct_form": "siedo",
+      "cell": "present_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "sedo"
+      ],
+      "rule_misapplied": "failed to diphthongise e->ie in the stressed singular (siedo)",
+      "misconception_id": "stem_change.dittongo_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "sedere",
+      "correct_form": "sediamo",
+      "cell": "present_1pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "siediamo",
+        "siedamo"
+      ],
+      "rule_misapplied": "kept the diphthong 'sied-' in the 1pl where the plain stem 'sed-' is required",
+      "misconception_id": "stem_change.dittongo_over_extension",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "morire",
+      "correct_form": "muoio",
+      "cell": "present_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "morio",
+        "moio"
+      ],
+      "rule_misapplied": "failed to diphthongise o->uo in the stressed singular (muoio)",
+      "misconception_id": "stem_change.dittongo_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "morire",
+      "correct_form": "muoiono",
+      "cell": "present_3pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "moriono",
+        "moiono"
+      ],
+      "rule_misapplied": "failed to diphthongise the stressed 3pl (muoiono)",
+      "misconception_id": "stem_change.dittongo_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": false
+    },
+    {
+      "lemma": "venire",
+      "correct_form": "vengo",
+      "cell": "present_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "veno",
+        "venio"
+      ],
+      "rule_misapplied": "failed to insert the -g- of the 1sg (vengo)",
+      "misconception_id": "stem_change.g_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "venire",
+      "correct_form": "veniamo",
+      "cell": "present_1pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "vengiamo",
+        "vengamo"
+      ],
+      "rule_misapplied": "carried the inserted -g- into the 1pl, which uses the plain stem 'ven-' (veniamo)",
+      "misconception_id": "stem_change.g_over_extension",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "venire",
+      "correct_form": "vengono",
+      "cell": "present_3pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "venono"
+      ],
+      "rule_misapplied": "failed to insert the -g- of the 3pl (vengono)",
+      "misconception_id": "stem_change.g_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "tenere",
+      "correct_form": "tengo",
+      "cell": "present_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "teno",
+        "tenio"
+      ],
+      "rule_misapplied": "failed to insert the -g- of the 1sg (tengo)",
+      "misconception_id": "stem_change.g_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "rimanere",
+      "correct_form": "rimango",
+      "cell": "present_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "rimano",
+        "rimanio"
+      ],
+      "rule_misapplied": "failed to insert the -g- of the 1sg (rimango)",
+      "misconception_id": "stem_change.g_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "salire",
+      "correct_form": "salgo",
+      "cell": "present_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "salo",
+        "salio"
+      ],
+      "rule_misapplied": "failed to insert the -g- of the 1sg (salgo)",
+      "misconception_id": "stem_change.g_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": false
+    },
+    {
+      "lemma": "salire",
+      "correct_form": "salgono",
+      "cell": "present_3pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "saliscono",
+        "salono"
+      ],
+      "rule_misapplied": "inserted the -isc- infix (saliscono) into a -g- verb that never takes it",
+      "misconception_id": "stem_change.isc_over_extension",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "dovere",
+      "correct_form": "devo",
+      "cell": "present_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "dovo"
+      ],
+      "rule_misapplied": "failed to apply the stressed-stem change (devo) and used the infinitive stem",
+      "misconception_id": "stem_change.dittongo_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": false
+    },
+    {
+      "lemma": "potere",
+      "correct_form": "posso",
+      "cell": "present_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "poto"
+      ],
+      "rule_misapplied": "regularised potere (pot+o) instead of the irregular 'posso'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": false
+    },
+    {
+      "lemma": "volere",
+      "correct_form": "voglio",
+      "cell": "present_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "volio",
+        "volgo"
+      ],
+      "rule_misapplied": "regularised volere on the plain stem instead of the palatalised 'voglio'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": false
+    },
+    {
+      "lemma": "finire",
+      "correct_form": "finisco",
+      "cell": "present_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "fino"
+      ],
+      "rule_misapplied": "failed to insert the -isc- infix in the singular (finisco)",
+      "misconception_id": "stem_change.isc_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": false
+    },
+    {
+      "lemma": "finire",
+      "correct_form": "finiamo",
+      "cell": "present_1pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "finisciamo"
+      ],
+      "rule_misapplied": "inserted -isc- into the 1pl, which never takes it (finiamo)",
+      "misconception_id": "stem_change.isc_over_extension",
+      "misconception_status": "confirmed",
+      "corpus_attested": false
+    },
+    {
+      "lemma": "capire",
+      "correct_form": "capisco",
+      "cell": "present_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "capo"
+      ],
+      "rule_misapplied": "failed to insert the -isc- infix in the singular (capisco)",
+      "misconception_id": "stem_change.isc_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": false
+    },
+    {
+      "lemma": "prendere",
+      "correct_form": "presi",
+      "cell": "passato_remoto_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "prendei",
+        "prendetti"
+      ],
+      "rule_misapplied": "gave the strong (rhizotonic) verb the regular weak endings -ei/-etti instead of the strong 'presi'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "prendere",
+      "correct_form": "prendesti",
+      "cell": "passato_remoto_2sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "presesti"
+      ],
+      "rule_misapplied": "carried the strong stem 'pres-' into the 2sg, which takes the regular weak stem (prendesti)",
+      "misconception_id": "stem_change.passato_remoto_strong_over_extension",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "prendere",
+      "correct_form": "presero",
+      "cell": "passato_remoto_3pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "prenderono",
+        "prendettero"
+      ],
+      "rule_misapplied": "gave the strong verb regular weak 3pl endings instead of 'presero'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "scrivere",
+      "correct_form": "scrissi",
+      "cell": "passato_remoto_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "scrivei",
+        "scrivetti"
+      ],
+      "rule_misapplied": "regular weak endings on scrivere instead of the strong 'scrissi'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "scrivere",
+      "correct_form": "scrisse",
+      "cell": "passato_remoto_3sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "scrivé",
+        "scrivette"
+      ],
+      "rule_misapplied": "regular weak 3sg (-é/-ette) instead of the strong 'scrisse'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "vedere",
+      "correct_form": "vidi",
+      "cell": "passato_remoto_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "vedei",
+        "vedetti"
+      ],
+      "rule_misapplied": "regular weak endings instead of the strong 'vidi'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "vedere",
+      "correct_form": "videro",
+      "cell": "passato_remoto_3pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "vederono",
+        "vedettero"
+      ],
+      "rule_misapplied": "regular weak 3pl instead of the strong 'videro'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "mettere",
+      "correct_form": "mise",
+      "cell": "passato_remoto_3sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "mettè",
+        "mettette"
+      ],
+      "rule_misapplied": "regular weak 3sg instead of the strong 'mise'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "mettere",
+      "correct_form": "mettemmo",
+      "cell": "passato_remoto_1pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "misemmo"
+      ],
+      "rule_misapplied": "carried the strong stem 'mis-' into the 1pl, which takes the regular stem (mettemmo)",
+      "misconception_id": "stem_change.passato_remoto_strong_over_extension",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "chiedere",
+      "correct_form": "chiesi",
+      "cell": "passato_remoto_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "chiedei",
+        "chiedetti"
+      ],
+      "rule_misapplied": "regular weak endings instead of the strong 'chiesi'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "leggere",
+      "correct_form": "lesse",
+      "cell": "passato_remoto_3sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "leggé",
+        "leggette"
+      ],
+      "rule_misapplied": "regular weak 3sg instead of the strong 'lesse'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "vivere",
+      "correct_form": "vissero",
+      "cell": "passato_remoto_3pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "viverono",
+        "vivettero"
+      ],
+      "rule_misapplied": "regular weak 3pl instead of the strong 'vissero'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "fare",
+      "correct_form": "feci",
+      "cell": "passato_remoto_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "facei",
+        "facetti"
+      ],
+      "rule_misapplied": "regular weak endings on 'fac-' instead of the strong 'feci'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "dire",
+      "correct_form": "disse",
+      "cell": "passato_remoto_3sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "dicé",
+        "dicette"
+      ],
+      "rule_misapplied": "regular weak 3sg on 'dic-' instead of the strong 'disse'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "essere",
+      "correct_form": "fui",
+      "cell": "passato_remoto_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "essei"
+      ],
+      "rule_misapplied": "tried to build a regular passato remoto on 'esse-' instead of the suppletive 'fui'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "avere",
+      "correct_form": "ebbi",
+      "cell": "passato_remoto_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "avei",
+        "avetti"
+      ],
+      "rule_misapplied": "regular weak endings on 'av-' instead of the strong 'ebbi'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "avere",
+      "correct_form": "ebbe",
+      "cell": "passato_remoto_3sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "avé",
+        "avette"
+      ],
+      "rule_misapplied": "regular weak 3sg instead of the strong 'ebbe'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "venire",
+      "correct_form": "venne",
+      "cell": "passato_remoto_3sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "venì",
+        "venette"
+      ],
+      "rule_misapplied": "treated venire as a regular -ire verb (venì) or gave weak endings, instead of the strong 'venne'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "stare",
+      "correct_form": "stetti",
+      "cell": "passato_remoto_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "stai",
+        "stei"
+      ],
+      "rule_misapplied": "regularised the passato remoto of stare instead of the irregular 'stetti'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": false
+    },
+    {
+      "lemma": "avere",
+      "correct_form": "avrò",
+      "cell": "future_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "averò"
+      ],
+      "rule_misapplied": "kept the theme vowel instead of syncopating the future stem (avr-)",
+      "misconception_id": "stem_change.future_syncope_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "andare",
+      "correct_form": "andrà",
+      "cell": "future_3sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "anderà"
+      ],
+      "rule_misapplied": "kept the -a- theme vowel instead of syncopating to 'andr-'",
+      "misconception_id": "stem_change.future_syncope_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "dovere",
+      "correct_form": "dovremo",
+      "cell": "future_1pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "doveremo"
+      ],
+      "rule_misapplied": "kept the theme vowel instead of syncopating to 'dovr-'",
+      "misconception_id": "stem_change.future_syncope_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "potere",
+      "correct_form": "potranno",
+      "cell": "future_3pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "poteranno"
+      ],
+      "rule_misapplied": "kept the theme vowel instead of syncopating to 'potr-'",
+      "misconception_id": "stem_change.future_syncope_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "sapere",
+      "correct_form": "saprai",
+      "cell": "future_2sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "saperai"
+      ],
+      "rule_misapplied": "kept the theme vowel instead of syncopating to 'sapr-'",
+      "misconception_id": "stem_change.future_syncope_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "vedere",
+      "correct_form": "vedrò",
+      "cell": "future_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "vederò"
+      ],
+      "rule_misapplied": "kept the theme vowel instead of syncopating to 'vedr-'",
+      "misconception_id": "stem_change.future_syncope_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "vivere",
+      "correct_form": "vivranno",
+      "cell": "future_3pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "viveranno"
+      ],
+      "rule_misapplied": "kept the theme vowel instead of syncopating to 'vivr-'",
+      "misconception_id": "stem_change.future_syncope_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "cadere",
+      "correct_form": "cadrai",
+      "cell": "future_2sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "caderai"
+      ],
+      "rule_misapplied": "kept the theme vowel instead of syncopating to 'cadr-'",
+      "misconception_id": "stem_change.future_syncope_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "volere",
+      "correct_form": "vorrò",
+      "cell": "future_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "volerò",
+        "vorò"
+      ],
+      "rule_misapplied": "failed to syncope+assimilate to the double-r stem 'vorr-' (volerò), or simplified the geminate (vorò)",
+      "misconception_id": "stem_change.future_syncope_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": true,
+      "collisions": [
+        {
+          "form": "vorò",
+          "valid_as": "the -rr- simplified: gemination.geminate_simplified, a distinct error"
+        }
+      ]
+    },
+    {
+      "lemma": "venire",
+      "correct_form": "verrà",
+      "cell": "future_3sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "venirà",
+        "verà"
+      ],
+      "rule_misapplied": "kept the full stem (venirà) or simplified the geminate (verà) instead of 'verrà'",
+      "misconception_id": "stem_change.future_syncope_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": true,
+      "collisions": [
+        {
+          "form": "verà",
+          "valid_as": "the -rr- simplified: gemination.geminate_simplified"
+        }
+      ]
+    },
+    {
+      "lemma": "tenere",
+      "correct_form": "terrai",
+      "cell": "future_2sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "tenerai",
+        "terai"
+      ],
+      "rule_misapplied": "kept the full stem or simplified the geminate instead of 'terrai'",
+      "misconception_id": "stem_change.future_syncope_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "rimanere",
+      "correct_form": "rimarremo",
+      "cell": "future_1pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "rimaneremo",
+        "rimaremo"
+      ],
+      "rule_misapplied": "kept the full stem or simplified the geminate instead of 'rimarremo'",
+      "misconception_id": "stem_change.future_syncope_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "bere",
+      "correct_form": "berranno",
+      "cell": "future_3pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "beveranno",
+        "beranno"
+      ],
+      "rule_misapplied": "used the -ere stem (beveranno) or simplified the geminate instead of 'berranno'",
+      "misconception_id": "stem_change.future_syncope_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "fare",
+      "correct_form": "farò",
+      "cell": "future_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "ferò"
+      ],
+      "rule_misapplied": "shifted the -ar- to -er- (ferò); dare/stare/fare keep -ar- in the future",
+      "misconception_id": "stem_change.future_are_to_e",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "dare",
+      "correct_form": "darà",
+      "cell": "future_3sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "derà"
+      ],
+      "rule_misapplied": "shifted -ar- to -er- (derà); dare keeps -ar-",
+      "misconception_id": "stem_change.future_are_to_e",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "stare",
+      "correct_form": "staremo",
+      "cell": "future_1pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "steremo"
+      ],
+      "rule_misapplied": "shifted -ar- to -er- (steremo); stare keeps -ar-",
+      "misconception_id": "stem_change.future_are_to_e",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "essere",
+      "correct_form": "sarò",
+      "cell": "future_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "esserò"
+      ],
+      "rule_misapplied": "built the future on the infinitive stem (esser-) instead of the suppletive 'sar-'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "essere",
+      "correct_form": "saranno",
+      "cell": "future_3pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "esseranno"
+      ],
+      "rule_misapplied": "built the future on 'esser-' instead of 'sar-'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "avere",
+      "correct_form": "avrei",
+      "cell": "conditional_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "averei"
+      ],
+      "rule_misapplied": "kept the theme vowel instead of the syncopated stem (avr-)",
+      "misconception_id": "stem_change.future_syncope_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "potere",
+      "correct_form": "potrei",
+      "cell": "conditional_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "poterei"
+      ],
+      "rule_misapplied": "kept the theme vowel instead of syncopating (potr-)",
+      "misconception_id": "stem_change.future_syncope_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "dovere",
+      "correct_form": "dovrebbe",
+      "cell": "conditional_3sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "doverebbe"
+      ],
+      "rule_misapplied": "kept the theme vowel instead of syncopating (dovr-)",
+      "misconception_id": "stem_change.future_syncope_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "sapere",
+      "correct_form": "saprei",
+      "cell": "conditional_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "saperei"
+      ],
+      "rule_misapplied": "kept the theme vowel instead of syncopating (sapr-)",
+      "misconception_id": "stem_change.future_syncope_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "vedere",
+      "correct_form": "vedrebbero",
+      "cell": "conditional_3pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "vederebbero"
+      ],
+      "rule_misapplied": "kept the theme vowel instead of syncopating (vedr-)",
+      "misconception_id": "stem_change.future_syncope_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "andare",
+      "correct_form": "andremmo",
+      "cell": "conditional_1pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "anderemmo",
+        "andremo"
+      ],
+      "rule_misapplied": "kept the theme vowel (anderemmo); or wrote the future single-m 'andremo' for the conditional double-m 'andremmo'",
+      "misconception_id": "stem_change.future_syncope_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": true,
+      "collisions": [
+        {
+          "form": "andremo",
+          "valid_as": "the future 1pl 'andremo' (real form): paradigm_confusion.future_for_conditional_1pl"
+        }
+      ]
+    },
+    {
+      "lemma": "volere",
+      "correct_form": "vorrei",
+      "cell": "conditional_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "volerei",
+        "vorei"
+      ],
+      "rule_misapplied": "used the full stem (volerei) or simplified the geminate (vorei) instead of 'vorrei'",
+      "misconception_id": "stem_change.future_syncope_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "venire",
+      "correct_form": "verremmo",
+      "cell": "conditional_1pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "veniremmo",
+        "veremmo"
+      ],
+      "rule_misapplied": "used the full stem or simplified the geminate instead of 'verremmo'",
+      "misconception_id": "stem_change.future_syncope_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "tenere",
+      "correct_form": "terrebbe",
+      "cell": "conditional_3sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "tenerebbe",
+        "terebbe"
+      ],
+      "rule_misapplied": "used the full stem or simplified the geminate instead of 'terrebbe'",
+      "misconception_id": "stem_change.future_syncope_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "rimanere",
+      "correct_form": "rimarrei",
+      "cell": "conditional_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "rimanerei",
+        "rimarei"
+      ],
+      "rule_misapplied": "used the full stem or simplified the geminate instead of 'rimarrei'",
+      "misconception_id": "stem_change.future_syncope_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "bere",
+      "correct_form": "berrebbero",
+      "cell": "conditional_3pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "beverebbero",
+        "berebbero"
+      ],
+      "rule_misapplied": "used the -ere stem or simplified the geminate instead of 'berrebbero'",
+      "misconception_id": "stem_change.future_syncope_under_application",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "fare",
+      "correct_form": "farei",
+      "cell": "conditional_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "ferei"
+      ],
+      "rule_misapplied": "shifted -ar- to -er- (ferei); fare keeps -ar-",
+      "misconception_id": "stem_change.future_are_to_e",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "dare",
+      "correct_form": "darebbe",
+      "cell": "conditional_3sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "derebbe"
+      ],
+      "rule_misapplied": "shifted -ar- to -er- (derebbe); dare keeps -ar-",
+      "misconception_id": "stem_change.future_are_to_e",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "stare",
+      "correct_form": "staremmo",
+      "cell": "conditional_1pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "steremmo",
+        "staremo"
+      ],
+      "rule_misapplied": "shifted -ar- to -er- (steremmo); or used the future single-m 'staremo'",
+      "misconception_id": "stem_change.future_are_to_e",
+      "misconception_status": "confirmed",
+      "corpus_attested": true,
+      "collisions": [
+        {
+          "form": "staremo",
+          "valid_as": "the future 1pl 'staremo': paradigm_confusion.future_for_conditional_1pl"
+        }
+      ]
+    },
+    {
+      "lemma": "essere",
+      "correct_form": "sarei",
+      "cell": "conditional_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "esserei"
+      ],
+      "rule_misapplied": "built the conditional on 'esser-' instead of the suppletive 'sar-'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "essere",
+      "correct_form": "sarebbe",
+      "cell": "conditional_3sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "esserebbe"
+      ],
+      "rule_misapplied": "built the conditional on 'esser-' instead of 'sar-'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "venire",
+      "correct_form": "venga",
+      "cell": "subjunctive_present_3sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "venghi",
+        "vena"
+      ],
+      "rule_misapplied": "regularised the subjunctive with an analogical -ghi/-a ending instead of the 1sg-based 'venga'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "andare",
+      "correct_form": "vada",
+      "cell": "subjunctive_present_3sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "vadi",
+        "ada"
+      ],
+      "rule_misapplied": "regularised the subjunctive (vadi) instead of the suppletive 'vada'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "fare",
+      "correct_form": "faccia",
+      "cell": "subjunctive_present_3sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "facci"
+      ],
+      "rule_misapplied": "regularised the subjunctive (facci) instead of 'faccia'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "potere",
+      "correct_form": "possa",
+      "cell": "subjunctive_present_3sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "possi"
+      ],
+      "rule_misapplied": "regularised the subjunctive (possi) instead of 'possa'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "volere",
+      "correct_form": "voglia",
+      "cell": "subjunctive_present_3sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "vogli",
+        "voglii"
+      ],
+      "rule_misapplied": "regularised the subjunctive (vogli) instead of 'voglia'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "uscire",
+      "correct_form": "esca",
+      "cell": "subjunctive_present_3sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "eschi",
+        "usca"
+      ],
+      "rule_misapplied": "regularised the subjunctive (eschi) or failed the dittongo (usca) instead of 'esca'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "tenere",
+      "correct_form": "tenga",
+      "cell": "subjunctive_present_3sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "tenghi"
+      ],
+      "rule_misapplied": "regularised the subjunctive (tenghi) instead of 'tenga'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "avere",
+      "correct_form": "abbia",
+      "cell": "subjunctive_present_3sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "abbi",
+        "abia"
+      ],
+      "rule_misapplied": "regularised/shortened the subjunctive (abbi) instead of 'abbia'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "essere",
+      "correct_form": "sia",
+      "cell": "subjunctive_present_3sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "sii"
+      ],
+      "rule_misapplied": "used the imperative-like 'sii' instead of the subjunctive 'sia'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "sapere",
+      "correct_form": "sappia",
+      "cell": "subjunctive_present_3sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "sappi",
+        "sapia"
+      ],
+      "rule_misapplied": "regularised/shortened the subjunctive (sappi) instead of 'sappia'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "dare",
+      "correct_form": "dia",
+      "cell": "subjunctive_present_3sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "dii",
+        "dea"
+      ],
+      "rule_misapplied": "regularised the subjunctive (dii/dea) instead of 'dia'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "stare",
+      "correct_form": "stia",
+      "cell": "subjunctive_present_3sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "stii",
+        "stea"
+      ],
+      "rule_misapplied": "regularised the subjunctive (stii/stea) instead of 'stia'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "andare",
+      "correct_form": "vadano",
+      "cell": "subjunctive_present_3pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "vadino",
+        "vadono"
+      ],
+      "rule_misapplied": "regularised the 3pl subjunctive (vadino) instead of 'vadano'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "venire",
+      "correct_form": "vengano",
+      "cell": "subjunctive_present_3pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "venghino",
+        "vengono"
+      ],
+      "rule_misapplied": "regularised the 3pl subjunctive (venghino) instead of 'vengano'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "avere",
+      "correct_form": "abbiano",
+      "cell": "subjunctive_present_3pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "abbino",
+        "abiano"
+      ],
+      "rule_misapplied": "regularised the 3pl subjunctive (abbino) instead of 'abbiano'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "essere",
+      "correct_form": "siano",
+      "cell": "subjunctive_present_3pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "siino",
+        "sieno"
+      ],
+      "rule_misapplied": "regularised the 3pl subjunctive (siino) instead of 'siano'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "essere",
+      "correct_form": "fosse",
+      "cell": "subjunctive_imperfect_3sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "essesse"
+      ],
+      "rule_misapplied": "tried to build a regular -ere imperfect subjunctive on 'esse-' instead of the suppletive 'fosse'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": false
+    },
+    {
+      "lemma": "fare",
+      "correct_form": "facesse",
+      "cell": "subjunctive_imperfect_3sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "fasse"
+      ],
+      "rule_misapplied": "built the imperfect subjunctive on the short stem 'fa-' (fasse) instead of the expanded 'fac-' (facesse)",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "dare",
+      "correct_form": "desse",
+      "cell": "subjunctive_imperfect_3sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "dasse"
+      ],
+      "rule_misapplied": "built the imperfect subjunctive as if regular -are (dasse) instead of 'desse'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "stare",
+      "correct_form": "stesse",
+      "cell": "subjunctive_imperfect_3sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "stasse"
+      ],
+      "rule_misapplied": "built the imperfect subjunctive as if regular -are (stasse) instead of 'stesse'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "bere",
+      "correct_form": "bevesse",
+      "cell": "subjunctive_imperfect_3sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "besse"
+      ],
+      "rule_misapplied": "built the imperfect subjunctive on the short stem 'be-' (besse) instead of 'bev-' (bevesse)",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "fare",
+      "correct_form": "facendo",
+      "cell": "gerund",
+      "category": "verb_conjugation",
+      "distractors": [
+        "farendo",
+        "faciendo"
+      ],
+      "rule_misapplied": "built the gerund on the infinitive/short stem (farendo) instead of the expanded 'fac-' (facendo)",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "dire",
+      "correct_form": "dicendo",
+      "cell": "gerund",
+      "category": "verb_conjugation",
+      "distractors": [
+        "direndo",
+        "diciendo"
+      ],
+      "rule_misapplied": "built the gerund on 'dir-' (direndo) instead of the expanded 'dic-' (dicendo)",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "bere",
+      "correct_form": "bevendo",
+      "cell": "gerund",
+      "category": "verb_conjugation",
+      "distractors": [
+        "berendo",
+        "biendo"
+      ],
+      "rule_misapplied": "built the gerund on the short stem (berendo) instead of 'bev-' (bevendo)",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "porre",
+      "correct_form": "ponendo",
+      "cell": "gerund",
+      "category": "verb_conjugation",
+      "distractors": [
+        "porrendo",
+        "poniendo"
+      ],
+      "rule_misapplied": "built the gerund on the infinitive 'porr-' (porrendo) instead of the Latin stem 'pon-' (ponendo)",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "tradurre",
+      "correct_form": "traducendo",
+      "cell": "gerund",
+      "category": "verb_conjugation",
+      "distractors": [
+        "tradurrendo",
+        "traduciendo"
+      ],
+      "rule_misapplied": "built the gerund on 'tradurr-' instead of the Latin stem 'traduc-' (traducendo)",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "essere",
+      "correct_form": "ero",
+      "cell": "imperfect_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "essevo"
+      ],
+      "rule_misapplied": "built a regular -ere imperfect on 'esse-' (essevo) instead of the suppletive 'ero'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "essere",
+      "correct_form": "era",
+      "cell": "imperfect_3sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "esseva"
+      ],
+      "rule_misapplied": "built a regular imperfect on 'esse-' (esseva) instead of 'era'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "essere",
+      "correct_form": "erano",
+      "cell": "imperfect_3pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "essevano"
+      ],
+      "rule_misapplied": "built a regular imperfect on 'esse-' (essevano) instead of 'erano'",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "fare",
+      "correct_form": "facevo",
+      "cell": "imperfect_1sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "favo",
+        "faevo"
+      ],
+      "rule_misapplied": "built the imperfect on the short stem 'fa-' (favo) instead of the expanded 'fac-' (facevo)",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "fare",
+      "correct_form": "facevano",
+      "cell": "imperfect_3pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "favano"
+      ],
+      "rule_misapplied": "built the imperfect on 'fa-' (favano) instead of 'fac-' (facevano)",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "dire",
+      "correct_form": "diceva",
+      "cell": "imperfect_3sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "diva",
+        "dieva"
+      ],
+      "rule_misapplied": "built the imperfect on 'di-' (diva) instead of the expanded 'dic-' (diceva)",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "dire",
+      "correct_form": "dicevano",
+      "cell": "imperfect_3pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "divano"
+      ],
+      "rule_misapplied": "built the imperfect on 'di-' (divano) instead of 'dic-' (dicevano)",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "porre",
+      "correct_form": "poneva",
+      "cell": "imperfect_3sg",
+      "category": "verb_conjugation",
+      "distractors": [
+        "porreva",
+        "porva"
+      ],
+      "rule_misapplied": "built the imperfect on the infinitive 'porr-' (porreva) instead of 'pon-' (poneva)",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "tradurre",
+      "correct_form": "traducevamo",
+      "cell": "imperfect_1pl",
+      "category": "verb_conjugation",
+      "distractors": [
+        "tradurrevamo",
+        "tradurevamo"
+      ],
+      "rule_misapplied": "built the imperfect on 'tradurr-' instead of the Latin stem 'traduc-' (traducevamo)",
+      "misconception_id": "regularisation.irregular_verb",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "fare",
+      "correct_form": "fatto",
+      "cell": "past_participle",
+      "category": "past_participle",
+      "distractors": [
+        "fato",
+        "facuto",
+        "fatuto"
+      ],
+      "rule_misapplied": "formed the past participle with the regular -ato/-uto/-ito rule instead of the irregular 'fatto'",
+      "misconception_id": "regularisation.irregular_participle",
+      "misconception_status": "confirmed",
+      "corpus_attested": true,
+      "collisions": [
+        {
+          "form": "fato",
+          "valid_as": "noun 'fato' (fate/destiny)"
+        }
+      ]
+    },
+    {
+      "lemma": "dire",
+      "correct_form": "detto",
+      "cell": "past_participle",
+      "category": "past_participle",
+      "distractors": [
+        "dito",
+        "dicuto",
+        "diciuto"
+      ],
+      "rule_misapplied": "formed the past participle with the regular -ato/-uto/-ito rule instead of the irregular 'detto'",
+      "misconception_id": "regularisation.irregular_participle",
+      "misconception_status": "confirmed",
+      "corpus_attested": true,
+      "collisions": [
+        {
+          "form": "dito",
+          "valid_as": "noun 'dito' (finger)"
+        }
+      ]
+    },
+    {
+      "lemma": "prendere",
+      "correct_form": "preso",
+      "cell": "past_participle",
+      "category": "past_participle",
+      "distractors": [
+        "prenduto",
+        "prendito"
+      ],
+      "rule_misapplied": "formed the past participle with the regular -ato/-uto/-ito rule instead of the irregular 'preso'",
+      "misconception_id": "regularisation.irregular_participle",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "mettere",
+      "correct_form": "messo",
+      "cell": "past_participle",
+      "category": "past_participle",
+      "distractors": [
+        "mettuto",
+        "metteso",
+        "mettito"
+      ],
+      "rule_misapplied": "formed the past participle with the regular -ato/-uto/-ito rule instead of the irregular 'messo'",
+      "misconception_id": "regularisation.irregular_participle",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "aprire",
+      "correct_form": "aperto",
+      "cell": "past_participle",
+      "category": "past_participle",
+      "distractors": [
+        "aprito",
+        "apruto"
+      ],
+      "rule_misapplied": "formed the past participle with the regular -ato/-uto/-ito rule instead of the irregular 'aperto'",
+      "misconception_id": "regularisation.irregular_participle",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "scrivere",
+      "correct_form": "scritto",
+      "cell": "past_participle",
+      "category": "past_participle",
+      "distractors": [
+        "scrivuto",
+        "scriveto",
+        "scrivito"
+      ],
+      "rule_misapplied": "formed the past participle with the regular -ato/-uto/-ito rule instead of the irregular 'scritto'",
+      "misconception_id": "regularisation.irregular_participle",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "leggere",
+      "correct_form": "letto",
+      "cell": "past_participle",
+      "category": "past_participle",
+      "distractors": [
+        "leggiuto",
+        "legguto",
+        "leggito"
+      ],
+      "rule_misapplied": "formed the past participle with the regular -ato/-uto/-ito rule instead of the irregular 'letto'",
+      "misconception_id": "regularisation.irregular_participle",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "vedere",
+      "correct_form": "visto",
+      "cell": "past_participle",
+      "category": "past_participle",
+      "distractors": [
+        "vedito",
+        "viduto"
+      ],
+      "rule_misapplied": "formed the past participle with the regular -ato/-uto/-ito rule instead of the irregular 'visto'",
+      "misconception_id": "regularisation.irregular_participle",
+      "misconception_status": "confirmed",
+      "corpus_attested": true,
+      "collisions": [
+        {
+          "form": "veduto",
+          "valid_as": "'veduto' is a VALID alternative participle of vedere - do NOT use as a distractor"
+        }
+      ]
+    },
+    {
+      "lemma": "venire",
+      "correct_form": "venuto",
+      "cell": "past_participle",
+      "category": "past_participle",
+      "distractors": [
+        "venito"
+      ],
+      "rule_misapplied": "applied the regular -ire rule (venito) instead of the irregular but -uto participle 'venuto'",
+      "misconception_id": "regularisation.irregular_participle",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "rimanere",
+      "correct_form": "rimasto",
+      "cell": "past_participle",
+      "category": "past_participle",
+      "distractors": [
+        "rimanuto",
+        "rimasuto",
+        "rimanito"
+      ],
+      "rule_misapplied": "formed the past participle with the regular -ato/-uto/-ito rule instead of the irregular 'rimasto'",
+      "misconception_id": "regularisation.irregular_participle",
+      "misconception_status": "confirmed",
+      "corpus_attested": false
+    },
+    {
+      "lemma": "chiudere",
+      "correct_form": "chiuso",
+      "cell": "past_participle",
+      "category": "past_participle",
+      "distractors": [
+        "chiuduto",
+        "chiudito"
+      ],
+      "rule_misapplied": "formed the past participle with the regular -ato/-uto/-ito rule instead of the irregular 'chiuso'",
+      "misconception_id": "regularisation.irregular_participle",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "nascere",
+      "correct_form": "nato",
+      "cell": "past_participle",
+      "category": "past_participle",
+      "distractors": [
+        "nasciuto",
+        "nascuto",
+        "nascito"
+      ],
+      "rule_misapplied": "formed the past participle with the regular -ato/-uto/-ito rule instead of the irregular 'nato'",
+      "misconception_id": "regularisation.irregular_participle",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "morire",
+      "correct_form": "morto",
+      "cell": "past_participle",
+      "category": "past_participle",
+      "distractors": [
+        "morito",
+        "moruto"
+      ],
+      "rule_misapplied": "formed the past participle with the regular -ato/-uto/-ito rule instead of the irregular 'morto'",
+      "misconception_id": "regularisation.irregular_participle",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "essere",
+      "correct_form": "stato",
+      "cell": "past_participle",
+      "category": "past_participle",
+      "distractors": [
+        "essuto",
+        "esso",
+        "essito"
+      ],
+      "rule_misapplied": "formed the past participle with the regular -ato/-uto/-ito rule instead of the irregular 'stato'",
+      "misconception_id": "regularisation.irregular_participle",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "bere",
+      "correct_form": "bevuto",
+      "cell": "past_participle",
+      "category": "past_participle",
+      "distractors": [
+        "beuto",
+        "bevato"
+      ],
+      "rule_misapplied": "built the participle on the short stem 'be-' (beuto) instead of the expanded 'bevuto'",
+      "misconception_id": "regularisation.irregular_participle",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "chiedere",
+      "correct_form": "chiesto",
+      "cell": "past_participle",
+      "category": "past_participle",
+      "distractors": [
+        "chieduto",
+        "chiedito"
+      ],
+      "rule_misapplied": "formed the past participle with the regular -ato/-uto/-ito rule instead of the irregular 'chiesto'",
+      "misconception_id": "regularisation.irregular_participle",
+      "misconception_status": "confirmed",
+      "corpus_attested": false
+    },
+    {
+      "lemma": "rispondere",
+      "correct_form": "risposto",
+      "cell": "past_participle",
+      "category": "past_participle",
+      "distractors": [
+        "risponduto",
+        "rispondito"
+      ],
+      "rule_misapplied": "formed the past participle with the regular -ato/-uto/-ito rule instead of the irregular 'risposto'",
+      "misconception_id": "regularisation.irregular_participle",
+      "misconception_status": "confirmed",
+      "corpus_attested": false
+    },
+    {
+      "lemma": "rompere",
+      "correct_form": "rotto",
+      "cell": "past_participle",
+      "category": "past_participle",
+      "distractors": [
+        "romputo",
+        "rompito"
+      ],
+      "rule_misapplied": "formed the past participle with the regular -ato/-uto/-ito rule instead of the irregular 'rotto'",
+      "misconception_id": "regularisation.irregular_participle",
+      "misconception_status": "confirmed",
+      "corpus_attested": false
+    },
+    {
+      "lemma": "offrire",
+      "correct_form": "offerto",
+      "cell": "past_participle",
+      "category": "past_participle",
+      "distractors": [
+        "offrito"
+      ],
+      "rule_misapplied": "formed the past participle with the regular -ato/-uto/-ito rule instead of the irregular 'offerto'",
+      "misconception_id": "regularisation.irregular_participle",
+      "misconception_status": "confirmed",
+      "corpus_attested": false
+    },
+    {
+      "lemma": "perdere",
+      "correct_form": "perso",
+      "cell": "past_participle",
+      "category": "past_participle",
+      "distractors": [
+        "perdito"
+      ],
+      "rule_misapplied": "formed the past participle with the regular -ato/-uto/-ito rule instead of the irregular 'perso'",
+      "misconception_id": "regularisation.irregular_participle",
+      "misconception_status": "confirmed",
+      "corpus_attested": false,
+      "collisions": [
+        {
+          "form": "perduto",
+          "valid_as": "'perduto' is a VALID alternative participle of perdere"
+        }
+      ]
+    },
+    {
+      "lemma": "spendere",
+      "correct_form": "speso",
+      "cell": "past_participle",
+      "category": "past_participle",
+      "distractors": [
+        "spenduto",
+        "spendito"
+      ],
+      "rule_misapplied": "formed the past participle with the regular -ato/-uto/-ito rule instead of the irregular 'speso'",
+      "misconception_id": "regularisation.irregular_participle",
+      "misconception_status": "confirmed",
+      "corpus_attested": false
+    },
+    {
+      "lemma": "correre",
+      "correct_form": "corso",
+      "cell": "past_participle",
+      "category": "past_participle",
+      "distractors": [
+        "corruto",
+        "corrito"
+      ],
+      "rule_misapplied": "formed the past participle with the regular -ato/-uto/-ito rule instead of the irregular 'corso'",
+      "misconception_id": "regularisation.irregular_participle",
+      "misconception_status": "confirmed",
+      "corpus_attested": false
+    },
+    {
+      "lemma": "decidere",
+      "correct_form": "deciso",
+      "cell": "past_participle",
+      "category": "past_participle",
+      "distractors": [
+        "deciduto",
+        "decidito"
+      ],
+      "rule_misapplied": "formed the past participle with the regular -ato/-uto/-ito rule instead of the irregular 'deciso'",
+      "misconception_id": "regularisation.irregular_participle",
+      "misconception_status": "confirmed",
+      "corpus_attested": false
+    },
+    {
+      "lemma": "muovere",
+      "correct_form": "mosso",
+      "cell": "past_participle",
+      "category": "past_participle",
+      "distractors": [
+        "muovuto",
+        "movuto"
+      ],
+      "rule_misapplied": "formed the past participle with the regular -ato/-uto/-ito rule instead of the irregular 'mosso'",
+      "misconception_id": "regularisation.irregular_participle",
+      "misconception_status": "confirmed",
+      "corpus_attested": false
+    },
+    {
+      "lemma": "scegliere",
+      "correct_form": "scelto",
+      "cell": "past_participle",
+      "category": "past_participle",
+      "distractors": [
+        "scegliuto",
+        "sceglito"
+      ],
+      "rule_misapplied": "formed the past participle with the regular -ato/-uto/-ito rule instead of the irregular 'scelto'",
+      "misconception_id": "regularisation.irregular_participle",
+      "misconception_status": "confirmed",
+      "corpus_attested": false
+    },
+    {
+      "lemma": "togliere",
+      "correct_form": "tolto",
+      "cell": "past_participle",
+      "category": "past_participle",
+      "distractors": [
+        "toglieto",
+        "togliuto"
+      ],
+      "rule_misapplied": "formed the past participle with the regular -ato/-uto/-ito rule instead of the irregular 'tolto'",
+      "misconception_id": "regularisation.irregular_participle",
+      "misconception_status": "confirmed",
+      "corpus_attested": false
+    },
+    {
+      "lemma": "spegnere",
+      "correct_form": "spento",
+      "cell": "past_participle",
+      "category": "past_participle",
+      "distractors": [
+        "spegnuto",
+        "spegnito"
+      ],
+      "rule_misapplied": "formed the past participle with the regular -ato/-uto/-ito rule instead of the irregular 'spento'",
+      "misconception_id": "regularisation.irregular_participle",
+      "misconception_status": "confirmed",
+      "corpus_attested": false
+    },
+    {
+      "lemma": "vincere",
+      "correct_form": "vinto",
+      "cell": "past_participle",
+      "category": "past_participle",
+      "distractors": [
+        "vinciuto",
+        "vincuto"
+      ],
+      "rule_misapplied": "formed the past participle with the regular -ato/-uto/-ito rule instead of the irregular 'vinto'",
+      "misconception_id": "regularisation.irregular_participle",
+      "misconception_status": "confirmed",
+      "corpus_attested": false
+    },
+    {
+      "lemma": "vivere",
+      "correct_form": "vissuto",
+      "cell": "past_participle",
+      "category": "past_participle",
+      "distractors": [
+        "vivuto"
+      ],
+      "rule_misapplied": "built the participle regularly (vivuto) instead of the irregular 'vissuto'",
+      "misconception_id": "regularisation.irregular_participle",
+      "misconception_status": "confirmed",
+      "corpus_attested": false
+    },
+    {
+      "lemma": "tradurre",
+      "correct_form": "tradotto",
+      "cell": "past_participle",
+      "category": "past_participle",
+      "distractors": [
+        "traducuto",
+        "tradurruto"
+      ],
+      "rule_misapplied": "formed the past participle with the regular -ato/-uto/-ito rule instead of the irregular 'tradotto'",
+      "misconception_id": "regularisation.irregular_participle",
+      "misconception_status": "confirmed",
+      "corpus_attested": false
+    },
+    {
+      "lemma": "uovo",
+      "correct_form": "uova",
+      "cell": "plural",
+      "category": "noun_plural",
+      "distractors": [
+        "uovi"
+      ],
+      "rule_misapplied": "applied the regular masc -o->-i plural (uovi) instead of the irregular fem -a plural 'uova'",
+      "misconception_id": "regularisation.irregular_plural",
+      "misconception_status": "PROPOSED (not yet in registry)",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "braccio",
+      "correct_form": "braccia",
+      "cell": "plural",
+      "category": "noun_plural",
+      "distractors": [
+        "bracci"
+      ],
+      "rule_misapplied": "used the regular masc plural 'bracci' where the body-part sense takes the fem 'braccia'",
+      "misconception_id": "regularisation.irregular_plural",
+      "misconception_status": "PROPOSED (not yet in registry)",
+      "corpus_attested": true,
+      "collisions": [
+        {
+          "form": "bracci",
+          "valid_as": "'bracci' IS the correct plural for mechanical/river/cross arms - a different sense of braccio"
+        }
+      ]
+    },
+    {
+      "lemma": "braccio",
+      "correct_form": "bracci",
+      "cell": "plural_mechanical",
+      "category": "noun_plural",
+      "distractors": [
+        "braccia"
+      ],
+      "rule_misapplied": "used the body-part plural 'braccia' where the mechanical-arm sense takes 'bracci'",
+      "misconception_id": "regularisation.irregular_plural",
+      "misconception_status": "PROPOSED (not yet in registry)",
+      "corpus_attested": true,
+      "collisions": [
+        {
+          "form": "braccia",
+          "valid_as": "'braccia' IS the correct plural for the body-part sense - a different sense of braccio"
+        }
+      ]
+    },
+    {
+      "lemma": "dito",
+      "correct_form": "dita",
+      "cell": "plural",
+      "category": "noun_plural",
+      "distractors": [
+        "diti"
+      ],
+      "rule_misapplied": "applied the regular masc plural (diti) instead of the irregular fem 'dita'",
+      "misconception_id": "regularisation.irregular_plural",
+      "misconception_status": "PROPOSED (not yet in registry)",
+      "corpus_attested": true,
+      "collisions": [
+        {
+          "form": "diti",
+          "valid_as": "'diti' is marginally attested for fingers considered separately; standard collective is 'dita'"
+        }
+      ]
+    },
+    {
+      "lemma": "uomo",
+      "correct_form": "uomini",
+      "cell": "plural",
+      "category": "noun_plural",
+      "distractors": [
+        "uomi",
+        "omini"
+      ],
+      "rule_misapplied": "applied a regular plural (uomi) instead of the irregular 'uomini'",
+      "misconception_id": "regularisation.irregular_plural",
+      "misconception_status": "PROPOSED (not yet in registry)",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "paio",
+      "correct_form": "paia",
+      "cell": "plural",
+      "category": "noun_plural",
+      "distractors": [
+        "paii",
+        "pai"
+      ],
+      "rule_misapplied": "applied the regular -io plural (paii) instead of the irregular fem 'paia'",
+      "misconception_id": "regularisation.irregular_plural",
+      "misconception_status": "PROPOSED (not yet in registry)",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "corno",
+      "correct_form": "corna",
+      "cell": "plural",
+      "category": "noun_plural",
+      "distractors": [
+        "corni"
+      ],
+      "rule_misapplied": "used the regular masc plural 'corni' where the animal-horn sense takes 'corna'",
+      "misconception_id": "regularisation.irregular_plural",
+      "misconception_status": "PROPOSED (not yet in registry)",
+      "corpus_attested": false,
+      "collisions": [
+        {
+          "form": "corni",
+          "valid_as": "'corni' IS correct for musical horns/brass - a different sense of corno"
+        }
+      ]
+    },
+    {
+      "lemma": "osso",
+      "correct_form": "ossa",
+      "cell": "plural",
+      "category": "noun_plural",
+      "distractors": [
+        "ossi"
+      ],
+      "rule_misapplied": "used the regular masc plural 'ossi' where the body-bones sense takes 'ossa'",
+      "misconception_id": "regularisation.irregular_plural",
+      "misconception_status": "PROPOSED (not yet in registry)",
+      "corpus_attested": false,
+      "collisions": [
+        {
+          "form": "ossi",
+          "valid_as": "'ossi' IS correct for detached/animal bones (e.g. dog bones, fruit stones)"
+        }
+      ]
+    },
+    {
+      "lemma": "muro",
+      "correct_form": "mura",
+      "cell": "plural",
+      "category": "noun_plural",
+      "distractors": [
+        "muri"
+      ],
+      "rule_misapplied": "used the regular masc plural 'muri' where the city-walls sense takes 'mura'",
+      "misconception_id": "regularisation.irregular_plural",
+      "misconception_status": "PROPOSED (not yet in registry)",
+      "corpus_attested": false,
+      "collisions": [
+        {
+          "form": "muri",
+          "valid_as": "'muri' IS correct for walls generally (individual walls)"
+        }
+      ]
+    },
+    {
+      "lemma": "ginocchio",
+      "correct_form": "ginocchia",
+      "cell": "plural",
+      "category": "noun_plural",
+      "distractors": [
+        "ginocchi"
+      ],
+      "rule_misapplied": "used the regular plural 'ginocchi' where the paired body sense takes 'ginocchia'",
+      "misconception_id": "regularisation.irregular_plural",
+      "misconception_status": "PROPOSED (not yet in registry)",
+      "corpus_attested": false,
+      "collisions": [
+        {
+          "form": "ginocchi",
+          "valid_as": "'ginocchi' is an accepted alternative plural"
+        }
+      ]
+    },
+    {
+      "lemma": "lenzuolo",
+      "correct_form": "lenzuola",
+      "cell": "plural",
+      "category": "noun_plural",
+      "distractors": [
+        "lenzuoli"
+      ],
+      "rule_misapplied": "used the regular masc plural 'lenzuoli' where the set-of-sheets sense takes 'lenzuola'",
+      "misconception_id": "regularisation.irregular_plural",
+      "misconception_status": "PROPOSED (not yet in registry)",
+      "corpus_attested": false,
+      "collisions": [
+        {
+          "form": "lenzuoli",
+          "valid_as": "'lenzuoli' IS correct for individual sheets"
+        }
+      ]
+    },
+    {
+      "lemma": "ciglio",
+      "correct_form": "ciglia",
+      "cell": "plural",
+      "category": "noun_plural",
+      "distractors": [
+        "cigli"
+      ],
+      "rule_misapplied": "used the regular plural 'cigli' where the eyelash sense takes 'ciglia'",
+      "misconception_id": "regularisation.irregular_plural",
+      "misconception_status": "PROPOSED (not yet in registry)",
+      "corpus_attested": false,
+      "collisions": [
+        {
+          "form": "cigli",
+          "valid_as": "'cigli' IS correct for edges/verges (e.g. of a road)"
+        }
+      ]
+    },
+    {
+      "lemma": "labbro",
+      "correct_form": "labbra",
+      "cell": "plural",
+      "category": "noun_plural",
+      "distractors": [
+        "labbri"
+      ],
+      "rule_misapplied": "used the regular masc plural 'labbri' where the lip sense takes 'labbra'",
+      "misconception_id": "regularisation.irregular_plural",
+      "misconception_status": "PROPOSED (not yet in registry)",
+      "corpus_attested": false,
+      "collisions": [
+        {
+          "form": "labbri",
+          "valid_as": "'labbri' IS correct for rims/edges (e.g. of a wound or vessel)"
+        }
+      ]
+    },
+    {
+      "lemma": "membro",
+      "correct_form": "membra",
+      "cell": "plural",
+      "category": "noun_plural",
+      "distractors": [
+        "membri"
+      ],
+      "rule_misapplied": "used the regular masc plural 'membri' where the body-limbs sense takes 'membra'",
+      "misconception_id": "regularisation.irregular_plural",
+      "misconception_status": "PROPOSED (not yet in registry)",
+      "corpus_attested": false,
+      "collisions": [
+        {
+          "form": "membri",
+          "valid_as": "'membri' IS correct for members of a group"
+        }
+      ]
+    },
+    {
+      "lemma": "città",
+      "correct_form": "città",
+      "cell": "plural",
+      "category": "noun_plural",
+      "distractors": [
+        "cittadi",
+        "cittade"
+      ],
+      "rule_misapplied": "restored a Latin-style -di plural (cittadi) on an invariable accented noun that stays 'città'",
+      "misconception_id": "regularisation.invariable_noun",
+      "misconception_status": "PROPOSED (not yet in registry)",
+      "corpus_attested": false
+    },
+    {
+      "lemma": "film",
+      "correct_form": "film",
+      "cell": "plural",
+      "category": "noun_plural",
+      "distractors": [
+        "filmi"
+      ],
+      "rule_misapplied": "applied a regular -i plural (filmi) to an invariable loanword that stays 'film'",
+      "misconception_id": "regularisation.invariable_noun",
+      "misconception_status": "PROPOSED (not yet in registry)",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "foto",
+      "correct_form": "foto",
+      "cell": "plural",
+      "category": "noun_plural",
+      "distractors": [
+        "foti"
+      ],
+      "rule_misapplied": "applied a regular plural (foti) to an invariable clipped noun (foto<fotografia) that stays 'foto'",
+      "misconception_id": "regularisation.invariable_noun",
+      "misconception_status": "PROPOSED (not yet in registry)",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "caffè",
+      "correct_form": "caffè",
+      "cell": "plural",
+      "category": "noun_plural",
+      "distractors": [
+        "caffei"
+      ],
+      "rule_misapplied": "applied a regular -i plural (caffei) to an invariable accented noun that stays 'caffè'",
+      "misconception_id": "regularisation.invariable_noun",
+      "misconception_status": "PROPOSED (not yet in registry)",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "re",
+      "correct_form": "re",
+      "cell": "plural",
+      "category": "noun_plural",
+      "distractors": [
+        "rei"
+      ],
+      "rule_misapplied": "applied a regular plural (rei) to an invariable monosyllable that stays 're'",
+      "misconception_id": "regularisation.invariable_noun",
+      "misconception_status": "PROPOSED (not yet in registry)",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "crisi",
+      "correct_form": "crisi",
+      "cell": "plural",
+      "category": "noun_plural",
+      "distractors": [
+        "crise"
+      ],
+      "rule_misapplied": "applied a regular plural (crise) to an invariable -i noun that stays 'crisi'",
+      "misconception_id": "regularisation.invariable_noun",
+      "misconception_status": "PROPOSED (not yet in registry)",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "università",
+      "correct_form": "università",
+      "cell": "plural",
+      "category": "noun_plural",
+      "distractors": [
+        "universitadi",
+        "universitai"
+      ],
+      "rule_misapplied": "applied a plural ending to an invariable accented noun that stays 'università'",
+      "misconception_id": "regularisation.invariable_noun",
+      "misconception_status": "PROPOSED (not yet in registry)",
+      "corpus_attested": false
+    },
+    {
+      "lemma": "amico",
+      "correct_form": "amici",
+      "cell": "plural",
+      "category": "noun_plural",
+      "distractors": [
+        "amichi"
+      ],
+      "rule_misapplied": "kept the hard-c spelling (amichi); stressed-antepenult -co nouns soften to -ci (amici)",
+      "misconception_id": "orthography.cg_plural_stress_misapplied",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "medico",
+      "correct_form": "medici",
+      "cell": "plural",
+      "category": "noun_plural",
+      "distractors": [
+        "medichi"
+      ],
+      "rule_misapplied": "kept the hard-c spelling (medichi) instead of the soft 'medici'",
+      "misconception_id": "orthography.cg_plural_stress_misapplied",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "ago",
+      "correct_form": "aghi",
+      "cell": "plural",
+      "category": "noun_plural",
+      "distractors": [
+        "agi"
+      ],
+      "rule_misapplied": "dropped the h that keeps the g hard (agi) instead of 'aghi'",
+      "misconception_id": "orthography.omitted_h_hard_cg",
+      "misconception_status": "confirmed",
+      "corpus_attested": true,
+      "collisions": [
+        {
+          "form": "agi",
+          "valid_as": "'agi' is a real word: plural of 'agio' (ease/comfort)"
+        }
+      ]
+    },
+    {
+      "lemma": "fuoco",
+      "correct_form": "fuochi",
+      "cell": "plural",
+      "category": "noun_plural",
+      "distractors": [
+        "fuoci"
+      ],
+      "rule_misapplied": "dropped the h that keeps the c hard (fuoci) instead of 'fuochi'",
+      "misconception_id": "orthography.omitted_h_hard_cg",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "amica",
+      "correct_form": "amiche",
+      "cell": "plural",
+      "category": "noun_plural",
+      "distractors": [
+        "amice"
+      ],
+      "rule_misapplied": "dropped the h that keeps the c hard (amice) instead of 'amiche'",
+      "misconception_id": "orthography.omitted_h_hard_cg",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "barca",
+      "correct_form": "barche",
+      "cell": "plural",
+      "category": "noun_plural",
+      "distractors": [
+        "barce"
+      ],
+      "rule_misapplied": "dropped the h that keeps the c hard (barce) instead of 'barche'",
+      "misconception_id": "orthography.omitted_h_hard_cg",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "camicia",
+      "correct_form": "camicie",
+      "cell": "plural",
+      "category": "noun_plural",
+      "distractors": [
+        "camice"
+      ],
+      "rule_misapplied": "dropped the i that is kept after a vowel+cia (camice) instead of 'camicie'",
+      "misconception_id": "orthography.cia_gia_plural_i",
+      "misconception_status": "confirmed",
+      "corpus_attested": true,
+      "collisions": [
+        {
+          "form": "camice",
+          "valid_as": "'camice' is a real word (a medical/lab coat)"
+        }
+      ]
+    },
+    {
+      "lemma": "arancia",
+      "correct_form": "arance",
+      "cell": "plural",
+      "category": "noun_plural",
+      "distractors": [
+        "arancie"
+      ],
+      "rule_misapplied": "kept the i after a consonant+cia (arancie) instead of the required 'arance'",
+      "misconception_id": "orthography.cia_gia_plural_i",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "pioggia",
+      "correct_form": "piogge",
+      "cell": "plural",
+      "category": "noun_plural",
+      "distractors": [
+        "pioggie"
+      ],
+      "rule_misapplied": "kept the i after a consonant+gia (pioggie) instead of the required 'piogge'",
+      "misconception_id": "orthography.cia_gia_plural_i",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "figlio",
+      "correct_form": "figli",
+      "cell": "plural",
+      "category": "noun_plural",
+      "distractors": [
+        "figlii"
+      ],
+      "rule_misapplied": "doubled the i on an unstressed -io noun (figlii) instead of the single-i 'figli'",
+      "misconception_id": "orthography.io_plural_i_count",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "zio",
+      "correct_form": "zii",
+      "cell": "plural",
+      "category": "noun_plural",
+      "distractors": [
+        "zi"
+      ],
+      "rule_misapplied": "used a single i on a stressed -io noun (zi) instead of the double-i 'zii'",
+      "misconception_id": "orthography.io_plural_i_count",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "capolavoro",
+      "correct_form": "capolavori",
+      "cell": "plural",
+      "category": "noun_plural",
+      "distractors": [
+        "capilavori"
+      ],
+      "rule_misapplied": "pluralised the first element (capilavori) instead of only the head noun 'capolavori'",
+      "misconception_id": "regularisation.irregular_plural",
+      "misconception_status": "PROPOSED (not yet in registry)",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "buono",
+      "correct_form": "migliore",
+      "cell": "comparative",
+      "category": "comparative",
+      "distractors": [
+        "più buono",
+        "più migliore"
+      ],
+      "rule_misapplied": "formed the comparative with regular 'più + buono' where the quality sense needs suppletive 'migliore', or double-marked 'più migliore'",
+      "misconception_id": "regularisation.irregular_comparative",
+      "misconception_status": "PROPOSED (not yet in registry)",
+      "corpus_attested": true,
+      "collisions": [
+        {
+          "form": "più buono",
+          "valid_as": "'più buono' IS acceptable in the concrete sense (tastier / kinder); wrong only where abstract 'better in quality' needs migliore"
+        }
+      ]
+    },
+    {
+      "lemma": "cattivo",
+      "correct_form": "peggiore",
+      "cell": "comparative",
+      "category": "comparative",
+      "distractors": [
+        "più cattivo",
+        "più peggiore"
+      ],
+      "rule_misapplied": "regular 'più + cattivo' where the quality sense needs 'peggiore', or double-marked 'più peggiore'",
+      "misconception_id": "regularisation.irregular_comparative",
+      "misconception_status": "PROPOSED (not yet in registry)",
+      "corpus_attested": true,
+      "collisions": [
+        {
+          "form": "più cattivo",
+          "valid_as": "'più cattivo' IS acceptable in the concrete/moral sense (naughtier); wrong where 'worse in quality' needs peggiore"
+        }
+      ]
+    },
+    {
+      "lemma": "grande",
+      "correct_form": "maggiore",
+      "cell": "comparative",
+      "category": "comparative",
+      "distractors": [
+        "più grande",
+        "più maggiore"
+      ],
+      "rule_misapplied": "regular 'più + grande' where the abstract sense needs 'maggiore', or double-marked 'più maggiore'",
+      "misconception_id": "regularisation.irregular_comparative",
+      "misconception_status": "PROPOSED (not yet in registry)",
+      "corpus_attested": true,
+      "collisions": [
+        {
+          "form": "più grande",
+          "valid_as": "'più grande' IS correct for physically bigger; 'maggiore' is for greater/elder/more important"
+        }
+      ]
+    },
+    {
+      "lemma": "piccolo",
+      "correct_form": "minore",
+      "cell": "comparative",
+      "category": "comparative",
+      "distractors": [
+        "più piccolo",
+        "più minore"
+      ],
+      "rule_misapplied": "regular 'più + piccolo' where the abstract sense needs 'minore', or double-marked 'più minore'",
+      "misconception_id": "regularisation.irregular_comparative",
+      "misconception_status": "PROPOSED (not yet in registry)",
+      "corpus_attested": true,
+      "collisions": [
+        {
+          "form": "più piccolo",
+          "valid_as": "'più piccolo' IS correct for physically smaller; 'minore' is for lesser/younger/minor"
+        }
+      ]
+    },
+    {
+      "lemma": "bene",
+      "correct_form": "meglio",
+      "cell": "comparative",
+      "category": "comparative",
+      "distractors": [
+        "più bene",
+        "più meglio"
+      ],
+      "rule_misapplied": "formed the comparative of the adverb 'bene' with 'più' (più bene) instead of the suppletive 'meglio'",
+      "misconception_id": "regularisation.irregular_comparative",
+      "misconception_status": "PROPOSED (not yet in registry)",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "male",
+      "correct_form": "peggio",
+      "cell": "comparative",
+      "category": "comparative",
+      "distractors": [
+        "più male",
+        "più peggio"
+      ],
+      "rule_misapplied": "formed the comparative of the adverb 'male' with 'più' (più male) instead of the suppletive 'peggio'",
+      "misconception_id": "regularisation.irregular_comparative",
+      "misconception_status": "PROPOSED (not yet in registry)",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "molto",
+      "correct_form": "di più",
+      "cell": "comparative",
+      "category": "comparative",
+      "distractors": [
+        "più molto"
+      ],
+      "rule_misapplied": "stacked 'più' on 'molto' (più molto) instead of the suppletive comparative 'di più'",
+      "misconception_id": "regularisation.irregular_comparative",
+      "misconception_status": "PROPOSED (not yet in registry)",
+      "corpus_attested": false
+    },
+    {
+      "lemma": "poco",
+      "correct_form": "di meno",
+      "cell": "comparative",
+      "category": "comparative",
+      "distractors": [
+        "più poco",
+        "più meno"
+      ],
+      "rule_misapplied": "formed the comparative of 'poco' with 'più' instead of the suppletive 'di meno'/'meno'",
+      "misconception_id": "regularisation.irregular_comparative",
+      "misconception_status": "PROPOSED (not yet in registry)",
+      "corpus_attested": false
+    },
+    {
+      "lemma": "bene",
+      "correct_form": "benissimo",
+      "cell": "superlative_absolute",
+      "category": "comparative",
+      "distractors": [
+        "buonissimo"
+      ],
+      "rule_misapplied": "used the adjective superlative 'buonissimo' where the adverb 'bene' takes 'benissimo'",
+      "misconception_id": "regularisation.irregular_comparative",
+      "misconception_status": "PROPOSED (not yet in registry)",
+      "corpus_attested": true,
+      "collisions": [
+        {
+          "form": "buonissimo",
+          "valid_as": "'buonissimo' IS the valid superlative of the ADJECTIVE buono; wrong only as the adverb superlative"
+        }
+      ]
+    },
+    {
+      "lemma": "male",
+      "correct_form": "malissimo",
+      "cell": "superlative_absolute",
+      "category": "comparative",
+      "distractors": [
+        "cattivissimo"
+      ],
+      "rule_misapplied": "used the adjective superlative 'cattivissimo' where the adverb 'male' takes 'malissimo'",
+      "misconception_id": "regularisation.irregular_comparative",
+      "misconception_status": "PROPOSED (not yet in registry)",
+      "corpus_attested": true,
+      "collisions": [
+        {
+          "form": "cattivissimo",
+          "valid_as": "'cattivissimo' IS the valid superlative of the ADJECTIVE cattivo; wrong only as the adverb superlative"
+        }
+      ]
+    },
+    {
+      "lemma": "buono",
+      "correct_form": "ottimo",
+      "cell": "superlative_absolute",
+      "category": "comparative",
+      "distractors": [
+        "più migliore",
+        "il più buono"
+      ],
+      "rule_misapplied": "over-marked the already-superlative-strength irregular; note 'buonissimo' is an accepted regular variant of 'ottimo'",
+      "misconception_id": "regularisation.irregular_comparative",
+      "misconception_status": "PROPOSED (not yet in registry)",
+      "corpus_attested": false,
+      "collisions": [
+        {
+          "form": "buonissimo",
+          "valid_as": "'buonissimo' is ACCEPTED alongside 'ottimo' - not a reliable distractor"
+        }
+      ]
+    },
+    {
+      "lemma": "il/lo",
+      "correct_form": "lo",
+      "cell": "def_art_masc_sg_before_s_impura_z",
+      "category": "allomorph",
+      "distractors": [
+        "il"
+      ],
+      "rule_misapplied": "over-applied the default 'il' before s+consonant/z/gn/ps/x/y, which require 'lo' (lo studente, lo zaino)",
+      "misconception_id": "agreement.prenominal_allomorph",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "il/lo",
+      "correct_form": "gli",
+      "cell": "def_art_masc_pl_before_vowel_s_impura",
+      "category": "allomorph",
+      "distractors": [
+        "i"
+      ],
+      "rule_misapplied": "over-applied the default 'i' before vowels/s+consonant/z, which require 'gli' (gli amici, gli studenti)",
+      "misconception_id": "agreement.prenominal_allomorph",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "il/lo",
+      "correct_form": "l'",
+      "cell": "def_art_masc_sg_before_vowel",
+      "category": "allomorph",
+      "distractors": [
+        "il",
+        "lo"
+      ],
+      "rule_misapplied": "failed to elide before a vowel, using il/lo instead of l' (l'amico)",
+      "misconception_id": "agreement.prenominal_allomorph",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "il/lo",
+      "correct_form": "il",
+      "cell": "def_art_masc_sg_before_consonant",
+      "category": "allomorph",
+      "distractors": [
+        "lo"
+      ],
+      "rule_misapplied": "over-applied the marked 'lo' before a plain consonant, which takes 'il' (il libro)",
+      "misconception_id": "agreement.prenominal_allomorph",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "il/lo",
+      "correct_form": "i",
+      "cell": "def_art_masc_pl_before_consonant",
+      "category": "allomorph",
+      "distractors": [
+        "gli"
+      ],
+      "rule_misapplied": "over-applied 'gli' before a plain consonant, which takes 'i' (i libri)",
+      "misconception_id": "agreement.prenominal_allomorph",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "un/uno",
+      "correct_form": "uno",
+      "cell": "indef_art_masc_before_s_impura_z",
+      "category": "allomorph",
+      "distractors": [
+        "un"
+      ],
+      "rule_misapplied": "over-applied the default 'un' before s+consonant/z/gn/ps, which require 'uno' (uno studente, uno zaino)",
+      "misconception_id": "agreement.prenominal_allomorph",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "un/uno",
+      "correct_form": "un",
+      "cell": "indef_art_masc_before_vowel_or_consonant",
+      "category": "allomorph",
+      "distractors": [
+        "uno"
+      ],
+      "rule_misapplied": "over-applied the marked 'uno' where 'un' is required (un libro, un amico); un takes no apostrophe before masc vowels",
+      "misconception_id": "agreement.prenominal_allomorph",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "bello",
+      "correct_form": "bel",
+      "cell": "prenominal_masc_sg_before_consonant",
+      "category": "allomorph",
+      "distractors": [
+        "bello"
+      ],
+      "rule_misapplied": "used the full form 'bello' before a plain consonant, which takes the shortened 'bel' (bel ragazzo)",
+      "misconception_id": "agreement.prenominal_allomorph",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "bello",
+      "correct_form": "bello",
+      "cell": "prenominal_masc_sg_before_s_impura_z",
+      "category": "allomorph",
+      "distractors": [
+        "bel"
+      ],
+      "rule_misapplied": "shortened to 'bel' before s+consonant/z, which keeps 'bello' (bello zaino)",
+      "misconception_id": "agreement.prenominal_allomorph",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "bello",
+      "correct_form": "begli",
+      "cell": "prenominal_masc_pl_before_vowel_s_impura",
+      "category": "allomorph",
+      "distractors": [
+        "bei",
+        "belli"
+      ],
+      "rule_misapplied": "used 'bei'/'belli' before vowels/s+consonant, which require 'begli' (begli amici, begli studenti)",
+      "misconception_id": "agreement.prenominal_allomorph",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "bello",
+      "correct_form": "bei",
+      "cell": "prenominal_masc_pl_before_consonant",
+      "category": "allomorph",
+      "distractors": [
+        "belli",
+        "begli"
+      ],
+      "rule_misapplied": "used the non-prenominal 'belli' (or 'begli') before a plain consonant, which takes 'bei' (bei libri)",
+      "misconception_id": "agreement.prenominal_allomorph",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "quello",
+      "correct_form": "quel",
+      "cell": "prenominal_masc_sg_before_consonant",
+      "category": "allomorph",
+      "distractors": [
+        "quello"
+      ],
+      "rule_misapplied": "used the full 'quello' before a plain consonant, which takes 'quel' (quel libro)",
+      "misconception_id": "agreement.prenominal_allomorph",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "quello",
+      "correct_form": "quello",
+      "cell": "prenominal_masc_sg_before_s_impura_z",
+      "category": "allomorph",
+      "distractors": [
+        "quel"
+      ],
+      "rule_misapplied": "shortened to 'quel' before s+consonant/z, which keeps 'quello' (quello studente, quello zaino)",
+      "misconception_id": "agreement.prenominal_allomorph",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "quello",
+      "correct_form": "quegli",
+      "cell": "prenominal_masc_pl_before_vowel_s_impura",
+      "category": "allomorph",
+      "distractors": [
+        "quei",
+        "quelli"
+      ],
+      "rule_misapplied": "used 'quei'/'quelli' before vowels/s+consonant, which require 'quegli' (quegli amici, quegli studenti)",
+      "misconception_id": "agreement.prenominal_allomorph",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "quello",
+      "correct_form": "quei",
+      "cell": "prenominal_masc_pl_before_consonant",
+      "category": "allomorph",
+      "distractors": [
+        "quelli",
+        "quegli"
+      ],
+      "rule_misapplied": "used the pronoun 'quelli' (or 'quegli') before a plain consonant, which takes 'quei' (quei libri)",
+      "misconception_id": "agreement.prenominal_allomorph",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "buono",
+      "correct_form": "buon",
+      "cell": "prenominal_masc_sg_before_vowel_or_consonant",
+      "category": "allomorph",
+      "distractors": [
+        "buono"
+      ],
+      "rule_misapplied": "used the full 'buono' where prenominal masc sg shortens to 'buon' (buon ragazzo, buon amico)",
+      "misconception_id": "agreement.prenominal_allomorph",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "buono",
+      "correct_form": "buono",
+      "cell": "prenominal_masc_sg_before_s_impura_z",
+      "category": "allomorph",
+      "distractors": [
+        "buon"
+      ],
+      "rule_misapplied": "shortened to 'buon' before s+consonant/z, which keeps 'buono' (buono studente)",
+      "misconception_id": "agreement.prenominal_allomorph",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "grande",
+      "correct_form": "gran",
+      "cell": "prenominal_before_consonant",
+      "category": "allomorph",
+      "distractors": [
+        "grande"
+      ],
+      "rule_misapplied": "kept the full 'grande' where it optionally shortens to 'gran' before a consonant (un gran successo); note 'grande' is also accepted here",
+      "misconception_id": "agreement.prenominal_allomorph",
+      "misconception_status": "confirmed",
+      "corpus_attested": true,
+      "collisions": [
+        {
+          "form": "grande",
+          "valid_as": "'grande' is also acceptable prenominally; the shortening to 'gran' is optional"
+        }
+      ]
+    },
+    {
+      "lemma": "santo",
+      "correct_form": "san",
+      "cell": "prenominal_before_masc_consonant_name",
+      "category": "allomorph",
+      "distractors": [
+        "santo"
+      ],
+      "rule_misapplied": "used the full 'santo' before a masc name starting with a consonant, which takes 'san' (san Marco)",
+      "misconception_id": "agreement.prenominal_allomorph",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "santo",
+      "correct_form": "sant'",
+      "cell": "prenominal_before_vowel_name",
+      "category": "allomorph",
+      "distractors": [
+        "santo",
+        "san"
+      ],
+      "rule_misapplied": "failed to elide before a vowel-initial name, which takes sant' (sant'Antonio)",
+      "misconception_id": "agreement.prenominal_allomorph",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    },
+    {
+      "lemma": "santo",
+      "correct_form": "santo",
+      "cell": "prenominal_before_s_impura_name",
+      "category": "allomorph",
+      "distractors": [
+        "san"
+      ],
+      "rule_misapplied": "shortened to 'san' before an s+consonant name, which keeps 'santo' (santo Stefano)",
+      "misconception_id": "agreement.prenominal_allomorph",
+      "misconception_status": "confirmed",
+      "corpus_attested": true
+    }
+  ]
+}

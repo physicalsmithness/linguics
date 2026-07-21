@@ -2,7 +2,7 @@
 
 Authored by PassiveAuthor against AUTHOR_BRIEF **Revision 14**, then reconciled author-side to **Revision 17** and audited clean against **Revisions 19 to 22** (the brief moved from Rev 14 to Rev 17 while this batch was being written; see the reconciliation section below). Authored against DISPATCH_passive.md (with its Rev-13 addendum and OIC idea-bank appendix). Counts below are grepped from the shipped files, not from memory of batches.
 
-**Both branches are now authored.** The formation branch (four leaves) landed 2026-07-14 and was accepted; the usage branch (*Passive or active?*, *Passive or si passivante?*) landed 2026-07-17 authored against Rev 23 from the start, closing the residual the batch disposition left open. The tree has no unauthored leaves.
+**Both branches are authored, and a volume/person-band wave was added 2026-07-20.** The formation branch (four leaves) landed 2026-07-14 and was accepted; the usage branch (*Passive or active?*, *Passive or si passivante?*) landed 2026-07-17 authored against Rev 23 from the start, closing the residual the batch disposition left open. The tree has no unauthored leaves.
 
 ## Bucket-to-item counts
 
@@ -49,6 +49,18 @@ The engine checks `any_phrases` before `must_not_include` (positive match wins) 
 4. **The venire compound-tense restriction** (pas_ven_02) cites the venire leaf but its correct answer is essere (e stato arrestato); the breadcrumb is left visible because naming venire tempts exactly the catchable "e venuto arrestato" error (the leak-vs-trap test, criterion 15).
 5. **Andare obligation items cue the construction** ("con andare"), keeping the andare choice the tested skill. The equally-correct periphrastic "deve essere compilato" scores **0.9 with a steering note** under the Rev 17 dodge rule; at Rev 14 it was wrongly in `must_not_include`, which would have marked correct Italian wrong. See the reconciliation section.
 
+
+## Volume wave: person bands (added 2026-07-20, brief Rev 31)
+
+Smith added PassiveAuthor to the `DISPATCH_volume_formation.md` wave (I was not in the original To: list; the passive is a construction, not a tense paradigm, but its auxiliary conjugates and the person grid was third-person-only). Eight new first/second-person passive items plus a `person` backfill on the existing batch.
+
+**Why it was needed.** Passives foreground the thing acted upon, so the batch was 22 items with 3sg subjects and 10 with 3pl, and *zero* first or second person. The six-band grid saw passive as a third-person-only construction. The new items add io / tu / noi / voi passive subjects (sono stato invitato, sei stata scelta, siamo stati invitati, siete stati eletti, ...), weighted to A1/A2 verbs (invitare, scegliere, pagare, chiamare, controllare, giudicare) per the wave's depth-over-exotica steer.
+
+**Person bands now:** 1sg:2 / 2sg:2 / 3sg:12 / 1pl:2 / 2pl:2 / 3pl:11 (plus 14 items with `person: null`).
+
+**The `person` field convention I used, flagged for ratification.** The dispatch says "`person` on every finite item, `null` on non-finite". A passive always has a finite auxiliary, so a literal reading would tag all 45. I set `person` only where the item's *marked answer produces* the finite passive verb (the essere/venire/andare production items, person = the auxiliary's person = the subject's person), and `null` where the answer is a preposition (agent-da items), an MCQ index (register / well-formedness), or English (it->en recognition). Reasoning: the person grid wants the person a learner *produces*, and an agent-da item that happens to sit in a 3sg sentence does not exercise person production. If the grid instead wants the clause's person regardless of what is blanked, say so and I will tag the other 14.
+
+**Gates, all green on the replica (45 grammar, strict + folded).** Uniform per-phrase `match_at: "word"` (crit 18); every `must_not_include` guard fed as its own answer scores a miss, so zero dead guards and zero positive-nested-in-guard false credit (the dispatch's non-negotiable gate 2); tense forced by the rewrite source + named tense, never a bare adverb (crit 21 / Rev 26 trigger); no prompt contains its own answer (crit 20, plain-substring check); two-markpoint voice+agreement decomposition cross-credits the PP agreement tree (Rev 27). One gender-openness fix: `pas_ess_13` (1sg present, no named speaker) accepts both sono/vengo pagato and pagata, since Italian has no masculine default for a single speaker.
 
 ## Usage branch (added 2026-07-17, authored against Rev 23)
 

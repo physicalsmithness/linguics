@@ -4,7 +4,7 @@
 **Author:** ConditionalFormationAuthor
 **Date:** 2026-06-09 (formation); reconciled to Rev 19 on 2026-07-15; usage branch + criterion-21 retrofit 2026-07-20.
 **Brief revision applied:** formation authored against Rev 9, reconciled to Rev 19; usage + retrofit against Rev 28.
-**File layout:** formation and usage items live together in `grammar_questions_verb_form.condizionale.json` (72 = 49 formation + 23 usage) and `translation_items_verb_form.condizionale.json` (38 = 19 formation + 19 usage), because the loader derives the filename from the topic id and does not read a `_usage`-suffixed file. (The usage items were briefly mis-shipped as separate `_usage` files on 2026-07-20 and merged in the same day.)
+**File layout:** formation and usage items live together in `grammar_questions_verb_form.condizionale.json` (**108 = 85 formation + 23 usage**) and `translation_items_verb_form.condizionale.json` (38 = 19 formation + 19 usage), because the loader derives the filename from the topic id and does not read a `_usage`-suffixed file. Every finite grammar item carries a `person` field.
 **Threads (Rev 18: this doc is the record, the threads are the channel):**
 - `inter_chat/Architecture_ConditionalFormationAuthor_batch_delivery.md` — formation delivery + reconciliation (CLOSED, ACCEPTED).
 - `inter_chat/Architecture_ConditionalFormationAuthor_breadcrumb_label_leak.md` — leaf labels shortened at source (CLOSED).
@@ -15,6 +15,26 @@
 ## Usage branch (wave 2, 2026-07-20)
 
 23 grammar + 19 translation across three leaves, translation **bidirectional** (10 EN→IT, 9 IT→EN): `usage.polite` (A2 core, heaviest: 10G+7T), `usage.reported_future_in_past` (B1-B2: 6G+6T), `usage.hypothetical_apodosis` (B2: 7G+6T). The diagnostic is the functional CHOICE (blunt present vs polite conditional; simple future/conditional vs compound in reported speech; present/future vs conditional in an apodosis), not formation. Three items cross-credit `tense_choice…prescriptive_conditional` per Rev 27, weighted to sum to 1, and the choice bucket never appears without a usage leaf beside it (the dispatch boundary). Two asks parked in the usage thread: whether reported-future items should also dual-credit the formation compound leaf, and the stub-flag clearance.
+
+## Volume formation wave (DISPATCH_volume_formation.md, 2026-07-20)
+
+36 basic high-frequency fluency-rep items added, taking formation from 49 to 85. Built to fill the **six-person grid**: every person (1sg..3pl) appears across the three regular classes and the core irregulars, and every item carries `person` so the paradigm bands render. Weighted to A1/A2 core verbs, depth over exotica.
+
+| Leaf | volume items | persons covered |
+|---|--:|---|
+| regular_are | 6 | all six (parlare/lavorare/abitare/guardare/comprare/tornare) |
+| regular_ere | 6 | all six (prendere/scrivere/leggere/vendere/credere/chiudere) |
+| regular_ire | 6 | all six, plain -ire (dormire/partire/sentire/aprire/seguire/offrire) |
+| irregular.syncopated | 6 | avere/andare/potere/dovere/sapere/vedere across persons |
+| irregular.double_r | 5 | volere/venire/tenere/rimanere/bere |
+| irregular.essere | 4 | 1sg/3sg/1pl/2pl |
+| irregular.dare_stare_fare | 3 | fare/dare/stare |
+
+Every item forces the target by naming the tense in the cue (`(parlare, io, condizionale)`), the crit-21 trigger, so `prompt_supplies_base_form` is honest. Guards follow the batch discipline: single-m future on every 1pl, single-b on every 3sg/3pl, single-r on double_r, theme-vowel on syncopated, over-applied-shift on dare/stare/fare, all word-anchored. The 18 irregular/orthographic items are suppressed (non-derivable class), the 18 regular items visible. **Guard-verdict gate (dispatch requirement 2): the marker replica was run over the whole grammar file — 108 items, 120 markpoints, 734 assertions strict + folded, 0 dead guards, 0 false-credit.**
+
+## Rev 27 dual-credit on the reported-future items (Architecture ruling b, 2026-07-20)
+
+Architecture ruled (b) against my (a): the six `usage.reported_future_in_past` items each gained a second markpoint crediting `formation.condizionale_passato` (the compound is built as well as chosen), weighted so credits sum to 1 (0.5/0.5, or 0.34/0.33/0.33 on the partire item that already carried a participle-agreement markpoint). Both buckets record full correctness per Rev 27.
 
 ## Criterion-21 formation-trigger retrofit (Rev 28, 2026-07-20)
 

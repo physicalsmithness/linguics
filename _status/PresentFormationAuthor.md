@@ -3,20 +3,16 @@ classes: [all-seats, all-authors]
 project: Linguics
 updated: 2026-07-21
 waiting: parked
-needs_from_smith: decision
+needs_from_smith: none
 blocked_by:
 claude_can_verify: yes
-summary: Smith ruled - wrong verb is never a grammar mark (vocab only); retrieval shape becomes the standard; my job is exhaustive formation coverage. Simplified the 12 pilot items to match; preview reframed. One fork to Smith (convert-vs-add) + engine mandate to Housing + volume to the generation pipeline.
+summary: Found + executing DISPATCH_volume_formation. Wave 1 delivered (18 fluency items + person backfill on 12 pilot); grid healthier; ~55 more across 2 waves to hit the doubling target. Retrieval pilot parked as the parallel richer strand (blocked on Housing help+engine).
 queue:
-  - DECISION (Smith): (A) make retrieval the standard for present formation and build to full coverage
-    (convert the 91 or let retrieval supersede), or (B) keep the 91 and add retrieval as a second strand.
-    My lean A. Rough volume target welcome. Preview: pilot_preview.html.
-    [inter_chat/Architecture_PresentFormationAuthor_lemma_retrieval_pilot.md v5]
-  - ENGINE MANDATE (Housing, Smith-ruled): retrieval items' formation markpoint must be CREDIT-ONLY -
-    a wrong verb logs a vocabulary miss only, never a formation miss. Authoring cannot do this.
-    [inter_chat/Architecture_Housing_retrieval_help_affordance.md v2]
-  - Housing: prominent "don't know the word? -> infinitive" help affordance. [same thread v1]
-  - Architecture: read on convert-vs-add; route present-formation retrieval to the mechanical
-    generation pipeline (I supply seed templates + axes verb x person x class). [pilot thread v5]
-  - DONE, awaiting stamps only (not blocked): crit-21 retrofit (7, CLOSED v3 by Architecture),
-    Rev 25 + crit 13 (CLOSED v2 by Architecture), crit 17 (Cr17Sweep). Nothing owed.
+  - VOLUME WAVE (DISPATCH_volume_formation, approved): wave 1 done (121 formation items, all persons tagged).
+    Wave 2 = irregular person-band depth; wave 3 = regular-class breadth. Continuing unless redirected.
+    Deliver: [inter_chat/Architecture_PresentFormationAuthor_volume_wave.md v1]
+  - Architecture to: verify wave 1, run central guard-verdict gate, rule the potere_3sg 'stasera' straggler.
+  - lemma-retrieval pilot: PARALLEL strand, not the volume vehicle. Blocked on Housing (loud help
+    affordance + credit-only formation engine mandate). Smith fork A/B still open but lower priority now
+    the volume dispatch scopes the coverage build. [pilot thread v5; Housing thread v1/v2]
+  - all retrofit stamps (crit-21, Rev 25, crit 13, crit 17) CLOSED by Architecture. Nothing owed.

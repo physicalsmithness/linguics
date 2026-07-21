@@ -100,6 +100,14 @@ Threads: `Architecture_PresentFormationAuthor_formation_trigger_retrofit.md` (v2
 
 Item count note: the 91 formation + 32 translation batch is unchanged in scope; the pilot adds 3 experimental items on top, not yet part of the accepted coverage.
 
+## Volume wave (DISPATCH_volume_formation, 2026-07-21)
+
+Fluency-rep wave: basic high-frequency formation items filling the person×class grid so every band can green on repeat visits. Standard handed-cue shape (fast reps; retrieval is a separate strand). Every finite formation item now carries `person`.
+
+**Wave 1 (+18):** regular_are +6 (lavorare, portare, tornare, arrivare, cantare, abitare), regular_ere +5 (vedere, mettere, chiudere, chiedere, rispondere), regular_ire +3 (aprire, offrire, sentire), ire_isc +2 (pulire 1pl, capire 2pl — noi/voi sleeper), reflexive +2 (svegliarsi 1sg, vestirsi 3sg). Plus `person` backfilled on the 12 pilot items. Formation 91 → 121. Gates: match_at word (crit 18), present-time frames (crit 21), crit-17 glosses, person field. Delivery: `Architecture_PresentFormationAuthor_volume_wave.md`.
+
+Remaining to ~double basic tier: Wave 2 (irregular person-band depth — bere/dire/dittongo/go_verbs/monosyllabic/modals), Wave 3 (regular-class breadth). Non-diagnostic slots (care_gare/ciare_giare beyond 2sg/1pl; iare_stress beyond 2sg) not padded. Possible crit-21 straggler flagged to Architecture: potere_3sg "stasera".
+
 ## Notes for later dispatches
 
 - **PresentUsage** (the `verb_form.present_indicative.usage` stub) will own: habitual / gnomic / now readings, present-for-near-future, historic present, polite/performative uses, impersonal `si`, and the `stare + gerundio` progressive (which cross-references the gerundio tree). None authored here.

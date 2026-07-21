@@ -3,7 +3,7 @@
 **Dispatch:** PassatoRemotoFormation (formation branch only; usage and discrimination left as stubs for later dispatches). This is the last formation dispatch, so the tense/mood formation system is now complete.
 **Author:** PassatoRemotoFormationAuthor
 **Date:** 2026-06-09
-**Brief revision applied:** authored against AUTHOR_BRIEF Rev 9 (the revision the dispatch cited); **reconciled to Rev 20 on 2026-07-15** — see the addendum at the foot of this report for criteria 17, 18 and 19. Versions: 34 items at `version: 2` (my reconciliation), 5 at `version: 3` (the central accent-flag execution of Smith's no_flag ruling).
+**Brief revision applied:** authored against AUTHOR_BRIEF Rev 9 (the revision the dispatch cited); **reconciled to Rev 20 on 2026-07-15** (Addendum 1: criteria 17, 18, 19) and **to Rev 28 on 2026-07-20** (Addendum 2: criterion 21 formation-trigger + a false-miss fix). Both addenda at the foot of this report. Versions currently span 2-4 across the 39 items (4 untouched frame-forced survivors at v2, the bulk at v3, the five accent/reframe items at v4); the file is the source of truth for per-item version.
 
 **Totals:** 39 grammar questions + 13 translation items (EN→IT only), of which **21 grammar items carry `info_display: "suppress"`** (see chip-suppression section). Every active formation leaf is covered; no zero-coverage leaves. The usage and discrimination branches were left untouched (they are stubs owned by a later PassatoRemotoUsage dispatch and by TenseChoice). No new buckets were needed, so `bucket_suggestions_verb_form.passato_remoto.json` is empty. Three glossary terms are proposed.
 
@@ -128,3 +128,19 @@ The parlò and dormì **explanations and teaching notes were corrected for perso
 **Verification.** A marker replica implementing the ratified semantics (norm with accents/apostrophes/hyphens folded, `occursAt` word-anchoring on both boundaries, any_phrases-before-must_not evaluation order, and the `accent_load_bearing` fold-disable) confirms: every canonical answer credits, including the duals (credei/credetti, credé/credette, diede/dette, temerono/temettero) and both markpoints of each trapassato item; all 12 false-credits closed; all six accent twins reachable and guarded; and the five middle-person over-extension guards (presesti, misemmo, venneste, ebbesti, capiscemmo) still firing.
 
 The five items flagged uncertain above (the dare dual, the -ei/-etti default, venire's placement, the uniform C1 tagging, and the archaic short forms) are **unchanged and still open** — the reconciliation did not touch them.
+
+---
+
+## Addendum 2: criterion-21 formation-trigger retrofit + false-miss fix (2026-07-20)
+
+Two work orders landed after the Rev-20 reconciliation and were executed together, since they touch the same items.
+
+**Criterion 21 (Rev 28) — formation must FORCE its target tense.** The estate-wide audit (AUDIT_formation_trigger_2026-07-19) found **35 of my 39 items ambiguous**: a bare temporal frame ("Quella sera", "Quel giorno") does not exclude the modern-register passato prossimo, so a learner writing "ho parlato" for "parlai" took formation misses they never attempted — a mastery mis-attribution, and Smith's live catch generalised. The tense CHOICE is tense_choice's to test; a formation drill must remove it.
+
+Remedy (Smith ruled per-author mechanism): **cue-naming on all 35**, naming the tense after the lemma in the cue (`(parlare, io, passato remoto)`; `(finire, trapassato remoto)` for the three trapassato items). Rev 26 licenses the tense name as the trigger, not a criterion-13 leak. The **4 frame-forced survivors** (arrivare, temere, mettere-3sg, dare — each with a co-text passato remoto verb: occuparono, avanzarono, uscì, andò) were left unchanged. Two items took a body change: mangiare lost its iterative "ogni sera" (which pulled toward the imperfetto), and partire is the false-miss below.
+
+With the tense forced on every item, `wrong_answer_is_form_error_only: true` is now honest across all 39 (it was silently dishonest on the 35 while the frame left the tense open).
+
+**False-miss (AUDIT_false_miss_2026-07-20) — prem_trap_partire_3sg_02.** The old prompt printed "partito" after the blank, so the participle markpoint required the learner to retype a word already on screen and capped a correct answer at 1/2. Fixed by restructuring the blank to cover the whole "fu partito" compound (single combined slot, criterion 9), which also supplies the criterion-21 trigger and forces the trapassato remoto over the simpler "partì". Both markpoints now earn on what the learner types; marker replica confirms 2/2.
+
+**Rails re-run, all green:** criterion 18 containment clean (144 phrases anchored, the new compound blank included); criterion 19 unchanged by the reframe (Rev 23 re-arm check — still one flag, credé; parlò/dormì stay no_flag); Rev 25 holds (lemmas unchanged, temere B1 ≤ C1). Dispositions reported on both threads (formation_trigger v2, false_miss v2), now `Next: Architecture` for verify + the criterion-21 register stamp.

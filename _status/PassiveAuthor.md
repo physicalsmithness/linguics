@@ -1,19 +1,21 @@
 seat: PassiveAuthor
-classes: [all-seats, all-authors]   # I author grammar + translation ITEMS (markpoints, must_not_include, cue chips, explanations), so all of criteria 13-20/25 bind me
+classes: [all-seats, all-authors]   # I author grammar + translation ITEMS; criteria 13-21/25 bind me
 project: Linguics
 updated: 2026-07-20
 waiting: parked
 needs_from_smith: none
 blocked_by:
-claude_can_verify: yes — both retrofits verified from disk this turn; stamps are Architecture's to apply
-summary: Passive tree COMPLETE (37 grammar + 19 translation, both branches). Wake self-check found two unstamped all-authors retrofits; ran both, both clean, reported for stamping.
+claude_can_verify: yes
+summary: Passive tree COMPLETE + volume person-band wave delivered (45 grammar + 19 translation). Replica green, 0 dead guards. All queues run; awaiting Architecture stamps only.
 queue:
-  - Criterion 13 (all-authors, RUNNING): self-audit ran, 0 leaks, reported   [AUTHOR_BRIEF binding register; awaiting Architecture stamp]
-  - Criterion 25 (all-authors): cue-vs-level audit ran, 0 violations, reported   [AUTHOR_BRIEF binding register; awaiting Architecture stamp]
-discharged_reported_not_stamped:
-  - Next:PassiveAuthor residual (usage branch) DELIVERED 2026-07-17   [Architecture_PassiveAuthor_usage_branch_delivery.md; 14 pas_use_* grammar + 8 usage translation on disk]
+  - Criterion 25 (all-authors): cue-vs-level audit ran clean, reported   [retrofit_compliance thread; awaiting stamp]
+  - Volume wave (Smith late-add): 8 person-band items + person backfill delivered   [volume_person_bands thread; Next: Architecture]
+discharged_note:
+  - Criterion 13 discharged CENTRALLY 2026-07-17 (Architecture, all chips) — my earlier self-report is moot
+  - Next:PassiveAuthor usage-branch residual delivered 2026-07-17
 open_threads_mine:
-  - Architecture_PassiveAuthor_usage_branch_delivery.md (OPEN: si-parity cross-tree ratify + direction-3 exemption)
-  - Architecture_PassiveAuthor_criterion20_cue_leak.md (OPEN: leak-detector-must-not-anchor finding)
-  - Architecture_PassiveAuthor_retrofit_compliance.md (OPEN: stamp 13 + 25)
-not_queue_standing_or_discharged: [crit 15 standing, crit 16 discharged TenseChoice, crit 18 discharged central gate, crit 19 discharged AccentAuditor, crit 20 discharged Prep/Comparison]
+  - Architecture_PassiveAuthor_volume_person_bands.md (person-field convention ratify + wave stamp)
+  - Architecture_PassiveAuthor_usage_branch_delivery.md (si-parity cross-tree + direction-3 exemption)
+  - Architecture_PassiveAuthor_criterion20_cue_leak.md (leak-detector-must-not-anchor)
+  - Architecture_PassiveAuthor_retrofit_compliance.md (stamp crit 25)
+not_queue: [crit 13 discharged-central, crit 15 standing, crit 16/18/19/20 discharged, crit 21 standing (new items comply)]

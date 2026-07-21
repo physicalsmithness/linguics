@@ -2,20 +2,17 @@ seat: PassatoRemotoAuthor
 classes: [all-seats, all-authors]   # originates markpoints, cue chips, must_not_include, item explanations -> all-authors; every chat -> all-seats
 project: Linguics
 updated: 2026-07-20
-waiting: parked            # concluded; 4 pedagogy calls sit with Smith, stamps sit with Architecture; not blocked
-needs_from_smith: decision # four graded-credit / level calls, put to him in chat as discrete choices
+waiting: parked            # two work orders executed today; both now Next:Architecture for verify+stamp; not blocked
+needs_from_smith: none     # the four grading/level calls are routed to Architecture for first reading, not to Smith directly
 blocked_by:
-claude_can_verify: no      # the four are pedagogy calls only Smith can make; the retrofit audits Claude already verified from disk
-summary: batch live (39 grammar + 13 translation); reconciled Rev 9 -> Rev 20 (crit 17/18/19), accent flags settled to 1 (credé) per Smith's no_flag ruling, 3 defective labels fixed; crit 13 + Rev 25 audits run clean today; 4 pedagogy calls + 3 stamps outstanding
-queue:                     # DERIVED from the name-grep + class-token grep, re-read 2026-07-20, MINUS discharged
-  - crit 13 (all-authors, RUNNING): self-audit run today, 39 cues, 0 rule-naming hits -> awaiting Architecture stamp   [not blocked]
-  - crit 17 (all-authors): all 39 explanations glossed during Rev 20 reconciliation (not in Cr17Sweep's 5 bare topics) -> awaiting Architecture stamp   [not blocked]
-  - crit 20 / Rev 25 (all-authors): citation-form cues audited vs item level, 0 above level (highest temere B1 < C1) -> awaiting Architecture stamp   [not blocked]
-  - 4 pedagogy judgement calls put to Smith (dare diede/dette; -ei vs -etti default; B2 recognition tier; archaic fé/dié)   [with Smith]
-discharged_evidence:       # named by grep but retired; reported, NOT self-stamped (Architecture owns the stamp)
-  - accent_flag_retrofit: CLOSED v5; estate ends with 1 flag in this batch (credé)
-  - breadcrumb_label_leak: CLOSED v2; 6 leaf labels shortened at source
-  - crit 18 (fu-in-furono paradigm finding): my catch, executed estate-wide as universal word-anchoring; DECISIONS 2026-07-15
-  - crit 19: AccentAuditor sweep 267/267; parlò/dormì ruled no_flag by Smith, executed
-not_a_queue_item:
-  - venire under strong_ere leaf: dispatch-settled (dispatch placed it there explicitly); no ruling needed, so no thread per Rev 18
+claude_can_verify: yes     # all retrofits verified from disk this turn (marker replica + containment audit)
+summary: crit-21 formation-trigger retrofit DONE (35 cue-named + 4 frame-forced) and the 1 false-miss (partire) closed, same touch; rails green; both threads Next:Architecture. Batch 39 grammar + 13 translation, live.
+queue:                     # DERIVED from name-grep + class-token grep, re-read 2026-07-20, MINUS discharged
+  - formation_trigger_retrofit v2 (crit 21): 35 items reworked, reported -> awaiting Architecture verify + register stamp   [not blocked]
+  - false_miss_packet v2: partire false-miss closed, reported -> awaiting Architecture verify + stamp   [not blocked]
+  - grading_and_level_calls v1 (4 pedagogy calls): with Architecture for first reading, then Smith   [not blocked]
+  - crit 13 / 17 / 20-Rev25 self-audits: run clean today -> awaiting Architecture stamps   [not blocked]
+correction:                # my earlier wake declaration was WRONG and this records why
+  - Prior _status said "parked, nothing owed". FALSE: two work orders (crit-21 35 items, 1 false-miss) had landed Next:PassatoRemotoAuthor AFTER my wake self-check grep ran, so the grep missed them. Caught them by listing inter_chat/ before writing. This is exactly the re-read-before-asserting failure mode the protocol warns of; the fix worked (a directory read, not memory).
+discharged_evidence:
+  - accent_flag_retrofit CLOSED v5; breadcrumb_label_leak CLOSED v2; crit 18 (my paradigm finding) executed estate-wide; crit 19 AccentAuditor 267/267

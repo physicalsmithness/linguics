@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-21-r39";
+  const LL_BUILD = "2026-07-21-r40";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -5212,6 +5212,14 @@
       note.title = "A bucket counts as proficient when its colour reaches this level.";
       lc.appendChild(note);
     }
+    if (lc && !document.getElementById("analysis-open-link")) {
+      const al = document.createElement("button");
+      al.id = "analysis-open-link"; al.type = "button"; al.className = "analysis-open-link";
+      al.textContent = "Open analysis \u2192";
+      al.title = "Full-screen coverage + misconception analysis";
+      al.addEventListener("click", () => { showCoverage(); });
+      lc.appendChild(al);
+    }
     try { renderPulseStrip(); } catch (e) {}
     // ONE global "last 10" report row (Smith 2026-07-21: the per-bucket
     // strips are gone; this is the report, not the key): the last ten marked
@@ -6430,7 +6438,7 @@
     if (!LL.contentLoading && LL.state && Array.isArray(LL.state.attempts) && LL.state.attempts.length > 0) {
       const cov = document.createElement("button");
       cov.type = "button"; cov.className = "entry-coverage-link";
-      cov.textContent = "See your coverage \u2192";
+      cov.textContent = "See your analysis \u2192";
       cov.addEventListener("click", () => { hideEntry(); showCoverage(); });
       col.appendChild(cov);
     }
@@ -7156,6 +7164,87 @@
     showStrand("grammar");
   }
 
+  // ==================== Analysis surface (Smith 2026-07-21) ====================
+  // Two canvases - Coverage and Misconceptions - each an ordered vertical SCROLL
+  // of view-sections (analyst's data/misconception_canvas_views.md). The findable,
+  // roomy home; the coverage matrix below is Canvas A's heatmap. Views render
+  // whatever data exists and fill in as it lands (Smith: the data catches up).
+  let analysisCanvas = "coverage";   // "coverage" | "misconceptions"
+
+  function sectionWrap(title, bodyEl, statusText) {
+    const sec = document.createElement("section"); sec.className = "analysis-section";
+    const h = document.createElement("h3"); h.className = "analysis-section-title"; h.textContent = title;
+    if (statusText) { const chip = document.createElement("span"); chip.className = "analysis-chip"; chip.textContent = statusText; h.appendChild(chip); }
+    sec.appendChild(h); if (bodyEl) sec.appendChild(bodyEl); return sec;
+  }
+  function placeholderSection(title, note) {
+    const body = document.createElement("div"); body.className = "analysis-placeholder"; body.textContent = note;
+    return sectionWrap(title, body, "building");
+  }
+  function buildAnalysisHeader() {
+    const bar = document.createElement("div"); bar.className = "analysis-header";
+    const back = document.createElement("button"); back.type = "button"; back.className = "coverage-back"; back.textContent = "← Back";
+    back.addEventListener("click", () => { hideCoverage(); showEntry(); });
+    const title = document.createElement("h2"); title.className = "coverage-title"; title.textContent = "Analysis";
+    const sw = document.createElement("div"); sw.className = "analysis-switch";
+    const mk = (id, label) => { const b = document.createElement("button"); b.type = "button"; b.textContent = label; if (analysisCanvas === id) b.className = "active"; b.addEventListener("click", () => { analysisCanvas = id; renderCoverage(); }); return b; };
+    sw.appendChild(mk("coverage", "Coverage")); sw.appendChild(mk("misconceptions", "Misconceptions"));
+    bar.appendChild(back); bar.appendChild(title); bar.appendChild(sw);
+    return bar;
+  }
+  function buildKpiStrip() {
+    const wrap = document.createElement("div"); wrap.className = "analysis-kpis";
+    try {
+      const atts = (LL.state && LL.state.attempts) || [];
+      let full = 0, credited = 0, possible = 0;
+      for (const a of atts) { const o = a.overall || {}; if (o.marks_possible > 0) { possible += o.marks_possible; credited += (o.marks_awarded || 0); if (o.marks_awarded >= o.marks_possible) full++; } }
+      const n = atts.length;
+      const kpi = (label, val) => { const d = document.createElement("div"); d.className = "kpi"; const v = document.createElement("div"); v.className = "kpi-val"; v.textContent = val; const l = document.createElement("div"); l.className = "kpi-label"; l.textContent = label; d.appendChild(v); d.appendChild(l); return d; };
+      wrap.appendChild(kpi("answers", String(n)));
+      wrap.appendChild(kpi("fully right", (n ? Math.round(100 * full / n) : 0) + "%"));
+      wrap.appendChild(kpi("mean credit", (possible ? Math.round(100 * credited / possible) : 0) + "%"));
+    } catch (e) { wrap.textContent = "(snapshot unavailable)"; }
+    return wrap;
+  }
+  function buildCoverageGaps() {
+    const wrap = document.createElement("div"); wrap.className = "analysis-gaps";
+    try {
+      const rows = grammarTopicRows(); const gaps = [];
+      for (const t of rows) {
+        const untried = [];
+        for (const lv of CEFR_ORDER) { const leaves = bucketLeavesInScope([t.id], lv); if (leaves.length && !leaves.some(l => aggregateNodeStats(l))) untried.push(lv); }
+        if (untried.length) gaps.push(t.label + " — " + untried.join(", "));
+      }
+      if (!gaps.length) { wrap.textContent = "Nothing in scope is completely untried."; return wrap; }
+      const ul = document.createElement("ul"); ul.className = "gaps-list";
+      for (const g of gaps.slice(0, 40)) { const li = document.createElement("li"); li.textContent = g; ul.appendChild(li); }
+      wrap.appendChild(ul);
+    } catch (e) { wrap.textContent = "(gaps unavailable)"; }
+    return wrap;
+  }
+  function buildTopErrors() {
+    const wrap = document.createElement("div"); wrap.className = "analysis-toperr";
+    try {
+      const counts = new Map();
+      for (const a of ((LL.state && LL.state.attempts) || [])) { for (const h of (a.misconception_hits || [])) { const id = (h && (h.id || h)) || ""; if (!id) continue; counts.set(id, (counts.get(id) || 0) + 1); } }
+      const list = [...counts.entries()].sort((a, b) => b[1] - a[1]).slice(0, 10);
+      if (!list.length) { wrap.textContent = "No misconception-tagged errors yet — as tagged guards fire, your top recurring slips land here."; return wrap; }
+      const ol = document.createElement("ol"); ol.className = "toperr-list";
+      for (const [id, c] of list) { const li = document.createElement("li"); li.textContent = id + " — " + c + "×"; ol.appendChild(li); }
+      wrap.appendChild(ol);
+    } catch (e) { wrap.textContent = "(top errors unavailable)"; }
+    return wrap;
+  }
+  function renderMisconceptionCanvas(col) {
+    col.appendChild(sectionWrap("Top recurring errors", buildTopErrors()));
+    col.appendChild(placeholderSection("Misconception family heatmap", "The 17 families × how well you handle each. Arrives with the family mapping."));
+    col.appendChild(placeholderSection("Surface lenses", "Accents, spelling, word order, agreement, building irregular forms, choosing the right form, L1 interference, pronoun machinery — wiring the analyst's lens file next."));
+    col.appendChild(placeholderSection("Cross-kind spotlight", "One family across every skill kind: you drop accents on verbs, nouns AND monosyllables."));
+    col.appendChild(placeholderSection("Region × family", "Pick a region (verb formation, pronouns) and see its error-type mix."));
+    col.appendChild(placeholderSection("Over- vs under-application", "Haven't-learnt-it vs learnt-and-over-applying. Needs the mirror pairs marked."));
+    col.appendChild(placeholderSection("Strand / production vs comprehension", "Same slip in free translation but not in targeted grammar."));
+  }
+
   function renderCoverage() {
     const host = document.getElementById("coverage-view");
     if (!host) return;
@@ -7194,7 +7283,7 @@
     palBtn.textContent = coveragePalette === "clear" ? "Palette: clear" : "Palette: classic";
     palBtn.title = "Temporary A/B: 'clear' = white where coverage is still to get, grey where nothing's achievable; 'classic' = old cream. Will be removed once chosen.";
     palBtn.addEventListener("click", () => { coveragePalette = (coveragePalette === "clear") ? "classic" : "clear"; renderCoverage(); });
-    bar.appendChild(back); bar.appendChild(title); bar.appendChild(vwBtn); bar.appendChild(trBtn); bar.appendChild(palBtn);
+    bar.appendChild(vwBtn); bar.appendChild(trBtn); bar.appendChild(palBtn);
     col.appendChild(bar);
 
     const sub = document.createElement("p");
@@ -7326,6 +7415,11 @@
     table.appendChild(tbody);
     scroll.appendChild(table);
     col.appendChild(scroll);
+    col.appendChild(sectionWrap("Not yet attempted", buildCoverageGaps()));
+    col.appendChild(placeholderSection("Verb coverage: person × tense", "1sg…3pl down, tenses across. Builds from the person-tagged verb forms now and fills as the backfill lands."));
+    col.appendChild(placeholderSection("Verb coverage: person × conjugation class", "-are / -ere / -ire and the irregular families, per person."));
+    col.appendChild(placeholderSection("Tense-choice confusion matrix", "Chosen tense vs correct tense — the diagonal is right, off-diagonal shows what you reach for wrongly."));
+    col.appendChild(placeholderSection("Piacere per-verb grid", "Direction (mi piaci vs ti piaccio), pluralisation, figurative use, per tested verb."));
     host.appendChild(col);
   }
 
