@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-21-r56";
+  const LL_BUILD = "2026-07-21-r57";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -1959,6 +1959,12 @@
     const id = String(leafId || "");
     if (id.indexOf("verb_form.") !== 0) return null;
     if (/\.(usage|discrimination)(\.|$)/.test(id)) return null;
+    // Non-person sub-aspects of compound tenses: the participle (by verb class),
+    // agreement (by gender/number), placement/negation/translation carry NO
+    // person paradigm - a person barcode there shows empty bands even when
+    // practised, so the cell flashed on the event but never lit (Smith
+    // 2026-07-21). Return null -> plain correctness fill, which lights.
+    if (/\.(participle_form|participle_agreement|negation|adverb_placement|translation_mapping)(\.|$)/.test(id)) return null;
     if (id.indexOf("verb_form.gerundio") === 0) return null;   // non-finite
     if (id.indexOf("verb_form.imperativo") === 0) return PERSON_ORDER.slice(1);  // no 1sg
     return PERSON_ORDER;
