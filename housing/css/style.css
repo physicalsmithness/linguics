@@ -110,6 +110,7 @@ main {
   border-radius: 4px;
   font-size: 13px;
   flex-wrap: wrap;
+  position: sticky; top: 0; z-index: 35;   /* QoderWork 2026-07-22: direction sticky */
 }
 .filter-bar label { color: var(--muted); }
 .filter-bar select {
@@ -522,10 +523,12 @@ main {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
+  flex-wrap: wrap;             /* QoderWork 2026-07-22: strip wraps to its own line */
   padding-bottom: 8px;
   border-bottom: 1px solid var(--line);
   margin-bottom: 6px;
 }
+.live-header .pulse-strip { flex-basis: 100%; }   /* QoderWork 2026-07-22: full-width own row */
 .live-header h3 {
   margin: 0;
   font-size: 14px;

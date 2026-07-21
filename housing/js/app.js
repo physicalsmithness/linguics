@@ -612,7 +612,7 @@
       box.appendChild(lbl);
       strip.appendChild(box);
     }
-    host.insertBefore(strip, host.firstChild);
+    host.appendChild(strip);   // after h3 + live-controls so "Live stats" sits above  QoderWork 2026-07-22
     return strip;
   }
   function eachStrip(fn) {
@@ -1828,12 +1828,12 @@
       : "Your translation. Enter to mark; Shift+Enter for a line break. Wrap with <g>...</g>, <s>...</s>, <f>...</f> for annotations.";
     card.appendChild(textarea);
     translationTextareaRef = textarea;
+    const helpBar = buildVocabHelpBar(it, vocabHelpsUsed);   // QoderWork 2026-07-22: above accents
+    if (helpBar) card.appendChild(helpBar);
     // Apostrophe-rewrite only makes sense when the target is Italian.
     // For IT->EN, typing "I've" must not be turned into "Ìve".
     card.appendChild(buildAccentBar(textarea, { rewriteApostrophes: it.target_lang === "it" }));
 
-    const helpBar = buildVocabHelpBar(it, vocabHelpsUsed);
-    if (helpBar) card.appendChild(helpBar);
     attachVocabSlashMenu(textarea, it, vocabHelpsUsed);
 
     const intentBar = document.createElement("div");
