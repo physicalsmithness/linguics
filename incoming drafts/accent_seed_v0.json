@@ -3,8 +3,8 @@
  "author": "AccentAuthor",
  "date": "2026-07-21",
  "design_ref": "DESIGN_accent_and_stress_drills.md §A2; DISPATCH_accent_drill.md; event contract in Architecture_Housing_accent_stress_and_new_qtypes.md §1",
- "topic_short_used": "acc",
- "topic_short_note": "buckets/orthography.json root declares topic_short='accents'; I use 'acc' for external_id prefixes (brief §1F wants a SHORT code, cf. aa/pp/op). Architecture: normalise if you prefer 'accents'.",
+ "topic_short_used": "accents",
+ "topic_short_note": "RESOLVED 2026-07-21 (Smith): use 'accents' (matches the tree root; the word reads more naturally than an abbreviation). No marking impact — id prefix only.",
  "outcome_model": {
   "_purpose": "The 4 outcomes the report's stacked bars consume (green correct / orange wrong_kind / red omitted + insertion slice). Computed at MARK time from (target_form, chosen_form), not stored on the item — so one frame generates all outcomes.",
   "correct": "chosen == target.",
@@ -12,27 +12,24 @@
   "wrong_kind": "chosen has an accent on the SAME vowel as target but the wrong MARK (grave<->acute): perché->perchè, and keyboard á/ó for à/ò (cittá). Carries BOTH chars per the Housing contract so the direction is recoverable.",
   "inserted": "chosen == target PLUS an accent the target lacks: qui->quì, sto->stò. In no_accent items this is the ONLY error direction; insertions attribute to the type TYPED (quì -> ì row).",
   "EXCLUDED_not_an_accent_outcome": "A chosen form that is a DIFFERENT valid word/form differing by more than an accent (parlerà for parlerò: different person, à vs ò) is a morphology choice, not an accent-mark error. See open_question Q1 — such person-pairs are held OUT of the clean frames.",
-  "false_alarm": "Judgement item shows a CORRECT form, learner says 'wrong'. Rejecting a correct accent. Has no home in the 4-outcome report. See open_question Q2.",
+  "false_alarm": "RESOLVED 2026-07-21 (Smith): a learner who rejects a correct form simply couldn't confirm the spelling -> record as a MISS on that word/class (the same as failing to catch an error). No fifth bar, no capped generation, no overthinking. Judgement items generate freely.",
   "credit_RULED_2026-07-21_Smith": {
    "_scope": "THE DRILL ONLY. Reverses never-dock FOR THIS DRILL (Smith, taxonomy thread v4). The live GRAMMAR-marker accent policy is unchanged: a grammar item still never docks for an accent slip (r29 banner). The dedicated drill docks because accents ARE what it tests.",
    "correct": 1.0,
    "wrong_kind": 0.8,
    "omitted_baseline": 0.5,
-   "omitted_per_class_PROPOSED": {
-    "_basis": "Smith left omission 'class-severity TBD'; this is exactly my §5 tiering (relayed by Architecture). Real-word-twin classes below baseline (omission changes the WORD/TENSE); misspelling classes at baseline (meaning recoverable). Average stays ~0.5, honouring his baseline.",
+   "inserted_PROPOSED": "accepted -> 0.5 (see inserted_RULED)",
+   "surface_the_direction": "Smith's instruction. Satisfied by the event contract: wrong_kind already carries BOTH chars (expected é / written è) so the acute<->grave direction shows in the verdict; omission/insertion show the missing/extra mark. The drill's feedback names it.",
+   "inserted_RULED": 0.5,
+   "omitted_per_class_RULED": {
+    "_basis": "ACCEPTED by Smith 2026-07-21. Smith left omission 'class-severity TBD'; this is exactly my §5 tiering (relayed by Architecture). Real-word-twin classes below baseline (omission changes the WORD/TENSE); misspelling classes at baseline (meaning recoverable). Average stays ~0.5, honouring his baseline.",
     "meaning_pair": 0.4,
     "tense_bearing": 0.4,
     "che_compound": 0.5,
     "lexical_final": 0.5,
     "no_accent": "n/a (error direction is insertion)",
     "apostrophe_not_accent": "n/a (error direction is insertion)"
-   },
-   "inserted_PROPOSED": {
-    "_gap": "Smith did not rule an insertion value. Insertion (quì, stò, pò) is the SOLE error for no_accent + apostrophe, so its value sets those classes' whole stakes.",
-    "recommend": 0.5,
-    "alt": "0.8 if treated as a mild wrong-instinct like wrong_kind rather than a definite error"
-   },
-   "surface_the_direction": "Smith's instruction. Satisfied by the event contract: wrong_kind already carries BOTH chars (expected é / written è) so the acute<->grave direction shows in the verdict; omission/insertion show the missing/extra mark. The drill's feedback names it."
+   }
   }
  },
  "frame_families": [
@@ -301,14 +298,18 @@
      "type": "ò",
      "gloss_accented": "that/this thing",
      "gloss_bare": "(non-word alone)",
-     "note": "ciò has no atonic twin; INCLUDED here only as an accented monosyllable whose omission (cio) is a non-word — behaves like lexical_final. Consider moving to lexical_final. FLAGGED.",
+     "note": "RESOLVED 2026-07-21 (Smith): cross-tag, don't force. ciò has no atonic twin so it ALSO belongs to lexical_final (monosyllabic fixed accent); tag BOTH, flag as edge/weird. Two homes is Rev 27, not a problem.",
      "carriers_force_accented": [
       {
        "it": "___ che dici è vero.",
        "en": "What you say is true."
       }
      ],
-     "carriers_force_bare": []
+     "carriers_force_bare": [],
+     "cross_tags": [
+      "placement.lexical_final"
+     ],
+     "edge": true
     },
     {
      "accented": "dì",
@@ -316,7 +317,7 @@
      "type": "ì",
      "gloss_accented": "day (literary)",
      "gloss_bare": "of",
-     "note": "dì='day' is literary/low-frequency; the LIVE contrast for 'di' is the apostrophe imperative di' (say!). See apostrophe_not_accent. Keep here at low priority.",
+     "note": "RESOLVED 2026-07-21 (Smith): cross-tag + edge. dì(day) is literary AND the di'/dì/di TRIPLE spans apostrophe_not_accent; a triple item tags meaning_pair AND apostrophe_not_accent. Two homes, flagged weird.",
      "carriers_force_accented": [
       {
        "it": "Un ___ lontano, tornerò.",
@@ -328,7 +329,11 @@
        "it": "Il libro ___ Marco.",
        "en": "Marco's book."
       }
-     ]
+     ],
+     "cross_tags": [
+      "placement.apostrophe_not_accent"
+     ],
+     "edge": true
     }
    ]
   },
@@ -605,27 +610,35 @@
  "open_questions": [
   {
    "id": "Q1",
-   "q": "tense_bearing PERSON-pairs (parlerò 1sg vs parlerà 3sg): both accented, differ by vowel+person. Not a clean accent-mark outcome. Proposal: HOLD OUT of the accent drill (they are future-formation discrimination — FutureFormationAuthor's leaf); keep only accent-DROP items (parlerò vs parlero) which are clean-omitted. Architecture to confirm the boundary."
+   "q": "tense_bearing PERSON-pairs (parlerò 1sg vs parlerà 3sg): both accented, differ by vowel+person. Not a clean accent-mark outcome. Proposal: HOLD OUT of the accent drill (they are future-formation discrimination — FutureFormationAuthor's leaf); keep only accent-DROP items (parlerò vs parlero) which are clean-omitted. Architecture to confirm the boundary.",
+   "resolution": "RESOLVED (Smith): parlerò/parlerà HELD OUT of the accent drill; keep only accent-drop items. Confirmed."
   },
   {
    "id": "Q2",
-   "q": "acc_judge false-alarm: learner rejects a correct form. No home in the 4-outcome report. Proposal: record it as its own signal but do NOT surface in the stacked bars initially (cap generation of shown-correct judgement items low); revisit if Smith wants a false-alarm sliver. Housing/Architecture call."
+   "q": "acc_judge false-alarm: learner rejects a correct form. No home in the 4-outcome report. Proposal: record it as its own signal but do NOT surface in the stacked bars initially (cap generation of shown-correct judgement items low); revisit if Smith wants a false-alarm sliver. Housing/Architecture call.",
+   "resolution": "RESOLVED (Smith): false alarm = a miss ('can't spell it'). No new bar. See outcome_model.false_alarm."
   },
   {
    "id": "Q3",
-   "q": "topic_short: tree root says 'accents', brief wants a short code. I used 'acc'. Confirm or normalise."
+   "q": "topic_short: tree root says 'accents', brief wants a short code. I used 'acc'. Confirm or normalise.",
+   "resolution": "RESOLVED (Smith): topic_short = 'accents'."
   },
   {
    "id": "Q4",
-   "q": "ciò and dì(day) placement: ciò has no atonic twin (behaves lexical_final); dì(day) is literary. Both currently parked in meaning_pair with notes. Move ciò to lexical_final? Keep dì low-priority? Author's lean: move ciò, keep dì flagged."
+   "q": "ciò and dì(day) placement: ciò has no atonic twin (behaves lexical_final); dì(day) is literary. Both currently parked in meaning_pair with notes. Move ciò to lexical_final? Keep dì low-priority? Author's lean: move ciò, keep dì flagged.",
+   "resolution": "RESOLVED (Smith): cross-tag ciò + dì (two homes, Rev 27) and flag edge/weird. Not forced into one class."
   },
   {
    "id": "Q5",
-   "q": "Insertion credit value: Smith ruled wrong_kind 0.8 / omission 0.5 / correct 1.0 but not INSERTION. It is the only error for no_accent + apostrophe. Recommend 0.5 (definite error, baseline); alt 0.8 (mild wrong-instinct). Smith's call."
+   "q": "Insertion credit value: Smith ruled wrong_kind 0.8 / omission 0.5 / correct 1.0 but not INSERTION. It is the only error for no_accent + apostrophe. Recommend 0.5 (definite error, baseline); alt 0.8 (mild wrong-instinct). Smith's call.",
+   "resolution": "ACCEPTED (Smith, 'the rest is fine'): insertion credit = 0.5."
   },
   {
    "id": "Q6",
-   "q": "Per-class omission severity (Smith flagged 'class-severity TBD'). Proposed: meaning_pair + tense_bearing = 0.4 (omission changes the WORD/TENSE — my serious tier), che_compound + lexical_final = 0.5 (spelling slip, meaning recoverable). Average ~0.5 honours his baseline. Smith rules the gradient."
+   "q": "Per-class omission severity (Smith flagged 'class-severity TBD'). Proposed: meaning_pair + tense_bearing = 0.4 (omission changes the WORD/TENSE — my serious tier), che_compound + lexical_final = 0.5 (spelling slip, meaning recoverable). Average ~0.5 honours his baseline. Smith rules the gradient.",
+   "resolution": "ACCEPTED (Smith, 'the rest is fine'): per-class omission gradient meaning_pair/tense_bearing 0.4, che_compound/lexical_final 0.5."
   }
- ]
+ ],
+ "edge_and_multihome_note": "Smith 2026-07-21: placement classes are not mutually exclusive (Rev 27) — a word may tag two. The clean partition holds for the vast majority; the exceptions (ciò, dì, the da'/dà/da and di'/dì/di triples) are cross-tagged and flagged edge. If oddities accumulate, a small 'irregular/edge' grouping is Architecture's to mint (not minted here).",
+ "apostrophe_input_bug": "Smith 2026-07-21: the apostrophe live-rewriter (housing/js/norm.js) auto-corrupts po' -> pO-grave (po' is NOT in the apocope allow-list va'/da'/fa'/sta'/di'); and the da'/di' reservation makes the commoner indicative dA-grave/dI-grave unreachable via the shortcut. Flagged to Housing with Smith's escalation fix (1 apostrophe=grave, 2=acute, 3=literal apostrophe) in inter_chat/AccentAuthor_Housing_apostrophe_input.md. Drill-adjacent (the drill is index-scored) but it would let the tool undermine the very lesson."
 }

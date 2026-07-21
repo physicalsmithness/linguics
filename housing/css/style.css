@@ -1050,6 +1050,13 @@ body.strand-vocab-active #live-stats { display: none; }
    skill must not read as untouched). */
 .freq-flank-cell.has-practice { box-shadow: inset 0 0 0 1px rgba(27,138,74,.85); }
 .vocab-lemma-dot.has-practice { box-shadow: inset 0 0 0 1px rgba(27,138,74,.85); }
+/* Gender drill: fixed-option classifier choices. */
+.gender-choice { display: flex; align-items: baseline; gap: 8px; text-align: left; }
+.gender-choice .gc-num { font-weight: 700; color: var(--accent); min-width: 1.3em; }
+.gender-choice .gc-label { font-weight: 600; }
+.gender-choice .gc-eg { color: var(--muted); font-size: 12px; font-style: italic; margin-left: auto; padding-left: 10px; }
+.gender-choice.gc-correct { outline: 2px solid #2e7d4f; background: rgba(46,125,79,0.09); }
+.gender-choice.gc-wrong { outline: 2px solid #b03030; background: rgba(176,48,48,0.09); }
 
 /* Tick row */
 .freq-tick-row {

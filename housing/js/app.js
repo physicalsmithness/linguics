@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-21-r68";
+  const LL_BUILD = "2026-07-21-r69";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -2272,6 +2272,18 @@
 
   // The deck-ready set: in-scope entries with the remaining filters applied.
   function filteredVocabEntries() {
+    if (vocabFilter.genderDrill) {
+      // Gender drill deck: clean-gendered nouns only (exclude the 'ambiguous'
+      // gap-fill junk), default-focused on the interesting classes (3+) with a
+      // thinned baseline of plain m/f. Full per-class multi-select is a follow-up.
+      return vocabEntriesInScope().filter(v => {
+        if (v.pos !== "noun") return false;
+        const g = String(v.gender);
+        if (g !== "m" && g !== "f" && g !== "mf") return false;
+        if (nounGenderClass(v) <= 2 && typeof v.rank === "number" && (v.rank % 20 !== 0)) return false;
+        return true;
+      });
+    }
     return vocabEntriesInScope().filter(v => {
       if (vocabFilter.band && v.band !== vocabFilter.band) return false;
       if (vocabFilter.rankRange && typeof v.rank === "number") {
@@ -2436,6 +2448,167 @@
     host.appendChild(count);
   }
 
+  // ---- Gender drill (Architecture_Housing_gender_plural_drill v3): a uniform
+  // fixed-option gender-BEHAVIOUR classifier. Show the BARE noun (no article,
+  // nothing leaked); the learner picks its class from the SAME numbered list
+  // every time; the correct answer is DERIVED from the entry, so no per-noun
+  // authoring; a wrong pick records which class they mistook it for.
+  const GENDER_CLASSES = [
+    { n: 1, key: "masculine",       label: "Masculine",                   eg: "libro, tavolo" },
+    { n: 2, key: "feminine",        label: "Feminine",                    eg: "casa, porta" },
+    { n: 3, key: "either",          label: "Either gender",               eg: "il/la giornalista" },
+    { n: 4, key: "depends_meaning", label: "Depends on meaning",          eg: "il fine / la fine" },
+    { n: 5, key: "m_sg_f_pl",       label: "Masc. singular, fem. plural", eg: "il braccio → le braccia" },
+    { n: 6, key: "f_sg_m_pl",       label: "Fem. singular, masc. plural", eg: "l'eco → gli echi" },
+    { n: 7, key: "two_plurals",     label: "Two plurals, diff. meaning",  eg: "i bracci / le braccia" }
+  ];
+  // Prefers an explicit `gender_class` tag (Vocab populates it when the noun db
+  // is cleaned - Smith: "imagine the dbase will be fixed"); else a best-effort
+  // interim derivation from gender + plural.
+  function nounGenderClass(entry) {
+    if (!entry) return 1;
+    const tag = entry.gender_class;
+    if (tag != null) {
+      if (typeof tag === "number") return tag;
+      const f = GENDER_CLASSES.find(c => c.key === tag);
+      if (f) return f.n;
+    }
+    const lem = String(entry.lemma || ""), g = String(entry.gender), pl = String(entry.plural || "");
+    if (g === "mf") return 3;
+    if (g === "m") return (pl && /a$/.test(pl) && /o$/.test(lem)) ? 5 : 1;   // braccio -> braccia
+    if (g === "f") return 2;
+    return 1;
+  }
+  function markGenderDrill(entry, pickedClass) {
+    const actual = nounGenderClass(entry);
+    const correct = pickedClass === actual;
+    const bucket = (typeof LL.entryBucketId === "function")
+      ? LL.entryBucketId(entry, "gender", {})
+      : ("vocabulary.it." + entry.lemma + ".noun.gender.active");
+    const actualLabel = (GENDER_CLASSES[actual - 1] || {}).label || "?";
+    const pickedLabel = (GENDER_CLASSES[pickedClass - 1] || {}).label || String(pickedClass);
+    const result = {
+      overall: {
+        marks_awarded: correct ? 1 : 0, marks_possible: 1,
+        attempted_overall: 1, correctness_overall: correct ? 1 : 0,
+        status: correct ? "hit" : "miss",
+        summary: correct ? "Right" : ("Not quite - " + entry.lemma + " is " + actualLabel.toLowerCase())
+      },
+      raw_response: pickedLabel,
+      markpoints: [{
+        bucket: bucket, label: "Gender: " + entry.lemma,
+        attempted_credit: 1, correctness_credit: correct ? 1 : 0,
+        outcome: correct ? "hit" : "miss", evidence: pickedLabel, expected: actualLabel
+      }],
+      orthography: [],
+      misconceptions: []
+    };
+    if (!correct) {
+      const pk = (GENDER_CLASSES[pickedClass - 1] || {}).key || ("class_" + pickedClass);
+      // proposed id: MisconceptionAnalyst mints the canonical gender_class ids.
+      result.misconceptions.push({ id: "gender_class.thought_" + pk, bucket: bucket, evidence: pickedLabel, proposed: true });
+    }
+    return result;
+  }
+  function renderGenderDrillCard(entry, keepAxes) {
+    const host = document.getElementById("vocab-host");
+    if (!host) return;
+    host.innerHTML = "";
+    LL._cardShownAt = Date.now();
+    const card = document.createElement("div");
+    card.className = "qcard gender-drill-card";
+    card.tabIndex = -1;
+
+    const meta = document.createElement("div");
+    meta.className = "meta faint";
+    meta.textContent = (typeof entry.rank === "number" ? "rank " + entry.rank + " · " : "") + "noun · which gender?";
+    card.appendChild(meta);
+
+    const prompt = document.createElement("div");
+    prompt.className = "prompt";
+    const line = document.createElement("div");
+    line.className = "prompt-inline";
+    line.appendChild(document.createTextNode("What gender is "));
+    const strong = document.createElement("strong");
+    strong.textContent = entry.lemma;
+    line.appendChild(strong);
+    line.appendChild(document.createTextNode("?"));
+    prompt.appendChild(line);
+    card.appendChild(prompt);
+
+    const choicesWrap = document.createElement("div");
+    choicesWrap.className = "mcq-choices gender-choices";
+    const resultHost = document.createElement("div");
+    const buttons = [];
+    const actualClass = nounGenderClass(entry);
+    let marked = false;
+
+    const doNext = () => {
+      vocabIndex++;
+      if (vocabIndex >= vocabDeck.length) { vocabDeck = weightedVocabShuffle(filteredVocabEntries()); vocabIndex = 0; }
+      renderVocab(true);
+    };
+    const next = document.createElement("button");
+    next.type = "button"; next.className = "btn"; next.textContent = "Skip"; next.title = "Next noun";
+    next.addEventListener("click", doNext);
+    next.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); doNext(); } });
+
+    const commit = (picked) => {
+      if (marked || !picked) return;
+      marked = true;
+      const result = markGenderDrill(entry, picked);
+      const attempt = LL.store.recordAttempt("vocab",
+        { id: "genderdrill_" + (entry.rank || entry.lemma), prompt: entry.lemma },
+        (GENDER_CLASSES[picked - 1] || {}).label, result);
+      recentlyChangedBuckets = new Set(attempt.events.map(e => e.bucket));
+      buttons.forEach((b, i) => {
+        const nn = i + 1;
+        if (nn === actualClass) b.classList.add("gc-correct");
+        if (nn === picked && picked !== actualClass) b.classList.add("gc-wrong");
+        b.disabled = true;
+      });
+      resultHost.innerHTML = "";
+      resultHost.appendChild(renderResult(result));
+      renderLiveStats();
+      next.textContent = "Next";
+      setTimeout(() => next.focus({ preventScroll: true }), 0);
+    };
+
+    GENDER_CLASSES.forEach((c) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "mcq-choice gender-choice";
+      const num = document.createElement("span"); num.className = "gc-num"; num.textContent = c.n;
+      const lbl = document.createElement("span"); lbl.className = "gc-label"; lbl.textContent = c.label;
+      const eg = document.createElement("span"); eg.className = "gc-eg"; eg.textContent = c.eg;
+      b.appendChild(num); b.appendChild(lbl); b.appendChild(eg);
+      b.addEventListener("click", () => commit(c.n));
+      choicesWrap.appendChild(b);
+      buttons.push(b);
+    });
+    card.appendChild(choicesWrap);
+
+    const actions = document.createElement("div");
+    actions.className = "actions";
+    actions.appendChild(next);
+    const hint = document.createElement("span");
+    hint.className = "kbd-hint";
+    hint.textContent = "Press 1-" + GENDER_CLASSES.length + " or click. Enter to advance.";
+    actions.appendChild(hint);
+    card.appendChild(actions);
+    card.appendChild(resultHost);
+
+    card.addEventListener("keydown", (e) => {
+      if (marked) { if (e.key === "Enter") { e.preventDefault(); doNext(); } return; }
+      const n = parseInt(e.key, 10);
+      if (n >= 1 && n <= GENDER_CLASSES.length) { e.preventDefault(); commit(n); }
+    });
+
+    host.appendChild(card);
+    setTimeout(() => { ensureCardVisible(card); card.focus(); }, 0);
+    if (!keepAxes) renderVocabAxes();
+  }
+
   function renderVocab(keepAxes) {
     renderVocabFilterBar();
     const host = document.getElementById("vocab-host");
@@ -2459,6 +2632,7 @@
       return;
     }
     const entry = vocabDeck[vocabIndex];
+    if (vocabFilter.genderDrill) { renderGenderDrillCard(entry, keepAxes); return; }
     const effDir = (vocabFilter.direction === "mix")
       ? (vocabDeckDirs[vocabIndex] || "it_en")
       : vocabFilter.direction;
@@ -6986,12 +7160,12 @@
     drillRow.className = "entry-chip-row";
     drillRow.appendChild(entryChip("Gender drill (nouns)", v.genderDrill,
       () => { v.genderDrill = !v.genderDrill; renderEntryScreen(); },
-      { title: "Nouns only, producing the Italian with its gender" }));
+      { title: "Identify each noun's gender behaviour from a fixed list" }));
     drills.appendChild(drillRow);
     const dNote = document.createElement("p");
     dNote.className = "entry-config-hint";
     dNote.textContent = v.genderDrill
-      ? "nouns only, producing the Italian (with its article); frequency and category still apply"
+      ? "nouns only; pick each noun's gender behaviour from a fixed list; frequency and category still apply"
       : "changes what the session is, not just which words are in it";
     drills.appendChild(dNote);
     panel.appendChild(drills);
@@ -7001,7 +7175,7 @@
   function startVocabSession() {
     const v = entrySel.vocab;
     vocabFilter.genderDrill = !!v.genderDrill;
-    vocabFilter.direction = v.genderDrill ? "en_it" : v.direction;   // gender drill = production
+    vocabFilter.direction = v.genderDrill ? "en_it" : v.direction;   // gender drill: direction unused by the classifier
     // The builder's frequency selection replaces the legacy subBand/topN caps.
     vocabFilter.subBand = "";
     vocabFilter.topN = 0;
