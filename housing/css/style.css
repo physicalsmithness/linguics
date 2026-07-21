@@ -1931,3 +1931,12 @@ body.coverage-active #entry-screen { display: none; }
 h1, h2, h3, .wordmark, .coverage-title, .analysis-section-title { font-family: Fraunces, Georgia, serif; }
 .wordmark { font-weight: 550; letter-spacing: -0.01em; }
 .wm-ics { color: var(--accent); }
+
+/* Knowledge-atom logo (3x3 wine L-trace) in the header (Claude Design overhaul) */
+.brand-row { display:flex; align-items:center; gap:11px; flex-wrap:wrap; margin-bottom:6px; }
+.brand-logo { display:grid; grid-template-columns:repeat(3,8px); grid-auto-rows:8px; gap:1.5px; }
+.brand-logo i { border-radius:1px; background:#ece7db; }
+.brand-logo i.d { background:var(--p, #8f3a44); }
+.brand-logo i.m { background:var(--p2, #b06b76); }
+.brand-logo i.l { background:var(--p3, #d6aab0); }
+.brand-row .wordmark, .brand-row .tagline { margin:0; }
