@@ -532,7 +532,7 @@ main {
   font-weight: 600;
   color: var(--accent);
 }
-.live-controls { font-size: 12px; color: var(--muted); }
+.live-controls { font-size: 12px; color: var(--muted); display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }   /* QoderWork 2026-07-22 */
 .live-controls label { cursor: pointer; }
 
 #live-stats-content {
@@ -1420,7 +1420,7 @@ body.strand-vocab-active #live-stats { display: none; }
 .entry-gate-form .identity-name { width: 220px; font-size: 18px; padding: 8px 10px; }
 .entry-gate-form .identity-class { font-size: 16px; padding: 7px; }
 .entry-gate-form .identity-save { font-size: 16px; padding: 8px 20px; }
-.proficient-note { margin-left: 10px; font-size: 11px; color: var(--muted); border-left: 1px solid var(--line); padding-left: 10px; }
+.proficient-note { font-size: 11px; color: var(--muted); }   /* QoderWork 2026-07-22 */
 
 /* Pulse strip (Smith 2026-07-20, geometry per his live feedback): five
    GAPLESS 3x3 boxes of 1,000 words each, thin slivers at matching height,
@@ -1902,7 +1902,7 @@ body.coverage-active #entry-screen { display: none; }
 .kpi-label { font-size:.78rem; color:#6b6552; }
 .gaps-list, .toperr-list { margin:0; padding-left:20px; color:var(--ink,#2b2b2b); }
 .gaps-list li, .toperr-list li { margin:2px 0; }
-.analysis-open-link { display:block; font:inherit; margin-top:8px; padding:6px 10px; border:1px solid var(--line,#e3ddc9); border-radius:6px; background:#fff; color:var(--accent); cursor:pointer; width:100%; text-align:left; }
+.analysis-open-link { display:block; font:inherit; margin-top:4px; padding:6px 10px; border:1px solid var(--line,#e3ddc9); border-radius:6px; background:#fff; color:var(--accent); cursor:pointer; width:auto; text-align:right; }   /* QoderWork 2026-07-22 */
 @media (max-width:600px) {
   .analysis-header, .analysis-section, .coverage-col { max-width:100%; }
   .analysis-switch { margin-left:0; width:100%; }
