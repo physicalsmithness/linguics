@@ -3,7 +3,7 @@
 Authored against the diagnostic-only `tense_choice` topic. Dispatch `DISPATCH_tense_choice.md`.
 **Wave 1** (2026-05-28, brief Rev 3) and **wave 2** (2026-07-15, brief **Rev 19**) combined.
 
-**Totals: 124 grammar items + 61 translation items (36 en→it, 25 it→en) = 185 items.**
+**Totals: 142 grammar items (124 short + 18 periodo-ipotetico MCQ) + 66 translation items = 208 items.**
 Every non-aggregate leaf in the tree now has coverage; **zero-coverage leaves: none**.
 
 The topic is unusual in two ways. First, every grammar item presents two fully-formed verbs and
@@ -308,6 +308,45 @@ pointer, so an analyst finds the id from either direction.
 to earn an id; Architecture agreed and declined it, and Smith overruled and minted it. It is
 registered with a note that its stats are watched for separability from `pp_for_imperfect` /
 `imperfect_for_pp` — if they blur, it gets retired or sharpened.
+
+---
+
+## Periodo ipotetico — NEW integrated leaf (2026-07-21)
+
+Dispatched `DISPATCH_periodo_ipotetico.md` after Smith's CEFR-harvest ruling that the hypothetical
+period is an **integrated leaf**, not its own topic. **18 grammar MCQ + 5 translation.** The leaf
+was zero-coverage; it is now the tree's second MCQ leaf.
+
+| Type | Grammar | CEFR | Cross-credit (Rev 27) |
+|---|---|---|---|
+| Type 1 (real): se + present indic. → present/future/imperative | 3 | B1 | none — indicative throughout |
+| Type 2 (possible): se + cong. imperfetto → condiz. presente | 5 | B1-B2 | + condizionale apodosis |
+| Type 3 (impossible): se + cong. trapassato → condiz. passato | 5 | B2-C1 | + condizionale apodosis |
+| Mixed (past↔present cross-pairings) | 3 | C1 | + condizionale apodosis |
+| Across-type selection (given a clear meaning, pick the type) | 2 | B1-B2 | type 1 none; mixed + apodosis |
+
+**Instrument: supplied-choice MCQ, the whole pairing is the choice** ("which pairing is correct",
+per the dispatch). This tests the integrated system — both clauses at once — which a single-slot
+item cannot. MCQ is index-scored, so the substring layer is inert and criterion 18 does not apply;
+`candidate_forms` + `correct_form` carry the post-answer tick (criterion 16), `info_display:
+suppress` per criterion 15, and supplied-choice exempts criteria 13/20 (Rev 31).
+
+**Rev 27 cross-credit, verified in the engine.** `buildMcqResult` fires *every* markpoint as a
+bucket event, so on a correct pick two markpoints at `credit: 0.5` yield item marks 1/1 and a full
+correctness event on BOTH `tense_choice.periodo_ipotetico` and
+`verb_form.condizionale.usage.hypothetical_apodosis` — the integrated leaf and the conditional
+apodosis it evidences, no duplication. Type-1 items are single-markpoint (indicative throughout,
+no conditional component). Translation items express the same cross-credit through
+`required_buckets` listing both. Marker replica: 18/18 correct picks score full on every bucket,
+every wrong pick a clean miss.
+
+**Distractor discipline — the acceptability trap.** The signature distractor is *se avrei* (the
+condizionale-in-the-se-clause error), the single most common learner mistake. The colloquial
+imperfetto+imperfetto (*se avevo tempo, venivo*) is **never** used as a wrong distractor: it is
+*acceptable* casual Italian and is owned by the wave-1 `colloquial_imperfect` leaf, so marking it
+wrong would fail correct Italian. Verified programmatically that no wrong choice matches that
+pattern. The existing 10 counterfactual items (`tc_cf_*`) are untouched — the integrated leaf is a
+different instrument, not a re-authoring of them.
 
 ---
 

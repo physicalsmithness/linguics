@@ -5,8 +5,9 @@
   --ink: #1c1c1c;
   --muted: #6b6b6b;
   --faint: #999;
-  --accent: #3a4f8a;
-  --accent-soft: #e8edf6;
+  --accent: #8f3a44;                /* brand accent: slate -> wine (Claude Design overhaul) */
+  --accent-soft: #f2e7e8;
+  --p: oklch(42% 0.135 15); --p2: oklch(54% 0.11 15); --p3: oklch(70% 0.07 15); --pSoft: oklch(93% 0.024 15); --pDeep: oklch(33% 0.12 15);
   --green: #2e7d4f;
   --green-soft: #e3f1e8;
   --green-vivid: #1f9d4a;       /* brighter green for outcome-right text */
@@ -17,17 +18,17 @@
   --amber: #b58a00;
   --amber-soft: #f8efd5;
   --line: #e6e1d6;
-  --core: #3a4f8a;
-  --preview: #6a7fb0;
-  --review: #9aa6bf;
-  --fluency: #c5cad6;
-  --arcane: #ddd8ce;
+  --core: #8f3a44;
+  --preview: #b0616e;
+  --review: #cd9aa2;
+  --fluency: #e3c8cc;
+  --arcane: #efe0e2;
 }
 
 * { box-sizing: border-box; }
 
 body {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: Lora, Georgia, "Times New Roman", serif;
   background: var(--bg);
   color: var(--ink);
   margin: 0;
@@ -1867,18 +1868,18 @@ body.coverage-active #entry-screen { display: none; }
 .analysis-header .coverage-title { margin:0; }
 .analysis-switch { display:flex; gap:6px; margin-left:auto; }
 .analysis-switch button { font:inherit; padding:4px 14px; border:1px solid var(--line,#e3ddc9); border-radius:999px; background:#fff; color:var(--ink,#2b2b2b); cursor:pointer; }
-.analysis-switch button.active { background:var(--accent,#3a4f8a); color:#fff; border-color:var(--accent,#3a4f8a); }
+.analysis-switch button.active { background:var(--accent); color:#fff; border-color:var(--accent); }
 .analysis-section { max-width:720px; margin:0 auto 26px; }
 .analysis-section-title { font-family:Georgia,serif; font-size:1.05rem; color:var(--ink,#2b2b2b); margin:0 0 8px; display:flex; align-items:center; gap:8px; }
 .analysis-chip { font-size:.68rem; text-transform:uppercase; letter-spacing:.04em; color:#8a836f; border:1px solid var(--line,#e3ddc9); border-radius:999px; padding:1px 7px; font-weight:400; }
 .analysis-placeholder { color:#8a836f; font-style:italic; border:1px dashed var(--line,#e3ddc9); border-radius:8px; padding:12px 14px; background:#fffdf7; }
 .analysis-kpis { display:flex; gap:14px; flex-wrap:wrap; }
 .kpi { border:1px solid var(--line,#e3ddc9); border-radius:8px; padding:10px 16px; background:#fff; min-width:88px; text-align:center; }
-.kpi-val { font-size:1.5rem; font-family:Georgia,serif; color:var(--accent,#3a4f8a); line-height:1.1; }
+.kpi-val { font-size:1.5rem; font-family:Georgia,serif; color:var(--accent); line-height:1.1; }
 .kpi-label { font-size:.78rem; color:#6b6552; }
 .gaps-list, .toperr-list { margin:0; padding-left:20px; color:var(--ink,#2b2b2b); }
 .gaps-list li, .toperr-list li { margin:2px 0; }
-.analysis-open-link { display:block; font:inherit; margin-top:8px; padding:6px 10px; border:1px solid var(--line,#e3ddc9); border-radius:6px; background:#fff; color:var(--accent,#3a4f8a); cursor:pointer; width:100%; text-align:left; }
+.analysis-open-link { display:block; font:inherit; margin-top:8px; padding:6px 10px; border:1px solid var(--line,#e3ddc9); border-radius:6px; background:#fff; color:var(--accent); cursor:pointer; width:100%; text-align:left; }
 @media (max-width:600px) {
   .analysis-header, .analysis-section, .coverage-col { max-width:100%; }
   .analysis-switch { margin-left:0; width:100%; }
@@ -1896,7 +1897,7 @@ body.coverage-active #entry-screen { display: none; }
 .cell-detail-areas { margin:6px 0; padding-left:20px; }
 .cell-detail-sub { font-weight:600; margin-top:8px; font-size:.9rem; }
 .cell-detail-mc { margin:4px 0; padding-left:20px; }
-.cell-detail-practise { margin-top:10px; font:inherit; padding:6px 14px; border:1px solid var(--accent,#3a4f8a); border-radius:6px; background:var(--accent,#3a4f8a); color:#fff; cursor:pointer; }
+.cell-detail-practise { margin-top:10px; font:inherit; padding:6px 14px; border:1px solid var(--accent); border-radius:6px; background:var(--accent); color:#fff; cursor:pointer; }
 .analysis-note { color:#8a836f; font-style:italic; }
 .pt-scroll { overflow-x:auto; -webkit-overflow-scrolling:touch; }
 .pt-grid { border-collapse:collapse; }
@@ -1923,5 +1924,10 @@ body.coverage-active #entry-screen { display: none; }
 /* Choose-or-type chips: stacked + numbered (Smith 2026-07-21) */
 .stated-choice-row { display:flex; flex-direction:column; align-items:stretch; gap:6px; }
 .stated-choice { display:flex; align-items:center; gap:10px; text-align:left; }
-.stated-choice-num { flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; border-radius:50%; background:var(--accent,#3a4f8a); color:#fff; font-size:.8rem; font-weight:600; }
+.stated-choice-num { flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; border-radius:50%; background:var(--accent); color:#fff; font-size:.8rem; font-weight:600; }
 .stated-choice-txt { flex:1 1 auto; }
+
+/* Brand type: Fraunces headings/wordmark + wine ics (Claude Design overhaul) */
+h1, h2, h3, .wordmark, .coverage-title, .analysis-section-title { font-family: Fraunces, Georgia, serif; }
+.wordmark { font-weight: 550; letter-spacing: -0.01em; }
+.wm-ics { color: var(--accent); }

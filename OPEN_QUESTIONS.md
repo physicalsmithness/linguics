@@ -538,3 +538,11 @@ From REFERENCE_cefr_placement_harvest.md. Smith: "everything that can be, these 
 ## Micro-gaps surfaced by the phantom-bucket cleanup (2026-07-21)
 - **Exclamative che/come/quanto** (Che bel libro! / Come sei gentile! / Quanto sei alto!) — no home; same words as the interrogatives topic in an exclamative function, so a candidate leaf under `interrogatives` (or its own small topic). Was an orphan optional tag on trans_aa_en_it_12.
 - **Telling the time** (Sono le sei e mezza) — a functional/vocab skill with no grammar bucket; likely a vocab-theme item, not a grammar leaf. Was an orphan optional tag on trans_aa_it_en_09.
+
+## PARKED (Smith, 2026-07-21): C2 situational-pragmatic-judgement MCQ — a future item-type family
+Not for now; parked for the C2 end of the CEFR coverage gap (Linguics items are mostly production/formation; genuine C2 is thin). From a Smith chat on demonstrating C2 via short/MCQ items:
+- **MCQ can test C2-TARGETED receptive/pragmatic ability** (inference, implicature, irony, hedging, register calibration, lexical precision, discourse structure, synthesis, mediation/interaction RECOGNITION) — but NOT production/interaction itself, so it can't establish C2 overall, only C2-aligned recognition.
+- **Best format = situational pragmatic judgement:** given relationship + medium + objective + risk, choose the best-CALIBRATED wording (NOT "most formal" — a stiff/evasive/over-deferential formal answer can be wrong; a short warm one can be right). Especially register that is non-obvious to a non-native.
+- **Stronger C2-evidence variant:** choose the most appropriate AND the least appropriate, then explain in 25-35 words of Italian why (adds production + precise comparison).
+- **Design do/avoid:** specify relationship/hierarchy/medium/aim; all options grammatical + plausible; vary directness/certainty/solidarity/liability/face; cover peer/institutional/academic/customer/informal; spoken audio for intonation/irony; pilot with the target population. Avoid: "which is most polite", one absurd + three formal options, treating "more formal" as better, register-from-transcript-only.
+- Connects to: the functional/pragmatic item-type Smith was interested in (register calibration IS that), the error-ID/MCQ instruments, and the C2 coverage tail. A validated bank would need piloting against known C1/C2 candidates.

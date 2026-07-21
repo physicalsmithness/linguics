@@ -1,0 +1,631 @@
+{
+ "_meta": "AccentAuthor v0 PROPOSAL — not canonical. Deliverable 2 of DISPATCH_accent_drill.md. Frames + declared axes for the mechanical variant pipeline (DECISIONS 2026-07-20 A(a)); the pipeline supplies volume, I sample-review. Taxonomy ratified 2026-07-21 (AccentAuthor_Architecture_taxonomy v3). Index-scored throughout: NO substring marking, so criterion 18/19 substring hazards do not arise.",
+ "author": "AccentAuthor",
+ "date": "2026-07-21",
+ "design_ref": "DESIGN_accent_and_stress_drills.md §A2; DISPATCH_accent_drill.md; event contract in Architecture_Housing_accent_stress_and_new_qtypes.md §1",
+ "topic_short_used": "acc",
+ "topic_short_note": "buckets/orthography.json root declares topic_short='accents'; I use 'acc' for external_id prefixes (brief §1F wants a SHORT code, cf. aa/pp/op). Architecture: normalise if you prefer 'accents'.",
+ "outcome_model": {
+  "_purpose": "The 4 outcomes the report's stacked bars consume (green correct / orange wrong_kind / red omitted + insertion slice). Computed at MARK time from (target_form, chosen_form), not stored on the item — so one frame generates all outcomes.",
+  "correct": "chosen == target.",
+  "omitted": "chosen == target with ALL accents stripped. Covers meaning_pair picking the bare twin (è->e), tense_bearing picking the present twin (parlò->parlo), lexical_final citta, che_compound perche. This is why the accent-stripped twin is ALWAYS the primary distractor.",
+  "wrong_kind": "chosen has an accent on the SAME vowel as target but the wrong MARK (grave<->acute): perché->perchè, and keyboard á/ó for à/ò (cittá). Carries BOTH chars per the Housing contract so the direction is recoverable.",
+  "inserted": "chosen == target PLUS an accent the target lacks: qui->quì, sto->stò. In no_accent items this is the ONLY error direction; insertions attribute to the type TYPED (quì -> ì row).",
+  "EXCLUDED_not_an_accent_outcome": "A chosen form that is a DIFFERENT valid word/form differing by more than an accent (parlerà for parlerò: different person, à vs ò) is a morphology choice, not an accent-mark error. See open_question Q1 — such person-pairs are held OUT of the clean frames.",
+  "false_alarm": "Judgement item shows a CORRECT form, learner says 'wrong'. Rejecting a correct accent. Has no home in the 4-outcome report. See open_question Q2.",
+  "credit_RULED_2026-07-21_Smith": {
+   "_scope": "THE DRILL ONLY. Reverses never-dock FOR THIS DRILL (Smith, taxonomy thread v4). The live GRAMMAR-marker accent policy is unchanged: a grammar item still never docks for an accent slip (r29 banner). The dedicated drill docks because accents ARE what it tests.",
+   "correct": 1.0,
+   "wrong_kind": 0.8,
+   "omitted_baseline": 0.5,
+   "omitted_per_class_PROPOSED": {
+    "_basis": "Smith left omission 'class-severity TBD'; this is exactly my §5 tiering (relayed by Architecture). Real-word-twin classes below baseline (omission changes the WORD/TENSE); misspelling classes at baseline (meaning recoverable). Average stays ~0.5, honouring his baseline.",
+    "meaning_pair": 0.4,
+    "tense_bearing": 0.4,
+    "che_compound": 0.5,
+    "lexical_final": 0.5,
+    "no_accent": "n/a (error direction is insertion)",
+    "apostrophe_not_accent": "n/a (error direction is insertion)"
+   },
+   "inserted_PROPOSED": {
+    "_gap": "Smith did not rule an insertion value. Insertion (quì, stò, pò) is the SOLE error for no_accent + apostrophe, so its value sets those classes' whole stakes.",
+    "recommend": 0.5,
+    "alt": "0.8 if treated as a mild wrong-instinct like wrong_kind rather than a definite error"
+   },
+   "surface_the_direction": "Smith's instruction. Satisfied by the event contract: wrong_kind already carries BOTH chars (expected é / written è) so the acute<->grave direction shows in the verdict; omission/insertion show the missing/extra mark. The drill's feedback names it."
+  }
+ },
+ "frame_families": [
+  {
+   "frame_id": "acc_pick_bare",
+   "shape": "pick-the-correct-spelling, NO context",
+   "applies_to_classes": [
+    "lexical_final",
+    "che_compound",
+    "no_accent",
+    "apostrophe_not_accent"
+   ],
+   "why_bare_works": "In these classes the accent-stripped (or accent-added) twin is a NON-WORD / misspelling, so the correct spelling is decidable from the word alone. No carrier sentence needed — the pipeline permutes over the word axis for free. THIS is where the big volume comes from.",
+   "prompt_template": "Which is spelled correctly?",
+   "type": "mcq_index",
+   "option_generation": {
+    "lexical_final": "target + stripped(target) [omitted] + wrongmark(target) where final vowel accentable both ways [wrong_kind]. e.g. città / citta / cittá.",
+    "che_compound": "target(acute) + gravemark(target) [wrong_kind, the hotspot] + stripped(target) [omitted]. e.g. perché / perchè / perche.",
+    "no_accent": "target(bare, CORRECT) + inserted(target) [inserted]. e.g. qui / quì. Correct answer is the BARE form; distractor is the temptation.",
+    "apostrophe_not_accent": "target(apostrophe) + accentform [inserted-as-accent] + bare. e.g. po' / pò / po."
+   },
+   "outcome_tagging": "accent_type = the mark AT ISSUE (the vowel of the accent that is right, or for no_accent the vowel of the tempting accent). placement_class = the item's class. outcome computed per outcome_model.",
+   "explanation_template": "One line naming the fixed fact: e.g. \"città always carries a grave accent on the final a (final-stressed noun); 'citta' and 'cittá' are both wrong.\" No rule-chip in the prompt (criterion 13 safe by construction — options are surface forms)."
+  },
+  {
+   "frame_id": "acc_pick_context",
+   "shape": "pick-the-form in a one-line carrier that FORCES one twin",
+   "applies_to_classes": [
+    "meaning_pair",
+    "tense_bearing"
+   ],
+   "why_context_needed": "Here the accent-stripped twin is ITSELF A REAL WORD (è/e, dà/da, parlò/parlo). Only the sentence disambiguates, so a carrier is mandatory. Carriers are hand-authored (below); the axis is (carrier x which-twin-is-keyed).",
+   "prompt_template": "<carrier with ___>  ->  options: [twinA, twinB]",
+   "type": "mcq_index",
+   "outcome_tagging": "target = the twin the carrier forces. Picking the other twin: if it is target-stripped -> omitted; if target is the bare word and they pick the accented -> inserted. accent_type = the accent on the accented member of the pair.",
+   "explanation_template": "Gloss the completed sentence in English (criterion 17) + one line on the twin: \"'è' (with accent) is the verb 'is'; 'e' without the accent means 'and'.\""
+  },
+  {
+   "frame_id": "acc_judge",
+   "shape": "is-this-spelled-correctly? Yes / No  (fastest micro-item)",
+   "applies_to_classes": [
+    "all"
+   ],
+   "why": "Speed. Design A2 names 'is this correct?' judgements explicitly. Highest items-per-minute.",
+   "type": "mcq_index_binary",
+   "generation_constraint": "Show EITHER the target (answer Yes; outcome=correct) OR a definite error-form (answer No; if learner wrongly says Yes, outcome = that error's type per outcome_model). Do NOT generate a 'reject the correct form' path beyond a capped rate — see open_question Q2.",
+   "outcome_tagging": "Shown error-form endorsed as correct -> that error's outcome. Error-form correctly rejected -> correct. Target endorsed -> correct."
+  }
+ ],
+ "class_seeds": {
+  "meaning_pair": {
+   "membership": "CLOSED list (13). accent distinguishes two lexemes; twin is a real word.",
+   "pairs": [
+    {
+     "accented": "è",
+     "bare": "e",
+     "type": "è",
+     "gloss_accented": "is",
+     "gloss_bare": "and",
+     "carriers_force_accented": [
+      {
+       "it": "Marco ___ molto stanco.",
+       "en": "Marco is very tired."
+      }
+     ],
+     "carriers_force_bare": [
+      {
+       "it": "Vorrei pane ___ acqua.",
+       "en": "I'd like bread and water."
+      }
+     ]
+    },
+    {
+     "accented": "dà",
+     "bare": "da",
+     "type": "à",
+     "gloss_accented": "gives",
+     "gloss_bare": "from/by",
+     "carriers_force_accented": [
+      {
+       "it": "Ogni giorno lui mi ___ una mano.",
+       "en": "Every day he gives me a hand."
+      }
+     ],
+     "carriers_force_bare": [
+      {
+       "it": "Vengo ___ Roma.",
+       "en": "I come from Rome."
+      }
+     ]
+    },
+    {
+     "accented": "là",
+     "bare": "la",
+     "type": "à",
+     "gloss_accented": "there",
+     "gloss_bare": "the/her (f.)",
+     "carriers_force_accented": [
+      {
+       "it": "Il libro è ___, sul tavolo.",
+       "en": "The book is there, on the table."
+      }
+     ],
+     "carriers_force_bare": [
+      {
+       "it": "Ho visto ___ tua amica.",
+       "en": "I saw your friend."
+      }
+     ]
+    },
+    {
+     "accented": "lì",
+     "bare": "li",
+     "type": "ì",
+     "gloss_accented": "there",
+     "gloss_bare": "them (m.)",
+     "carriers_force_accented": [
+      {
+       "it": "Aspettami ___ davanti alla scuola.",
+       "en": "Wait for me there in front of the school."
+      }
+     ],
+     "carriers_force_bare": [
+      {
+       "it": "I biglietti? ___ ho comprati ieri.",
+       "en": "The tickets? I bought them yesterday."
+      }
+     ]
+    },
+    {
+     "accented": "né",
+     "bare": "ne",
+     "type": "é",
+     "gloss_accented": "neither/nor",
+     "gloss_bare": "of it/them",
+     "carriers_force_accented": [
+      {
+       "it": "Non voglio ___ pane ___ pasta.",
+       "en": "I want neither bread nor pasta."
+      }
+     ],
+     "carriers_force_bare": [
+      {
+       "it": "Torte? ___ ho fatte due.",
+       "en": "Cakes? I made two of them."
+      }
+     ]
+    },
+    {
+     "accented": "sé",
+     "bare": "se",
+     "type": "é",
+     "gloss_accented": "himself/oneself",
+     "gloss_bare": "if",
+     "carriers_force_accented": [
+      {
+       "it": "Pensa solo a ___ stesso.",
+       "en": "He thinks only of himself."
+      }
+     ],
+     "carriers_force_bare": [
+      {
+       "it": "___ piove, resto a casa.",
+       "en": "If it rains, I stay home."
+      }
+     ]
+    },
+    {
+     "accented": "sì",
+     "bare": "si",
+     "type": "ì",
+     "gloss_accented": "yes",
+     "gloss_bare": "oneself/one (impersonal)",
+     "carriers_force_accented": [
+      {
+       "it": "Ha detto di ___.",
+       "en": "He said yes."
+      }
+     ],
+     "carriers_force_bare": [
+      {
+       "it": "Qui ___ mangia bene.",
+       "en": "One eats well here."
+      }
+     ]
+    },
+    {
+     "accented": "tè",
+     "bare": "te",
+     "type": "è",
+     "gloss_accented": "tea",
+     "gloss_bare": "you (stressed)",
+     "carriers_force_accented": [
+      {
+       "it": "Bevo un ___ caldo.",
+       "en": "I drink a hot tea."
+      }
+     ],
+     "carriers_force_bare": [
+      {
+       "it": "Vengo con ___.",
+       "en": "I'm coming with you."
+      }
+     ]
+    },
+    {
+     "accented": "papà",
+     "bare": "papa",
+     "type": "à",
+     "gloss_accented": "dad",
+     "gloss_bare": "pope",
+     "carriers_force_accented": [
+      {
+       "it": "Mio ___ lavora in banca.",
+       "en": "My dad works in a bank."
+      }
+     ],
+     "carriers_force_bare": [
+      {
+       "it": "Il ___ vive in Vaticano.",
+       "en": "The pope lives in the Vatican."
+      }
+     ]
+    },
+    {
+     "accented": "metà",
+     "bare": "meta",
+     "type": "à",
+     "gloss_accented": "half",
+     "gloss_bare": "destination/goal",
+     "carriers_force_accented": [
+      {
+       "it": "Dammi la ___ della torta.",
+       "en": "Give me half of the cake."
+      }
+     ],
+     "carriers_force_bare": [
+      {
+       "it": "Roma è la nostra ___.",
+       "en": "Rome is our destination."
+      }
+     ]
+    },
+    {
+     "accented": "casinò",
+     "bare": "casino",
+     "type": "ò",
+     "gloss_accented": "casino",
+     "gloss_bare": "mess/brothel (colloq.)",
+     "carriers_force_accented": [
+      {
+       "it": "Hanno aperto un nuovo ___ a Venezia.",
+       "en": "They opened a new casino in Venice."
+      }
+     ],
+     "carriers_force_bare": [
+      {
+       "it": "In quella stanza c'era un gran ___.",
+       "en": "There was a real mess in that room."
+      }
+     ]
+    },
+    {
+     "accented": "ciò",
+     "bare": "cio",
+     "type": "ò",
+     "gloss_accented": "that/this thing",
+     "gloss_bare": "(non-word alone)",
+     "note": "ciò has no atonic twin; INCLUDED here only as an accented monosyllable whose omission (cio) is a non-word — behaves like lexical_final. Consider moving to lexical_final. FLAGGED.",
+     "carriers_force_accented": [
+      {
+       "it": "___ che dici è vero.",
+       "en": "What you say is true."
+      }
+     ],
+     "carriers_force_bare": []
+    },
+    {
+     "accented": "dì",
+     "bare": "di",
+     "type": "ì",
+     "gloss_accented": "day (literary)",
+     "gloss_bare": "of",
+     "note": "dì='day' is literary/low-frequency; the LIVE contrast for 'di' is the apostrophe imperative di' (say!). See apostrophe_not_accent. Keep here at low priority.",
+     "carriers_force_accented": [
+      {
+       "it": "Un ___ lontano, tornerò.",
+       "en": "One distant day, I will return."
+      }
+     ],
+     "carriers_force_bare": [
+      {
+       "it": "Il libro ___ Marco.",
+       "en": "Marco's book."
+      }
+     ]
+    }
+   ]
+  },
+  "tense_bearing": {
+   "membership": "verb forms where the accent realises tense/person. Harvest from the verb_form item corpus + morphology. Twin is a real form.",
+   "clean_frames_only": "Options are {accented target, accent-stripped twin}. Picking the stripped twin = omitted. Pure PERSON-pairs (parlerò vs parlerà) are HELD OUT (open_question Q1).",
+   "remoto_3sg_seed": [
+    {
+     "target": "parlò",
+     "stripped": "parlo",
+     "type": "ò",
+     "verb": "parlare",
+     "carrier": {
+      "it": "L'anno scorso Dante le ___ a lungo.",
+      "en": "Last year Dante spoke to her at length."
+     }
+    },
+    {
+     "target": "guardò",
+     "stripped": "guardo",
+     "type": "ò",
+     "verb": "guardare",
+     "carrier": {
+      "it": "Quella sera Maria lo ___ senza parlare.",
+      "en": "That evening Maria looked at him without speaking."
+     }
+    },
+    {
+     "target": "tornò",
+     "stripped": "torno",
+     "type": "ò",
+     "verb": "tornare",
+     "carrier": {
+      "it": "Nel 1945 mio nonno ___ dalla guerra.",
+      "en": "In 1945 my grandfather returned from the war."
+     }
+    },
+    {
+     "target": "credé",
+     "stripped": "crede",
+     "type": "é",
+     "verb": "credere",
+     "carrier": {
+      "it": "Nessuno le ___ quando lo disse.",
+      "en": "Nobody believed her when she said it."
+     }
+    },
+    {
+     "target": "partì",
+     "stripped": "parti",
+     "type": "ì",
+     "verb": "partire",
+     "carrier": {
+      "it": "Colombo ___ nel 1492.",
+      "en": "Columbus departed in 1492."
+     }
+    }
+   ],
+   "futuro_accent_drop_seed": [
+    {
+     "target": "sarà",
+     "stripped": "sara",
+     "type": "à",
+     "verb": "essere",
+     "carrier": {
+      "it": "Domani ___ una bella giornata.",
+      "en": "Tomorrow it will be a nice day."
+     }
+    },
+    {
+     "target": "avrò",
+     "stripped": "avro",
+     "type": "ò",
+     "verb": "avere",
+     "carrier": {
+      "it": "L'anno prossimo ___ trent'anni.",
+      "en": "Next year I will be thirty."
+     }
+    },
+    {
+     "target": "farà",
+     "stripped": "fara",
+     "type": "à",
+     "verb": "fare",
+     "carrier": {
+      "it": "Chissà che tempo ___ domani.",
+      "en": "Who knows what the weather will be like tomorrow."
+     }
+    }
+   ],
+   "note": "futuro_accent_drop options are {sarà, sara}: sara is a NON-word (omitted). These are clean. It is only the {parlerò, parlerà} person-pair that is held out."
+  },
+  "che_compound": {
+   "membership": "ends -ché (acute). Near-closed. Characteristic error is WRONG_KIND (perchè).",
+   "seed": [
+    "perché",
+    "poiché",
+    "finché",
+    "benché",
+    "affinché",
+    "sicché",
+    "giacché",
+    "nonché",
+    "anziché",
+    "purché",
+    "cosicché",
+    "dopodiché",
+    "granché",
+    "macché",
+    "ché",
+    "allorché"
+   ],
+   "primary_outcome": "wrong_kind (grave for acute) then omitted."
+  },
+  "lexical_final": {
+   "membership": "final char in {à è é ì ò ù}, NOT meaning_pair / tense_bearing / che_compound. Productive (-ità) => harvest full list from vocab registry (survey found ~270 types).",
+   "subfamilies": {
+    "ita_tu_nouns": [
+     "città",
+     "università",
+     "verità",
+     "libertà",
+     "difficoltà",
+     "qualità",
+     "quantità",
+     "società",
+     "età",
+     "novità",
+     "realtà",
+     "metà",
+     "virtù",
+     "gioventù",
+     "schiavitù"
+    ],
+    "di_weekdays": [
+     "lunedì",
+     "martedì",
+     "mercoledì",
+     "giovedì",
+     "venerdì"
+    ],
+    "vowel_cluster_monosyll": [
+     "più",
+     "già",
+     "giù",
+     "può",
+     "ciò"
+    ],
+    "lexical_other": [
+     "caffè",
+     "però",
+     "perciò",
+     "così",
+     "cioè",
+     "laggiù",
+     "quaggiù",
+     "ragù",
+     "menù",
+     "tribù",
+     "tabù",
+     "falò",
+     "comò",
+     "oblò",
+     "cliché"
+    ]
+   },
+   "primary_outcome": "omitted (citta) then wrong_kind on the keyboard-á/ó cases (cittá)."
+  },
+  "no_accent": {
+   "membership": "CLOSED. Monosyllables/verb forms that must stay BARE; the error is INSERTED only.",
+   "seed": [
+    "qui",
+    "qua",
+    "su",
+    "sto",
+    "sta",
+    "fa",
+    "va",
+    "do",
+    "so",
+    "sa",
+    "fu",
+    "sai",
+    "dai",
+    "fai",
+    "tre",
+    "blu",
+    "re",
+    "no",
+    "me",
+    "te",
+    "se",
+    "tra",
+    "fra"
+   ],
+   "note": "target is the BARE form (correct); distractor is the accented temptation (quì, stò, fù, sù...). Insertion attributes to the tempting vowel's type.",
+   "primary_outcome": "inserted (the only error direction here)."
+  },
+  "apostrophe_not_accent": {
+   "membership": "CLOSED. truncation apostrophe where an accent is tempting.",
+   "seed": [
+    {
+     "target": "po'",
+     "errors": [
+      "pò",
+      "po"
+     ],
+     "gloss": "a bit (un po')"
+    },
+    {
+     "target": "va'",
+     "errors": [
+      "và",
+      "va"
+     ],
+     "gloss": "go! (imperative)"
+    },
+    {
+     "target": "fa'",
+     "errors": [
+      "fà",
+      "fa"
+     ],
+     "gloss": "do/make! (imperative)"
+    },
+    {
+     "target": "sta'",
+     "errors": [
+      "stà",
+      "sta"
+     ],
+     "gloss": "stay! (imperative)"
+    },
+    {
+     "target": "da'",
+     "errors": [
+      "dà",
+      "da"
+     ],
+     "gloss": "give! (imperative) — the da'/dà/da TRIPLE is the richest site"
+    },
+    {
+     "target": "di'",
+     "errors": [
+      "dì",
+      "di"
+     ],
+     "gloss": "say! (imperative) — the di'/dì/di TRIPLE"
+    }
+   ],
+   "primary_outcome": "inserted-as-accent (pò for po')."
+  }
+ },
+ "declared_axes": {
+  "_note": "What the pipeline permutes. Lighter than the pronoun aspettare battery — mostly a word axis + a fixed option-synthesis rule, not person/referent permutation.",
+  "acc_pick_bare": [
+   "word (harvested per class membership)",
+   "= no other axis; options synthesised by rule"
+  ],
+  "acc_pick_context": [
+   "(carrier x direction) pairs listed in class_seeds",
+   "later: more carriers per pair for volume"
+  ],
+  "acc_judge": [
+   "word",
+   "shown_form in {target, error-forms}",
+   "capped false-alarm rate — Q2"
+  ]
+ },
+ "cross_credit_seams": {
+  "stress": "lexical_final words are pron_effect=stress_shift => shared with StressAuthor's final-accented class. Rev 27: an item where the learner both mis-accents AND the word's stress is the point can co-credit. Housing already asked to separate 'mis-stressed a shown word' from 'omitted accent hence mis-stressed' (their thread §2).",
+  "vocab": "lexical_final members (città, caffè...) are vocab lemmas. Getting the accented spelling right is 'knowing the word' — cross-credit to the vocabulary bucket per the pari-family precedent (DECISIONS 2026-07-20)."
+ },
+ "open_questions": [
+  {
+   "id": "Q1",
+   "q": "tense_bearing PERSON-pairs (parlerò 1sg vs parlerà 3sg): both accented, differ by vowel+person. Not a clean accent-mark outcome. Proposal: HOLD OUT of the accent drill (they are future-formation discrimination — FutureFormationAuthor's leaf); keep only accent-DROP items (parlerò vs parlero) which are clean-omitted. Architecture to confirm the boundary."
+  },
+  {
+   "id": "Q2",
+   "q": "acc_judge false-alarm: learner rejects a correct form. No home in the 4-outcome report. Proposal: record it as its own signal but do NOT surface in the stacked bars initially (cap generation of shown-correct judgement items low); revisit if Smith wants a false-alarm sliver. Housing/Architecture call."
+  },
+  {
+   "id": "Q3",
+   "q": "topic_short: tree root says 'accents', brief wants a short code. I used 'acc'. Confirm or normalise."
+  },
+  {
+   "id": "Q4",
+   "q": "ciò and dì(day) placement: ciò has no atonic twin (behaves lexical_final); dì(day) is literary. Both currently parked in meaning_pair with notes. Move ciò to lexical_final? Keep dì low-priority? Author's lean: move ciò, keep dì flagged."
+  },
+  {
+   "id": "Q5",
+   "q": "Insertion credit value: Smith ruled wrong_kind 0.8 / omission 0.5 / correct 1.0 but not INSERTION. It is the only error for no_accent + apostrophe. Recommend 0.5 (definite error, baseline); alt 0.8 (mild wrong-instinct). Smith's call."
+  },
+  {
+   "id": "Q6",
+   "q": "Per-class omission severity (Smith flagged 'class-severity TBD'). Proposed: meaning_pair + tense_bearing = 0.4 (omission changes the WORD/TENSE — my serious tier), che_compound + lexical_final = 0.5 (spelling slip, meaning recoverable). Average ~0.5 honours his baseline. Smith rules the gradient."
+  }
+ ]
+}
