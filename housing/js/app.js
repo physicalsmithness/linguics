@@ -1902,7 +1902,7 @@
       recentlyChangedBuckets = new Set(attempt.events.map(e => e.bucket));
       resultHost.innerHTML = "";
       if (aiError) { const aw = document.createElement("div"); aw.className = "marker-ai-error"; aw.textContent = aiError; resultHost.appendChild(aw); }
-      resultHost.appendChild(renderResult(result, { skillCount: true }));
+      resultHost.appendChild(renderResult(result, { skillCount: true, references: it.references || it.reference_translations || [] }));
       const tenseRowT = renderCandidateTensesRow(it);
       if (tenseRowT) resultHost.appendChild(tenseRowT);
       if (costLine) resultHost.appendChild(costLine);
@@ -5393,24 +5393,50 @@
     root.appendChild(overall);
 
     // Show what the learner wrote, once at the top of the result.
+    // Per-word colouring: words found in the reference get green, others pink.  QoderWork 2026-07-22
     if (result.raw_response && String(result.raw_response).trim() !== "") {
       const youWrote = document.createElement("div");
       youWrote.className = "result-you-wrote";
       const lbl = document.createElement("span");
       lbl.className = "cmp-label";
       lbl.textContent = "You wrote:";
-      const val = document.createElement("span");
-      // Colour by outcome: green when fully right, amber when partial,
-      // red only when actually wrong (base .cmp-learner style).
-      const _mp = result.overall.marks_possible;
-      const _ma = result.overall.marks_awarded;
-      const outcomeCls = (_mp > 0 && _ma >= _mp) ? " cmp-learner-right"
-        : (_ma > 0 ? " cmp-learner-partial" : "");
-      val.className = "cmp-value cmp-learner" + outcomeCls;
-      val.textContent = result.raw_response;
       youWrote.appendChild(lbl);
       youWrote.appendChild(document.createTextNode(" "));
-      youWrote.appendChild(val);
+
+      const refs = (opts && opts.references) || [];
+      const refWords = new Set();
+      for (const r of refs) {
+        const txt = typeof r === "string" ? r : (r && r.text) || "";
+        for (const w of String(txt).toLowerCase().split(/[\s,.!?;:"'()\[\]<>\/\\]+/)) {
+          if (w.length >= 2) refWords.add(w);
+        }
+      }
+      const rawStr = String(result.raw_response);
+      if (refWords.size > 0) {
+        // Per-word colouring
+        const val = document.createElement("span");
+        val.className = "cmp-value cmp-learner";
+        const tokens = rawStr.split(/(\s+)/); // preserve whitespace
+        for (const tok of tokens) {
+          if (/^\s+$/.test(tok)) { val.appendChild(document.createTextNode(tok)); continue; }
+          const clean = tok.toLowerCase().replace(/[,.!?;:"'()\[\]<>\/\\]/g, "");
+          const span = document.createElement("span");
+          span.textContent = tok;
+          span.className = refWords.has(clean) ? "yw-word yw-right" : "yw-word yw-wrong";
+          val.appendChild(span);
+        }
+        youWrote.appendChild(val);
+      } else {
+        // Fallback: single colour by overall outcome
+        const val = document.createElement("span");
+        const _mp = result.overall.marks_possible;
+        const _ma = result.overall.marks_awarded;
+        const outcomeCls = (_mp > 0 && _ma >= _mp) ? " cmp-learner-right"
+          : (_ma > 0 ? " cmp-learner-partial" : "");
+        val.className = "cmp-value cmp-learner" + outcomeCls;
+        val.textContent = rawStr;
+        youWrote.appendChild(val);
+      }
       root.appendChild(youWrote);
     }
 

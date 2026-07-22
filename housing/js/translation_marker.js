@@ -518,7 +518,8 @@
     // buckets in required_buckets (they assumed vocab was production-only),
     // but on IT→EN the learner is recognising source vocabulary and we want
     // that signal. Match each significant word in the source_text against
-    // the known vocab list.
+    // the known vocab list. Conjugated/inflected forms (dirò, vedo, glie)
+    // need accent-stripped stem matching, not just exact lemma lookup.  QoderWork 2026-07-22
     if (direction === "it_en" && Array.isArray(LL.vocabEntries) && LL.vocabEntries.length) {
       const src = String(item.source_text || "").toLowerCase();
       const tokens = src.split(/[\s,.!?;:"'()\[\]<>\/\\]+/).filter(t => t.length >= 3);
@@ -529,14 +530,32 @@
         }
         return m;
       })());
+      // Accent-stripping helper for fuzzy matching (dirò -> diro, perché -> perche)
+      const stripAcc = s => s.replace(/[àáâä]/g, "a").replace(/[èéêë]/g, "e").replace(/[ìíîï]/g, "i").replace(/[òóôö]/g, "o").replace(/[ùúûü]/g, "u");
       for (const tok of tokens) {
         let entry = byLemma.get(tok);
-        if (!entry && tok.length >= 4) {
+        if (!entry) {
+          const tokPlain = stripAcc(tok);
+          // Try accent-stripped exact match
+          entry = byLemma.get(tokPlain);
+        }
+        if (!entry && tok.length >= 3) {
+          const tokPlain = stripAcc(tok);
+          const tokStem = tokPlain.slice(0, 3);
           for (const lemma of byLemma.keys()) {
             if (lemma.length < 3) continue;
-            if (lemma.slice(0, 4) === tok.slice(0, 4) && Math.abs(lemma.length - tok.length) <= 3) {
+            const lemPlain = stripAcc(lemma);
+            // 3-char stem match + length proximity (handles vedo->vedere, dirò->dire, parlano->parlare)
+            if (lemPlain.slice(0, 3) === tokStem && Math.abs(lemPlain.length - tokPlain.length) <= 4) {
               entry = byLemma.get(lemma);
               break;
+            }
+            // Token starts with lemma or lemma starts with token (compound forms: glie->gli, dirò->dire)
+            if (tokPlain.startsWith(lemPlain) || lemPlain.startsWith(tokPlain)) {
+              if (Math.min(tokPlain.length, lemPlain.length) >= 3) {
+                entry = byLemma.get(lemma);
+                break;
+              }
             }
           }
         }

@@ -1664,6 +1664,11 @@ body.strand-vocab-active #live-stats { display: none; }
 .cmp-value.cmp-learner-right { color: var(--green); background: var(--green-soft); }
 .cmp-value.cmp-learner-partial { color: var(--amber); background: transparent; }
 
+/* Per-word colouring in "You wrote" (QoderWork 2026-07-22): green = word found in reference, pink = not. */
+.yw-word { padding: 0 1px; border-radius: 2px; }
+.yw-right { color: var(--green); }
+.yw-wrong { color: var(--red); background: var(--red-soft); }
+
 /* ==================== entry / welcome screen ==================== */
 .entry-screen[hidden] { display: none; }
 body.entry-active nav#strand-nav { display: none; }
