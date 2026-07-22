@@ -1,21 +1,25 @@
 seat: MisconceptionAnalyst
 classes: [all-seats]
 project: Linguics
-updated: 2026-07-20
-waiting: parked
-needs_from_smith: continue
-blocked_by:
+updated: 2026-07-22
+editor: QoderWork 2026-07-22
+waiting: Architecture ratification (pass-1 extension + mirror_of)
+needs_from_smith: nothing
+blocked_by: Architecture (pass-1 extension ratification gates 82 PENDING entries)
 claude_can_verify: yes
-summary: Delivered the two analyst-owned canvas pieces (reporting_prisms v4): data/misconception_lenses.json (8 surface lenses, Smith's favourite P3, all 75 refs valid) and data/misconception_canvas_views.md (the ordered scroll of views for both full canvases, per Smith's 'scroll down lots of views'). Person x family dropped per Smith. Progress tool in use.
+summary: Pass-2 tag-list fill COMPLETE. All 216 gap buckets read and judged (no auto-fill, per Smith v12). 105 map to existing ratified ids (merge-ready); 82 map to pass-1 extension proposed ids (await ratification); 16 comprehension/deferred; 12 vocab (different axis); 1 genuine gap (capitalization). Also delivered bespoke grid specs (A6 confusion matrix + A7 piacere per-verb) to Housing, and mirror_of registry proposal to Architecture.
 queue:
-  - Write the two bespoke grid specs (tense-choice confusion matrix; piacere per-verb) for Housing.
-  - Propose mirror_of registry field to power the over/under view (Smith loved it).
-  - [blocked] Fold Architecture rulings when they land: pass-1 EXTENSION ratification (gates lens completeness across 19 topics), rich event-descriptor schema, direction-merged ids, v13 gaps.
+  - "[blocked] Merge 105 RATIFIED entries into misconception_tag_lists.json (safe now, holding for Architecture nod on file structure)"
+  - "[blocked] Fold Architecture rulings: pass-1 EXTENSION ratification (unlocks 82 PENDING), mirror_of field, v12 direction-merged ids, v13 gaps."
+  - "[blocked] Once pass-1 extension ratified: fold 82 PENDING entries into tag-lists file."
 done_recently:
-  - reporting_prisms v2 digest, v3 nuance (four surfaces: coverage aside/canvas + misconception aside/canvas), v4 two artefacts delivered.
-  - lens file + canvas catalogue authored and validated.
-  - PluperfectAuthor mixed-gender call answered (split: andate only).
+  - "r1 (2026-07-22 QoderWork): Pass-2 tag-list fill - 216 buckets read, judged, written to data/misconception_tag_list_pass2_fill.json."
+  - "r1 (2026-07-22 QoderWork): Bespoke grid specs (data/misconception_bespoke_grid_specs.md) + Housing thread opened."
+  - "r1 (2026-07-22 QoderWork): mirror_of registry proposal (data/misconception_mirror_of_proposal.md) + reporting_prisms v7."
+  - "PRIOR: reporting_prisms v2-v5, lens file, canvas catalogue, PluperfectAuthor mixed-gender call."
 with_architecture_not_my_turn:
-  - Coverage-canvas build + rich event-descriptor schema (person+strand+preposition+class+tense... all retrievable) + person backfill + hover-text columns fix (Housing).
-  - Lens overlap-vs-partition call (I recommend overlap).
-  - Harvest thread: pass-1 EXTENSION ratification + v12/v13 items.
+  - Pass-1 EXTENSION ratification (gates 82 PENDING tag-list entries + lens completeness).
+  - mirror_of field ratification (gates Canvas B6 over/under view).
+  - v12 four direction-merged ids ruling.
+  - v13 two gaps + clitic_gender_number person-broadening + $menu_rule.
+  - Coverage-canvas build + event-descriptor schema + person backfill (Housing).
