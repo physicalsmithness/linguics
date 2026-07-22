@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-21-r70";
+  const LL_BUILD = "2026-07-22-r76";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -1512,13 +1512,17 @@
     card.appendChild(meta);
 
     // Error-ID: instruction line only; the sentence appears as tappable words below.  QoderWork 2026-07-22
+    // promptEl is hoisted to function scope: the free-text branch below inserts
+    // the vocab-help bar relative to it (promptEl.nextSibling). Declaring it
+    // inside the else block threw ReferenceError and killed the card render.  QoderWork 2026-07-22
+    let promptEl = null;
     if (isErrorId) {
       const instr = document.createElement("p");
       instr.className = "prompt errorid-instruction";
       instr.textContent = q.instruction || "Which word is wrong?";
       card.appendChild(instr);
     } else {
-      const promptEl = renderPromptElement(q.prompt, q, vocabHelpsUsed);
+      promptEl = renderPromptElement(q.prompt, q, vocabHelpsUsed);
       card.appendChild(promptEl);
     }
 
