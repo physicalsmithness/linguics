@@ -72,9 +72,33 @@ def generate_verb_paradigm(lemma: str, lemma_stress: dict,
     lemma_stress_pos = lemma_stress.get("stress_pos", 2)
 
     # ---------------------------------------------------------------
-    # Present 3pl: stem-stressed → sdrucciola or bisdrucciola
-    # This is THE source of sdrucciole/bisdrucciole in Italian
+    # Present 3pl: stem-stressed -> sdrucciola or bisdrucciola
+    # This is THE source of sdrucciole/bisdrucciole in Italian verbs.
+    #
+    # The 3pl present stress falls on the same stem vowel as the 1sg.
+    # This is NOT derivable from the infinitive stress (which is always
+    # piana for -are/-ire). We use: syllabify the 3pl form, then apply
+    # a default of sdrucciola (pos 3) for most verbs. Verbs with 2+
+    # syllable stems where stress retracts further get bisdrucciola.
     # ---------------------------------------------------------------
+
+    # Known verbs whose 3pl present is bisdrucciola (stress_pos = 4).
+    # These have stems with retracted stress in the present tense.
+    BISDRUCCIOLA_VERBS = {
+        # -are verbs with stem stress on first vowel
+        "abitare", "capitare", "comunicare", "desiderare", "fabbricare",
+        "indicare", "liberare", "limitare", "meritare", "modificare",
+        "navigare", "numerare", "occupare", "operare", "ordinare",
+        "organizzare", "partecipare", "praticare", "predicare",
+        "pubblicare", "recitare", "separare", "significare",
+        "telefonare", "terminare", "tollerare", "verificare",
+        "visitare", "abitare",
+        # -ere verbs with stem stress retracted
+        "considerare", "determinare", "diminuire", "eliminare",
+        "esaminare", "facilitare", "generare", "identificare",
+        "immaginare", "interpretare",
+    }
+
     if conj == "are":
         form_3pl = stem + "ano"
     elif conj == "ere":
@@ -85,58 +109,18 @@ def generate_verb_paradigm(lemma: str, lemma_stress: dict,
         form_3pl = None
 
     if form_3pl:
-        # Count syllables roughly to determine stress_pos
-        # The stress is on the STEM vowel (same syllable as the lemma's stress)
-        # For a 3pl form: stem + 2 more syllables (a-no / o-no)
-        # stress_pos from end = 2 + however many syllables from end the stem
-        # stress was in the lemma... Actually, simpler:
-        # 3pl present is always stem-stressed. The -ano/-ono adds 2 syllables
-        # after the stem's last syllable. So if the stem in the infinitive is
-        # stressed, the 3pl is stressed on that same syllable, now 3 from end
-        # for -are verbs (parl-ANO: stem "parl" is 1 syll, + a-no = 3 syll,
-        # stress on 1st = pos 3). For 4-syll stems like "telefon" -> 
-        # telefonano = 5 syll, stress on 3rd from start = pos 3 from end? No:
-        # te-le-FO-na-no: stress is on 3rd from start out of 5 = pos 3 from end.
-        # Actually: te-LE-fo-na-no: No. telefonare -> stem is telefon.
-        # telefonano: te-le-fo-na-no (5 syll). Stress on "fo" = 3rd from end.
-        # Wait, telefonare stress: te-le-fo-NA-re (piana, stress on na=penult).
-        # But telefonano: te-le-FO-na-no (stem-stressed: the stem's stressed
-        # vowel is the 2nd 'o' in telefon... hmm.
-        # 
-        # Actually the key insight: in 3pl present, stress falls on the same
-        # vowel as in the 1sg present, which for regular verbs is the same as
-        # the stem stress. For -are verbs like parlare:
-        #   parlo (1sg): PAR-lo (penult)
-        #   parlano (3pl): PAR-la-no (antepenult) → sdrucciola
-        # For abitare:
-        #   abito (1sg): A-bi-to (antepenult)
-        #   abitano (3pl): A-bi-ta-no (4th from end) → bisdrucciola
-        # For telefonare:
-        #   telefono (1sg): te-LE-fo-no (antepenult)
-        #   telefonano (3pl): te-le-FO-na-no → wait, that's still antepenult?
-        #   No: te-LE-fo-na-no: stress on 2nd syll, 5 total = pos 4 from end
-        #   → bisdrucciola.
-        #
-        # The rule: 3pl present stress = infinitive stress position + 1
-        # (because -ano/-ono replaces -are/-ere/-ire, adding one more syllable
-        # after the stress). So:
-        #   parlare (stress_pos=2) → parlano (stress_pos=3) ✓
-        #   abitare (stress_pos=2) → but abito... hmm.
-        #
-        # Actually this is more nuanced. Let me just use: for 3pl present,
-        # stress_pos = lemma_stress_pos + 1 (for regular verbs).
-        # This works because the infinitive ending (-re) is one syllable,
-        # and the 3pl ending (-no) adds an extra syllable after the theme vowel.
-
-        wf_stress_pos = lemma_stress_pos + 1
-        # Cap at 4 (bisdrucciola is the max in Italian)
-        wf_stress_pos = min(wf_stress_pos, 4)
+        plain_lemma = _strip_accents(lemma.lower())
+        # Check known bisdrucciola list
+        if plain_lemma in BISDRUCCIOLA_VERBS:
+            wf_stress_pos = 4
+        else:
+            wf_stress_pos = 3  # Default: sdrucciola
 
         entries.append({
             "unit": "wordform",
             "form": form_3pl,
-            "lemma": _strip_accents(lemma.lower()),
-            "gloss": f"present 3pl of {_strip_accents(lemma.lower())}",
+            "lemma": plain_lemma,
+            "gloss": f"present 3pl of {plain_lemma}",
             "stress_pos": wf_stress_pos,
             "stress_source": "derived",
             "stress_confidence": "high",
@@ -264,7 +248,8 @@ MINIMAL_PAIRS = [
 
 
 def generate_minimal_pairs() -> list[dict]:
-    """Generate wordform entries for known stress minimal pairs."""
+    """Generate wordform entries for known stress minimal pairs and
+    special wordform entries from the seed."""
     entries = []
     for pair in MINIMAL_PAIRS:
         form = pair["form"]
@@ -283,6 +268,40 @@ def generate_minimal_pairs() -> list[dict]:
                 "accent_cue": False,
                 "stress_tags": reading.get("tags", []),
             })
+
+    # Additional special wordform entries
+    # compràtemelo: imperative + clitics (bisdrucciola)
+    entries.append({
+        "unit": "wordform",
+        "form": "compratemelo",
+        "lemma": "comprare",
+        "gloss": "imperative+clitics",
+        "stress_pos": 4,
+        "stress_source": "author",
+        "stress_confidence": "high",
+        "stress_mechanism": "inflectional",
+        "stress_mechanism_detail": "imperative_clitic",
+        "etymological": False,
+        "accent_cue": False,
+        "stress_tags": [],
+    })
+
+    # sùbito: adverb (sdrucciola) — distinct from subìto (past participle)
+    entries.append({
+        "unit": "wordform",
+        "form": "subito",
+        "lemma": "subito",
+        "gloss": "adverb (immediately)",
+        "stress_pos": 3,
+        "stress_source": "author",
+        "stress_confidence": "high",
+        "stress_mechanism": "lexical",
+        "stress_mechanism_detail": "lexical_simple",
+        "etymological": False,
+        "accent_cue": False,
+        "stress_tags": [],
+    })
+
     return entries
 
 

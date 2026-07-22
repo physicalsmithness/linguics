@@ -84,6 +84,9 @@
   let grammarFilter = { topic: "", cefr: "", bucketPath: "" };
   let translationFilter = { topic: "", cefr: "", bucketPath: "" };
 
+  // Session score: running count of translation marks this session.  QoderWork 2026-07-22
+  let translationSession = { awarded: 0, possible: 0 };  // QoderWork 2026-07-22 — raw accumulation, no threshold
+
   // What bucket ids does a grammar question or translation item touch?
   // Grammar questions: their markpoints' bucket fields.
   // Translation items: their required_buckets array (we don't yet filter by
@@ -742,6 +745,29 @@
       renderTranslationFilterBar();
       renderTranslation();
     }));
+    // Session score: running percentage, olive shade, no threshold.  QoderWork 2026-07-22
+    const scoreEl = document.createElement("span");
+    scoreEl.className = "translation-session-score";
+    const pct = translationSession.possible > 0 ? Math.round(100 * translationSession.awarded / translationSession.possible) : null;
+    scoreEl.textContent = pct !== null
+      ? `Session: ${translationSession.awarded}/${translationSession.possible} (${pct}%)`
+      : "Session: —";
+    if (pct !== null) {
+      scoreEl.style.background = `rgba(61, 74, 28, ${pct / 100})`;
+      if (pct > 55) scoreEl.style.color = "#fff";
+    }
+    const resetBtn = document.createElement("button");
+    resetBtn.type = "button";
+    resetBtn.className = "session-reset-btn";
+    resetBtn.textContent = "reset";
+    resetBtn.title = "Reset session score";
+    resetBtn.addEventListener("click", () => {
+      translationSession = { awarded: 0, possible: 0 };
+      renderTranslationFilterBar();
+    });
+    scoreEl.appendChild(document.createTextNode(" "));
+    scoreEl.appendChild(resetBtn);
+    host.appendChild(scoreEl);
   }
 
   // ----------------- real-content loader -----------------
@@ -1340,6 +1366,45 @@
     setTimeout(() => yes.focus(), 0);
   }
 
+  // Residue soft second-chance: the learner wrote the correct answer PLUS extra
+  // words. Explains it's mechanical matching (not AI), offers retry or mark-as-is,
+  // and promises a question review. QoderWork 2026-07-22
+  function showResiduePrompt(host, extraWords, onConfirm, onRetry) {
+    const existing = host.querySelector(".second-chance-prompt");
+    if (existing) existing.remove();
+    const banner = document.createElement("div");
+    banner.className = "second-chance-prompt residue-prompt";
+    banner.tabIndex = -1;
+    const msg = document.createElement("span");
+    msg.className = "second-chance-msg";
+    msg.innerHTML = "This isn\u2019t AI marking \u2014 it\u2019s a word-matcher, so it may be that a word needs removing to match. " +
+      "Extra word" + (extraWords.indexOf(",") >= 0 ? "s" : "") +
+      ": <strong>" + escapeHtml(extraWords) + "</strong>.";
+    banner.appendChild(msg);
+    const note = document.createElement("span");
+    note.className = "residue-review-note";
+    note.textContent = "If your answer was right, we\u2019ll review this question.";
+    banner.appendChild(note);
+    const retry = document.createElement("button");
+    retry.type = "button";
+    retry.className = "second-chance-retry";
+    retry.textContent = "Let me trim it";
+    retry.addEventListener("click", () => { banner.remove(); onRetry(); });
+    banner.appendChild(retry);
+    const yes = document.createElement("button");
+    yes.type = "button";
+    yes.className = "second-chance-confirm";
+    yes.textContent = "Mark as is";
+    yes.addEventListener("click", () => { banner.remove(); onConfirm(); });
+    banner.appendChild(yes);
+    banner.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") { e.preventDefault(); banner.remove(); onRetry(); }
+      else if (e.key === "Enter") { e.preventDefault(); banner.remove(); onConfirm(); }
+    });
+    host.appendChild(banner);
+    setTimeout(() => retry.focus(), 0);
+  }
+
   // A zero-result state must NAME the blocking restriction and offer the fix in
   // one click, instead of leaving the learner to guess which filter bit. We test
   // each active facet by relaxing it and seeing whether anything comes back.
@@ -1416,6 +1481,17 @@
     const q = grammarDeck[grammarIndex % grammarDeck.length];
     const vocabHelpsUsed = [];
     const isMcq = q.type === "mcq" && Array.isArray(q.choices) && q.choices.length > 0;
+    const isErrorId = q.type === "error_id" && typeof q.error_index === "number";  // QoderWork 2026-07-22
+    // For error_id, synthesise choices from the prompt words so buildMcqResult works.  QoderWork 2026-07-22
+    if (isErrorId && !q.choices) {
+      q.choices = String(q.prompt || "").split(/\s+/).filter(Boolean);
+      q.answer_index = q.error_index;
+      if (q.correction && !q.explanation) {
+        q.explanation = "Should be: " + q.correction;
+      } else if (q.correction && q.explanation && q.explanation.indexOf(q.correction) < 0) {
+        q.explanation = "Should be: " + q.correction + ". " + q.explanation;
+      }
+    }
     // Pre-answer suppression hint for the live stats panel. Cleared when the
     // item is marked. See inter_chat/Architecture_Housing_info_display_suppress.md.
     setInFlightSuppress(q);
@@ -1435,8 +1511,16 @@
     meta.title = q.external_id || "";
     card.appendChild(meta);
 
-    const promptEl = renderPromptElement(q.prompt, q, vocabHelpsUsed);
-    card.appendChild(promptEl);
+    // Error-ID: instruction line only; the sentence appears as tappable words below.  QoderWork 2026-07-22
+    if (isErrorId) {
+      const instr = document.createElement("p");
+      instr.className = "prompt errorid-instruction";
+      instr.textContent = q.instruction || "Which word is wrong?";
+      card.appendChild(instr);
+    } else {
+      const promptEl = renderPromptElement(q.prompt, q, vocabHelpsUsed);
+      card.appendChild(promptEl);
+    }
 
     // Branch on item type: free-text vs multiple-choice.
     let input = null, selectedChoiceIdx = null, choiceButtons = [];
@@ -1503,6 +1587,53 @@
       // is picking between fully-rendered choices, not retrieving a word
       // from memory. Vocab help would only obscure the diagnostic.
       grammarInputRef = null;
+    } else if (isErrorId) {
+      // Error-ID rendering: the sentence is displayed as inline tappable words.
+      // The learner taps the word they think is wrong. Index-scored like MCQ.
+      // QoderWork 2026-07-22
+      const wordsHost = document.createElement("div");
+      wordsHost.className = "errorid-words";
+      const words = q.choices; // synthesised from prompt above
+      words.forEach((word, idx) => {
+        const span = document.createElement("button");
+        span.type = "button";
+        span.className = "errorid-word";
+        span.textContent = word;
+        span.title = "Word " + (idx + 1);
+        span.addEventListener("click", () => {
+          if (marked) return;
+          selectedChoiceIdx = idx;
+          choiceButtons.forEach((b, j) => b.classList.toggle("selected", j === idx));
+          doMark();
+          // Post-mark highlight.  QoderWork 2026-07-22
+          const correct = idx === q.answer_index;
+          span.classList.add(correct ? "correct-pick" : "wrong-pick");
+          if (!correct && choiceButtons[q.answer_index]) choiceButtons[q.answer_index].classList.add("reveal-correct");
+        });
+        span.addEventListener("keydown", e => {
+          if (e.key === "Enter" && !e.shiftKey) {
+            e.preventDefault();
+            if (marked) doNext();
+            else { selectedChoiceIdx = idx; doMark(); }
+          }
+        });
+        choiceButtons.push(span);
+        wordsHost.appendChild(span);
+        wordsHost.appendChild(document.createTextNode(" "));
+      });
+      card.appendChild(wordsHost);
+      card.addEventListener("keydown", e => {
+        if (!/^[1-9]$/.test(e.key)) return;
+        const idx = parseInt(e.key, 10) - 1;
+        if (idx < 0 || idx >= choiceButtons.length) return;
+        const tag = (e.target && e.target.tagName) || "";
+        if (tag === "INPUT" || tag === "TEXTAREA") return;
+        e.preventDefault();
+        selectedChoiceIdx = idx;
+        choiceButtons.forEach((b, j) => b.classList.toggle("selected", j === idx));
+        choiceButtons[idx].focus();
+      });
+      grammarInputRef = null;
     } else {
       // Free-text rendering: text input + accent bar + vocab help.
       input = document.createElement("input");
@@ -1558,8 +1689,8 @@
     const next = document.createElement("button"); next.className = "secondary"; next.textContent = "Skip";
     next.title = "Skip this question without marking it";
     const hint = document.createElement("span"); hint.className = "kbd-hint";
-    hint.textContent = isMcq
-      ? "Click a choice or press 1-" + q.choices.length + ". Enter to mark. Enter again to advance."
+    hint.textContent = (isMcq || isErrorId)  // QoderWork 2026-07-22
+      ? (isErrorId ? "Tap the wrong word, or press 1-" + q.choices.length + "." : "Click a choice or press 1-" + q.choices.length + ". Enter to mark. Enter again to advance.")
       : "Enter to mark · enter again to advance";
     actions.appendChild(mark); actions.appendChild(next); actions.appendChild(hint);
     card.appendChild(actions);
@@ -1608,14 +1739,16 @@
     const doMark = () => {
       if (marked) return;   // already committed - no re-marking to overwrite a miss (Smith 2026-07-21)
       let result;
-      if (isMcq) {
+      if (isMcq || isErrorId) {  // QoderWork 2026-07-22 — error_id is index-scored like MCQ
         if (selectedChoiceIdx === null) {
           // No choice picked yet; nudge but don't record an attempt.
           resultHost.innerHTML = "";
           const nudge = document.createElement("div");
           nudge.className = "muted";
           nudge.style.cssText = "padding:10px;font-style:italic";
-          nudge.textContent = "Pick one of the choices above, then press Mark or Enter.";
+          nudge.textContent = isErrorId
+            ? "Tap the word you think is wrong."
+            : "Pick one of the choices above, then press Mark or Enter.";
           resultHost.appendChild(nudge);
           return;
         }
@@ -1626,7 +1759,7 @@
         appendVocabHelpEvents(result, vocabHelpsUsed, q);
         appendActiveProductionHits(result, vocabHelpsUsed, q, raw);
       }
-      const rawForRecord = isMcq ? q.choices[selectedChoiceIdx] : input.value;
+      const rawForRecord = (isMcq || isErrorId) ? q.choices[selectedChoiceIdx] : input.value;  // QoderWork 2026-07-22
 
       // Second-chance guard (see inter_chat/Architecture_Housing_second_chance_on_chip_mismatch.md
       // for the introduction; narrowed 2026-06-08 per
@@ -1652,7 +1785,7 @@
       // answer here can only be a form/spelling error of the cued word, so
       // the cue-misread rescue must not fire. Legacy read is a tripwire, not
       // a compat layer - it warns so unmigrated items surface.
-      if (!isMcq && !secondChanceShown && !wrongAnswerIsFormErrorOnly(q)) {
+      if (!isMcq && !isErrorId && !secondChanceShown && !wrongAnswerIsFormErrorOnly(q)) {
         const isCleanMiss = result.overall.marks_awarded === 0
           && Array.isArray(result.markpoints)
           && result.markpoints.every(mp => mp.outcome === "miss" || mp.outcome === "not_attempted");
@@ -1666,6 +1799,24 @@
             chipLemma,
             () => commitResult(result, rawForRecord),         // confirm: mark as wrong
             () => { setTimeout(() => input.focus(), 0); }      // retry: cancel mark, return focus
+          );
+          return;
+        }
+      }
+
+      // Residue soft second-chance: the answer contained the right phrase PLUS
+      // extra words. Offer a gentle retry before recording the miss.
+      // QoderWork 2026-07-22
+      if (!isMcq && !isErrorId && !secondChanceShown && Array.isArray(result.markpoints)) {
+        const residueMp = result.markpoints.find(mp => mp.residue && mp.residue.length);
+        if (residueMp) {
+          secondChanceShown = true;
+          const words = residueMp.residue.join(", ");
+          // Flag for the review queue: which item triggered residue.  QoderWork 2026-07-22
+          result.residue_review = { item_id: q.external_id || null, residue: residueMp.residue, prompt: q.prompt || "" };
+          showResiduePrompt(resultHost, words,
+            () => commitResult(result, rawForRecord),
+            () => { delete result.residue_review; setTimeout(() => { input.focus(); input.select(); }, 0); }
           );
           return;
         }
@@ -1900,6 +2051,12 @@
       appendActiveProductionHits(result, vocabHelpsUsed, it, raw);
       const attempt = LL.store.recordAttempt("translation", it, raw, result, intent);
       recentlyChangedBuckets = new Set(attempt.events.map(e => e.bucket));
+      // Session score: raw accumulation, no threshold.  QoderWork 2026-07-22
+      if (result.overall) {
+        translationSession.awarded += (result.overall.marks_awarded || 0);
+        translationSession.possible += (result.overall.marks_possible || 1);
+      }
+      renderTranslationFilterBar();
       resultHost.innerHTML = "";
       if (aiError) { const aw = document.createElement("div"); aw.className = "marker-ai-error"; aw.textContent = aiError; resultHost.appendChild(aw); }
       resultHost.appendChild(renderResult(result, { skillCount: true, references: it.references || it.reference_translations || [] }));
@@ -1964,6 +2121,7 @@
     spellingDrill: false, // orthography MCQ drill (Smith spelling ask)  QoderWork 2026-07-22
     spellingClass: "",    // "" = all classes; else e.g. "doubling"  QoderWork 2026-07-22
     accentDrill: false,   // accent MCQ drill (AccentAuthor variant pipeline)  QoderWork 2026-07-22
+    knownDir: "",        // drills: "" = all words; "either"/"en_it"/"it_en" = restrict to practised  QoderWork 2026-07-22
     topN: 0,            // 0 = all; else max rank to include in scope
     subBand: ""         // "" | "A1-core" | "A1-secure" | ... | "C1-stretch"
   };
@@ -2281,10 +2439,12 @@
       // thinned baseline of plain m/f. Surprising-ending nouns (fem -o, masc -a)
       // always included since they test irregular gender knowledge.
       // QoderWork 2026-07-21: thinned from %20 to %50; added ending-surprise rule.
+      const known = vocabFilter.knownDir ? practisedLemmas(vocabFilter.knownDir) : null;  // QoderWork 2026-07-22
       return vocabEntriesInScope().filter(v => {
         if (v.pos !== "noun") return false;
         const g = String(v.gender);
         if (g !== "m" && g !== "f" && g !== "mf") return false;
+        if (known && !known.has(String(v.lemma).toLowerCase())) return false;  // QoderWork 2026-07-22
         const cls = nounGenderClass(v);
         if (cls >= 3) return true;  // interesting classes always in play
         // Classes 1-2: include surprising endings always, else thin to every 50th
@@ -2400,6 +2560,38 @@
       modeRow.appendChild(chip);
     });
     host.appendChild(modeRow);
+
+    // "Known words" direction filter for drill modes.  QoderWork 2026-07-22
+    const inDrill = vocabFilter.genderDrill || vocabFilter.accentDrill || vocabFilter.spellingDrill;
+    if (inDrill) {
+      const knownRow = document.createElement("div");
+      knownRow.className = "drill-known-row";
+      const knownLbl = document.createElement("span");
+      knownLbl.className = "drill-known-label";
+      knownLbl.textContent = "Known:";
+      knownRow.appendChild(knownLbl);
+      const opts = [
+        { key: "", label: "All words" },
+        { key: "either", label: "Either dir" },
+        { key: "en_it", label: "EN\u2192IT" },
+        { key: "it_en", label: "IT\u2192EN" }
+      ];
+      for (const o of opts) {
+        const chip = document.createElement("button");
+        chip.type = "button";
+        chip.className = "drill-known-chip" + (vocabFilter.knownDir === o.key ? " active" : "");
+        chip.textContent = o.label;
+        chip.title = o.key === "it_en" ? "Passive (includes words known actively)" : o.key === "en_it" ? "Active production only" : o.key === "either" ? "Practised in any direction" : "No restriction";
+        chip.addEventListener("click", () => {
+          vocabFilter.knownDir = o.key;
+          if (vocabFilter.accentDrill) buildAccentDeck();
+          vocabDeck = []; vocabIndex = 0;
+          renderVocab();
+        });
+        knownRow.appendChild(chip);
+      }
+      host.appendChild(knownRow);
+    }
 
     // Spelling drill: vocab controls are irrelevant; show a compact info bar.  QoderWork 2026-07-22
     if (vocabFilter.spellingDrill) {
@@ -2846,11 +3038,20 @@
   let accentIndex = 0;
 
   function buildAccentDeck() {
-    accentDeck = shuffle(grammarQuestions.filter(q =>
+    const stripAcc = s => s.replace(/[àáâä]/g, "a").replace(/[èéêë]/g, "e").replace(/[ìíîï]/g, "i").replace(/[òóôö]/g, "o").replace(/[ùúûü]/g, "u");  // QoderWork 2026-07-22
+    let items = grammarQuestions.filter(q =>
       q.topic === "orthography" &&
       typeof q.subtopic === "string" && q.subtopic.indexOf("accent.") === 0 &&
       q.type === "mcq"
-    ));
+    );
+    if (vocabFilter.knownDir) {  // QoderWork 2026-07-22
+      const known = practisedLemmas(vocabFilter.knownDir);
+      items = items.filter(q => {
+        const word = String((q.choices || [])[q.answer_index] || "").toLowerCase().trim();
+        return known.has(word) || known.has(stripAcc(word));
+      });
+    }
+    accentDeck = shuffle(items);
     accentIndex = 0;
   }
 
@@ -3260,6 +3461,40 @@
     }
     out.sort((a, b) => a.timestamp.localeCompare(b.timestamp));
     return out;
+  }
+
+  // Practised-lemma sets by direction. Active (en_it/production) implies
+  // passive (it_en/recognition): if you can produce a word, you certainly
+  // recognise it. Cached; invalidated when attempts length changes.
+  // QoderWork 2026-07-22
+  let _practisedCache = null;   // { active: Set, passive: Set, either: Set }
+  let _practisedCacheLen = -1;
+  function practisedLemmas(dir) {
+    const attempts = LL.state.attempts;
+    if (!_practisedCache || attempts.length !== _practisedCacheLen) {
+      const parse = LL.parseVocabBucketId || function () { return null; };
+      const active = new Set();   // en_it (production)
+      const passive = new Set();  // it_en (recognition)
+      for (const att of attempts) {
+        for (const ev of att.events) {
+          const p = parse(ev.bucket);
+          if (!p || !p.lemma) continue;
+          const lem = p.lemma.toLowerCase();
+          if (p.direction === "active") active.add(lem);
+          else if (p.direction === "passive") passive.add(lem);
+          else { active.add(lem); passive.add(lem); }  // legacy/unknown → both
+        }
+      }
+      // Active implies passive: merge active into passive.  QoderWork 2026-07-22
+      for (const lem of active) passive.add(lem);
+      const either = new Set(active);
+      for (const lem of passive) either.add(lem);
+      _practisedCache = { active, passive, either };
+      _practisedCacheLen = attempts.length;
+    }
+    if (dir === "en_it") return _practisedCache.active;
+    if (dir === "it_en") return _practisedCache.passive;
+    return _practisedCache.either;
   }
 
   // Per-entry events: filters by (lemma, pos, gender, number) so multi-entry
@@ -6925,7 +7160,7 @@
     if (!box) {
       box = document.createElement("div");
       box.id = "identity-box";
-      header.appendChild(box);
+      header.parentNode.insertBefore(box, header);  // QoderWork 2026-07-22 — strip ABOVE header line
     }
     box.innerHTML = "";
     const id = LL.pulse.identity();

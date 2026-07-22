@@ -28,12 +28,20 @@ def _strip_accents(word: str) -> str:
 
 
 def _build_lemma_index(sidecar: list) -> dict:
-    """Index lemma sidecar by (lemma_lower, pos) for lookup."""
+    """Index lemma sidecar by (lemma_lower, pos) for lookup.
+    Also index by accented form so papà matches over papa."""
     idx = {}
     for entry in sidecar:
-        key = (_strip_accents(entry["lemma"].lower()), entry.get("pos", ""))
-        if key not in idx:
-            idx[key] = entry
+        stripped = _strip_accents(entry["lemma"].lower())
+        exact = entry["lemma"].lower()
+        pos = entry.get("pos", "")
+        # Index by stripped key (first wins)
+        stripped_key = (stripped, pos)
+        if stripped_key not in idx:
+            idx[stripped_key] = entry
+        # Index by exact (accented) key — always overwrite so accented form wins
+        exact_key = (exact, pos)
+        idx[exact_key] = entry
     return idx
 
 
@@ -112,13 +120,15 @@ def validate_seed():
     for seed_entry in lemma_seeds:
         form = seed_entry["form"]
         pos = seed_entry.get("pos", "")
-        key = (_strip_accents(form.lower()), pos)
+        # Try exact (accented) key first, then stripped
+        exact_key = (form.lower(), pos)
+        stripped_key = (_strip_accents(form.lower()), pos)
 
-        actual = lemma_idx.get(key)
+        actual = lemma_idx.get(exact_key) or lemma_idx.get(stripped_key)
         if actual is None:
             # Try without pos
             for k, v in lemma_idx.items():
-                if k[0] == _strip_accents(form.lower()):
+                if k[0] == form.lower() or k[0] == _strip_accents(form.lower()):
                     actual = v
                     break
 

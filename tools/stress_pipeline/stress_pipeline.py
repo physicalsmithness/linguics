@@ -192,6 +192,21 @@ DERIVATIONAL_SUFFIX_RULES = [
     ("ona", 6, 2, "augmentative_one", False),
     ("ale", 5, 2, "suffix_ale_are", False),
     ("ali", 5, 2, "suffix_ale_are", False),
+
+    # Learned -ìa suffix (Greek -ία, hiatus: stress on the i, making it piana)
+    # farmacia→far-ma-cì-a, economia→e-co-no-mì-a, democrazia is -zia not -ia
+    ("macia", 8, 2, "suffix_ia_learned", True),
+    ("logia", 7, 2, "suffix_ia_learned", True),
+    ("sofia", 8, 2, "suffix_ia_learned", True),
+    ("nomia", 8, 2, "suffix_ia_learned", True),
+    ("grafia", 8, 2, "suffix_ia_learned", True),
+    ("scopia", 8, 2, "suffix_ia_learned", True),
+    ("latria", 8, 2, "suffix_ia_learned", True),
+    ("mania", 7, 2, "suffix_ia_learned", True),
+    ("genia", 7, 2, "suffix_ia_learned", True),
+    ("filia", 7, 2, "suffix_ia_learned", True),
+    ("patia", 7, 2, "suffix_ia_learned", True),
+    ("topia", 7, 2, "suffix_ia_learned", True),
 ]
 
 # Words where a suffix rule would give the wrong answer — override with lexicon
@@ -215,7 +230,6 @@ SUFFIX_EXCEPTIONS = {
     "onore", "sapore", "favore", "autore", "umore", "timore", "sudore", "stupore",
     "cosa", "sposa", "rosa",                   # not -oso/-osa suffix
     "momento",                                  # not -mento suffix
-    "farmacia",                                 # not suffix, needs special -ia handling
 }
 
 
@@ -454,7 +468,7 @@ LEARNED_PREFIXES = [
     "retro", "termo", "tecno", "topo",
 ]
 
-# Learned suffixes (the root is Greek/Latin)
+# Learned suffixes (the root is Greek/Latin) -- predict sdrucciola
 LEARNED_SUFFIXES = [
     "fono", "fona", "foni", "fone",
     "logo", "loga", "logi", "loghe",
@@ -463,7 +477,45 @@ LEARNED_SUFFIXES = [
     "scopio", "scopia",
     "geno", "gena",
     "crate", "crazia",
+    # Greek -ικός/-ική patterns (very productive in Italian)
+    "atica", "atici", "atiche", "atico",
+    "etica", "etici", "etiche", "etico",
+    "itica", "itici", "itiche", "itico",
+    "otica", "otici", "otiche", "otico",
+    "usica", "usici", "usiche", "usico",
+    "edica", "edici", "ediche", "edico",
+    "umica", "umici", "umiche", "umico",
+    "isica", "isici", "isiche", "isico",
+    # -olo/-ola (Latin -ulus/-ula diminutive)
+    "icolo", "icola", "icoli", "icole",
+    "acolo", "acola", "acoli", "acole",
 ]
+
+# Known etymological sdrucciole that don't match prefix/suffix patterns.
+# These are Greek/Latin learned words where Italian inherited the
+# antepenult stress from the source language.
+KNOWN_ETYMOLOGICAL_SDRUCCIOLE = {
+    # From Latin
+    "numero", "sabato", "isola", "tavola", "tavolo", "camera", "pagina",
+    "lettera", "opera", "regola", "formula", "favola", "fabrica",
+    "maschera", "bottega", "predica", "debito", "merito", "limite",
+    "credito", "spirito", "genero", "genere", "ordine", "termine",
+    "principe", "margine", "macchina", "giovane", "ultimo", "subito",
+    "popolo", "secolo", "albero", "zucchero", "polvere", "carcere",
+    # From Greek via Latin
+    "musica", "medico", "numero", "periodo", "metodo", "simbolo",
+    "problema", "sistema", "programma", "tema", "schema",
+    "fenomeno", "carattere", "capitolo", "articolo", "spettacolo",
+    "miracolo", "ostacolo", "veicolo", "obbligo", "dialogo",
+    "catalogo", "monologo", "prologo", "epilogo",
+    "filosofo", "fotografo", "paragrafo", "telegrafo",
+    "termometro", "chilometro", "centimetro", "diametro",
+    "atmosfera",
+    "matematica", "fisica", "chimica", "grammatica", "logica",
+    "politica", "pratica", "tecnica", "classica", "critica",
+    "ceramica", "dinamica", "organica", "botanica",
+    "meccanica", "elettronica", "informatica", "statistica",
+}
 
 
 def tier5_etymological(lemma: str, pos: str) -> dict | None:
@@ -475,11 +527,19 @@ def tier5_etymological(lemma: str, pos: str) -> dict | None:
         return None
 
     is_learned = False
-    for prefix in LEARNED_PREFIXES:
-        if lower.startswith(prefix) and len(lower) > len(prefix) + 2:
-            is_learned = True
-            break
 
+    # Check known sdrucciole list first
+    if lower in KNOWN_ETYMOLOGICAL_SDRUCCIOLE:
+        is_learned = True
+
+    # Check prefixes
+    if not is_learned:
+        for prefix in LEARNED_PREFIXES:
+            if lower.startswith(prefix) and len(lower) > len(prefix) + 2:
+                is_learned = True
+                break
+
+    # Check suffixes
     if not is_learned:
         for suffix in LEARNED_SUFFIXES:
             if lower.endswith(suffix) and len(lower) > len(suffix) + 2:

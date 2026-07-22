@@ -170,6 +170,10 @@
     if (Array.isArray(result.misconceptions) && result.misconceptions.length) {
       attempt.misconception_hits = result.misconceptions.slice();
     }
+    // Residue review flag: marks this attempt for the question-review queue.  QoderWork 2026-07-22
+    if (result.residue_review) {
+      attempt.residue_review = result.residue_review;
+    }
     state.attempts.push(attempt);
     LL.lastAttempt = attempt;   // read by the grammar pulse strip (live flashes)
     // Attempt pulse to the estate workbook (shared_login_and_pulse v1).
