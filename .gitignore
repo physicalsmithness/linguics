@@ -13,6 +13,13 @@ __pycache__/
 .venv/
 venv/
 
+# Stress-pipeline lexicon data — large downloadable datasets, NOT source.
+# The Wiktionary dump (kaikki.org-dictionary-Italian.jsonl) is ~726MB, far over
+# GitHub's 100MB file limit, so it can never be committed. It (and the morph-it
+# files + parsed outputs) are re-downloadable via:
+#   python tools/stress_pipeline/prepare_lexicon_data.py
+tools/stress_pipeline/lexicon_data/
+
 # Build outputs (none yet, but in case a backend lands)
 dist/
 build/
