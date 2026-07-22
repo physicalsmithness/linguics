@@ -12,7 +12,6 @@ queue:
   - Misconception-tag rollout work order (221/4,944 guards tagged) after MisconceptionAnalyst's lists   [cut next]
   - Jargon-label central rewrite (523 labels) + per-topic confirm tables   [staged]
   - Explanation re-paragraph pilot (10 samples)   [staged]
-  - Phantom translation bucket ids central mapping (27 ids / ~35 items)
   - Cr17Sweep replica re-run (5 topics), then stamp or query
   - cue-notation retrofit routing rides authors' open touches (8 seats)
 notes:
