@@ -171,5 +171,57 @@
     };
   </script>
   <script src="js/feedback.js"></script>
+
+  <!-- Auto-populate the feedback name field with the signed-in display name.
+       feedback.js is the WEB_KIT standard widget (copy verbatim, do not fork),
+       so instead of editing it we watch its panel: open() rebuilds the form via
+       innerHTML on every open, so we fill the freshly-created name input from
+       the shared estate identity (the name entered at the sign-in gate).
+       Reads the name fresh each fill (survives sign-out/in), only fills when
+       the field is empty, and fails soft.  QoderWork 2026-07-23 -->
+  <script>
+    (function () {
+      'use strict';
+      function signedInName() {
+        try {
+          var raw = localStorage.getItem('smithics_fields_identity_v1');
+          var obj = raw ? JSON.parse(raw) : null;
+          return (obj && typeof obj.display_name === 'string') ? obj.display_name.trim() : '';
+        } catch (e) { return ''; }
+      }
+      function fillIfEmpty(panel) {
+        var nameInput = panel.querySelector('#wk-fb-name');
+        if (nameInput && !nameInput.value) {
+          var n = signedInName();
+          if (n) nameInput.value = n;
+        }
+      }
+      function watchPanel(panel) {
+        fillIfEmpty(panel);                       // cover an already-mounted form
+        if (window.MutationObserver) {
+          // open() rebuilds the form via innerHTML on every open; refill each time.
+          new MutationObserver(function () { fillIfEmpty(panel); })
+            .observe(panel, { childList: true });
+        }
+      }
+      function init() {
+        var panel = document.getElementById('wk-fb-panel');
+        if (panel) { watchPanel(panel); return; }
+        // feedback.js mounts on DOMContentLoaded; wait for the panel to appear.
+        if (window.MutationObserver) {
+          var mo = new MutationObserver(function () {
+            var p = document.getElementById('wk-fb-panel');
+            if (p) { mo.disconnect(); watchPanel(p); }
+          });
+          mo.observe(document.documentElement, { childList: true, subtree: true });
+        }
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+  </script>
 </body>
 </html>
