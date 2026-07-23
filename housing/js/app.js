@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-23-r77";
+  const LL_BUILD = "2026-07-23-r78";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -2578,6 +2578,7 @@
         if (m.key === "spelling") buildSpellingDeck();
         if (m.key === "accent") buildAccentDeck();
         if (m.key === "stress") buildStressDeck();
+        if (m.key === "gender") resetDrillSession("gender");   // QoderWork 2026-07-23
         vocabDeck = []; vocabIndex = 0;
         renderVocab();
       });
@@ -2817,6 +2818,114 @@
     }
     return { sg: startsVowel ? "l'" : (startsImpure ? "lo" : "il"), pl: (startsVowel || startsImpure) ? "gli" : "i" };
   }
+
+  // ---- Drill session panel: live breakdown in #vocab-axes-host (Smith 2026-07-23)  QoderWork 2026-07-23 ----
+  // Raw counts + continuous olive shade; no thresholds, no judgments.
+  let drillSession = { type: "", attempted: 0, correct: 0, byCat: {}, stressMatrix: null };
+
+  function resetDrillSession(type) {
+    drillSession = { type: type, attempted: 0, correct: 0, byCat: {}, stressMatrix: null };
+    if (type === "stress") {
+      drillSession.stressMatrix = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+    }
+  }
+  function recordDrillAttempt(catId, catLabel, isCorrect, stressInfo) {
+    drillSession.attempted++;
+    if (isCorrect) drillSession.correct++;
+    if (!drillSession.byCat[catId]) drillSession.byCat[catId] = { label: catLabel, attempted: 0, correct: 0 };
+    drillSession.byCat[catId].attempted++;
+    if (isCorrect) drillSession.byCat[catId].correct++;
+    if (stressInfo && drillSession.stressMatrix) {
+      const tp = Math.min(Math.max(stressInfo.true_pos, 1), 4) - 1;
+      const ap = Math.min(Math.max(stressInfo.answered_pos, 1), 4) - 1;
+      drillSession.stressMatrix[tp][ap]++;
+    }
+  }
+  function renderDrillSessionPanel() {
+    const host = document.getElementById("vocab-axes-host");
+    if (!host) return;
+    host.innerHTML = "";
+    const ds = drillSession;
+    if (!ds.type) return;
+    const wrap = document.createElement("div");
+    wrap.className = "drill-session-panel";
+    const titles = { spelling: "Spelling drill", accent: "Accent drill", stress: "Stress drill", gender: "Gender drill" };
+    const h = document.createElement("h3");
+    h.className = "drill-session-title";
+    h.textContent = (titles[ds.type] || ds.type) + " \u00b7 this session";
+    wrap.appendChild(h);
+    const overall = document.createElement("div");
+    overall.className = "drill-session-overall";
+    overall.textContent = ds.attempted + " attempted \u00b7 " + ds.correct + " correct";
+    wrap.appendChild(overall);
+    // Per-category rows
+    const cats = Object.keys(ds.byCat);
+    if (cats.length) {
+      const table = document.createElement("table");
+      table.className = "drill-session-table";
+      cats.forEach(function (catId) {
+        const c = ds.byCat[catId];
+        const tr = document.createElement("tr");
+        const tdLabel = document.createElement("td");
+        tdLabel.className = "ds-cat-label";
+        tdLabel.textContent = c.label;
+        const tdCount = document.createElement("td");
+        tdCount.className = "ds-cat-count";
+        tdCount.textContent = c.correct + " / " + c.attempted;
+        const tdBar = document.createElement("td");
+        tdBar.className = "ds-cat-bar";
+        const pct = c.attempted ? Math.round(100 * c.correct / c.attempted) : 0;
+        const bar = document.createElement("div");
+        bar.className = "ds-bar-fill";
+        bar.style.width = pct + "%";
+        bar.style.background = "rgba(61,74,28," + (pct / 100).toFixed(2) + ")";
+        tdBar.appendChild(bar);
+        tr.appendChild(tdLabel); tr.appendChild(tdCount); tr.appendChild(tdBar);
+        table.appendChild(tr);
+      });
+      wrap.appendChild(table);
+    }
+    // Stress: live 4×4 confusion matrix
+    if (ds.type === "stress" && ds.stressMatrix && ds.attempted) {
+      wrap.appendChild(buildSessionStressMatrix(ds.stressMatrix));
+    }
+    host.appendChild(wrap);
+  }
+  function buildSessionStressMatrix(matrix) {
+    const wrap = document.createElement("div");
+    wrap.className = "drill-session-matrix";
+    const h4 = document.createElement("h4");
+    h4.textContent = "Confusion (this session)";
+    wrap.appendChild(h4);
+    const table = document.createElement("table");
+    table.className = "stress-confusion";
+    let gmax = 0;
+    for (let r = 0; r < 4; r++) for (let c = 0; c < 4; c++) if (matrix[r][c] > gmax) gmax = matrix[r][c];
+    const thead = document.createElement("tr");
+    const thCorner = document.createElement("th");
+    thCorner.textContent = "true \\ tapped";
+    thead.appendChild(thCorner);
+    for (let c = 0; c < 4; c++) { const th = document.createElement("th"); th.textContent = String(c + 1); thead.appendChild(th); }
+    table.appendChild(thead);
+    for (let r = 0; r < 4; r++) {
+      const tr = document.createElement("tr");
+      const th = document.createElement("th");
+      th.textContent = String(r + 1);
+      tr.appendChild(th);
+      for (let c = 0; c < 4; c++) {
+        const td = document.createElement("td");
+        const v = matrix[r][c];
+        td.textContent = v || "";
+        if (r === c) td.classList.add("stress-confusion-diag");
+        if (v && gmax) td.style.background = "rgba(61,74,28," + (Math.round(100 * v / gmax) / 100).toFixed(2) + ")";
+        tr.appendChild(td);
+      }
+      table.appendChild(tr);
+    }
+    wrap.appendChild(table);
+    return wrap;
+  }
+
   function renderGenderDrillCard(entry, keepAxes) {
     const host = document.getElementById("vocab-host");
     if (!host) return;
@@ -2894,6 +3003,8 @@
       decl.textContent = declLine;
       resultHost.appendChild(decl);
       renderLiveStats();
+      recordDrillAttempt("gc" + actualClass, (GENDER_CLASSES[actualClass - 1] || {}).label || String(actualClass), picked === actualClass);   // QoderWork 2026-07-23
+      renderDrillSessionPanel();
       next.textContent = "Next";
       setTimeout(() => next.focus({ preventScroll: true }), 0);
     };
@@ -2931,7 +3042,7 @@
 
     host.appendChild(card);
     setTimeout(() => { ensureCardVisible(card); card.focus(); }, 0);
-    if (!keepAxes) renderVocabAxes();
+    if (!keepAxes) renderDrillSessionPanel();   // QoderWork 2026-07-23
   }
 
   // ---- Spelling drill (Smith spelling ask; SpellingAuthor MCQ bank)  QoderWork 2026-07-22 ----
@@ -2947,6 +3058,7 @@
       (!cls || q.subtopic === "spelling." + cls)
     ));
     spellingIndex = 0;
+    resetDrillSession("spelling");   // QoderWork 2026-07-23
   }
 
   function renderSpellingDrillCard(keepAxes) {
@@ -3027,6 +3139,11 @@
         resultHost.appendChild(expl);
       }
       renderLiveStats();
+      // Session panel: extract spelling class from subtopic ("spelling.doubling" -> "doubling").  QoderWork 2026-07-23
+      const spCat = (q.subtopic || "").replace(/^spelling\./, "");
+      const spLabel = (SPELLING_CLASSES.find(c => c.id === spCat) || {}).label || spCat;
+      recordDrillAttempt(spCat, spLabel, origIdx === q.answer_index);
+      renderDrillSessionPanel();
       next.textContent = "Next";
       setTimeout(() => next.focus({ preventScroll: true }), 0);
     };
@@ -3063,7 +3180,7 @@
 
     host.appendChild(card);
     setTimeout(() => { ensureCardVisible(card); card.focus(); }, 0);
-    if (!keepAxes) renderVocabAxes();
+    if (!keepAxes) renderDrillSessionPanel();   // QoderWork 2026-07-23
   }
 
   // ---- Accent drill (AccentAuthor variant pipeline; index-scored MCQ)  QoderWork 2026-07-22 ----
@@ -3086,6 +3203,7 @@
     }
     accentDeck = shuffle(items);
     accentIndex = 0;
+    resetDrillSession("accent");   // QoderWork 2026-07-23
   }
 
   function renderAccentDrillCard(keepAxes) {
@@ -3166,6 +3284,11 @@
         resultHost.appendChild(expl);
       }
       renderLiveStats();
+      // Session panel: extract accent type from subtopic ("accent.pick_bare" -> "pick_bare").  QoderWork 2026-07-23
+      const acCat = (q.subtopic || "").replace(/^accent\./, "");
+      const acLabels = { pick_bare: "Pick the accent", pick_context: "Pick in context", judge: "Judge the form" };
+      recordDrillAttempt(acCat, acLabels[acCat] || acCat, origIdx === q.answer_index);
+      renderDrillSessionPanel();
       next.textContent = "Next";
       setTimeout(() => next.focus({ preventScroll: true }), 0);
     };
@@ -3202,7 +3325,7 @@
 
     host.appendChild(card);
     setTimeout(() => { ensureCardVisible(card); card.focus(); }, 0);
-    if (!keepAxes) renderVocabAxes();
+    if (!keepAxes) renderDrillSessionPanel();   // QoderWork 2026-07-23
   }
 
   // ---- Stress drill (StressAuthor pipeline; tap-the-stressed-syllable, index-scored)  QoderWork 2026-07-23 ----
@@ -3242,6 +3365,7 @@
     }
     stressDeck = shuffle(items);
     stressIndex = 0;
+    resetDrillSession("stress");   // QoderWork 2026-07-23
   }
 
   function renderStressDrillCard(keepAxes) {
@@ -3341,6 +3465,12 @@
         resultHost.appendChild(expl);
       }
       renderLiveStats();
+      // Session panel: category = true stress position; pass confusion-matrix info.  QoderWork 2026-07-23
+      const stPos = result.stress.true_pos;
+      const stLabels = { 1: "1 tronca", 2: "2 piana", 3: "3 sdrucciola", 4: "4 bisdrucciola" };
+      recordDrillAttempt("pos" + stPos, stLabels[stPos] || String(stPos), origIdx === q.answer_index,
+        { true_pos: result.stress.true_pos, answered_pos: result.stress.answered_pos });
+      renderDrillSessionPanel();
       next.textContent = "Next";
       setTimeout(() => next.focus({ preventScroll: true }), 0);
     };
@@ -3378,7 +3508,7 @@
 
     host.appendChild(card);
     setTimeout(() => { ensureCardVisible(card); card.focus(); }, 0);
-    if (!keepAxes) renderVocabAxes();
+    if (!keepAxes) renderDrillSessionPanel();   // QoderWork 2026-07-23
   }
 
   function renderVocab(keepAxes) {
@@ -7317,7 +7447,7 @@
         verbMode: "form",   // "form" | "use"
         parts: {}           // partId -> { on, topics: {topic:true}, kinds: {bucketPath:true} }
       },
-      vocab: { direction: "it_en", subBand: "", genderDrill: false, spellingDrill: false, lens: "numeric", rankRanges: [], cefr: "", theme: "", catIds: null, catLabel: "" },
+      vocab: { direction: "it_en", subBand: "", genderDrill: false, spellingDrill: false, accentDrill: false, stressDrill: false, lens: "numeric", rankRanges: [], cefr: "", theme: "", catIds: null, catLabel: "" },
       translation: { grammarPoint: "", way: "" },
       cefrLevels: []
     };
@@ -8003,7 +8133,7 @@
     const drillRow = document.createElement("div");
     drillRow.className = "entry-chip-row";
     drillRow.appendChild(entryChip("Gender drill (nouns)", v.genderDrill,
-      () => { v.genderDrill = !v.genderDrill; if (v.genderDrill) v.spellingDrill = false; renderEntryScreen(); },
+      () => { v.genderDrill = !v.genderDrill; if (v.genderDrill) { v.spellingDrill = false; v.accentDrill = false; v.stressDrill = false; } renderEntryScreen(); },
       { title: "Identify each noun's gender behaviour from a fixed list" }));
     drills.appendChild(drillRow);
     const dNote = document.createElement("p");
@@ -8024,7 +8154,7 @@
     const spRow = document.createElement("div");
     spRow.className = "entry-chip-row";
     spRow.appendChild(entryChip("Spelling drill", v.spellingDrill,
-      () => { v.spellingDrill = !v.spellingDrill; if (v.spellingDrill) v.genderDrill = false; renderEntryScreen(); },
+      () => { v.spellingDrill = !v.spellingDrill; if (v.spellingDrill) { v.genderDrill = false; v.accentDrill = false; v.stressDrill = false; } renderEntryScreen(); },
       { title: "Pick the correct spelling from plausible distractors" }));
     spDrills.appendChild(spRow);
     // Category chips (the 8 spelling error classes)
@@ -8048,6 +8178,62 @@
     spDrills.appendChild(spNote);
     panel.appendChild(spDrills);
 
+    // ---- stress drill: pronunciation — where does the stress fall? (Smith 2026-07-23)  QoderWork 2026-07-23 ----
+    const stDrills = document.createElement("div");
+    stDrills.className = "entry-special-drills";
+    const hSt = document.createElement("h3");
+    hSt.className = "entry-config-head";
+    hSt.textContent = "Stress drill";
+    stDrills.appendChild(hSt);
+    const stRow = document.createElement("div");
+    stRow.className = "entry-chip-row";
+    stRow.appendChild(entryChip("Stress drill", v.stressDrill,
+      () => { v.stressDrill = !v.stressDrill; if (v.stressDrill) { v.genderDrill = false; v.spellingDrill = false; v.accentDrill = false; } renderEntryScreen(); },
+      { title: "Say the word in your head and pick the syllable that carries the stress" }));
+    stDrills.appendChild(stRow);
+    // What it is, made concrete: the same word, four possible stresses.
+    const stNote = document.createElement("p");
+    stNote.className = "entry-config-hint";
+    stNote.textContent = "Pronunciation \u2014 where does the stress fall? Say each word in your head, then pick the syllable that carries it. The same letters, four different stresses:";
+    stDrills.appendChild(stNote);
+    const stEx = document.createElement("div");
+    stEx.className = "entry-stress-example";
+    ["**cap**itano", "ca**pit**ano", "capit**an**o", "capitan**o**"].forEach((vt, i) => {
+      if (i > 0) {
+        const or = document.createElement("span");
+        or.className = "entry-stress-or";
+        or.textContent = "or";
+        stEx.appendChild(or);
+      }
+      const span = document.createElement("span");
+      span.className = "entry-stress-variant";
+      appendBoldedText(span, vt);
+      stEx.appendChild(span);
+    });
+    stDrills.appendChild(stEx);
+    panel.appendChild(stDrills);
+
+    // ---- accent drill: pick the correctly-accented form (Smith 2026-07-23)  QoderWork 2026-07-23 ----
+    const acDrills = document.createElement("div");
+    acDrills.className = "entry-special-drills";
+    const hAc = document.createElement("h3");
+    hAc.className = "entry-config-head";
+    hAc.textContent = "Accent drill";
+    acDrills.appendChild(hAc);
+    const acRow = document.createElement("div");
+    acRow.className = "entry-chip-row";
+    acRow.appendChild(entryChip("Accent drill", v.accentDrill,
+      () => { v.accentDrill = !v.accentDrill; if (v.accentDrill) { v.genderDrill = false; v.spellingDrill = false; v.stressDrill = false; } renderEntryScreen(); },
+      { title: "Pick the correctly accented spelling from plausible distractors" }));
+    acDrills.appendChild(acRow);
+    const acNote = document.createElement("p");
+    acNote.className = "entry-config-hint";
+    acNote.textContent = v.accentDrill
+      ? "multiple-choice accent discrimination; pick the form with the correct written accents"
+      : "uses the AccentAuthor\u2019s variant bank (pick-the-accent + judge-the-form)";
+    acDrills.appendChild(acNote);
+    panel.appendChild(acDrills);
+
     appendStart(panel, () => startVocabSession());
   }
   function startVocabSession() {
@@ -8055,6 +8241,8 @@
     vocabFilter.genderDrill = !!v.genderDrill;
     vocabFilter.spellingDrill = !!v.spellingDrill;   // QoderWork 2026-07-22
     vocabFilter.spellingClass = v.spellingClass || "";   // QoderWork 2026-07-22
+    vocabFilter.stressDrill = !!v.stressDrill;   // QoderWork 2026-07-23
+    vocabFilter.accentDrill = !!v.accentDrill;   // QoderWork 2026-07-23
     vocabFilter.direction = v.genderDrill ? "en_it" : v.direction;   // gender drill: direction unused by the classifier
     // The builder's frequency selection replaces the legacy subBand/topN caps.
     vocabFilter.subBand = "";
@@ -8066,8 +8254,11 @@
     vocabFilter.theme = (v.catIds && v.catIds.length === 1) ? v.catIds[0] : "";  // single-id picks light the in-session themes axis
     vocabDeck = []; vocabDeckDirs = []; vocabIndex = 0;
     if (vocabFilter.spellingDrill) buildSpellingDeck();   // QoderWork 2026-07-22
+    if (vocabFilter.accentDrill) buildAccentDeck();   // QoderWork 2026-07-23
+    if (vocabFilter.stressDrill) buildStressDeck();   // QoderWork 2026-07-23
+    if (vocabFilter.genderDrill) resetDrillSession("gender");   // QoderWork 2026-07-23
     saveLastSession("vocab");
-    track("session_start", { strand: "vocab", source: "welcome", direction: vocabFilter.direction, gender_drill: vocabFilter.genderDrill, spelling_drill: vocabFilter.spellingDrill, spelling_class: vocabFilter.spellingClass, lens: v.lens || "numeric", category: v.catLabel || "", ranges: (v.rankRanges || []).map(r => r.start + "-" + r.end).join("+") });
+    track("session_start", { strand: "vocab", source: "welcome", direction: vocabFilter.direction, gender_drill: vocabFilter.genderDrill, spelling_drill: vocabFilter.spellingDrill, spelling_class: vocabFilter.spellingClass, accent_drill: vocabFilter.accentDrill, stress_drill: vocabFilter.stressDrill, lens: v.lens || "numeric", category: v.catLabel || "", ranges: (v.rankRanges || []).map(r => r.start + "-" + r.end).join("+") });
     renderVocab();
     showStrand("vocab");
   }

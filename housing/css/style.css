@@ -1997,6 +1997,28 @@ body.coverage-active #entry-screen { display: none; }
 .stress-choice .gc-label strong { font-weight:700; text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:2px; }
 .stress-confusion td.stress-confusion-diag { outline:1px solid var(--accent,#2f8f4e); outline-offset:-1px; }
 .stress-confusion .stress-confusion-pct { font-size:.72rem; color:#8a836f; }
+/* Entry-screen stress example (capitano variants)  QoderWork 2026-07-23 */
+.entry-stress-example { display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 2px; margin-top:6px; font-size:.92rem; }
+.entry-stress-variant { font-family:var(--font-body,serif); letter-spacing:.02em; }
+.entry-stress-variant strong { font-weight:700; text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:2px; }
+.entry-stress-or { font-size:.78rem; color:var(--faint,#8a836f); font-style:italic; margin:0 2px; }
+
+/* Drill session panel (right-hand breakdown during drills)  QoderWork 2026-07-23 */
+.drill-session-panel { padding:8px 0; }
+.drill-session-title { margin:0 0 6px; font-size:1rem; }
+.drill-session-overall { font-size:.88rem; color:var(--faint,#8a836f); margin-bottom:12px; }
+.drill-session-table { width:100%; border-collapse:collapse; font-size:.85rem; }
+.drill-session-table td { padding:3px 6px; vertical-align:middle; }
+.ds-cat-label { white-space:nowrap; }
+.ds-cat-count { text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums; min-width:44px; }
+.ds-cat-bar { width:100%; }
+.ds-bar-fill { height:10px; border-radius:3px; min-width:1px; transition:width .3s; }
+.drill-session-matrix { margin-top:16px; }
+.drill-session-matrix h4 { margin:0 0 6px; font-size:.88rem; }
+.drill-session-matrix .stress-confusion { border-collapse:collapse; font-size:.82rem; }
+.drill-session-matrix .stress-confusion th,
+.drill-session-matrix .stress-confusion td { border:1px solid rgba(128,128,128,.25); padding:4px 8px; text-align:center; min-width:32px; }
+.drill-session-matrix .stress-confusion th { font-weight:600; background:rgba(128,128,128,.07); }
 
 /* Analysis: family heatmap + surface lenses (Smith 2026-07-21) */
 .fam-heat { display:flex; flex-direction:column; gap:5px; }
