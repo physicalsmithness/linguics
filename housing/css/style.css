@@ -1992,9 +1992,33 @@ body.coverage-active #entry-screen { display: none; }
 .pt-grid td.pt-empty { background:#fff; color:#c9c3b0; }
 @media (max-width:600px){ .pt-grid th, .pt-grid td { min-width:44px; padding:4px 5px; font-size:.75rem; } }
 
-/* Stress drill + confusion matrix  QoderWork 2026-07-23 */
-.stress-legend { font-size:.75rem; margin-top:2px; }
-.stress-choice .gc-label strong { font-weight:700; text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:2px; }
+/* Stress drill + confusion matrix  QoderWork 2026-07-23 (r79 UX overhaul QoderWork 2026-07-23) */
+.stress-legend { font-size:.72rem; margin-top:2px; color:var(--faint,#8a836f); }
+.stress-choices { gap:10px; }
+.stress-choice {
+  position:relative; padding:14px 16px 14px 32px; font-size:1.15rem;
+  border:1.5px solid var(--border,#c8c4b8); border-radius:8px;
+  background:#fff; cursor:pointer; transition:border-color .12s, box-shadow .12s;
+}
+.stress-choice:hover { border-color:var(--accent,#8f2b45); box-shadow:0 1px 4px rgba(0,0,0,.08); }
+.stress-choice:active { box-shadow:inset 0 1px 3px rgba(0,0,0,.1); }
+.stress-choice .gc-num {
+  position:absolute; top:4px; left:6px; font-size:9px; font-weight:700;
+  color:var(--faint,#8a836f); opacity:.6; min-width:auto; line-height:1;
+}
+.stress-choice .gc-label { font-weight:500; letter-spacing:.03em; }
+/* Stress marking modes: default = bold only; .stress-mark-underline adds underline;
+   .stress-mark-both adds both; .stress-mark-apostrophe hides bold (text has ' prefix) */
+.stress-choice .gc-label strong { font-weight:700; text-decoration:none; }
+.stress-mark-underline .stress-choice .gc-label strong { text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:2px; font-weight:500; }
+.stress-mark-both .stress-choice .gc-label strong { font-weight:700; text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:2px; }
+.stress-mark-apostrophe .stress-choice .gc-label strong { font-weight:500; text-decoration:none; }
+/* Translation line under the prompt word  QoderWork 2026-07-23 */
+.stress-translation { font-style:italic; margin-top:1px; }
+/* Apostrophe-mode stressed syllable: the ' prefix marks the stressed syllable  QoderWork 2026-07-23 */
+.stress-apo-mark { font-weight:600; }
+/* Rule-of-thumb hint after the explanation  QoderWork 2026-07-23 */
+.stress-rule-hint { font-size:.88em; color:var(--faint,#8a836f); border-left-width:3px; margin-top:2px; }
 .stress-confusion td.stress-confusion-diag { outline:1px solid var(--accent,#2f8f4e); outline-offset:-1px; }
 .stress-confusion .stress-confusion-pct { font-size:.72rem; color:#8a836f; }
 /* Entry-screen stress example (capitano variants)  QoderWork 2026-07-23 */

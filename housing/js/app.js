@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-23-r78";
+  const LL_BUILD = "2026-07-23-r79";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -2619,6 +2619,28 @@
       host.appendChild(knownRow);
     }
 
+    // Stress drill: marking display mode toggle (bold / underline / both / apostrophe).  QoderWork 2026-07-23
+    if (vocabFilter.stressDrill) {
+      const markRow = document.createElement("div");
+      markRow.className = "drill-known-row";
+      const markLbl = document.createElement("span");
+      markLbl.className = "drill-known-label";
+      markLbl.textContent = "Show stress:";
+      markRow.appendChild(markLbl);
+      for (const m of STRESS_MARK_MODES) {
+        const chip = document.createElement("button");
+        chip.type = "button";
+        chip.className = "drill-known-chip" + (stressMarkMode === m.id ? " active" : "");
+        chip.textContent = m.label;
+        chip.addEventListener("click", () => {
+          stressMarkMode = m.id;
+          renderVocab();
+        });
+        markRow.appendChild(chip);
+      }
+      host.appendChild(markRow);
+    }
+
     // Spelling drill: vocab controls are irrelevant; show a compact info bar.  QoderWork 2026-07-22
     if (vocabFilter.spellingDrill) {
       const lbl = document.createElement("span");
@@ -3336,6 +3358,16 @@
   // learner only ever sees phonologically possible positions.
   let stressDeck = [];
   let stressIndex = 0;
+  // Stress marking display mode: "bold" (default), "underline", "both", "apostrophe".  QoderWork 2026-07-23
+  let stressMarkMode = "bold";
+  const STRESS_MARK_MODES = [
+    { id: "bold", label: "Bold" },
+    { id: "underline", label: "Underline" },
+    { id: "both", label: "Bold + underline" },
+    { id: "apostrophe", label: "\u2019 before syllable" }
+  ];
+  // Strip written accents so the prompt doesn't give away tronca answers.  QoderWork 2026-07-23
+  const stripWrittenAccent = s => String(s || "").replace(/[àáâä]/g, "a").replace(/[èéêë]/g, "e").replace(/[ìíîï]/g, "i").replace(/[òóôö]/g, "o").replace(/[ùúûü]/g, "u");
 
   // Render **bold** markers as <strong> via DOM nodes (data-driven but
   // innerHTML-free, so no injection surface).  QoderWork 2026-07-23
@@ -3350,6 +3382,26 @@
       } else {
         el.appendChild(document.createTextNode(parts[i]));
       }
+    }
+  }
+  // Stress-mode-aware renderer: bold/underline/both use <strong> (CSS class on
+  // the card controls the visual); apostrophe inserts ' before the syllable.  QoderWork 2026-07-23
+  function appendStressMarked(el, text) {
+    if (stressMarkMode === "apostrophe") {
+      const parts = String(text == null ? "" : text).split("**");
+      for (let i = 0; i < parts.length; i++) {
+        if (parts[i] === "") continue;
+        if (i % 2 === 1) {
+          const s = document.createElement("span");
+          s.className = "stress-apo-mark";
+          s.textContent = "\u2019" + parts[i];
+          el.appendChild(s);
+        } else {
+          el.appendChild(document.createTextNode(parts[i]));
+        }
+      }
+    } else {
+      appendBoldedText(el, text);
     }
   }
 
@@ -3386,7 +3438,7 @@
     LL._cardShownAt = Date.now();
 
     const card = document.createElement("div");
-    card.className = "qcard stress-drill-card";
+    card.className = "qcard stress-drill-card" + (stressMarkMode !== "bold" ? " stress-mark-" + stressMarkMode : "");
     card.tabIndex = -1;
 
     // Meta line: neutral — never reveal THIS word's class (that's the answer).
@@ -3395,17 +3447,28 @@
     meta.textContent = "Stress drill";
     card.appendChild(meta);
 
-    // Prompt: the bare word.
+    // Prompt: the bare word, accent-stripped so a written accent doesn't give away tronca.  QoderWork 2026-07-23
+    const promptWord = stripWrittenAccent(q.prompt || sm.word || "");
     const prompt = document.createElement("div");
     prompt.className = "prompt";
-    prompt.textContent = q.prompt || (sm.word || "");
+    prompt.textContent = promptWord;
     card.appendChild(prompt);
 
-    // Ambient class labels (spec §2: shown, never gated). A legend naming each
-    // position — it does NOT say which one this word is.  QoderWork 2026-07-23
+    // Translation (looked up from the vocab database).  QoderWork 2026-07-23
+    const lemma = (sm.word || q.prompt || "").toLowerCase().trim();
+    const vEntry = vocabEntries.find(v => v && v.lemma && v.lemma.toLowerCase() === lemma);
+    if (vEntry && vEntry.translation_en) {
+      const tr = document.createElement("div");
+      tr.className = "meta faint stress-translation";
+      tr.textContent = vEntry.translation_en;
+      card.appendChild(tr);
+    }
+
+    // Ambient class labels — names only, no numbers (the choice numbers are
+    // display-order, NOT stress-position; mixing them misleads).  QoderWork 2026-07-23
     const legend = document.createElement("div");
     legend.className = "meta faint stress-legend";
-    legend.textContent = "1 = last (tronca) \u00b7 2 = 2nd-last (piana) \u00b7 3 = 3rd-last (sdrucciola) \u00b7 4 = 4th-last (bisdrucciola)";
+    legend.textContent = "tronca (last) \u00b7 piana (2nd-last) \u00b7 sdrucciola (3rd-last) \u00b7 bisdrucciola (4th-last)";
     card.appendChild(legend);
 
     // Choices
@@ -3435,6 +3498,15 @@
       marked = true;
       const origIdx = order[displayIdx];
       const result = buildMcqResult(q, origIdx);
+      // Clean ** bold markers from display text — this is a tap drill, not
+      // free-text; the stars are rendering instructions, not learner input.  QoderWork 2026-07-23
+      const stripBold = s => String(s || "").replace(/\*\*/g, "");
+      result.raw_response = stripBold(result.raw_response);
+      if (result.overall && result.overall.summary) result.overall.summary = stripBold(result.overall.summary);
+      for (const mp of (result.markpoints || [])) {
+        if (mp.evidence) mp.evidence = stripBold(mp.evidence);
+        if (mp.expected) mp.expected = stripBold(mp.expected);
+      }
       // Stress attempt block: feeds attempt persistence (store.js) and the
       // pulse top-level keys, and reconstitutes the 4x4 row-normalised
       // true_pos x answered_pos confusion matrix (spec §2). answered_pos is
@@ -3456,13 +3528,26 @@
         b.disabled = true;
       });
       resultHost.innerHTML = "";
-      resultHost.appendChild(renderResult(result));
-      // Show explanation if present (carries the class name + rule).
+      resultHost.appendChild(renderResult(result, { youWroteLabel: "You tapped:" }));   // QoderWork 2026-07-23
+      // Show explanation + a brief rule-of-thumb for the class.  QoderWork 2026-07-23
       if (q.explanation) {
         const expl = document.createElement("div");
         expl.className = "gd-declension";
         expl.textContent = q.explanation;
         resultHost.appendChild(expl);
+        const STRESS_RULES = {
+          1: "Tronche usually end in a stressed vowel (citt\u00e0, perch\u00e9) or are short words (qui, \u00e8, fu).",
+          2: "Piane are the default \u2014 most Italian words stress the 2nd-last syllable. When unsure, piana is the safest guess.",
+          3: "Sdrucciole often carry suffixes like -ico/-ica, -issimo, -ano/-ono (3pl verbs), or follow Latin stress patterns.",
+          4: "Bisdrucciole are rare \u2014 typically 3rd-person plural of -are verbs with a long stem (\u00e0bitano, t\u00e8lefona)."
+        };
+        const rule = STRESS_RULES[result.stress.true_pos];
+        if (rule) {
+          const ruleEl = document.createElement("div");
+          ruleEl.className = "gd-declension stress-rule-hint";
+          ruleEl.textContent = rule;
+          resultHost.appendChild(ruleEl);
+        }
       }
       renderLiveStats();
       // Session panel: category = true stress position; pass confusion-matrix info.  QoderWork 2026-07-23
@@ -3481,7 +3566,7 @@
       b.className = "mcq-choice stress-choice";
       const num = document.createElement("span"); num.className = "gc-num"; num.textContent = displayIdx + 1;
       const lbl = document.createElement("span"); lbl.className = "gc-label";
-      appendBoldedText(lbl, q.choices[origIdx]);
+      appendStressMarked(lbl, q.choices[origIdx]);   // QoderWork 2026-07-23
       b.appendChild(num); b.appendChild(lbl);
       b.addEventListener("click", () => commit(displayIdx));
       choicesWrap.appendChild(b);
@@ -5975,7 +6060,7 @@
       youWrote.className = "result-you-wrote";
       const lbl = document.createElement("span");
       lbl.className = "cmp-label";
-      lbl.textContent = "You wrote:";
+      lbl.textContent = (opts && opts.youWroteLabel) || "You wrote:";   // QoderWork 2026-07-23
       youWrote.appendChild(lbl);
       youWrote.appendChild(document.createTextNode(" "));
 
