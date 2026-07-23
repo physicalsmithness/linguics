@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-22-r76";
+  const LL_BUILD = "2026-07-23-r77";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -76,6 +76,11 @@
   LL.bucketsById = bucketIndex.byId;
   let grammarQuestions = window.LL_GRAMMAR_QUESTIONS || [];
   let translationItems = window.LL_TRANSLATION_ITEMS || [];
+  // Stress drill items live in their OWN array, deliberately NOT merged into
+  // grammarQuestions: their choices embed **bold** syllable markers that would
+  // render literally if they leaked into the general grammar MCQ path. The
+  // stress drill (tap-the-stressed-syllable) is the only consumer.  QoderWork 2026-07-23
+  let stressQuestions = window.LL_STRESS_QUESTIONS || [];
   // Shuffled decks used for navigation; reshuffle on wrap.
   let grammarDeck = [];
   let translationDeck = [];
@@ -656,8 +661,10 @@
         byBox.acc.push(ev);
       } else if (b.indexOf("orthography.spelling") === 0) {
         byBox.sp.push(ev);
+      } else if (b.indexOf("phonology.stress") === 0) {
+        // Stress drill (StressAuthor pipeline): buckets phonology.stress.*  QoderWork 2026-07-23
+        byBox.str.push(ev);
       }
-      // STR: no events yet (stress drill not built)
     }
     eachStrip(strip => {
       for (const def of STRIP_BOX_DEFS) {
@@ -687,7 +694,7 @@
     };
     // Collect which boxes fire.
     const vocabFires = {};   // boxId -> good|bad
-    let accFire = null, genFire = null, spFire = null;
+    let accFire = null, genFire = null, spFire = null, strFire = null;
     for (const ev of (a.events || [])) {
       const b = String(ev.bucket || "");
       const good = (ev.correctness_credit || 0) > 0;
@@ -707,6 +714,8 @@
         accFire = good ? "good" : "warm";
       } else if (b.indexOf("orthography.spelling") === 0) {
         spFire = good ? "good" : "bad";
+      } else if (b.indexOf("phonology.stress") === 0) {
+        strFire = good ? "good" : "bad";  // QoderWork 2026-07-23
       }
     }
     eachStrip(strip => {
@@ -716,6 +725,7 @@
       if (accFire) doFlash(strip.querySelector('.strip-box9[data-id="acc"]'), accFire === "good" ? "flash-good" : "flash-warm");
       if (genFire) doFlash(strip.querySelector('.strip-box9[data-id="gen"]'), genFire === "good" ? "flash-good" : "flash-bad");
       if (spFire) doFlash(strip.querySelector('.strip-box9[data-id="sp"]'), spFire === "good" ? "flash-good" : "flash-bad");
+      if (strFire) doFlash(strip.querySelector('.strip-box9[data-id="str"]'), strFire === "good" ? "flash-good" : "flash-bad");
     });
   }
   function renderPulseStrip() {
@@ -921,12 +931,13 @@
         Foptional("../data/misconceptions.json"),
         Foptional("../data/misconception_lenses.json"),
         Foptional("../data/translation_marker_bucket_menu.json"),
-        Foptional("../data/grammar_questions_accent.json") // QoderWork 2026-07-22: accent drill items
+        Foptional("../data/grammar_questions_accent.json"), // QoderWork 2026-07-22: accent drill items
+        Foptional("../data/grammar_questions_stress.json") // QoderWork 2026-07-23: stress drill items (StressAuthor pipeline)
       ]);
       const workers = [];
       for (let w = 0; w < Math.min(POOL, topics.length); w++) workers.push(worker());
       await Promise.all(workers);
-      const [glossary, vocab, parts, themes, misconceptions, lenses, markerMenu, accentGrammar] = await tail;
+      const [glossary, vocab, parts, themes, misconceptions, lenses, markerMenu, accentGrammar, stressGrammar] = await tail;
 
       // Flatten strictly in manifest order.
       const buckets = [];
@@ -949,6 +960,11 @@
       }
       // QoderWork 2026-07-22: merge accent drill items (separate file, topic=orthography)
       if (accentGrammar) for (const q of accentGrammar) grammar.push(q);
+      // QoderWork 2026-07-23: stress drill items are NOT merged into grammar.
+      // Their choices embed **bold** syllable markers, which the general
+      // grammar MCQ path would render literally. They live in their own
+      // module-level stressQuestions array and are only surfaced via the
+      // dedicated stress drill mode.
 
       if (glossary) {
         LL.glossary = buildGlossaryIndex(glossary);
@@ -958,7 +974,7 @@
       }
 
       console.info("Loaded per topic:", perTopicCounts);
-      return { buckets, grammar, translation, perTopicCounts, vocab, themes, parts, misconceptions, lenses, markerMenu, failures: loadFailures };
+      return { buckets, grammar, translation, perTopicCounts, vocab, themes, parts, misconceptions, lenses, markerMenu, stress: stressGrammar, failures: loadFailures };
     } catch (e) {
       const cause = e && e.message ? e.message : String(e);
       console.error("[Linguics] Real content fetch failed; using inline samples. Cause:", cause);
@@ -2125,6 +2141,7 @@
     spellingDrill: false, // orthography MCQ drill (Smith spelling ask)  QoderWork 2026-07-22
     spellingClass: "",    // "" = all classes; else e.g. "doubling"  QoderWork 2026-07-22
     accentDrill: false,   // accent MCQ drill (AccentAuthor variant pipeline)  QoderWork 2026-07-22
+    stressDrill: false,   // stress MCQ drill — tap the stressed syllable (StressAuthor pipeline)  QoderWork 2026-07-23
     knownDir: "",        // drills: "" = all words; "either"/"en_it"/"it_en" = restrict to practised  QoderWork 2026-07-22
     topN: 0,            // 0 = all; else max rank to include in scope
     subBand: ""         // "" | "A1-core" | "A1-secure" | ... | "C1-stretch"
@@ -2536,16 +2553,17 @@
     if (!host) return;
     host.innerHTML = "";
 
-    // Mode switcher: allows mid-session toggling between vocab / gender / spelling / accent.  QoderWork 2026-07-22
+    // Mode switcher: allows mid-session toggling between vocab / gender / spelling / accent / stress.  QoderWork 2026-07-22 (stress 2026-07-23)
     const modeRow = document.createElement("div");
     modeRow.className = "filter-mode-row";
     const modes = [
       { key: "vocab", label: "Words" },
       { key: "gender", label: "Gender drill" },
       { key: "spelling", label: "Spelling drill" },
-      { key: "accent", label: "Accent drill" }
+      { key: "accent", label: "Accent drill" },
+      { key: "stress", label: "Stress drill" }
     ];
-    const activeMode = vocabFilter.accentDrill ? "accent" : vocabFilter.spellingDrill ? "spelling" : vocabFilter.genderDrill ? "gender" : "vocab";
+    const activeMode = vocabFilter.stressDrill ? "stress" : vocabFilter.accentDrill ? "accent" : vocabFilter.spellingDrill ? "spelling" : vocabFilter.genderDrill ? "gender" : "vocab";
     modes.forEach(m => {
       const chip = document.createElement("button");
       chip.type = "button";
@@ -2556,8 +2574,10 @@
         vocabFilter.genderDrill = m.key === "gender";
         vocabFilter.spellingDrill = m.key === "spelling";
         vocabFilter.accentDrill = m.key === "accent";
+        vocabFilter.stressDrill = m.key === "stress";
         if (m.key === "spelling") buildSpellingDeck();
         if (m.key === "accent") buildAccentDeck();
+        if (m.key === "stress") buildStressDeck();
         vocabDeck = []; vocabIndex = 0;
         renderVocab();
       });
@@ -2566,7 +2586,7 @@
     host.appendChild(modeRow);
 
     // "Known words" direction filter for drill modes.  QoderWork 2026-07-22
-    const inDrill = vocabFilter.genderDrill || vocabFilter.accentDrill || vocabFilter.spellingDrill;
+    const inDrill = vocabFilter.genderDrill || vocabFilter.accentDrill || vocabFilter.spellingDrill || vocabFilter.stressDrill;
     if (inDrill) {
       const knownRow = document.createElement("div");
       knownRow.className = "drill-known-row";
@@ -2589,6 +2609,7 @@
         chip.addEventListener("click", () => {
           vocabFilter.knownDir = o.key;
           if (vocabFilter.accentDrill) buildAccentDeck();
+          if (vocabFilter.stressDrill) buildStressDeck();
           vocabDeck = []; vocabIndex = 0;
           renderVocab();
         });
@@ -2611,6 +2632,14 @@
     if (vocabFilter.accentDrill) {
       const lbl = document.createElement("span");
       lbl.textContent = "Accent drill \u2014 " + accentDeck.length + " items";
+      lbl.style.fontWeight = "600";
+      host.appendChild(lbl);
+      return;
+    }
+    // Stress drill: vocab controls are irrelevant; show a compact info bar.  QoderWork 2026-07-23
+    if (vocabFilter.stressDrill) {
+      const lbl = document.createElement("span");
+      lbl.textContent = "Stress drill \u2014 " + stressDeck.length + " items";
       lbl.style.fontWeight = "600";
       host.appendChild(lbl);
       return;
@@ -3176,6 +3205,182 @@
     if (!keepAxes) renderVocabAxes();
   }
 
+  // ---- Stress drill (StressAuthor pipeline; tap-the-stressed-syllable, index-scored)  QoderWork 2026-07-23 ----
+  // Spec: inter_chat/Architecture_Housing_accent_stress_and_new_qtypes.md §2.
+  // Each choice shows the word with ONE candidate syllable emboldened via
+  // **syl** markers; choices[i] bolds the syllable at position (i+1) counted
+  // from the END (1 = last). Option count = min(syllable_count, 4), so the
+  // learner only ever sees phonologically possible positions.
+  let stressDeck = [];
+  let stressIndex = 0;
+
+  // Render **bold** markers as <strong> via DOM nodes (data-driven but
+  // innerHTML-free, so no injection surface).  QoderWork 2026-07-23
+  function appendBoldedText(el, text) {
+    const parts = String(text == null ? "" : text).split("**");
+    for (let i = 0; i < parts.length; i++) {
+      if (parts[i] === "") continue;
+      if (i % 2 === 1) {
+        const s = document.createElement("strong");
+        s.textContent = parts[i];
+        el.appendChild(s);
+      } else {
+        el.appendChild(document.createTextNode(parts[i]));
+      }
+    }
+  }
+
+  function buildStressDeck() {
+    let items = stressQuestions.filter(q => q && q.type === "mcq" && Array.isArray(q.choices) && q.choices.length >= 2);
+    if (vocabFilter.knownDir) {
+      const stripAcc = s => s.replace(/[àáâä]/g, "a").replace(/[èéêë]/g, "e").replace(/[ìíîï]/g, "i").replace(/[òóôö]/g, "o").replace(/[ùúûü]/g, "u");
+      const known = practisedLemmas(vocabFilter.knownDir);
+      items = items.filter(q => {
+        const word = String((q.stress_meta && q.stress_meta.word) || q.prompt || "").toLowerCase().trim();
+        return known.has(word) || known.has(stripAcc(word));
+      });
+    }
+    stressDeck = shuffle(items);
+    stressIndex = 0;
+  }
+
+  function renderStressDrillCard(keepAxes) {
+    const host = document.getElementById("vocab-host");
+    if (!host) return;
+    host.innerHTML = "";
+    if (!stressDeck.length) {
+      const msg = document.createElement("p");
+      msg.className = "muted";
+      msg.style.cssText = "padding:18px;font-style:italic";
+      msg.textContent = "No stress items loaded. Expected at data/grammar_questions_stress.json (tools/stress_pipeline/generate_stress_items.js).";
+      host.appendChild(msg);
+      return;
+    }
+    if (stressIndex >= stressDeck.length) { stressDeck = shuffle(stressDeck); stressIndex = 0; }
+    const q = stressDeck[stressIndex];
+    const sm = q.stress_meta || {};
+    LL._cardShownAt = Date.now();
+
+    const card = document.createElement("div");
+    card.className = "qcard stress-drill-card";
+    card.tabIndex = -1;
+
+    // Meta line: neutral — never reveal THIS word's class (that's the answer).
+    const meta = document.createElement("div");
+    meta.className = "meta faint";
+    meta.textContent = "Stress drill";
+    card.appendChild(meta);
+
+    // Prompt: the bare word.
+    const prompt = document.createElement("div");
+    prompt.className = "prompt";
+    prompt.textContent = q.prompt || (sm.word || "");
+    card.appendChild(prompt);
+
+    // Ambient class labels (spec §2: shown, never gated). A legend naming each
+    // position — it does NOT say which one this word is.  QoderWork 2026-07-23
+    const legend = document.createElement("div");
+    legend.className = "meta faint stress-legend";
+    legend.textContent = "1 = last (tronca) \u00b7 2 = 2nd-last (piana) \u00b7 3 = 3rd-last (sdrucciola) \u00b7 4 = 4th-last (bisdrucciola)";
+    card.appendChild(legend);
+
+    // Choices
+    const choicesWrap = document.createElement("div");
+    choicesWrap.className = "mcq-choices stress-choices";
+    const resultHost = document.createElement("div");
+    const buttons = [];
+    let marked = false;
+
+    const doNext = () => {
+      stressIndex++;
+      if (stressIndex >= stressDeck.length) { stressDeck = shuffle(stressDeck); stressIndex = 0; }
+      renderVocab(true);
+    };
+    const next = document.createElement("button");
+    next.type = "button"; next.className = "btn"; next.textContent = "Skip"; next.title = "Next item";
+    next.addEventListener("click", doNext);
+    next.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); doNext(); } });
+
+    // Shuffle choice positions so the correct one isn't always in the same slot.
+    const choiceCount = (q.choices || []).length;
+    const order = shuffle([...Array(choiceCount).keys()]);
+    const correctDisplayIdx = order.indexOf(q.answer_index);
+
+    const commit = (displayIdx) => {
+      if (marked) return;
+      marked = true;
+      const origIdx = order[displayIdx];
+      const result = buildMcqResult(q, origIdx);
+      // Stress attempt block: feeds attempt persistence (store.js) and the
+      // pulse top-level keys, and reconstitutes the 4x4 row-normalised
+      // true_pos x answered_pos confusion matrix (spec §2). answered_pos is
+      // counted from the END: choices[i] bolds position (i+1).  QoderWork 2026-07-23
+      result.stress = {
+        true_pos: (typeof sm.stress_pos === "number") ? sm.stress_pos : (q.answer_index + 1),
+        answered_pos: origIdx + 1,
+        syllable_count: (typeof sm.syllable_count === "number") ? sm.syllable_count : choiceCount,
+        stress_class: sm.stress_class || "",
+        word: sm.word || q.prompt || ""
+      };
+      const attempt = LL.store.recordAttempt("vocab",
+        { id: q.external_id || ("stress_" + stressIndex), prompt: q.prompt },
+        q.choices[origIdx], result);
+      recentlyChangedBuckets = new Set(attempt.events.map(e => e.bucket));
+      buttons.forEach((b, i) => {
+        if (i === correctDisplayIdx) b.classList.add("gc-correct");
+        if (i === displayIdx && displayIdx !== correctDisplayIdx) b.classList.add("gc-wrong");
+        b.disabled = true;
+      });
+      resultHost.innerHTML = "";
+      resultHost.appendChild(renderResult(result));
+      // Show explanation if present (carries the class name + rule).
+      if (q.explanation) {
+        const expl = document.createElement("div");
+        expl.className = "gd-declension";
+        expl.textContent = q.explanation;
+        resultHost.appendChild(expl);
+      }
+      renderLiveStats();
+      next.textContent = "Next";
+      setTimeout(() => next.focus({ preventScroll: true }), 0);
+    };
+
+    order.forEach((origIdx, displayIdx) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "mcq-choice stress-choice";
+      const num = document.createElement("span"); num.className = "gc-num"; num.textContent = displayIdx + 1;
+      const lbl = document.createElement("span"); lbl.className = "gc-label";
+      appendBoldedText(lbl, q.choices[origIdx]);
+      b.appendChild(num); b.appendChild(lbl);
+      b.addEventListener("click", () => commit(displayIdx));
+      choicesWrap.appendChild(b);
+      buttons.push(b);
+    });
+    card.appendChild(choicesWrap);
+
+    card.appendChild(resultHost);
+
+    const actions = document.createElement("div");
+    actions.className = "actions";
+    actions.appendChild(next);
+    const hint = document.createElement("span");
+    hint.className = "kbd-hint";
+    hint.textContent = "Tap the stressed syllable \u2014 press 1-" + choiceCount + " or click. Enter to advance.";
+    actions.appendChild(hint);
+    card.appendChild(actions);
+
+    card.addEventListener("keydown", (e) => {
+      if (marked) { if (e.key === "Enter") { e.preventDefault(); doNext(); } return; }
+      const n = parseInt(e.key, 10);
+      if (n >= 1 && n <= choiceCount) { e.preventDefault(); commit(n - 1); }
+    });
+
+    host.appendChild(card);
+    setTimeout(() => { ensureCardVisible(card); card.focus(); }, 0);
+    if (!keepAxes) renderVocabAxes();
+  }
+
   function renderVocab(keepAxes) {
     renderVocabFilterBar();
     const host = document.getElementById("vocab-host");
@@ -3185,6 +3390,8 @@
     if (vocabFilter.spellingDrill) { renderSpellingDrillCard(keepAxes); return; }
     // Accent drill: uses its own MCQ deck, not vocab entries.  QoderWork 2026-07-22
     if (vocabFilter.accentDrill) { renderAccentDrillCard(keepAxes); return; }
+    // Stress drill: uses its own MCQ deck, not vocab entries.  QoderWork 2026-07-23
+    if (vocabFilter.stressDrill) { renderStressDrillCard(keepAxes); return; }
     if (!vocabEntries.length) {
       const msg = document.createElement("p");
       msg.className = "muted";
@@ -8366,6 +8573,73 @@
     } catch (e) { wrap.textContent = "(person × class unavailable)"; }
     return wrap;
   }
+
+  // Stress confusion matrix (Architecture_Housing_accent_stress_and_new_qtypes.md
+  // §2): 4x4 true_pos x answered_pos, reconstituted from attempt.stress_attempt.
+  // Rows = where the stress REALLY is; columns = where the learner TAPPED.
+  // Diagonal = correct. Raw counts are primary (Smith: raw counts, no
+  // thresholds); the row-normalised % rides second (the spec's matrix).
+  // Shading: ONE global max across all 16 cells (darkest cell = true max),
+  // olive scale, constant font colour — never flips dark/light (Smith prefs).
+  // QoderWork 2026-07-23
+  function buildStressConfusionMatrix() {
+    const wrap = document.createElement("div"); wrap.className = "pt-grid-wrap";
+    try {
+      const POS_LABELS = { 1: "last (tronca)", 2: "2nd-last (piana)", 3: "3rd-last (sdrucciola)", 4: "4th-last (bisdrucciola)" };
+      // counts[true_pos][answered_pos] = n
+      const counts = {}; let total = 0; let globalMax = 0;
+      for (let t = 1; t <= 4; t++) { counts[t] = {}; for (let p = 1; p <= 4; p++) counts[t][p] = 0; }
+      for (const a of ((LL.state && LL.state.attempts) || [])) {
+        const sa = a.stress_attempt;
+        if (!sa || typeof sa.true_pos !== "number" || typeof sa.answered_pos !== "number") continue;
+        const t = sa.true_pos, p = sa.answered_pos;
+        if (t < 1 || t > 4 || p < 1 || p > 4) continue;
+        counts[t][p]++; total++;
+        if (counts[t][p] > globalMax) globalMax = counts[t][p];
+      }
+      if (!total) {
+        const n = document.createElement("p"); n.className = "analysis-note";
+        n.textContent = "No stress answers yet — the matrix fills in as you tap stressed syllables.";
+        wrap.appendChild(n); return wrap;
+      }
+      const table = document.createElement("table"); table.className = "pt-grid stress-confusion";
+      const thead = document.createElement("thead"); const htr = document.createElement("tr");
+      const corner = document.createElement("th"); corner.textContent = "true \u2193 / tapped \u2192"; htr.appendChild(corner);
+      for (let p = 1; p <= 4; p++) { const th = document.createElement("th"); th.textContent = POS_LABELS[p]; htr.appendChild(th); }
+      thead.appendChild(htr); table.appendChild(thead);
+      const tbody = document.createElement("tbody");
+      for (let t = 1; t <= 4; t++) {
+        const rowTotal = counts[t][1] + counts[t][2] + counts[t][3] + counts[t][4];
+        const tr = document.createElement("tr");
+        const rh = document.createElement("th"); rh.textContent = POS_LABELS[t]; tr.appendChild(rh);
+        for (let p = 1; p <= 4; p++) {
+          const c = counts[t][p]; const td = document.createElement("td");
+          if (t === p) td.classList.add("stress-confusion-diag");
+          if (c > 0) {
+            // Single global-max scale: darkest cell = most frequent cell overall.
+            const alpha = 0.65 * (c / globalMax);
+            td.style.background = "rgba(61,74,28," + alpha.toFixed(2) + ")";
+            const pct = rowTotal > 0 ? Math.round(100 * c / rowTotal) : 0;
+            const strong = document.createElement("strong"); strong.textContent = String(c);
+            const sub = document.createElement("span"); sub.className = "stress-confusion-pct"; sub.textContent = " " + pct + "%";
+            td.appendChild(strong); td.appendChild(sub);
+            td.title = "True " + POS_LABELS[t] + " \u2192 tapped " + POS_LABELS[p] + ": " + c + " answer" + (c === 1 ? "" : "s") + " (" + pct + "% of this row)" + (t === p ? " — correct" : "");
+          } else {
+            td.className = "pt-empty" + (t === p ? " stress-confusion-diag" : "");
+            td.title = "True " + POS_LABELS[t] + " \u2192 tapped " + POS_LABELS[p] + ": no answers";
+          }
+          tr.appendChild(td);
+        }
+        tbody.appendChild(tr);
+      }
+      table.appendChild(tbody);
+      const scroll = document.createElement("div"); scroll.className = "pt-scroll"; scroll.appendChild(table); wrap.appendChild(scroll);
+      const note = document.createElement("p"); note.className = "analysis-note";
+      note.textContent = "Rows = where the stress really is; columns = where you tapped. The diagonal is correct. Number = raw count; % = share of that row. Shade is by count across the whole table (darkest = most frequent cell).";
+      wrap.appendChild(note);
+    } catch (e) { wrap.textContent = "(stress confusion matrix unavailable)"; }
+    return wrap;
+  }
   function misconceptionFamilyCounts() {
     const counts = new Map();
     for (const a of ((LL.state && LL.state.attempts) || [])) for (const h of (a.misconception_hits || [])) { const id = (h && (h.id || h)) || ""; if (!id) continue; const fam = String(id).split(".")[0]; counts.set(fam, (counts.get(fam) || 0) + 1); }
@@ -8600,6 +8874,7 @@
     col.appendChild(sectionWrap("Not yet attempted", buildCoverageGaps()));
     col.appendChild(sectionWrap("Verb coverage: person × tense", buildPersonTenseGrid()));
     col.appendChild(sectionWrap("Verb coverage: person × conjugation class", buildPersonClassGrid()));
+    col.appendChild(sectionWrap("Stress confusion matrix", buildStressConfusionMatrix()));
     col.appendChild(placeholderSection("Tense-choice confusion matrix", "Chosen tense vs correct tense — the diagonal is right, off-diagonal shows what you reach for wrongly."));
     col.appendChild(placeholderSection("Piacere per-verb grid", "Direction (mi piaci vs ti piaccio), pluralisation, figurative use, per tested verb."));
     const btLink = document.createElement("button"); btLink.type = "button"; btLink.className = "entry-coverage-link"; btLink.style.marginTop = "6px";
@@ -8673,6 +8948,10 @@
     bucketIndex = LL.store.indexBuckets(allBuckets);
     LL.bucketsById = bucketIndex.byId;
     grammarQuestions = real.grammar;
+    // QoderWork 2026-07-23: stress drill items ride their own array (see loader
+    // comment — **bold** choice markers must not reach the general MCQ path).
+    stressQuestions = Array.isArray(real.stress) ? real.stress
+      : ((real.stress && Array.isArray(real.stress.items)) ? real.stress.items : []);
     translationItems = real.translation;
     if (real.parts && Array.isArray(real.parts.parts)) LL.partsConfig = real.parts;
     LL.misconceptions = real.misconceptions || null;   // registry: families + specifics (analysis surface)

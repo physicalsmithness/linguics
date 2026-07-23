@@ -1992,6 +1992,12 @@ body.coverage-active #entry-screen { display: none; }
 .pt-grid td.pt-empty { background:#fff; color:#c9c3b0; }
 @media (max-width:600px){ .pt-grid th, .pt-grid td { min-width:44px; padding:4px 5px; font-size:.75rem; } }
 
+/* Stress drill + confusion matrix  QoderWork 2026-07-23 */
+.stress-legend { font-size:.75rem; margin-top:2px; }
+.stress-choice .gc-label strong { font-weight:700; text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:2px; }
+.stress-confusion td.stress-confusion-diag { outline:1px solid var(--accent,#2f8f4e); outline-offset:-1px; }
+.stress-confusion .stress-confusion-pct { font-size:.72rem; color:#8a836f; }
+
 /* Analysis: family heatmap + surface lenses (Smith 2026-07-21) */
 .fam-heat { display:flex; flex-direction:column; gap:5px; }
 .fam-row { display:flex; align-items:center; gap:8px; }

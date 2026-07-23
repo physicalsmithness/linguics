@@ -156,6 +156,14 @@
     payload.slot = (item && item.slot !== undefined && item.slot !== null) ? item.slot : "";
     payload.intent = (attempt && attempt.intent) || "";
     payload.events_n = (attempt && attempt.events && attempt.events.length) || 0;
+    // Stress drill axes (Architecture_Housing_accent_stress_and_new_qtypes.md
+    // §2): true_pos x answered_pos x syllable_count reconstitute the 4x4
+    // row-normalised confusion matrix in the estate workbook. Empty on
+    // non-stress attempts so the sheet column stays blank.  QoderWork 2026-07-23
+    const sa = attempt && attempt.stress_attempt;
+    payload.stress_true_pos = sa ? sa.true_pos : "";
+    payload.stress_answered_pos = sa ? sa.answered_pos : "";
+    payload.stress_syllable_count = sa ? sa.syllable_count : "";
     payload.markpoints_json = JSON.stringify((result && result.markpoints || []).map(mp => ({
       bucket: mp.bucket, outcome: mp.outcome,
       attempted: mp.attempted_credit, correctness: mp.correctness_credit,

@@ -220,19 +220,23 @@ def main():
                 except Exception as e:
                     print(f"Extraction failed: {e}")
             
-    if not os.path.exists(morphit_local):
-        print("Error: Could not acquire Morph-it! data.")
-        sys.exit(1)
+    has_morphit = os.path.exists(morphit_local)
+    if not has_morphit:
+        print("WARNING: Could not acquire Morph-it! data. Continuing without it.")
+        print("  (-ere verb classification will be unavailable)")
 
     wikt_out = os.path.join(lexicon_dir, 'wiktionary_stress.json')
     wikt_count = parse_wiktionary(wikt_local, wikt_out)
     
-    morphit_forms_out = os.path.join(lexicon_dir, 'morphit_forms.json')
-    morphit_lemmas_out = os.path.join(lexicon_dir, 'morphit_lemmas.json')
-    morphit_count = parse_morphit(morphit_local, morphit_forms_out, morphit_lemmas_out)
-    
-    ere_out = os.path.join(lexicon_dir, 'ere_verbs.json')
-    ere_count = build_ere_classification(wikt_out, morphit_lemmas_out, ere_out)
+    morphit_count = 0
+    ere_count = 0
+    if has_morphit:
+        morphit_forms_out = os.path.join(lexicon_dir, 'morphit_forms.json')
+        morphit_lemmas_out = os.path.join(lexicon_dir, 'morphit_lemmas.json')
+        morphit_count = parse_morphit(morphit_local, morphit_forms_out, morphit_lemmas_out)
+        
+        ere_out = os.path.join(lexicon_dir, 'ere_verbs.json')
+        ere_count = build_ere_classification(wikt_out, morphit_lemmas_out, ere_out)
     
     print("\n=== Summary ===")
     print(f"Wiktionary entries with stress: {wikt_count}")

@@ -174,6 +174,13 @@
     if (result.residue_review) {
       attempt.residue_review = result.residue_review;
     }
+    // Stress drill attempt block (tap-the-stressed-syllable, StressAuthor
+    // pipeline): {true_pos, answered_pos, syllable_count, stress_class, word}.
+    // Feeds the 4x4 confusion-matrix report and the pulse top-level keys.
+    // QoderWork 2026-07-23
+    if (result.stress) {
+      attempt.stress_attempt = result.stress;
+    }
     state.attempts.push(attempt);
     LL.lastAttempt = attempt;   // read by the grammar pulse strip (live flashes)
     // Attempt pulse to the estate workbook (shared_login_and_pulse v1).
