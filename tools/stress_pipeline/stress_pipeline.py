@@ -31,7 +31,10 @@ LEXICON_DIR = os.path.join(SCRIPT_DIR, "lexicon_data")
 DATA_DIR = os.path.join(PROJECT_ROOT, "data")
 
 VOCAB_PATH = os.path.join(DATA_DIR, "vocabulary_it_frequency.json")
-WIKT_STRESS_PATH = os.path.join(LEXICON_DIR, "wiktionary_stress.json")
+# CODEX 2026-07-23: use the POS-aware lexicon that verifies orthographic
+# syllable boundaries as well as stress. The former spelling-only extractor is
+# retained on disk for provenance, but it is no longer safe for drill gating.
+WIKT_STRESS_PATH = os.path.join(LEXICON_DIR, "wiktionary_verified.json")
 ERE_VERBS_PATH = os.path.join(LEXICON_DIR, "ere_verbs.json")
 OUTPUT_PATH = os.path.join(DATA_DIR, "stress_sidecar_lemma.json")
 
@@ -42,7 +45,20 @@ ACCENTED_VOWELS = set("àèéìòùáíóúâêîôû")
 PLAIN_VOWELS = set("aeiou")
 ALL_VOWELS = ACCENTED_VOWELS | PLAIN_VOWELS
 
-ACCENT_TO_PLAIN = str.maketrans("àèéìòùáíóúâêîôû", "aeeioouiouaeiou")
+# CODEX 2026-07-23: the former target string mapped ù->o and á->u.
+ACCENT_TO_PLAIN = str.maketrans("àèéìòùáíóúâêîôû", "aeeiouaiouaeiou")
+
+# CODEX 2026-07-23: vocabulary and Kaikki/Wiktionary use different POS labels.
+WIKTIONARY_POS = {
+    "adjective": "adj",
+    "adverb": "adv",
+    "conjunction": "conj",
+    "preposition": "prep",
+    "pronoun": "pron",
+    "numeral": "num",
+    "determiner": "det",
+    "interjection": "intj",
+}
 
 # ---------------------------------------------------------------------------
 # Tier 1 — Orthographic: final written accent = tronca
@@ -238,6 +254,36 @@ def _strip_accents(word: str) -> str:
     return word.translate(ACCENT_TO_PLAIN)
 
 
+def _lookup_verified_lexicon(
+    lemma: str, pos: str, wikt_stress: dict | None
+) -> dict | None:
+    """Return one non-ambiguous POS-matched pronunciation record.
+
+    CODEX 2026-07-23: spelling-only lookup is unsafe for homographs such as
+    noun ``telefonino`` vs the verb form ``telefonino``.
+    """
+    if not wikt_stress:
+        return None
+    entries = wikt_stress.get("entries", wikt_stress)
+    # CODEX 2026-07-23: exact spelling is mandatory for the surface word;
+    # written accents distinguish real lexical entries.
+    lower = lemma.lower()
+    wikt_pos = WIKTIONARY_POS.get(pos, pos)
+    record = entries.get(lower, {}).get(wikt_pos)
+    if not record or record.get("ambiguous"):
+        return None
+    syllables = record.get("syllables")
+    stress_pos = record.get("stress_pos")
+    if (
+        not isinstance(syllables, list)
+        or not syllables
+        or not isinstance(stress_pos, int)
+        or not 1 <= stress_pos <= len(syllables)
+    ):
+        return None
+    return record
+
+
 def tier2_derivational(lemma: str, pos: str) -> dict | None:
     """Tier 2: derivational suffix rules. Rule-based, high confidence."""
     # Skip accent-final words (Tier 1 handles)
@@ -426,24 +472,17 @@ def tier3_inflectional(lemma: str, pos: str, conj_class: str | None,
 
 def tier4_lexicon(lemma: str, pos: str,
                   wikt_stress: dict | None = None) -> dict | None:
-    """Tier 4: look up stress in the Wiktionary IPA lexicon.
+    """Tier 4: look up stress and syllables in the verified Wiktionary lexicon.
 
-    Returns high confidence for Wiktionary (human-edited IPA).
+    CODEX 2026-07-23: high confidence now requires a POS-matched,
+    non-ambiguous record with explicit Wiktionary hyphenation and IPA.
     """
-    if wikt_stress is None:
-        return None
-
-    lower = _strip_accents(lemma.lower())
-    entry = wikt_stress.get(lower)
+    entry = _lookup_verified_lexicon(lemma, pos, wikt_stress)
     if entry is None:
         return None
 
-    stress_pos = entry.get("stress_pos")
-    if stress_pos is None or stress_pos < 1:
-        return None
-
     return {
-        "stress_pos": stress_pos,
+        "stress_pos": entry["stress_pos"],
         "stress_source": "dictionary",
         "stress_confidence": "high",
         "stress_mechanism": "lexical",
@@ -452,6 +491,8 @@ def tier4_lexicon(lemma: str, pos: str,
         "accent_cue": False,
         "stress_tags": [],
         "_tier": 4,
+        "_verified_record": entry,
+        "_verification_status": "verified",
     }
 
 
@@ -688,39 +729,59 @@ def assign_stress(entry: dict,
 # Tier 4 confirmation: cross-check earlier tiers against lexicon
 # ---------------------------------------------------------------------------
 
-def confirm_with_lexicon(result: dict, lemma: str,
-                         wikt_stress: dict | None = None) -> dict:
-    """If we have lexicon data and the entry was assigned by a rule tier,
-    confirm the stress position matches. Flag mismatches for review."""
-    if wikt_stress is None:
-        return result
+def confirm_with_lexicon(
+    result: dict,
+    lemma: str,
+    pos: str,
+    wikt_stress: dict | None = None,
+) -> dict:
+    """Gate drill confidence on verified stress AND syllable boundaries.
 
-    lower = _strip_accents(lemma.lower())
-    wikt_entry = wikt_stress.get(lower)
+    CODEX 2026-07-23: the old function only compared an ordinal stress number.
+    That allowed the number ``2`` from Wiktionary to "confirm" a bad local
+    split such as pe-do-fi-lia and produce the wrong target syllable. A record
+    without POS-matched Wiktionary hyphenation is now non-drillable.
+    """
+    wikt_entry = _lookup_verified_lexicon(lemma, pos, wikt_stress)
     if wikt_entry is None:
+        result["stress_confidence"] = "low"
+        result["_verification_status"] = "missing_or_ambiguous_syllables"
         return result
 
-    wikt_pos = wikt_entry.get("stress_pos")
-    if wikt_pos is None:
-        return result
-
+    result["_verified_record"] = wikt_entry
+    result["_verification_status"] = "verified"
+    wikt_pos = wikt_entry["stress_pos"]
     assigned_pos = result.get("stress_pos")
-    if assigned_pos == wikt_pos:
-        # Confirmed — upgrade confidence if it was medium or low
-        if result["stress_confidence"] in ("low", "medium"):
-            result["stress_confidence"] = "high"
-            if result["stress_source"] == "rule_default":
-                result["stress_source"] = "dictionary"
-        result["_confirmed"] = True
-    else:
-        # Mismatch — prefer the dictionary for non-orthographic entries
-        if result["_tier"] != 1:  # Don't override written accents
-            result["stress_pos"] = wikt_pos
-            result["stress_source"] = "dictionary"
-            result["stress_confidence"] = "high"
-            result["_overridden"] = True
-            result["_original_pos"] = assigned_pos
 
+    if assigned_pos == wikt_pos:
+        result["stress_confidence"] = "high"
+        if result["stress_source"] == "rule_default":
+            result["stress_source"] = "dictionary"
+        result["_confirmed"] = True
+        return result
+
+    # A written final accent is authoritative. A disagreement means the
+    # dictionary record is unsuitable, so quarantine rather than override.
+    if result.get("_tier") == 1:
+        result["stress_confidence"] = "low"
+        result["_verification_status"] = "orthographic_dictionary_conflict"
+        return result
+
+    # Dictionary evidence rejects the earlier rule. Keep the rejected rule as
+    # provenance, but do not report the item as if that rule explained it.
+    rejected = (
+        f"rejected:{result.get('stress_mechanism', 'unknown')}:"
+        f"{result.get('stress_mechanism_detail', 'unknown')}"
+    )
+    if rejected not in result["stress_tags"]:
+        result["stress_tags"].append(rejected)
+    result["stress_pos"] = wikt_pos
+    result["stress_source"] = "dictionary"
+    result["stress_confidence"] = "high"
+    result["stress_mechanism"] = "lexical"
+    result["stress_mechanism_detail"] = "lexical_simple"
+    result["_overridden"] = True
+    result["_original_pos"] = assigned_pos
     return result
 
 
@@ -733,6 +794,14 @@ def syllabify_entry(lemma: str, stress_result: dict) -> tuple[list[str], int]:
 
     Returns (syllables, syllable_count).
     """
+    # CODEX 2026-07-23: the verified dictionary split is the production path.
+    # The local rule-based syllabifier remains only for non-drillable audit
+    # records so the sidecar retains total coverage.
+    verified = stress_result.get("_verified_record")
+    if verified and verified.get("syllables"):
+        syllables = list(verified["syllables"])
+        return syllables, len(syllables)
+
     try:
         from tools.stress_pipeline.syllabify_it import syllabify
     except ImportError:
@@ -761,7 +830,11 @@ def load_lexicon_data() -> tuple[dict | None, dict | None]:
         print(f"  Loading Wiktionary stress data from {WIKT_STRESS_PATH}...")
         with open(WIKT_STRESS_PATH, "r", encoding="utf-8") as f:
             wikt_stress = json.load(f)
-        print(f"  Loaded {len(wikt_stress):,} entries.")
+        # CODEX 2026-07-23: verified lexicon wraps records in metadata.
+        verified_count = wikt_stress.get("_meta", {}).get(
+            "verified_records", len(wikt_stress.get("entries", wikt_stress))
+        )
+        print(f"  Loaded {verified_count:,} verified word/POS records.")
 
     if os.path.exists(ERE_VERBS_PATH):
         print(f"  Loading -ere verb classification from {ERE_VERBS_PATH}...")
@@ -828,7 +901,8 @@ def process_vocabulary(vocab_path: str = VOCAB_PATH,
         result = assign_stress(entry, wikt_stress, ere_lookup)
 
         # Cross-check with lexicon
-        result = confirm_with_lexicon(result, lemma, wikt_stress)
+        # CODEX 2026-07-23: POS is load-bearing for homographs.
+        result = confirm_with_lexicon(result, lemma, pos, wikt_stress)
 
         # Syllabify
         try:
@@ -860,6 +934,21 @@ def process_vocabulary(vocab_path: str = VOCAB_PATH,
             "etymological": result["etymological"],
             "accent_cue": result["accent_cue"],
             "stress_tags": result["stress_tags"],
+            # CODEX 2026-07-23: generated JSON cannot carry comments, so these
+            # fields preserve the new verification gate and its provenance.
+            "verification_status": result.get(
+                "_verification_status", "unverified"
+            ),
+            "syllable_source": (
+                "wiktionary_hyphenation"
+                if result.get("_verified_record")
+                else "rule_based_unverified"
+            ),
+            "verified_by": (
+                "CODEX 2026-07-23"
+                if result.get("_verified_record")
+                else None
+            ),
         }
         sidecar.append(sidecar_entry)
 
@@ -885,7 +974,9 @@ def process_vocabulary(vocab_path: str = VOCAB_PATH,
     # Write sidecar
     print(f"\nWriting sidecar to {output_path}...")
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
-    with open(output_path, "w", encoding="utf-8") as f:
+    # CODEX 2026-07-23: force LF so Windows regeneration does not turn every
+    # JSON line into a whitespace-only diff.
+    with open(output_path, "w", encoding="utf-8", newline="\n") as f:
         json.dump(sidecar, f, ensure_ascii=False, indent=2)
     print(f"  Written {len(sidecar):,} entries.")
 

@@ -34,6 +34,104 @@ function buildChoices(syllables, optionCount) {
   return choices;
 }
 
+// CODEX 2026-07-23: explain the linguistic cue, not merely the label.
+// Stress is not fully predictable in Italian.  Productive affixes and
+// inflectional cells deserve a real rule; lexical items deserve an honest
+// statement that their stress must be learned, backed by the verified
+// dictionary pronunciation.
+const STRESS_POSITION_NAMES = [
+  "last", "penultimate", "antepenultimate", "pre-antepenultimate"
+];
+
+const MECHANISM_REASONS = {
+  accent_final:
+    "The written accent marks the stressed final vowel directly.",
+  suffix_issimo:
+    "The productive -issimo/-issima family follows an antepenultimate stress pattern.",
+  suffix_abile:
+    "Adjectives in -abile normally follow the sdrucciolo pattern, with stress before -bile.",
+  suffix_ibile:
+    "Adjectives in -ibile normally follow the sdrucciolo pattern, with stress before -bile.",
+  suffix_evole:
+    "Words in -evole/-evoli normally follow an antepenultimate stress pattern.",
+  suffix_ologo:
+    "Learned formations in -ologo/-ologa normally follow an antepenultimate stress pattern.",
+  suffix_grafo:
+    "Learned formations in -grafo/-grafa normally follow an antepenultimate stress pattern.",
+  suffix_metro:
+    "Learned formations in -metro/-metra normally follow an antepenultimate stress pattern.",
+  suffix_zione:
+    "The productive -zione/-zioni ending normally carries stress on the syllable before final -ne.",
+  suffix_sione:
+    "The productive -sione/-sioni ending normally carries stress on the syllable before final -ne.",
+  suffix_mente:
+    "Adverbs in -mente carry their main word stress on -men-; the base adjective may retain secondary stress.",
+  suffix_mento:
+    "The productive -mento/-menti ending normally carries stress on -men-.",
+  suffix_tura:
+    "The productive -tura/-ture ending normally carries stress on -tu-.",
+  suffix_iere:
+    "The -iere/-iera family normally carries stress in the ending and is piana.",
+  suffix_anza:
+    "The productive -anza/-anze ending normally carries stress on -an-.",
+  suffix_enza:
+    "The productive -enza/-enze ending normally carries stress on -en-.",
+  suffix_ore:
+    "The -tore/-trice family normally carries stress in the derivational ending and is piana.",
+  suffix_oso:
+    "The productive -oso/-osa ending normally carries stress on its first vowel.",
+  diminutive_ino_etto:
+    "The productive diminutive endings -ino and -etto normally carry the stress.",
+  augmentative_one:
+    "The productive augmentative ending -one normally carries the stress.",
+  suffix_ale_are:
+    "The productive -ale/-ali ending normally follows a penultimate-stress pattern.",
+  suffix_ia_learned:
+    "In this learned -ìa family, final i and a are separate syllables (hiatus), and the i is stressed.",
+  infinitive_are:
+    "Regular infinitives in -are carry stress on the a of the infinitive ending.",
+  infinitive_ire:
+    "Regular infinitives in -ire carry stress on the i of the infinitive ending.",
+  infinitive_ere_stem:
+    "This belongs to the stem-stressed -ere infinitive group; Italian spelling does not reliably predict which -ere group a verb belongs to.",
+  infinitive_ere_end:
+    "This belongs to the ending-stressed -ere infinitive group; Italian spelling does not reliably predict which -ere group a verb belongs to.",
+  present_3pl:
+    "In a present-tense third-person plural form, final -no is unstressed and the stress remains in the verb stem; the exact stem syllable is lexical.",
+  imperative_clitic:
+    "The attached clitic pronouns are unstressed and do not move the imperative's original stress; they add syllables after it.",
+  participle:
+    "In this past-participle reading, the -ito pattern carries stress on i; the context distinguishes it from the identically spelled adverb.",
+  function_word:
+    "This spelling has another stress pattern with another meaning; the stated context selects this dictionary pronunciation.",
+  etymological_learned:
+    "This belongs to a learned Greek/Latin word pattern that commonly preserves antepenultimate stress."
+};
+
+function buildStressExplanation(entry, word, syllables, stressPos, stressClass, detail, unit) {
+  const stressedIdx = syllables.length - stressPos;
+  const stressedSyllable = syllables[stressedIdx];
+  const pronunciation = syllables
+    .map((s, i) => i === stressedIdx ? s.toLocaleUpperCase("it") : s)
+    .join("-");
+
+  let reason = MECHANISM_REASONS[detail];
+  if (!reason && unit === "wordform" && String(entry.gloss || "").trim()) {
+    reason =
+      `The context “${String(entry.gloss).trim()}” selects this dictionary reading; ` +
+      "the spelling alone does not determine its stress.";
+  }
+  if (!reason) {
+    reason =
+      "Italian spelling does not reliably predict the stress of this word; " +
+      "its stress is lexical and must be learned with the word.";
+  }
+
+  const positionName = STRESS_POSITION_NAMES[stressPos - 1] || `${stressPos}th-from-last`;
+  return `${reason} The verified pronunciation is ${pronunciation}: ` +
+    `“${stressedSyllable}” is the ${positionName} syllable, so “${word}” is ${stressClass}.`;
+}
+
 // --- load data ---
 
 const lemmaData = JSON.parse(fs.readFileSync(path.join(DATA, "stress_sidecar_lemma.json"), "utf8"));
@@ -44,18 +142,21 @@ console.log(`Loaded ${lemmaData.length} lemma entries, ${wordformData.length} wo
 // --- generate items ---
 
 const items = [];
-let skippedMono = 0, skippedLow = 0, skippedBadSyl = 0;
+let skippedMono = 0, skippedLow = 0, skippedBadSyl = 0, skippedUnverified = 0;
 const counters = {}; // mechanism_detail counts
 
 function processEntry(entry, unit) {
   const conf = entry.stress_confidence;
   if (conf === "low") { skippedLow++; return; }
 
-  // Pipeline bug: all 12 lemma-layer bisdrucciole are misclassified
-  // (spazzolino, telefonino etc. are piana/sdrucciola, not bisdrucciola).
-  // True bisdrucciole exist only at wordform level (3pl present of -are verbs).
-  // QoderWork 2026-07-23
-  if (unit === "lemma" && entry.stress_class === "bisdrucciola") { skippedBadSyl++; return; }
+  // CODEX 2026-07-23: high stress confidence is insufficient when the visible
+  // syllable split was guessed. Drill only POS-aware Wiktionary hyphenations.
+  const allowedSyllableSources = new Set(["wiktionary_hyphenation", "author_seed"]);
+  if (!String(entry.verification_status || "").startsWith("verified") ||
+      !allowedSyllableSources.has(entry.syllable_source)) {
+    skippedUnverified++;
+    return;
+  }
 
   const syllables = entry.syllables;
   if (!syllables || !Array.isArray(syllables) || syllables.length < 2) { skippedMono++; return; }
@@ -83,6 +184,9 @@ function processEntry(entry, unit) {
 
   // Bucket: phonology.stress.<mechanism>.<detail>
   const bucket = `phonology.stress.${mechanism}.${detail}`;
+  const explanation = buildStressExplanation(
+    entry, word, syllables, stressPos, stressClass, detail, unit
+  );
 
   // External ID
   const prefix = unit === "wordform" ? "str_wf" : "str_lm";
@@ -101,9 +205,15 @@ function processEntry(entry, unit) {
     };
   });
 
+  // CODEX 2026-07-23: homographic wordforms require a contextual reading.
+  // A bare "capitano" cannot tell the learner whether it means captain or
+  // "they happen".
+  const context = unit === "wordform" ? String(entry.gloss || "").trim() : "";
+  const prompt = context ? `${word} — ${context}` : word;
+
   const item = {
     external_id: externalId,
-    prompt: word,
+    prompt: prompt,
     type: "mcq",
     choices: choices,
     answer_index: answerIndex,
@@ -115,19 +225,22 @@ function processEntry(entry, unit) {
         label: `${stressClass} — ${detail.replace(/_/g, " ")}`
       }
     ],
-    explanation: `"${word}" is ${stressClass}: stress falls on the ${["last","penultimate","antepenultimate","pre-antepenultimate"][stressPos-1]} syllable (${syllables[sylCount - stressPos]}).`,
+    explanation: explanation,
     topic: "phonology",
     subtopic: `stress.${mechanism}.${detail}`,
     info_display: "suppress",
     language_code: "it",
     choice_tags: choiceTags,
-    generated_by: "stress_pipeline",
-    version: 1,
+    generated_by: "CODEX stress_pipeline",
+    version: 2,
     // --- diagnostic metadata (report axes per Architecture→Housing v1 §2) ---
     stress_meta: {
       unit: unit,
       word: word,
       lemma: entry.lemma || null,
+      // CODEX 2026-07-23: retain POS so future audits can reproduce the
+      // homograph-safe dictionary lookup.
+      pos: entry.pos || (unit === "wordform" ? "verb_or_contextual" : null),
       stress_pos: stressPos,
       stress_class: stressClass,
       syllable_count: sylCount,
@@ -139,6 +252,13 @@ function processEntry(entry, unit) {
       etymological: etymological,
       accent_cue: accentCue,
       stress_tags: tags
+      ,
+      // CODEX 2026-07-23 provenance fields.
+      verification_status: entry.verification_status,
+      syllable_source: entry.syllable_source,
+      verified_by: entry.verified_by || "CODEX 2026-07-23",
+      context: context || null,
+      explanation_basis: detail
     }
   };
 
@@ -150,13 +270,38 @@ function processEntry(entry, unit) {
 for (const entry of lemmaData) processEntry(entry, "lemma");
 for (const entry of wordformData) processEntry(entry, "wordform");
 
+// CODEX 2026-07-23: the vocabulary contains duplicate spellings. Keep one
+// identical question, but quarantine any bare prompt that maps to conflicting
+// answers or syllabifications.
+let skippedDuplicate = 0, skippedAmbiguousPrompt = 0;
+const promptGroups = new Map();
+for (const item of items) {
+  const key = item.prompt.toLocaleLowerCase("it");
+  if (!promptGroups.has(key)) promptGroups.set(key, []);
+  promptGroups.get(key).push(item);
+}
+const filteredItems = [];
+for (const group of promptGroups.values()) {
+  const signatures = new Set(group.map(item =>
+    JSON.stringify({ choices: item.choices, answer_index: item.answer_index })
+  ));
+  if (signatures.size > 1) {
+    skippedAmbiguousPrompt += group.length;
+    continue;
+  }
+  filteredItems.push(group[0]);
+  skippedDuplicate += group.length - 1;
+}
+items.length = 0;
+items.push(...filteredItems);
+
 // --- write output ---
 
 const outPath = path.join(DATA, "grammar_questions_stress.json");
 fs.writeFileSync(outPath, JSON.stringify(items, null, 1), "utf8");
 
 console.log(`\nGenerated ${items.length} stress drill items -> ${outPath}`);
-console.log(`Skipped: ${skippedLow} low-confidence, ${skippedMono} monosyllable, ${skippedBadSyl} bad-syllable/out-of-range`);
+console.log(`Skipped: ${skippedLow} low-confidence, ${skippedUnverified} unverified boundaries, ${skippedMono} monosyllable, ${skippedBadSyl} bad-syllable/out-of-range, ${skippedDuplicate} duplicates, ${skippedAmbiguousPrompt} ambiguous bare prompts`);
 console.log(`\nBy mechanism detail (top 20):`);
 Object.entries(counters).sort((a,b) => b[1]-a[1]).slice(0, 20).forEach(([k,v]) => console.log(`  ${k}: ${v}`));
 

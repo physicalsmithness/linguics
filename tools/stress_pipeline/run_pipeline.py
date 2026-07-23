@@ -8,12 +8,16 @@ Steps:
     1. Check for lexicon data (prompt to run prepare_lexicon_data.py if missing)
     2. Run tiered stress pipeline on all vocabulary entries
     3. Build wordform stress layer
-    4. Validate against seed (58 entries)
-    5. Generate coverage/confidence report
+    4. Generate the verified question deck
+    5. Validate against seed (58 entries)
+    6. Generate coverage/confidence report
+    7. Run the release-gate audit
 """
 
 import argparse
 import os
+import shutil
+import subprocess
 import sys
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -27,7 +31,9 @@ sys.path.insert(0, SCRIPT_DIR)
 
 def check_lexicon_data() -> bool:
     """Check if lexicon data files exist."""
-    wikt = os.path.join(LEXICON_DIR, "wiktionary_stress.json")
+    # CODEX 2026-07-23: only the POS-aware, syllable-verified lexicon may gate
+    # production questions.
+    wikt = os.path.join(LEXICON_DIR, "wiktionary_verified.json")
     morphit = os.path.join(LEXICON_DIR, "morphit_forms.json")
 
     has_wikt = os.path.exists(wikt)
@@ -36,7 +42,7 @@ def check_lexicon_data() -> bool:
     if not has_wikt:
         print("  [!] Wiktionary stress data not found.")
         print("    Tier 4 (lexicon lookup) will be disabled.")
-        print("    Run: python tools/stress_pipeline/prepare_lexicon_data.py")
+        print("    Run: python tools/stress_pipeline/build_verified_wiktionary.py")
     else:
         print("  [OK] Wiktionary stress data found.")
 
@@ -103,15 +109,35 @@ def main():
     from wordform_stress import build_wordform_sidecar
     wf_stats = build_wordform_sidecar()
 
-    # Step 4: Validate against seed
-    print("\n[Step 4] Validating against seed...")
+    # CODEX 2026-07-23: sidecars and the shipped question deck must be rebuilt
+    # atomically in one pipeline run; the old runner left stale questions.
+    print("\n[Step 4] Generating verified stress questions...")
+    node = shutil.which("node")
+    if not node:
+        print("  ERROR: Node.js is required for generate_stress_items.js")
+        sys.exit(1)
+    subprocess.run(
+        [node, os.path.join(SCRIPT_DIR, "generate_stress_items.js")],
+        check=True,
+        cwd=PROJECT_ROOT,
+    )
+
+    # Step 5: Validate against seed
+    print("\n[Step 5] Validating against seed...")
     from validate_seed import validate_seed
     val_result = validate_seed()
 
-    # Step 5: Generate report
-    print("\n[Step 5] Generating coverage report...")
+    # Step 6: Generate report
+    print("\n[Step 6] Generating coverage report...")
     from generate_report import generate_report
     generate_report()
+
+    # Step 7: Release-gate audit
+    print("\n[Step 7] Running release-gate audit...")
+    from audit_generated_stress import main as audit_generated_stress
+    audit_result = audit_generated_stress()
+    if audit_result:
+        sys.exit(audit_result)
 
     # Final summary
     print(f"\n{'=' * 70}")

@@ -3447,7 +3447,8 @@
     meta.textContent = "Stress drill";
     card.appendChild(meta);
 
-    // Prompt: the bare word, accent-stripped so a written accent doesn't give away tronca.  QoderWork 2026-07-23
+    // Prompt: a bare word or contextualized homograph reading, accent-stripped
+    // so a written accent doesn't give away tronca. CODEX 2026-07-23
     const promptWord = stripWrittenAccent(q.prompt || sm.word || "");
     const prompt = document.createElement("div");
     prompt.className = "prompt";
@@ -3529,26 +3530,11 @@
       });
       resultHost.innerHTML = "";
       resultHost.appendChild(renderResult(result, { youWroteLabel: "You tapped:" }));   // QoderWork 2026-07-23
-      // Show explanation + a brief rule-of-thumb for the class.  QoderWork 2026-07-23
-      if (q.explanation) {
-        const expl = document.createElement("div");
-        expl.className = "gd-declension";
-        expl.textContent = q.explanation;
-        resultHost.appendChild(expl);
-        const STRESS_RULES = {
-          1: "Tronche usually end in a stressed vowel (citt\u00e0, perch\u00e9) or are short words (qui, \u00e8, fu).",
-          2: "Piane are the default \u2014 most Italian words stress the 2nd-last syllable. When unsure, piana is the safest guess.",
-          3: "Sdrucciole often carry suffixes like -ico/-ica, -issimo, -ano/-ono (3pl verbs), or follow Latin stress patterns.",
-          4: "Bisdrucciole are rare \u2014 typically 3rd-person plural of -are verbs with a long stem (\u00e0bitano, t\u00e8lefona)."
-        };
-        const rule = STRESS_RULES[result.stress.true_pos];
-        if (rule) {
-          const ruleEl = document.createElement("div");
-          ruleEl.className = "gd-declension stress-rule-hint";
-          ruleEl.textContent = rule;
-          resultHost.appendChild(ruleEl);
-        }
-      }
+      // CODEX 2026-07-23: renderResult already places q.explanation beneath
+      // "Why:".  The former block repeated that sentence and then appended a
+      // generic class hint, which could not explain the particular word.
+      // Explanations are now generated from the item's actual suffix,
+      // inflectional, orthographic, contextual, or lexical mechanism.
       renderLiveStats();
       // Session panel: category = true stress position; pass confusion-matrix info.  QoderWork 2026-07-23
       const stPos = result.stress.true_pos;

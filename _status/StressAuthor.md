@@ -1,20 +1,28 @@
 seat: StressAuthor
 classes: [all-seats, all-authors]
 project: Linguics
-updated: 2026-07-23
-waiting: none              # Deliverable 2 DONE; items generated. Housing wiring + Vocab coordination remain (not mine).
+updated: 2026-07-23  # CODEX recovery pass
+waiting: none              # Corrected item deck generated and release audit passes.
 needs_from_smith: none
 blocked_by: none           # items generated; Housing needs to wire the qtype + load path
 claude_can_verify: yes
-summary: Deliverable 2 complete. 20,005 stress drill items generated from Code's sidecar data (15,981 lemma + 4,561 wordform drillable entries) into data/grammar_questions_stress.json. Items are index-scored MCQs: choices show the word with each candidate syllable position emboldened (**syl**), option count = min(syllable_count, 4), answer_index = stress_pos-1. All diagnostic metadata rides in stress_meta (mechanism, detail, etymological, accent_cue, syllable_count, tags). Distribution: 13,028 piana / 4,424 sdrucciola / 2,513 tronca / 40 bisdrucciola (wordform-only). Pipeline bug flagged: 12 lemma-layer bisdrucciole all misclassified (excluded from items); true bisdrucciole exist only at wordform level (3pl present of -are verbs).
+summary: CODEX 2026-07-23 recovery complete. The former 20,005-item deck was unsafe (POS-blind dictionary overwrites, unverified syllable boundaries, and 2,396 unattested/invented model forms). Rebuilt from POS-aware Wiktionary hyphenation+IPA, Morph-it-attested present-3pl forms, and three hand-verified seed backstops. data/grammar_questions_stress.json now has 12,446 verified, deduplicated, non-ambiguous questions. pedofilia is pe-do-fi-li-a with stress on li. Release audit PASS; seed validation 58/58.
 queue:
   - Architecture_StressAuthor_data_spec v5 -- Architecture accepted spec, commissioned Code; DONE
-  - Deliverable 2 (items) -- DONE 2026-07-23 (QoderWork); 20,005 items in data/grammar_questions_stress.json
+  - Deliverable 2 (items) -- CORRECTED 2026-07-23 (CODEX); 12,446 verified items in data/grammar_questions_stress.json
+  - Post-answer "Why" -- CORRECTED 2026-07-23 (CODEX); all 12,446 items now explain the actual suffix/inflection/accent/context/lexical basis and show verified stress-marked syllabification
   - Housing wiring -- NOT MINE: load path (singleton like accent), tap-the-stressed-syllable renderer, confusion matrix report, pulse extra_json
   - Vocab coordination -- NOT MINE: Architecture routes field addition to Vocab's entries
-  - Pipeline bug -- 12 lemma bisdrucciola misclassified by Code's pipeline; excluded from items; flag to Code/Architecture
+  - Pipeline recovery -- DONE by CODEX; see outputs/stress_audit_CODEX.md and CODEX_HANDOFF_stress_recovery_2026-07-23.md
   - standing: criteria 13-21 as all-authors
 awaiting_architecture:
   - Housing: wire grammar_questions_stress.json load path + stress qtype renderer + confusion matrix report
   - Vocab: coordinate stress_pos field onto canonical entries (sidecar exists, merge path needed)
-  - Code: fix 12 lemma bisdrucciola misclassifications in stress_sidecar_lemma.json
+  - Code/Architecture: decide whether to expand the 4,536 quarantined lemma records and bulk remoto/clitic coverage using equally strong surface-form + syllable verification
+
+## CODEX 2026-07-23 correction
+
+The earlier statement that "true bisdrucciole exist only at wordform level" was
+false. Verified lemma examples include *farmaceutico* and *mitologico*. The 12
+flagged lemmas were caused by POS-blind homograph overwrites, not proof of a
+lemma-level impossibility.

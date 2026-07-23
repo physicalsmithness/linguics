@@ -21,14 +21,88 @@ DATA_DIR = os.path.join(PROJECT_ROOT, "data")
 VOCAB_PATH = os.path.join(DATA_DIR, "vocabulary_it_frequency.json")
 LEMMA_SIDECAR_PATH = os.path.join(DATA_DIR, "stress_sidecar_lemma.json")
 MORPHIT_FORMS_PATH = os.path.join(LEXICON_DIR, "morphit_forms.json")
-WIKT_STRESS_PATH = os.path.join(LEXICON_DIR, "wiktionary_stress.json")
+# CODEX 2026-07-23: POS/lemma-aware records with verified hyphenation.
+WIKT_STRESS_PATH = os.path.join(LEXICON_DIR, "wiktionary_verified.json")
 OUTPUT_PATH = os.path.join(DATA_DIR, "stress_sidecar_wordform.json")
+SEED_PATH = os.path.join(
+    PROJECT_ROOT, "incoming drafts", "stress_seed_v0.json"
+)
 
-ACCENT_TO_PLAIN = str.maketrans("àèéìòùáíóúâêîôû", "aeeioouiouaeiou")
+# CODEX 2026-07-23: correct the inherited ù->o / á->u translation bug.
+ACCENT_TO_PLAIN = str.maketrans("àèéìòùáíóúâêîôû", "aeeiouaiouaeiou")
 
 
 def _strip_accents(word: str) -> str:
     return word.translate(ACCENT_TO_PLAIN)
+
+
+def _verified_form_record(
+    lexicon: dict, form: str, lemma: str
+) -> dict | None:
+    """Find a non-ambiguous verb form tied to the intended lemma.
+
+    CODEX 2026-07-23: spelling alone cannot disambiguate càpitano from
+    capitàno. The form-of relation is mandatory for generated paradigms.
+    """
+    record = (
+        lexicon.get("forms", {})
+        .get(form.lower(), {})
+        .get("verb", {})
+        .get(_strip_accents(lemma.lower()))
+    )
+    if not record or record.get("ambiguous"):
+        return None
+    if not record.get("syllables") or not isinstance(record.get("stress_pos"), int):
+        return None
+    return record
+
+
+def _morphit_present_3pl_by_lemma(morphit_forms: dict) -> dict[str, list[str]]:
+    """Reverse Morph-it! into attested indicative-present-3pl forms."""
+    by_lemma: dict[str, set[str]] = {}
+    for form, analyses in morphit_forms.items():
+        for analysis in analyses:
+            features = analysis.get("features", "")
+            if not re.match(r"^(VER|AUX|ASP):ind\+pres\+3\+p$", features):
+                continue
+            lemma = _strip_accents(analysis.get("lemma", "").lower())
+            if lemma:
+                by_lemma.setdefault(lemma, set()).add(form)
+    return {lemma: sorted(forms) for lemma, forms in by_lemma.items()}
+
+
+def generate_attested_present_3pl(
+    lemma: str, morphit_by_lemma: dict[str, list[str]], lexicon: dict
+) -> list[dict]:
+    """Emit only corpus-attested, pronunciation-verified present 3pl forms."""
+    entries: list[dict] = []
+    lemma_key = _strip_accents(lemma.lower())
+    for form in morphit_by_lemma.get(lemma_key, []):
+        record = _verified_form_record(lexicon, form, lemma_key)
+        if record is None:
+            continue
+        entries.append(
+            {
+                "unit": "wordform",
+                "form": form,
+                "lemma": lemma_key,
+                "gloss": f"present 3pl of {lemma_key}",
+                "stress_pos": record["stress_pos"],
+                "stress_source": "dictionary",
+                "stress_confidence": "high",
+                "stress_mechanism": "inflectional",
+                "stress_mechanism_detail": "present_3pl",
+                "etymological": False,
+                "accent_cue": False,
+                "stress_tags": [],
+                "syllables": record["syllables"],
+                "syllable_count": record["syllable_count"],
+                "verification_status": "verified_attested_form",
+                "syllable_source": "wiktionary_hyphenation",
+                "verified_by": "CODEX 2026-07-23",
+            }
+        )
+    return entries
 
 
 # ---------------------------------------------------------------------------
@@ -247,62 +321,149 @@ MINIMAL_PAIRS = [
 ]
 
 
-def generate_minimal_pairs() -> list[dict]:
-    """Generate wordform entries for known stress minimal pairs and
-    special wordform entries from the seed."""
+def _reading_pos(gloss: str) -> str:
+    """Map the hand-authored reading label to a Wiktionary POS."""
+    lower = gloss.lower()
+    if "adverb" in lower:
+        return "adv"
+    if "verb" in lower or "participle" in lower or "they " in lower:
+        return "verb"
+    return "noun"
+
+
+def _verified_reading_record(
+    lexicon: dict, form: str, pos: str, stress_pos: int
+) -> dict | None:
+    """Select the dictionary variant matching a contextualized reading."""
+    record = (
+        lexicon.get("entries", {})
+        .get(form.lower(), {})
+        .get(pos)
+    )
+    if not record:
+        return None
+    variants = record.get("variants", []) if record.get("ambiguous") else [record]
+    matches = [
+        variant
+        for variant in variants
+        if variant.get("stress_pos") == stress_pos
+        and variant.get("syllables")
+    ]
+    # Multiple identical sources are harmless; differing boundaries are not.
+    signatures = {
+        tuple(part.lower() for part in variant["syllables"])
+        for variant in matches
+    }
+    if len(signatures) != 1:
+        return None
+    return matches[0]
+
+
+def generate_minimal_pairs(lexicon: dict) -> list[dict]:
+    """Generate only real, contextualized, dictionary-verified stress pairs.
+
+    CODEX 2026-07-23: bare homographs are impossible questions. ``metro`` and
+    ``desideri`` also had no stress contrast at all, so groups whose readings
+    share one stress position are discarded.
+    """
     entries = []
     for pair in MINIMAL_PAIRS:
+        readings = pair["readings"]
+        if len({reading["stress_pos"] for reading in readings}) < 2:
+            continue
         form = pair["form"]
-        for reading in pair["readings"]:
-            entries.append({
+        pair_entries = []
+        for reading in readings:
+            pos = _reading_pos(reading["gloss"])
+            record = _verified_reading_record(
+                lexicon, form, pos, reading["stress_pos"]
+            )
+            if record is None:
+                pair_entries = []
+                break
+            pair_entries.append({
                 "unit": "wordform",
                 "form": form,
-                "lemma": form,  # surface form is the same
+                "lemma": form,
                 "gloss": reading["gloss"],
                 "stress_pos": reading["stress_pos"],
-                "stress_source": "author",
+                "stress_source": "author+dictionary",
                 "stress_confidence": "high",
                 "stress_mechanism": reading["mechanism"],
                 "stress_mechanism_detail": reading["detail"],
                 "etymological": False,
                 "accent_cue": False,
                 "stress_tags": reading.get("tags", []),
+                "syllables": record["syllables"],
+                "syllable_count": record["syllable_count"],
+                "verification_status": "verified_contextual_reading",
+                "syllable_source": "wiktionary_hyphenation",
+                "verified_by": "CODEX 2026-07-23",
             })
-
-    # Additional special wordform entries
-    # compràtemelo: imperative + clitics (bisdrucciola)
-    entries.append({
-        "unit": "wordform",
-        "form": "compratemelo",
-        "lemma": "comprare",
-        "gloss": "imperative+clitics",
-        "stress_pos": 4,
-        "stress_source": "author",
-        "stress_confidence": "high",
-        "stress_mechanism": "inflectional",
-        "stress_mechanism_detail": "imperative_clitic",
-        "etymological": False,
-        "accent_cue": False,
-        "stress_tags": [],
-    })
-
-    # sùbito: adverb (sdrucciola) — distinct from subìto (past participle)
-    entries.append({
-        "unit": "wordform",
-        "form": "subito",
-        "lemma": "subito",
-        "gloss": "adverb (immediately)",
-        "stress_pos": 3,
-        "stress_source": "author",
-        "stress_confidence": "high",
-        "stress_mechanism": "lexical",
-        "stress_mechanism_detail": "lexical_simple",
-        "etymological": False,
-        "accent_cue": False,
-        "stress_tags": [],
-    })
-
+        # CODEX 2026-07-23: a "minimal pair" with only one verified reading is
+        # not a pair and should not enter the drill under that label.
+        if len(pair_entries) == len(readings):
+            entries.extend(pair_entries)
     return entries
+
+
+def _bare_drill_form(marked_form: str) -> str:
+    """Remove pedagogical internal stress marks, preserving a final accent."""
+    plain = _strip_accents(marked_form)
+    if marked_form and marked_form[-1] in "àèéìòù":
+        return plain[:-1] + marked_form[-1]
+    return plain
+
+
+def generate_seed_backstops(existing_entries: list[dict]) -> list[dict]:
+    """Add only seed-verified cells absent from the corpus-backed layers.
+
+    CODEX 2026-07-23: ``author`` is an allowed evidence source in the ratified
+    schema. This preserves the hand-checked imperative+clitic and remote seed
+    examples without reopening unsafe bulk conjugation generation.
+    """
+    with open(SEED_PATH, "r", encoding="utf-8") as source:
+        seed = json.load(source).get("wordform_extension", [])
+
+    existing = {
+        (entry["form"].lower(), entry["stress_pos"]) for entry in existing_entries
+    }
+    lemma_overrides = {
+        "compratemelo": "comprare",
+        "abitò": "abitare",
+        "abitano": "abitare",
+    }
+    additions = []
+    for seed_entry in seed:
+        form = _bare_drill_form(seed_entry["form"].lower())
+        key = (form, seed_entry["stress_pos"])
+        if key in existing:
+            continue
+        additions.append(
+            {
+                "unit": "wordform",
+                "form": form,
+                "lemma": lemma_overrides.get(form, form),
+                "gloss": seed_entry.get("gloss", ""),
+                "stress_pos": seed_entry["stress_pos"],
+                "stress_source": seed_entry.get("stress_source", "author"),
+                "stress_confidence": "high",
+                "stress_mechanism": seed_entry["stress_mechanism"],
+                "stress_mechanism_detail": seed_entry[
+                    "stress_mechanism_detail"
+                ],
+                "etymological": seed_entry.get("etymological", False),
+                "accent_cue": seed_entry.get("accent_cue", False),
+                "stress_tags": seed_entry.get("stress_tags", []),
+                "syllables": seed_entry["syllables"],
+                "syllable_count": seed_entry["syllable_count"],
+                "verification_status": "verified_author_seed",
+                "syllable_source": "author_seed",
+                "verified_by": "StressAuthor seed + CODEX 2026-07-23",
+            }
+        )
+        existing.add(key)
+    return additions
 
 
 # ---------------------------------------------------------------------------
@@ -311,6 +472,17 @@ def generate_minimal_pairs() -> list[dict]:
 
 def syllabify_wordform(entry: dict) -> dict:
     """Add syllable data to a wordform entry."""
+    # CODEX 2026-07-23: never overwrite verified dictionary boundaries with
+    # the fallback rule-based syllabifier.
+    if entry.get("syllables") and entry.get("syllable_source") in {
+        "wiktionary_hyphenation",
+        "author_seed",
+    }:
+        entry["syllable_count"] = len(entry["syllables"])
+        class_names = {1: "tronca", 2: "piana", 3: "sdrucciola", 4: "bisdrucciola"}
+        entry["stress_class"] = class_names.get(entry["stress_pos"], "unknown")
+        return entry
+
     try:
         from tools.stress_pipeline.syllabify_it import syllabify
     except ImportError:
@@ -369,8 +541,20 @@ def build_wordform_sidecar(output_path: str = OUTPUT_PATH) -> dict:
             morphit_forms = json.load(f)
         print(f"  Loaded {len(morphit_forms):,} form entries.")
 
-    # Generate verb paradigm entries
-    print("\nGenerating verb paradigm cells...")
+    # CODEX 2026-07-23: load POS/lemma-aware pronunciation records before
+    # generating anything. No record means no drill item.
+    print("  Loading verified Wiktionary forms...")
+    with open(WIKT_STRESS_PATH, "r", encoding="utf-8") as f:
+        verified_lexicon = json.load(f)
+
+    morphit_by_lemma = (
+        _morphit_present_3pl_by_lemma(morphit_forms)
+        if morphit_forms
+        else {}
+    )
+
+    # Generate only attested and pronunciation-verified present 3pl cells.
+    print("\nGenerating verified verb paradigm cells...")
     verb_entries = []
     verb_count = 0
     for entry in lemma_sidecar:
@@ -380,20 +564,41 @@ def build_wordform_sidecar(output_path: str = OUTPUT_PATH) -> dict:
             continue  # Don't generate wordforms from low-confidence lemmas
 
         verb_count += 1
-        paradigm = generate_verb_paradigm(
-            entry["lemma"], entry, morphit_forms
+        paradigm = generate_attested_present_3pl(
+            entry["lemma"], morphit_by_lemma, verified_lexicon
         )
         verb_entries.extend(paradigm)
 
-    print(f"  {verb_count:,} verbs -> {len(verb_entries):,} paradigm cells.")
+    print(
+        f"  {verb_count:,} candidate verbs -> "
+        f"{len(verb_entries):,} attested+verified present 3pl cells."
+    )
 
     # Generate minimal pairs
     print("\nGenerating minimal pair entries...")
-    pair_entries = generate_minimal_pairs()
+    pair_entries = generate_minimal_pairs(verified_lexicon)
+    # CODEX 2026-07-23: when the attested paradigm layer already supplies the
+    # verb reading (e.g. capitano/perdono), retain only the contrasting lexical
+    # reading from the hand-authored pair set.
+    generated_present_keys = {
+        (entry["form"], entry["stress_pos"]) for entry in verb_entries
+    }
+    pair_entries = [
+        entry
+        for entry in pair_entries
+        if not (
+            entry.get("stress_mechanism_detail") == "present_3pl"
+            and (entry["form"], entry["stress_pos"]) in generated_present_keys
+        )
+    ]
     print(f"  {len(pair_entries):,} minimal pair entries.")
 
+    # CODEX 2026-07-23: add only the hand-verified seed cells still absent.
+    seed_entries = generate_seed_backstops(verb_entries + pair_entries)
+    print(f"  {len(seed_entries):,} author-seed backstop entries.")
+
     # Combine and syllabify
-    all_entries = verb_entries + pair_entries
+    all_entries = verb_entries + pair_entries + seed_entries
     print(f"\nSyllabifying {len(all_entries):,} wordform entries...")
     for entry in all_entries:
         syllabify_wordform(entry)
@@ -415,7 +620,8 @@ def build_wordform_sidecar(output_path: str = OUTPUT_PATH) -> dict:
     # Write sidecar
     print(f"\nWriting wordform sidecar to {output_path}...")
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
-    with open(output_path, "w", encoding="utf-8") as f:
+    # CODEX 2026-07-23: stable LF output across Windows/Linux agents.
+    with open(output_path, "w", encoding="utf-8", newline="\n") as f:
         json.dump(all_entries, f, ensure_ascii=False, indent=2)
     print(f"  Written {len(all_entries):,} entries.")
 

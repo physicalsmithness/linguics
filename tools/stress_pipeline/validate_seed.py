@@ -20,7 +20,8 @@ SEED_PATH = os.path.join(PROJECT_ROOT, "incoming drafts", "stress_seed_v0.json")
 LEMMA_SIDECAR = os.path.join(DATA_DIR, "stress_sidecar_lemma.json")
 WORDFORM_SIDECAR = os.path.join(DATA_DIR, "stress_sidecar_wordform.json")
 
-ACCENT_TO_PLAIN = str.maketrans("àèéìòùáíóúâêîôû", "aeeioouiouaeiou")
+# CODEX 2026-07-23: correct the inherited ù->o / á->u translation bug.
+ACCENT_TO_PLAIN = str.maketrans("àèéìòùáíóúâêîôû", "aeeiouaiouaeiou")
 
 
 def _strip_accents(word: str) -> str:
@@ -150,9 +151,21 @@ def validate_seed():
                     actual.get("etymological"), mismatches, form)
         check_field("stress_mechanism", seed_entry["stress_mechanism"],
                     actual.get("stress_mechanism"), mismatches, form)
-        check_field("stress_mechanism_detail",
-                    seed_entry["stress_mechanism_detail"],
-                    actual.get("stress_mechanism_detail"), mismatches, form)
+        # CODEX 2026-07-23: v4 moved etymological membership to its own
+        # boolean/tag axis. The v0 seed still uses the superseded
+        # ``etymological_learned`` detail for six lexical words; accept the v4
+        # representation when the etymological flag is preserved.
+        legacy_etymological_detail = (
+            seed_entry.get("stress_mechanism_detail")
+            == "etymological_learned"
+            and actual.get("stress_mechanism") == "lexical"
+            and actual.get("stress_mechanism_detail") == "lexical_simple"
+            and actual.get("etymological") is True
+        )
+        if not legacy_etymological_detail:
+            check_field("stress_mechanism_detail",
+                        seed_entry["stress_mechanism_detail"],
+                        actual.get("stress_mechanism_detail"), mismatches, form)
 
         if mismatches:
             print(f"  FAIL     {form} ({pos})")
