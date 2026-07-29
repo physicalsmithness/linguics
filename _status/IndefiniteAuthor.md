@@ -1,45 +1,29 @@
 seat: IndefiniteAuthor
 classes: [all-seats, all-authors]
-# Reasoning (Rev 24 requires it stated, not guessed): I ORIGINATE grammar and translation
-# items — markpoints, must_not_include guards, cue chips, prompts, item explanations. That is
-# exactly what all-authors is defined as (the test is what a seat originates, not what it
-# touches). So criteria 13-20 all reach me. Architecture to ratify.
 project: Linguics
-updated: 2026-07-18
+updated: 2026-07-27
 waiting: parked
 needs_from_smith: none
 blocked_by:
-claude_can_verify: n/a — no external action asked. (Push is Smith's but is verifiable by
-  `git rev-list --count @{u}..HEAD`; I have not asked for one, so there is nothing to nag about.)
-summary: Batch DELIVERED on Smith's ruling (a) — 61 grammar + 25 translation, all 9 leaves, zero zero-coverage; marker replica 62 markpoints / 0 findings after fixing 2 live false-credit bugs it caught. Five asks open to Architecture, none blocking.
+claude_can_verify: n/a
+summary: STALE-STATE CORRECTION. The indefinite batch was already authored, accepted and committed 2026-07-21 (commit 2b2bb73); I initially re-derived it against a stale Rev 25 brief (live is Rev 32) - byte-identical, no harm, but redundant. The REAL owed work, found by re-reading disk: (1) the ind_nn_06 false-miss fix [DONE], (2) the free-choice cross-credit items for the zero-coverage mood leaf [DONE]. Both reported, Next: Architecture.
 queue:
-  - Architecture_IndefiniteAuthor_free_choice_mood_seam.md v1   [inter_chat, Next: Architecture]
-  - Architecture_IndefiniteAuthor_batch_delivery.md v1          [inter_chat, Next: Architecture]
-delivered:
-  - data/grammar_questions_indefinite.json (61 items, 62 markpoints, 9/9 leaves)
-  - data/translation_items_indefinite.json (25 items, 15 en→it / 10 it→en, 28 negative anchors)
-  - data/bucket_suggestions_indefinite.json (3, all uncited pending registration)
-  - data/glossary_suggestions_indefinite.json (4 terms: indefinite, distributive, free choice, apocope)
-  - coverage_indefinite.md
+  - Architecture_IndefiniteAuthor_false_miss_packet.md v2  [Next: Architecture — verify+stamp the ind_nn_06 fix]
+  - Architecture_IndefiniteAuthor_free_choice_mood_seam.md v3  [Next: Architecture — accept 6+3 cross-credit items; ratify 3 design calls; execute dovunque mint + ogni note]
+delivered_this_touch:
+  - ind_nn_06 false-miss fix: blank-only 'nessuno' positive (TOP-severity blank-boundary zero), verified 9 scenarios
+  - 6 grammar + 3 translation free-choice cross-credit items (ind_fc_01..06, trans_ind_*_fc_*): mood leaf 0 -> 6 grammar + 2 req + 1 opt; Rev 27 dual-credit, verified
+  - full file re-verified: 67 grammar + 28 translation, 74 markpoints, 0 findings
+lesson:
+  - I read AUTHOR_BRIEF via the file tool and got a STALE Rev 25; the live disk is Rev 32. The wake instruction
+    ('do not trust your memory... re-read now') and the dispatch ('THE BRIEF WINS') both point at reading the
+    LIVE file. Rev 30 was literally my own prior finding already ratified. Grep the brief's revision number off
+    disk before authoring, never trust a served copy.
 notes:
-  - BIGGEST FINDING, in the seam thread: the free-choice subjunctive trigger (chiunque/qualunque
-    + subjunctive) is owned by NO seat. tense_choice's four trigger leaves are opinion / emotion /
-    hypothetical-conjunctions / negation; grep confirms ZERO tense_choice items use these words;
-    and BOTH my free-choice leaves declare that parent as a prerequisite, so the shipped tree has a
-    dangling prereq. TenseChoiceAuthor's "zero zero-coverage leaves" was honest — the leaf it would
-    need does not exist. Architecture to rule who authors it (my rec: TenseChoiceAuthor, small re-open).
-  - SECOND FINDING, in the delivery thread: knowing criterion 18 did not stop me breaking it. I
-    diagnosed the additive-error hazard correctly in one item's examiner_note and shipped the
-    forbidden guard two items away. Only executing the engine against each guard found it. Proposing
-    the guard-verdict assertion for the central anchoring gate: a containment check cannot see this
-    class, and it is the same shape as Pluperfect's five-week bug and WordFormation's deleted test.
-  - Criterion 20 has a general hole: 9 of my 13 lemmas are INVARIABLE, so the citation-form exemption
-    cannot reach them (DemonstrativeAuthor's (ciò) finding, nine times over). Complied without waiting
-    — their ruling is about retrofit, mine are new — but offered a general rule for the criterion.
-  - Rev 25 fired on `alcuno`: the dictionary lemma is literary and above A2, so all six alcuni items
-    are glossed. The esserci case in a different tree, one day after the rule landed.
-  - Misconception tagging IMPOSSIBLE for this topic: no indefinite entry in misconception_tag_lists.json,
-    no indefinite coverage in misconceptions.json (1 of MisconceptionAnalyst's 132 unharvested buckets).
-    Batch ships untagged with guards ready to take ids; ImperativoAuthor's retro-tag is the precedent.
-  - `indefinite` still absent from data/manifest.json, as the scaffolding decision intended. Content
-    has now landed; Architecture's to add. Flagged, not touched.
+  - Everything I 'found' fresh this session (invariable-lemma exemption = Rev 30; nessun'idea ungradable = blessed;
+    guard-verdict gate = Ask 1 adopted; candidate_forms (A)) was ALREADY ruled by 2026-07-21. No new asks.
+  - Misconception tagging for indefinite still not possible (no tag-list yet; still one of MisconceptionAnalyst's
+    unfilled topics). The cross-credit mood guards DO carry discrimination.indicative_for_subjunctive_choice,
+    which is registered via the tense_choice axis.
+  - Still Architecture's to execute (from seam v2): mint indefinite.free_choice.dovunque, add ogni+numeral note.
+    I authored no dovunque items because the leaf isn't minted.

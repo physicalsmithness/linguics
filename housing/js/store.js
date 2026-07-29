@@ -181,6 +181,11 @@
     if (result.stress) {
       attempt.stress_attempt = result.stress;
     }
+    // AI marker cost of a live translation mark, recorded per attempt so it
+    // reaches the pulse row with identity -> cost per user. Claude 2026-07-23.
+    if (result.ai_cost) {
+      attempt.ai_cost = result.ai_cost;
+    }
     state.attempts.push(attempt);
     LL.lastAttempt = attempt;   // read by the grammar pulse strip (live flashes)
     // Attempt pulse to the estate workbook (shared_login_and_pulse v1).

@@ -2111,3 +2111,16 @@ h1, h2, h3, .wordmark, .coverage-title, .analysis-section-title { font-family: F
 
 /* Surface why the AI translation marker didn't fire (Smith 2026-07-21) */
 .marker-ai-error { color: var(--red, #b03030); background: var(--red-soft, #f7e4e4); border: 1px solid #e6b8b8; border-radius: 6px; padding: 8px 12px; margin-bottom: 10px; font-size: 13px; }
+.ai-upsell { border: 1.5px solid var(--accent); border-radius: 8px; padding: 12px 14px; margin: 10px 0; background: rgba(143,43,69,0.05); }
+.ai-upsell-msg { font-size: 14px; margin-bottom: 8px; }
+.ai-upsell-cta { font-size: 13px; font-weight: 600; padding: 6px 14px; border: 1px solid var(--accent); border-radius: 6px; background: var(--accent); color: #fff; cursor: pointer; }
+.ai-upsell-cta:disabled { opacity: 0.7; cursor: default; background: #9a9a9a; border-color: #9a9a9a; }
+/* multi_select qtype: toggleable checkbox choices. */
+.ms-choice { display: flex; align-items: baseline; gap: 8px; text-align: left; }
+.ms-choice .ms-check { display: inline-block; width: 14px; height: 14px; border: 1.5px solid #999; border-radius: 3px; flex: 0 0 auto; position: relative; top: 2px; }
+.ms-choice.ms-selected .ms-check { background: var(--accent); border-color: var(--accent); }
+.ms-choice.ms-selected .ms-check::after { content: "\2713"; color: #fff; font-size: 11px; line-height: 14px; position: absolute; left: 2px; top: -2px; }
+.ms-choice .ms-text { flex: 1; }
+.ms-choice.ms-correct { outline: 2px solid #2e7d4f; background: rgba(46,125,79,0.09); }
+.ms-choice.ms-wrong { outline: 2px solid #b03030; background: rgba(176,48,48,0.09); }
+.ms-choice.ms-missed { outline: 2px dashed #c87618; background: rgba(200,118,24,0.07); }

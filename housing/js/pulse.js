@@ -164,6 +164,14 @@
     payload.stress_true_pos = sa ? sa.true_pos : "";
     payload.stress_answered_pos = sa ? sa.answered_pos : "";
     payload.stress_syllable_count = sa ? sa.syllable_count : "";
+    // AI marker cost per call -> its own top-level keys so the estate script
+    // sweeps them into columns; sum by identity for cost-per-user. Blank on
+    // non-AI attempts (grammar/vocab/drills/stub). Claude 2026-07-23.
+    const ac = attempt && attempt.ai_cost;
+    payload.ai_cost_usd = ac ? ac.usd : "";
+    payload.ai_input_tokens = ac ? ac.input_tokens : "";
+    payload.ai_output_tokens = ac ? ac.output_tokens : "";
+    payload.ai_model = ac ? ac.model : "";
     payload.markpoints_json = JSON.stringify((result && result.markpoints || []).map(mp => ({
       bucket: mp.bucket, outcome: mp.outcome,
       attempted: mp.attempted_credit, correctness: mp.correctness_credit,

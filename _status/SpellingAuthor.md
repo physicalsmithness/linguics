@@ -1,45 +1,38 @@
 seat: SpellingAuthor
 classes: [all-authors, all-seats]
-# Reasoning (Rev 24 requires it stated): this seat ORIGINATES markpoints, choice_tags, item
-# prompts and explanations, so it is an authoring surface -> all-authors binds it. Compliance with
-# the standing criteria is n/a (by construction) for this seat's shape: items are supplied-choice
-# (Rev 31 exempts crit 13 and 20) and index-scored (crit 19's accent_load_bearing never arises;
-# crit 21 formation-trigger is for formation drills, not discrimination). crit-17 (English meaning
-# in explanation) IS met on every item. No retrofit obligation outstanding.
+# Reasoning (Rev 24): originates markpoints, choice_tags, prompts, explanations -> all-authors.
+# Standing criteria are n/a-by-construction (supplied-choice/index-scored: Rev 31 exempts 13/20;
+# index-scored means crit-19 accent_load_bearing never arises; crit-21 is for formation drills) or
+# already met (crit-17 English meaning in every explanation). No retrofit outstanding.
 project: Linguics
 updated: 2026-07-21
-waiting: Architecture (mint leaves, merge registry + glossary, rule on 2 flags + 1 build ask)
-needs_from_smith: nothing blocking (wave-2 is on-request)
-blocked_by: none for authoring; the per-choice DIAGNOSTIC layer is blocked on a Housing build (see decision)
-claude_can_verify: yes - ran the invariant + JSON-load checks on grammar_questions_orthography.json this turn (141 items, all green)
-summary: Wave-1 delivered 2026-07-21 - 141 index-scored MCQ spelling-discrimination items across
-  8 error classes (doubling 30, apostrophe_elision 24, c_g_softening 24, digraph 16, qu_cu_cqu 15,
-  silent_h 12, capitalization 12, vowel_confusion 8). Proposed: 1 root + 8 leaves, 9 misconception
-  specifics, 4 glossary terms. Thread Architecture_SpellingAuthor_batch_delivery.md v1, Next: Architecture.
+waiting: Housing (1-line error_id deck-filter add); Smith/Architecture (typed-doubling decision)
+needs_from_smith: decision (typed-doubling: build a free-text drill mode or leave it — my lean: leave)
+blocked_by: none for authoring
+claude_can_verify: yes - ran invariant + minted-bucket + registry + error_id-render checks this turn (217 items, 0 errors)
+summary: Wave-1 (141 MCQ) ACCEPTED + leaves/registry/glossary merged (Architecture v2). Wave-2
+  delivered 2026-07-21 on Smith's "carry on" - +76 items (59 fresh-vocab MCQ + 17 error_id "find the
+  misspelling") -> grammar_questions_orthography.json now 217 items, 0 validation errors. choice_tags
+  reader is now BUILT (QoderWork), so all tags fire; corrected 75 stale proposed-flags post-merge.
+  Thread Architecture_SpellingAuthor_batch_delivery.md at v3.
 queue:
-  - (empty for authoring) name-grep across the author surfaces + all-authors/all-seats returns no
-    live retrofit task; standing criteria are n/a-by-construction or already met (crit-17).
+  - (authoring empty) two open items are on OTHER seats: Housing (error_id filter), Smith (typed call).
 decision:
-  question: The dispatch mandates per-choice distractor tagging so a wrong pick records WHICH slip.
-    The MCQ scorer (app.js buildMcqResult ~L1703) does not consume choice_tags today - a miss logs a
-    plain miss on the correct bucket, no misconception_hit from the picked distractor. Tags are shipped
-    on all 141 items (forward-authored) but inert until the scorer reads them.
+  question: Typed-doubling production bank. The spelling drill QoderWork built is index-scored
+    (MCQ + error_id); it has no free-text input path. A typed bank needs a new drill mode + the
+    substring-marker wiring. Recognition is already covered (MCQ); slip-spotting is covered (error_id).
   options:
-    - (a) RECOMMENDED. Housing adds ~10 lines to buildMcqResult - on a miss, if q.choice_tags[picked]
-          exists, push a misconception_hit (id = tag.misconception) the way guard hits flow. Turns the
-          whole spelling bank into diagnostic data with zero item retrofit.
-    - (b) Strip choice_tags from the items until the build lands, re-add later. More churn; loses the
-          "ready the day it ships" property. Not recommended.
-    - (c) Leave as-is indefinitely: items still WORK (index-scored, correct miss recorded); only the
-          fine-grained which-slip diagnostic is missing. Acceptable but under-delivers the dispatch.
-  lean: (a) - one small, localised Housing change unlocks the dispatch's stated purpose.
+    - (a) RECOMMENDED. Leave typed out. No production-typing instrument; error_id + MCQ suffice.
+    - (b) Housing builds a free-text spelling-drill mode; then I author the typed bank (doubling,
+          digraph, qu, silent_h, vowel survive norm(); apostrophe + capitalization do not).
+  lean: (a) - real Housing cost for marginal instrument value; revisit only if Smith wants typing.
 notes:
-  - Leaf id form followed the dispatch (orthography.spelling.<class>), NOT the accent tree's
-    orthography.accent.italian.* parallel. Flagged for Architecture; trivial find-replace if they
-    want the .italian. segment.
-  - Registry families gemination / orthography / accent_silent_letter already exist and are cross_kind;
-    my 9 proposed specifics slot under them. Also proposed widening orthography.failed_elision's scope
-    from "clitic not elided" to include un-elided articles rather than minting a near-duplicate.
-  - Apostrophe boundary (po'/va') overlaps AccentAuthor's proposed apostrophe_not_accent; Smith ruled
-    "author away ... doesn't matter who makes the qs" (2026-07-21). Architecture to de-dupe placement.
-  - Wave-1 is all-MCQ by design. Typed doubling (survives norm()) + error-ID items are the wave-2 stub.
+  - error_id renderer exists (isErrorId ~L1676); buildSpellingDeck (~L3300) filters type==="mcq", so
+    the 17 error_id items are loaded-but-not-surfaced until Housing adds `|| q.type === "error_id"`.
+    Inert-but-harmless (orthography items don't enter the general grammar deck).
+  - Leaf id form CONFIRMED orthography.spelling.<class> (Architecture v2 ruled: keep, no .italian).
+  - Per-class totals: doubling 77, c_g 35, apostrophe 32, digraph 26, qu_cu_cqu 24, capitalization 21,
+    silent_h 20, vowel 12. 230 MCQ + 17 error_id = 247.
+  - Wave-3 (2026-07-21, Smith): +30 doubling MCQ (minimal pairs, cognate under-doubling, reverse traps
+    comune/comunicazione). Typed-doubling CONFIRMED dropped. Doubling now 31% of the bank - Smith's call
+    that it's the hardest class for English speakers (capelo invisible vs squola obvious).

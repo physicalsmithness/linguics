@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-23-r79";
+  const LL_BUILD = "2026-07-23-r83";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -1482,6 +1482,181 @@
     return el;
   }
 
+  // ---- multi_select qtype (Architecture_Housing_live_round2 ask 4 + the
+  // PronounAuthor order battery). Learner picks a SET of sentences; scored by
+  // set comparison, index-based (no substring hazard). Rulings adopted:
+  // (i) credit = (correct picks - wrong picks) / total correct, floored at 0
+  //     -> pays partial knowledge, zeroes "select everything".
+  // (ii) one item-level markpoint (mastery) + optional per-choice buckets
+  //     (Rev-27 cross-credit) recorded but suppressed from the panel.
+  function buildMultiSelectResult(q, pickedSet) {
+    const choices = Array.isArray(q.choices) ? q.choices : [];
+    const correctIdx = new Set(
+      Array.isArray(q.correct_indices)
+        ? q.correct_indices
+        : choices.map((c, i) => (c && c.correct ? i : -1)).filter(i => i >= 0)
+    );
+    const totalCorrect = correctIdx.size || 1;
+    let correctPicks = 0, wrongPicks = 0;
+    pickedSet.forEach(i => { if (correctIdx.has(i)) correctPicks++; else wrongPicks++; });
+    const credit = Math.max(0, (correctPicks - wrongPicks) / totalCorrect);
+    const possible = q.marks || 1;
+    const outcome = credit >= 1 ? "hit" : (credit > 0 ? "partial" : "miss");
+    const itemBucket = q.subtopic || (Array.isArray(q.buckets) && q.buckets[0]) || "";
+    const textOf = i => (choices[i] && (choices[i].text || choices[i])) || ("#" + i);
+    const picks = Array.from(pickedSet).sort((a, b) => a - b);
+    const markpoints = [{
+      bucket: itemBucket,
+      label: q.subtopic || "multi-select",
+      attempted_credit: 1,
+      correctness_credit: credit,
+      outcome: outcome,
+      evidence: picks.map(textOf).join(" | ") || "(nothing selected)",
+      expected: Array.from(correctIdx).sort((a, b) => a - b).map(textOf).join(" | ")
+    }];
+    // Rev-27 per-choice cross-credit: a skill demonstrated by ANY selected
+    // correct choice is a HIT; a skill only in MISSED correct choices is a MISS
+    // (hit wins on shared buckets). Wrong choices carry no buckets.
+    const bySelected = new Set(), byMissed = new Set();
+    choices.forEach((c, i) => {
+      if (!c || !c.correct || !Array.isArray(c.buckets)) return;
+      const tgt = pickedSet.has(i) ? bySelected : byMissed;
+      c.buckets.forEach(b => tgt.add(b));
+    });
+    bySelected.forEach(b => markpoints.push({
+      bucket: b, label: b, attempted_credit: 1, correctness_credit: 1, outcome: "hit",
+      evidence: "selected a correct sentence evidencing this", source: "ms_cross_credit", suppress_display: true
+    }));
+    byMissed.forEach(b => { if (!bySelected.has(b)) markpoints.push({
+      bucket: b, label: b, attempted_credit: 1, correctness_credit: 0, outcome: "miss",
+      evidence: "missed a correct sentence evidencing this", source: "ms_cross_credit", suppress_display: true
+    }); });
+    const misconceptions = [];
+    choices.forEach((c, i) => {
+      if (c && pickedSet.has(i) && !c.correct && c.misconception_id) {
+        misconceptions.push({ id: c.misconception_id, bucket: itemBucket, evidence: c.text, proposed: !!c.misconception_proposed });
+      }
+    });
+    return {
+      raw_response: picks.map(textOf).join(" | "),
+      overall: {
+        attempted_overall: 1, correctness_overall: credit,
+        marks_awarded: credit * possible, marks_possible: possible,
+        status: outcome,
+        summary: credit >= 1 ? "All correct" : (credit > 0 ? "Partly right" : "Not right"),
+        explanation: q.explanation || null
+      },
+      markpoints: markpoints, orthography: [], misconceptions: misconceptions
+    };
+  }
+
+  function renderMultiSelectCard(q, host) {
+    if (!host) host = document.getElementById("grammar-host");
+    if (!host) return;
+    LL._cardShownAt = Date.now();
+    const card = document.createElement("div");
+    card.className = "qcard multi-select-card";
+    card.tabIndex = -1;
+
+    const meta = document.createElement("div");
+    meta.className = "meta faint";
+    const ex = [];
+    if (q.cefr_level_target) ex.push("CEFR " + q.cefr_level_target);
+    ex.push("select all that apply");
+    meta.textContent = ex.join(" · ");
+    meta.title = q.external_id || "";
+    card.appendChild(meta);
+
+    const prompt = document.createElement("p");
+    prompt.className = "prompt";
+    prompt.textContent = q.prompt || "Select all that are correct.";
+    card.appendChild(prompt);
+
+    const choices = Array.isArray(q.choices) ? q.choices : [];
+    const picked = new Set();
+    let marked = false;
+    const buttons = [];
+    const resultHost = document.createElement("div");
+
+    const choicesHost = document.createElement("div");
+    choicesHost.className = "mcq-choices ms-choices";
+    const toggle = (idx) => {
+      if (marked) return;
+      if (picked.has(idx)) { picked.delete(idx); buttons[idx].classList.remove("ms-selected"); }
+      else { picked.add(idx); buttons[idx].classList.add("ms-selected"); }
+    };
+    choices.forEach((c, idx) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "mcq-choice ms-choice";
+      const key = document.createElement("span"); key.className = "mcq-key-badge"; key.textContent = String(idx + 1);
+      const box = document.createElement("span"); box.className = "ms-check";
+      const txt = document.createElement("span"); txt.className = "ms-text"; txt.textContent = (c && (c.text || c)) || "";
+      b.appendChild(key); b.appendChild(box); b.appendChild(txt);
+      b.addEventListener("click", () => toggle(idx));
+      choicesHost.appendChild(b);
+      buttons.push(b);
+    });
+    card.appendChild(choicesHost);
+
+    const actions = document.createElement("div");
+    actions.className = "actions";
+    const mark = document.createElement("button"); mark.type = "button"; mark.textContent = "Mark";
+    const next = document.createElement("button"); next.type = "button"; next.className = "secondary"; next.textContent = "Skip"; next.title = "Skip without marking";
+    const hint = document.createElement("span"); hint.className = "kbd-hint"; hint.textContent = "Toggle with 1-" + choices.length + " or click; Enter to mark, Enter again to advance.";
+    actions.appendChild(mark); actions.appendChild(next); actions.appendChild(hint);
+    card.appendChild(actions);
+    card.appendChild(resultHost);
+
+    const doNext = () => {
+      grammarIndex++;
+      if (grammarIndex >= grammarDeck.length) { ensureGrammarDeck(); grammarIndex = 0; }
+      renderGrammar();
+    };
+    const doMark = () => {
+      if (marked) return;
+      if (picked.size === 0) {
+        resultHost.innerHTML = "";
+        const nudge = document.createElement("div");
+        nudge.className = "muted"; nudge.style.cssText = "padding:10px;font-style:italic";
+        nudge.textContent = "Select the ones you think are correct, then Mark.";
+        resultHost.appendChild(nudge);
+        return;
+      }
+      marked = true;
+      const correctIdx = new Set(Array.isArray(q.correct_indices) ? q.correct_indices : choices.map((c, i) => (c && c.correct ? i : -1)).filter(i => i >= 0));
+      const result = buildMultiSelectResult(q, picked);
+      const rawForRecord = Array.from(picked).sort((a, b) => a - b).map(i => (choices[i] && (choices[i].text || choices[i])) || ("#" + i)).join(" | ");
+      const attempt = LL.store.recordAttempt("grammar", q, rawForRecord, result);
+      if (typeof track === "function") track("grammar_marked", { outcome: result.overall.status, awarded: result.overall.marks_awarded, possible: result.overall.marks_possible });
+      recentlyChangedBuckets = new Set(attempt.events.map(e => e.bucket));
+      buttons.forEach((b, i) => {
+        const isCorrect = correctIdx.has(i), sel = picked.has(i);
+        if (sel && isCorrect) b.classList.add("ms-correct");
+        else if (sel && !isCorrect) b.classList.add("ms-wrong");
+        else if (!sel && isCorrect) b.classList.add("ms-missed");
+        b.disabled = true;
+      });
+      resultHost.innerHTML = "";
+      resultHost.appendChild(renderResult(result));
+      renderLiveStats();
+      mark.disabled = true;
+      next.textContent = "Next";
+      setTimeout(() => next.focus({ preventScroll: true }), 0);
+    };
+    mark.addEventListener("click", doMark);
+    next.addEventListener("click", doNext);
+    card.addEventListener("keydown", (e) => {
+      if (marked) { if (e.key === "Enter") { e.preventDefault(); doNext(); } return; }
+      if (e.key === "Enter") { e.preventDefault(); doMark(); return; }
+      const n = parseInt(e.key, 10);
+      if (n >= 1 && n <= choices.length) { e.preventDefault(); toggle(n - 1); }
+    });
+
+    host.appendChild(card);
+    setTimeout(() => { ensureCardVisible(card); card.focus(); }, 0);
+  }
+
   function renderGrammar() {
     const host = document.getElementById("grammar-host");
     host.innerHTML = "";
@@ -1495,6 +1670,7 @@
       return;
     }
     const q = grammarDeck[grammarIndex % grammarDeck.length];
+    if (q.type === "multi_select" && Array.isArray(q.choices) && q.choices.length) { renderMultiSelectCard(q, host); return; }
     const vocabHelpsUsed = [];
     const isMcq = q.type === "mcq" && Array.isArray(q.choices) && q.choices.length > 0;
     const isErrorId = q.type === "error_id" && typeof q.error_index === "number";  // QoderWork 2026-07-22
@@ -1945,6 +2121,40 @@
   let translationIndex = 0;
   let translationTextareaRef = null;
 
+  // ---- AI translation-marking cost cap (Smith: cap the tiny AI cost; after a
+  // free quota, offer a subscription once they've seen how good it is). SOFT,
+  // client-side, per-browser - real per-account enforcement would need the
+  // worker to meter by identity. Grammar/vocab/drills are locally marked and
+  // stay UNLIMITED; only the AI translation check is capped.
+  const AI_TRANSLATION_FREE_LIMIT = 0;   // 0 = cap OFF (Smith 2026-07-23: record cost, don't enforce yet); set >0 to enforce a per-browser free-call cap. Real per-USER caps belong worker-side (it meters by identity).
+  function aiMarksUsed() {
+    try { return parseInt(localStorage.getItem("linguics_ai_marks_used") || "0", 10) || 0; }
+    catch (e) { return 0; }
+  }
+  function bumpAiMarksUsed() {
+    try { localStorage.setItem("linguics_ai_marks_used", String(aiMarksUsed() + 1)); } catch (e) {}
+  }
+  function buildAiUpsell() {
+    const box = document.createElement("div");
+    box.className = "ai-upsell";
+    const msg = document.createElement("div");
+    msg.className = "ai-upsell-msg";
+    msg.textContent = "You've used your " + AI_TRANSLATION_FREE_LIMIT + " free AI-checked translations. "
+      + "The quick check below still works; for unlimited AI marking with per-skill feedback you can register your interest in a subscription.";
+    box.appendChild(msg);
+    const cta = document.createElement("button");
+    cta.type = "button";
+    cta.className = "ai-upsell-cta";
+    cta.textContent = "Register interest";
+    cta.addEventListener("click", () => {
+      if (typeof track === "function") track("subscribe_interest", { used: aiMarksUsed() });
+      cta.textContent = "Noted, thank you";
+      cta.disabled = true;
+    });
+    box.appendChild(cta);
+    return box;
+  }
+
   function renderTranslation() {
     const host = document.getElementById("translation-host");
     host.innerHTML = "";
@@ -2035,14 +2245,26 @@
       // Use live AI marker when a Worker URL is configured; otherwise fall
       // back to the substring-tells stub.
       const markerUrl = (typeof LL.markerUrl === "function") ? LL.markerUrl() : "";
-      let result, costLine = null, aiError = null;
-      if (markerUrl) {
+      const aiOverLimit = !!markerUrl && AI_TRANSLATION_FREE_LIMIT > 0 && aiMarksUsed() >= AI_TRANSLATION_FREE_LIMIT;
+      let result, costLine = null, aiError = null, showUpsell = false;
+      if (markerUrl && !aiOverLimit) {
         // Show a "marking..." indicator while the AI thinks
         resultHost.innerHTML = '<div class="muted" style="padding:14px;font-style:italic">Marking via AI...</div>';
         try {
           const bucketContext = LL.buildBucketContext(it, bucketIndex.byId);
           const payload = await LL.markTranslationLive(it, raw, intent, { bucketContext });
+          bumpAiMarksUsed();   // count a successful AI mark against the free quota
           result = payload.result;
+          // Record the ACTUAL cost of this call on the attempt so it rides the
+          // pulse row (which carries identity) -> cost-per-user is a sum in the
+          // sheet (Smith 2026-07-23). This is the RECORDING; per-user cap
+          // ENFORCEMENT belongs worker-side (it already has a per-call cap).
+          result.ai_cost = {
+            usd: payload.cost_usd,
+            input_tokens: (payload.usage && payload.usage.input_tokens) || "",
+            output_tokens: (payload.usage && payload.usage.output_tokens) || "",
+            model: payload.model_used || ""
+          };
           if (!result.raw_response) result.raw_response = raw;
           // Belt-and-braces: post-process AI markpoints to resolve any base
           // vocab translation ids to their .active/.passive variant. The AI
@@ -2065,6 +2287,7 @@
         }
       } else {
         result = LL.markTranslationStub(it, raw, intent);
+        if (aiOverLimit) showUpsell = true;   // worker configured but free quota spent
       }
 
       appendVocabHelpEvents(result, vocabHelpsUsed, it);
@@ -2079,6 +2302,7 @@
       renderTranslationFilterBar();
       resultHost.innerHTML = "";
       if (aiError) { const aw = document.createElement("div"); aw.className = "marker-ai-error"; aw.textContent = aiError; resultHost.appendChild(aw); }
+      if (showUpsell) resultHost.appendChild(buildAiUpsell());
       resultHost.appendChild(renderResult(result, { skillCount: true, references: it.references || it.reference_translations || [] }));
       const tenseRowT = renderCandidateTensesRow(it);
       if (tenseRowT) resultHost.appendChild(tenseRowT);

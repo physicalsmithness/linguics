@@ -55,8 +55,42 @@
     return best;
   }
 
+  // Known common error match (crosstopic v11): common_errors is a list of
+  // {text, note} near-correct WRONG variants. A near-correct one (e.g. "gatti
+  // nero" vs "gatti neri") would word-overlap a clean reference and get praised
+  // as "roughly right" - so match it explicitly and flag, never credit.
+  function matchedCommonError(item, normed) {
+    const ce = item && item.common_errors;
+    if (!Array.isArray(ce) || !ce.length || !normed) return null;
+    const fold = LL.foldAccents ? (s) => LL.foldAccents(s) : (s) => s;
+    const foldedAns = fold(normed);
+    for (const e of ce) {
+      const tx = ((LL.norm((e && e.text) || "")) || "").toLowerCase();
+      if (!tx) continue;
+      if (tx === normed || fold(tx) === foldedAns) return e;   // exact / accent-folded
+      if (jaccard(normed, tx) >= 0.9) return e;                // near-identical
+    }
+    return null;
+  }
+  function knownErrorResult(item, ceHit) {
+    const note = (ceHit && ceHit.note) ? (" " + ceHit.note) : "";
+    return {
+      overall: {
+        attempted_overall: 1, correctness_overall: 0,
+        marks_awarded: 0, marks_possible: 0, status: "not_scored",
+        summary: "This is a known common mistake." + note + " (AI marker offline - not scored per skill.)",
+        explanation: item.explanation || null
+      },
+      markpoints: [],
+      notes: [{ kind: "warn", note: "Your answer matches a known common error" + (note ? " -" + note : "") + ". The offline stub flags it but can't score per skill; connect the AI marker for the full breakdown." }]
+    };
+  }
+
   function markTranslationStub(item, rawResponse, intent) {
     const normed = (LL.norm(rawResponse) || "").toLowerCase();
+    // Never word-overlap-credit a catalogued common error (crosstopic v11).
+    const ceHit = matchedCommonError(item, normed);
+    if (ceHit) { const kr = knownErrorResult(item, ceHit); kr.raw_response = rawResponse; return kr; }
     const hasTells = !!(item.markpoint_tells && Object.keys(item.markpoint_tells).length);
 
     const out = hasTells

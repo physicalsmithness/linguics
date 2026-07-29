@@ -91,3 +91,42 @@ dopo + bare infinitive, mixed che/da machinery, anzi polarity misreads, siccome 
 - **Next dispatch ideas**: OIC C2 contrast pool (piuttosto, al contrario, in realtà) only partly mined;
   register_set is at 4 items (lighter than siblings; a poiché/giacché literary split could deepen it);
   sentence-half matching (OIC recognition format) has no engine shape yet, could be an MCQ bank.
+
+
+---
+
+## Addendum, 2026-07-27: false-miss dispositions + commissioned purpose wave
+
+**False-miss packet (AUDIT_false_miss_2026-07-20, 4 findings, all remedied as graded additions; no reframes,
+so no Rev 23 accent re-run owed; wrong_answer_is_form_error_only confirmed False on every touched item):**
+
+| id | disposition | version |
+|---|---|---|
+| conn_cause_02 | poiché 0.8 (post-posed formal, register note) + in quanto 0.9 added | 2 |
+| conn_cause_07 | same two additions | 2 |
+| conn_ca_01 | però 0.8 + ma 0.8 added (parity with ca_02/03 restored) | 2 |
+| conn_cvd_05 | per 0.8 added (everyday purpose, steering note); bare-per anchoring safety argued in examiner_note | 2 |
+| conn_time_04 | NO credit change (audit appendix calls the quando zero defensible: the gloss pins After); deliberate asymmetry with time_05 documented in examiner_note | 1 |
+
+All additions checked against Rev 20(i): none is its bucket's named common_miss. Criterion 18 re-run over
+the touched items: clean (perché normalises to a single token, so bare per nests in no correct attempt).
+
+**Purpose wave (commissioned, Architecture_ConnectiveAuthor_purpose_connectives v1, Rev 27 cross-credit):**
+
+| id | shape | buckets |
+|---|---|---|
+| conn_purp_01 | produce connector + subjunctive (second subject) | purpose 0.5 + tense_choice.indicative_vs_subjunctive 0.5 |
+| conn_purp_02 | per + infinitive (same subject); single markpoint, nothing subjunctive produced | purpose 1.0 |
+| conn_purp_03 | twin of 01 (capiscano / capiscono contrast) | purpose 0.5 + TCIS 0.5 |
+| conn_purp_04 | MCQ reading: subjunctive capissero = purpose | dual-cite 0.5 + 0.5 on one choice |
+| conn_purp_05 | MCQ same-surface mirror: indicative era = cause | dual-cite 0.5 + 0.5 |
+| conn_purp_06 | connector-given-the-mood (possano supplied); no cross-credit, learner produces no subjunctive | purpose 1.0 |
+
+Plus trans_conn_en_it_purp_01 (negative anchor: per non dimenticare subject-flip) and
+trans_conn_it_en_purp_01 (negative anchor: purpose decoded as cause). New totals: **60 grammar (49 short + 11 MCQ), 24 translation** (counted from disk). Two bucket
+proposals appended: connective.purpose (aggregate, parent connective) + connective.purpose.affinche_perche_subj
+(leaf, parent = the sibling proposal; two-level chain flagged for minting, per the commission's own id).
+
+Cross-credit design note: the dual markpoints attribute asymmetric misses correctly — an answer like
+'perché tu sai' credits the connective half (0.5) and records the mood miss on the tense_choice bucket,
+which is precisely the diagnostic separation the either/or contract used to forbid.

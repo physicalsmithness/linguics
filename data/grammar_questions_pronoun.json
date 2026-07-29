@@ -583,7 +583,7 @@
     "subtopic": "direct_object.la",
     "difficulty": 2,
     "cefr_level_target": "B1",
-    "prompt": "Replace 'la macchina' with a pronoun: 'Ho lavato la macchina ieri.' → '____ ho lavata ieri.'",
+    "prompt": "Replace 'una macchina rossa' with a direct-object pronoun: 'Ho lavato una macchina rossa ieri.' → '____ ho lavata ieri.'",
     "type": "short",
     "marks": 1,
     "wrong_answer_is_form_error_only": false,
@@ -3322,32 +3322,37 @@
     "subtopic": "reflexive.essere_in_compound",
     "difficulty": 2,
     "cefr_level_target": "B1",
-    "prompt": "Complete: 'Anna ____ ____ divertita molto alla festa.' (auxiliary + participle)",
+    "prompt": "Complete with the full compound tense (auxiliary + participle): 'Anna ____ molto alla festa.' (divertirsi, passato prossimo, 3sg f)",
     "type": "short",
     "marks": 2,
     "wrong_answer_is_form_error_only": false,
     "markpoints": [
       {
         "order_index": 0,
-        "credit": 1.0,
+        "credit": 0.5,
         "bucket": "pronoun.reflexive.essere_in_compound",
-        "label": "Reflexive aux essere",
+        "label": "reflexive takes essere in PP",
         "any_phrases": [
           {
             "phrase": "si è",
+            "match_at": "word"
+          },
+          {
+            "phrase": "si e'",
             "match_at": "word"
           }
         ],
         "must_not_include": [
           "ha",
-          "si ha"
+          "si ha",
+          "si aveva"
         ]
       },
       {
         "order_index": 1,
-        "credit": 1.0,
+        "credit": 0.5,
         "bucket": "verb_form.passato_prossimo.auxiliary.essere_reflexive",
-        "label": "Participle agrees fem.sg",
+        "label": "PP agreement with subject on reflexive",
         "any_phrases": [
           {
             "phrase": "divertita",
@@ -3373,7 +3378,7 @@
         }
       }
     ],
-    "explanation": "'Anna si è divertita molto alla festa' means 'Anna really enjoyed herself at the party'. Reflexive verbs take essere as their auxiliary, with the participle showing agreement with the subject. Anna is f.sg → divertita. The clitic si sits pre-aux. Stack: si + è + divertita.",
+    "explanation": "Anna is f.sg and reflexive verbs take essere in compound tenses; the participle agrees with the subject. Blank content: 'si e' divertita' - reflexive si + auxiliary essere (3sg) + participle with f.sg agreement.",
     "examiner_note": "Cross-references the passato_prossimo tree for the agreement bucket.",
     "version": 1
   },
@@ -3384,16 +3389,16 @@
     "subtopic": "reflexive.essere_in_compound",
     "difficulty": 3,
     "cefr_level_target": "B2",
-    "prompt": "Complete: 'I ragazzi ____ ____ lavati le mani prima di cena.' (auxiliary + participle)",
+    "prompt": "Complete with the full compound tense (auxiliary + participle): 'I ragazzi ____ le mani prima di cena.' (lavarsi, passato prossimo, 3pl m)",
     "type": "short",
     "marks": 2,
     "wrong_answer_is_form_error_only": false,
     "markpoints": [
       {
         "order_index": 0,
-        "credit": 1.0,
+        "credit": 0.5,
         "bucket": "pronoun.reflexive.essere_in_compound",
-        "label": "Reflexive aux essere, 3pl",
+        "label": "reflexive takes essere in PP",
         "any_phrases": [
           {
             "phrase": "si sono",
@@ -3407,9 +3412,9 @@
       },
       {
         "order_index": 1,
-        "credit": 1.0,
+        "credit": 0.5,
         "bucket": "verb_form.passato_prossimo.auxiliary.essere_reflexive",
-        "label": "Participle agrees with subject (modern) or with post-verb DO (prescriptive)",
+        "label": "either subject-agreement or preceding-DO agreement (both accepted per D2)",
         "any_phrases": [
           {
             "phrase": "lavati",
@@ -3448,7 +3453,7 @@
         }
       }
     ],
-    "explanation": "'I ragazzi si sono lavati le mani prima di cena' means 'The boys washed their hands before dinner'. Even with a separate direct object (le mani), the reflexive still takes essere as auxiliary. Modern Italian agrees the past participle with the subject (lavati, agreeing with i ragazzi). Older usage and some prescriptive grammars agree it instead with the post-verb direct object (lavate, agreeing with le mani); both are accepted here.",
+    "explanation": "Reflexive verbs take essere in compound tenses. Prescriptively the participle agrees with the subject (I ragazzi m.pl -> lavati); modern acceptance also allows agreement with the direct object le mani f.pl -> lavate. Both credited (per D2). Blank content: 'si sono lavati' (or 'si sono lavate').",
     "examiner_note": "Both lavati (modern subject agreement) and lavate (prescriptive DO agreement) credit; wrong-gender forms in must_not_include.",
     "version": 1
   },
@@ -4960,17 +4965,23 @@
         "order_index": 1,
         "credit": 1.0,
         "bucket": "verb_form.trapassato_prossimo",
-        "label": "Trapassato prossimo auxiliary (era)",
+        "label": "trapassato aux inside the andarsene cluster (bare era guarded against false credit)",
         "any_phrases": [
           {
-            "phrase": "era",
+            "phrase": "n'era",
+            "match_at": "word"
+          },
+          {
+            "phrase": "ne era",
             "match_at": "word"
           }
         ],
         "must_not_include": [
-          "è",
-          "ha",
-          "aveva"
+          "n'e'",
+          "n'è",
+          "n'ha",
+          "ne ha",
+          "n'aveva"
         ]
       },
       {
@@ -5286,7 +5297,7 @@
     "subtopic": "ci_locative.existential",
     "difficulty": 2,
     "cefr_level_target": "B1",
-    "prompt": "Complete: 'Ieri ____ molta gente al concerto.' (there were many people)",
+    "prompt": "Complete with the passato prossimo of esserci: 'Ieri ____ molta gente al concerto.' (a huge turnout - use the compound tense)",
     "type": "short",
     "marks": 1,
     "wrong_answer_is_form_error_only": false,
@@ -5308,8 +5319,7 @@
         ],
         "must_not_include": [
           "ha avuto",
-          "ci ha avuto",
-          "ci era"
+          "ci ha avuto"
         ]
       }
     ],
@@ -7138,7 +7148,7 @@
     "subtopic": "special.pronoun_then_subject_noun",
     "difficulty": 3,
     "cefr_level_target": "B2",
-    "prompt": "Complete: 'La pizza, ____ ho mangiata tutta.'",
+    "prompt": "Complete: 'Quella pizza, ____ ho mangiata tutta.'",
     "type": "short",
     "marks": 1,
     "wrong_answer_is_form_error_only": false,

@@ -190,6 +190,8 @@ VOCABULARY vs GRAMMAR (critical distinction)
 
 12. A learner who writes a completely different word (e.g. "maglia" when the answer is "maglione", or "di legno" when the answer is "di lana") has made a VOCABULARY error — they didn't know the right word. This is NOT a gender error, NOT an agreement error, NOT a conjugation error. Only fire a gender/agreement bucket when the learner uses the RIGHT word but with the wrong grammatical marking (e.g. "il maglione" instead of "la maglione" — right noun, wrong article gender). Wrong word = vocabulary bucket. Right word, wrong form = grammar bucket. Never conflate the two.
 
+13. KNOWN COMMON ERRORS: the item may carry `common_errors` — a list of {text, note} known WRONG variants the author has catalogued (deliberate anti-anchors, often only a hair from correct). If the learner's answer matches or closely resembles one, do NOT accept it: fire the relevant skill as a miss and name the error using the note. Never treat a common_error as a correct rendering, however close it looks to a reference.
+
 (House coherence, for your calibration only: the vocab strand's EN→IT grader deducts 50% for accent errors — strict by design; the grammar strand's substring marker gives full credit and classifies the slip; this marker deducts a little and names. Three graders, three written policies.)
 
 CANDIDATE BUCKETS
@@ -269,6 +271,7 @@ function buildUserMessage(item: any, cleanedRaw: string, intent: string, annotat
       target_language: direction === "it_en" ? "en" : "it",
       source_text: item.source_text,
       references: item.references || item.reference_translations || [],
+      common_errors: item.common_errors || [],
       required_buckets: item.required_buckets || [],
       optional_buckets: item.optional_buckets || [],
       cefr_level_target: item.cefr_level_target,

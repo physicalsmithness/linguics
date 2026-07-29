@@ -18,5 +18,44 @@
    "direction": "production"
   },
   "rationale": "The connective.time aggregate's description names mentre and (non) appena but no leaf holds them; finché is negation's and prima/dopo has its own leaf. Needed while authoring conn_time_05 and conn_time_06, which are delivered against this proposed id (runtime warns at authoring, strict-rejects at production load, so ratification gates their manifest entry)."
+ },
+ {
+  "proposed_id": "connective.purpose",
+  "proposed_parent_id": "connective",
+  "proposed_label": "Purpose (so-that)",
+  "proposed_description": "Purpose clauses: affinché / perché + subjunctive when a second subject enters; per + infinitive when the subject stays the same; the verb's mood is what separates purpose-perché from cause-perché.",
+  "proposed_cefr_importance": {
+   "B1": "preview",
+   "B2": "core",
+   "C1": "review",
+   "C2": "fluency"
+  },
+  "proposed_prerequisites": [],
+  "proposed_attributes": {
+   "is_aggregate": true,
+   "direction": "production"
+  },
+  "rationale": "Commissioned in Architecture_ConnectiveAuthor_purpose_connectives v1 (Smith: 'generally both', resolved via Rev 27 cross-credit). Aggregate proposed with parent connective (exists) so the leaf below has a registered chain."
+ },
+ {
+  "proposed_id": "connective.purpose.affinche_perche_subj",
+  "proposed_parent_id": "connective.purpose",
+  "proposed_label": "Affinché / perché + subjunctive",
+  "proposed_description": "Choosing the purpose connective and machinery: affinché (formal) / perché (everyday) + subjunctive for a second subject, per + infinitive for a same subject. Cross-credits tense_choice.indicative_vs_subjunctive where the answer produces the subjunctive (Rev 27).",
+  "proposed_cefr_importance": {
+   "B1": "preview",
+   "B2": "core",
+   "C1": "review",
+   "C2": "fluency"
+  },
+  "proposed_prerequisites": [
+   "tense_choice.indicative_vs_subjunctive"
+  ],
+  "proposed_attributes": {
+   "canonical_example": "Parlo piano affinché tu capisca. / Studio per superare l'esame.",
+   "common_miss": "perché + indicative meant as purpose; per + infinitive with a second subject; affinché + indicative.",
+   "direction": "bidirectional"
+  },
+  "rationale": "The commissioned leaf (thread names this id). Parent is the sibling proposal above; Architecture mints both on these markpoints landing (6 grammar + 2 translation delivered against it). Boundary per the thread: connective owns the connective CHOICE; tense_choice owns the mood contrast; items where the answer contains the subjunctive dual-cite at credit 0.5 each."
  }
 ]
