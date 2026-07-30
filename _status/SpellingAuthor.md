@@ -31,8 +31,13 @@ notes:
     the 17 error_id items are loaded-but-not-surfaced until Housing adds `|| q.type === "error_id"`.
     Inert-but-harmless (orthography items don't enter the general grammar deck).
   - Leaf id form CONFIRMED orthography.spelling.<class> (Architecture v2 ruled: keep, no .italian).
-  - Per-class totals: doubling 77, c_g 35, apostrophe 32, digraph 26, qu_cu_cqu 24, capitalization 21,
-    silent_h 20, vowel 12. 230 MCQ + 17 error_id = 247.
+  - Per-class totals: doubling 82, c_g 35, apostrophe 32, digraph 26, qu_cu_cqu 24, capitalization 21,
+    silent_h 20, vowel 12. 235 MCQ + 17 error_id = 252.
   - Wave-3 (2026-07-21, Smith): +30 doubling MCQ (minimal pairs, cognate under-doubling, reverse traps
-    comune/comunicazione). Typed-doubling CONFIRMED dropped. Doubling now 31% of the bank - Smith's call
+    comune/comunicazione). Typed-doubling CONFIRMED dropped. Doubling now 33% of the bank - Smith's call
     that it's the hardest class for English speakers (capelo invisible vs squola obvious).
+  - v5 ERRATUM (Smith caught it): rewrote 9 doubling explanations that falsely claimed English
+    under-doubles (possibile/professore/successo/occasione/necessario/differenza/aggressivo - English
+    keeps the double in all). Added 5 genuine cognate traps (gruppo, commedia, accademia, pubblico,
+    cioccolato). Validator now guards against "English 'X' has one" where X doubles. Lesson: check the
+    English spelling every time, don't assume Italian-doubles => English-drops.

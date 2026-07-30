@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-23-r83";
+  const LL_BUILD = "2026-07-23-r84";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -527,7 +527,7 @@
       dChip.title = filterObj.bucketPath;
       const dKey = document.createElement("span");
       dKey.className = "filter-chip-key";
-      dKey.textContent = "Drilled into";
+      dKey.textContent = "Filtered to";
       dChip.appendChild(dKey);
       const dVal = document.createElement("strong");
       dVal.textContent = drillChipLabel(filterObj);
@@ -541,20 +541,20 @@
         note.appendChild(document.createTextNode("topic widened from " + _preDrillScope.label + " "));
       }
       const up = document.createElement("button");
-      up.type = "button"; up.className = "linkish"; up.textContent = "out \u25b4";
-      up.title = "Drill out one level (or click the drilled box again)";
+      up.type = "button"; up.className = "linkish"; up.textContent = "widen \u25b4";
+      up.title = "Remove one level of this filter (or click the highlighted box again)";
       up.addEventListener("click", drillOutOneLevel);
       note.appendChild(up);
       note.appendChild(document.createTextNode(" \u00b7 "));
       const undo = document.createElement("button");
       undo.type = "button"; undo.className = "linkish"; undo.textContent = "undo";
-      undo.title = "Restore the previous topic scope and drop the drill";
+      undo.title = "Restore the previous scope and clear this filter";
       undo.addEventListener("click", undoDrillWiden);
       note.appendChild(undo);
       dChip.appendChild(note);
       const x = document.createElement("button");
       x.type = "button"; x.className = "chip-x"; x.textContent = "\u00d7";
-      x.title = "Clear the drill";
+      x.title = "Clear this filter";
       x.addEventListener("click", clearBucketFilter);
       dChip.appendChild(x);
       bar.appendChild(dChip);
@@ -8068,7 +8068,7 @@
     head.textContent = "Which part?";
     const hint = document.createElement("p");
     hint.className = "entry-config-hint";
-    hint.textContent = "tick any, open one to drill in";
+    hint.textContent = "tick any; open one to see inside";
     panel.appendChild(head);
     panel.appendChild(hint);
 

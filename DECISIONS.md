@@ -1630,3 +1630,7 @@ SpellingAuthor's 141-MCQ wave-1 had been waiting on Architecture (missed while I
 - **Paradigm bands:** articulated-preposition paradigm stays a FLAT slot list (no 5x7 matrix schema extension); Housing's r27 mechanism accepted; the declare+migrate step is Architecture task 6, staged (artic. preps -> articles -> demonstratives -> possessives), migrates centrally like the person field.
 - **Live-round-2:** Asks 2+3 (inline operand, amber accent banner + enriched slip events) STAMPED; Ask 1 order-leak ruled BUILD the anti-clustering spread (same-leaf clustering is the likely cause + a real improvement), Smith's repro optional.
 - **Accent seed frames:** all Qs Smith-ruled; the variant-pipeline run staged as a focused generation pass (aspettare shape); apostrophe-input bug already with Housing.
+
+## Task 7 DONE: Rev-32 cue tense-naming retrofit executed (2026-07-27, Architecture)
+
+Added the English tense term to the 118 Italian-only formation cues per the ratified Rev-32 rule: passato_prossimo 54 cues "(lemma, passato prossimo)" -> "... / present perfect)"; passato_remoto 64 cues -> "... / past historic)". All are formation-trigger cues (the `(lemma[, person], tense)` shape), so the usage/discrimination-must-not-name caveat does not bite (those live in tense_choice, untouched). Cognate tenses (futuro/condizionale/gerundio/imperfetto) and present left off per Rev 32. FOLLOW-UP: fold the English-tense-cue rule into AUTHOR_BRIEF criterion 21 on the next brief touch (binds all-authors; recorded here so it isn't a named-but-unminted rule).
