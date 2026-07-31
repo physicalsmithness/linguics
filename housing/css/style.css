@@ -2124,3 +2124,7 @@ h1, h2, h3, .wordmark, .coverage-title, .analysis-section-title { font-family: F
 .ms-choice.ms-correct { outline: 2px solid #2e7d4f; background: rgba(46,125,79,0.09); }
 .ms-choice.ms-wrong { outline: 2px solid #b03030; background: rgba(176,48,48,0.09); }
 .ms-choice.ms-missed { outline: 2px dashed #c87618; background: rgba(200,118,24,0.07); }
+/* multi-select category picker: removable selected chips. */
+.entry-cat-selected { align-items: center; }
+.entry-chip.entry-cat-remove { background: var(--accent); color: #fff; border-color: var(--accent); }
+.entry-chip.entry-cat-remove:hover { filter: brightness(1.1); }

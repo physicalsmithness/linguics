@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-23-r84";
+  const LL_BUILD = "2026-07-23-r85";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -7742,7 +7742,7 @@
         verbMode: "form",   // "form" | "use"
         parts: {}           // partId -> { on, topics: {topic:true}, kinds: {bucketPath:true} }
       },
-      vocab: { direction: "it_en", subBand: "", genderDrill: false, spellingDrill: false, accentDrill: false, stressDrill: false, lens: "numeric", rankRanges: [], cefr: "", theme: "", catIds: null, catLabel: "" },
+      vocab: { direction: "it_en", subBand: "", genderDrill: false, spellingDrill: false, accentDrill: false, stressDrill: false, lens: "numeric", rankRanges: [], cefr: "", theme: "", catIds: null, catLabel: "", catSel: null },
       translation: { grammarPoint: "", way: "" },
       cefrLevels: []
     };
@@ -8213,6 +8213,8 @@
     if (v.cefr == null) v.cefr = "";
     if (v.catLabel == null) v.catLabel = "";
     if (v.theme && (!v.catIds || !v.catIds.length)) { v.catIds = [v.theme]; v.catLabel = v.theme; v.theme = ""; }  // migrate interim-era selection
+    if (v.catSel == null || typeof v.catSel !== "object") v.catSel = {};
+    if (!Object.keys(v.catSel).length && Array.isArray(v.catIds) && v.catIds.length) { v.catSel[v.catLabel || "Selected"] = v.catIds.slice(); }  // reconstruct multi-select from a saved/legacy pick
     const maxRank = (vocabEntries && vocabEntries.length) ? vocabEntries.length : 18071;
     const setRanges = rr => { v.rankRanges = mergeRankRanges(rr); renderEntryScreen(); };
     const subtractRange = (ranges, s, e) => {
@@ -8377,15 +8379,37 @@
         if (!t || !String(t).trim() || String(t).trim() === "[skip]") return false;
         return Array.isArray(e.themes) && ids.some(id => themeMatchesSelected(e.themes, id));
       }).length;
+      const syncCatSel = () => {
+        const labels = Object.keys(v.catSel || {});
+        if (!labels.length) { v.catIds = null; v.catLabel = ""; return; }
+        const ids = [], seen = new Set();
+        for (const lab of labels) for (const id of (v.catSel[lab] || [])) if (!seen.has(id)) { seen.add(id); ids.push(id); }
+        v.catIds = ids; v.catLabel = labels.join(", ");
+      };
       const pick = chip => {
-        if (v.catLabel === chip.label) { v.catIds = null; v.catLabel = ""; }
-        else { v.catIds = chip.ids.slice(); v.catLabel = chip.label; }
+        if (!v.catSel || typeof v.catSel !== "object") v.catSel = {};
+        if (v.catSel[chip.label]) delete v.catSel[chip.label];   // multi-select toggle (spec: apply/remove as chips)
+        else v.catSel[chip.label] = (chip.ids || []).slice();
+        syncCatSel();
         renderEntryScreen();
       };
       const allRow = document.createElement("div");
       allRow.className = "entry-chip-row";
-      allRow.appendChild(entryChip("All categories", !v.catLabel, () => { v.catIds = null; v.catLabel = ""; renderEntryScreen(); }));
+      const anySel = !!(v.catSel && Object.keys(v.catSel).length);
+      allRow.appendChild(entryChip("All categories", !anySel, () => { v.catSel = {}; v.catIds = null; v.catLabel = ""; renderEntryScreen(); }));
       panel.appendChild(allRow);
+      if (anySel) {
+        const selRow = document.createElement("div");
+        selRow.className = "entry-chip-row entry-cat-selected";
+        const sLbl = document.createElement("span"); sLbl.className = "entry-config-hint"; sLbl.textContent = "Selected: ";
+        selRow.appendChild(sLbl);
+        for (const lab of Object.keys(v.catSel)) {
+          const pill = entryChip(lab + " \u00d7", true, () => { delete v.catSel[lab]; syncCatSel(); renderEntryScreen(); }, { title: "Remove " + lab });
+          pill.classList.add("entry-cat-remove");
+          selRow.appendChild(pill);
+        }
+        panel.appendChild(selRow);
+      }
       for (const sec of VOCAB_CATEGORY_SECTIONS) {
         const sh = document.createElement("div");
         sh.className = "entry-cat-section";
@@ -8394,7 +8418,7 @@
         const row = document.createElement("div");
         row.className = "entry-chip-row";
         for (const chip of sec.chips) {
-          row.appendChild(entryChip(chip.label, v.catLabel === chip.label, () => pick(chip),
+          row.appendChild(entryChip(chip.label, !!(v.catSel && v.catSel[chip.label]), () => pick(chip),
             { title: liveCount(chip.ids) + " words" }));
           if (chip.subs && chip.subs.length) {
             const open = !!v._catExpanded[chip.label];
@@ -8407,7 +8431,7 @@
               const subRow = document.createElement("div");
               subRow.className = "entry-chip-row entry-cat-subrow";
               for (const s of chip.subs) {
-                subRow.appendChild(entryChip(s.label, v.catLabel === s.label, () => pick(s),
+                subRow.appendChild(entryChip(s.label, !!(v.catSel && v.catSel[s.label]), () => pick(s),
                   { title: liveCount(s.ids) + " words" }));
               }
               row.appendChild(subRow);

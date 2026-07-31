@@ -1,6 +1,6 @@
 {
-  "note": "vocab_help legacy ids still missing POS after the safe automated migration (unique-POS + reflexive-infinitive). These need context-based POS: multi-POS lemmas need the item to disambiguate; not_in_freq ones are usually inflected forms (amici->amico) or proper nouns needing lemmatization. Do NOT auto-guess.",
-  "count": 88,
+  "note": "vocab_help legacy ids still missing POS after the safe automated migration (unique-POS + reflexive-infinitive). These need context-based POS: multi-POS lemmas need the item to disambiguate; not_in_freq ones are usually inflected forms (amici->amico) or proper nouns needing lemmatization. Do NOT auto-guess. | 2026-07-27 Architecture resolved the infinitive-verb subset (an infinitive help-hint is the verb); remainder needs item context, routed to Vocab.",
+  "count": 67,
   "residue": [
     {
       "legacy_bucket": "vocabulary.it.Natale.gender",
@@ -18,15 +18,6 @@
       "candidate_pos": [
         "adjective",
         "noun"
-      ]
-    },
-    {
-      "legacy_bucket": "vocabulary.it.abitare.translation",
-      "lemma": "abitare",
-      "reason": "multi_POS_ambiguous(noun/verb)",
-      "candidate_pos": [
-        "noun",
-        "verb"
       ]
     },
     {
@@ -70,15 +61,6 @@
       "candidate_pos": []
     },
     {
-      "legacy_bucket": "vocabulary.it.avere.translation",
-      "lemma": "avere",
-      "reason": "multi_POS_ambiguous(noun/verb)",
-      "candidate_pos": [
-        "noun",
-        "verb"
-      ]
-    },
-    {
       "legacy_bucket": "vocabulary.it.bambino.translation",
       "lemma": "bambino",
       "reason": "multi_POS_ambiguous(adjective/noun)",
@@ -98,15 +80,6 @@
       "lemma": "belle",
       "reason": "not_in_freq_lemma_list(inflected_form_or_proper_noun)",
       "candidate_pos": []
-    },
-    {
-      "legacy_bucket": "vocabulary.it.bere.translation",
-      "lemma": "bere",
-      "reason": "multi_POS_ambiguous(noun/verb)",
-      "candidate_pos": [
-        "noun",
-        "verb"
-      ]
     },
     {
       "legacy_bucket": "vocabulary.it.braccia.translation",
@@ -164,39 +137,12 @@
       ]
     },
     {
-      "legacy_bucket": "vocabulary.it.credere.translation",
-      "lemma": "credere",
-      "reason": "multi_POS_ambiguous(noun/verb)",
-      "candidate_pos": [
-        "noun",
-        "verb"
-      ]
-    },
-    {
-      "legacy_bucket": "vocabulary.it.dare.translation",
-      "lemma": "dare",
-      "reason": "multi_POS_ambiguous(noun/verb)",
-      "candidate_pos": [
-        "noun",
-        "verb"
-      ]
-    },
-    {
       "legacy_bucket": "vocabulary.it.dato.translation",
       "lemma": "dato",
       "reason": "multi_POS_ambiguous(adjective/noun)",
       "candidate_pos": [
         "adjective",
         "noun"
-      ]
-    },
-    {
-      "legacy_bucket": "vocabulary.it.dire.translation",
-      "lemma": "dire",
-      "reason": "multi_POS_ambiguous(noun/verb)",
-      "candidate_pos": [
-        "noun",
-        "verb"
       ]
     },
     {
@@ -215,15 +161,6 @@
       "candidate_pos": [
         "adjective",
         "noun"
-      ]
-    },
-    {
-      "legacy_bucket": "vocabulary.it.dispiacere.translation",
-      "lemma": "dispiacere",
-      "reason": "multi_POS_ambiguous(noun/verb)",
-      "candidate_pos": [
-        "noun",
-        "verb"
       ]
     },
     {
@@ -255,24 +192,6 @@
       ]
     },
     {
-      "legacy_bucket": "vocabulary.it.dovere.gender",
-      "lemma": "dovere",
-      "reason": "multi_POS_ambiguous(noun/verb)",
-      "candidate_pos": [
-        "noun",
-        "verb"
-      ]
-    },
-    {
-      "legacy_bucket": "vocabulary.it.dovere.translation",
-      "lemma": "dovere",
-      "reason": "multi_POS_ambiguous(noun/verb)",
-      "candidate_pos": [
-        "noun",
-        "verb"
-      ]
-    },
-    {
       "legacy_bucket": "vocabulary.it.elegante.translation",
       "lemma": "elegante",
       "reason": "multi_POS_ambiguous(adjective/noun)",
@@ -291,37 +210,10 @@
       ]
     },
     {
-      "legacy_bucket": "vocabulary.it.essere.translation",
-      "lemma": "essere",
-      "reason": "multi_POS_ambiguous(noun/verb)",
-      "candidate_pos": [
-        "noun",
-        "verb"
-      ]
-    },
-    {
-      "legacy_bucket": "vocabulary.it.fare.translation",
-      "lemma": "fare",
-      "reason": "multi_POS_ambiguous(noun/verb)",
-      "candidate_pos": [
-        "noun",
-        "verb"
-      ]
-    },
-    {
       "legacy_bucket": "vocabulary.it.fermata.translation",
       "lemma": "fermata",
       "reason": "not_in_freq_lemma_list(inflected_form_or_proper_noun)",
       "candidate_pos": []
-    },
-    {
-      "legacy_bucket": "vocabulary.it.finire.translation",
-      "lemma": "finire",
-      "reason": "multi_POS_ambiguous(noun/verb)",
-      "candidate_pos": [
-        "noun",
-        "verb"
-      ]
     },
     {
       "legacy_bucket": "vocabulary.it.forte.translation",
@@ -440,15 +332,6 @@
       "candidate_pos": []
     },
     {
-      "legacy_bucket": "vocabulary.it.mare.translation",
-      "lemma": "mare",
-      "reason": "multi_POS_ambiguous(noun/verb)",
-      "candidate_pos": [
-        "noun",
-        "verb"
-      ]
-    },
-    {
       "legacy_bucket": "vocabulary.it.migliore.translation",
       "lemma": "migliore",
       "reason": "not_in_freq_lemma_list(inflected_form_or_proper_noun)",
@@ -535,33 +418,6 @@
       ]
     },
     {
-      "legacy_bucket": "vocabulary.it.piacere.gender",
-      "lemma": "piacere",
-      "reason": "multi_POS_ambiguous(noun/verb)",
-      "candidate_pos": [
-        "noun",
-        "verb"
-      ]
-    },
-    {
-      "legacy_bucket": "vocabulary.it.piacere.translation",
-      "lemma": "piacere",
-      "reason": "multi_POS_ambiguous(noun/verb)",
-      "candidate_pos": [
-        "noun",
-        "verb"
-      ]
-    },
-    {
-      "legacy_bucket": "vocabulary.it.potere.translation",
-      "lemma": "potere",
-      "reason": "multi_POS_ambiguous(noun/verb)",
-      "candidate_pos": [
-        "noun",
-        "verb"
-      ]
-    },
-    {
       "legacy_bucket": "vocabulary.it.raro.translation",
       "lemma": "raro",
       "reason": "multi_POS_ambiguous(adjective/adverb/noun)",
@@ -569,16 +425,6 @@
         "adjective",
         "adverb",
         "noun"
-      ]
-    },
-    {
-      "legacy_bucket": "vocabulary.it.regolare.translation",
-      "lemma": "regolare",
-      "reason": "multi_POS_ambiguous(adjective/noun/verb)",
-      "candidate_pos": [
-        "adjective",
-        "noun",
-        "verb"
       ]
     },
     {
@@ -603,24 +449,6 @@
       "candidate_pos": [
         "adjective",
         "noun"
-      ]
-    },
-    {
-      "legacy_bucket": "vocabulary.it.sapere.translation",
-      "lemma": "sapere",
-      "reason": "multi_POS_ambiguous(noun/verb)",
-      "candidate_pos": [
-        "noun",
-        "verb"
-      ]
-    },
-    {
-      "legacy_bucket": "vocabulary.it.sedere.translation",
-      "lemma": "sedere",
-      "reason": "multi_POS_ambiguous(noun/verb)",
-      "candidate_pos": [
-        "noun",
-        "verb"
       ]
     },
     {
@@ -676,15 +504,6 @@
       "candidate_pos": []
     },
     {
-      "legacy_bucket": "vocabulary.it.vedere.translation",
-      "lemma": "vedere",
-      "reason": "multi_POS_ambiguous(noun/verb)",
-      "candidate_pos": [
-        "noun",
-        "verb"
-      ]
-    },
-    {
       "legacy_bucket": "vocabulary.it.vicino.gender",
       "lemma": "vicino",
       "reason": "multi_POS_ambiguous(adjective/adverb/noun)",
@@ -702,15 +521,6 @@
         "adjective",
         "adverb",
         "noun"
-      ]
-    },
-    {
-      "legacy_bucket": "vocabulary.it.volere.translation",
-      "lemma": "volere",
-      "reason": "multi_POS_ambiguous(noun/verb)",
-      "candidate_pos": [
-        "noun",
-        "verb"
       ]
     }
   ]
