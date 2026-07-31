@@ -1109,6 +1109,10 @@ body.strand-vocab-active #live-stats { display: none; }
 .spelling-choice .gc-label { font-weight: 600; line-height: 1.3; }
 .spelling-choice.gc-correct { outline: 2px solid #2e7d4f; background: rgba(46,125,79,0.09); }
 .spelling-choice.gc-wrong { outline: 2px solid #b03030; background: rgba(176,48,48,0.09); }
+.stress-choice.gc-correct { outline: 2px solid #2e7d4f; background: rgba(46,125,79,0.09); }
+.stress-choice.gc-wrong { outline: 2px solid #b03030; background: rgba(176,48,48,0.09); }
+.mcq-choice.correct-pick { background:#e9f6ee; border-color:#2e7d4f; color:#1b5e33; font-weight:600; }
+.mcq-choice.wrong-pick { background:#fdecec; border-color:#b03030; color:#8a2020; }
 
 /* Tick row */
 .freq-tick-row {
@@ -2006,13 +2010,14 @@ body.coverage-active #entry-screen { display: none; }
   position:absolute; top:4px; left:6px; font-size:9px; font-weight:700;
   color:var(--faint,#8a836f); opacity:.6; min-width:auto; line-height:1;
 }
-.stress-choice .gc-label { font-weight:500; letter-spacing:.03em; }
+.stress-choice .gc-label { font-weight:500; letter-spacing:.03em; color:#968e7f; }
 /* Stress marking modes: default = bold only; .stress-mark-underline adds underline;
    .stress-mark-both adds both; .stress-mark-apostrophe hides bold (text has ' prefix) */
-.stress-choice .gc-label strong { font-weight:700; text-decoration:none; }
+.stress-choice .gc-label strong { font-weight:700; text-decoration:none; color:var(--ink,#2a2a2a); }
 .stress-mark-underline .stress-choice .gc-label strong { text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:2px; font-weight:500; }
 .stress-mark-both .stress-choice .gc-label strong { font-weight:700; text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:2px; }
 .stress-mark-apostrophe .stress-choice .gc-label strong { font-weight:500; text-decoration:none; }
+.stress-choice .gc-label .stress-apo-mark { color:var(--ink,#2a2a2a); font-weight:700; }
 /* Translation line under the prompt word  QoderWork 2026-07-23 */
 .stress-translation { font-style:italic; margin-top:1px; }
 /* Apostrophe-mode stressed syllable: the ' prefix marks the stressed syllable  QoderWork 2026-07-23 */

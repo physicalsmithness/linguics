@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-23-r85";
+  const LL_BUILD = "2026-07-23-r86";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -1912,6 +1912,14 @@
       clearInFlightSuppress();
       resultHost.innerHTML = "";
       resultHost.appendChild(renderResult(result));
+      // MCQ reveal on the choices themselves (Smith: green correct, red wrong
+      // pick, not the text below). error_id self-reveals; free-text has no choices.
+      if (isMcq && Array.isArray(choiceButtons) && choiceButtons.length) {
+        choiceButtons.forEach((b, j) => {
+          if (j === q.answer_index) b.classList.add("correct-pick");
+          else if (j === selectedChoiceIdx) b.classList.add("wrong-pick");
+        });
+      }
       const tenseRow = renderCandidateTensesRow(q);
       if (tenseRow) resultHost.appendChild(tenseRow);
       if (TOUCH_FIRST) {
@@ -2106,7 +2114,7 @@
         marks_awarded: awarded,
         marks_possible: possible,
         status: correct ? "hit" : "miss",
-        summary: correct ? "Right" : ("Wrong - correct was \"" + expectedChoice + "\""),
+        summary: correct ? "Right" : "Wrong",
         explanation: q.explanation || null,
         examiner_note: q.examiner_note || null
       },
@@ -3680,12 +3688,19 @@
     card.appendChild(prompt);
 
     // Translation (looked up from the vocab database).  QoderWork 2026-07-23
-    const lemma = (sm.word || q.prompt || "").toLowerCase().trim();
-    const vEntry = vocabEntries.find(v => v && v.lemma && v.lemma.toLowerCase() === lemma);
-    if (vEntry && vEntry.translation_en) {
+    // Translation: base LEMMA first (catches inflected surface forms), then the
+    // surface word / prompt. Shows during the question and stays on the card
+    // through the answer. Smith 2026-07-23.
+    const trCands = [sm.lemma, sm.word, q.prompt].filter(Boolean).map(s => String(s).toLowerCase().trim());
+    let stressTr = "";
+    for (const cand of trCands) {
+      const ve = vocabEntries.find(v => v && v.lemma && v.lemma.toLowerCase() === cand && v.translation_en);
+      if (ve) { stressTr = ve.translation_en; break; }
+    }
+    if (stressTr) {
       const tr = document.createElement("div");
       tr.className = "meta faint stress-translation";
-      tr.textContent = vEntry.translation_en;
+      tr.textContent = stressTr;
       card.appendChild(tr);
     }
 
