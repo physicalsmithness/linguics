@@ -1113,6 +1113,14 @@ body.strand-vocab-active #live-stats { display: none; }
 .stress-choice.gc-wrong { outline: 2px solid #b03030; background: rgba(176,48,48,0.09); }
 .mcq-choice.correct-pick { background:#e9f6ee; border-color:#2e7d4f; color:#1b5e33; font-weight:600; }
 .mcq-choice.wrong-pick { background:#fdecec; border-color:#b03030; color:#8a2020; }
+/* Keep the post-mark reveal colour on hover (don't let :hover repaint it). */
+.mcq-choice.correct-pick:hover { background:#e9f6ee; border-color:#2e7d4f; box-shadow:none; }
+.mcq-choice.wrong-pick:hover { background:#fdecec; border-color:#b03030; box-shadow:none; }
+.mcq-choice.gc-correct:hover, .stress-choice.gc-correct:hover, .mcq-choice.ms-correct:hover { background:rgba(46,125,79,0.12); border-color:#2e7d4f; box-shadow:none; }
+.mcq-choice.gc-wrong:hover, .stress-choice.gc-wrong:hover, .mcq-choice.ms-wrong:hover { background:rgba(176,48,48,0.12); border-color:#b03030; box-shadow:none; }
+.mcq-choice.ms-missed:hover { background:rgba(200,118,24,0.1); border-color:#c87618; box-shadow:none; }
+.drill-session-keep { display:block; font-size:12px; color:var(--muted,#777); margin:2px 0 6px; cursor:pointer; user-select:none; }
+.drill-session-keep input { margin-right:5px; }
 
 /* Tick row */
 .freq-tick-row {

@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-23-r87";
+  const LL_BUILD = "2026-07-23-r89";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -3076,11 +3076,23 @@
   // ---- Drill session panel: live breakdown in #vocab-axes-host (Smith 2026-07-23)  QoderWork 2026-07-23 ----
   // Raw counts + continuous olive shade; no thresholds, no judgments.
   let drillSession = { type: "", attempted: 0, correct: 0, byCat: {}, stressMatrix: null };
+  // Drill stats persistence (Smith 2026-07-23: option not to reset each session).
+  // When ON, each drill type keeps a running total across rebuilds + reloads.
+  function loadDrillKeep() { try { return localStorage.getItem("linguics_drill_keep") === "1"; } catch (e) { return false; } }
+  let drillStatsKeep = loadDrillKeep();
+  function loadDrillSessions() { try { return JSON.parse(localStorage.getItem("linguics_drill_sessions") || "{}") || {}; } catch (e) { return {}; } }
+  function saveDrillSessions(m) { try { localStorage.setItem("linguics_drill_sessions", JSON.stringify(m)); } catch (e) {} }
+  function newStressMatrix() { return [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]; }
+  function newDrillSession(type) { return { type: type, attempted: 0, correct: 0, byCat: {}, stressMatrix: type === "stress" ? newStressMatrix() : null }; }
 
   function resetDrillSession(type) {
-    drillSession = { type: type, attempted: 0, correct: 0, byCat: {}, stressMatrix: null };
-    if (type === "stress") {
-      drillSession.stressMatrix = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+    if (drillStatsKeep) {
+      const stored = loadDrillSessions()[type];
+      drillSession = (stored && stored.type === type) ? stored : newDrillSession(type);
+      if (type === "stress" && !drillSession.stressMatrix) drillSession.stressMatrix = newStressMatrix();
+      if (!drillSession.byCat) drillSession.byCat = {};
+    } else {
+      drillSession = newDrillSession(type);
     }
   }
   function recordDrillAttempt(catId, catLabel, isCorrect, stressInfo) {
@@ -3094,6 +3106,7 @@
       const ap = Math.min(Math.max(stressInfo.answered_pos, 1), 4) - 1;
       drillSession.stressMatrix[tp][ap]++;
     }
+    if (drillStatsKeep) { const m = loadDrillSessions(); m[drillSession.type] = drillSession; saveDrillSessions(m); }
   }
   function renderDrillSessionPanel() {
     const host = document.getElementById("vocab-axes-host");
@@ -3106,8 +3119,21 @@
     const titles = { spelling: "Spelling drill", accent: "Accent drill", stress: "Stress drill", gender: "Gender drill" };
     const h = document.createElement("h3");
     h.className = "drill-session-title";
-    h.textContent = (titles[ds.type] || ds.type) + " \u00b7 this session";
+    h.textContent = (titles[ds.type] || ds.type) + (drillStatsKeep ? " \u00b7 running total" : " \u00b7 this session");
     wrap.appendChild(h);
+    const keepLbl = document.createElement("label");
+    keepLbl.className = "drill-session-keep";
+    const keepCb = document.createElement("input");
+    keepCb.type = "checkbox"; keepCb.checked = drillStatsKeep;
+    keepCb.addEventListener("change", () => {
+      drillStatsKeep = keepCb.checked;
+      try { localStorage.setItem("linguics_drill_keep", drillStatsKeep ? "1" : "0"); } catch (e) {}
+      if (drillStatsKeep) { const m = loadDrillSessions(); m[drillSession.type] = drillSession; saveDrillSessions(m); }
+      renderDrillSessionPanel();
+    });
+    keepLbl.appendChild(keepCb);
+    keepLbl.appendChild(document.createTextNode(" keep a running total"));
+    wrap.appendChild(keepLbl);
     const overall = document.createElement("div");
     overall.className = "drill-session-overall";
     overall.textContent = ds.attempted + " attempted \u00b7 " + ds.correct + " correct";
@@ -3149,7 +3175,7 @@
     const wrap = document.createElement("div");
     wrap.className = "drill-session-matrix";
     const h4 = document.createElement("h4");
-    h4.textContent = "Confusion (this session)";
+    h4.textContent = drillStatsKeep ? "Confusion (running total)" : "Confusion (this session)";
     wrap.appendChild(h4);
     const table = document.createElement("table");
     table.className = "stress-confusion";
@@ -3171,7 +3197,10 @@
         const v = matrix[r][c];
         td.textContent = v || "";
         if (r === c) td.classList.add("stress-confusion-diag");
-        if (v && gmax) td.style.background = "rgba(61,74,28," + (Math.round(100 * v / gmax) / 100).toFixed(2) + ")";
+        if (v && gmax) {
+          const a = (Math.round(100 * v / gmax) / 100).toFixed(2);
+          td.style.background = (r === c) ? "rgba(46,125,79," + a + ")" : "rgba(176,48,48," + a + ")";
+        }
         tr.appendChild(td);
       }
       table.appendChild(tr);
@@ -3239,7 +3268,7 @@
         b.disabled = true;
       });
       resultHost.innerHTML = "";
-      resultHost.appendChild(renderResult(result));
+      resultHost.appendChild(renderResult(result, { hideScore: true }));
       // Declension reveal: article + noun + translation, plural + translation
       const g = String(entry.gender || "m");
       const arts = gdArticles(entry.lemma, g);
@@ -3384,7 +3413,7 @@
         b.disabled = true;
       });
       resultHost.innerHTML = "";
-      resultHost.appendChild(renderResult(result));
+      resultHost.appendChild(renderResult(result, { hideScore: true }));
       // Show explanation if present
       if (q.explanation) {
         const expl = document.createElement("div");
@@ -3491,6 +3520,27 @@
     prompt.className = "prompt";
     prompt.textContent = q.prompt || "Which is spelled correctly?";
     card.appendChild(prompt);
+    // Translation of the word tested (the correct choice); same for every accent
+    // variant, so it doesn't reveal the answer. Smith 2026-07-23.
+    (function () {
+      const w = ((q.choices && q.choices[q.answer_index]) || "").toLowerCase().trim();
+      if (w) {
+        const fold = (typeof LL.foldAccents === "function") ? LL.foldAccents : function (s) { return s; };
+        const wf = fold(w);
+        let acc = "";
+        for (const ve of vocabEntries) {
+          if (!ve || !ve.lemma || !ve.translation_en) continue;
+          const lem = ve.lemma.toLowerCase();
+          if (lem === w || fold(lem) === wf) { acc = ve.translation_en; break; }
+        }
+        if (acc) {
+          const tr = document.createElement("div");
+          tr.className = "meta faint stress-translation";
+          tr.textContent = acc;
+          card.appendChild(tr);
+        }
+      }
+    })();
 
     // Choices
     const choicesWrap = document.createElement("div");
@@ -3529,7 +3579,7 @@
         b.disabled = true;
       });
       resultHost.innerHTML = "";
-      resultHost.appendChild(renderResult(result));
+      resultHost.appendChild(renderResult(result, { hideScore: true }));
       // Show explanation if present
       if (q.explanation) {
         const expl = document.createElement("div");
@@ -3793,7 +3843,7 @@
         b.disabled = true;
       });
       resultHost.innerHTML = "";
-      resultHost.appendChild(renderResult(result, { youWroteLabel: "You tapped:" }));   // QoderWork 2026-07-23
+      resultHost.appendChild(renderResult(result, { youWroteLabel: "You tapped:", hideScore: true }));   // QoderWork 2026-07-23
       // CODEX 2026-07-23: renderResult already places q.explanation beneath
       // "Why:".  The former block repeated that sentence and then appended a
       // generic class hint, which could not explain the particular word.
@@ -6297,7 +6347,7 @@
     } else {
       score.textContent = `${fmtMark(result.overall.marks_awarded)} / ${fmtMark(result.overall.marks_possible)}`;
     }
-    overall.appendChild(score);
+    if (!(opts && opts.hideScore)) overall.appendChild(score);
     const summary = document.createElement("span");
     summary.textContent = result.overall.summary || "";
     overall.appendChild(summary);
@@ -9168,7 +9218,7 @@
           if (c > 0) {
             // Single global-max scale: darkest cell = most frequent cell overall.
             const alpha = 0.65 * (c / globalMax);
-            td.style.background = "rgba(61,74,28," + alpha.toFixed(2) + ")";
+            td.style.background = (t === p) ? "rgba(46,125,79," + alpha.toFixed(2) + ")" : "rgba(176,48,48," + alpha.toFixed(2) + ")";
             const pct = rowTotal > 0 ? Math.round(100 * c / rowTotal) : 0;
             const strong = document.createElement("strong"); strong.textContent = String(c);
             const sub = document.createElement("span"); sub.className = "stress-confusion-pct"; sub.textContent = " " + pct + "%";
