@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-23-r86";
+  const LL_BUILD = "2026-07-23-r87";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -3652,6 +3652,23 @@
     resetDrillSession("stress");   // QoderWork 2026-07-23
   }
 
+  // Reformat an authored stress context like "present 3pl of essere" into the
+  // natural example phrase "as in 'loro sono'" (Smith 2026-07-23: nicer than the
+  // terse descriptor). The base-verb meaning already shows on the translation
+  // line; a conjugated gloss ("they are") would need conjugation data the items
+  // don't carry - flagged to the stress pipeline.
+  function niceStressContext(sm) {
+    const ctx = (sm && sm.context) || "";
+    if (!ctx) return "";
+    const m = /^\s*\w+\s+(\d(?:sg|pl))\s+of\s+.+$/i.exec(ctx);
+    if (m) {
+      const pron = PERSON_LABELS[m[1].toLowerCase()] || "";
+      const word = (sm.word || "").trim();
+      if (pron && word) return "as in ‘" + pron + " " + word + "’";
+    }
+    return ctx;
+  }
+
   function renderStressDrillCard(keepAxes) {
     const host = document.getElementById("vocab-host");
     if (!host) return;
@@ -3681,11 +3698,19 @@
 
     // Prompt: a bare word or contextualized homograph reading, accent-stripped
     // so a written accent doesn't give away tronca. CODEX 2026-07-23
-    const promptWord = stripWrittenAccent(q.prompt || sm.word || "");
+    const promptWord = stripWrittenAccent(sm.word || String(q.prompt || "").split(/\s+[-—]\s+/)[0] || "");
     const prompt = document.createElement("div");
     prompt.className = "prompt";
     prompt.textContent = promptWord;
     card.appendChild(prompt);
+    // Disambiguating context as a natural example phrase, not "present 3pl of X".
+    const niceCtx = niceStressContext(sm);
+    if (niceCtx) {
+      const cx = document.createElement("div");
+      cx.className = "meta faint stress-context";
+      cx.textContent = niceCtx;
+      card.appendChild(cx);
+    }
 
     // Translation (looked up from the vocab database).  QoderWork 2026-07-23
     // Translation: base LEMMA first (catches inflected surface forms), then the
