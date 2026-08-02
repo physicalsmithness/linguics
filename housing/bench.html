@@ -93,6 +93,21 @@
   .err { color: var(--red); font-size: 14px; margin-top: 8px; }
   .sizebar { height: 5px; background: var(--rule); border-radius: 3px; margin-top: 5px; overflow: hidden; }
   .sizebar i { display: block; height: 100%; background: var(--navy); }
+  .agg { width: 100%; border-collapse: collapse; font-size: 14px; margin: 0 0 14px; }
+  .agg th, .agg td { text-align: center; vertical-align: middle; padding: 6px 9px; border: 1px solid var(--rule); color: var(--ink); }
+  .agg th { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); font-weight: 600; }
+  .agg td.mode { text-align: left; font-weight: 600; color: var(--navy); }
+  .overall { margin: 8px 0 4px; }
+  .overall .marks { font-size: 14px; font-weight: 600; }
+  .overall .summ { font-size: 15px; margin-top: 2px; }
+  .overall .expl { font-size: 14px; margin-top: 6px; color: #444; }
+  .notes { font-size: 13px; margin-top: 8px; }
+  .notes b { color: var(--muted); font-weight: 600; }
+  details.raw { margin-top: 8px; }
+  details.raw summary { font-size: 12px; color: var(--muted); cursor: pointer; }
+  details.raw pre { font-size: 11.5px; background: #faf7f0; border: 1px solid var(--rule);
+    border-radius: 4px; padding: 8px; overflow-x: auto; max-height: 260px; }
+  .runs { display: inline-block; width: 70px; }
   code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12.5px; }
 </style>
 </head>
@@ -130,7 +145,9 @@
   <label for="ans">Your answer (kept between reloads, so the same run repeats exactly)</label>
   <textarea id="ans" placeholder="non ho nadie amiche in questa città"></textarea>
   <div>
-    <button id="run" disabled>Mark once</button>
+    <label for="reps" style="display:inline; margin-right:6px">runs each</label>
+    <input type="text" id="reps" class="runs" value="1">
+    <button id="run" disabled>Mark</button>
     <button id="runAll" class="ghost" disabled>Run every menu mode</button>
     <button id="clear" class="ghost">Clear log</button>
   </div>
@@ -273,7 +290,8 @@
     try { return JSON.parse(localStorage.getItem(LOG_KEY) || "[]"); } catch (e) { return []; }
   }
   function writeLog(l) {
-    try { localStorage.setItem(LOG_KEY, JSON.stringify(l.slice(0, 40))); } catch (e) {}
+    try { localStorage.setItem(LOG_KEY, JSON.stringify(l.slice(0, 24))); }
+    catch (e) { try { localStorage.setItem(LOG_KEY, JSON.stringify(l.slice(0, 8))); } catch (e2) {} }
   }
 
   async function runOnce(mode) {
@@ -289,8 +307,13 @@
     });
     const r = payload.result || {};
     const mps = (r.markpoints || []).filter(m => !m.suppress_display);
-    const credit = mps.reduce((a, m) => a + (typeof m.credit === "number" ? m.credit
-      : (m.verdict === "hit" || m.outcome === "hit" ? 1 : 0)), 0);
+    // The worker's schema is overall.{marks_awarded,summary,explanation} +
+    // markpoints[].{label,outcome,attempted_credit,correctness_credit,expected}
+    // + notes[]. The first bench render only looked for verdict_text/credit,
+    // which do not exist - so all the prose was silently dropped.
+    const credit = mps.reduce((a, m) => a + (typeof m.correctness_credit === "number"
+      ? m.correctness_credit : (m.outcome === "hit" ? 1 : 0)), 0);
+    const ov = r.overall || {};
     return {
       when: new Date().toISOString(),
       mode: mode,
@@ -305,12 +328,22 @@
       ms: Date.now() - t0,
       hits: +credit.toFixed(2),
       n: mps.length,
-      verdict: r.verdict_text || r.feedback || r.why || "",
+      marks: (typeof ov.marks_awarded === "number") ? ov.marks_awarded : null,
+      marksPoss: (typeof ov.marks_possible === "number") ? ov.marks_possible : null,
+      summary: ov.summary || "",
+      explanation: ov.explanation || "",
+      notes: Array.isArray(r.notes) ? r.notes : [],
+      vocab: mps.filter(m => String(m.bucket || "").indexOf("vocabulary.") === 0).length,
       mps: mps.map(m => ({
         b: m.bucket || m.bucket_id || "?",
-        v: m.verdict || m.outcome || "?",
+        lab: m.label || "",
+        v: m.outcome || m.verdict || "?",
         e: m.evidence || "",
+        exp: m.expected || "",
+        ac: m.attempted_credit,
+        cc: m.correctness_credit,
       })),
+      raw: r,
     };
   }
 
@@ -319,15 +352,79 @@
     $("run").disabled = $("runAll").disabled = true;
     const log = readLog();
     try {
-      for (const m of modes) {
-        const rec = await runOnce(m);
-        if (rec) { log.unshift(rec); writeLog(log); render(); }
+      let reps = parseInt($("reps").value, 10);
+      if (!(reps > 0)) reps = 1;
+      if (reps > 8) reps = 8;
+      for (let i = 0; i < reps; i++) {
+        for (const m of modes) {
+          const rec = await runOnce(m);
+          if (rec) { log.unshift(rec); writeLog(log); render(); }
+        }
       }
     } catch (e) {
       $("err").textContent = (e && e.message) ? e.message : String(e);
     }
     $("run").disabled = $("runAll").disabled = false;
     render();
+  }
+
+  /* House-style shading: smooth two-tone, WHITE anchored at true zero (never at
+     the lowest visible value), black text throughout, darkness capped so the
+     deepest cell stays readable. Each CLASS of quantity gets its own hue -
+     breadth is not the same kind of number as cost, so they never share a scale. */
+  const HUES = {
+    breadth: [58, 79, 138],   // navy - markpoints returned
+    credit:  [46, 125, 79],   // green - credit earned
+    cost:    [166, 124, 42],  // amber - tokens and money, one class
+    time:    [122, 114, 104], // grey - latency
+  };
+  function shade(v, max, hue) {
+    if (!(max > 0) || !(v > 0)) return "#ffffff";
+    const t = Math.min(1, v / max) * 0.78;   // cap: never darker than 78%
+    const [r, g, b] = HUES[hue];
+    const mix = c => Math.round(255 + (c - 255) * t);
+    return "rgb(" + mix(r) + "," + mix(g) + "," + mix(b) + ")";
+  }
+
+  function renderAggregate(log) {
+    const byMode = new Map();
+    for (const r of log) {
+      if (!byMode.has(r.mode)) byMode.set(r.mode, []);
+      byMode.get(r.mode).push(r);
+    }
+    if (byMode.size < 2 && !Array.from(byMode.values()).some(a => a.length > 1)) return "";
+    const order = (LL.MARKER_MENU_MODES || []).map(m => m.id).filter(id => byMode.has(id));
+    const mean = (a, f) => a.reduce((s, x) => s + (f(x) || 0), 0) / a.length;
+    const rows = order.map(id => {
+      const a = byMode.get(id);
+      return {
+        mode: id, n: a.length,
+        mps: mean(a, r => r.n), hits: mean(a, r => r.hits), vocab: mean(a, r => r.vocab),
+        tok: mean(a, r => r.inTok), cost: mean(a, r => r.cost), sec: mean(a, r => r.ms / 1000),
+        spread: a.length > 1 ? (Math.max.apply(null, a.map(r => r.n)) - Math.min.apply(null, a.map(r => r.n))) : null,
+      };
+    });
+    const mx = k => Math.max.apply(null, rows.map(r => r[k] || 0));
+    const M = { mps: mx("mps"), hits: mx("hits"), vocab: mx("vocab"), tok: mx("tok"), cost: mx("cost"), sec: mx("sec"), spread: mx("spread") };
+    const cell = (v, k, hue, dp) =>
+      '<td style="background:' + shade(v, M[k], hue) + '">' +
+      (v == null ? "—" : (dp === 0 ? Math.round(v) : v.toFixed(dp))) + '</td>';
+    return '<div class="panel"><h2>Across runs — same item, same answer</h2><table class="agg">' +
+      '<tr><th>Menu mode</th><th>runs</th><th>skills<br>returned</th><th>credit<br>earned</th>' +
+      '<th>vocab<br>markpoints</th><th>spread<br>(max−min)</th><th>input<br>tokens</th>' +
+      '<th>cost<br>US$</th><th>seconds</th></tr>' +
+      rows.map(r =>
+        '<tr><td class="mode">' + esc(r.mode) + '</td><td>' + r.n + '</td>' +
+        cell(r.mps, "mps", "breadth", 1) + cell(r.hits, "hits", "credit", 1) +
+        cell(r.vocab, "vocab", "credit", 1) + cell(r.spread, "spread", "breadth", 0) +
+        cell(r.tok, "tok", "cost", 0) +
+        '<td style="background:' + shade(r.cost, M.cost, "cost") + '">' +
+        (r.cost == null ? "—" : "$" + r.cost.toFixed(4)) + '</td>' +
+        cell(r.sec, "sec", "time", 1) + '</tr>').join("") +
+      '</table><div class="note">Shaded two-tone, white at zero, one hue per class of quantity ' +
+      '(navy = breadth, green = credit, amber = cost, grey = latency). ' +
+      '<b>Spread</b> is how far the skill count moved across identical runs of the same mode — ' +
+      'if that is close to the gap between modes, the modes are not distinguishable yet: run more.</div></div>';
   }
 
   function vclass(v) {
@@ -339,7 +436,7 @@
 
   function render() {
     const log = readLog();
-    $("log").innerHTML = log.map(r =>
+    $("log").innerHTML = renderAggregate(log) + log.map(r =>
       '<div class="run"><div class="head">' +
         '<div><span class="mode">' + esc(r.mode) + '</span> · <code>' + esc(r.item) + '</code>' +
           ' · ' + esc(r.model) + '</div>' +
@@ -350,13 +447,27 @@
         (r.outTok ? ' / ' + r.outTok.toLocaleString() + ' out tokens' : '') +
         (r.cost != null ? ' · $' + r.cost.toFixed(4) : '') +
         ' · ' + (r.ms / 1000).toFixed(1) + 's</div>' +
-      (r.verdict ? '<div class="verdict">' + esc(r.verdict) + '</div>' : '') +
+      (r.summary || r.explanation || r.marks != null
+        ? '<div class="overall">' +
+            (r.marks != null ? '<div class="marks">' + r.marks + ' / ' + (r.marksPoss != null ? r.marksPoss : 1) + ' overall</div>' : '') +
+            (r.summary ? '<div class="summ">' + esc(r.summary) + '</div>' : '') +
+            (r.explanation ? '<div class="expl">' + esc(r.explanation) + '</div>' : '') +
+          '</div>'
+        : '') +
       (r.mps.length
-        ? '<table><tr><th>Bucket</th><th>Verdict</th><th>Evidence</th></tr>' +
-          r.mps.map(m => '<tr><td><code>' + esc(m.b) + '</code></td>' +
-            '<td class="v ' + vclass(m.v) + '">' + esc(m.v) + '</td>' +
-            '<td>' + esc(m.e) + '</td></tr>').join("") + '</table>'
+        ? '<table><tr><th>Skill</th><th>Outcome</th><th>Evidence</th><th>Expected</th></tr>' +
+          r.mps.map(m => '<tr><td>' + (m.lab ? esc(m.lab) + '<br>' : '') +
+              '<code>' + esc(m.b) + '</code></td>' +
+            '<td class="v ' + vclass(m.v) + '">' + esc(m.v) +
+              (typeof m.cc === "number" && m.cc !== 0 && m.cc !== 1 ? ' ' + m.cc : '') + '</td>' +
+            '<td>' + esc(m.e) + '</td><td>' + esc(m.exp) + '</td></tr>').join("") + '</table>'
         : '<div class="note">no markpoints returned</div>') +
+      (r.notes && r.notes.length
+        ? '<div class="notes">' + r.notes.map(n =>
+            '<div><b>' + esc(n.kind || "note") + ':</b> ' + esc(n.text || "") + '</div>').join("") + '</div>'
+        : '') +
+      '<details class="raw"><summary>raw marker response</summary><pre>' +
+        esc(JSON.stringify(r.raw, null, 2)) + '</pre></details>' +
       '<div class="note">answer: “' + esc(r.answer) + '” · ' + esc(r.when.slice(0, 16).replace("T", " ")) + '</div>' +
       '</div>').join("");
   }
