@@ -111,6 +111,19 @@
   LL.AVAILABLE_MODELS = [
     { id: "",                                 label: "Default (DeepSeek V3)" },
     { id: "deepseek/deepseek-chat",           label: "DeepSeek V3 (~$0.001/call)" },
+    // Current generation, added 2026-08-02. Latency here is driven by OUTPUT
+    // tokens, not the menu size, so output price and output speed matter more
+    // than input price for this grader. Must also exist in the Worker's
+    // MODEL_PRICING or the call is rejected 400 model_unsupported.
+    { id: "google/gemini-3.1-flash-lite",     label: "Gemini 3.1 Flash Lite ($0.25/$1.50 per M)" },
+    { id: "minimax/minimax-m3",               label: "MiniMax M3 ($0.30/$1.20)" },
+    { id: "qwen/qwen3.7-plus",                label: "Qwen 3.7 Plus ($0.32/$1.28)" },
+    { id: "z-ai/glm-5.2",                     label: "GLM 5.2 ($0.42/$1.32)" },
+    { id: "tencent/hy3",                      label: "Tencent HY3 ($0.14/$0.58)" },
+    { id: "x-ai/grok-4.3",                    label: "Grok 4.3 ($1.25/$2.50 — cheap output)" },
+    { id: "~anthropic/claude-haiku-latest",   label: "Claude Haiku (latest alias) ($1.00/$5.00)" },
+    { id: "openai/gpt-5.6-luna",              label: "GPT-5.6 Luna ($1.00/$6.00)" },
+    { id: "anthropic/claude-sonnet-5",        label: "Claude Sonnet 5 ($2.00/$10.00 — over cap on full menu)" },
     { id: "anthropic/claude-haiku-4.5",       label: "Claude Haiku 4.5 (~$0.004/call)" },
     { id: "anthropic/claude-sonnet-4.5",      label: "Claude Sonnet 4.5 (~$0.013/call)" },
     { id: "google/gemini-2.0-flash-001",      label: "Gemini 2.0 Flash (~$0.0005/call)" },

@@ -28,6 +28,12 @@ def nxt(cur):
     return "%s-r%d" % (today, n)
 
 def main():
+    # Never stamp a new build id onto something that does not compile.
+    import subprocess
+    if "--skip-preflight" not in sys.argv:
+        pf = ROOT / "tools/preflight.py"
+        if pf.exists() and subprocess.run([sys.executable, str(pf)]).returncode != 0:
+            sys.exit("\nBuild NOT bumped - fix preflight first (or pass --skip-preflight).")
     cur = current()
     new = sys.argv[1] if len(sys.argv) > 1 else nxt(cur)
     s = APP.read_text(encoding="utf-8")

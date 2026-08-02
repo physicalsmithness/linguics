@@ -77,6 +77,19 @@ interface MarkerResult {
 /* rates for input and output (USD).                                          */
 /* ------------------------------------------------------------------------- */
 const MODEL_PRICING: Record<string, [number, number]> = {
+  // --- current generation, added 2026-08-02 from OpenRouter's live model list.
+  // The nine ids below the divider are all at least a generation behind; kept
+  // so old bench runs stay reproducible. [input, output] USD per 1M tokens.
+  "tencent/hy3":                     [0.14, 0.58],
+  "google/gemini-3.1-flash-lite":    [0.25, 1.50],
+  "minimax/minimax-m3":              [0.30, 1.20],
+  "qwen/qwen3.7-plus":               [0.32, 1.28],
+  "z-ai/glm-5.2":                    [0.42, 1.32],
+  "openai/gpt-5.6-luna":             [1.00, 6.00],
+  "~anthropic/claude-haiku-latest":  [1.00, 5.00],
+  "x-ai/grok-4.3":                   [1.25, 2.50],
+  "anthropic/claude-sonnet-5":       [2.00, 10.00],
+  // --- legacy ---
   "deepseek/deepseek-chat":          [0.27, 1.10],
   "deepseek/deepseek-chat-v3":       [0.27, 1.10],
   "anthropic/claude-haiku-4.5":      [0.80, 4.00],
@@ -190,7 +203,7 @@ VOCABULARY vs GRAMMAR (critical distinction)
 
 12. A learner who writes a completely different word (e.g. "maglia" when the answer is "maglione", or "di legno" when the answer is "di lana") has made a VOCABULARY error — they didn't know the right word. This is NOT a gender error, NOT an agreement error, NOT a conjugation error. Only fire a gender/agreement bucket when the learner uses the RIGHT word but with the wrong grammatical marking (e.g. "il maglione" instead of "la maglione" — right noun, wrong article gender). Wrong word = vocabulary bucket. Right word, wrong form = grammar bucket. Never conflate the two.
 
-13. KNOWN COMMON ERRORS: the item may carry `common_errors` — a list of {text, note} known WRONG variants the author has catalogued (deliberate anti-anchors, often only a hair from correct). If the learner's answer matches or closely resembles one, do NOT accept it: fire the relevant skill as a miss and name the error using the note. Never treat a common_error as a correct rendering, however close it looks to a reference.
+13. KNOWN COMMON ERRORS: the item may carry \`common_errors\` — a list of {text, note} known WRONG variants the author has catalogued (deliberate anti-anchors, often only a hair from correct). If the learner's answer matches or closely resembles one, do NOT accept it: fire the relevant skill as a miss and name the error using the note. Never treat a common_error as a correct rendering, however close it looks to a reference.
 
 14. CLITIC PLACEMENT vs FORM are SEPARATE skills — never fail both for one slip. If a clitic pronoun is in the CORRECT position but the wrong FORM (e.g. "me vede" — the clitic is correctly pre-verb, but "me" should be "mi"), fire a HIT on the placement/position bucket and a MISS only on the form bucket. One wrong-form-but-correctly-placed clitic = exactly ONE miss (the form). A correct clitic in the wrong position fails placement, not form. Do not collapse a single error into two misses.
 
@@ -198,7 +211,7 @@ VOCABULARY vs GRAMMAR (critical distinction)
 
 CANDIDATE BUCKETS
 
-The bucket_context object lists ALL buckets you may fire as regular hits/misses (with bucket_proposed: false or omitted). The list has already been filtered to the buckets relevant to this item's direction. You MUST NOT fire a bucket that isn't in bucket_context as a regular hit, with EXACTLY ONE sanctioned exception: the `vocabulary.` namespace on en_it items, described under VOCABULARY PRODUCTION below. That namespace is dynamic - its buckets aggregate on arrival and are never pre-registered - so vocabulary ids are legitimate even when absent from bucket_context. Every GRAMMAR bucket still has to be in bucket_context. Specifically: on it_en items, do NOT fire grammar production buckets like adverb_placement, auxiliary choice, participle agreement, pronoun position, or adjective agreement — these have been filtered out because the learner isn't producing Italian.
+The bucket_context object lists ALL buckets you may fire as regular hits/misses (with bucket_proposed: false or omitted). The list has already been filtered to the buckets relevant to this item's direction. You MUST NOT fire a bucket that isn't in bucket_context as a regular hit, with EXACTLY ONE sanctioned exception: the \`vocabulary.\` namespace on en_it items, described under VOCABULARY PRODUCTION below. That namespace is dynamic - its buckets aggregate on arrival and are never pre-registered - so vocabulary ids are legitimate even when absent from bucket_context. Every GRAMMAR bucket still has to be in bucket_context. Specifically: on it_en items, do NOT fire grammar production buckets like adverb_placement, auxiliary choice, participle agreement, pronoun position, or adjective agreement — these have been filtered out because the learner isn't producing Italian.
 
 BREADTH (cross-topic marking, task 41): a translation evidences MANY skills at once (article, preposition, agreement, tense, adverb, vocabulary). Beyond the mandatory required_buckets, actively tag EVERY grammar element you detect in the answer that matches a bucket_context entry - fire it hit/miss/partial with a short evidence span - so the learner accumulates cross-topic signal. required_buckets are the FLOOR, not the ceiling. Still never fire a bucket that isn't in bucket_context. This breadth is REQUIRED, not optional: a mostly-correct answer MUST come back mostly HITS. Returning only the failed buckets makes the learner see 0/N with no credit for what they got right — a marking failure, not leniency. Every correct article, preposition, verb form, agreement, adverb and vocabulary word that matches a bucket_context entry gets its OWN hit markpoint, alongside the one or two genuine misses. WORKED EXAMPLE (breadth is mandatory): source "I have no friends here in this city", learner "non ho nadie amiche in questa città". Two words are wrong — "nadie" (should be nessun/amici) and "amiche" (should be amico) — but the learner got the whole FRAME right, so you MUST fire HITS on the negation "non ho", the demonstrative "questa", the noun "città" and the preposition "in", giving ~4 hits + 2 misses, mostly green. Returning ONLY the misses plus the one required hit (1 of 3) is a MARKING FAILURE — it discards everything the learner got right and reads as if they know almost nothing.
 
@@ -206,7 +219,7 @@ VOCABULARY PRODUCTION (en_it)
 
 On en_it items the learner PRODUCES the Italian content words. Their vocabulary buckets are NOT injected into bucket_context (the cross-topic menu deliberately excludes the vocabulary namespace), so before this rule existed the vocab strand earned NOTHING on exactly the direction where the learner is producing Italian. Fire them anyway - this is the sanctioned exception named under CANDIDATE BUCKETS.
 
-- Fire `vocabulary.it.<lemma>.translation` as a HIT for every CONTENT word the learner produced correctly: nouns, verbs, adjectives, adverbs, and lexical locatives (dentro, qui, sopra).
+- Fire \`vocabulary.it.<lemma>.translation\` as a HIT for every CONTENT word the learner produced correctly: nouns, verbs, adjectives, adverbs, and lexical locatives (dentro, qui, sopra).
 - Fire it as a MISS when they reached for the wrong word for the meaning (a wrong lexical CHOICE, not a wrong inflection - a correctly chosen word in the wrong form is a GRAMMAR miss, and its vocabulary bucket is still a HIT: they knew the word, they mis-formed it).
 - <lemma> is the DICTIONARY form, never the inflected form on the page: infinitive for verbs (esco -> uscire), masculine singular for nouns and adjectives (amici -> amico, bella -> bello). Lower case, no accents stripped.
 - FUNCTION words stay grammar-only. Articles, prepositions, conjunctions, pronouns and purely grammatical particles get NO vocabulary bucket - their skill is the grammar bucket that already covers them.
