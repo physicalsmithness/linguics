@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Linguics — marker bench</title>
+<!--
+  MARKER BENCH (Housing, r91, 2026-08-02)
+
+  Purpose: re-run THE SAME translation item with THE SAME answer, repeatably,
+  while changing one variable at a time. Built because the crosstopic-marking
+  question ("why are the greens missing?") cannot be settled by argument -
+  Architecture and two Housing chats each read it differently - and Smith had
+  no way to find the same question again and resend the same answer.
+
+  Everything here is client-side. It POSTs to the same worker the live site
+  uses (same localStorage key), so it needs a git push and NO wrangler deploy.
+
+  The one variable it was built to test: MENU MODE. See
+  inter_chat/Architecture_Housing_translation_crosstopic_marking.md v5 (breadth
+  WORKED at 136 aggregates) vs v9 (widened to 581 real ids + descriptions =
+  ~48k tokens per mark) vs today (breadth absent).
+-->
+<style>
+  :root {
+    --cream: #fdfaf4;
+    --ink: #2b2b2b;
+    --navy: #3a4f8a;
+    --rule: #e2dbcc;
+    --green: #2e7d4f;
+    --amber: #b8860b;
+    --red: #a33a3a;
+    --muted: #7a7268;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 24px;
+    background: var(--cream); color: var(--ink);
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    font-size: 16px; line-height: 1.5;
+  }
+  h1 { font-size: 24px; margin: 0 0 4px; color: var(--navy); font-weight: 600; }
+  .sub { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
+  .panel {
+    background: #fff; border: 1px solid var(--rule); border-radius: 6px;
+    padding: 16px; margin-bottom: 16px;
+  }
+  .panel h2 {
+    font-size: 13px; text-transform: uppercase; letter-spacing: .08em;
+    color: var(--muted); margin: 0 0 12px; font-weight: 600;
+  }
+  label { display: block; font-size: 13px; color: var(--muted); margin: 10px 0 3px; }
+  input[type=text], textarea, select {
+    width: 100%; padding: 8px 10px; font-size: 16px;
+    font-family: inherit; border: 1px solid var(--rule); border-radius: 4px;
+    background: var(--cream); color: var(--ink);
+  }
+  textarea { min-height: 62px; resize: vertical; }
+  button {
+    font-family: inherit; font-size: 15px; padding: 9px 16px;
+    border: 1px solid var(--navy); border-radius: 4px;
+    background: var(--navy); color: #fff; cursor: pointer; margin: 12px 8px 0 0;
+  }
+  button.ghost { background: #fff; color: var(--navy); }
+  button:disabled { opacity: .45; cursor: default; }
+  .row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .row > div { flex: 1 1 220px; }
+  .hits { max-height: 210px; overflow-y: auto; border: 1px solid var(--rule); border-radius: 4px; margin-top: 6px; }
+  .hit {
+    padding: 7px 10px; border-bottom: 1px solid var(--rule);
+    cursor: pointer; font-size: 14px;
+  }
+  .hit:last-child { border-bottom: none; }
+  .hit:hover { background: #f4efe4; }
+  .hit .id { color: var(--muted); font-size: 12px; }
+  .chosen { background: #f4efe4; padding: 10px 12px; border-radius: 4px; border: 1px solid var(--rule); }
+  .chosen .src { font-size: 17px; }
+  .chosen .meta { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 8px; }
+  th, td { text-align: left; padding: 5px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 600; }
+  td.v { white-space: nowrap; font-weight: 600; }
+  .hit-y { color: var(--green); }
+  .hit-p { color: var(--amber); }
+  .hit-n { color: var(--red); }
+  .run { border: 1px solid var(--rule); border-radius: 6px; padding: 14px; margin-bottom: 12px; background: #fff; }
+  .run .head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .run .mode { font-weight: 600; color: var(--navy); }
+  .run .nums { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .score { font-size: 22px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .verdict { font-size: 14px; margin-top: 6px; font-style: italic; color: var(--muted); }
+  .note { font-size: 13px; color: var(--muted); margin-top: 8px; }
+  .err { color: var(--red); font-size: 14px; margin-top: 8px; }
+  .sizebar { height: 5px; background: var(--rule); border-radius: 3px; margin-top: 5px; overflow: hidden; }
+  .sizebar i { display: block; height: 100%; background: var(--navy); }
+  code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12.5px; }
+</style>
+</head>
+<body>
+
+<h1>Marker bench</h1>
+<div class="sub">Same item, same answer, one variable at a time. Client-side only — a push reaches it, no worker deploy.</div>
+
+<div class="panel">
+  <h2>Backend</h2>
+  <label for="url">Marker URL <span style="opacity:.7">(shared with the live site)</span></label>
+  <input type="text" id="url" placeholder="https://….workers.dev/mark">
+  <label for="base">Data base URL <span style="opacity:.7">(leave blank when this page is served from the site itself)</span></label>
+  <input type="text" id="base" placeholder="blank = ../data/ relative to this page">
+  <div class="row">
+    <div>
+      <label for="model">Model</label>
+      <select id="model"></select>
+    </div>
+    <div>
+      <label for="mode">Menu mode <span style="opacity:.7">(the variable under test)</span></label>
+      <select id="mode"></select>
+    </div>
+  </div>
+  <div class="note" id="modeSize">—</div>
+</div>
+
+<div class="panel">
+  <h2>Item</h2>
+  <div id="status" class="note" style="margin:0 0 10px">Loading content…</div>
+  <label for="q">Search by source text or id</label>
+  <input type="text" id="q" placeholder="e.g. no friends here in this city — or trans_neg_en_it_04">
+  <div class="hits" id="hits" hidden></div>
+  <div id="chosen" style="margin-top:10px"></div>
+  <label for="ans">Your answer (kept between reloads, so the same run repeats exactly)</label>
+  <textarea id="ans" placeholder="non ho nadie amiche in questa città"></textarea>
+  <div>
+    <button id="run" disabled>Mark once</button>
+    <button id="runAll" class="ghost" disabled>Run every menu mode</button>
+    <button id="clear" class="ghost">Clear log</button>
+  </div>
+  <div class="err" id="err"></div>
+</div>
+
+<div id="log"></div>
+
+<script src="js/norm.js"></script>
+<script src="js/store.js"></script>
+<script src="js/translation_stub.js"></script>
+<script src="js/translation_marker.js"></script>
+<script>
+(function () {
+  "use strict";
+  const LL = window.LL;
+  const $ = id => document.getElementById(id);
+  const LOG_KEY = "ll_bench_log_v1";
+  const ANS_KEY = "ll_bench_answer";
+  const ITEM_KEY = "ll_bench_item";
+
+  let items = [];
+  let byId = {};
+  let chosen = null;
+
+  // Translation items key on external_id; none of the 875 carry a plain `id`
+  // (pulse.js:127 already falls back the same way, so the pulse rows join fine).
+  const itemId = it => (it && (it.external_id || it.id)) || "";
+
+  /* ------------------------------------------------------------- loading */
+  function dataBase() {
+    const b = ($("base").value || "").trim();
+    if (!b) return "../data/";
+    return b.replace(/\/+$/, "") + "/";
+  }
+
+  async function jget(name) {
+    const path = dataBase() + name;
+    const r = await fetch(path, { cache: "no-store" });
+    if (!r.ok) throw new Error(path + " → HTTP " + r.status);
+    const t = await r.text();
+    return JSON.parse(t.replace(/[\x00\r\n\s]+$/, ""));
+  }
+
+  async function boot() {
+    const manifest = await jget("manifest.json");
+    const topics = manifest.topics || [];
+    const buckets = [];
+    await Promise.all(topics.map(async t => {
+      try {
+        const tree = await jget("buckets/" + t + ".json");
+        for (const b of tree) buckets.push(b);
+      } catch (e) {}
+      try {
+        const its = await jget("translation_items_" + t + ".json");
+        for (const it of its) { it._topic = t; items.push(it); }
+      } catch (e) {}
+    }));
+    byId = LL.store.indexBuckets(buckets).byId;
+    try { LL.markerMenu = await jget("translation_marker_bucket_menu.json"); } catch (e) {}
+    try { LL.vocabEntries = await jget("vocabulary_it_frequency.json"); } catch (e) {}
+    $("status").innerHTML = items.length + " translation items and " +
+      Object.keys(byId).length + " buckets loaded — type a word from the sentence below.";
+    $("q").disabled = false;
+    const savedItem = localStorage.getItem(ITEM_KEY);
+    if (savedItem) { const it = items.find(i => itemId(i) === savedItem); if (it) choose(it); }
+    refreshSize();
+  }
+
+  /* --------------------------------------------------------------- picker */
+  function search(term) {
+    term = term.trim().toLowerCase();
+    if (!term) return [];
+    return items.filter(it =>
+      String(itemId(it)).toLowerCase().includes(term) ||
+      String(it.source_text || "").toLowerCase().includes(term)
+    ).slice(0, 25);
+  }
+
+  function choose(it) {
+    chosen = it;
+    localStorage.setItem(ITEM_KEY, itemId(it));
+    const refs = it.references || it.reference_translations || [];
+    const refText = refs.map(r => (typeof r === "string" ? r : r.text)).filter(Boolean);
+    $("chosen").innerHTML =
+      '<div class="chosen"><div class="src">' + esc(it.source_text || "") + '</div>' +
+      '<div class="meta"><code>' + esc(itemId(it)) + '</code> · ' + esc(it._topic || "") +
+      ' · ' + (LL.inferDirection ? LL.inferDirection(it) : "?") +
+      ' · floor: ' + ((it.required_buckets || []).length) + ' bucket(s)' +
+      (refText.length ? ' · ref: “' + esc(refText[0]) + '”' : '') +
+      '</div></div>';
+    $("hits").hidden = true;
+    $("run").disabled = false;
+    $("runAll").disabled = false;
+    refreshSize();
+  }
+
+  $("q").addEventListener("input", () => {
+    const box = $("hits");
+    if (!items.length) {
+      box.innerHTML = '<div class="hit" style="cursor:default">No items loaded yet — see the message above.</div>';
+      box.hidden = false;
+      return;
+    }
+    const res = search($("q").value);
+    if (!res.length) {
+      box.innerHTML = $("q").value.trim()
+        ? '<div class="hit" style="cursor:default">Nothing matches that. Try a distinctive word from the English sentence.</div>'
+        : "";
+      box.hidden = !$("q").value.trim();
+      return;
+    }
+    box.innerHTML = res.map((it, i) =>
+      '<div class="hit" data-i="' + i + '">' + esc(it.source_text || "") +
+      '<div class="id">' + esc(itemId(it)) + '</div></div>').join("");
+    box.hidden = false;
+    box.querySelectorAll(".hit").forEach(el =>
+      el.addEventListener("click", () => choose(res[+el.dataset.i])));
+  });
+
+  /* ---------------------------------------------------------- mode + size */
+  function refreshSize() {
+    if (!chosen) { $("modeSize").textContent = "—"; return; }
+    const parts = LL.MARKER_MENU_MODES.map(m => {
+      const ctx = LL.buildBucketContext(chosen, byId, { menuMode: m.id });
+      const chars = JSON.stringify(ctx).length;
+      return { id: m.id, n: Object.keys(ctx).length, chars: chars };
+    });
+    const max = Math.max.apply(null, parts.map(p => p.chars)) || 1;
+    $("modeSize").innerHTML = parts.map(p =>
+      '<div style="margin-bottom:5px"><code>' + p.id + '</code> — ' + p.n +
+      ' buckets, ' + p.chars.toLocaleString() + ' chars ≈ ' +
+      Math.round(p.chars / 4).toLocaleString() + ' tokens' +
+      '<div class="sizebar"><i style="width:' + (100 * p.chars / max) + '%"></i></div></div>'
+    ).join("");
+  }
+
+  /* ----------------------------------------------------------- run + log */
+  function readLog() {
+    try { return JSON.parse(localStorage.getItem(LOG_KEY) || "[]"); } catch (e) { return []; }
+  }
+  function writeLog(l) {
+    try { localStorage.setItem(LOG_KEY, JSON.stringify(l.slice(0, 40))); } catch (e) {}
+  }
+
+  async function runOnce(mode) {
+    if (!chosen) return;
+    const answer = $("ans").value;
+    localStorage.setItem(ANS_KEY, answer);
+    const ctx = LL.buildBucketContext(chosen, byId, { menuMode: mode });
+    const t0 = Date.now();
+    const payload = await LL.markTranslationLive(chosen, answer, "literal", {
+      url: $("url").value.trim() || undefined,
+      model: $("model").value || undefined,
+      bucketContext: ctx,
+    });
+    const r = payload.result || {};
+    const mps = (r.markpoints || []).filter(m => !m.suppress_display);
+    const credit = mps.reduce((a, m) => a + (typeof m.credit === "number" ? m.credit
+      : (m.verdict === "hit" || m.outcome === "hit" ? 1 : 0)), 0);
+    return {
+      when: new Date().toISOString(),
+      mode: mode,
+      model: payload.model_used || $("model").value || "default",
+      item: itemId(chosen),
+      answer: answer,
+      ctxBuckets: Object.keys(ctx).length,
+      ctxChars: JSON.stringify(ctx).length,
+      inTok: (payload.usage || {}).input_tokens || null,
+      outTok: (payload.usage || {}).output_tokens || null,
+      cost: payload.cost_usd || null,
+      ms: Date.now() - t0,
+      hits: +credit.toFixed(2),
+      n: mps.length,
+      verdict: r.verdict_text || r.feedback || r.why || "",
+      mps: mps.map(m => ({
+        b: m.bucket || m.bucket_id || "?",
+        v: m.verdict || m.outcome || "?",
+        e: m.evidence || "",
+      })),
+    };
+  }
+
+  async function go(modes) {
+    $("err").textContent = "";
+    $("run").disabled = $("runAll").disabled = true;
+    const log = readLog();
+    try {
+      for (const m of modes) {
+        const rec = await runOnce(m);
+        if (rec) { log.unshift(rec); writeLog(log); render(); }
+      }
+    } catch (e) {
+      $("err").textContent = (e && e.message) ? e.message : String(e);
+    }
+    $("run").disabled = $("runAll").disabled = false;
+    render();
+  }
+
+  function vclass(v) {
+    v = String(v).toLowerCase();
+    if (v.indexOf("hit") === 0 || v === "right" || v === "correct") return "hit-y";
+    if (v.indexOf("part") === 0) return "hit-p";
+    return "hit-n";
+  }
+
+  function render() {
+    const log = readLog();
+    $("log").innerHTML = log.map(r =>
+      '<div class="run"><div class="head">' +
+        '<div><span class="mode">' + esc(r.mode) + '</span> · <code>' + esc(r.item) + '</code>' +
+          ' · ' + esc(r.model) + '</div>' +
+        '<div class="score">' + r.hits + ' / ' + r.n + '</div>' +
+      '</div>' +
+      '<div class="nums">' + r.ctxBuckets + ' buckets sent · ' +
+        (r.inTok ? r.inTok.toLocaleString() + ' in' : '—') +
+        (r.outTok ? ' / ' + r.outTok.toLocaleString() + ' out tokens' : '') +
+        (r.cost != null ? ' · $' + r.cost.toFixed(4) : '') +
+        ' · ' + (r.ms / 1000).toFixed(1) + 's</div>' +
+      (r.verdict ? '<div class="verdict">' + esc(r.verdict) + '</div>' : '') +
+      (r.mps.length
+        ? '<table><tr><th>Bucket</th><th>Verdict</th><th>Evidence</th></tr>' +
+          r.mps.map(m => '<tr><td><code>' + esc(m.b) + '</code></td>' +
+            '<td class="v ' + vclass(m.v) + '">' + esc(m.v) + '</td>' +
+            '<td>' + esc(m.e) + '</td></tr>').join("") + '</table>'
+        : '<div class="note">no markpoints returned</div>') +
+      '<div class="note">answer: “' + esc(r.answer) + '” · ' + esc(r.when.slice(0, 16).replace("T", " ")) + '</div>' +
+      '</div>').join("");
+  }
+
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"]/g, c =>
+      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  }
+
+  /* ------------------------------------------------------------- wiring */
+  $("model").innerHTML = (LL.AVAILABLE_MODELS || []).map(m =>
+    '<option value="' + m.id + '">' + esc(m.label) + '</option>').join("");
+  $("mode").innerHTML = (LL.MARKER_MENU_MODES || []).map(m =>
+    '<option value="' + m.id + '">' + esc(m.label) + '</option>').join("");
+  $("url").value = (LL.markerUrl && LL.markerUrl()) || "";
+  $("model").value = (LL.markerModel && LL.markerModel()) || "";
+  $("mode").value = LL.markerMenuMode();
+  $("ans").value = localStorage.getItem(ANS_KEY) || "";
+
+  $("base").value = localStorage.getItem("ll_bench_data_base") || "";
+  $("base").addEventListener("change", () => {
+    try { localStorage.setItem("ll_bench_data_base", $("base").value.trim()); } catch (e) {}
+    items = []; byId = {};
+    $("status").style.color = ""; $("status").textContent = "Reloading content…";
+    boot().catch(e => { $("status").textContent = "Still failed: " + (e && e.message ? e.message : e); });
+  });
+  $("q").disabled = true;
+  $("url").addEventListener("change", () => {
+    try { localStorage.setItem("linguics_marker_url", $("url").value.trim()); } catch (e) {}
+  });
+  $("mode").addEventListener("change", () => { LL.setMarkerMenuMode($("mode").value); });
+  $("run").addEventListener("click", () => go([$("mode").value]));
+  $("runAll").addEventListener("click", () => go(LL.MARKER_MENU_MODES.map(m => m.id)));
+  $("clear").addEventListener("click", () => { writeLog([]); render(); });
+
+  render();
+  boot().catch(e => {
+    const msg = (e && e.message) ? e.message : String(e);
+    let why;
+    if (location.protocol === "file:") {
+      why = "This page is open straight off disk (file://), and browsers block a local page " +
+            "from reading local data files. Nothing is broken — it just has to be SERVED. Either:" +
+            "<ul style='margin:6px 0 0 18px'>" +
+            "<li>run <code>python -m http.server 8000</code> in the Linguics folder, then open " +
+            "<code>http://localhost:8000/housing/bench.html</code>, or</li>" +
+            "<li>push, and open <code>/housing/bench.html</code> on the live site, or</li>" +
+            "<li>paste a full <b>Data base URL</b> above (e.g. <code>https://your-site/data</code>) " +
+            "— works only if that host allows cross-origin reads.</li></ul>";
+    } else if (/Failed to fetch|NetworkError|CORS/i.test(msg)) {
+      why = "Could not reach the data files at <code>" + esc(dataBase()) + "</code>. If this page is " +
+            "served from the site, leave Data base URL blank; if you have set one, check it is reachable " +
+            "and allows cross-origin reads.";
+    } else {
+      why = "Could not load the content files.";
+    }
+    $("status").innerHTML = "<b>Content not loaded — " + esc(msg) + "</b><br>" + why;
+    $("status").style.color = "var(--red)";
+  });
+})();
+</script>
+</body>
+</html>

@@ -1645,3 +1645,6 @@ Resolved the SAFE slice of the 88-entry residue centrally: infinitive multi_POS 
 
 ## CORRECTION: a Help lookup is a VOCAB MISS (not neutral) + grammar still credited (2026-07-27, Smith)
 Corrects the v12 "help = neutral" call. A Help lookup records a genuine vocab MISS on that lemma (the learner didn't know it) on the vocab strand - honest, not neutral, not a hard item-Wrong. It does NOT fail the dependent grammar: the learner still gets full credit for deploying the looked-up word correctly (mattina -> tutte le mattine agreement = hits). So one lookup = one vocab miss + grammar credit. Vocab knowledge vs grammar deployment stay separate. Routed crosstopic v13.
+
+## Refinement: show the learner 1-2 example renderings framed as "one way", not "the answer" (2026-07-27, Smith)
+Refines the no-single-correct-version ruling: keep showing an example rendering (helpful, especially on a wrong answer) but framed as "One way to say it" (two where the item has 2+ references). Single-ideal framing goes; the example stays. Single-reference items are candidates for a second valid rendering.

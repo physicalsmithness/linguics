@@ -21,6 +21,46 @@
   const COST_KEY   = "linguics_session_cost_usd";
   const WARN_THRESHOLD_USD = 1.0;
 
+  /* ----------------------------------------------------------------- */
+  /* Marker MENU MODE (r91)                                              */
+  /*                                                                     */
+  /* The cross-topic menu (task 41) is what lets the marker credit skills */
+  /* beyond the author's required_buckets. v9 widened it from 136         */
+  /* aggregates to 581 real ids WITH descriptions; that is 191,653 chars  */
+  /* (~48k tokens) posted on every single mark, and breadth stopped       */
+  /* firing. v5 is on the record proving breadth WORKED at 136.           */
+  /*                                                                      */
+  /* So the menu is now a runtime parameter rather than a constant.       */
+  /* Modes:                                                               */
+  /*   full        581 ids + descriptions      (v9 as built; the default) */
+  /*   labels      581 ids, labels only        (same coverage, ~1/3 size) */
+  /*   aggregates  depth<=1 ids + descriptions (the v5 configuration)     */
+  /*   agg_labels  depth<=1 ids, labels only                              */
+  /*   retrieved   depth<=1 + this item's own required_buckets subtrees   */
+  /*   none        no menu at all              (control: floor only)      */
+  /*                                                                      */
+  /* Set from the bench page or the console:                              */
+  /*   LL.setMarkerMenuMode("labels")                                     */
+  /* ----------------------------------------------------------------- */
+  const MENU_MODE_KEY = "ll_marker_menu_mode";
+  LL.MARKER_MENU_MODES = [
+    { id: "full",       label: "Full 581 + descriptions (v9, default)" },
+    { id: "labels",     label: "Full 581, labels only" },
+    { id: "aggregates", label: "Aggregates only (depth<=1) + descriptions" },
+    { id: "agg_labels", label: "Aggregates only, labels only" },
+    { id: "retrieved",  label: "Aggregates + this item's own subtrees" },
+    { id: "none",       label: "No menu (required_buckets floor only)" },
+  ];
+  LL.markerMenuMode = function () {
+    try { return localStorage.getItem(MENU_MODE_KEY) || "full"; }
+    catch (e) { return "full"; }
+  };
+  LL.setMarkerMenuMode = function (m) {
+    try { localStorage.setItem(MENU_MODE_KEY, String(m || "full")); }
+    catch (e) {}
+    return LL.markerMenuMode();
+  };
+
   LL.markerUrl = function () {
     try { return localStorage.getItem(URL_KEY) || ""; }
     catch (e) { return ""; }
@@ -487,9 +527,10 @@
    * a slim subset covering only the buckets the item references AND that are
    * direction-applicable.
    */
-  LL.buildBucketContext = function (item, bucketById) {
+  LL.buildBucketContext = function (item, bucketById, opts) {
     const ctx = {};
     if (!bucketById) return ctx;
+    const menuMode = (opts && opts.menuMode) || LL.markerMenuMode();
     const direction = LL.inferDirection(item);
     const ids = [].concat(item.required_buckets || [], item.optional_buckets || []);
     for (const id of ids) {
@@ -505,13 +546,28 @@
     // the marker may tag ANY grammar element it detects from the standing bucket
     // menu, not just this item's required_buckets (the mandatory FLOOR). Menu adds
     // breadth; direction-filtered like the rest.
-    const menu = (LL.markerMenu && Array.isArray(LL.markerMenu.menu)) ? LL.markerMenu.menu : [];
+    const menu = (menuMode === "none" || !LL.markerMenu || !Array.isArray(LL.markerMenu.menu))
+      ? [] : LL.markerMenu.menu;
+    // depth is dot-count: "preposition" = 0, "preposition.di" = 1, ...
+    const aggregatesOnly = (menuMode === "aggregates" || menuMode === "agg_labels" || menuMode === "retrieved");
+    const labelsOnly = (menuMode === "labels" || menuMode === "agg_labels");
+    // "retrieved" keeps every top-level family (so no family is silently
+    // unfireable) PLUS the full subtree under whatever this item's author
+    // named - fine detail exactly where the author said it matters.
+    const ownPrefixes = ids.map(id => String(id));
     for (const node of menu) {
       const mid = node && node.id;
       if (!mid || ctx[mid]) continue;
+      if (aggregatesOnly && (mid.split(".").length - 1) > 1) {
+        if (menuMode !== "retrieved") continue;
+        const inOwn = ownPrefixes.some(p => mid === p || mid.indexOf(p + ".") === 0);
+        if (!inOwn) continue;
+      }
       if (!LL.isCandidateForDirection(mid, direction)) continue;
       const mb = bucketById[mid];
-      ctx[mid] = { label: (mb && mb.label) || node.label || mid, description: (mb && mb.description) || "" };
+      const entry = { label: (mb && mb.label) || node.label || mid };
+      if (!labelsOnly) entry.description = (mb && mb.description) || "";
+      ctx[mid] = entry;
     }
     // For IT→EN items, inject vocabulary recognition buckets based on the
     // source text. The chats authored these items without listing vocab
