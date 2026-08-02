@@ -139,10 +139,10 @@
 
 <div id="log"></div>
 
-<script src="js/norm.js"></script>
-<script src="js/store.js"></script>
-<script src="js/translation_stub.js"></script>
-<script src="js/translation_marker.js"></script>
+<script src="js/norm.js?v=2026-08-02-r92"></script>
+<script src="js/store.js?v=2026-08-02-r92"></script>
+<script src="js/translation_stub.js?v=2026-08-02-r92"></script>
+<script src="js/translation_marker.js?v=2026-08-02-r92"></script>
 <script>
 (function () {
   "use strict";
@@ -367,6 +367,21 @@
   }
 
   /* ------------------------------------------------------------- wiring */
+  // A stale CACHED js/translation_marker.js has no menu-mode API. Before r91
+  // that threw here and aborted the whole IIFE, so boot() never ran and the
+  // page sat on "Loading content..." forever with an empty Menu mode box.
+  // Fail loudly and specifically instead.
+  if (!LL || typeof LL.markerMenuMode !== "function" || !LL.MARKER_MENU_MODES) {
+    $("status").innerHTML =
+      "<b>The marker module on this page is older than the bench expects.</b><br>" +
+      "Almost always a cached <code>js/translation_marker.js</code>. " +
+      "Hard-refresh this page (<b>Ctrl+Shift+R</b>, or Cmd+Shift+R on a Mac). " +
+      "If that does not fix it, r91 has not reached the server yet — check the push landed.";
+    $("status").style.color = "var(--red)";
+    $("q").disabled = true;
+    return;
+  }
+
   $("model").innerHTML = (LL.AVAILABLE_MODELS || []).map(m =>
     '<option value="' + m.id + '">' + esc(m.label) + '</option>').join("");
   $("mode").innerHTML = (LL.MARKER_MENU_MODES || []).map(m =>
