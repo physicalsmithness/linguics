@@ -219,6 +219,16 @@
         // evidence stays null; the panel will fall back to the raw input
       }
 
+      // Credit-only markpoint (retrieval-pilot formation, or explicit
+      // credit_only:true): record a hit/partial, but stay SILENT on a miss /
+      // not_attempted - a wrong verb or wrong form gives NO formation miss; the
+      // vocabulary markpoint carries the miss. Smith ruling,
+      // Architecture_Housing_retrieval_help_affordance v2/v3.
+      const creditOnly = mp.credit_only === true
+        || (q.provenance === "lemma_retrieval_pilot" && String(mp.bucket || "").indexOf("vocabulary.") !== 0);
+      if (creditOnly && (result.outcome === "miss" || result.outcome === "not_attempted")) {
+        continue;
+      }
       attemptedSum += result.attempted_credit * credit;
       if (result.correctness_credit !== null) {
         correctnessSum += result.correctness_credit * credit;

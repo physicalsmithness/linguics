@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-07-23-r89";
+  const LL_BUILD = "2026-07-23-r90";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -1872,8 +1872,10 @@
         if (getInputMode() === "select") { input.style.display = "none"; }
       }
 
-      const helpBar = buildVocabHelpBar(q, vocabHelpsUsed);
-      if (helpBar) card.insertBefore(helpBar, promptEl.nextSibling);   // sit under the question, right-justified (Smith)
+      const helpBar = (q.provenance === "lemma_retrieval_pilot")
+        ? buildRetrievalHelpBar(q, vocabHelpsUsed)
+        : buildVocabHelpBar(q, vocabHelpsUsed);
+      if (helpBar) card.insertBefore(helpBar, promptEl.nextSibling);   // under the question (Smith)
       attachVocabSlashMenu(input, q, vocabHelpsUsed);
     }
 
@@ -5705,6 +5707,43 @@
   // ============================================================================
   // Vocab help: button bar + slash command, both call useVocabHelp().
   // ============================================================================
+
+  // Prominent "don't know the word?" bar for lemma-retrieval pilot items
+  // (Architecture_Housing_retrieval_help_affordance v1). Reveals the infinitive
+  // on tap; tapping records the vocab miss (the intended diagnostic) via the
+  // shared vocabHelpsUsed channel. Big + explicit, not the hidden vocab button.
+  function buildRetrievalHelpBar(item, vocabHelpsUsedRef) {
+    if (!item || item.provenance !== "lemma_retrieval_pilot") return null;
+    let reveal = "", bucket = "", label = "";
+    for (const e of (item.vocab_help || [])) {
+      const asp = e && e.aspects && e.aspects.translation;
+      if (asp && asp.reveal) { reveal = asp.reveal; bucket = asp.bucket || ""; label = (e.lemma || "word") + " (translation)"; break; }
+    }
+    if (!reveal) return null;
+    const eq = reveal.indexOf("=");
+    const english = eq >= 0 ? reveal.slice(0, eq).trim() : reveal;
+    const italian = eq >= 0 ? reveal.slice(eq + 1).trim() : (item.retrieval_help_lemma || "");
+    const bar = document.createElement("div");
+    bar.className = "retrieval-help-bar";
+    const qs = document.createElement("span");
+    qs.className = "retrieval-help-q";
+    qs.textContent = "Don’t know the Italian for ‘" + english + "’?";
+    bar.appendChild(qs);
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "retrieval-help-reveal";
+    btn.textContent = "Tap to reveal";
+    btn.addEventListener("click", () => {
+      btn.textContent = italian;
+      btn.classList.add("revealed");
+      btn.disabled = true;
+      if (bucket && !vocabHelpsUsedRef.find(x => x.bucket === bucket)) {
+        vocabHelpsUsedRef.push({ bucket: bucket, label: label, reveal: reveal });
+      }
+    });
+    bar.appendChild(btn);
+    return bar;
+  }
 
   function buildVocabHelpBar(item, vocabHelpsUsedRef) {
     if (!item.vocab_help || !item.vocab_help.length) return null;

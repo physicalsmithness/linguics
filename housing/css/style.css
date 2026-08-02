@@ -1121,6 +1121,11 @@ body.strand-vocab-active #live-stats { display: none; }
 .mcq-choice.ms-missed:hover { background:rgba(200,118,24,0.1); border-color:#c87618; box-shadow:none; }
 .drill-session-keep { display:block; font-size:12px; color:var(--muted,#777); margin:2px 0 6px; cursor:pointer; user-select:none; }
 .drill-session-keep input { margin-right:5px; }
+/* Retrieval-help pilot bar (prominent "don't know the word?"). */
+.retrieval-help-bar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:8px 0; padding:10px 14px; background:#eaf1fb; border:1px solid #b9d0ef; border-radius:8px; font-size:14px; }
+.retrieval-help-q { color:#25406b; }
+.retrieval-help-reveal { font-weight:600; padding:5px 14px; border:1px solid #3a6bbf; border-radius:6px; background:#3a6bbf; color:#fff; cursor:pointer; }
+.retrieval-help-reveal.revealed { background:#fff; color:#25406b; border-style:dashed; cursor:default; font-style:italic; }
 
 /* Tick row */
 .freq-tick-row {
