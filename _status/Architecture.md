@@ -1,19 +1,22 @@
 seat: Architecture
 classes: [all-seats]
 project: Linguics
-updated: 2026-07-22
+updated: 2026-08-02
 waiting: active
-needs_from_smith: prism pick (lens+person+top-recurring recommended); lemma-taster live feel (after next push); plus the standing three (order-leak repro, 13/23 sentence, class list) — three quick items — (1) order-leak repro for Housing: footer build id + first three items seen, or name it as same-leaf clustering; (2) one sentence on the 13/23 counts question (pulse_strip v2 tail); (3) the interim class list when Housing asks
-claude_can_verify: yes — migration verified by grep (0 legacy / 1,936 new), sincerity scan 0 residual, packets on disk
-summary: 2026-07-22: Estate-net gate FIRST FULL RUN (tools/estate_net_gate.js, QoderWork 2026-07-22): 2,916 items / 33 files scanned; 158 harmless exclusions; 33 raw flags → 22 genuine answer-leaks (18 items across 7 topics) + 11 by-design (choice/rewrite/capitalisation tasks). Report at inter_chat/Architecture_Cr17Sweep_estate_net_gate_report.md. Routing: 18 items to owning authors for prompt rework; 6 items need gate_exempt tag. Prior: 2026-07-21 delta pass: usage axis COMPLETE (condizionale accepted); 17 stamps applied; dual-credit (b) ruled; vocab fork ruled (4-segment canonical, ~640 legacy refs dropping events — migration queued); Ti vedrò ratified. Desk cleared 2026-07-21: 1,936-key migration DONE; pulse LIVE; multi-select ruled; 12 false-miss packets dispatched; sincerity retrofit done.
+needs_from_smith: none blocking. Standing: prism pick (lens+person+top-recurring recommended); the order-leak repro for Housing; the interim class list when Housing asks.
+claude_can_verify: yes — all three of today's passes re-derived from disk after the write (dovunque present; 136 tagged; 0 dead vocab_help remaining; all data JSON parses)
+summary: 2026-08-02 takeover pass. WAKE SWEEP run (read-only agent, spot-audited): 5 draft-stamps, 7 rulings-needed, 1 stale, 1 cannot-verify. SIX RULINGS MADE — temperature-1.0 events flagged not deleted (Smith); vocabulary bucket ids key on the Italian dictionary form; proper nouns earn no vocabulary bucket (aligns marker to the existing denominator policy); .translation.passive is it_en-only; leak detectors match on plain substring (Smith, ratifying PassiveAuthor after 16 days); ind_nn_06 returned to IndefiniteAuthor, its false-miss fix put the answer in the cue. GATE REBUILT AND RE-RUN — two defects, and the exclusion rule ("copying the cue is harmless") was hiding 158 items. NEW ESTATE LAW — a free-text blank cannot test a form that does not change (~58 items across six topics). NEW FAULT CLASS from Smith live — 225 dead vocab_help entries were booking false vocabulary misses; stripped. EXECUTED — dovunque mint, 136-item exemption tag, 225-entry strip.
 queue:
-  - Estate-net gate routing: dispatch 18 Category-A items to owning authors (noun, pronominal_verbs, pronoun, reported_speech, congiuntivo, trapassato); propose gate_exempt tag for 6 Category-B items   [cut next]
-  - Item-shape review #1: adjective_agreement one-pager (the template)   [B(a)]
-  - Variant expansion + gates when PronounAuthor's seed frames land   [A(a) pilot]
-  - Misconception-tag rollout work order (221/4,944 guards tagged) after MisconceptionAnalyst's lists   [cut next]
-  - Jargon-label central rewrite (523 labels) + per-topic confirm tables   [staged]
-  - Explanation re-paragraph pilot (10 samples)   [staged]
-  - cue-notation retrofit routing rides authors' open touches (8 seats)
+  - Write the item-shape law (a blank cannot test a no-change form) as an estate-wide one-pager; absorbs the staged adjective_agreement template   [task 13, now has its subject]
+  - Read the 109 remaining gate findings (33 Tier A + 76 Tier B), then dispatch the real list to owning authors   [AUDIT_estate_net_gate_v2_2026-08-02.txt]
+  - Apply the 5 verified draft-stamps from the wake sweep (AccentAuthor seed_frames, PronounAuthor false_miss, MetaProject status_board, EdTech pulse adoption; Indefinite false_miss NOT stamped - returned)
+  - Route the 6 untouched false-miss packets (Piacere 8, SiConstructions 7, Preposition 6, Negation 4, PronominalVerbs 3, Existential 1 - dispatched 2026-07-21, never opened)
+  - Rule the 3 smaller open calls: ci_locative topic boundary; does a graded-credit ruling bind a citing seat; misconception_id untagged: fallback
+  - Paradigm-bands migration   [task 6, ruling made, zero execution on disk]
+  - Sweep the pulse sheet for English-lemma vocabulary ids + proper-noun buckets + split .translation/.passive pairs
+  - Specify the provenance flag for temperature-1.0 events
+  - Jargon-label central rewrite (523) + explanation re-paragraph pilot   [staged]
 notes:
   - Wake sweep + per-pass delta rule in force (ARCHITECTURE_HANDOFF amendment 2026-07-20).
-  - Accent report consumes Housing's enriched slip events (expected/written/class/chars) — schema aligned, no rework.
+  - Housing is a SEPARATE live seat. Smith confirmed 2026-08-02. Architecture writes to its threads, not its code.
+  - 13 of 20 seat _status files were stale against their own inbox at takeover; Piacere and Preposition say "closed" while holding live work.

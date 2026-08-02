@@ -1986,18 +1986,6 @@
     ]
    }
   ],
-  "vocab_help": [
-   {
-    "lemma": "studente",
-    "language": "it",
-    "aspects": {
-     "translation": {
-      "reveal": "studente - student",
-      "bucket": "vocabulary.it.studente.noun.translation"
-     }
-    }
-   }
-  ],
   "explanation": "Not one student passed the test: Nessuno studente ha superato la prova. Studente begins with s followed by another consonant, and that combination forces the long article: uno studente. Nessuno keeps its full form to match. Note the verb: ha superato, singular, because nessuno + singular noun is singular throughout.",
   "examiner_note": "OIC seed sentence, verbatim from their exercise (nessuno as adjective + singular noun). | False-miss fix 2026-07-27 (AUDIT_false_miss_2026-07-20, TOP): blank-boundary zero — 'studente' is printed after the blank, so the learner types only 'Nessuno', which the two-word positive could not match. Positive widened to blank-only 'nessuno' (word); two-word guards kept for full-answer typers; blank-only 'nessun'/'nessuna' guards added for attribution. wrong_answer_is_form_error_only stays true (all caught forms are apocope/gender errors of the correct lexeme nessuno).",
   "version": 2
@@ -2907,7 +2895,8 @@
   "vocab_help": [],
   "explanation": "Whoever it was, they did an excellent job: Chiunque sia stato, ha fatto un ottimo lavoro. All four words in the bank are indefinites, and only chiunque fits: qualunque wants a noun, ciascuno needs a group to distribute over, and nessuno would flatly contradict the praise in the second half. The subjunctive sia stato is chiunque's doing.",
   "examiner_note": "The OIC four-way closed bank (their C1 exercise): the option set IS the distractor set, so elimination requires knowing all four words rather than just the target. Rendered as a short item with the bank stated in the prompt rather than as MCQ, because each distractor here is a genuinely distinct wrong ANSWER the guards can attribute to this bucket -- unlike ind_chi_02, where the error is additive and only index-scoring reaches it.",
-  "version": 1
+  "version": 1,
+  "answer_shown_by_design": "supplied_choice"
  },
  {
   "external_id": "ind_chi_05",

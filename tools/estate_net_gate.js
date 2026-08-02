@@ -95,7 +95,8 @@ const A = [];   // answer-leak alongside other markpoints (v1's flag class)
 const B = [];   // NON-DIAGNOSTIC: single-markpoint item whose only answer sits in the prompt
 const C = [];   // advisory: plain-substring only, not token-bounded
 const S = [];   // soft: cue matches a phrase accepted at PARTIAL credit only
-let v1WouldFlag = 0;   // what the 2026-07-22 run saw, for comparison
+let v1WouldFlag = 0;
+let totalByDesign = 0;   // what the 2026-07-22 run saw, for comparison
 
 for (const file of files) {
   let data;
@@ -107,6 +108,10 @@ for (const file of files) {
   for (const item of items) {
     totalItems++;
     if (!Array.isArray(item.markpoints)) continue;
+    // 2026-08-02: items that show the answer BY DESIGN carry an authored claim
+    // saying so (supplied_choice / mcq_choices). Rev 31 already exempted
+    // supplied-choice from criterion 17; the gate now knows. Counted, not hidden.
+    if (item.answer_shown_by_design) { totalByDesign++; continue; }
     const promptNorm = norm(item.prompt || "");
     if (!promptNorm) continue;
 
@@ -183,6 +188,7 @@ console.log("=== ESTATE-NET GATE REPORT v2 ===");
 console.log("Architecture 2026-08-02 | punctuation-bounded matcher | Tier-B exclusion removed");
 console.log(`Files scanned: ${files.length}`);
 console.log(`Items scanned: ${totalItems}`);
+console.log(`Exempt, answer shown BY DESIGN (tagged): ${totalByDesign}`);
 console.log("");
 console.log(`v1 (space-bounded, old exclusion) would flag : ${v1WouldFlag}`);
 console.log(`TIER A  answer-leak, item has other markpoints: ${A.length}`);

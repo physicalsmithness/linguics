@@ -98,7 +98,8 @@
   .agg th { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); font-weight: 600; }
   .agg td.mode { text-align: left; font-weight: 600; color: var(--navy); }
   .overall { margin: 8px 0 4px; }
-  .overall .marks { font-size: 14px; font-weight: 600; }
+  .overall .marks { font-size: 15px; font-weight: 600; }
+  .overall .marks-ai { font-weight: 400; color: var(--muted); font-size: 13px; }
   .overall .summ { font-size: 15px; margin-top: 2px; }
   .overall .expl { font-size: 14px; margin-top: 6px; color: #444; }
   .notes { font-size: 13px; margin-top: 8px; }
@@ -158,10 +159,10 @@
 
 <div id="log"></div>
 
-<script src="js/norm.js?v=2026-08-02-r104"></script>
-<script src="js/store.js?v=2026-08-02-r104"></script>
-<script src="js/translation_stub.js?v=2026-08-02-r104"></script>
-<script src="js/translation_marker.js?v=2026-08-02-r104"></script>
+<script src="js/norm.js?v=2026-08-02-r105"></script>
+<script src="js/store.js?v=2026-08-02-r105"></script>
+<script src="js/translation_stub.js?v=2026-08-02-r105"></script>
+<script src="js/translation_marker.js?v=2026-08-02-r105"></script>
 <script>
 (function () {
   "use strict";
@@ -396,9 +397,15 @@
     cost:    [166, 124, 42],  // amber - tokens and money, one class
     time:    [122, 114, 104], // grey - latency
   };
-  function shade(v, max, hue) {
+  // Smith 2026-08-02: "doesn't need a colour changing grid as nothing to
+  // compare to" - with a single row the gradient encodes no information and
+  // just darkens the cell, and "unreadable when right" is the full-credit cell
+  // sitting at the darkest end. So: shade only when there are at least two rows
+  // to compare, and cap lower so black text stays comfortable throughout.
+  function shade(v, max, hue, rows) {
+    if (rows != null && rows < 2) return "#ffffff";
     if (!(max > 0) || !(v > 0)) return "#ffffff";
-    const t = Math.min(1, v / max) * 0.78;   // cap: never darker than 78%
+    const t = Math.min(1, v / max) * 0.55;   // cap: never darker than 55%
     const [r, g, b] = HUES[hue];
     const mix = c => Math.round(255 + (c - 255) * t);
     return "rgb(" + mix(r) + "," + mix(g) + "," + mix(b) + ")";
@@ -444,8 +451,9 @@
       const mx = key => Math.max.apply(null, rows.map(r => r[key] || 0));
       const M = { mps: mx("mps"), hits: mx("hits"), vocab: mx("vocab"), tok: mx("tok"),
                   cost: mx("cost"), sec: mx("sec"), spread: mx("spread") };
+      const nRows = rows.length;
       const cell = (v, key, hue, dp) =>
-        '<td style="background:' + shade(v, M[key], hue) + '">' +
+        '<td style="background:' + shade(v, M[key], hue, nRows) + '">' +
         (v == null ? "\u2014" : (dp === 0 ? Math.round(v) : v.toFixed(dp))) + '</td>';
       const bits = ik.split("\u0000");
       tables.push('<div class="panel"><h2>' + esc(bits[0]) + '</h2>' +
@@ -461,13 +469,23 @@
           cell(r.mps, "mps", "breadth", 1) + cell(r.hits, "hits", "credit", 1) +
           cell(r.vocab, "vocab", "credit", 1) + cell(r.spread, "spread", "breadth", 0) +
           cell(r.tok, "tok", "cost", 0) +
-          '<td style="background:' + shade(r.cost, M.cost, "cost") + '">' +
+          '<td style="background:' + shade(r.cost, M.cost, "cost", nRows) + '">' +
           (r.cost == null ? "\u2014" : "$" + r.cost.toFixed(4)) + '</td>' +
           cell(r.sec, "sec", "time", 1) + '</tr>').join("") +
         '</table></div>');
     }
-    if (!tables.length) return "";
-    return tables.join("") +
+    // Session total, summed not normalised (Smith: "I'd rather the default be
+    // to add the full scores for the session score").
+    let tHits = 0, tN = 0, tCost = 0, tRuns = 0;
+    for (const r of log) { tHits += r.hits || 0; tN += r.n || 0; tCost += r.cost || 0; tRuns++; }
+    const session = tRuns
+      ? '<div class="panel"><h2>Session total</h2><div style="font-size:19px">' +
+        (Math.round(tHits * 10) / 10) + ' / ' + tN + ' credit' +
+        '<span class="note" style="margin-left:10px">across ' + tRuns + ' run' + (tRuns === 1 ? '' : 's') +
+        ' \u00b7 $' + tCost.toFixed(4) + ' spent</span></div></div>'
+      : "";
+    if (!tables.length) return session;
+    return session + tables.join("") +
       '<div class="note" style="margin:-6px 0 14px">One table per item+answer \u2014 rows within a table ' +
       'differ ONLY in menu mode, model and temperature. Shaded two-tone, white at zero, one hue per class ' +
       '(navy = breadth, green = credit, amber = cost, grey = latency). <b>Spread</b> is how far the skill ' +
@@ -497,7 +515,18 @@
         ' · ' + (r.ms / 1000).toFixed(1) + 's</div>' +
       (r.summary || r.explanation || r.marks != null
         ? '<div class="overall">' +
-            (r.marks != null ? '<div class="marks">' + r.marks + ' / ' + (r.marksPoss != null ? r.marksPoss : 1) + ' overall</div>' : '') +
+            // Smith 2026-08-02: "why 0.6 when 4/8?" Because they are two
+            // unrelated numbers. r.marks is the MARKER's own holistic 0-1
+            // impression of the answer; r.hits/r.n counts the skills it fired.
+            // No arithmetic links them, which is exactly why showing "0.6 / 1"
+            // next to "4 / 8" reads as a contradiction. The credit total is now
+            // the headline and the marker's impression is demoted and labelled.
+            '<div class="marks">' + r.hits + ' / ' + r.n + ' credit across the skills it fired' +
+              (r.marks != null
+                ? '<span class="marks-ai"> · marker\u2019s own overall impression ' + r.marks +
+                  ' / ' + (r.marksPoss != null ? r.marksPoss : 1) + '</span>'
+                : '') +
+            '</div>' +
             (r.summary ? '<div class="summ">' + esc(r.summary) + '</div>' : '') +
             (r.explanation ? '<div class="expl">' + esc(r.explanation) + '</div>' : '') +
           '</div>'

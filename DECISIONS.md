@@ -1724,3 +1724,56 @@ the gate did not know. Rather than rewrite correct items to hide from a script, 
 exemption tag naming the reason (task type), which the gate reads and skips. Same tag resolves
 `op_ne_pp_04` and the six Category-B items from the 2026-07-22 report. The tag is a claim about the
 item's DESIGN, so it is authored, not inferred.
+
+## Ruling: vocab_help may not offer a word the prompt already shows in both languages (2026-08-02, Smith + Architecture)
+Smith, live on `pia_disp_03`: "would you mind closing the window ... suggests hint for window, but
+given in translation anyway." The item's prompt is `Ask politely 'Would you mind closing the window?':
+'____ chiudere la finestra?'` and it carries a `vocab_help` entry for `finestra` revealing
+"finestra - window". Both halves are already on screen: the Italian in the sentence the learner is
+completing, the English in the instruction above it. The learner is producing `ti dispiace`, not
+`finestra`, so the help has nothing to teach in either direction.
+
+This is not merely clutter. `appendVocabHelpEvents` (housing/js/app.js:6417) pushes every used help as
+`correctness_credit: 0, outcome: "miss"`, per the v13 ruling that a Help lookup IS a vocabulary miss.
+So tapping a dead help **records a vocabulary miss against a word that was printed in front of the
+learner in both languages and that the item never asked them to produce.** That is a false miss going
+straight into the vocab strand, the recency-weighted colour and the mastery denominator.
+
+**Census (Architecture, 2026-08-02, run over 3,039 authored grammar items; 2,010 carry vocab_help):
+225 DEAD entries** where the Italian form AND the English gloss both already appear in the prompt.
+Worst topics: imperfect 46, connective 30, comparison 23, demonstrative 23, relative_pronoun 14,
+piacere 12, pronoun 12, existential 11. Itemised at `AUDIT_dead_vocab_help_2026-08-02.json`.
+
+The much larger "Italian form present, English gloss absent" class (2,281) is NOT a defect and is not
+being touched: a learner who can see `libro` may legitimately not know it means "book".
+
+**Ruling, two layers.** (1) HOUSING, load-bearing: suppress a help chip at render when its lemma is
+already visible in the prompt AND its English gloss is too. A render guard is self-maintaining and
+makes the class impossible to reintroduce. (2) DATA: strip the 225 dead entries centrally, per the
+standing rule that `binds: all-authors` retrofits run centrally rather than through 25 seats.
+
+Related and same shape: the vocab drill's "also accepted" line echoing the accepted answer
+(`Architecture_Vocab_marker_semantics` v6). Both are affordances showing the learner something they
+already have.
+
+## Executed 2026-08-02 (Architecture): three central passes, each re-derived after the write
+1. **`indefinite.free_choice.dovunque` MINTED**, ten days after the ruling at DECISIONS 1547. Free-choice
+   adverb of place; sibling of qualunque_qualsiasi (adjectival) and chiunque (pronominal); carries the
+   `tense_choice.indicative_vs_subjunctive` prerequisite its siblings do. Parent relabelled to name it.
+   The `ogni` + numeral exception (ogni due giorni takes the plural) added to `indefinite.core.ogni`'s
+   description and common_miss, as a note not a leaf, per the author's proposal. IndefiniteAuthor is
+   unblocked.
+2. **Exemption tag minted and applied: 136 items.** Field is `answer_shown_by_design`, value
+   `supplied_choice` (129) or `mcq_choices` (7). NAMED FOR THE CLAIM, not the tool — `gate_exempt`
+   would name the script rather than the fact, which is the error "the label is the bug" keeps
+   catching. Predicate was tight: the item must carry a printed option marker (Choose / Scegli /
+   Complete using ONE of / Choose between) AND the flagged phrase must fall at or after it. Gate now
+   reads and COUNTS the tag rather than hiding the class.
+3. **225 dead vocab_help translation-aspects stripped centrally.** 147 entries dropped entirely; 78
+   kept because they carried a gender aspect the prompt does not give away. Only the `translation`
+   aspect was touched. Re-derived after the write: 2,677 vocab_help entries remain, 0 dead. All
+   data/**.json parse.
+
+**Gate after the tag, and this is the point of it:** 33 Tier A + 76 Tier B, down from 36 + 209.
+tense_choice fell from 122 findings to 1. The remaining 109 are candidates worth a human's time, which
+is what a gate is for. Report at `AUDIT_estate_net_gate_v2_2026-08-02.txt`.
