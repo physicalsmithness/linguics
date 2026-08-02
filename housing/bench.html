@@ -98,8 +98,6 @@
   .agg th { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); font-weight: 600; }
   .agg td.mode { text-align: left; font-weight: 600; color: var(--navy); }
   .overall { margin: 8px 0 4px; }
-  .overall .marks { font-size: 15px; font-weight: 600; }
-  .overall .marks-ai { font-weight: 400; color: var(--muted); font-size: 13px; }
   .overall .summ { font-size: 15px; margin-top: 2px; }
   .overall .expl { font-size: 14px; margin-top: 6px; color: #444; }
   .notes { font-size: 13px; margin-top: 8px; }
@@ -108,6 +106,12 @@
   details.raw summary { font-size: 12px; color: var(--muted); cursor: pointer; }
   details.raw pre { font-size: 11.5px; background: #faf7f0; border: 1px solid var(--rule);
     border-radius: 4px; padding: 8px; overflow-x: auto; max-height: 260px; }
+  .sess-main { font-size: 34px; font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1.1; }
+  .sess-sub { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .sess-second { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--rule);
+    font-size: 17px; font-variant-numeric: tabular-nums; color: #5c5548; }
+  .sess-second-lbl { font-size: 12px; color: var(--muted); }
+  .spend .spend-line { font-size: 15px; font-variant-numeric: tabular-nums; }
   .runs { display: inline-block; width: 70px; }
   code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12.5px; }
 </style>
@@ -159,10 +163,10 @@
 
 <div id="log"></div>
 
-<script src="js/norm.js?v=2026-08-02-r105"></script>
-<script src="js/store.js?v=2026-08-02-r105"></script>
-<script src="js/translation_stub.js?v=2026-08-02-r105"></script>
-<script src="js/translation_marker.js?v=2026-08-02-r105"></script>
+<script src="js/norm.js?v=2026-08-02-r110"></script>
+<script src="js/store.js?v=2026-08-02-r110"></script>
+<script src="js/translation_stub.js?v=2026-08-02-r110"></script>
+<script src="js/translation_marker.js?v=2026-08-02-r110"></script>
 <script>
 (function () {
   "use strict";
@@ -476,16 +480,34 @@
     }
     // Session total, summed not normalised (Smith: "I'd rather the default be
     // to add the full scores for the session score").
-    let tHits = 0, tN = 0, tCost = 0, tRuns = 0;
-    for (const r of log) { tHits += r.hits || 0; tN += r.n || 0; tCost += r.cost || 0; tRuns++; }
+    let tHits = 0, tN = 0, tRuns = 0, tAi = 0, tAiN = 0;
+    for (const r of log) {
+      tHits += r.hits || 0; tN += r.n || 0; tRuns++;
+      if (typeof r.marks === "number") { tAi += r.marks; tAiN++; }
+    }
     const session = tRuns
-      ? '<div class="panel"><h2>Session total</h2><div style="font-size:19px">' +
-        (Math.round(tHits * 10) / 10) + ' / ' + tN + ' credit' +
-        '<span class="note" style="margin-left:10px">across ' + tRuns + ' run' + (tRuns === 1 ? '' : 's') +
-        ' \u00b7 $' + tCost.toFixed(4) + ' spent</span></div></div>'
+      ? '<div class="panel"><h2>Session total</h2>' +
+        '<div class="sess-main">' + (Math.round(tHits * 10) / 10) + ' / ' + tN + '</div>' +
+        '<div class="sess-sub">across ' + tRuns + ' run' + (tRuns === 1 ? '' : 's') + '</div>' +
+        (tAiN
+          ? '<div class="sess-second">' + (Math.round(100 * tAi / tAiN) / 100) +
+            '<span class="sess-second-lbl"> average \u2014 the marker\u2019s own out-of-1 impression</span></div>'
+          : '') +
+        '</div>'
       : "";
-    if (!tables.length) return session;
-    return session + tables.join("") +
+    // Money in its own box at the bottom, deliberately nowhere near a score
+    // (Smith: "don't put this money next to the score ... we don't know how
+    // we'll be presenting it to people yet").
+    let cRuns = 0, cCost = 0, cIn = 0, cOut = 0;
+    for (const r of log) { cRuns++; cCost += r.cost || 0; cIn += r.inTok || 0; cOut += r.outTok || 0; }
+    const spendBox = cRuns
+      ? '<div class="panel spend"><h2>Spend</h2><div class="spend-line">$' + cCost.toFixed(4) +
+        '<span class="note" style="margin-left:12px">' + cRuns + ' call' + (cRuns === 1 ? '' : 's') +
+        ' \u00b7 ' + cIn.toLocaleString() + ' in / ' + cOut.toLocaleString() + ' out tokens \u00b7 $' +
+        (cCost / cRuns).toFixed(4) + ' per call</span></div></div>'
+      : "";
+    if (!tables.length) return session + spendBox;
+    return session + tables.join("") + spendBox +
       '<div class="note" style="margin:-6px 0 14px">One table per item+answer \u2014 rows within a table ' +
       'differ ONLY in menu mode, model and temperature. Shaded two-tone, white at zero, one hue per class ' +
       '(navy = breadth, green = credit, amber = cost, grey = latency). <b>Spread</b> is how far the skill ' +
@@ -513,20 +535,13 @@
         (r.outTok ? ' / ' + r.outTok.toLocaleString() + ' out tokens' : '') +
         (r.cost != null ? ' · $' + r.cost.toFixed(4) : '') +
         ' · ' + (r.ms / 1000).toFixed(1) + 's</div>' +
-      (r.summary || r.explanation || r.marks != null
+      (r.summary || r.explanation
         ? '<div class="overall">' +
-            // Smith 2026-08-02: "why 0.6 when 4/8?" Because they are two
-            // unrelated numbers. r.marks is the MARKER's own holistic 0-1
-            // impression of the answer; r.hits/r.n counts the skills it fired.
-            // No arithmetic links them, which is exactly why showing "0.6 / 1"
-            // next to "4 / 8" reads as a contradiction. The credit total is now
-            // the headline and the marker's impression is demoted and labelled.
-            '<div class="marks">' + r.hits + ' / ' + r.n + ' credit across the skills it fired' +
-              (r.marks != null
-                ? '<span class="marks-ai"> · marker\u2019s own overall impression ' + r.marks +
-                  ' / ' + (r.marksPoss != null ? r.marksPoss : 1) + '</span>'
-                : '') +
-            '</div>' +
+            // Smith 2026-08-02: the score IS the headline, bare, no gloss.
+            // The marker's own 0-1 impression is a DIFFERENT measurement with
+            // no arithmetic link to the skill count, so it no longer sits
+            // beside the score at all - it is aggregated into the session
+            // panel as a second total instead.
             (r.summary ? '<div class="summ">' + esc(r.summary) + '</div>' : '') +
             (r.explanation ? '<div class="expl">' + esc(r.explanation) + '</div>' : '') +
           '</div>'

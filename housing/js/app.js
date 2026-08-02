@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-08-02-r105";
+  const LL_BUILD = "2026-08-02-r110";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -938,13 +938,14 @@
         Foptional("../data/misconception_lenses.json"),
         Foptional("../data/translation_marker_bucket_menu.json"),
         Foptional("../data/it_surface_to_lemma.json"), // morph-it lemmas for it_en vocab injection
+        Foptional("../data/it_verb_tense_forms.json"), // morph-it tense readings (chosen-tense inference)
         Foptional("../data/grammar_questions_accent.json"), // QoderWork 2026-07-22: accent drill items
         Foptional("../data/grammar_questions_stress.json") // QoderWork 2026-07-23: stress drill items (StressAuthor pipeline)
       ]);
       const workers = [];
       for (let w = 0; w < Math.min(POOL, topics.length); w++) workers.push(worker());
       await Promise.all(workers);
-      const [glossary, vocab, parts, themes, misconceptions, lenses, markerMenu, surfaceToLemma, accentGrammar, stressGrammar] = await tail;
+      const [glossary, vocab, parts, themes, misconceptions, lenses, markerMenu, surfaceToLemma, verbTenseForms, accentGrammar, stressGrammar] = await tail;
 
       // Flatten strictly in manifest order.
       const buckets = [];
@@ -981,7 +982,7 @@
       }
 
       console.info("Loaded per topic:", perTopicCounts);
-      return { buckets, grammar, translation, perTopicCounts, vocab, themes, parts, misconceptions, lenses, markerMenu, surfaceToLemma, stress: stressGrammar, failures: loadFailures };
+      return { buckets, grammar, translation, perTopicCounts, vocab, themes, parts, misconceptions, lenses, markerMenu, surfaceToLemma, verbTenseForms, stress: stressGrammar, failures: loadFailures };
     } catch (e) {
       const cause = e && e.message ? e.message : String(e);
       console.error("[Linguics] Real content fetch failed; using inline samples. Cause:", cause);
@@ -1733,16 +1734,11 @@
     const vocabHelpsUsed = [];
     const isMcq = q.type === "mcq" && Array.isArray(q.choices) && q.choices.length > 0;
     const isErrorId = q.type === "error_id" && typeof q.error_index === "number";  // QoderWork 2026-07-22
-    // For error_id, synthesise choices from the prompt words so buildMcqResult works.  QoderWork 2026-07-22
-    if (isErrorId && !q.choices) {
-      q.choices = String(q.prompt || "").split(/\s+/).filter(Boolean);
-      q.answer_index = q.error_index;
-      if (q.correction && !q.explanation) {
-        q.explanation = "Should be: " + q.correction;
-      } else if (q.correction && q.explanation && q.explanation.indexOf(q.correction) < 0) {
-        q.explanation = "Should be: " + q.correction + ". " + q.explanation;
-      }
-    }
+    // For error_id, synthesise choices from the prompt words so buildMcqResult
+    // works. Extracted to prepErrorIdItem so the SPELLING drill can reuse it -
+    // its deck filter was mcq-only, which silently excluded SpellingAuthor's 17
+    // error_id items. See Architecture_SpellingAuthor_batch_delivery v3.
+    if (isErrorId) prepErrorIdItem(q);
     // Pre-answer suppression hint for the live stats panel. Cleared when the
     // item is marked. See inter_chat/Architecture_Housing_info_display_suppress.md.
     setInFlightSuppress(q);
@@ -2126,6 +2122,187 @@
 
   // MCQ scorer: builds a result with the same shape as markGrammar so the
   // renderResult pipeline doesn't care which marker produced it.
+  // ---------------------------------------------------------------------
+  // Chosen-tense inference. MisconceptionAnalyst_Housing_bespoke_grid_specs
+  // (Grid A6) needs the tense the learner REACHED FOR, not just whether they
+  // were right. Architecture ratified reading it off the produced form.
+  //
+  // Compound tenses are auxiliary + past participle, so those are detected
+  // first: the auxiliary's own tense decides which compound it is. Simple
+  // tenses come straight from the form's readings. In both cases the reading is
+  // intersected with the ITEM's candidate_tenses; anything that does not resolve
+  // to exactly one candidate returns null, because a wrong guess here would
+  // write a false confusion into the matrix, which is worse than a gap.
+  // ---------------------------------------------------------------------
+  const AUX_TO_COMPOUND = {
+    present: "passato_prossimo",
+    imperfect: "trapassato_prossimo",
+    future: "futuro_anteriore",
+    condizionale: "condizionale_passato",
+    congiuntivo_presente: "congiuntivo_passato",
+    congiuntivo_imperfetto: "congiuntivo_trapassato",
+    passato_remoto: "trapassato_remoto",
+  };
+  LL.inferChosenTense = function (raw, candidates) {
+    const vt = LL.verbTenseForms;
+    if (!vt || !vt.simple || !Array.isArray(candidates) || !candidates.length) return null;
+    const cand = new Set(candidates);
+    const words = String(raw || "").toLowerCase()
+      .split(/[^a-zà-ÿ']+/).filter(Boolean);
+    if (!words.length) return null;
+    const parts = new Set(vt.participles || []);
+    // Learners type without accents, so every lookup is tried accent-folded
+    // too ("c e stato" must find the auxiliary "è").
+    const fold = w => w.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    const look = (table, w) => {
+      if (!table) return null;
+      if (table[w]) return table[w];
+      const f = fold(w);
+      if (table[f]) return table[f];
+      for (const k in table) if (fold(k) === f) return table[k];
+      return null;
+    };
+    // The participle list only covers the verbs these items cue, so a learner
+    // reaching for any other verb ("ho mangiato") would miss the compound
+    // reading entirely. Fall back to Italian participle morphology.
+    const looksParticiple = w =>
+      parts.has(w) || parts.has(fold(w)) || /(?:ato|ito|uto|sto|tto|sso|nto|rto|lto|so|to)$/.test(w);
+
+    // 1. compound: an auxiliary followed (anywhere later) by a past participle
+    for (let i = 0; i < words.length; i++) {
+      const auxReadings = look(vt.aux, words[i]);
+      if (!auxReadings) continue;
+      let hasPart = false;
+      for (let j = i + 1; j < words.length; j++) if (looksParticiple(words[j])) { hasPart = true; break; }
+      if (!hasPart) continue;
+      const compounds = [];
+      for (const code of String(auxReadings)) {
+        const c = AUX_TO_COMPOUND[(vt.codes && vt.codes[code]) || code];
+        if (c && cand.has(c) && compounds.indexOf(c) < 0) compounds.push(c);
+      }
+      if (compounds.length === 1) return compounds[0];
+    }
+
+    // 2. simple: every word's readings, intersected with the candidate set
+    const hits = [];
+    for (const w of words) {
+      const rs = look(vt.simple, w);
+      if (!rs) continue;
+      for (const code of String(rs)) {
+        const r = (vt.codes && vt.codes[code]) || code;
+        if (cand.has(r) && hits.indexOf(r) < 0) hits.push(r);
+      }
+    }
+    return hits.length === 1 ? hits[0] : null;
+  };
+
+  // ---------------------------------------------------------------------
+  // Accent event axes. inter_chat/Architecture_Housing_accent_stress_and_new_qtypes.md
+  // section 1: every accent attempt reports accent_type x placement_class x
+  // outcome, and the OUTCOME decides the leaf - not the item's declared bucket.
+  // ---------------------------------------------------------------------
+  const ACCENT_OUTCOME_LEAF = {
+    omitted: "missing",       // knew a mark was needed, left it off
+    wrong_kind: "wrong_mark", // grave for acute, or the reverse
+    inserted: "added",        // put a mark where none belongs
+  };
+  const ACCENT_MARK_KIND = {
+    "à": "grave", "è": "grave", "ì": "grave", "ò": "grave", "ù": "grave",
+    "á": "acute", "é": "acute", "í": "acute", "ó": "acute", "ú": "acute",
+  };
+  function accentBase(ch) {
+    return String(ch).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+  }
+  // Compare the correct spelling with the one picked and report the vowel that
+  // carries the disagreement, plus the mark expected and the mark written.
+  // Returns null when the two differ by something that is not an accent.
+  function accentDiff(expected, written) {
+    const e = String(expected || ""), w = String(written || "");
+    const eb = accentBase(e), wb = accentBase(w);
+    if (eb !== wb) return null;              // not an accent difference at all
+    for (let i = 0; i < e.length && i < w.length; i++) {
+      const ec = e[i], wc = w[i];
+      if (ec === wc) continue;
+      const expectedMark = ACCENT_MARK_KIND[ec.toLowerCase()] || "none";
+      const writtenMark = ACCENT_MARK_KIND[wc.toLowerCase()] || "none";
+      if (expectedMark === writtenMark) continue;
+      return {
+        vowel: accentBase(ec),
+        expected_mark: expectedMark,
+        written_mark: writtenMark,
+        expected_char: ec,
+        written_char: wc,
+      };
+    }
+    return null;
+  }
+  // The outcome class, preferring the author's own tag and falling back to the
+  // string diff so an untagged distractor still lands on the right leaf.
+  function accentOutcomeClass(q, pickedIdx, correct) {
+    if (correct) return "correct";
+    const tag = Array.isArray(q.choice_tags) ? q.choice_tags[pickedIdx] : null;
+    if (tag && tag.class && ACCENT_OUTCOME_LEAF[tag.class]) return tag.class;
+    const d = accentDiff(q.choices[q.answer_index], q.choices[pickedIdx]);
+    if (!d) return "wrong_kind";
+    if (d.written_mark === "none") return "omitted";
+    if (d.expected_mark === "none") return "inserted";
+    return "wrong_kind";
+  }
+  function accentPlacementClass(q) {
+    const st = String(q.subtopic || "");
+    return st.indexOf("accent.") === 0 ? st.slice(7) : (st || "unclassified");
+  }
+  // Rewrite the result so the leaf reflects what the learner ACTUALLY did, and
+  // attach the three axes for the reports to group on.
+  function applyAccentAxes(q, pickedIdx, result) {
+    if (!result || !Array.isArray(result.markpoints)) return result;
+    const correct = pickedIdx === q.answer_index;
+    const outcome = accentOutcomeClass(q, pickedIdx, correct);
+    const placement = accentPlacementClass(q);
+    const diff = accentDiff(q.choices[q.answer_index], q.choices[pickedIdx]);
+    const axes = {
+      accent_type: diff ? diff.vowel : null,
+      expected_mark: diff ? diff.expected_mark : null,
+      written_mark: diff ? diff.written_mark : null,
+      placement_class: placement,
+      outcome_class: outcome,
+      pron_effect: q.pron_effect || null,
+    };
+    const leaf = ACCENT_OUTCOME_LEAF[outcome];
+    for (const mp of result.markpoints) {
+      mp.accent_axes = axes;
+      // On a MISS, retarget the leaf to the outcome the learner produced. The
+      // declared bucket stays on the record as declared_bucket so the authored
+      // intent is never lost.
+      if (!correct && leaf && typeof mp.bucket === "string" &&
+          mp.bucket.indexOf("orthography.accent.") === 0) {
+        const retargeted = "orthography.accent.italian." + leaf;
+        if (retargeted !== mp.bucket) {
+          mp.declared_bucket = mp.bucket;
+          mp.bucket = retargeted;
+        }
+      }
+    }
+    result.accent_axes = axes;
+    return result;
+  }
+
+  // error_id items carry a sentence and the INDEX of the wrong word; the
+  // tappable choices are the sentence's own words. Idempotent.
+  function prepErrorIdItem(q) {
+    if (!q || q.type !== "error_id" || typeof q.error_index !== "number") return q;
+    if (!q.choices) {
+      q.choices = String(q.prompt || "").split(/\s+/).filter(Boolean);
+      q.answer_index = q.error_index;
+      if (q.correction && !q.explanation) {
+        q.explanation = "Should be: " + q.correction;
+      } else if (q.correction && q.explanation && q.explanation.indexOf(q.correction) < 0) {
+        q.explanation = "Should be: " + q.correction + ". " + q.explanation;
+      }
+    }
+    return q;
+  }
+
   function buildMcqResult(q, pickedIdx) {
     const possible = q.marks || 1;
     const correct = pickedIdx === q.answer_index;
@@ -3395,12 +3572,15 @@
 
   function buildSpellingDeck() {
     const cls = vocabFilter.spellingClass;
+    // error_id belongs in this deck too. The filter was mcq-only, so the 17
+    // error-identification items SpellingAuthor delivered on 2026-07-21 have
+    // never once been served - the single-line ask standing on that thread.
     spellingDeck = shuffle(grammarQuestions.filter(q =>
       q.topic === "orthography" &&
       typeof q.subtopic === "string" && q.subtopic.indexOf("spelling.") === 0 &&
-      q.type === "mcq" &&
+      (q.type === "mcq" || q.type === "error_id") &&
       (!cls || q.subtopic === "spelling." + cls)
-    ));
+    ).map(q => (q.type === "error_id" ? prepErrorIdItem(q) : q)));
     spellingIndex = 0;
     resetDrillSession("spelling");   // QoderWork 2026-07-23
   }
@@ -3435,6 +3615,12 @@
     const prompt = document.createElement("div");
     prompt.className = "prompt";
     prompt.textContent = q.prompt || "Choose the correct spelling:";
+    if (q.type === "error_id") {
+      const instr = document.createElement("div");
+      instr.className = "meta faint";
+      instr.textContent = q.instruction || "Which word is wrong?";
+      card.appendChild(instr);
+    }
     card.appendChild(prompt);
 
     // Choices
@@ -3629,7 +3815,7 @@
       if (marked) return;
       marked = true;
       const origIdx = order[displayIdx];
-      const result = buildMcqResult(q, origIdx);
+      const result = applyAccentAxes(q, origIdx, buildMcqResult(q, origIdx));
       const attempt = LL.store.recordAttempt("vocab",
         { id: q.external_id || ("accent_" + accentIndex), prompt: q.prompt },
         q.choices[origIdx], result);
@@ -7227,6 +7413,29 @@
       empty.textContent = "No buckets loaded.";
       host.appendChild(empty);
     }
+    // Band legend (accent_stress_and_new_qtypes section 4: "the hover shows
+    // io / tu / noi / loro but does NOT say what each COLUMN is"). The bands
+    // are 7-9px segments, so per-row headers do not fit; one legend at the top
+    // of the panel names the order once, which is what the strip actually
+    // needs. Rendered only when something on screen is banded.
+    if (host.querySelector(".row-person-bands")) {
+      const legend = document.createElement("div");
+      legend.className = "band-legend";
+      const lbl = document.createElement("span");
+      lbl.className = "band-legend-label";
+      lbl.textContent = "bands:";
+      legend.appendChild(lbl);
+      for (const pr of PERSON_ORDER) {
+        const cell = document.createElement("span");
+        cell.className = "band-legend-cell";
+        cell.textContent = PERSON_LABELS[pr];
+        legend.appendChild(cell);
+      }
+      legend.title = "Each row's little bars are the six persons, left to right in this order. "
+        + "Colour is how well that person is going; pale means not practised yet.";
+      host.insertBefore(legend, host.firstChild);
+    }
+
     // After rendering, bring the first recently-changed row into view.
     if (recentlyChangedBuckets.size) {
       scrollToFreshBuckets();   // rAF settle inside owns the timing
@@ -9459,6 +9668,171 @@
   // Shading: ONE global max across all 16 cells (darkest cell = true max),
   // olive scale, constant font colour — never flips dark/light (Smith prefs).
   // QoderWork 2026-07-23
+  // ---------------------------------------------------------------------
+  // Canvas A6 - tense-choice confusion matrix.
+  // data/misconception_bespoke_grid_specs.md Grid 1.
+  //
+  // Rows = the tense the learner REACHED FOR, columns = the tense that was
+  // correct. The diagonal is "got it right"; an off-diagonal cell answers the
+  // question the spec is built around - "when the imperfect was wanted, what
+  // did they reach for instead?"
+  //
+  // Colour follows the estate's data-presentation rules and the spec: the
+  // diagonal is the coverage green ramp (it IS correctness), the off-diagonal
+  // is a separate terracotta ramp (a different CLASS of quantity, so it never
+  // borrows the diagonal's scale), both smooth, both anchored at zero, black
+  // text throughout with the depth capped so the darkest cell stays readable.
+  // No red: an error count is not a negative number.
+  // ---------------------------------------------------------------------
+  let tcMatrixPercent = false;   // false = raw counts, true = row-%
+  let tcMatrixTransposed = false;
+  let tcMatrixMinN = 0;          // hide pairs below N attempts; spec default 5
+  function tenseConfusionCounts() {
+    // counts[chosen][correct] = n
+    const counts = {}, tenses = new Set();
+    let total = 0, unresolved = 0;
+    for (const a of ((LL.state && LL.state.attempts) || [])) {
+      const tm = a.tense_meta;
+      if (!tm || !tm.correct_tense) continue;
+      let chosen = tm.chosen_tense || null;
+      // Legacy attempts (recorded before chosen_tense existed) and the ~1% the
+      // form reading cannot disambiguate are still recoverable when the item
+      // offered exactly two candidates: right means they chose the correct one,
+      // wrong means they chose the other. The spec's own fallback.
+      if (!chosen && Array.isArray(tm.candidate_tenses) && tm.candidate_tenses.length === 2) {
+        chosen = tm.was_right ? tm.correct_tense
+          : tm.candidate_tenses.filter(t => t !== tm.correct_tense)[0] || null;
+      }
+      if (!chosen && tm.was_right) chosen = tm.correct_tense;
+      if (!chosen) { unresolved++; continue; }
+      tenses.add(chosen); tenses.add(tm.correct_tense);
+      counts[chosen] = counts[chosen] || {};
+      counts[chosen][tm.correct_tense] = (counts[chosen][tm.correct_tense] || 0) + 1;
+      total++;
+    }
+    return { counts, tenses: Array.from(tenses), total, unresolved };
+  }
+  function tenseLabel(slug) {
+    return TENSE_TAG_LABELS[slug] || ptTenseLabel(slug) || slug;
+  }
+  // Off-diagonal ramp: terracotta, white at zero, capped for legibility.
+  function tcErrorColour(v, max) {
+    if (!(v > 0) || !(max > 0)) return "#ffffff";
+    const t = Math.min(1, v / max) * 0.62;
+    const mix = (c) => Math.round(255 + (c - 255) * t);
+    return "rgb(" + mix(178) + "," + mix(104) + "," + mix(72) + ")";
+  }
+  function buildTenseConfusionMatrix() {
+    const wrap = document.createElement("div"); wrap.className = "pt-grid-wrap";
+    const data = tenseConfusionCounts();
+    if (!data.total) {
+      const n = document.createElement("p"); n.className = "analysis-note";
+      n.textContent = "No tense-choice answers yet — the matrix fills in as you answer items that "
+        + "offer a choice of tense.";
+      wrap.appendChild(n);
+      return wrap;
+    }
+    // Only tenses that actually appear get a row/column (spec).
+    const order = ["present", "passato_prossimo", "imperfect", "trapassato_prossimo", "passato_remoto",
+                   "future", "futuro_anteriore", "condizionale", "condizionale_passato",
+                   "congiuntivo_presente", "congiuntivo_imperfetto", "congiuntivo_passato"];
+    const axis = order.filter(t => data.tenses.indexOf(t) >= 0)
+      .concat(data.tenses.filter(t => order.indexOf(t) < 0).sort());
+
+    // Controls
+    const bar = document.createElement("div"); bar.className = "tc-controls";
+    const mkToggle = (label, on, fn) => {
+      const b = document.createElement("button");
+      b.type = "button"; b.className = "tc-toggle" + (on ? " on" : "");
+      b.textContent = label;
+      b.addEventListener("click", () => { fn(); rerenderTenseMatrix(wrap); });
+      return b;
+    };
+    bar.appendChild(mkToggle(tcMatrixPercent ? "Row %" : "Counts", tcMatrixPercent,
+      () => { tcMatrixPercent = !tcMatrixPercent; }));
+    bar.appendChild(mkToggle(tcMatrixTransposed ? "Rows: correct" : "Rows: chose", tcMatrixTransposed,
+      () => { tcMatrixTransposed = !tcMatrixTransposed; }));
+    bar.appendChild(mkToggle(tcMatrixMinN ? "Hiding pairs under " + tcMatrixMinN : "All pairs",
+      !!tcMatrixMinN, () => { tcMatrixMinN = tcMatrixMinN ? 0 : 5; }));
+    wrap.appendChild(bar);
+
+    // value(rowTense, colTense) honouring the transpose
+    const raw = (r, c) => {
+      const chosen = tcMatrixTransposed ? c : r;
+      const correct = tcMatrixTransposed ? r : c;
+      return (data.counts[chosen] && data.counts[chosen][correct]) || 0;
+    };
+    const rowTotal = r => axis.reduce((sum, c) => sum + raw(r, c), 0);
+
+    let maxErr = 0;
+    for (const r of axis) for (const c of axis) {
+      if (r === c) continue;
+      const v = tcMatrixPercent ? (rowTotal(r) ? 100 * raw(r, c) / rowTotal(r) : 0) : raw(r, c);
+      if (v > maxErr) maxErr = v;
+    }
+
+    const table = document.createElement("table"); table.className = "pt-grid tc-grid";
+    const thead = document.createElement("thead"); const htr = document.createElement("tr");
+    const corner = document.createElement("th"); corner.className = "tc-corner";
+    corner.textContent = tcMatrixTransposed ? "correct \\ chose" : "chose \\ correct";
+    htr.appendChild(corner);
+    for (const c of axis) {
+      const th = document.createElement("th"); th.className = "tc-colhead";
+      const sp = document.createElement("span"); sp.textContent = tenseLabel(c);
+      th.appendChild(sp); htr.appendChild(th);
+    }
+    thead.appendChild(htr); table.appendChild(thead);
+
+    const tbody = document.createElement("tbody");
+    for (const r of axis) {
+      const tr = document.createElement("tr");
+      const rh = document.createElement("th"); rh.className = "tc-rowhead";
+      rh.textContent = tenseLabel(r); tr.appendChild(rh);
+      const rt = rowTotal(r);
+      for (const c of axis) {
+        const n = raw(r, c);
+        const td = document.createElement("td");
+        const shown = tcMatrixPercent ? (rt ? 100 * n / rt : 0) : n;
+        const hidden = tcMatrixMinN && n > 0 && n < tcMatrixMinN;
+        if (!n || hidden) {
+          td.className = "pt-empty" + (r === c ? " tc-diag" : "");
+          td.title = tenseLabel(r) + " → " + tenseLabel(c) + ": "
+            + (hidden ? n + " attempt" + (n === 1 ? "" : "s") + ", below the cut-off" : "no attempts");
+        } else {
+          if (r === c) {
+            td.className = "tc-diag";
+            td.style.background = coverageColour(rt ? n / rt : 0, true);
+          } else {
+            td.style.background = tcErrorColour(shown, maxErr);
+          }
+          td.textContent = tcMatrixPercent ? shown.toFixed(1) : String(n);
+          const pct = rt ? Math.round(100 * n / rt) : 0;
+          td.title = (tcMatrixTransposed
+              ? "Correct was " + tenseLabel(r) + ", chose " + tenseLabel(c)
+              : "Chose " + tenseLabel(r) + " when " + tenseLabel(c) + " was correct")
+            + ": " + n + " attempt" + (n === 1 ? "" : "s") + " (" + pct + "% of row)";
+        }
+        tr.appendChild(td);
+      }
+      tbody.appendChild(tr);
+    }
+    table.appendChild(tbody);
+    const scroll = document.createElement("div"); scroll.className = "pt-scroll";
+    scroll.appendChild(table); wrap.appendChild(scroll);
+
+    const note = document.createElement("p"); note.className = "analysis-note";
+    note.textContent = "Diagonal = right. Off-diagonal = reached for the row tense when the column tense "
+      + "was correct. " + data.total + " answer" + (data.total === 1 ? "" : "s") + " counted"
+      + (data.unresolved ? "; " + data.unresolved + " could not be attributed to a tense and are left out"
+                         : "") + ".";
+    wrap.appendChild(note);
+    return wrap;
+  }
+  function rerenderTenseMatrix(oldWrap) {
+    const fresh = buildTenseConfusionMatrix();
+    if (oldWrap && oldWrap.parentNode) oldWrap.parentNode.replaceChild(fresh, oldWrap);
+  }
+
   function buildStressConfusionMatrix() {
     const wrap = document.createElement("div"); wrap.className = "pt-grid-wrap";
     try {
@@ -9752,7 +10126,7 @@
     col.appendChild(sectionWrap("Verb coverage: person × tense", buildPersonTenseGrid()));
     col.appendChild(sectionWrap("Verb coverage: person × conjugation class", buildPersonClassGrid()));
     col.appendChild(sectionWrap("Stress confusion matrix", buildStressConfusionMatrix()));
-    col.appendChild(placeholderSection("Tense-choice confusion matrix", "Chosen tense vs correct tense — the diagonal is right, off-diagonal shows what you reach for wrongly."));
+    col.appendChild(sectionWrap("Tense-choice confusion matrix", buildTenseConfusionMatrix()));
     col.appendChild(placeholderSection("Piacere per-verb grid", "Direction (mi piaci vs ti piaccio), pluralisation, figurative use, per tested verb."));
     const btLink = document.createElement("button"); btLink.type = "button"; btLink.className = "entry-coverage-link"; btLink.style.marginTop = "6px";
     btLink.textContent = "Browse the atomised bucket tree →";
@@ -9834,6 +10208,7 @@
     LL.misconceptions = real.misconceptions || null;   // registry: families + specifics (analysis surface)
     LL.lenses = real.lenses || null;                   // surface-lens layer
     LL.surfaceToLemma = real.surfaceToLemma || null;   // it_en vocab injection (morph-it)
+    LL.verbTenseForms = real.verbTenseForms || null;   // chosen-tense inference (morph-it)
     LL.markerMenu = real.markerMenu || null;            // cross-topic translation marker menu (task 41)
     if (real.vocab && Array.isArray(real.vocab)) {
       vocabEntries = real.vocab;

@@ -1777,3 +1777,67 @@ already have.
 **Gate after the tag, and this is the point of it:** 33 Tier A + 76 Tier B, down from 36 + 209.
 tense_choice fell from 122 findings to 1. The remaining 109 are candidates worth a human's time, which
 is what a gate is for. Report at `AUDIT_estate_net_gate_v2_2026-08-02.txt`.
+
+## Ruling: how an English-cued formation item is marked (2026-08-02, Smith, by worked example)
+Classify the learner's answer ONCE, by membership of the cued lemma's inflectional set
+(`candidate_forms`). IN the set: the learner demonstrably has the word, so formation grades normally
+including misses (`rossa` on a m.sg slot = vocabulary hit + formation MISS). NOT in the set:
+vocabulary miss, formation SILENT (`blu`, `nero`, `gentile`, `simpatico`, `roso`).
+**Smith declined the more generous option** of crediting formation when the wrong word is itself
+well formed (`nero` and `simpatico` are correct masculine singulars): "it's going to be quite hard to
+think of every possible wrong word that they give". Credit that depends on judging an arbitrary wrong
+word is not decidable, so it is refused. Slightly ungenerous, entirely decidable.
+`roso` sits in the silent group by Smith's explicit call, which is also what rules out a stem-prefix
+discriminator: `ros` IS a prefix of `ross`, so prefix-matching would wrongly credit it. Set membership
+is the only test that reproduces all four of Smith's cases.
+**On the supplies-the-trigger rule this appears to breach:** Smith ruled it a loose rule and rejected
+"we shouldn't do this because we said we wouldn't" as a reason. The classification honours its intent
+regardless, since a formation miss now fires only where the learner had the right word.
+**Engine gap found:** `grammar_engine.js:227` makes the credit-only silence UNCONDITIONAL, so a
+real-form-wrong-slot answer is swallowed and the formation bucket can never record a failure. One
+condition to add. Routed to Housing at `Architecture_Housing_retrieval_help_affordance` v2.
+
+## Ruling: an item's tree home follows the skill its markpoint SCORES, not the word in the blank (2026-08-02, Architecture)
+Settles `Architecture_PronounAuthor_existential_formation_vs_tense_choice`. The four
+`pronoun.ci_locative.existential` items were read individually rather than ruled in the abstract, and
+all four score esserci itself: op_cil_exist_01 c'e (singular), _02 ci sono (plural), _03 the compound
+past (c'e stata / ci sono state), _04 the negated existential (non c'e piu). None tests `ci` as a
+locative clitic - not position, not combination, not ne-vs-ci. `ci` appears in the ANSWER; what is
+SCORED is "form the existential correctly", and that is the existential topic's skill.
+
+Decisive additional fact, derived not assumed: the existential topic already carries dedicated,
+well-populated leaves for all four - `existential.form.singular` (9 items), `.plural` (12), `.past`
+(7), `.negative` (5). So these are not a boundary dispute, they are **duplicate coverage of four
+leaves that are already healthy**, recorded under a fifth id in a different tree. Left alone the two
+trees would report the same skill twice and neither would read as mastered.
+
+**Ruling: relocate to existential; ExistentialAuthor executes the merge**, because the right outcome
+per item may be "retire, we already have this" rather than "move" and only that seat can dedupe
+against its own 43. Item IDs are PRESERVED whatever happens - pulse history keys on item_id, so
+renaming would orphan real learner attempts. Retire `pronoun.ci_locative.existential` once empty.
+PronounAuthor keeps every genuinely clitic-side `ci` item; nothing else moves.
+
+## Ruling: a graded-credit ruling binds wherever the form appears, and the citing seat must cite it (2026-08-02, Architecture)
+Settles `Architecture_PassiveAuthor_usage_branch_delivery` ask 1. PassiveAuthor applied
+SiConstructionsAuthor's `si vende` 0.5 by analogy and asked whether that was legitimate. **Ratified.**
+A graded-credit ruling is a judgement about the LANGUAGE - is "si vende libri" acceptable, and how
+acceptable - not a judgement about a topic. Language facts do not respect tree boundaries, and
+requiring each tree to re-derive the same verdict guarantees they will eventually disagree, at which
+point the same answer scores differently depending on which drill served it.
+
+Two conditions. (1) The citing seat must CITE the originating ruling explicitly in the markpoint note
+or the thread, so the verdict is traceable to one place and moves in one place if it is revised.
+(2) If the citing seat believes its context changes the judgement, it must SAY SO and ask, rather than
+silently diverge. Divergence is allowed; silent divergence is not.
+
+## Ruling: misconception_id carries an `untagged:<bucket>` fallback on a wrong answer (2026-08-02, Architecture)
+Settles the open question on `Architecture_Housing_shared_login_and_pulse`. Only 221 of 4,944 guards
+estate-wide carry a misconception name, so without a fallback the column is blank on roughly 95% of
+wrong answers and tells you nothing - including nothing about where the gap is.
+
+**Adopt the fallback, with the prefix load-bearing.** The value is `untagged:` followed by the tripped
+guard's bucket id. The prefix must be visibly not-a-registry-id, and any rollup MUST exclude
+prefixed values from misconception counts while surfacing them in a single "untagged" total. That
+buys the real prize - the untagged wrongs cluster, and the clusters ARE the authoring worklist,
+ordered by how often learners actually hit them - without letting a placeholder contaminate the
+registry or inflate a named misconception's frequency.

@@ -371,7 +371,7 @@
     "aspects": {
      "translation": {
       "reveal": "amico - friend",
-      "bucket": "vocabulary.it.amico.translation"
+      "bucket": "vocabulary.it.amico.noun.translation"
      }
     }
    }
@@ -1255,7 +1255,8 @@
   "vocab_help": [],
   "explanation": "I said goodbye to all the students before leaving: Ho salutato tutti gli studenti prima di uscire. Two separate skills land in this one answer. Tutto keeps the article after it, which gives tutti + article + studenti; and the article itself has to be chosen, where studenti starts with s + consonant and so takes gli rather than i, just as lo studente does in the singular. A mixed group defaults to the masculine plural.",
   "examiner_note": "Criterion 8: two markpoints because two distinct skills combine. A learner who keeps the article but picks 'i' scores 1/2 with the miss correctly attributed to the article tree, not to mine. Cross-tree citation of article.definite.forms per the DECISIONS 2026-07-14 ruling that tutto + article lives here and cites the article tree.",
-  "version": 1
+  "version": 1,
+  "slot": "gli"
  },
  {
   "external_id": "ind_tutto_07",
@@ -1765,7 +1766,7 @@
     "aspects": {
      "translation": {
       "reveal": "amico - friend",
-      "bucket": "vocabulary.it.amico.translation"
+      "bucket": "vocabulary.it.amico.noun.translation"
      }
     }
    }
@@ -1780,7 +1781,7 @@
   "subtopic": "pronouns.nessuno_niente",
   "difficulty": 3,
   "cefr_level_target": "B1",
-  "prompt": "Complete: 'Non ho portato ____ in gita.' [no rucksack] (nessuno)",
+  "prompt": "Complete: 'Non ho portato ____ in gita.' [no rucksack]",
   "type": "short",
   "marks": 1,
   "wrong_answer_is_form_error_only": true,
@@ -1830,7 +1831,8 @@
    }
   ],
   "explanation": "I didn't bring a rucksack on the trip: Non ho portato nessuno zaino in gita. Zaino starts with z, and z is one of the sounds that forces the long article: uno zaino, never un zaino. Nessuno copies it exactly, so the full form survives: nessuno zaino. This is where the parallel with the article earns its keep.",
-  "version": 1
+  "version": 2,
+  "examiner_note": "Cue-gives-answer fix 2026-08-03 (sibling of ind_nn_06, same class): the (nessuno) cue supplied the exact long-form determiner the item tests (nessuno before z = the citation form), so copying the cue passed without meeting the rule. Cue dropped; gloss [no rucksack] names the meaning, the long-vs-short form stays the test. Answer and guards unchanged."
  },
  {
   "external_id": "ind_nn_04",
@@ -1943,7 +1945,7 @@
   "subtopic": "pronouns.nessuno_niente",
   "difficulty": 3,
   "cefr_level_target": "B1",
-  "prompt": "Complete: '____ studente ha superato la prova.' [no student] (nessuno)",
+  "prompt": "Complete: '____ studente ha superato la prova.' [no student]",
   "type": "short",
   "marks": 1,
   "wrong_answer_is_form_error_only": true,
@@ -1987,8 +1989,8 @@
    }
   ],
   "explanation": "Not one student passed the test: Nessuno studente ha superato la prova. Studente begins with s followed by another consonant, and that combination forces the long article: uno studente. Nessuno keeps its full form to match. Note the verb: ha superato, singular, because nessuno + singular noun is singular throughout.",
-  "examiner_note": "OIC seed sentence, verbatim from their exercise (nessuno as adjective + singular noun). | False-miss fix 2026-07-27 (AUDIT_false_miss_2026-07-20, TOP): blank-boundary zero — 'studente' is printed after the blank, so the learner types only 'Nessuno', which the two-word positive could not match. Positive widened to blank-only 'nessuno' (word); two-word guards kept for full-answer typers; blank-only 'nessun'/'nessuna' guards added for attribution. wrong_answer_is_form_error_only stays true (all caught forms are apocope/gender errors of the correct lexeme nessuno).",
-  "version": 2
+  "examiner_note": "Blank-boundary false-miss fix (2026-07-27) PLUS cue-gives-answer fix (2026-08-03, per Architecture false_miss_packet v3): blank-only 'nessuno' positive credits what the learner types; the (nessuno) cue that equalled the answer is dropped, gloss [no student] names the meaning and the s+consonant long-form rule stays the test. Guards retained; wrong_answer_is_form_error_only stays true.",
+  "version": 3
  },
  {
   "external_id": "ind_nn_07",
@@ -2369,8 +2371,8 @@
   "subtopic": "pronouns.ognuno_ciascuno",
   "difficulty": 4,
   "cefr_level_target": "B2",
-  "prompt": "Complete, in formal written register: 'A ____ studente è stato assegnato un tutor.' [each] (ciascuno)",
-  "type": "short",
+  "prompt": "In formal writing, which is correct? 'A ____ è stato assegnato un tutor.'",
+  "type": "mcq",
   "marks": 1,
   "wrong_answer_is_form_error_only": true,
   "markpoints": [
@@ -2378,34 +2380,38 @@
     "order_index": 0,
     "credit": 1.0,
     "bucket": "indefinite.pronouns.ognuno_ciascuno",
-    "label": "Ognuno and ciascuno",
+    "label": "Ciascuno + s-consonant long form",
     "any_phrases": [
      {
-      "phrase": "ciascuno",
+      "phrase": "ciascuno studente",
       "match_at": "word"
      }
     ],
     "must_not_include": [
      {
-      "phrase": "ciascun",
+      "phrase": "ciascun studente",
       "match_at": "word",
-      "note": "Studente begins with s + consonant, so the long form survives: ciascuno studente, like uno studente."
+      "note": "s + consonant forces the long form: ciascuno studente, like uno studente."
      },
      {
-      "phrase": "ciascuna",
-      "match_at": "word"
-     },
-     {
-      "phrase": "ciascuni",
-      "match_at": "word"
+      "phrase": "ciascuni studenti",
+      "match_at": "word",
+      "note": "Ciascuno never goes plural."
      }
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "Each student has been assigned a tutor: A ciascuno studente è stato assegnato un tutor. Studente begins with s + consonant, which forces the long form of the article (uno studente), and ciascuno follows it exactly as nessuno does. Same phonology, three different words: uno, nessuno, ciascuno.",
-  "examiner_note": "Same-surface, opposite-answer pairing with ind_oc_03 (house technique 3): ciascun candidato there, ciascuno studente here. The conditioning factor is the noun's opening sound, and the pair teaches it better than either item alone.",
-  "version": 1
+  "examiner_note": "Cue-gives-answer fix 2026-08-03 (sibling of ind_nn_06). Original cued (ciascuno) = the tested long form. Dropping the cue would admit 'ogni studente' as a valid-but-uncredited answer (crit 10a), so converted to MCQ (Rev 29 remedy ii): all choices are ciascuno-forms, lexeme given, FORM is the pure test, no answer-fragment cue. Index-scored; markpoint retained for attribution.",
+  "version": 2,
+  "choices": [
+   "ciascuno studente",
+   "ciascun studente",
+   "ciascuni studenti"
+  ],
+  "answer_index": 0,
+  "info_display": "suppress"
  },
  {
   "external_id": "ind_qq_01",

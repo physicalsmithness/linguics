@@ -1,0 +1,750 @@
+[
+ {
+  "external_id": "interr_chi_01",
+  "language_code": "it",
+  "topic": "interrogatives",
+  "subtopic": "chi.subject",
+  "difficulty": 1,
+  "cefr_level_target": "A1",
+  "type": "short",
+  "marks": 1,
+  "prompt": "Completa: '____ ha telefonato?'",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "interrogatives.chi",
+    "label": "chi (who), subject",
+    "any_phrases": [
+     {
+      "phrase": "chi",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "che",
+      "match_at": "word",
+      "note": "A person telephones, so the question word is chi (who), not che (what)."
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "telefonato",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "to telephone - telefonare",
+      "bucket": "vocabulary.it.telefonare.verb.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "Who telephoned? = Chi ha telefonato? A person makes a phone call, so the question word is chi (who), the word Italian uses to ask about people. Chi never changes its ending, whether one person called or several: Chi ha telefonato? covers both.",
+  "examiner_note": "Context (someone telephoned) forces a person, so no English gloss is needed; the che guard catches the who/what confusion.",
+  "version": 1
+ },
+ {
+  "external_id": "interr_chi_02",
+  "language_code": "it",
+  "topic": "interrogatives",
+  "subtopic": "chi.with_preposition",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "prompt": "Completa: '____ esci stasera?' [with whom]",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "interrogatives.chi",
+    "label": "chi with fronted preposition (con)",
+    "any_phrases": [
+     {
+      "phrase": "con chi",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "chi con",
+      "match_at": "word",
+      "note": "Italian fronts the preposition (Con chi?); it never leaves it stranded at the end as English does ('...who with?')."
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "esci",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "to go out - uscire",
+      "bucket": "vocabulary.it.uscire.verb.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "Who are you going out with tonight? = Con chi esci stasera? English can push the little linking word (with) to the end of a question, but Italian keeps the preposition together with its question word at the front: Con chi...? The pair moves as one, so an Italian question never ends on the preposition.",
+  "version": 1
+ },
+ {
+  "external_id": "interr_chi_03",
+  "language_code": "it",
+  "topic": "interrogatives",
+  "subtopic": "chi.with_preposition",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "prompt": "Completa: '____ hai dato le chiavi?' [to whom]",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "interrogatives.chi",
+    "label": "chi with fronted preposition (a)",
+    "any_phrases": [
+     {
+      "phrase": "a chi",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "chi a",
+      "match_at": "word",
+      "note": "The preposition a comes first: A chi...?, not 'Chi...a?'."
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "chiavi",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "key - chiave",
+      "bucket": "vocabulary.it.chiave.noun.translation"
+     },
+     "gender": {
+      "reveal": "feminine (f)",
+      "bucket": "vocabulary.it.chiave.noun.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "Who did you give the keys to? = A chi hai dato le chiavi? The keys go to a person, and Italian marks that person with the preposition a (to) placed in front of chi: A chi...? The question word chi stays the same; the preposition in front is what makes it 'to whom'.",
+  "version": 1
+ },
+ {
+  "external_id": "interr_chi_04",
+  "language_code": "it",
+  "topic": "interrogatives",
+  "subtopic": "chi.whose",
+  "difficulty": 2,
+  "cefr_level_target": "B1",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "prompt": "Completa: '____ è questa borsa?' [whose]",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "interrogatives.chi",
+    "label": "di chi = whose",
+    "any_phrases": [
+     {
+      "phrase": "di chi",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "chi",
+      "match_at": "word",
+      "note": "'Whose' is di chi, not bare chi: the preposition di carries the possessive sense."
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "borsa",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "bag - borsa",
+      "bucket": "vocabulary.it.borsa.noun.translation"
+     },
+     "gender": {
+      "reveal": "feminine (f)",
+      "bucket": "vocabulary.it.borsa.noun.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "Whose bag is this? = Di chi è questa borsa? Italian has no single word for 'whose'; it builds the idea from di (of) plus chi (who): Di chi è...?, literally 'of whom is...?'. Drop the di and you are left with plain 'who', a different question, so the di is doing the possessive work.",
+  "examiner_note": "The bare-chi guard is nested inside the correct 'di chi', but the positive is checked first and wins, so it only fires on the forgot-di attempt (ordering-protected, criterion 18 exempt case).",
+  "version": 1
+ },
+ {
+  "external_id": "interr_chi_05",
+  "language_code": "it",
+  "topic": "interrogatives",
+  "subtopic": "chi.with_preposition",
+  "difficulty": 2,
+  "cefr_level_target": "B1",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "prompt": "Completa: '____ è questo regalo?' [who ... for]",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "interrogatives.chi",
+    "label": "chi with fronted preposition (per)",
+    "any_phrases": [
+     {
+      "phrase": "per chi",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "chi per",
+      "match_at": "word",
+      "note": "The preposition per comes first: Per chi...?, never '...chi per?'."
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "regalo",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "present - regalo",
+      "bucket": "vocabulary.it.regalo.noun.translation"
+     },
+     "gender": {
+      "reveal": "masculine (m)",
+      "bucket": "vocabulary.it.regalo.noun.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "Who is this present for? = Per chi è questo regalo? The gift is meant for a person, and Italian puts that relationship first with per (for) before chi: Per chi...? Once again chi does not change; the preposition per carries the 'for whom' meaning.",
+  "version": 1
+ },
+ {
+  "external_id": "interr_chi_06",
+  "language_code": "it",
+  "topic": "interrogatives",
+  "subtopic": "chi.object",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "type": "short",
+  "marks": 1,
+  "prompt": "Completa: '____ inviti alla festa?' [who(m)]",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "interrogatives.chi",
+    "label": "chi as object",
+    "any_phrases": [
+     {
+      "phrase": "chi",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "quali",
+      "match_at": "word",
+      "note": "Chi is invariable and has no plural; it stays chi even when many people are meant."
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "festa",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "party - festa",
+      "bucket": "vocabulary.it.festa.noun.translation"
+     },
+     "gender": {
+      "reveal": "feminine (f)",
+      "bucket": "vocabulary.it.festa.noun.gender"
+     }
+    }
+   },
+   {
+    "lemma": "inviti",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "to invite - invitare",
+      "bucket": "vocabulary.it.invitare.verb.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "Who(m) are you inviting to the party? = Chi inviti alla festa? Here the people are on the receiving end of the inviting (the object), yet Italian still uses the same word chi, with no separate object form like older English 'whom'. Subject or object, it is chi either way: Chi viene? and Chi inviti?.",
+  "version": 1
+ },
+ {
+  "external_id": "interr_che_01",
+  "language_code": "it",
+  "topic": "interrogatives",
+  "subtopic": "che_cosa.equivalence",
+  "difficulty": 1,
+  "cefr_level_target": "A1",
+  "type": "short",
+  "marks": 1,
+  "prompt": "Completa: '____ fai stasera?'",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "interrogatives.che_cosa",
+    "label": "che / cosa / che cosa (what)",
+    "any_phrases": [
+     {
+      "phrase": "che cosa",
+      "match_at": "word"
+     },
+     {
+      "phrase": "cosa",
+      "match_at": "word"
+     },
+     {
+      "phrase": "che",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "chi",
+      "match_at": "word",
+      "note": "'What' about an activity is che/cosa/che cosa; chi asks about a person."
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "fai",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "to do / to make - fare",
+      "bucket": "vocabulary.it.fare.verb.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "What are you doing tonight? = Che fai stasera? Italian has three ways to ask 'what', interchangeable here: che, cosa, and the fuller che cosa. Che fai?, Cosa fai? and Che cosa fai? all say the same thing, so any of the three is right; che and cosa are the everyday short forms.",
+  "examiner_note": "Any of the three 'what' forms is accepted; the che guard is the who/what confusion. Context (an activity) forces 'what', so no gloss.",
+  "version": 1
+ },
+ {
+  "external_id": "interr_che_02",
+  "language_code": "it",
+  "topic": "interrogatives",
+  "subtopic": "che_cosa.before_noun",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "type": "mcq",
+  "marks": 1,
+  "prompt": "Quale forma completa la frase? '____ leggi in estate?'",
+  "choices": [
+   "Che libri",
+   "Cosa libri",
+   "Che cosa libri"
+  ],
+  "answer_index": 0,
+  "candidate_forms": [
+   "Che libri",
+   "Cosa libri",
+   "Che cosa libri"
+  ],
+  "correct_form": "Che libri",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "interrogatives.che_cosa",
+    "label": "only che directly before a noun",
+    "any_phrases": [
+     {
+      "phrase": "che libri",
+      "match_at": "word"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "libri",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "book - libro",
+      "bucket": "vocabulary.it.libro.noun.translation"
+     },
+     "gender": {
+      "reveal": "masculine (m)",
+      "bucket": "vocabulary.it.libro.noun.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "What books do you read in summer? = Che libri leggi in estate? Only che can sit directly in front of a noun. Cosa and che cosa ask 'what' on their own, but they cannot lean on a following noun the way che can, so it is Che libri..., never 'Cosa libri...'. When a noun comes straight after, reach for che.",
+  "examiner_note": "Full-phrase MCQ options so the positive 'che libri' does not substring-match the 'che cosa libri' distractor. Left visible: the options already expose the candidate set.",
+  "version": 1
+ },
+ {
+  "external_id": "interr_che_03",
+  "language_code": "it",
+  "topic": "interrogatives",
+  "subtopic": "che_cosa.a_che_ora",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "prompt": "Completa: '____ comincia il film?' [at what time]",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "interrogatives.che_cosa",
+    "label": "a che ora (at what time)",
+    "any_phrases": [
+     {
+      "phrase": "a che ora",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "che ora",
+      "match_at": "word",
+      "note": "Asking WHEN needs a che ora; bare 'Che ora?' asks what the time IS, a different question."
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "film",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "film - film",
+      "bucket": "vocabulary.it.film.noun.translation"
+     },
+     "gender": {
+      "reveal": "masculine (m)",
+      "bucket": "vocabulary.it.film.noun.gender"
+     }
+    }
+   },
+   {
+    "lemma": "comincia",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "to begin - cominciare",
+      "bucket": "vocabulary.it.cominciare.verb.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "What time does the film start? = A che ora comincia il film? Italian asks about clock time with the set phrase a che ora (literally 'at what hour'). The a is part of the phrase and cannot be dropped: A che ora...?, not 'Che ora comincia...?', which would ask what the time is rather than when something happens.",
+  "examiner_note": "The 'che ora' guard is nested in the correct 'a che ora' but the positive wins first, so it only fires on the dropped-a attempt.",
+  "version": 1
+ },
+ {
+  "external_id": "interr_che_04",
+  "language_code": "it",
+  "topic": "interrogatives",
+  "subtopic": "che_cosa.elision",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "prompt": "Completa: '____ una password sicura?' [what is]",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "interrogatives.che_cosa",
+    "label": "cos'e / che cos'e (what is)",
+    "any_phrases": [
+     {
+      "phrase": "cos'è",
+      "match_at": "word"
+     },
+     {
+      "phrase": "che cos'è",
+      "match_at": "word"
+     },
+     {
+      "phrase": "cosa è",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "Understood, but Italian normally elides before è: cos'è."
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "sicura",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "safe / secure - sicuro",
+      "bucket": "vocabulary.it.sicuro.adjective.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "What is a secure password? = Cos'è una password sicura? When cosa meets the verb è (is), the two run together and cosa loses its final -a: cosa è becomes cos'è. You will also hear the fuller che cos'è, with che added in front. The elided cos'è is the everyday form; the full cosa è sounds stiff.",
+  "examiner_note": "norm() folds the apostrophe to a space, so cos'è and cos è mark identically; the elision is taught here, not graded. Accent on è is soft (fold-rescue + orthography miss).",
+  "version": 1
+ },
+ {
+  "external_id": "interr_quale_01",
+  "language_code": "it",
+  "topic": "interrogatives",
+  "subtopic": "quale.plural_agreement",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": true,
+  "prompt": "Completa: '____ sono i tuoi colori preferiti?' (quale)",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "interrogatives.quale",
+    "label": "quale -> quali before a plural",
+    "any_phrases": [
+     {
+      "phrase": "quali",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "quale",
+      "match_at": "word",
+      "note": "With a plural (colori), quale becomes quali: it agrees in number."
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "colori",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "colour - colore",
+      "bucket": "vocabulary.it.colore.noun.translation"
+     },
+     "gender": {
+      "reveal": "masculine (m)",
+      "bucket": "vocabulary.it.colore.noun.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "Which are your favourite colours? = Quali sono i tuoi colori preferiti? Quale changes for number: one thing keeps quale, two or more take quali. The colours here are plural (colori), so the question opens with quali. Quale agrees only in number, not gender, so quali serves masculine and feminine alike.",
+  "version": 1
+ },
+ {
+  "external_id": "interr_quale_02",
+  "language_code": "it",
+  "topic": "interrogatives",
+  "subtopic": "quale.qual_e_elision",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": true,
+  "prompt": "Completa: '____ la capitale d'Italia?' (quale)",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "interrogatives.quale",
+    "label": "qual è (dropped -e, no apostrophe)",
+    "any_phrases": [
+     {
+      "phrase": "qual è",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "quale è",
+      "match_at": "word",
+      "note": "Before è, quale drops its -e to qual: qual è, never 'quale è'."
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "capitale",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "capital - capitale",
+      "bucket": "vocabulary.it.capitale.noun.translation"
+     },
+     "gender": {
+      "reveal": "feminine (f)",
+      "bucket": "vocabulary.it.capitale.noun.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "What is the capital of Italy? = Qual è la capitale d'Italia? Before the verb è, quale drops its final -e and becomes qual. This is a bare drop, not an elision, so it takes NO apostrophe: the correct spelling is qual è, never 'qual'è'. The -e is simply gone, with nothing to mark the gap.",
+  "examiner_note": "The apostrophe fold means qual'è and qual è are indistinguishable to the marker; the no-apostrophe rule is taught in the explanation, gradable only in translation. 'quale è' (unelided) is a real miss and is guarded.",
+  "version": 1
+ },
+ {
+  "external_id": "interr_quale_03",
+  "language_code": "it",
+  "topic": "interrogatives",
+  "subtopic": "quale.singular_agreement",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": true,
+  "prompt": "Completa: '____ colore preferisci?' (quale)",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "interrogatives.quale",
+    "label": "quale stays singular before a singular noun",
+    "any_phrases": [
+     {
+      "phrase": "quale",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "quali",
+      "match_at": "word",
+      "note": "With a singular noun (colore), quale stays singular: quale colore, not 'quali colore'."
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "colore",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "colour - colore",
+      "bucket": "vocabulary.it.colore.noun.translation"
+     },
+     "gender": {
+      "reveal": "masculine (m)",
+      "bucket": "vocabulary.it.colore.noun.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "Which colour do you prefer? = Quale colore preferisci? With a single thing, quale keeps its full singular form: one colour (colore, singular) takes quale. Compare the plural, where it shifts to quali colori. The ending tracks number, and nothing else.",
+  "examiner_note": "Same-surface pair with interr_quale_01 (plural quali): opposite answers on the same agreement axis.",
+  "version": 1
+ },
+ {
+  "external_id": "interr_quale_04",
+  "language_code": "it",
+  "topic": "interrogatives",
+  "subtopic": "quale.pronoun_selection",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": true,
+  "prompt": "Completa: 'Vorrei un gelato. ____ mi consigli?' (quale)",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "interrogatives.quale",
+    "label": "quale as a standalone pronoun (which one)",
+    "any_phrases": [
+     {
+      "phrase": "quale",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "quali",
+      "match_at": "word",
+      "note": "A single ice cream is being chosen, so the singular quale is right, not quali."
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "gelato",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "ice cream - gelato",
+      "bucket": "vocabulary.it.gelato.noun.translation"
+     },
+     "gender": {
+      "reveal": "masculine (m)",
+      "bucket": "vocabulary.it.gelato.noun.gender"
+     }
+    }
+   },
+   {
+    "lemma": "consigli",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "to recommend - consigliare",
+      "bucket": "vocabulary.it.consigliare.verb.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "I'd like an ice cream. Which one do you recommend? = Vorrei un gelato. Quale mi consigli? Quale can stand on its own, with no noun after it, to mean 'which one' when you choose from a known set (here, the ice creams on offer). It still points at a single item, so it stays singular: quale, not quali.",
+  "version": 1
+ }
+]

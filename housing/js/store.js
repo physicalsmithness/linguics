@@ -144,9 +144,19 @@
     if (Array.isArray(item_or_question.candidate_tenses)
         && item_or_question.candidate_tenses.length >= 2
         && item_or_question.correct_tense) {
+      // chosen_tense closes Phase 2. The old comment here said it needed
+      // tense-tagged must_not_include entries; there are none in the content
+      // and all 199 tense-choice items are free-text, so that route was never
+      // going to open. It is read off the produced form instead (morph-it),
+      // and is null whenever the form does not resolve to exactly one of this
+      // item's candidates - a gap, never a guess.
+      const _chosen = (typeof LL.inferChosenTense === "function")
+        ? LL.inferChosenTense(raw, item_or_question.candidate_tenses)
+        : null;
       attempt.tense_meta = {
         candidate_tenses: item_or_question.candidate_tenses.slice(),
         correct_tense: item_or_question.correct_tense,
+        chosen_tense: _chosen,
         was_right: result.overall.marks_possible > 0
           && result.overall.marks_awarded >= result.overall.marks_possible
       };

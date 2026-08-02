@@ -1,13 +1,15 @@
 seat: MisconceptionAnalyst
 classes: [all-seats]
 project: Linguics
-updated: 2026-07-27
+updated: 2026-07-27 (v18: cleared 3 Next: items)
 editor: Claude 2026-07-27 (back from credit outage; QoderWork held the seat 2026-07-22)
 waiting: parked - everything on this axis is an Architecture ruling
 needs_from_smith: nothing (optionally: route the Architecture chat at harvest v17)
 blocked_by: Architecture (the v17 ratification backlog)
 claude_can_verify: yes - counts are greps
 summary: Refreshed after outage. QoderWork's parked work verified on disk (pass-2 fill 216 buckets, bespoke grid specs, mirror_of proposal - all sound). Consolidated ALL open Architecture asks into one prioritised backlog: harvest thread v17. Analyst side fully delivered; nothing owed by me until rulings land.
+done_2026-07-27_v18:
+  - Cleared 3 open Next: items into the backlog. Gender/plural drill: ruled the misclassification ask = a 7x7 confusion matrix (chosen x true class), NOT registry rows; WHY-ids are in the extension. NounAuthor: reconciled 2 alias collisions to my canonical ids (foreign_s_plural, noun_gender_lexical), confirmed their 9 tags, folded their new orthography.io_plural_i_count into the extension (item 1 now 19 specifics). PronounAuthor: confirmed transfer.dop_iop_confusion already ratified. Deliverable: data/misconception_suggestions_noun_addendum.json.
 queue:
   - (none active) - fold each Architecture ruling into tag-lists/lenses when it lands.
 architecture_backlog_v17 (biggest first):

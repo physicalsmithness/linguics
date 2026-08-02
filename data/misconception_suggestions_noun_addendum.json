@@ -1,0 +1,88 @@
+{
+  "$note": "MisconceptionAnalyst addendum, 2026-07-27, serving three 'Next: me' asks at once: (1) NounAuthor's misconception_suggestions_noun.json reconciliation, (2) the gender/plural drill's 'misclassification ids' ask (Architecture_Housing_gender_plural_drill Next: me), (3) confirming transfer.dop_iop_confusion for PronounAuthor. This REPLACES nothing NounAuthor authored; it reconciles their proposals against my pass-1 extension so Architecture ratifies ONE canonical id per pattern, not two. Registry is architecture-owned; all PENDING here rides on the pass-1 extension ratification (harvest v17 item 1).",
+  "generated": "2026-07-27",
+  "author": "MisconceptionAnalyst (Claude)",
+  "reconciliations_with_NounAuthor": [
+    {
+      "nounauthor_proposed": "transfer.english_s_plural",
+      "canonical": "transfer.foreign_s_plural",
+      "ruling": "USE MINE. My pass-1 extension already proposes transfer.foreign_s_plural, deliberately broadened past English-only (Spanish/French calques exist too - libros is Spanish-shaped). NounAuthor's anglicised -s guards (libros, cittas, films, fotos, uovos) all tag foreign_s_plural. Retire english_s_plural as an alias; do not ratify both.",
+      "nounauthor_items": [
+        "the -os guards across noun regular/invariable/spelling leaves"
+      ]
+    },
+    {
+      "nounauthor_proposed": "agreement.noun_lexical_gender",
+      "canonical": "agreement.noun_gender_lexical",
+      "ruling": "USE MINE (id-order only). Same specific: a noun's own lexical gender misremembered so the article/agreement follows the wrong gender (la problema, il mano). My extension's id is agreement.noun_gender_lexical; NounAuthor wrote noun_lexical_gender. One id, mine's spelling. Retire the alias.",
+      "nounauthor_items": [
+        "la problema/programma/tema",
+        "il mano/foto/radio",
+        "la poeta"
+      ]
+    }
+  ],
+  "new_gap_folded_into_the_extension": {
+    "proposed_id": "orthography.io_plural_i_count",
+    "proposed_label": "Noun -io plural: wrong i-count by stress (figlii / zi)",
+    "proposed_description": "The -io noun plural depends on where the stress falls: unstressed -io drops to a single -i (figlio->figli, not figlii), stressed -io keeps both (zio->zii, not zi). Misses go both ways.",
+    "family": "orthography",
+    "harvested_from": [
+      "noun.plural.spelling (noun_plur_sp_10 figlii, noun_plur_sp_11 zi)"
+    ],
+    "why_new": "NounAuthor's find. double_i_retained is -ciare/-giare VERBS; i_retention_error is -iare VERBS; neither is the -io NOUN plural. It is the exact noun analogue of the cia_gia_plural_i gap Architecture already ratified last pass. ADD to the pass-1 extension so it rides the same ratification.",
+    "status": "PENDING - add to extension, ratify with item 1"
+  },
+  "gender_drill_misclassification_ids": {
+    "the_ask": "Architecture_Housing_gender_plural_drill Next: MisconceptionAnalyst - 'mint canonical gender_class.* misclassification ids'. Housing is firing provisional gender_class.thought_<class> (proposed:true) to accrue data.",
+    "analyst_ruling": "DO NOT mint a pile of gender_class.* registry rows. The drill is a CLASSIFIER: the learner picks a gender-behaviour class 1-7; the signal is (chosen_class, true_class). That is a 7x7 CONFUSION MATRIX - the SAME shape already built for the stress drill (4x4) and specced for tense-choice (A6). Minting 7x7 = up to 49 'thought_X_was_Y' registry ids would be combinatorial bloat that just duplicates the matrix. Instead: Housing records the (chosen, true) pair as a descriptor (join-key model), and the report IS the confusion matrix, reusing the existing view. The registry's job is the WHY behind a misclassification, and those already exist as pass-1 extension ids - mapped below.",
+    "class_to_registry_why": [
+      {
+        "class": "1-2 regular m/f (wrong plural / treated as other gender)",
+        "registry_ids": [
+          "agreement.noun_gender_lexical",
+          "regularisation.noun_class_plural"
+        ]
+      },
+      {
+        "class": "3 -e ambiguous (gender guessed from ending)",
+        "registry_ids": [
+          "agreement.noun_gender_lexical"
+        ]
+      },
+      {
+        "class": "4 common-gender (fixes one gender on a both-gender noun)",
+        "registry_ids": [
+          "agreement.noun_gender_lexical"
+        ],
+        "note": "the error is assigning a fixed gender where the noun is either; noun_gender_lexical covers it, with a possible finer 'common_gender_over_specified' only if live data shows it separating."
+      },
+      {
+        "class": "5 irregular m-o -> f-a (regularises bracci for braccia)",
+        "registry_ids": [
+          "regularisation.irregular_plural"
+        ]
+      },
+      {
+        "class": "6 invariable (adds a plural ending)",
+        "registry_ids": [
+          "regularisation.invariable_adjective (broadened to invariable NOUNS, per my extension)",
+          "transfer.foreign_s_plural (for the -s variant, cittas)"
+        ]
+      },
+      {
+        "class": "7 deceptive ending (gender from ending; wrong split plural)",
+        "registry_ids": [
+          "agreement.noun_gender_lexical"
+        ],
+        "note": "the split-plural half (i bracci vs le braccia) is a lexical-semantic distinction; if learners conflate the two plurals in live data, flag for a micro-specific then - not now."
+      }
+    ],
+    "recommendation": "Housing: keep firing the provisional (chosen,true) pair for the matrix, but as a DESCRIPTOR not a registry specific; drop the plan to canonicalise gender_class.thought_* as registry rows. The 7 classes' WHY-ids are all in the pass-1 extension (ratify it). This is the same view==drill + confusion-matrix pattern as stress."
+  },
+  "pronoun_confirmation": {
+    "for": "Architecture_PronounAuthor_aspettare_class_referents",
+    "id": "transfer.dop_iop_confusion",
+    "status": "ALREADY IN THE RATIFIED REGISTRY - verified on disk 2026-07-27. Use it directly on the aspettare/telefonare-class items; no MisconceptionAnalyst routing needed, no new mint."
+  }
+}

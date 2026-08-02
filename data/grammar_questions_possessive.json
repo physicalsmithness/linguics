@@ -46,7 +46,8 @@
    }
   ],
   "explanation": "'Ecco il mio libro' means 'Here is my book.' A possessive adjective in Italian needs the definite article in front of it: il mio, not bare mio. Both the article and mio agree with libro, which is masculine singular.",
-  "version": 1
+  "version": 1,
+  "slot": "mio"
  },
  {
   "external_id": "poss_forms_02",
@@ -95,7 +96,8 @@
    }
   ],
   "explanation": "'Questa è la mia casa' means 'This is my house.' Casa is feminine singular, so both the definite article and the possessive adjective take the feminine form: la mia. Dropping the article, mia casa, is the classic slip.",
-  "version": 1
+  "version": 1,
+  "slot": "mia"
  },
  {
   "external_id": "poss_forms_03",
@@ -144,7 +146,8 @@
    }
   ],
   "explanation": "'Questi sono i miei amici' means 'These are my friends.' The masculine plural of mio is the irregular-looking miei, and it keeps its definite article: i miei. The article is i, agreeing in the masculine plural.",
-  "version": 1
+  "version": 1,
+  "slot": "miei"
  },
  {
   "external_id": "poss_forms_04",
@@ -193,7 +196,8 @@
    }
   ],
   "explanation": "'Dove sono le mie chiavi?' means 'Where are my keys?' Chiavi is feminine plural, so mio becomes mie with the article le: le mie. Watch the one-letter gap between miei (masculine) and mie (feminine).",
-  "version": 1
+  "version": 1,
+  "slot": "mie"
  },
  {
   "external_id": "poss_forms_05",
@@ -242,7 +246,8 @@
    }
   ],
   "explanation": "'È questo il tuo telefono?' means 'Is this your phone?' For informal your the possessive adjective is tuo; it agrees with telefono, masculine singular, and takes the definite article: il tuo.",
-  "version": 1
+  "version": 1,
+  "slot": "tuo"
  },
  {
   "external_id": "poss_forms_06",
@@ -301,7 +306,8 @@
    }
   ],
   "explanation": "'Mi presti la tua penna?' means 'Will you lend me your pen?' Penna is feminine singular, so tuo agrees with the thing owned and becomes tua, with the article la: la tua.",
-  "version": 1
+  "version": 1,
+  "slot": "tua"
  },
  {
   "external_id": "poss_forms_07",
@@ -361,7 +367,8 @@
   ],
   "explanation": "'Anna cerca il suo cane' means 'Anna is looking for her dog.' Here is the trap: suo agrees with the thing owned, not the owner. Cane is masculine, so il suo, even though the owner Anna is female. English her tempts sua, but Italian looks at the dog.",
   "examiner_note": "Owner-agreement trap: her -> il suo because cane is m.sg. must_not_include catches la sua (agreeing with the owner).",
-  "version": 1
+  "version": 1,
+  "slot": "suo"
  },
  {
   "external_id": "poss_forms_08",
@@ -421,7 +428,8 @@
   ],
   "explanation": "'Marco ama la sua macchina' means 'Marco loves his car.' Macchina is feminine, so the possessive is sua with the article la, la sua, even though the owner Marco is male. Suo/sua tracks the object owned, never the owner's gender.",
   "examiner_note": "Mirror of the her->il suo trap: his -> la sua because macchina is f.sg.",
-  "version": 1
+  "version": 1,
+  "slot": "sua"
  },
  {
   "external_id": "poss_forms_09",
@@ -470,7 +478,8 @@
    }
   ],
   "explanation": "'Questo è il nostro giardino' means 'This is our garden.' The our-form nostro is fully regular: it agrees with giardino, masculine singular, and takes the article, giving il nostro.",
-  "version": 1
+  "version": 1,
+  "slot": "nostro"
  },
  {
   "external_id": "poss_forms_10",
@@ -519,7 +528,8 @@
    }
   ],
   "explanation": "'La nostra scuola è grande' means 'Our school is big.' Nostro agrees with scuola, feminine singular: la nostra, with the feminine article. The full set is nostro, nostra, nostri, nostre.",
-  "version": 1
+  "version": 1,
+  "slot": "nostra"
  },
  {
   "external_id": "poss_forms_11",
@@ -568,7 +578,8 @@
    }
   ],
   "explanation": "'Questi sono i vostri posti' means 'These are your seats' (spoken to several people). Posti is masculine plural, so vostro becomes vostri with the article i: i vostri.",
-  "version": 1
+  "version": 1,
+  "slot": "vostri"
  },
  {
   "external_id": "poss_forms_12",
@@ -617,7 +628,8 @@
    }
   ],
   "explanation": "'Qual è la vostra opinione?' means 'What is your opinion?' (addressed to more than one person). Opinione is feminine singular, so vostro becomes vostra and takes la: la vostra.",
-  "version": 1
+  "version": 1,
+  "slot": "vostra"
  },
  {
   "external_id": "poss_forms_13",
@@ -681,7 +693,8 @@
   ],
   "explanation": "'I bambini adorano il loro cane' means 'The children love their dog.' Loro (their) is invariable: it never changes for gender or number. Only the definite article moves: cane is masculine singular, so il loro.",
   "examiner_note": "loro invariable; the article still agrees (il, m.sg). must_not_include catches i loro (mistaking loro for a plural marker).",
-  "version": 1
+  "version": 1,
+  "slot": "loro"
  },
  {
   "external_id": "poss_forms_14",
@@ -740,7 +753,8 @@
    }
   ],
   "explanation": "'Le ragazze portano le loro borse' means 'The girls carry their bags.' Loro stays loro whatever the noun: it is invariable. The article does the agreeing: borse is feminine plural, so le loro.",
-  "version": 1
+  "version": 1,
+  "slot": "loro"
  },
  {
   "external_id": "poss_forms_15",
@@ -799,13 +813,14 @@
     "aspects": {
      "translation": {
       "reveal": "ieri - yesterday",
-      "bucket": "vocabulary.it.ieri.translation"
+      "bucket": "vocabulary.it.ieri.adverb.translation"
      }
     }
    }
   ],
   "explanation": "'Ho conosciuto un mio amico ieri' means 'I met a friend of mine yesterday.' Italian can place the indefinite article before the possessive: un mio amico, literally a my friend, for a friend of mine. The possessive still sits between article and noun.",
-  "version": 1
+  "version": 1,
+  "slot": "mio"
  },
  {
   "external_id": "poss_forms_16",
@@ -851,7 +866,8 @@
    }
   ],
   "explanation": "'È una mia collega' means 'She is a colleague of mine.' The indefinite-article-plus-possessive pattern in the feminine: una mia collega. Collega is feminine here, so mia; the indefinite article is una.",
-  "version": 1
+  "version": 1,
+  "slot": "mia"
  },
  {
   "external_id": "poss_forms_17",
@@ -910,7 +926,8 @@
    }
   ],
   "explanation": "'Marco ha perso i suoi occhiali' means 'Marco has lost his glasses.' Occhiali is masculine plural, so suo becomes suoi with the article i: i suoi. Suoi (masculine plural) contrasts with sue (feminine plural).",
-  "version": 1
+  "version": 1,
+  "slot": "suoi"
  },
  {
   "external_id": "poss_forms_18",
@@ -984,7 +1001,8 @@
   ],
   "explanation": "'La professoressa corregge i suoi compiti' means 'The teacher marks her homework.' Compiti is masculine plural, so sua becomes suoi, article i: i suoi, masculine, agreeing with the homework, not with the female teacher.",
   "examiner_note": "Owner-agreement trap in the plural: her -> i suoi because compiti is m.pl.",
-  "version": 1
+  "version": 1,
+  "slot": "suoi"
  },
  {
   "external_id": "poss_forms_19",
@@ -1043,7 +1061,8 @@
    }
   ],
   "explanation": "'Giulia mette in valigia le sue scarpe' means 'Giulia packs her shoes.' Scarpe is feminine plural, so suo becomes sue with the article le: le sue.",
-  "version": 1
+  "version": 1,
+  "slot": "sue"
  },
  {
   "external_id": "poss_forms_20",
@@ -1092,7 +1111,8 @@
    }
   ],
   "explanation": "'Le tue idee sono interessanti' means 'Your ideas are interesting.' Idee is feminine plural, so tuo becomes tue with the article le: le tue.",
-  "version": 1
+  "version": 1,
+  "slot": "tue"
  },
  {
   "external_id": "poss_fam_01",
@@ -3063,11 +3083,11 @@
     "aspects": {
      "translation": {
       "reveal": "genitori - parents",
-      "bucket": "vocabulary.it.genitori.translation"
+      "bucket": "vocabulary.it.genitore.noun.translation"
      },
      "gender": {
       "reveal": "masculine (m)",
-      "bucket": "vocabulary.it.genitori.gender"
+      "bucket": "vocabulary.it.genitore.noun.gender"
      }
     }
    }
@@ -3259,11 +3279,11 @@
     "aspects": {
      "translation": {
       "reveal": "patente - licence",
-      "bucket": "vocabulary.it.patente.translation"
+      "bucket": "vocabulary.it.patente.noun.translation"
      },
      "gender": {
       "reveal": "feminine (f)",
-      "bucket": "vocabulary.it.patente.gender"
+      "bucket": "vocabulary.it.patente.noun.gender"
      }
     }
    }
