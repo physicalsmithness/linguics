@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-08-02-r97";
+  const LL_BUILD = "2026-08-02-r104";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -28,6 +28,12 @@
   // page is often scrolled deep (result details, stats below on mobile);
   // without this the next card renders off-screen and the learner only
   // sees whatever the input's minimal focus-scroll happens to reveal.
+  // Pair this with focus({ preventScroll: true }) ALWAYS. ensureCardVisible
+  // decides the scroll position deliberately; a bare .focus() straight after it
+  // makes the browser scroll again to reveal the focus ring, which on a tall
+  // card (one carrying a result panel) nudges the page down and leaves the NEXT
+  // question above the viewport. That was Smith's gender-drill "scrolls down a
+  // bit after each answer, so the next question needs a scroll up".
   function ensureCardVisible(cardEl) {
     if (!cardEl || !cardEl.getBoundingClientRect) return;
     const r = cardEl.getBoundingClientRect();
@@ -931,13 +937,14 @@
         Foptional("../data/misconceptions.json"),
         Foptional("../data/misconception_lenses.json"),
         Foptional("../data/translation_marker_bucket_menu.json"),
+        Foptional("../data/it_surface_to_lemma.json"), // morph-it lemmas for it_en vocab injection
         Foptional("../data/grammar_questions_accent.json"), // QoderWork 2026-07-22: accent drill items
         Foptional("../data/grammar_questions_stress.json") // QoderWork 2026-07-23: stress drill items (StressAuthor pipeline)
       ]);
       const workers = [];
       for (let w = 0; w < Math.min(POOL, topics.length); w++) workers.push(worker());
       await Promise.all(workers);
-      const [glossary, vocab, parts, themes, misconceptions, lenses, markerMenu, accentGrammar, stressGrammar] = await tail;
+      const [glossary, vocab, parts, themes, misconceptions, lenses, markerMenu, surfaceToLemma, accentGrammar, stressGrammar] = await tail;
 
       // Flatten strictly in manifest order.
       const buckets = [];
@@ -974,7 +981,7 @@
       }
 
       console.info("Loaded per topic:", perTopicCounts);
-      return { buckets, grammar, translation, perTopicCounts, vocab, themes, parts, misconceptions, lenses, markerMenu, stress: stressGrammar, failures: loadFailures };
+      return { buckets, grammar, translation, perTopicCounts, vocab, themes, parts, misconceptions, lenses, markerMenu, surfaceToLemma, stress: stressGrammar, failures: loadFailures };
     } catch (e) {
       const cause = e && e.message ? e.message : String(e);
       console.error("[Linguics] Real content fetch failed; using inline samples. Cause:", cause);
@@ -1255,7 +1262,57 @@
       bar.appendChild(btn);
     }
     if (rewriteApostrophes) {
-      input.addEventListener("input", () => {
+      // Advisory only - never rewrites the learner's answer. See
+      // inter_chat/AccentAuthor_Housing_apostrophe_input.md.
+      //
+      // The escalation makes every apocope form typeable, but a single
+      // apostrophe still yields the ACCENT, so "un po" + one apostrophe still
+      // shows the grave - the very error the accent drill exists to correct.
+      // These are forms where the grave is never correct Italian, so seeing one
+      // is reliable evidence the learner wanted the apocope. If this list is
+      // incomplete the only cost is a missing hint; the old apocope list, being
+      // a BEHAVIOUR list, cost a silently corrupted answer when incomplete.
+      const APOCOPE_NUDGE = {
+        "à": ["po", "va", "fa", "sta", "mo", "to"],   // po-grave, va-grave, ...
+        "è": ["be"],
+        "ì": []
+      };
+      const nudge = document.createElement("div");
+      nudge.className = "accent-nudge";
+      nudge.hidden = true;
+      const checkNudge = () => {
+        const v = String(input.value || "").toLowerCase();
+        let found = null;
+        for (const accented of Object.keys(APOCOPE_NUDGE)) {
+          for (const stem of APOCOPE_NUDGE[accented]) {
+            const bad = stem + accented;
+            // whole word only: "po-grave" alone, not inside a longer word
+            const re = new RegExp("(^|[^a-zà-ÿ])" + bad + "([^a-zà-ÿ]|$)", "i");
+            if (re.test(v)) { found = stem; break; }
+          }
+          if (found) break;
+        }
+        if (found) {
+          nudge.textContent = "Did you mean “" + found + "’”? "
+            + "Type the apostrophe three times: " + found + "’’’";
+          nudge.hidden = false;
+        } else {
+          nudge.hidden = true;
+        }
+      };
+      input.addEventListener("input", (ev) => {
+        // Only rewrite on an apostrophe the learner actually TYPED. Paste,
+        // drag-drop, autofill and undo all raise "input" too, and running the
+        // shortcut over them corrupts correct text: pasting "un po" + a real
+        // apostrophe used to come out with a grave accent on the o. The
+        // shortcut is a typing affordance, so gate it on the typing event.
+        // inputType is absent on a few old engines; there we keep the old
+        // behaviour rather than silently disabling the shortcut.
+        const it = ev && ev.inputType;
+        if (it && !(it === "insertText" && (ev.data === "'" || ev.data === "\u2019"))) {
+          checkNudge();
+          return;
+        }
         const start = input.selectionStart;
         const rewritten = LL.normaliseAccentInput(input.value);
         if (rewritten !== input.value) {
@@ -1263,12 +1320,14 @@
           input.value = rewritten;
           input.selectionStart = input.selectionEnd = Math.max(0, start + delta);
         }
+        checkNudge();
       });
       // Inline hint: apostrophe shortcuts (Smith 2026-07-21).
       const hint = document.createElement("span");
       hint.className = "accent-hint";
       hint.textContent = "e\u2019 = grave (\u00e8) \u00b7 e\u2019\u2019 = acute (\u00e9) \u00b7 e\u2019\u2019\u2019 = apostrophe (e\u2019) \u00b7 Shift+click = capital";
       bar.appendChild(hint);
+      bar.appendChild(nudge);
     }
     return bar;
   }
@@ -1654,7 +1713,7 @@
     });
 
     host.appendChild(card);
-    setTimeout(() => { ensureCardVisible(card); card.focus(); }, 0);
+    setTimeout(() => { ensureCardVisible(card); card.focus({ preventScroll: true }); }, 0);
   }
 
   function renderGrammar() {
@@ -1776,7 +1835,7 @@
         e.preventDefault();
         selectedChoiceIdx = idx;
         choiceButtons.forEach((b, j) => b.classList.toggle("selected", j === idx));
-        choiceButtons[idx].focus();
+        choiceButtons[idx].focus({ preventScroll: true });
       });
       // MCQ items don't render vocab-help / accent-bar / slash-menu.
       // Decision (Bug 1a, 2026-05-28): on a forced-choice item the learner
@@ -1827,7 +1886,7 @@
         e.preventDefault();
         selectedChoiceIdx = idx;
         choiceButtons.forEach((b, j) => b.classList.toggle("selected", j === idx));
-        choiceButtons[idx].focus();
+        choiceButtons[idx].focus({ preventScroll: true });
       });
       grammarInputRef = null;
     } else {
@@ -2125,7 +2184,7 @@
       misconceptions: misconceptions
     };
   }
-  function focusGrammarInput() { if (grammarInputRef) grammarInputRef.focus(); }
+  function focusGrammarInput() { if (grammarInputRef) grammarInputRef.focus({ preventScroll: true }); }
 
   // -------------------- translation strand --------------------
   let translationIndex = 0;
@@ -2347,7 +2406,7 @@
       textarea.focus({ preventScroll: true });
     }, 0);
   }
-  function focusTranslationInput() { if (translationTextareaRef) translationTextareaRef.focus(); }
+  function focusTranslationInput() { if (translationTextareaRef) translationTextareaRef.focus({ preventScroll: true }); }
 
   // ============================================================================
   // Vocab strand: minimal translation-only practice.
@@ -3326,7 +3385,7 @@
     });
 
     host.appendChild(card);
-    setTimeout(() => { ensureCardVisible(card); card.focus(); }, 0);
+    setTimeout(() => { ensureCardVisible(card); card.focus({ preventScroll: true }); }, 0);
     if (!keepAxes) renderDrillSessionPanel();   // QoderWork 2026-07-23
   }
 
@@ -3464,7 +3523,7 @@
     });
 
     host.appendChild(card);
-    setTimeout(() => { ensureCardVisible(card); card.focus(); }, 0);
+    setTimeout(() => { ensureCardVisible(card); card.focus({ preventScroll: true }); }, 0);
     if (!keepAxes) renderDrillSessionPanel();   // QoderWork 2026-07-23
   }
 
@@ -3630,7 +3689,7 @@
     });
 
     host.appendChild(card);
-    setTimeout(() => { ensureCardVisible(card); card.focus(); }, 0);
+    setTimeout(() => { ensureCardVisible(card); card.focus({ preventScroll: true }); }, 0);
     if (!keepAxes) renderDrillSessionPanel();   // QoderWork 2026-07-23
   }
 
@@ -3768,11 +3827,23 @@
     // Translation: base LEMMA first (catches inflected surface forms), then the
     // surface word / prompt. Shows during the question and stays on the card
     // through the answer. Smith 2026-07-23.
+    // Meaning lookup. Exact-lemma-only found 11,475 of 12,446 stress items;
+    // 971 showed no meaning at all (Smith: "sometimes the stress drill doesn't
+    // tell you what the meaning is"). Widened with accent folding, clitic
+    // stripping (eccolo -> ecco, dimmi -> di), apocope restoration (ciascun ->
+    // ciascuno, peggior -> peggiore) and simple inflection (qualcuna ->
+    // qualcuno), which recovers 59 more.
+    //
+    // The remaining 912 (7.3%) are NOT a lookup failure: those words are in the
+    // vocabulary file with translation_en: null. 3,384 of 18,071 entries (19%)
+    // carry no English gloss, all in the deep frequency tail. That is a Vocab
+    // data gap - see data/vocab_gaps_missing_translation.json - and no amount
+    // of client cleverness fixes it.
     const trCands = [sm.lemma, sm.word, q.prompt].filter(Boolean).map(s => String(s).toLowerCase().trim());
     let stressTr = "";
     for (const cand of trCands) {
-      const ve = vocabEntries.find(v => v && v.lemma && v.lemma.toLowerCase() === cand && v.translation_en);
-      if (ve) { stressTr = ve.translation_en; break; }
+      stressTr = lookupMeaning(cand);
+      if (stressTr) break;
     }
     if (stressTr) {
       const tr = document.createElement("div");
@@ -3894,7 +3965,7 @@
     });
 
     host.appendChild(card);
-    setTimeout(() => { ensureCardVisible(card); card.focus(); }, 0);
+    setTimeout(() => { ensureCardVisible(card); card.focus({ preventScroll: true }); }, 0);
     if (!keepAxes) renderDrillSessionPanel();   // QoderWork 2026-07-23
   }
 
@@ -4119,7 +4190,7 @@
     if (!keepAxes) renderVocabAxes();
   }
 
-  function focusVocabInput() { if (vocabInputRef) vocabInputRef.focus(); }
+  function focusVocabInput() { if (vocabInputRef) vocabInputRef.focus({ preventScroll: true }); }
 
   // ============================================================================
   // Vocab right-hand panel: multi-axis heatmap.
@@ -5914,7 +5985,146 @@
     // author baked choice markers into the prompt text (see inter_chat/
     // Architecture_Housing_mcq_segmenter_fallback.md).
     //
-    // NOTE on wrapping: `.qcard .prompt` is a flex column. Appending
+    // Meaning resolver shared by the stress and accent drills. Exact lemma first,
+  // then accent-folded, then the morphological fallbacks that the stress corpus
+  // actually needs. See the note at the stress card for the measurement.
+  let _meaningIdx = null;
+  function meaningIndex() {
+    if (_meaningIdx) return _meaningIdx;
+    const exact = new Map(), folded = new Map();
+    const fold = t => String(t).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+    for (const e of (vocabEntries || [])) {
+      if (!e || !e.translation_en) continue;
+      for (const key of [e.lemma, e.plural]) {
+        if (!key) continue;
+        const k = String(key).toLowerCase().trim();
+        if (!exact.has(k)) exact.set(k, e.translation_en);
+        if (!folded.has(fold(k))) folded.set(fold(k), e.translation_en);
+      }
+    }
+    _meaningIdx = { exact, folded, fold };
+    return _meaningIdx;
+  }
+  const MEANING_CLITIC = /(?:mi|ti|ci|vi|si|ne|lo|la|li|le|gli|me|te|se|ce|ve){1,2}$/;
+  function lookupMeaning(word) {
+    const w = String(word || "").toLowerCase().trim();
+    if (!w) return "";
+    const ix = meaningIndex();
+    const tryKeys = keys => {
+      for (const k of keys) {
+        if (!k) continue;
+        if (ix.exact.has(k)) return ix.exact.get(k);
+        const f = ix.fold(k);
+        if (ix.folded.has(f)) return ix.folded.get(f);
+      }
+      return "";
+    };
+    let hit = tryKeys([w]);
+    if (hit) return hit;
+    const stem = w.replace(MEANING_CLITIC, "");            // eccolo -> ecco
+    if (stem !== w && stem.length >= 2) {
+      hit = tryKeys([stem, stem + "e", stem + "o", stem + "re"]);
+      if (hit) return hit;
+    }
+    if (/[bcdfglmnprstvz]$/.test(w)) {                      // ciascun -> ciascuno
+      hit = tryKeys([w + "o", w + "e", w + "a"]);
+      if (hit) return hit;
+    }
+    if (/[aeio]$/.test(w)) {                                // qualcuna -> qualcuno
+      const base = w.slice(0, -1);
+      hit = tryKeys([base + "o", base + "e", base + "a"].filter(k => k !== w));
+      if (hit) return hit;
+    }
+    return "";
+  }
+
+  // ---------------------------------------------------------------------
+  // Cue classification for trailing parentheticals.
+  // inter_chat/Architecture_Housing_cue_notation_renderer.md
+  //
+  // Italian is decided by POSITIVE evidence only. The previous version asked
+  // "does it end in a vowel and avoid my blocklist of English adverbs?", which
+  // says yes to late, alone, inside, twice, and no to nothing it has not been
+  // told about. Here a cue is Italian if it is a known vocabulary lemma or
+  // plural, an infinitive, a pronominal verb once its clitic tail is stripped
+  // (esserci, farcela, andarsene), the plural of a known lemma, or a proper
+  // noun. Anything else gets a plainer label, which is a cheap failure.
+  // ---------------------------------------------------------------------
+  const CUE_CLITIC_TAIL = /(?:mi|ti|ci|vi|si|ne|lo|la|li|le|gli|me|te|se|ce|ve){1,3}$/i;
+  const CUE_INFINITIVE = /(?:are|ere|ire|rre)$/i;
+  const CUE_POS_LABEL = /^(noun|verb|adverb|adjective|pronoun|preposition|article|conjunction|noun pl\.?|adj\.?|adv\.?|m\.|f\.|pl\.|sing\.)$/i;
+  // Aspect and temporal triggers: these belong in the sentence frame, never in
+  // a cue chip. Smith's original catch was "(usually)" rendering "Use: usually".
+  const CUE_TRIGGER = /^(usually|always|never|often|sometimes|rarely|seldom|right now|now|currently|at the moment|every day|as a habit|habitually|repeatedly|still|already|yet|ongoing|in progress)$/i;
+  let _cueLemmaSet = null;
+  function cueLemmaSets() {
+    if (_cueLemmaSet) return _cueLemmaSet;
+    const lem = new Set(), plu = new Set();
+    for (const e of (LL.vocabEntries || [])) {
+      // translation_en is the sanity check: a handful of English words sit deep
+      // in the frequency tail with a null translation (well @14045, early
+      // @16248). Without this filter they would license "Use early".
+      if (e && e.lemma && e.translation_en) lem.add(String(e.lemma).toLowerCase());
+      if (e && e.plural) plu.add(String(e.plural).toLowerCase());
+    }
+    _cueLemmaSet = { lem, plu };
+    return _cueLemmaSet;
+  }
+  function looksItalianToken(tok) {
+    const t = String(tok || "").trim().replace(/^['’]|['’]$/g, "");
+    if (!t || /\s/.test(t)) return false;
+    const tl = t.toLowerCase();
+    const sets = cueLemmaSets();
+    if (sets.lem.has(tl) || sets.plu.has(tl)) return true;
+    if (CUE_INFINITIVE.test(tl)) return true;
+    const stem = tl.replace(CUE_CLITIC_TAIL, "");
+    if (stem !== tl && stem.length >= 2) {
+      if (CUE_INFINITIVE.test(stem) || sets.lem.has(stem) || sets.lem.has(stem + "e")) return true;
+      if (/(?:ar|er|ir)$/.test(stem)) return true;    // apocopated: far-, dir-, and-
+    }
+    if (/[ie]$/.test(tl)) {                            // plural of a known lemma
+      const base = tl.slice(0, -1);
+      if (sets.lem.has(base + "o") || sets.lem.has(base + "a") || sets.lem.has(base + "e")) return true;
+    }
+    // Proper noun: capitalised, not a known common word (Firenze, Michelangelo).
+    if (/^[A-ZÀ-Ü][a-zà-ü]+$/.test(t) && !sets.lem.has(tl)) return true;
+    return false;
+  }
+  function classifyCue(raw, item) {
+    const t = String(raw || "").trim();
+    if (!t) return { kind: "drop", label: "", value: "", spec: "" };
+    if (CUE_TRIGGER.test(t)) return { kind: "drop", label: "", value: "", spec: "" };
+    if (CUE_POS_LABEL.test(t)) return { kind: "label", label: "", value: t, spec: "" };
+    if (/^=/.test(t)) return { kind: "gloss", label: "Meaning: ", value: t.replace(/^=\s*/, ""), spec: "" };
+    // A cued lemma is CONTEXT, not the operand, when the blank wants something
+    // else about it - the auxiliary, the agreement. v2 of the thread.
+    // NARROW. A first cut matched /auxiliary|agreement/, which also matches
+    // adjective_agreement - so every adjective cue rendered "Verb: rosso".
+    // v2 is about the VERBAL cases only: the blank wants the auxiliary, or the
+    // participle's agreement, and the cued infinitive is merely which verb.
+    const isContext = !!(item && Array.isArray(item.markpoints) &&
+      item.markpoints.some(mp => /\.auxiliary\b|participle_agreement/.test((mp && mp.bucket) || "")));
+    const operandLabel = isContext ? "Verb: " : "Use ";
+    // Compound cue: "essere, futuro" / "vendere, passato prossimo".
+    const comma = t.indexOf(",");
+    if (comma > 0) {
+      const head = t.slice(0, comma).trim(), rest = t.slice(comma + 1).trim();
+      if (looksItalianToken(head)) return { kind: "operand", label: operandLabel, value: head, spec: rest };
+    }
+    if (looksItalianToken(t)) return { kind: "operand", label: operandLabel, value: t, spec: "" };
+    // Multi-word all-Italian phrases are operands too: "verde scuro",
+    // "blu marino", "giallo limone" - colour compounds the learner produces.
+    const words = t.split(/\s+/);
+    if (words.length > 1 && words.length <= 4 && words.every(looksItalianToken)) {
+      return { kind: "operand", label: operandLabel, value: t, spec: "" };
+    }
+    // A full English sentence is context for the learner to read, not a cue.
+    if (/[.!?]$/.test(t) && words.length > 2) return { kind: "context", label: "", value: t, spec: "" };
+    return { kind: "gloss", label: "Meaning: ", value: t, spec: "" };
+  }
+  LL._classifyCue = classifyCue;   // exposed for the harness
+
+  // NOTE on wrapping: `.qcard .prompt` is a flex column. Appending
     // inline content (text nodes, spans) DIRECTLY to it would make each
     // token an anonymous flex item, breaking each word onto its own row.
     // We wrap inline content in a single child div so the flex container
@@ -5949,30 +6159,44 @@
       if (seg.kind === "italian") {
         renderTextWithLemmas(el, seg.text, lemmaMap, item, vocabHelpsUsedRef);
       } else if (seg.kind === "cue") {
-        // Cue-label heuristic (Architecture_Housing_cue_notation_renderer):  QoderWork 2026-07-22
-        // "Use X" fires ONLY for a single Italian citation form that is the
-        // learner's OPERAND. English glosses, aspect triggers, and context
-        // lemmas (auxiliary-fill items) get different treatment.
-        const txt = String(seg.text).trim();
-        const isMulti = /\s/.test(txt);
-        const endsVowel = /[aeiouàèéìòù]$/.test(txt.toLowerCase());
-        const looksItalian = !isMulti && endsVowel && !/^(usually|early|already|only|always|never|sometimes|often|now|today|here|there|where|when|why|how|still|just|also|very|more|less|quite|rather|enough|almost|about|again|once|twice)$/i.test(txt);
-        // Auxiliary-context: the cued lemma is context, not the operand.
-        const isAuxItem = item && Array.isArray(item.markpoints) &&
-          item.markpoints.some(mp => /auxiliary|agreement/.test(mp.bucket || ""));
-        let label;
-        if (isMulti) label = "Meaning: ";
-        else if (!looksItalian) label = "";
-        else if (isAuxItem) label = "Verb: ";
-        else label = "Use ";
-        const labelSpan = document.createElement("span");
-        labelSpan.className = "prompt-cue-label";
-        labelSpan.textContent = label;
-        const valSpan = document.createElement("span");
-        valSpan.className = "prompt-cue-word";
-        valSpan.textContent = txt;
-        el.appendChild(labelSpan);
-        el.appendChild(valSpan);
+        // Trailing-parenthetical cue renderer. See
+        // inter_chat/Architecture_Housing_cue_notation_renderer.md (v1, v2) and
+        // the corpus measurement in v3. Classes, with their share of the 1,606
+        // items that carry one:
+        //
+        //   operand  1375  "(rosso)", "(esserci)", "(essere, futuro)"
+        //                  -> "Use rosso" / "Use essere . futuro"
+        //   gloss     180  "(= to me)", "(marcatore di incoraggiamento)"
+        //                  -> "Meaning: to me"
+        //   context    41  "(Marco is very tired.)"   -> shown plain, no label
+        //   label       9  "(noun)", "(adverb)"       -> shown plain, no label
+        //   trigger     1  "(usually)", "(right now)" -> NOT chipped at all;
+        //                  an aspect trigger belongs in the sentence frame, and
+        //                  "Use: usually" was the bug that opened this thread.
+        //
+        // v2's rule still applies on top: even a real Italian lemma is CONTEXT,
+        // not the operand, on an auxiliary/agreement item ("Le ragazze ____
+        // comprato ... (comprare)" wants hanno, not comprare), so it renders
+        // "Verb: comprare" and never gives the answer away.
+        const cue = classifyCue(String(seg.text), item);
+        if (cue.kind !== "drop") {
+          if (cue.label) {
+            const labelSpan = document.createElement("span");
+            labelSpan.className = "prompt-cue-label";
+            labelSpan.textContent = cue.label;
+            el.appendChild(labelSpan);
+          }
+          const valSpan = document.createElement("span");
+          valSpan.className = "prompt-cue-word";
+          valSpan.textContent = cue.value;
+          el.appendChild(valSpan);
+          if (cue.spec) {
+            const specSpan = document.createElement("span");
+            specSpan.className = "prompt-cue-spec";
+            specSpan.textContent = " · " + cue.spec;
+            el.appendChild(specSpan);
+          }
+        }
       } else {
         el.textContent = seg.text;
       }
@@ -7436,6 +7660,17 @@
     return inner || outer || null;
   }
   function scrollToFreshBuckets(opts) {
+    // NOT ON THE VOCAB TAB. This is a grammar/translation sidebar feature: it
+    // brings the freshly-changed bucket row into view inside #live-stats. The
+    // vocab tab hides that aside entirely (body.strand-vocab-active) and claims
+    // the right side for the heatmap - so the panel never overflows,
+    // freshScrollBox() finds nothing scrollable, and the code falls through to
+    // the WINDOW branch and nudges the whole page down. That is Smith's "vocab
+    // drill scrolls slightly on Enter", and it showed up mainly on wrong
+    // answers because a miss makes an extra, lower row fresh where a hit often
+    // left the only fresh row already on screen. Vocab has its own feedback
+    // (flashAxisCellsFor) and needs no scroll.
+    if (document.body.classList.contains("strand-vocab-active")) return;
     // On phones the answer + explanation stay in view and the inline pill
     // invites a look; the pill's click passes force:true so there is exactly
     // one scroll path (grammar_view_space_and_scroll v6 ask 2).
@@ -7500,6 +7735,9 @@
         // Stacked layouts (phone): nothing in the sidebar overflows, the page
         // itself scrolls. Centre the tile via the window, then flash.
         const r = fresh.getBoundingClientRect();
+        // A hidden panel reports a zero-size rect at the origin; scrolling the
+        // window to it is always wrong.
+        if (!fresh.offsetParent || (r.height === 0 && r.width === 0)) { flashFresh(); return; }
         if (r.top >= 0 && r.bottom <= window.innerHeight) { flashFresh(); return; }
         const t = Math.max(0, window.scrollY + r.top - Math.max(0, (window.innerHeight - r.height) / 2));
         window.scrollTo({ top: t, behavior: "smooth" });
@@ -9595,6 +9833,7 @@
     if (real.parts && Array.isArray(real.parts.parts)) LL.partsConfig = real.parts;
     LL.misconceptions = real.misconceptions || null;   // registry: families + specifics (analysis surface)
     LL.lenses = real.lenses || null;                   // surface-lens layer
+    LL.surfaceToLemma = real.surfaceToLemma || null;   // it_en vocab injection (morph-it)
     LL.markerMenu = real.markerMenu || null;            // cross-topic translation marker menu (task 41)
     if (real.vocab && Array.isArray(real.vocab)) {
       vocabEntries = real.vocab;

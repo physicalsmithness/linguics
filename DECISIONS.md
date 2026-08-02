@@ -1648,3 +1648,79 @@ Corrects the v12 "help = neutral" call. A Help lookup records a genuine vocab MI
 
 ## Refinement: show the learner 1-2 example renderings framed as "one way", not "the answer" (2026-07-27, Smith)
 Refines the no-single-correct-version ruling: keep showing an example rendering (helpful, especially on a wrong answer) but framed as "One way to say it" (two where the item has 2+ references). Single-ideal framing goes; the example stays. Single-reference items are candidates for a second valid rendering.
+
+## Ruling: temperature-1.0 translation events are FLAGGED, never deleted (2026-08-02, Smith)
+The worker never set a sampling temperature, so every AI-marked translation from the day the marker
+went live until `DEFAULT_TEMPERATURE = 0` landed was generated at the provider default of 1.0. Bench
+proof (Housing, thread v18): identical item, identical answer, byte-identical payload, and the number
+of skills returned moved by 5-6 across runs averaging 4.7. Same learner, same answer, different mark.
+**Smith ruled directly: do not delete learner history.** The remedy is a marker on the data, not a
+purge. Events predating the temperature fix carry a provenance flag; analyses that depend on
+mark-to-mark stability (recency-weighted colour, mastery denominators, misconception rollups) may
+exclude or down-weight them, but the rows stay and the learner keeps their record. Rationale: a noisy
+mark is still evidence the learner attempted the item, and attempt history is the thing we can never
+reconstruct.
+
+## Ruling: vocabulary bucket ids key on the ITALIAN dictionary form, always (2026-08-02, Architecture)
+Seen live in Housing's bench: a gerundio mark returned `vocabulary.it.speech.translation`. `speech` is
+English. The marker had keyed the bucket on whatever word it happened to be reasoning about rather
+than on the Italian lemma (`discorso`). Left alone this accumulates phantom Italian entries that match
+no real lemma, inflating the vocabulary tree and splitting coverage against a denominator that will
+never include them. **Ruling: the segment after `vocabulary.it.` is the Italian dictionary form of the
+word being tested, never the source-language word and never the learner's word.** Two actions follow:
+a prompt rule pinning it, and a sweep of what has already landed in the pulse sheet.
+
+## Ruling: proper nouns never earn a vocabulary bucket (2026-08-02, Architecture)
+The bench returned `vocabulary.it.marco.translation` and `vocabulary.it.anna.translation`, fired on the
+names Marco and Anna. Translating a name demonstrates nothing. Note this is not a new policy:
+`Architecture_Coverage_denominators_and_policy` category 1 already excludes proper nouns (Maria, Carlo,
+Roma, Trump) from the coverage denominator. The marker was firing as CREDIT a class the coverage layer
+excludes from the DENOMINATOR, which is incoherent in the worst direction (free credit against nothing).
+**The marker is brought into line with the existing exclusion policy**, not given a new one.
+
+## Ruling: the `.translation.passive` suffix is direction-bound (2026-08-02, Architecture)
+The same skill on the same answer came back as `vocabulary.it.andare.translation` in one mode and
+`vocabulary.it.andare.translation.passive` in another. Coverage will split across both ids and neither
+will read as mastered. **Ruling: `.passive` marks RECOGNITION and is therefore legal only on `it_en`
+items; `en_it` production always uses the bare `.translation` form.** The direction is already known to
+the worker, so this is deterministic and belongs in the prompt as a rule, not left to the model.
+
+## Ruling: leak detectors match on PLAIN SUBSTRING, not word boundaries (2026-08-02, Smith, ratifying PassiveAuthor)
+PassiveAuthor filed this on 2026-07-17 and it sat unruled. `tools/estate_net_gate.js` tests for
+whole-word, space-bounded occurrences on normed text. But cue glosses are bounded by parentheses,
+quotes and colons, not spaces, so a cue reading `(prendere, con andare)` does not present `andare` as a
+space-bounded token and the gate reports CLEAN on a live leak. **Ruling: adopt plain substring.** The
+consequence is that the full-estate pass of 2026-07-22 (2,916 items, 33 raw flags, 22 genuine) is
+UNDER-reporting the bracketed-cue class by construction and must be re-run before its 18-item dispatch
+is acted on. A detector that is wrong in the false-negative direction is worse than no detector,
+because it issues an all-clear.
+
+## Ruling: ind_nn_06 returns to IndefiniteAuthor - the false-miss fix put the answer in the cue (2026-08-02, Smith)
+IndefiniteAuthor's remedy is mechanically correct (five guards present, blank-only apocope and gender
+errors caught, `wrong_answer_is_form_error_only` set). But the reworked prompt reads
+`"Complete: '____ studente ha superato la prova.' [no student] (nessuno)"`. The cue `(nessuno)` is the
+answer verbatim, so a learner who copies the cue scores 1/1 without ever meeting the s+consonant
+apocope rule the item exists to test. **Not stamped. Returned to the seat to think again.** The general
+lesson, which is the recurring one: a fix that satisfies the marker can still destroy the item. Verify
+the remedy against what the item is FOR, not only against the guard list.
+
+## Ruling: a free-text blank cannot test a form that does not change (2026-08-02, Architecture)
+Found by the re-written estate-net gate (`Architecture_Cr17Sweep_estate_net_gate_report` v2). Where the
+skill under test is "this word keeps its shape" — invariable adverbs (molto, troppo, poco, tanto),
+invariable plurals (citta, film, re, crisi, caffe), masculine-singular adjectives whose agreeing form
+IS the citation form, impersonal-infinitive imperatives, participle agreement in the no-change case —
+the correct answer is necessarily a string already visible in the prompt, because the cue must name
+the word. A learner who copies the cue scores full marks having demonstrated nothing, and the item's
+coverage claim is false. **This is an item-shape law, not a per-item defect: at least 58 items across
+adjective_agreement, adverb, noun, demonstrative, indefinite and imperativo share it.** Remedy: MCQ
+with the wrongly-inflected forms as distractors (molto / molta / molti / molte), or an English cue that
+names the meaning without supplying the string. Owner: the item-shape one-pager (task 13), which
+should now be written as an estate-wide law rather than one topic's template.
+
+## Ruling: supplied-choice and MCQ items are exempt from the leak gate, and carry a tag saying so (2026-08-02, Architecture)
+133 of the gate's 209 Tier-B findings are items that show the answer ON PURPOSE: 127 supplied-choice
+("Choose: giocavo / ho giocato") and 6 MCQ. Rev 31 already exempts supplied-choice from criterion 17;
+the gate did not know. Rather than rewrite correct items to hide from a script, they carry an explicit
+exemption tag naming the reason (task type), which the gate reads and skips. Same tag resolves
+`op_ne_pp_04` and the six Category-B items from the 2026-07-22 report. The tag is a claim about the
+item's DESIGN, so it is authored, not inferred.

@@ -1,0 +1,533 @@
+=== ESTATE-NET GATE REPORT v2 ===
+Architecture 2026-08-02 | punctuation-bounded matcher | Tier-B exclusion removed
+Files scanned: 33
+Items scanned: 3039
+
+v1 (space-bounded, old exclusion) would flag : 28
+TIER A  answer-leak, item has other markpoints: 36
+TIER B  NON-DIAGNOSTIC single-markpoint items : 209
+TIER S  cue matches a PARTIAL-credit tolerance : 0
+TIER C  advisory substring-only (unbounded)   : 127
+
+=== TIER A — answer visible in prompt, item has other markpoints (36) ===
+--- adjective_agreement (6) ---
+  adj_buono_02 [short] phrase: "buono" | mp: buono before m.sg s+consonant or z | mps: 1
+    prompt: Complete: 'È stato un ____ studente.' (buono)
+  adj_grande_01 [short] phrase: "grande" | mp: gran or grande, both accepted in pre-noun singular | mps: 1
+    prompt: Complete: 'È stato un ____ successo!' (grande)
+  adj_grande_02 [short] phrase: "grande" | mp: gran or grande before m.sg | mps: 1
+    prompt: Complete: 'Hai un ____ problema.' (grande)
+  adj_grande_04 [short] phrase: "grande" | mp: feminine pre-noun: grande or gran | mps: 1
+    prompt: Complete: 'Ha una ____ passione per la musica.' (grande)
+  adj_agg_04 [short] phrase: "grande" | mp: Class II f.sg keeps -e | mps: 2
+    prompt: Complete: 'Roma è una città ____ e ____.' (grande, antico)
+  adj_grande_05 [short] phrase: "grande" | mp: gran or grande in pre-noun m.sg (figurative) | mps: 1
+    prompt: Complete: 'Hai un ____ cuore, sei sempre disponibile per gli altri.' (grande)
+--- demonstrative (2) ---
+  dem_questo_trap_m_01 [short] phrase: "questo" | mp: questo (m. sg.) with a deceptive -a noun | mps: 2
+    prompt: Complete, to mean 'This problem is difficult to solve': '____ problema è difficile da risolvere.' (questo)
+  dem_questo_trap_m_01 [short] phrase: "questo" | mp: problema is masculine (deceptive -a noun) | mps: 2
+    prompt: Complete, to mean 'This problem is difficult to solve': '____ problema è difficile da risolvere.' (questo)
+--- noun (1) ---
+  noun_gen_e_09 [short] phrase: "il" | mp: il capitale = money/funds (m) | mps: 1
+    prompt: Completa con l'articolo giusto: 'In economia, ____ capitale è il denaro che si investe.'
+--- pronominal_verbs (2) ---
+  pv_mech_sela_04 [short] phrase: "ce l'ho" | mp: frozen cluster ce l'ho | mps: 2
+    prompt: È stato un anno durissimo, ma alla fine ce l'ho ____! (farcela)
+  pv_mech_sela_04 [short] phrase: "ce l' ho" | mp: frozen cluster ce l'ho | mps: 2
+    prompt: È stato un anno durissimo, ma alla fine ce l'ho ____! (farcela)
+--- pronoun (10) ---
+  op_spec_fcap_01 [short] phrase: "La" | mp: Formal DOP takes capital La | mps: 3
+    prompt: Fill each blank with 'la' or 'La' or 'sua' or 'Sua' as appropriate: 'Gentile signora, ____ ringrazio per ____ ____ gentilezza.'
+  op_spec_fcap_01 [short] phrase: "Sua" | mp: Formal possessive takes capital Sua | mps: 3
+    prompt: Fill each blank with 'la' or 'La' or 'sua' or 'Sua' as appropriate: 'Gentile signora, ____ ringrazio per ____ ____ gentilezza.'
+  op_dop_vi_you_03 [short] phrase: "vi ho" | mp: DOP 2pl vi, pre-aux | mps: 2
+    prompt: Rewrite in the negative: 'Ragazze, vi ho viste ieri al parco.' → '____.' (informal: I didn't see you all, addressing women)
+  op_dop_vi_you_03 [short] phrase: "viste" | mp: Participle ending: agreement with vi is optional (viste/visto both credited) | mps: 2
+    prompt: Rewrite in the negative: 'Ragazze, vi ho viste ieri al parco.' → '____.' (informal: I didn't see you all, addressing women)
+  op_ne_pp_04 [mcq] phrase: "bevuto" | mp: Participle of bere (m.sg agreement with partitive ne pointing at m.sg antecedent) | mps: 2
+    prompt: Disambiguate. Choose the right pair. 'Hai bevuto del vino?' 'Sì, ____ ____ bevuto un bicchiere.'
+  op_spec_fcap_03 [short] phrase: "La informiamo" | mp: Formal DOP takes capital La | mps: 3
+    prompt: Rewrite the whole sentence, capitalising the formal-Lei pronouns and possessive where appropriate (business email to a doctor): 'Buongiorno dottore, la informiamo che la sua richiesta e' stata accettata.'
+  op_spec_fcap_03 [short] phrase: "che la" | mp: Article la stays lowercase (not a formal pronoun) | mps: 3
+    prompt: Rewrite the whole sentence, capitalising the formal-Lei pronouns and possessive where appropriate (business email to a doctor): 'Buongiorno dottore, la informiamo che la sua richiesta e' stata accettata.'
+  op_spec_fcap_03 [short] phrase: "Sua richiesta" | mp: Formal possessive takes capital Sua | mps: 3
+    prompt: Rewrite the whole sentence, capitalising the formal-Lei pronouns and possessive where appropriate (business email to a doctor): 'Buongiorno dottore, la informiamo che la sua richiesta e' stata accettata.'
+  op_spec_fcap_04 [short] phrase: "Sua" | mp: Capitalise Sua in closing formula | mps: 2
+    prompt: Capitalise in this CV cover letter: 'in attesa di una sua risposta, le porgo i miei cordiali saluti.' → 'in attesa di una ____ risposta, ____ porgo i miei cordiali saluti.'
+  op_spec_fcap_04 [short] phrase: "Le" | mp: Capitalise Le (IOP) in closing formula | mps: 2
+    prompt: Capitalise in this CV cover letter: 'in attesa di una sua risposta, le porgo i miei cordiali saluti.' → 'in attesa di una ____ risposta, ____ porgo i miei cordiali saluti.'
+--- reported_speech (2) ---
+  rep_persist_01 [short] phrase: "è" | mp: Present kept or backshifted (both valid) | mps: 1
+    prompt: Trasforma in discorso indiretto: Marco ha detto: 'Sono stanco.' (La stanchezza non gli è ancora passata.) → Marco ha detto che ____ stanco.
+  rep_persist_03 [short] phrase: "è" | mp: Present kept or backshifted (both valid) | mps: 1
+    prompt: Trasforma in discorso indiretto: L'insegnante ha spiegato: 'La Terra è rotonda.' → L'insegnante ha spiegato che la Terra ____ rotonda.
+--- tense_choice (2) ---
+  tc_imp_pp_gen_02 [short] phrase: "sono andato" | mp: PP for single past event (sono andato) | mps: 1
+    prompt: Complete: 'Ieri sera _____ al cinema con Marco a vedere un film francese.' Choose: andavo / sono andato.
+  tc_cf_presc_02 [short] phrase: "sarei venuto" | mp: Past conditional in past counterfactual apodosis (sarei venuto) | mps: 1
+    prompt: Complete (in a formal letter to a colleague): 'Se avessi saputo della tua malattia, ti _____ a trovare subito, mi dispiace molto.' Choose: venivo / sarei venuto.
+--- verb_form.congiuntivo (6) ---
+  cong_use_fix_costare_01 [short] phrase: "costi" | mp: fixed formula (costi quel che costi) | mps: 2
+    prompt: Completa: 'Lo finiremo, costi quel che ____!' (costare)
+  cong_use_fix_costare_01 [short] phrase: "costi" | mp: costi (-are, -i) | mps: 2
+    prompt: Completa: 'Lo finiremo, costi quel che ____!' (costare)
+  cong_use_fix_essere_01 [short] phrase: "Sia" | mp: fixed formula (sia come sia) | mps: 2
+    prompt: Completa: '____ come sia, dobbiamo decidere oggi.' (essere)
+  cong_use_fix_essere_01 [short] phrase: "Sia" | mp: sia (suppletive) | mps: 2
+    prompt: Completa: '____ come sia, dobbiamo decidere oggi.' (essere)
+  cong_use_fix_andare_01 [short] phrase: "Vada" | mp: fixed formula (vada come vada) | mps: 2
+    prompt: Completa: '____ come vada, non mi arrendo.' (andare)
+  cong_use_fix_andare_01 [short] phrase: "Vada" | mp: vada (from vado) | mps: 2
+    prompt: Completa: '____ come vada, non mi arrendo.' (andare)
+--- verb_form.trapassato_prossimo (5) ---
+  tpp_es_lui_andato_01 [short] phrase: "era" | mp: era (imperfect aux, not present) | mps: 2
+    prompt: Quando sono arrivato, Marco non c'era più: ____ a casa poco prima. (andare)
+  tpp_es_noi_venuti_01 [short] phrase: "eravamo" | mp: eravamo (imperfect aux, not present) | mps: 2
+    prompt: Noi ragazzi eravamo stanchi perché ____ a piedi. (venire)
+  tpp_es_loro_uscite_01 [short] phrase: "erano" | mp: erano (imperfect aux, not present) | mps: 2
+    prompt: Le ragazze non c'erano: ____ poco prima. (uscire)
+  tpp_es_caduto_01 [short] phrase: "era" | mp: era (imperfect aux, not present) | mps: 2
+    prompt: C'era acqua per terra: un bicchiere ____ poco prima. (cadere)
+  tpp_es_entrato_01 [short] phrase: "era" | mp: era (imperfect aux, not present) | mps: 2
+    prompt: La casa era silenziosa: nessuno ____ da ore. (entrare)
+
+=== TIER S — cue equals a phrase accepted only at PARTIAL credit (soft; item still docks) (0) ===
+Usually legitimate: the cue supplies the base form per formation-supplies-the-trigger, and the base form is tolerated at reduced credit. Read, do not bulk-fix.
+
+=== TIER B — the item's ONLY answer is in its own prompt (tests nothing) (209) ===
+v1 excluded this entire class as 'harmless'. It is the opposite of harmless.
+--- adjective_agreement (35) ---
+  adj_o_m_sg_01 [short] phrase: "rosso" | mp: m.sg keeps -o | mps: 1
+    prompt: Complete with the correct form: 'Il libro è ____.' (rosso)
+  adj_o_m_sg_02 [short] phrase: "nuovo" | mp: m.sg in attributive position | mps: 1
+    prompt: Complete: 'Ho comprato un quaderno ____.' (nuovo)
+  adj_o_m_sg_03 [short] phrase: "italiano" | mp: m.sg with proper noun subject | mps: 1
+    prompt: Complete: 'Marco è ____.' (italiano)
+  adj_o_m_sg_04 [mcq] phrase: "buono" | mp: m.sg in predicative position | mps: 1
+    prompt: Which is right? Complete: 'Il vino è ____.' (buono)
+  adj_o_m_sg_05 [short] phrase: "alto" | mp: m.sg after intensifier | mps: 1
+    prompt: Complete: 'Mio fratello è molto ____.' (alto)
+  adj_e_m_sg_01 [short] phrase: "intelligente" | mp: m.sg keeps -e (Class II) | mps: 1
+    prompt: Complete: 'Marco è ____.' (intelligente)
+  adj_e_m_sg_02 [short] phrase: "felice" | mp: m.sg in attributive position | mps: 1
+    prompt: Complete: 'Ho un fratello molto ____.' (felice)
+  adj_e_m_sg_03 [short] phrase: "verde" | mp: m.sg (-e citation) | mps: 1
+    prompt: Complete: 'Il prato è ____.' (verde)
+  adj_e_m_sg_04 [mcq] phrase: "interessante" | mp: m.sg discrimination against -o miss | mps: 1
+    prompt: Which is right? 'Il libro è ____.' (interessante)
+  adj_e_m_sg_05 [short] phrase: "difficile" | mp: m.sg ending in -ile | mps: 1
+    prompt: Complete: 'Questo esercizio è ____.' (difficile)
+  adj_e_f_sg_01 [short] phrase: "intelligente" | mp: f.sg keeps -e (Class II) | mps: 1
+    prompt: Complete: 'La ragazza è ____.' (intelligente)
+  adj_e_f_sg_02 [short] phrase: "verde" | mp: f.sg (-e citation, no -a) | mps: 1
+    prompt: Complete: 'L'erba è ____.' (verde)
+  adj_e_f_sg_03 [short] phrase: "felice" | mp: f.sg attributive | mps: 1
+    prompt: Complete: 'Ho una sorella ____.' (felice)
+  adj_e_f_sg_04 [mcq] phrase: "gentile" | mp: f.sg discrimination | mps: 1
+    prompt: Which is right? 'Maria è una persona ____.' (gentile)
+  adj_e_f_sg_05 [short] phrase: "difficile" | mp: f.sg -ile | mps: 1
+    prompt: Complete: 'Questa lingua è ____.' (difficile)
+  adj_inv_col_01 [short] phrase: "rosa" | mp: rosa is invariable | mps: 1
+    prompt: Complete: 'Le case del paese sono ____.' (rosa)
+  adj_inv_col_02 [short] phrase: "blu" | mp: blu is invariable | mps: 1
+    prompt: Complete: 'I miei pantaloni preferiti sono ____.' (blu)
+  adj_inv_col_03 [mcq] phrase: "viola" | mp: viola is invariable | mps: 1
+    prompt: Which is right? 'Le pareti della camera sono ____.' (viola)
+  adj_inv_col_04 [short] phrase: "rosa" | mp: rosa stays invariant in f.pl context | mps: 1
+    prompt: Complete: 'Ho comprato due magliette ____.' (rosa)
+  adj_inv_col_05 [short] phrase: "lilla" | mp: lilla is invariable | mps: 1
+    prompt: Complete: 'Mi piacciono i fiori ____.' (lilla)
+  adj_inv_comp_01 [short] phrase: "verde scuro" | mp: compound colour is invariable | mps: 1
+    prompt: Complete: 'Le pareti della cucina sono ____.' (verde scuro)
+  adj_inv_comp_02 [mcq] phrase: "blu marino" | mp: blu marino is invariable | mps: 1
+    prompt: Which is right? 'Le porte sono ____.' (blu marino)
+  adj_inv_comp_03 [short] phrase: "giallo limone" | mp: giallo limone is invariable | mps: 1
+    prompt: Complete: 'Ho delle camicie ____.' (giallo limone)
+  adj_inv_comp_04 [short] phrase: "rosso fuoco" | mp: rosso fuoco is invariable | mps: 1
+    prompt: Complete: 'Hanno scelto delle tende ____ per il salotto.' (rosso fuoco)
+  adj_inv_pari_01 [short] phrase: "pari" | mp: pari is invariable | mps: 1
+    prompt: Complete: '2, 4, 6 sono numeri ____.' (pari)
+  adj_inv_pari_02 [short] phrase: "pari" | mp: pari (= 'equal/level') is invariable | mps: 1
+    prompt: Complete: 'Alla fine della partita le squadre erano ____.' (pari)
+  adj_inv_pari_03 [short] phrase: "dispari" | mp: dispari is invariable | mps: 1
+    prompt: Complete: '1, 3, 5 sono numeri ____.' (dispari)
+  adj_bello_02 [short] phrase: "bello" | mp: bello before m.sg s+consonant or z | mps: 1
+    prompt: Complete: 'Hai un ____ zaino!' (bello)
+  adj_buono_06 [short] phrase: "buono" | mp: post-noun/predicative uses standard buono | mps: 1
+    prompt: Complete: 'Il vino è ____.' (buono)
+  adj_santo_03 [short] phrase: "santo" | mp: santo before male saint with s+consonant | mps: 1
+    prompt: Complete: 'La basilica di ____ Stefano.' (santo)
+  adj_mezzo_04 [short] phrase: "mezzo" | mp: mezzo (m.sg agreement) | mps: 1
+    prompt: Complete: 'Ho letto solo ____ libro.' (mezzo)
+  adj_quello_02 [short] phrase: "quello" | mp: quello before m.sg s+consonant or z | mps: 1
+    prompt: Complete: '____ zaino è pesantissimo.' (quello)
+  adj_inv_comp_05 [short] phrase: "verde acqua" | mp: verde acqua is invariable | mps: 1
+    prompt: Complete: 'Mi piacciono molto le tazze ____ in vetrina.' (verde acqua)
+  adj_inv_pari_04 [short] phrase: "pari" | mp: pari (= 'equal') in fixed phrase 'pari opportunità' | mps: 1
+    prompt: Complete: 'L'azienda promuove ____ opportunità per tutti i dipendenti.' (pari)
+  adj_inv_pari_05 [short] phrase: "impari" | mp: impari is invariable | mps: 1
+    prompt: Complete: 'È stata una lotta ____ tra le due squadre, una contro un avversario molto più forte.' (impari)
+--- adverb (6) ---
+  adv_inv_01 [short] phrase: "molto" | mp: invariable before an adjective | mps: 1
+    prompt: Completa con la forma giusta di 'molto': 'Le ragazze sono ____ stanche.'
+  adv_inv_03 [short] phrase: "troppo" | mp: invariable modifying a verb | mps: 1
+    prompt: Completa con la forma giusta di 'troppo': 'Secondo me tu lavori ____.'
+  adv_inv_05 [short] phrase: "poco" | mp: invariable before an adjective | mps: 1
+    prompt: Completa con la forma giusta di 'poco': 'Questa borsa è ____ cara.'
+  adv_inv_07 [short] phrase: "tanto" | mp: invariable before an adjective | mps: 1
+    prompt: Completa con la forma giusta di 'tanto': 'Sei stato ____ gentile.'
+  adv_inv_09 [short] phrase: "molto" | mp: invariable modifying a verb | mps: 1
+    prompt: Completa con la forma giusta di 'molto': 'Mia sorella studia ____.'
+  adv_inv_10 [short] phrase: "molto" | mp: invariable before a feminine adjective | mps: 1
+    prompt: Completa con la forma giusta di 'molto': 'La minestra è ____ calda.'
+--- demonstrative (7) ---
+  dem_quello_msg_simp_01 [short] phrase: "quello" | mp: quello before s + consonant | mps: 1
+    prompt: Complete, to mean 'That student always arrives late': '____ studente arriva sempre tardi.' (quello)
+  dem_quello_msg_simp_02 [short] phrase: "quello" | mp: quello before z | mps: 1
+    prompt: Complete, to mean 'That rucksack is too heavy': '____ zaino è troppo pesante.' (quello)
+  dem_quello_msg_simp_03 [short] phrase: "quello" | mp: quello before z | mps: 1
+    prompt: Complete, to mean 'That uncle lives in Australia': '____ zio vive in Australia.' (quello)
+  dem_questo_msg_01 [short] phrase: "questo" | mp: questo (m. sg.) | mps: 1
+    prompt: Complete, to mean 'This book is very interesting': '____ libro è molto interessante.' (questo)
+  dem_pron_msg_01 [short] phrase: "quello" | mp: quello standing alone (m. sg.) | mps: 1
+    prompt: Complete: 'Quale cappotto preferisci? Preferisco ____.' (quello)
+  dem_pron_questo_01 [short] phrase: "questo" | mp: questo standing alone (m. sg.) | mps: 1
+    prompt: Complete: 'Guarda ____: ti piace?' (questo)
+  dem_pron_questo_neuter_01 [short] phrase: "questo" | mp: questo as a neuter 'this thing' | mps: 1
+    prompt: Complete: 'Chi ha detto ____?' (questo)
+--- indefinite (3) ---
+  ind_nn_06 [short] phrase: "nessuno" | mp: Nessuno, niente, nulla | mps: 1
+    prompt: Complete: '____ studente ha superato la prova.' [no student] (nessuno)
+  ind_oc_06 [short] phrase: "ciascuno" | mp: Ognuno and ciascuno | mps: 1
+    prompt: Complete, in formal written register: 'A ____ studente è stato assegnato un tutor.' [each] (ciascuno)
+  ind_chi_04 [short] phrase: "Chiunque" | mp: Chiunque | mps: 1
+    prompt: Complete using ONE of: qualunque, chiunque, ciascuno, nessuno. '____ sia stato, ha fatto un ottimo lavoro.' [whoever it was]
+--- noun (7) ---
+  noun_plur_inv_01 [short] phrase: "città" | mp: accented final -> invariable | mps: 1
+    prompt: Metti al plurale: 'Una città, due ____.'
+  noun_plur_inv_02 [short] phrase: "film" | mp: foreign word -> invariable | mps: 1
+    prompt: Metti al plurale: 'Un film, molti ____.'
+  noun_plur_inv_03 [short] phrase: "re" | mp: one-syllable -> invariable | mps: 1
+    prompt: Metti al plurale: 'Un re, tre ____.'
+  noun_plur_inv_04 [short] phrase: "crisi" | mp: -i ending -> invariable | mps: 1
+    prompt: Metti al plurale: 'Una crisi, due ____.'
+  noun_plur_inv_05 [short] phrase: "caffè" | mp: accented final -> invariable | mps: 1
+    prompt: Metti al plurale: 'Un caffè, due ____.'
+  noun_plur_inv_06 [short] phrase: "foto" | mp: clipped word -> invariable | mps: 1
+    prompt: Metti al plurale: 'Una foto, tante ____.'
+  noun_plur_comp_03 [short] phrase: "portachiavi" | mp: verb+plural-noun: invariable | mps: 1
+    prompt: Metti al plurale: 'Un portachiavi, due ____.'
+--- pronoun (12) ---
+  op_dop_la_01 [short] phrase: "la" | mp: DOP f.sg la | mps: 1
+    prompt: Replace 'la pizza' with a pronoun: 'Marco mangia la pizza.' → 'Marco ____ mangia.'
+  op_dop_li_03 [short] phrase: "le" | mp: DOP f.pl le (NOT li) | mps: 1
+    prompt: Complete with the direct-object pronoun for 'them' (the keys): 'Le chiavi? ____ ho lasciate sul tavolo.'
+  op_dop_le_01 [short] phrase: "le" | mp: DOP f.pl le | mps: 1
+    prompt: Replace 'le case' with a pronoun: 'Marco vede le case dalla finestra.' → 'Marco ____ vede dalla finestra.'
+  op_dop_le_02 [short] phrase: "le" | mp: DOP f.pl le for feminine persons | mps: 1
+    prompt: Replace 'le mie sorelle' with a pronoun: 'Aspetto le mie sorelle al ristorante.' → '____ aspetto al ristorante.'
+  op_dop_le_03 [mcq] phrase: "le" | mp: DOP f.pl le with participle agreement | mps: 1
+    prompt: Choose the right pronoun: 'Hai visto le ragazze?' 'Sì, ____ ho viste in piazza.'
+  op_iop_vi_you_01 [short] phrase: "vi" | mp: IOP 2pl vi | mps: 1
+    prompt: Complete: 'Vi ringrazio: ____ scriverò appena posso.' (= to you, plural)
+  op_ne_pp_02 [short] phrase: "i" | mp: ne agreement m.pl | mps: 1
+    prompt: Complete: 'Hai comprato dei libri?' 'Sì, ne ho comprat____ molti.' ('i libri' is masculine plural)
+  op_spec_stressed_03 [short] phrase: "me" | mp: Stressed me after preposition | mps: 1
+    prompt: Complete after the preposition: 'Vuoi venire con ____?' (= with me)
+  op_dop_nonelide_02 [short] phrase: "le" | mp: f.pl le does not elide | mps: 1
+    prompt: Complete the answer: 'Hai visto le ragazze?' 'Sì, ____ ho viste al bar.'
+  op_spec_stressed_06 [short] phrase: "me" | mp: Stressed me post-verb for DO contrast | mps: 1
+    prompt: Rephrase with the stressed pronoun for strong contrast: 'She invited me, not him.' → 'Ha invitato ____, non lui.'
+  op_aspclass_place_asp_3pl_fem [short] phrase: "le" | mp: DOP for le ragazze | mps: 1
+    prompt: Complete with the direct-object pronoun for 'le ragazze': le ragazze arriva sempre in ritardo; ____ aspetto in piazza da mezz'ora.
+  op_aspclass_place_cer_3pl_fem [short] phrase: "le" | mp: DOP for le ragazze | mps: 1
+    prompt: Complete with the direct-object pronoun for 'le ragazze': le ragazze arriva sempre in ritardo; ____ cerco in piazza da mezz'ora.
+--- relative_pronoun (5) ---
+  rel_disc_checui_01 [short] phrase: "che" | mp: che chosen: direct object, no preposition | mps: 1
+    prompt: Complete: 'Il film ____ abbiamo visto ieri era noioso.' Choose: che / a cui.
+  rel_disc_checui_02 [short] phrase: "a cui" | mp: a cui chosen: prestare a | mps: 1
+    prompt: Complete: 'L'amico ____ ho prestato la macchina è partito per il mare.' Choose: che / a cui.
+  rel_disc_checui_03 [short] phrase: "per cui" | mp: per cui chosen: tifare per | mps: 1
+    prompt: Complete: 'La squadra ____ tifiamo ha vinto il campionato.' Choose: che / per cui.
+  rel_disc_cheilq_01 [short] phrase: "la quale" | mp: la quale chosen to disambiguate | mps: 1
+    prompt: Complete: 'La moglie del direttore, ____ arriva sempre presto, ci saluta ogni mattina.' Choose: che / la quale. (it is the wife who arrives early)
+  rel_disc_cheilq_02 [short] phrase: "che" | mp: che chosen: no ambiguity, plain che is natural | mps: 1
+    prompt: Complete: 'Il ragazzo ____ gioca in porta è mio cugino.' Choose: che / il quale.
+--- reported_speech (1) ---
+  rep_futcond_08 [short] phrase: "dispiacerebbe" | mp: Hypothetical conditional stays put | mps: 1
+    prompt: Trasforma in discorso indiretto: Marco ha detto: 'Mi dispiacerebbe partire.' → Marco ha detto che gli ____ partire.
+--- tense_choice (122) ---
+  tc_imp_pp_gen_01 [short] phrase: "giocavo" | mp: Imperfect for habitual past (giocavo) | mps: 1
+    prompt: Complete: 'Da bambino _____ a calcio ogni domenica con i miei amici.' Choose: giocavo / ho giocato.
+  tc_imp_pp_gen_03 [short] phrase: "preparavo" | mp: Imperfect for ongoing background (preparavo) | mps: 1
+    prompt: Complete: 'Mentre _____ la cena, è arrivata Anna senza preavviso.' Choose: preparavo / ho preparato.
+  tc_imp_pp_gen_04 [short] phrase: "andavo" | mp: Imperfect for habitual past, contrast with a PP exception (andavo) | mps: 1
+    prompt: Complete: 'Di solito _____ in autobus al lavoro, ma martedì scorso ho preso il treno.' Choose: andavo / sono andato.
+  tc_imp_pp_gen_05 [short] phrase: "ha bussato" | mp: PP for an abrupt punctual event (ha bussato) | mps: 1
+    prompt: Complete: 'Tutto era tranquillo, poi all'improvviso _____ qualcuno alla porta.' Choose: bussava / ha bussato.
+  tc_imp_pp_gen_06 [short] phrase: "ho passato" | mp: PP for a bounded past stretch (ho passato) | mps: 1
+    prompt: Complete: 'L'estate scorsa _____ tre settimane in Sicilia: che vacanza!' Choose: passavo / ho passato.
+  tc_imp_pp_gen_07 [short] phrase: "era" | mp: Imperfect for a past state (era stanca) | mps: 1
+    prompt: Complete: 'Quella sera Maria _____ molto stanca: aveva lavorato dodici ore di fila.' Choose: era / è stata.
+  tc_imp_pp_gen_08 [short] phrase: "andavamo" | mp: Imperfect for habitual past contrasted with a PP exception (andavamo) | mps: 1
+    prompt: Complete: 'Ogni inverno _____ in montagna a sciare, ma l'anno scorso siamo restati a casa per il freddo.' Choose: andavamo / siamo andati.
+  tc_imp_pp_sap_01 [short] phrase: "sapevo" | mp: Imperfect of sapere for an ongoing state of knowledge (sapevo) | mps: 1
+    prompt: Complete: 'Quando l'ho incontrata, _____ già che era incinta: me l'aveva detto sua sorella la settimana prima.' Choose: sapevo / ho saputo.
+  tc_imp_pp_sap_02 [short] phrase: "ho saputo" | mp: PP of sapere for the event of learning (ho saputo) | mps: 1
+    prompt: Complete: '_____ la notizia della sua morte dal giornale di stamattina, e sono rimasto sconvolto.' Choose: Sapevo / Ho saputo.
+  tc_imp_pp_sap_03 [short] phrase: "sapeva" | mp: Imperfect of sapere for ongoing knowledge / mastery (sapeva) | mps: 1
+    prompt: Complete: 'Mia nonna _____ a memoria tutte le poesie di Leopardi, anche dopo i novant'anni.' Choose: sapeva / ha saputo.
+  tc_imp_pp_sap_04 [short] phrase: "ho saputo" | mp: PP of sapere for the moment of finding out (ho saputo) | mps: 1
+    prompt: Complete: '_____ del divorzio solo ieri, mentre prendevo un caffè con Lucia.' Choose: Sapevo / Ho saputo.
+  tc_imp_pp_sap_05 [short] phrase: "sapevo" | mp: Imperfect of sapere for an ongoing state of not-knowing (non sapevo) | mps: 1
+    prompt: Complete: 'Non _____ niente del progetto fino a quando Marco non me l'ha spiegato in dettaglio.' Choose: sapevo / ho saputo.
+  tc_imp_pp_dov_01 [short] phrase: "dovevo" | mp: Imperfect of dovere for 'was supposed to' (dovevo) | mps: 1
+    prompt: Complete: '_____ studiare per l'esame, ma alla fine ho preferito uscire con gli amici.' Choose: Dovevo / Ho dovuto.
+  tc_imp_pp_dov_02 [short] phrase: "ho dovuto" | mp: PP of dovere for 'had to and did' (ho dovuto) | mps: 1
+    prompt: Complete: 'Ieri _____ lavorare fino a mezzanotte per finire la relazione in tempo.' Choose: dovevo / ho dovuto.
+  tc_imp_pp_dov_03 [short] phrase: "ho dovuto" | mp: PP of dovere for 'had to and did' (ho dovuto) | mps: 1
+    prompt: Complete: 'Mio nonno stava male, così _____ accompagnarlo al pronto soccorso.' Choose: dovevo / ho dovuto.
+  tc_imp_pp_dov_04 [short] phrase: "doveva" | mp: Imperfect of dovere for a planned/expected obligation (doveva) | mps: 1
+    prompt: Complete: 'Anna _____ presentare la tesi alle dieci, ma è arrivata in ritardo e ha rimandato di un'ora.' Choose: doveva / ha dovuto.
+  tc_imp_pp_dov_05 [short] phrase: "ho dovuto" | mp: PP of dovere for 'had to and did' (ho dovuto) | mps: 1
+    prompt: Complete: 'Per quel concorso _____ preparare una presentazione di trenta pagine in una sola settimana.' Choose: dovevo / ho dovuto.
+  tc_imp_pp_pot_01 [short] phrase: "potevo" | mp: Imperfect of potere for 'could have' (potevo) | mps: 1
+    prompt: Complete: '_____ aiutarti con il trasloco, sai, ma non me l'hai chiesto.' Choose: Potevo / Ho potuto.
+  tc_imp_pp_pot_02 [short] phrase: "ho potuto" | mp: PP of potere for 'managed to' (ho potuto) | mps: 1
+    prompt: Complete: 'Dopo molti tentativi, finalmente _____ parlare con il direttore in persona.' Choose: potevo / ho potuto.
+  tc_imp_pp_pot_03 [short] phrase: "poteva" | mp: Imperfect of potere for habitual past ability (poteva) | mps: 1
+    prompt: Complete: 'Da giovane Anna _____ studiare per dieci ore di fila senza alcun problema.' Choose: poteva / ha potuto.
+  tc_imp_pp_pot_04 [short] phrase: "ho potuto" | mp: PP of potere for 'managed to' (ho potuto) | mps: 1
+    prompt: Complete: 'Solo grazie a un amico _____ visitare la mostra senza fare la fila.' Choose: potevo / ho potuto.
+  tc_imp_pp_pot_05 [short] phrase: "potevo" | mp: Imperfect of potere for a sustained past constraint (potevo) | mps: 1
+    prompt: Complete: 'In quel periodo _____ vedere mia figlia solo nei weekend, per via del lavoro.' Choose: potevo / ho potuto.
+  tc_imp_pp_vol_01 [short] phrase: "volevo" | mp: Imperfect of volere for 'wanted to' (volevo) | mps: 1
+    prompt: Complete: '_____ dirti una cosa importante, ma è arrivata gente e non sono riuscito a parlarti.' Choose: Volevo / Ho voluto.
+  tc_imp_pp_vol_02 [short] phrase: "ha voluto" | mp: PP of volere for 'insisted on' (ha voluto) | mps: 1
+    prompt: Complete: 'Maria _____ confessare la verità ai genitori, anche se sapeva che si sarebbero arrabbiati.' Choose: voleva / ha voluto.
+  tc_imp_pp_vol_03 [short] phrase: "voleva" | mp: Imperfect of volere for an unfulfilled impulse (voleva) | mps: 1
+    prompt: Complete: 'In quel momento Marco _____ chiamare sua madre, ma non aveva il telefono con sé.' Choose: voleva / ha voluto.
+  tc_imp_pp_vol_04 [short] phrase: "ha voluto" | mp: PP of volere for 'insisted on (and did)' (ha voluto) | mps: 1
+    prompt: Complete: 'Mio nonno _____ pagare il conto a tutti, nonostante avessimo insistito per dividere.' Choose: voleva / ha voluto.
+  tc_imp_pp_vol_05 [short] phrase: "ho voluto" | mp: PP of volere for self-imposed insistence (ho voluto) | mps: 1
+    prompt: Complete: 'Alla fine _____ essere io a guidare fino a casa, anche se ero stanchissima.' Choose: volevo / ho voluto.
+  tc_imp_pp_con_01 [short] phrase: "conoscevo" | mp: Imperfect of conoscere for an ongoing state of acquaintance (conoscevo) | mps: 1
+    prompt: Complete: '_____ già Anna prima del matrimonio: lavoravamo nello stesso ufficio da anni.' Choose: Conoscevo / Ho conosciuto.
+  tc_imp_pp_con_02 [short] phrase: "ho conosciuto" | mp: PP of conoscere for the event of first meeting (ho conosciuto) | mps: 1
+    prompt: Complete: '_____ mio marito a una festa di compleanno una sera d'estate.' Choose: Conoscevo / Ho conosciuto.
+  tc_imp_pp_con_03 [short] phrase: "conoscevo" | mp: Imperfect of conoscere for a past state of non-acquaintance (conoscevo) | mps: 1
+    prompt: Complete: 'Quando mi sono trasferita a Bologna, non _____ ancora nessuno in città.' Choose: conoscevo / ho conosciuto.
+  tc_imp_pp_con_04 [short] phrase: "abbiamo conosciuto" | mp: PP of conoscere for the event of meeting (abbiamo conosciuto) | mps: 1
+    prompt: Complete: 'Ieri sera, alla cena dei colleghi, _____ una persona davvero interessante.' Choose: conoscevamo / abbiamo conosciuto.
+  tc_imp_pp_con_05 [short] phrase: "conoscevo" | mp: Imperfect of conoscere for prior familiarity (conoscevo) | mps: 1
+    prompt: Complete: '_____ già la sua musica perché avevo letto un articolo su una rivista qualche mese prima.' Choose: Conoscevo / Ho conosciuto.
+  tc_prog_pres_01 [short] phrase: "fai" | mp: Simple present for habit (fai) | mps: 1
+    prompt: Complete: 'Tua sorella ti chiede al telefono cosa _____ di solito la domenica mattina.' Choose: fai / stai facendo.
+  tc_prog_pres_02 [short] phrase: "lavora" | mp: Simple present for an ongoing state / occupation (lavora) | mps: 1
+    prompt: Complete: 'Carlo _____ in banca da quindici anni e si occupa di prestiti per le piccole imprese.' Choose: lavora / sta lavorando.
+  tc_prog_pres_03 [short] phrase: "sto facendo" | mp: Present progressive for action in progress right now (sto facendo) | mps: 1
+    prompt: Complete: 'Non posso parlarti adesso: _____ una telefonata importante con un cliente.' Choose: faccio / sto facendo.
+  tc_prog_pres_04 [short] phrase: "gioca" | mp: Simple present for routine, not progressive (gioca) | mps: 1
+    prompt: Complete: 'Mio fratello _____ ogni sera con i suoi amici online dopo cena.' Choose: gioca / sta giocando.
+  tc_prog_pres_05 [short] phrase: "sta tagliando" | mp: Present progressive for vivid in-the-moment scene (sta tagliando) | mps: 1
+    prompt: Complete: 'Guarda dalla finestra! Marco _____ l'erba sotto la pioggia battente, è impazzito!' Choose: taglia / sta tagliando.
+  tc_prog_past_01 [short] phrase: "preparavo" | mp: Imperfetto as the default for past ongoing action (preparavo) | mps: 1
+    prompt: Complete: 'Mentre _____ la cena, il telefono ha squillato all'improvviso e mi ha distratto.' Choose: preparavo / stavo preparando.
+  tc_prog_past_02 [short] phrase: "stavamo parlando" | mp: Past progressive for highlighted coincidence (stavamo parlando) | mps: 1
+    prompt: Complete: 'Proprio in quel momento, mentre _____ di Anna a bassa voce, lei è entrata nella stanza.' Choose: parlavamo / stavamo parlando.
+  tc_prog_past_03 [short] phrase: "indossava" | mp: Imperfetto for stative past description (indossava) | mps: 1
+    prompt: Complete: 'Quando l'ho rivisto dopo anni, _____ una giacca grigia che non gli avevo mai visto prima.' Choose: indossava / stava indossando.
+  tc_prog_past_04 [short] phrase: "stava alzando" | mp: Past progressive for a vivid, freeze-frame moment (stava alzando) | mps: 1
+    prompt: Complete: 'Ricordo che, proprio nel momento in cui il treno è partito, lei _____ la mano per salutarmi attraverso il finestrino.' Choose: alzava / stava alzando.
+  tc_fut_unamb_01 [short] phrase: "parlerò" | mp: Morphological future for distant / uncertain future (parlerò) | mps: 1
+    prompt: Complete: 'Un giorno, quando avrò abbastanza tempo libero, _____ italiano fluentemente come ho sempre sognato.' Choose: parlo / parlerò.
+  tc_fut_unamb_02 [short] phrase: "saranno" | mp: Future of probability (saranno = it must be) | mps: 1
+    prompt: Complete: 'Non ho l'orologio, ma guardando il sole _____ già le tre passate, dobbiamo proprio andare.' Choose: sono / saranno.
+  tc_fut_unamb_03 [short] phrase: "avrà" | mp: Future of probability for age estimate (avrà) | mps: 1
+    prompt: Complete: 'Non so esattamente quanti anni ha la nuova vicina, ma _____ una sessantina, a giudicare dall'aspetto.' Choose: ha / avrà.
+  tc_fut_unamb_04 [short] phrase: "andrò" | mp: Morphological future for an uncertain plan (andrò) | mps: 1
+    prompt: Complete: 'Non so ancora cosa farò dopo la laurea: forse _____ in Germania a cercare lavoro per un anno.' Choose: vado / andrò.
+  tc_fut_unamb_05 [short] phrase: "finirò" | mp: Morphological future for hedged, conditional commitment (finirò) | mps: 1
+    prompt: Complete: 'Se tutto va come spero, _____ il libro entro l'anno prossimo, anche se non posso garantirlo.' Choose: finisco / finirò.
+  tc_fut_pres_01 [short] phrase: "parto" | mp: Present for anchored near-future plan (Parto) | mps: 1
+    prompt: Complete: '_____ domani per Roma con il treno delle otto, ho già comprato il biglietto.' Choose: Parto / Partirò.
+  tc_fut_pres_02 [short] phrase: "vado" | mp: Present for anchored evening plan (vado) | mps: 1
+    prompt: Complete: 'Stasera _____ a cena dai miei genitori alle otto, mi aspettano per festeggiare il compleanno di mia madre.' Choose: vado / andrò.
+  tc_fut_pres_03 [short] phrase: "arriva" | mp: Present for scheduled timetable event (arriva) | mps: 1
+    prompt: Complete: 'Il treno per Milano _____ alle tre e venti dal binario sette, secondo l'orario ufficiale.' Choose: arriva / arriverà.
+  tc_fut_pres_04 [short] phrase: "vado" | mp: Present for settled near-future move (vado) | mps: 1
+    prompt: Complete: 'L'anno prossimo _____ a vivere a Berlino con il mio fidanzato: abbiamo già firmato il contratto della casa.' Choose: vado / andrò.
+  tc_fut_pres_05 [short] phrase: "vedo" | mp: Present for confirmed appointment (vedo) | mps: 1
+    prompt: Complete: 'Lunedì alle nove _____ il dottore per la visita di controllo annuale, l'appuntamento è fissato da mesi.' Choose: vedo / vedrò.
+  tc_cf_presc_01 [short] phrase: "andrei" | mp: Present conditional in counterfactual apodosis (andrei) | mps: 1
+    prompt: Complete (formal writing context): 'Se avessi più tempo libero la sera, _____ a un corso di pittura senza alcuna esitazione.' Choose: andavo / andrei.
+  tc_cf_presc_03 [short] phrase: "potrebbe" | mp: Present conditional with modal in counterfactual apodosis (potrebbe) | mps: 1
+    prompt: Complete (in a formal report): 'Se Maria parlasse il cinese fluentemente, _____ lavorare a Pechino senza alcun problema.' Choose: poteva / potrebbe.
+  tc_cf_presc_04 [short] phrase: "sarebbero" | mp: Present conditional in a scientific counterfactual (sarebbero) | mps: 1
+    prompt: Complete (in a scientific paper): 'Se il clima continuasse a riscaldarsi a questo ritmo, le coste italiane _____ trasformate radicalmente entro il 2100.' Choose: erano / sarebbero.
+  tc_cf_presc_05 [short] phrase: "avrebbe preso" | mp: Past conditional in a historical counterfactual (avrebbe preso) | mps: 1
+    prompt: Complete (in a historical essay): 'Se non fosse intervenuto Garibaldi, l'unificazione _____ un percorso molto diverso e molto più lento.' Choose: prendeva / avrebbe preso.
+  tc_cf_coll_01 [short] phrase: "venivo" | mp: Colloquial imperfetto in spoken counterfactual (venivo) | mps: 1
+    prompt: Complete (in casual speech to a friend): 'Stavo dicendo a Marco, se avevo tempo ieri sera, _____ volentieri alla tua festa, ma ero stanco morto.' Choose: venivo / sarei venuto.
+  tc_cf_coll_02 [short] phrase: "arrivavo" | mp: Colloquial imperfetto in spoken apology (arrivavo) | mps: 1
+    prompt: Complete (in chatty speech to a colleague): 'Guarda, se sapevo prima della riunione, _____ subito per dare una mano, scusami.' Choose: arrivavo / sarei arrivato.
+  tc_cf_coll_03 [short] phrase: "dicevo" | mp: Colloquial imperfetto inside quoted casual speech (dicevo) | mps: 1
+    prompt: Complete (quoting an informal chat): 'Mi disse: "Se avevo i soldi, te lo _____ subito, fidati di me!"' Choose: dicevo / avrei detto.
+  tc_cf_coll_04 [short] phrase: "portavo" | mp: Colloquial imperfetto in vivid storytelling (portavo) | mps: 1
+    prompt: Complete (a friend telling a story over dinner): '"Te lo giuro, se vincevo la lotteria quella sera, _____ tutti gli amici in viaggio in Sicilia!"' Choose: portavo / avrei portato.
+  tc_cf_coll_05 [short] phrase: "evitavamo" | mp: Colloquial imperfetto in informal grumble (evitavamo) | mps: 1
+    prompt: Complete (informal complaint to a friend): '"Hai visto come è andata? Se ti chiamavo prima, _____ tutto questo casino, mi sa."' Choose: evitavamo / avremmo evitato.
+  tc_subj_op_01 [short] phrase: "abbia" | mp: Present subjunctive after penso che (abbia) | mps: 1
+    prompt: Complete (formal writing): 'Penso che Maria _____ ragione su questo punto, anche se non tutti sono d'accordo.' Choose: ha / abbia.
+  tc_subj_op_02 [short] phrase: "sia" | mp: Present subjunctive after credo che (sia) | mps: 1
+    prompt: Complete (formal review): 'Credo che il film _____ molto interessante: i critici ne hanno parlato benissimo.' Choose: è / sia.
+  tc_subj_op_03 [short] phrase: "abbia" | mp: Present subjunctive after mi sembra che (abbia) | mps: 1
+    prompt: Complete (formal academic context): 'Mi sembra che il tuo ragionamento _____ una falla importante che vale la pena di discutere.' Choose: ha / abbia.
+  tc_subj_op_04 [short] phrase: "abbia" | mp: Present subjunctive after sostenere che (abbia) | mps: 1
+    prompt: Complete (academic article): 'Nel suo studio l'autore sostiene che la riforma _____ effetti negativi sull'economia delle famiglie.' Choose: ha / abbia.
+  tc_subj_op_05 [short] phrase: "debba" | mp: Present subjunctive after suggerire che (debba) | mps: 1
+    prompt: Complete (policy paper): 'Il rapporto suggerisce che il governo _____ adottare misure più severe per limitare le emissioni nei prossimi anni.' Choose: deve / debba.
+  tc_subj_op_06 [short] phrase: "sia" | mp: Present subjunctive after trovo che (sia) | mps: 1
+    prompt: Complete (formal analysis): 'Trovo che questa decisione _____ azzardata, ma non ho prove sufficienti per dimostrarlo qui.' Choose: è / sia.
+  tc_subj_em_01 [short] phrase: "sia" | mp: Present subjunctive after sono contento che (sia) | mps: 1
+    prompt: Complete: 'Sono contento che tu _____ qui con me stasera: avevo proprio bisogno di compagnia.' Choose: sei / sia.
+  tc_subj_em_02 [short] phrase: "possa" | mp: Present subjunctive after mi dispiace che (possa) | mps: 1
+    prompt: Complete: 'Mi dispiace che Carlo non _____ venire al matrimonio: ci teneva tanto a esserci.' Choose: può / possa.
+  tc_subj_em_03 [short] phrase: "vada" | mp: Present subjunctive after spero che (vada) | mps: 1
+    prompt: Complete: 'Spero che il tuo viaggio in Giappone _____ bene e che tu mi mandi tante foto da Tokyo.' Choose: va / vada.
+  tc_subj_em_04 [short] phrase: "stia" | mp: Present subjunctive of stare after temo che (stia) | mps: 1
+    prompt: Complete: 'Temo che la situazione _____ peggiorando giorno dopo giorno e che nessuno se ne stia accorgendo.' Choose: sta / stia.
+  tc_subj_em_05 [short] phrase: "abbia trattato" | mp: Past subjunctive after sono sorpreso che (abbia trattato) | mps: 1
+    prompt: Complete: 'Sono sorpreso che il direttore _____ così duramente Marco davanti a tutti i colleghi.' Choose: ha trattato / abbia trattato.
+  tc_subj_hyp_01 [short] phrase: "facesse" | mp: Imperfect subjunctive after sebbene (facesse) | mps: 1
+    prompt: Complete: 'Sebbene _____ molto freddo quel mattino, abbiamo deciso di andare comunque al mare per una passeggiata.' Choose: faceva / facesse.
+  tc_subj_hyp_02 [short] phrase: "fosse" | mp: Imperfect subjunctive after benché (fosse) | mps: 1
+    prompt: Complete: 'Benché _____ già tardi, abbiamo continuato la riunione per altre due ore senza interrompere.' Choose: era / fosse.
+  tc_subj_hyp_03 [short] phrase: "parta" | mp: Present subjunctive after prima che (parta) | mps: 1
+    prompt: Complete: 'Voglio dirti una cosa importante prima che tu _____ per il viaggio.' Choose: parti / parta.
+  tc_subj_hyp_04 [short] phrase: "possano" | mp: Present subjunctive after affinché (possano) | mps: 1
+    prompt: Complete: 'Ho ripetuto le istruzioni due volte affinché tutti _____ capire chiaramente cosa fare.' Choose: possono / possano.
+  tc_subj_hyp_05 [short] phrase: "venga" | mp: Present subjunctive after purché (venga) | mps: 1
+    prompt: Complete: 'Verrò volentieri alla festa di sabato, purché _____ anche Marco con me, altrimenti preferisco restare a casa.' Choose: viene / venga.
+  tc_subj_neg_01 [short] phrase: "sia" | mp: Present subjunctive after non penso che (sia) | mps: 1
+    prompt: Complete (formal note): 'Non penso che Anna _____ ancora arrivata: il suo treno aveva qualche minuto di ritardo.' Choose: è / sia.
+  tc_subj_neg_02 [short] phrase: "siano" | mp: Present subjunctive after non è vero che (siano) | mps: 1
+    prompt: Complete (formal report): 'Non è affatto vero che _____ tutti d'accordo con la proposta: c'è ancora molta opposizione interna.' Choose: sono / siano.
+  tc_subj_neg_03 [short] phrase: "sia" | mp: Present subjunctive after non dico che (sia) | mps: 1
+    prompt: Complete (formal complaint): 'Non dico che _____ tua tutta la responsabilità, ma certamente non hai fatto niente per migliorare la situazione.' Choose: è / sia.
+  tc_subj_neg_04 [short] phrase: "parlasse" | mp: Imperfect subjunctive after non sapevo che (parlasse) | mps: 1
+    prompt: Complete: 'Non sapevo che Marco _____ così bene il francese: che sorpresa quando ci siamo trovati a Parigi!' Choose: parlava / parlasse.
+  tc_trap_compl_01 [short] phrase: "avevano mangiato" | mp: Trapassato for an event completed before the past reference (avevano mangiato) | mps: 1
+    prompt: Complete: 'Quando sono arrivato al ristorante, gli altri _____ già: mi sono unito a loro per il dolce.' Choose: mangiavano / avevano mangiato.
+  tc_trap_compl_02 [short] phrase: "era tornato" | mp: Trapassato with appena cue (era tornato) | mps: 1
+    prompt: Complete: 'Maria mi ha raccontato che Marco _____ appena dal lavoro quando è arrivata la notizia.' Choose: tornava / era tornato.
+  tc_trap_compl_03 [short] phrase: "aveva preso" | mp: Trapassato for the cause of a past state (aveva preso) | mps: 1
+    prompt: Complete: 'Era furioso perché qualcuno _____ il suo nuovo libro dalla scrivania senza chiedere il permesso.' Choose: prendeva / aveva preso.
+  tc_trap_compl_04 [short] phrase: "aveva ricevuto" | mp: Trapassato with da poco cue (aveva ricevuto) | mps: 1
+    prompt: Complete: 'Quel pomeriggio Anna era pallida: _____ da poco una brutta notizia al telefono e non riusciva a parlare.' Choose: riceveva / aveva ricevuto.
+  tc_trap_compl_05 [short] phrase: "aveva bruciato" | mp: Trapassato for a long-prior completed event (aveva bruciato) | mps: 1
+    prompt: Complete: 'Solo dopo molti anni scoprì che la sorella _____ il manoscritto del padre senza dirlo a nessuno.' Choose: bruciava / aveva bruciato.
+  tc_trap_bg_01 [short] phrase: "dormiva" | mp: Imperfetto for ongoing past background with mentre (dormiva) | mps: 1
+    prompt: Complete: 'Mentre Marco _____ tranquillamente sul divano, è suonato improvvisamente il campanello.' Choose: dormiva / aveva dormito.
+  tc_trap_bg_02 [short] phrase: "leggevo" | mp: Imperfetto for ongoing past background at a punctual moment (leggevo) | mps: 1
+    prompt: Complete: 'Quando il telefono ha squillato, _____ tranquillamente sul divano con un libro in mano.' Choose: leggevo / avevo letto.
+  tc_trap_bg_03 [short] phrase: "leggeva" | mp: Imperfetto for parallel ongoing past actions (leggeva) | mps: 1
+    prompt: Complete: 'Lei cucinava in silenzio e suo marito _____ ai bambini in salotto: era una sera tranquilla come tante altre.' Choose: leggeva / aveva letto.
+  tc_trap_bg_04 [short] phrase: "pioveva" | mp: Imperfetto for a past weather state (Pioveva) | mps: 1
+    prompt: Complete: '_____ così forte quel pomeriggio che ho deciso di non uscire e ho rimandato l'appuntamento a un altro giorno.' Choose: Pioveva / Aveva piovuto.
+  tc_trap_bg_05 [short] phrase: "dormiva" | mp: Imperfetto for ongoing past state at a named time (dormiva) | mps: 1
+    prompt: Complete: 'Erano le tre del pomeriggio. Il bambino _____ ancora profondamente e nessuno in casa osava svegliarlo.' Choose: dormiva / aveva dormito.
+  tc_pres_pp_da_01 [short] phrase: "studio" | mp: Present with da (studio) | mps: 1
+    prompt: Complete: 'Io _____ l'italiano da due anni.' Choose: studio / ho studiato.
+  tc_pres_pp_da_02 [short] phrase: "vive" | mp: Present with da (vive) | mps: 1
+    prompt: Complete: 'Marco _____ a Roma da dieci anni.' Choose: vive / ha vissuto.
+  tc_pres_pp_da_03 [short] phrase: "aspettiamo" | mp: Present with da (aspettiamo) | mps: 1
+    prompt: Complete: 'Noi _____ l'autobus da venti minuti.' Choose: aspettiamo / abbiamo aspettato.
+  tc_pres_pp_da_04 [short] phrase: "vedo" | mp: Negative present with da (vedo) | mps: 1
+    prompt: Complete: 'Non _____ Giulia da tre mesi.' Choose: vedo / ho visto.
+  tc_pres_pp_da_05 [short] phrase: "lavorano" | mp: Present with da (lavorano) | mps: 1
+    prompt: Complete: 'Loro _____ insieme da marzo.' Choose: lavorano / hanno lavorato.
+  tc_pres_pp_da_06 [short] phrase: "conosco" | mp: Present with da (conosco) | mps: 1
+    prompt: Complete: 'Io _____ Marco da quando eravamo bambini.' Choose: conosco / ho conosciuto.
+  tc_pres_pp_da_07 [short] phrase: "abiti" | mp: Present in a da quanto tempo question (abiti) | mps: 1
+    prompt: Complete: 'Da quanto tempo _____ in questo quartiere?' Choose: abiti / hai abitato.
+  tc_pres_pp_da_08 [short] phrase: "vive" | mp: Present with da (vive) | mps: 1
+    prompt: Complete: 'Anna _____ in questa casa da cinque anni.' Choose: vive / ha vissuto.
+  tc_pres_pp_comp_01 [short] phrase: "ho finito" | mp: Passato prossimo for a completed event (ho finito) | mps: 1
+    prompt: Complete: 'Ieri sera _____ il libro che mi hai prestato.' Choose: finisco / ho finito.
+  tc_pres_pp_comp_02 [short] phrase: "ha vissuto" | mp: Passato prossimo for a completed event (ha vissuto) | mps: 1
+    prompt: Complete: 'Anna _____ in Francia per cinque anni, poi è tornata in Italia.' Choose: vive / ha vissuto.
+  tc_pres_pp_comp_03 [short] phrase: "ho studiato" | mp: Passato prossimo for a completed event (ho studiato) | mps: 1
+    prompt: Complete: 'Io _____ l'italiano per due anni, poi ho smesso.' Choose: studio / ho studiato.
+  tc_pres_pp_comp_04 [short] phrase: "abbiamo aspettato" | mp: Passato prossimo for a completed event (abbiamo aspettato) | mps: 1
+    prompt: Complete: 'Noi _____ mezz'ora e poi siamo andati via.' Choose: aspettiamo / abbiamo aspettato.
+  tc_pres_pp_comp_05 [short] phrase: "ho perso" | mp: Passato prossimo for a completed event (ho perso) | mps: 1
+    prompt: Complete: 'Stamattina _____ l'autobus e sono arrivato tardi.' Choose: perdo / ho perso.
+  tc_pres_pp_comp_06 [short] phrase: "sono andati" | mp: Passato prossimo for a completed event (sono andati) | mps: 1
+    prompt: Complete: 'L'anno scorso loro _____ in Sicilia.' Choose: vanno / sono andati.
+  tc_pres_pp_comp_07 [short] phrase: "ha telefonato" | mp: Passato prossimo for a completed event (ha telefonato) | mps: 1
+    prompt: Complete: 'Un attimo fa _____ tua madre.' Choose: telefona / ha telefonato.
+  tc_rem_pp_lit_01 [short] phrase: "nacque" | mp: Passato remoto in historical narration (nacque) | mps: 1
+    prompt: In un testo di storia: 'Dante _____ a Firenze nel 1265.' Choose: nacque / è nato.
+  tc_rem_pp_lit_02 [short] phrase: "cadde" | mp: Passato remoto in historical narration (cadde) | mps: 1
+    prompt: In un testo di storia: 'L'impero romano d'Occidente _____ nel 476.' Choose: cadde / è caduto.
+  tc_rem_pp_lit_03 [short] phrase: "morì" | mp: Passato remoto in narration (morì) | mps: 1
+    prompt: In stile narrativo: 'Il re _____ e il regno passò al figlio.' Choose: morì / è morto.
+  tc_rem_pp_lit_04 [short] phrase: "scrisse" | mp: Passato remoto in historical narration (scrisse) | mps: 1
+    prompt: In un testo di storia: 'Manzoni _____ i Promessi Sposi nel 1827.' Choose: scrisse / ha scritto.
+  tc_rem_pp_lit_05 [short] phrase: "sbarcò" | mp: Passato remoto in historical narration (sbarcò) | mps: 1
+    prompt: In un testo di storia: 'Garibaldi _____ in Sicilia nel 1860.' Choose: sbarcò / è sbarcato.
+  tc_rem_pp_lit_06 [short] phrase: "entrò" | mp: Passato remoto in narration (entrò) | mps: 1
+    prompt: In stile narrativo: 'La porta si aprì ed _____ un uomo alto.' Choose: entrò / è entrato.
+  tc_rem_pp_lit_07 [short] phrase: "dipinse" | mp: Passato remoto in historical narration (dipinse) | mps: 1
+    prompt: In un testo di storia: 'Leonardo _____ la Gioconda intorno al 1503.' Choose: dipinse / ha dipinto.
+  tc_rem_pp_spok_01 [short] phrase: "ho visto" | mp: Passato prossimo in speech (ho visto) | mps: 1
+    prompt: In conversazione: 'Ieri _____ Marco al bar.' Choose: vidi / ho visto.
+  tc_rem_pp_spok_02 [short] phrase: "sono nato" | mp: Passato prossimo in speech (sono nato) | mps: 1
+    prompt: In conversazione: 'Io _____ nel 1990.' Choose: nacqui / sono nato.
+  tc_rem_pp_spok_03 [short] phrase: "mi sono alzato" | mp: Passato prossimo in speech (mi sono alzato) | mps: 1
+    prompt: In conversazione: 'Stamattina _____ tardi.' Choose: mi alzai / mi sono alzato.
+  tc_rem_pp_spok_04 [short] phrase: "siamo andati" | mp: Passato prossimo in informal writing (siamo andati) | mps: 1
+    prompt: In un messaggio a un amico: 'Domenica scorsa _____ al mare.' Choose: andammo / siamo andati.
+  tc_rem_pp_spok_05 [short] phrase: "avete fatto" | mp: Passato prossimo in speech (avete fatto) | mps: 1
+    prompt: In conversazione: 'Che cosa _____ ieri sera?' Choose: faceste / avete fatto.
+  tc_rem_pp_spok_06 [short] phrase: "abbiamo passato" | mp: Passato prossimo in speech (abbiamo passato) | mps: 1
+    prompt: In conversazione: 'L'estate scorsa _____ una settimana in Grecia.' Choose: passammo / abbiamo passato.
+  tc_pres_imp_hab_01 [short] phrase: "andavo" | mp: Imperfect for a past routine (andavo) | mps: 1
+    prompt: Complete: 'Da bambino, ogni estate _____ dai nonni in campagna.' Choose: vado / andavo.
+  tc_pres_imp_hab_02 [short] phrase: "vado" | mp: Present for a current routine (vado) | mps: 1
+    prompt: Complete: 'Adesso _____ in palestra tre volte alla settimana.' Choose: vado / andavo.
+  tc_pres_imp_hab_03 [short] phrase: "passa" | mp: Present for a current routine (passa) | mps: 1
+    prompt: Complete: 'Il postino ogni giorno _____ di qui verso le dieci; è così da anni.' Choose: passa / passava.
+  tc_pres_imp_hab_04 [short] phrase: "passava" | mp: Imperfect for a past routine (passava) | mps: 1
+    prompt: Complete: 'Quando abitavamo in centro, il postino _____ di qui verso le dieci.' Choose: passa / passava.
+--- verb_form.imperativo (6) ---
+  impv_use_inf_spingere_01 [short] phrase: "spingere" | mp: impersonal infinitive on a sign | mps: 1
+    prompt: Su un cartello sulla porta di un negozio, per dire 'push': '____' (spingere, istruzione impersonale su un cartello)
+  impv_use_inf_tirare_02 [short] phrase: "tirare" | mp: impersonal infinitive on a sign | mps: 1
+    prompt: Sull'altra porta, il cartello per dire 'pull': '____' (tirare, istruzione impersonale su un cartello)
+  impv_use_inf_mescolare_03 [short] phrase: "mescolare" | mp: impersonal infinitive in a recipe | mps: 1
+    prompt: In una ricetta, la prima istruzione: '____ bene gli ingredienti.' (mescolare, istruzione impersonale in una ricetta)
+  impv_use_inf_cuocere_04 [short] phrase: "cuocere" | mp: impersonal infinitive in instructions | mps: 1
+    prompt: Istruzioni sulla confezione: '____ a fuoco lento per venti minuti.' (cuocere, istruzione impersonale)
+  impv_use_inf_aggiungere_06 [short] phrase: "aggiungere" | mp: impersonal infinitive in a recipe | mps: 1
+    prompt: Passo successivo della ricetta: '____ il sale e il pepe.' (aggiungere, istruzione impersonale in una ricetta)
+  impv_use_inf_conservare_07 [short] phrase: "conservare" | mp: impersonal infinitive on a label | mps: 1
+    prompt: Avvertenza sull'etichetta di un prodotto: '____ in luogo fresco e asciutto.' (conservare, istruzione impersonale)
+--- verb_form.imperfect (1) ---
+  imp_form_essere_11 [short] phrase: "era" | mp: 3sg imperfect (era) | mps: 1
+    prompt: Complete: 'Fuori ____ molto freddo e la strada era coperta di neve.' (essere, 3sg, imperfetto)
+--- verb_form.passato_prossimo (1) ---
+  pp_agr_av_dop_lo_01 [short] phrase: "visto" | mp: Preceding DOP lo: -o agreement | mps: 1
+    prompt: Q: 'Hai visto Marco?' Complete the answer: 'Sì, l'ho ____.'
+--- word_formation (3) ---
+  wf_dim_03 [short] phrase: "affetto" | mp: Affective value of the diminutive | mps: 1
+    prompt: Tua sorella è adulta, ma la chiami 'sorellina'. Il diminutivo qui esprime soprattutto: statura piccola o affetto? Rispondi 'affetto' o 'statura'.
+  wf_dim_05 [short] phrase: "oggetto preciso" | mp: Lexicalised diminutive | mps: 1
+    prompt: Il diminutivo di 'cucchiaio' è 'cucchiaino'. Oggi 'cucchiaino' indica un piccolo cucchiaio qualsiasi, o un oggetto preciso (il cucchiaino da caffè)? Rispondi 'oggetto preciso' o 'piccolo cucchiaio'.
+  wf_pej_03 [short] phrase: "si comporta male" | mp: Pejorative -accio is quality not size | mps: 1
+    prompt: 'Ragazzaccio' descrive un ragazzo: molto grande, o che si comporta male? Rispondi 'si comporta male' o 'molto grande'.
+
+=== TIER C — advisory, substring-only (127) === (ids only)
+adj_cio_ci_01, adj_cio_ci_02, adj_cio_ci_03, adj_cio_ci_04, adj_cio_ci_05, adj_gio_gi_01, adj_gio_gi_02, adj_gio_gi_03, adj_gio_gi_04, adj_gio_gi_05, adj_bello_01, adj_bello_03, adj_buono_01, adj_buono_02, adj_buono_03, adj_grande_01, adj_grande_02, adj_grande_04, adj_santo_01, adj_santo_02, adj_santo_05, adj_quello_01, adj_quello_03, adj_grande_05, art_dform_03, art_dform_10, art_dform_11, art_dform_12, art_dform_13, art_dform_20, art_dform_21, art_dform_22, art_dform_23, art_duse_04, art_disc_05, conn_pi_01, dem_quello_msg_cons_01, dem_quello_msg_cons_02, dem_quello_msg_vow_01, dem_quello_msg_vow_02, dem_quello_fsg_vow_01, dem_quello_fsg_vow_02, dem_questo_vow_msg_01, dem_questo_vow_fsg_01, dem_questo_vow_fsg_02, ind_qualche_08, neg_finche_01, neg_mica_04, neg_corr_06, noun_gen_e_04, noun_gen_irr_01, noun_plur_sp_10, noun_plur_irr_04, pas_agt_04, pia_agr_02, pia_agr_04, pia_clit_02, pia_inf_01, pia_inf_02, pia_inf_03, op_dop_lo_04, op_dop_la_02, op_dop_la_02, op_dop_la_03, op_dop_la_03, op_dop_li_01, op_dop_elide_01, op_iop_le_fem_01, op_iop_le_fem_03, op_iop_formal_Le_01, op_iop_formal_Le_01, op_iop_verbs_iop_03, op_refl_ti_02, op_refl_ci_01, op_ne_partq_03, op_ne_partq_04, op_ne_pp_01, op_cil_loc_03, op_cil_topic_03, op_cil_idiom_02, op_cil_idiom_04, op_cil_cinevs_03, op_spec_fcap_02, op_spec_fcap_02, op_spec_dislo_01, op_spec_dislo_01, op_iop_mi_03, op_iop_vi_you_03, op_comb_glielo_08, op_ne_partq_05, op_spec_stressed_04, cong_pres_orth_cominciare_3sg_01, impv_aff_01, impv_aff_02, impv_aff_03, impv_aff_04, impv_aff_07, impv_aff_08, impv_irr_02, impv_irr_03, impv_irr_04, impv_irr_05, impv_form_07, impv_disc_reg_parla_08, impv_disc_reg_parla_08, impv_disc_reg_apri_09, impv_disc_reg_apri_09, impv_disc_reg_stai_13, impv_disc_reg_stai_13, imp_isp_pres_01, pres_are_abitare_3sg_01, pres_ere_prendere_3sg_01, pres_orth_cig_cominciare_2sg_01, pres_orth_cig_mangiare_2sg_01, pres_orth_iare_studiare_2sg_01, pres_irr_mono_sapere_1sg_01, pres_are_lavorare_3sg_02, pres_ere_mettere_3sg_01, pres_ire_aprire_2sg_01, pres_are_aiutare_3sg_01, pres_ere_perdere_3sg_01, pres_ire_partire_2sg_01, pres_orth_cg_cercare_3sg_01, pres_orth_cg_giocare_3sg_01, pres_orth_cig_mangiare_3sg_01, wf_pref_int_05, wf_pref_ex_02

@@ -234,6 +234,8 @@ On en_it items the learner PRODUCES the Italian content words. Their vocabulary 
 - Fire \`vocabulary.it.<lemma>.translation\` as a HIT for every CONTENT word the learner produced correctly: nouns, verbs, adjectives, adverbs, and lexical locatives (dentro, qui, sopra).
 - Fire it as a MISS when they reached for the wrong word for the meaning (a wrong lexical CHOICE, not a wrong inflection - a correctly chosen word in the wrong form is a GRAMMAR miss, and its vocabulary bucket is still a HIT: they knew the word, they mis-formed it).
 - <lemma> is the DICTIONARY form, never the inflected form on the page: infinitive for verbs (esco -> uscire), masculine singular for nouns and adjectives (amici -> amico, bella -> bello). Lower case, no accents stripped.
+- PROPER NOUNS never earn a vocabulary bucket (Architecture ruling 3, 2026-08-02). Names of people, places, brands and titles - Marco, Anna, Roma, Fiat - are excluded from the coverage denominator by policy, so crediting them is free credit against nothing. Skip them entirely.
+- The lemma MUST be the ITALIAN dictionary form (Architecture ruling 2). Never key a vocabulary bucket on the ENGLISH word: for "speech" the bucket is vocabulary.it.discorso.translation, NEVER vocabulary.it.speech.translation. An English lemma inside the Italian namespace creates a phantom entry matching no real word. If you cannot name the Italian lemma with confidence, fire no vocabulary bucket at all.
 - FUNCTION words stay grammar-only. Articles, prepositions, conjunctions, pronouns and purely grammatical particles get NO vocabulary bucket - their skill is the grammar bucket that already covers them.
 - Fire these even when the answer is otherwise wrong. Vocabulary knowledge and grammatical deployment are separate skills and are never collapsed into one verdict.
 
@@ -247,6 +249,8 @@ On it_en items, vocabulary buckets for the source-text words have been injected 
 - as not_attempted when the answer is empty or unrelated
 
 This is how passive vocabulary recognition is recorded on it_en items.
+
+DIRECTION-BOUND SUFFIX (Architecture ruling 4, 2026-08-02). \`.passive\` marks RECOGNITION and is therefore legal on it_en ONLY. On it_en use the id exactly as bucket_context gives it. On en_it - production - always use the BARE \`vocabulary.it.<lemma>.translation\` with NO \`.passive\` suffix. The same skill must never be recorded under two ids or coverage splits across both.
 
 BUCKET PROPOSALS
 

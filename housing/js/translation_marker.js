@@ -594,51 +594,50 @@
     // the known vocab list. Conjugated/inflected forms (dirò, vedo, glie)
     // need accent-stripped stem matching, not just exact lemma lookup.  QoderWork 2026-07-22
     if (direction === "it_en" && Array.isArray(LL.vocabEntries) && LL.vocabEntries.length) {
+      // Inject vocabulary buckets for the SOURCE words, so an it_en answer can
+      // be credited for recognition. The items were authored without vocab in
+      // required_buckets (the chats assumed vocab was production-only).
+      //
+      // This used to lemmatise by GUESSWORK: "first three characters match and
+      // the lengths are within four", plus "one string is a prefix of the
+      // other". Smith caught the result live - a mark on "Da giovane potevo
+      // lavorare dodici ORE di fila senza PROBLEMI" fired
+      // vocabulary.it.orecchio (ear) and vocabulary.it.proprio, neither of
+      // which is in the sentence: "ore" prefix-matched "orecchio", "problemi"
+      // three-char-stem-matched "proprio". Those then recorded as
+      // not_attempted, writing vocabulary events against words the learner
+      // never saw and quietly poisoning the vocab strand.
+      //
+      // Replaced with a real lemmatiser. data/it_surface_to_lemma.json is
+      // generated offline from morph-it (already in the repo) and restricted to
+      // the surface forms that actually occur in translation source texts, so
+      // it is 8 KB rather than the 3.9 MB of the full lexicon. Exact lemma,
+      // then accent-folded, then the morph-it map. NO fuzzy fallback: a word we
+      // cannot lemmatise gets no bucket, which loses a little credit, where a
+      // guess invents a fact.
       const src = String(item.source_text || "").toLowerCase();
-      const tokens = src.split(/[\s,.!?;:"'()\[\]<>\/\\]+/).filter(t => t.length >= 3);
-      const byLemma = LL._vocabByLemma || (LL._vocabByLemma = (function() {
+      const tokens = src.split(/[\s,.!?;:"'\u2019()\[\]<>\/\\\u2014-]+/).filter(t => t.length >= 3);
+      const byLemma = LL._vocabByLemma || (LL._vocabByLemma = (function () {
         const m = new Map();
-        for (const e of LL.vocabEntries) {
-          if (e && e.lemma) m.set(String(e.lemma).toLowerCase(), e);
-        }
+        for (const e of LL.vocabEntries) if (e && e.lemma) m.set(String(e.lemma).toLowerCase(), e);
         return m;
       })());
-      // Accent-stripping helper for fuzzy matching (dirò -> diro, perché -> perche)
-      const stripAcc = s => s.replace(/[àáâä]/g, "a").replace(/[èéêë]/g, "e").replace(/[ìíîï]/g, "i").replace(/[òóôö]/g, "o").replace(/[ùúûü]/g, "u");
+      const foldA = s2 => String(s2).normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      const surf = (LL.surfaceToLemma && typeof LL.surfaceToLemma === "object") ? LL.surfaceToLemma : null;
       for (const tok of tokens) {
         let entry = byLemma.get(tok);
-        if (!entry) {
-          const tokPlain = stripAcc(tok);
-          // Try accent-stripped exact match
-          entry = byLemma.get(tokPlain);
-        }
-        if (!entry && tok.length >= 3) {
-          const tokPlain = stripAcc(tok);
-          const tokStem = tokPlain.slice(0, 3);
-          for (const lemma of byLemma.keys()) {
-            if (lemma.length < 3) continue;
-            const lemPlain = stripAcc(lemma);
-            // 3-char stem match + length proximity (handles vedo->vedere, dirò->dire, parlano->parlare)
-            if (lemPlain.slice(0, 3) === tokStem && Math.abs(lemPlain.length - tokPlain.length) <= 4) {
-              entry = byLemma.get(lemma);
-              break;
-            }
-            // Token starts with lemma or lemma starts with token (compound forms: glie->gli, dirò->dire)
-            if (tokPlain.startsWith(lemPlain) || lemPlain.startsWith(tokPlain)) {
-              if (Math.min(tokPlain.length, lemPlain.length) >= 3) {
-                entry = byLemma.get(lemma);
-                break;
-              }
-            }
-          }
+        if (!entry) entry = byLemma.get(foldA(tok));
+        if (!entry && surf) {
+          const lem = surf[tok] || surf[foldA(tok)];
+          if (lem) entry = byLemma.get(lem);
         }
         if (!entry) continue;
-        const baseBid = `vocabulary.it.${entry.lemma}.translation`;
-        const variantBid = LL.resolveVocabVariant(baseBid, direction);
-        if (ctx[variantBid]) continue;
-        ctx[variantBid] = {
-          label: `${entry.lemma} (translation, passive)`,
-          description: `Recognition of Italian ${entry.lemma}${entry.translation_en ? ` (means: ${entry.translation_en})` : ""}. Passive: learner is reading Italian here.`
+        const baseId = "vocabulary.it." + String(entry.lemma).toLowerCase() + ".translation";
+        const vid = LL.resolveVocabVariant ? LL.resolveVocabVariant(baseId, direction) : baseId;
+        if (ctx[vid]) continue;
+        ctx[vid] = {
+          label: String(entry.lemma) + (entry.translation_en ? " (" + entry.translation_en + ")" : ""),
+          description: "Did the learner convey the meaning of " + entry.lemma + "?"
         };
       }
     }

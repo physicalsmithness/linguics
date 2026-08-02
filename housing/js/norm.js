@@ -27,66 +27,76 @@
     [/\bcenter\b/g, "centre"], [/\bcolor\b/g, "colour"]
   ];
 
-  // Apostrophe-style accent input: e' -> è, e'' -> é, e''' -> e' (literal).
+  // Apostrophe-style accent input, as an ESCALATION (Smith 2026-07-21, thread
+  // AccentAuthor_Housing_apostrophe_input). For every vowel:
   //
-  // The è' and È' rules are listed first because the live-rewriter fires on
-  // every keystroke. Typing "e''" in sequence is staged as e -> e' -> è -> è'
-  // (the second apostrophe is appended after è has already replaced e'). The
-  // è' rule then upgrades the grave to acute so the user gets é. Without this,
-  // typing e'' interactively gets stuck at è' because nothing matches that
-  // two-character sequence.
-  // Triple-apostrophe (Smith 2026-07-21): after acute is formed, a further
-  // apostrophe downgrades to a literal vowel + apostrophe (e''' -> e').
-  const ACCENT_FROM_APOSTROPHE = [
-    [/é'/g, "e'"], [/É'/g, "E'"],   // triple: acute + ' -> literal
-    [/à'/g, "a'"], [/À'/g, "A'"],   // (grave + ' would be acute, handled below)
-    [/ì'/g, "i'"], [/Ì'/g, "I'"],
-    [/ò'/g, "o'"], [/Ò'/g, "O'"],
-    [/ù'/g, "u'"], [/Ù'/g, "U'"],
-    [/è'/g, "é"], [/È'/g, "É"],     // double: grave + ' -> acute
-    [/e''/g, "é"], [/e'/g, "è"],
-    [/E''/g, "É"], [/E'/g, "È"],
-    [/a'/g, "à"],
-    [/i'/g, "ì"],
-    [/o'/g, "ò"],
-    [/u'/g, "ù"],
-    [/A'/g, "À"],
-    [/I'/g, "Ì"],
-    [/O'/g, "Ò"],
-    [/U'/g, "Ù"]
-  ];
-
-  // Apocopated tu-imperatives whose trailing apostrophe is an apocope marker,
-  // NOT an accent shortcut: va' da' fa' sta' di'. Word-start anchored so a
-  // mid-word coincidence isn't caught. See inter_chat/
-  // Architecture_Housing_marker_match_at_and_apocope.md.
-  // Apocopated tu-imperatives whose trailing apostrophe is an apocope marker,
-  // NOT an accent shortcut: va' da' fa' sta' di'. Word-start anchored so a
-  // mid-word coincidence isn't caught. See inter_chat/
-  // Architecture_Housing_marker_match_at_and_apocope.md.
-  const APOCOPE_IMPERATIVES = /(^|[^a-zà-ùA-ZÀ-Ù])(va'|da'|fa'|sta'|di')/gi;
-  // Private-use sentinel that never appears in learner input; swapped in for the
-  // apocope apostrophe so the accent rules (which key off ') skip it, then
-  // restored. One char in, one char out, so overall length is preserved and the
-  // caller's caret-delta maths is unaffected.
-  const APOCOPE_MARK = String.fromCharCode(0xE000);
+  //     1 apostrophe   -> grave                  e + 1  ->  e-grave
+  //     2 apostrophes  -> acute                  e + 2  ->  e-acute
+  //     3 apostrophes  -> a LITERAL apostrophe   e + 3  ->  e then a real quote
+  //
+  // and 4+ give (n-2) literal apostrophes, so it degrades monotonically. Three
+  // is uniform across every vowel, so the rule is one sentence a learner can
+  // hold: "three apostrophes always gives you a real apostrophe".
+  //
+  // This replaces BOTH the old sequential rule list and the hardcoded apocope
+  // allow-list, for two separate reasons.
+  //
+  // 1. The old list was applied in order, so a later rule silently UNDID an
+  //    earlier one: the grave-plus-apostrophe escape ran BEFORE the plain
+  //    vowel-plus-apostrophe rule, which converted the escape straight back to
+  //    an accent. Verified by simulating progressive typing (the rewriter fires
+  //    per keystroke): every escape was dead. po x3 gave p + o-grave, e x3 gave
+  //    e-grave, citta x2 gave citta with an a-grave. The accent bar has been
+  //    advertising the three-apostrophe escape under an input where it has
+  //    never once worked.
+  //
+  // 2. The allow-list reserved exactly va/da/fa/sta/di + apostrophe behind a
+  //    private-use sentinel, so the COMMONER indicative forms da-grave and
+  //    di-grave could not be typed by shortcut at all, while po, be, mo and to
+  //    - absent from the list - were silently corrupted into po-grave and
+  //    friends: precisely the error the accent drill exists to correct. A list
+  //    of apocope words can never be complete. An escalation needs no list.
+  //
+  // ONE atomic pass: match a vowel (bare OR already accented, because the live
+  // rewriter fires per keystroke and the buffer already holds the accent from
+  // the previous one) together with its whole following run of apostrophes,
+  // total the level, and emit once. Nothing can undo anything, because nothing
+  // runs twice.
+  //
+  // Apostrophes after a CONSONANT are never touched, so elisions pass through
+  // exactly as typed: l'amico, un'amica, dell'anno, quell'uomo.
+  //
+  // Length is not preserved (2 chars in, 1 out), but the sole caller computes
+  // its caret delta from the actual length difference, so that is already safe.
+  const GRAVE = { a: "à", e: "è", i: "ì", o: "ò", u: "ù",
+                  A: "À", E: "È", I: "Ì", O: "Ò", U: "Ù" };
+  const ACUTE = { a: "á", e: "é", i: "í", o: "ó", u: "ú",
+                  A: "Á", E: "É", I: "Í", O: "Ó", U: "Ú" };
+  // accented character -> [base vowel, how many apostrophes it already stands for]
+  const ACCENT_LEVEL = {};
+  for (const k of Object.keys(GRAVE)) {
+    ACCENT_LEVEL[GRAVE[k]] = [k, 1];
+    ACCENT_LEVEL[ACUTE[k]] = [k, 2];
+  }
+  const VOWEL_RUN = new RegExp(
+    "([aeiouAEIOU" +
+    "àèìòùÀÈÌÒÙ" +
+    "áéíóúÁÉÍÓÚ" +
+    "])('+)", "g");
 
   function normaliseAccentInput(s) {
     if (s == null) return "";
-    let t = String(s);
-    // Tradeoff: the apostrophe shortcut can no longer produce da-grave / di-grave
-    // for these exact spellings; those stay typeable via the accent bar.
-    t = t.replace(APOCOPE_IMPERATIVES, function (m, pre, word) {
-      return pre + word.slice(0, -1) + APOCOPE_MARK;
+    return String(s).replace(VOWEL_RUN, function (m, ch, aps) {
+      var base = ch, level = 0;
+      if (ACCENT_LEVEL[ch]) { base = ACCENT_LEVEL[ch][0]; level = ACCENT_LEVEL[ch][1]; }
+      level += aps.length;
+      if (level === 1) return GRAVE[base];
+      if (level === 2) return ACUTE[base];
+      var out = base;
+      for (var i = 0; i < level - 2; i++) out += "'";
+      return out;
     });
-    for (const [re, repl] of ACCENT_FROM_APOSTROPHE) t = t.replace(re, repl);
-    t = t.split(APOCOPE_MARK).join("'");
-    return t;
   }
-
-  // Core normalisation. `lower` is false for the case-preserving variant used
-  // by case_sensitive markpoints (formal-capitalisation items: La/la, Sua/sua).
-  // See inter_chat/Architecture_Housing_case_sensitive_markpoints.md.
   function normCore(s, lower) {
     if (s == null) return "";
     let t = String(s);

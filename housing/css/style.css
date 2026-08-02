@@ -2146,3 +2146,53 @@ h1, h2, h3, .wordmark, .coverage-title, .analysis-section-title { font-family: F
 .entry-cat-selected { align-items: center; }
 .entry-chip.entry-cat-remove { background: var(--accent); color: #fff; border-color: var(--accent); }
 .entry-chip.entry-cat-remove:hover { filter: brightness(1.1); }
+
+
+/* Apostrophe-escalation advisory. Never corrects, only suggests; see
+   inter_chat/AccentAuthor_Housing_apostrophe_input.md. */
+.accent-nudge {
+  flex-basis: 100%;
+  margin-top: 4px;
+  font-size: 13px;
+  color: #8a6d1f;
+  font-style: italic;
+}
+
+
+/* Compound cue: the lemma is the operand, the spec is the constraint on it.
+   See inter_chat/Architecture_Housing_cue_notation_renderer.md. */
+.prompt-cue-spec { color: #6b6459; font-style: italic; }
+
+
+/* Accent drill: the whole point of the item is a mark two pixels tall, so the
+   type has to be big enough to see it. Smith 2026-08-02: "let's make the font
+   bigger so the accents can be seen." Scoped to the accent drill only - the
+   grammar and vocab cards keep their sizes. */
+.accent-drill-card .prompt { font-size: 26px; line-height: 1.55; }
+.accent-drill-card .accent-choices .mcq-choice {
+  font-size: 30px;
+  line-height: 1.4;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  letter-spacing: .01em;
+}
+/* THE "1Correct" BUG. gender-choice, spelling-choice and stress-choice each
+   style their .gc-num; .accent-choice never had a rule, so the number inherited
+   the button's full font size with no margin and rendered flush against the
+   label - "1Correct", "2Incorrect", with the digit as big as the word. Smith
+   2026-08-02. Matched to the others, and given real separation. */
+.accent-choice .gc-num {
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 11px;
+  min-width: 1.4em;
+  opacity: .7;
+  margin-right: 10px;
+  align-self: center;
+}
+.accent-choice .gc-label { font-weight: 600; line-height: 1.3; }
+.accent-drill-card .stress-translation { font-size: 15px; }
+/* Same reasoning for the accent SLIP banner and the result comparison, where
+   the learner has to spot which mark differs. */
+.accent-drill-card .result-you-wrote,
+.accent-drill-card .cmp-value { font-size: 22px; }
