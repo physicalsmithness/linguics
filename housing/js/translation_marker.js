@@ -162,6 +162,10 @@
       bucket_context: options.bucketContext || {},
     };
     if (model) body.model = model;
+    // Grading wants determinism. The Worker defaults to temperature 0; this
+    // lets the bench override it to demonstrate what 1.0 was doing.
+    if (typeof options.temperature === "number") body.temperature = options.temperature;
+    if (typeof options.seed === "number") body.seed = options.seed;
 
     let res;
     try {

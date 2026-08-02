@@ -28,6 +28,10 @@ interface MarkRequest {
   bucket_context?: Record<string, { label: string; description?: string }>;
   /** OpenRouter model identifier; defaults to DeepSeek V3. */
   model?: string;
+  /** Sampling temperature. Defaults to 0 - see DEFAULT_TEMPERATURE. */
+  temperature?: number;
+  /** Optional seed for reproducibility, where the provider honours it. */
+  seed?: number;
 }
 
 interface TranslationItem {
@@ -105,6 +109,14 @@ const MODEL_PRICING: Record<string, [number, number]> = {
 const DEFAULT_MODEL = "deepseek/deepseek-chat";
 const COST_CAP_PER_CALL_USD = 0.03;
 const MAX_OUTPUT_TOKENS = 2000;
+// Temperature was never set, so every mark was generated at the provider
+// default of 1.0. Measured consequence (bench, 2026-08-02): three runs of the
+// SAME item with the SAME answer and a byte-identical payload returned skill
+// counts spanning FIVE - a spread larger than the mean of 4.7. A grader whose
+// verdict re-rolls per attempt cannot support coverage analytics, and it made
+// the menu-size experiment unreadable because between-mode differences were
+// smaller than within-mode noise. This is a grading task, not a creative one.
+const DEFAULT_TEMPERATURE = 0;
 
 /* ------------------------------------------------------------------------- */
 /* Lightweight rate limit (per-IP, per-edge, in-memory).                      */
@@ -457,6 +469,8 @@ export default {
         body: JSON.stringify({
           model,
           max_tokens: MAX_OUTPUT_TOKENS,
+          temperature: (typeof body.temperature === "number") ? body.temperature : DEFAULT_TEMPERATURE,
+          ...(typeof body.seed === "number" ? { seed: body.seed } : {}),
           response_format: { type: "json_object" },
           messages: [
             { role: "system", content: systemPrompt },
@@ -483,7 +497,21 @@ export default {
 
     const content = apiBody?.choices?.[0]?.message?.content;
     if (!content || typeof content !== "string") {
-      return errorResp(502, "malformed_response", "OpenRouter response missing content");
+      // "missing content" on its own is undebuggable. Surface whatever the
+      // upstream actually said: its error object, the finish_reason (length =
+      // truncated at max_tokens; content_filter = refused), and any reasoning-
+      // only completion, so the cause is legible from the bench.
+      const ch = apiBody?.choices?.[0];
+      const bits = [
+        apiBody?.error ? "upstream error: " + JSON.stringify(apiBody.error).slice(0, 200) : null,
+        ch?.finish_reason ? "finish_reason=" + ch.finish_reason : null,
+        ch?.native_finish_reason ? "native_finish_reason=" + ch.native_finish_reason : null,
+        (ch?.message?.reasoning || ch?.message?.reasoning_content)
+          ? "model returned reasoning but no content (model may need reasoning disabled)" : null,
+        !ch ? "no choices[] in response; keys=" + Object.keys(apiBody || {}).join(",") : null,
+      ].filter(Boolean);
+      return errorResp(502, "malformed_response",
+        "OpenRouter response had no content" + (bits.length ? " — " + bits.join("; ") : ""));
     }
 
     // Parse the model's JSON output. Models (e.g. DeepSeek) often wrap the JSON

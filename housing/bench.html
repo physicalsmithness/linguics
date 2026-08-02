@@ -147,6 +147,8 @@
   <div>
     <label for="reps" style="display:inline; margin-right:6px">runs each</label>
     <input type="text" id="reps" class="runs" value="1">
+    <label for="temp" style="display:inline; margin:0 6px 0 14px">temperature</label>
+    <input type="text" id="temp" class="runs" value="0" title="0 = deterministic grading. The worker default is now 0; 1 was the old implicit value and is what produced the huge spread.">
     <button id="run" disabled>Mark</button>
     <button id="runAll" class="ghost" disabled>Run every menu mode</button>
     <button id="clear" class="ghost">Clear log</button>
@@ -156,10 +158,10 @@
 
 <div id="log"></div>
 
-<script src="js/norm.js?v=2026-08-02-r95"></script>
-<script src="js/store.js?v=2026-08-02-r95"></script>
-<script src="js/translation_stub.js?v=2026-08-02-r95"></script>
-<script src="js/translation_marker.js?v=2026-08-02-r95"></script>
+<script src="js/norm.js?v=2026-08-02-r97"></script>
+<script src="js/store.js?v=2026-08-02-r97"></script>
+<script src="js/translation_stub.js?v=2026-08-02-r97"></script>
+<script src="js/translation_marker.js?v=2026-08-02-r97"></script>
 <script>
 (function () {
   "use strict";
@@ -300,9 +302,12 @@
     localStorage.setItem(ANS_KEY, answer);
     const ctx = LL.buildBucketContext(chosen, byId, { menuMode: mode });
     const t0 = Date.now();
+    let temp = parseFloat($("temp").value);
+    if (!(temp >= 0)) temp = 0;
     const payload = await LL.markTranslationLive(chosen, answer, "literal", {
       url: $("url").value.trim() || undefined,
       model: $("model").value || undefined,
+      temperature: temp,
       bucketContext: ctx,
     });
     const r = payload.result || {};
@@ -317,6 +322,7 @@
     return {
       when: new Date().toISOString(),
       mode: mode,
+      temp: temp,
       model: payload.model_used || $("model").value || "default",
       item: itemId(chosen),
       answer: answer,
@@ -355,12 +361,24 @@
       let reps = parseInt($("reps").value, 10);
       if (!(reps > 0)) reps = 1;
       if (reps > 8) reps = 8;
+      // One transient upstream blip must not abandon the other 29 calls of a
+      // sweep. Record the failure in place and carry on.
+      let failed = 0;
       for (let i = 0; i < reps; i++) {
         for (const m of modes) {
-          const rec = await runOnce(m);
-          if (rec) { log.unshift(rec); writeLog(log); render(); }
+          try {
+            const rec = await runOnce(m);
+            if (rec) { log.unshift(rec); writeLog(log); render(); }
+          } catch (e) {
+            failed++;
+            $("err").innerHTML = failed + " call(s) failed so far — continuing. Last: " +
+              esc((e && e.message) ? e.message : String(e));
+            await new Promise(r => setTimeout(r, 1200));   // brief backoff
+          }
         }
       }
+      if (failed) $("err").innerHTML = "Finished with " + failed +
+        " failed call(s); the successful ones are in the table. " + $("err").innerHTML;
     } catch (e) {
       $("err").textContent = (e && e.message) ? e.message : String(e);
     }
@@ -387,44 +405,74 @@
   }
 
   function renderAggregate(log) {
-    const byMode = new Map();
+    // GROUP KEY MUST INCLUDE THE ITEM AND THE ANSWER. The first version keyed
+    // on menu mode alone, then on mode+model+temperature - and still silently
+    // averaged four different sentences into one row, which made every number
+    // in the table meaningless (a 1-bucket item and a 6-bucket item share a
+    // "skills returned" mean). One table per item+answer, and the comparison
+    // rows inside it differ ONLY in mode, model and temperature.
+    const byItem = new Map();
     for (const r of log) {
-      if (!byMode.has(r.mode)) byMode.set(r.mode, []);
-      byMode.get(r.mode).push(r);
+      const ik = (r.item || "?") + "\u0000" + (r.answer || "");
+      if (!byItem.has(ik)) byItem.set(ik, []);
+      byItem.get(ik).push(r);
     }
-    if (byMode.size < 2 && !Array.from(byMode.values()).some(a => a.length > 1)) return "";
-    const order = (LL.MARKER_MENU_MODES || []).map(m => m.id).filter(id => byMode.has(id));
-    const mean = (a, f) => a.reduce((s, x) => s + (f(x) || 0), 0) / a.length;
-    const rows = order.map(id => {
-      const a = byMode.get(id);
-      return {
-        mode: id, n: a.length,
-        mps: mean(a, r => r.n), hits: mean(a, r => r.hits), vocab: mean(a, r => r.vocab),
-        tok: mean(a, r => r.inTok), cost: mean(a, r => r.cost), sec: mean(a, r => r.ms / 1000),
-        spread: a.length > 1 ? (Math.max.apply(null, a.map(r => r.n)) - Math.min.apply(null, a.map(r => r.n))) : null,
-      };
-    });
-    const mx = k => Math.max.apply(null, rows.map(r => r[k] || 0));
-    const M = { mps: mx("mps"), hits: mx("hits"), vocab: mx("vocab"), tok: mx("tok"), cost: mx("cost"), sec: mx("sec"), spread: mx("spread") };
-    const cell = (v, k, hue, dp) =>
-      '<td style="background:' + shade(v, M[k], hue) + '">' +
-      (v == null ? "—" : (dp === 0 ? Math.round(v) : v.toFixed(dp))) + '</td>';
-    return '<div class="panel"><h2>Across runs — same item, same answer</h2><table class="agg">' +
-      '<tr><th>Menu mode</th><th>runs</th><th>skills<br>returned</th><th>credit<br>earned</th>' +
-      '<th>vocab<br>markpoints</th><th>spread<br>(max−min)</th><th>input<br>tokens</th>' +
-      '<th>cost<br>US$</th><th>seconds</th></tr>' +
-      rows.map(r =>
-        '<tr><td class="mode">' + esc(r.mode) + '</td><td>' + r.n + '</td>' +
-        cell(r.mps, "mps", "breadth", 1) + cell(r.hits, "hits", "credit", 1) +
-        cell(r.vocab, "vocab", "credit", 1) + cell(r.spread, "spread", "breadth", 0) +
-        cell(r.tok, "tok", "cost", 0) +
-        '<td style="background:' + shade(r.cost, M.cost, "cost") + '">' +
-        (r.cost == null ? "—" : "$" + r.cost.toFixed(4)) + '</td>' +
-        cell(r.sec, "sec", "time", 1) + '</tr>').join("") +
-      '</table><div class="note">Shaded two-tone, white at zero, one hue per class of quantity ' +
-      '(navy = breadth, green = credit, amber = cost, grey = latency). ' +
-      '<b>Spread</b> is how far the skill count moved across identical runs of the same mode — ' +
-      'if that is close to the gap between modes, the modes are not distinguishable yet: run more.</div></div>';
+    const modeRank = {};
+    (LL.MARKER_MENU_MODES || []).forEach((m, i) => { modeRank[m.id] = i; });
+
+    const tables = [];
+    for (const [ik, runs] of byItem) {
+      const byCell = new Map();
+      for (const r of runs) {
+        const k = r.mode + "\u0000" + (r.model || "?") + "\u0000" + (r.temp == null ? "?" : r.temp);
+        if (!byCell.has(k)) byCell.set(k, []);
+        byCell.get(k).push(r);
+      }
+      if (byCell.size < 2 && !Array.from(byCell.values()).some(a => a.length > 1)) continue;
+      const order = Array.from(byCell.keys()).sort((a, b) =>
+        (modeRank[a.split("\u0000")[0]] || 0) - (modeRank[b.split("\u0000")[0]] || 0) || a.localeCompare(b));
+      const mean = (a, f) => a.reduce((s2, x) => s2 + (f(x) || 0), 0) / a.length;
+      const rows = order.map(k => {
+        const a = byCell.get(k), parts = k.split("\u0000");
+        return {
+          mode: parts[0], model: parts[1], temp: parts[2], n: a.length,
+          mps: mean(a, r => r.n), hits: mean(a, r => r.hits), vocab: mean(a, r => r.vocab),
+          tok: mean(a, r => r.inTok), cost: mean(a, r => r.cost), sec: mean(a, r => r.ms / 1000),
+          spread: a.length > 1 ? (Math.max.apply(null, a.map(r => r.n)) - Math.min.apply(null, a.map(r => r.n))) : null,
+        };
+      });
+      const mx = key => Math.max.apply(null, rows.map(r => r[key] || 0));
+      const M = { mps: mx("mps"), hits: mx("hits"), vocab: mx("vocab"), tok: mx("tok"),
+                  cost: mx("cost"), sec: mx("sec"), spread: mx("spread") };
+      const cell = (v, key, hue, dp) =>
+        '<td style="background:' + shade(v, M[key], hue) + '">' +
+        (v == null ? "\u2014" : (dp === 0 ? Math.round(v) : v.toFixed(dp))) + '</td>';
+      const bits = ik.split("\u0000");
+      tables.push('<div class="panel"><h2>' + esc(bits[0]) + '</h2>' +
+        '<div class="note" style="margin:-6px 0 10px">answer: \u201c' + esc(bits[1]) + '\u201d</div>' +
+        '<table class="agg">' +
+        '<tr><th>Menu mode</th><th>model</th><th>temp</th><th>runs</th><th>skills<br>returned</th>' +
+        '<th>credit<br>earned</th><th>vocab<br>markpoints</th><th>spread<br>(max\u2212min)</th>' +
+        '<th>input<br>tokens</th><th>cost<br>US$</th><th>seconds</th></tr>' +
+        rows.map(r =>
+          '<tr><td class="mode">' + esc(r.mode) + '</td>' +
+          '<td style="font-size:12px">' + esc(String(r.model).replace(/^[^\/]*\//, "")) + '</td>' +
+          '<td>' + esc(r.temp) + '</td><td>' + r.n + '</td>' +
+          cell(r.mps, "mps", "breadth", 1) + cell(r.hits, "hits", "credit", 1) +
+          cell(r.vocab, "vocab", "credit", 1) + cell(r.spread, "spread", "breadth", 0) +
+          cell(r.tok, "tok", "cost", 0) +
+          '<td style="background:' + shade(r.cost, M.cost, "cost") + '">' +
+          (r.cost == null ? "\u2014" : "$" + r.cost.toFixed(4)) + '</td>' +
+          cell(r.sec, "sec", "time", 1) + '</tr>').join("") +
+        '</table></div>');
+    }
+    if (!tables.length) return "";
+    return tables.join("") +
+      '<div class="note" style="margin:-6px 0 14px">One table per item+answer \u2014 rows within a table ' +
+      'differ ONLY in menu mode, model and temperature. Shaded two-tone, white at zero, one hue per class ' +
+      '(navy = breadth, green = credit, amber = cost, grey = latency). <b>Spread</b> is how far the skill ' +
+      'count moved across identical runs; if it is close to the gap between rows, those rows are not ' +
+      'distinguishable yet \u2014 run more, or drop the temperature.</div>';
   }
 
   function vclass(v) {
