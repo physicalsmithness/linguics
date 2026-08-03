@@ -227,7 +227,25 @@
       const creditOnly = mp.credit_only === true
         || (q.provenance === "lemma_retrieval_pilot" && String(mp.bucket || "").indexOf("vocabulary.") !== 0);
       if (creditOnly && (result.outcome === "miss" || result.outcome === "not_attempted")) {
-        continue;
+        // Membership exception (Architecture_Housing_candidate_forms_membership_test
+        // v1 + Housing_Architecture_markpoint_level_match_at v2; the item-shape
+        // law's instrument A): when the ITEM carries candidate_forms and this is
+        // a formation-side markpoint, an answer that IS a real form of the cued
+        // lemma - exact norm() equality against the set, no stem/prefix
+        // heuristics (roso is not a form of rosso) - but missed the target slot
+        // records the formation MISS instead of staying silent: a real form of
+        // the right word, wrong one for this slot. Outside the set the silence
+        // stands and the vocabulary markpoint carries the miss. Empty answers
+        // stay silent either way.
+        const inCandidateSet = String(mp.bucket || "").indexOf("vocabulary.") !== 0
+          && result.outcome === "miss"
+          && Array.isArray(q.candidate_forms)
+          && q.candidate_forms.some(function (f) { return LL.norm(String(f)) === normed; });
+        if (!inCandidateSet) {
+          continue;
+        }
+        result.in_candidate_set = true;
+        result.evidence = "a real form of the cued word, but not the one this slot needs";
       }
       attemptedSum += result.attempted_credit * credit;
       if (result.correctness_credit !== null) {

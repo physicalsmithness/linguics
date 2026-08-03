@@ -1,6 +1,6 @@
 # Labels: what to fix, and why it is not the 523-label rewrite we queued
 
-**Status: PROPOSAL, 2026-08-02, Architecture. Nothing applied.**
+**Status: PROPOSAL, 2026-08-02, Architecture. 2026-08-03: Class-3 PP ruling MADE — `PP` is retired estate-wide, written out per site as "passato prossimo" or "past participle" as meaning demands, never reintroduced (DECISIONS 2026-08-03). Classes 1-2 still gated on Housing's flat-panel answer + the person-field migration. Nothing yet applied.**
 
 ## The scope, re-derived
 

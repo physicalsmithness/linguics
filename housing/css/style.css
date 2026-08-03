@@ -8,15 +8,17 @@
   --accent: #8f2b45;                /* wine, saturated a touch + nudged purple so it doesn't read brown (Smith) */
   --accent-soft: #f2e7e8;
   --p: oklch(42% 0.135 15); --p2: oklch(54% 0.11 15); --p3: oklch(70% 0.07 15); --pSoft: oklch(93% 0.024 15); --pDeep: oklch(33% 0.12 15);
-  --green: #2e7d4f;
-  --green-soft: #e3f1e8;
+  --green: #235c3c;   /* deepened (feedback_redesign handoff §1) */
+  --green-soft: #e4eee7;
   --green-vivid: #1f9d4a;       /* brighter green for outcome-right text */
   --blue: #4a89c7;
   --blue-soft: #e5eef6;
-  --red: #b03030;       /* kept for the immediate result panel only */
-  --red-soft: #f7e4e4;
+  --red: #7f2a24;       /* oxblood - darker than every logo tint, reads as a mark not a brand (handoff §1) */
+  --red-soft: #f8e7e4;
   --amber: #b58a00;
   --amber-soft: #f8efd5;
+  --green-partial: #5d9a77; /* R4 partial family - PROVISIONAL, Design owns the value; must sit clearly lighter than --green on cream, clearly darker than the wash */
+  --touched: #4a89c7;      /* practised, right or wrong (handoff §5) */
   --line: #e6e1d6;
   --core: #8f2b45;
   --preview: #b0616e;
@@ -454,9 +456,11 @@ main {
   font-size: 14px;
   background: white;
 }
-.markpoint.hit { border-left: 4px solid var(--green); }
-.markpoint.miss { border-left: 4px solid var(--red); }
-.markpoint.partial { border-left: 4px solid var(--amber); }
+/* feedback_redesign §2: the verdict rule comes OFF the card edge and sits
+   inside, immediately left of the correction it judges (.corr-diff /
+   .diff-matched). R4: got-it rules are HEAVIER (3px) than partial and wrong
+   (2px), so lighter always also means thinner. */
+.markpoint.hit, .markpoint.miss, .markpoint.partial { border-left: none; }
 .markpoint.not_attempted { border-left: 4px solid var(--line); opacity: 0.7; }
 .markpoint .label { font-weight: 600; flex: 0 0 220px; }
 .markpoint .label .proposed-tag { font-weight: normal; color: var(--amber); font-style: italic; font-size: 12px; }
@@ -675,7 +679,7 @@ main {
   display: inline-block;
   background: white;
 }
-.legend-cell.demo-green-full { background: #2e7d4f; }
+.legend-cell.demo-green-full { background: var(--green); }
 .legend-cell.demo-green-half { background: #97be9f; }
 .legend-cell.demo-blue-full  { background: #4a89c7; }
 .legend-cell.demo-blue-half  { background: #a4c4e3; }
@@ -1090,15 +1094,15 @@ body.strand-vocab-active #live-stats { display: none; }
 /* A flanking cell / lemma dot containing ANY practised lemma stays marked
    even when the aggregate colour is diluted (Smith 2026-07-21: a practised
    skill must not read as untouched). */
-.freq-flank-cell.has-practice { box-shadow: inset 0 0 0 1px rgba(27,138,74,.85); }
-.vocab-lemma-dot.has-practice { box-shadow: inset 0 0 0 1px rgba(27,138,74,.85); }
+.freq-flank-cell.has-practice { box-shadow: inset 0 0 0 1.5px var(--touched); }
+.vocab-lemma-dot.has-practice { box-shadow: inset 0 0 0 1.5px var(--touched); }
 /* Gender drill: fixed-option classifier choices — compact 2-col grid.  QoderWork 2026-07-22 */
 .gender-choices { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; border: 1.5px solid var(--border); border-radius: 8px; padding: 6px; background: var(--cream, #faf9f6); }
 .gender-choice { display: flex; align-items: baseline; gap: 5px; text-align: left; font-size: 13px; padding: 5px 8px; }
 .gender-choice .gc-num { font-weight: 700; color: var(--accent); font-size: 10px; min-width: 1.1em; opacity: 0.7; }
 .gender-choice .gc-label { font-weight: 600; line-height: 1.25; }
-.gender-choice.gc-correct { outline: 2px solid #2e7d4f; background: rgba(46,125,79,0.09); }
-.gender-choice.gc-wrong { outline: 2px solid #b03030; background: rgba(176,48,48,0.09); }
+.gender-choice.gc-correct { outline: 2px solid var(--green); background: var(--green-soft); }
+.gender-choice.gc-wrong { outline: 2px solid var(--red); background: var(--red-soft); }
 .gd-lemma { color: var(--accent); }
 .gd-declension { margin-top: 6px; padding: 10px 14px; font-size: 16px; font-weight: 600; background: var(--cream, #faf9f6); border-radius: 6px; border: 1px solid var(--border); border-left: 4px solid var(--accent); }
 
@@ -1107,17 +1111,17 @@ body.strand-vocab-active #live-stats { display: none; }
 .spelling-choice { display: flex; align-items: baseline; gap: 6px; text-align: left; font-size: 15px; padding: 7px 10px; }
 .spelling-choice .gc-num { font-weight: 700; color: var(--accent); font-size: 10px; min-width: 1.1em; opacity: 0.7; }
 .spelling-choice .gc-label { font-weight: 600; line-height: 1.3; }
-.spelling-choice.gc-correct { outline: 2px solid #2e7d4f; background: rgba(46,125,79,0.09); }
-.spelling-choice.gc-wrong { outline: 2px solid #b03030; background: rgba(176,48,48,0.09); }
-.stress-choice.gc-correct { outline: 2px solid #2e7d4f; background: rgba(46,125,79,0.09); }
-.stress-choice.gc-wrong { outline: 2px solid #b03030; background: rgba(176,48,48,0.09); }
+.spelling-choice.gc-correct { outline: 2px solid var(--green); background: var(--green-soft); }
+.spelling-choice.gc-wrong { outline: 2px solid var(--red); background: var(--red-soft); }
+.stress-choice.gc-correct { outline: 2px solid var(--green); background: var(--green-soft); }
+.stress-choice.gc-wrong { outline: 2px solid var(--red); background: var(--red-soft); }
 .mcq-choice.correct-pick { background:#e9f6ee; border-color:#2e7d4f; color:#1b5e33; font-weight:600; }
-.mcq-choice.wrong-pick { background:#fdecec; border-color:#b03030; color:#8a2020; }
+.mcq-choice.wrong-pick { background: var(--red-soft); border-color: var(--red); color: var(--red); }
 /* Keep the post-mark reveal colour on hover (don't let :hover repaint it). */
 .mcq-choice.correct-pick:hover { background:#e9f6ee; border-color:#2e7d4f; box-shadow:none; }
-.mcq-choice.wrong-pick:hover { background:#fdecec; border-color:#b03030; box-shadow:none; }
+.mcq-choice.wrong-pick:hover { background: var(--red-soft); border-color: var(--red); box-shadow:none; }
 .mcq-choice.gc-correct:hover, .stress-choice.gc-correct:hover, .mcq-choice.ms-correct:hover { background:rgba(46,125,79,0.12); border-color:#2e7d4f; box-shadow:none; }
-.mcq-choice.gc-wrong:hover, .stress-choice.gc-wrong:hover, .mcq-choice.ms-wrong:hover { background:rgba(176,48,48,0.12); border-color:#b03030; box-shadow:none; }
+.mcq-choice.gc-wrong:hover, .stress-choice.gc-wrong:hover, .mcq-choice.ms-wrong:hover { background: var(--red-soft); border-color: var(--red); box-shadow:none; }
 .mcq-choice.ms-missed:hover { background:rgba(200,118,24,0.1); border-color:#c87618; box-shadow:none; }
 .drill-session-keep { display:block; font-size:12px; color:var(--muted,#777); margin:2px 0 6px; cursor:pointer; user-select:none; }
 .drill-session-keep input { margin-right:5px; }
@@ -1358,7 +1362,7 @@ body.strand-vocab-active #live-stats { display: none; }
 .errorid-word:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
 .errorid-word.selected { background: var(--accent-soft, #e8f0fb); border-color: var(--accent); font-weight: 600; }
 .errorid-word.correct-pick { background: #e6f4ea; border-color: var(--green); color: var(--green); font-weight: 600; }
-.errorid-word.wrong-pick { background: var(--red-soft, #fdeaea); border-color: var(--red); color: var(--red); text-decoration: line-through; }
+.errorid-word.wrong-pick { background: var(--red-soft, #fdeaea); border-color: var(--red); color: var(--red); }
 .errorid-word.reveal-correct { background: #e6f4ea; border-color: var(--green); font-weight: 600; }
 
 /* Usage notes block in the vocab result panel (rendered from the curated
@@ -1475,7 +1479,7 @@ body.strand-vocab-active #live-stats { display: none; }
 
 /* Unmissable accent banner (live_round2 ask 3): full marks stand, the slip
    does not hide. Amber family, distinct from right/wrong colouring. */
-.accent-slip-banner { display: flex; align-items: baseline; gap: 8px; margin: 8px 0; padding: 8px 12px; background: #fdf3d7; border-left: 4px solid #d99a1b; border-radius: 4px; font-size: 15px; }
+.accent-slip-banner { display: flex; align-items: baseline; gap: 8px; margin: 8px 0; padding: 8px 12px; background: var(--green-soft); border-left: 4px solid var(--green-partial); border-radius: 4px; font-size: 15px; }
 .accent-slip-tag { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: #a06f0a; font-weight: 600; }
 .accent-slip-banner s { opacity: 0.7; }
 .accent-slip-word { font-size: 17px; color: #7a5502; }
@@ -1508,7 +1512,7 @@ body.strand-vocab-active #live-stats { display: none; }
 .flash-bad { animation: strip-bad 900ms ease-out 1; }
 .flash-warm { animation: strip-warm 900ms ease-out 1; }
 @keyframes strip-good { 0% { background: #2f8f4e; } 100% {} }
-@keyframes strip-bad { 0% { background: #d04848; } 100% {} }
+@keyframes strip-bad { 0% { background: var(--red); } 100% {} }
 @keyframes strip-warm { 0% { background: #d99a1b; } 100% {} }
 
 /* Second-chance prompt — inline beneath the input on a chip-stem-mismatch
@@ -1733,7 +1737,6 @@ body.strand-vocab-active #live-stats { display: none; }
 .cmp-value.cmp-learner-partial { color: var(--amber); background: transparent; }
 
 /* Per-word colouring in "You wrote" (QoderWork 2026-07-22): green = word found in reference, pink = not. */
-.yw-word { padding: 0 1px; border-radius: 2px; }
 .yw-right { color: var(--green); }
 .yw-wrong { color: var(--red); background: var(--red-soft); }
 
@@ -2139,8 +2142,8 @@ h1, h2, h3, .wordmark, .coverage-title, .analysis-section-title { font-family: F
 .ms-choice.ms-selected .ms-check { background: var(--accent); border-color: var(--accent); }
 .ms-choice.ms-selected .ms-check::after { content: "\2713"; color: #fff; font-size: 11px; line-height: 14px; position: absolute; left: 2px; top: -2px; }
 .ms-choice .ms-text { flex: 1; }
-.ms-choice.ms-correct { outline: 2px solid #2e7d4f; background: rgba(46,125,79,0.09); }
-.ms-choice.ms-wrong { outline: 2px solid #b03030; background: rgba(176,48,48,0.09); }
+.ms-choice.ms-correct { outline: 2px solid var(--green); background: var(--green-soft); }
+.ms-choice.ms-wrong { outline: 2px solid var(--red); background: var(--red-soft); }
 .ms-choice.ms-missed { outline: 2px dashed #c87618; background: rgba(200,118,24,0.07); }
 /* multi-select category picker: removable selected chips. */
 .entry-cat-selected { align-items: center; }
@@ -2246,3 +2249,25 @@ h1, h2, h3, .wordmark, .coverage-title, .analysis-section-title { font-family: F
   border: 1px solid var(--line,#e3ddc9); background: #fff; color: var(--ink,#2a2a2a); cursor: pointer;
 }
 .tc-toggle.on { background: var(--navy,#3a4f8a); border-color: var(--navy,#3a4f8a); color: #fff; }
+
+
+/* ---- Feedback panel redesign, r119 (handoff + riders R1-R6) ---- */
+.markers-note { background: #f6f2e8; border-left: 3px solid #d8d2c2; padding: 8px 12px; margin: 8px 0; font-style: italic; }
+.markers-note-label { display: block; font-style: normal; font-weight: 700; font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+.good-translation { margin: 8px 0; }
+.good-translation .gt-label { display: block; font-weight: 700; font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+.good-translation .gt-line { font-size: 17px; }
+.stub-not-marked { margin: 8px 0; color: var(--muted); font-style: italic; }
+.sent-marked .sent-span { text-underline-offset: 3px; }
+.sent-marked .span-right { text-decoration: underline; text-decoration-color: var(--green); text-decoration-thickness: 3px; }
+.sent-marked .span-wrong { text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 2px; }
+.sent-marked .span-mixed { text-decoration: underline; text-decoration-color: var(--amber); text-decoration-thickness: 2px; }
+.corr-diff { display: flex; gap: 8px; align-items: baseline; padding-left: 8px; border-left: 2px solid var(--red); margin: 2px 0; flex-wrap: wrap; }
+.corr-diff.partial { border-left-color: var(--green-partial); }
+.diff-learner { color: var(--muted); text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.diff-arrow { color: var(--red); }
+.diff-correct { color: var(--ink); font-weight: 600; }
+.diff-matched { display: flex; gap: 8px; align-items: baseline; padding-left: 8px; border-left: 3px solid var(--green); margin: 2px 0; font-weight: 600; }
+.diff-matched .diff-tick { color: var(--green); font-weight: 700; }
+.mcq-choice.wrong-pick::after { content: "your pick"; font-size: 10px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; margin-left: 8px; opacity: 0.75; }
+.last10-marks .mark.partial, .last-n .mark.partial { color: var(--green-partial); }

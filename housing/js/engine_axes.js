@@ -151,9 +151,14 @@
   // string diff so an untagged distractor still lands on the right leaf.
   function accentOutcomeClass(q, pickedIdx, correct) {
     if (correct) return "correct";
-    if (isJudgementChoiceSet(q.choices)) return "judgement";
+    // Tag-first, even on judgement items (seed_frames Defect 4, v7 ask c): an
+    // endorsed error-form carries that error's class in choice_tags, so the
+    // miss can emit a real outcome event despite crediting 0. Untagged
+    // judgement misses (all 158 until the regen lands) keep the flat
+    // "judgement" class and today's behaviour.
     const tag = Array.isArray(q.choice_tags) ? q.choice_tags[pickedIdx] : null;
     if (tag && tag.class && ACCENT_OUTCOME_LEAF[tag.class]) return tag.class;
+    if (isJudgementChoiceSet(q.choices)) return "judgement";
     const d = accentDiff(q.choices[q.answer_index], q.choices[pickedIdx]);
     if (!d) return "wrong_kind";
     if (d.written_mark === "none") return "omitted";
@@ -173,15 +178,18 @@
   // error decides the credit, which is only possible now that r107 classifies
   // the outcome instead of firing the item's declared bucket regardless.
   //
-  // `inserted` (a mark added where none belongs) was NOT ruled. It is scored
-  // with wrong_kind, on the reading that both are misapplications of a mark the
-  // learner knew was in play, where an omission is not knowing one was needed
-  // at all. Flagged to Architecture rather than left silent.
+  // `inserted` RULED 0.5 (design_overhaul v3/v4 + seed_frames v6/v7): the
+  // scale measures whether the error can change the word, not how many marks
+  // were typed. Presence and absence are lexical (e -> è, da -> dà land on a
+  // different real word, in either direction), so omitted and inserted dock
+  // alike at 0.5; placement and mark-type slips are orthographic, 0.8.
+  // Omissions on meaning_pair / tense_bearing items dock 0.4 (seed_frames
+  // ruled table) - the slip that lands on a different word or tense.
   // No entry for "judgement": a binary right-or-wrong question docks nothing,
   // it simply scores 0 when wrong. Smith's docking scale grades the SEVERITY of
   // a produced accent error; a two-way judgement has no severity to grade, and
   // paying 0.8 for a coin-flip would be the tail wagging the dog.
-  const ACCENT_DOCK = { correct: 1, wrong_kind: 0.8, inserted: 0.8, omitted: 0.5 };
+  const ACCENT_DOCK = { correct: 1, wrong_kind: 0.8, inserted: 0.5, omitted: 0.5 };
   function applyAccentAxes(q, pickedIdx, result) {
     if (!result || !Array.isArray(result.markpoints)) return result;
     const correct = pickedIdx === q.answer_index;
@@ -196,8 +204,11 @@
       outcome_class: outcome,
       pron_effect: q.pron_effect || null,
     };
-    // A judgement miss keeps the item's declared bucket: the author knows what
-    // the item tests, and there is no produced form to reclassify.
+    // An UNTAGGED judgement miss keeps the item's declared bucket: the author
+    // knows what the item tests and there is no produced form to reclassify.
+    // A TAGGED judgement miss classifies via choice_tags above, so it retargets
+    // and emits its outcome event like any other miss (seed_frames v7 ask c)
+    // while still crediting 0 via the isJudgement guard below.
     const leaf = (outcome === "judgement") ? null : ACCENT_OUTCOME_LEAF[outcome];
     for (const mp of result.markpoints) {
       mp.accent_axes = axes;
@@ -215,9 +226,14 @@
     }
     result.accent_axes = axes;
 
-    // Apply the docking scale to the markpoints and the overall.
-    const dock = ACCENT_DOCK[outcome];
-    if (!correct && typeof dock === "number" && dock > 0) {
+    // Apply the docking scale to the markpoints and the overall. Judgement
+    // items NEVER dock - a two-way call has no severity to grade
+    // (design_overhaul v4) - so a classified judgement miss keeps credit 0
+    // while its outcome event fires.
+    let dock = ACCENT_DOCK[outcome];
+    if (outcome === "omitted" && (placement === "meaning_pair" || placement === "tense_bearing")) dock = 0.4;
+    const isJudgement = isJudgementChoiceSet(q.choices);
+    if (!correct && !isJudgement && typeof dock === "number" && dock > 0) {
       let awarded = 0, possible = 0;
       for (const mp of result.markpoints) {
         const w = (typeof mp.credit_weight === "number") ? mp.credit_weight : 1;
@@ -231,12 +247,27 @@
         result.overall.correctness_overall = dock;
         result.overall.status = "partial";
         result.overall.summary = (outcome === "omitted")
-          ? "The accent is missing" : "Right vowel, wrong mark";
+          ? "The accent is missing"
+          : (outcome === "inserted") ? "No accent belongs there" : "Right vowel, wrong mark";
       }
     }
     return result;
   }
 
+
+  // Learner-facing coverage predicate (feedback_redesign R5, Smith-delegated
+  // ruling 2026-08-03): retired nodes (active: false) and the marker-
+  // classification-only accent placement subtree never render in learner-
+  // facing coverage and never enter a denominator. One predicate, used by the
+  // coverage matrix and the live tree; the leaf census should count with it
+  // too (DECISIONS ~2041: the census counted retired nodes as live).
+  function isLearnerFacingNode(node) {
+    if (!node) return false;
+    if (node.active === false) return false;
+    if (String(node.id || "").indexOf("orthography.accent.italian.placement") === 0) return false;
+    return true;
+  }
+  LL.isLearnerFacingNode = isLearnerFacingNode;
 
   LL.applyAccentAxes = applyAccentAxes;
   LL.accentDiff = accentDiff;

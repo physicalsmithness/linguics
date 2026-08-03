@@ -56,12 +56,12 @@
 <div id="summary">Loading content…</div>
 <div id="out"></div>
 
-<script src="js/norm.js?v=2026-08-03-r116"></script>
-<script src="js/store.js?v=2026-08-03-r116"></script>
-<script src="js/engine_axes.js?v=2026-08-03-r116"></script>
-<script src="js/grammar_engine.js?v=2026-08-03-r116"></script>
-<script src="js/translation_stub.js?v=2026-08-03-r116"></script>
-<script src="js/translation_marker.js?v=2026-08-03-r116"></script>
+<script src="js/norm.js?v=2026-08-03-r119"></script>
+<script src="js/store.js?v=2026-08-03-r119"></script>
+<script src="js/engine_axes.js?v=2026-08-03-r119"></script>
+<script src="js/grammar_engine.js?v=2026-08-03-r119"></script>
+<script src="js/translation_stub.js?v=2026-08-03-r119"></script>
+<script src="js/translation_marker.js?v=2026-08-03-r119"></script>
 <script>
 (function () {
   "use strict";
@@ -271,6 +271,35 @@
       "un'amica and un amica must compare equal, and ex-marito to ex marito; authors rely on it and it silently breaks short-fragment anchoring if it changes",
       () => (LL.norm("un'amica") === "un amica" && LL.norm("ex-marito") === "ex marito")
         ? true : ("apostrophe -> " + LL.norm("un'amica") + ", hyphen -> " + LL.norm("ex-marito")));
+
+
+    // --------------------- candidate_forms membership (instrument A, r117)
+    const g4c = group("candidate_forms membership (grammar_engine.js)"); groups.push(g4c);
+    const cfItem = () => ({
+      candidate_forms: ["rosso", "rossa", "rossi", "rosse"],
+      markpoints: [
+        { bucket: "vocabulary.it.rosso.retrieval", any_phrases: ["ross"], label: "retrieved rosso" },
+        { bucket: "adjective_agreement.gender.f_sg", credit_only: true,
+          any_phrases: [{ phrase: "rossa", match_at: "word" }], label: "f.sg form" }
+      ], marks: 2
+    });
+    const cfm = (ans) => LL.markGrammar(cfItem(), ans).markpoints;
+    T(g4c, "the target form scores both markpoints",
+      "vocabulary by stem, formation by anchored phrase - the baseline the membership gate must not disturb",
+      () => { const m = cfm("rossa"); return (m.length === 2 && m.every(x => x.outcome === "hit")) ? true : JSON.stringify(m.map(x => x.outcome)); });
+    T(g4c, "a real form in the wrong slot records the formation MISS",
+      "the credit_only silence used to swallow this unconditionally, so the formation bucket structurally could not record a failure - the false coverage the item-shape law exists to end",
+      () => { const m = cfm("rosso"); const f = m.find(x => x.bucket.indexOf("vocabulary.") !== 0); const v = m.find(x => x.bucket.indexOf("vocabulary.") === 0);
+        return (f && f.outcome === "miss" && f.in_candidate_set === true && v && v.outcome === "hit") ? true : JSON.stringify(m); });
+    T(g4c, "outside the set, formation stays silent and vocabulary carries the miss",
+      "nero is 'did not know the word', which says nothing about their grammar",
+      () => { const m = cfm("nero"); return (m.length === 1 && m[0].bucket.indexOf("vocabulary.") === 0 && m[0].outcome === "miss") ? true : JSON.stringify(m.map(x => [x.bucket, x.outcome])); });
+    T(g4c, "membership is exact, never a prefix test",
+      "roso is not a form of rosso; a stem-prefix heuristic would credit it, which is exactly why the heuristic was ruled out",
+      () => { const m = cfm("roso"); return (m.length === 1 && m[0].bucket.indexOf("vocabulary.") === 0 && m[0].outcome === "miss") ? true : JSON.stringify(m.map(x => [x.bucket, x.outcome])); });
+    T(g4c, "a misspelling of the right word credits vocabulary and stays silent on formation",
+      "rossoo proves they reached for rosso but is not a real form, so the grammar may not be judged on it",
+      () => { const m = cfm("rossoo"); return (m.length === 1 && m[0].bucket.indexOf("vocabulary.") === 0 && m[0].outcome === "hit") ? true : JSON.stringify(m.map(x => [x.bucket, x.outcome])); });
 
     // -------------------------------------------------------------- render
     const g5 = group("Content the renderers depend on"); groups.push(g5);

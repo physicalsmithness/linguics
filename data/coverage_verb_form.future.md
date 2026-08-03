@@ -126,3 +126,9 @@ Person×leaf after the wave (every band, target >=2):
 
 **Gates (marker replica, strict + accent-folded, all 118 items):** 0 guard false-credits; every guard a live miss; every correct answer a hit; all any_phrases match_at word (crit 18); crit-21 futuro forced in every formation cue; person on all 118; marks == sum(credit); all buckets resolve. Reported in `inter_chat/Architecture_FutureFormationAuthor_volume_formation.md`.
 
+## Orthographic greening (2026-08-03) — simple-future grid complete
+
+Carried on from the volume wave's optional follow-up: added **12 items** bringing care_gare and ciare_giare to two per person band (varied core verbs: cercare/pagare/giocare/spiegare, cominciare/mangiare/viaggiare/lasciare). Grammar file now 130 (115 formation + 15 usage).
+
+**Every simple-future formation leaf is now two-for-green across all six persons** (regular -are/-ere/-ire, syncopated, double_r, essere, dare_stare_fare, and both orthographic). The only leaf below 2/band is future_anteriore, left by design (compound, B1-B2, not a basic-fluency drill). Marker replica (strict + folded) over all 130 items: 0 guard false-credits, every guard a live miss, every correct answer a hit; all buckets resolve; person on all; no dup ids.
+

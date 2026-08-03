@@ -99,3 +99,17 @@ Smith's "carry on" on the order-imagination battery (`Architecture_PronounAuthor
 | mettercela tutta, modal+infinitive | pv_ord_mettercela_ms_01 | 2 / 5 |
 
 Design: each correct choice cross-credits `pronoun.discrimination.clitic_ordering` + a `pronoun.position.*` leaf (the order skill, pronoun tree) AND my `mechanics.*` / `meaning.frozen_tail_idioms` leaf (the verb, Rev 27). The prendersela (both-positions) vs vattene (enclisis-only, single correct) pair is the teaching centre. These test clitic POSITION, which the original six leaves never did (they test formation and meaning). Placement + cross-tree ingest flagged to Architecture in `inter_chat/Architecture_PronominalVerbsAuthor_clitic_order_battery.md`.
+
+---
+
+## Addendum: false-miss / answer-leak remediation (2026-08-03)
+
+Two Architecture packets, open since 2026-07-21, that my earlier `_status` wrongly reported as nothing-owed (I asserted closed from a stale sweep). Remediated:
+
+- **pv_celho_02** — blank-boundary: positives duplicated the prompt-printed `non`, zeroing the natural fill `ce l'ho`. Re-anchored blank-relative.
+- **pv_celho_03** — bare `hai` ("Hai il passaporto?") is fully standard with a full noun object, so the item false-missed it and the explanation's "sounds unfinished" claim was wrong. Reframed (object topicalised) so the clitic is obligatory; explanation corrected.
+- **pv_celho_01** — `ne ho una` is textbook-correct for the indefinite antecedent; added at 0.9 with a steering note.
+- **pv_mech_ci_07** — same blank-boundary defect (guards carried the prompt-printed `non`), found by my own sweep, not in the packet. Fixed.
+- **pv_mech_sela_04** — answer-leak: prompt printed the cluster `ce l'ho`, making that markpoint a free mark. Widened the blank to `ce l'ho fatta` so the learner produces the whole thing; decomposition preserved.
+
+All five version-2. Whole-file re-scan: 0 dead guards, 0 blank-boundary flags. Dispositions in `Architecture_PronominalVerbsAuthor_false_miss_packet` (v2) and `Architecture_ALLAUTHORS_answer_leak_dispatch` (v5).

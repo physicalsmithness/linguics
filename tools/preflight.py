@@ -11,9 +11,14 @@ every time, beat clever ones run once.
 
     python3 tools/preflight.py
 """
-import re, subprocess, sys, pathlib
+import re, subprocess, sys, pathlib, tempfile
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
+# Unique dir per run: the old hardcoded /tmp/_pf_* names collided with
+# root-owned leftovers from a previous session, so every write failed with
+# PermissionError and the run died between the js checks and the worker
+# check (seen 2026-08-03). mkdtemp cannot collide with anything.
+PF_TMP = pathlib.Path(tempfile.mkdtemp(prefix="_pf_"))
 fails = []
 
 def ok(label, good, detail=""):
@@ -29,7 +34,7 @@ print("inline <script> blocks")
 for page in sorted((ROOT / "housing").glob("*.html")):
     blocks = re.findall(r"<script>(.*?)</script>", page.read_text(encoding="utf-8"), re.S)
     for i, b in enumerate(blocks):
-        tmp = pathlib.Path("/tmp/_pf_%s_%d.js" % (page.stem, i))
+        tmp = PF_TMP / ("%s_%d.js" % (page.stem, i))
         tmp.write_text(b, encoding="utf-8")
         r = subprocess.run(["node", "--check", str(tmp)], capture_output=True, text=True)
         ok("%s block %d" % (page.name, i), r.returncode == 0, (r.stderr or "").strip().split("\n")[0][:100])

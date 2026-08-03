@@ -136,7 +136,7 @@
   "subtopic": "mechanics.sela_type",
   "difficulty": 3,
   "cefr_level_target": "B2",
-  "prompt": "È stato un anno durissimo, ma alla fine ce l'ho ____! (farcela)",
+  "prompt": "È stato un anno durissimo, ma alla fine ____! (farcela)",
   "type": "short",
   "marks": 2,
   "wrong_answer_is_form_error_only": true,
@@ -180,9 +180,9 @@
    }
   ],
   "vocab_help": [],
-  "explanation": "'Ce l'ho fatta!' means 'I made it / I managed it!' This is the past of farcela, a pronominal verb whose la is a frozen pronoun, not a real object. In compound tenses the participle agrees with that la, so it is feminine whoever the speaker is: a man says ce l'ho fatta just as a woman does. Writing fatto is the single most common advanced slip here.",
-  "examiner_note": "Split marking isolates the #1 slip: 'ce l'ho fatto' credits the cluster (pronoun.combined) but misses the frozen-feminine agreement on this leaf. 'ce la ho fatta' (no elision) fails the cluster guard instead.",
-  "version": 1
+  "explanation": "'Alla fine ce l'ho fatta!' means 'In the end I made it / I managed it!' This is the past of farcela, a pronominal verb whose la is a frozen pronoun, not a real object. In compound tenses the participle agrees with that frozen la, so it is feminine whoever the speaker is: a man says ce l'ho fatta just as a woman does. Writing fatto is the single most common advanced slip here.",
+  "examiner_note": "Answer-leak fix 2026-08-03 (dispatch section 4): the prompt printed 'ce l'ho' before the blank, so the cluster markpoint was a guaranteed free mark. Widened the blank to the whole 'ce l'ho fatta' so the learner produces both the cluster (markpoint A) and the frozen-feminine participle (markpoint B); decomposition preserved.",
+  "version": 2
  },
  {
   "external_id": "pv_mech_sela_05",
@@ -882,24 +882,20 @@
     "label": "vederci, 1sg: ci vedo",
     "any_phrases": [
      {
-      "phrase": "non ci vedo",
-      "match_at": "word"
-     },
-     {
       "phrase": "ci vedo",
       "match_at": "word"
      }
     ],
     "must_not_include": [
-     "non lo vedo",
-     "non ci veggo"
+     "lo vedo",
+     "ci veggo"
     ]
    }
   ],
   "vocab_help": [],
   "explanation": "'Non ci vedo bene da lontano' means 'I can't see well far away.' Vederci (like sentirci for hearing) uses ci to talk about the faculty of sight itself, not seeing a particular thing. For io it is ci vedo.",
-  "examiner_note": "'non lo vedo' (I can't see it) is the literal-object miss and is distinguished from the faculty sense.",
-  "version": 1
+  "examiner_note": "Blank-boundary fix 2026-08-03 (self-sweep, not in packet): guards carried the prompt-printed 'non' ('non lo vedo'), which can't match the blank content 'lo vedo'. Made blank-relative; the redundant 'non ci vedo' positive dropped (bare 'ci vedo' already covers it).",
+  "version": 2
  },
  {
   "external_id": "pv_mech_ci_08",
@@ -1463,6 +1459,12 @@
      {
       "phrase": "ce l' ho",
       "match_at": "word"
+     },
+     {
+      "phrase": "ne ho una",
+      "credit": 0.9,
+      "match_at": "word",
+      "note": "idiomatic ne-answer for the indefinite 'una penna'; correct Italian, steered toward the ce-l'ho possession pattern the item drills"
      }
     ],
     "must_not_include": [
@@ -1486,9 +1488,9 @@
     }
    }
   ],
-  "explanation": "'Sì, ce l'ho' means 'Yes, I've got one.' To answer that you have something, everyday Italian says ce l'ho, not the bare l'ho, which sounds unfinished. The ce is a fixed part of the pattern (from a pleonastic ci), and lo elides to l' before ho.",
-  "examiner_note": "Guards the bare 'l'ho' and the mis-spelling 'ci l'ho'. Full-phrase markpoint because l'ho is a substring risk.",
-  "version": 1
+  "explanation": "'Sì, ce l'ho' means 'Yes, I've got one.' To say you have something, everyday Italian says ce l'ho, not the bare l'ho (which sounds unfinished). With an indefinite thing like 'una penna', 'ne ho una' (I have one of them) is equally natural and scores nearly full -- the drill here is the ce-l'ho possession answer.",
+  "examiner_note": "False-miss fix 2026-08-03 (packet v1): for the indefinite antecedent 'una penna', 'ne ho una' is textbook-correct and was scoring 0. Added at 0.9 with a steering note (Rev 17; not the bucket's named common_miss, which is bare l'ho). Left flat 'ho una penna' uncredited as a bare restatement -- flagged to Architecture.",
+  "version": 2
  },
  {
   "external_id": "pv_celho_02",
@@ -1510,18 +1512,18 @@
     "label": "negative: non ce l'ho",
     "any_phrases": [
      {
-      "phrase": "non ce l'ho",
+      "phrase": "ce l'ho",
       "match_at": "word"
      },
      {
-      "phrase": "non ce l' ho",
+      "phrase": "ce l' ho",
       "match_at": "word"
      }
     ],
     "must_not_include": [
-     "non l'ho",
-     "non ci l'ho",
-     "non ce lo ho"
+     "l'ho",
+     "ci l'ho",
+     "ce lo ho"
     ]
    }
   ],
@@ -1540,7 +1542,8 @@
    }
   ],
   "explanation": "'No, non ce l'ho' means 'No, I haven't got it.' The negative simply wraps non around the same fixed pattern: non ce l'ho. Dropping to 'non l'ho' is the usual slip.",
-  "version": 1
+  "version": 2,
+  "examiner_note": "False-miss fix 2026-08-03 (packet v1): positives were 'non ce l'ho', duplicating the prompt-printed 'non', so the natural blank fill 'ce l'ho' scored 0. Re-anchored to blank content; guards blank-relative (bare l'ho protected by else-if gating)."
  },
  {
   "external_id": "pv_celho_03",
@@ -1549,7 +1552,7 @@
   "subtopic": "meaning.ce_lho_possession",
   "difficulty": 2,
   "cefr_level_target": "A2",
-  "prompt": "Chiedi a un amico se ha il passaporto con sé: '____ il passaporto?' (avere, tu)",
+  "prompt": "Un amico cerca il suo passaporto. Glielo chiedi: 'Il passaporto, ____?' (avere, tu)",
   "type": "short",
   "marks": 1,
   "wrong_answer_is_form_error_only": true,
@@ -1591,9 +1594,9 @@
     }
    }
   ],
-  "explanation": "'Ce l'hai il passaporto?' means 'Have you got your passport?' In speech Italians front the ce l'hai and then name the thing: ce l'hai il passaporto? The ce stays fixed and hai is just avere for tu.",
-  "examiner_note": "The colloquial 'ce l'hai + noun' dislocation is standard spoken register; stated in the explanation.",
-  "version": 1
+  "explanation": "'Il passaporto, ce l'hai?' means 'The passport, have you got it?' Once the thing is named and then referred back to, spoken Italian resumes it with the clitic: il passaporto -> ce l'hai? The ce is a fixed part of the have-it pattern and hai is just avere for tu. (Where a full noun object follows directly, bare hai is equally standard -- 'Hai il passaporto?' is fine; the ce l' pattern becomes obligatory only once the object is a pronoun, as here.)",
+  "examiner_note": "False-miss fix 2026-08-03 (packet v1): the old frame 'Hai il passaporto?' made bare 'hai' fully standard (ce l' is obligatory only with an elided/pronominal object), so the item false-missed it and the explanation's 'sounds unfinished' claim was wrong. Reframed with the object topicalised so the clitic is obligatory; explanation corrected.",
+  "version": 2
  },
  {
   "external_id": "pv_celho_04",

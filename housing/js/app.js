@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-08-03-r116";
+  const LL_BUILD = "2026-08-03-r119";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -1927,7 +1927,7 @@
         if (getInputMode() === "select") { input.style.display = "none"; }
       }
 
-      const helpBar = (q.provenance === "lemma_retrieval_pilot")
+      const helpBar = (q.provenance === "lemma_retrieval_pilot" || q.retrieval_help_lemma)
         ? buildRetrievalHelpBar(q, vocabHelpsUsed)
         : buildVocabHelpBar(q, vocabHelpsUsed);
       if (helpBar) card.insertBefore(helpBar, promptEl.nextSibling);   // under the question (Smith)
@@ -2384,7 +2384,7 @@
       resultHost.innerHTML = "";
       if (aiError) { const aw = document.createElement("div"); aw.className = "marker-ai-error"; aw.textContent = aiError; resultHost.appendChild(aw); }
       if (showUpsell) resultHost.appendChild(buildAiUpsell());
-      resultHost.appendChild(renderResult(result, { skillCount: true, references: it.references || it.reference_translations || [] }));
+      resultHost.appendChild(renderResult(result, { skillCount: true, spanVerdicts: true, references: it.references || it.reference_translations || [] }));
       const tenseRowT = renderCandidateTensesRow(it);
       if (tenseRowT) resultHost.appendChild(tenseRowT);
       if (costLine) resultHost.appendChild(costLine);
@@ -5805,7 +5805,7 @@
   // on tap; tapping records the vocab miss (the intended diagnostic) via the
   // shared vocabHelpsUsed channel. Big + explicit, not the hidden vocab button.
   function buildRetrievalHelpBar(item, vocabHelpsUsedRef) {
-    if (!item || item.provenance !== "lemma_retrieval_pilot") return null;
+    if (!item || !(item.provenance === "lemma_retrieval_pilot" || item.retrieval_help_lemma)) return null;
     let reveal = "", bucket = "", label = "";
     for (const e of (item.vocab_help || [])) {
       const asp = e && e.aspects && e.aspects.translation;
@@ -6612,6 +6612,51 @@
 
   LL.renderCandidateRow = renderCandidateTensesRow;  // exposed for tests
 
+  // Span verdicts on the learner's sentence (feedback_redesign step 7 + R4).
+  // Each shown markpoint's evidence span is located in the sentence (case-
+  // insensitive, first occurrence) and underlined by its own outcome: right
+  // green (3px - full marks weigh heavier), wrong red (2px), and amber where
+  // a stretch carries BOTH credited and faulted evidence - amber's one job in
+  // the app. Partial-verdict spans are mixed by definition. Evidence that
+  // cannot be located leaves the text unmarked rather than guessing. The
+  // missing-word gap tick needs alignment data the payload does not carry
+  // yet; deliberately not guessed at (riders thread, v2).
+  function buildSpanMarkedSentence(rawStr, mps) {
+    const cls = new Array(rawStr.length).fill(null);
+    const low = rawStr.toLowerCase();
+    for (const mp of (mps || [])) {
+      const kind = mp.outcome === "hit" ? "right"
+        : mp.outcome === "partial" ? "mixed"
+        : mp.outcome === "miss" ? "wrong" : null;
+      if (!kind) continue;
+      const ev = String(mp.evidence_in_attempt || mp.evidence || "").trim();
+      if (!ev || ev === "not produced") continue;
+      const i = low.indexOf(ev.toLowerCase());
+      if (i < 0) continue;
+      for (let k = i; k < i + ev.length && k < cls.length; k++) {
+        cls[k] = (cls[k] && cls[k] !== kind) ? "mixed" : (cls[k] || kind);
+      }
+    }
+    const host = document.createElement("span");
+    host.className = "sent-marked";
+    let a = 0;
+    while (a < rawStr.length) {
+      let b = a;
+      while (b < rawStr.length && cls[b] === cls[a]) b++;
+      const seg = rawStr.slice(a, b);
+      if (cls[a]) {
+        const sp = document.createElement("span");
+        sp.className = "sent-span span-" + cls[a];
+        sp.textContent = seg;
+        host.appendChild(sp);
+      } else {
+        host.appendChild(document.createTextNode(seg));
+      }
+      a = b;
+    }
+    return host;
+  }
+
   function renderResult(result, opts) {
     const root = document.createElement("div");
     root.className = "result";
@@ -6637,8 +6682,32 @@
     overall.appendChild(summary);
     root.appendChild(overall);
 
-    // Show what the learner wrote, once at the top of the result.
-    // Per-word colouring: words found in the reference get green, others pink.  QoderWork 2026-07-22
+    // R6: the stub never cosplays as marking. When the AI marker didn't fire,
+    // the translation panel is the learner's sentence, the authored way(s) to
+    // say it, and an honest label - no marker's note, no span verdicts, no
+    // per-skill cards.
+    const _isStub = !!(opts && opts.spanVerdicts && result.overall && result.overall.status === "not_scored");
+
+    // Marker's note (handoff §2 + R1/R7): the AI verdict keeps the top slot,
+    // attributed as one marker's remark rather than the app's voice; the box-
+    // and-attribute treatment is the interim until Architecture's R7 prompt
+    // edit retires the hedge at source. Translation only (opts.spanVerdicts);
+    // grammar keeps its authored "Why:" at the foot - teaching content, not
+    // an AI verdict.
+    if (opts && opts.spanVerdicts && !_isStub && result.overall.explanation) {
+      const note = document.createElement("div");
+      note.className = "markers-note";
+      note.innerHTML = '<span class="markers-note-label">Marker\u2019s note</span>'
+        + annotateWithGlossary(result.overall.explanation);
+      root.appendChild(note);
+    }
+
+    // The learner's sentence, once, at the top. The per-word colouring
+    // against the reference DIED at r119 (feedback_redesign R1): overlap with
+    // one reference string was never a verdict, and it restated the old
+    // single-answer framing underneath the new panel. Span verdicts replace
+    // it on the translation panel; grammar keeps the whole-answer outcome
+    // tint it always had.
     if (result.raw_response && String(result.raw_response).trim() !== "") {
       const youWrote = document.createElement("div");
       youWrote.className = "result-you-wrote";
@@ -6647,32 +6716,15 @@
       lbl.textContent = (opts && opts.youWroteLabel) || "You wrote:";   // QoderWork 2026-07-23
       youWrote.appendChild(lbl);
       youWrote.appendChild(document.createTextNode(" "));
-
-      const refs = (opts && opts.references) || [];
-      const refWords = new Set();
-      for (const r of refs) {
-        const txt = typeof r === "string" ? r : (r && r.text) || "";
-        for (const w of String(txt).toLowerCase().split(/[\s,.!?;:"'()\[\]<>\/\\]+/)) {
-          if (w.length >= 2) refWords.add(w);
-        }
-      }
       const rawStr = String(result.raw_response);
-      if (refWords.size > 0) {
-        // Per-word colouring
+      if (opts && opts.spanVerdicts && !_isStub) {
+        youWrote.appendChild(buildSpanMarkedSentence(rawStr, _shownMps));
+      } else if (opts && opts.spanVerdicts) {
         const val = document.createElement("span");
-        val.className = "cmp-value cmp-learner";
-        const tokens = rawStr.split(/(\s+)/); // preserve whitespace
-        for (const tok of tokens) {
-          if (/^\s+$/.test(tok)) { val.appendChild(document.createTextNode(tok)); continue; }
-          const clean = tok.toLowerCase().replace(/[,.!?;:"'()\[\]<>\/\\]/g, "");
-          const span = document.createElement("span");
-          span.textContent = tok;
-          span.className = refWords.has(clean) ? "yw-word yw-right" : "yw-word yw-wrong";
-          val.appendChild(span);
-        }
+        val.textContent = rawStr;
         youWrote.appendChild(val);
       } else {
-        // Fallback: single colour by overall outcome
+        // Grammar: single colour by overall outcome (unchanged behaviour).
         const val = document.createElement("span");
         const _mp = result.overall.marks_possible;
         const _ma = result.overall.marks_awarded;
@@ -6685,6 +6737,38 @@
       root.appendChild(youWrote);
     }
 
+    // R2: "a good translation" comes from DATA, not the model. One authored
+    // reference renders as "One way to say it", two or more as "Two ways to
+    // say it" (Smith's phrasing, ratified 2026-08-03). Never carries verdict
+    // hues - a correct sentence has nothing to mark. Also the heart of the
+    // stub's honest degraded state (R6): the authored ways work offline.
+    if (opts && opts.spanVerdicts) {
+      const _refs = ((opts && opts.references) || [])
+        .map(r => (typeof r === "string" ? r : (r && r.text) || "")).filter(Boolean);
+      if (_refs.length) {
+        const ways = document.createElement("div");
+        ways.className = "good-translation";
+        const gl = document.createElement("span");
+        gl.className = "gt-label";
+        gl.textContent = _refs.length >= 2 ? "Two ways to say it" : "One way to say it";
+        ways.appendChild(gl);
+        for (const rr of _refs.slice(0, 2)) {
+          const line = document.createElement("div");
+          line.className = "gt-line";
+          line.textContent = rr;
+          ways.appendChild(line);
+        }
+        root.appendChild(ways);
+      }
+      if (_isStub) {
+        const nm = document.createElement("div");
+        nm.className = "stub-not-marked";
+        nm.textContent = "Not marked yet \u2014 the AI marker was unreachable.";
+        root.appendChild(nm);
+        return root;
+      }
+    }
+
     // Accent slips are UNMISSABLE (live_round2 ask 3): marks stand in full -
     // Smith: an accent slip is "in some sense fully correct" - but the slip
     // gets its own coloured banner naming written -> correct, never a
@@ -6695,7 +6779,7 @@
         b.className = "accent-slip-banner";
         const tag = document.createElement("span");
         tag.className = "accent-slip-tag";
-        tag.textContent = "accents";
+        tag.textContent = "right word \u2014 accent slip";
         b.appendChild(tag);
         const txt = document.createElement("span");
         const wrote = o.written || "";
@@ -6732,11 +6816,10 @@
       const detail = document.createElement("div");
       detail.style.flex = "1";
 
-      // Friendly outcome word. We build the badge here and place it INLINE on
-      // the answer line below (Matched: X / Right answer: Y) so the status
-      // sits next to the answer rather than floating above it. If there's
-      // nothing to sit next to (e.g. a hit with no evidence string), we fall
-      // back to a standalone badge on its own row.
+      // Friendly outcome word. Since r119 the arrow diff and its coloured
+      // rule carry the verdict (feedback_redesign §2), so the badge survives
+      // only where there is nothing for a rule to touch: "Didn't try", and a
+      // diff-less card, where a lone mark stands in for the banned word.
       const friendly = friendlyOutcome(mp);
       function buildStatusBadge() {
         const status = document.createElement("span");
@@ -6747,62 +6830,75 @@
       }
       let badgePlaced = false;
 
-      // Comparison block: "You wrote: X / Right answer: Y" on a miss or
-      // partial. Just "Right answer: Y" if they didn't attempt. Just
-      // "(matched: X)" on a hit if there's evidence.
+      // Arrow diff (handoff §2 + R1): one correction, stated once, touching
+      // the words it judges. The paired chips, the per-card "You wrote:" /
+      // "Right answer:" rows and the word "Wrong" all died here - the rule
+      // beside the diff carries the verdict (red 2px wrong, --green-partial
+      // 2px partial, green 3px got-it: R4, lighter must also read thinner).
       const wrongish = (mp.outcome === "miss" || mp.outcome === "partial" || mp.outcome === "not_attempted");
       const evidenceText = mp.evidence || mp.evidence_in_attempt || "";
       const hasEvidence = !!evidenceText && evidenceText !== "not produced";
       const hasExpected = !!mp.expected && mp.expected !== "(see reference)" && mp.expected !== "n/a";
 
       if (wrongish && (hasEvidence || hasExpected)) {
-        const cmp = document.createElement("div");
-        cmp.className = "comparison";
-        // Skip the per-markpoint "You wrote" row when its evidence is just
-        // the raw response (we already show that once at the top of the panel).
+        // Skip the learner's word when it is just the whole raw response
+        // (already shown once at the top of the panel).
         const evTrim = String(evidenceText || "").trim();
         const rawTrim = String(result.raw_response || "").trim();
         const dupOfTopLevel = evTrim && rawTrim && evTrim.toLowerCase() === rawTrim.toLowerCase();
-        if (hasEvidence && mp.outcome !== "not_attempted" && !dupOfTopLevel) {
-          const r1 = document.createElement("div");
-          r1.className = "cmp-row";
-          r1.innerHTML = `<span class="cmp-label">You wrote:</span> <span class="cmp-value cmp-learner">${escapeHtml(evidenceText)}</span>`;
-          cmp.appendChild(r1);
+        const showLearner = hasEvidence && mp.outcome !== "not_attempted" && !dupOfTopLevel;
+        const diff = document.createElement("div");
+        diff.className = "corr-diff" + (mp.outcome === "partial" ? " partial" : "");
+        diff.title = `attempted=${mp.attempted_credit}, correctness=${mp.correctness_credit ?? "n/a"}, outcome=${mp.outcome}`;
+        if (showLearner) {
+          const l = document.createElement("span");
+          l.className = "diff-learner";
+          l.textContent = evidenceText;
+          diff.appendChild(l);
+        }
+        if (showLearner && hasExpected) {
+          const ar = document.createElement("span");
+          ar.className = "diff-arrow";
+          ar.textContent = "\u2192";
+          diff.appendChild(ar);
         }
         if (hasExpected) {
-          const r2 = document.createElement("div");
-          r2.className = "cmp-row";
-          r2.innerHTML = `<span class="cmp-label">Right answer:</span> <span class="cmp-value cmp-correct">${escapeHtml(mp.expected)}</span>`;
-          r2.appendChild(document.createTextNode(" "));
-          r2.appendChild(buildStatusBadge());
-          badgePlaced = true;
-          cmp.appendChild(r2);
-        } else if (hasEvidence) {
-          // miss with evidence but no expected — attach badge to the "You wrote" row.
-          const r1 = cmp.firstChild;
-          if (r1) {
-            r1.appendChild(document.createTextNode(" "));
-            r1.appendChild(buildStatusBadge());
-            badgePlaced = true;
-          }
+          const c = document.createElement("span");
+          c.className = "diff-correct";
+          c.textContent = mp.expected;
+          diff.appendChild(c);
         }
-        detail.appendChild(cmp);
+        if (mp.outcome === "not_attempted") {
+          diff.appendChild(buildStatusBadge());
+        }
+        if (diff.childNodes.length) {
+          detail.appendChild(diff);
+          badgePlaced = true;
+        }
       } else if (mp.outcome === "hit" && hasEvidence) {
+        // Got-it card: the heavier green rule with the value beside it (non ho \u2713).
         const e = document.createElement("div");
-        e.className = "evidence";
-        e.innerHTML = `Matched: <span class="cmp-value cmp-correct">${escapeHtml(evidenceText)}</span>`;
-        e.appendChild(document.createTextNode(" "));
-        e.appendChild(buildStatusBadge());
+        e.className = "diff-matched";
+        e.title = `attempted=${mp.attempted_credit}, correctness=${mp.correctness_credit ?? "n/a"}, outcome=${mp.outcome}`;
+        const v = document.createElement("span");
+        v.textContent = evidenceText;
+        e.appendChild(v);
+        const tick = document.createElement("span");
+        tick.className = "diff-tick";
+        tick.textContent = "\u2713";
+        e.appendChild(tick);
         badgePlaced = true;
         detail.appendChild(e);
       }
 
-      // Fallback: nothing to sit next to (e.g. hit with no evidence string).
-      // Drop a standalone badge so the learner still sees the outcome word.
+      // Fallback: nothing for a rule to touch (e.g. a hit with no evidence
+      // string, or a bare miss). The word "Wrong" is banned (handoff §2), so
+      // a diff-less miss shows a single mark instead - still exactly one red
+      // signal.
       if (!badgePlaced) {
         const standalone = document.createElement("div");
         standalone.className = "outcome-status " + friendly.cls;
-        standalone.textContent = friendly.word;
+        standalone.textContent = (mp.outcome === "miss") ? "\u2717" : friendly.word;
         standalone.title = `attempted=${mp.attempted_credit}, correctness=${mp.correctness_credit ?? "n/a"}, outcome=${mp.outcome}`;
         detail.insertBefore(standalone, detail.firstChild);
       }
@@ -7247,10 +7343,15 @@
         const marksHost = l10.querySelector(".last10-marks");
         marksHost.innerHTML = "";
         for (const a of (((LL.state && LL.state.attempts) || []).slice(-10))) {
-          const full = a.overall && a.overall.marks_possible > 0 && a.overall.marks_awarded >= a.overall.marks_possible;
+          const poss = a.overall && a.overall.marks_possible > 0;
+          const full = poss && a.overall.marks_awarded >= a.overall.marks_possible;
+          // R3: partial = graded credit on the attempt's own scale (strictly
+          // between zero and full). Weighted dual-cite markpoints record full
+          // correctness and sum to full here, so they render as fully right.
+          const part = poss && !full && a.overall.marks_awarded > 0;
           const m = document.createElement("span");
-          m.className = "mark " + (full ? "hit" : "miss");
-          m.textContent = full ? "\u2713" : "\u2717";
+          m.className = "mark " + (full ? "hit" : part ? "partial" : "miss");
+          m.textContent = full ? "\u2713" : part ? "\u2248" : "\u2717";
           marksHost.appendChild(m);
         }
         l10.title = "Your last ten answers, oldest to newest, across everything.";
@@ -7828,6 +7929,11 @@
   }
 
   function renderLiveNode(node, onlyTouched) {
+    // R5: retired and marker-classification-only nodes never render in the
+    // learner-facing tree (the accent placement subtree exists for the
+    // marker's classification, not for practice). Callers already tolerate
+    // null (the onlyTouched path returns it).
+    if (LL.isLearnerFacingNode && !LL.isLearnerFacingNode(node)) return null;
     const agg = aggregateNodeStats(node);
     const hasEvents = !!agg;
     if (onlyTouched && !hasEvents) return null;
@@ -9856,8 +9962,8 @@
     sub.className = "coverage-sub";
     const emptyWord = coveragePalette === "clear" ? "white" : "cream";
     sub.textContent = (coverageView === "fill"
-      ? "Every box is the same size and divides by its areas: colour fills from the bottom as you practise, " + emptyWord + " is what\u2019s left to get, grey is what isn\u2019t achievable at that level."
-      : "Each 4px layer is one area, so taller boxes hold more. Colour sinks to the bottom (darkest = best known), " + emptyWord + " is what\u2019s left to get, grey is what isn\u2019t achievable at that level.");
+      ? "Every box is the same size and divides by its areas: colour fills from the bottom as you practise, " + emptyWord + " is what\u2019s left to get, grey means nothing to practise there yet."
+      : "Each 4px layer is one area, so taller boxes hold more. Colour sinks to the bottom (darkest = best known), " + emptyWord + " is what\u2019s left to get, grey means nothing to practise there yet.");
     col.appendChild(sub);
 
     const topics = grammarTopicRows();
@@ -9887,7 +9993,10 @@
     // biggest cell, capped; a cell that still can't fit compresses (dense).
     const UNIT = 4;                 // one 4px layer per area in "layers" view, gapless
     const ROW_MIN = 34, ROW_MAX = 140, FILL_H = 40;   // FILL_H: the equal box of "fill" view
-    const scopeOf = (topic, level) => bucketLeavesInScope([topic.id], level);
+    // R5: retired + marker-classification-only leaves never render and never
+    // enter a denominator - and the cell scope IS the denominator here.
+    const scopeOf = (topic, level) => bucketLeavesInScope([topic.id], level)
+      .filter(l => !LL.isLearnerFacingNode || LL.isLearnerFacingNode(l));
     // Transposed: a category header row spanning each part's topic columns.
     if (coverageTransposed) {
       const ctr = document.createElement("tr");
@@ -9943,7 +10052,7 @@
         const leaves = cellLeaves[ci];
         if (!leaves.length) {
           td.classList.add("coverage-na");
-          td.title = topic.label + " · " + level + ": not in scope at this level";
+          td.title = topic.label + " · " + level + ": nothing to practise here yet";
         } else {
           const strips = document.createElement("div");
           // "fill" view: ALWAYS divide the box by its area count (dense flex).

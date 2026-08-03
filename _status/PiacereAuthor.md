@@ -5,11 +5,11 @@ updated: 2026-08-03
 waiting: parked
 needs_from_smith: none
 blocked_by:
-claude_can_verify: yes — remediation is on disk and machine-verifiable; Architecture owns the stamp
-summary: false-miss packet (8 findings) remediated and filed at thread v2 (Next: Architecture); 13 items touched, all word-anchored, dir-3 re-verified; clit cue-echo reframed to English cues; delivery + class-retrofit threads both CLOSED
+claude_can_verify: yes — all edits on disk, machine-verifiable; Architecture owns the stamps
+summary: false-miss packet CLOSED (8/8 stamped); cue-notation retrofit done (16 English-in-parens -> brackets, census 12 undercount), filed thread v8 awaiting Architecture verify+stamp; delivery + class-retrofit threads CLOSED
 queue:
-  - False-miss packet: 8 findings remediated + clit cue-echo reframed (13 items). Filed thread v2, awaiting Architecture verify+stamp.   [Architecture_PiacereAuthor_false_miss_packet v2]
+  - cue_notation retrofit: 16 English-in-parens converted to [brackets] (display-only, 0 marking impact, 0 residue). Filed thread v8, awaiting Architecture verify+stamp.   [Architecture_ALLAUTHORS_cue_notation v8, binds all-authors]
 not_queue_triaged:
-  - class-retrofit thread CLOSED v2 (crit 13 + Rev 25 both stamped); delivery thread CLOSED v3
-  - crit 21 formation-trigger: 0 piacere items; dead-vocab_help + flag rename done centrally; no phantom buckets
-  - Rev 26-32: rails or non-applicable to piacere (verb cue not invariable, not supplied-choice, no tense-naming cue)
+  - false_miss_packet CLOSED v3 (8/8 stamped); class-retrofit CLOSED; delivery CLOSED
+  - crit 21 formation-trigger 0 piacere items; dead-vocab_help + flag rename done centrally; no phantom buckets
+  - MisconceptionAnalyst_Housing_bespoke_grid_specs: verb_identity axis — watch; not yet an authored task for piacere (Architecture landing plan at v4)

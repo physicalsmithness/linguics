@@ -50,8 +50,8 @@ for extra in ("accent", "stress"):
 vocab = load(ROOT / "data/vocabulary_it_frequency.json") or []
 lemmas = set(str(e.get("lemma", "")).lower() for e in vocab if e.get("lemma"))
 
-def report(name, offenders, why, owner):
-    findings.append((name, len(offenders), why, owner, offenders))
+def report(name, offenders, why, owner, count=None):
+    findings.append((name, count if count is not None else len(offenders), why, owner, offenders))
 
 # 1. every bucket an item names must exist in a tree
 # Report DISTINCT ids grouped by root, not raw item counts. A single missing
@@ -77,7 +77,7 @@ for root, n in roots.most_common():
         for b in sorted(ids_here)[:10]: lines.append("      " + b)
 report("bucket ids that exist in no tree", lines,
        "skipped by the context builder, fired anyway by the marker; the event lands nowhere",
-       "Architecture (mint or re-point)")
+       "Architecture (mint or re-point)", count=len(missing))
 
 # 2. it_en items whose entire floor is production-only
 PRODUCTION = re.compile(r"^(adjective_agreement|noun|article|possessive|demonstrative|preposition|"

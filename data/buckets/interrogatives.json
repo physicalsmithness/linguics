@@ -14,7 +14,9 @@
       "C2": "fluency"
     },
     "prerequisites": [],
-    "attributes": {},
+    "attributes": {
+      "topic_short": "interr"
+    },
     "active": true,
     "version": 1
   },
@@ -131,5 +133,27 @@
     "attributes": {},
     "active": true,
     "version": 1
+  },
+  {
+    "id": "interrogatives.exclamatives",
+    "parent_id": "interrogatives",
+    "language_code": "it",
+    "label": "Exclamative che / come / quanto",
+    "description": "Exclamative use of che (+ bare noun/adjective), come (+ verb), and quanto (agreeing, quantity): Che bello!, Come sei gentile!, Quante storie! Same words as the interrogatives in a non-question function.",
+    "cefr_importance": {
+      "A1": "preview",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [
+      "interrogatives.che_cosa",
+      "interrogatives.quanto"
+    ],
+    "attributes": {
+      "canonical_example": "Che bello! / Come sei gentile! / Quante storie!"
+    }
   }
 ]

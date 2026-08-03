@@ -1,22 +1,21 @@
 seat: Architecture
 classes: [all-seats]
 project: Linguics
-updated: 2026-08-02
+updated: 2026-08-03
 waiting: active
-needs_from_smith: none blocking. Standing: prism pick (lens+person+top-recurring recommended); the order-leak repro for Housing; the interim class list when Housing asks.
-claude_can_verify: yes — all three of today's passes re-derived from disk after the write (dovunque present; 136 tagged; 0 dead vocab_help remaining; all data JSON parses)
-summary: 2026-08-02 takeover pass. WAKE SWEEP run (read-only agent, spot-audited): 5 draft-stamps, 7 rulings-needed, 1 stale, 1 cannot-verify. SIX RULINGS MADE — temperature-1.0 events flagged not deleted (Smith); vocabulary bucket ids key on the Italian dictionary form; proper nouns earn no vocabulary bucket (aligns marker to the existing denominator policy); .translation.passive is it_en-only; leak detectors match on plain substring (Smith, ratifying PassiveAuthor after 16 days); ind_nn_06 returned to IndefiniteAuthor, its false-miss fix put the answer in the cue. GATE REBUILT AND RE-RUN — two defects, and the exclusion rule ("copying the cue is harmless") was hiding 158 items. NEW ESTATE LAW — a free-text blank cannot test a form that does not change (~58 items across six topics). NEW FAULT CLASS from Smith live — 225 dead vocab_help entries were booking false vocabulary misses; stripped. EXECUTED — dovunque mint, 136-item exemption tag, 225-entry strip.
+needs_from_smith: the six-job list from chat (feedback Sheet test; worker URL; accent-drill un po x3 + da x1; console-clean reply on cue_placement; pulse + barcode looks; session-builder impressions). PARKED by Smith: prism pick; EdTech cap five (deferred to rollout planning).
+claude_can_verify: yes — regen gate re-derived post-write (276/276, zero dangling, proportions held, re-parse clean); every stamp this session spot-audited against data
+summary: 2026-08-03 third+fourth pass. EXECUTED: accent regen per seed_frames v7 contract (gate green, posted v8; AccentAuthor to accept). RULED: four direction-merged ids split (+doctrine); mirror_of ratified; seven negation families routed; neg_corr_06 declined (attested variation, 0.9 stands); interrogatives residue = docked partial (Housing 3-line fix routed); PP retired estate-wide; caldo/freddo noun stands + adjective siblings split; verb_identity landing plan (PiacereAuthor). CORRECTED: 08-02 zero-item ruling's example (outcome axes are marker-class-only; placement is item-bearing) + riders R5 + answer-leak owe-list (7 not 8). DRAFTED: R7 worker prompt edit. Cue residues routed (Pronoun/Adjective/Housing).
 queue:
-  - Write the item-shape law (a blank cannot test a no-change form) as an estate-wide one-pager; absorbs the staged adjective_agreement template   [task 13, now has its subject]
-  - Read the 109 remaining gate findings (33 Tier A + 76 Tier B), then dispatch the real list to owning authors   [AUDIT_estate_net_gate_v2_2026-08-02.txt]
-  - Apply the 5 verified draft-stamps from the wake sweep (AccentAuthor seed_frames, PronounAuthor false_miss, MetaProject status_board, EdTech pulse adoption; Indefinite false_miss NOT stamped - returned)
-  - Route the 6 untouched false-miss packets (Piacere 8, SiConstructions 7, Preposition 6, Negation 4, PronominalVerbs 3, Existential 1 - dispatched 2026-07-21, never opened)
-  - Rule the 3 smaller open calls: ci_locative topic boundary; does a graded-credit ruling bind a citing seat; misconception_id untagged: fallback
-  - Paradigm-bands migration   [task 6, ruling made, zero execution on disk]
-  - Sweep the pulse sheet for English-lemma vocabulary ids + proper-noun buckets + split .translation/.passive pairs
-  - Specify the provenance flag for temperature-1.0 events
-  - Jargon-label central rewrite (523) + explanation re-paragraph pilot   [staged]
+  - Item-shape ruling: AdverbAuthor all-10-MCQ vs revert-4 + author candidate_forms (sets supplied); answer Demonstrative's 2 blockers
+  - Central schema pass (rename 15 files incl. possessive 63; person migration; common_errors spec)
+  - Paradigm-band reconcile vs the ruling's family list
+  - Jargon execution once Housing answers the flat-panel question (PP ruling made; Classes 1-2 mechanics ready)
+  - Re-paragraph pilot; CEFR harvest + Smith-decisions routing; over-reg bank source check; pulse-sheet attempt via Drive connector
+  - Chase: 7 answer-leak reacts; AdjectiveAuthor's item-shape react (cue-notation now discharged); cue-notation owes: Possessive 29 / Piacere 12 / Adverb 7
+  - FULL accent regen over seed v1 (carriers + judgement tags + registry-pure choice_tags) — supersedes the tag mini-pass
+  - PronominalVerbs packet STAMPED/CLOSED (one seat touch remains: instruction-pin + celho_02 flag)
 notes:
-  - Wake sweep + per-pass delta rule in force (ARCHITECTURE_HANDOFF amendment 2026-07-20).
-  - Housing is a SEPARATE live seat. Smith confirmed 2026-08-02. Architecture writes to its threads, not its code.
-  - 13 of 20 seat _status files were stale against their own inbox at takeover; Piacere and Preposition say "closed" while holding live work.
+  - MisconceptionAnalyst is now FIREABLE: splits + pairs + seven families + 82 tag-lists all on its threads.
+  - PiacereAuthor has one small job (verb_identity field) — fire with the Analyst or fold into its next wake.
+  - AccentAuthor reviews the regenerated batch; Housing confirms a-b-c. Board otherwise as chat-reported.

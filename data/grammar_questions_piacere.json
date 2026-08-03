@@ -245,7 +245,7 @@
   "subtopic": "usage.agreeing_responses",
   "difficulty": 2,
   "cefr_level_target": "A2",
-  "prompt": "'Mi piace il gelato.' '____!' (me too)",
+  "prompt": "'Mi piace il gelato.' '____!' [me too]",
   "type": "short",
   "marks": 1,
   "wrong_answer_is_form_error_only": false,
@@ -300,7 +300,7 @@
   ],
   "explanation": "'Mi piace il gelato.' 'Anche a me!' means 'I like ice cream.' 'Me too!' Because the liker is an indirect object (a me), agreeing keeps the a-phrase: anche a me. English 'me too' tempts 'anch'io', but that would make you the thing being liked.",
   "examiner_note": "'anch'io' is the English-shaped trap and is caught. Apostrophe and spaced variants included.",
-  "version": 1
+  "version": 2
  },
  {
   "external_id": "pia_agree_02",
@@ -309,7 +309,7 @@
   "subtopic": "usage.agreeing_responses",
   "difficulty": 2,
   "cefr_level_target": "A2",
-  "prompt": "'Non mi piacciono i cavoli.' '____.' (me neither)",
+  "prompt": "'Non mi piacciono i cavoli.' '____.' [me neither]",
   "type": "short",
   "marks": 1,
   "wrong_answer_is_form_error_only": false,
@@ -356,7 +356,7 @@
   ],
   "explanation": "'Non mi piacciono i cavoli.' 'Neanche a me.' means 'I don't like cabbage.' 'Me neither.' To agree with a negative, Italian uses neanche a me (or nemmeno a me), still keeping the a-phrase. Answering 'anche a me' would agree with the wrong polarity.",
   "examiner_note": "Correct 'neanche a me' contains 'anche a me' as a substring, but positive-match-wins credits it first; 'anche a me' in must_not only fires on a bare (wrong-polarity) reply.",
-  "version": 1
+  "version": 2
  },
  {
   "external_id": "pia_agree_03",
@@ -365,7 +365,7 @@
   "subtopic": "usage.agreeing_responses",
   "difficulty": 2,
   "cefr_level_target": "A2",
-  "prompt": "'A me non piace il pesce.' '____!' (I do like it)",
+  "prompt": "'A me non piace il pesce.' '____!' [I do like it]",
   "type": "short",
   "marks": 1,
   "wrong_answer_is_form_error_only": false,
@@ -417,7 +417,7 @@
    }
   ],
   "explanation": "'A me non piace il pesce.' 'A me sì!' means 'I don't like fish.' 'I do!' To disagree, Italian keeps the a-phrase and adds sì or no: a me sì. The verb is not repeated; the stressed a me plus sì carries the whole reply.",
-  "version": 1
+  "version": 2
  },
  {
   "external_id": "pia_agree_04",
@@ -426,7 +426,7 @@
   "subtopic": "usage.agreeing_responses",
   "difficulty": 1,
   "cefr_level_target": "A2",
-  "prompt": "Mi piace molto la pizza. E ____? (and you? informal)",
+  "prompt": "Mi piace molto la pizza. E ____? [and you? informal]",
   "type": "short",
   "marks": 1,
   "wrong_answer_is_form_error_only": false,
@@ -464,7 +464,7 @@
    }
   ],
   "explanation": "'Mi piace molto la pizza. E a te?' means 'I really like pizza. And you?' To turn the question back, Italian uses the stressed a te, matching the a-phrase logic of the construction. 'E tu?' would treat 'you' as the subject, which piacere does not do.",
-  "version": 1
+  "version": 2
  },
  {
   "external_id": "pia_aphr_01",
@@ -473,7 +473,7 @@
   "subtopic": "form.experiencer_a_phrase",
   "difficulty": 2,
   "cefr_level_target": "A1",
-  "prompt": "____ piace il calcio. (Marco likes football)",
+  "prompt": "____ piace il calcio. [Marco likes football]",
   "type": "short",
   "marks": 1,
   "wrong_answer_is_form_error_only": false,
@@ -512,7 +512,7 @@
   ],
   "explanation": "'A Marco piace il calcio' means 'Marco likes football.' A named liker is marked with a: a Marco. Drop it and you get 'Marco piace il calcio', which flips the meaning to 'people like Marco', with Marco now the thing that pleases.",
   "examiner_note": "must_not_include 'marco' fires only when the a is dropped (the correct 'a marco' is credited first by positive-match-wins, so it is never flagged).",
-  "version": 1
+  "version": 2
  },
  {
   "external_id": "pia_aphr_02",
@@ -521,7 +521,7 @@
   "subtopic": "form.experiencer_a_phrase",
   "difficulty": 2,
   "cefr_level_target": "A2",
-  "prompt": "A me piace il caffè, ____ no. (but not to her)",
+  "prompt": "A me piace il caffè, ____ no. [but not to her]",
   "type": "short",
   "marks": 1,
   "wrong_answer_is_form_error_only": false,
@@ -563,7 +563,7 @@
    }
   ],
   "explanation": "'A me piace il caffè, a lei no' means 'I like coffee, she doesn't.' For contrast, Italian uses the stressed a-phrase (a lei), not the small clitic le. The clitic cannot stand alone or carry this kind of emphasis.",
-  "version": 1
+  "version": 2
  },
  {
   "external_id": "pia_aphr_03",
@@ -572,7 +572,7 @@
   "subtopic": "form.experiencer_a_phrase",
   "difficulty": 3,
   "cefr_level_target": "A2",
-  "prompt": "Questo quadro? ____ molto! (say it with the stress on 'me', standard Italian)",
+  "prompt": "Questo quadro? ____ molto! [say it with the stress on 'me', standard Italian]",
   "type": "short",
   "marks": 1,
   "wrong_answer_is_form_error_only": false,
@@ -622,7 +622,7 @@
   ],
   "explanation": "'A me piace molto!' means 'I really like it!' To stress who is doing the liking, Italian fronts the stressed a-phrase: a me piace. The doubled 'a me mi piace' is everywhere in speech but redundant in careful Italian, so it takes half credit here. Plain 'mi piace' is the other standard option, without the extra emphasis this prompt asked for.",
   "examiner_note": "Graded any_phrases carries the 0.5 doubling ruling. Plain 'mi piace' is deliberately not accepted because the prompt requests the stressed person form; noted in coverage. 'a me piace' is not a substring of 'a me mi piace', so the graded entry is reachable.",
-  "version": 1
+  "version": 2
  },
  {
   "external_id": "pia_aphr_04",
@@ -631,7 +631,7 @@
   "subtopic": "form.experiencer_a_phrase",
   "difficulty": 2,
   "cefr_level_target": "A2",
-  "prompt": "____ non piacciono i gatti. (my mother doesn't like cats)",
+  "prompt": "____ non piacciono i gatti. [my mother doesn't like cats]",
   "type": "short",
   "marks": 1,
   "wrong_answer_is_form_error_only": false,
@@ -669,7 +669,7 @@
    }
   ],
   "explanation": "'A mia madre non piacciono i gatti' means 'My mother doesn't like cats.' The named liker takes a: a mia madre. The negation non sits before the verb, and the verb is plural (piacciono) because the liked thing, the cats, is plural.",
-  "version": 1
+  "version": 2
  },
  {
   "external_id": "pia_clit_01",
@@ -678,7 +678,7 @@
   "subtopic": "form.experiencer_clitic",
   "difficulty": 2,
   "cefr_level_target": "A1",
-  "prompt": "Marco adora la musica jazz. ____ piace da sempre. (to him)",
+  "prompt": "Marco adora la musica jazz. ____ piace da sempre. [to him]",
   "type": "short",
   "marks": 1,
   "wrong_answer_is_form_error_only": false,
@@ -725,7 +725,7 @@
   ],
   "explanation": "'Gli piace da sempre' means 'He has always liked it.' The person who does the liking is an indirect object, the 'to him / to her' role. For 'to him' Italian uses gli. Watch the pair: gli is 'to him', le is 'to her'.",
   "examiner_note": "gli vs le is the target contrast. must_not_include uses trailing spaces on 'le ' and 'la ' to avoid matching inside other words; low residual risk noted.",
-  "version": 1
+  "version": 2
  },
  {
   "external_id": "pia_clit_02",
@@ -734,7 +734,7 @@
   "subtopic": "form.experiencer_clitic",
   "difficulty": 2,
   "cefr_level_target": "A1",
-  "prompt": "Sara ama i gatti. ____ piacciono da quando era piccola. (to her)",
+  "prompt": "Sara ama i gatti. ____ piacciono da quando era piccola. [to her]",
   "type": "short",
   "marks": 1,
   "wrong_answer_is_form_error_only": false,
@@ -777,7 +777,7 @@
   ],
   "explanation": "'Le piacciono da quando era piccola' means 'She has liked them since she was little.' The experiencer 'to her' is the indirect object le. The verb is plural (piacciono) because the liked thing, the cats, is plural, but that is a separate decision from choosing the clitic.",
   "examiner_note": "'le' is the answer; 'gli' (to him) is the target wrong form. Substring: 'le' is short but the answer slot is a single clitic, so contamination risk is low.",
-  "version": 1
+  "version": 2
  },
  {
   "external_id": "pia_clit_03",
@@ -786,7 +786,7 @@
   "subtopic": "form.experiencer_clitic",
   "difficulty": 2,
   "cefr_level_target": "A2",
-  "prompt": "____ piace il nuovo ufficio, dottoressa? (formal address)",
+  "prompt": "____ piace il nuovo ufficio, dottoressa? [formal address]",
   "type": "short",
   "marks": 1,
   "wrong_answer_is_form_error_only": false,
@@ -833,7 +833,7 @@
   ],
   "explanation": "'Le piace il nuovo ufficio, dottoressa?' means 'Do you like the new office, doctor?' Speaking formally, Italian addresses one person with the Lei forms, and the indirect-object clitic is Le (written with a capital in careful writing). The informal ti would be wrong for this respectful register.",
   "examiner_note": "Register stated in the prompt (formal address), never the form, per criterion 11. The marker is case-insensitive, so capital Le and lowercase le both pass; capitalisation is not markable here.",
-  "version": 1
+  "version": 2
  },
  {
   "external_id": "pia_clit_04",
@@ -842,7 +842,7 @@
   "subtopic": "form.experiencer_clitic",
   "difficulty": 1,
   "cefr_level_target": "A1",
-  "prompt": "Ragazzi, ____ piace la pizza? (to you all)",
+  "prompt": "Ragazzi, ____ piace la pizza? [to you all]",
   "type": "short",
   "marks": 1,
   "wrong_answer_is_form_error_only": false,
@@ -884,7 +884,7 @@
    }
   ],
   "explanation": "'Vi piace la pizza?' means 'Do you all like pizza?' Talking to more than one person (voi), the experiencer clitic is vi, the 'to you all' form. Ci would mean 'to us', which is not who is being addressed here.",
-  "version": 1
+  "version": 2
  },
  {
   "external_id": "pia_disp_01",
@@ -893,7 +893,7 @@
   "subtopic": "usage.dispiacere",
   "difficulty": 2,
   "cefr_level_target": "A2",
-  "prompt": "'____, non posso venire.' (I'm sorry)",
+  "prompt": "'____, non posso venire.' [I'm sorry]",
   "type": "short",
   "marks": 1,
   "wrong_answer_is_form_error_only": false,
@@ -936,7 +936,7 @@
    }
   ],
   "explanation": "'Mi dispiace, non posso venire' means 'I'm sorry, I can't come.' Dispiacere looks like 'displease' but the everyday sense is 'to be sorry'. It runs on the same frame as piacere: literally 'it is displeasing to me', so mi dispiace.",
-  "version": 1
+  "version": 2
  },
  {
   "external_id": "pia_disp_02",
@@ -1101,7 +1101,7 @@
   "subtopic": "usage.family_verbs",
   "difficulty": 2,
   "cefr_level_target": "B1",
-  "prompt": "Per la torta ____ due uova. (I need two eggs)",
+  "prompt": "Per la torta ____ due uova. [I need two eggs]",
   "type": "short",
   "marks": 1,
   "wrong_answer_is_form_error_only": false,
@@ -1153,7 +1153,7 @@
    }
   ],
   "explanation": "'Per la torta mi servono due uova' means 'For the cake I need two eggs.' Servire runs on the piacere frame: what is needed is the subject, so with a plural thing (due uova) the verb is plural servono, and 'to me' is mi. 'Mi serve' would be for a single thing.",
-  "version": 1
+  "version": 2
  },
  {
   "external_id": "pia_fam_03",
@@ -1162,7 +1162,7 @@
   "subtopic": "usage.family_verbs",
   "difficulty": 2,
   "cefr_level_target": "B1",
-  "prompt": "____ la storia romana? (are you interested in Roman history)",
+  "prompt": "____ la storia romana? [are you interested in Roman history]",
   "type": "short",
   "marks": 1,
   "wrong_answer_is_form_error_only": false,
@@ -1212,7 +1212,7 @@
    }
   ],
   "explanation": "'Ti interessa la storia romana?' means 'Are you interested in Roman history?' Interessare follows piacere: the topic is the subject (singular storia, so interessa), and the interested person is the indirect object ti. Italian frames interest as something a topic does to you.",
-  "version": 1
+  "version": 2
  },
  {
   "external_id": "pia_fam_04",
@@ -1221,7 +1221,7 @@
   "subtopic": "usage.family_verbs",
   "difficulty": 2,
   "cefr_level_target": "B1",
-  "prompt": "____ una buona idea. (it seems a good idea to me)",
+  "prompt": "____ una buona idea. [it seems a good idea to me]",
   "type": "short",
   "marks": 1,
   "wrong_answer_is_form_error_only": false,
@@ -1271,7 +1271,7 @@
    }
   ],
   "explanation": "'Mi sembra una buona idea' means 'It seems a good idea to me.' Sembrare uses the same frame: the thing that seems is the subject (una buona idea, singular, so sembra) and the person it seems to is the indirect object mi.",
-  "version": 1
+  "version": 2
  },
  {
   "external_id": "pia_flip_01",

@@ -2089,3 +2089,120 @@ missing `common_errors`, and anchoring — run centrally, on the same footing as
 seat hand-applying a schema change across its own batch is 25 chances to diverge, and divergence in a
 schema is worse than lateness. `common_errors` is UNSPECIFIED rather than optional and belongs in the
 brief before any seat carries it; the author was right not to invent a shape.
+
+
+## Rulings landed 2026-08-03 (Architecture; Smith live in the Architecture chat)
+
+**Feedback colour semantics REVISED (Smith).** Partial credit on any single-markpoint surface is a
+LIGHTER GREEN (`--green-partial`), never amber; full-right green marks thicken so lighter-and-thinner
+reads as less; AMBER's only job estate-wide is a mixed span underline (span contains both credited and
+faulted evidence) on the learner's sentence; accent-slip banner joins the partial-green family, copy
+"right word — accent slip" (no fraction). Supersedes the design handoff's §1 amber row and §4.
+Full spec: inter_chat/Architecture_Housing_feedback_redesign_riders.md R4.
+
+**Reference presentation ratified (Smith):** "One way to say it" / "Two ways to say it", rendered from
+authored `reference_translations` (883/883 items carry it; 648 have 2+). The model is not a dependency.
+
+**Coverage grey RULED (delegated by Smith):** learner-facing coverage renders only active, authorable
+leaves; retired and marker-classification leaves never render nor count; grey = active leaf with zero
+live items, copy "Nothing to practise here yet"; the label "not achievable" is dropped.
+
+**reserve-three-or-none RULED: none reserved.** Uniform apostrophe escalation for every word;
+AccentAuthor's v3 nudge wording ratified (po/va/fa/sta; da/di excluded).
+
+**Accent calibration regen scope RULED:** regen for the Defect-1 contract only (placement ids +
+every-choice placement credit + gate); defects 2/3/4 are engine-side — Housing confirms dock severities
+(incl. 0.4 meaning_pair/tense_bearing), inserted 0.5, and judgement-miss events against seed_frames v6.
+
+**`judgement` qtype RULED:** credit 0 on a miss stands (a two-way call has no severity to grade); the
+miss still emits its outcome event.
+
+**EdTech per-user cap: the five decisions are DEFERRED by Smith to rollout planning** (staged intent
+recorded on the thread); prism pick PARKED (Smith not ready); Cr17Sweep future-50 continue GIVEN;
+InterrogativesAuthor wave-2 GO.
+
+**Stamps:** ExistentialAuthor ci-merge verified from disk and CLOSED (external_ids preserved, 43->45,
+ci_locative.existential active:false); NegationAuthor false-miss packet four dispositions spot-audited
+and CLOSED (five of six packets now closed; PronominalVerbs outstanding); PossessiveAuthor
+schema-currency CLOSED here, fold rides the central pass.
+
+
+## Rulings landed 2026-08-03, second pass (Architecture, on Smith's "carry on")
+
+**Correction to the 08-02 zero-item ruling's EXAMPLE (rule unchanged):** the marker-classification-only
+class is the accent OUTCOME axes (.missing/.added/.wrong_mark) — engine-fed, never authored. The
+placement.* leaves were minted for per-class mastery and are item-bearing: today's regen rewired all
+276 accent items to credit them (subtopic + markpoint bucket = placement id; gate 276/276, zero
+dangling, proportions preserved; backup outputs/accent_regen_backup_2026-08-03.json). The 08-02 text
+read the defective batch as design intent — the label was the bug, again.
+
+**Four direction-merged misconception ids: ALL SPLIT** (neutral rejected — opposite learner states must
+not sum); modal_stative_aspect splits production-from-reading first, then by direction; every split
+pair gets mirror_of at minting. **mirror_of RATIFIED** (optional, symmetric, live-pairs-first) — B6
+unblocks at pair-marking. **Seven negation families routed** to the Analyst (dative-echo leans
+piacere-side). **neg_corr_06 guard conversion DECLINED**: ne...ne + singular is attested variation;
+the 0.9 grading stands; a guard would misprice acceptable Italian.
+
+**Interrogatives residue RULED: docked partial, never hard miss** — the residue-zero block must exempt
+accent-fold rescues (fix with Housing, ~3 lines); Smith's "accent-only errors always deduct a little"
+governs.
+
+**PP is RETIRED estate-wide** (two live expansions in one estate will be misread); written out per site.
+**caldo/freddo: noun stands on idiom entries; adjective sibling entries mint separately**
+(split-by-function). **verb_identity: item-level descriptor, lemma-valued, PiacereAuthor lands it.**
+**Cue residues routed:** (use dare) -> PronounAuthor; verde-instruction -> AdjectiveAuthor;
+"Select all that apply" -> multi_select chrome (Housing). **Answer-leak owe-list corrected to seven**
+(ImperfectAuthor had reacted). **R7 worker prompt edit drafted** on the riders thread (second person;
+single-correct-version phrasing banned).
+
+
+## Rulings landed 2026-08-03, third pass (Architecture; five seats live in parallel)
+
+**pv_celho_01: instruction-pin, and no 0.7 tier is minted.** The estate's credit vocabulary stays
+0.9-for-a-valid-dodge or nothing; a bare restatement demonstrating neither pronominalisation skill is
+not a dodge with credit. Prompt steers ("answer without repeating the noun"), restatement becomes
+non-compliant rather than a silent zero on correct Italian. PronominalVerbs packet otherwise STAMPED
+4/4 + one self-caught fix; wrong_answer_is_form_error_only true on celho_02 only.
+
+**Cr17: the future tranche is 68, not 50** — my continue-note echoed the old tranche's size; seat
+caught it, record corrected. Next tranche ordered: present_indicative (82; most learner traffic),
+then congiuntivo (93), then imperfect (34). fu_prob_ant_01's `avrà perduto` guard routed to
+FutureFormationAuthor as variant-with-credit (2026-07-12 policy + deva precedent) with the
+accent-losing-pipeline suspicion.
+
+**Accent double fire: GO** (seed_frames v8/v9 crossed; gate green + r118 shipped). Residual: the 158
+judgement items need outcome-class tags on error choices — AccentAuthor supplies the map in its
+acceptance review; Architecture runs the gated tag mini-pass.
+
+**AdjectiveAuthor cue-notation stamp verified and applied** (1/1, zero residue across 193); the verde
+routing on the renderer thread struck as crossed-in-flight. **candidate_forms membership gate is LIVE
+at r117** (formation-only, exact norm(), zero live-behaviour change until instrument-A items opt in) —
+and Housing corrected markpoint_level v2's "no change needed" on the record, which my own seat memory
+had flagged as the trap.
+
+
+## Rulings landed 2026-08-03, fourth pass (Architecture; six seats returned)
+
+**Misconception field purity (option a):** `misconception` carries only canonical registry ids;
+classifier confusion cells are descriptors (gender-drill precedent generalised). 21 phantom ids /
+~30,500 fires (stress 12 ids ~29.6k, accent 9 ids ~150) routed: Housing (emit stop + drill-down drops
+non-registry ids), StressAuthor (purge rides ere_stem pipeline), AccentAuthor (rides seed-v1 regen).
+No matrix-only namespace minted.
+
+**Accent: the queued pass is the FULL regen over seed v1** (carriers 49/14, judgement both-verdict
+tags, baked validation gate, registry-pure choice_tags) — supersedes the judgement-tag mini-pass; the
+Defect-1 rewire and double-fire GO stand.
+
+**Interrogatives wave 2 ACCEPTED:** exclamatives leaf minted (proposal verbatim), pending 5+2 merged
+centrally (34 grammar / 16 translation, zero dangling), topic_short=interr set. **The no-change law's
+boundary ratified as the seat read it:** it bars blanks where copying an invariant cited form wins;
+construction/agreement blanks whose answer differs from anything cued stay free-text — the law's
+worked example.
+
+**lr-anchoring exception RATIFIED:** deliberately-unanchored vocabulary stems on lexical-recall items
+are the two-test model by design; anchoring gate exempts the lr class; brief line rides the next rev.
+**Volume dispatch template fixed** (criterion-17 line) after the imperfect wave's 34/34 bare-gloss
+regression; are_07 routed to ImperfectAuthor with a brief-reread word (second consecutive fault).
+**Cr17: all four tranches STAMPED** (277 items, 38 gloss repairs, zero marking deltas); seat idle.
+**FutureFormationAuthor +12 STAMPED** (130 total, two-for-green grid). **PiacereAuthor cue stamp
+applied** (16, zero residue) — verb_identity still owed, flagged on the cue thread.

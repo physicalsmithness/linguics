@@ -1,0 +1,361 @@
+{
+ "note": "Exclamatives (ruling B, Smith 2026-08-03). Bucket interrogatives.exclamatives is a forward-reference, PROPOSED in bucket_suggestions_interrogatives.json and NOT yet in the tree; held here so it does not strict-reject a production load. Merge into the main files once Architecture mints the leaf.",
+ "grammar_questions": [
+  {
+   "external_id": "interr_exc_01",
+   "language_code": "it",
+   "topic": "interrogatives",
+   "subtopic": "exclamatives.che",
+   "difficulty": 2,
+   "cefr_level_target": "A2",
+   "type": "mcq",
+   "marks": 1,
+   "info_display": "suppress",
+   "prompt": "Completa: '____ bello!'",
+   "choices": [
+    "Che",
+    "Come",
+    "Quanto"
+   ],
+   "answer_index": 0,
+   "candidate_forms": [
+    "Che",
+    "Come",
+    "Quanto"
+   ],
+   "correct_form": "Che",
+   "markpoints": [
+    {
+     "order_index": 0,
+     "credit": 1.0,
+     "bucket": "interrogatives.exclamatives",
+     "label": "che for a bare adjective/noun exclamation",
+     "any_phrases": [
+      {
+       "phrase": "Che",
+       "match_at": "word"
+      }
+     ]
+    }
+   ],
+   "explanation": "How lovely! = Che bello! Before a bare adjective or noun with no verb, the exclamation takes che: Che bello!, Che freddo!, Che sorpresa! Come needs a verb after it and quanto expresses quantity, so neither fits a plain 'how lovely'.",
+   "version": 1
+  },
+  {
+   "external_id": "interr_exc_02",
+   "language_code": "it",
+   "topic": "interrogatives",
+   "subtopic": "exclamatives.come",
+   "difficulty": 2,
+   "cefr_level_target": "A2",
+   "type": "mcq",
+   "marks": 1,
+   "info_display": "suppress",
+   "prompt": "Completa: '____ sei gentile!'",
+   "choices": [
+    "Che",
+    "Come",
+    "Quanto"
+   ],
+   "answer_index": 1,
+   "candidate_forms": [
+    "Che",
+    "Come",
+    "Quanto"
+   ],
+   "correct_form": "Come",
+   "markpoints": [
+    {
+     "order_index": 0,
+     "credit": 1.0,
+     "bucket": "interrogatives.exclamatives",
+     "label": "come before a verb in an exclamation",
+     "any_phrases": [
+      {
+       "phrase": "Come",
+       "match_at": "word"
+      }
+     ]
+    }
+   ],
+   "explanation": "How kind you are! = Come sei gentile! When a verb follows (sei), the exclamation takes come: Come sei gentile!, Come piove! Che would stand before a bare adjective (Che gentile!) with no verb, and quanto expresses amount.",
+   "version": 1,
+   "vocab_help": [
+    {
+     "lemma": "gentile",
+     "language": "it",
+     "aspects": {
+      "translation": {
+       "reveal": "kind - gentile",
+       "bucket": "vocabulary.it.gentile.adjective.translation"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "external_id": "interr_exc_03",
+   "language_code": "it",
+   "topic": "interrogatives",
+   "subtopic": "exclamatives.quanto_agree",
+   "difficulty": 3,
+   "cefr_level_target": "B1",
+   "type": "short",
+   "marks": 1,
+   "prompt_supplies_base_form": true,
+   "prompt": "Completa: '____ storie! Non finisci mai di lamentarti.' (quanto)",
+   "markpoints": [
+    {
+     "order_index": 0,
+     "credit": 1.0,
+     "bucket": "interrogatives.exclamatives",
+     "label": "quanto agrees in an exclamation (quante)",
+     "any_phrases": [
+      {
+       "phrase": "quante",
+       "match_at": "word"
+      }
+     ],
+     "must_not_include": [
+      {
+       "phrase": "quanti",
+       "match_at": "word"
+      },
+      {
+       "phrase": "quanto",
+       "match_at": "word"
+      }
+     ]
+    }
+   ],
+   "vocab_help": [
+    {
+     "lemma": "storie",
+     "language": "it",
+     "aspects": {
+      "translation": {
+       "reveal": "story - storia",
+       "bucket": "vocabulary.it.storia.noun.translation"
+      },
+      "gender": {
+       "reveal": "feminine (f)",
+       "bucket": "vocabulary.it.storia.noun.gender"
+      }
+     }
+    }
+   ],
+   "explanation": "What a lot of fuss! = Quante storie! In an exclamation of quantity, quanto agrees with its noun: storie is feminine plural, so quante. Literally 'how many stories', an idiom for making a fuss.",
+   "version": 1
+  },
+  {
+   "external_id": "interr_exc_04",
+   "language_code": "it",
+   "topic": "interrogatives",
+   "subtopic": "exclamatives.quanto_agree",
+   "difficulty": 3,
+   "cefr_level_target": "B1",
+   "type": "short",
+   "marks": 1,
+   "prompt_supplies_base_form": true,
+   "prompt": "Completa: '____ pazienza hai con i bambini!' (quanto)",
+   "markpoints": [
+    {
+     "order_index": 0,
+     "credit": 1.0,
+     "bucket": "interrogatives.exclamatives",
+     "label": "quanto agrees in an exclamation (quanta)",
+     "any_phrases": [
+      {
+       "phrase": "quanta",
+       "match_at": "word"
+      }
+     ],
+     "must_not_include": [
+      {
+       "phrase": "quanto",
+       "match_at": "word"
+      },
+      {
+       "phrase": "quante",
+       "match_at": "word"
+      }
+     ]
+    }
+   ],
+   "vocab_help": [
+    {
+     "lemma": "pazienza",
+     "language": "it",
+     "aspects": {
+      "translation": {
+       "reveal": "patience - pazienza",
+       "bucket": "vocabulary.it.pazienza.noun.translation"
+      },
+      "gender": {
+       "reveal": "feminine (f)",
+       "bucket": "vocabulary.it.pazienza.noun.gender"
+      }
+     }
+    }
+   ],
+   "explanation": "How much patience you have with the children! = Quanta pazienza hai con i bambini! Quanto agrees with the noun of quantity: pazienza is feminine singular, so quanta.",
+   "version": 1
+  },
+  {
+   "external_id": "interr_exc_05",
+   "language_code": "it",
+   "topic": "interrogatives",
+   "subtopic": "exclamatives.quanto_invariable",
+   "difficulty": 3,
+   "cefr_level_target": "B1",
+   "type": "mcq",
+   "marks": 1,
+   "info_display": "suppress",
+   "prompt": "Completa: '____ hai speso per la macchina!'",
+   "choices": [
+    "Che",
+    "Quanto",
+    "Come"
+   ],
+   "answer_index": 1,
+   "candidate_forms": [
+    "Che",
+    "Quanto",
+    "Come"
+   ],
+   "correct_form": "Quanto",
+   "markpoints": [
+    {
+     "order_index": 0,
+     "credit": 1.0,
+     "bucket": "interrogatives.exclamatives",
+     "label": "quanto (invariable) for quantity with a verb",
+     "any_phrases": [
+      {
+       "phrase": "Quanto",
+       "match_at": "word"
+      }
+     ]
+    }
+   ],
+   "explanation": "How much you spent on the car! = Quanto hai speso per la macchina! Quantity with a verb (hai speso) is quanto, invariable here. Come would ask manner (how you spent it) and che sets up a noun/adjective exclamation, neither of which is 'how much'.",
+   "version": 1,
+   "vocab_help": [
+    {
+     "lemma": "macchina",
+     "language": "it",
+     "aspects": {
+      "translation": {
+       "reveal": "car - macchina",
+       "bucket": "vocabulary.it.macchina.noun.translation"
+      },
+      "gender": {
+       "reveal": "feminine (f)",
+       "bucket": "vocabulary.it.macchina.noun.gender"
+      }
+     }
+    }
+   ]
+  }
+ ],
+ "translation_items": [
+  {
+   "external_id": "trans_interr_exc_01",
+   "source_lang": "en",
+   "target_lang": "it",
+   "source_text": "What a beautiful day!",
+   "reference_translations": [
+    {
+     "text": "Che bella giornata!",
+     "register": "neutral",
+     "notes": "che + noun; the adjective bella agrees with giornata (f sg)."
+    },
+    {
+     "text": "Che giornata bella!",
+     "register": "neutral",
+     "notes": "Adjective postposed, also fine."
+    },
+    {
+     "text": "Come bella giornata!",
+     "register": "neutral",
+     "polarity": "negative",
+     "notes": "WRONG: come cannot introduce a bare noun; a verb would be needed."
+    }
+   ],
+   "topic": "interrogatives",
+   "register": "neutral",
+   "difficulty": 2,
+   "cefr_level_target": "A2",
+   "required_buckets": [
+    "interrogatives.exclamatives"
+   ],
+   "optional_buckets": [
+    "adjective_agreement.o_class.feminine_singular"
+   ],
+   "vocab_help": [
+    {
+     "lemma": "day",
+     "language": "it",
+     "aspects": {
+      "translation": {
+       "reveal": "day - giornata",
+       "bucket": "vocabulary.it.giornata.noun.translation"
+      },
+      "gender": {
+       "reveal": "feminine (f)",
+       "bucket": "vocabulary.it.giornata.noun.gender"
+      }
+     }
+    }
+   ],
+   "explanation": "What a beautiful day! = Che bella giornata! A bare-noun exclamation takes che, and the adjective bella agrees with the feminine singular giornata.",
+   "version": 1
+  },
+  {
+   "external_id": "trans_interr_exc_02",
+   "source_lang": "en",
+   "target_lang": "it",
+   "source_text": "How well you sing!",
+   "reference_translations": [
+    {
+     "text": "Come canti bene!",
+     "register": "neutral",
+     "notes": "come + verb (canti); manner exclamation."
+    },
+    {
+     "text": "Come sei bravo a cantare!",
+     "register": "neutral",
+     "notes": "Alternative with essere + adjective."
+    },
+    {
+     "text": "Che canti bene!",
+     "register": "neutral",
+     "polarity": "negative",
+     "notes": "WRONG: che does not introduce a verb clause here; use come."
+    }
+   ],
+   "topic": "interrogatives",
+   "register": "neutral",
+   "difficulty": 3,
+   "cefr_level_target": "B1",
+   "required_buckets": [
+    "interrogatives.exclamatives"
+   ],
+   "optional_buckets": [],
+   "vocab_help": [
+    {
+     "lemma": "sing",
+     "language": "it",
+     "aspects": {
+      "translation": {
+       "reveal": "to sing - cantare",
+       "bucket": "vocabulary.it.cantare.verb.translation"
+      }
+     }
+    }
+   ],
+   "explanation": "How well you sing! = Come canti bene! With a verb (canti), the manner exclamation takes come, not che.",
+   "version": 1
+  }
+ ]
+}
