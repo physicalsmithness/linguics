@@ -1905,3 +1905,25 @@ is not Linguics-specific.
 
 Minor, same family: four seats replying in parallel all numbered themselves `## v3`. Date plus seat
 name disambiguate, so this is a readability nuisance, not a defect. No rule proposed.
+
+## Executed 2026-08-02: PP retired, DOP/IOP expanded; `isc` exonerated
+**PP: 82 sites rewritten, 0 remaining.** Smith ruled retirement rather than picking one expansion. The
+split turned out mechanically decidable on two rules: `PP agreement` -> "participle agreement",
+everything else -> "passato prossimo". The pronoun topic was where it mattered, because both senses
+lived there side by side - "gliela with PP agreement to preceding f.sg DOP" and "Locative ci in PP,
+pre-aux" were the same three letters meaning different things one line apart.
+
+**DOP/IOP: 152 sites expanded, 0 remaining.** "direct object pronoun" / "indirect object pronoun",
+with the parenthetical introductions ("Direct object pronouns (DOPs)") deleted rather than expanded -
+once nothing uses the abbreviation there is nothing to introduce. 46 labels sentence-cased afterwards,
+since the abbreviation had been carrying the capital.
+
+**`isc` is NOT jargon and is being left alone. My census was wrong.** All 27 sites write it as the
+morpheme with its hyphens - "1sg -isc-a (capisca)", "1pl plain -iamo, no -isc-". That is the infix
+displayed as an infix, which is exactly what the item is teaching, not shorthand for it. The regex
+`\bisc\b` matched inside `-isc-` and I nearly "fixed" 27 correct labels. Recording the near-miss
+because the same false positive will recur on any morpheme-shaped token.
+
+Remaining from PROPOSAL_label_jargon.md: the 673 person and 159 gender/number abbreviations, both now
+REDUNDANT against the paradigm slot and the leaf respectively. Held on one question for Housing - does
+a markpoint rendered on a flat result panel, outside a paradigm band, still need the abbreviation?
