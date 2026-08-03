@@ -3532,6 +3532,56 @@
         "source": "pass-2 fill merged 2026-07-27 (registry ratified; QoderWork read)",
         "status": "merged"
       }
+    ],
+    "interrogatives": [
+      {
+        "bucket": "interrogatives.chi",
+        "misconception_ids": [
+          "paradigm_confusion.preposition_choice",
+          "transfer.calque_argument_structure"
+        ],
+        "common_miss": "che/quali for chi (wrong question word); con/a/per chi stranded, di chi omitted (English question-preposition calque)",
+        "note": "'che'/'quali' for 'chi' also -> PROPOSED paradigm_confusion.interrogative_choice (suggestions file, thread v20). Prep stranding/omission = calque + preposition_choice.",
+        "source": "interrogatives harvest 2026-07-27 (Claude), ratified ids only"
+      },
+      {
+        "bucket": "interrogatives.che_cosa",
+        "misconception_ids": [
+          "paradigm_confusion.preposition_choice",
+          "transfer.calque_argument_structure"
+        ],
+        "common_miss": "chi for che cosa (who/what); che ora for a che ora (missing a)",
+        "note": "'chi' for 'che cosa' -> PROPOSED interrogative_choice; 'a che ora' omission = preposition_choice.",
+        "source": "interrogatives harvest 2026-07-27 (Claude), ratified ids only"
+      },
+      {
+        "bucket": "interrogatives.adverbs",
+        "misconception_ids": [
+          "paradigm_confusion.preposition_choice",
+          "transfer.calque_argument_structure"
+        ],
+        "common_miss": "cosa/che for come (what/how); dove for di dove, quando for da quando (missing preposition)",
+        "note": "'cosa'/'che' for 'come' -> PROPOSED interrogative_choice; di dove / da quando omissions = preposition_choice / calque (where from, since when).",
+        "source": "interrogatives harvest 2026-07-27 (Claude), ratified ids only"
+      },
+      {
+        "bucket": "interrogatives.quale",
+        "misconception_ids": [
+          "agreement.adjective_noun"
+        ],
+        "common_miss": "quale/quali number agreement; 'quale è' for 'qual è' (failure to truncate before è)",
+        "note": "agreement = interrogative adjective number. The qual-e truncation has no clean id (norm() folds it anyway); flagged uncertain, not forced.",
+        "source": "interrogatives harvest 2026-07-27 (Claude), ratified ids only"
+      },
+      {
+        "bucket": "interrogatives.quanto",
+        "misconception_ids": [
+          "agreement.adjective_noun"
+        ],
+        "common_miss": "quanto/quanta/quanti/quante: gender+number agreement of the interrogative quantifier",
+        "note": "",
+        "source": "interrogatives harvest 2026-07-27 (Claude), ratified ids only"
+      }
     ]
   },
   "$direction_rule": "BINDING (Architecture_ImperativoAuthor_misconception_tagging_schema.md v5, Rev 21): TAG ON THE ITEM'S DIRECTION, NOT THE BUCKET'S ID. This file is BUCKET-keyed, and the registry is one-directional by construction (the pass-1 harvest read each bucket's common_miss and minted an id for the error THAT names). Contrast topics are two-directional: one leaf hosts both directions. So for any entry carrying a `direction` block, the misconception_ids field names the direction the BUCKET's common_miss happens to describe - it is NOT automatically the right id for a given item. Read the must_not_include entry you are tagging, ask which way the error runs, and pick the id for THAT direction. If the id for your direction does not exist, ask Architecture for the mirror rather than forcing the fit. Entries with no `direction` block are one-directional and safe to tag straight from misconception_ids.",

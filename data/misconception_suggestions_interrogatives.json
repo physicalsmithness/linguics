@@ -1,0 +1,38 @@
+{
+  "$note": "MisconceptionAnalyst, 2026-07-27: interrogatives is a topic that missed both the original harvest and QoderWork's pass-2 fill (found via coverage QA: 6 cited buckets, 0 covered). Its agreement + preposition misses tag ratified ids (in the live tag_lists now); it needs ONE new specific for the 'wrong question word' error, which has no home. PENDING Architecture ratification.",
+  "generated": "2026-07-27",
+  "topic": "interrogatives",
+  "proposed_new_specifics": [
+    {
+      "proposed_id": "paradigm_confusion.interrogative_choice",
+      "family": "paradigm_confusion",
+      "proposed_label": "Wrong interrogative chosen",
+      "proposed_description": "Selecting the wrong member of the interrogative paradigm: che for chi, chi for che cosa, cosa/che for come, quali for chi. A real word, wrong question. Sibling of relative_choice and connective_choice; same 'wrong member of a closed set' shape.",
+      "examples": [
+        "che for chi (who)",
+        "chi for che cosa (what)",
+        "cosa/che for come (how)",
+        "quali for chi"
+      ],
+      "harvested_from": [
+        "interrogatives.chi",
+        "interrogatives.che_cosa",
+        "interrogatives.adverbs",
+        "interrogatives.discrimination"
+      ],
+      "rationale": "paradigm_confusion already hosts relative_choice + connective_choice; interrogative_choice completes the 'wrong function word from a closed set' trio. ~5 live guards."
+    }
+  ],
+  "reused_ratified_ids": {
+    "agreement.adjective_noun": [
+      "interrogatives.quale (quale/quali)",
+      "interrogatives.quanto (quanto/-a/-i/-e)"
+    ],
+    "paradigm_confusion.preposition_choice + transfer.calque_argument_structure": [
+      "the English question-preposition calques: con chi/di dove/da quando/a che ora/di chi"
+    ]
+  },
+  "flagged_uncertain": [
+    "interrogatives.quale 'quale è'->'qual è' truncation before è: no clean orthography id; norm() folds it; left untagged, not forced."
+  ]
+}
