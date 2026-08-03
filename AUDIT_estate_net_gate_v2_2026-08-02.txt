@@ -1,16 +1,16 @@
 === ESTATE-NET GATE REPORT v2 ===
 Architecture 2026-08-02 | punctuation-bounded matcher | Tier-B exclusion removed
-Files scanned: 33
-Items scanned: 3039
-Exempt, answer shown BY DESIGN (tagged): 136
+Files scanned: 34
+Items scanned: 3053
+Exempt, answer shown BY DESIGN (tagged): 139
 
-v1 (space-bounded, old exclusion) would flag : 25
-TIER A  answer-leak, item has other markpoints: 33
+v1 (space-bounded, old exclusion) would flag : 18
+TIER A  answer-leak, item has other markpoints: 26
 TIER B  NON-DIAGNOSTIC single-markpoint items : 76
 TIER S  cue matches a PARTIAL-credit tolerance : 0
 TIER C  advisory substring-only (unbounded)   : 127
 
-=== TIER A — answer visible in prompt, item has other markpoints (33) ===
+=== TIER A — answer visible in prompt, item has other markpoints (26) ===
 --- adjective_agreement (6) ---
   adj_buono_02 [short] phrase: "buono" | mp: buono before m.sg s+consonant or z | mps: 1
     prompt: Complete: 'È stato un ____ studente.' (buono)
@@ -37,25 +37,11 @@ TIER C  advisory substring-only (unbounded)   : 127
     prompt: È stato un anno durissimo, ma alla fine ce l'ho ____! (farcela)
   pv_mech_sela_04 [short] phrase: "ce l' ho" | mp: frozen cluster ce l'ho | mps: 2
     prompt: È stato un anno durissimo, ma alla fine ce l'ho ____! (farcela)
---- pronoun (9) ---
-  op_spec_fcap_01 [short] phrase: "La" | mp: Formal DOP takes capital La | mps: 3
-    prompt: Fill each blank with 'la' or 'La' or 'sua' or 'Sua' as appropriate: 'Gentile signora, ____ ringrazio per ____ ____ gentilezza.'
-  op_spec_fcap_01 [short] phrase: "Sua" | mp: Formal possessive takes capital Sua | mps: 3
-    prompt: Fill each blank with 'la' or 'La' or 'sua' or 'Sua' as appropriate: 'Gentile signora, ____ ringrazio per ____ ____ gentilezza.'
+--- pronoun (2) ---
   op_dop_vi_you_03 [short] phrase: "vi ho" | mp: DOP 2pl vi, pre-aux | mps: 2
     prompt: Rewrite in the negative: 'Ragazze, vi ho viste ieri al parco.' → '____.' (informal: I didn't see you all, addressing women)
   op_dop_vi_you_03 [short] phrase: "viste" | mp: Participle ending: agreement with vi is optional (viste/visto both credited) | mps: 2
     prompt: Rewrite in the negative: 'Ragazze, vi ho viste ieri al parco.' → '____.' (informal: I didn't see you all, addressing women)
-  op_spec_fcap_03 [short] phrase: "La informiamo" | mp: Formal DOP takes capital La | mps: 3
-    prompt: Rewrite the whole sentence, capitalising the formal-Lei pronouns and possessive where appropriate (business email to a doctor): 'Buongiorno dottore, la informiamo che la sua richiesta e' stata accettata.'
-  op_spec_fcap_03 [short] phrase: "che la" | mp: Article la stays lowercase (not a formal pronoun) | mps: 3
-    prompt: Rewrite the whole sentence, capitalising the formal-Lei pronouns and possessive where appropriate (business email to a doctor): 'Buongiorno dottore, la informiamo che la sua richiesta e' stata accettata.'
-  op_spec_fcap_03 [short] phrase: "Sua richiesta" | mp: Formal possessive takes capital Sua | mps: 3
-    prompt: Rewrite the whole sentence, capitalising the formal-Lei pronouns and possessive where appropriate (business email to a doctor): 'Buongiorno dottore, la informiamo che la sua richiesta e' stata accettata.'
-  op_spec_fcap_04 [short] phrase: "Sua" | mp: Capitalise Sua in closing formula | mps: 2
-    prompt: Capitalise in this CV cover letter: 'in attesa di una sua risposta, le porgo i miei cordiali saluti.' → 'in attesa di una ____ risposta, ____ porgo i miei cordiali saluti.'
-  op_spec_fcap_04 [short] phrase: "Le" | mp: Capitalise Le (IOP) in closing formula | mps: 2
-    prompt: Capitalise in this CV cover letter: 'in attesa di una sua risposta, le porgo i miei cordiali saluti.' → 'in attesa di una ____ risposta, ____ porgo i miei cordiali saluti.'
 --- reported_speech (2) ---
   rep_persist_01 [short] phrase: "è" | mp: Present kept or backshifted (both valid) | mps: 1
     prompt: Trasforma in discorso indiretto: Marco ha detto: 'Sono stanco.' (La stanchezza non gli è ancora passata.) → Marco ha detto che ____ stanco.
@@ -180,11 +166,11 @@ v1 excluded this entire class as 'harmless'. It is the opposite of harmless.
     prompt: Complete: 'Guarda ____: ti piace?' (questo)
   dem_pron_questo_neuter_01 [short] phrase: "questo" | mp: questo as a neuter 'this thing' | mps: 1
     prompt: Complete: 'Chi ha detto ____?' (questo)
---- indefinite (2) ---
-  ind_nn_06 [short] phrase: "nessuno" | mp: Nessuno, niente, nulla | mps: 1
-    prompt: Complete: '____ studente ha superato la prova.' [no student] (nessuno)
-  ind_oc_06 [short] phrase: "ciascuno" | mp: Ognuno and ciascuno | mps: 1
-    prompt: Complete, in formal written register: 'A ____ studente è stato assegnato un tutor.' [each] (ciascuno)
+--- interrogatives (2) ---
+  interr_quale_03 [short] phrase: "quale" | mp: quale stays singular before a singular noun | mps: 1
+    prompt: Completa: '____ colore preferisci?' (quale)
+  interr_quale_04 [short] phrase: "quale" | mp: quale as a standalone pronoun (which one) | mps: 1
+    prompt: Completa: 'Vorrei un gelato. ____ mi consigli?' (quale)
 --- noun (7) ---
   noun_plur_inv_01 [short] phrase: "città" | mp: accented final -> invariable | mps: 1
     prompt: Metti al plurale: 'Una città, due ____.'

@@ -9,6 +9,12 @@
         "text": "Questa è la mia casa.",
         "register": "neutral",
         "notes": "Standard. Both article and possessive are feminine singular."
+      },
+      {
+        "text": "Questa è mia casa.",
+        "register": "neutral",
+        "notes": "WRONG: casa is not a family noun, so the article is required: la mia casa.",
+        "polarity": "negative"
       }
     ],
     "topic": "possessive",
@@ -26,23 +32,17 @@
         "aspects": {
           "translation": {
             "reveal": "house - casa",
-            "bucket": "vocabulary.it.casa.noun.translation"
+            "bucket": "vocabulary.it.casa.translation"
           },
           "gender": {
             "reveal": "feminine (f)",
-            "bucket": "vocabulary.it.casa.noun.gender"
+            "bucket": "vocabulary.it.casa.gender"
           }
         }
       }
     ],
     "explanation": "Casa is feminine singular, so the possessive adjective and its definite article agree: la mia casa. Casa is not a family noun, so the article stays.",
-    "version": 1,
-    "common_errors": [
-      {
-        "text": "Questa è mia casa.",
-        "note": "WRONG: casa is not a family noun, so the article is required: la mia casa."
-      }
-    ]
+    "version": 1
   },
   {
     "external_id": "trans_poss_en_it_forms_02",
@@ -54,6 +54,12 @@
         "text": "Marco ama la sua macchina.",
         "register": "neutral",
         "notes": "Standard. sua agrees with macchina (f), not with Marco."
+      },
+      {
+        "text": "Marco ama il suo macchina.",
+        "register": "neutral",
+        "notes": "WRONG: suo must agree with macchina (feminine), giving la sua, not il suo.",
+        "polarity": "negative"
       }
     ],
     "topic": "possessive",
@@ -73,23 +79,17 @@
         "aspects": {
           "translation": {
             "reveal": "car - macchina",
-            "bucket": "vocabulary.it.macchina.noun.translation"
+            "bucket": "vocabulary.it.macchina.translation"
           },
           "gender": {
             "reveal": "feminine (f)",
-            "bucket": "vocabulary.it.macchina.noun.gender"
+            "bucket": "vocabulary.it.macchina.gender"
           }
         }
       }
     ],
     "explanation": "Suo agrees with the thing owned, not the owner: macchina is feminine, so la sua macchina, even though Marco is male.",
-    "version": 1,
-    "common_errors": [
-      {
-        "text": "Marco ama il suo macchina.",
-        "note": "WRONG: suo must agree with macchina (feminine), giving la sua, not il suo."
-      }
-    ]
+    "version": 1
   },
   {
     "external_id": "trans_poss_it_en_forms_03",
@@ -123,11 +123,11 @@
         "aspects": {
           "translation": {
             "reveal": "amico - friend (male)",
-            "bucket": "vocabulary.it.amico.noun.translation"
+            "bucket": "vocabulary.it.amico.translation"
           },
           "gender": {
             "reveal": "masculine (m)",
-            "bucket": "vocabulary.it.amico.noun.gender"
+            "bucket": "vocabulary.it.amico.gender"
           }
         }
       }
@@ -162,11 +162,11 @@
         "aspects": {
           "translation": {
             "reveal": "house - casa",
-            "bucket": "vocabulary.it.casa.noun.translation"
+            "bucket": "vocabulary.it.casa.translation"
           },
           "gender": {
             "reveal": "feminine (f)",
-            "bucket": "vocabulary.it.casa.noun.gender"
+            "bucket": "vocabulary.it.casa.gender"
           }
         }
       }
@@ -206,11 +206,11 @@
         "aspects": {
           "translation": {
             "reveal": "key - chiave",
-            "bucket": "vocabulary.it.chiave.noun.translation"
+            "bucket": "vocabulary.it.chiave.translation"
           },
           "gender": {
             "reveal": "feminine (f)",
-            "bucket": "vocabulary.it.chiave.noun.gender"
+            "bucket": "vocabulary.it.chiave.gender"
           }
         }
       }
@@ -252,11 +252,11 @@
         "aspects": {
           "translation": {
             "reveal": "cane - dog",
-            "bucket": "vocabulary.it.cane.noun.translation"
+            "bucket": "vocabulary.it.cane.translation"
           },
           "gender": {
             "reveal": "masculine (m)",
-            "bucket": "vocabulary.it.cane.noun.gender"
+            "bucket": "vocabulary.it.cane.gender"
           }
         }
       },
@@ -266,7 +266,7 @@
         "aspects": {
           "translation": {
             "reveal": "cercare - to look for",
-            "bucket": "vocabulary.it.cercare.verb.translation"
+            "bucket": "vocabulary.it.cercare.translation"
           }
         }
       }
@@ -306,11 +306,11 @@
         "aspects": {
           "translation": {
             "reveal": "friend (male) - amico",
-            "bucket": "vocabulary.it.amico.noun.translation"
+            "bucket": "vocabulary.it.amico.translation"
           },
           "gender": {
             "reveal": "masculine (m)",
-            "bucket": "vocabulary.it.amico.noun.gender"
+            "bucket": "vocabulary.it.amico.gender"
           }
         }
       }
@@ -328,6 +328,12 @@
         "text": "Mia madre lavora a Roma.",
         "register": "neutral",
         "notes": "Standard: singular family noun, no article."
+      },
+      {
+        "text": "La mia madre lavora a Roma.",
+        "register": "neutral",
+        "notes": "WRONG: a singular, unmodified family noun drops the article.",
+        "polarity": "negative"
       }
     ],
     "topic": "possessive",
@@ -345,23 +351,17 @@
         "aspects": {
           "translation": {
             "reveal": "mother - madre",
-            "bucket": "vocabulary.it.madre.noun.translation"
+            "bucket": "vocabulary.it.madre.translation"
           },
           "gender": {
             "reveal": "feminine (f)",
-            "bucket": "vocabulary.it.madre.noun.gender"
+            "bucket": "vocabulary.it.madre.gender"
           }
         }
       }
     ],
     "explanation": "Madre is a singular family noun, so no article: mia madre. La mia madre is the classic error.",
-    "version": 1,
-    "common_errors": [
-      {
-        "text": "La mia madre lavora a Roma.",
-        "note": "WRONG: a singular, unmodified family noun drops the article."
-      }
-    ]
+    "version": 1
   },
   {
     "external_id": "trans_poss_en_it_fam_02",
@@ -378,6 +378,12 @@
         "text": "Mio fratello è medico.",
         "register": "neutral",
         "notes": "Also fine: essere + profession without article."
+      },
+      {
+        "text": "Il mio fratello fa il medico.",
+        "register": "neutral",
+        "notes": "WRONG: the possessive's article drops before the family noun fratello.",
+        "polarity": "negative"
       }
     ],
     "topic": "possessive",
@@ -395,23 +401,17 @@
         "aspects": {
           "translation": {
             "reveal": "brother - fratello",
-            "bucket": "vocabulary.it.fratello.noun.translation"
+            "bucket": "vocabulary.it.fratello.translation"
           },
           "gender": {
             "reveal": "masculine (m)",
-            "bucket": "vocabulary.it.fratello.noun.gender"
+            "bucket": "vocabulary.it.fratello.gender"
           }
         }
       }
     ],
     "explanation": "Mio fratello drops the article (singular family noun). 'Fa il medico' states a profession; that article belongs to medico, not to the possessive.",
-    "version": 1,
-    "common_errors": [
-      {
-        "text": "Il mio fratello fa il medico.",
-        "note": "WRONG: the possessive's article drops before the family noun fratello."
-      }
-    ]
+    "version": 1
   },
   {
     "external_id": "trans_poss_en_it_fam_03",
@@ -423,6 +423,12 @@
         "text": "I miei fratelli vivono all'estero.",
         "register": "neutral",
         "notes": "Standard: plural restores the article."
+      },
+      {
+        "text": "Miei fratelli vivono all'estero.",
+        "register": "neutral",
+        "notes": "WRONG: the family exception is singular only; the plural takes the article.",
+        "polarity": "negative"
       }
     ],
     "topic": "possessive",
@@ -440,23 +446,17 @@
         "aspects": {
           "translation": {
             "reveal": "brother - fratello",
-            "bucket": "vocabulary.it.fratello.noun.translation"
+            "bucket": "vocabulary.it.fratello.translation"
           },
           "gender": {
             "reveal": "masculine (m)",
-            "bucket": "vocabulary.it.fratello.noun.gender"
+            "bucket": "vocabulary.it.fratello.gender"
           }
         }
       }
     ],
     "explanation": "In the plural the exception lapses: i miei fratelli, article restored.",
-    "version": 1,
-    "common_errors": [
-      {
-        "text": "Miei fratelli vivono all'estero.",
-        "note": "WRONG: the family exception is singular only; the plural takes the article."
-      }
-    ]
+    "version": 1
   },
   {
     "external_id": "trans_poss_en_it_fam_04",
@@ -468,6 +468,12 @@
         "text": "Sua sorella parla francese.",
         "register": "neutral",
         "notes": "Standard: singular family noun, no article; sua = his."
+      },
+      {
+        "text": "La sua sorella parla francese.",
+        "register": "neutral",
+        "notes": "WRONG: sorella is a singular family noun and drops the article.",
+        "polarity": "negative"
       }
     ],
     "topic": "possessive",
@@ -487,23 +493,17 @@
         "aspects": {
           "translation": {
             "reveal": "sister - sorella",
-            "bucket": "vocabulary.it.sorella.noun.translation"
+            "bucket": "vocabulary.it.sorella.translation"
           },
           "gender": {
             "reveal": "feminine (f)",
-            "bucket": "vocabulary.it.sorella.noun.gender"
+            "bucket": "vocabulary.it.sorella.gender"
           }
         }
       }
     ],
     "explanation": "Sorella is a singular family noun, so sua sorella with no article. Sua is 'his' here, agreeing with sorella (feminine).",
-    "version": 1,
-    "common_errors": [
-      {
-        "text": "La sua sorella parla francese.",
-        "note": "WRONG: sorella is a singular family noun and drops the article."
-      }
-    ]
+    "version": 1
   },
   {
     "external_id": "trans_poss_en_it_fam_05",
@@ -515,6 +515,12 @@
         "text": "Il loro padre fa l'ingegnere.",
         "register": "neutral",
         "notes": "Standard; loro keeps the article."
+      },
+      {
+        "text": "Loro padre fa l'ingegnere.",
+        "register": "neutral",
+        "notes": "WRONG: with loro the article never drops, even for a singular relative.",
+        "polarity": "negative"
       }
     ],
     "topic": "possessive",
@@ -532,23 +538,17 @@
         "aspects": {
           "translation": {
             "reveal": "father - padre",
-            "bucket": "vocabulary.it.padre.noun.translation"
+            "bucket": "vocabulary.it.padre.translation"
           },
           "gender": {
             "reveal": "masculine (m)",
-            "bucket": "vocabulary.it.padre.noun.gender"
+            "bucket": "vocabulary.it.padre.gender"
           }
         }
       }
     ],
     "explanation": "With loro the article never drops, even for a singular family noun: il loro padre.",
-    "version": 1,
-    "common_errors": [
-      {
-        "text": "Loro padre fa l'ingegnere.",
-        "note": "WRONG: with loro the article never drops, even for a singular relative."
-      }
-    ]
+    "version": 1
   },
   {
     "external_id": "trans_poss_en_it_fam_06",
@@ -560,6 +560,12 @@
         "text": "La mia sorellina si chiama Sofia.",
         "register": "neutral",
         "notes": "Standard: the diminutive is altered, so the article returns."
+      },
+      {
+        "text": "Mia sorellina si chiama Sofia.",
+        "register": "neutral",
+        "notes": "WRONG: the diminutive sorellina counts as altered and takes the article.",
+        "polarity": "negative"
       }
     ],
     "topic": "possessive",
@@ -577,23 +583,17 @@
         "aspects": {
           "translation": {
             "reveal": "little sister - sorellina",
-            "bucket": "vocabulary.it.sorellina.noun.translation"
+            "bucket": "vocabulary.it.sorellina.translation"
           },
           "gender": {
             "reveal": "feminine (f)",
-            "bucket": "vocabulary.it.sorellina.noun.gender"
+            "bucket": "vocabulary.it.sorellina.gender"
           }
         }
       }
     ],
     "explanation": "The diminutive sorellina counts as altered, so the article returns: la mia sorellina, unlike bare mia sorella.",
-    "version": 1,
-    "common_errors": [
-      {
-        "text": "Mia sorellina si chiama Sofia.",
-        "note": "WRONG: the diminutive sorellina counts as altered and takes the article."
-      }
-    ]
+    "version": 1
   },
   {
     "external_id": "trans_poss_it_en_fam_07",
@@ -622,11 +622,11 @@
         "aspects": {
           "translation": {
             "reveal": "zia - aunt",
-            "bucket": "vocabulary.it.zia.noun.translation"
+            "bucket": "vocabulary.it.zia.translation"
           },
           "gender": {
             "reveal": "feminine (f)",
-            "bucket": "vocabulary.it.zia.noun.gender"
+            "bucket": "vocabulary.it.zia.gender"
           }
         }
       },
@@ -636,7 +636,7 @@
         "aspects": {
           "translation": {
             "reveal": "abitare - to live",
-            "bucket": "vocabulary.it.abitare.verb.translation"
+            "bucket": "vocabulary.it.abitare.translation"
           }
         }
       }
@@ -654,6 +654,12 @@
         "text": "La mia macchina è vecchia, la tua è nuova.",
         "register": "neutral",
         "notes": "Standard; la tua stands alone with its article."
+      },
+      {
+        "text": "La mia macchina è vecchia, tua è nuova.",
+        "register": "neutral",
+        "notes": "WRONG: the standalone possessive keeps the article: la tua.",
+        "polarity": "negative"
       }
     ],
     "topic": "possessive",
@@ -673,23 +679,17 @@
         "aspects": {
           "translation": {
             "reveal": "car - macchina",
-            "bucket": "vocabulary.it.macchina.noun.translation"
+            "bucket": "vocabulary.it.macchina.translation"
           },
           "gender": {
             "reveal": "feminine (f)",
-            "bucket": "vocabulary.it.macchina.noun.gender"
+            "bucket": "vocabulary.it.macchina.gender"
           }
         }
       }
     ],
     "explanation": "Standalone la tua keeps the article and agrees with the understood macchina (feminine singular).",
-    "version": 1,
-    "common_errors": [
-      {
-        "text": "La mia macchina è vecchia, tua è nuova.",
-        "note": "WRONG: the standalone possessive keeps the article: la tua."
-      }
-    ]
+    "version": 1
   },
   {
     "external_id": "trans_poss_en_it_pron_02",
@@ -720,11 +720,11 @@
         "aspects": {
           "translation": {
             "reveal": "book - libro",
-            "bucket": "vocabulary.it.libro.noun.translation"
+            "bucket": "vocabulary.it.libro.translation"
           },
           "gender": {
             "reveal": "masculine (m)",
-            "bucket": "vocabulary.it.libro.noun.gender"
+            "bucket": "vocabulary.it.libro.gender"
           }
         }
       }
@@ -759,7 +759,7 @@
         "aspects": {
           "translation": {
             "reveal": "arrivare - to arrive",
-            "bucket": "vocabulary.it.arrivare.verb.translation"
+            "bucket": "vocabulary.it.arrivare.translation"
           }
         }
       }
@@ -796,11 +796,11 @@
         "aspects": {
           "translation": {
             "reveal": "seat - posto",
-            "bucket": "vocabulary.it.posto.noun.translation"
+            "bucket": "vocabulary.it.posto.translation"
           },
           "gender": {
             "reveal": "masculine (m)",
-            "bucket": "vocabulary.it.posto.noun.gender"
+            "bucket": "vocabulary.it.posto.gender"
           }
         }
       }
@@ -837,11 +837,11 @@
         "aspects": {
           "translation": {
             "reveal": "madre - mother",
-            "bucket": "vocabulary.it.madre.noun.translation"
+            "bucket": "vocabulary.it.madre.translation"
           },
           "gender": {
             "reveal": "feminine (f)",
-            "bucket": "vocabulary.it.madre.noun.gender"
+            "bucket": "vocabulary.it.madre.gender"
           }
         }
       },
@@ -851,7 +851,7 @@
         "aspects": {
           "translation": {
             "reveal": "parlare - to speak",
-            "bucket": "vocabulary.it.parlare.verb.translation"
+            "bucket": "vocabulary.it.parlare.translation"
           }
         }
       }
@@ -888,11 +888,11 @@
         "aspects": {
           "translation": {
             "reveal": "fratello - brother",
-            "bucket": "vocabulary.it.fratello.noun.translation"
+            "bucket": "vocabulary.it.fratello.translation"
           },
           "gender": {
             "reveal": "masculine (m)",
-            "bucket": "vocabulary.it.fratello.noun.gender"
+            "bucket": "vocabulary.it.fratello.gender"
           }
         }
       },
@@ -902,11 +902,11 @@
         "aspects": {
           "translation": {
             "reveal": "festa - party",
-            "bucket": "vocabulary.it.festa.noun.translation"
+            "bucket": "vocabulary.it.festa.translation"
           },
           "gender": {
             "reveal": "feminine (f)",
-            "bucket": "vocabulary.it.festa.noun.gender"
+            "bucket": "vocabulary.it.festa.gender"
           }
         }
       }
@@ -946,11 +946,11 @@
         "aspects": {
           "translation": {
             "reveal": "direttore - director",
-            "bucket": "vocabulary.it.direttore.noun.translation"
+            "bucket": "vocabulary.it.direttore.translation"
           },
           "gender": {
             "reveal": "masculine (m)",
-            "bucket": "vocabulary.it.direttore.noun.gender"
+            "bucket": "vocabulary.it.direttore.gender"
           }
         }
       },
@@ -960,11 +960,11 @@
         "aspects": {
           "translation": {
             "reveal": "chiave - key",
-            "bucket": "vocabulary.it.chiave.noun.translation"
+            "bucket": "vocabulary.it.chiave.translation"
           },
           "gender": {
             "reveal": "feminine (f)",
-            "bucket": "vocabulary.it.chiave.noun.gender"
+            "bucket": "vocabulary.it.chiave.gender"
           }
         }
       }
@@ -999,11 +999,11 @@
         "aspects": {
           "translation": {
             "reveal": "gatto - cat",
-            "bucket": "vocabulary.it.gatto.noun.translation"
+            "bucket": "vocabulary.it.gatto.translation"
           },
           "gender": {
             "reveal": "masculine (m)",
-            "bucket": "vocabulary.it.gatto.noun.gender"
+            "bucket": "vocabulary.it.gatto.gender"
           }
         }
       },
@@ -1013,7 +1013,7 @@
         "aspects": {
           "translation": {
             "reveal": "adorare - to adore",
-            "bucket": "vocabulary.it.adorare.verb.translation"
+            "bucket": "vocabulary.it.adorare.translation"
           }
         }
       }
@@ -1036,6 +1036,12 @@
         "text": "Lei cerca suo marito.",
         "register": "neutral",
         "notes": "Subject pronoun kept for emphasis."
+      },
+      {
+        "text": "Cerca il suo marito.",
+        "register": "neutral",
+        "notes": "WRONG: marito is a singular family noun, so no article.",
+        "polarity": "negative"
       }
     ],
     "topic": "possessive",
@@ -1055,23 +1061,17 @@
         "aspects": {
           "translation": {
             "reveal": "husband - marito",
-            "bucket": "vocabulary.it.marito.noun.translation"
+            "bucket": "vocabulary.it.marito.translation"
           },
           "gender": {
             "reveal": "masculine (m)",
-            "bucket": "vocabulary.it.marito.noun.gender"
+            "bucket": "vocabulary.it.marito.gender"
           }
         }
       }
     ],
     "explanation": "Her -> suo, agreeing with marito (masculine). Marito is a singular family noun, so suo marito, no article.",
-    "version": 1,
-    "common_errors": [
-      {
-        "text": "Cerca il suo marito.",
-        "note": "WRONG: marito is a singular family noun, so no article."
-      }
-    ]
+    "version": 1
   },
   {
     "external_id": "trans_poss_en_it_disc_suo_06",
@@ -1088,6 +1088,12 @@
         "text": "Lui ama le sue sorelle.",
         "register": "neutral",
         "notes": "Subject pronoun kept."
+      },
+      {
+        "text": "Ama sue sorelle.",
+        "register": "neutral",
+        "notes": "WRONG: the plural family noun restores the article: le sue sorelle.",
+        "polarity": "negative"
       }
     ],
     "topic": "possessive",
@@ -1107,23 +1113,17 @@
         "aspects": {
           "translation": {
             "reveal": "sister - sorella",
-            "bucket": "vocabulary.it.sorella.noun.translation"
+            "bucket": "vocabulary.it.sorella.translation"
           },
           "gender": {
             "reveal": "feminine (f)",
-            "bucket": "vocabulary.it.sorella.noun.gender"
+            "bucket": "vocabulary.it.sorella.gender"
           }
         }
       }
     ],
     "explanation": "His -> sue, agreeing with sorelle (feminine plural). Plural restores the article: le sue sorelle.",
-    "version": 1,
-    "common_errors": [
-      {
-        "text": "Ama sue sorelle.",
-        "note": "WRONG: the plural family noun restores the article: le sue sorelle."
-      }
-    ]
+    "version": 1
   },
   {
     "external_id": "trans_poss_it_en_disc_suo_07",
@@ -1152,11 +1152,11 @@
         "aspects": {
           "translation": {
             "reveal": "posto - seat, place",
-            "bucket": "vocabulary.it.posto.noun.translation"
+            "bucket": "vocabulary.it.posto.translation"
           },
           "gender": {
             "reveal": "masculine (m)",
-            "bucket": "vocabulary.it.posto.noun.gender"
+            "bucket": "vocabulary.it.posto.gender"
           }
         }
       }
@@ -1193,11 +1193,11 @@
         "aspects": {
           "translation": {
             "reveal": "moglie - wife",
-            "bucket": "vocabulary.it.moglie.noun.translation"
+            "bucket": "vocabulary.it.moglie.translation"
           },
           "gender": {
             "reveal": "feminine (f)",
-            "bucket": "vocabulary.it.moglie.noun.gender"
+            "bucket": "vocabulary.it.moglie.gender"
           }
         }
       },
@@ -1207,7 +1207,7 @@
         "aspects": {
           "translation": {
             "reveal": "vivere - to live",
-            "bucket": "vocabulary.it.vivere.verb.translation"
+            "bucket": "vocabulary.it.vivere.translation"
           }
         }
       }
@@ -1225,6 +1225,12 @@
         "text": "Di chi è questa penna? È mia.",
         "register": "neutral",
         "notes": "Standard; predicate ownership drops the article."
+      },
+      {
+        "text": "Di chi è questa penna? È la mia.",
+        "register": "neutral",
+        "notes": "WRONG for plain ownership: the article intrudes; è mia is the idiom.",
+        "polarity": "negative"
       }
     ],
     "topic": "possessive",
@@ -1242,23 +1248,17 @@
         "aspects": {
           "translation": {
             "reveal": "pen - penna",
-            "bucket": "vocabulary.it.penna.noun.translation"
+            "bucket": "vocabulary.it.penna.translation"
           },
           "gender": {
             "reveal": "feminine (f)",
-            "bucket": "vocabulary.it.penna.noun.gender"
+            "bucket": "vocabulary.it.penna.gender"
           }
         }
       }
     ],
     "explanation": "After essere for plain ownership the possessive drops the article: è mia (agreeing with penna, feminine). È la mia is the article-bearing pronoun, a different meaning.",
-    "version": 1,
-    "common_errors": [
-      {
-        "text": "Di chi è questa penna? È la mia.",
-        "note": "WRONG for plain ownership: the article intrudes; è mia is the idiom."
-      }
-    ]
+    "version": 1
   },
   {
     "external_id": "trans_poss_en_it_pred_02",
@@ -1287,11 +1287,11 @@
         "aspects": {
           "translation": {
             "reveal": "house - casa",
-            "bucket": "vocabulary.it.casa.noun.translation"
+            "bucket": "vocabulary.it.casa.translation"
           },
           "gender": {
             "reveal": "feminine (f)",
-            "bucket": "vocabulary.it.casa.noun.gender"
+            "bucket": "vocabulary.it.casa.gender"
           }
         }
       }
@@ -1333,11 +1333,11 @@
         "aspects": {
           "translation": {
             "reveal": "guanto - glove",
-            "bucket": "vocabulary.it.guanto.noun.translation"
+            "bucket": "vocabulary.it.guanto.translation"
           },
           "gender": {
             "reveal": "masculine (m)",
-            "bucket": "vocabulary.it.guanto.noun.gender"
+            "bucket": "vocabulary.it.guanto.gender"
           }
         }
       }
@@ -1355,6 +1355,12 @@
         "text": "Vieni a casa mia stasera.",
         "register": "neutral",
         "notes": "Standard; the fixed a casa + possessive pattern, postposed and article-less."
+      },
+      {
+        "text": "Vieni alla mia casa stasera.",
+        "register": "neutral",
+        "notes": "WRONG idiom: a casa mia is the set pattern, not alla mia casa.",
+        "polarity": "negative"
       }
     ],
     "topic": "possessive",
@@ -1372,23 +1378,17 @@
         "aspects": {
           "translation": {
             "reveal": "house, home - casa",
-            "bucket": "vocabulary.it.casa.noun.translation"
+            "bucket": "vocabulary.it.casa.translation"
           },
           "gender": {
             "reveal": "feminine (f)",
-            "bucket": "vocabulary.it.casa.noun.gender"
+            "bucket": "vocabulary.it.casa.gender"
           }
         }
       }
     ],
     "explanation": "The fixed pattern a casa mia is postposed with no article: word order carries the idiom. Alla mia casa is a calque of the English order.",
-    "version": 1,
-    "common_errors": [
-      {
-        "text": "Vieni alla mia casa stasera.",
-        "note": "WRONG idiom: a casa mia is the set pattern, not alla mia casa."
-      }
-    ]
+    "version": 1
   },
   {
     "external_id": "trans_poss_en_it_post_02",
@@ -1417,11 +1417,11 @@
         "aspects": {
           "translation": {
             "reveal": "fault - colpa",
-            "bucket": "vocabulary.it.colpa.noun.translation"
+            "bucket": "vocabulary.it.colpa.translation"
           },
           "gender": {
             "reveal": "feminine (f)",
-            "bucket": "vocabulary.it.colpa.noun.gender"
+            "bucket": "vocabulary.it.colpa.gender"
           }
         }
       }
@@ -1456,11 +1456,11 @@
         "aspects": {
           "translation": {
             "reveal": "casa - house, home",
-            "bucket": "vocabulary.it.casa.noun.translation"
+            "bucket": "vocabulary.it.casa.translation"
           },
           "gender": {
             "reveal": "feminine (f)",
-            "bucket": "vocabulary.it.casa.noun.gender"
+            "bucket": "vocabulary.it.casa.gender"
           }
         }
       }
@@ -1478,6 +1478,12 @@
         "text": "Ognuno deve fare il proprio dovere.",
         "register": "neutral",
         "notes": "Standard; impersonal subject takes proprio."
+      },
+      {
+        "text": "Ognuno deve fare il suo dovere.",
+        "register": "neutral",
+        "notes": "WRONG by the standard: with the impersonal ognuno, proprio is required, not suo.",
+        "polarity": "negative"
       }
     ],
     "topic": "possessive",
@@ -1495,23 +1501,17 @@
         "aspects": {
           "translation": {
             "reveal": "duty - dovere",
-            "bucket": "vocabulary.it.dovere.verb.translation"
+            "bucket": "vocabulary.it.dovere.noun.translation"
           },
           "gender": {
             "reveal": "masculine (m)",
-            "bucket": "vocabulary.it.dovere.verb.gender"
+            "bucket": "vocabulary.it.dovere.noun.gender"
           }
         }
       }
     ],
     "explanation": "With an impersonal subject (ognuno) the reflexive proprio is required: il proprio dovere. Suo would point at a specific person.",
-    "version": 1,
-    "common_errors": [
-      {
-        "text": "Ognuno deve fare il suo dovere.",
-        "note": "WRONG by the standard: with the impersonal ognuno, proprio is required, not suo."
-      }
-    ]
+    "version": 1
   },
   {
     "external_id": "trans_poss_en_it_prop_02",
@@ -1579,11 +1579,11 @@
         "aspects": {
           "translation": {
             "reveal": "idea - idea",
-            "bucket": "vocabulary.it.idea.noun.translation"
+            "bucket": "vocabulary.it.idea.translation"
           },
           "gender": {
             "reveal": "feminine (f)",
-            "bucket": "vocabulary.it.idea.noun.gender"
+            "bucket": "vocabulary.it.idea.gender"
           }
         }
       }

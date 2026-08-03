@@ -2,18 +2,14 @@ seat: ArticleAuthor
 classes: [all-seats, all-authors]
 project: Linguics
 updated: 2026-07-20
-waiting: closed
+waiting: parked
 needs_from_smith: none
 blocked_by: none
-claude_can_verify: yes — every discharge is stamped on disk (DECISIONS.md / binding register)
-summary: Re-swept 2026-07-20. Everything I owed is discharged: pos-migration stamped/closed, crit-13 discharged centrally, crit-20 stamped for this seat. Rev 26/27/28 add no article obligation (crit-21 is tense/mood formation only; article is not among the 7 dispatched work-orders). Only live item is my crit-16 candidate_forms question, still awaiting Architecture's ruling (not my move). Closed the two resolved threads. Nothing owed.
+claude_can_verify: yes — every discharge is stamped on disk; art_disc_05 edit verified (marking 143/143)
+summary: All prior retrofits discharged (pos-migration stamped, crit-13 central, crit-20 stamped). Rev 26/27/28 add no article obligation. Applied crit-16 option A: art_disc_05 now carries candidate_forms/correct_form. Only remaining item = whether the 4 MCQ discrimination items also need candidate_forms — narrowed and parked with Architecture (discrimination_candidate_forms v2). Nothing else owed.
 queue:
-  - (awaiting Architecture — not my move) crit-16 candidate_forms on the 5 discrimination items -> Architecture_ArticleAuthor_discrimination_candidate_forms v1
+  - (awaiting Architecture — not my move) do the 4 MCQ discrimination items need candidate_forms? -> Architecture_ArticleAuthor_discrimination_candidate_forms v2. If yes, one-line add per item.
+done_this_pass:
+  - crit-16 option A applied: art_disc_05 (short, suppressed) now carries candidate_forms [l'influenza, influenza] + correct_form; only short discrimination item; marking unaffected.
 not_owed:
-  - pos-migration: STAMPED/closed (pos_worklist_cleared v2 — 0 old-shape vocab refs)
-  - crit-13: discharged centrally 2026-07-17 (per-seat stamps redundant)
-  - crit-20: stamped 2026-07-18 (noun-operand cues at/below level, 0 reframes)
-  - crit-21 (Rev28, formation-forces-target): N/A — article is not a tense/mood formation topic; not among the 7 dispatched
-  - crit-27 (cross-credit): standing framing, no retrofit; article translation items already dual-cite where relevant
-  - banned sincerity-words: central fix; article files already clean (grep 0)
-  - crit-15/17/18/19: unchanged (standing / glossed / central gate / no accents)
+  - pos-migration STAMPED/closed; crit-13 central; crit-20 stamped; crit-21 (Rev28) N/A (article not a formation topic); crit-27 standing; banned-words central (files clean); crit-15/17/18/19 unchanged.

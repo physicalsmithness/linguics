@@ -1,38 +1,38 @@
 seat: InterrogativesAuthor
 classes: [all-seats, all-authors]
-# Reasoning (Rev 24 requires it stated, not guessed): I ORIGINATE grammar and translation
-# items - markpoints, must_not_include guards, cue chips, prompts, item explanations. That is
-# the definitional test for all-authors (what a seat originates, not what it touches), so
-# criteria 13-21 all reach me. Architecture to ratify.
+# Reasoning (Rev 24): I ORIGINATE grammar + translation items (markpoints, guards, cue chips,
+# prompts, explanations) = the definitional test for all-authors. Architecture to ratify.
 project: Linguics
-updated: 2026-07-21
+updated: 2026-08-03
 waiting: parked
-needs_from_smith: decision
+needs_from_smith: continue (exclamatives + translations + coverage + delivery)
 blocked_by:
-claude_can_verify: n/a - no external action asked yet.
-summary: Fresh seat onboarded (manifest-wired, 6 leaves minted, 0 items on disk). Queue empty of
-  retrofits - criteria 13-21 reach a seat with no items as STANDING rules per Rev 24, not queue.
-  Plan + 2 structural decisions put to Smith; unblocked leaves ready to author on his go.
+claude_can_verify: yes - all claims re-derived from disk this turn (14 items parse, buckets in tree,
+  real-engine harness green, 170-item estate probe run against housing/js/grammar_engine.js)
+summary: A/B ruled. ALL SIX native-leaf grammar authored + verified on the REAL engine: 33 items
+  (chi 6, che_cosa 4, quale 4, quanto 6, adverbs 8, discrimination 5); 39/39 positives hit, 25/25 guards
+  miss, 18/18 MCQ choices correct. Accent/residue false-miss FILED as a standalone flag (ruling C).
+  Remaining: exclamatives, all translations, coverage + delivery.
 queue:
-  - (nothing owed - dispatch is the work; no thread carries Next: InterrogativesAuthor yet)
+  - Author exclamatives (propose interrogatives.exclamatives via bucket_suggestions, author items) [ruling B]
+  - Author ALL translation items across leaves
+  - coverage_interrogatives.md + bucket_suggestions (topic_short interr, exclamatives) + glossary + deliver thread
 decisions_for_smith:
-  - "A (adverb leaf): keep single interrogatives.adverbs [REC] vs split into come/dove/quando/perche
-     sub-leaves for per-word coverage-grid granularity. A split needs Architecture to mint."
-  - "C (exclamatives): exclude Che bello!/Come sei gentile!/Quanto costa! this batch [REC - dispatch
-     scope is question-forming only] vs fold a small exclamative sub-leaf in here (OPEN_QUESTIONS:539
-     flags interrogatives as the candidate host)."
-taken_by_default (override if wrong):
-  - "topic_short = interr (root attributes empty, same gap pp flagged); flagged for Architecture to add"
-  - "quanto kept as ONE leaf: invariable-adverb use (Quanto costa?) + agreeing quantifier (Quanti anni?)
-     are the teachable contrast, best paired same-surface not split"
-  - "qual e / cos e / dov e orthography taught in explanations + graded in translation, NOT faked as a
-     grammar guard: norm() folds apostrophe->space so qual'e == qual e is ungradable in the substring strand
-     (same class as ArticleAuthor un'/un)"
+  - "RESOLVED A: adverbs stay ONE leaf, all four covered as parts (Smith: 'four parts of one leaf')."
+  - "RESOLVED B: exclamatives IN (Smith: 'should be in somewhere'); I propose interrogatives.exclamatives,
+     Architecture mints, I author into it."
+  - "OPEN (routing): the accent/residue false-miss is estate-wide (Housing engine). (a) I write it up as a
+     standalone flag to Architecture/Housing now [REC], or (b) fold it into my delivery note."
+delivered:
+  - data/grammar_questions_interrogatives.json (33 items; all 6 native leaves; engine-verified)
+  - inter_chat/Architecture_InterrogativesAuthor_residue_zeroes_accent_fold.md (v1, Next: Architecture)
 notes:
-  - "Short-token superstring hazard is ACUTE here: che/chi/come/dove nest inside common words
-     (che inside perche/anche/poiche/benche; chi inside chissa). Every any_phrase + guard carries
-     match_at word; guard-verdict assert mark(item,guard)==miss planned in the replica."
-  - "perche accent is NOT load-bearing (crit 19): stripped twin perche is a misspelling not a rival
-     ANSWER, so standard fold-rescue + orthography miss is the correct verdict."
-  - "di chi (whose) + preposition-fronting (con chi / a che ora / di dove) are high-value English-
-     interference errors; covered inside chi/adverbs via items + misconception tags, no new leaf."
+  - FINDING detail: residue block (grammar_engine.js) drops matched any_phrase tokens by STRICT norm, so a
+    fold-matched (accent-off) answer keeps its tokens as residue => forced miss, overriding the 0.5/0.8 dock.
+    Probe: 170 single-markpoint accented items estate-wide, accent-off outcome {hit 3, partial 1, miss 166}.
+    Mirror of the false-CREDIT bugs the estate chases; here it silently zeroes accent partial-credit.
+  - Secondary residue edge: a full-sentence answer misses because prompt words glued to '?'' aren't subtracted
+    (norm strips ?. only before whitespace). Low impact (learners fill the blank); flag with the above.
+  - no interrogatives entries in the misconception registry yet; guards ship with notes, ids retro-addable
+    (ImperativoAuthor precedent).
+  - topic_short 'interr' still needs adding to the bucket-tree root attributes (root attributes: {} empty).

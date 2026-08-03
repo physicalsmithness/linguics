@@ -1,3 +1,5 @@
+> SUPERSEDED 2026-08-03 by REQUEST_to_code_stress_pipeline.md (Architecture issued the real Code commission 2026-07-21, and Code has delivered). Kept for reference only.
+
 # DRAFT brief for the Code seat: the stress + syllabification pipeline
 
 **Status: DRAFT by StressAuthor for Architecture to review and ISSUE.** Authors do not dispatch other seats;

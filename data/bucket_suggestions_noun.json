@@ -1,0 +1,22 @@
+[
+  {
+    "proposed_id": "noun.gender.common",
+    "proposed_parent_id": "noun.gender",
+    "proposed_label": "Common-gender nouns (either m or f)",
+    "proposed_description": "Nouns with one form that takes either gender by referent, the article and agreement carrying the distinction: il/la giornalista, il/la nipote, il/la cantante, il/la insegnante. Distinct from -e nouns (which have one fixed lexical gender to learn) and from irregular gender (a fixed gender the ending belies).",
+    "proposed_cefr_importance": {"A1": "preview", "A2": "core", "B1": "core", "B2": "review", "C1": "fluency", "C2": "fluency"},
+    "proposed_prerequisites": [],
+    "proposed_attributes": {"canonical_example": "il/la giornalista, il/la nipote, il/la cantante", "common_miss": "fixing one gender (treating giornalista as feminine-only because of -a)"},
+    "rationale": "gender_plural_drill class 3 ('either gender'); Vocab tagged 147 entries gender_class=3 (2026-08-03). No existing noun.gender bucket fits: giornalista ends -a but is not feminine-only (not regular), the -e members (nipote/cantante) are not the 'learn one fixed gender' e_ending case, and the gender is not a fixed-but-deceptive one (not irregular). The drill's chosen-vs-true signal on class 3 needs a bucket to credit."
+  },
+  {
+    "proposed_id": "noun.gender.meaning_split",
+    "proposed_parent_id": "noun.gender",
+    "proposed_label": "Gender differs by meaning",
+    "proposed_description": "One spelling that is masculine in one sense and feminine in another, the gender selecting the meaning: il capitale (money) / la capitale (capital city); il fine (aim) / la fine (end); il fronte (war front) / la fronte (forehead). The learner must know both genders map to both senses.",
+    "proposed_cefr_importance": {"A1": "arcane", "A2": "preview", "B1": "core", "B2": "core", "C1": "review", "C2": "fluency"},
+    "proposed_prerequisites": [],
+    "proposed_attributes": {"canonical_example": "il capitale (money) / la capitale (city); il fine (aim) / la fine (end)", "common_miss": "using one gender for both senses"},
+    "rationale": "gender_plural_drill class 4 ('depends on meaning'); Vocab tagged 32 entries gender_class=4. My existing noun_gen_e_08/09 (la/il capitale) currently sit under noun.gender.e_ending as a homograph pair and would MOVE here on mint; their candidate_forms already carry the two meaning-labels. Proposing rather than minting (registry/tree is architecture-owned)."
+  }
+]

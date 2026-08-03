@@ -746,5 +746,1029 @@
   ],
   "explanation": "I'd like an ice cream. Which one do you recommend? = Vorrei un gelato. Quale mi consigli? Quale can stand on its own, with no noun after it, to mean 'which one' when you choose from a known set (here, the ice creams on offer). It still points at a single item, so it stays singular: quale, not quali.",
   "version": 1
+ },
+ {
+  "external_id": "interr_quanto_01",
+  "language_code": "it",
+  "topic": "interrogatives",
+  "subtopic": "quanto.agree_m_pl",
+  "difficulty": 1,
+  "cefr_level_target": "A1",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": true,
+  "prompt": "Completa: '____ anni hai?' (quanto)",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "interrogatives.quanto",
+    "label": "quanto agrees: masculine plural (quanti)",
+    "any_phrases": [
+     {
+      "phrase": "quanti",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "quanto",
+      "match_at": "word",
+      "note": "Quanto agrees with what it counts; anni is masculine plural, so quanti."
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "anni",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "year - anno",
+      "bucket": "vocabulary.it.anno.noun.translation"
+     },
+     "gender": {
+      "reveal": "masculine (m)",
+      "bucket": "vocabulary.it.anno.noun.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "How old are you? = Quanti anni hai? Italian asks age by counting years, and quanto agrees with the noun it counts. Anni is masculine plural, so quanto becomes quanti, literally 'how many years do you have?'.",
+  "version": 1
+ },
+ {
+  "external_id": "interr_quanto_02",
+  "language_code": "it",
+  "topic": "interrogatives",
+  "subtopic": "quanto.agree_f_pl",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": true,
+  "prompt": "Completa: '____ persone vengono alla cena?' (quanto)",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "interrogatives.quanto",
+    "label": "quanto agrees: feminine plural (quante)",
+    "any_phrases": [
+     {
+      "phrase": "quante",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "quanti",
+      "match_at": "word",
+      "note": "Persone is feminine plural, so quanto takes quante, not the masculine quanti."
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "persone",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "person - persona",
+      "bucket": "vocabulary.it.persona.noun.translation"
+     },
+     "gender": {
+      "reveal": "feminine (f)",
+      "bucket": "vocabulary.it.persona.noun.gender"
+     }
+    }
+   },
+   {
+    "lemma": "cena",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "dinner - cena",
+      "bucket": "vocabulary.it.cena.noun.translation"
+     },
+     "gender": {
+      "reveal": "feminine (f)",
+      "bucket": "vocabulary.it.cena.noun.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "How many people are coming to dinner? = Quante persone vengono alla cena? Quanto agrees with the noun it measures. Persone is feminine plural, so it takes quante. The word persona is feminine even when it refers to men.",
+  "version": 1
+ },
+ {
+  "external_id": "interr_quanto_03",
+  "language_code": "it",
+  "topic": "interrogatives",
+  "subtopic": "quanto.agree_f_sg",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": true,
+  "prompt": "Completa: '____ acqua bevi al giorno?' (quanto)",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "interrogatives.quanto",
+    "label": "quanto agrees: feminine singular (quanta)",
+    "any_phrases": [
+     {
+      "phrase": "quanta",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "quanti",
+      "match_at": "word",
+      "note": "Acqua is feminine singular; quanto agrees to quanta, not the plural quanti."
+     },
+     {
+      "phrase": "quanto",
+      "match_at": "word",
+      "note": "Even uncountable, acqua is feminine singular, so quanta not quanto."
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "acqua",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "water - acqua",
+      "bucket": "vocabulary.it.acqua.noun.translation"
+     },
+     "gender": {
+      "reveal": "feminine (f)",
+      "bucket": "vocabulary.it.acqua.noun.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "How much water do you drink a day? = Quanta acqua bevi al giorno? Water cannot be counted, but quanto still agrees in gender and number with the noun. Acqua is feminine singular, so the form is quanta.",
+  "version": 1
+ },
+ {
+  "external_id": "interr_quanto_04",
+  "language_code": "it",
+  "topic": "interrogatives",
+  "subtopic": "quanto.invariable_adverb",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": true,
+  "prompt": "Completa: '____ costa questo cappuccino?' (quanto)",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "interrogatives.quanto",
+    "label": "invariable adverbial quanto (how much)",
+    "any_phrases": [
+     {
+      "phrase": "quanto",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "quanti",
+      "match_at": "word",
+      "note": "With a verb like costare, quanto is an invariable adverb (how much) and does not agree: Quanto costa?, never 'Quanti costa'."
+     },
+     {
+      "phrase": "quanta",
+      "match_at": "word",
+      "note": "Adverbial quanto stays quanto; it does not take a gender ending here."
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "cappuccino",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "cappuccino - cappuccino",
+      "bucket": "vocabulary.it.cappuccino.noun.translation"
+     },
+     "gender": {
+      "reveal": "masculine (m)",
+      "bucket": "vocabulary.it.cappuccino.noun.gender"
+     }
+    }
+   },
+   {
+    "lemma": "costa",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "to cost - costare",
+      "bucket": "vocabulary.it.costare.verb.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "How much does this cappuccino cost? = Quanto costa questo cappuccino? Here quanto means 'how much' as an adverb tied to the verb costare, and an adverb does not agree. It stays quanto whatever the price, unlike quanti anni or quante persone, where it counts a noun.",
+  "examiner_note": "Contrast item: invariable adverbial quanto against the agreeing quanti/quante/quanta. Same-surface pair with the agreement items.",
+  "version": 1
+ },
+ {
+  "external_id": "interr_quanto_05",
+  "language_code": "it",
+  "topic": "interrogatives",
+  "subtopic": "quanto.pronoun",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": true,
+  "prompt": "Completa: 'Ho preparato dei biscotti. ____ ne vuoi?' (quanto)",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "interrogatives.quanto",
+    "label": "quanto as a pronoun, agreeing with the implied noun",
+    "any_phrases": [
+     {
+      "phrase": "quanti",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "quanto",
+      "match_at": "word",
+      "note": "Standing in for biscotti (masculine plural), quanto agrees to quanti even though the noun is not repeated."
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "biscotti",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "biscuit - biscotto",
+      "bucket": "vocabulary.it.biscotto.noun.translation"
+     },
+     "gender": {
+      "reveal": "masculine (m)",
+      "bucket": "vocabulary.it.biscotto.noun.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "I've made some biscuits. How many (of them) do you want? = Quanti ne vuoi? Even without repeating the noun, quanto agrees with what it stands for: the biscuits (biscotti) are masculine plural, so quanti. The little word ne means 'of them'.",
+  "version": 1
+ },
+ {
+  "external_id": "interr_quanto_06",
+  "language_code": "it",
+  "topic": "interrogatives",
+  "subtopic": "quanto.agree_m_sg",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": true,
+  "prompt": "Completa: '____ pane compriamo per la festa?' (quanto)",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "interrogatives.quanto",
+    "label": "quanto agrees: masculine singular (quanto)",
+    "any_phrases": [
+     {
+      "phrase": "quanto",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "quanta",
+      "match_at": "word",
+      "note": "Pane is masculine, so the feminine quanta is wrong; use quanto."
+     },
+     {
+      "phrase": "quanti",
+      "match_at": "word",
+      "note": "Pane is singular and uncountable here, so quanto not the plural quanti."
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "pane",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "bread - pane",
+      "bucket": "vocabulary.it.pane.noun.translation"
+     },
+     "gender": {
+      "reveal": "masculine (m)",
+      "bucket": "vocabulary.it.pane.noun.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "How much bread shall we buy for the party? = Quanto pane compriamo per la festa? Bread is uncountable and masculine singular (pane), so quanto keeps its base masculine singular form. Compare quanta acqua, where the noun is feminine.",
+  "examiner_note": "Same-surface pair with quanto_03 (quanta acqua): uncountable nouns, opposite gender.",
+  "version": 1
+ },
+ {
+  "external_id": "interr_adv_01",
+  "language_code": "it",
+  "topic": "interrogatives",
+  "subtopic": "adverbs.come_name",
+  "difficulty": 1,
+  "cefr_level_target": "A1",
+  "type": "short",
+  "marks": 1,
+  "prompt": "Completa: '____ ti chiami?'",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "interrogatives.adverbs",
+    "label": "come (how) for asking a name",
+    "any_phrases": [
+     {
+      "phrase": "come",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "cosa",
+      "match_at": "word",
+      "note": "Italian asks a name with come (how are you called), not with cosa/che ('what')."
+     },
+     {
+      "phrase": "che",
+      "match_at": "word",
+      "note": "Not 'Che ti chiami': a name is asked with come."
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "chiami",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "to be called - chiamarsi",
+      "bucket": "vocabulary.it.chiamarsi.verb.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "What is your name? = Come ti chiami? Italian does not ask a name with 'what'; it asks with come (how), literally 'how do you call yourself?'. So it is Come ti chiami?, never 'Che ti chiami?' or 'Cosa ti chiami?'.",
+  "examiner_note": "Come ti chiami is a fixed expression, so context forces it; the che/cosa guards catch the English 'what is your name' interference.",
+  "version": 1
+ },
+ {
+  "external_id": "interr_adv_02",
+  "language_code": "it",
+  "topic": "interrogatives",
+  "subtopic": "adverbs.dove_place",
+  "difficulty": 1,
+  "cefr_level_target": "A1",
+  "type": "short",
+  "marks": 1,
+  "prompt": "Completa: '____ vai in vacanza, al mare o in montagna?'",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "interrogatives.adverbs",
+    "label": "dove (where) for place",
+    "any_phrases": [
+     {
+      "phrase": "dove",
+      "match_at": "word"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "vacanza",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "holiday - vacanza",
+      "bucket": "vocabulary.it.vacanza.noun.translation"
+     },
+     "gender": {
+      "reveal": "feminine (f)",
+      "bucket": "vocabulary.it.vacanza.noun.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "Where are you going on holiday, to the sea or the mountains? = Dove vai in vacanza, al mare o in montagna? A choice between two places (al mare / in montagna) is a question of place, and Italian asks place with dove (where).",
+  "examiner_note": "The two place options force a where-question, so no gloss is needed.",
+  "version": 1
+ },
+ {
+  "external_id": "interr_adv_03",
+  "language_code": "it",
+  "topic": "interrogatives",
+  "subtopic": "adverbs.dove_elision",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "prompt": "Completa: '____ la stazione, per favore?' [where is]",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "interrogatives.adverbs",
+    "label": "dov'e (where is), elision of dove",
+    "any_phrases": [
+     {
+      "phrase": "dov'è",
+      "match_at": "word"
+     },
+     {
+      "phrase": "dove è",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "Understood, but dove normally elides before è: dov'è."
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "stazione",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "station - stazione",
+      "bucket": "vocabulary.it.stazione.noun.translation"
+     },
+     "gender": {
+      "reveal": "feminine (f)",
+      "bucket": "vocabulary.it.stazione.noun.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "Where is the station, please? = Dov'è la stazione, per favore? Before the verb è, dove drops its final -e and takes an apostrophe: dove è becomes dov'è. The full dove è is understood but sounds heavy; dov'è is the everyday form.",
+  "examiner_note": "norm() folds the apostrophe, so dov'è and dov è mark alike; the elision is taught, not graded. Accent-off dov e falls to the estate-wide residue/accent miss flagged separately.",
+  "version": 1
+ },
+ {
+  "external_id": "interr_adv_04",
+  "language_code": "it",
+  "topic": "interrogatives",
+  "subtopic": "adverbs.quando_time",
+  "difficulty": 1,
+  "cefr_level_target": "A1",
+  "type": "short",
+  "marks": 1,
+  "prompt": "Completa: '____ finisce la scuola, a giugno o a luglio?'",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "interrogatives.adverbs",
+    "label": "quando (when) for time",
+    "any_phrases": [
+     {
+      "phrase": "quando",
+      "match_at": "word"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "scuola",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "school - scuola",
+      "bucket": "vocabulary.it.scuola.noun.translation"
+     },
+     "gender": {
+      "reveal": "feminine (f)",
+      "bucket": "vocabulary.it.scuola.noun.gender"
+     }
+    }
+   },
+   {
+    "lemma": "finisce",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "to finish - finire",
+      "bucket": "vocabulary.it.finire.verb.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "When does school finish, in June or July? = Quando finisce la scuola, a giugno o a luglio? A choice between two times (June or July) is a question of time, and Italian asks time with quando (when).",
+  "version": 1
+ },
+ {
+  "external_id": "interr_adv_05",
+  "language_code": "it",
+  "topic": "interrogatives",
+  "subtopic": "adverbs.perche_reason",
+  "difficulty": 1,
+  "cefr_level_target": "A2",
+  "type": "short",
+  "marks": 1,
+  "prompt": "Completa: '____ studi l'italiano, per lavoro o per piacere?'",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "interrogatives.adverbs",
+    "label": "perche (why) for reason",
+    "any_phrases": [
+     {
+      "phrase": "perché",
+      "match_at": "word"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "studi",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "to study - studiare",
+      "bucket": "vocabulary.it.studiare.verb.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "Why do you study Italian, for work or for pleasure? = Perché studi l'italiano, per lavoro o per piacere? A reason (for work / for pleasure) is asked with perché (why). The same word perché also means 'because' in the reply, so the question and its answer share it.",
+  "examiner_note": "Accent on perché is not load-bearing (the stripped 'perche' is a misspelling, not a rival answer); soft fold-rescue applies, subject to the residue/accent finding.",
+  "version": 1
+ },
+ {
+  "external_id": "interr_adv_06",
+  "language_code": "it",
+  "topic": "interrogatives",
+  "subtopic": "adverbs.come_mai",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "prompt": "Completa: '____ non hai risposto al messaggio?' [how come]",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "interrogatives.adverbs",
+    "label": "come mai (how come)",
+    "any_phrases": [
+     {
+      "phrase": "come mai",
+      "match_at": "word"
+     },
+     {
+      "phrase": "perché",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "Also correct; come mai adds a note of surprise ('how come?')."
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "messaggio",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "message - messaggio",
+      "bucket": "vocabulary.it.messaggio.noun.translation"
+     },
+     "gender": {
+      "reveal": "masculine (m)",
+      "bucket": "vocabulary.it.messaggio.noun.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "How come you didn't reply to the message? = Come mai non hai risposto al messaggio? Come mai is a set phrase for 'how come / why', carrying a hint of surprise. Plain perché (why) works too; come mai adds the 'what on earth for?' colour.",
+  "version": 1
+ },
+ {
+  "external_id": "interr_adv_07",
+  "language_code": "it",
+  "topic": "interrogatives",
+  "subtopic": "adverbs.di_dove_origin",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "prompt": "Completa: '____ sei, italiano o straniero?' [where ... from]",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "interrogatives.adverbs",
+    "label": "di dove (where from), origin",
+    "any_phrases": [
+     {
+      "phrase": "di dove",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "dove",
+      "match_at": "word",
+      "note": "Origin is di dove (from where); bare dove asks location, not where you come from."
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "straniero",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "foreign / foreigner - straniero",
+      "bucket": "vocabulary.it.straniero.adjective.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "Where are you from, Italian or foreign? = Di dove sei, italiano o straniero? Origin is asked with di dove (from where): the di supplies the 'from'. Bare dove would ask where you are right now, not where you come from.",
+  "examiner_note": "Bare-dove guard nests in the correct 'di dove' but the positive wins first, so it only fires on the dropped-di attempt.",
+  "version": 1
+ },
+ {
+  "external_id": "interr_adv_08",
+  "language_code": "it",
+  "topic": "interrogatives",
+  "subtopic": "adverbs.da_quando",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "type": "short",
+  "marks": 1,
+  "prompt_supplies_base_form": false,
+  "prompt": "Completa: '____ aspetti l'autobus, da mezz'ora?' [since when]",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "interrogatives.adverbs",
+    "label": "da quando (since when)",
+    "any_phrases": [
+     {
+      "phrase": "da quando",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "quando",
+      "match_at": "word",
+      "note": "Duration reaching the present is da quando (since when); bare quando asks a single moment."
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "autobus",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "bus - autobus",
+      "bucket": "vocabulary.it.autobus.noun.translation"
+     },
+     "gender": {
+      "reveal": "masculine (m)",
+      "bucket": "vocabulary.it.autobus.noun.gender"
+     }
+    }
+   },
+   {
+    "lemma": "aspetti",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "to wait for - aspettare",
+      "bucket": "vocabulary.it.aspettare.verb.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "Since when have you been waiting for the bus, for half an hour? = Da quando aspetti l'autobus, da mezz'ora? Duration reaching into the present (half an hour so far) is asked with da quando (since when): da adds the 'since'. Bare quando would ask at what moment, not from when.",
+  "examiner_note": "Bare-quando guard nests in 'da quando' but the positive wins first.",
+  "version": 1
+ },
+ {
+  "external_id": "interr_disc_01",
+  "language_code": "it",
+  "topic": "interrogatives",
+  "subtopic": "discrimination.person",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "type": "mcq",
+  "marks": 1,
+  "info_display": "suppress",
+  "prompt": "Completa: '____ ha vinto la gara?'",
+  "choices": [
+   "Chi",
+   "Che",
+   "Quale"
+  ],
+  "answer_index": 0,
+  "candidate_forms": [
+   "Chi",
+   "Che",
+   "Quale"
+  ],
+  "correct_form": "Chi",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "interrogatives.discrimination",
+    "label": "chi for a person",
+    "any_phrases": [
+     {
+      "phrase": "Chi",
+      "match_at": "word"
+     }
+    ]
+   }
+  ],
+  "explanation": "Who won the race? = Chi ha vinto la gara? A race is won by a person, so the question word is chi (who). Che would ask 'what' and quale 'which of a set', neither of which fits a person acting.",
+  "version": 1,
+  "vocab_help": [
+   {
+    "lemma": "gara",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "race - gara",
+      "bucket": "vocabulary.it.gara.noun.translation"
+     },
+     "gender": {
+      "reveal": "feminine (f)",
+      "bucket": "vocabulary.it.gara.noun.gender"
+     }
+    }
+   }
+  ],
+  "examiner_note": "Suppressed: the breadcrumb 'chi vs che vs quale' would tip that a choice is in play; the learner should read it from the sentence."
+ },
+ {
+  "external_id": "interr_disc_02",
+  "language_code": "it",
+  "topic": "interrogatives",
+  "subtopic": "discrimination.thing",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "type": "mcq",
+  "marks": 1,
+  "info_display": "suppress",
+  "prompt": "Completa: '____ vuoi da bere?'",
+  "choices": [
+   "Chi",
+   "Che cosa",
+   "Quale"
+  ],
+  "answer_index": 1,
+  "candidate_forms": [
+   "Chi",
+   "Che cosa",
+   "Quale"
+  ],
+  "correct_form": "Che cosa",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "interrogatives.discrimination",
+    "label": "che cosa for an open thing",
+    "any_phrases": [
+     {
+      "phrase": "Che cosa",
+      "match_at": "word"
+     }
+    ]
+   }
+  ],
+  "explanation": "What do you want to drink? = Che cosa vuoi da bere? An open question about a thing (a drink, with no set listed) takes che cosa (also che or cosa). Chi is for people; quale needs a named set to pick from.",
+  "version": 1,
+  "vocab_help": [
+   {
+    "lemma": "bere",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "to drink - bere",
+      "bucket": "vocabulary.it.bere.verb.translation"
+     }
+    }
+   }
+  ]
+ },
+ {
+  "external_id": "interr_disc_03",
+  "language_code": "it",
+  "topic": "interrogatives",
+  "subtopic": "discrimination.selection",
+  "difficulty": 2,
+  "cefr_level_target": "A2",
+  "type": "mcq",
+  "marks": 1,
+  "info_display": "suppress",
+  "prompt": "Completa: 'Ci sono due strade. ____ prendiamo, la prima o la seconda?'",
+  "choices": [
+   "Chi",
+   "Che",
+   "Quale"
+  ],
+  "answer_index": 2,
+  "candidate_forms": [
+   "Chi",
+   "Che",
+   "Quale"
+  ],
+  "correct_form": "Quale",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "interrogatives.discrimination",
+    "label": "quale for selection from a set",
+    "any_phrases": [
+     {
+      "phrase": "Quale",
+      "match_at": "word"
+     }
+    ]
+   }
+  ],
+  "explanation": "There are two roads. Which do we take, the first or the second? = Quale prendiamo, la prima o la seconda? Choosing from a named set (two roads) is quale (which one). Che asks an open 'what', and chi is for people.",
+  "version": 1,
+  "vocab_help": [
+   {
+    "lemma": "strade",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "road - strada",
+      "bucket": "vocabulary.it.strada.noun.translation"
+     },
+     "gender": {
+      "reveal": "feminine (f)",
+      "bucket": "vocabulary.it.strada.noun.gender"
+     }
+    }
+   }
+  ]
+ },
+ {
+  "external_id": "interr_disc_04",
+  "language_code": "it",
+  "topic": "interrogatives",
+  "subtopic": "discrimination.quantity",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "type": "mcq",
+  "marks": 1,
+  "info_display": "suppress",
+  "prompt": "Completa: '____ costa un biglietto del cinema?'",
+  "choices": [
+   "Quanto",
+   "Quale",
+   "Che"
+  ],
+  "answer_index": 0,
+  "candidate_forms": [
+   "Quanto",
+   "Quale",
+   "Che"
+  ],
+  "correct_form": "Quanto",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "interrogatives.discrimination",
+    "label": "quanto for an amount",
+    "any_phrases": [
+     {
+      "phrase": "Quanto",
+      "match_at": "word"
+     }
+    ]
+   }
+  ],
+  "explanation": "How much does a cinema ticket cost? = Quanto costa un biglietto del cinema? A price is a quantity, asked with quanto (how much). Quale picks from a set and che asks 'what', neither of which asks an amount.",
+  "version": 1,
+  "vocab_help": [
+   {
+    "lemma": "biglietto",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "ticket - biglietto",
+      "bucket": "vocabulary.it.biglietto.noun.translation"
+     },
+     "gender": {
+      "reveal": "masculine (m)",
+      "bucket": "vocabulary.it.biglietto.noun.gender"
+     }
+    }
+   }
+  ]
+ },
+ {
+  "external_id": "interr_disc_05",
+  "language_code": "it",
+  "topic": "interrogatives",
+  "subtopic": "discrimination.person",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "type": "mcq",
+  "marks": 1,
+  "info_display": "suppress",
+  "prompt": "Completa: '____ è il tuo attore preferito?'",
+  "choices": [
+   "Chi",
+   "Che",
+   "Quale"
+  ],
+  "answer_index": 0,
+  "candidate_forms": [
+   "Chi",
+   "Che",
+   "Quale"
+  ],
+  "correct_form": "Chi",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "interrogatives.discrimination",
+    "label": "chi for a person (who is)",
+    "any_phrases": [
+     {
+      "phrase": "Chi",
+      "match_at": "word"
+     }
+    ]
+   }
+  ],
+  "explanation": "Who is your favourite actor? = Chi è il tuo attore preferito? An actor is a person, so it is chi (who), even though English 'who' can tempt che ('what'). Quale would ask 'which one' from a listed set.",
+  "version": 1,
+  "vocab_help": [
+   {
+    "lemma": "attore",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "actor - attore",
+      "bucket": "vocabulary.it.attore.noun.translation"
+     },
+     "gender": {
+      "reveal": "masculine (m)",
+      "bucket": "vocabulary.it.attore.noun.gender"
+     }
+    }
+   }
+  ]
  }
 ]

@@ -90,3 +90,13 @@ The brief advanced 17 -> 28 after delivery; Architecture ACCEPTED the batch (dis
 
 **Cue / class-token retrofits, audited plain-substring (never word-anchored, per PassiveAuthor's paren-boundary warning) — all no-ops:** crit 13 centrally discharged for noun (all-authors except PronounAuthor); crit 25 no-op (every cue is the target's own singular or base, <= item level; the one base cue `(dito)` on a B1 item is A1); crit 20 no-op (0 fragment-cue-equals-answer; Rev 23 predictor confirms bare cues yield visibly-broken Italian); crit 19 no-op and recorded NOT FIRED (no crit-20 gloss, so Rev 23's disarm path never triggered); crit 21 (Rev 28) N/A (noun plural has no tense/aspect axis). Evidence in thread v2, stamps requested.
 
+
+## Wake pass, 2026-08-03 (disposition CLOSED; gender-drill mapping; no-change react)
+
+Disposition thread CLOSED v3 (the 2026-07-15 ruling delivered): candidate_forms + the 9 tags stamped, `orthography.io_plural_i_count` minted, crit-25 no-op stamped, discharge stamp in DECISIONS. Follow-on this wake:
+
+**`io_plural_i_count` applied.** `figlii` (sp_10) and `zi` (sp_11) now carry the minted id; 11 misconception tags on disk, harness 0/0.
+
+**Housing's 7-class gender classifier (r69) mapped to the noun buckets** (reply on `Architecture_Housing_gender_plural_drill`). Five of seven classes land on existing buckets; classes 3 (common-gender/epicene, 147 vocab entries) and 4 (meaning-split, 32) have no home — proposed `noun.gender.common` and `noun.gender.meaning_split` in `bucket_suggestions_noun.json` (propose, not mint). On the mint, the capitale pair (noun_gen_e_08/09) re-points from e_ending to meaning_split. Two notes routed: `uovo` is mis-tagged class-7 by Vocab (single plural `uova` = class 5); class-6 (eco) wants noun.plural.irregular's description broadened to both switch-directions.
+
+**No-change-forms proposal reacted (thread v3).** The 7 invariable/compound items (noun_plur_inv_01..06, noun_plur_comp_03) stay as-is under Smith's explicit-plural-drill carve-out — every one is framed `Metti al plurale:`, which qualifies. Reconciled against brief Rev 30 (the later, more specific ITEM_SHAPE carve-out governs these; Rev 30 binds invariable cues *outside* a plural drill). Instrument A (English cue) is the future upgrade but is engine-blocked at the credit_only set-membership test; the must_not distractors are already authored, so a conversion would be content-complete.

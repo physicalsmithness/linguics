@@ -1,13 +1,14 @@
 seat: AccentAuthor
 classes: [all-seats, all-authors]
 project: Linguics
-updated: 2026-07-21
+updated: 2026-08-03
 waiting: parked
 needs_from_smith: none
-blocked_by: Architecture — run the variant pipeline over the seed frames (all Q1-Q6 now Smith-ruled, no ruling owed); Housing — apostrophe-input bug/scheme (separate thread)
-claude_can_verify: n/a — Architecture-side pipeline run + Housing engine change
-summary: Taxonomy ratified + event contract with Housing. Deliverable 2 DELIVERED and all six open Qs Smith-ruled 2026-07-21. Verdict: DRILL DOCKS (correct 1.0 / wrong_kind 0.8 / omission 0.5 baseline, per-class 0.4 for meaning_pair+tense_bearing / insertion 0.5). Q1 person-pairs out; Q2 false-alarm=miss; Q3 topic_short=accents; Q4 ciò/dì cross-tagged+edge. NEW: flagged apostrophe-input bug to Housing (po'->pò corruption; Smith's 1/2/3-apostrophe escalation fix). Files: incoming drafts/accent_seed_v0.json; inter_chat/AccentAuthor_Architecture_seed_frames.md v3; inter_chat/AccentAuthor_Housing_apostrophe_input.md v1.
+blocked_by: Architecture — regenerate the 276-item batch per seed_frames v6 review (3 wiring defects) + rule reserve-three-or-none; Housing — class->credit docking map + push r101
+claude_can_verify: n/a — Architecture-side regen + Housing engine/build
+summary: Self-check + all Nexts worked this turn. (1) Sample-reviewed the 276 generated items (data/grammar_questions_accent.json): CONTENT sound + Italian correct, but 3 ratified mechanisms missing from generation — placement class recorded NOWHERE (0/276; defeats ruling (a)), docking model absent (all credit=1), judgement family (158=57%) records nothing on a miss. NOT accepted; regen contract given in seed_frames v6. (2) Nudge wording delivered to Housing (apostrophe v3) after r101 shipped the escalation fix. (3) ALLAUTHORS item-shape proposal: zero exposure logged (index-scored = immune). (4) spelling error-class taxonomy Next (translation_crosstopic_marking) is MISROUTED — SpellingAuthor owns orthography.spelling.* (8 classes live; confirmed MisconceptionAnalyst harvest line 439); my orthography design is the ACCENT half only, which is minted + live.
 queue:
-  - WAITING Architecture: pipeline expansion of seed frames (no ruling owed, just the run) [seed_frames v3]
-  - WAITING Housing: apostrophe-input bug + escalation scheme [AccentAuthor_Housing_apostrophe_input v1]
-  - THEN: sample-review first expansion (A(a)); add carrier volume to context classes; carry wrong-kind wording if Smith revisits vs his IB reports
+  - WAITING Architecture: regenerate 276-item batch per seed_frames v6 (placement markpoints + docking + judgement tags + validation gate); then I re-review calibration before scale-up
+  - WAITING Housing: class->credit docking map (seed_frames v6 defect 2); push r101 (apostrophe fix)
+  - WAITING Architecture: reserve-three-or-none policy (apostrophe thread)
+  - FLAGGED to Architecture: spelling error-class taxonomy is SpellingAuthor's, not mine (AccentAuthor_Architecture_spelling_taxonomy_routing v1, Next: Architecture)

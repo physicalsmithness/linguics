@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-08-02-r110";
+  const LL_BUILD = "2026-08-02-r112";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -2254,6 +2254,18 @@
   }
   // Rewrite the result so the leaf reflects what the learner ACTUALLY did, and
   // attach the three axes for the reports to group on.
+  // Accent DOCKING. Smith reversed the old never-dock/0.9-flat policy in the
+  // design-overhaul reconciliation: a wrong-KIND slip (grave where acute was
+  // wanted, or the reverse) docks 0.2, an OMISSION docks about half, correct is
+  // full marks. So an accent item is no longer pass/fail - the severity of the
+  // error decides the credit, which is only possible now that r107 classifies
+  // the outcome instead of firing the item's declared bucket regardless.
+  //
+  // `inserted` (a mark added where none belongs) was NOT ruled. It is scored
+  // with wrong_kind, on the reading that both are misapplications of a mark the
+  // learner knew was in play, where an omission is not knowing one was needed
+  // at all. Flagged to Architecture rather than left silent.
+  const ACCENT_DOCK = { correct: 1, wrong_kind: 0.8, inserted: 0.8, omitted: 0.5 };
   function applyAccentAxes(q, pickedIdx, result) {
     if (!result || !Array.isArray(result.markpoints)) return result;
     const correct = pickedIdx === q.answer_index;
@@ -2284,6 +2296,26 @@
       }
     }
     result.accent_axes = axes;
+
+    // Apply the docking scale to the markpoints and the overall.
+    const dock = ACCENT_DOCK[outcome];
+    if (!correct && typeof dock === "number" && dock > 0) {
+      let awarded = 0, possible = 0;
+      for (const mp of result.markpoints) {
+        const w = (typeof mp.credit_weight === "number") ? mp.credit_weight : 1;
+        mp.correctness_credit = dock;
+        mp.outcome = "partial";
+        mp.docked_from = outcome;
+        awarded += w * dock; possible += w;
+      }
+      if (possible > 0) {
+        result.overall.marks_awarded = Math.min(result.overall.marks_possible, awarded);
+        result.overall.correctness_overall = dock;
+        result.overall.status = "partial";
+        result.overall.summary = (outcome === "omitted")
+          ? "The accent is missing" : "Right vowel, wrong mark";
+      }
+    }
     return result;
   }
 
@@ -6976,9 +7008,34 @@
       // Surface them so the learner sees other acceptable forms even when they
       // got the question right (didactic value: "also could have said ...").
       if (Array.isArray(mp.alternatives) && mp.alternatives.length > 1) {
+        // Suppress when there is nothing genuinely OTHER to show
+        // (Architecture_Vocab_marker_semantics v6, from Smith live: the line
+        // "always shows the same thing as what was accepted").
+        //
+        // The filter compared raw lowercased strings while the MARKER matched
+        // with norm(), which folds articles, accents and punctuation. So a
+        // learner who wrote "state" against an accepted "the state" was told
+        // "Also accepted: the state" - their own answer, echoed back, which
+        // implies there are no alternatives when there are. Compare the way the
+        // marker compares, and drop anything that also duplicates the expected
+        // answer already printed above.
+        // Key must be at least as tolerant as the MARKER, or duplicates leak
+        // back in through the gap: accent-folded (citta / città) and with a
+        // leading English article dropped (state / the state), which is the
+        // tolerance english_article_tolerance already applies when matching.
+        const nrm = (x) => {
+          let t = String(x || "").trim();
+          t = (LL.normAccentFolded ? LL.normAccentFolded(t) : (LL.norm ? LL.norm(t) : t.toLowerCase()));
+          return String(t).replace(/^(?:the|a|an)\s+/, "").trim();
+        };
+        const evN = nrm(String(evidenceText || "").replace(/^matched: /i, ""));
+        const expN = nrm(mp.expected || "");
+        const seenAlt = new Set();
         const other = mp.alternatives.filter(a => {
-          const ev = String(evidenceText || "").replace(/^matched: /i, "").trim().toLowerCase();
-          return a.trim().toLowerCase() !== ev;
+          const k = nrm(a);
+          if (!k || k === evN || k === expN || seenAlt.has(k)) return false;
+          seenAlt.add(k);
+          return true;
         });
         if (other.length) {
           const a = document.createElement("div");

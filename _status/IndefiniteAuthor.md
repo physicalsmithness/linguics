@@ -1,29 +1,25 @@
 seat: IndefiniteAuthor
 classes: [all-seats, all-authors]
 project: Linguics
-updated: 2026-07-27
+updated: 2026-08-03
 waiting: parked
 needs_from_smith: none
 blocked_by:
 claude_can_verify: n/a
-summary: STALE-STATE CORRECTION. The indefinite batch was already authored, accepted and committed 2026-07-21 (commit 2b2bb73); I initially re-derived it against a stale Rev 25 brief (live is Rev 32) - byte-identical, no harm, but redundant. The REAL owed work, found by re-reading disk: (1) the ind_nn_06 false-miss fix [DONE], (2) the free-choice cross-credit items for the zero-coverage mood leaf [DONE]. Both reported, Next: Architecture.
+summary: Batch was already accepted+committed 2026-07-21 (I wastefully re-derived it against a stale Rev 25 brief; live is Rev 32 — no harm, byte-identical). Real owed work, all now done: (1) ind_nn_06 false-miss; (2) free-choice cross-credit items for the zero-coverage mood leaf; (3) Architecture RETURNED the nn_06 fix 2026-08-02 (cue = answer) — reworked, and fixed 2 siblings of the same class (nn_03, oc_06). All reported, Next: Architecture.
 queue:
-  - Architecture_IndefiniteAuthor_false_miss_packet.md v2  [Next: Architecture — verify+stamp the ind_nn_06 fix]
+  - Architecture_IndefiniteAuthor_false_miss_packet.md v4  [Next: Architecture — verify+stamp the cue rework + nn_03/oc_06 siblings]
   - Architecture_IndefiniteAuthor_free_choice_mood_seam.md v3  [Next: Architecture — accept 6+3 cross-credit items; ratify 3 design calls; execute dovunque mint + ogni note]
 delivered_this_touch:
-  - ind_nn_06 false-miss fix: blank-only 'nessuno' positive (TOP-severity blank-boundary zero), verified 9 scenarios
-  - 6 grammar + 3 translation free-choice cross-credit items (ind_fc_01..06, trans_ind_*_fc_*): mood leaf 0 -> 6 grammar + 2 req + 1 opt; Rev 27 dual-credit, verified
+  - ind_nn_06: blank-only 'nessuno' positive (2026-07-27) + cue dropped (2026-08-03, per false_miss v3)
+  - ind_nn_03: cue (nessuno) dropped — sibling of the same cue-gives-answer defect
+  - ind_oc_06: converted to MCQ — sibling; dropping the cue alone would admit 'ogni studente' (crit 10a)
+  - 6 grammar + 3 translation free-choice cross-credit items (ind_fc_*, trans_*_fc_*): mood leaf 0 -> 6+2req+1opt, Rev 27 dual-credit
   - full file re-verified: 67 grammar + 28 translation, 74 markpoints, 0 findings
 lesson:
-  - I read AUTHOR_BRIEF via the file tool and got a STALE Rev 25; the live disk is Rev 32. The wake instruction
-    ('do not trust your memory... re-read now') and the dispatch ('THE BRIEF WINS') both point at reading the
-    LIVE file. Rev 30 was literally my own prior finding already ratified. Grep the brief's revision number off
-    disk before authoring, never trust a served copy.
+  - Read the LIVE brief off disk (Rev 32), never a served/cached copy (I got a stale Rev 25). Rev 30 was my own prior finding already ratified.
+  - A fix that satisfies the marker can still destroy the item (Architecture's nn_06 return). When closing a false-miss remedy, verify against what the item is FOR, not just the guard list. And fix the CLASS, not the named item: nn_06's cue defect had 2 siblings the audit never named.
 notes:
-  - Everything I 'found' fresh this session (invariable-lemma exemption = Rev 30; nessun'idea ungradable = blessed;
-    guard-verdict gate = Ask 1 adopted; candidate_forms (A)) was ALREADY ruled by 2026-07-21. No new asks.
-  - Misconception tagging for indefinite still not possible (no tag-list yet; still one of MisconceptionAnalyst's
-    unfilled topics). The cross-credit mood guards DO carry discrimination.indicative_for_subjunctive_choice,
-    which is registered via the tense_choice axis.
-  - Still Architecture's to execute (from seam v2): mint indefinite.free_choice.dovunque, add ogni+numeral note.
-    I authored no dovunque items because the leaf isn't minted.
+  - Defect class recorded: a trailing (lemma) cue whose lemma == the answer's LONG form before s+cons/z (= citation form) gives the answer away even though the word inflects. Offered as a Rev 30 refinement.
+  - Still Architecture's to execute (seam v2): mint indefinite.free_choice.dovunque; add ogni+numeral note. I authored no dovunque items (leaf not minted).
+  - Misconception tagging for indefinite still not possible (no tag-list). Cross-credit mood guards carry discrimination.indicative_for_subjunctive_choice (registered).

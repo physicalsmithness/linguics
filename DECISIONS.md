@@ -1841,3 +1841,67 @@ prefixed values from misconception counts while surfacing them in a single "unta
 buys the real prize - the untagged wrongs cluster, and the clusters ARE the authoring worklist,
 ordered by how often learners actually hit them - without letting a placeholder contaminate the
 registry or inflate a named misconception's frequency.
+
+## Executed 2026-08-02 (Architecture): paradigm bands, task 6
+Six leaves now declare `attributes.paradigm = {field:"slot", slots, labels}` and 102 items carry a
+derived `slot`: `preposition.articulated.formation` (35 slots, the flat list ruled at v3),
+`article.definite.forms` (7), `article.indefinite.forms` (4), `demonstrative.questo` (5),
+`demonstrative.quello` (7), `possessive.adjective.forms` (21). Housing's r27 reader needed nothing.
+
+**The finding the bands were built to expose.** `preposition.articulated.formation` currently reads
+as a covered leaf and has been tested on **11 of its 35 cells**. The entire `da-` row is untouched
+(dal, dallo, dall', dalla, dagli, dalle) and `a-` carries only allo and agli. Possessives: `tuoi`,
+`nostri`, `nostre`, `vostro`, `vostre` never tested. Twenty-nine untested cells were colouring green
+inside two boxes. Routed to PrepositionAuthor and PossessiveAuthor as an authoring commission.
+
+`prep_af_11` (con gli amici) is deliberately slotless: con/per/tra/fra do not contract, so the item
+belongs to the leaf and to no cell. Recorded in the leaf description so it is not read as a miss.
+
+## Live false-credit bug: the apostrophe fold credits the error on three indefinite-article items (2026-08-02, Architecture)
+Found by the slot migration. `art_iform_12/13/14` test `un'amica`, `un'ora`, `un'isola`. The authored
+markpoint is `{phrase:"un", match_at:"word"}`. norm() folds the apostrophe to a space, so `un'amica`
+and `un amica` are byte-identical after normalisation and BOTH hit. **A learner who writes `un amica`,
+the single most likely error, scores 1/1 on an item whose entire purpose is that feminine vowel-initial
+nouns take `un'`.** `must_not_include` cannot help: it lists `una` and `uno`, which never appear.
+
+The parallel definite items (`art_dform_10/11/20/21`, phrase `l` for `l'amico` etc) are SAFE, and the
+asymmetry is the rule worth keeping: **the apostrophe fold is dangerous only where the de-apostrophed
+string is itself a competing plausible answer.** `il amico` and `lo amico` produce no word-bounded
+`l`, so the bare-`l` authoring is harmless there.
+
+Supersedes the earlier disposition "apostrophe taught in explanations, graded in translation", which
+was adequate for a coverage gap and is not adequate for active false credit. Remedy: index-scored MCQ
+(`un / un' / uno / una`), which never touches norm(). Routed at
+`Architecture_ArticleAuthor_apostrophe_fold_false_credit` v1.
+
+**Third instance today of one meta-pattern:** the instrument cannot test the thing it claims to test.
+No-change forms (item-shape law, ~58 items), dead vocab_help (225 entries booking false vocabulary
+misses), and now the apostrophe fold (3 items booking false credit). Each was invisible because the
+item marked *correctly* — the mark was right and the measurement was fiction. Worth watching for as a
+class rather than meeting it a fourth time by accident.
+
+## Protocol fault: three ways a `Next:` line silently names nobody (2026-08-02, Architecture, found the hard way)
+The estate's queue is a name-grep on the LAST line beginning `**Next:` in each thread. A thread whose
+final Next line contains no seat name is invisible to every seat, while still reading as open. All
+three variants below occurred TODAY, two of them in my own writes and one after I had already caught
+and fixed the first:
+
+1. **A description instead of names.** "Next: the five named seats" / "Next: the nine named seats".
+   Reads fine to a human, matches nothing.
+2. **A placeholder on discharge.** Four seats replying to the item-shape proposal each closed with
+   "Next: whoever else in the routing list still owes a react." Four courteous replies between them
+   **deleted the thread from the queue of every seat that had not yet answered.** This is the
+   politest possible way to lose work.
+3. **Line wrapping.** A Next line naming nine seats, wrapped across two physical lines, is read as
+   naming only those on the first. The grep is line-based; markdown wrapping is invisible to it.
+
+**Rules, effective now.** A `Next:` line is ONE physical line, however long. It contains seat NAMES,
+never a description of a set of seats. When you discharge your own turn on a multi-seat thread, either
+name the seats that still owe or leave the Next line untouched — never replace names with a phrase.
+
+This is "a criterion with no next-touch clause binds nobody" (Rev 21) recurring at the transport
+layer rather than the ruling layer. Route to MetaProject: the same grep runs estate-wide, so the fault
+is not Linguics-specific.
+
+Minor, same family: four seats replying in parallel all numbered themselves `## v3`. Date plus seat
+name disambiguate, so this is a readability nuisance, not a defect. No rule proposed.
