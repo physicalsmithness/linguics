@@ -82,3 +82,20 @@ Idioms covered, each as tail-supply and (where it earns it) stem/auxiliary: mett
 5. **Cues name stems only, never tails** — `pv_ft_farla_01` cues `(farla)`, never `(farla finita)`, or the cue would hand over the answer.
 
 **Status: the leaf is FORWARD-REFERENCED and awaits Architecture ratification** (brief §2 permits this at authoring; production load strict-rejects until the bucket exists). Contract thread: `inter_chat/Architecture_PronominalVerbsAuthor_frozen_tail_idioms.md`. Re-validated fold-aware: 0 errors, 0 dead guards.
+
+
+---
+
+## Addendum: clitic-order battery (2026-08-03, commissioned by Smith)
+
+Smith's "carry on" on the order-imagination battery (`Architecture_PronounAuthor_order_imagination_battery`; multi_select shipped live 2026-08-02). Added **5 multi_select "which are correct" items** (`pv_ord_*_ms_01`) on the pronominal seams PronounAuthor left open. Topic now **61 grammar** (48 short + 8 mcq + 5 multi_select) / 23 translation.
+
+| Seam | Item | Correct / choices |
+|---|---|---|
+| andarsene, modal+infinitive | pv_ord_andarsene_ms_01 | 3 / 5 |
+| farcela, modal+infinitive | pv_ord_farcela_ms_01 | 2 / 5 |
+| prendersela, negative tu imperative | pv_ord_prendersela_ms_01 | 2 / 5 |
+| andarsene, positive tu imperative | pv_ord_vattene_ms_01 | 1 / 5 |
+| mettercela tutta, modal+infinitive | pv_ord_mettercela_ms_01 | 2 / 5 |
+
+Design: each correct choice cross-credits `pronoun.discrimination.clitic_ordering` + a `pronoun.position.*` leaf (the order skill, pronoun tree) AND my `mechanics.*` / `meaning.frozen_tail_idioms` leaf (the verb, Rev 27). The prendersela (both-positions) vs vattene (enclisis-only, single correct) pair is the teaching centre. These test clitic POSITION, which the original six leaves never did (they test formation and meaning). Placement + cross-tree ingest flagged to Architecture in `inter_chat/Architecture_PronominalVerbsAuthor_clitic_order_battery.md`.

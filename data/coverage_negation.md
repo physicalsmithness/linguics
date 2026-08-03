@@ -51,6 +51,12 @@ The 17 remaining "must_not inside correct" hits are all the dropped-non guards (
 - **20(iii) instruction-pinned guards**: no guard here false-flags a compliant answer, so the mitigation is unused.
 - **§3 explicit `credit` on references** (previously undocumented to me): applied. Four references now carry `credit: 0.9` with steering notes rather than leaving the AI marker to infer from prose.
 
+## False-miss packet remediated (2026-08-03, from live learners)
+
+Four findings from live learner data (correct Italian scored 0), all fixed; replica-verified no new false credit:
+- **neg_concord_02 / neg_concord_06 (TOP)**: bare «Niente.» scored 0. Reframed prompt to "Rispondi con una frase completa" (instruction-pinned, Rev 20iii) so the bare ellipsis is non-compliant, not false-missed; the ellipsis is credited in translation. Added 'proprio' emphatic variants. Phrase-pair split rejected (would credit the dropped-non miss).
+- **neg_corr_01 / neg_corr_04 (MID)**: articles inside né...né ("né il caffè né il tè") scored 0. Added article variants; corr_04's blank widened to hold the whole list. Guards left specific to avoid a new false miss.
+
 ## Misconception tags (Phase-3 rollout, 2026-07-20)
 
 Joined the guard-tag rollout. 29 guards tagged against ratified families: word_order.negation_elements ×27 (all placement / dropped-non / kept-non / mai-order / mica-with-non errors, incl. neg_mica_04 via choice_tags), discrimination.indicative_for_subjunctive_choice ×2 (a meno che + indicative). Marking untouched (metadata). 19 guards across 7 concepts have no ratified family and are flagged to MisconceptionAnalyst via inter_chat/Architecture_NegationAuthor_misconception_coverage.md (biggest: pleonastic-non-read-as-negation, 5 guards). Author does not mint; those stay honest-blank until ratified.

@@ -15,6 +15,10 @@ queue:
   - (empty) name-grep across the six surfaces + all-seats returns no live work.
     All DECISIONS hits are standing rules, not tasks. Criterion 19 register row:
     "discharged (AccentAuditor, 267 markpoints)". No thread names this seat as Next.
+  - OPENED this turn (not queue - awaiting Architecture, not me):
+    AccentAuditor_Architecture_finding_discipline_and_c19_drift.md - (1) proposal that
+    analysis-seat patterns-found-while-judging are asks not columns, with my own supplied-choice
+    miss as the worked example; (2) the drift decision below, with its grep tool attached.
 decision:
   question: Criterion 19's retrofit is stamped discharged, but nothing detects DRIFT as the corpus
     grows. Criterion 17 has Cr17Sweep for stragglers; 19 has no equivalent. Evidence today: 1 new

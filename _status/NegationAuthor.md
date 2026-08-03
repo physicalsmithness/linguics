@@ -5,14 +5,15 @@ classes: [all-seats, all-authors]
 #   must_not_include guards and item explanations. The register's test is what a seat originates,
 #   not what it touches, so criteria 13-20 all bind me. I am not in the Vocab/Cr17Sweep non-author class.
 project: Linguics
-updated: 2026-07-20
+updated: 2026-08-03
 waiting: parked
-needs_from_smith: decision
+needs_from_smith: none
 blocked_by:
 claude_can_verify:
 note_2026-07-20: Rev 26-28 caught up — Rev 27 cross-credit split neg_ameno_01/02 (congiuntivo now full-credited); Rev 26 nothing owed; Rev 28 N/A. resp_02 piacere dual-cite flagged.
-summary: Negation live (42 grammar + 23 translation, 9 leaves, validation 0/0, replica clean). Nothing to author. Raw name-grep showed 6; after triage the queue is two all-authors retrofits, both RUN clean this turn and awaiting Architecture's stamp, plus one thread on Architecture's side. Nothing owed by me.
+summary: False-miss packet (unanswered since 07-21 — my status wrongly said parked) NOW remediated, 4 items, awaiting stamp. Scope v11 accepted all my addenda (né...né agreement stays on negation.correlative; a_meno_che split accepted; resp_02 declined). Misconception 7-family proposal with Architecture. Nothing owed by me.
 queue:
+  - Architecture_NegationAuthor_false_miss_packet.md v2 — 4 findings REMEDIATED, Next: Architecture (verify+stamp). [was missed since 07-21; status is why]
   - Criterion 13 chip self-audit — RUN this turn, ZERO hits, zero rewrites. Register says RUNNING, compliance 1 of ~25 author seats; my name never appears, only the class token found it. Awaiting Architecture stamp.   [AUTHOR_BRIEF binding register]
   - Rev 25 citation-form-level audit — RUN this turn. Two citation cues (neg_ameno_01 "(piovere)", neg_ameno_02 "(essere)"), both on C1 items with A1 lemmas, so the exemption holds and no gloss is needed. Zero changes. Awaiting Architecture stamp.   [AUTHOR_BRIEF Rev 25, binds all-authors]
   - Architecture_NegationAuthor_misconception_coverage.md v1 — NEW, Next: Architecture: 29 guards tagged vs ratified families; 7 proposed families routed to MisconceptionAnalyst for the remaining 19 guards.

@@ -7744,16 +7744,16 @@
   "subtopic": "invariable.pari_family",
   "difficulty": 2,
   "cefr_level_target": "B1",
-  "prompt": "Complete: '2, 4, 6 sono numeri ____.' (pari)",
+  "prompt": "Using pari / impari / dispari. 2, 4 and 6 are _even_ numbers. 2, 4, 6 sono numeri ____.",
   "type": "short",
   "marks": 1,
-  "wrong_answer_is_form_error_only": true,
+  "slot": "pari",
   "markpoints": [
    {
     "order_index": 0,
-    "credit": 1.0,
+    "credit": 0.5,
     "bucket": "adjective_agreement.invariable.pari_family",
-    "label": "pari is invariable",
+    "label": "pari is invariable (no plural marker on m.pl noun 'numeri')",
     "any_phrases": [
      {
       "phrase": "pari",
@@ -7763,23 +7763,41 @@
     "must_not_include": [
      "parii",
      "pare",
-     "para"
+     "para",
+     "parie"
     ]
+   },
+   {
+    "order_index": 1,
+    "credit": 0.5,
+    "bucket": "vocabulary.it.pari.adjective.translation",
+    "label": "pari lexeme (even / equal)",
+    "any_phrases": [
+     {
+      "phrase": "pari",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": []
    }
   ],
   "vocab_help": [
    {
-    "lemma": "pari",
+    "lemma": "numero",
     "language": "it",
     "aspects": {
      "translation": {
-      "reveal": "pari - even, equal",
-      "bucket": "vocabulary.it.pari.adjective.translation"
+      "reveal": "numero - number",
+      "bucket": "vocabulary.it.numero.noun.translation"
+     },
+     "gender": {
+      "reveal": "masculine (m)",
+      "bucket": "vocabulary.it.numero.noun.gender"
      }
     }
    }
   ],
-  "explanation": "'2, 4 and 6 are even numbers': 2, 4, 6 sono numeri pari. Pari is an invariable adjective: same form for all genders and numbers. I numeri pari = the even numbers.",
+  "explanation": "'2, 4 and 6 are even numbers': 2, 4, 6 sono numeri pari. Pari is invariable — no plural marker even after the m.pl noun 'numeri'. The two markpoints cross-credit per Rev 27: the invariability bucket registers the form correctness, and the vocab bucket registers that the learner reached for the right lexeme among pari / impari / dispari.",
   "version": 1
  },
  {
@@ -7789,16 +7807,16 @@
   "subtopic": "invariable.pari_family",
   "difficulty": 3,
   "cefr_level_target": "B1",
-  "prompt": "Complete: 'Alla fine della partita le squadre erano ____.' (pari)",
+  "prompt": "Using pari / impari / dispari. At the end of the match, the two teams were _tied_. Alla fine della partita, le due squadre erano ____.",
   "type": "short",
   "marks": 1,
-  "wrong_answer_is_form_error_only": true,
+  "slot": "pari",
   "markpoints": [
    {
     "order_index": 0,
-    "credit": 1.0,
+    "credit": 0.5,
     "bucket": "adjective_agreement.invariable.pari_family",
-    "label": "pari (= 'equal/level') is invariable",
+    "label": "pari is invariable (predicate after f.pl subject 'le squadre')",
     "any_phrases": [
      {
       "phrase": "pari",
@@ -7808,21 +7826,25 @@
     "must_not_include": [
      "pare",
      "parie",
-     "para"
+     "para",
+     "parii"
     ]
+   },
+   {
+    "order_index": 1,
+    "credit": 0.5,
+    "bucket": "vocabulary.it.pari.adjective.translation",
+    "label": "pari lexeme (tied / equal)",
+    "any_phrases": [
+     {
+      "phrase": "pari",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": []
    }
   ],
   "vocab_help": [
-   {
-    "lemma": "pari",
-    "language": "it",
-    "aspects": {
-     "translation": {
-      "reveal": "pari - equal, level",
-      "bucket": "vocabulary.it.pari.adjective.translation"
-     }
-    }
-   },
    {
     "lemma": "squadra",
     "language": "it",
@@ -7836,9 +7858,23 @@
       "bucket": "vocabulary.it.squadra.noun.gender"
      }
     }
+   },
+   {
+    "lemma": "partita",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "partita - match, game",
+      "bucket": "vocabulary.it.partita.noun.translation"
+     },
+     "gender": {
+      "reveal": "feminine (f)",
+      "bucket": "vocabulary.it.partita.noun.gender"
+     }
+    }
    }
   ],
-  "explanation": "'At the end of the match the teams were level': Alla fine della partita le squadre erano pari. Pari in the 'equal, level' sense (tied score) is the same invariable adjective as 'even' (numbers). The form stays pari: le squadre pari.",
+  "explanation": "'At the end of the match, the two teams were tied': Alla fine della partita, le due squadre erano pari. The predicate position after an f.pl subject ('le squadre') tempts a plural-feminine ending — parie — that pari refuses. Rev 27 cross-credit: the invariability bucket registers the form, the vocab bucket registers pari-as-lexeme (in its 'tied, level' sense here).",
   "version": 1
  },
  {
@@ -7848,16 +7884,16 @@
   "subtopic": "invariable.pari_family",
   "difficulty": 3,
   "cefr_level_target": "B2",
-  "prompt": "Complete: '1, 3, 5 sono numeri ____.' (dispari)",
+  "prompt": "Using pari / impari / dispari. 1, 3, 5 and 7 are _odd_ numbers. 1, 3, 5 e 7 sono numeri ____.",
   "type": "short",
   "marks": 1,
-  "wrong_answer_is_form_error_only": true,
+  "slot": "dispari",
   "markpoints": [
    {
     "order_index": 0,
-    "credit": 1.0,
+    "credit": 0.5,
     "bucket": "adjective_agreement.invariable.pari_family",
-    "label": "dispari is invariable",
+    "label": "dispari is invariable (no plural marker on 'numeri')",
     "any_phrases": [
      {
       "phrase": "dispari",
@@ -7867,23 +7903,41 @@
     "must_not_include": [
      "disparii",
      "dispare",
-     "dispara"
+     "dispara",
+     "disparie"
     ]
+   },
+   {
+    "order_index": 1,
+    "credit": 0.5,
+    "bucket": "vocabulary.it.dispari.adjective.translation",
+    "label": "dispari lexeme (odd / uneven)",
+    "any_phrases": [
+     {
+      "phrase": "dispari",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": []
    }
   ],
   "vocab_help": [
    {
-    "lemma": "dispari",
+    "lemma": "numero",
     "language": "it",
     "aspects": {
      "translation": {
-      "reveal": "dispari - odd (number), unequal",
-      "bucket": "vocabulary.it.dispari.adjective.translation"
+      "reveal": "numero - number",
+      "bucket": "vocabulary.it.numero.noun.translation"
+     },
+     "gender": {
+      "reveal": "masculine (m)",
+      "bucket": "vocabulary.it.numero.noun.gender"
      }
     }
    }
   ],
-  "explanation": "Dispari ('odd, uneven') is an invariable adjective like pari. The form stays dispari for all genders and numbers.",
+  "explanation": "'1, 3, 5 and 7 are odd numbers': 1, 3, 5 e 7 sono numeri dispari. Dispari is invariable — parallel to pari for evens. Rev 27 cross-credit: the invariability bucket registers the form, the vocab bucket registers dispari-as-lexeme.",
   "version": 1
  },
  {
@@ -10222,16 +10276,16 @@
   "subtopic": "invariable.pari_family",
   "difficulty": 4,
   "cefr_level_target": "B2",
-  "prompt": "Complete: 'L'azienda promuove ____ opportunità per tutti i dipendenti.' (pari)",
+  "prompt": "Using pari / impari / dispari. The company promotes _equal_ opportunities for all its employees. L'azienda promuove ____ opportunità per tutti i dipendenti.",
   "type": "short",
   "marks": 1,
-  "wrong_answer_is_form_error_only": true,
+  "slot": "pari",
   "markpoints": [
    {
     "order_index": 0,
-    "credit": 1.0,
+    "credit": 0.5,
     "bucket": "adjective_agreement.invariable.pari_family",
-    "label": "pari (= 'equal') in fixed phrase 'pari opportunità'",
+    "label": "pari is invariable (in fixed phrase 'pari opportunità', pre-noun before f.pl)",
     "any_phrases": [
      {
       "phrase": "pari",
@@ -10241,21 +10295,25 @@
     "must_not_include": [
      "parie",
      "parii",
-     "pare"
+     "pare",
+     "para"
     ]
+   },
+   {
+    "order_index": 1,
+    "credit": 0.5,
+    "bucket": "vocabulary.it.pari.adjective.translation",
+    "label": "pari lexeme (equal, in the fixed 'equal opportunities' collocation)",
+    "any_phrases": [
+     {
+      "phrase": "pari",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": []
    }
   ],
   "vocab_help": [
-   {
-    "lemma": "pari",
-    "language": "it",
-    "aspects": {
-     "translation": {
-      "reveal": "pari - equal (here: equal opportunities)",
-      "bucket": "vocabulary.it.pari.adjective.translation"
-     }
-    }
-   },
    {
     "lemma": "opportunità",
     "language": "it",
@@ -10269,9 +10327,23 @@
       "bucket": "vocabulary.it.opportunità.noun.gender"
      }
     }
+   },
+   {
+    "lemma": "azienda",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "azienda - company",
+      "bucket": "vocabulary.it.azienda.noun.translation"
+     },
+     "gender": {
+      "reveal": "feminine (f)",
+      "bucket": "vocabulary.it.azienda.noun.gender"
+     }
+    }
    }
   ],
-  "explanation": "'Pari opportunità' (equal opportunities) is a standard fixed phrase. Pari is invariable as always; opportunità is also an invariable noun, so nothing changes across number.",
+  "explanation": "'The company promotes equal opportunities for all its employees': L'azienda promuove pari opportunità per tutti i dipendenti. 'Pari opportunità' is a fixed collocation — the f.pl noun 'opportunità' does not pull an ending onto pari. Rev 27 cross-credit: form (invariability) and lexeme (equal / equality) each register their own hit.",
   "version": 1
  },
  {
@@ -10281,16 +10353,16 @@
   "subtopic": "invariable.pari_family",
   "difficulty": 4,
   "cefr_level_target": "B2",
-  "prompt": "Complete: 'È stata una lotta ____ tra le due squadre, una contro un avversario molto più forte.' (impari)",
+  "prompt": "Using pari / impari / dispari. It was an _unequal_ struggle against a much stronger opponent. È stata una lotta ____ contro un avversario molto più forte.",
   "type": "short",
   "marks": 1,
-  "wrong_answer_is_form_error_only": true,
+  "slot": "impari",
   "markpoints": [
    {
     "order_index": 0,
-    "credit": 1.0,
+    "credit": 0.5,
     "bucket": "adjective_agreement.invariable.pari_family",
-    "label": "impari is invariable",
+    "label": "impari is invariable (attributive after f.sg noun 'lotta')",
     "any_phrases": [
      {
       "phrase": "impari",
@@ -10300,21 +10372,25 @@
     "must_not_include": [
      "imparii",
      "impare",
-     "impara"
+     "impara",
+     "imparie"
     ]
+   },
+   {
+    "order_index": 1,
+    "credit": 0.5,
+    "bucket": "vocabulary.it.impari.adjective.translation",
+    "label": "impari lexeme (unequal / unfair)",
+    "any_phrases": [
+     {
+      "phrase": "impari",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": []
    }
   ],
   "vocab_help": [
-   {
-    "lemma": "impari",
-    "language": "it",
-    "aspects": {
-     "translation": {
-      "reveal": "impari - unequal, uneven",
-      "bucket": "vocabulary.it.impari.adjective.translation"
-     }
-    }
-   },
    {
     "lemma": "lotta",
     "language": "it",
@@ -10328,9 +10404,628 @@
       "bucket": "vocabulary.it.lotta.noun.gender"
      }
     }
+   },
+   {
+    "lemma": "avversario",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "avversario - opponent",
+      "bucket": "vocabulary.it.avversario.noun.translation"
+     },
+     "gender": {
+      "reveal": "masculine (m)",
+      "bucket": "vocabulary.it.avversario.noun.gender"
+     }
+    }
    }
   ],
-  "explanation": "Impari ('unequal, uneven') is an invariable adjective like pari and dispari. The context 'molto più forte' (much stronger) forces the 'unequal struggle' reading.",
+  "explanation": "'It was an unequal struggle against a much stronger opponent': È stata una lotta impari contro un avversario molto più forte. Impari is invariable — an f.sg noun ('lotta') tempts 'impara' but the form does not agree. The 'much stronger opponent' clause supplies the context that selects impari (unequal) over pari (equal). Rev 27 cross-credit: form and lexeme each score.",
+  "version": 1
+ },
+ {
+  "external_id": "adj_inv_pari_06",
+  "language_code": "it",
+  "topic": "adjective_agreement",
+  "subtopic": "invariable.pari_family",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "prompt": "Using pari / impari / dispari. The two candidates finished _even_ in the vote count. I due candidati sono arrivati ____ nel conteggio dei voti.",
+  "type": "short",
+  "marks": 1,
+  "slot": "pari",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 0.5,
+    "bucket": "adjective_agreement.invariable.pari_family",
+    "label": "pari is invariable (predicate after m.pl subject 'i due candidati')",
+    "any_phrases": [
+     {
+      "phrase": "pari",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     "pari'",
+     "parii",
+     "pare",
+     "para",
+     "parie"
+    ]
+   },
+   {
+    "order_index": 1,
+    "credit": 0.5,
+    "bucket": "vocabulary.it.pari.adjective.translation",
+    "label": "pari lexeme (tied / equal on a count)",
+    "any_phrases": [
+     {
+      "phrase": "pari",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": []
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "candidato",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "candidato - candidate",
+      "bucket": "vocabulary.it.candidato.noun.translation"
+     },
+     "gender": {
+      "reveal": "masculine (m); candidata is the f",
+      "bucket": "vocabulary.it.candidato.noun.gender"
+     }
+    }
+   },
+   {
+    "lemma": "voto",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "voto - vote",
+      "bucket": "vocabulary.it.voto.noun.translation"
+     },
+     "gender": {
+      "reveal": "masculine (m)",
+      "bucket": "vocabulary.it.voto.noun.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "'The two candidates finished even in the vote count': I due candidati sono arrivati pari nel conteggio dei voti. Pari as predicate after an m.pl subject; the invariability holds — no 'pari' plural marker.",
+  "version": 1
+ },
+ {
+  "external_id": "adj_inv_pari_07",
+  "language_code": "it",
+  "topic": "adjective_agreement",
+  "subtopic": "invariable.pari_family",
+  "difficulty": 3,
+  "cefr_level_target": "B2",
+  "prompt": "Using pari / impari / dispari. All employees work under _equal_ conditions. Tutti i dipendenti lavorano in condizioni ____.",
+  "type": "short",
+  "marks": 1,
+  "slot": "pari",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 0.5,
+    "bucket": "adjective_agreement.invariable.pari_family",
+    "label": "pari is invariable (attributive post-noun after f.pl 'condizioni')",
+    "any_phrases": [
+     {
+      "phrase": "pari",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     "parie",
+     "parii",
+     "pare",
+     "para"
+    ]
+   },
+   {
+    "order_index": 1,
+    "credit": 0.5,
+    "bucket": "vocabulary.it.pari.adjective.translation",
+    "label": "pari lexeme (equal conditions)",
+    "any_phrases": [
+     {
+      "phrase": "pari",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": []
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "condizione",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "condizione - condition",
+      "bucket": "vocabulary.it.condizione.noun.translation"
+     },
+     "gender": {
+      "reveal": "feminine (f)",
+      "bucket": "vocabulary.it.condizione.noun.gender"
+     }
+    }
+   },
+   {
+    "lemma": "dipendente",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "dipendente - employee",
+      "bucket": "vocabulary.it.dipendente.noun.translation"
+     },
+     "gender": {
+      "reveal": "common-gender (m or f); plural takes gli / le",
+      "bucket": "vocabulary.it.dipendente.noun.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "'All employees work under equal conditions': Tutti i dipendenti lavorano in condizioni pari. Attributive-post-noun position after an f.pl noun; pari stays pari. This is the misdirection point — the f.pl subject-frame tempts pluralising the adjective. It refuses.",
+  "version": 1
+ },
+ {
+  "external_id": "adj_inv_pari_08",
+  "language_code": "it",
+  "topic": "adjective_agreement",
+  "subtopic": "invariable.pari_family",
+  "difficulty": 3,
+  "cefr_level_target": "B1",
+  "prompt": "Using pari / impari / dispari. Please open the book at an _odd_ page. Per favore, apri il libro a una pagina ____.",
+  "type": "short",
+  "marks": 1,
+  "slot": "dispari",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 0.5,
+    "bucket": "adjective_agreement.invariable.pari_family",
+    "label": "dispari is invariable (attributive after f.sg 'pagina')",
+    "any_phrases": [
+     {
+      "phrase": "dispari",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     "disparie",
+     "disparii",
+     "dispare",
+     "dispara"
+    ]
+   },
+   {
+    "order_index": 1,
+    "credit": 0.5,
+    "bucket": "vocabulary.it.dispari.adjective.translation",
+    "label": "dispari lexeme (odd page number)",
+    "any_phrases": [
+     {
+      "phrase": "dispari",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": []
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "pagina",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "pagina - page",
+      "bucket": "vocabulary.it.pagina.noun.translation"
+     },
+     "gender": {
+      "reveal": "feminine (f)",
+      "bucket": "vocabulary.it.pagina.noun.gender"
+     }
+    }
+   },
+   {
+    "lemma": "libro",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "libro - book",
+      "bucket": "vocabulary.it.libro.noun.translation"
+     },
+     "gender": {
+      "reveal": "masculine (m)",
+      "bucket": "vocabulary.it.libro.noun.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "'Please open the book at an odd page': Per favore, apri il libro a una pagina dispari. Dispari after an f.sg noun; would tempt 'dispara' or 'disparie' if it could inflect. It cannot.",
+  "version": 1
+ },
+ {
+  "external_id": "adj_inv_pari_09",
+  "language_code": "it",
+  "topic": "adjective_agreement",
+  "subtopic": "invariable.pari_family",
+  "difficulty": 3,
+  "cefr_level_target": "B2",
+  "prompt": "Using pari / impari / dispari. The _odd_ chapters focus on theory; the even ones focus on practice. I capitoli ____ trattano la teoria; quelli pari trattano la pratica.",
+  "type": "short",
+  "marks": 1,
+  "slot": "dispari",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 0.5,
+    "bucket": "adjective_agreement.invariable.pari_family",
+    "label": "dispari is invariable (attributive post-noun after m.pl 'capitoli')",
+    "any_phrases": [
+     {
+      "phrase": "dispari",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     "disparii",
+     "disparie",
+     "dispare",
+     "dispara"
+    ]
+   },
+   {
+    "order_index": 1,
+    "credit": 0.5,
+    "bucket": "vocabulary.it.dispari.adjective.translation",
+    "label": "dispari lexeme (odd, in an odd-vs-even contrast)",
+    "any_phrases": [
+     {
+      "phrase": "dispari",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": []
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "capitolo",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "capitolo - chapter",
+      "bucket": "vocabulary.it.capitolo.noun.translation"
+     },
+     "gender": {
+      "reveal": "masculine (m)",
+      "bucket": "vocabulary.it.capitolo.noun.gender"
+     }
+    }
+   },
+   {
+    "lemma": "teoria",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "teoria - theory",
+      "bucket": "vocabulary.it.teoria.noun.translation"
+     },
+     "gender": {
+      "reveal": "feminine (f)",
+      "bucket": "vocabulary.it.teoria.noun.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "'The odd chapters focus on theory; the even ones focus on practice': I capitoli dispari trattano la teoria; quelli pari trattano la pratica. The item shows both pari and dispari in the same sentence — the frame naturally tests the contrast without spelling it out.",
+  "version": 1
+ },
+ {
+  "external_id": "adj_inv_pari_10",
+  "language_code": "it",
+  "topic": "adjective_agreement",
+  "subtopic": "invariable.pari_family",
+  "difficulty": 4,
+  "cefr_level_target": "B2",
+  "prompt": "Using pari / impari / dispari. The number of guests turned out to be _odd_, so someone had to sit alone. Il numero degli ospiti si è rivelato ____, quindi qualcuno ha dovuto sedersi da solo.",
+  "type": "short",
+  "marks": 1,
+  "slot": "dispari",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 0.5,
+    "bucket": "adjective_agreement.invariable.pari_family",
+    "label": "dispari is invariable (predicate after m.sg 'il numero')",
+    "any_phrases": [
+     {
+      "phrase": "dispari",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     "disparo",
+     "disparii",
+     "dispare",
+     "dispara",
+     "disparie"
+    ]
+   },
+   {
+    "order_index": 1,
+    "credit": 0.5,
+    "bucket": "vocabulary.it.dispari.adjective.translation",
+    "label": "dispari lexeme (odd, as a count property)",
+    "any_phrases": [
+     {
+      "phrase": "dispari",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": []
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "ospite",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "ospite - guest, host",
+      "bucket": "vocabulary.it.ospite.noun.translation"
+     },
+     "gender": {
+      "reveal": "common-gender (m or f)",
+      "bucket": "vocabulary.it.ospite.noun.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "'The number of guests turned out to be odd': Il numero degli ospiti si è rivelato dispari. Predicate use after 'il numero' (m.sg) — 'disparo' would be a plausible-looking wrong ending here, caught by must_not_include.",
+  "version": 1
+ },
+ {
+  "external_id": "adj_inv_pari_11",
+  "language_code": "it",
+  "topic": "adjective_agreement",
+  "subtopic": "invariable.pari_family",
+  "difficulty": 4,
+  "cefr_level_target": "B2",
+  "prompt": "Using pari / impari / dispari. The teacher's _unequal_ treatment of the pupils upset the class. Il trattamento ____ dell'insegnante ha turbato la classe.",
+  "type": "short",
+  "marks": 1,
+  "slot": "impari",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 0.5,
+    "bucket": "adjective_agreement.invariable.pari_family",
+    "label": "impari is invariable (attributive post-noun after m.sg 'trattamento')",
+    "any_phrases": [
+     {
+      "phrase": "impari",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     "imparo",
+     "imparii",
+     "impare",
+     "impara",
+     "imparie"
+    ]
+   },
+   {
+    "order_index": 1,
+    "credit": 0.5,
+    "bucket": "vocabulary.it.impari.adjective.translation",
+    "label": "impari lexeme (unequal, unfair)",
+    "any_phrases": [
+     {
+      "phrase": "impari",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": []
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "trattamento",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "trattamento - treatment",
+      "bucket": "vocabulary.it.trattamento.noun.translation"
+     },
+     "gender": {
+      "reveal": "masculine (m)",
+      "bucket": "vocabulary.it.trattamento.noun.gender"
+     }
+    }
+   },
+   {
+    "lemma": "insegnante",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "insegnante - teacher",
+      "bucket": "vocabulary.it.insegnante.noun.translation"
+     },
+     "gender": {
+      "reveal": "common-gender (m or f)",
+      "bucket": "vocabulary.it.insegnante.noun.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "'The teacher's unequal treatment of the pupils upset the class': Il trattamento impari dell'insegnante ha turbato la classe. Impari in its unfair-treatment sense — an m.sg noun ('trattamento') would take '-o' agreement if the adjective inflected, so 'imparo' is the plausible-looking wrong form the guard catches.",
+  "version": 1
+ },
+ {
+  "external_id": "adj_inv_pari_12",
+  "language_code": "it",
+  "topic": "adjective_agreement",
+  "subtopic": "invariable.pari_family",
+  "difficulty": 4,
+  "cefr_level_target": "B2",
+  "prompt": "Using pari / impari / dispari. The two teams had _unequal_ strengths, and the game ended one-sided. Le due squadre avevano forze ____ e la partita è finita a senso unico.",
+  "type": "short",
+  "marks": 1,
+  "slot": "impari",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 0.5,
+    "bucket": "adjective_agreement.invariable.pari_family",
+    "label": "impari is invariable (attributive post-noun after f.pl 'forze')",
+    "any_phrases": [
+     {
+      "phrase": "impari",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     "imparie",
+     "imparii",
+     "impare",
+     "impara"
+    ]
+   },
+   {
+    "order_index": 1,
+    "credit": 0.5,
+    "bucket": "vocabulary.it.impari.adjective.translation",
+    "label": "impari lexeme (unequal, in a comparison of strengths)",
+    "any_phrases": [
+     {
+      "phrase": "impari",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": []
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "forza",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "forza - strength, force",
+      "bucket": "vocabulary.it.forza.noun.translation"
+     },
+     "gender": {
+      "reveal": "feminine (f)",
+      "bucket": "vocabulary.it.forza.noun.gender"
+     }
+    }
+   },
+   {
+    "lemma": "squadra",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "squadra - team",
+      "bucket": "vocabulary.it.squadra.noun.translation"
+     },
+     "gender": {
+      "reveal": "feminine (f)",
+      "bucket": "vocabulary.it.squadra.noun.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "'The two teams had unequal strengths': Le due squadre avevano forze impari. The f.pl noun 'forze' pulls hardest for an ending here — 'imparie' looks natural to the eye but the adjective refuses to agree.",
+  "version": 1
+ },
+ {
+  "external_id": "adj_inv_pari_13",
+  "language_code": "it",
+  "topic": "adjective_agreement",
+  "subtopic": "invariable.pari_family",
+  "difficulty": 4,
+  "cefr_level_target": "B2",
+  "prompt": "Using pari / impari / dispari. The two positions in the debate seemed _unequal_ in force. Le due posizioni nel dibattito sembravano ____ per forza argomentativa.",
+  "type": "short",
+  "marks": 1,
+  "slot": "impari",
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 0.5,
+    "bucket": "adjective_agreement.invariable.pari_family",
+    "label": "impari is invariable (predicate after f.pl subject 'le due posizioni')",
+    "any_phrases": [
+     {
+      "phrase": "impari",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     "imparie",
+     "imparii",
+     "impare",
+     "impara"
+    ]
+   },
+   {
+    "order_index": 1,
+    "credit": 0.5,
+    "bucket": "vocabulary.it.impari.adjective.translation",
+    "label": "impari lexeme (unequal, in a two-sides comparison)",
+    "any_phrases": [
+     {
+      "phrase": "impari",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": []
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "posizione",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "posizione - position, stance",
+      "bucket": "vocabulary.it.posizione.noun.translation"
+     },
+     "gender": {
+      "reveal": "feminine (f)",
+      "bucket": "vocabulary.it.posizione.noun.gender"
+     }
+    }
+   },
+   {
+    "lemma": "dibattito",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "dibattito - debate",
+      "bucket": "vocabulary.it.dibattito.noun.translation"
+     },
+     "gender": {
+      "reveal": "masculine (m)",
+      "bucket": "vocabulary.it.dibattito.noun.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "'The two positions in the debate seemed unequal in force': Le due posizioni nel dibattito sembravano impari per forza argomentativa. Predicate use after an f.pl subject; the sembrare frame reinforces the temptation to inflect. Impari does not.",
   "version": 1
  },
  {

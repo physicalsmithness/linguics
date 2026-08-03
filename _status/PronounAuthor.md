@@ -5,8 +5,8 @@ updated: 2026-08-03
 waiting: parked
 needs_from_smith: none
 blocked_by:
-claude_can_verify: yes (230 grammar + 68 translation; all json.loads clean; existential leaf retiring per ruling; Rev 32 applied to 3 items; all-authors thread has my zero-exposure note)
-summary: Fresh pass covered today's landings. Existential leaf retiring (handoff to ExistentialAuthor). All-authors item-shape thread: zero exposure, brief for-the-record note filed. Rev 32 bilingual-tense-naming applied to op_refl_essere_02/03 and op_ne_motion_01; op_cil_exist_03 deliberately skipped (relocating to ExistentialAuthor). Rev 29/30 audits clean (one candidate op_dop_mi_03 flagged for next-touch, not queue). Nothing owed.
+claude_can_verify: yes (226 items grammar + 68 translation; existential leaf retired; 132 cue-notation conversions; op_dop_vi_you_03 converted to multi_select; residue 0)
+summary: Two big all-authors threads worked: cue-notation retrofit (132 conversions across pronoun's 226 items; 85% of the entire backlog); answer-leak dispatch section 5 (op_dop_vi_you_03 -> multi_select using Housing r82 qtype). Existential leaf CLOSED by Architecture yesterday.
 queue:
 awaiting_architect_stamp:
   - fcap two-item retrofit ask   [DECISIONS.md line 888 - rev19_audit]
@@ -18,6 +18,8 @@ awaiting_architect_stamp:
   - order_imagination_battery v2   [6 items + leaf proposal]
   - aspettare_class_referents v3   [7 seeds]
   - cr17_gate_dispositions v1   [5 reworks + 1 gate-exempt candidate]
-  - existential_formation_vs_tense_choice v2   [SUPERSEDED - Architecture ruled 2026-08-02 to relocate leaf; handoff to ExistentialAuthor filed]
+  - cue_notation v5   [132 English-in-parens conversions]
+  - answer_leak_dispatch v4   [op_dop_vi_you_03 -> multi_select]
 next_touch_deferrals:
-  - op_dop_mi_03 (Rev 29 one-to-one gloss): "[Me] hai chiamato ieri sera" - the bracketed English "Me" is one-to-one with answer "mi". Fix on next touch: convert to MCQ or widen gloss. Rev 29 is new-items rule not retrofit; deferring intentionally.
+  - op_dop_mi_03 (Rev 29 one-to-one gloss): "[Me] hai chiamato ieri sera" - bracketed English "Me" is one-to-one with answer "mi". Fix on next touch: convert to MCQ or widen gloss.
+  - op_refl_essere_02/03 chip "(auxiliary + participle)": English structure-naming in parens; held pending architect ruling on whether to bracket or reword.

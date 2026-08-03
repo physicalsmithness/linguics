@@ -2,16 +2,13 @@ seat: PronominalVerbsAuthor
 classes: [all-seats, all-authors]   # originates grammar+translation items
 project: Linguics
 updated: 2026-08-03
-waiting: closed            # both threads closed in my favour; frozen_tail leaf is live; nothing owed
-needs_from_smith: decision # one live commission fork + one minor cue-polish, below
+waiting: parked            # order battery delivered; sits with Architecture for placement + cross-tree ingest confirm
+needs_from_smith: none     # acted on "carry on"; nothing needed from Smith right now
 blocked_by:
-claude_can_verify: yes     # verified this turn: leaf in tree, Rev25 stamp at DECISIONS 1128, crit13 central per Rev 26
-summary: Both open threads CLOSED in my favour. frozen_tail_idioms leaf ratified and live under meaning, all 3 of my calls upheld; class retrofits closed (crit 13 discharged centrally per Rev 26; Rev 25 stamped DECISIONS 1128, "clean on all 56, dead-guard scan 0"). Topic 56 grammar / 23 translation, all resolve. One live commission names me (DECISIONS 1343): the ci-heavy clitic-ORDER multi-select battery, now unblocked (multi_select shipped 2026-08-02).
+claude_can_verify: yes     # whole-file fold-aware scan 0 dead guards; all cited buckets resolve
+summary: Carried on Smith's order-battery commission: authored 5 ci-heavy multi_select "which are correct" items (pv_ord_*_ms_01) on the pronominal seams PronounAuthor left open (andarsene/farcela/starsene climbing-vs-enclisis, prendersela negative-imperative vs vattene positive-imperative, mettercela tutta). Topic now 61 grammar / 23 translation, all resolve. Each correct choice cross-credits the pronoun order/position leaves + my mechanics/frozen_tail leaf (Rev 27). Prior threads (batch, class-retrofit, frozen-tail) all CLOSED.
 queue:                     # derived from the six-surface name+class grep, minus discharged
-  - none owed. Prior threads (batch_disposition, class_retrofit_audits, frozen_tail_idioms) all CLOSED.
-decisions_for_smith:       # discrete choices
-  - Order-imagination battery, ci-heavy: Smith flagged this style for pronominal verbs (DECISIONS 1343; Architecture_PronounAuthor_order_imagination_battery, multi_select now live). PronounAuthor left pronominal seams unauthored (andarsene/starsene enclitic-vs-climbing, reflexive+DOP placement, ne-motion enclisis). (a) author now [multi_select "which are correct" items, cite pronoun.discrimination.clitic_ordering + my mechanics leaves], (b) defer, (c) not needed.
-  - Rev 32 bilingual tense-cue: 8 cues name "(...passato)" IT-only; not a cognate let-off. (a) add "/ past" next touch, (b) leave [recommended — essere_03 precedent kept passato prossimo monolingual; not a formation topic].
+  - Architecture_PronominalVerbsAuthor_clitic_order_battery v1  [inter_chat, Architecture's turn — confirm placement + cross-tree multi_select ingest]
 parked:
+  - Rev 32 bilingual tense-cue: 8 "(...passato)" cues IT-only; recommend leave (essere_03 precedent monolingual; not a formation topic) or fold "/ past" into a future touch
   - ce l'ho mechanics pronoun-tree home — architecture call
-  - Rev-12 terse-label cleanup on the original six leaves (~38 suppressed items) — architecture-owned; frozen_tail leaf already demonstrates the terse pattern

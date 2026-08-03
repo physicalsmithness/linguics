@@ -342,7 +342,7 @@
     "type": "short",
     "marks": 1,
     "wrong_answer_is_form_error_only": false,
-    "prompt": "Rispondi al negativo: 'Che cosa hai visto?' → '____.'",
+    "prompt": "Rispondi con una frase completa: 'Che cosa hai visto?' → '____.'",
     "markpoints": [
       {
         "order_index": 0,
@@ -356,6 +356,14 @@
           },
           {
             "phrase": "non ho visto nulla",
+            "match_at": "word"
+          },
+          {
+            "phrase": "non ho visto proprio niente",
+            "match_at": "word"
+          },
+          {
+            "phrase": "non ho visto proprio nulla",
             "match_at": "word"
           }
         ],
@@ -376,7 +384,7 @@
     ],
     "vocab_help": [],
     "explanation": "'I didn't see anything / I saw nothing': Non ho visto niente (or nulla). English marks one negative ('didn't') and switches to 'anything'; Italian keeps non AND uses the negative word niente.",
-    "examiner_note": "niente and nulla are interchangeable here; both accepted. qualcosa guard catches the English 'anything' calque. Suppressed per Architecture ruling 2026-07-14 (v3 Q1): the breadcrumb 'Double negation is the norm' hands over the kept-non strategy on postverbal production. Rev-19 recoverability holds: the prompt fully specifies the task, so suppression does not make the item unanswerable.",
+    "examiner_note": "niente and nulla are interchangeable here; both accepted. qualcosa guard catches the English 'anything' calque. Suppressed per Architecture ruling 2026-07-14 (v3 Q1): the breadcrumb 'Double negation is the norm' hands over the kept-non strategy on postverbal production. Rev-19 recoverability holds: the prompt fully specifies the task, so suppression does not make the item unanswerable. False-miss remedy (packet 2026-07-21): the full-sentence instruction makes a bare «Niente.» a non-compliant answer (instruction-pinned, Rev 20iii) rather than a false miss; the ellipsis is credited in translation (trans_neg_en_it_concord_05). Emphatic 'proprio' variants added as full word-anchored phrases (phrase-pair splitting was rejected: it would credit the dropped-non miss on the object markpoint).",
     "version": 1,
     "info_display": "suppress"
   },
@@ -529,7 +537,7 @@
     "type": "short",
     "marks": 1,
     "wrong_answer_is_form_error_only": false,
-    "prompt": "Rispondi al negativo: 'Che cosa vuoi?' → '____.'",
+    "prompt": "Rispondi con una frase completa: 'Che cosa vuoi?' → '____.'",
     "markpoints": [
       {
         "order_index": 0,
@@ -543,6 +551,14 @@
           },
           {
             "phrase": "non voglio nulla",
+            "match_at": "word"
+          },
+          {
+            "phrase": "non voglio proprio niente",
+            "match_at": "word"
+          },
+          {
+            "phrase": "non voglio proprio nulla",
             "match_at": "word"
           }
         ],
@@ -565,7 +581,7 @@
     "explanation": "'I don't want anything / I want nothing': Non voglio niente (or nulla). The English 'anything' after a negative maps to niente/nulla in Italian, with non kept.",
     "version": 1,
     "info_display": "suppress",
-    "examiner_note": ". Suppressed per Architecture ruling 2026-07-14 (v3 Q1): the breadcrumb 'Double negation is the norm' hands over the kept-non strategy on postverbal production. Rev-19 recoverability holds: the prompt fully specifies the task, so suppression does not make the item unanswerable."
+    "examiner_note": ". Suppressed per Architecture ruling 2026-07-14 (v3 Q1): the breadcrumb 'Double negation is the norm' hands over the kept-non strategy on postverbal production. Rev-19 recoverability holds: the prompt fully specifies the task, so suppression does not make the item unanswerable. False-miss remedy (packet): full-sentence instruction (Rev 20iii); ellipsis credited in translation (concord_06 trans). 'proprio' variants added."
   },
   {
     "external_id": "neg_bip_01",
@@ -1698,6 +1714,10 @@
           {
             "phrase": "non bevo né caffè né tè",
             "match_at": "word"
+          },
+          {
+            "phrase": "non bevo né il caffè né il tè",
+            "match_at": "word"
           }
         ],
         "must_not_include": [
@@ -1728,7 +1748,7 @@
     ],
     "explanation": "'I drink neither coffee nor tea': Non bevo né caffè né tè. When the né...né pair sits after the verb, non stays in front, the same concord rule as non ho visto nessuno. Calquing 'either...or' as o...o is the usual slip.",
     "version": 1,
-    "examiner_note": ". Criterion 20 (Rev 22): the Italian cue restated the answer person-swapped, so it is now cued by bracketed English meaning with prompt_supplies_base_form:false."
+    "examiner_note": ". Criterion 20 (Rev 22): the Italian cue restated the answer person-swapped, so it is now cued by bracketed English meaning with prompt_supplies_base_form:false. False-miss remedy (packet): articles inside né...né are standard; added 'non bevo né il caffè né il tè'. Guards left specific (not widened to 'bevo né') to avoid a NEW false miss on a correct paraphrase with different nouns; the articled dropped-non edge stays no-attempt, not a false credit."
   },
   {
     "external_id": "neg_corr_02",
@@ -1819,7 +1839,7 @@
     "type": "short",
     "marks": 1,
     "wrong_answer_is_form_error_only": false,
-    "prompt": "Completa (you eat neither meat nor fish): '____ pesce.'",
+    "prompt": "Completa (you eat neither meat nor fish): '____.'",
     "markpoints": [
       {
         "order_index": 0,
@@ -1828,7 +1848,11 @@
         "label": "non ... né ... né",
         "any_phrases": [
           {
-            "phrase": "non mangio né carne né",
+            "phrase": "non mangio né carne né pesce",
+            "match_at": "word"
+          },
+          {
+            "phrase": "non mangio né la carne né il pesce",
             "match_at": "word"
           }
         ],
@@ -1850,7 +1874,7 @@
     "vocab_help": [],
     "explanation": "'I eat neither meat nor fish': Non mangio né carne né pesce. Both halves of the pair take né, and non stays before the verb because the pair follows it.",
     "version": 1,
-    "examiner_note": ". Criterion 20 (Rev 22): the Italian cue restated the answer person-swapped, so it is now cued by bracketed English meaning with prompt_supplies_base_form:false."
+    "examiner_note": ". Criterion 20 (Rev 22): the Italian cue restated the answer person-swapped, so it is now cued by bracketed English meaning with prompt_supplies_base_form:false. False-miss remedy (packet): blank widened to hold the whole list (removed printed 'pesce') so bare and articled forms are both full word-anchored phrases; article variant added."
   },
   {
     "external_id": "neg_corr_05",
