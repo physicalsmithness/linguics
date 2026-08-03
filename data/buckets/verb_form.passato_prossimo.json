@@ -4,7 +4,7 @@
   "parent_id": "verb_form",
   "language_code": "it",
   "label": "Passato prossimo (compound past)",
-  "description": "The most common past tense in spoken and written Italian. Formed with an auxiliary (essere or avere, conjugated in the present) plus the past participle of the main verb. Three dimensions of difficulty: auxiliary choice, participle form, and (when essere is used or DOPs precede avere) participle agreement.",
+  "description": "The most common past tense in spoken and written Italian. Formed with an auxiliary (essere or avere, conjugated in the present) plus the past participle of the main verb. Three dimensions of difficulty: auxiliary choice, participle form, and (when essere is used or direct object pronouns precede avere) participle agreement.",
   "cefr_importance": {
    "A1": "preview",
    "A2": "core",
@@ -671,7 +671,7 @@
   "parent_id": "verb_form.passato_prossimo",
   "language_code": "it",
   "label": "Past participle agreement",
-  "description": "When essere is the auxiliary, the participle agrees with the subject in gender and number. When avere is the auxiliary, the participle is invariable unless a direct object pronoun (DOP) precedes the verb, in which case it agrees with the DOP.",
+  "description": "When essere is the auxiliary, the participle agrees with the subject in gender and number. When avere is the auxiliary, the participle is invariable unless a direct object pronoun precedes the verb, in which case it agrees with the direct object pronoun.",
   "cefr_importance": {
    "A1": "preview",
    "A2": "core",
@@ -818,8 +818,8 @@
   "id": "verb_form.passato_prossimo.participle_agreement.with_avere",
   "parent_id": "verb_form.passato_prossimo.participle_agreement",
   "language_code": "it",
-  "label": "Agreement with avere (default invariable, agrees with preceding DOP)",
-  "description": "With avere as auxiliary, the participle is invariable by default (ends in -o regardless of subject). But when a direct object pronoun (DOP) precedes the verb, the participle agrees with the DOP: l'ho vista, li ho visti, le ho viste.",
+  "label": "Agreement with avere (default invariable, agrees with preceding direct object pronoun)",
+  "description": "With avere as auxiliary, the participle is invariable by default (ends in -o regardless of subject). But when a direct object pronoun precedes the verb, the participle agrees with the direct object pronoun: l'ho vista, li ho visti, le ho viste.",
   "cefr_importance": {
    "A1": "arcane",
    "A2": "preview",
@@ -843,7 +843,7 @@
   "id": "verb_form.passato_prossimo.participle_agreement.with_avere.no_preceding_dop",
   "parent_id": "verb_form.passato_prossimo.participle_agreement.with_avere",
   "language_code": "it",
-  "label": "No preceding DOP: participle invariable",
+  "label": "No preceding direct object pronoun: participle invariable",
   "description": "Default case. Ho mangiato la pasta (not mangiata, because la pasta follows). Ho visto Maria.",
   "cefr_importance": {
    "A1": "preview",
@@ -866,7 +866,7 @@
   "id": "verb_form.passato_prossimo.participle_agreement.with_avere.preceding_dop_lo",
   "parent_id": "verb_form.passato_prossimo.participle_agreement.with_avere",
   "language_code": "it",
-  "label": "Preceding DOP lo: -o agreement",
+  "label": "Preceding direct object pronoun lo: -o agreement",
   "description": "L'ho visto (= I saw him/it, masc sg). The l' is the elided lo.",
   "cefr_importance": {
    "A1": "arcane",
@@ -888,8 +888,8 @@
   "id": "verb_form.passato_prossimo.participle_agreement.with_avere.preceding_dop_la",
   "parent_id": "verb_form.passato_prossimo.participle_agreement.with_avere",
   "language_code": "it",
-  "label": "Preceding DOP la: -a agreement",
-  "description": "L'ho vista (= I saw her/it, fem sg). The participle agrees with the feminine DOP.",
+  "label": "Preceding direct object pronoun la: -a agreement",
+  "description": "L'ho vista (= I saw her/it, fem sg). The participle agrees with the feminine direct object pronoun.",
   "cefr_importance": {
    "A1": "arcane",
    "A2": "preview",
@@ -913,7 +913,7 @@
   "id": "verb_form.passato_prossimo.participle_agreement.with_avere.preceding_dop_li",
   "parent_id": "verb_form.passato_prossimo.participle_agreement.with_avere",
   "language_code": "it",
-  "label": "Preceding DOP li: -i agreement",
+  "label": "Preceding direct object pronoun li: -i agreement",
   "description": "Li ho visti (= I saw them, masc pl).",
   "cefr_importance": {
    "A1": "arcane",
@@ -937,7 +937,7 @@
   "id": "verb_form.passato_prossimo.participle_agreement.with_avere.preceding_dop_le",
   "parent_id": "verb_form.passato_prossimo.participle_agreement.with_avere",
   "language_code": "it",
-  "label": "Preceding DOP le: -e agreement",
+  "label": "Preceding direct object pronoun le: -e agreement",
   "description": "Le ho viste (= I saw them, fem pl).",
   "cefr_importance": {
    "A1": "arcane",
@@ -1224,7 +1224,7 @@
   "parent_id": "verb_form.passato_prossimo.participle_agreement.with_avere",
   "language_code": "it",
   "label": "Preceding mi/ti/ci/vi: agreement optional",
-  "description": "With a preceding 1st/2nd-person DOP the participle MAY agree (Maria, ti ho vista or ti ho visto): both standard, unlike lo/la/li/le where agreement is required. The skill is knowing both are fine.",
+  "description": "With a preceding 1st/2nd-person direct object pronoun the participle MAY agree (Maria, ti ho vista or ti ho visto): both standard, unlike lo/la/li/le where agreement is required. The skill is knowing both are fine.",
   "cefr_importance": {
    "A1": "arcane",
    "A2": "arcane",

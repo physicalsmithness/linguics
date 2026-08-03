@@ -4,7 +4,7 @@
   "parent_id": null,
   "language_code": "it",
   "label": "Pronouns (object, reflexive, ne, ci, combined, position)",
-  "description": "Italian object pronouns: direct (DOP), indirect (IOP), reflexive, partitive ne, locative ci, combined clitic clusters (me lo, glielo, me ne, gliene), and positioning rules (pre-verb, post-infinitive, post-imperative, etc.).",
+  "description": "Italian object pronouns: direct, indirect, reflexive, partitive ne, locative ci, combined clitic clusters (me lo, glielo, me ne, gliene), and positioning rules (pre-verb, post-infinitive, post-imperative, etc.).",
   "cefr_importance": {
    "A1": "core",
    "A2": "core",
@@ -29,7 +29,7 @@
   "id": "pronoun.direct_object",
   "parent_id": "pronoun",
   "language_code": "it",
-  "label": "Direct object pronouns (DOPs)",
+  "label": "Direct object pronouns",
   "description": "Mi, ti, lo, la, ci, vi, li, le. Replace the direct object of a transitive verb. Default position is pre-verb in finite tenses.",
   "cefr_importance": {
    "A1": "core",
@@ -53,7 +53,7 @@
   "parent_id": "pronoun.direct_object",
   "language_code": "it",
   "label": "mi (me, 1sg)",
-  "description": "First-person singular DOP. 'Marco mi vede.' Same form as IOP and reflexive 1sg.",
+  "description": "First-person singular direct object pronoun. 'Marco mi vede.' Same form as indirect object pronoun and reflexive 1sg.",
   "cefr_importance": {
    "A1": "core",
    "A2": "core",
@@ -77,7 +77,7 @@
   "parent_id": "pronoun.direct_object",
   "language_code": "it",
   "label": "ti (you-informal, 2sg)",
-  "description": "Second-person singular informal DOP.",
+  "description": "Second-person singular informal direct object pronoun.",
   "cefr_importance": {
    "A1": "core",
    "A2": "core",
@@ -100,7 +100,7 @@
   "parent_id": "pronoun.direct_object",
   "language_code": "it",
   "label": "lo (him / it, masc 3sg)",
-  "description": "Third-person masculine singular DOP. Elides to l' before a vowel: 'lo vedo / l'ho visto'.",
+  "description": "Third-person masculine singular direct object pronoun. Elides to l' before a vowel: 'lo vedo / l'ho visto'.",
   "cefr_importance": {
    "A1": "core",
    "A2": "core",
@@ -125,7 +125,7 @@
   "parent_id": "pronoun.direct_object",
   "language_code": "it",
   "label": "la (her / it, fem 3sg)",
-  "description": "Third-person feminine singular DOP. Elides to l' before a vowel.",
+  "description": "Third-person feminine singular direct object pronoun. Elides to l' before a vowel.",
   "cefr_importance": {
    "A1": "core",
    "A2": "core",
@@ -148,8 +148,8 @@
   "id": "pronoun.direct_object.ci_us",
   "parent_id": "pronoun.direct_object",
   "language_code": "it",
-  "label": "ci (us, 1pl), DOP sense",
-  "description": "First-person plural DOP. Ambiguous in surface form with reflexive and locative ci; context disambiguates.",
+  "label": "ci (us, 1pl), direct object pronoun sense",
+  "description": "First-person plural direct object pronoun. Ambiguous in surface form with reflexive and locative ci; context disambiguates.",
   "cefr_importance": {
    "A1": "preview",
    "A2": "core",
@@ -172,7 +172,7 @@
   "parent_id": "pronoun.direct_object",
   "language_code": "it",
   "label": "vi (you, 2pl)",
-  "description": "Second-person plural DOP.",
+  "description": "Second-person plural direct object pronoun.",
   "cefr_importance": {
    "A1": "preview",
    "A2": "core",
@@ -195,7 +195,7 @@
   "parent_id": "pronoun.direct_object",
   "language_code": "it",
   "label": "li (them, masc 3pl)",
-  "description": "Third-person masculine plural DOP. No elision before vowel ('li ho visti', not 'l'ho visti').",
+  "description": "Third-person masculine plural direct object pronoun. No elision before vowel ('li ho visti', not 'l'ho visti').",
   "cefr_importance": {
    "A1": "preview",
    "A2": "core",
@@ -219,7 +219,7 @@
   "parent_id": "pronoun.direct_object",
   "language_code": "it",
   "label": "le (them, fem 3pl)",
-  "description": "Third-person feminine plural DOP. No elision before vowel.",
+  "description": "Third-person feminine plural direct object pronoun. No elision before vowel.",
   "cefr_importance": {
    "A1": "preview",
    "A2": "core",
@@ -242,8 +242,8 @@
   "id": "pronoun.direct_object.formal_La",
   "parent_id": "pronoun.direct_object",
   "language_code": "it",
-  "label": "La (formal Lei, you-formal-sg DOP)",
-  "description": "Formal address singular DOP. Same surface form as feminine 3sg 'la' but addressed to a single 'Lei' regardless of biological gender of the addressee. Often capitalised in formal writing.",
+  "label": "La (formal Lei, you-formal-sg direct object pronoun)",
+  "description": "Formal address singular direct object pronoun. Same surface form as feminine 3sg 'la' but addressed to a single 'Lei' regardless of biological gender of the addressee. Often capitalised in formal writing.",
   "cefr_importance": {
    "A1": "arcane",
    "A2": "preview",
@@ -294,8 +294,8 @@
   "id": "pronoun.indirect_object",
   "parent_id": "pronoun",
   "language_code": "it",
-  "label": "Indirect object pronouns (IOPs)",
-  "description": "Mi, ti, gli, le, ci, vi, gli (for loro). Replace the indirect object (often translated 'to me / to him / to her'). Position rules match DOPs.",
+  "label": "Indirect object pronouns",
+  "description": "Mi, ti, gli, le, ci, vi, gli (for loro). Replace the indirect object (often translated 'to me / to him / to her'). Position rules match direct object pronouns.",
   "cefr_importance": {
    "A1": "preview",
    "A2": "core",
@@ -318,7 +318,7 @@
   "parent_id": "pronoun.indirect_object",
   "language_code": "it",
   "label": "mi (to me, 1sg)",
-  "description": "Identical surface form to DOP mi; the verb's argument structure tells you which is meant.",
+  "description": "Identical surface form to direct object pronoun mi; the verb's argument structure tells you which is meant.",
   "cefr_importance": {
    "A1": "core",
    "A2": "core",
@@ -341,7 +341,7 @@
   "parent_id": "pronoun.indirect_object",
   "language_code": "it",
   "label": "ti (to you-informal, 2sg)",
-  "description": "Same surface form as DOP ti.",
+  "description": "Same surface form as direct object pronoun ti.",
   "cefr_importance": {
    "A1": "core",
    "A2": "core",
@@ -364,7 +364,7 @@
   "parent_id": "pronoun.indirect_object",
   "language_code": "it",
   "label": "gli (to him, masc 3sg)",
-  "description": "Third-person masculine singular IOP. Not to be confused with the article 'gli' or with DOP 'li'.",
+  "description": "Third-person masculine singular indirect object pronoun. Not to be confused with the article 'gli' or with direct object pronoun 'li'.",
   "cefr_importance": {
    "A1": "preview",
    "A2": "core",
@@ -388,7 +388,7 @@
   "parent_id": "pronoun.indirect_object",
   "language_code": "it",
   "label": "le (to her, fem 3sg)",
-  "description": "Third-person feminine singular IOP. Same surface form as DOP fem 3pl 'le'; verb argument tells which.",
+  "description": "Third-person feminine singular indirect object pronoun. Same surface form as direct object pronoun fem 3pl 'le'; verb argument tells which.",
   "cefr_importance": {
    "A1": "preview",
    "A2": "core",
@@ -412,7 +412,7 @@
   "parent_id": "pronoun.indirect_object",
   "language_code": "it",
   "label": "ci (to us, 1pl)",
-  "description": "First-person plural IOP. Same form as DOP ci, reflexive ci, and locative ci.",
+  "description": "First-person plural indirect object pronoun. Same form as direct object pronoun ci, reflexive ci, and locative ci.",
   "cefr_importance": {
    "A1": "preview",
    "A2": "core",
@@ -434,7 +434,7 @@
   "parent_id": "pronoun.indirect_object",
   "language_code": "it",
   "label": "vi (to you, 2pl)",
-  "description": "Second-person plural IOP.",
+  "description": "Second-person plural indirect object pronoun.",
   "cefr_importance": {
    "A1": "preview",
    "A2": "core",
@@ -485,7 +485,7 @@
   "parent_id": "pronoun.indirect_object",
   "language_code": "it",
   "label": "Le (formal Lei, to-you-formal-sg)",
-  "description": "Formal address singular IOP. Same surface form as feminine 3sg IOP. Often capitalised in formal writing.",
+  "description": "Formal address singular indirect object pronoun. Same surface form as feminine 3sg indirect object pronoun. Often capitalised in formal writing.",
   "cefr_importance": {
    "A1": "arcane",
    "A2": "preview",
@@ -509,8 +509,8 @@
   "id": "pronoun.indirect_object.verbs_taking_iop",
   "parent_id": "pronoun.indirect_object",
   "language_code": "it",
-  "label": "Verbs whose 'subject' surfaces as an IOP (piacere, mancare, etc.)",
-  "description": "A class of verbs where the English-style subject ('I like') maps to an Italian IOP ('mi piace' = literally 'to-me it-pleases'). Includes piacere, mancare, bastare, sembrare, occorrere, servire. Auxiliary in passato prossimo is essere; participle agrees with the grammatical subject (the 'thing liked').",
+  "label": "Verbs whose 'subject' surfaces as an indirect object pronoun (piacere, mancare, etc.)",
+  "description": "A class of verbs where the English-style subject ('I like') maps to an Italian indirect object pronoun ('mi piace' = literally 'to-me it-pleases'). Includes piacere, mancare, bastare, sembrare, occorrere, servire. Auxiliary in passato prossimo is essere; participle agrees with the grammatical subject (the 'thing liked').",
   "cefr_importance": {
    "A1": "preview",
    "A2": "core",
@@ -568,7 +568,7 @@
   "parent_id": "pronoun.reflexive",
   "language_code": "it",
   "label": "mi (myself, 1sg)",
-  "description": "Identical surface form to DOP/IOP mi.",
+  "description": "Identical surface form to direct object pronoun/indirect object pronoun mi.",
   "cefr_importance": {
    "A1": "preview",
    "A2": "core",
@@ -636,7 +636,7 @@
   "parent_id": "pronoun.reflexive",
   "language_code": "it",
   "label": "ci (ourselves, 1pl)",
-  "description": "Same surface form as DOP/IOP ci and locative ci.",
+  "description": "Same surface form as direct object pronoun/indirect object pronoun ci and locative ci.",
   "cefr_importance": {
    "A1": "preview",
    "A2": "core",
@@ -730,7 +730,7 @@
   "parent_id": "pronoun.reflexive",
   "language_code": "it",
   "label": "Reflexive plus an object pronoun (me lo lavo)",
-  "description": "When a reflexive verb has both a subject (whose action reflects) and an object (the thing being done to oneself), the reflexive pronoun combines with the DOP: 'mi lavo le mani' → 'me le lavo' (vowel change mi→me before the DOP).",
+  "description": "When a reflexive verb has both a subject (whose action reflects) and an object (the thing being done to oneself), the reflexive pronoun combines with the direct object pronoun: 'mi lavo le mani' → 'me le lavo' (vowel change mi→me before the direct object pronoun).",
   "cefr_importance": {
    "A1": "arcane",
    "A2": "arcane",
@@ -756,7 +756,7 @@
   "parent_id": "pronoun",
   "language_code": "it",
   "label": "Combined pronouns (clitic clusters)",
-  "description": "When IOP + DOP appear together, the IOP comes first and the vowel of mi/ti/ci/vi changes from -i to -e. Third-person gli/le become glie- written attached to the DOP (glielo, gliela, glieli, gliele, gliene).",
+  "description": "When indirect object pronoun + direct object pronoun appear together, the indirect object pronoun comes first and the vowel of mi/ti/ci/vi changes from -i to -e. Third-person gli/le become glie- written attached to the direct object pronoun (glielo, gliela, glieli, gliele, gliene).",
   "cefr_importance": {
    "A1": "arcane",
    "A2": "preview",
@@ -781,8 +781,8 @@
   "id": "pronoun.combined.order_iop_before_dop",
   "parent_id": "pronoun.combined",
   "language_code": "it",
-  "label": "Order: IOP before DOP",
-  "description": "When both an IOP and a DOP precede the verb, the IOP comes first: 'me lo dai', not 'lo mi dai'.",
+  "label": "Order: indirect object pronoun before direct object pronoun",
+  "description": "When both an indirect object pronoun and a direct object pronoun precede the verb, the indirect object pronoun comes first: 'me lo dai', not 'lo mi dai'.",
   "cefr_importance": {
    "A1": "arcane",
    "A2": "preview",
@@ -834,7 +834,7 @@
   "parent_id": "pronoun.combined",
   "language_code": "it",
   "label": "gli/le + lo/la/li/le → glielo, gliela, glieli, gliele (written attached)",
-  "description": "Third-person IOP (gli for masc, le for fem) combines with a DOP and is written as one word: glielo, gliela, glieli, gliele. The feminine IOP le takes the same form as the masculine gli in this combination. Also: gliene (gli/le + ne).",
+  "description": "Third-person indirect object pronoun (gli for masc, le for fem) combines with a direct object pronoun and is written as one word: glielo, gliela, glieli, gliele. The feminine indirect object pronoun le takes the same form as the masculine gli in this combination. Also: gliene (gli/le + ne).",
   "cefr_importance": {
    "A1": "arcane",
    "A2": "preview",
@@ -866,8 +866,8 @@
   "id": "pronoun.combined.me_ne_family",
   "parent_id": "pronoun.combined",
   "language_code": "it",
-  "label": "me ne, te ne, ce ne, ve ne (IOP + partitive ne)",
-  "description": "When ne combines with an IOP, the same vowel change applies: 'me ne dai tre'.",
+  "label": "me ne, te ne, ce ne, ve ne (indirect object pronoun + partitive ne)",
+  "description": "When ne combines with an indirect object pronoun, the same vowel change applies: 'me ne dai tre'.",
   "cefr_importance": {
    "A1": "arcane",
    "A2": "arcane",
@@ -1024,7 +1024,7 @@
   "parent_id": "pronoun",
   "language_code": "it",
   "label": "ci (locative / 'there' / idiomatic)",
-  "description": "Locative ci means 'there' or 'about it / in it'. Distinct from DOP/IOP/reflexive ci in function. Also appears in 'c'è / ci sono' existentials and in idiomatic verbs (tenerci, metterci, volerci, farcela, avercela).",
+  "description": "Locative ci means 'there' or 'about it / in it'. Distinct from direct object pronoun/indirect object pronoun/reflexive ci in function. Also appears in 'c'è / ci sono' existentials and in idiomatic verbs (tenerci, metterci, volerci, farcela, avercela).",
   "cefr_importance": {
    "A1": "core",
    "A2": "core",
@@ -1436,7 +1436,7 @@
   "parent_id": "pronoun.special",
   "language_code": "it",
   "label": "Stressed object pronouns (a me, a te, a lui, a lei)",
-  "description": "For emphasis or contrast, Italian uses the stressed/disjunctive forms (which match the subject pronouns) introduced by 'a' (for IOP) or post-verbally for DOP: 'A me piace il mare' / 'Vedo lei, non lui'.",
+  "description": "For emphasis or contrast, Italian uses the stressed/disjunctive forms (which match the subject pronouns) introduced by 'a' (for indirect object pronoun) or post-verbally for direct object pronoun: 'A me piace il mare' / 'Vedo lei, non lui'.",
   "cefr_importance": {
    "A1": "preview",
    "A2": "core",
@@ -1524,7 +1524,7 @@
   "parent_id": "pronoun.indirect_object.verbs_taking_iop",
   "language_code": "it",
   "label": "Piacere-family verbs in passato prossimo: essere + participle agrees with grammatical subject",
-  "description": "Verbs like piacere, mancare, sembrare, bastare take essere in compound tenses. The participle agrees with the grammatical subject (the 'thing liked/missed/etc.'), not with the experiencer (who is the IOP). 'Le sono piaciuti i fiori' (the flowers were pleasing to her). Sits between the pronoun and passato_prossimo trees.",
+  "description": "Verbs like piacere, mancare, sembrare, bastare take essere in compound tenses. The participle agrees with the grammatical subject (the 'thing liked/missed/etc.'), not with the experiencer (who is the indirect object pronoun). 'Le sono piaciuti i fiori' (the flowers were pleasing to her). Sits between the pronoun and passato_prossimo trees.",
   "cefr_importance": {
    "A1": "arcane",
    "A2": "preview",
@@ -1553,7 +1553,7 @@
   "parent_id": "pronoun.special",
   "language_code": "it",
   "label": "Left-dislocation with passato prossimo participle agreement",
-  "description": "When a fronted direct object is resumed by a clitic pronoun, and the verb is in passato prossimo, the participle agrees with the (fronted, now-DOP-resumed) object. 'La pizza, l'ho mangiata.' Distinct from pronoun_then_subject_noun: this specifically targets the agreement, separating 'missed the agreement' from 'missed the resumption itself'.",
+  "description": "When a fronted direct object is resumed by a clitic pronoun, and the verb is in passato prossimo, the participle agrees with the (fronted, now-direct object pronoun-resumed) object. 'La pizza, l'ho mangiata.' Distinct from pronoun_then_subject_noun: this specifically targets the agreement, separating 'missed the agreement' from 'missed the resumption itself'.",
   "cefr_importance": {
    "A1": "arcane",
    "A2": "arcane",
@@ -1674,7 +1674,7 @@
   "parent_id": "pronoun.discrimination",
   "language_code": "it",
   "label": "Clitic ordering and position",
-  "description": "Which of these render X? Multi-select items testing cluster fusion, IOP-before-DOP order, vowel changes, and enclitic/climbing choice points. Umbrella leaf under which multi-select items live; individual answers also credit their form-specific leaves under combined.* and position.* per Rev 27.",
+  "description": "Which of these render X? Multi-select items testing cluster fusion, indirect object pronoun-before-direct object pronoun order, vowel changes, and enclitic/climbing choice points. Umbrella leaf under which multi-select items live; individual answers also credit their form-specific leaves under combined.* and position.* per Rev 27.",
   "cefr_importance": {
    "A1": "arcane",
    "A2": "preview",
