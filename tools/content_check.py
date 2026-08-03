@@ -121,6 +121,41 @@ n_null = sum(1 for e in vocab if not e.get("translation_en"))
 report("vocabulary entries with no translation_en", ["%d of %d entries" % (n_null, len(vocab))] if n_null else [],
        "any drill that shows a meaning has nothing to show for these", "Vocab")
 
+# 7. unanchored short phrases that nest inside a real Italian word
+#
+# This is the shape of every false-credit bug the estate has had: the correct
+# string sits inside a wrong one, nothing enforces a boundary, and the wrong
+# answer scores. r116 fixed 32 items where the author HAD written an anchor and
+# the engine ignored it; this catches the cases where no anchor was written.
+#
+# The lemma-retrieval pilot is exempt by design: its vocabulary markpoint uses a
+# bare stem ("parl") precisely so any form of the verb counts as "they reached
+# for parlare". Its FORMATION markpoint is separately anchored. Flagging those
+# would be flagging the intent.
+forms = set()
+for e in vocab:
+    for k in ("lemma", "plural"):
+        if e.get(k): forms.add(str(e[k]).lower())
+bad = []
+for q in grammar:
+    if q.get("type") in ("mcq", "error_id"): continue
+    if q.get("provenance") == "lemma_retrieval_pilot": continue
+    for mp in (q.get("markpoints") or []):
+        if str(mp.get("bucket", "")).startswith("vocabulary."): continue
+        for ph in (mp.get("any_phrases") or []):
+            isobj = isinstance(ph, dict)
+            text = (ph.get("phrase") if isobj else ph)
+            at = (ph.get("match_at") if isobj else None) or mp.get("match_at")
+            if not text or at: continue
+            t = str(text).lower().strip()
+            if " " in t or len(t) < 2: continue
+            nest = [w for w in forms if len(w) > len(t) and t in w]
+            if nest:
+                bad.append("%s: %r nests inside %s" % (q.get("external_id") or "?", t, ", ".join(nest[:3])))
+report("unanchored phrases that nest inside a real word", sorted(set(bad)),
+       "the correct string sits inside a wrong one with no boundary enforced - the false-credit shape",
+       "authors (add match_at)")
+
 # ------------------------------------------------------------------ output
 print("CONTENT CHECK  —  %d topics, %d buckets, %d grammar items, %d translation items\n"
       % (len(topics), len(buckets), len(grammar), len(translation)))

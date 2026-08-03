@@ -111,7 +111,7 @@
       const hay = cs ? normedCased : normed;
       const hayFolded = cs ? normedFoldedCased : normedFolded;
       const matched = Array.isArray(mp.any_phrases)
-        ? LL.findMatchingPhrase(hay, mp.any_phrases, cs)
+        ? LL.findMatchingPhrase(hay, mp.any_phrases, cs, mp.match_at)
         : null;
       if (matched !== null) {
         const phraseCredit = (typeof matched === "object" && typeof matched.credit === "number")
@@ -146,7 +146,7 @@
             const ps = phraseStr(p);
             // match_at honoured here too, else an end-anchored needle (abbi) would
             // substring-match a longer wrong form (abbia) and be wrongly credited.
-            const mAt = (typeof p === "object" && p) ? p.match_at : undefined;
+            const mAt = ((typeof p === "object" && p && p.match_at) ? p.match_at : mp.match_at);
             const pFolded = LL.foldAccents(cs ? LL.normCased(ps) : LL.norm(ps));
             if (pFolded && LL.occursAt(hayFolded, pFolded, mAt)) { foldedHit = p; break; }
           }
@@ -186,7 +186,7 @@
           result.outcome = "miss";
           for (const p of mp.must_not_include) {
             const ps = phraseStr(p);
-            const mAt = (typeof p === "object" && p) ? p.match_at : undefined;
+            const mAt = ((typeof p === "object" && p && p.match_at) ? p.match_at : mp.match_at);
             if (LL.includesNeedle(hay, ps, mAt, cs)) {
               result.evidence = ps + " (wrong form)";
               if (typeof p === "object" && p && p.misconception) {

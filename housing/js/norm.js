@@ -183,12 +183,25 @@
   // so the caller can read per-phrase credit / note off it. Returns null on no
   // match. Use this when graded credit matters; includesAny stays for the
   // boolean-only callers.
-  function findMatchingPhrase(haystackNorm, anyArr, caseSensitive) {
+  // defaultMatchAt: a MARKPOINT-level match_at, used for any phrase that does
+  // not carry its own. Anchoring is per-phrase by design, but authors write it
+  // at markpoint level too, and until now that was SILENTLY IGNORED - the
+  // author saw an anchor in their data, the engine applied none, and nothing
+  // said so. 64 markpoints across 32 passato-prossimo items were in exactly
+  // that state, and the consequence was live false credit: with `any: ["ho",
+  // "parlato"]` anchored at markpoint level, "ho parlatoo" and even
+  // "hoparlato" both scored full marks, because the correct string sits inside
+  // the wrong one and nothing enforced the boundary.
+  //
+  // A per-phrase match_at still wins, so nothing already anchored changes. This
+  // only makes the two spellings mean the same thing, which is what every
+  // author who wrote the markpoint-level form already believed.
+  function findMatchingPhrase(haystackNorm, anyArr, caseSensitive, defaultMatchAt) {
     if (!Array.isArray(anyArr)) return null;
     for (const phrase of anyArr) {
       const isObj = typeof phrase === "object" && phrase;
       const phraseStr = (isObj && phrase.phrase) ? phrase.phrase : phrase;
-      const matchAt = isObj ? phrase.match_at : undefined;
+      const matchAt = (isObj && phrase.match_at) ? phrase.match_at : defaultMatchAt;
       if (includesNeedle(haystackNorm, phraseStr, matchAt, caseSensitive)) {
         return phrase;
       }

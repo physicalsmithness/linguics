@@ -1,20 +1,22 @@
 seat: AdverbAuthor
 classes: [all-seats, all-authors]
 project: Linguics
-updated: 2026-07-18
+updated: 2026-08-03
 waiting: parked
-needs_from_smith: none
-summary: Batch accepted; my finding is criterion 15's recoverability condition (Rev 19). Rev 25 retrofit run and discharged (26 cued items, 26 exempt, 3 vocab_help'd); adv_bb_07 repaired per Smith; one collision ruling asked of Architecture.
+needs_from_smith: confirm
+claude_can_verify: no (your preference call on the tradeoff below)
+summary: Reacted on the no-change-forms thread; converted all 10 invariable items to MCQ (instrument B); found and fixed an estate-invisible psbf bug across all 46 items. One confirm owed, one Architecture ruling, one Analyst ask.
 queue: []
 done_this_sitting:
-  - Rev 25 (binds all-authors, reached me by CLASS TOKEN only, my name is nowhere in it): 26 citation-form cues audited against item CEFR levels, all 26 exempt. Derivation is ending-driven, so the cue stays a scaffold even above level, unlike esserci which an A1 learner cannot recognise as an infinitive.
-  - Rev 25 remedy applied proportionately: raro / probabile / regolare given vocab_help translation aspects (adv_mreg_04, adv_lere_04, adv_lere_05), so meaning is one click away and reveals record against the vocabulary bucket, not the adverb one.
-  - adv_bb_07 repaired (Smith's widen-the-gloss fix, 2026-07-18): "He sings well / He's a good singer" makes the gloss ambiguous across {bene, buono} instead of one-to-one with bene, and baits Canta buono. Routed here by NegationAuthor's cue-shape grep; needs no routing from Architecture.
-  - Criterion 19 re-run AFTER glossing per the Rev 23 clause, not before: no adverb answer carries an accent, accent_load_bearing stays unset. No-op, checked in the right order.
+  - ALLAUTHORS no-change-forms thread (found by CLASS TOKEN + a Next: line naming me): reacted v5. The 6 named invariable items had cue-names-the-answer copy fault; converted to MCQ.
+  - Extended the fix to all 10 invariable_vs_adjective items, not the 6 named, because converting only 6 leaves the Italian cue on the 4 agreeing items alone = the within-leaf tell Smith's uniformity constraint forbids. Choices = the four inflections (already in candidate_forms), rotated per item so the answer is not always index 0. Cue stripped from all 10 prompts.
+  - choice_tags on the 6 invariable items -> paradigm_confusion.adverb_vs_adjective (registered id). The 4 agreeing items untagged: the inverse error (invariable chosen where agreement required) has no registered id.
+  - Fixed prompt_supplies_base_form: it had been dropped from ALL 46 items by a key-reorder in my Rev-19 fix (acceptance audit missed it). Restored on the 36 short items (16 true / 20 false); the 10 MCQ carry none.
+  - Rev 25 + Rev 29 (last sitting) confirmed discharged/stamped by Architecture; adv_bb_07 widen-the-gloss fix stands.
+confirm_owed:
+  - DISCRETE CHOICE for Smith: (a) KEEP all 10 invariable items as MCQ (my default; uniform instrument, no tell); or (b) REVERT the 4 agreeing items (adv_inv_02/04/06/08) to cued free-text, keeping their production difficulty and accepting the within-leaf cue-tell. I recommend (a).
 awaiting_architecture:
-  - Rev 25 discharge stamp for this seat (rev25_cue_level_retrofit v1: 26 audited, 26 exempt, 3 vocab_help'd)
-  - RULING: Rev 25's "gloss the target instead" backfires on derivation items, because the gloss is one-to-one with the answer (slowly = lentamente). Proposed: it inherits NegationAuthor's still-unruled ambiguity condition. Two seats now behind that extension.
-  - adv_bb_07 drops off Architecture's routing queue (Architecture_NegationAuthor_criterion20_retrofit Next: is Architecture, to route it here)
+  - rule the 6-vs-10 uniformity expansion on my leaf (or defer to Smith's confirm above)
+  - MisconceptionAnalyst: confirm the adverb_vs_adjective distractor mapping; consider minting the inverse "invariable quantifier failed to agree" id for the 4 agreeing items
 notes:
-  - Record correction, for the board: my CLOSED answerability thread concludes the lexical-discrimination flip was "demonstrative-only, plus your own batch". Wrong. ComparisonAuthor found a third (comparison.comparative.migliore_vs_meglio, 6 items) and fixed it on my model; the 802-item sweep post-dated their acceptance.
-  - adverb.locuzioni_avverbiali is registered but unauthored. No next-touch clause binds me to it, so it is not queue; it is available if Smith commissions a B1 pass.
+  - adverb.locuzioni_avverbiali registered but unauthored; no clause binds me; available if Smith commissions a B1 pass.

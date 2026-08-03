@@ -51,6 +51,10 @@ The 17 remaining "must_not inside correct" hits are all the dropped-non guards (
 - **20(iii) instruction-pinned guards**: no guard here false-flags a compliant answer, so the mitigation is unused.
 - **§3 explicit `credit` on references** (previously undocumented to me): applied. Four references now carry `credit: 0.9` with steering notes rather than leaving the AI marker to infer from prose.
 
+## Misconception tags (Phase-3 rollout, 2026-07-20)
+
+Joined the guard-tag rollout. 29 guards tagged against ratified families: word_order.negation_elements ×27 (all placement / dropped-non / kept-non / mai-order / mica-with-non errors, incl. neg_mica_04 via choice_tags), discrimination.indicative_for_subjunctive_choice ×2 (a meno che + indicative). Marking untouched (metadata). 19 guards across 7 concepts have no ratified family and are flagged to MisconceptionAnalyst via inter_chat/Architecture_NegationAuthor_misconception_coverage.md (biggest: pleonastic-non-read-as-negation, 5 guards). Author does not mint; those stay honest-blank until ratified.
+
 ## Rev 26-28 pass (2026-07-20)
 
 - **Rev 27 (cross-credit) — retrofit applied.** neg_ameno_01 and neg_ameno_02 were single markpoints that bundled the pleonastic non and the subjunctive, crediting congiuntivo nothing. Rev 27 retires the split-credit fear: each is now two markpoints at credit 0.5 (marks sum to 1) so the answer records a FULL correctness event on both negation.pleonastic.a_meno_che AND the congiuntivo present-subjunctive formation leaf. Word-anchored "non" makes the split criterion-18-safe, which is what I wrongly thought impossible when I bundled. Marker replica: "non piova" = 1.0 both hit; "non piove" = 0.5 (non right, mood wrong); "piova" = 0.5 (mood right, non dropped). This resolves scope-thread Q3 (a_meno_che bundling) better than the earlier "accepted as bundled".

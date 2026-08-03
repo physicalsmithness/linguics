@@ -1069,7 +1069,7 @@
   "parent_id": "pronoun.ci_locative",
   "language_code": "it",
   "label": "c'è / ci sono (there is / there are)",
-  "description": "Existential construction. Singular: c'è (elided from ci è). Plural: ci sono.",
+  "description": "Existential construction. Singular: c'è (elided from ci è). Plural: ci sono. RETIRED 2026-08-02: its four items were existential-formation items filed in the pronoun tree and duplicated existential.form.singular/.plural/.past/.negative. ExistentialAuthor merged them (op_cil_exist_03 -> existential.form.past, _04 -> .negative, _01 and _02 retired as duplicates), IDs preserved because pulse history keys on item_id. Kept inactive rather than deleted: the record is append-only.",
   "cefr_importance": {
    "A1": "core",
    "A2": "core",
@@ -1086,8 +1086,8 @@
    "deprecated_authoring_target": true,
    "cross_reference": "existential"
   },
-  "active": true,
-  "version": 1
+  "active": false,
+  "version": 2
  },
  {
   "id": "pronoun.ci_locative.topic",

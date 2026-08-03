@@ -1,6 +1,7 @@
 # Item shape: testing a form that does not change
 
-**Status: PROPOSAL, v2, 2026-08-02, Architecture. Not binding. Push back.**
+**Status: RATIFIED, 2026-08-03, Smith ("go"), via Architecture. Binding estate-wide item-shape law.**
+**Was: PROPOSAL v2, 2026-08-02. Ratified unchanged; sequencing note added — instrument A is engine-blocked until the candidate_forms membership test lands (Architecture_Housing_candidate_forms_membership_test).**
 v2 adds the marking spec, ruled by Smith the same day.
 Found by the rebuilt estate-net gate; shaped by Smith's rulings the same day.
 Affected: 69 items across adjective_agreement, adverb, noun, demonstrative, imperativo, indefinite.

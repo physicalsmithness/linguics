@@ -56,12 +56,12 @@
 <div id="summary">Loading content…</div>
 <div id="out"></div>
 
-<script src="js/norm.js?v=2026-08-03-r114"></script>
-<script src="js/store.js?v=2026-08-03-r114"></script>
-<script src="js/engine_axes.js"></script>
-<script src="js/grammar_engine.js?v=2026-08-03-r114"></script>
-<script src="js/translation_stub.js?v=2026-08-03-r114"></script>
-<script src="js/translation_marker.js?v=2026-08-03-r114"></script>
+<script src="js/norm.js?v=2026-08-03-r116"></script>
+<script src="js/store.js?v=2026-08-03-r116"></script>
+<script src="js/engine_axes.js?v=2026-08-03-r116"></script>
+<script src="js/grammar_engine.js?v=2026-08-03-r116"></script>
+<script src="js/translation_stub.js?v=2026-08-03-r116"></script>
+<script src="js/translation_marker.js?v=2026-08-03-r116"></script>
 <script>
 (function () {
   "use strict";
@@ -181,27 +181,43 @@
 
     // ------------------------------------------------------- accent scoring
     const g3 = group("Accent drill outcome + docking (app.js contract)"); groups.push(g3);
-    T(g3, "accent items carry the tags the axes need",
-      "the outcome axis is derived from choice_tags[].class; without it every miss lands on the item's declared leaf and .missing/.added never receive an event",
+    // These two originally asserted the DATA (every distractor carries a
+    // choice_tags class) and failed 158 times. That was the wrong invariant:
+    // what matters is that every distractor resolves to a class that was
+    // DERIVED, by tag or by diff or by recognising a judgement item - never a
+    // silent default. Rewritten to test that, which is what caught the bug.
+    T(g3, "every distractor resolves to a derived outcome class",
+      "158 judgement distractors (Correct/Incorrect) had no accent difference to diff, so they fell onto the wrong_kind DEFAULT: recorded on a leaf none of them belongs to, and paid 0.8 for a two-way guess once docking landed",
       () => {
-        const tagged = accent.filter(q => Array.isArray(q.choice_tags)
-          && q.choice_tags.some(t => t && t.class));
-        return tagged.length > accent.length * 0.8 ? true
-          : ("only " + tagged.length + " of " + accent.length + " items carry a choice_tags class");
-      });
-    T(g3, "every accent distractor has a scorable class",
-      "an untagged distractor falls back to the string diff; if that also fails the learner is scored 0 on an error we cannot name",
-      () => {
-        let bad = 0;
+        let byDefault = 0;
         for (const q of accent) {
           if (!Array.isArray(q.choices)) continue;
           for (let i = 0; i < q.choices.length; i++) {
             if (i === q.answer_index) continue;
-            const t = (q.choice_tags || [])[i];
-            if (!(t && t.class)) bad++;
+            const tag = (q.choice_tags || [])[i];
+            if (tag && tag.class) continue;                        // derived from the tag
+            if (LL.accentDiff(q.choices[q.answer_index], q.choices[i])) continue;  // derived from the diff
+            const cls = LL.accentOutcomeClass(q, i, false);
+            if (cls === "judgement") continue;                     // derived from the choice shape
+            byDefault++;
           }
         }
-        return bad === 0 ? true : (bad + " distractors with no class tag");
+        return byDefault === 0 ? true : (byDefault + " distractors classified by default, not derivation");
+      });
+    T(g3, "a judgement miss scores zero, not a docked partial",
+      "the docking scale grades the severity of a PRODUCED accent error; a binary right-or-wrong question has no severity to grade, and 0.8 for a coin-flip would be the tail wagging the dog",
+      () => {
+        const q = accent.find(x => Array.isArray(x.choices)
+          && x.choices.every(c => /^(in)?correct$/i.test(String(c).trim())));
+        if (!q) return null;
+        const wrong = (q.answer_index === 0) ? 1 : 0;
+        const base = { markpoints: (q.markpoints || []).map(mp => ({ bucket: mp.bucket, credit_weight: 1,
+                        attempted_credit: 1, correctness_credit: 0, outcome: "miss" })),
+                       overall: { marks_awarded: 0, marks_possible: 1, correctness_overall: 0,
+                                  status: "miss", summary: "Wrong" } };
+        const r = LL.applyAccentAxes(q, wrong, base);
+        return r.overall.marks_awarded === 0 ? true
+          : ("a wrong judgement scored " + r.overall.marks_awarded);
       });
 
     // --------------------------------------------------- chosen-tense axis
@@ -220,6 +236,41 @@
     T(g4, "an unresolvable answer returns null, not a guess",
       "a wrong guess writes a false confusion into the matrix, which is worse than a gap in it",
       () => eq(ct("qwertyuiop", ["imperfect", "passato_prossimo"]), null));
+
+    // ------------------------------------------------- grammar marker rules
+    // The substring marker decides whether a learner is right. Every
+    // false-credit bug this estate has had came from one of these four
+    // behaviours being forgotten, so they are pinned here.
+    const g4b = group("Grammar marker semantics (grammar_engine.js)"); groups.push(g4b);
+    const two = (mp) => ({ markpoints: [mp, { bucket: "filler", any_phrases: ["zzz"] }], marks: 1 });
+    const outcome = (q, ans) => LL.markGrammar(q, ans).markpoints[0].outcome;
+    T(g4b, "a positive any_phrases match BEATS must_not_include",
+      "the guard is else-if gated: a correct string nested inside a wrong one is credited and the guard never runs. This is why an additive error cannot be caught by must_not_include and needs a widened phrase or an index-scored item instead",
+      () => eq(outcome(two({ bucket: "b", any_phrases: ["ho"], must_not_include: ["ho fatto"] }), "ho fatto"), "hit"));
+    T(g4b, "a markpoint-level match_at is honoured",
+      "it used to be silently ignored - 64 markpoints across 32 passato-prossimo items carried one, so 'ho parlatoo' and even 'hoparlato' scored full marks because the correct string sits inside the wrong one",
+      () => eq(outcome(two({ bucket: "b", any_phrases: ["sta"], match_at: "word" }), "stava"), "miss"));
+    T(g4b, "a per-phrase match_at still wins over the markpoint default",
+      "per-phrase anchoring is the documented mechanism and 2,569 markpoints rely on it; the new default must never override it",
+      () => eq(outcome(two({ bucket: "b", match_at: "start",
+                             any_phrases: [{ phrase: "sta", match_at: "word" }] }), "stava"), "miss"));
+    T(g4b, "the residue engine fires on single-markpoint items only",
+      "an extra word zeroes a single-markpoint item; on a multi-markpoint item it must not, or every partially-right answer collapses",
+      () => {
+        const one = { markpoints: [{ bucket: "b", any_phrases: ["nero"] }], marks: 1 };
+        const a = LL.markGrammar(one, "gatti nero").markpoints[0].outcome;
+        const b = outcome(two({ bucket: "b", any_phrases: ["nero"] }), "gatti nero");
+        return (a === "miss" && b === "hit") ? true : ("single=" + a + " multi=" + b);
+      });
+    T(g4b, "residue does not punish words the PROMPT supplied",
+      "the learner echoing the prompt is not an extraneous word; counting it would zero honest answers",
+      () => eq(LL.markGrammar({ prompt: "I gatti sono ____ .",
+        markpoints: [{ bucket: "b", any_phrases: ["neri"] }], marks: 1 }, "gatti neri")
+        .markpoints[0].outcome, "hit"));
+    T(g4b, "norm folds the apostrophe and the hyphen to a space",
+      "un'amica and un amica must compare equal, and ex-marito to ex marito; authors rely on it and it silently breaks short-fragment anchoring if it changes",
+      () => (LL.norm("un'amica") === "un amica" && LL.norm("ex-marito") === "ex marito")
+        ? true : ("apostrophe -> " + LL.norm("un'amica") + ", hyphen -> " + LL.norm("ex-marito")));
 
     // -------------------------------------------------------------- render
     const g5 = group("Content the renderers depend on"); groups.push(g5);

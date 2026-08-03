@@ -388,3 +388,23 @@ Marker replica ran (strict + folded normalization):
 ### Uncertain / borderline
 
 None flagged. All 34 items are drill-style basic-tier formation with a single narrow markpoint; no register calls, no auxiliary-inheritance ambiguities, no `sapessi`-style borderline cases.
+
+
+---
+
+## Update 2026-07-21 (third): dispatch reacts on ALLAUTHORS threads
+
+Two central-audit dispatches touched imperfect items; both reacted in the same sitting.
+
+**answer_leak_dispatch v4** — 1 imperfect item (cause 2, answer-word-recurs):
+- `imp_form_essere_11` (this session's wave item): frame reframed from `la strada era coperta di neve` to `la neve copriva tutta la strada` to remove verbatim `era` echo. Scene intact, marker replica clean. Version 1 → 2.
+
+**cue_notation_renders_use_english v4** — 2 imperfect items (English-in-parens notation bug):
+- `imp_use_bg_06` (`(1sg both)` trailing hint) and `imp_use_bg_08` (`(3sg for saltare)` trailing hint) reframed: person/tense baked into each blank's inline cue, trailing hint dropped. Also gains crit-21 forcing as a side effect. Both version 1 → 2. Zero English-in-parens residue verified across all 152 imperfect prompts.
+
+### Post-fix state
+
+- Grammar items: 152 (unchanged)
+- Marks/credit mismatches: 0
+- Items with version 2: 3 (imp_form_essere_11, imp_use_bg_06, imp_use_bg_08)
+- Dispatches with imperfect reacts landed: answer_leak_dispatch v4, cue_notation_renders_use_english v4

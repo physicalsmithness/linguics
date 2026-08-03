@@ -17,6 +17,14 @@ Criterion 19 re-run AFTER the gloss change per the Rev 23 clause, not before: no
 
 **Record correction (not mine to fix, but mine to own):** the answerability thread concluded the lexical-discrimination flip was "demonstrative-only, plus your own batch". Wrong. ComparisonAuthor found a third, `comparison.comparative.migliore_vs_meglio` (6 items), the same pair at comparative degree; they caught and fixed it independently on this batch's model, and the estate's 802-item sweep post-dated their acceptance. `adverb.usage.bene_vs_buono` now cross-references it at tree level (v2).
 
+## Touch 3: 2026-08-03 (no-change-forms MCQ conversion + a psbf bug)
+
+**All 10 `invariable_vs_adjective` items converted to MCQ (instrument B).** Estate-wide no-change-forms review (`ITEM_SHAPE_no_change_forms.md`) found the copy-the-cue fault: `di 'molto'` names the answer and the answer IS molto, so copying scored full marks. Architecture named the 6 invariable-answer items; I extended to all 10, because converting only 6 would leave the Italian cue on the 4 agreeing items alone, which is the within-leaf tell Smith's uniformity constraint forbids. Choices are the four inflections (from `candidate_forms`), rotated per item so the answer is not always first; the cue is stripped from every prompt. The 4 agreeing items (adv_inv_02/04/06/08) lose free-text production for recognition: a real cost, taken for uniformity, revertable on Smith's word. Distractors on the 6 invariable items carry `paradigm_confusion.adverb_vs_adjective`; the 4 agreeing items have no registered inverse id (flagged to the Analyst). Thread: `Architecture_ALLAUTHORS_item_shape_no_change_forms.md` v5.
+
+**Bug fixed: `prompt_supplies_base_form` had been dropped from all 46 items** by a key-reorder in the Rev-19 suppression fix, and the acceptance audit missed it. Restored on the 36 short items (16 true where the cue supplies a base form, 20 false); the 10 MCQ items correctly carry none. Recorded rather than fixed silently, per Rev 18.
+
+**Leaf shape now:** 10 MCQ (invariable_vs_adjective) + 36 short = 46 grammar. The bene/buono leaf stays free-text short (its discrimination is answerable from the visible forms-named breadcrumb, not a copy fault).
+
 ## Coverage by leaf
 
 Counts read from the output files, not memory. "Grammar" is items whose markpoint cites that leaf; "Translation" is items whose `required_buckets` cite it.

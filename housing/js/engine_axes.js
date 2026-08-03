@@ -95,6 +95,23 @@
   // section 1: every accent attempt reports accent_type x placement_class x
   // outcome, and the OUTCOME decides the leaf - not the item's declared bucket.
   // ---------------------------------------------------------------------
+  // A JUDGEMENT item asks "is this form spelled correctly?" - its choices are a
+  // verdict ("Correct" / "Incorrect"), not two spellings of a word. There is no
+  // accent difference between the choices to classify, so it is not a
+  // wrong-mark, an omission or an insertion; it is a failure to RECOGNISE.
+  //
+  // This was found by housing/selftest.html on its first run. 158 of the 301
+  // accent distractors - over half - are judgement choices, and they were all
+  // falling through accentDiff (correctly returning null) onto the wrong_kind
+  // DEFAULT. So they were recorded under .wrong_mark, a leaf none of them
+  // belongs to, and once docking landed they earned 0.8 for getting a two-way
+  // question wrong. A default dressed as a derivation, which is the exact fault
+  // r107 fixed for the tagged half.
+  function isJudgementChoiceSet(choices) {
+    if (!Array.isArray(choices) || choices.length < 2) return false;
+    const norm = c => String(c || "").trim().toLowerCase();
+    return choices.every(c => /^(in)?correct$/.test(norm(c)) || /^(right|wrong|yes|no)$/.test(norm(c)));
+  }
   const ACCENT_OUTCOME_LEAF = {
     omitted: "missing",       // knew a mark was needed, left it off
     wrong_kind: "wrong_mark", // grave for acute, or the reverse
@@ -134,6 +151,7 @@
   // string diff so an untagged distractor still lands on the right leaf.
   function accentOutcomeClass(q, pickedIdx, correct) {
     if (correct) return "correct";
+    if (isJudgementChoiceSet(q.choices)) return "judgement";
     const tag = Array.isArray(q.choice_tags) ? q.choice_tags[pickedIdx] : null;
     if (tag && tag.class && ACCENT_OUTCOME_LEAF[tag.class]) return tag.class;
     const d = accentDiff(q.choices[q.answer_index], q.choices[pickedIdx]);
@@ -159,6 +177,10 @@
   // with wrong_kind, on the reading that both are misapplications of a mark the
   // learner knew was in play, where an omission is not knowing one was needed
   // at all. Flagged to Architecture rather than left silent.
+  // No entry for "judgement": a binary right-or-wrong question docks nothing,
+  // it simply scores 0 when wrong. Smith's docking scale grades the SEVERITY of
+  // a produced accent error; a two-way judgement has no severity to grade, and
+  // paying 0.8 for a coin-flip would be the tail wagging the dog.
   const ACCENT_DOCK = { correct: 1, wrong_kind: 0.8, inserted: 0.8, omitted: 0.5 };
   function applyAccentAxes(q, pickedIdx, result) {
     if (!result || !Array.isArray(result.markpoints)) return result;
@@ -174,7 +196,9 @@
       outcome_class: outcome,
       pron_effect: q.pron_effect || null,
     };
-    const leaf = ACCENT_OUTCOME_LEAF[outcome];
+    // A judgement miss keeps the item's declared bucket: the author knows what
+    // the item tests, and there is no produced form to reclassify.
+    const leaf = (outcome === "judgement") ? null : ACCENT_OUTCOME_LEAF[outcome];
     for (const mp of result.markpoints) {
       mp.accent_axes = axes;
       // On a MISS, retarget the leaf to the outcome the learner produced. The

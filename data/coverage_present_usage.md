@@ -49,3 +49,23 @@ The 3sg present of -are and -ere verbs is a substring of its own gerundio, imper
 - Per the dispatch, these are staging files; the formation topic files are untouched.
 - Nothing in this batch touches the choice-based present uses (present-for-near-future, da-durative, historical present); everything that smelled of "present vs another tense" was left for TenseChoice, per the dispatch's do-not-drift instruction.
 - The dispatch's own note stands: the meatier usage dispatches to prep next are future-of-probability, conditional politeness/reportage, and the subjunctive triggers.
+
+---
+
+# Addendum: weather wave (2026-08-03)
+
+**Commissioned:** Smith, 2026-08-03, option (a) on the OPEN_QUESTIONS impersonal-weather entry (raised 2026-07-21 from his live translation mark). Architecture to mint `usage.impersonal_weather` on merge; proposal in `bucket_suggestions_present_usage.json`, mirroring the imperfect tree's age_time_weather precedent.
+
+**Delivered:** 5 grammar (`pu_wthr_01..05`) + 4 translation (2 EN→IT, 2 IT→EN) as staging files `grammar_questions_present_usage_weather.json` / `translation_items_present_usage_weather.json`. Brief revision applied: Rev 25, including the cue-notation ruling (all English glosses bracketed) and criterion 18 in its full norm-aware form.
+
+| G | T | Angle |
+|--:|--:|---|
+| 2 | 2 | fare + weather word (fa caldo / fa freddo / fa bel tempo, che tempo fa) against the essere calque |
+| 1 | 0 | The boundary contrast: essere for a THING's temperature (il caffè è caldo), breadcrumb left visible as the trap |
+| 2 | 2 | Subjectless weather verbs (piove, nevica); progressive full-credit on right-now rain, caught as wrong under habitual spesso |
+
+**Engine discipline (this wave):** every any_phrase word-anchored at authoring (per my hazard-thread ack); two guards deliberately ABSENT with examiner_note records, both criterion-18 findings on my own drafts: bare `è` on pu_wthr_02 (normalises to `e`, sits inside the plausible over-type "fa freddo": false wrong, third direction) and `fa piove` on pu_wthr_04 (contains the anchored positive as a whole word: dead guard, correct-inside-guard direction; the additive calque is routed to the AI-marked translation items instead).
+
+**Boundaries respected:** c'è-weather excluded (ExistentialAuthor's esserci carve-out); nothing touches tense_choice; habitual/ongoing-now cross-cites appear only as optional_buckets.
+
+**Uncertain, for the ruling:** none flagged. The one judgement call worth eyes: pu_wthr_03 cites the weather leaf for an essere answer (the contrast that polices the boundary); if Architecture prefers contrast items to cite differently, say so on the mint thread.

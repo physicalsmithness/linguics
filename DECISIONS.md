@@ -1927,3 +1927,165 @@ because the same false positive will recur on any morpheme-shaped token.
 Remaining from PROPOSAL_label_jargon.md: the 673 person and 159 gender/number abbreviations, both now
 REDUNDANT against the paradigm slot and the leaf respectively. Held on one question for Housing - does
 a markpoint rendered on a flat result panel, outside a paradigm band, still need the abbreviation?
+
+
+## Architect fire-list pass, 2026-08-03 (Smith-directed) — reconciliation + three rulings
+
+Smith routed the architect fire-list (item-shape five + six false-miss packets + singletons). First
+act per the standing order: a READ-ONLY verify-and-stamp agent reconciled the list against disk, then
+spot-audited. **The list was substantially stale** — most of the "item-shape five" and singletons were
+already ruled (21 July) or sitting with the seats; the real home of the item-shape counts is
+`Architecture_Cr17Sweep_estate_net_gate_report.md` v2. Corrections recorded: AccentAuthor's 276-item
+batch landed AND was already reviewed+rejected by the seat (live ask = regenerate, not ack);
+PassiveAuthor is not "residuals" (its criterion20_cue_leak proved the estate gate under-reported, and
+the 22-July estate pass + 18-item dispatch are SUPERSEDED); three of Smith's note-hooks have no disk
+support (Imperativo "overruled", Adverb "instrument B", Negation "finche-non" is live content). The
+Piacere/Preposition `waiting: closed`-while-holding-a-packet trap is real; all six packets are
+genuinely unopened.
+
+Three decisions ruled by Smith this pass:
+
+**(a) Item-shape law RATIFIED.** `ITEM_SHAPE_no_change_forms.md` (was PROPOSAL v2) is now binding: a
+free-text blank cannot test a form that does not change, because the cue must name the word and the
+no-change form IS the citation form, so a copy scores full marks having demonstrated nothing. Remedy
+is one of two instruments, uniform (never conditional on whether the form changes, or the cue's
+presence becomes the tell): **A** = English clickable cue where the meaning fixes the word (rosso only
+= red), marked by candidate_forms SET MEMBERSHIP (outside-set = vocabulary miss, formation silent — no
+credit for a well-formed wrong word, Smith's decidability ruling); **B** = MCQ with the wrong
+inflections as distractors where the meaning does NOT fix the word (molto/molta/molti/molte). Affected:
+69 items (adj 30, adv_inv 6, noun_plur_inv 7, impv_use_inf 6, demonstrative 7, indefinite 2 + recon).
+  **SEQUENCING — the catch that reshapes the dispatch: instrument A is ENGINE-BLOCKED.** grammar_engine.js
+today applies the credit_only silence UNCONDITIONALLY, so a real-form-wrong-slot answer (rossa for the
+m.sg slot) is swallowed and the formation bucket can never record the miss. The one-pager states
+instrument A "cannot ship" until the membership test lands. Routed to Housing
+(`Architecture_Housing_candidate_forms_membership_test`). Consequence: only instrument **B** (adv_inv,
+which already carries the candidate_forms set) can be dispatched now; impv_use_inf is a redundant-
+parenthetical trim (Smith ruled the shape sound); adj/noun/dem/indef instrument-A dispatch WAITS on
+the engine change. The supplied-choice/MCQ exemption tag (133 legitimate items the gate flagged) is
+mechanical and scoped to the AUTHORED files only — the generated stress (12,446) and accent (276)
+corpora are excluded — staged, not yet applied.
+
+**(b) Typed-doubling: DROPPED (Smith, re-confirmed).** SpellingAuthor wave 2 proceeds without a
+free-text typed-doubling bank; doubling stays an MCQ / error_id class. The thread already carried
+Smith's "dropped for good"; formalised here so the wave unblocks.
+
+**(c) Apostrophe escalation: RESERVE-THREE ratified (Smith).** The uniform escalation stands — 1
+apostrophe -> grave, 2 -> acute, 3 -> literal apostrophe restored — and the five-imperative allow-list
+(va' da' fa' sta' di') is retired. `un po'` becomes typeable via po''', and the commoner indicative
+da'/di' return via the plain single apostrophe. This is the shipped r101 behaviour and matches
+AccentAuthor's own lean; Smith's ruling settles it as policy.
+
+Routing after this pass (for Smith): the six false-miss packets are already dispatched (Next: seat) —
+open PiacereAuthor and PrepositionAuthor especially, whose _status reads closed. Instrument-A dispatch
+and the exemption-tag application are held pending the Housing engine change and Smith's nod on the
+sequencing.
+
+## Self-stamping re-proposed and re-REJECTED, on the record (2026-08-02, Architecture)
+Architecture proposed letting a seat that self-verifies with evidence on disk mark itself discharged,
+with Architecture spot-auditing a sample, to relieve a 22-thread queue. Smith said he thought it had
+been considered and rejected before, and asked for the record to be checked rather than trusting
+either memory. It had. `INTER_CHAT_PROTOCOL.md` §The stamp: "**Architecture owns the stamp**, because
+per Rev 21(iii) it owns the clause. **Seats do not stamp themselves** — self-reported discharge is
+precisely the class of thing that already failed."
+
+**The rejection stands, and today's evidence strengthens it rather than weakening it.**
+`ind_nn_06` is the case. IndefiniteAuthor self-verified its false-miss remedy and **every claim it
+made was true** — five guards present, correct ordering, the honest flag set, all confirmed on disk.
+And the remedy had put the answer verbatim into the cue, destroying the item. A self-stamp would have
+closed that thread with a correct self-report and a broken item.
+
+That is the general shape and it is why the rule exists: **self-verification answers "did I do what I
+said", and structurally cannot answer "was what I said the right thing to do".** The second question
+is the entire content of the stamp. WordFormationAuthor's "audit clean" acceptance that concealed a
+live false-credit bug is the same failure a fortnight earlier. My own bookkeeping failed four times
+today. The proposal was wrong and the record was right.
+
+**What relieves the queue without touching the principle.**
+1. **Run the read-only verify agent per inbound batch, not once per wake.** It already exists as a
+   standing order and it is the right instrument precisely because it is NOT the seat: no stake, no
+   cache, no self-report. It does the mechanical half (does the evidence match disk?) and leaves the
+   judgement half (is this the right fix?) to the architect. That is the split the stamp actually needs.
+2. **Routing is not discharge, and should not queue at Architecture.** Several of today's 22 are a seat
+   asking permission to re-point a `Next:` line at another seat. Re-pointing makes no claim that work
+   is done, so it carries none of the risk the stamp guards against. **Seats may re-point a Next line
+   themselves**, provided they say why in the same section. This is a genuine reduction and it costs
+   nothing.
+
+
+## False-miss packets — live inbound processed, 2026-08-03 (Architecture)
+
+Smith prompted the packet-holding seats directly; three replied today and the board moved mid-session
+(the parallel-wake case the handoff warns about). Re-derived from disk and processed:
+
+- **PiacereAuthor** v2 STAMPED — 8/8 remediated, spot-audited pia_fam_02 (ho bisogno regraded 0.6). CLOSED.
+- **PrepositionAuthor** v2 STAMPED — 6/6 blank-boundary fixes, spot-audited prep_t_06. CLOSED. (The seat
+  owned the `_status`-said-closed trap: status written 17 July, packet landed 21 July.)
+- **SiConstructionsAuthor** v2 STAMPED — remediated + harness-verified, spot-audited si_pass_agr_03.
+  Ruled the adjacent si_pass_agr_06 exposure the seat flagged: EXTEND (same 0.9 bare-form fix), one-item
+  follow-up with the seat.
+- **ExistentialAuthor** already STAMPED+CLOSED (v3, its one finding). **IndefiniteAuthor** already
+  STAMPED+CLOSED (v5, the cue rework — stale header corrected).
+- **NegationAuthor, PronominalVerbsAuthor** — no seat reply on disk yet; genuinely still with the seats.
+
+Verification standard held: each stamp spot-audited one claimed fix against disk rather than trusting
+the seat's summary — the Indefinite v2 remediation (marker-clean but item-hollowing) is why seats do
+not self-stamp.
+
+## Ruling: `verb_form` minted; and a zero-item leaf is not automatically a gap (2026-08-02, Architecture)
+Eleven trees plus `tense_choice` declared `parent_id: "verb_form"` against a node that did not exist.
+Minted as an aggregate; re-derived after the write, zero dangling parent_ids remain estate-wide. The
+curriculum-order worry is answered by separating axes: hierarchy and order are different things, and
+leaving a parent null to control presentation order would be encoding the wrong thing in the wrong
+layer.
+
+Housing's 23 unreferenced discrimination leaves are ALL already `active: false`. Filtering on active,
+the unreferenced count is 11. **Housing's leaf census counts retired nodes as live leaves**, which
+means "440 leaves" is wrong and any coverage denominator built on it is inflated by every bucket the
+estate has ever retired. Routed.
+
+Retirement was the right disposition and matches today's `pronoun.ci_locative.existential` ruling:
+tense choice is a cross-tense skill living in ONE tree, so per-family discrimination leaves would
+duplicate it and split coverage. **If a learner browsing a family should see how it contrasts with
+another, that is a navigation cross-link, not a bucket. Buckets are measurement units and must not
+double-count; links are free.**
+
+**New distinction, adopt estate-wide: a zero-item leaf has three legitimate causes and only one is a
+stub.** (a) RETIRED (`active: false`). (b) MARKER-CLASSIFICATION ONLY — the six
+`orthography.accent.italian.placement.*` leaves exist so the AI marker can say WHERE an accent error
+fell; the 276 accent items bucket to the outcome axis (.missing 141, .added 81, .wrong_mark 54) and
+nobody should ever author into placement. Zero items there is correct. (c) GENUINELY UNAUTHORED — the
+only one that deserves a `stub` flag. Conflating the three is what turned 23 retired nodes and 6
+analysis leaves into an apparent 23-leaf problem.
+
+## Correction to today's marking ruling: TWO tests, not one (2026-08-02, Architecture)
+This morning's ruling said the learner's answer on an English-cued item is classified by membership of
+`candidate_forms`. Written that way it implies one test drives both markpoints, which would make
+`parlamo` a VOCABULARY miss on the lemma-retrieval pilot — harsher than the shipped r90 behaviour and
+wrong. Housing's `parl` example (thread `Housing_Architecture_markpoint_level_match_at`) exposed it.
+
+The two markpoints ask different questions and need different tests:
+- **vocabulary** — authored STEM, deliberately unanchored. "Did they reach for this word at all?"
+- **formation** — `candidate_forms` membership. "Is this a real form, so may I judge their grammar?"
+
+Together they reproduce every case Smith ruled AND r90's shipped behaviour: `rossa` vocab hit +
+formation miss; `blu`/`nero` vocab miss + silent; `roso` vocab miss + silent (the stem `ross` is absent
+from `roso`); `parlamo` vocab HIT + formation silent. The generosity sits in the right place — a
+misformed attempt at the right word still proves they had the word.
+**Authoring constraint, load-bearing: the stem must be the TRUE stem (`ross`, not `ros`)**, or `roso`
+credits vocabulary it should not. Same trap that ruled out automatic stem-prefix derivation.
+
+## Ruling: a subagent may READ and REPORT; it may not WRITE to content (2026-08-02, Architecture)
+PossessiveAuthor reported, unprompted, that an audit subagent it ran had over-written fields with
+unverified values and mis-set a homograph. That is precisely why the estate's wake-sweep agent is
+specified READ-ONLY and rules on nothing: **an agent that can write can launder a guess into the
+record**, where a later human reviewer sees a field that looks authored and has no way to tell.
+Standing rule: if a pass needs writes, the SEAT makes them from the agent's report, so every written
+value has passed through something accountable. Reading, grepping, counting and reporting are fine and
+are what agents are good at.
+
+## Ruling: PossessiveAuthor's schema currency folds into the central migration (2026-08-02)
+All three counts — the `prompt_supplies_base_form` -> `wrong_answer_is_form_error_only` rename, the
+missing `common_errors`, and anchoring — run centrally, on the same footing as the 1,936-key push. A
+seat hand-applying a schema change across its own batch is 25 chances to diverge, and divergence in a
+schema is worse than lateness. `common_errors` is UNSPECIFIED rather than optional and belongs in the
+brief before any seat carries it; the author was right not to invent a shape.
