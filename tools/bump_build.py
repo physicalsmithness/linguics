@@ -14,7 +14,7 @@ import re, sys, datetime, pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 APP = ROOT / "housing/js/app.js"
-PAGES = [ROOT / "housing/index.html", ROOT / "housing/bench.html"]
+PAGES = [ROOT / "housing/index.html", ROOT / "housing/bench.html", ROOT / "housing/selftest.html"]
 
 def current():
     m = re.search(r'const LL_BUILD = "([^"]+)"', APP.read_text(encoding="utf-8"))
