@@ -601,48 +601,35 @@
   "markpoints": [
    {
     "order_index": 0,
-    "credit": 0.5,
+    "credit": 1.0,
     "bucket": "existential.form.negative",
     "label": "negative existential",
     "any_phrases": [
      {
       "phrase": "non ci sono problemi",
       "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     {
-      "phrase": "non ci sono dei problemi",
-      "note": "transfer.existential_bare_noun (proposed: English any/some over-translated as an Italian partitive/quantifier where the bare noun is wanted)",
-      "match_at": "word"
      },
      {
-      "phrase": "non ci sono alcuni problemi",
-      "note": "transfer.existential_bare_noun (proposed: English any/some over-translated as an Italian partitive/quantifier where the bare noun is wanted)",
-      "match_at": "word"
-     },
-     {
-      "phrase": "ci sono non problemi",
-      "note": "non goes before the whole cluster: non ci sono",
-      "match_at": "word"
-     }
-    ]
-   },
-   {
-    "order_index": 1,
-    "credit": 0.5,
-    "bucket": "existential.form.plural",
-    "label": "plural agreement (ci sono)",
-    "any_phrases": [
-     {
-      "phrase": "non ci sono problemi",
-      "match_at": "word"
+      "phrase": "nessun problema",
+      "match_at": "word",
+      "credit": 0.9,
+      "note": "correct and idiomatic, but the drill wants the full negative existential: non ci sono problemi"
      }
     ],
     "must_not_include": [
      {
       "phrase": "non c'è problemi",
-      "note": "problemi is plural: non ci sono",
+      "note": "problemi is plural, so ci sono",
+      "match_at": "word"
+     },
+     {
+      "phrase": "non ci sono dei problemi",
+      "note": "transfer.partitive_for_bare_noun: English any/some over-translated as an Italian partitive where the bare noun is wanted",
+      "match_at": "word"
+     },
+     {
+      "phrase": "non ci sono alcuni problemi",
+      "note": "transfer.partitive_for_bare_noun: English any/some over-translated as an Italian partitive where the bare noun is wanted",
       "match_at": "word"
      }
     ]
@@ -660,8 +647,8 @@
     }
    }
   ],
-  "explanation": "'Non ci sono problemi' means 'There are no problems.' Non goes before the whole cluster, and problemi is plural, so ci sono. Italian uses the bare plural with no word for 'any': non ci sono problemi, not non ci sono dei problemi.",
-  "version": 2
+  "explanation": "'Non ci sono problemi' means 'There are no problems.' Non goes before the whole cluster, and problemi is plural, so ci sono, with the bare plural and no word for 'any'. The elliptical 'nessun problema' (no problem) is also a natural reply, but the drill practises the full existential.",
+  "version": 3
  },
  {
   "external_id": "ex_form_neg_03",
@@ -2242,5 +2229,224 @@
   ],
   "explanation": "'Non c'è latte' means 'There's no milk.' Non precedes the whole cluster, and latte is uncountable and singular, so c'è. Italian needs no word for 'any': non c'è latte, not non c'è del latte.",
   "version": 2
+ },
+ {
+  "external_id": "op_cil_exist_01",
+  "language_code": "it",
+  "topic": "existential",
+  "subtopic": "form.singular",
+  "difficulty": 1,
+  "cefr_level_target": "A1",
+  "prompt": "Complete: '____ un problema con la macchina.' (there is)",
+  "type": "short",
+  "marks": 1,
+  "wrong_answer_is_form_error_only": false,
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "existential.form.singular",
+    "label": "c'è (sg existential)",
+    "any_phrases": [
+     {
+      "phrase": "C'è",
+      "match_at": "word"
+     },
+     {
+      "phrase": "c'è",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "Ci è",
+      "match_at": "word"
+     },
+     {
+      "phrase": "Ce è",
+      "match_at": "word"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "problema",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "problema - problem",
+      "bucket": "vocabulary.it.problema.noun.translation"
+     },
+     "gender": {
+      "reveal": "masculine (m)",
+      "bucket": "vocabulary.it.problema.noun.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "'C'è un problema con la macchina' means 'There's a problem with the car'. Italian uses 'there is/are' as an existential construction with locative ci. Singular ci + è undergoes elision to c'è. The apostrophe form is obligatory in standard writing.",
+  "version": 2,
+  "info_display": "suppress"
+ },
+ {
+  "external_id": "op_cil_exist_02",
+  "language_code": "it",
+  "topic": "existential",
+  "subtopic": "form.plural",
+  "difficulty": 1,
+  "cefr_level_target": "A1",
+  "prompt": "Complete: '____ molte persone in piazza oggi.' (there are)",
+  "type": "short",
+  "marks": 1,
+  "wrong_answer_is_form_error_only": false,
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "existential.form.plural",
+    "label": "ci sono (pl existential)",
+    "any_phrases": [
+     {
+      "phrase": "Ci sono",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "C'è",
+      "match_at": "word"
+     },
+     {
+      "phrase": "Ce sono",
+      "match_at": "word"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "persone",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "persona - person",
+      "bucket": "vocabulary.it.persona.noun.translation"
+     }
+    }
+   }
+  ],
+  "explanation": "'Ci sono molte persone in piazza oggi' means 'There are lots of people in the square today'. The plural existential is ci sono. No elision happens before s + consonant, so ci stays full.",
+  "version": 2,
+  "info_display": "suppress"
+ },
+ {
+  "external_id": "op_cil_exist_03",
+  "language_code": "it",
+  "topic": "existential",
+  "subtopic": "form.past",
+  "difficulty": 2,
+  "cefr_level_target": "B1",
+  "prompt": "Complete with the passato prossimo (present perfect) of esserci: 'Ieri ____ molta gente al concerto.' [there was a huge turnout]",
+  "type": "short",
+  "marks": 1,
+  "wrong_answer_is_form_error_only": false,
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "existential.form.past",
+    "label": "Existential in passato prossimo: c'è stata / ci sono state",
+    "any_phrases": [
+     {
+      "phrase": "c'è stata",
+      "match_at": "word"
+     },
+     {
+      "phrase": "ci è stata",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "ha avuto",
+      "match_at": "word"
+     },
+     {
+      "phrase": "ci ha avuto",
+      "match_at": "word"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [
+   {
+    "lemma": "gente",
+    "language": "it",
+    "aspects": {
+     "translation": {
+      "reveal": "gente - people (collective, f.sg)",
+      "bucket": "vocabulary.it.gente.noun.translation"
+     },
+     "gender": {
+      "reveal": "feminine singular (f.sg, collective)",
+      "bucket": "vocabulary.it.gente.noun.gender"
+     }
+    }
+   }
+  ],
+  "explanation": "'Ieri c'è stata molta gente al concerto' means 'Yesterday there were lots of people at the concert'. The existential takes essere as auxiliary in compound tenses, with the participle showing agreement. Gente is a collective f.sg → c'è stata. Italian uses essere here, not avere (the English 'there was/had' pattern is misleading).",
+  "examiner_note": "Common miss: 'ha avuto' (English-style 'there was'). Italian existentials use essere, not avere.",
+  "version": 2,
+  "info_display": "suppress",
+  "prompt_supplies_base_form": false
+ },
+ {
+  "external_id": "op_cil_exist_04",
+  "language_code": "it",
+  "topic": "existential",
+  "subtopic": "form.negative",
+  "difficulty": 3,
+  "cefr_level_target": "B2",
+  "prompt": "Negate: 'C'è ancora un problema con la macchina.' → '____ con la macchina.' (= there isn't a problem any more)",
+  "type": "short",
+  "marks": 1,
+  "wrong_answer_is_form_error_only": false,
+  "markpoints": [
+   {
+    "order_index": 0,
+    "credit": 1.0,
+    "bucket": "existential.form.negative",
+    "label": "Negated existential: non c'è più",
+    "any_phrases": [
+     {
+      "phrase": "non c'è più un problema",
+      "match_at": "word"
+     },
+     {
+      "phrase": "non c'è più nessun problema",
+      "match_at": "word"
+     },
+     {
+      "phrase": "non c'è più alcun problema",
+      "match_at": "word"
+     }
+    ],
+    "must_not_include": [
+     {
+      "phrase": "Non è un problema",
+      "match_at": "word"
+     },
+     {
+      "phrase": "C'è non un problema",
+      "match_at": "word"
+     }
+    ]
+   }
+  ],
+  "vocab_help": [],
+  "explanation": "'Non c'è più un problema con la macchina' means 'There's no longer a problem with the car'. Negated existential: 'non c'è' (with the ci/c' staying inside the negation). 'Più' replaces 'ancora' to mean 'no longer'.",
+  "version": 2,
+  "info_display": "suppress"
  }
 ]

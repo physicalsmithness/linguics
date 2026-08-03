@@ -54,7 +54,7 @@
     "subtopic": "impersonal.basic",
     "difficulty": 2,
     "cefr_level_target": "A2",
-    "prompt": "Scusi, ____ fumare qui dentro? (potere)",
+    "prompt": "Nei locali pubblici in Italia non ____ fumare. (potere)",
     "type": "short",
     "marks": 1,
     "wrong_answer_is_form_error_only": true,
@@ -69,13 +69,19 @@
           {
             "phrase": "si può",
             "match_at": "word"
+          },
+          {
+            "phrase": "posso",
+            "match_at": "word",
+            "credit": 0.9,
+            "note": "Also correct if you mean yourself (posso = I can); this item drills the impersonal si può, one can / is it allowed in general."
           }
         ],
         "must_not_include": [
           {
             "phrase": "si possono",
-            "note": "before an infinitive impersonal si still stays singular: si può fumare, not si possono",
-            "match_at": "word"
+            "match_at": "word",
+            "note": "before an infinitive the impersonal stays singular: si può, not si possono"
           }
         ]
       }
@@ -87,13 +93,23 @@
         "aspects": {
           "translation": {
             "reveal": "fumare - to smoke",
-            "bucket": "vocabulary.it.fumare.verb.translation"
+            "bucket": "vocabulary.it.fumare.translation"
+          }
+        }
+      },
+      {
+        "lemma": "locale",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "locale - venue, public place",
+            "bucket": "vocabulary.it.locale.translation"
           }
         }
       }
     ],
-    "explanation": "'Si può fumare qui?' means 'Can one smoke in here? / Is smoking allowed here?' Impersonal si takes the third person singular, and a following infinitive (fumare) does not change that: si può. Si possono would wrongly make it plural.",
-    "version": 1
+    "explanation": "'Nei locali pubblici in Italia non si può fumare' means 'In public places in Italy you can't smoke.' Impersonal si takes the third person singular, unchanged before an infinitive: si può. (If you mean yourself, non posso fumare is also fine; here the general rule is wanted.) Si possono would wrongly make it plural.",
+    "version": 2
   },
   {
     "external_id": "si_imp_basic_03",
@@ -912,13 +928,19 @@
           {
             "phrase": "si vende",
             "match_at": "word"
+          },
+          {
+            "phrase": "vende",
+            "match_at": "word",
+            "credit": 0.9,
+            "note": "Also correct without the si construction (unspecified subject): vende una bicicletta. This item drills the si passivante: si vende."
           }
         ],
         "must_not_include": [
           {
             "phrase": "si vendono",
-            "note": "the noun bicicletta is singular, so the verb is singular: si vende",
-            "match_at": "word"
+            "match_at": "word",
+            "note": "una bicicletta is singular, so si vende; si vendono wrongly pluralises the verb"
           }
         ]
       }
@@ -936,7 +958,7 @@
       }
     ],
     "explanation": "'In questo negozio si vende una bicicletta quasi nuova' means 'A nearly new bicycle is for sale in this shop.' Here the thing sold is singular (una bicicletta), so the verb agrees in the singular: si vende. Only a plural thing makes it si vendono.",
-    "version": 1
+    "version": 2
   },
   {
     "external_id": "si_pass_agr_03",
@@ -966,6 +988,12 @@
             "match_at": "word",
             "credit": 0.5,
             "note": "Often heard in speech, but nonstandard: le tradizioni is plural, so si conservano."
+          },
+          {
+            "phrase": "conservano",
+            "match_at": "word",
+            "credit": 0.9,
+            "note": "Also correct without the si construction (unspecified subject 'they'): conservano le tradizioni. This item drills the si passivante: si conservano."
           }
         ],
         "must_not_include": []
@@ -994,7 +1022,7 @@
       }
     ],
     "explanation": "'Si conservano le antiche tradizioni contadine' means 'The old peasant traditions are kept up.' The verb agrees with the thing (le tradizioni, plural), so si conservano, even though the noun sits at the far end of the sentence. Don't be tempted into the singular by the distance.",
-    "version": 1
+    "version": 2
   },
   {
     "external_id": "si_pass_agr_04",
@@ -1024,6 +1052,12 @@
             "match_at": "word",
             "credit": 0.5,
             "note": "Common in speech, but nonstandard: case is plural, so si affittano."
+          },
+          {
+            "phrase": "affittano",
+            "match_at": "word",
+            "credit": 0.9,
+            "note": "Also correct without the si construction (unspecified subject 'they'): affittano case. This item drills the si passivante: si affittano."
           }
         ],
         "must_not_include": []
@@ -1052,7 +1086,7 @@
       }
     ],
     "explanation": "'D'estate si affittano moltissime case ai turisti' means 'In summer lots of houses are rented out to tourists.' The plural thing (case) is the subject, so the verb is plural: si affittano.",
-    "version": 1
+    "version": 2
   },
   {
     "external_id": "si_pass_agr_05",
@@ -1082,6 +1116,12 @@
             "match_at": "word",
             "credit": 0.5,
             "note": "Often heard, but nonstandard: vini is plural, so si producono."
+          },
+          {
+            "phrase": "producono",
+            "match_at": "word",
+            "credit": 0.9,
+            "note": "Also correct without the si construction (unspecified subject 'they'): producono vini. This item drills the si passivante: si producono."
           }
         ],
         "must_not_include": []
@@ -1110,7 +1150,7 @@
       }
     ],
     "explanation": "'In questa zona ci sono molti vitigni e si producono vini eccellenti' means 'In this area there are many vines and excellent wines are produced.' The ci sono earlier already agreed with a plural; the si construction does the same: vini is plural, so si producono. Same number instinct, same place learners slip.",
-    "version": 1
+    "version": 2
   },
   {
     "external_id": "si_pass_agr_06",
@@ -1198,6 +1238,12 @@
             "match_at": "word",
             "credit": 0.5,
             "note": "Common in speech, but nonstandard: i vini bianchi is plural, so si servono."
+          },
+          {
+            "phrase": "servono",
+            "match_at": "word",
+            "credit": 0.9,
+            "note": "Also correct without the si construction (unspecified subject 'they'): servono i vini bianchi. This item drills the si passivante: si servono."
           }
         ],
         "must_not_include": []
@@ -1216,7 +1262,7 @@
       }
     ],
     "explanation": "'I vini bianchi si servono sempre freddi' means 'White wines are always served chilled.' The subject (i vini bianchi) comes before si but still controls the agreement, so the verb is plural: si servono. Fronting the subject doesn't change the rule.",
-    "version": 1
+    "version": 2
   },
   {
     "external_id": "si_pass_agr_08",
@@ -1246,6 +1292,12 @@
             "match_at": "word",
             "credit": 0.5,
             "note": "Heard in speech, but nonstandard: two coordinated languages are a plural subject, so si parlano."
+          },
+          {
+            "phrase": "parlano",
+            "match_at": "word",
+            "credit": 0.9,
+            "note": "Also correct without the si construction (unspecified subject 'they'): parlano le due lingue. This item drills the si passivante: si parlano."
           }
         ],
         "must_not_include": []
@@ -1274,7 +1326,7 @@
       }
     ],
     "explanation": "'In Alto Adige si parlano sia l'italiano sia il tedesco' means 'In South Tyrol both Italian and German are spoken.' Two things joined by sia...sia make a plural subject, so the verb agrees in the plural: si parlano, even though each language is singular on its own. Compare qui si parla inglese, one language, singular.",
-    "version": 1
+    "version": 2
   },
   {
     "external_id": "si_vs_01",

@@ -1,28 +1,29 @@
 seat: ComparisonAuthor
-classes: [all-seats, all-authors]   # all-authors declared deliberately: this seat originates grammar and
-                                    # translation ITEMS carrying markpoints, cue chips, must_not_include and
-                                    # item explanations (51 + 24 live). Criteria 13-20 all bind all-authors
-                                    # and name nobody, so under-claiming would silently hide every one of them.
+classes: [all-seats, all-authors]   # originates grammar + translation ITEMS (markpoints, cue chips,
+                                    # must_not_include, explanations); criteria 13-21 bind all-authors and
+                                    # name nobody, so this must be declared or every one goes invisible.
 project: Linguics
-updated: 2026-07-21
-waiting: parked
+updated: 2026-08-03
+waiting: closed
 needs_from_smith: none
-blocked_by:            # none
-claude_can_verify: yes — both audits below are re-runnable greps over data/grammar_questions_comparison.json.
-summary: Batch live + ACCEPTED. False-miss packet (3 items, Next: me) dispositioned + verified today: quanto me / bello quanto accepted 1.0, oltre venti 0.9; crit-18 clean. One notation question open to Architecture (34 mid-prompt English-paren glosses the central audit missed). Queue otherwise empty.
-queue:
-  - false-miss packet: DONE, awaiting Architecture verify+stamp (Architecture_ComparisonAuthor_false_miss_packet v2)   [not blocked]
-decision_for_smith_or_architect:
-  - 34 items carry an English gloss in MID-prompt parens (e.g. "Complete (as tall as me): '...' (io)"). No render bug (only TRAILING parens become "Use X"), but the notation rule says English -> [brackets]. Central audit keyed on trailing parens and did not see these. Options: (a) I convert ( )->[ ] on next touch, display-only; (b) leave as prose-equivalent; (c) Architecture re-runs the notation audit estate-wide without the trailing-only filter first. Parked with Architecture.
+blocked_by:
+claude_can_verify: yes — every claim below is a re-runnable grep/replica over data/*_comparison.* and the audit files.
+summary: Nothing owed. False-miss packet CLOSED + stamped by Architecture (3 fixes verified). Answer-leak gate scanned the estate and found 0 comparison items. Brief 28->32 checked: Revs 29-32 all bind all-authors but none retrofits comparison; Rev 29 (no one-to-one gloss) already satisfied because di/che is ambiguous under "than". Queue empty.
+queue: none — name-grep + class tokens MINUS discharged = 0.
 
-discharged_awaiting_architecture_stamp:   # reported, not self-stamped
-  - criterion 13 (binds all-authors; register says RUNNING, unstamped for this seat) — chip self-audit RUN today: 0 rule-naming cues across all 51 prompts. Every cue names a lemma, a surface form, or an English meaning. Evidence: re-runnable grep; nearest judgement call is cmp_irr_03's "(usa la forma di 'grande' per l'età)", which names the selecting condition (age), not the rule.
-  - AUTHOR_BRIEF Rev 25 (binds all-authors; retrofit: audit cues against item levels; compliance table shows 0/3 stamped) — audit RUN today: 33 of 51 items carry a trailing cue; every cued citation form (alto, buono, bello, cattivo, stanco, simpatico, lungo, bene, male, io, tu, venti, dieci, grande, caro) is A1-A2 core vocabulary sitting at or below its A2-B2 item. No esserci-shaped case exists here: my cues are concrete dictionary words, not chunk-learned lemmas a learner cannot decompose. Zero reframes needed.
-  - inter_chat/Architecture_ComparisonAuthor_batch_disposition, "Next: ComparisonAuthor (residuals inline)" — DISCHARGED and stale. The "residuals" were the coverage-doc notes, which Architecture itself harvested into TRIAGE_coverage_asks_2026-07-15.md; every substantive ask ran through Architecture_ComparisonAuthor_batch_review, CLOSED at v5 with "nothing further owed from your seat". Requesting the Next: be cleared.
+closed_this_session:
+  - false-miss packet: 3/3 applied + verified (quanto me, bello quanto at 1.0; oltre venti 0.9), crit-18 whole-file clean, flag re-checked true. Architecture accepted/stamped, packet CLOSED (v3).
 
-not_queue:   # triaged this sweep; recorded so the next one need not re-derive it
-  - criterion 20 — register: "discharged both (2026-07-16)". 10 di_vs_che items glossed, 9 stood with reasons.
-  - criteria 15, 16, 18, 19 — standing, or discharged estate-wide (central gate; AccentAuditor; TenseChoiceAuthor wave-1).
-  - criterion 17 — Cr17Sweep owns the retrofit; comparison is post-Rev-13 and all 51 explanations already gloss.
-  - match_at "exact" / additive errors ("molto bellissimo") — my finding, parked for Housing in OPEN_QUESTIONS as a future engine ask. Not this seat's.
-  - MisconceptionAnalyst's pass-1 extension names comparison among 19 unharvested topics — their queue, not mine.
+n_a_by_construction:   # checked this sweep so the next need not re-derive (Rev 31 state)
+  - Rev 29 (crit-20 gloss ambiguity): my 10 glossed di/che items gloss "than", which cannot distinguish di from che -> ambiguous across the candidate set by construction. Compliant.
+  - Rev 30 (invariable-word cue): none of the 10 indefinite/demonstrative invariables is a comparison cue; my adverb cues (bene/male) are operands the learner transforms (bene->benissimo). n/a.
+  - Rev 31 (supplied-choice exemption): comparison has no MCQ/supplied-choice items. n/a.
+  - Rev 32 (cue tense-naming): comparison names no tense in any cue (no verb formation). n/a.
+  - answer-leak estate gate (2026-08-02): 0 cmp_ findings; not in the nine-seat dispatch.
+
+parked_with_architecture:   # their turn, not mine
+  - notation rider (a/b/c): 34 mid-prompt English-paren glosses; Architecture logged it as a deferrable rider in the packet close. No action asked of me.
+  - stale "Next: ComparisonAuthor" on Architecture_ComparisonAuthor_batch_disposition (the batch-review residual); Architecture owns clearing its own Next line.
+
+optional_not_owed:   # offered to Smith as a choice, NOT self-assigned (standing rules are never queue)
+  - Rev 27 co-credit: the 5 -issimo spelling items test BOTH -issimo formation (my bucket) AND the stem-change spelling (adjective_agreement.stem_changes), currently cross-cited only in prose. Rev 27 blesses a second co-crediting markpoint (0.5+0.5 weight, both buckets record full correctness). Would add real per-bucket attribution. Standing principle, so not owed; offered if Smith wants it.

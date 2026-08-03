@@ -75,3 +75,9 @@ Reworked 16 form items after Smith's live catch on `ex_form_q_02` (thread `Archi
 - **`ex_form_neg_01`.** The new-field set also discharges the `cue_placement` unset.
 - **Rev 23 accent recheck post-gloss.** No `accent_load_bearing`: no existential answer has an accent-stripped twin that is a plausible alternative answer (c'è->ce, non c'è->non ce).
 - Marks unchanged (1.0 per item); grammar item count unchanged at 43.
+
+
+## Merge + false-miss touch (2026-08-03)
+
+- **false-miss packet.** `ex_form_neg_02`: the idiomatic reply "nessun problema" scored 0. Added it as a graded any_phrase (0.9, Rev-17 sidestep, steering note); full existential stays 1.0. Required collapsing neg_02's Rev-27 cross-credit to a single negative markpoint (a graded sidestep can't cross a 0.5/0.5 split when it evidences only one bucket) — flagged to Architecture as a Rev-27/Rev-17 tension.
+- **op_cil_exist merge** (Architecture ruling: "home follows the skill the markpoint scores"). The four `op_cil_exist_01..04` relocated from `pronoun.ci_locative.existential` into existential.form.{singular,plural,past,negative}, ids preserved (pulse history). _03 got Rev 32 (both-language formation cue); _04's variants consolidated; all four suppressed; two unsafe bare-copula guards dropped. Existential grammar is now 47 items; `pronoun.ci_locative.existential` is empty and flagged to Architecture to retire.

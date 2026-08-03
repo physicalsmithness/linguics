@@ -6,12 +6,13 @@ waiting: parked
 needs_from_smith: none
 blocked_by:
 claude_can_verify: n/a
-summary: Four architect-queued asks discharged this turn — marker_semantics reopens, gender_class tag, vocab_help residue, plus 23 more English-lemma junk deletes + pari/dispari/impari gap-fill from cue_notation_renderer. One incoming ask pending (Architecture_Vocab_stress_sidecar — routed 2026-07-27 in DECISIONS but the thread hasn't been opened yet).
+summary: Third sweep this turn caught two more Housing responses I'd missed — marker_semantics v8 (r111 shipped) and gender_plural_drill v6+NounAuthor reply (class 5/7 boundary). Both actioned. Everything I've been asked for is now applied or acknowledged.
 queue: []
 watchlist:
-  - Architecture_Vocab_stress_sidecar — routed 2026-07-27 (DECISIONS 1628); thread not yet opened; will pick up on opening
+  - Architecture_Vocab_stress_sidecar — routed 2026-07-27 (DECISIONS 1628, StressAuthor thread); thread not yet opened; will pick up on opening
+  - marker_semantics further-alternatives population — opportunistic, Housing shipped the display fix; more alternatives arrive on specific asks
 notes:
-  - Class token declaration: [all-seats] only (not all-authors). Confirmed by architect in AUTHOR_BRIEF Rev 24 §"Class token definitions" — Vocab is explicitly named as NOT all-authors.
-  - Wake-check-fail on the previous self-check was more thorough than I realised — Smith prompted "have you checked all your nexts" and I found three more items I'd missed: (1) English-lemma junk beyond the three in marker_semantics v6 (23 more), (2) pari/dispari/impari gap-fill from cue_notation_renderer, (3) vocab_help_residue Next line still saying Vocab after my discharge. All now handled. Lesson: grep Next: across ALL files (not just Architecture_Vocab_*), and check that my own thread-updates flip the Next line correctly.
-  - Data state: 18,048 entries (was 18,071 at session start; -23 more junk delete + 3 pari-family insert + earlier task-day changes).
-  - Tools this turn: fix_multi_valid_translations.py, tag_gender_class.py, resolve_vocab_help_residue.py; plus inline python for the English-lemma delete and pari inserts.
+  - Class token declaration: [all-seats] only (not all-authors). Ratified in AUTHOR_BRIEF Rev 24.
+  - Wake-check lessons compounding this turn — Smith prompted "have you checked all your nexts" and I found three items I'd missed on the first self-check; his followup "carry on" implicitly pushed a third sweep and I found TWO MORE (Housing responses to my earlier discharges, marker_semantics v8 and gender_plural_drill v6+NounAuthor reply). The pattern: my sweeps look for "what's addressed to me OPEN" but miss OPEN threads where OTHER seats have replied since my last discharge. Fix for next sweep: grep Next: Vocab across ALL threads regardless of my prior belief about their status.
+  - Data state: 18,048 entries. Gender_class explicit tags: 200 (Class 3=147, 4=32, 5=6, 6=2, 7=13); Housing derives 1, 2, and additional 5 automatically.
+  - Tools this turn: fix_multi_valid_translations.py, tag_gender_class.py, resolve_vocab_help_residue.py, prune_science_polysemy.py; plus inline python for delete/insert/retag passes.

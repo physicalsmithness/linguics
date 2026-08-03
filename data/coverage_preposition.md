@@ -109,3 +109,13 @@ Wake-instruction name-grep surfaced two live tasks; both run, both clean, eviden
 **Rev 23 (crit-19 after crit-20) on the six reframed items:** no accented forms in any answer set (programmatic scan), and each English gloss pins its lexeme, so the Rev 21(i) carve-out survives glossing. Verified no-op.
 
 **Criterion 13 chip-audit (all-authors retrofit, first run for this seat):** rule-word grep over all 82 prompts. Nine hits, all "contracted form" in the af_01..09 fragment drills: output-form naming per criterion 5's distinction, per the dispatch's formation-cue instruction. The announced operation concedes the di-il separateness miss (instruction-pinned per Rev 20(iii)); agreement stays tested, and contraction is tested unannounced by af_10 and every in-context contracted answer (alle nove, nel 1998, negli Stati, dal dentista, sul divano). Zero rewrites.
+
+## Eighth touch, 2026-08-03 (false-miss packet + cue-notation conversion)
+
+The 2026-07-21 false-miss packet sat unanswered for six weeks (this seat's _status said closed; the thread was the record — Architecture's 2026-08-02 addendum was right). All six findings remediated, all TOP severity:
+
+- **Blank-boundary zeros (prep_t_06/07/08/09, prep_vg_obj_05):** the accepted phrases spanned prompt-printed words (da venti / per tre / fra dieci / nel 1998 / del nuovo), so a learner typing exactly the blank content scored 0. All converted to blank-only content with match_at "word", which now does the superstring-safety work the extra word was doing (word-anchored da cannot match inside dal/dalle). Guards converted in parallel (per/dal, da, in, al, a il, di il — all word-anchored). obj_05's both-markpoint structure preserved: del hits both, al hits contraction only, di il hits choice only.
+- **prep_da_04:** my own criterion-20 reframe un-pinned the lexeme ([as a child] no longer forces bambino), so da piccolo / da piccola are now accepted at 1.0 with come piccolo/a joining the calque guards. The finding is a direct consequence of the Rev 23 mechanism generalised beyond accents: a gloss pins the construction, not the lexeme.
+- **prep_di_03 (cue-notation thread, the "preposition 1"):** (me) converted to [than me]; renders as prose not "Use me", pins the lexeme, keeps the than→che trap. Was absent from the criterion-20 census; caught by the notation gate.
+
+Rails re-run on all touched items: batch-wide blank-boundary self-audit NONE remaining; crit-18 word-aware cross-containment NONE; crit-19 no accents in any touched answer set. wrong_answer_is_form_error_only explicitly false on all seven touched items (they test choice, not form). Versions bumped per item.

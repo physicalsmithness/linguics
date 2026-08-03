@@ -5,10 +5,9 @@ updated: 2026-08-03
 waiting: parked
 needs_from_smith: external-action   # route Architecture: stamp cue-notation for relative_pronoun (evidence at cue_notation v2, 4/4 converted)
 blocked_by:
-claude_can_verify: yes - conversions and scans regenerate from the item files
-summary: cue-notation retrofit DONE this touch (4 English-in-parens meaning-pins -> [brackets], 0 residue, display-only); item_shape proposal: zero exposure confirmed on-thread; dead-vocab_help (14 of 225) is Architecture's central strip, not mine; misconception tag work order still pending analyst merge.
+claude_can_verify: yes
+summary: cue-notation retrofit done (4/4 to brackets, 0 residue), stamp pending; item_shape react ACCEPTED at Architecture v4 (zero exposure), nothing further owed there; dead-vocab_help is central-strip; misconception tag work order still gated on the analyst merge.
 queue:
   - cue-notation: DONE, awaiting Architecture stamp   [ALLAUTHORS cue_notation v2]
 notes:
-  - 14 dead vocab_help entries in my topic are in the 225 ruled central-strip (do-not-send-to-seats); no seat action.
-  - expect misconception tag work order after MisconceptionAnalyst folds the ratified relative_choice family.
+  - Next-line discipline absorbed (item_shape v4): on multi-seat threads, name the seats still owing or leave Next alone; number sections one past highest visible.

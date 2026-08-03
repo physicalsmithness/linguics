@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Linguics — engine self-test</title>
+<!--
+  ENGINE SELF-TEST (Housing, 2026-08-03)
+
+  Every case here exists because something broke SILENTLY. That is this estate's
+  characteristic failure: not a crash, but a feature that quietly stops doing its
+  job while every surface still renders. In one session we found a three-
+  apostrophe escape that had never once worked, a scroll helper that no-oped on
+  every mark, a spelling deck that had never served 17 delivered items, a
+  lemmatiser inventing vocabulary buckets for words that were not in the
+  sentence, and a marker running at temperature 1.0. None raised an error.
+
+  So each test below names the fault it protects against. A test that cannot say
+  what regression it catches does not belong here.
+
+  Runs against the REAL engine modules and the REAL content, served from the
+  site. Open /housing/selftest.html.
+-->
+<style>
+  :root { --cream:#fdfaf4; --ink:#2b2b2b; --navy:#3a4f8a; --rule:#e2dbcc;
+          --green:#2e7d4f; --red:#a33a3a; --muted:#7a7268; }
+  * { box-sizing:border-box; }
+  body { margin:0; padding:24px; background:var(--cream); color:var(--ink);
+         font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+         font-size:16px; line-height:1.5; }
+  h1 { font-size:24px; margin:0 0 4px; color:var(--navy); font-weight:600; }
+  .sub { color:var(--muted); font-size:14px; margin-bottom:18px; }
+  #summary { font-size:19px; font-weight:600; margin:0 0 16px; padding:12px 16px;
+             border-radius:6px; border:1px solid var(--rule); background:#fff; }
+  .grp { background:#fff; border:1px solid var(--rule); border-radius:6px;
+         padding:14px 16px; margin-bottom:12px; }
+  .grp h2 { font-size:12px; text-transform:uppercase; letter-spacing:.08em;
+            color:var(--muted); margin:0 0 10px; font-weight:600; }
+  .t { display:flex; gap:10px; align-items:baseline; padding:5px 0;
+       border-bottom:1px solid #f0ebdd; font-size:14px; }
+  .t:last-child { border-bottom:none; }
+  .badge { flex:0 0 auto; font-size:11px; font-weight:700; letter-spacing:.05em;
+           padding:2px 7px; border-radius:3px; }
+  .pass .badge { background:#e9f6ee; color:var(--green); }
+  .fail .badge { background:#fdecec; color:var(--red); }
+  .skip .badge { background:#f3efe2; color:var(--muted); }
+  .t .what { flex:1 1 auto; }
+  .t .guards { display:block; font-size:12px; color:var(--muted); font-style:italic; }
+  .t .got { display:block; font-size:12.5px; color:var(--red); font-family:ui-monospace,Menlo,Consolas,monospace; }
+</style>
+</head>
+<body>
+
+<h1>Engine self-test</h1>
+<div class="sub">Every case names the silent fault it protects against. Runs against the real modules and the real content.</div>
+<div id="summary">Loading content…</div>
+<div id="out"></div>
+
+<script src="js/norm.js?v=2026-08-03-r114"></script>
+<script src="js/store.js?v=2026-08-03-r114"></script>
+<script src="js/engine_axes.js"></script>
+<script src="js/grammar_engine.js?v=2026-08-03-r114"></script>
+<script src="js/translation_stub.js?v=2026-08-03-r114"></script>
+<script src="js/translation_marker.js?v=2026-08-03-r114"></script>
+<script>
+(function () {
+  "use strict";
+  const LL = window.LL;
+  const results = [];
+  const group = (name) => ({ name, tests: [] });
+  const groups = [];
+
+  function T(g, what, guards, fn) {
+    let state = "pass", got = "";
+    try {
+      const r = fn();
+      if (r === true || r === undefined) state = "pass";
+      else if (r === null) { state = "skip"; got = "not loaded"; }
+      else { state = "fail"; got = String(r); }
+    } catch (e) {
+      state = "fail"; got = (e && e.message) ? e.message : String(e);
+    }
+    g.tests.push({ what, guards, state, got });
+    results.push(state);
+  }
+
+  async function jget(p) {
+    const r = await fetch(p, { cache: "no-store" });
+    if (!r.ok) throw new Error(p + " HTTP " + r.status);
+    return JSON.parse((await r.text()).replace(/[\x00\r\n\s]+$/, ""));
+  }
+
+  function eq(a, b) { return (a === b) ? true : ("got " + JSON.stringify(a) + ", expected " + JSON.stringify(b)); }
+
+  async function run() {
+    // ---------------------------------------------------------------- data
+    let vocab = null, menu = null, surface = null, tense = null, accent = null, manifest = null;
+    try {
+      [manifest, vocab, menu, surface, tense, accent] = await Promise.all([
+        jget("../data/manifest.json"),
+        jget("../data/vocabulary_it_frequency.json"),
+        jget("../data/translation_marker_bucket_menu.json"),
+        jget("../data/it_surface_to_lemma.json"),
+        jget("../data/it_verb_tense_forms.json"),
+        jget("../data/grammar_questions_accent.json")
+      ]);
+    } catch (e) {
+      document.getElementById("summary").textContent = "Could not load content: " + e.message
+        + " — this page must be SERVED, not opened off disk.";
+      return;
+    }
+    LL.vocabEntries = vocab; LL.markerMenu = menu;
+    LL.surfaceToLemma = surface; LL.verbTenseForms = tense;
+
+    // -------------------------------------------------- accent input layer
+    const g1 = group("Apostrophe input (norm.js)"); groups.push(g1);
+    // the rewriter fires per keystroke, so anything one-shot hides the bug
+    const type = (keys) => { let b = ""; for (const k of keys) b = LL.normaliseAccentInput(b + k); return b; };
+    T(g1, "one apostrophe gives a grave", "—", () => eq(type("e'"), "è"));
+    T(g1, "two give an acute", "—", () => eq(type("e''"), "é"));
+    T(g1, "THREE give a literal apostrophe",
+      "this escape existed in the file for weeks and never once worked: the rule list ran in order and a later rule undid it in the same pass",
+      () => eq(type("e'''"), "e'"));
+    T(g1, "un po with three apostrophes survives",
+      "po' was absent from the old apocope allow-list, so it was silently corrupted into the exact error the accent drill teaches against",
+      () => eq(type("un po'''"), "un po'"));
+    T(g1, "da with one apostrophe gives the indicative",
+      "the old allow-list reserved da' for the imperative, so the commoner da-grave could not be typed at all",
+      () => eq(type("da'"), "dà"));
+    T(g1, "elisions are untouched",
+      "apostrophes after a consonant must never be treated as accent input",
+      () => eq(LL.normaliseAccentInput("dell'anno"), "dell'anno"));
+
+    // ------------------------------------------------ marker bucket context
+    const g2 = group("Marker bucket context (translation_marker.js)"); groups.push(g2);
+    let items = [];
+    for (const t of manifest.topics) {
+      try { for (const it of await jget("../data/translation_items_" + t + ".json")) items.push(it); }
+      catch (e) {}
+    }
+    const byId = {};
+    for (const t of manifest.topics) {
+      try { for (const b of await jget("../data/buckets/" + t + ".json")) byId[b.id] = b; }
+      catch (e) {}
+    }
+    const itEn = items.find(i => LL.inferDirection(i) === "it_en" && /ore/.test(i.source_text || ""))
+              || items.find(i => LL.inferDirection(i) === "it_en");
+    T(g2, "it_en vocab injection lemmatises properly",
+      "a 3-character-stem heuristic turned 'ore' into orecchio (ear) and 'problemi' into proprio, writing vocabulary events for words that were never in the sentence",
+      () => {
+        if (!itEn) return null;
+        const ctx = LL.buildBucketContext(itEn, byId, { menuMode: "none" });
+        const lem = new Set(vocab.filter(e => e && e.lemma).map(e => String(e.lemma).toLowerCase()));
+        const bad = Object.keys(ctx).filter(k => k.indexOf("vocabulary.it.") === 0)
+          .map(k => k.split(".")[2]).filter(l => !lem.has(l));
+        return bad.length ? ("phantom lemmas: " + bad.join(", ")) : true;
+      });
+    T(g2, "menu modes change the payload size",
+      "the 581-bucket menu at ~48k tokens is the leading suspect for breadth marking collapsing; the modes must actually differ",
+      () => {
+        if (!itEn) return null;
+        const full = Object.keys(LL.buildBucketContext(itEn, byId, { menuMode: "full" })).length;
+        const agg = Object.keys(LL.buildBucketContext(itEn, byId, { menuMode: "aggregates" })).length;
+        return full > agg ? true : ("full=" + full + " aggregates=" + agg);
+      });
+    T(g2, "the item's own floor survives every menu mode",
+      "the required_buckets are the mandatory floor; a menu change must never drop them",
+      () => {
+        for (const it of items.slice(0, 200)) {
+          for (const mode of ["full", "labels", "aggregates", "agg_labels", "retrieved", "none"]) {
+            const ctx = LL.buildBucketContext(it, byId, { menuMode: mode });
+            for (const f of (it.required_buckets || [])) {
+              if (!byId[f]) continue;                       // unregistered: separate check
+              if (!LL.isCandidateForDirection(f, LL.inferDirection(it))) continue;  // direction filter
+              if (!ctx[f]) return it.external_id + " lost " + f + " in " + mode;
+            }
+          }
+        }
+        return true;
+      });
+
+    // ------------------------------------------------------- accent scoring
+    const g3 = group("Accent drill outcome + docking (app.js contract)"); groups.push(g3);
+    T(g3, "accent items carry the tags the axes need",
+      "the outcome axis is derived from choice_tags[].class; without it every miss lands on the item's declared leaf and .missing/.added never receive an event",
+      () => {
+        const tagged = accent.filter(q => Array.isArray(q.choice_tags)
+          && q.choice_tags.some(t => t && t.class));
+        return tagged.length > accent.length * 0.8 ? true
+          : ("only " + tagged.length + " of " + accent.length + " items carry a choice_tags class");
+      });
+    T(g3, "every accent distractor has a scorable class",
+      "an untagged distractor falls back to the string diff; if that also fails the learner is scored 0 on an error we cannot name",
+      () => {
+        let bad = 0;
+        for (const q of accent) {
+          if (!Array.isArray(q.choices)) continue;
+          for (let i = 0; i < q.choices.length; i++) {
+            if (i === q.answer_index) continue;
+            const t = (q.choice_tags || [])[i];
+            if (!(t && t.class)) bad++;
+          }
+        }
+        return bad === 0 ? true : (bad + " distractors with no class tag");
+      });
+
+    // --------------------------------------------------- chosen-tense axis
+    const g4 = group("Chosen-tense inference (Canvas A6 axis)"); groups.push(g4);
+    const ct = (a, c) => LL.inferChosenTense(a, c);
+    T(g4, "a simple form resolves", "—", () => eq(ct("ero", ["imperfect", "passato_prossimo"]), "imperfect"));
+    T(g4, "a compound resolves from its auxiliary",
+      "the tense of a compound lives in the auxiliary, not the participle",
+      () => eq(ct("ho mangiato", ["present", "passato_prossimo"]), "passato_prossimo"));
+    T(g4, "compounds work for verbs outside the cued set",
+      "the form table only covers the cued verbs, so participles are matched by ending or every other verb silently fails",
+      () => eq(ct("avevo parlato", ["imperfect", "trapassato_prossimo"]), "trapassato_prossimo"));
+    T(g4, "accent-free typing still resolves",
+      "learners type without accents; a strict lookup would return null for most real answers",
+      () => eq(ct("c e stato", ["imperfect", "passato_prossimo"]), "passato_prossimo"));
+    T(g4, "an unresolvable answer returns null, not a guess",
+      "a wrong guess writes a false confusion into the matrix, which is worse than a gap in it",
+      () => eq(ct("qwertyuiop", ["imperfect", "passato_prossimo"]), null));
+
+    // -------------------------------------------------------------- render
+    const g5 = group("Content the renderers depend on"); groups.push(g5);
+    T(g5, "every translation item declares its direction",
+      "without target_lang the direction is guessed from accented characters, and the accent bar is attached on the wrong side",
+      () => {
+        const bad = items.filter(i => !i.target_lang || !i.source_lang);
+        return bad.length ? (bad.length + " items with no direction") : true;
+      });
+    T(g5, "the marker menu is loaded and non-trivial",
+      "if the menu fails to load, cross-topic marking silently degrades to required_buckets only",
+      () => (menu && Array.isArray(menu.menu) && menu.menu.length > 100) ? true : "menu missing or tiny");
+
+    // -------------------------------------------------------------- render
+    const out = document.getElementById("out");
+    out.innerHTML = groups.map(g =>
+      '<div class="grp"><h2>' + g.name + '</h2>' +
+      g.tests.map(t =>
+        '<div class="t ' + t.state + '"><span class="badge">' + t.state.toUpperCase() + '</span>' +
+        '<span class="what">' + t.what +
+        (t.guards && t.guards !== "—" ? '<span class="guards">guards: ' + t.guards + '</span>' : '') +
+        (t.state === "fail" && t.got ? '<span class="got">' + t.got + '</span>' : '') +
+        '</span></div>').join("") + '</div>').join("");
+
+    const fails = results.filter(r => r === "fail").length;
+    const skips = results.filter(r => r === "skip").length;
+    const s = document.getElementById("summary");
+    s.textContent = fails
+      ? (fails + " FAILING of " + results.length + (skips ? " (" + skips + " skipped)" : ""))
+      : ("All " + results.length + " passing" + (skips ? " (" + skips + " skipped)" : ""));
+    s.style.color = fails ? "var(--red)" : "var(--green)";
+  }
+
+  run().catch(e => {
+    document.getElementById("summary").textContent = "Self-test crashed: " + (e && e.message ? e.message : e);
+    document.getElementById("summary").style.color = "var(--red)";
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,21 +1,17 @@
 seat: PassiveAuthor
 classes: [all-seats, all-authors]   # I author grammar + translation ITEMS; criteria 13-21/25 bind me
 project: Linguics
-updated: 2026-07-20
-waiting: parked
+updated: 2026-08-03
+waiting: closed
 needs_from_smith: none
-blocked_by:
-claude_can_verify: yes
-summary: Passive tree COMPLETE + volume person-band wave delivered (45 grammar + 19 translation). Replica green, 0 dead guards. All queues run; awaiting Architecture stamps only.
-queue:
-  - Criterion 25 (all-authors): cue-vs-level audit ran clean, reported   [retrofit_compliance thread; awaiting stamp]
-  - Volume wave (Smith late-add): 8 person-band items + person backfill delivered   [volume_person_bands thread; Next: Architecture]
-discharged_note:
-  - Criterion 13 discharged CENTRALLY 2026-07-17 (Architecture, all chips) — my earlier self-report is moot
-  - Next:PassiveAuthor usage-branch residual delivered 2026-07-17
-open_threads_mine:
-  - Architecture_PassiveAuthor_volume_person_bands.md (person-field convention ratify + wave stamp)
-  - Architecture_PassiveAuthor_usage_branch_delivery.md (si-parity cross-tree + direction-3 exemption)
-  - Architecture_PassiveAuthor_criterion20_cue_leak.md (leak-detector-must-not-anchor)
-  - Architecture_PassiveAuthor_retrofit_compliance.md (stamp crit 25)
-not_queue: [crit 13 discharged-central, crit 15 standing, crit 16/18/19/20 discharged, crit 21 standing (new items comply)]
+claude_can_verify: yes — all claims below re-derived from disk this turn
+summary: Passive tree COMPLETE (45 grammar + 19 translation: formation + usage + person bands). Nothing owed. All four delivery threads resolved; the one still-open item is Architecture's, not mine.
+queue: []          # empty — verified by name+class grep this turn
+resolved_since_last:
+  - volume_person_bands thread CLOSED 2026-07-21 (ACCEPTED + STAMPED; person convention RATIFIED as estate standard)
+  - retrofit_compliance thread CLOSED (crit 25 stamped; crit 13 was discharged centrally 2026-07-17)
+  - usage_branch_delivery thread CLOSED 2026-08-02 (si-parity cross-tree RATIFIED + generalised estate-wide; nested-guard exemption already in brief L337); condition (a) provenance already satisfied in my examiner_notes
+not_mine_but_watching:
+  - Architecture_PassiveAuthor_criterion20_cue_leak: both my recs ADOPTED; Architecture owns the gate rewrite + estate re-run; the 2026-07-22 estate pass (2,916 items) is FROZEN until re-run. Nothing owed by me.
+retrofit_status: [13 discharged-central, 15 standing, 16 discharged, 17 not-passive, 18 discharged, 19 discharged, 21 zero passive items in the audit]
+next_if_wanted: passive is ready for the MisconceptionAnalyst Phase-3 harvest (common_miss on all 6 leaves populated); that is the analyst's seat, not mine, so flagged not filled.

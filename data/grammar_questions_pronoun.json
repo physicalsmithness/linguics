@@ -2587,7 +2587,7 @@
     "order_index": 0,
     "credit": 1.0,
     "bucket": "pronoun.indirect_object.verbs_taking_iop.with_essere_in_pp",
-    "label": "Piacere PP: IOP gli (or kept as 'a Marco' resumed)",
+    "label": "Piacere passato prossimo: IOP gli (or kept as 'a Marco' resumed)",
     "any_phrases": [
      {
       "phrase": "gli",
@@ -3259,7 +3259,7 @@
     "order_index": 0,
     "credit": 1.0,
     "bucket": "pronoun.reflexive.essere_in_compound",
-    "label": "Reflexive PP takes essere",
+    "label": "Reflexive passato prossimo takes essere",
     "any_phrases": [
      {
       "phrase": "sono",
@@ -3304,7 +3304,7 @@
     "order_index": 0,
     "credit": 0.5,
     "bucket": "pronoun.reflexive.essere_in_compound",
-    "label": "reflexive takes essere in PP",
+    "label": "reflexive takes essere in passato prossimo",
     "any_phrases": [
      {
       "phrase": "si è",
@@ -3325,7 +3325,7 @@
     "order_index": 1,
     "credit": 0.5,
     "bucket": "verb_form.passato_prossimo.auxiliary.essere_reflexive",
-    "label": "PP agreement with subject on reflexive",
+    "label": "participle agreement with subject on reflexive",
     "any_phrases": [
      {
       "phrase": "divertita",
@@ -3371,7 +3371,7 @@
     "order_index": 0,
     "credit": 0.5,
     "bucket": "pronoun.reflexive.essere_in_compound",
-    "label": "reflexive takes essere in PP",
+    "label": "reflexive takes essere in passato prossimo",
     "any_phrases": [
      {
       "phrase": "si sono",
@@ -5141,157 +5141,6 @@
    }
   ],
   "explanation": "'Vai spesso al cinema? No, non ci vado quasi mai' means 'Do you go to the cinema often? No, I hardly ever go there'. The locative ci replaces 'al cinema'. In negation it sits between non and the verb: 'non ci vado'.",
-  "version": 1
- },
- {
-  "external_id": "op_cil_exist_01",
-  "language_code": "it",
-  "topic": "pronoun",
-  "subtopic": "ci_locative.existential",
-  "difficulty": 1,
-  "cefr_level_target": "A1",
-  "prompt": "Complete: '____ un problema con la macchina.' (there is)",
-  "type": "short",
-  "marks": 1,
-  "wrong_answer_is_form_error_only": false,
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronoun.ci_locative.existential",
-    "label": "c'è (sg existential)",
-    "any_phrases": [
-     {
-      "phrase": "C'è",
-      "match_at": "word"
-     },
-     {
-      "phrase": "c'è",
-      "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     "È",
-     "Ci è",
-     "Ce è"
-    ]
-   }
-  ],
-  "vocab_help": [
-   {
-    "lemma": "problema",
-    "language": "it",
-    "aspects": {
-     "translation": {
-      "reveal": "problema - problem",
-      "bucket": "vocabulary.it.problema.noun.translation"
-     },
-     "gender": {
-      "reveal": "masculine (m)",
-      "bucket": "vocabulary.it.problema.noun.gender"
-     }
-    }
-   }
-  ],
-  "explanation": "'C'è un problema con la macchina' means 'There's a problem with the car'. Italian uses 'there is/are' as an existential construction with locative ci. Singular ci + è undergoes elision to c'è. The apostrophe form is obligatory in standard writing.",
-  "version": 1
- },
- {
-  "external_id": "op_cil_exist_02",
-  "language_code": "it",
-  "topic": "pronoun",
-  "subtopic": "ci_locative.existential",
-  "difficulty": 1,
-  "cefr_level_target": "A1",
-  "prompt": "Complete: '____ molte persone in piazza oggi.' (there are)",
-  "type": "short",
-  "marks": 1,
-  "wrong_answer_is_form_error_only": false,
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronoun.ci_locative.existential",
-    "label": "ci sono (pl existential)",
-    "any_phrases": [
-     {
-      "phrase": "Ci sono",
-      "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     "C'è",
-     "Sono",
-     "Ce sono"
-    ]
-   }
-  ],
-  "vocab_help": [
-   {
-    "lemma": "persone",
-    "language": "it",
-    "aspects": {
-     "translation": {
-      "reveal": "persona - person",
-      "bucket": "vocabulary.it.persona.noun.translation"
-     }
-    }
-   }
-  ],
-  "explanation": "'Ci sono molte persone in piazza oggi' means 'There are lots of people in the square today'. The plural existential is ci sono. No elision happens before s + consonant, so ci stays full.",
-  "version": 1
- },
- {
-  "external_id": "op_cil_exist_03",
-  "language_code": "it",
-  "topic": "pronoun",
-  "subtopic": "ci_locative.existential",
-  "difficulty": 2,
-  "cefr_level_target": "B1",
-  "prompt": "Complete with the passato prossimo of esserci: 'Ieri ____ molta gente al concerto.' (a huge turnout - use the compound tense)",
-  "type": "short",
-  "marks": 1,
-  "wrong_answer_is_form_error_only": false,
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronoun.ci_locative.existential",
-    "label": "Existential in PP: c'è stata / ci sono state",
-    "any_phrases": [
-     {
-      "phrase": "c'è stata",
-      "match_at": "word"
-     },
-     {
-      "phrase": "ci è stata",
-      "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     "ha avuto",
-     "ci ha avuto"
-    ]
-   }
-  ],
-  "vocab_help": [
-   {
-    "lemma": "gente",
-    "language": "it",
-    "aspects": {
-     "translation": {
-      "reveal": "gente - people (collective, f.sg)",
-      "bucket": "vocabulary.it.gente.noun.translation"
-     },
-     "gender": {
-      "reveal": "feminine singular (f.sg, collective)",
-      "bucket": "vocabulary.it.gente.noun.gender"
-     }
-    }
-   }
-  ],
-  "explanation": "'Ieri c'è stata molta gente al concerto' means 'Yesterday there were lots of people at the concert'. The existential takes essere as auxiliary in compound tenses, with the participle showing agreement. Gente is a collective f.sg → c'è stata. Italian uses essere here, not avere (the English 'there was/had' pattern is misleading).",
-  "examiner_note": "Common miss: 'ha avuto' (English-style 'there was'). Italian existentials use essere, not avere.",
   "version": 1
  },
  {
@@ -7073,7 +6922,7 @@
     "order_index": 0,
     "credit": 1.0,
     "bucket": "pronoun.special.left_dislocation_with_pp_agreement",
-    "label": "Resumptive DOP after fronted topic, with PP agreement",
+    "label": "Resumptive DOP after fronted topic, with participle agreement",
     "any_phrases": [
      {
       "phrase": "l'",
@@ -8331,7 +8180,7 @@
     "order_index": 0,
     "credit": 1.0,
     "bucket": "pronoun.combined.order_iop_before_dop",
-    "label": "Cluster pre-aux in PP",
+    "label": "Cluster pre-aux in passato prossimo",
     "any_phrases": [
      {
       "phrase": "me l'",
@@ -8567,7 +8416,7 @@
     "order_index": 0,
     "credit": 1.0,
     "bucket": "pronoun.combined.glielo_family",
-    "label": "gliela with PP agreement to preceding f.sg DOP",
+    "label": "gliela with participle agreement to preceding f.sg DOP",
     "any_phrases": [
      {
       "phrase": "a",
@@ -8602,7 +8451,7 @@
     "order_index": 0,
     "credit": 1.0,
     "bucket": "pronoun.combined.glielo_family",
-    "label": "gliele with PP agreement f.pl",
+    "label": "gliele with participle agreement f.pl",
     "any_phrases": [
      {
       "phrase": "Gliele",
@@ -9032,7 +8881,7 @@
     "order_index": 0,
     "credit": 1.0,
     "bucket": "pronoun.ci_locative.location",
-    "label": "Locative ci in PP, pre-aux",
+    "label": "Locative ci in passato prossimo, pre-aux",
     "any_phrases": [
      {
       "phrase": "ci",
@@ -9049,55 +8898,6 @@
   "vocab_help": [],
   "explanation": "'Sei andata a Parigi quest'estate? Sì, ci sono andata a luglio' means 'Did you go to Paris this summer? Yes, I went there in July'. Locative ci sits pre-aux in compound tenses. Doesn't trigger participle agreement (only DOP-types and partitive ne do).",
   "examiner_note": "Tests ci-location in PP, different from the present-tense items.",
-  "version": 1
- },
- {
-  "external_id": "op_cil_exist_04",
-  "language_code": "it",
-  "topic": "pronoun",
-  "subtopic": "ci_locative.existential",
-  "difficulty": 3,
-  "cefr_level_target": "B2",
-  "prompt": "Negate: 'C'è ancora un problema con la macchina.' → '____ con la macchina.' (= there isn't a problem any more)",
-  "type": "short",
-  "marks": 1,
-  "wrong_answer_is_form_error_only": false,
-  "markpoints": [
-   {
-    "order_index": 0,
-    "credit": 1.0,
-    "bucket": "pronoun.ci_locative.existential",
-    "label": "Negated existential: non c'è più",
-    "any_phrases": [
-     {
-      "phrase": "Non c'è più un problema",
-      "match_at": "word"
-     },
-     {
-      "phrase": "Non c'è più nessun problema",
-      "match_at": "word"
-     },
-     {
-      "phrase": "Non c'e' piu' alcun problema",
-      "match_at": "word"
-     },
-     {
-      "phrase": "Non c’è più alcun problema",
-      "match_at": "word"
-     },
-     {
-      "phrase": "Non c'è più alcun problema",
-      "match_at": "word"
-     }
-    ],
-    "must_not_include": [
-     "Non è un problema",
-     "C'è non un problema"
-    ]
-   }
-  ],
-  "vocab_help": [],
-  "explanation": "'Non c'è più un problema con la macchina' means 'There's no longer a problem with the car'. Negated existential: 'non c'è' (with the ci/c' staying inside the negation). 'Più' replaces 'ancora' to mean 'no longer'.",
   "version": 1
  },
  {
@@ -9912,7 +9712,7 @@
     "order_index": 0,
     "credit": 1.0,
     "bucket": "pronoun.special.left_dislocation_with_pp_agreement",
-    "label": "Dislocation + cluster (me li) + PP agreement (m.pl)",
+    "label": "Dislocation + cluster (me li) + participle agreement (m.pl)",
     "any_phrases": [
      {
       "phrase": "me li",
@@ -10143,7 +9943,7 @@
     "order_index": 0,
     "credit": 1.0,
     "bucket": "pronoun.combined.joined_when_should_be_separate",
-    "label": "Reflexive + DOP cluster stays separate pre-aux in PP",
+    "label": "Reflexive + DOP cluster stays separate pre-aux in passato prossimo",
     "any_phrases": [
      "Me le ho lavate"
     ],

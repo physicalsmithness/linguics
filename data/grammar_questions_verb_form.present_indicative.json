@@ -5412,7 +5412,7 @@
     "subtopic": "usage.states_facts",
     "difficulty": 1,
     "cefr_level_target": "A1",
-    "prompt": "Complete: 'Mio fratello ____ dodici anni.' (He is twelve.)",
+    "prompt": "Complete: 'Mio fratello ____ dodici anni.' [He is twelve.]",
     "type": "short",
     "marks": 1,
     "wrong_answer_is_form_error_only": false,
@@ -5458,7 +5458,7 @@
     ],
     "explanation": "'Mio fratello ha dodici anni' means 'My brother is twelve years old.' Age in Italian is a state you have, not something you are: the pattern is avere + number + anni, literally 'to have twelve years'. So the blank takes ha, the 3sg present of avere; è dodici anni is an English calque and always wrong.",
     "examiner_note": "Residual substring risks: 'ha' sits inside 'hanno' (wrong-number attempt would false-credit; explicit singular subject makes it unlikely). Bare unaccented 'e' is NOT in must_not_include because a single letter would substring-match inside almost any answer; the accent guard is soft by house policy.",
-    "version": 1
+    "version": 2
   },
   {
     "external_id": "pu_state_03",

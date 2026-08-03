@@ -50,3 +50,11 @@
 - Direct instructions (si-impersonal) left to `present_indicative.usage.instructions`.
 - Clitics in a few examples (mi dica, aspettami) cite the pronoun tree as `optional_buckets`; markpoints target the verb form only.
 - Register discrimination stays in the imperativo tree (not superseded into tense_choice) because it is a REGISTER choice, per the dispatch.
+
+---
+
+## Update 2026-08-03 — item-shape (no-change forms) reconciliation
+
+The 8 impersonal-infinitive items were reshaped to **instrument A** per `ITEM_SHAPE_no_change_forms.md` (Smith overruled Architecture: the shape is sound, only the answer-handover cue goes). The Italian `(spingere ...)` parenthetical — which let a learner copy the cue for full marks — is removed; each item now shows the English meaning in `[brackets]`, clickable to reveal the Italian. Extended from the gate's 6 to all 8 (adding the two prohibition items) for Smith's uniformity constraint: an Italian cue on only some items of a no-change leaf is a tell. `prompt_supplies_base_form` set false on the 8. No marking change; the personal-form guards (spingi/spinga) still fire. Thread: `Architecture_ALLAUTHORS_item_shape_no_change_forms.md` v5.
+
+Not owed elsewhere (checked 2026-08-03): the answer-leak dispatch names 9 seats, not imperativo; the cue-notation retrofit counts imperativo at 0 English-in-parens (verified on the merged file); Rev 29-32 add no imperativo retrofit (Rev 30 reinforces the English-gloss choice above). person backfill (28 items) and discharges are CLOSED/stamped; wave-2 accepted.

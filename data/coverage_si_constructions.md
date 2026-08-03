@@ -58,3 +58,14 @@ Engine semantics confirmed from grammar_engine.js and norm.js this session: any_
 - **Coverage gap flagged, not filled: passivante in compound tenses** (si è venduto / si sono venduti, with participle agreement). It is a real sub-skill the current tree has no leaf for; I did not author items needing it, so I have not proposed a bucket, only noted it for a future pass.
 - **Misconception axis:** the must_not entries (si vende libri, si mangiano bene, singular adjective after impersonal essere, impersonal si read as reflexive) are ready for Phase-3 misconception attribution. Registry is architecture-owned; not attempted here.
 - **The brief moved from Rev 14 to Rev 17 while this batch was being written**; it is reconciled to Rev 17. (i) The match_at errata is resolved and this batch uses the per-phrase form throughout. (ii) Criterion 18's third direction drove uniform word-anchoring on all 56 must_not entries, with two residuals flagged above. (iii) Criterion 16's generalisation is applied as candidate_forms on the six discrimination items. (iv) The 0.9-for-dodges rule is applied to vendono on si_pass_agr_01. No Rev 15-17 change required a content rewrite; the items were already anchored and glossed.
+
+
+## False-miss packet remediation (2026-08-03)
+
+From AUDIT_false_miss_2026-07-20 (correct Italian scoring 0). Seven findings dispositioned; harness 21/21; thread Architecture_SiConstructionsAuthor_false_miss_packet v2.
+
+- **si_imp_basic_02** reframed away from the "Scusi, ..." 1sg-inviting prompt to a general one, and *posso* accepted 0.9.
+- **si_pass_agr_02** *vende* accepted 0.9; *vendono* deferred to the multi-select qtype (substring-inseparable from the wrong *si vendono* this singular item guards).
+- **si_pass_agr_03/04/05/07/08** bare 3pl (conservano/affittano/producono/servono/parlano) accepted 0.9, extending agr_01's pattern.
+- Adjacent same-class exposure flagged for a ruling: si_pass_agr_06 (bare raccoglie) and si_vs_02/04/06 (bare 3pl on the discrimination leaf).
+- Marker note reconfirmed: `match_at:"start"` anchors to a WORD boundary, not string-start, so it cannot separate a bare verb from its si-prefixed form; only genuinely non-embedded si-less forms are creditable via graded any_phrases.

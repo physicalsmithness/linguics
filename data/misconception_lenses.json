@@ -14,10 +14,7 @@
         ]
       },
       "within_lens_drill": "by host: verb / noun / monosyllable / preposition+article",
-      "the_sentence": "You drop written accents across the board, not in one topic.",
-      "pending_extension_members": [
-        "orthography added-accent / hypercorrection (Housing classifies this at runtime as orthography.accent.added; belongs to this lens, not spelling)"
-      ]
+      "the_sentence": "You drop written accents across the board, not in one topic."
     },
     {
       "id": "spelling_that_tracks_sound",
@@ -46,9 +43,6 @@
       },
       "within_lens_drill": "by structure: adjective / clitic / negation / adverb",
       "the_sentence": "You place words in the English order where Italian differs.",
-      "pending_extension_members": [
-        "word_order.negation_elements, word_order.adverb_position (extension)"
-      ],
       "overlaps_with": [
         "word_order.clitic_position + clitic_cluster_order also in pronoun_machinery"
       ]
@@ -64,9 +58,6 @@
       },
       "within_lens_drill": "by locus: adjective / participle / article (prenominal) / clitic / subject-verb; and by feature: gender vs number vs person",
       "the_sentence": "Your agreement slips show up on adjectives, participles, articles AND clitics alike.",
-      "pending_extension_members": [
-        "agreement.subject_verb_finite, agreement.noun_gender_lexical (extension)"
-      ],
       "overlaps_with": [
         "agreement.clitic_gender_number + participle_preceding_dop also in pronoun_machinery"
       ]
@@ -87,10 +78,7 @@
         ]
       },
       "within_lens_drill": "by tense; by conjugation class (-are / -ere / -ire); by individual irregular verb",
-      "the_sentence": "You regularise the irregulars - the exact forms that need memorising.",
-      "pending_extension_members": [
-        "regularisation.irregular_plural, regularisation.irregular_comparative, regularisation.noun_class_plural (extension)"
-      ]
+      "the_sentence": "You regularise the irregulars - the exact forms that need memorising."
     },
     {
       "id": "choosing_the_right_form",
@@ -103,14 +91,17 @@
           "mood"
         ],
         "specifics": [
-          "paradigm_confusion.ci_vs_ne"
+          "paradigm_confusion.ci_vs_ne",
+          "paradigm_confusion.preposition_choice",
+          "paradigm_confusion.preposition_verb_governed",
+          "paradigm_confusion.relative_choice",
+          "paradigm_confusion.connective_choice",
+          "paradigm_confusion.adverb_vs_adjective"
         ]
       },
-      "within_lens_drill": "by contrast: tense choice / mood trigger / aspect / auxiliary",
+      "within_lens_drill": "by contrast: tense choice / mood trigger / aspect / preposition / relative / connective",
       "the_sentence": "When two forms are both well-built, you pick the wrong one for the context.",
-      "pending_extension_members": [
-        "paradigm_confusion.preposition_choice, paradigm_confusion.relative_choice, paradigm_confusion.connective_choice (extension) - the 'which word' choices"
-      ]
+      "ratified_note": "preposition_choice is the estate's single largest uncovered surface (123 guards); if Smith wants prepositions as their OWN lens chip, split preposition_choice + preposition_verb_governed out — flagged, analyst-ready."
     },
     {
       "id": "l1_interference",
@@ -122,10 +113,7 @@
         ]
       },
       "within_lens_drill": "by construction: calque / clitic omission / foreign plural / word-order calque",
-      "the_sentence": "A cluster of your errors are direct mappings from another language.",
-      "pending_extension_members": [
-        "transfer.foreign_s_plural, transfer.construction_nonfinite variants (extension); note the family definition is being broadened past English-only"
-      ]
+      "the_sentence": "A cluster of your errors are direct mappings from another language."
     },
     {
       "id": "pronoun_machinery",
@@ -152,6 +140,19 @@
       "overlaps_with": [
         "deliberately cross-family: this lens COLLECTS the pronoun surface that the family axis scatters across clitic_cluster, word_order, paradigm_confusion, agreement, orthography, gemination and transfer. It is the clearest demonstration of why the lens layer exists."
       ]
+    },
+    {
+      "id": "word_building",
+      "label": "Word building",
+      "learner_blurb": "making new words: suffixes, prefixes, -ly",
+      "members": {
+        "families": [
+          "derivation"
+        ]
+      },
+      "within_lens_drill": "by kind: evaluative suffix (alterati) / prefix / -mente adverb",
+      "the_sentence": "Your slips are in how words are BUILT from other words, not how they inflect.",
+      "ratified_note": "derivation family ratified 2026-07-27; covers the word_formation topic + the adverb -mente formation."
     }
   ],
   "notes_for_architecture": [
@@ -159,5 +160,6 @@
     "Each lens doubles as a Special Drill (member set as session filter) - but per Smith's steer the immediate drill need is just more basic formation ITEMS from the verb authors, so treat drill-generation as a later free consequence, not a blocker.",
     "The within_lens_drill axis is the SKILL REGION (where it fired), which every event already carries - so the click-through works today wherever tagging exists.",
     "false_friend, register, stress are not their own lens (too small); stress rides accents-or-building, register rides choosing, false_friend is reserved."
-  ]
+  ],
+  "$revision": "2026-07-27: extension ratified (registry 18 fam/106 spec); family-rollup lenses auto-absorb the +31 specifics; added the paradigm_confusion 'which-word' choices to choosing_the_right_form and a new word_building lens for the derivation family; cleared all pending_extension notes."
 }

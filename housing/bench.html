@@ -153,6 +153,8 @@
     <label for="reps" style="display:inline; margin-right:6px">runs each</label>
     <input type="text" id="reps" class="runs" value="1">
     <label for="temp" style="display:inline; margin:0 6px 0 14px">temperature</label>
+    <label for="cap" style="display:inline; margin:0 6px 0 14px">cost ceiling $</label>
+    <input type="text" id="cap" class="runs" value="0.03" title="Per-call ceiling sent to the worker. The learner-path default is 0.03; the worker clamps any request to a hard 0.25.">
     <input type="text" id="temp" class="runs" value="0" title="0 = deterministic grading. The worker default is now 0; 1 was the old implicit value and is what produced the huge spread.">
     <button id="run" disabled>Mark</button>
     <button id="runAll" class="ghost" disabled>Run every menu mode</button>
@@ -163,10 +165,10 @@
 
 <div id="log"></div>
 
-<script src="js/norm.js?v=2026-08-02-r112"></script>
-<script src="js/store.js?v=2026-08-02-r112"></script>
-<script src="js/translation_stub.js?v=2026-08-02-r112"></script>
-<script src="js/translation_marker.js?v=2026-08-02-r112"></script>
+<script src="js/norm.js?v=2026-08-03-r114"></script>
+<script src="js/store.js?v=2026-08-03-r114"></script>
+<script src="js/translation_stub.js?v=2026-08-03-r114"></script>
+<script src="js/translation_marker.js?v=2026-08-03-r114"></script>
 <script>
 (function () {
   "use strict";
@@ -284,6 +286,23 @@
       return { id: m.id, n: Object.keys(ctx).length, chars: chars };
     });
     const max = Math.max.apply(null, parts.map(p => p.chars)) || 1;
+    // Predict the worker's cost-cap decision BEFORE spending a round trip on it.
+    // Smith: "most test calls are exceeding the call cap and so not run" - the
+    // cap was set for DeepSeek at a tenth of a cent and silently blocks most
+    // current models on the larger menus. Showing the arithmetic up front turns
+    // a mystifying failure into a visible constraint you can act on.
+    const model = $("model").value || "deepseek/deepseek-chat";
+    const ceiling = Math.min(parseFloat($("cap").value) || LL.DEFAULT_COST_CAP_USD,
+                             LL.HARD_COST_CEILING_USD);
+    let blocked = 0;
+    const costFor = p => {
+      const est = LL.estimateCallCost(model, Math.round((p.chars + 12000) / 4));
+      if (est == null) return "";
+      const over = est > ceiling;
+      if (over) blocked++;
+      return '<span style="margin-left:8px;' + (over ? 'color:var(--red);font-weight:600' : 'color:var(--muted)') +
+        '">$' + est.toFixed(4) + (over ? ' \u2014 over the $' + ceiling.toFixed(2) + ' ceiling, will NOT run' : '') + '</span>';
+    };
     $("modeSize").innerHTML = parts.map(p =>
       '<div style="margin-bottom:5px"><code>' + p.id + '</code> — ' + p.n +
       ' buckets, ' + p.chars.toLocaleString() + ' chars ≈ ' +
@@ -313,6 +332,7 @@
       url: $("url").value.trim() || undefined,
       model: $("model").value || undefined,
       temperature: temp,
+      maxCostUsd: (function () { const v = parseFloat($("cap").value); return (v > 0) ? v : undefined; })(),
       bucketContext: ctx,
     });
     const r = payload.result || {};
@@ -606,6 +626,8 @@
     try { localStorage.setItem("linguics_marker_url", $("url").value.trim()); } catch (e) {}
   });
   $("mode").addEventListener("change", () => { LL.setMarkerMenuMode($("mode").value); });
+  $("model").addEventListener("change", refreshSize);
+  $("cap").addEventListener("input", refreshSize);
   $("run").addEventListener("click", () => go([$("mode").value]));
   $("runAll").addEventListener("click", () => go(LL.MARKER_MENU_MODES.map(m => m.id)));
   $("clear").addEventListener("click", () => { writeLog([]); render(); });

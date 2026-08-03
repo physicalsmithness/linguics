@@ -1,25 +1,27 @@
 seat: WordFormationAuthor
-classes: [all-seats, all-authors]
-  # Declared with reasoning (Rev 24), not guessed: this seat ORIGINATES grammar+translation items
-  # carrying markpoints, must_not_include guards, cue text and explanations (39 grammar + 11 translation).
-  # By the Rev 24 test (what a seat originates, not what it touches) that is all-authors. Architect to ratify.
+classes: [all-seats, all-authors]   # ratified by Architecture 2026-07-21 (discharge_and_class v2)
 project: Linguics
-updated: 2026-07-20  (thread opened)
-waiting: parked   # open thread awaiting Architecture
-needs_from_smith: none   # Smith to route Architecture to the thread
+updated: 2026-08-03
+waiting: parked
+needs_from_smith: none   # route Architecture to the 3 ALLAUTHORS reacts when convenient
 blocked_by:
-claude_can_verify: done — the three audits below were run over my 39 items this turn; all clean.
-summary: Batch complete and ACCEPTED (thread CLOSED v6, 39 grammar + 11 translation). Nothing owed on any thread. The two all-authors retrofits that bind me (crit 13, Rev 25 crit-20 level) plus the uncommissioned crit-20 exposure check are now RUN and clean. Awaiting only architect discharge stamps (seats do not self-stamp).
+claude_can_verify: done — self-check re-run this turn against brief Rev 31 + the 3 ALLAUTHORS broadcasts; all verified from disk.
+summary: Batch complete, ACCEPTED, all prior asks stamped (discharge_and_class CLOSED v2). Re-ran the self-check after a ~2-week estate gap: brief now Rev 31, three all-authors broadcasts landed. Nothing binds me as a retrofit; one real item — the estate-net gate flags 5 of my items, all answer-shown-by-design, now reported for tagging.
 
-queue: []                  # nothing outstanding requiring my action
-open_thread: inter_chat/Architecture_WordFormationAuthor_discharge_and_class.md (v1, Next: Architecture) — class ratification, 3 retrofit stamps, DECISIONS-996 stamp, crit-17 (a)/(b) ruling
+queue: []   # nothing requiring my action; three reacts are with Architecture
 
-run_this_turn:             # audits executed 2026-07-20, evidence on disk, pending architect stamps
-  - Criterion 13 (rule-naming cue audit): CLEAN. Cues name the output-form category (diminutivo/accrescitivo/peggiorativo), which is allowed output-form naming like "form the past participle"; no cue names the rule that produces the answer. Same verdict shape as PrepositionAuthor. [binds: all-authors]
-  - Rev 25 (cue citation form <= item level): NO-OP. Every cue lemma is an A1-A2 concrete word (momento, gatto, porta, libro, tempo, parola, pieno, moderno, passero); items are B2/C1, so the citation form sits below item level and the exemption holds. [binds: all-authors, retrofit]
-  - Criterion 20 exposure (uncommissioned; my batch predates Rev 22 and was in no candidate class): NO-OP. All 18 short items supply the base lemma + an explicit "Completa con il..." instruction to inflect it into the alterato — criterion 20's named EXEMPT citation-form trigger ("a supplied lemma to inflect names the honest operand and stays"). The 21 mcq items are immune. One judgement recorded: bare-cue answers read fluent (Rev-23 trapped shape) but the instruction makes the operand honest; parallels parlare->conjugate.
+reacts_this_turn:          # appended from disk-verified checks; Next lines preserved
+  - answer_leak_dispatch v3: 5 flagged items (wf_pref_int_05/ex_02 mcq index-scored; wf_dim_03/wf_dim_05/wf_pej_03 short 2-way meaning discriminations, 50% floor, guarded). All answer-shown-by-design. Asked Architecture to tag; posed (a) tag+keep-short vs (b) convert-to-MCQ on the 3 short ones (rec: a).
+  - item_shape_no_change_forms v5: zero exposure (all answers transform the base; falsi/verdict are MCQ). No pushback.
+  - cue_notation_renders_use_english v3: zero English-in-parens across 39 prompts. One flag: wf_pref_ex_01 '(= precedente)' is an Italian meaning-gloss rendering "Use = precedente"; offered to bracket it on next touch.
+
+brief_rev31_reconciliation:   # verified, not remembered
+  - Rev 26 (crit 13 sharpen): discharged CENTRALLY for word_formation (exposure was 5 chips, all pronoun).
+  - Rev 27 (cross-credit): permissive, no obligation.
+  - Rev 28 (crit 21 formation forces target): binds VERB-formation; word_formation is derivational, not in the 571-item audit. n/a.
+  - Rev 29 (gloss ambiguity) + Rev 30 (crit 20 not for invariables): binds all-authors STANDING; zero exposure (I never gloss; every cue is a transformable operand, no invariable cued).
+  - Rev 31 (supplied-choice exemption): EXEMPTS my 3 short meaning-pair items from crit 13/20; introduces 'n/a (by construction)' register state.
 
 not_queue:
-  - DECISIONS 996 "PronounAuthor and WordFormationAuthor reframe the three routed items": DISCHARGED my half (wf_aug_02/03) at thread v3; on disk wf_aug_02 any_phrases=['il portone']. Architecture's own record (Pluperfect thread v3: "WordFormationAuthor fixed their two"; gate word_formation 0 dead) corroborates. Needs an architect stamp on the clause; NOT self-stamped.
-  - Criterion 17: word_formation is NOT among the 5 exposed topics. Cr17Sweep logs 7 format-variant hits here (cites my wf_dim_05) and recommends treating them compliant. Accepted as compliant unless Smith wants them normalised.
-  - Criteria 15/16/18/19: standing or centrally discharged (18 canonical gate word_formation 0 dead; 19 AccentAuditor).
+  - DECISIONS 996 + discharge_and_class: stamped 2026-07-21 (DECISIONS line 1555).
+  - relational_adjectives: FUTURE-SEAT stub (OPEN_QUESTIONS 514); not to be authored from this seat.

@@ -32,6 +32,9 @@ interface MarkRequest {
   temperature?: number;
   /** Optional seed for reproducibility, where the provider honours it. */
   seed?: number;
+  /** Raise the per-call cost ceiling for this call, up to HARD_COST_CEILING_USD.
+   *  The bench uses this to reach models the learner-path default excludes. */
+  max_cost_usd?: number;
 }
 
 interface TranslationItem {
@@ -107,7 +110,19 @@ const MODEL_PRICING: Record<string, [number, number]> = {
 };
 
 const DEFAULT_MODEL = "deepseek/deepseek-chat";
+// The learner-path default. It was set when every call was DeepSeek at about a
+// tenth of a cent, and it silently blocked most of the current-generation models
+// on anything but the smallest menu - Sonnet 5 on the full menu estimates
+// $0.132, four times the cap, so the call never left the worker. That is the cap
+// working as designed, but a bench whose whole job is to compare expensive
+// models against cheap ones must be able to authorise a bigger spend.
+//
+// So: the DEFAULT is unchanged and still guards real learners, a caller may
+// raise it per call, and the worker clamps that request to a hard ceiling no
+// client can exceed. A compromised or careless client cannot authorise
+// unlimited spend.
 const COST_CAP_PER_CALL_USD = 0.03;
+const HARD_COST_CEILING_USD = 0.25;
 const MAX_OUTPUT_TOKENS = 2000;
 // Temperature was never set, so every mark was generated at the provider
 // default of 1.0. Measured consequence (bench, 2026-08-02): three runs of the
@@ -443,8 +458,18 @@ export default {
     // Cost cap pre-check (estimate worst-case output)
     const estInput = approxTokens(systemPrompt + userMessage);
     const estCost = estimateCostUsd(model, estInput, MAX_OUTPUT_TOKENS);
-    if (estCost > COST_CAP_PER_CALL_USD) {
-      return errorResp(413, "cost_cap_exceeded", `Estimated cost $${estCost.toFixed(4)} exceeds per-call cap of $${COST_CAP_PER_CALL_USD}. Try a cheaper model or a shorter bucket_context.`);
+    const requested = (typeof body.max_cost_usd === "number" && body.max_cost_usd > 0)
+      ? body.max_cost_usd : COST_CAP_PER_CALL_USD;
+    const cap = Math.min(requested, HARD_COST_CEILING_USD);
+    if (estCost > cap) {
+      // Say what would have been spent, on what, and what the ceiling was -
+      // "exceeds the cap" alone leaves the caller guessing which of the model
+      // and the payload to change.
+      return errorResp(413, "cost_cap_exceeded",
+        `Estimated $${estCost.toFixed(4)} for ${model} on ~${estInput} input tokens ` +
+        `(+ up to ${MAX_OUTPUT_TOKENS} output) exceeds the $${cap.toFixed(2)} ceiling for this call. ` +
+        `Send a smaller bucket_context, pick a cheaper model, or raise max_cost_usd ` +
+        `(hard ceiling $${HARD_COST_CEILING_USD.toFixed(2)}).`);
     }
 
     // Diagnostic: confirm the secret is loaded. Prints to `wrangler tail` only.

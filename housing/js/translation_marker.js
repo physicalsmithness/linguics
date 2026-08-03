@@ -108,6 +108,30 @@
    * Used by the footer dropdown. Identifiers must match the Worker's
    * MODEL_PRICING keys.
    */
+  // Mirrors the Worker's MODEL_PRICING, [input, output] USD per 1M tokens, so
+  // the bench can predict a cost-cap rejection instead of discovering it a
+  // round trip later. If the two drift the worker is authoritative - this copy
+  // only ever drives a warning.
+  LL.MODEL_PRICING = {
+    "deepseek/deepseek-chat": [0.27, 1.10], "tencent/hy3": [0.14, 0.58],
+    "google/gemini-3.1-flash-lite": [0.25, 1.50], "minimax/minimax-m3": [0.30, 1.20],
+    "qwen/qwen3.7-plus": [0.32, 1.28], "z-ai/glm-5.2": [0.42, 1.32],
+    "openai/gpt-5.6-luna": [1.00, 6.00], "~anthropic/claude-haiku-latest": [1.00, 5.00],
+    "x-ai/grok-4.3": [1.25, 2.50], "anthropic/claude-sonnet-5": [2.00, 10.00],
+    "anthropic/claude-haiku-4.5": [0.80, 4.00], "anthropic/claude-sonnet-4.5": [3.00, 15.00],
+    "google/gemini-2.0-flash-001": [0.10, 0.40], "openai/gpt-4o-mini": [0.15, 0.60],
+    "qwen/qwen-2.5-72b-instruct": [0.30, 0.40]
+  };
+  LL.MAX_OUTPUT_TOKENS = 2000;
+  LL.DEFAULT_COST_CAP_USD = 0.03;
+  LL.HARD_COST_CEILING_USD = 0.25;
+  // Same arithmetic the Worker uses to decide, so the answer agrees.
+  LL.estimateCallCost = function (model, inputTokens) {
+    const p = LL.MODEL_PRICING[model || "deepseek/deepseek-chat"];
+    if (!p) return null;
+    return (inputTokens * p[0] + LL.MAX_OUTPUT_TOKENS * p[1]) / 1e6;
+  };
+
   LL.AVAILABLE_MODELS = [
     { id: "",                                 label: "Default (DeepSeek V3)" },
     { id: "deepseek/deepseek-chat",           label: "DeepSeek V3 (~$0.001/call)" },
@@ -166,6 +190,8 @@
     // lets the bench override it to demonstrate what 1.0 was doing.
     if (typeof options.temperature === "number") body.temperature = options.temperature;
     if (typeof options.seed === "number") body.seed = options.seed;
+    // Let the bench authorise a bigger spend than the learner-path default.
+    if (typeof options.maxCostUsd === "number") body.max_cost_usd = options.maxCostUsd;
 
     let res;
     try {

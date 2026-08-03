@@ -1,14 +1,13 @@
 seat: ExistentialAuthor
-classes: [all-seats, all-authors]   # reasoning: I originate grammar + translation ITEMS (markpoints, cue parentheticals, must_not_include guards, item explanations) — the all-authors test. Ratify or correct.
+classes: [all-seats, all-authors]   # I originate grammar + translation ITEMS (markpoints, cues, must_not, explanations) — the all-authors test.
 project: Linguics
-updated: 2026-07-18
+updated: 2026-08-03
 waiting: parked
 needs_from_smith: none
-blocked_by: none (my 27 remaining legacy-key esserci items await Architecture's central field migration, but that is Architecture's action, not a block on me)
-claude_can_verify: rework verified from disk (full-phrase positives not inside their guards; 0 A1 esserci cues remain; marks/anchoring/accent all checked)
-summary: Rev-25/27 cue-level + additive-credit rework delivered (16 items). Thread v2 posted, Next: Architecture. Ball is with Architecture to mint the misconception + accept; nothing owed to Smith.
+blocked_by: none
+claude_can_verify: all deliveries verified from disk (47 existential items, 0 op_cil_exist left in pronoun, marks/anchoring clean)
+summary: Rev-25/27 rework ACCEPTED (thread v3). This session cleared two more that landed via concurrency: neg_02 false-miss (graded sidestep) and the op_cil_exist merge (4 items relocated). Both delivered; Next on both is Architecture. Nothing owed to Smith.
 queue:
-  - DELIVERED, awaiting Architecture: Rev-25 English glosses on 14 A1 cues + additive full-phrase fix on 5 traps + Rev-27 cross-credit + transfer.partitive_for_bare_noun proposal   [inter_chat Architecture_ExistentialAuthor_cue_level_and_additive_credit v2, Next: Architecture]
-  - DISCHARGED (stamp pending): ex_form_neg_01 unset done ahead of the migration; new field set   [inter_chat Architecture_Housing_cue_placement, my discharge note 2026-07-18]
-  - NOT QUEUE (superseded): criterion 13 retrofit was discharged CENTRALLY for 26/29 topics by Architecture's Rev-26 audit (real exposure 5 chips, all in pronoun); existential is covered, my own chip audit was clean
-open_decision_for_architecture: cross-credit vs single-markpoint on the 4 atomic-blank traps (mastery-on-both signal vs clean miss attribution) — my v2 flags it; either is one edit away
+  - DELIVERED, awaiting Architecture stamp: ex_form_neg_02 false-miss fix (nessun problema at 0.9; cross-credit collapsed, tension flagged)   [inter_chat Architecture_ExistentialAuthor_false_miss_packet v2]
+  - DELIVERED, awaiting Architecture: op_cil_exist_01..04 merged into existential.form.* (ids preserved, _03 Rev32, guards cleaned); pronoun.ci_locative.existential now empty -> Architecture retires the leaf   [inter_chat ExistentialAuthor_PronounAuthor_op_cil_exist_handoff v2; closes formation_vs_tense_choice v3]
+  - NOTE: existential grammar now 47 items (43 + 4 merged); translation still 21

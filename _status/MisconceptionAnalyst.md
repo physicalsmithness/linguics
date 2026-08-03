@@ -1,25 +1,21 @@
 seat: MisconceptionAnalyst
 classes: [all-seats]
 project: Linguics
-updated: 2026-07-27 (v18: cleared 3 Next: items)
-editor: Claude 2026-07-27 (back from credit outage; QoderWork held the seat 2026-07-22)
-waiting: parked - everything on this axis is an Architecture ruling
-needs_from_smith: nothing (optionally: route the Architecture chat at harvest v17)
-blocked_by: Architecture (the v17 ratification backlog)
-claude_can_verify: yes - counts are greps
-summary: Refreshed after outage. QoderWork's parked work verified on disk (pass-2 fill 216 buckets, bespoke grid specs, mirror_of proposal - all sound). Consolidated ALL open Architecture asks into one prioritised backlog: harvest thread v17. Analyst side fully delivered; nothing owed by me until rulings land.
-done_2026-07-27_v18:
-  - Cleared 3 open Next: items into the backlog. Gender/plural drill: ruled the misclassification ask = a 7x7 confusion matrix (chosen x true class), NOT registry rows; WHY-ids are in the extension. NounAuthor: reconciled 2 alias collisions to my canonical ids (foreign_s_plural, noun_gender_lexical), confirmed their 9 tags, folded their new orthography.io_plural_i_count into the extension (item 1 now 19 specifics). PronounAuthor: confirmed transfer.dop_iop_confusion already ratified. Deliverable: data/misconception_suggestions_noun_addendum.json.
+updated: 2026-07-27 (v19 — un-stuck; big fold done)
+editor: Claude 2026-07-27
+waiting: closed unless Architecture wants the 3 residual calls
+needs_from_smith: nothing
+blocked_by: nothing (the 'block' was stale — extension was already ratified)
+claude_can_verify: yes — all counts are greps
+summary: CORRECTION of my own stale v17/v18: the pass-1 extension was already ratified (registry now 18 families / 106 specifics). Did the fold that was 'blocked': merged 183 pass-2 entries into misconception_tag_lists.json (34 topics / 394 buckets, all ids valid); updated misconception_lenses.json to 9 lenses (added word_building; choosing_the_right_form gained the ratified preposition/relative/connective choices). Phase-3 tag-list is now substantially complete estate-wide.
 queue:
-  - (none active) - fold each Architecture ruling into tag-lists/lenses when it lands.
-architecture_backlog_v17 (biggest first):
-  1. Ratify pass-1 extension (18 specifics + 4 broadenings + derivation family) - keystone; unlocks 82 PENDING + lens completeness across 19 topics; registry 81 -> ~99.
-  2. Confirm pass2_fill merge pattern - and reconcile the file's summary counts (97 RATIFIED) vs per-entry statuses (~102); merge ~100 RATIFIED into tag_lists.json (13 topics/211 buckets, unmerged).
-  3. Rule the 4 direction-merged discrimination ids (mirrors or neutral).
-  4. Rule v13 items: courtesy-caps GAP, clitic-joined gap, clitic_gender_number person-broadening, $menu_rule.
-  5. Ratify mirror_of field (after 3) - powers Canvas B6.
-  6. Ratify MCQ choice_tags schema (Housing r68 live-but-inert; 141 orthography items tagged).
-  7. Comprehension-arm question (gates 16 DEFERRED) - lowest priority.
-delivered_and_parked:
-  - lenses (misconception_lenses.json), canvas catalogue, bespoke grid specs, mirror_of proposal, pass-2 fill (216).
-  - join-key event schema (Smith) SUPERSEDED my four-key; surface-lens layer unaffected.
+  - (none active). Fold future rulings as they land.
+residue_for_architecture (small, v19):
+  1. 16 comprehension-DEFERRED tag entries - gated on the v15 reading-arm question (hold or rule).
+  2. Capitalisation: overcapitalization covers the over-cap direction; the courtesy-under-cap 'La' direction needs a 1-line home (register-side?) or fold.
+  3. Mint discrimination.adjective_position_meaning (un uomo grande vs un grande uomo) - 4 entries reference it; not in registry.
+  - Also still live elsewhere: mirror_of ratification (reporting_prisms), MCQ choice_tags schema (Housing thread).
+lesson:
+  - I asserted a stale blocker across v17+v18 by trusting a 4-day-old summary + a specifics COUNT without checking WHICH ids. Caught it via the family-description audit. Re-verify ids-on-disk before asserting registry state, including against my own prior claims.
+delivered_live:
+  - misconception_tag_lists.json (34/394), misconception_lenses.json (9 lenses), canvas catalogue, bespoke grid specs, mirror_of proposal, noun addendum.
