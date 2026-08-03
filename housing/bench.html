@@ -165,10 +165,10 @@
 
 <div id="log"></div>
 
-<script src="js/norm.js?v=2026-08-03-r119"></script>
-<script src="js/store.js?v=2026-08-03-r119"></script>
-<script src="js/translation_stub.js?v=2026-08-03-r119"></script>
-<script src="js/translation_marker.js?v=2026-08-03-r119"></script>
+<script src="js/norm.js?v=2026-08-03-r123"></script>
+<script src="js/store.js?v=2026-08-03-r123"></script>
+<script src="js/translation_stub.js?v=2026-08-03-r123"></script>
+<script src="js/translation_marker.js?v=2026-08-03-r123"></script>
 <script>
 (function () {
   "use strict";
@@ -605,8 +605,21 @@
     return;
   }
 
+  // Per-mark cost estimates IN the picker (Smith 2026-08-03: "you told me 32
+  // pence, it actually cost 1 pence - which is it?"). The pricing table is $
+  // per MILLION tokens - qwen3.7-plus's 0.32 is $/M input, never a
+  // per-question price; that unit slip is where the 32p figure came from.
+  // Estimates here are derived at a typical current-mode call (~6k in /
+  // ~800 out) with the full-581-menu call (~50k in) alongside.
+  const perMark = (id) => {
+    const pr = LL.MODEL_PRICING && LL.MODEL_PRICING[id];
+    if (!pr) return "";
+    const usd = (6000 * pr[0] + 800 * pr[1]) / 1e6;
+    const full = (50000 * pr[0] + 800 * pr[1]) / 1e6;
+    return " ~$" + usd.toFixed(4) + "/mark ($" + full.toFixed(3) + " full menu)";
+  };
   $("model").innerHTML = (LL.AVAILABLE_MODELS || []).map(m =>
-    '<option value="' + m.id + '">' + esc(m.label) + '</option>').join("");
+    '<option value="' + m.id + '">' + esc(m.label + perMark(m.id)) + '</option>').join("");
   $("mode").innerHTML = (LL.MARKER_MENU_MODES || []).map(m =>
     '<option value="' + m.id + '">' + esc(m.label) + '</option>').join("");
   $("url").value = (LL.markerUrl && LL.markerUrl()) || "";

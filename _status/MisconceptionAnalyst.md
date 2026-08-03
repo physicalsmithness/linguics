@@ -3,7 +3,7 @@ classes: [all-seats]
 project: Linguics
 updated: 2026-07-27 (v19 — un-stuck; big fold done)
 editor: Claude 2026-07-27
-waiting: closed unless Architecture wants the 3 residual calls
+waiting: COMPLETE + HEALTHY (v22 registry-health audit clean: 103/106 used, 0 defects). Standing residual = Architecture rulings only.
 needs_from_smith: nothing
 blocked_by: nothing (the 'block' was stale — extension was already ratified)
 claude_can_verify: yes — all counts are greps

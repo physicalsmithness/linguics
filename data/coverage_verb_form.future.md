@@ -132,3 +132,9 @@ Carried on from the volume wave's optional follow-up: added **12 items** bringin
 
 **Every simple-future formation leaf is now two-for-green across all six persons** (regular -are/-ere/-ire, syncopated, double_r, essere, dare_stare_fare, and both orthographic). The only leaf below 2/band is future_anteriore, left by design (compound, B1-B2, not a basic-fluency drill). Marker replica (strict + folded) over all 130 items: 0 guard false-credits, every guard a live miss, every correct answer a hit; all buckets resolve; person on all; no dup ids.
 
+## Futuro anteriore greening (2026-08-03) — entire formation branch complete
+
+Carried on to the last gap: added **7 compound-future items** (avere + essere-with-agreement across the persons) bringing futuro anteriore to two per person band. Grammar file now **137**.
+
+**Every future formation leaf is now two-for-green across all six persons** — the whole branch (3 regular classes, 4 irregular leaves, 2 orthographic, and futuro anteriore) is at the fluency floor. The essere items add cross-tree reps on the PP participle-agreement buckets (masc sg/pl). Marker replica over all 137 items: 0 guard false-credits, every guard a live miss, every correct answer a hit strict + folded, marks balanced, person on all, all buckets resolve, no dup ids.
+

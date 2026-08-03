@@ -7,9 +7,7 @@ needs_from_smith: the six-job list from chat (feedback Sheet test; worker URL; a
 claude_can_verify: yes — regen gate re-derived post-write (276/276, zero dangling, proportions held, re-parse clean); every stamp this session spot-audited against data
 summary: 2026-08-03 third+fourth pass. EXECUTED: accent regen per seed_frames v7 contract (gate green, posted v8; AccentAuthor to accept). RULED: four direction-merged ids split (+doctrine); mirror_of ratified; seven negation families routed; neg_corr_06 declined (attested variation, 0.9 stands); interrogatives residue = docked partial (Housing 3-line fix routed); PP retired estate-wide; caldo/freddo noun stands + adjective siblings split; verb_identity landing plan (PiacereAuthor). CORRECTED: 08-02 zero-item ruling's example (outcome axes are marker-class-only; placement is item-bearing) + riders R5 + answer-leak owe-list (7 not 8). DRAFTED: R7 worker prompt edit. Cue residues routed (Pronoun/Adjective/Housing).
 queue:
-  - Item-shape ruling: AdverbAuthor all-10-MCQ vs revert-4 + author candidate_forms (sets supplied); answer Demonstrative's 2 blockers
-  - Central schema pass (rename 15 files incl. possessive 63; person migration; common_errors spec)
-  - Paradigm-band reconcile vs the ruling's family list
+  - Land AUTHOR_BRIEF Rev 33 from the staged bundle (rename DONE 462/14; person migration DONE 987/75/13; common_errors SPECIFIED)
   - Jargon execution once Housing answers the flat-panel question (PP ruling made; Classes 1-2 mechanics ready)
   - Re-paragraph pilot; CEFR harvest + Smith-decisions routing; over-reg bank source check; pulse-sheet attempt via Drive connector
   - Chase: 7 answer-leak reacts; AdjectiveAuthor's item-shape react (cue-notation now discharged); cue-notation owes: Possessive 29 / Piacere 12 / Adverb 7

@@ -167,6 +167,12 @@
   }
   function accentPlacementClass(q) {
     const st = String(q.subtopic || "");
+    // The regen (seed_frames Defect 1, gate posted 2026-08-03) moved subtopic
+    // to the FULL placement id; the seed era used accent.<class>. Normalise
+    // both to the bare class so the dock table's severe-omission test and the
+    // axes key on one form regardless of data era.
+    const FULL = "orthography.accent.italian.placement.";
+    if (st.indexOf(FULL) === 0) return st.slice(FULL.length);
     return st.indexOf("accent.") === 0 ? st.slice(7) : (st || "unclassified");
   }
   // Rewrite the result so the leaf reflects what the learner ACTUALLY did, and
@@ -204,25 +210,35 @@
       outcome_class: outcome,
       pron_effect: q.pron_effect || null,
     };
-    // An UNTAGGED judgement miss keeps the item's declared bucket: the author
-    // knows what the item tests and there is no produced form to reclassify.
-    // A TAGGED judgement miss classifies via choice_tags above, so it retargets
-    // and emits its outcome event like any other miss (seed_frames v7 ask c)
-    // while still crediting 0 via the isJudgement guard below.
+    // DOUBLE EVENT (seed_frames v6 contract, GO ruled at v11): every choice
+    // fires the item's placement leaf - the authored markpoint keeps its
+    // placement bucket, docked or not - and a wrong pick ADDITIONALLY fires
+    // its outcome leaf as a synthetic zero-weight markpoint. Placement
+    // accumulates on every attempt; outcomes accumulate only on errors. The
+    // old model RETARGETED placement onto the outcome leaf on a miss, which
+    // starved the placement axis of exactly the attempts it most needed. An
+    // untagged judgement miss has no outcome leaf and stays on placement
+    // alone; a tagged one classifies via choice_tags above and fires its leaf
+    // while the isJudgement guard below still pins its credit at 0.
     const leaf = (outcome === "judgement") ? null : ACCENT_OUTCOME_LEAF[outcome];
     for (const mp of result.markpoints) {
       mp.accent_axes = axes;
-      // On a MISS, retarget the leaf to the outcome the learner produced. The
-      // declared bucket stays on the record as declared_bucket so the authored
-      // intent is never lost.
-      if (!correct && leaf && typeof mp.bucket === "string" &&
-          mp.bucket.indexOf("orthography.accent.") === 0) {
-        const retargeted = "orthography.accent.italian." + leaf;
-        if (retargeted !== mp.bucket) {
-          mp.declared_bucket = mp.bucket;
-          mp.bucket = retargeted;
-        }
-      }
+    }
+    if (!correct && leaf) {
+      const src = result.markpoints[0] || {};
+      result.markpoints.push({
+        bucket: "orthography.accent.italian." + leaf,
+        label: "outcome: " + outcome,
+        credit_weight: 0,
+        attempted_credit: 1,
+        correctness_credit: 0,
+        outcome: "miss",
+        evidence: (q.choices && q.choices[pickedIdx]) || "",
+        declared_bucket: (typeof src.bucket === "string") ? src.bucket : null,
+        accent_axes: axes,
+        synthetic_outcome: true,
+        suppress_display: true
+      });
     }
     result.accent_axes = axes;
 
@@ -236,6 +252,7 @@
     if (!correct && !isJudgement && typeof dock === "number" && dock > 0) {
       let awarded = 0, possible = 0;
       for (const mp of result.markpoints) {
+        if (mp.synthetic_outcome) continue;   // the error tally never earns dock credit
         const w = (typeof mp.credit_weight === "number") ? mp.credit_weight : 1;
         mp.correctness_credit = dock;
         mp.outcome = "partial";
@@ -268,6 +285,23 @@
     return true;
   }
   LL.isLearnerFacingNode = isLearnerFacingNode;
+
+  // Misconception field purity (Architecture_Housing_misconception_field_purity
+  // v1, DECISIONS 2026-08-03): the misconception channel carries only
+  // canonical registry ids; classifier confusion cells (stress.confusion.*,
+  // accent.*) are descriptors and live on their own axes. The id set is
+  // cached on the registry object itself, so a data reload (which replaces
+  // the object) naturally invalidates the cache.
+  function isRegistryMisconceptionId(id) {
+    const reg = LL.misconceptions;
+    if (!reg || !Array.isArray(reg.misconceptions)) return false;
+    if (!reg.__idSet) {
+      reg.__idSet = new Set();
+      for (const m of reg.misconceptions) if (m && m.id) reg.__idSet.add(m.id);
+    }
+    return reg.__idSet.has(String(id || ""));
+  }
+  LL.isRegistryMisconceptionId = isRegistryMisconceptionId;
 
   LL.applyAccentAxes = applyAccentAxes;
   LL.accentDiff = accentDiff;

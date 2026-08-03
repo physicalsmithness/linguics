@@ -2206,3 +2206,49 @@ regression; are_07 routed to ImperfectAuthor with a brief-reread word (second co
 **Cr17: all four tranches STAMPED** (277 items, 38 gloss repairs, zero marking deltas); seat idle.
 **FutureFormationAuthor +12 STAMPED** (130 total, two-for-green grid). **PiacereAuthor cue stamp
 applied** (16, zero residue) — verb_identity still owed, flagged on the cue thread.
+
+
+## Rulings landed 2026-08-03, fifth pass (Architecture)
+
+**Item-shape thread settled.** AdverbAuthor's all-10-MCQ RATIFIED (the uniformity constraint is the
+law's core; no lawful uniform free-text exists where English cannot pin the lemma); the production
+loss is named and the lemma-open free-text shape (credit any correctly-inflected quantifier) is the
+sanctioned future way to restore it. ImperativoAuthor's 8-not-6 RATIFIED. DemonstrativeAuthor's
+gloss-as-cue plan RATIFIED incl. its flagged supersession of live_round v3 on the three no-change
+pronoun items. candidate_forms authored centrally onto the demonstrative 8 (seat's sets verbatim;
+inert until credit_only joins — r117 self-scopes). Blocker (i) discharged (r117); blocker (ii)
+clickable-cue routed to Housing. Only AdjectiveAuthor still owes a react.
+
+**Central rename EXECUTED:** prompt_supplies_base_form -> wrong_answer_is_form_error_only, 462 keys
+across 14 files, text-level (format-preserving), parse-gated per file, ZERO old-key residue
+estate-wide. The two-dialect risk is closed; possessive's 63 included (the fold is done).
+
+**Person migration re-planned on honest numbers:** id-token derivation yields 58% (620/1068), not the
+spec's 78% — imperfect (152) and trapassato (34) ids carry no person token; gerundio's 41 are mostly
+legitimate non-finite nulls. Executor: morph-it-assisted deriver over answer forms + targeted author
+backfill for genuine ambiguity. AWAITING Smith's one-word ratify of the field name (`person`,
+1sg..3pl, null non-finite) before any mass write.
+
+**Rev 33 bundle STAGED** (BRIEF_REV33_STAGED.md): lr-anchoring exception, common_errors spec (shape
+above), person field, item-shape cross-ref. Lands as one rev with class-token notice.
+
+
+## Migrations executed 2026-08-03, sixth pass (Architecture)
+
+**Person migration COMPLETE** (field ratified 2026-07-18 at DECISIONS:1256 — this pass's earlier
+"please ratify" ask was asked-and-answered noise, caught by re-reading the record; the discipline's
+point). Census-first correction: 886/1075 were ALREADY set by authors on criterion-21 touches — the
+right measurement was field presence, not id-derivability. Filled 129: 88 unique morph-it analysis of
+the answer, 11 unique prompt-auxiliary, 2 prompt pronoun, 15 gerundio nulls by right. Final: 987 set /
+75 null-by-right / 13 author backfills (Passato 11, Imperfect 1, PresentUsage 1).
+
+**PP agreement consolidation EXECUTED with a routing amendment:** ruled scope was "~12 items ->
+PassatoAuthor"; derived scope was 125 citations across 15 files (Rev-27 cross-topic), so it ran
+centrally per the binds-many doctrine. Band declared on with_essere; preceding_dop minted with the
+band; 8 ending-split leaves retired active:false; 69 grammar + 56 translation citations re-pointed;
+33 primary slots; gate zero residual.
+
+**Paradigm-band reconcile CLOSED:** the takeover's 4-vs-5 was slot-semantics, not a fault (item slots
+may cite another family's paradigm). Possessive 20 items slotted (zero ambiguous); pari_family
+paradigm declared. Declaring families now: article x2, preposition, demonstrative x2, possessive,
+pari, pp with_essere + preceding_dop, verb-person via the person field.

@@ -2,16 +2,16 @@ seat: StressAuthor
 classes: [all-seats, all-authors]
 project: Linguics
 updated: 2026-08-03
-waiting: parked            # spec accepted + EXECUTED by Code; data + items on disk; acceptance sampled. One reconciliation routed to Architecture.
-needs_from_smith: review   # optional: fire the -ere sidecar reconciliation, or ask me to produce the corrected list
+waiting: parked
+needs_from_smith: none
 blocked_by:
 claude_can_verify: yes
-summary: Estate had moved past my session view. Spec accepted (Arch v5, 07-21) + executed: Code delivered stress_sidecar_lemma.json (18,071), stress_sidecar_wordform.json (536), grammar_questions_stress.json (12,446 MCQ). Acceptance-sampled: invariants clean, golden set 46/47, confidence discipline intact. One divergence: sidecar mis-defaults fell-through stem -ere verbs (credere/nascere/ridere) to piana/low, but the ITEMS are correct (curated ere_stem list) — data/item divergence, no learner-facing bug. Monosyllable 'tronca' label cosmetic (excluded from items). My v5 Code brief was redundant (superseded by REQUEST_to_code) and my v5 append collided with Arch's reply — both owned + fixed. Thread now at v7.
+summary: Checked the chats; it WAS my turn. Architecture routed the -ere reconciliation back to me (v8) + added a choice_tags strip clause. Delivered: (1) 5-lemma ere_stem corrections (battere/credere/nascere/piangere/ridere), derived from Code's own item classification, at incoming drafts/stress_ere_stem_corrections.json; (2) precise strip instruction (drop the misconception key from choice_tags, keep class/true_pos/answered_pos; 29,964 occ) folded into the ere_stem regen pass -- discharges the misconception_field_purity data-side half; (3) proposed the 31-leaf phonology.stress tree (incoming drafts/phonology_stress_tree_proposal.json) via a new thread for Architecture to mint. Monosyllables left per ruling.
 queue:
-  - Architecture_StressAuthor_data_spec v7 -- Next: Architecture (route -ere sidecar reconciliation to Code/Vocab)
-  - Deliverable 2 (items): EXISTS (Codex-generated, 12,446); author sign-off given w/ the -ere reconciliation caveat
+  - Architecture_StressAuthor_data_spec v9 -- Next: Code (merge 5 corrections + strip) / Architecture (tree)
+  - Architecture_StressAuthor_phonology_tree v1 -- Next: Architecture (mint the tree, or rule stress out of coverage)
   - standing: criteria 13-21 as all-authors
+discharged:
+  - misconception_field_purity data-side half (strip clause folded into the pass)
 delivered:
-  - Deliverable 1 (data spec) ACCEPTED + executed; Deliverable 2 items generated + acceptance-sampled
-open_findings:
-  - -ere sidecar reconciliation (data<->item divergence on fell-through stem verbs); monosyllable label cosmetic
+  - Deliverable 1 (spec) accepted+executed; Deliverable 2 (items) generated + acceptance-sampled; ere_stem corrections + phonology tree proposal issued

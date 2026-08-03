@@ -56,12 +56,12 @@
 <div id="summary">Loading content…</div>
 <div id="out"></div>
 
-<script src="js/norm.js?v=2026-08-03-r119"></script>
-<script src="js/store.js?v=2026-08-03-r119"></script>
-<script src="js/engine_axes.js?v=2026-08-03-r119"></script>
-<script src="js/grammar_engine.js?v=2026-08-03-r119"></script>
-<script src="js/translation_stub.js?v=2026-08-03-r119"></script>
-<script src="js/translation_marker.js?v=2026-08-03-r119"></script>
+<script src="js/norm.js?v=2026-08-03-r123"></script>
+<script src="js/store.js?v=2026-08-03-r123"></script>
+<script src="js/engine_axes.js?v=2026-08-03-r123"></script>
+<script src="js/grammar_engine.js?v=2026-08-03-r123"></script>
+<script src="js/translation_stub.js?v=2026-08-03-r123"></script>
+<script src="js/translation_marker.js?v=2026-08-03-r123"></script>
 <script>
 (function () {
   "use strict";
@@ -300,6 +300,56 @@
     T(g4c, "a misspelling of the right word credits vocabulary and stays silent on formation",
       "rossoo proves they reached for rosso but is not a real form, so the grammar may not be judged on it",
       () => { const m = cfm("rossoo"); return (m.length === 1 && m[0].bucket.indexOf("vocabulary.") === 0 && m[0].outcome === "hit") ? true : JSON.stringify(m.map(x => [x.bucket, x.outcome])); });
+
+
+    // ------------- accent docking + double fire (engine_axes, r118-r121)
+    const g4d = group("Accent docking + double fire (engine_axes.js)"); groups.push(g4d);
+    const PLACE = "orthography.accent.italian.placement.";
+    const accq = (o) => Object.assign({ answer_index: 0, choices: ["perch\u00e9", "perch\u00e8"], subtopic: PLACE + "che_compound" }, o);
+    const accres = (b) => ({ markpoints: [{ bucket: b || (PLACE + "che_compound"), correctness_credit: 0, outcome: "miss" }], overall: { marks_awarded: 0, marks_possible: 1, status: "wrong" } });
+    T(g4d, "an omitted accent on a meaning pair docks 0.4 - on the REGEN-era full placement id",
+      "the rewire moved subtopics to full ids and silently broke this once: the dock keyed on the seed era's short form, so 0.4 became 0.5 for a day",
+      () => eq(LL.applyAccentAxes(accq({ choices: ["\u00e8", "e"], subtopic: PLACE + "meaning_pair" }), 1, accres(PLACE + "meaning_pair")).overall.correctness_overall, 0.4));
+    T(g4d, "the seed era's short subtopic still docks 0.4",
+      "both data eras must normalise to one class or historical items re-mark differently",
+      () => eq(LL.applyAccentAxes(accq({ choices: ["\u00e8", "e"], subtopic: "accent.meaning_pair" }), 1, accres()).overall.correctness_overall, 0.4));
+    T(g4d, "an inserted accent docks 0.5, grouped with omission",
+      "presence and absence are lexical (da and d\u00e0 in either direction is one confusion); placement and mark-kind are orthographic at 0.8",
+      () => eq(LL.applyAccentAxes(accq({ choices: ["e", "\u00e8"], subtopic: PLACE + "meaning_pair" }), 1, accres()).overall.correctness_overall, 0.5));
+    T(g4d, "a miss double-fires: placement keeps its bucket, the outcome leaf rides as a zero-weight suppressed row",
+      "the old model RETARGETED placement onto the outcome leaf, starving the placement axis; and the tally row must never earn credit or render",
+      () => { const r = LL.applyAccentAxes(accq({}), 1, accres());
+        return (r.markpoints.length === 2 && r.markpoints[0].bucket === PLACE + "che_compound" && r.markpoints[0].outcome === "partial"
+          && r.markpoints[1].bucket === "orthography.accent.italian.wrong_mark" && r.markpoints[1].credit_weight === 0
+          && r.markpoints[1].suppress_display === true && r.overall.marks_awarded === 0.8) ? true : JSON.stringify(r.markpoints); });
+    T(g4d, "an untagged judgement miss stays on placement alone and credits 0",
+      "a two-way call has no severity to grade, and with no tag there is no outcome to classify",
+      () => { const r = LL.applyAccentAxes(accq({ choices: ["Correct", "Incorrect"] }), 1, accres());
+        return (r.markpoints.length === 1 && r.overall.marks_awarded === 0 && r.accent_axes.outcome_class === "judgement") ? true : JSON.stringify(r.markpoints); });
+    T(g4d, "a TAGGED judgement miss fires its outcome leaf while still crediting 0",
+      "the emission ruled at seed_frames v7c: the analytics see the endorsed error, the coin-flip still never pays",
+      () => { const r = LL.applyAccentAxes(accq({ choices: ["Correct", "Incorrect"], choice_tags: [null, { class: "omitted" }] }), 1, accres());
+        return (r.markpoints.length === 2 && r.markpoints[1].bucket === "orthography.accent.italian.missing" && r.overall.marks_awarded === 0) ? true : JSON.stringify(r.markpoints); });
+
+    // ------------- shared predicates (engine_axes, r119-r121)
+    const g4e = group("Coverage + registry predicates (engine_axes.js)"); groups.push(g4e);
+    T(g4e, "retired nodes are not learner-facing",
+      "R5: active:false never renders and never enters a denominator",
+      () => eq(LL.isLearnerFacingNode({ id: "x.y", active: false }), false));
+    T(g4e, "the accent placement subtree is not learner-facing",
+      "marker-classification-only leaves would read as unpractisable coverage debt",
+      () => eq(LL.isLearnerFacingNode({ id: "orthography.accent.italian.placement.che_compound" }), false));
+    T(g4e, "an ordinary active leaf is learner-facing",
+      "the predicate must only ever exclude, never eat the tree",
+      () => eq(LL.isLearnerFacingNode({ id: "verb_form.present_indicative.regular" }), true));
+    T(g4e, "the misconception channel admits registry ids and refuses classifier pseudo-ids",
+      "field purity: 21 pseudo-ids were 99% of the drill-down's volume; registry membership is the test",
+      () => { const saved = LL.misconceptions;
+        LL.misconceptions = { misconceptions: [{ id: "agreement.selftest_case" }] };
+        const a = LL.isRegistryMisconceptionId("agreement.selftest_case");
+        const b = LL.isRegistryMisconceptionId("stress.confusion.piana_as_tronca");
+        LL.misconceptions = saved;
+        return (a === true && b === false) ? true : ("registry=" + a + " pseudo=" + b); });
 
     // -------------------------------------------------------------- render
     const g5 = group("Content the renderers depend on"); groups.push(g5);

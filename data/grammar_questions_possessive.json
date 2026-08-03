@@ -9,7 +9,7 @@
     "prompt": "Ecco ____ libro. [my]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -43,7 +43,8 @@
       }
     ],
     "explanation": "'Ecco il mio libro' means 'Here is my book.' A possessive adjective in Italian needs the definite article in front of it: il mio, not bare mio. Both the article and mio agree with libro, which is masculine singular.",
-    "version": 1
+    "version": 1,
+    "slot": "mio"
   },
   {
     "external_id": "poss_forms_02",
@@ -55,7 +56,7 @@
     "prompt": "Questa è ____ casa. [my]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -89,7 +90,8 @@
       }
     ],
     "explanation": "'Questa è la mia casa' means 'This is my house.' Casa is feminine singular, so both the definite article and the possessive adjective take the feminine form: la mia. Dropping the article, mia casa, is the classic slip.",
-    "version": 1
+    "version": 1,
+    "slot": "mia"
   },
   {
     "external_id": "poss_forms_03",
@@ -101,7 +103,7 @@
     "prompt": "Questi sono ____ amici. [my]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -135,7 +137,8 @@
       }
     ],
     "explanation": "'Questi sono i miei amici' means 'These are my friends.' The masculine plural of mio is the irregular-looking miei, and it keeps its definite article: i miei. The article is i, agreeing in the masculine plural.",
-    "version": 1
+    "version": 1,
+    "slot": "miei"
   },
   {
     "external_id": "poss_forms_04",
@@ -147,7 +150,7 @@
     "prompt": "Dove sono ____ chiavi? [my]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -181,7 +184,8 @@
       }
     ],
     "explanation": "'Dove sono le mie chiavi?' means 'Where are my keys?' Chiavi is feminine plural, so mio becomes mie with the article le: le mie. Watch the one-letter gap between miei (masculine) and mie (feminine).",
-    "version": 1
+    "version": 1,
+    "slot": "mie"
   },
   {
     "external_id": "poss_forms_05",
@@ -193,7 +197,7 @@
     "prompt": "È questo ____ telefono? [your, informal]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -227,7 +231,8 @@
       }
     ],
     "explanation": "'È questo il tuo telefono?' means 'Is this your phone?' For informal your the possessive adjective is tuo; it agrees with telefono, masculine singular, and takes the definite article: il tuo.",
-    "version": 1
+    "version": 1,
+    "slot": "tuo"
   },
   {
     "external_id": "poss_forms_06",
@@ -239,7 +244,7 @@
     "prompt": "Mi presti ____ penna? [your]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -283,7 +288,8 @@
       }
     ],
     "explanation": "'Mi presti la tua penna?' means 'Will you lend me your pen?' Penna is feminine singular, so tuo agrees with the thing owned and becomes tua, with the article la: la tua.",
-    "version": 1
+    "version": 1,
+    "slot": "tua"
   },
   {
     "external_id": "poss_forms_07",
@@ -295,7 +301,7 @@
     "prompt": "Anna cerca ____ cane. [her]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -340,7 +346,8 @@
     ],
     "explanation": "'Anna cerca il suo cane' means 'Anna is looking for her dog.' Here is the trap: suo agrees with the thing owned, not the owner. Cane is masculine, so il suo, even though the owner Anna is female. English her tempts sua, but Italian looks at the dog.",
     "examiner_note": "Owner-agreement trap: her -> il suo because cane is m.sg. must_not_include catches la sua (agreeing with the owner).",
-    "version": 1
+    "version": 1,
+    "slot": "suo"
   },
   {
     "external_id": "poss_forms_08",
@@ -352,7 +359,7 @@
     "prompt": "Marco ama ____ macchina. [his]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -397,7 +404,8 @@
     ],
     "explanation": "'Marco ama la sua macchina' means 'Marco loves his car.' Macchina is feminine, so the possessive is sua with the article la, la sua, even though the owner Marco is male. Suo/sua tracks the object owned, never the owner's gender.",
     "examiner_note": "Mirror of the her->il suo trap: his -> la sua because macchina is f.sg.",
-    "version": 1
+    "version": 1,
+    "slot": "sua"
   },
   {
     "external_id": "poss_forms_09",
@@ -409,7 +417,7 @@
     "prompt": "Questo è ____ giardino. [our]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -443,7 +451,8 @@
       }
     ],
     "explanation": "'Questo è il nostro giardino' means 'This is our garden.' The our-form nostro is fully regular: it agrees with giardino, masculine singular, and takes the article, giving il nostro.",
-    "version": 1
+    "version": 1,
+    "slot": "nostro"
   },
   {
     "external_id": "poss_forms_10",
@@ -455,7 +464,7 @@
     "prompt": "____ scuola è grande. [our]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -489,7 +498,8 @@
       }
     ],
     "explanation": "'La nostra scuola è grande' means 'Our school is big.' Nostro agrees with scuola, feminine singular: la nostra, with the feminine article. The full set is nostro, nostra, nostri, nostre.",
-    "version": 1
+    "version": 1,
+    "slot": "nostra"
   },
   {
     "external_id": "poss_forms_11",
@@ -501,7 +511,7 @@
     "prompt": "Questi sono ____ posti. [your, plural]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -535,7 +545,8 @@
       }
     ],
     "explanation": "'Questi sono i vostri posti' means 'These are your seats' (spoken to several people). Posti is masculine plural, so vostro becomes vostri with the article i: i vostri.",
-    "version": 1
+    "version": 1,
+    "slot": "vostri"
   },
   {
     "external_id": "poss_forms_12",
@@ -547,7 +558,7 @@
     "prompt": "Qual è ____ opinione? [your, plural]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -581,7 +592,8 @@
       }
     ],
     "explanation": "'Qual è la vostra opinione?' means 'What is your opinion?' (addressed to more than one person). Opinione is feminine singular, so vostro becomes vostra and takes la: la vostra.",
-    "version": 1
+    "version": 1,
+    "slot": "vostra"
   },
   {
     "external_id": "poss_forms_13",
@@ -593,7 +605,7 @@
     "prompt": "I bambini adorano ____ cane. [their]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -642,7 +654,8 @@
     ],
     "explanation": "'I bambini adorano il loro cane' means 'The children love their dog.' Loro (their) is invariable: it never changes for gender or number. Only the definite article moves: cane is masculine singular, so il loro.",
     "examiner_note": "loro invariable; the article still agrees (il, m.sg). must_not_include catches i loro (mistaking loro for a plural marker).",
-    "version": 1
+    "version": 1,
+    "slot": "loro"
   },
   {
     "external_id": "poss_forms_14",
@@ -654,7 +667,7 @@
     "prompt": "Le ragazze portano ____ borse. [their]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -698,7 +711,8 @@
       }
     ],
     "explanation": "'Le ragazze portano le loro borse' means 'The girls carry their bags.' Loro stays loro whatever the noun: it is invariable. The article does the agreeing: borse is feminine plural, so le loro.",
-    "version": 1
+    "version": 1,
+    "slot": "loro"
   },
   {
     "external_id": "poss_forms_15",
@@ -710,7 +724,7 @@
     "prompt": "Ho conosciuto ____ amico ieri. [a friend of mine]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -764,7 +778,8 @@
       }
     ],
     "explanation": "'Ho conosciuto un mio amico ieri' means 'I met a friend of mine yesterday.' Italian can place the indefinite article before the possessive: un mio amico, literally a my friend, for a friend of mine. The possessive still sits between article and noun.",
-    "version": 1
+    "version": 1,
+    "slot": "mio"
   },
   {
     "external_id": "poss_forms_16",
@@ -776,7 +791,7 @@
     "prompt": "È ____ collega. [a colleague of mine]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -811,7 +826,8 @@
       }
     ],
     "explanation": "'È una mia collega' means 'She is a colleague of mine.' The indefinite-article-plus-possessive pattern in the feminine: una mia collega. Collega is feminine here, so mia; the indefinite article is una.",
-    "version": 1
+    "version": 1,
+    "slot": "mia"
   },
   {
     "external_id": "poss_forms_17",
@@ -823,7 +839,7 @@
     "prompt": "Marco ha perso ____ occhiali. [his]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -867,7 +883,8 @@
       }
     ],
     "explanation": "'Marco ha perso i suoi occhiali' means 'Marco has lost his glasses.' Occhiali is masculine plural, so suo becomes suoi with the article i: i suoi. Suoi (masculine plural) contrasts with sue (feminine plural).",
-    "version": 1
+    "version": 1,
+    "slot": "suoi"
   },
   {
     "external_id": "poss_forms_18",
@@ -879,7 +896,7 @@
     "prompt": "La professoressa corregge ____ compiti. [her]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -938,7 +955,8 @@
     ],
     "explanation": "'La professoressa corregge i suoi compiti' means 'The teacher marks her homework.' Compiti is masculine plural, so sua becomes suoi, article i: i suoi, masculine, agreeing with the homework, not with the female teacher.",
     "examiner_note": "Owner-agreement trap in the plural: her -> i suoi because compiti is m.pl.",
-    "version": 1
+    "version": 1,
+    "slot": "suoi"
   },
   {
     "external_id": "poss_forms_19",
@@ -950,7 +968,7 @@
     "prompt": "Giulia mette in valigia ____ scarpe. [her]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -994,7 +1012,8 @@
       }
     ],
     "explanation": "'Giulia mette in valigia le sue scarpe' means 'Giulia packs her shoes.' Scarpe is feminine plural, so suo becomes sue with the article le: le sue.",
-    "version": 1
+    "version": 1,
+    "slot": "sue"
   },
   {
     "external_id": "poss_forms_20",
@@ -1006,7 +1025,7 @@
     "prompt": "____ idee sono interessanti. [your, informal]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -1040,7 +1059,8 @@
       }
     ],
     "explanation": "'Le tue idee sono interessanti' means 'Your ideas are interesting.' Idee is feminine plural, so tuo becomes tue with the article le: le tue.",
-    "version": 1
+    "version": 1,
+    "slot": "tue"
   },
   {
     "external_id": "poss_fam_01",
@@ -1052,7 +1072,7 @@
     "prompt": "Which is correct for 'my mother'?",
     "type": "mcq",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "choices": [
       "mia madre",
       "la mia madre"
@@ -1098,7 +1118,7 @@
     "prompt": "Which is correct for 'my brother'?",
     "type": "mcq",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "choices": [
       "mio fratello",
       "il mio fratello"
@@ -1144,7 +1164,7 @@
     "prompt": "Which is correct for 'my brothers'?",
     "type": "mcq",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "choices": [
       "i miei fratelli",
       "miei fratelli"
@@ -1190,7 +1210,7 @@
     "prompt": "Which is correct for 'my mum'?",
     "type": "mcq",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "choices": [
       "la mia mamma",
       "mia mamma"
@@ -1236,7 +1256,7 @@
     "prompt": "Which is correct for 'their father'?",
     "type": "mcq",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "choices": [
       "il loro padre",
       "loro padre"
@@ -1282,7 +1302,7 @@
     "prompt": "Which is correct for 'my older sister'?",
     "type": "mcq",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "choices": [
       "la mia sorella maggiore",
       "mia sorella maggiore"
@@ -1328,7 +1348,7 @@
     "prompt": "Which is correct for 'his sister'?",
     "type": "mcq",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "choices": [
       "sua sorella",
       "la sua sorella"
@@ -1374,7 +1394,7 @@
     "prompt": "Which is correct for 'your uncle' [informal]?",
     "type": "mcq",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "choices": [
       "tuo zio",
       "il tuo zio"
@@ -1420,7 +1440,7 @@
     "prompt": "Which is correct for 'my boyfriend'?",
     "type": "mcq",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "choices": [
       "il mio ragazzo",
       "mio ragazzo"
@@ -1467,7 +1487,7 @@
     "prompt": "____ fratelli vivono all'estero. [my]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -1522,7 +1542,7 @@
     "prompt": "____ sorelle abitano a Torino. [my]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -1576,7 +1596,7 @@
     "prompt": "____ zii arrivano stasera. [their]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -1630,7 +1650,7 @@
     "prompt": "Which is correct for 'our aunt'?",
     "type": "mcq",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "choices": [
       "nostra zia",
       "la nostra zia"
@@ -1676,7 +1696,7 @@
     "prompt": "Which is correct for 'my wife'?",
     "type": "mcq",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "choices": [
       "mia moglie",
       "la mia moglie"
@@ -1722,7 +1742,7 @@
     "prompt": "____ cugina americana viene a trovarci. [my]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -1776,7 +1796,7 @@
     "prompt": "Il mio caffè è caldo; ____ com'è? [yours, informal]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -1820,7 +1840,7 @@
     "prompt": "La mia risposta è giusta; anche ____ lo è. [his]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -1864,7 +1884,7 @@
     "prompt": "I nostri posti sono qui; ____ sono là. [yours, plural]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -1908,7 +1928,7 @@
     "prompt": "Le tue scarpe sono nuove; ____ sono vecchie. [mine]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -1952,7 +1972,7 @@
     "prompt": "Io ho portato il mio ombrello; Luca ha dimenticato ____. [his]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -2006,7 +2026,7 @@
     "prompt": "Le vostre valigie sono leggere; ____ sono pesanti. [ours]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -2050,7 +2070,7 @@
     "prompt": "Which is correct for 'yours' in 'Il mio treno parte alle otto, ____ parte alle nove.' [informal]?",
     "type": "mcq",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "choices": [
       "il tuo",
       "tuo"
@@ -2099,7 +2119,7 @@
     "prompt": "Questa è la tua giacca? No, ____ è nera. [mine]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "markpoints": [
       {
         "order_index": 0,
@@ -2143,7 +2163,7 @@
     "prompt": "Paolo cerca ____ chiavi. [his]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "candidate_forms": [
       "his",
@@ -2206,7 +2226,7 @@
     "prompt": "Sara cerca ____ chiavi. [her]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "candidate_forms": [
       "his",
@@ -2269,7 +2289,7 @@
     "prompt": "Which is correct for 'your glasses', speaking formally to Signor Bianchi: 'Signor Bianchi, ecco ____ occhiali.'?",
     "type": "mcq",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "choices": [
       "i Suoi",
       "i tuoi",
@@ -2327,7 +2347,7 @@
     "prompt": "Lucia esce con ____ ragazzo. [her]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "candidate_forms": [
       "his",
@@ -2388,7 +2408,7 @@
     "prompt": "Which is correct for 'her brother'?",
     "type": "mcq",
     "marks": 1,
-    "prompt_supplies_base_form": true,
+    "wrong_answer_is_form_error_only": true,
     "choices": [
       "suo fratello",
       "sua fratello"
@@ -2440,7 +2460,7 @@
     "prompt": "Di chi è questa borsa? È ____. [mine]",
     "type": "mcq",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "choices": [
       "mia",
       "la mia"
@@ -2490,7 +2510,7 @@
     "prompt": "Di chi sono queste chiavi? Sono ____. [mine]",
     "type": "mcq",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "choices": [
       "mie",
       "le mie"
@@ -2540,7 +2560,7 @@
     "prompt": "È ____ questo cane? [yours, informal]",
     "type": "mcq",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "choices": [
       "tuo",
       "il tuo"
@@ -2590,7 +2610,7 @@
     "prompt": "Questi biglietti sono ____? [ours]",
     "type": "mcq",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "choices": [
       "nostri",
       "i nostri"
@@ -2640,7 +2660,7 @@
     "prompt": "Di chi è questo cane? È ____. [his]",
     "type": "mcq",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "choices": [
       "suo",
       "il suo"
@@ -2690,7 +2710,7 @@
     "prompt": "Which is the idiomatic Italian for 'at my house / at my place'?",
     "type": "mcq",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "choices": [
       "a casa mia",
       "alla mia casa",
@@ -2742,7 +2762,7 @@
     "prompt": "It's my fault. →",
     "type": "mcq",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "choices": [
       "È colpa mia",
       "È la mia colpa",
@@ -2794,7 +2814,7 @@
     "prompt": "In reply to the greeting 'Piacere', which is correct?",
     "type": "mcq",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "choices": [
       "Piacere mio",
       "Il mio piacere",
@@ -2846,7 +2866,7 @@
     "prompt": "Tonight we're having dinner ____. [at your place, informal]",
     "type": "mcq",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "choices": [
       "a casa tua",
       "alla tua casa",
@@ -2898,7 +2918,7 @@
     "prompt": "Ognuno deve fare ____ dovere. [one's own]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -2947,7 +2967,7 @@
     "prompt": "Bisogna rispettare ____ genitori. [one's own]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -2995,7 +3015,7 @@
     "prompt": "Ciascuno ha ____ idee. [one's own]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -3043,7 +3063,7 @@
     "prompt": "Chiunque può esprimere ____ opinione. [one's own]",
     "type": "short",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -3091,7 +3111,7 @@
     "prompt": "Ognuno ama ____ famiglia. [one's own]",
     "type": "mcq",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "choices": [
       "la propria",
       "la sua"
@@ -3141,7 +3161,7 @@
     "prompt": "In Italia si guida con ____ patente. [one's own]",
     "type": "mcq",
     "marks": 1,
-    "prompt_supplies_base_form": false,
+    "wrong_answer_is_form_error_only": false,
     "choices": [
       "la propria",
       "la sua"

@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-08-03-r119";
+  const LL_BUILD = "2026-08-03-r123";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -96,7 +96,7 @@
   let translationFilter = { topic: "", cefr: "", bucketPath: "" };
 
   // Session score: running count of translation marks this session.  QoderWork 2026-07-22
-  let translationSession = { awarded: 0, possible: 0 };  // QoderWork 2026-07-22 — raw accumulation, no threshold
+  let translationSession = { awarded: 0, possible: 0, hits: 0, shown: 0 };  // dual: impressionistic + elements (Smith 2026-08-03)
 
   // What bucket ids does a grammar question or translation item touch?
   // Grammar questions: their markpoints' bucket fields.
@@ -764,13 +764,20 @@
     // Session score: running percentage, olive shade, no threshold.  QoderWork 2026-07-22
     const scoreEl = document.createElement("span");
     scoreEl.className = "translation-session-score";
-    const pct = translationSession.possible > 0 ? Math.round(100 * translationSession.awarded / translationSession.possible) : null;
-    scoreEl.textContent = pct !== null
-      ? `Session: ${translationSession.awarded}/${translationSession.possible} (${pct}%)`
-      : "Session: —";
-    if (pct !== null) {
-      scoreEl.style.background = `rgba(61, 74, 28, ${pct / 100})`;
-      if (pct > 55) scoreEl.style.color = "#fff";
+    // Both currencies, independently (Smith 2026-08-03): elements = summed
+    // ticks over summed elements looked at; impressionistic = the marker's
+    // holistic scores averaged. The shade follows impressionistic when
+    // present, elements otherwise.
+    const ep = translationSession.shown > 0 ? Math.round(100 * translationSession.hits / translationSession.shown) : null;
+    const ipct = translationSession.possible > 0 ? Math.round(100 * translationSession.awarded / translationSession.possible) : null;
+    const _parts = [];
+    if (ep !== null) _parts.push(`elements ${translationSession.hits}/${translationSession.shown} (${ep}%)`);
+    if (ipct !== null) _parts.push(`impressionistic ${ipct}%`);
+    scoreEl.textContent = _parts.length ? "Session · " + _parts.join(" · ") : "Session: —";
+    const shade = (ipct !== null) ? ipct : ep;
+    if (shade !== null) {
+      scoreEl.style.background = `rgba(61, 74, 28, ${shade / 100})`;
+      if (shade > 55) scoreEl.style.color = "#fff";
     }
     const resetBtn = document.createElement("button");
     resetBtn.type = "button";
@@ -778,7 +785,7 @@
     resetBtn.textContent = "reset";
     resetBtn.title = "Reset session score";
     resetBtn.addEventListener("click", () => {
-      translationSession = { awarded: 0, possible: 0 };
+      translationSession = { awarded: 0, possible: 0, hits: 0, shown: 0 };
       renderTranslationFilterBar();
     });
     scoreEl.appendChild(document.createTextNode(" "));
@@ -2170,7 +2177,13 @@
     const misconceptions = [];
     if (!correct && Array.isArray(q.choice_tags)) {
       const tag = q.choice_tags[pickedIdx];
-      if (tag && tag.misconception) {
+      // Field purity (misconception_field_purity v1): only canonical registry
+      // ids enter this channel. Classifier confusion cells (stress.confusion.*,
+      // accent.*) are descriptors - stress_attempt and the accent axes already
+      // carry that signal - and are dropped here. Author-PROPOSED ids keep
+      // their sanctioned path via the proposed flag.
+      if (tag && tag.misconception
+          && (tag.proposed || LL.isRegistryMisconceptionId(tag.misconception))) {
         misconceptions.push({
           id: tag.misconception,
           bucket: (points[0] && points[0].bucket) || (Array.isArray(q.buckets) && q.buckets[0]) || null,
@@ -2376,9 +2389,16 @@
       const attempt = LL.store.recordAttempt("translation", it, raw, result, intent);
       recentlyChangedBuckets = new Set(attempt.events.map(e => e.bucket));
       // Session score: raw accumulation, no threshold.  QoderWork 2026-07-22
-      if (result.overall) {
+      if (result.overall && result.overall.marks_possible > 0) {
+        // Only marked attempts count: the R6 stub (not_scored, possible 0)
+        // used to add a phantom possible-of-1 and drag the session down.
         translationSession.awarded += (result.overall.marks_awarded || 0);
-        translationSession.possible += (result.overall.marks_possible || 1);
+        translationSession.possible += result.overall.marks_possible;
+      }
+      const _sessShown = (result.markpoints || []).filter(mp => !mp.suppress_display);
+      if (_sessShown.length) {
+        translationSession.shown += _sessShown.length;
+        translationSession.hits += _sessShown.filter(mp => mp.outcome === "hit").length;
       }
       renderTranslationFilterBar();
       resultHost.innerHTML = "";
@@ -5801,6 +5821,7 @@
   // ============================================================================
 
   // Prominent "don't know the word?" bar for lemma-retrieval pilot items
+  // and any item carrying retrieval_help_lemma (instrument A's clickable cue)
   // (Architecture_Housing_retrieval_help_affordance v1). Reveals the infinitive
   // on tap; tapping records the vocab miss (the intended diagnostic) via the
   // shared vocabHelpsUsed channel. Big + explicit, not the hidden vocab button.
@@ -6666,17 +6687,30 @@
     const score = document.createElement("span");
     score.className = "score num";
     const _shownMps = (result.markpoints || []).filter(mp => !mp.suppress_display);
+    let _impEl = null;
     if (opts && opts.skillCount && _shownMps.length) {
-      // Translation is multi-skill and its overall score is normalised to 0-1,
-      // so "1 / 1" hid how many skills actually fired. Surface the skill count
-      // instead (Smith; Architecture_Housing_translation_crosstopic_marking:
-      // "surface it as X / count").
+      // Two numbers, named in plain words (Smith 2026-08-03): "elements
+      // ticked" is the per-skill count - how many of the elements the marker
+      // looked at came back right - and "impressionistic" is the marker's
+      // holistic 0-1 verdict on the whole sentence. They are different
+      // instruments and neither should wear the other's clothes; the old bare
+      // "8 / 9" read as a mark when it was a tally.
       const _hits = _shownMps.filter(mp => mp.outcome === "hit").length;
-      score.textContent = `${_hits} / ${_shownMps.length}`;
+      const _ep = Math.round(100 * _hits / _shownMps.length);
+      score.textContent = `Elements ticked: ${_hits} of ${_shownMps.length} (${_ep}%)`;
+      if (result.overall.marks_possible > 0 && result.overall.status !== "not_scored") {
+        const _ip = Math.round(100 * result.overall.marks_awarded / result.overall.marks_possible);
+        _impEl = document.createElement("span");
+        _impEl.className = "score num score-impressionistic";
+        _impEl.textContent = `Impressionistic: ${_ip}%`;
+      }
     } else {
       score.textContent = `${fmtMark(result.overall.marks_awarded)} / ${fmtMark(result.overall.marks_possible)}`;
     }
-    if (!(opts && opts.hideScore)) overall.appendChild(score);
+    if (!(opts && opts.hideScore)) {
+      overall.appendChild(score);
+      if (_impEl) overall.appendChild(_impEl);
+    }
     const summary = document.createElement("span");
     summary.textContent = result.overall.summary || "";
     overall.appendChild(summary);
@@ -9474,7 +9508,7 @@
         box.appendChild(ul);
       }
       const mc = new Map();
-      for (const a of ((LL.state && LL.state.attempts) || [])) for (const h of (a.misconception_hits || [])) {
+      for (const a of ((LL.state && LL.state.attempts) || [])) for (const h of misconceptionHitsOf(a)) {
         const b = h && h.bucket; if (typeof b === "string" && (b === topic.id || b.indexOf(topic.id + ".") === 0)) { const id = h.id || h; mc.set(id, (mc.get(id) || 0) + 1); }
       }
       const mcList = [...mc.entries()].sort((a, b) => b[1] - a[1]);
@@ -9525,6 +9559,232 @@
       const scroll = document.createElement("div"); scroll.className = "pt-scroll"; scroll.appendChild(table); wrap.appendChild(scroll);
       if (!any) { const note = document.createElement("p"); note.className = "analysis-note"; note.textContent = "No person-tagged verb answers yet — practise some conjugations and this fills in."; wrap.appendChild(note); }
     } catch (e) { wrap.textContent = "(person × tense unavailable)"; }
+    return wrap;
+  }
+
+  // ---- STR/ACC chip surface (design_overhaul remainder; accent_stress §1/§2
+  // data groundwork) + Canvas A7 (bespoke grids, verb_identity landed
+  // 2026-08-03). Aggregations are PURE over persisted attempts, exposed on LL
+  // for the node harness; the build* wrappers own the DOM. NOT here: the
+  // stress_mechanism / stress_tags membership+treatment toggles from §2 -
+  // those fields exist in no data yet and arrive with the StressAuthor
+  // pipeline, slotting into the stress table when they land.
+  const ACC_PLACE_PREFIX = "orthography.accent.italian.placement.";
+  const ACC_OUTCOME_LEAVES = { missing: "omitted", added: "inserted", wrong_mark: "wrong_kind" };
+  const ACC_PLACE_LABELS = {
+    che_compound: "-ch\u00e9 compounds", lexical_final: "final-accent words",
+    no_accent: "no accent needed", apostrophe_not_accent: "apostrophe, not accent",
+    meaning_pair: "meaning pairs (e/\u00e8)", tense_bearing: "tense-bearing (parl\u00f2)"
+  };
+  function aggAccentPlacementOutcomes(attempts) {
+    const rows = {}; let unplaced = 0;
+    for (const a of (attempts || [])) {
+      const evs = a.events || [];
+      const pl = evs.find(e => e && typeof e.bucket === "string" && e.bucket.indexOf(ACC_PLACE_PREFIX) === 0);
+      let out = null;
+      for (const e of evs) {
+        if (!e || typeof e.bucket !== "string" || e.bucket.indexOf("orthography.accent.italian.") !== 0) continue;
+        const tail = e.bucket.split(".").pop();
+        if (ACC_OUTCOME_LEAVES[tail]) { out = ACC_OUTCOME_LEAVES[tail]; break; }
+      }
+      if (!pl) { if (out) unplaced++; continue; }
+      const cls = pl.bucket.slice(ACC_PLACE_PREFIX.length);
+      const row = rows[cls] || (rows[cls] = { correct: 0, wrong_kind: 0, omitted: 0, inserted: 0, judged_wrong: 0 });
+      if (out) row[out]++;
+      else if ((pl.correctness_credit || 0) >= 1) row.correct++;
+      else row.judged_wrong++;
+    }
+    return { rows, unplaced };
+  }
+  function aggStressByClass(attempts) {
+    const rows = {};
+    for (const a of (attempts || [])) {
+      const sa = a && a.stress_attempt;
+      if (!sa || typeof sa.true_pos !== "number") continue;
+      const cls = sa.stress_class || ("pos" + sa.true_pos);
+      const row = rows[cls] || (rows[cls] = { att: 0, cor: 0 });
+      row.att++;
+      if (sa.true_pos === sa.answered_pos) row.cor++;
+    }
+    return rows;
+  }
+  function aggStressAccentCross(attempts) {
+    const c = { perception_att: 0, perception_miss: 0, production_att: 0, production_omitted: 0 };
+    for (const a of (attempts || [])) {
+      const sa = a && a.stress_attempt;
+      if (sa && sa.true_pos === 1) { c.perception_att++; if (sa.answered_pos !== 1) c.perception_miss++; }
+      const evs = (a && a.events) || [];
+      const pl = evs.find(e => e && typeof e.bucket === "string" && e.bucket.indexOf(ACC_PLACE_PREFIX) === 0);
+      if (pl) {
+        const cls = pl.bucket.slice(ACC_PLACE_PREFIX.length);
+        if (cls === "lexical_final" || cls === "tense_bearing") {
+          c.production_att++;
+          if (evs.some(e => e && e.bucket === "orthography.accent.italian.missing")) c.production_omitted++;
+        }
+      }
+    }
+    return c;
+  }
+  const PIACERE_DIMS = ["direction", "agreement", "experiencer form", "infinitive pattern", "past tense", "extended verbs"];
+  const PIACERE_VERBS = ["piacere", "dispiacere", "mancare", "servire", "interessare", "bastare", "sembrare"];
+  function piacereDimOf(subtopic) {
+    const st = String(subtopic || "");
+    if (st === "usage.subject_flip" || st === "usage.liking_people") return "direction";
+    if (st === "form.agreement" || st === "usage.agreeing_responses") return "agreement";
+    if (st.indexOf("form.experiencer") === 0) return "experiencer form";
+    if (st === "form.with_infinitive") return "infinitive pattern";
+    if (st === "form.past") return "past tense";
+    if (st === "usage.family_verbs" || st === "usage.dispiacere") return "extended verbs";
+    return null;
+  }
+  function aggPiacereGrid(attempts, itemsById) {
+    const grid = {}; let joined = 0;
+    for (const a of (attempts || [])) {
+      const it = a && a.question_id ? itemsById[a.question_id] : null;
+      if (!it || it.topic !== "piacere") continue;
+      const dim = piacereDimOf(it.subtopic);
+      if (!dim) continue;
+      const verb = it.verb_identity || (String(it.subtopic) === "usage.dispiacere" ? "dispiacere" : "piacere");
+      joined++;
+      const row = grid[verb] || (grid[verb] = {});
+      const cell = row[dim] || (row[dim] = { att: 0, cor: 0 });
+      const o = a.overall || {};
+      cell.att++;
+      if (o.marks_possible > 0 && o.marks_awarded >= o.marks_possible) cell.cor++;
+    }
+    return { grid, joined };
+  }
+  LL._aggAccentPlacementOutcomes = aggAccentPlacementOutcomes;
+  LL._aggStressByClass = aggStressByClass;
+  LL._aggStressAccentCross = aggStressAccentCross;
+  LL._aggPiacereGrid = aggPiacereGrid;
+  LL._piacereDimOf = piacereDimOf;
+
+  function buildAccentPlacementReport() {
+    const wrap = document.createElement("div"); wrap.className = "pt-grid-wrap";
+    try {
+      const { rows, unplaced } = aggAccentPlacementOutcomes((LL.state && LL.state.attempts) || []);
+      const keys = Object.keys(rows);
+      if (!keys.length) {
+        const p = document.createElement("p"); p.className = "analysis-note";
+        p.textContent = "No accent answers on the placement axis yet - practise the accent drill and this fills in.";
+        wrap.appendChild(p);
+      } else {
+        const COLS = [["correct", "Right"], ["wrong_kind", "Wrong mark"], ["omitted", "Missing"], ["inserted", "Added"], ["judged_wrong", "Judged wrong"]];
+        const maxCor = Math.max(1, ...keys.map(k => rows[k].correct));
+        const maxErr = Math.max(1, ...keys.flatMap(k => COLS.slice(1).map(c => rows[k][c[0]])));
+        const table = document.createElement("table"); table.className = "pt-grid";
+        const thead = document.createElement("thead"); const htr = document.createElement("tr"); htr.appendChild(document.createElement("th"));
+        for (const c of COLS) { const th = document.createElement("th"); th.textContent = c[1]; htr.appendChild(th); }
+        thead.appendChild(htr); table.appendChild(thead);
+        const tbody = document.createElement("tbody");
+        for (const k of keys.sort()) {
+          const tr = document.createElement("tr"); const rh = document.createElement("th"); rh.textContent = ACC_PLACE_LABELS[k] || k.replace(/_/g, " "); tr.appendChild(rh);
+          for (const c of COLS) {
+            const n = rows[k][c[0]]; const td = document.createElement("td"); td.textContent = n ? String(n) : "";
+            if (n) td.style.background = (c[0] === "correct")
+              ? "rgba(35,92,60," + (0.10 + 0.45 * n / maxCor).toFixed(3) + ")"
+              : "rgba(178,86,58," + (0.10 + 0.45 * n / maxErr).toFixed(3) + ")";
+            td.title = (ACC_PLACE_LABELS[k] || k) + " \u00b7 " + c[1] + ": " + n;
+            tr.appendChild(td);
+          }
+          tbody.appendChild(tr);
+        }
+        table.appendChild(tbody);
+        const scroll = document.createElement("div"); scroll.className = "pt-scroll"; scroll.appendChild(table); wrap.appendChild(scroll);
+      }
+      if (unplaced) {
+        const cap = document.createElement("p"); cap.className = "analysis-note";
+        cap.textContent = unplaced + " earlier answer" + (unplaced === 1 ? "" : "s") + " predate the placement rewire and are not in the table.";
+        wrap.appendChild(cap);
+      }
+    } catch (e) { wrap.textContent = "(accent placement report unavailable)"; }
+    return wrap;
+  }
+  function buildStressTreatmentReport() {
+    const wrap = document.createElement("div"); wrap.className = "pt-grid-wrap";
+    try {
+      const rows = aggStressByClass((LL.state && LL.state.attempts) || []);
+      const ORDER = ["tronca", "piana", "sdrucciola", "bisdrucciola"];
+      const keys = ORDER.filter(k => rows[k]).concat(Object.keys(rows).filter(k => ORDER.indexOf(k) < 0).sort());
+      if (!keys.length) {
+        const p = document.createElement("p"); p.className = "analysis-note";
+        p.textContent = "No stress-drill answers yet - tap some syllables and this fills in. Mechanism and tag axes join when the StressAuthor data lands.";
+        wrap.appendChild(p); return wrap;
+      }
+      const table = document.createElement("table"); table.className = "pt-grid";
+      const thead = document.createElement("thead"); const htr = document.createElement("tr");
+      for (const h of ["", "answered", "right"]) { const th = document.createElement("th"); th.textContent = h; htr.appendChild(th); }
+      thead.appendChild(htr); table.appendChild(thead);
+      const tbody = document.createElement("tbody");
+      for (const k of keys) {
+        const r = rows[k]; const tr = document.createElement("tr");
+        const rh = document.createElement("th"); rh.textContent = k; tr.appendChild(rh);
+        const t1 = document.createElement("td"); t1.textContent = String(r.att); tr.appendChild(t1);
+        const pc = r.att ? r.cor / r.att : 0;
+        const t2 = document.createElement("td"); t2.textContent = Math.round(pc * 100) + "%";
+        t2.style.background = rwgColour(pc, true); t2.title = k + ": " + r.cor + " right of " + r.att;
+        tr.appendChild(t2); tbody.appendChild(tr);
+      }
+      table.appendChild(tbody);
+      const scroll = document.createElement("div"); scroll.className = "pt-scroll"; scroll.appendChild(table); wrap.appendChild(scroll);
+      const note = document.createElement("p"); note.className = "analysis-note";
+      note.textContent = "The 4x4 true-vs-tapped position matrix lives on the Grammar canvas. Mechanism and tag breakdowns join when the StressAuthor data lands.";
+      wrap.appendChild(note);
+    } catch (e) { wrap.textContent = "(stress treatment report unavailable)"; }
+    return wrap;
+  }
+  function buildStressAccentCrossReport() {
+    const wrap = document.createElement("div"); wrap.className = "pt-grid-wrap";
+    try {
+      const c = aggStressAccentCross((LL.state && LL.state.attempts) || []);
+      const line = (label, num, den) => {
+        const row = document.createElement("div"); row.className = "fam-row";
+        const lab = document.createElement("span"); lab.className = "fam-label"; lab.textContent = label;
+        const val = document.createElement("span"); val.className = "fam-count";
+        val.textContent = den ? (num + " of " + den + " (" + Math.round(100 * num / den) + "%)") : "\u2014";
+        row.appendChild(lab); row.appendChild(val); return row;
+      };
+      wrap.appendChild(line("Mis-stressed a SHOWN final accent (hearing it)", c.perception_miss, c.perception_att));
+      wrap.appendChild(line("Omitted the final accent in writing (writing it)", c.production_omitted, c.production_att));
+      const note = document.createElement("p"); note.className = "analysis-note";
+      note.textContent = "Final-stressed words are the shared class (Rev 27): the top row is perception on the stress drill, the bottom is production on the accent drill. A gap between them says which half needs the work.";
+      wrap.appendChild(note);
+    } catch (e) { wrap.textContent = "(cross-analysis unavailable)"; }
+    return wrap;
+  }
+  function buildPiacereGrid() {
+    const wrap = document.createElement("div"); wrap.className = "pt-grid-wrap";
+    try {
+      const itemsById = {};
+      for (const it of (grammarQuestions || [])) if (it && it.external_id) itemsById[it.external_id] = it;
+      const { grid, joined } = aggPiacereGrid((LL.state && LL.state.attempts) || [], itemsById);
+      const table = document.createElement("table"); table.className = "pt-grid";
+      const thead = document.createElement("thead"); const htr = document.createElement("tr"); htr.appendChild(document.createElement("th"));
+      for (const d of PIACERE_DIMS) { const th = document.createElement("th"); th.textContent = d; htr.appendChild(th); }
+      thead.appendChild(htr); table.appendChild(thead);
+      const tbody = document.createElement("tbody");
+      for (const v of PIACERE_VERBS) {
+        const tr = document.createElement("tr"); const rh = document.createElement("th"); rh.textContent = v; tr.appendChild(rh);
+        for (const d of PIACERE_DIMS) {
+          const cell = grid[v] && grid[v][d]; const td = document.createElement("td");
+          if (cell && cell.att > 0) {
+            const pc = cell.cor / cell.att;
+            td.style.background = rwgColour(pc, true); td.textContent = Math.round(pc * 100) + "%";
+            td.title = v + " \u00b7 " + d + ": " + cell.cor + " right of " + cell.att;
+          } else { td.className = "pt-empty"; td.title = v + " \u00b7 " + d + ": not practised"; }
+          tr.appendChild(td);
+        }
+        tbody.appendChild(tr);
+      }
+      table.appendChild(tbody);
+      const scroll = document.createElement("div"); scroll.className = "pt-scroll"; scroll.appendChild(table); wrap.appendChild(scroll);
+      const note = document.createElement("p"); note.className = "analysis-note";
+      note.textContent = joined
+        ? joined + " answers joined to piacere-family items so far; most verbs arrive as authors set verb_identity."
+        : "No piacere-family answers yet - the grid fills from practice, one row per verb.";
+      wrap.appendChild(note);
+    } catch (e) { wrap.textContent = "(piacere grid unavailable)"; }
     return wrap;
   }
 
@@ -9583,7 +9843,7 @@
     const wrap = document.createElement("div"); wrap.className = "analysis-toperr";
     try {
       const counts = new Map();
-      for (const a of ((LL.state && LL.state.attempts) || [])) { for (const h of (a.misconception_hits || [])) { const id = (h && (h.id || h)) || ""; if (!id) continue; counts.set(id, (counts.get(id) || 0) + 1); } }
+      for (const a of ((LL.state && LL.state.attempts) || [])) { for (const h of misconceptionHitsOf(a)) { const id = (h && (h.id || h)) || ""; if (!id) continue; counts.set(id, (counts.get(id) || 0) + 1); } }
       const list = [...counts.entries()].sort((a, b) => b[1] - a[1]).slice(0, 10);
       if (!list.length) { wrap.textContent = "No misconception-tagged errors yet — as tagged guards fire, your top recurring slips land here."; return wrap; }
       const ol = document.createElement("ol"); ol.className = "toperr-list";
@@ -9857,9 +10117,19 @@
     } catch (e) { wrap.textContent = "(stress confusion matrix unavailable)"; }
     return wrap;
   }
+  // Field-purity defence (misconception_field_purity v1): the drill-down
+  // validates ids against the registry and DROPS non-members, so the ~30k
+  // historical phantom events (stress.confusion.*, accent.*) in learner
+  // state cannot swamp the real signal, and future pollution is inert at
+  // read time. Proposed ids keep their sanctioned channel.
+  function misconceptionHitsOf(a) {
+    const hits = (a && a.misconception_hits) || [];
+    return hits.filter(h => h && (h.proposed || LL.isRegistryMisconceptionId(h.id || h)));
+  }
+
   function misconceptionFamilyCounts() {
     const counts = new Map();
-    for (const a of ((LL.state && LL.state.attempts) || [])) for (const h of (a.misconception_hits || [])) { const id = (h && (h.id || h)) || ""; if (!id) continue; const fam = String(id).split(".")[0]; counts.set(fam, (counts.get(fam) || 0) + 1); }
+    for (const a of ((LL.state && LL.state.attempts) || [])) for (const h of misconceptionHitsOf(a)) { const id = (h && (h.id || h)) || ""; if (!id) continue; const fam = String(id).split(".")[0]; counts.set(fam, (counts.get(fam) || 0) + 1); }
     return counts;
   }
   function buildFamilyHeatmap() {
@@ -9905,8 +10175,11 @@
   }
   function renderVocabularyCanvas(col) {
     const body = document.createElement("div"); body.className = "analysis-placeholder";
-    body.textContent = "The vocabulary analysis — frequency bands, gender by noun class, stress, accents, themes — is still to be developed. Your vocab practice is already recorded and will fill these in.";
-    col.appendChild(sectionWrap("Vocabulary analysis", body, "to be developed"));
+    body.textContent = "Frequency bands, themes and gender-by-class views are still to come; the practice feeding them is already recorded.";
+    col.appendChild(sectionWrap("Accents: placement \u00d7 outcome", buildAccentPlacementReport()));
+    col.appendChild(sectionWrap("Stress: treatment by class", buildStressTreatmentReport()));
+    col.appendChild(sectionWrap("Stress \u2194 accents: hearing it vs writing it", buildStressAccentCrossReport()));
+    col.appendChild(sectionWrap("More vocabulary views", body, "to be developed"));
   }
   function renderMisconceptionCanvas(col) {
     col.appendChild(sectionWrap("Top recurring errors", buildTopErrors()));
@@ -10096,6 +10369,7 @@
     col.appendChild(sectionWrap("Verb coverage: person × conjugation class", buildPersonClassGrid()));
     col.appendChild(sectionWrap("Stress confusion matrix", buildStressConfusionMatrix()));
     col.appendChild(sectionWrap("Tense-choice confusion matrix", buildTenseConfusionMatrix()));
+    col.appendChild(sectionWrap("Piacere family: verb \u00d7 error dimension", buildPiacereGrid()));
     col.appendChild(placeholderSection("Piacere per-verb grid", "Direction (mi piaci vs ti piaccio), pluralisation, figurative use, per tested verb."));
     const btLink = document.createElement("button"); btLink.type = "button"; btLink.className = "entry-coverage-link"; btLink.style.marginTop = "6px";
     btLink.textContent = "Browse the atomised bucket tree →";
