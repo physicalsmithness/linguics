@@ -44,22 +44,44 @@ function accentType(s) {
   return m ? m[0] : null;
 }
 
+// ---- markpoint_contract (seed v1) consumption: placement-leaf wiring, tag purity ----
+const PLACEMENT = {
+  "accent.che_compound": "orthography.accent.italian.placement.che_compound",
+  "accent.lexical_final": "orthography.accent.italian.placement.lexical_final",
+  "accent.no_accent": "orthography.accent.italian.placement.no_accent",
+  "accent.meaning_pair": "orthography.accent.italian.placement.meaning_pair",
+  "accent.tense_bearing": "orthography.accent.italian.placement.tense_bearing",
+  "accent.apostrophe_not_accent": "orthography.accent.italian.placement.apostrophe_not_accent",
+};
+const CANON_MISCONCEPTION = { omitted: "accent_silent_letter.accent_omitted" };
+function sanitiseTag(tag) {
+  // field-purity ruling 2026-08-03: misconception carries canonical registry ids or
+  // nothing; the outcome CLASS is the descriptor the engine maps to leaf + dock.
+  if (!tag) return null;
+  const cls = tag.class === "inserted_as_accent" ? "wrong_kind" : tag.class;
+  const out = { class: cls };
+  if (CANON_MISCONCEPTION[cls]) out.misconception = CANON_MISCONCEPTION[cls];
+  return out;
+}
 function makeItem(id, prompt, choices, answerIdx, bucket, label, explanation, subtopic, choiceTags) {
+  // Contract: subtopic AND the correct-answer markpoint are the PLACEMENT leaf, never
+  // an outcome leaf (defects 1+3). Outcome rides choice_tags.class; engine docks.
+  const place = PLACEMENT[subtopic] || subtopic;
   return {
     external_id: id,
     prompt: prompt,
     type: "mcq",
     choices: choices,
     answer_index: answerIdx,
-    markpoints: [{ order_index: 0, credit: 1.0, bucket: bucket, label: label }],
+    markpoints: [{ order_index: 0, credit: 1.0, bucket: place, label: label }],
     explanation: explanation,
     topic: "orthography",
-    subtopic: subtopic,
+    subtopic: place,
     info_display: "suppress",
     language_code: "it",
-    choice_tags: choiceTags || choices.map(() => null),
+    choice_tags: (choiceTags || choices.map(() => null)).map(sanitiseTag),
     generated_by: "variant",
-    version: 1
+    version: 2
   };
 }
 
@@ -209,10 +231,23 @@ for (const entry of tenseSeeds) {
 // ---- Frame 3: acc_judge (Yes/No binary) ----
 // Generate for che_compound + lexical_final + no_accent (the bare-frame classes)
 
+function judgeErrorClass(word, shownForm) {
+  const marks = s => (s.match(/[\u00e0\u00e8\u00e9\u00ec\u00f2\u00f9]/g) || []).length;
+  if (marks(shownForm) < marks(word)) return "omitted";
+  if (marks(shownForm) > marks(word)) return "inserted";
+  return "wrong_kind";
+}
 function judgeItem(word, shownForm, isCorrect, subtopic, bucket, explanation) {
   const id = nextId("acc_judge");
   const choices = ["Correct", "Incorrect"];
   const answerIdx = isCorrect ? 0 : 1;
+  // Defect 4: BOTH verdicts tagged. Endorsing an error-form carries that error's
+  // class (engine retargets to the outcome leaf, credit 0 via the judgement guard);
+  // rejecting a correct form is a false alarm (non-mapping class -> flat judgement,
+  // credit 0, NO outcome bar - contract's "no fifth bar").
+  const tags = isCorrect
+    ? [{ class: "correct" }, { class: "false_alarm" }]
+    : [{ class: judgeErrorClass(word, shownForm) }, { class: "correct" }];
   return makeItem(
     id,
     "Is this spelled correctly?  " + shownForm,
@@ -221,7 +256,7 @@ function judgeItem(word, shownForm, isCorrect, subtopic, bucket, explanation) {
     "Judgement: " + shownForm,
     explanation,
     subtopic,
-    isCorrect ? [null, null] : [null, null]
+    tags
   );
 }
 
