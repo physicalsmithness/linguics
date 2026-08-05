@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-08-05-r134";
+  const LL_BUILD = "2026-08-05-r136";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -4504,6 +4504,29 @@
   // shows active (production); MIX (or unset) shows BOTH, so a practised word
   // lights regardless of which direction it was drilled in. (Previously mix
   // mapped to active-only, silently hiding every passive event.)
+  // WHICH STATISTIC AM I LOOKING AT (Smith 2026-08-05). Every analysis panel
+  // scores a DIFFERENT thing depending on the direction: EN->IT is production
+  // (can you make the word) and IT->EN is recognition (do you know it when you
+  // see it). The panels shared one appearance and said nothing, so a learner
+  // comparing two sessions was comparing two different measurements. The gender
+  // panel already named its lens because gender only works one way; now they
+  // all do, off one function so they can never drift apart.
+  function directionLensLabel(short) {
+    const d = vocabFilter && vocabFilter.direction;
+    if (d === "en_it") return short ? "EN\u2192IT production" : "English \u2192 Italian (production)";
+    if (d === "it_en") return short ? "IT\u2192EN recognition" : "Italian \u2192 English (recognition)";
+    return short ? "mixed" : "mixed (both production and recognition)";
+  }
+  LL.directionLensLabel = directionLensLabel;
+
+  function buildLensTag(short) {
+    const t = document.createElement("span");
+    t.className = "vocab-axis-lens";
+    t.textContent = directionLensLabel(!!short);
+    t.title = "These scores are for this direction only. Producing a word and recognising it are different skills and are counted separately.";
+    return t;
+  }
+
   function vocabHeatmapDir() {
     const d = vocabFilter && vocabFilter.direction;
     return d === "it_en" ? "passive" : d === "en_it" ? "active" : "any";
@@ -5034,6 +5057,7 @@
     focusInfo.className = "vocab-axis-focus";
     focusInfo.textContent = "(ranks " + focusStart + "-" + focusEnd + ")";
     freqTitle.appendChild(focusInfo);
+    freqTitle.appendChild(buildLensTag());
     freqAxis.appendChild(freqTitle);
 
     // Build rank -> entry index from vocabEntries.
@@ -5133,8 +5157,12 @@
     genderTitle.className = "vocab-axis-title";
     const gName = document.createElement("span");
     gName.className = "vocab-axis-name";
-    gName.textContent = "Gender (nouns, production)";
+    // Long form per Smith; the lens rides in the same subtitle every other panel
+    // uses. Gender is production-only by nature, so its lens never says
+    // recognition - but it says it the SAME WAY, which is the point.
+    gName.textContent = "Correct gender of nouns";
     genderTitle.appendChild(gName);
+    genderTitle.appendChild(buildLensTag(true));
     // EXPAND (Smith 2026-08-05): the bottom strip holds COMPRESSED versions of
     // these breakdowns - readable at a glance, names on hover - and any one of
     // them expands to take the whole strip region. This is the answer to the
@@ -5189,6 +5217,7 @@
     const themesTitle = document.createElement("div");
     themesTitle.className = "vocab-axis-title";
     themesTitle.innerHTML = '<span class="vocab-axis-name">Themes</span>';
+    themesTitle.appendChild(buildLensTag());
     themesAxis.appendChild(themesTitle);
 
     const tax = LL.themesTaxonomy;
@@ -8549,6 +8578,19 @@
   }
 
   // -------------------- session cost (live AI marker) --------------------
+  // Recompute the streak after anything that writes an attempt, so the first
+  // answer of a new day updates the footer without a reload.
+  (function hookStreakToAttempts() {
+    if (!LL.store || typeof LL.store.recordAttempt !== "function" || LL.store.__streakHooked) return;
+    const inner = LL.store.recordAttempt.bind(LL.store);
+    LL.store.recordAttempt = function () {
+      const r = inner.apply(null, arguments);
+      try { if (LL.renderStreak) LL.renderStreak(); } catch (e) {}
+      return r;
+    };
+    LL.store.__streakHooked = true;
+  })();
+
   function renderSessionCost() {
     const host = document.getElementById("session-cost-host");
     if (!host || !LL.sessionCostUsd) return;
@@ -10789,6 +10831,67 @@
   }
 
 
+  // -------------------- streak + brand hover (r135, Smith) --------------------
+  // Counted from the attempt log, in the learner's OWN timezone (toDateString,
+  // not the ISO date, or anyone east of UTC loses a day at midnight). A streak
+  // is consecutive days ending TODAY or YESTERDAY - break it and it is one day,
+  // not zero, because you practised today.
+  function practiceStreakDays() {
+    const days = new Set();
+    for (const a of (LL.state.attempts || [])) {
+      const t = a && a.timestamp;
+      if (!t) continue;
+      const d = new Date(t);
+      if (!isFinite(d)) continue;
+      days.add(d.toDateString());
+    }
+    if (!days.size) return 0;
+    const dayMs = 86400000;
+    const today = new Date();
+    let cursor = days.has(today.toDateString())
+      ? today
+      : new Date(today.getTime() - dayMs);       // yesterday still counts as live
+    if (!days.has(cursor.toDateString())) return 0;
+    let n = 0;
+    while (days.has(cursor.toDateString())) {
+      n++;
+      cursor = new Date(cursor.getTime() - dayMs);
+    }
+    return n;
+  }
+  // One line, chosen per page load. The joke lands once; repeated on every
+  // render it would become the very nagging it is making fun of.
+  const STREAK_LINES = [
+    "No owls will dispense algorithmic neediness on this site.",
+    "Be assured. Linguics will never weaponise the synthetic sulking of any fictional poultry.",
+    "No owl was performatively wounded in the making of this statistic."
+  ];
+  const BRAND_LINES = [
+    "Duolingo for grown-ups.",
+    "For people who know what it takes"
+  ];
+  function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+  function renderStreak() {
+    const host = document.getElementById("streak-host");
+    if (!host) return;
+    const n = practiceStreakDays();
+    host.innerHTML = "";
+    if (!n) { host.title = ""; return; }
+    const b = document.createElement("b");
+    b.textContent = n;
+    host.appendChild(b);
+    host.appendChild(document.createTextNode("-day streak"));
+    host.title = pick(STREAK_LINES);
+  }
+  LL.renderStreak = renderStreak;
+  (function brandHover() {
+    const logo = document.querySelector(".brand-logo");
+    const mark = document.querySelector(".wordmark");
+    const line = pick(BRAND_LINES);
+    if (logo) logo.title = line;
+    if (mark) mark.title = line;
+  })();
+
   // -------------------- bootstrap --------------------
   // Render the build identifier in the footer. Useful for spotting cross-tab
   // version mismatches at a glance.
@@ -10805,6 +10908,7 @@
   renderCefr();
   renderMarkerConfig();
   renderSessionCost();
+  renderStreak();
   renderLiveStats();
   renderIdentityBox();
   if (LL.pulse) LL.pulse.onStatus(st => {

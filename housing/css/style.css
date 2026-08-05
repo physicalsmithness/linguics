@@ -52,7 +52,7 @@ header {
 #header-filter-slot { flex: 1 1 auto; min-width: 0; display: flex; justify-content: flex-end; }
 #header-filter-slot .filter-bar { margin-bottom: 6px; padding: 4px 8px; border: none; background: transparent; flex-wrap: wrap; justify-content: flex-end; gap: 10px; }
 #header-filter-slot .filter-mode-row { display: inline-flex; }
-.tagline-scope { color: var(--faint); font-style: normal; font-size: 0.86em; }
+.tagline-scope { color: var(--faint); font-style: italic; font-size: 0.9em; }   /* italic like 'atomised' (Smith) */
 
 header h1 { margin: 0 0 4px; font-size: 22px; font-weight: 600; }
 .tagline { margin: 0 0 12px; color: var(--muted); font-style: italic; font-size: 14px; }
@@ -920,13 +920,17 @@ footer {
 #vocab-body {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  /* r133: the question row is a STABLE share again, not `auto`. r131's auto row
-     cured the cramped card and bought a worse fault: marking an answer grew the
-     card, which grew the row, which squeezed the frequency square off screen -
-     "it's making that jump up and down, which is not ideal". Nothing may move
-     when you answer. So the row is fixed, the prompt/input/buttons always show,
-     and the RESULT scrolls inside the card (.card-result below). */
-  grid-template-rows: minmax(0, 1.05fr) auto minmax(0, 1fr) 150px;
+  /* r135: the question row is a FIXED HEIGHT, not a share of one.
+     r133 made it a `fr` share to stop the jump, and a share of a viewport that
+     the header had already eaten was not enough to hold the card - Smith's shot
+     shows Mark and Skip sliced in half and "literally no space to see even the
+     right answer". A share cannot promise a minimum; a fixed track can.
+     380px holds meta + prompt + input + buttons with room left for the result,
+     the result scrolls inside .card-result, and because the track never changes
+     size, answering still moves nothing. The frequency square takes what is
+     left, which is the trade Smith already blessed ("that whole thing could be
+     shrunk, it doesn't really affect it very much"). */
+  grid-template-rows: 380px auto minmax(140px, 1fr) 150px;
   grid-template-areas:
     "question themes"
     "axeshead themes"
@@ -936,7 +940,10 @@ footer {
   /* r131: two bands reclaimed at the top (identity strip pinned, filter bar
      folded into the tab row), so the body gets them back. The question card and
      the frequency square must both show in full - neither may scroll. */
-  height: calc(100vh - 168px);
+  /* dvh, not vh: on mobile the toolbars make vh lie and the strip falls off the
+     bottom. The subtrahend is the three header bands + the footer, measured. */
+  height: calc(100dvh - 250px);
+  min-height: 700px;
   min-height: 460px;
 }
 /* The card fills its quadrant and never scrolls as a whole: the question, the
@@ -2391,3 +2398,14 @@ h1, h2, h3, .wordmark, .coverage-title, .analysis-section-title { font-family: F
 .their-answer-lead, .their-answer-mid { color: var(--muted); font-size: 13px; }
 .their-answer-said { font-style: italic; }
 .their-answer-is { font-weight: 700; color: #25406b; }
+
+/* Footer streak (r135). Quiet - it is a fact about the learner, not a nag. */
+#streak-host { color: var(--muted); cursor: help; }
+#streak-host b { color: var(--accent); font-weight: 600; }
+
+/* Direction lens on every analysis panel (r136). Quiet, but always present -
+   it names WHICH statistic you are reading, and the panels must never differ
+   in how they say it. */
+.vocab-axis-lens { margin-left: 9px; font-size: 11.5px; font-style: italic;
+  color: var(--muted); white-space: nowrap; cursor: help; }
+.vocab-axis-lens::before { content: "\00b7"; margin-right: 8px; color: var(--line); font-style: normal; }
