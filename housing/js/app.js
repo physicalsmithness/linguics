@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-08-05-r129";
+  const LL_BUILD = "2026-08-05-r130";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -4852,12 +4852,29 @@
     revealInAxisPanel(targets[0]);
   }
 
-  // Scroll the vocab axes panel WITHIN ITSELF. Never touches window scroll: it
-  // reads and writes one element's scrollTop and nothing else.
+  // Scroll whichever box actually holds this cell, WITHIN ITSELF. Never touches
+  // window scroll: it reads and writes one element's scrollTop and nothing else.
+  //
+  // r130: this used to assume the scrollbox was #vocab-axes-host. Under the
+  // quadrant layout that element is `display: contents` - it has no box at all,
+  // and each axis section owns its own scrolling. So walk up from the cell to
+  // the nearest ancestor that actually scrolls, stopping at #vocab-body. If
+  // nothing scrolls (narrow stacked layout), do nothing, which is correct.
+  function axisScrollBoxFor(el) {
+    let n = el && el.parentElement;
+    while (n && n.id !== "vocab-body") {
+      if (n.scrollHeight > n.clientHeight + 1) {
+        const ov = getComputedStyle(n).overflowY;
+        if (ov === "auto" || ov === "scroll") return n;
+      }
+      n = n.parentElement;
+    }
+    return null;
+  }
   function revealInAxisPanel(el) {
-    const panel = document.getElementById("vocab-axes-host");
-    if (!panel || !el || !el.getBoundingClientRect) return;
-    if (panel.scrollHeight <= panel.clientHeight + 1) return;   // not a scrollbox (narrow layout)
+    if (!el || !el.getBoundingClientRect) return;
+    const panel = axisScrollBoxFor(el);
+    if (!panel) return;
     const pr = panel.getBoundingClientRect();
     const er = el.getBoundingClientRect();
     if (er.top >= pr.top + 8 && er.bottom <= pr.bottom - 8) return;   // already in view

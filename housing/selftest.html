@@ -56,12 +56,12 @@
 <div id="summary">Loading content…</div>
 <div id="out"></div>
 
-<script src="js/norm.js?v=2026-08-05-r129"></script>
-<script src="js/store.js?v=2026-08-05-r129"></script>
-<script src="js/engine_axes.js?v=2026-08-05-r129"></script>
-<script src="js/grammar_engine.js?v=2026-08-05-r129"></script>
-<script src="js/translation_stub.js?v=2026-08-05-r129"></script>
-<script src="js/translation_marker.js?v=2026-08-05-r129"></script>
+<script src="js/norm.js?v=2026-08-05-r130"></script>
+<script src="js/store.js?v=2026-08-05-r130"></script>
+<script src="js/engine_axes.js?v=2026-08-05-r130"></script>
+<script src="js/grammar_engine.js?v=2026-08-05-r130"></script>
+<script src="js/translation_stub.js?v=2026-08-05-r130"></script>
+<script src="js/translation_marker.js?v=2026-08-05-r130"></script>
 <script>
 (function () {
   "use strict";
@@ -421,6 +421,22 @@
     T(g4g, "the VOCAB axes panel is an independent scrollbox",
       "unbounded, this panel (~990 frequency dots + the flanking blocks + the gender and theme axes) makes the vocab page several screens tall with a short question card floating at the top, so any scroll nudge from any source strands the question above the viewport and the learner scrolls back up. Reported ~15 times and patched five times at the level of individual scroll calls before anyone bounded the panel. The gender, spelling, accent and stress drills all render into the card beside it and share the fault",
       boxed("#vocab-axes-host"));
+    T(g4g, "the vocab quadrant grid names every area its sections claim",
+      "the layout is grid-template-areas + display:contents on #vocab-axes-host. If a section claims an area the template never declares, the browser silently drops it into an implicit row and the quadrant collapses - a layout that looks merely 'wrong' rather than broken, which is how it would survive review",
+      () => {
+        const b = cssBlock("#vocab-body");
+        if (b === null) return "could not read css/style.css (this page must be SERVED)";
+        const declared = (b.match(/"[a-z ]+"/g) || []).join(" ");
+        const missing = ["question", "axeshead", "freq", "themes", "strip"].filter(a => declared.indexOf(a) < 0);
+        return missing.length ? ("template never declares: " + missing.join(", ")) : true;
+      });
+    T(g4g, "#vocab-axes-host stays in the tree as display:contents",
+      "five call sites (renderVocabAxes, recolourAxisCellsFor, flashAxisCellsFor, revealInAxisPanel's walk, the drill session panel) query DESCENDANTS of this host. display:contents lets its children become grid items in different quadrants while every one of those lookups keeps working. Give it a box again, or move the sections out, and the flash and recolour find nothing - no crash, just feedback that stops arriving",
+      () => {
+        const b = cssBlock("#vocab-axes-host");
+        if (b === null) return "could not read css/style.css (this page must be SERVED)";
+        return b.indexOf("display: contents") >= 0 ? true : "#vocab-axes-host is no longer display:contents";
+      });
     T(g4g, "the GRAMMAR stats aside is an independent scrollbox",
       "the same contract on the other strand, where it has held for months. The asymmetry between the two panels is the whole reason this read as a vocab-only bug",
       boxed("#live-stats"));

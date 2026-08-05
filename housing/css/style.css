@@ -40,7 +40,9 @@ body {
 header {
   position: sticky; top: 0; z-index: 40; background: var(--bg);   /* Linguics permanently there (Smith) */
   border-bottom: 1px solid var(--line);
-  padding: 18px 28px 0 28px;
+  /* r130: a little more air top and bottom - Smith, "it's a bit too squashed at
+     the top". The brand keeps its size and prominence; only the spacing moved. */
+  padding: 22px 28px 4px 28px;
 }
 
 header h1 { margin: 0 0 4px; font-size: 22px; font-weight: 600; }
@@ -885,48 +887,62 @@ footer {
 /* ====================================================================
    Vocab strand multi-axis right-hand panel (frequency / gender / themes)
    ==================================================================== */
+/* ============================================================================
+   VOCAB QUADRANT LAYOUT (r130, Smith's ruling 2026-08-05: "you just have to
+   make it and see what happens").
+
+     question  |  themes
+     freq      |  themes
+     freq      |  strip
+
+   THE PAGE MUST NEVER SCROLL. The body is sized to the viewport and every
+   region owns its own overflow, so reading one panel can never move another -
+   the r126 rule applied by construction rather than retrofitted.
+
+   #vocab-axes-host is `display: contents`. That is deliberate and load-bearing:
+   the axes renderer, the per-answer recolour, the flash and the drill panel all
+   do `host.querySelector(...)`, i.e. they search DESCENDANTS. Keeping the
+   element in the tree keeps all five lookups working untouched, while its three
+   children (frequency, gender, themes) become direct grid items and can sit in
+   different quadrants. Move those sections out of the host instead and the
+   flash and recolour lookups quietly find nothing - no crash, just feedback
+   that stops arriving.
+   ============================================================================ */
 #vocab-body {
-  display: flex;
-  gap: 24px;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: minmax(0, 1fr) auto minmax(0, 1.15fr) 158px;
+  grid-template-areas:
+    "question themes"
+    "axeshead themes"
+    "freq     themes"
+    "freq     strip";
+  gap: 12px 20px;
+  height: calc(100vh - 232px);   /* header + strand nav + filter bar + footer */
+  min-height: 460px;
 }
-#vocab-host { flex: 1 1 0; min-width: 0; }
+#vocab-host { grid-area: question; min-width: 0; min-height: 0; overflow-y: auto; }
+#vocab-axes-host { display: contents; }
+.vocab-axes-header { grid-area: axeshead; min-width: 0; }
+.vocab-axis-freq   { grid-area: freq;   min-width: 0; min-height: 0; overflow: hidden; }
+.vocab-axis-themes { grid-area: themes; min-width: 0; min-height: 0; overflow-y: auto; padding-right: 4px; }
+.vocab-axis-gender { grid-area: strip;  min-width: 0; min-height: 0; overflow-y: auto; }
+/* A drill replaces the whole right side with its own live breakdown. */
+.drill-session-panel { grid-column: 2; grid-row: 1 / -1; min-height: 0; overflow-y: auto; }
 /* When vocab strand is active, hide the live-stats aside entirely and let
    the vocab-axes panel claim the whole right side. */
 body.strand-vocab-active main { grid-template-columns: 1fr; }
 body.strand-vocab-active #live-stats { display: none; }
 
-#vocab-axes-host {
-  flex: 0 1 65%;
-  min-width: 0;
-  max-width: 65%;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding-top: 4px;
-  /* INDEPENDENT SCROLLING - the same contract #live-stats has carried for
-     months, and the reason the vocab side kept jumping when the grammar side
-     did not. Without it this panel (~990 frequency dots + the flanking blocks +
-     the gender and theme axes) is unbounded and in normal flow, so the vocab
-     page is several screens tall with a short question card floating at the top
-     of it. Any nudge from any source then strands the question above the
-     viewport and the learner scrolls back up - reported ~15 times and patched
-     five times at the level of individual scroll calls (r98's vocab guard,
-     r99's five preventScroll sites), which is treating the symptom: the disease
-     is a long page. Bounded and sticky, the page is one screen and there is
-     nowhere to fall. Applies to the gender, spelling, accent and stress drills
-     too - they all render into #vocab-host beside this panel. */
-  position: sticky;
-  top: 18px;
-  max-height: calc(100vh - 140px);
-  overflow-y: auto;
-  min-height: 0;
-}
+/* The r126 containment now lives on the SECTIONS (above), not on the host -
+   `display: contents` means the host has no box to bound. Same guarantee,
+   applied one level down: themes, strip and the question card each scroll
+   inside themselves and the page itself never does. */
 
-/* Card stays usable but the axes panel claims more real estate now that the
-   heatmap has many flanking strips. */
-#vocab-body { gap: 28px; }
-#vocab-host { flex: 1 1 35%; min-width: 280px; }
+/* Superseded by the quadrant grid above (r130): the flex sizing here is inert
+   inside a grid container and the gap is set once, with the layout. Kept only
+   as a floor on the question column so a narrow window cannot crush the card. */
+#vocab-host { min-width: 280px; }
 
 /* Drill highlights on focused-grid boxes */
 .freq-focused-box.drill-thousand {
@@ -1341,7 +1357,10 @@ body.strand-vocab-active #live-stats { display: none; }
 
 /* Vocab strand narrow: stack axes below the card */
 @media (max-width: 1200px) {
-  #vocab-body { flex-direction: column; }
+  #vocab-body { display: block; height: auto; min-height: 0; }
+  #vocab-host, .vocab-axis-freq, .vocab-axis-themes, .vocab-axis-gender, .drill-session-panel {
+    overflow: visible; max-height: none; margin-bottom: 14px;
+  }
   /* Stacked layout: the panel sits BELOW the card, so it is no longer competing
      with it for the viewport and an inner scrollbox would just be a second
      scroll trap. Release the desktop containment. */

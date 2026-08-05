@@ -2380,3 +2380,149 @@ request; it is not Housing's queue.
 
 Work reordered for a loaded Housing: silent-fallback two-liner, then the gender coverage grid (no
 dependency), then `item_ref`, then the presets, then the panel and resume.
+
+
+## Gender-bucket writers traced; resolver defect found (2026-08-05, twelfth pass)
+
+Smith asked whether translation fires the lexical gender bucket. It does. Four writers, not one:
+the gender drill (always); the vocab card EN->IT as an opportunistic side-channel (fires only on an
+explicit (m)/(f) or an unambiguous article, silent on a bare lemma or `l'amico`); authored grammar
+items (possessive, 46 refs); and authored translation items (possessive, 34 refs) via the AI marker,
+whose `resolveVocabVariant` whitelists the aspect and offers it in bucket_context. 129 distinct
+lemmas carry gender references.
+
+**DEFECT found in the tracing.** Authored items use the bare 4-segment id
+(`vocabulary.it.gemello.gender`); `resolveVocabVariant` resolves multi-entry lemmas by taking the
+lowest merged_rank as best-guess canonical. 16 of the 129 are multi-entry; for `gemello` (adj @4688
+over noun @5227) and `mobile` (adj @1792 over noun.m @1821 and noun.f @2946) the guess picks the
+ADJECTIVE, so gender credit records against an adjective entry — wrong dot on the heatmap, phantom
+coverage in the planned grid. Same family as the July `orecchio`/`proprio` injection bug: a
+similarity heuristic standing in for identity. Ruled: (i) immediate code fix — prefer a noun entry
+when the lowest-rank pick is not a noun, since gender and article_form are noun properties and a
+non-noun resolution is provably wrong; (ii) **authoring rule issued — a gender or article_form
+reference to a multi-entry lemma must name the POS** (`vocabulary.it.gemello.noun.gender`; the
+resolver passes longer ids through untouched). Architecture sweeps existing references. Recorded
+limit: a gender-split noun (`collega` m@914 / f@915) cannot be addressed by a bare id at all.
+
+**Open to AdjectiveAuthor:** `vocab_bucket_references_adjective_agreement.json` holds 99
+gender/article_form references and appears nowhere in the manifest. Proposal awaiting wiring, or
+authored work that never fires? Until answered the gender denominator is 99 references short.
+
+Smith blessed the §11 build order; §12.1's fix inserts ahead of the gender coverage grid.
+
+
+## Translation fire-list ruled: expected_buckets, three tiers, unlisted credit (2026-08-05, thirteenth pass)
+
+Smith: translation marking is never good enough and cost of model makes no difference. Accepted, with
+the cause named: **the crosstopic thread's own v1 diagnosis (2026-07-21, 640/870 items on a single
+required_bucket) has never been executed.** Re-derived today: 899 items, all carry the field, median
+1, mean 1.4 — unchanged in fifteen days, during which the thread ran to 23 versions of *marker*
+tuning. A sentence demonstrates eight to ten markable things, the item declares one, the model is
+asked to find the rest in a 440-node menu with no clue which are present. You cannot prompt your way
+out of information that is not in the prompt; every lever pulled so far was on the wrong side of it.
+
+**Ruled — two fields, and the split is the safety of the scheme.** `required_buckets` stays what the
+item exists to test (absence = miss, stays at 1-2, untouched). New `expected_buckets` is what the
+reference answer happens to demonstrate: **judged only if the learner's answer shows it, never a miss
+on absence.** Growing `required_buckets` instead would convert "not demonstrated" into "wrong" and
+make marking worse — the failure the no-single-correct-version ruling exists to prevent.
+
+**Three tiers, because the two halves of Smith's derivation are not equal in value.** Tier 1
+(string-derivable from the reference: vocabulary, gender, accent, spelling) is cheap, certain, and
+buys least — those are what the marker is least bad at. Tier 2 uses **morph-it, already in the repo at
+21 MB**, to tag tense/mood, prepositions, clitics, agreement — proposed, seat ratifies. Tier 3 (word
+order, tense *choice*, register, ellipsis) has no surface signature and is authored by exception.
+
+**Smith's direction (grammar item → which translation items) ratified, unit corrected to per-bucket.**
+440 × 899 is not hand-doable in either direction; with tier 2 proposing it becomes review, and
+per-bucket means the owning seat reviews ~40 candidate items for its own construction — 440 short
+expert reviews rather than 899 long generalist ones, and it matches how seats own buckets not
+sentences.
+
+**Caching question answered: no choice needed.** Cached prefix = standing menu + instructions
+(identical every call, so it caches); uncached tail = this item's expected_buckets + reference +
+learner answer. The shortlist's job is directing attention, not saving tokens, and the menu must stay
+or nothing unlisted can be credited.
+
+**"Can't credit" split in two.** (a) Valid but unlisted → **credit it and name it**
+(`unlisted_credit`), full marks, event to the nightly harvest. **Pushed back on Smith's suggestion to
+tell the learner**: it fires exactly when they have been creative, is unactionable, and reads as the
+system apologising for itself — silence plus full credit is the honest behaviour. (b) Wrong but
+unattributable → the learner IS told, in the answer's own terms without claiming a rule we cannot
+name, and it flags louder to us because it is a hole in the tree.
+
+**Nightly harvest proposes, never writes** — `expected_bucket_suggestions_<topic>.json`, seat
+ratifies, same gate as the misconception registry. A list grown by accretion of whatever the model
+said is a mark scheme nobody wrote.
+
+**One fact outstanding from Smith:** the bench defaulted to temperature 1.0 until 2026-08-03
+(verified: DEFAULT_TEMPERATURE = 0 at worker/src/index.ts:134, bench input defaults 0, bench tooltip
+says 1 "produced the huge spread"). If the model comparison predates that, "expensive models don't
+help" is not yet established. Changes nothing about doing the work; changes what we may claim.
+
+
+## Vocab production rule + equivalence_class sweep (2026-08-05, fourteenth pass)
+
+Smith's live case: prompt "What's the Italian for TV?", answer *la televisione*, marked **0/1 Wrong**,
+with the gender markpoint fired against `tv`. Plus the `sebbene` question — given an English gloss
+that maps onto four Italian conjunctions, nobody can pick the stored one.
+
+**Ruled: an English prompt that maps onto several Italian lexemes cannot demand a specific one.**
+EN→IT credits the lemma **produced**; the asked-for lemma is **blank, not wrong** (`attempted_credit:
+0`, no correctness event). IT→EN is more permissive: any accepted gloss, abbreviation and full form
+crediting each other. The asymmetry is principled — production asks *can you reach for an Italian word
+for this*, recognition asks *do you know what this word means*; neither asks *did you guess which
+entry we stored*. **Corollary: the gender markpoint follows the entry CREDITED, not the entry asked**
+— they wrote *la televisione*, so the gender demonstrated is `televisione`'s (f); firing it against
+`tv` (mf) marks an entry the learner never touched, the same family as the gemello/mobile resolver
+defect. Acceptance test: "TV" + *la televisione* → 1/1, credit on televisione, `tv` carries no event.
+**Depends on the §4.2 fix** (attempted 0 currently reads as correctness 0), or every blank enrols the
+learner's unused alternative in their weakness list.
+
+**Answer to Smith's "have we done enough passes": no, essentially none.** `equivalence_class` covers
+**21 entries of 18,048** — May's four ratified plus six proposed, nothing since. v9's "population is
+opportunistic" **overturned**: on a field at 0.1% that is a decision never to finish, and the rule
+above cannot be relied on until it is.
+
+**Two fields doing one job; `equivalence_class` canonical, `alternatives` retired** (3 entries:
+arancio/arancione, folded into an `orange_colour` class). An adjacency list needs bidirectional hand
+maintenance and cross-editing on every addition; a class id is symmetric and additive.
+
+**The sweep is codifiable, as Smith sensed, in two tiers** — same shape as the translation fire-list
+ruled the same day. Tier 1: same POS, shared gloss token, over all 18,048. It resolves his example
+outright — `sebbene` and `benché` are gloss-identical ("although, though, albeit"); `nonostante`
+(conj) and `malgrado` (conj) share "although" and are the review case, since both also carry a
+prepositional sense that is NOT interchangeable. Tier 2: the residue overlap cannot see — `tv` "TV"
+and `televisione` "television" share no token, so **the very case Smith hit is invisible to tier 1**;
+abbreviation/full-form, morphological pairs, and near-synonyms glossed by different hands. Both tiers
+propose; the seat ratifies; nothing writes itself.
+
+
+## Smith's corrections to the fire-list ruling; one of mine withdrawn (2026-08-05, fifteenth pass)
+
+**Two-sided judgement ratified.** `expected_buckets` has three outcomes, not two: engaged-and-right =
+hit, **engaged-and-wrong = a real miss**, not engaged = blank. Smith's condition, and v24 left it
+implied. Without the middle row the field would be credit-only and marking would go soft. The
+distinction that matters is absent vs wrong, not required vs expected — same three-way shape as the
+vocab production rule ruled the same day.
+
+**The unlisted channel restated as one mechanism.** v24 invented two names for what Smith proposed as
+one thing, and he said he could not follow it. Corrected: the marker reports anything it noticed and
+could not attribute; if the answer was fine we give the marks and log it, if wrong we say so and log
+it; both go to the same nightly harvest. One field, one channel, two dispositions.
+
+**WITHDRAWN: v24's ruling not to show the learner.** Two Smith corrections, both landing. (i) I called
+unattributable errors "rare and alarming"; they will be routine, because the tree covers what we have
+authored, not what a learner might attempt, and above A2 they reach for constructions no item lists.
+A design that alarms on it cries wolf nightly. (ii) I argued the message reads as the system
+apologising; Smith reframed it as *"a feature we can be proud of, this gets better every night"*,
+which dissolves the objection — my complaint was about framing and he changed the framing. It also
+tells the learner their answer was **seen**, which is the real anxiety when you write something
+unusual. So it shows, in both cases, in that register: it must read as the system growing, never as
+the system failing or the answer being suspect, and it never reduces marks.
+
+**Temperature question CLOSED unanswered.** Smith has run the bench many times and cannot say which
+runs predate the 08-03 fix. Ruled instead: **every model claim is re-established on a clean run after
+`expected_buckets` lands; nothing from before it is quoted.** Right rule even if temperature had never
+been wrong — the old numbers describe a marker working without the information we are about to give
+it. The `marker_temperature` provenance field is unaffected (different job: not poisoning coverage).
