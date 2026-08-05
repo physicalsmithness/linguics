@@ -40,10 +40,19 @@ body {
 header {
   position: sticky; top: 0; z-index: 40; background: var(--bg);   /* Linguics permanently there (Smith) */
   border-bottom: 1px solid var(--line);
-  /* r130: a little more air top and bottom - Smith, "it's a bit too squashed at
-     the top". The brand keeps its size and prominence; only the spacing moved. */
-  padding: 22px 28px 4px 28px;
+  padding: 14px 28px 0 28px;
+  /* sticky is itself a positioned element, so #identity-box below can anchor to
+     it absolutely without needing a separate position:relative. */
 }
+/* r131 FREE THE TOP. The page was spending four full-width bands before any
+   content: identity strip, brand row, tab row, filter bar. The identity strip
+   is now pinned inside the header (no band, and it stops scrolling away while
+   the header stays), and the filter bar shares the tab row. Two bands back. */
+.header-row2 { display: flex; align-items: flex-end; gap: 18px; flex-wrap: wrap; }
+#header-filter-slot { flex: 1 1 auto; min-width: 0; display: flex; justify-content: flex-end; }
+#header-filter-slot .filter-bar { margin-bottom: 6px; padding: 4px 8px; border: none; background: transparent; flex-wrap: wrap; justify-content: flex-end; gap: 10px; }
+#header-filter-slot .filter-mode-row { display: inline-flex; }
+.tagline-scope { color: var(--faint); font-style: normal; font-size: 0.86em; }
 
 header h1 { margin: 0 0 4px; font-size: 22px; font-weight: 600; }
 .tagline { margin: 0 0 12px; color: var(--muted); font-style: italic; font-size: 14px; }
@@ -911,22 +920,36 @@ footer {
 #vocab-body {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: minmax(0, 1fr) auto minmax(0, 1.15fr) 158px;
+  /* The question row is AUTO: it takes the height it needs and the frequency
+     square takes whatever is left, rather than both being squeezed to a share.
+     A cramped question card is a wrong layout; a slightly shorter heatmap is
+     not (Smith: "that whole thing could be shrunk, it doesn't affect it much"). */
+  grid-template-rows: auto auto minmax(0, 1fr) 150px;
   grid-template-areas:
     "question themes"
     "axeshead themes"
     "freq     themes"
     "freq     strip";
   gap: 12px 20px;
-  height: calc(100vh - 232px);   /* header + strand nav + filter bar + footer */
+  /* r131: two bands reclaimed at the top (identity strip pinned, filter bar
+     folded into the tab row), so the body gets them back. The question card and
+     the frequency square must both show in full - neither may scroll. */
+  height: calc(100vh - 168px);
   min-height: 460px;
 }
-#vocab-host { grid-area: question; min-width: 0; min-height: 0; overflow-y: auto; }
+/* The question card shows ALL of itself or the layout is wrong (Smith: "you
+   cannot have that bit not showing all of itself in the full with all its
+   glory"). It sizes to content and the grid gives way, rather than clipping. */
+#vocab-host { grid-area: question; min-width: 0; min-height: 0; overflow: visible; }
 #vocab-axes-host { display: contents; }
 .vocab-axes-header { grid-area: axeshead; min-width: 0; }
 .vocab-axis-freq   { grid-area: freq;   min-width: 0; min-height: 0; overflow: hidden; }
 .vocab-axis-themes { grid-area: themes; min-width: 0; min-height: 0; overflow-y: auto; padding-right: 4px; }
 .vocab-axis-gender { grid-area: strip;  min-width: 0; min-height: 0; overflow-y: auto; }
+/* Expanded: the breakdown takes the whole bottom band, both columns, and the
+   compressed cells get room to carry their names instead of hover text. */
+.vocab-axis-gender.axis-expanded { grid-column: 1 / -1; grid-row: 3 / -1; overflow-y: auto; }
+.vocab-axis-gender.axis-expanded .vocab-cell { font-size: 13px; }
 /* A drill replaces the whole right side with its own live breakdown. */
 .drill-session-panel { grid-column: 2; grid-row: 1 / -1; min-height: 0; overflow-y: auto; }
 /* When vocab strand is active, hide the live-stats aside entirely and let
@@ -1539,7 +1562,9 @@ body.strand-vocab-active #live-stats { display: none; }
 
 /* Estate sign-in (shared_login_and_pulse v1): quiet identity block in the
    header; the pill says whether pulses are reaching the class sheet. */
-#identity-box { display: flex; align-items: center; justify-content: flex-end; gap: 8px; font-size: 12px; padding: 3px 28px; background: var(--bg); border-bottom: 1px solid var(--line); }  /* QoderWork 2026-07-22 — strip above header */
+/* r131: pinned inside the header, top right. Costs no vertical band of its own
+   and no longer scrolls away while the sticky header stays put. */
+#identity-box { position: absolute; top: 6px; right: 28px; display: flex; align-items: center; justify-content: flex-end; gap: 8px; font-size: 12px; background: transparent; }
 .identity-who { color: var(--ink); }
 .identity-signin, .identity-save { border: 1px solid var(--accent); background: var(--accent-soft); border-radius: 6px; padding: 4px 12px; cursor: pointer; font-size: 13px; }
 .identity-name { width: 120px; font-size: 13px; padding: 3px 6px; }

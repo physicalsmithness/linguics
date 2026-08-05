@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-08-05-r130";
+  const LL_BUILD = "2026-08-05-r132";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -1228,6 +1228,18 @@
     // the whole right side for the multi-axis heatmap.
     document.body.classList.toggle("strand-vocab-active", name === "vocab");
     document.querySelectorAll("#mobile-tabs button").forEach(b => b.classList.toggle("active", b.dataset.mtab === name));
+    // FREE THE TOP (Smith 2026-08-05: "you haven't freed the space by moving
+    // that third strip with the words and the drills up along there"). The
+    // strand's filter bar moves INTO the header row beside the tabs, so the
+    // page loses a whole band and the question card and heatmap get it back.
+    // Moved rather than duplicated - it is the same element, so every listener
+    // and every re-render inside it keeps working untouched.
+    const slot = document.getElementById("header-filter-slot");
+    if (slot) {
+      const bar = document.getElementById(name + "-filter-bar");
+      if (bar && bar.parentNode !== slot) slot.appendChild(bar);
+      Array.from(slot.children).forEach(c => { c.hidden = (c.id !== name + "-filter-bar"); });
+    }
     if (name === "buckets") renderBucketsBrowse();
     if (name === "grammar") focusGrammarInput();
     if (name === "translation") focusTranslationInput();
@@ -5101,8 +5113,13 @@
 
     host.appendChild(freqAxis);
 
-    // -------- gender axis (production-only, hidden on IT->EN) --------
-    if (activeDir === "active") {
+    // -------- gender axis (production; hidden only on pure IT->EN) --------
+    // Smith 2026-08-05: it was missing in MIXED. vocabHeatmapDir() returns
+    // "any" for mix, and the gate tested === "active", so a mixed session hid
+    // the panel even though half its cards are EN->IT production and gender is
+    // being practised on every one of them. Gate on the direction that actually
+    // rules it out instead.
+    if (activeDir !== "passive") {
     if (typeof window.__vocabGenderHidden === "undefined") window.__vocabGenderHidden = false;
     const genderAxis = document.createElement("div");
     genderAxis.className = "vocab-axis vocab-axis-gender";
@@ -5112,6 +5129,24 @@
     gName.className = "vocab-axis-name";
     gName.textContent = "Gender (nouns, production)";
     genderTitle.appendChild(gName);
+    // EXPAND (Smith 2026-08-05): the bottom strip holds COMPRESSED versions of
+    // these breakdowns - readable at a glance, names on hover - and any one of
+    // them expands to take the whole strip region. This is the answer to the
+    // nine-classes-in-150px problem that neither smaller type nor scrolling
+    // solved: compressed by default, whole-width on demand.
+    const gExpand = document.createElement("button");
+    gExpand.className = "vocab-axis-toggle";
+    gExpand.type = "button";
+    gExpand.textContent = window.__vocabGenderExpanded ? "compress" : "expand";
+    gExpand.title = window.__vocabGenderExpanded
+      ? "Shrink back to the strip"
+      : "Give this breakdown the whole bottom strip";
+    gExpand.addEventListener("click", () => {
+      window.__vocabGenderExpanded = !window.__vocabGenderExpanded;
+      renderVocabAxes();
+    });
+    genderTitle.appendChild(gExpand);
+    if (window.__vocabGenderExpanded) genderAxis.classList.add("axis-expanded");
     const gToggle = document.createElement("button");
     gToggle.className = "vocab-axis-toggle";
     gToggle.type = "button";
@@ -8570,7 +8605,11 @@
     if (!box) {
       box = document.createElement("div");
       box.id = "identity-box";
-      header.parentNode.insertBefore(box, header);  // QoderWork 2026-07-22 — strip ABOVE header line
+      // r131 (Smith): was inserted ABOVE the header, which cost a full-width
+      // band of its own AND scrolled away while the sticky header stayed - the
+      // worst of both. Now it lives inside the header, pinned top-right, so it
+      // costs no vertical space and stays put with everything else.
+      header.appendChild(box);
     }
     box.innerHTML = "";
     const id = LL.pulse.identity();
