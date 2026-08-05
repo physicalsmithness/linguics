@@ -449,10 +449,14 @@ main {
 
 /* Result panel */
 .result {
-  margin-top: 16px;
-  padding: 14px 16px;
+  /* r139: the wine wash is gone (Smith, twice: "we shouldn't have that pink").
+     It tinted every verdict the same colour before the reader reached the
+     green/red that carries the meaning, and it cost padding the feedback area
+     cannot spare. White, one hairline, meaning carried by the marks inside. */
+  margin-top: 12px;
+  padding: 10px 12px;
   border-radius: 4px;
-  background: var(--accent-soft);
+  background: #fff;
   border: 1px solid var(--line);
 }
 .result .overall {
@@ -938,7 +942,10 @@ footer {
      size, answering still moves nothing. The frequency square takes what is
      left, which is the trade Smith already blessed ("that whole thing could be
      shrunk, it doesn't really affect it very much"). */
-  grid-template-rows: 330px auto minmax(110px, 1fr) 138px;
+  /* r139: the frequency square shrinks, on Smith's instruction ("feel free to
+     shrink the frequency thing... there's no way you're going to get it all in
+     unless you do"). Question keeps its 330; the heatmap takes a smaller floor. */
+  grid-template-rows: 330px auto minmax(84px, 0.8fr) 132px;
   grid-template-areas:
     "question themes"
     "axeshead themes"
@@ -1178,8 +1185,15 @@ body.strand-vocab-active #live-stats { display: none; }
 /* A flanking cell / lemma dot containing ANY practised lemma stays marked
    even when the aggregate colour is diluted (Smith 2026-07-21: a practised
    skill must not read as untouched). */
-.freq-flank-cell.has-practice { box-shadow: inset 0 0 0 1.5px var(--touched); }
-.vocab-lemma-dot.has-practice { box-shadow: inset 0 0 0 1.5px var(--touched); }
+/* r139: the blue practised-ring is RETIRED (Smith: "let's retire the blue
+   squares... it's totally swamping the colour"). It was meant to separate
+   practised-but-poor from never-seen, but at this cell size the ring is most of
+   the cell, so every practised word read blue first and its own red/green
+   second. The colour already says it: untouched cells sit at the cream end of
+   the ramp. Kept as a no-op rule rather than deleted so the classes still exist
+   for anything that queries them. */
+.freq-flank-cell.has-practice { box-shadow: none; }
+.vocab-lemma-dot.has-practice { box-shadow: none; }
 /* Gender drill: fixed-option classifier choices — compact 2-col grid.  QoderWork 2026-07-22 */
 /* Gender drill, two tiers (r127). Seven equal buttons framed a two-way decision
    as a seven-way one - Smith: "it looks just intimidating". Masculine and
@@ -2425,10 +2439,22 @@ h1, h2, h3, .wordmark, .coverage-title, .analysis-section-title { font-family: F
 /* r137: the themes column keeps its heading while its body scrolls, so you
    always know which panel you are inside (Smith: "we want at least themes to be
    sticky"). Solid background or the rows show through it. */
-.vocab-axis-themes .vocab-axis-title { position: sticky; top: 0; z-index: 3;
-  background: var(--bg); padding-bottom: 4px; }
-.vocab-axis-gender .vocab-axis-title { position: sticky; top: 0; z-index: 3;
-  background: var(--bg); padding-bottom: 3px; }
+/* r139: these were sticky but SEE-THROUGH, so the rows scrolled visibly behind
+   the heading text (Smith: "things go behind it"). An opaque background is not
+   enough on its own - the title must also span the full scroll width and stop
+   the content at its edge, hence the negative margins and the rule beneath. */
+.vocab-axis-themes .vocab-axis-title,
+.vocab-axis-gender .vocab-axis-title {
+  position: sticky; top: 0; z-index: 4;
+  background: var(--bg);
+  margin: 0 -6px; padding: 4px 6px 5px;
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 3px 6px -4px rgba(0,0,0,0.18);
+}
 /* The footer must never be see-through: content scrolling under it was drawing
    straight through the text in Smith's shots. */
 footer { background: var(--bg); position: relative; z-index: 20; }
+
+/* r139 footer order (Smith): build to the left, streak pushed hard right so it
+   is not lost in the middle of the status line. */
+#streak-host { margin-left: auto; }

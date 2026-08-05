@@ -85,6 +85,53 @@ code) and an `esbuild` piped into `tail`, so the shell read *tail's* exit status
 
 ## 5. What is on Housing right now
 
+**REWRITTEN 2026-08-05 at the end of the r124-r139 session.** The seat is NOT empty
+and the section below (from 08-03) is now history, kept for its routing.
+
+### Read these three first
+
+1. **The vocab page still scrolls.** It must not. Everything else in the layout is
+   decoration until this is true. Two of my own fixes caused it in turn: an `auto`
+   question row made the layout jump when you answered, and the `min-height` I used
+   to stop the jump forced the body taller than the viewport. The lesson, paid for
+   twice: when a region must both never move and always fit, use a FIXED track and
+   put the variable content in a scrollbox inside it. Never re-tune the track.
+2. **The top bar still wants a band removed**, and the feedback area still has no
+   room - worst on the translation card, where the result falls off the bottom.
+   Smith's own instruction: kill Intent/Guess/Sense/Flair if unused, push it all up.
+3. **The gender panel flashes on recognition cards** (found in Smith's last message,
+   NOT fixed). See the queue entry - and check whether the STATISTICS are
+   contaminated too, not just the flash.
+
+### The design, as Smith has ruled it
+
+Quadrant layout, REAL components, nothing redesigned: question top-left, the real
+frequency square bottom-left, the real themes column down the right (scrolling,
+sticky heading), and gender/spelling/accent/stress in a reserved bottom-right strip
+as COMPRESSED panels with hover names, any one expandable UPWARDS into the themes.
+A drill entering makes its own breakdown dominate. The scrub rail slides and moves a
+different thousand into principal focus. All filters - including anything chosen on
+the entry screen - are ONE state object that both screens write and every panel
+reads, shown as removable chips with provenance, with boxes round the in-scope theme
+and frequency block. Mockups: `mockups/vocab_redesign/vocab_redesign_v2.html`.
+
+### Unbuilt
+
+The scrub rail; the unified filter object + scope chips; the spelling/accent/stress
+mini-panels (gender is the ONLY axis section that exists - those three are new
+builds, not moves); the stale "N touched" caption (the dots update live, the caption
+only on a full rebuild).
+
+### How Smith wants to be talked to
+
+Ship plenty per round, not one change at a time. But NEVER cite a build number at
+him - "don't refer to r135 and expect me to know what r135 is". Give a NUMBERED
+check-list in plain words describing what to look at and what should happen.
+
+---
+
+## 5b. The 08-03 picture, kept for its routing
+
 **Nothing.** Every open item names someone else:
 
 - **Architecture** — mint `phonology` (12,446 stress items fire into a tree that

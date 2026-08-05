@@ -2526,3 +2526,59 @@ runs predate the 08-03 fix. Ruled instead: **every model claim is re-established
 `expected_buckets` lands; nothing from before it is quoted.** Right rule even if temperature had never
 been wrong — the old numbers describe a marker working without the information we are about to give
 it. The `marker_temperature` provenance field is unaffected (different job: not poisoning coverage).
+
+
+## Work order written for outside hands (2026-08-05, sixteenth pass)
+
+Smith is out of credits and is handing the mechanical passes to other AIs to finish before the reset.
+`WORK_ORDER_2026-08-05_mechanical_passes.md` written at the repo root: five self-contained jobs, each
+copy-pasteable into a fresh session with no prior context, each with its own why, inputs, explicit
+DO-NOTs and runnable acceptance tests. Shared preamble carries the estate safety rules (live folder
+not the OneDrive mirror; atomic JSON writes; the never-write list; count from the file not from
+memory; propose rather than decide).
+
+Jobs: (1) equivalence-class tier-1 sweep, proposal-only, 18,048 entries; (2) `expected_buckets` tier-1
+deriver over 899 translation items, the only one that writes to live data, guarded by a
+byte-identical check on `required_buckets`; (3) gender bare-id sweep, ~129 references; (4) the four
+small Housing code fixes, flagged as Housing's territory with a note to ask Smith before handing to a
+general AI; (5) the morph-it tier-2 tagger, marked for the most capable model and constrained to
+under-propose.
+
+Third instance of the equivalence-class failure arrived with it: *"What's the Italian for dry?"*
+answered `secco`, marked wrong against `asciutto`. Unlike tv/televisione this one IS caught by tier 1
+(both gloss "dry"), which is now Job 1's second acceptance test. The same screenshot still shows
+"RIGHT ANSWER", which the feedback redesign is meant to remove — riders thread, unchanged.
+
+
+## Noun-class taxonomy: two axes merged, one class misnamed, 1,809 unclassified (2026-08-05, seventeenth pass)
+
+Smith flagged the gender-coverage panel as incoherent. Derived, and he is right four ways.
+`inter_chat/Architecture_Vocab_noun_class_taxonomy.md` v1.
+
+**Two taxonomies are being shown as one list.** `noun_class` is a FORM-CUE axis (how can you tell:
+-o, -a, -e, greek -ma, -ista, loanword, accented-final); `GENDER_CLASSES` in app.js is an ANSWER axis
+(what is it: Masculine, Feminine, M-or-F-by-person...). "Masculine" is a fine answer for the drill and
+not a group anyone could study, because it says nothing about how you would know. Housing shows one
+axis per panel; `noun_class` is the useful one for coverage, since a learner can act on "weak on -e
+nouns" and cannot act on "weak on masculine nouns".
+
+**The "—" tile is a gap, not a group, and it is the easiest win on the list.** 1,809 noun entries
+carry no `noun_class`. They are not hard cases: 1,267 (70%) are trivially regular (-o + masculine or
+-a + feminine), 0 end in -e, leaving 542 for review. A classifier that stopped, not a taxonomy
+problem.
+
+**`invariable_accented_final` is named after the wrong axis and hides a strong cue.** 296 entries;
+split by final vowel, **-à is 268 of them and 97% feminine** (città, libertà, università). The label
+describes plural behaviour and leaves gender unstated — exactly Smith's objection. Proposed split:
+`accented_a_fem` (~268, cue: feminine) and `accented_other` (~28, mixed). The invariable-plural fact
+belongs on the NUMBER axis; forcing one field to carry gender and number is what produced the
+confusing label.
+
+**Answer to "are the loanwords masculine": for 57% we do not know.** `invariable_loanword` is 1,131
+entries — 399 m, 72 f, 16 mf, **644 ambiguous**. Useless as a cue at that rate, and potentially
+unanswerable as a drill category (if the drill serves one of the 644 there is no correct button — a
+live bug if so, worth checking). The 644 want filling per entry, not in bulk; where usage genuinely
+varies (email, app) the honest value is `mf`.
+
+No new field needed. Both fields exist and are the right shape; they are unfinished, and one class is
+named after the wrong axis.
