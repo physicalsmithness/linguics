@@ -920,11 +920,13 @@ footer {
 #vocab-body {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  /* The question row is AUTO: it takes the height it needs and the frequency
-     square takes whatever is left, rather than both being squeezed to a share.
-     A cramped question card is a wrong layout; a slightly shorter heatmap is
-     not (Smith: "that whole thing could be shrunk, it doesn't affect it much"). */
-  grid-template-rows: auto auto minmax(0, 1fr) 150px;
+  /* r133: the question row is a STABLE share again, not `auto`. r131's auto row
+     cured the cramped card and bought a worse fault: marking an answer grew the
+     card, which grew the row, which squeezed the frequency square off screen -
+     "it's making that jump up and down, which is not ideal". Nothing may move
+     when you answer. So the row is fixed, the prompt/input/buttons always show,
+     and the RESULT scrolls inside the card (.card-result below). */
+  grid-template-rows: minmax(0, 1.05fr) auto minmax(0, 1fr) 150px;
   grid-template-areas:
     "question themes"
     "axeshead themes"
@@ -937,18 +939,20 @@ footer {
   height: calc(100vh - 168px);
   min-height: 460px;
 }
-/* The question card shows ALL of itself or the layout is wrong (Smith: "you
-   cannot have that bit not showing all of itself in the full with all its
-   glory"). It sizes to content and the grid gives way, rather than clipping. */
-#vocab-host { grid-area: question; min-width: 0; min-height: 0; overflow: visible; }
+/* The card fills its quadrant and never scrolls as a whole: the question, the
+   input and the buttons are always on screen. Only the result region moves. */
+#vocab-host { grid-area: question; min-width: 0; min-height: 0; overflow: hidden; display: flex; flex-direction: column; }
+#vocab-host > .qcard { display: flex; flex-direction: column; min-height: 0; flex: 1 1 auto; }
+#vocab-host .card-result { flex: 1 1 auto; min-height: 0; overflow-y: auto; }
 #vocab-axes-host { display: contents; }
 .vocab-axes-header { grid-area: axeshead; min-width: 0; }
 .vocab-axis-freq   { grid-area: freq;   min-width: 0; min-height: 0; overflow: hidden; }
 .vocab-axis-themes { grid-area: themes; min-width: 0; min-height: 0; overflow-y: auto; padding-right: 4px; }
 .vocab-axis-gender { grid-area: strip;  min-width: 0; min-height: 0; overflow-y: auto; }
-/* Expanded: the breakdown takes the whole bottom band, both columns, and the
-   compressed cells get room to carry their names instead of hover text. */
-.vocab-axis-gender.axis-expanded { grid-column: 1 / -1; grid-row: 3 / -1; overflow-y: auto; }
+/* Expanded (Smith 2026-08-05): it keeps its own strip and grows UPWARDS,
+   stealing from the themes for the extra room - it never crosses into the
+   question or the frequency square. Same column, more rows. */
+.vocab-axis-gender.axis-expanded { grid-column: 2; grid-row: 2 / -1; overflow-y: auto; z-index: 1; }
 .vocab-axis-gender.axis-expanded .vocab-cell { font-size: 13px; }
 /* A drill replaces the whole right side with its own live breakdown. */
 .drill-session-panel { grid-column: 2; grid-row: 1 / -1; min-height: 0; overflow-y: auto; }
@@ -2373,3 +2377,17 @@ h1, h2, h3, .wordmark, .coverage-title, .analysis-section-title { font-family: F
 .entry-start-wait { font-size: 12.5px; color: var(--muted); font-style: italic; margin-top: 6px; }
 .entry-start-error { margin-top: 8px; padding: 8px 12px; font-size: 13px;
   background: var(--red-soft); border-left: 3px solid var(--red); border-radius: 0 4px 4px 0; }
+
+/* r133: label the correct answer when the diff cannot speak for itself (the
+   learner's half is suppressed as a duplicate, which is every vocab item). */
+.diff-correct-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--muted); margin-right: 7px; }
+
+/* The learner's own word, named back on a miss (r134). Quiet blue - it is
+   information, not a verdict, and must never read as a second mark. */
+.their-answer { display: flex; align-items: baseline; flex-wrap: wrap; gap: 7px;
+  margin-top: 10px; padding: 8px 12px; font-size: 14px;
+  background: var(--blue-soft); border-left: 3px solid var(--blue); border-radius: 0 4px 4px 0; }
+.their-answer-lead, .their-answer-mid { color: var(--muted); font-size: 13px; }
+.their-answer-said { font-style: italic; }
+.their-answer-is { font-weight: 700; color: #25406b; }

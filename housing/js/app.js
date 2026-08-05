@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-08-05-r132";
+  const LL_BUILD = "2026-08-05-r134";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -4257,6 +4257,12 @@
     card.appendChild(actions);
 
     const resultHost = document.createElement("div");
+    // Named so the layout can give the RESULT its own scrollbox. Without that,
+    // marking an answer grows the card, the question row grows with it, and the
+    // frequency square below is squeezed off screen - Smith, live 2026-08-05:
+    // "it's making that jump up and down, which is not ideal". The prompt, the
+    // input and the buttons stay put; only the result area moves.
+    resultHost.className = "card-result";
     card.appendChild(resultHost);
 
     const doMark = () => {
@@ -5869,6 +5875,69 @@
     return false;
   }
 
+  // WHAT THE LEARNER'S OWN ANSWER ACTUALLY IS (Smith, live 2026-08-05).
+  //
+  // He was shown `fondo`, guessed "background", and was told fondo means depth.
+  // What he was NOT told is the thing he actually wanted: that background is
+  // `sfondo`. He went and looked it up. "You will always want to know that...
+  // I need to know straight away."
+  //
+  // So on a wrong answer we look the LEARNER'S OWN WORD up and name it:
+  //   IT->EN  they typed English -> which Italian word is that?   background -> sfondo
+  //   EN->IT  they typed Italian -> what does that word mean?     sfondo -> background
+  // Two words are learned from one miss instead of one, and the miss stops
+  // sending them out of the app to a dictionary.
+  //
+  // EXACT normalised matching only, and silence when there is no match. This is
+  // the r104 phantom-lemmatiser lesson: a fuzzy guess here would invent a fact
+  // and print it with authority. Better to say nothing than to teach a word
+  // that does not exist.
+  let _reverseIdx = null;
+  function reverseVocabIndex() {
+    if (_reverseIdx) return _reverseIdx;
+    const norm = t => String(t || "").trim().toLowerCase()
+      .replace(/\([^)]*\)/g, "").replace(/\[[^\]]*\]/g, "")
+      .replace(/^(the|a|an|to)\s+/, "").replace(/\s+/g, " ").trim();
+    const enToIt = new Map();   // english sense -> [italian lemmas]
+    const itToEn = new Map();   // italian lemma  -> english gloss
+    for (const e of (vocabEntries || [])) {
+      if (!e || !e.lemma) continue;
+      const lem = String(e.lemma);
+      if (e.translation_en && !itToEn.has(norm(lem))) itToEn.set(norm(lem), String(e.translation_en));
+      for (const piece of String(e.translation_en || "").split(/[,;\/]/)) {
+        const k = norm(piece);
+        if (!k) continue;
+        let arr = enToIt.get(k);
+        if (!arr) { arr = []; enToIt.set(k, arr); }
+        if (!arr.some(x => x.lemma === lem)) arr.push({ lemma: lem, rank: (typeof e.rank === "number") ? e.rank : 1e9 });
+      }
+    }
+    // Commonest first: three candidates is plenty and the learner should meet
+    // the everyday word before the literary one (background -> sfondo, not
+    // retaggio, which is what an unsorted list happened to lead with).
+    for (const arr of enToIt.values()) arr.sort((a, b) => a.rank - b.rank);
+    _reverseIdx = { enToIt, itToEn, norm };
+    return _reverseIdx;
+  }
+  // Returns {said, is} to show beside a miss, or null when we cannot say
+  // truthfully. `targetIsh` suppresses the line when the learner's word IS the
+  // answer under another spelling - the diff already covers that case.
+  function whatTheySaidIs(rawAnswer, isItEn, targetText) {
+    const ix = reverseVocabIndex();
+    const k = ix.norm(rawAnswer);
+    if (!k || k.length < 2) return null;
+    if (k === ix.norm(targetText)) return null;
+    if (isItEn) {
+      const lemmas = ix.enToIt.get(k);
+      if (!lemmas || !lemmas.length) return null;
+      return { said: String(rawAnswer).trim(), is: lemmas.slice(0, 3).map(x => x.lemma).join(" / "), dir: "en_it" };
+    }
+    const gloss = ix.itToEn.get(k);
+    if (!gloss) return null;
+    return { said: String(rawAnswer).trim(), is: gloss, dir: "it_en" };
+  }
+  LL._whatTheySaidIs = whatTheySaidIs;   // exposed for the self-test
+
   function markVocab(entry, raw, isItEn, regime) {
     // Active/passive split: IT→EN tests passive recognition; EN→IT tests
     // active production. The vocab tab's direction toggle drives the variant.
@@ -5976,6 +6045,12 @@
       alternatives: acceptableList,
       explanation: reason || undefined
     });
+    // Name the learner's own word back to them when they missed. See
+    // whatTheySaidIs: silent unless the corpus can say it exactly.
+    if (outcome !== "hit" && trimmed) {
+      const said = whatTheySaidIs(trimmed, isItEn, cleanedExpected || target);
+      if (said) result.overall.their_answer = said;
+    }
     if (markedEntry.band) {
       result.markpoints.push({
         bucket: markedEntry.band,
@@ -7128,6 +7203,22 @@
           diff.appendChild(ar);
         }
         if (hasExpected) {
+          // R1 deleted the "Right answer:" row because the arrow diff carries
+          // the meaning: learner-word -> correct-word. But when the learner's
+          // half is SUPPRESSED as a duplicate of the raw response - which is
+          // EVERY vocab item, since the vocab markpoint's evidence IS the raw
+          // answer - the arrow goes with it and the surviving word sits there
+          // unlabelled. Smith, live 2026-08-05: "if you choose the wrong word
+          // you get it wrong, you need to be told somewhere what's right...
+          // have I put background for fondo? I need to know what background is."
+          // He was looking at the right answer and could not tell it from his
+          // own. Label it in exactly the case where the diff cannot speak.
+          if (!showLearner) {
+            const lab = document.createElement("span");
+            lab.className = "diff-correct-label";
+            lab.textContent = "right answer";
+            diff.appendChild(lab);
+          }
           const c = document.createElement("span");
           c.className = "diff-correct";
           c.textContent = mp.expected;
@@ -7273,6 +7364,29 @@
         for (const ln of lines) block.appendChild(ln);
         root.appendChild(block);
       }
+    }
+    // The learner's OWN word, named back to them (Smith 2026-08-05: guessed
+    // "background" for fondo, was told fondo means depth, and still had to go
+    // and look up that background is sfondo). Sits above the explanation
+    // because it is the thing they wanted to know first.
+    if (result.overall && result.overall.their_answer) {
+      const ta = result.overall.their_answer;
+      const box = document.createElement("div");
+      box.className = "their-answer";
+      const lead = document.createElement("span");
+      lead.className = "their-answer-lead";
+      lead.textContent = (ta.dir === "en_it") ? "You said" : "You wrote";
+      const said = document.createElement("span");
+      said.className = "their-answer-said";
+      said.textContent = ta.said;
+      const mid = document.createElement("span");
+      mid.className = "their-answer-mid";
+      mid.textContent = (ta.dir === "en_it") ? "\u2014 that\u2019s" : "\u2014 that means";
+      const is = document.createElement("span");
+      is.className = "their-answer-is";
+      is.textContent = ta.is;
+      box.appendChild(lead); box.appendChild(said); box.appendChild(mid); box.appendChild(is);
+      root.appendChild(box);
     }
     if (result.overall.explanation) {
       const ex = document.createElement("div");
