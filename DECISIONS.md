@@ -2296,3 +2296,87 @@ outputs/backup_migrations_2026-08-03/. Display today is UNCHANGED (textContent r
 spaces) until Housing ships riders-R8's one CSS line, at which point 238 explanations paragraph
 themselves. New long explanations are authored with breaks (house style extended; next brief rev
 carries the line).
+
+
+## Selection policy ruled + resume reversal (2026-08-05, tenth pass)
+
+Live-learner feedback via Smith: *"I want to go back to exactly the same questions I got wrong
+yesterday."* Plus the two entry-screen shortcuts read as broken, and the drills want a total-coverage
+view. Passed to Housing as **`inter_chat/Architecture_Housing_selection_policy.md` v1**, with a
+mockup at `mockups/selection_policy/`.
+
+**The load-bearing defect: vocab and drill attempts record no item identity.** `store.js
+recordAttempt` keys `question_id`/`item_id` off `strand === "grammar" | "translation"` and reads
+`.external_id`; the five vocab/drill call sites each build a good id and pass it as `.id`. All five
+are discarded, so every vocab and drill attempt in every learner's localStorage carries null
+identity. Bucket events survive, which is why it went unseen. Ruled: one `item_ref` field on every
+attempt, all strands, `<strand>:<id>`; no back-fill; **deck-position fallback ids
+(`"spelling_" + spellingIndex`) deleted** — an index into a shuffled deck aliases distinct items onto
+one key and manufactures wrong history, which is worse than null. Identity rule ratified as the
+callers already had it: *an item's identity is what makes it a different test* (vocab = lemma +
+direction).
+
+**Selection becomes one shared object, not five hard-coded shuffles.** Today grammar/translation
+plain-shuffle, vocab weight-shuffles on 1.1−correctness, drills plain-shuffle; none persist, none are
+item-level, none are user-visible. Ruled: `selection {pool, order, repeat, ladder, thread}` sits
+beside the filter — **filter says what is in scope, policy says how to walk it** — consumed by one
+deck builder. Five presets: unseen-only, wrong-again (oldest first), shakiest (weakest first),
+threaded revision (1 in 4), and today's random shuffle as the untouched default. Exhaustion ladder
+unseen→wrong→shaky→all, and **it must announce itself**.
+
+**welcome_entry_screen v11 REVERSED.** It ruled resume stays settings-only and closed with "revisit
+only if learners ask for it"; a learner has asked, so the revisit clause fired. Resume now restores
+deck + position, not just settings. Today it restores the settings then reshuffles, so the learner
+gets a different question set under a heading promising the same one — reading that as broken is
+correct. v14 stub added to the superseded thread so nobody builds to v11.
+
+**Four defects in "Work on recent weaknesses", all provable by reading:** (1) it is not recent —
+`allBucketStats` is unweighted all-time while the recency-weighted path sits unused in the same file;
+(2) never-attempted sorts as weakest, because `correctness` returns 0 when `attempted` is 0, so the
+deck is fronted by material the learner has not attempted rather than material they got wrong —
+*not attempted* and *wrong* are different facts and the ranking fuses them; (3) **silent fallback to
+the entire corpus** when no grammar item touches the weak buckets, the best candidate for what the
+learner actually hit; (4) grammar-only, so vocab and drill weaknesses are unreachable. Fifth, not a
+defect: it is bucket-level by design, so even working it reaches the topic and never the question.
+
+**Drills: one statistics system, not two.** `drillSession` keeps private counters in
+`linguics_drill_sessions` with no denominator, which is exactly why coverage cannot be read. Standing
+view derives from `attempts` (hence the §1 dependency); `drillSession` stays as the session strip.
+Reuses the existing vocab dot-grid rather than a new component.
+
+
+## Selection policy v2: §1 CORRECTED, weakness panel ruled (2026-08-05, eleventh pass)
+
+**Correction to the pass above, on Smith's question.** He asked whether gender coverage is kept at
+all; I read it rather than answered, and the v1 claim ("vocab and all four drills record no
+recoverable identity") was too strong. The vocab bucket id is not a topic label: `entryBucketId`
+composes `vocabulary.it.<lemma>.<pos>[.<gender>][.<number>].<aspect>.<direction>` and
+`parseVocabBucketId` reads it back, which is how `eventsForEntry` and `practisedLemmas` already do
+per-lemma work. The gender drill emits aspect `gender`, which is in the parser's whitelist, so **the
+lemma survives and gender coverage IS kept.** The real gap is the three authored-MCQ drills
+(spelling, accent, stress), whose buckets name the class and whose `external_id` the store discards:
+you know doubling was missed, not which word.
+
+`item_ref` still ruled, on a narrower justification: vocab identity is **recoverable by parsing, not
+recorded** (a hard-coded ASPECTS array plus gender-slot sniffing — add an aspect and its events
+silently vanish from per-entry history), and one field gives the selection code one path instead of
+three. Consequence: the gender-drill coverage grid is buildable today; the other three wait.
+
+**Item reading vs kind reading separated.** "The exact question I got wrong" is a set-membership test
+on `item_ref` and is trivial. "The kind of thing I keep getting wrong" is not derivable from item ids
+at all, because the error's shape lives in what the learner did, not in the item. Ruled: that is the
+**misconception axis**, already built for it (106 ids, guards, `buildMcqResult` firing distractor
+misconceptions) — what is missing is a view, not a classifier. Bucket axis answers *what skill*,
+misconception axis answers *what mistake*; the two must be rendered separately, not merged.
+Human-facing labels are MisconceptionAnalyst's; Housing renders `label`, never `id`.
+
+**"Work on recent weaknesses" becomes a panel, not a button.** Smith's point that it cannot launch
+without knowing the strand is right, and the answer is *don't ask, show*: rows generated from the
+learner's own history, each row both naming the strand and launching it. Empty means absent, which
+kills the silent-fallback defect outright — a row that would find nothing is never rendered, so
+there is nothing to fall back from. Bucket rows above, misconception rows below, counts shown, order
+by recent-miss count not by ratio. Architecture supplies the row taxonomy and the English on
+request; it is not Housing's queue.
+
+Work reordered for a loaded Housing: silent-fallback two-liner, then the gender coverage grid (no
+dependency), then `item_ref`, then the presets, then the panel and resume.

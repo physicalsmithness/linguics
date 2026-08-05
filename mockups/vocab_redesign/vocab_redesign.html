@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Vocab page — redesign mockup (Housing, 2026-08-05)</title>
+<style>
+:root{
+  --bg:#fdfaf4; --ink:#1c1c1c; --muted:#6b6b6b; --faint:#999;
+  --accent:#8f2b45; --accent-soft:#f2e7e8;
+  --green:#235c3c; --green-soft:#e4eee7; --blue:#4a89c7; --blue-soft:#e5eef6;
+  --amber:#b58a00; --amber-soft:#f8efd5; --line:#e6e1d6; --touched:#4a89c7;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-size:15px;line-height:1.5}
+.wrap{max-width:1480px;margin:0 auto;padding:20px 28px 48px}
+h1{font-size:20px;font-weight:600;margin:0 0 2px}
+.sub{color:var(--muted);font-size:13.5px;margin:0 0 18px}
+.note{background:#fff;border-left:3px solid var(--accent);padding:10px 14px;margin:0 0 22px;font-size:13.5px}
+.note b{color:var(--accent)}
+
+/* ---------- the mock chrome ---------- */
+.mock{border:1px solid var(--line);background:#fff;border-radius:6px;overflow:hidden;margin-bottom:30px}
+.mockbar{background:var(--accent-soft);border-bottom:1px solid var(--line);padding:5px 12px;
+  font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.mockbody{padding:16px 18px 20px}
+
+/* ---------- scope bar (NEW) ---------- */
+.scopebar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  background:var(--amber-soft);border:1px solid #e6d9ae;border-radius:6px;padding:9px 12px;margin-bottom:14px}
+.scope-lead{font-weight:700;font-size:13px;color:#6d5400;letter-spacing:.01em}
+.chip{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--line);
+  border-radius:14px;padding:3px 6px 3px 11px;font-size:13px}
+.chip .src{font-size:10.5px;color:var(--faint);text-transform:uppercase;letter-spacing:.05em}
+.chip .x{display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;border-radius:50%;
+  background:var(--accent-soft);color:var(--accent);font-size:12px;font-weight:700;cursor:pointer}
+.chip.freq{border-color:#b9d0ef;background:var(--blue-soft)}
+.chip.cat{border-color:#cbb9d6;background:#f3ecf6}
+.scope-count{margin-left:auto;font-size:13px;color:var(--muted)}
+.scope-clear{font-size:12.5px;color:var(--accent);text-decoration:underline;cursor:pointer}
+
+/* ---------- two-column body ---------- */
+.body2{display:grid;grid-template-columns:1fr 380px;gap:22px;align-items:start}
+
+.card{border:1px solid var(--line);border-radius:8px;background:#fff;padding:16px 18px}
+.qprompt{font-size:19px;margin:0 0 12px}
+.qinput{width:100%;border:1.5px solid var(--line);border-radius:5px;padding:9px 11px;font-size:16px;
+  font-family:inherit;background:#fdfdfb;color:var(--faint)}
+.qactions{display:flex;gap:9px;align-items:center;margin-top:11px}
+.btn{border:1px solid var(--accent);background:var(--accent);color:#fff;border-radius:5px;
+  padding:6px 15px;font-family:inherit;font-size:14px;cursor:pointer}
+.btn.sec{background:#fff;color:var(--accent)}
+.kbd{font-size:12px;color:var(--faint)}
+
+/* ---------- frequency panel ---------- */
+.panel{border:1px solid var(--line);border-radius:8px;background:#fff;padding:14px 16px 16px;margin-top:18px}
+.paneltitle{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:3px}
+.paneltitle .name{font-size:15.5px;font-weight:700}
+.paneltitle .what{font-size:12.5px;color:var(--muted);font-style:italic}
+.panelsub{font-size:12.5px;color:var(--muted);margin-bottom:11px}
+
+.freqrow{display:flex;align-items:flex-start;gap:2px}
+.blockcol{display:flex;flex-direction:column;align-items:center;gap:3px}
+.tick{font-size:10px;color:var(--faint)}
+.tick.on{color:var(--accent);font-weight:700}
+.focusgrid{display:grid;grid-template-columns:repeat(10,1fr);gap:2px;
+  padding:4px;border:2px solid var(--accent);border-radius:4px;background:#fdfaf4}
+.fbox{display:grid;grid-template-columns:repeat(3,4px);grid-template-rows:repeat(3,4px);gap:1px}
+.fdot{width:4px;height:4px;border-radius:1px}
+.strip{display:grid;gap:1px;padding:3px;border:1px solid var(--line);border-radius:3px;background:#fdfaf4;cursor:pointer}
+.strip.near{grid-template-columns:repeat(6,5px)}
+.strip.far{grid-template-columns:repeat(1,7px)}
+.scell{height:6px;border-radius:1px}
+.strip.inscope{outline:2px solid var(--blue);outline-offset:1px}
+
+/* the view handle (NEW) */
+.handlerow{margin-top:10px;display:flex;align-items:center;gap:10px}
+.rail{position:relative;flex:1;height:22px;border:1px solid var(--line);border-radius:11px;background:#fbf8f1}
+.railfill{position:absolute;top:2px;bottom:2px;left:11%;width:12%;border-radius:9px;background:var(--blue-soft);border:1px solid #b9d0ef}
+.grip{position:absolute;top:-3px;height:26px;width:11px;border-radius:4px;background:#fff;border:1.5px solid var(--blue);cursor:ew-resize}
+.grip.a{left:calc(11% - 5px)} .grip.b{left:calc(23% - 5px)}
+.railcap{font-size:12px;color:var(--muted);white-space:nowrap}
+.actionrow{margin-top:9px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.smallbtn{border:1px solid var(--blue);color:#25406b;background:var(--blue-soft);border-radius:13px;
+  padding:3px 11px;font-family:inherit;font-size:12.5px;cursor:pointer}
+.hintline{font-size:12px;color:var(--faint)}
+
+/* ---------- right column: categories ---------- */
+.rightcol{border:1px solid var(--line);border-radius:8px;background:#fff;
+  max-height:640px;overflow-y:auto;position:sticky;top:12px}
+.rc-head{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);padding:11px 14px 9px;z-index:2}
+.rc-title{font-size:15px;font-weight:700}
+.rc-sub{font-size:12px;color:var(--muted)}
+.rc-tabs{display:flex;gap:5px;margin-top:9px;flex-wrap:wrap}
+.rc-tab{border:1px solid var(--line);background:#fbf8f1;border-radius:12px;padding:2px 10px;font-size:12px;cursor:pointer}
+.rc-tab.on{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+.rc-sec{padding:11px 14px 4px}
+.rc-sec h4{margin:0 0 7px;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700}
+.catgrid{display:grid;grid-template-columns:1fr 34px 30px;gap:2px 8px;align-items:center;font-size:13px}
+.catname{padding:2px 0}
+.catbar{height:15px;border-radius:2px}
+.catn{font-size:11px;color:var(--faint);text-align:center}
+.catrow.inscope .catname{font-weight:700;color:var(--accent)}
+.catrow.inscope .catbar{outline:2px solid var(--accent);outline-offset:1px}
+.legend{display:flex;align-items:center;gap:7px;font-size:11.5px;color:var(--muted);padding:8px 14px 12px}
+.legbar{height:11px;width:120px;border-radius:2px;
+  background:linear-gradient(to right,#fdfaf4,#cfe0d2,#7fb493,#235c3c)}
+
+.cap{font-size:12.5px;color:var(--muted);margin:8px 2px 0}
+.ask{background:#fff;border:1px solid var(--line);border-left:3px solid var(--blue);
+  padding:11px 14px;margin:8px 0;font-size:13.5px}
+.ask b{color:#25406b}
+table.q{border-collapse:collapse;font-size:13px;margin-top:6px}
+table.q th,table.q td{border:1px solid var(--line);padding:5px 9px;text-align:center;vertical-align:middle}
+table.q th{background:#faf7f0;font-weight:600}
+table.q td.l{text-align:left}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Vocab page — redesign mockup</h1>
+<p class="sub">Housing, 2026-08-05, in response to Smith's live round. Static mockup: nothing here is wired.</p>
+
+<div class="note">
+<b>What this is answering.</b> Six reports: the chart is slow; a filter set on the entry screen is invisible
+and unclearable here; clicking a thousand-block was meant to <i>move the view</i> and instead <i>filtered the deck</i>;
+nothing says these are the most common words in Italian; the category you chose isn't shown as the thing filtering;
+and there is no obvious way back to the entry screen. The slowness is already fixed in r127 and is not a design
+question — everything below is.
+</div>
+
+<!-- ============================================ CURRENT -->
+<div class="mock">
+  <div class="mockbar">Today — what it looks like now</div>
+  <div class="mockbody">
+    <div style="display:flex;gap:8px;align-items:center;font-size:13px;color:var(--muted);
+                border:1px dashed var(--line);border-radius:5px;padding:8px 11px;margin-bottom:12px">
+      <span style="background:var(--accent);color:#fff;border-radius:11px;padding:2px 10px;font-size:12.5px">Words</span>
+      <span style="border:1px solid var(--line);border-radius:11px;padding:2px 10px;font-size:12.5px">Gender drill</span>
+      <span style="border:1px solid var(--line);border-radius:11px;padding:2px 10px;font-size:12.5px">Spelling drill</span>
+      <span style="margin-left:14px">Direction: <b>IT→EN</b></span>
+      <span>Top: <b>all</b></span>
+      <span>Sub-band: <b>any</b></span>
+      <span style="margin-left:auto;color:var(--faint)">412 of 18,048</span>
+    </div>
+    <p class="cap" style="margin-top:0">
+      The only trace of an entry-screen selection is <b>“412 of 18,048”</b>. Which filter, set where, and how to
+      lift it — none of it is on screen. The Top and Sub-band dropdowns both read “all”, because the entry
+      builder writes a <i>different field</i> (<code>rankRanges</code>) from the one they display (<code>topN</code>,
+      <code>subBand</code>). Nothing renders <code>themes</code> at all, so “colours” is invisible by construction.
+    </p>
+  </div>
+</div>
+
+<!-- ============================================ PROPOSED -->
+<div class="mock">
+  <div class="mockbar">Proposed</div>
+  <div class="mockbody">
+
+    <!-- SCOPE BAR -->
+    <div class="scopebar">
+      <span class="scope-lead">Practising</span>
+      <span class="chip freq"><span class="src">frequency</span> ranks 2,001–3,000 <span class="x">×</span></span>
+      <span class="chip cat"><span class="src">category</span> Colours <span class="x">×</span></span>
+      <span class="chip"><span class="src">direction</span> IT→EN <span class="x">×</span></span>
+      <span class="scope-count">37 words in scope · <span class="scope-clear">clear all</span> · <span class="scope-clear">change on entry screen</span></span>
+    </div>
+    <p class="cap" style="margin:-6px 0 14px">
+      One bar, always present, every active filter as a removable chip carrying <b>where it came from</b>.
+      Empty state reads “Practising · all 18,048 words” so the bar never disappears and never has to be discovered.
+    </p>
+
+    <div class="body2">
+      <!-- LEFT -->
+      <div>
+        <div class="card">
+          <p class="qprompt">What does <b>azzurro</b> mean <i>(adjective)</i>?</p>
+          <input class="qinput" value="light blue" readonly>
+          <div class="qactions">
+            <button class="btn">Mark</button>
+            <button class="btn sec">Skip</button>
+            <span class="kbd">Enter to mark, Enter again to advance</span>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="paneltitle">
+            <span class="name">Frequency</span>
+            <span class="what">— the 18,000 most common words in Italian, commonest first</span>
+          </div>
+          <div class="panelsub">Viewing ranks <b>2,001–2,990</b>. Colour = how well you know each word.</div>
+
+          <div class="freqrow" id="freqrow"></div>
+
+          <div class="handlerow">
+            <div class="rail">
+              <div class="railfill"></div>
+              <div class="grip a"></div><div class="grip b"></div>
+            </div>
+            <span class="railcap">drag to move the view</span>
+          </div>
+
+          <div class="actionrow">
+            <button class="smallbtn">Practise these 990 words</button>
+            <span class="hintline">Moving the view changes what you're <b>looking at</b>. Filtering the deck is this button — a separate, named act.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="rightcol">
+        <div class="rc-head">
+          <div class="rc-title">Categories</div>
+          <div class="rc-sub">How well you know each group. Click a row to add it to your scope.</div>
+          <div class="rc-tabs">
+            <span class="rc-tab on">Themes</span>
+            <span class="rc-tab">Gender</span>
+            <span class="rc-tab">Spelling</span>
+            <span class="rc-tab">Accent</span>
+            <span class="rc-tab">Stress</span>
+          </div>
+        </div>
+        <div id="cats"></div>
+        <div class="legend"><span>less known</span><span class="legbar"></span><span>well known</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h1 style="font-size:17px">What changed, and why</h1>
+
+<div class="ask"><b>1 · The scope bar.</b> Every filter is a chip that names its own provenance, and every chip has an ×.
+Today a selection made on the entry screen writes <code>rankRanges</code> and <code>themes</code>, while the vocab
+bar displays <code>topN</code> and <code>subBand</code> — different fields — so an entry-screen choice is
+<i>structurally</i> invisible, not merely unlabelled. The bar reads one state, so that cannot recur.</div>
+
+<div class="ask"><b>2 · Moving the view is not filtering.</b> Today one click does both: the block handler sets
+<code>vocabFilter.rankRange</code> <i>and</i> refocuses. The drag rail moves the view; a separate
+<b>“Practise these 990 words”</b> button is the only thing that narrows the deck, and when pressed it appears as a
+frequency chip in the bar. Clicking a block still moves the view — it just no longer filters.</div>
+
+<div class="ask"><b>3 · Say what the chart is.</b> A permanent subtitle: <i>“the 18,000 most common words in
+Italian, commonest first.”</i> Today that sentence exists only while you are looking at ranks 1–990; move the view
+and it is replaced by “Italian words by frequency, ranks 2001–2990”, which assumes you already knew.</div>
+
+<div class="ask"><b>4 · Scope is outlined in both panels at once.</b> The frequency blocks inside scope carry a blue
+outline; the categories inside scope carry a wine outline and bold. Your two filters are visible in the two places
+they act, which is the “boxes around the section of frequency and the section of category” you asked for.</div>
+
+<div class="ask"><b>5 · The right column becomes categories, and scrolls.</b> Themes, gender, spelling, accent and
+stress as tabs in one scrolling panel — so the second axis of analysis stops competing with the frequency grid for
+the same space. It is its own scrollbox (r126 gave it that), so scrolling it never moves the question.</div>
+
+<div class="ask"><b>6 · A visible way back.</b> Clicking the brand mark already calls <code>showEntry()</code> —
+it works, you just can't see that it exists. “change on entry screen” in the scope bar says it in words.</div>
+
+<h1 style="font-size:17px;margin-top:26px">Four things I need you to rule</h1>
+<table class="q">
+<tr><th>#</th><th>Question</th><th>My recommendation</th></tr>
+<tr><td>A</td><td class="l">Does clicking a flanking block still <i>move the view</i>, or should only the rail move it?</td><td class="l">Click moves the view. It is the obvious gesture and now harmless.</td></tr>
+<tr><td>B</td><td class="l">Should the frequency scope be a <i>range</i> (drag both grips) or always a whole thousand?</td><td class="l">Range. You asked for 2,000–3,000, which a thousand-block cannot express.</td></tr>
+<tr><td>C</td><td class="l">Do the four drills stay as top-level mode chips, or become tabs in the right panel?</td><td class="l">Keep the mode chips. A drill replaces the card; a category tab does not.</td></tr>
+<tr><td>D</td><td class="l">Should an entry-screen selection be <i>editable</i> here, or only clearable?</td><td class="l">Clearable here, editable on the entry screen. Two editors of one state is how this drifted.</td></tr>
+</table>
+
+<p class="cap" style="margin-top:20px">
+Colour convention throughout: one smooth two-tone ramp per class of quantity, anchored at cream for zero, black
+text, no banding. Frequency cells and category bars share the knowledge ramp because they are the same quantity;
+the scope outlines are blue for frequency and wine for category because those are <i>selection</i>, not magnitude.
+</p>
+
+<script>
+// deterministic pseudo-data so the mockup is stable between reloads
+let s=7; const rnd=()=>((s=(s*1103515245+12345)&0x7fffffff)/0x7fffffff);
+function ramp(v,touched){            // cream -> deep green, smooth, capped
+  if(!touched) return '#f3efe6';
+  const a=[253,250,244], b=[35,92,60];
+  const t=Math.max(0,Math.min(1,v));
+  return 'rgb('+a.map((x,i)=>Math.round(x+(b[i]-x)*t)).join(',')+')';
+}
+// frequency row: 8 blocks, block 3 focused (ranks 2001-2990)
+const row=document.getElementById('freqrow');
+for(let bi=0;bi<8;bi++){
+  const col=document.createElement('div'); col.className='blockcol';
+  if(bi===2){
+    const g=document.createElement('div'); g.className='focusgrid';
+    for(let k=0;k<50;k++){
+      const box=document.createElement('div'); box.className='fbox';
+      for(let d=0;d<9;d++){
+        const dot=document.createElement('div'); dot.className='fdot';
+        const t=rnd()>0.35; dot.style.background=ramp(rnd()*0.95,t);
+        box.appendChild(dot);
+      }
+      g.appendChild(box);
+    }
+    col.appendChild(g);
+    const tk=document.createElement('div'); tk.className='tick on'; tk.textContent='2k–3k'; col.appendChild(tk);
+  }else{
+    const near=Math.abs(bi-2)<=1;
+    const st=document.createElement('div'); st.className='strip '+(near?'near':'far');
+    if(bi===3) st.classList.add('inscope');
+    const n=near?36:9;
+    for(let k=0;k<n;k++){
+      const c=document.createElement('div'); c.className='scell';
+      const t=rnd()>0.5; c.style.background=ramp(rnd()*0.8,t); st.appendChild(c);
+    }
+    col.appendChild(st);
+    const tk=document.createElement('div'); tk.className='tick'; tk.textContent=(bi+1)+'k'; col.appendChild(tk);
+  }
+  row.appendChild(col);
+}
+// categories
+const secs=[
+ ['Everyday',[['Colours',0.82,37,true],['Days of the week',0.95,7],['Numbers',0.61,84],['Family',0.44,52],['Food & drink',0.29,163]]],
+ ['Grammar words',[['Function words',0.71,240],['Modal verbs',0.88,9],['Prepositions',0.53,31],['Pronouns',0.66,48]]],
+ ['Harder',[['Abstract nouns',0.12,410],['Legal & formal',0.03,96],['Idiomatic',0.08,74]]]
+];
+const host=document.getElementById('cats');
+for(const [title,rows] of secs){
+  const sec=document.createElement('div'); sec.className='rc-sec';
+  const h=document.createElement('h4'); h.textContent=title; sec.appendChild(h);
+  const g=document.createElement('div'); g.className='catgrid';
+  for(const [name,v,n,inscope] of rows){
+    const r=document.createElement('div'); r.className='catrow'+(inscope?' inscope':'');
+    r.style.display='contents';
+    const a=document.createElement('div'); a.className='catname'; a.textContent=name;
+    const b=document.createElement('div'); b.className='catbar'; b.style.background=ramp(v,true);
+    const c=document.createElement('div'); c.className='catn'; c.textContent=n;
+    if(inscope){a.style.fontWeight='700';a.style.color='var(--accent)';b.style.outline='2px solid var(--accent)';b.style.outlineOffset='1px';}
+    r.appendChild(a);r.appendChild(b);r.appendChild(c);
+    g.appendChild(r);
+  }
+  sec.appendChild(g); host.appendChild(sec);
+}
+</script>
+</div>
+</body>
+</html>

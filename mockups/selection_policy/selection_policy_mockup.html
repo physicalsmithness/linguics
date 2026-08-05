@@ -1,0 +1,90 @@
+<!doctype html><html><head><meta charset="utf-8">
+<title>Linguics - selection policy mockup</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fdfaf4;--ink:#1c1c1c;--muted:#6b6b6b;--faint:#999;--accent:#8f2b45;--accent-soft:#f2e7e8;
+--green:#235c3c;--green-soft:#e4eee7;--blue:#4a89c7;--line:#e6e1d6;}
+body{background:var(--bg);color:var(--ink);font-family:Lora,Georgia,serif;margin:0;padding:28px 22px 60px;}
+.wrap{max-width:880px;margin:0 auto;}
+h1{font-size:23px;margin:0 0 4px;font-weight:600;}
+.tag{color:var(--muted);font-style:italic;font-size:14px;margin:0 0 26px;}
+h2{font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:34px 0 10px;font-weight:600;}
+.note{color:var(--muted);font-size:13.5px;margin:0 0 14px;line-height:1.55;}
+.panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;}
+.ptitle{font-size:17px;font-weight:600;margin:0 0 3px;}
+.psub{color:var(--muted);font-size:13px;margin:0 0 15px;}
+.pres{display:flex;flex-direction:column;gap:8px;}
+.pre{text-align:left;background:var(--bg);border:1px solid var(--line);border-radius:11px;padding:11px 14px;
+ cursor:pointer;font-family:inherit;display:flex;flex-direction:column;gap:2px;width:100%;}
+.pre.on{background:var(--accent-soft);border-color:var(--accent);}
+.pt{font-size:15px;}
+.ps{font-size:12.5px;color:var(--muted);}
+.scope{margin-top:15px;padding-top:13px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);}
+.scope b{color:var(--ink);font-weight:600;}
+.ladder{background:var(--green-soft);border:1px solid #cfe0d5;border-radius:11px;padding:13px 15px;font-size:14px;line-height:1.5;}
+.ladder b{font-weight:600;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.sess{font-size:13px;color:var(--muted);margin:0;}
+.big{font-size:26px;color:var(--ink);}
+table.dt{border-collapse:collapse;width:100%;font-size:13px;margin-top:4px;}
+table.dt th,table.dt td{border:1px solid var(--line);padding:5px 7px;text-align:center;vertical-align:middle;}
+table.dt th{background:var(--bg);font-weight:600;font-size:12px;color:var(--ink);}
+th.rot{vertical-align:bottom;height:58px;padding:4px 3px;}
+th.rot span{writing-mode:vertical-rl;transform:rotate(180deg);display:inline-block;line-height:1.15;text-align:left;}
+td.lbl,th.lbl{text-align:left;white-space:nowrap;}
+td.num{width:44px;}
+td.plain{color:var(--muted);}
+td.dots{text-align:left;padding:5px 8px;white-space:nowrap;}
+.d{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:3px;vertical-align:middle;}
+.d.un{background:transparent;border:1px solid #ddd6c8;}
+.d.miss{background:#a4c4e3;}
+.d.ok{background:#5d9a77;}
+.more{font-size:11px;color:var(--faint);margin-left:3px;}
+.leg{margin-top:9px;font-size:12px;color:var(--muted);display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
+.leg i{margin-right:5px;}
+.cap{font-size:12px;color:var(--faint);margin-top:9px;font-style:italic;line-height:1.5;}
+</style></head><body><div class="wrap">
+
+<h1>Choosing what comes next</h1>
+<p class="tag">Mockup for the selection-policy layer &middot; Architecture &rarr; Housing, 2026-08-05</p>
+
+<h2>1 &nbsp;The picker, on the entry screen</h2>
+<p class="note">Sits under the level strip, before the session starts. The scope controls (topic, level, rank) say <b>what is in the deck</b>; this says <b>how you walk it</b>. They compose &mdash; that is the whole reason for keeping them apart.</p>
+<div class="panel">
+  <p class="ptitle">Which questions?</p>
+  <p class="psub">Pick one. You can change it between sessions.</p>
+  <div class="pres"><button class="pre"><span class="pt">Questions I haven’t seen</span><span class="ps">nothing you’ve already answered — works through the deck, no repeats</span></button><button class="pre on"><span class="pt">Things I got wrong</span><span class="ps">the exact questions you missed, oldest first</span></button><button class="pre"><span class="pt">Where I’m shakiest</span><span class="ps">the ones you half-know, weakest first</span></button><button class="pre"><span class="pt">Mix in some revision</span><span class="ps">new questions, with one in four pulled back from your misses</span></button><button class="pre"><span class="pt">Anything, shuffled</span><span class="ps">the whole deck in random order</span></button></div>
+  <div class="scope">In scope: <b>Grammar</b> &middot; <b>B1</b> &middot; verb forms, prepositions &nbsp;&middot;&nbsp; 214 questions, <b>68 you have missed at least once</b></div>
+</div>
+
+<h2>2 &nbsp;When the deck runs out, it says so</h2>
+<p class="note">Today the &ldquo;recent weaknesses&rdquo; shortcut falls back to the entire corpus in silence when its filter matches nothing. That is the defect most likely to read as &ldquo;it doesn&rsquo;t work&rdquo;. Every tier change announces itself.</p>
+<div class="ladder">That is <b>every new question</b> in this scope &mdash; all 214. Now coming back to the <b>68 you found hard</b>, oldest first.</div>
+
+<h2>3 &nbsp;The drills: this session, and all of it</h2>
+<p class="note">Two readings from one source. The session strip stays; the standing view is the one that is missing &mdash; you cannot currently see how much of a drill you have covered, only what you just did.</p>
+<div class="two">
+  <div class="panel">
+    <p class="ptitle">This session</p>
+    <p class="psub">Spelling drill</p>
+    <p class="sess"><span class="big">23</span> attempted &nbsp;&middot;&nbsp; <span class="big">17</span> right</p>
+  </div>
+  <div class="panel">
+    <p class="ptitle">All of it</p>
+    <p class="psub">Every spelling card you have ever met</p>
+    <p class="sess"><span class="big">61%</span> met &nbsp;&middot;&nbsp; <span class="big">70%</span> right first try</p>
+  </div>
+</div>
+<div class="panel" style="margin-top:16px">
+  <p class="ptitle">By class</p>
+  <p class="psub">Where the drill is covered, and where it holds</p>
+  <table class="dt"><thead><tr><th class="lbl">Spelling class</th><th class="rot"><span>Cards<br>in bank</span></th><th class="rot"><span>Cards<br>met</span></th><th class="rot"><span>Right<br>first try</span></th><th class="lbl">Coverage</th></tr></thead><tbody><tr><td class="lbl">Doubled consonants</td><td class="num plain">141</td><td class="num" style="background:#8ab1d7">86%</td><td class="num" style="background:#99b2a0">61%</td><td class="dots"><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d miss"></i><i class="d miss"></i><i class="d miss"></i><i class="d miss"></i><i class="d miss"></i><i class="d miss"></i><i class="d miss"></i><i class="d miss"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><span class="more">+117</span></td></tr><tr><td class="lbl">Apostrophe / elision</td><td class="num plain">59</td><td class="num" style="background:#9ebedc">71%</td><td class="num" style="background:#84a28e">74%</td><td class="dots"><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d miss"></i><i class="d miss"></i><i class="d miss"></i><i class="d miss"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><span class="more">+35</span></td></tr><tr><td class="lbl">gl / gn</td><td class="num plain">38</td><td class="num" style="background:#b3cbe1">55%</td><td class="num" style="background:#779983">82%</td><td class="dots"><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d miss"></i><i class="d miss"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><span class="more">+14</span></td></tr><tr><td class="lbl">c / g softening</td><td class="num plain">34</td><td class="num" style="background:#c2d5e5">44%</td><td class="num" style="background:#8ea996">68%</td><td class="dots"><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d miss"></i><i class="d miss"></i><i class="d miss"></i><i class="d miss"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><span class="more">+10</span></td></tr><tr><td class="lbl">sci / sce</td><td class="num plain">29</td><td class="num" style="background:#d3e0ea">31%</td><td class="num" style="background:#7c9c87">79%</td><td class="dots"><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d miss"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><span class="more">+5</span></td></tr><tr><td class="lbl">Accents on -ché</td><td class="num plain">24</td><td class="num" style="background:#e6ecee">17%</td><td class="num" style="background:#a3b9a8">55%</td><td class="dots"><i class="d ok"></i><i class="d ok"></i><i class="d miss"></i><i class="d miss"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i></td></tr><tr><td class="lbl">h in avere</td><td class="num plain">21</td><td class="num" style="background:#aac5df">62%</td><td class="num" style="background:#688e76">91%</td><td class="dots"><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d ok"></i><i class="d miss"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i></td></tr><tr><td class="lbl">Capitals</td><td class="num plain">12</td><td class="num" style="background:#fdfaf4">0%</td><td class="num" style="background:#fdfaf4">–</td><td class="dots"><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i><i class="d un"></i></td></tr></tbody></table>
+  <div class="leg">
+    <span><i class="d ok"></i>right first try</span>
+    <span><i class="d miss"></i>met, missed</span>
+    <span><i class="d un"></i>not yet seen</span>
+  </div>
+  <p class="cap">Departures, stated: gradients fade to the page cream rather than white, matching the coverage cells already shipped in style.css. Two classes of number, two colours &mdash; blue for coverage, green for correctness &mdash; both anchored at zero, smooth, black text throughout. <b>Cards in bank is deliberately unshaded</b>: it is the denominator, and shading it invites reading bank size as achievement.</p>
+</div>
+
+</div></body></html>

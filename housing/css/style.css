@@ -1119,8 +1119,17 @@ body.strand-vocab-active #live-stats { display: none; }
 .freq-flank-cell.has-practice { box-shadow: inset 0 0 0 1.5px var(--touched); }
 .vocab-lemma-dot.has-practice { box-shadow: inset 0 0 0 1.5px var(--touched); }
 /* Gender drill: fixed-option classifier choices — compact 2-col grid.  QoderWork 2026-07-22 */
-.gender-choices { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; border: 1.5px solid var(--border); border-radius: 8px; padding: 6px; background: var(--cream, #faf9f6); }
+/* Gender drill, two tiers (r127). Seven equal buttons framed a two-way decision
+   as a seven-way one - Smith: "it looks just intimidating". Masculine and
+   Feminine lead at full size; the five split patterns are a quiet cluster. */
+.gender-choices { display: flex; flex-direction: column; gap: 7px; border: 1.5px solid var(--border); border-radius: 8px; padding: 8px; background: var(--cream, #faf9f6); }
+.gender-primary { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.gender-secondary { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+.gender-secondary-cap { font-size: 11.5px; color: var(--muted); font-style: italic; padding-left: 2px; }
 .gender-choice { display: flex; align-items: baseline; gap: 5px; text-align: left; font-size: 13px; padding: 5px 8px; }
+.gender-choice.gc-primary { align-items: center; justify-content: center; gap: 9px; text-align: center; font-size: 25px; font-weight: 700; padding: 18px 12px; line-height: 1.15; }
+.gender-choice.gc-primary .gc-num { font-size: 13px; opacity: 0.55; }
+.gender-choice.gc-secondary { font-size: 12px; padding: 5px 7px; }
 .gender-choice .gc-num { font-weight: 700; color: var(--accent); font-size: 10px; min-width: 1.1em; opacity: 0.7; }
 .gender-choice .gc-label { font-weight: 600; line-height: 1.25; }
 .gender-choice.gc-correct { outline: 2px solid var(--green); background: var(--green-soft); }
@@ -2313,3 +2322,10 @@ h1, h2, h3, .wordmark, .coverage-title, .analysis-section-title { font-family: F
 .last10-marks .mark.partial, .last-n .mark.partial { color: var(--green-partial); }
 
 .score-impressionistic { margin-left: 10px; opacity: 0.85; }
+
+/* Start button states (r129). A disabled Start must still read as the thing it
+   will become, and a failed start must say so where the learner is looking. */
+.entry-start[disabled] { opacity: 0.55; cursor: progress; }
+.entry-start-wait { font-size: 12.5px; color: var(--muted); font-style: italic; margin-top: 6px; }
+.entry-start-error { margin-top: 8px; padding: 8px 12px; font-size: 13px;
+  background: var(--red-soft); border-left: 3px solid var(--red); border-radius: 0 4px 4px 0; }

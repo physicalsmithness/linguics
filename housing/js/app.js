@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-08-05-r126";
+  const LL_BUILD = "2026-08-05-r129";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -2487,7 +2487,11 @@
   let vocabIndex = 0;
   let vocabFilter = {
     band: "",
-    direction: "it_en",
+    // Seeded from the remembered preference, not hardcoded. Read lazily-safe:
+    // localStorage may be unavailable, in which case the old default stands.
+    direction: (function () {
+      try { return localStorage.getItem("linguics_vocab_direction") || "it_en"; } catch (e) { return "it_en"; }
+    })(),
     theme: "",
     themes: null,       // list of theme ids OR'd (multi-id category chips, e.g. Numbers = cardinal+ordinal)
     genderClass: "",
@@ -3040,6 +3044,7 @@
       });
       dirSel.addEventListener("change", () => {
         vocabFilter.direction = dirSel.value;
+        savePref(PREF_VOCAB_DIR, dirSel.value);   // last used wins next session
         // Reshuffle so the next card isn't the same lemma in reverse
         // (otherwise the learner can peek at the answer by toggling direction).
         vocabDeck = []; vocabIndex = 0;
@@ -3122,7 +3127,7 @@
   const GENDER_CLASSES = [
     { n: 1, key: "masculine",       label: "Masculine" },
     { n: 2, key: "feminine",        label: "Feminine" },
-    { n: 3, key: "either",          label: "M or F, depending on gender" },
+    { n: 3, key: "either",          label: "M or F, depending on the gender of the person" },   // Smith 2026-08-05: "depending on gender" was unreadable - gender of WHAT. The person the noun refers to (il cantante / la cantante).
     { n: 4, key: "depends_meaning", label: "M or F, depending on meaning" },
     { n: 5, key: "m_sg_f_pl",       label: "M singular,\nF plural" },
     { n: 6, key: "f_sg_m_pl",       label: "F singular,\nM plural" },
@@ -3203,6 +3208,19 @@
   let drillSession = { type: "", attempted: 0, correct: 0, byCat: {}, stressMatrix: null };
   // Drill stats persistence (Smith 2026-07-23: option not to reset each session).
   // When ON, each drill type keeps a running total across rebuilds + reloads.
+  // REMEMBERED DIRECTION (Smith 2026-08-05: "keep defaults per user for
+  // Italian-to-English directions in translation & vocab. last used").
+  // Vocab's direction was hardcoded "it_en" on every load and translation's
+  // way reset to "Both" on every visit to the entry screen, so a learner who
+  // always works one way re-picked it every session. Stored per browser, which
+  // is the same grain as every other preference here (input mode, drill keep).
+  function loadPref(key, dflt) {
+    try { const v = localStorage.getItem(key); return (v === null) ? dflt : v; } catch (e) { return dflt; }
+  }
+  function savePref(key, v) { try { localStorage.setItem(key, String(v)); } catch (e) {} }
+  const PREF_VOCAB_DIR = "linguics_vocab_direction";
+  const PREF_TRANS_WAY = "linguics_translation_way";
+
   function loadDrillKeep() { try { return localStorage.getItem("linguics_drill_keep") === "1"; } catch (e) { return false; } }
   let drillStatsKeep = loadDrillKeep();
   function loadDrillSessions() { try { return JSON.parse(localStorage.getItem("linguics_drill_sessions") || "{}") || {}; } catch (e) { return {}; } }
@@ -3417,19 +3435,37 @@
       setTimeout(() => next.focus({ preventScroll: true }), 0);
     };
 
+    // TWO TIERS (Smith 2026-08-05: "make masculine and feminine much bigger,
+    // it looks intimidating; the other lot as a smaller cluster"). Seven equal
+    // buttons made a seven-way decision out of what is, for almost every noun,
+    // a two-way one. Masculine and Feminine now lead at full size; the five
+    // pattern classes sit below in a quiet cluster under their own caption.
+    // The `buttons` array stays in CLASS ORDER whatever the DOM order, because
+    // the reveal indexes it by class number.
+    const primaryWrap = document.createElement("div");
+    primaryWrap.className = "gender-primary";
+    const secondaryWrap = document.createElement("div");
+    secondaryWrap.className = "gender-secondary";
+    const secondaryCap = document.createElement("div");
+    secondaryCap.className = "gender-secondary-cap";
+    secondaryCap.textContent = "or one of the split patterns";
     GENDER_CLASSES.forEach((c) => {
+      const primary = (c.n === 1 || c.n === 2);
       const b = document.createElement("button");
       b.type = "button";
-      b.className = "mcq-choice gender-choice";
+      b.className = "mcq-choice gender-choice " + (primary ? "gc-primary" : "gc-secondary");
       const num = document.createElement("span"); num.className = "gc-num"; num.textContent = c.n;
       const lbl = document.createElement("span"); lbl.className = "gc-label";
       const lines = c.label.split("\n");
       lines.forEach((ln, i) => { if (i > 0) lbl.appendChild(document.createElement("br")); lbl.appendChild(document.createTextNode(ln)); });
       b.appendChild(num); b.appendChild(lbl);
       b.addEventListener("click", () => commit(c.n));
-      choicesWrap.appendChild(b);
+      (primary ? primaryWrap : secondaryWrap).appendChild(b);
       buttons.push(b);
     });
+    choicesWrap.appendChild(primaryWrap);
+    choicesWrap.appendChild(secondaryCap);
+    choicesWrap.appendChild(secondaryWrap);
     card.appendChild(choicesWrap);
     card.appendChild(resultHost);
 
@@ -4308,6 +4344,43 @@
   // strings. `opts.direction` filters to "active" / "passive" / "any" (default
   // any). Used by all three axes - band, gender, themes - so they all share
   // the same event-shape contract.
+  // LEMMA -> EVENTS INDEX (r127). eventsForLemmas used to walk EVERY attempt and
+  // EVERY event and parse EVERY bucket id - once PER CALL, and it is called once
+  // per lemma. The frequency heatmap asks about the whole corpus on every
+  // render: 990 focused dots, plus 380 flanking cells holding up to ~99 lemmas
+  // each, is ~18,800 calls. So ONE click on the chart re-scanned the learner's
+  // entire practice history ~18,800 times, and it got slower the more they
+  // practised - the cost is (corpus x history), not (corpus). That is Smith's
+  // "slow when you interact with the chart", 2026-08-05.
+  //
+  // One pass builds the index; every lookup afterwards is a Map hit. Same
+  // invalidation contract as _practisedCache below (attempts.length), and the
+  // per-lemma arrays are pre-sorted so the per-call sort disappears too. `seq`
+  // keeps the old tie-break: events sharing a timestamp stay in attempt order.
+  let _lemmaEventIdx = null;
+  let _lemmaEventIdxLen = -1;
+  function lemmaEventIndex() {
+    const attempts = LL.state.attempts || [];
+    if (_lemmaEventIdx && attempts.length === _lemmaEventIdxLen) return _lemmaEventIdx;
+    // Uses LL.parseVocabBucketId so the parser handles both shapes:
+    //   new: vocabulary.it.<lemma>.<pos>[.<gender>].<aspect>[.<dir>]
+    //   legacy: vocabulary.it.<lemma>.<aspect>[.<dir>]  (until migrated)
+    const parse = LL.parseVocabBucketId || function () { return null; };
+    const idx = new Map();
+    let seq = 0;
+    for (const att of attempts) {
+      for (const ev of att.events) {
+        const parsed = parse(ev.bucket);
+        if (!parsed || !parsed.lemma) { seq++; continue; }
+        let arr = idx.get(parsed.lemma);
+        if (!arr) { arr = []; idx.set(parsed.lemma, arr); }
+        arr.push({ ev: ev, timestamp: att.timestamp, aspect: parsed.aspect, direction: parsed.direction, seq: seq++ });
+      }
+    }
+    _lemmaEventIdx = idx;
+    _lemmaEventIdxLen = attempts.length;
+    return idx;
+  }
   function eventsForLemmas(lemmas, opts) {
     opts = opts || {};
     const directionFilter = opts.direction || "any";
@@ -4315,23 +4388,23 @@
     const aspectFilter = opts.aspect || "translation";
     const lemmaSet = (lemmas instanceof Set) ? lemmas : new Set(lemmas);
     if (lemmaSet.size === 0) return [];
+    const idx = lemmaEventIndex();
     const out = [];
-    // Uses LL.parseVocabBucketId so the parser handles both shapes:
-    //   new: vocabulary.it.<lemma>.<pos>[.<gender>].<aspect>[.<dir>]
-    //   legacy: vocabulary.it.<lemma>.<aspect>[.<dir>]  (until migrated)
-    const parse = LL.parseVocabBucketId || function () { return null; };
-    for (const att of LL.state.attempts) {
-      for (const ev of att.events) {
-        const parsed = parse(ev.bucket);
-        if (!parsed) continue;
-        if (!lemmaSet.has(parsed.lemma)) continue;
-        if (aspectFilter !== "any" && parsed.aspect !== aspectFilter) continue;
-        if (directionFilter === "active"  && parsed.direction !== "active")  continue;
-        if (directionFilter === "passive" && parsed.direction !== "passive") continue;
-        out.push({ ev, timestamp: att.timestamp });
+    for (const lemma of lemmaSet) {
+      const arr = idx.get(lemma);
+      if (!arr) continue;
+      for (const rec of arr) {
+        if (aspectFilter !== "any" && rec.aspect !== aspectFilter) continue;
+        if (directionFilter === "active"  && rec.direction !== "active")  continue;
+        if (directionFilter === "passive" && rec.direction !== "passive") continue;
+        out.push({ ev: rec.ev, timestamp: rec.timestamp, _seq: rec.seq });
       }
     }
-    out.sort((a, b) => a.timestamp.localeCompare(b.timestamp));
+    out.sort((a, b) => {
+      const c = String(a.timestamp).localeCompare(String(b.timestamp));
+      return c !== 0 ? c : (a._seq - b._seq);
+    });
+    for (const o of out) delete o._seq;
     return out;
   }
 
@@ -5384,6 +5457,48 @@
     return vocabJudgeCore(answer, target, isItEn, entry, regime);
   }
 
+  // NUMERALS AS DIGITS (Smith 2026-08-05: "we need to accept 10 when the q is
+  // dieci"). A learner shown `dieci` who types `10` has demonstrated exactly the
+  // thing the item tests - the word-to-quantity mapping - and typing the English
+  // word is an incidental extra step. Both directions are covered: the digit is
+  // accepted for the English number word (IT->EN), and for the Italian one
+  // (EN->IT) where a learner may equally answer `10` to "the Italian for ten".
+  //
+  // Deliberately a CLOSED TABLE, not a parser. A parser would also accept "10"
+  // for "tenth" or "10" for "a dozen minus two", and the point is an exact
+  // equivalence, not arithmetic. Ordinals are NOT here: "tenth" and "10" are
+  // different claims, and "10th" would be the digit form if we ever wanted it.
+  const NUMERAL_WORDS = (function () {
+    const m = new Map();
+    const en = ["zero","one","two","three","four","five","six","seven","eight","nine","ten",
+      "eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen","twenty"];
+    const it = ["zero","uno","due","tre","quattro","cinque","sei","sette","otto","nove","dieci",
+      "undici","dodici","tredici","quattordici","quindici","sedici","diciassette","diciotto","diciannove","venti"];
+    en.forEach((w, i) => m.set(w, String(i)));
+    it.forEach((w, i) => m.set(w, String(i)));
+    const tens = { thirty: 30, forty: 40, fifty: 50, sixty: 60, seventy: 70, eighty: 80, ninety: 90,
+                   trenta: 30, quaranta: 40, cinquanta: 50, sessanta: 60, settanta: 70, ottanta: 80, novanta: 90 };
+    for (const w in tens) m.set(w, String(tens[w]));
+    const big = { hundred: 100, thousand: 1000, million: 1000000,
+                  cento: 100, mille: 1000, milione: 1000000, milioni: 1000000 };
+    for (const w in big) m.set(w, String(big[w]));
+    return m;
+  })();
+  // Returns the digit string a number WORD denotes, or the digits themselves if
+  // that is what was typed. Anything else returns null and nothing is accepted.
+  function numeralKey(sNorm) {
+    const t = String(sNorm || "").trim();
+    if (!t) return null;
+    if (/^[0-9]{1,7}$/.test(t)) return String(parseInt(t, 10));
+    return NUMERAL_WORDS.get(t) || null;
+  }
+  function numeralsAgree(a, b) {
+    const ka = numeralKey(a);
+    if (ka === null) return false;
+    const kb = numeralKey(b);
+    return kb !== null && ka === kb;
+  }
+
   function vocabJudgeCore(answer, target, isItEn, entry, regime) {
     const norm = s => String(s || "").trim().toLowerCase().replace(/[-.!?"'()\[\]]/g, "").replace(/\s+/g, " ").trim();
     const a = norm(answer);
@@ -5409,6 +5524,16 @@
     // 1) exact match
     for (const alt of alternatives) {
       if (alt && a === alt) return { outcome: "hit", credit: 1, reason: null };
+    }
+
+    // 1a) numeral equivalence: "10" answers "dieci" / "ten", and vice versa.
+    // Sits with the exact match because it IS one - the same quantity written
+    // in figures. Full credit, with the word named back so the learner still
+    // meets the spelling.
+    for (const alt of alternatives) {
+      if (alt && numeralsAgree(a, alt)) {
+        return { outcome: "hit", credit: 1, reason: (/^[0-9]+$/.test(a) ? ("in words: " + alt) : null) };
+      }
     }
 
     // 1b) Leading English article tolerance (IT->EN direction).
@@ -8373,7 +8498,9 @@
         parts: {}           // partId -> { on, topics: {topic:true}, kinds: {bucketPath:true} }
       },
       vocab: { direction: "it_en", subBand: "", genderDrill: false, spellingDrill: false, accentDrill: false, stressDrill: false, lens: "numeric", rankRanges: [], cefr: "", theme: "", catIds: null, catLabel: "", catSel: null },
-      translation: { grammarPoint: "", way: "" },
+      translation: { grammarPoint: "", way: (function () {
+        try { const v = localStorage.getItem("linguics_translation_way"); return (v && v !== "both") ? v : ""; } catch (e) { return ""; }
+      })() },
       cefrLevels: []
     };
   }
@@ -9221,9 +9348,13 @@
     panel.appendChild(head);
     const wayRow = document.createElement("div");
     wayRow.className = "entry-chip-row";
-    wayRow.appendChild(entryChip("English \u2192 Italian", w.way === "it", () => { w.way = "it"; renderEntryScreen(); }, { title: "You see the English, produce the Italian" }));
-    wayRow.appendChild(entryChip("Italian \u2192 English", w.way === "en", () => { w.way = "en"; renderEntryScreen(); }, { title: "You see the Italian, produce the English" }));
-    wayRow.appendChild(entryChip("Both", !w.way, () => { w.way = ""; renderEntryScreen(); }, { title: "A mix of both directions" }));
+    // The chosen way is remembered per browser and pre-selected next time
+    // (Smith 2026-08-05). "" is a real choice (Both), so the stored value has to
+    // distinguish "never chose" from "chose Both" - hence the "both" sentinel.
+    const setWay = (v) => { w.way = v; savePref(PREF_TRANS_WAY, v || "both"); renderEntryScreen(); };
+    wayRow.appendChild(entryChip("English \u2192 Italian", w.way === "it", () => setWay("it"), { title: "You see the English, produce the Italian" }));
+    wayRow.appendChild(entryChip("Italian \u2192 English", w.way === "en", () => setWay("en"), { title: "You see the Italian, produce the English" }));
+    wayRow.appendChild(entryChip("Both", !w.way, () => setWay(""), { title: "A mix of both directions" }));
     panel.appendChild(wayRow);
 
     const topics = uniqueValues(translationItems, "topic");
@@ -10432,15 +10563,58 @@
     host.appendChild(col);
   }
 
+  // START (Smith 2026-08-05: "unresponsive button was Start on home page").
+  // Two ways this button could do nothing at all, both silent:
+  //
+  //   1. It was live during the CONTENT LOAD WINDOW. Until the real banks
+  //      arrive the app is running on samples, so Start either began a session
+  //      over sample data or ran a deck builder against a bank that was not
+  //      there yet. The button looked completely normal throughout.
+  //   2. If any part of the start sequence threw - composeGrammarFilter,
+  //      buildSpellingDeck / buildAccentDeck / buildStressDeck, showStrand -
+  //      the exception died in the click handler. No banner, no console entry
+  //      the learner would ever see, nothing moved. "Unresponsive" is exactly
+  //      what an uncaught throw in a click handler looks like.
+  //
+  // Now: the button SAYS it is loading and refuses to pretend otherwise (the
+  // entry screen already re-renders when the load settles, on both the success
+  // and the fallback path), and a throw becomes a visible message naming itself
+  // instead of silence. A button that fails must say so.
   function appendStart(panel, onStart) {
     const wrap = document.createElement("div");
     wrap.className = "entry-start-wrap";
     const b = document.createElement("button");
     b.type = "button";
     b.className = "entry-start";
+    const err = document.createElement("div");
+    err.className = "entry-start-error";
+    err.hidden = true;
+    if (LL.contentLoading) {
+      b.textContent = "Loading\u2026";
+      b.disabled = true;
+      b.title = "The word and question banks are still downloading. This becomes Start the moment they land.";
+      const wait = document.createElement("div");
+      wait.className = "entry-start-wait";
+      wait.textContent = "Still loading the banks \u2014 one moment.";
+      wrap.appendChild(b);
+      wrap.appendChild(wait);
+      panel.appendChild(wrap);
+      return;
+    }
     b.textContent = "Start";
-    b.addEventListener("click", onStart);
+    b.addEventListener("click", () => {
+      err.hidden = true;
+      try {
+        onStart();
+      } catch (e) {
+        err.hidden = false;
+        err.textContent = "Couldn\u2019t start: " + ((e && e.message) ? e.message : String(e))
+          + " \u2014 please tell us what you had selected.";
+        try { track("session_start_failed", { message: (e && e.message) ? String(e.message) : String(e) }); } catch (e2) {}
+      }
+    });
     wrap.appendChild(b);
+    wrap.appendChild(err);
     panel.appendChild(wrap);
   }
 
