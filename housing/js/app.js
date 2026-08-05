@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-08-03-r123";
+  const LL_BUILD = "2026-08-05-r125";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -1629,15 +1629,42 @@
     meta.className = "meta faint";
     const ex = [];
     if (q.cefr_level_target) ex.push("CEFR " + q.cefr_level_target);
-    ex.push("select all that apply");
+    // "select all that apply" used to ride here, in the faint CEFR breadcrumb.
+    // That is metadata furniture, not an instruction: it sat below the eye line
+    // in the same grey as the item id, which is exactly why twelve authors
+    // wrote the sentence into their prompt text instead. The instruction now
+    // has its own row below the prompt (cue_notation_renderer v4/v5).
     meta.textContent = ex.join(" · ");
     meta.title = q.external_id || "";
     card.appendChild(meta);
 
     const prompt = document.createElement("p");
     prompt.className = "prompt";
-    prompt.textContent = q.prompt || "Select all that are correct.";
+    // Strip the authored instruction at render time so it is never shown twice
+    // while the data catches up; surgical, so an item whose bracket carries a
+    // real cue alongside it keeps the cue. See LL.stripSelectAllChrome.
+    prompt.textContent = (LL.stripSelectAllChrome
+      ? LL.stripSelectAllChrome(q.prompt)
+      : String(q.prompt || "")) || "Which of these are correct?";
     card.appendChild(prompt);
+
+    // The native chrome. Two sentences, because the qtype has two rules a
+    // learner cannot infer from the widget: that more than one answer may be
+    // right, and that a wrong tick COSTS a right one - credit is
+    // (correct picks - wrong picks) / total correct, floored at 0, which is the
+    // ruling that stops "tick everything" scoring well. Saying so is the honest
+    // version of a rule the engine already enforces silently.
+    const chrome = document.createElement("div");
+    chrome.className = "ms-chrome";
+    const chromeMain = document.createElement("span");
+    chromeMain.className = "ms-chrome-main";
+    chromeMain.textContent = "Select all that apply";
+    const chromeNote = document.createElement("span");
+    chromeNote.className = "ms-chrome-note";
+    chromeNote.textContent = "more than one may be right · a wrong tick cancels a right one";
+    chrome.appendChild(chromeMain);
+    chrome.appendChild(chromeNote);
+    card.appendChild(chrome);
 
     const choices = Array.isArray(q.choices) ? q.choices : [];
     const picked = new Set();

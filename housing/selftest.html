@@ -56,12 +56,12 @@
 <div id="summary">Loading content…</div>
 <div id="out"></div>
 
-<script src="js/norm.js?v=2026-08-03-r123"></script>
-<script src="js/store.js?v=2026-08-03-r123"></script>
-<script src="js/engine_axes.js?v=2026-08-03-r123"></script>
-<script src="js/grammar_engine.js?v=2026-08-03-r123"></script>
-<script src="js/translation_stub.js?v=2026-08-03-r123"></script>
-<script src="js/translation_marker.js?v=2026-08-03-r123"></script>
+<script src="js/norm.js?v=2026-08-05-r125"></script>
+<script src="js/store.js?v=2026-08-05-r125"></script>
+<script src="js/engine_axes.js?v=2026-08-05-r125"></script>
+<script src="js/grammar_engine.js?v=2026-08-05-r125"></script>
+<script src="js/translation_stub.js?v=2026-08-05-r125"></script>
+<script src="js/translation_marker.js?v=2026-08-05-r125"></script>
 <script>
 (function () {
   "use strict";
@@ -267,6 +267,29 @@
       () => eq(LL.markGrammar({ prompt: "I gatti sono ____ .",
         markpoints: [{ bucket: "b", any_phrases: ["neri"] }], marks: 1 }, "gatti neri")
         .markpoints[0].outcome, "hit"));
+    T(g4b, "residue does not wipe the ACCENT-FOLD rescue",
+      "the fold rescue credits a docked partial and pushes an orthography slip; the residue block then re-subtracted the phrase STRICTLY, so on an accent-off answer the accented phrase was not found, its words survived as residue and the credit was zeroed. 174 single-markpoint items estate-wide scored a flat MISS for a missing accent, while the pulse still recorded the slip",
+      () => {
+        const r = LL.markGrammar({ markpoints: [{ bucket: "b", any_phrases: ["pi\u00f9 alto di"] }], marks: 1 }, "piu alto di");
+        const m = r.markpoints[0];
+        return (m.outcome === "partial" && m.correctness_credit > 0 && !m.residue)
+          ? true : ("outcome=" + m.outcome + " credit=" + m.correctness_credit + " residue=" + JSON.stringify(m.residue || null));
+      });
+    T(g4b, "residue still fires on genuine junk in an accent-off answer",
+      "the fold-aware subtraction must not become a blanket amnesty: a real extraneous word survives folding and must still zero the item, or the residue engine's own target is lost",
+      () => {
+        const m = LL.markGrammar({ markpoints: [{ bucket: "b", any_phrases: ["pi\u00f9 alto di"] }], marks: 1 }, "piu alto di zanzarone").markpoints[0];
+        return (m.outcome === "miss" && Array.isArray(m.residue) && m.residue.indexOf("zanzarone") >= 0)
+          ? true : ("outcome=" + m.outcome + " residue=" + JSON.stringify(m.residue || null));
+      });
+    T(g4b, "residue subtracts PROMPT words that carry punctuation",
+      "norm only strips ?.,;:! before a space or end, so a prompt closing \"...?'\" or a cue in (parentheses) left its words punctuated and they never subtracted. A learner writing the full sentence was zeroed: 1,093 of 2,037 blank-filling items fired a false residue before the fix",
+      () => {
+        const q = { prompt: "Complete: 'I tuoi ____ sono italiani?' (amico)",
+                    markpoints: [{ bucket: "b", any_phrases: ["amici"] }], marks: 1 };
+        const m = LL.markGrammar(q, "I tuoi amici sono italiani? (amico)").markpoints[0];
+        return (m.outcome === "hit" && !m.residue) ? true : ("outcome=" + m.outcome + " residue=" + JSON.stringify(m.residue || null));
+      });
     T(g4b, "norm folds the apostrophe and the hyphen to a space",
       "un'amica and un amica must compare equal, and ex-marito to ex marito; authors rely on it and it silently breaks short-fragment anchoring if it changes",
       () => (LL.norm("un'amica") === "un amica" && LL.norm("ex-marito") === "ex marito")
@@ -330,6 +353,28 @@
       "the emission ruled at seed_frames v7c: the analytics see the endorsed error, the coin-flip still never pays",
       () => { const r = LL.applyAccentAxes(accq({ choices: ["Correct", "Incorrect"], choice_tags: [null, { class: "omitted" }] }), 1, accres());
         return (r.markpoints.length === 2 && r.markpoints[1].bucket === "orthography.accent.italian.missing" && r.overall.marks_awarded === 0) ? true : JSON.stringify(r.markpoints); });
+
+    // ------------- multi_select chrome strip (engine_axes, r124)
+    const g4f = group("multi_select chrome (engine_axes.js)"); groups.push(g4f);
+    const strip = (t) => LL.stripSelectAllChrome(t);
+    T(g4f, "the instruction is stripped whether it is in (parens) or [brackets]",
+      "12 items carry 'Select all that apply' inside the prompt text; the card now renders it natively, so leaving the authored copy in place would show it twice",
+      () => {
+        const a = strip("Which of these correctly say 'X'? (Select all that apply.)");
+        const b = strip("Which of these correctly render 'Y'? [Select all that apply.]");
+        return (a === "Which of these correctly say 'X'?" && b === "Which of these correctly render 'Y'?")
+          ? true : ("parens -> " + a + " | brackets -> " + b);
+      });
+    T(g4f, "a real cue sharing the bracket SURVIVES the strip",
+      "op_ord_climb_ms_01 writes \"[fem 'it' = la lettera; select all that apply]\" - a blunt strip would delete the cue with the instruction and the item becomes unanswerable",
+      () => eq(strip("Which? [fem 'it' = la lettera; select all that apply]"),
+               "Which? [fem 'it' = la lettera]"));
+    T(g4f, "a prompt with no instruction comes back byte-identical",
+      "the strip runs on EVERY multi_select prompt, so it must only ever remove the one phrase; a stray edit here silently rewrites items nobody is looking at",
+      () => {
+        const t = "Complete: 'I tuoi ____ sono italiani?' (amico)";
+        return strip(t) === t ? true : ("changed -> " + strip(t));
+      });
 
     // ------------- shared predicates (engine_axes, r119-r121)
     const g4e = group("Coverage + registry predicates (engine_axes.js)"); groups.push(g4e);

@@ -2280,3 +2280,19 @@ scope derived: 239 single-block explanations >420 chars. AWAITING Smith's bless;
 DISPATCH_spelling's "natural feedstock" is the registry's regularisation.* family + authors' guards
 (4 pp items already carry over-reg distractors); no bank file anywhere under data/ or inter_chat/.
 Closed as void-for-absence; if an external bank exists off-estate, Smith names it and ingest reopens.
+
+
+## Re-paragraph pilot BLESSED and SWEPT (2026-08-03, ninth pass)
+
+Smith: paragraphing "looks great... already much improves"; bullets "have their place... don't like
+losing info that the paras have". **Ruled accordingly: paragraphing is the standard for long
+explanations; bullets are ADDITIVE ONLY, never lossy** — a list may structure existing sentences,
+never replace or trim them; case-by-case, not swept. The two pilot bullet variants are NOT applied.
+
+**Sweep executed same pass:** 238/239 single-block explanations >420 chars re-paragraphed (10 hand
+versions from the pilot verbatim, 228 heuristic at beat boundaries, 1 conservatively skipped), under
+an absolute gate — wording byte-identical modulo the inserted breaks, zero failures; backups in
+outputs/backup_migrations_2026-08-03/. Display today is UNCHANGED (textContent renders the breaks as
+spaces) until Housing ships riders-R8's one CSS line, at which point 238 explanations paragraph
+themselves. New long explanations are authored with breaks (house style extended; next brief rev
+carries the line).

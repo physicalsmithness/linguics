@@ -759,7 +759,7 @@
         }
       }
     ],
-    "explanation": "'Non parlare così in fretta, ascolta!' means 'Don't talk so fast, listen!'\n\nTo tell a friend NOT to do something, Italian does something surprising: the negative tu command is non plus the infinitive. So 'don't speak' is non parlare, using the dictionary form parlare, not the positive command parla.\n\nA learner who negates the positive form (non parla) has made the classic error; the negative tu always reaches for the infinitive.",
+    "explanation": "'Non parlare così in fretta, ascolta!' means 'Don't talk so fast, listen!' To tell a friend NOT to do something, Italian does something surprising: the negative tu command is non plus the infinitive. So 'don't speak' is non parlare, using the dictionary form parlare, not the positive command parla. A learner who negates the positive form (non parla) has made the classic error; the negative tu always reaches for the infinitive.",
     "examiner_note": "Marker target is the whole phrase 'non parlare'. must_not catches non+positive (non parla) and non+present (non parli).",
     "version": 4,
     "person": "2sg"
@@ -1006,7 +1006,7 @@
         }
       }
     ],
-    "explanation": "'Non fare rumore, il bambino dorme!' means 'Don't make any noise, the baby is sleeping!'\n\nHere is the payoff of the non + infinitive rule: even a verb with an irregular positive command obeys it. Fare has the short positive tu fa', but its negative tu command is the plain infinitive: non fare. So the irregular short forms (fa', va', di') vanish in the negative, replaced by the infinitive. Non fa' and non fai are both wrong.",
+    "explanation": "'Non fare rumore, il bambino dorme!' means 'Don't make any noise, the baby is sleeping!' Here is the payoff of the non + infinitive rule: even a verb with an irregular positive command obeys it. Fare has the short positive tu fa', but its negative tu command is the plain infinitive: non fare. So the irregular short forms (fa', va', di') vanish in the negative, replaced by the infinitive. Non fa' and non fai are both wrong.",
     "examiner_note": "Bridges to irregular_tu: the apocopated fa' is replaced by the infinitive under negation. must_not catches non fa / non fai / non fa'.",
     "version": 4,
     "person": "2sg"
@@ -1055,7 +1055,7 @@
         }
       }
     ],
-    "explanation": "'Non parliamo di politica a tavola!' means 'Let's not talk about politics at the table!'\n\nThe noi negative command is simpler than the tu one: it is just non plus the ordinary affirmative. Parlare gives the positive noi parliamo, so the negative is non parliamo, 'let's not talk'. The non + infinitive trick is unique to the tu form; noi and voi negate their normal command. Watch out: non parlare would wrongly use the tu negative.",
+    "explanation": "'Non parliamo di politica a tavola!' means 'Let's not talk about politics at the table!' The noi negative command is simpler than the tu one: it is just non plus the ordinary affirmative. Parlare gives the positive noi parliamo, so the negative is non parliamo, 'let's not talk'. The non + infinitive trick is unique to the tu form; noi and voi negate their normal command. Watch out: non parlare would wrongly use the tu negative.",
     "version": 4,
     "person": "1pl"
   },
@@ -1392,7 +1392,7 @@
         }
       }
     ],
-    "explanation": "'Di' sempre la verità!' means 'Always tell the truth!' Dire has the shortest command of all: the informal tu imperative is di', 'say!' or 'tell!'.\n\nUnlike va'/vai or fa'/fai, dire has NO long alternative, di' is the only form, always written with the apostrophe. The present-tense tu dici is a different word and not a command.\n\n(You may see di' written dì in older texts; the modern standard is di', with an apostrophe marking the clipped form.)",
+    "explanation": "'Di' sempre la verità!' means 'Always tell the truth!' Dire has the shortest command of all: the informal tu imperative is di', 'say!' or 'tell!'. Unlike va'/vai or fa'/fai, dire has NO long alternative, di' is the only form, always written with the apostrophe. The present-tense tu dici is a different word and not a command. (You may see di' written dì in older texts; the modern standard is di', with an apostrophe marking the clipped form.)",
     "examiner_note": "di' has no long form. The dated spelling dì takes graded credit 0.7 per Rev 20(i): the apocopated form is correctly reached, the miss is orthographic only, and accent_load_bearing keeps the fold from rescuing it to full credit. Thread: Architecture_ImperativoAuthor_misconception_tagging_schema v4.",
     "version": 4,
     "person": "2sg"
@@ -1619,7 +1619,7 @@
         }
       }
     ],
-    "explanation": "'Signor Verdi, prenda questa medicina due volte al giorno!' means 'Mr Verdi, take this medicine twice a day!'\n\nA polite command to a person you address as Lei uses the present subjunctive. Prendere's subjunctive is prenda, so the formal command is prenda.\n\nNote the vowel flips relative to the informal: the tu command is prendi (in -i), while the Lei command is prenda (in -a), exactly the reverse of the regular indicative pattern.",
+    "explanation": "'Signor Verdi, prenda questa medicina due volte al giorno!' means 'Mr Verdi, take this medicine twice a day!' A polite command to a person you address as Lei uses the present subjunctive. Prendere's subjunctive is prenda, so the formal command is prenda. Note the vowel flips relative to the informal: the tu command is prendi (in -i), while the Lei command is prenda (in -a), exactly the reverse of the regular indicative pattern.",
     "examiner_note": "Cross-reference verb_form.congiuntivo.",
     "version": 4,
     "person": "3sg"
@@ -2634,7 +2634,7 @@
     "prompt": "Su un cartello sulla porta di un negozio: '____' [push]",
     "type": "short",
     "marks": 1.0,
-    "wrong_answer_is_form_error_only": false,
+    "wrong_answer_is_form_error_only": true,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -2674,7 +2674,8 @@
           }
         }
       }
-    ]
+    ],
+    "wrong_answer_is_form_error_only": false
   },
   {
     "external_id": "impv_use_inf_tirare_02",
@@ -2687,7 +2688,7 @@
     "prompt": "Sull'altra porta, un altro cartello: '____' [pull]",
     "type": "short",
     "marks": 1.0,
-    "wrong_answer_is_form_error_only": false,
+    "wrong_answer_is_form_error_only": true,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -2726,7 +2727,8 @@
           }
         }
       }
-    ]
+    ],
+    "wrong_answer_is_form_error_only": false
   },
   {
     "external_id": "impv_use_inf_mescolare_03",
@@ -2739,7 +2741,7 @@
     "prompt": "In una ricetta, la prima istruzione: '____ bene gli ingredienti.' [to mix]",
     "type": "short",
     "marks": 1.0,
-    "wrong_answer_is_form_error_only": false,
+    "wrong_answer_is_form_error_only": true,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -2778,7 +2780,8 @@
       }
     ],
     "explanation": "'Mescolare bene gli ingredienti' means 'Mix the ingredients well'. Recipes address no particular reader, so each step is a bare infinitive: Mescolare ('mix'), Aggiungere ('add'), Cuocere ('cook'). It is the same impersonal instruction form used on signs.",
-    "version": 2
+    "version": 2,
+    "wrong_answer_is_form_error_only": false
   },
   {
     "external_id": "impv_use_inf_cuocere_04",
@@ -2791,7 +2794,7 @@
     "prompt": "Istruzioni sulla confezione: '____ a fuoco lento per venti minuti.' [to cook]",
     "type": "short",
     "marks": 1.0,
-    "wrong_answer_is_form_error_only": false,
+    "wrong_answer_is_form_error_only": true,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -2830,7 +2833,8 @@
       }
     ],
     "explanation": "'Cuocere a fuoco lento' means 'Cook over a low heat'. Packet and recipe instructions use the bare infinitive throughout, so it is cuocere, not the personal cuoci or cuocia.",
-    "version": 2
+    "version": 2,
+    "wrong_answer_is_form_error_only": false
   },
   {
     "external_id": "impv_use_inf_non_fumare_05",
@@ -2843,7 +2847,7 @@
     "prompt": "Un cartello di divieto in un locale pubblico: '____' [do not smoke]",
     "type": "short",
     "marks": 1.0,
-    "wrong_answer_is_form_error_only": false,
+    "wrong_answer_is_form_error_only": true,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -2886,7 +2890,8 @@
       }
     ],
     "explanation": "'Non fumare' means 'No smoking'. Public prohibitions use non + the bare infinitive, the impersonal form, never a personal command like non fumi. It matches the affirmative sign form (Spingere): infinitive throughout.",
-    "version": 2
+    "version": 2,
+    "wrong_answer_is_form_error_only": false
   },
   {
     "external_id": "impv_use_inf_aggiungere_06",
@@ -2899,7 +2904,7 @@
     "prompt": "Passo successivo della ricetta: '____ il sale e il pepe.' [to add]",
     "type": "short",
     "marks": 1.0,
-    "wrong_answer_is_form_error_only": false,
+    "wrong_answer_is_form_error_only": true,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -2938,7 +2943,8 @@
       }
     ],
     "explanation": "'Aggiungere il sale e il pepe' means 'Add the salt and pepper'. Another recipe step, another bare infinitive: the impersonal instruction form stays consistent from line to line.",
-    "version": 2
+    "version": 2,
+    "wrong_answer_is_form_error_only": false
   },
   {
     "external_id": "impv_use_inf_conservare_07",
@@ -2951,7 +2957,7 @@
     "prompt": "Avvertenza sull'etichetta di un prodotto: '____ in luogo fresco e asciutto.' [to store]",
     "type": "short",
     "marks": 1.0,
-    "wrong_answer_is_form_error_only": false,
+    "wrong_answer_is_form_error_only": true,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -2990,7 +2996,8 @@
       }
     ],
     "explanation": "'Conservare in luogo fresco e asciutto' means 'Store in a cool, dry place'. Product labels speak to no one in particular, so the instruction is the bare infinitive conservare, not a personal command.",
-    "version": 2
+    "version": 2,
+    "wrong_answer_is_form_error_only": false
   },
   {
     "external_id": "impv_use_inf_non_toccare_08",
@@ -3003,7 +3010,7 @@
     "prompt": "Un cartello accanto a un'opera in un museo: '____' [do not touch]",
     "type": "short",
     "marks": 1.0,
-    "wrong_answer_is_form_error_only": false,
+    "wrong_answer_is_form_error_only": true,
     "info_display": "suppress",
     "markpoints": [
       {
@@ -3046,7 +3053,8 @@
       }
     ],
     "explanation": "'Non toccare' means 'Do not touch'. As with 'Non fumare', a public prohibition uses non + the infinitive, the impersonal form that addresses every visitor and none in particular.",
-    "version": 2
+    "version": 2,
+    "wrong_answer_is_form_error_only": false
   },
   {
     "external_id": "impv_disc_reg_parli_01",

@@ -303,6 +303,39 @@
   }
   LL.isRegistryMisconceptionId = isRegistryMisconceptionId;
 
+  // ---------------------------------------------------------------------
+  // multi_select CHROME: strip the instruction out of the authored prompt.
+  //
+  // "Select all that apply" is qtype furniture that ended up inside 12 prompt
+  // texts (pronoun 7, pronominal_verbs 5 - derived from disk 2026-08-05; the
+  // routing thread said 11, it is 12). Architecture ruled it renders NATIVELY
+  // and the prompts then drop the sentence (cue_notation_renderer v4/v5).
+  //
+  // The card strips it at RENDER time rather than waiting for the data edit, so
+  // there is no window in which the learner sees the instruction twice, and the
+  // authors' cleanup becomes a no-op rather than a coordination step. It is
+  // deliberately SURGICAL: one item carries the instruction inside a bracket
+  // that also holds a real cue ("[fem 'it' = la lettera; select all that
+  // apply]"), and a blunt strip would delete the cue with it.
+  //
+  // Display-only, but it lives here rather than in app.js because it is pure
+  // string logic that the self-test must be able to reach without a DOM.
+  const MS_PHRASE = "select\\s+all\\s+that\\s+apply";
+  function stripSelectAllChrome(text) {
+    let s = String(text || "");
+    const re = (body, flags) => new RegExp(body, flags || "gi");
+    // 1. a whole parenthetical/bracket that is ONLY the instruction
+    s = s.replace(re("\\s*[\\(\\[]\\s*" + MS_PHRASE + "\\s*[.!]?\\s*[\\)\\]]"), "");
+    // 2. the instruction as a trailing clause inside a bracket that carries a cue
+    s = s.replace(re("\\s*[;,]\\s*" + MS_PHRASE + "\\s*[.!]?(?=\\s*[\\)\\]])"), "");
+    // 3. ...or as the LEADING clause of one
+    s = s.replace(re("([\\(\\[])\\s*" + MS_PHRASE + "\\s*[.!]?\\s*[;,]\\s*"), "$1");
+    // 4. a bare trailing sentence with no brackets at all
+    s = s.replace(re("\\s*" + MS_PHRASE + "\\s*[.!]?\\s*$"), "");
+    return s.replace(/\s{2,}/g, " ").replace(/\s+([.?!,;:])/g, "$1").trim();
+  }
+  LL.stripSelectAllChrome = stripSelectAllChrome;
+
   LL.applyAccentAxes = applyAccentAxes;
   LL.accentDiff = accentDiff;
   LL.accentOutcomeClass = accentOutcomeClass;

@@ -521,6 +521,11 @@ main {
 }
 
 .result-explanation {
+  /* R8 (feedback_redesign_riders v4): explanations are set from authored text
+     whose blank lines are the paragraph breaks; HTML and textContent both
+     collapse them. pre-line renders authored newlines and is inert on today's
+     single-block texts. */
+  white-space: pre-line;
   margin-top: 12px;
   padding: 10px 14px 11px;
   background: white;
@@ -1104,7 +1109,7 @@ body.strand-vocab-active #live-stats { display: none; }
 .gender-choice.gc-correct { outline: 2px solid var(--green); background: var(--green-soft); }
 .gender-choice.gc-wrong { outline: 2px solid var(--red); background: var(--red-soft); }
 .gd-lemma { color: var(--accent); }
-.gd-declension { margin-top: 6px; padding: 10px 14px; font-size: 16px; font-weight: 600; background: var(--cream, #faf9f6); border-radius: 6px; border: 1px solid var(--border); border-left: 4px solid var(--accent); }
+.gd-declension { white-space: pre-line; margin-top: 6px; padding: 10px 14px; font-size: 16px; font-weight: 600; background: var(--cream, #faf9f6); border-radius: 6px; border: 1px solid var(--border); border-left: 4px solid var(--accent); }
 
 /* Spelling drill: MCQ discrimination choices.  QoderWork 2026-07-22 */
 .spelling-choices { border: 1.5px solid var(--border); border-radius: 8px; padding: 8px; background: var(--cream, #faf9f6); }
@@ -2137,6 +2142,21 @@ h1, h2, h3, .wordmark, .coverage-title, .analysis-section-title { font-family: F
 .ai-upsell-cta { font-size: 13px; font-weight: 600; padding: 6px 14px; border: 1px solid var(--accent); border-radius: 6px; background: var(--accent); color: #fff; cursor: pointer; }
 .ai-upsell-cta:disabled { opacity: 0.7; cursor: default; background: #9a9a9a; border-color: #9a9a9a; }
 /* multi_select qtype: toggleable checkbox choices. */
+/* multi_select native chrome (cue_notation_renderer v4/v5, r124). Sits between
+   the prompt and the choices, in the accent colour so it reads as an
+   instruction rather than as metadata - the previous home was the faint CEFR
+   breadcrumb, which is why authors kept writing the sentence into prompts. */
+.ms-chrome {
+  display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px;
+  margin: 10px 0 8px; padding: 7px 12px;
+  background: var(--accent-soft, #eaf1fb);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 5px 5px 0;
+  font-size: 13.5px;
+}
+.ms-chrome-main { font-weight: 700; color: var(--accent); letter-spacing: 0.01em; }
+.ms-chrome-note { color: var(--muted); font-style: italic; font-size: 12.5px; }
+
 .ms-choice { display: flex; align-items: baseline; gap: 8px; text-align: left; }
 .ms-choice .ms-check { display: inline-block; width: 14px; height: 14px; border: 1.5px solid #999; border-radius: 3px; flex: 0 0 auto; position: relative; top: 2px; }
 .ms-choice.ms-selected .ms-check { background: var(--accent); border-color: var(--accent); }

@@ -265,16 +265,48 @@
     if (points.length === 1 && q.type !== "mcq" && inputWasNonEmpty
         && mpResults[0] && mpResults[0].correctness_credit > 0) {
       const mp0 = points[0];
-      const bag = LL.norm(raw).split(" ").filter(Boolean);
-      const normAns = LL.norm(raw);
-      const drop = (toks) => { for (const t of toks) { const i = bag.indexOf(t); if (i >= 0) bag.splice(i, 1); } };
+      // SUBTRACT IN THE SAME SPACE THE MATCH RAN IN
+      // (Architecture_InterrogativesAuthor_residue_zeroes_accent_fold v2, RULED:
+      // an accent-only slip on a single-markpoint item pays the dock, never zero.)
+      // Two faults lived in this subtraction, both of them false MISSES:
+      //   1. Phrases were subtracted STRICTLY (accents kept) while the markpoint
+      //      may have been credited through the accent-folded rescue. On "piu
+      //      alto di" the phrase "piu\u0300 alto di" is not a substring of the
+      //      folded answer, so its words were never subtracted, survived as
+      //      "residue", and the docked partial was wiped to 0. Measured by
+      //      InterrogativesAuthor over every single-markpoint item with an
+      //      accented phrase: 170 items, 166 scored a flat MISS. The orthography
+      //      slip was still pushed onto the event, so the pulse saw an accent
+      //      slip on an item scored zero.
+      //   2. Prompt words keep trailing punctuation - norm() only strips ?.,;:!
+      //      before a space or end, and prompts usually close "...?'" - so
+      //      "stasera?" in the prompt never subtracted "stasera" from a
+      //      full-sentence answer.
+      // Both are fixed by keying the subtraction on a FOLDED, edge-punctuation-
+      // stripped token. The widening tracks exactly what the engine credited
+      // (this block only runs when correctness_credit > 0, i.e. strict or folded
+      // already matched), and a genuinely extraneous word survives folding - so
+      // the residue engine's real target, right answer PLUS junk, still fires.
+      const resKey = (t) => LL.foldAccents(String(t))
+        .replace(/^[^0-9a-z\u00e0-\u00ff]+/i, "")
+        .replace(/[^0-9a-z\u00e0-\u00ff]+$/i, "");
+      const bag = LL.norm(raw).split(" ").filter(Boolean).map(t => ({ tok: t, key: resKey(t) }));
+      const foldedAns = LL.foldAccents(LL.norm(raw));
+      const drop = (toks) => {
+        for (const t of toks) {
+          const k = resKey(t);
+          if (!k) continue;
+          const i = bag.findIndex(b => b.key === k);
+          if (i >= 0) bag.splice(i, 1);
+        }
+      };
       for (const p of (mp0.any_phrases || [])) {
         const ph = LL.norm((typeof p === "object" && p && p.phrase) ? p.phrase : p);
-        if (ph && normAns.indexOf(ph) >= 0) drop(ph.split(" ").filter(Boolean));
+        if (ph && foldedAns.indexOf(LL.foldAccents(ph)) >= 0) drop(ph.split(" ").filter(Boolean));
       }
       const promptText = String(q.prompt || "").replace(/_+/g, " ").replace(/\[[^\]]*\]/g, " ").replace(/[()]/g, " ");
       drop(LL.norm(promptText).split(" ").filter(Boolean));
-      const residue = bag.filter(t => /[a-z\u00e0-\u00ff]/i.test(t));
+      const residue = bag.filter(b => /[a-z\u00e0-\u00ff]/i.test(b.tok)).map(b => b.tok);
       if (residue.length > 0) {
         const r0 = mpResults[0];
         r0.correctness_credit = 0;
