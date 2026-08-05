@@ -50,7 +50,15 @@ header {
    the header stays), and the filter bar shares the tab row. Two bands back. */
 .header-row2 { display: flex; align-items: flex-end; gap: 18px; flex-wrap: wrap; }
 #header-filter-slot { flex: 1 1 auto; min-width: 0; display: flex; justify-content: flex-end; }
-#header-filter-slot .filter-bar { margin-bottom: 6px; padding: 4px 8px; border: none; background: transparent; flex-wrap: wrap; justify-content: flex-end; gap: 10px; }
+/* r137: the filter bar carries `position: sticky; top: 110px` from when it lived
+   in the page. Inside the header - which is ITSELF sticky - that makes it detach
+   and float over the content below, which is the text-on-top-of-text in Smith's
+   screenshots and a large part of why the top eats so much room. Static here. */
+#header-filter-slot .filter-bar { position: static; top: auto; z-index: auto;
+  margin: 0 0 4px; padding: 2px 0; border: none; background: transparent;
+  flex-wrap: wrap; justify-content: flex-end; gap: 6px 12px; font-size: 13px; }
+#header-filter-slot .filter-bar select { font-size: 13px; padding: 2px 5px; }
+#header-filter-slot .filter-mode-chip { padding: 2px 9px; font-size: 12px; }
 #header-filter-slot .filter-mode-row { display: inline-flex; }
 .tagline-scope { color: var(--faint); font-style: italic; font-size: 0.9em; }   /* italic like 'atomised' (Smith) */
 
@@ -930,7 +938,7 @@ footer {
      size, answering still moves nothing. The frequency square takes what is
      left, which is the trade Smith already blessed ("that whole thing could be
      shrunk, it doesn't really affect it very much"). */
-  grid-template-rows: 380px auto minmax(140px, 1fr) 150px;
+  grid-template-rows: 330px auto minmax(110px, 1fr) 138px;
   grid-template-areas:
     "question themes"
     "axeshead themes"
@@ -942,8 +950,12 @@ footer {
      the frequency square must both show in full - neither may scroll. */
   /* dvh, not vh: on mobile the toolbars make vh lie and the strip falls off the
      bottom. The subtrahend is the three header bands + the footer, measured. */
-  height: calc(100dvh - 250px);
-  min-height: 700px;
+  /* NO min-height. r135 set 700px and that is what made the page scroll: when
+     the viewport could not give 700px the body took it anyway and everything
+     below ran off. The grid must fit what there is, or the promise that nothing
+     scrolls is not a promise. */
+  height: calc(100dvh - 232px);
+  min-height: 0;
   min-height: 460px;
 }
 /* The card fills its quadrant and never scrolls as a whole: the question, the
@@ -2409,3 +2421,14 @@ h1, h2, h3, .wordmark, .coverage-title, .analysis-section-title { font-family: F
 .vocab-axis-lens { margin-left: 9px; font-size: 11.5px; font-style: italic;
   color: var(--muted); white-space: nowrap; cursor: help; }
 .vocab-axis-lens::before { content: "\00b7"; margin-right: 8px; color: var(--line); font-style: normal; }
+
+/* r137: the themes column keeps its heading while its body scrolls, so you
+   always know which panel you are inside (Smith: "we want at least themes to be
+   sticky"). Solid background or the rows show through it. */
+.vocab-axis-themes .vocab-axis-title { position: sticky; top: 0; z-index: 3;
+  background: var(--bg); padding-bottom: 4px; }
+.vocab-axis-gender .vocab-axis-title { position: sticky; top: 0; z-index: 3;
+  background: var(--bg); padding-bottom: 3px; }
+/* The footer must never be see-through: content scrolling under it was drawing
+   straight through the text in Smith's shots. */
+footer { background: var(--bg); position: relative; z-index: 20; }

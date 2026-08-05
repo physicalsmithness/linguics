@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-08-05-r136";
+  const LL_BUILD = "2026-08-05-r138";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -2376,7 +2376,14 @@
     const resultHost = document.createElement("div");
     card.appendChild(resultHost);
 
+    // ONE GO PER SHOWING, translation side. Unguarded until now, and worse here
+    // than anywhere else: every re-mark is a second recorded attempt AND a
+    // second paid AI call. The flag is set BEFORE the await, or two fast
+    // presses both get through while the first is still in flight.
+    let transMarked = false;
     const doMark = async () => {
+      if (transMarked) return;
+      transMarked = true;
       const raw = textarea.value;
       const intent = intentSel.value;
 
@@ -4265,7 +4272,19 @@
     resultHost.className = "card-result";
     card.appendChild(resultHost);
 
+    // ONE GO PER SHOWING (Smith 2026-08-05: "you get one chance at a go... you
+    // can't have two goes"). There was no guard here at all: the Mark button
+    // stayed live after marking and the input's Enter handler still called
+    // doMark, so a second press recorded a SECOND attempt on the same card.
+    // That is not a cosmetic duplicate - every extra attempt is another event
+    // in the log, so answering right and then pressing Mark again scored a
+    // second, unearned attempt and moved the learner's own correctness. If the
+    // word comes round again later that is a fresh showing and a fresh go; this
+    // showing is over the moment it is marked.
+    let vocabMarked = false;
     const doMark = () => {
+      if (vocabMarked) return;
+      vocabMarked = true;
       const raw = input.value;
       const result = markVocab(entry, raw, isItEn, promptRegime);
       const syntheticItem = { id: "vocab_" + (entry.rank || entry.lemma) + "_" + (isItEn ? "ie" : "ei"), prompt: prompt.textContent };
@@ -4283,6 +4302,9 @@
       flashAxisCellsFor(entry, result.overall && result.overall.marks_awarded >= result.overall.marks_possible);
       nextBtn.textContent = "Next";
       nextBtn.title = "Advance to the next word";
+      markBtn.disabled = true;                    // say it, do not just refuse it
+      markBtn.title = "Already marked - press Enter or Next for the next word";
+      input.readOnly = true;                      // the answer stands as given
       nextBtn.focus({ preventScroll: true });
     };
     const doNext = () => {
