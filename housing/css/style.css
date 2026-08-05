@@ -904,6 +904,23 @@ body.strand-vocab-active #live-stats { display: none; }
   flex-direction: column;
   gap: 16px;
   padding-top: 4px;
+  /* INDEPENDENT SCROLLING - the same contract #live-stats has carried for
+     months, and the reason the vocab side kept jumping when the grammar side
+     did not. Without it this panel (~990 frequency dots + the flanking blocks +
+     the gender and theme axes) is unbounded and in normal flow, so the vocab
+     page is several screens tall with a short question card floating at the top
+     of it. Any nudge from any source then strands the question above the
+     viewport and the learner scrolls back up - reported ~15 times and patched
+     five times at the level of individual scroll calls (r98's vocab guard,
+     r99's five preventScroll sites), which is treating the symptom: the disease
+     is a long page. Bounded and sticky, the page is one screen and there is
+     nowhere to fall. Applies to the gender, spelling, accent and stress drills
+     too - they all render into #vocab-host beside this panel. */
+  position: sticky;
+  top: 18px;
+  max-height: calc(100vh - 140px);
+  overflow-y: auto;
+  min-height: 0;
 }
 
 /* Card stays usable but the axes panel claims more real estate now that the
@@ -1316,7 +1333,10 @@ body.strand-vocab-active #live-stats { display: none; }
 /* Vocab strand narrow: stack axes below the card */
 @media (max-width: 1200px) {
   #vocab-body { flex-direction: column; }
-  #vocab-axes-host { width: 100%; }
+  /* Stacked layout: the panel sits BELOW the card, so it is no longer competing
+     with it for the viewport and an inner scrollbox would just be a second
+     scroll trap. Release the desktop containment. */
+  #vocab-axes-host { width: 100%; max-width: 100%; position: static; max-height: none; overflow-y: visible; }
 }
 
 /* MCQ choices (Bug 1 fix, 2026-05-28) */

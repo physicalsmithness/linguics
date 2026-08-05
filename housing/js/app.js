@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-08-05-r125";
+  const LL_BUILD = "2026-08-05-r126";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -28,12 +28,17 @@
   // page is often scrolled deep (result details, stats below on mobile);
   // without this the next card renders off-screen and the learner only
   // sees whatever the input's minimal focus-scroll happens to reveal.
-  // Pair this with focus({ preventScroll: true }) ALWAYS. ensureCardVisible
-  // decides the scroll position deliberately; a bare .focus() straight after it
-  // makes the browser scroll again to reveal the focus ring, which on a tall
-  // card (one carrying a result panel) nudges the page down and leaves the NEXT
-  // question above the viewport. That was Smith's gender-drill "scrolls down a
-  // bit after each answer, so the next question needs a scroll up".
+  // Pair this with a preventScroll focus ALWAYS. ensureCardVisible decides the
+  // scroll position deliberately; an unqualified focus straight after it makes
+  // the browser scroll AGAIN to reveal the focus ring, which on a tall card (one
+  // carrying a result panel) nudges the page down and leaves the NEXT question
+  // above the viewport. That was Smith's gender-drill "scrolls down a bit after
+  // each answer, so the next question needs a scroll up".
+  //
+  // r126 swept the whole file: there are now ZERO unqualified focus calls in
+  // app.js, and a self-test case holds that line. Eleven survived r99's fix of
+  // five - the residue and second-chance banners, the accent-bar key, the slash
+  // menu, the sign-in box - each of them a scroll nobody wrote on purpose.
   function ensureCardVisible(cardEl) {
     if (!cardEl || !cardEl.getBoundingClientRect) return;
     const r = cardEl.getBoundingClientRect();
@@ -1265,7 +1270,7 @@
         const v = input.value;
         input.value = v.slice(0, start) + ch + v.slice(end);
         input.selectionStart = input.selectionEnd = start + ch.length;
-        input.focus();
+        input.focus({ preventScroll: true });
       });
       bar.appendChild(btn);
     }
@@ -1446,7 +1451,7 @@
     });
     host.appendChild(banner);
     // Focus the confirm button so Enter has a default; Esc still retries.
-    setTimeout(() => yes.focus(), 0);
+    setTimeout(() => yes.focus({ preventScroll: true }), 0);
   }
 
   // Residue soft second-chance: the learner wrote the correct answer PLUS extra
@@ -1485,7 +1490,7 @@
       else if (e.key === "Enter") { e.preventDefault(); banner.remove(); onConfirm(); }
     });
     host.appendChild(banner);
-    setTimeout(() => retry.focus(), 0);
+    setTimeout(() => retry.focus({ preventScroll: true }), 0);
   }
 
   // A zero-result state must NAME the blocking restriction and offer the fix in
@@ -2093,7 +2098,7 @@
             resultHost,
             chipLemma,
             () => commitResult(result, rawForRecord),         // confirm: mark as wrong
-            () => { setTimeout(() => input.focus(), 0); }      // retry: cancel mark, return focus
+            () => { setTimeout(() => input.focus({ preventScroll: true }), 0); }      // retry: cancel mark, return focus
           );
           return;
         }
@@ -2111,7 +2116,7 @@
           result.residue_review = { item_id: q.external_id || null, residue: residueMp.residue, prompt: q.prompt || "" };
           showResiduePrompt(resultHost, words,
             () => commitResult(result, rawForRecord),
-            () => { delete result.residue_review; setTimeout(() => { input.focus(); input.select(); }, 0); }
+            () => { delete result.residue_review; setTimeout(() => { input.focus({ preventScroll: true }); input.select(); }, 0); }
           );
           return;
         }
@@ -4764,7 +4769,29 @@
       el.classList.add(flashClass);
       setTimeout(() => el.classList.remove(flashClass), FLASH_MS);
     }
+    // The panel became its own scrollbox in r126, so a flashed cell can now sit
+    // outside ITS viewport where before the whole panel was on the page. Bring
+    // it into the box - and only the box. This is the feature r98 had to ban on
+    // vocab (scrollToFreshBuckets fell through to the WINDOW branch because
+    // nothing here was scrollable); now that the box exists, the safe half of it
+    // is available. Deliberately NOT scrollIntoView: that walks every scrollable
+    // ancestor including the window, which is the exact fault r126 removes.
+    revealInAxisPanel(targets[0]);
   }
+
+  // Scroll the vocab axes panel WITHIN ITSELF. Never touches window scroll: it
+  // reads and writes one element's scrollTop and nothing else.
+  function revealInAxisPanel(el) {
+    const panel = document.getElementById("vocab-axes-host");
+    if (!panel || !el || !el.getBoundingClientRect) return;
+    if (panel.scrollHeight <= panel.clientHeight + 1) return;   // not a scrollbox (narrow layout)
+    const pr = panel.getBoundingClientRect();
+    const er = el.getBoundingClientRect();
+    if (er.top >= pr.top + 8 && er.bottom <= pr.bottom - 8) return;   // already in view
+    const delta = (er.top - pr.top) - (panel.clientHeight - er.height) / 2;
+    panel.scrollTop = Math.max(0, Math.min(panel.scrollHeight - panel.clientHeight, panel.scrollTop + delta));
+  }
+  LL._revealInAxisPanel = revealInAxisPanel;   // exposed for the self-test
 
   // Per-answer in-place recolour of just the axis cells this lemma touches,
   // replacing the old full renderVocabAxes() rebuild that ran on EVERY mark
@@ -6412,14 +6439,14 @@
         opt.addEventListener("click", () => {
           useVocabHelpFromSlash(h, vocabHelpsUsedRef, inputEl);
           closeSlashMenu();
-          inputEl.focus();
+          inputEl.focus({ preventScroll: true });
         });
         optEls.push(opt);
         menu.appendChild(opt);
       });
       // Keyboard nav inside the menu
       const onKey = (e) => {
-        if (e.key === "Escape") { closeSlashMenu(); inputEl.focus(); e.preventDefault(); }
+        if (e.key === "Escape") { closeSlashMenu(); inputEl.focus({ preventScroll: true }); e.preventDefault(); }
         else if (e.key === "ArrowDown") {
           optEls[focusIdx].classList.remove("focused");
           focusIdx = (focusIdx + 1) % optEls.length;
@@ -6583,7 +6610,7 @@
     textarea.value = v.slice(0, start) + wrapped + v.slice(end);
     textarea.selectionStart = start + 3;
     textarea.selectionEnd = start + 3 + selected.length;
-    textarea.focus();
+    textarea.focus({ preventScroll: true });
   }
 
   // -------------------- result panel --------------------
@@ -8462,7 +8489,7 @@
       renderIdentityBox();
     });
     box.appendChild(nameInp); box.appendChild(cls); box.appendChild(go);
-    nameInp.focus();
+    nameInp.focus({ preventScroll: true });
   }
 
   function renderStreakGrid() {
@@ -8580,7 +8607,7 @@
       form.appendChild(nameInp); form.appendChild(cls); form.appendChild(go);
       gcol.appendChild(form);
       host.appendChild(gcol);
-      setTimeout(() => nameInp.focus(), 0);
+      setTimeout(() => nameInp.focus({ preventScroll: true }), 0);
       return;
     }
 

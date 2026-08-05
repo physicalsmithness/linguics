@@ -56,12 +56,12 @@
 <div id="summary">Loading content…</div>
 <div id="out"></div>
 
-<script src="js/norm.js?v=2026-08-05-r125"></script>
-<script src="js/store.js?v=2026-08-05-r125"></script>
-<script src="js/engine_axes.js?v=2026-08-05-r125"></script>
-<script src="js/grammar_engine.js?v=2026-08-05-r125"></script>
-<script src="js/translation_stub.js?v=2026-08-05-r125"></script>
-<script src="js/translation_marker.js?v=2026-08-05-r125"></script>
+<script src="js/norm.js?v=2026-08-05-r126"></script>
+<script src="js/store.js?v=2026-08-05-r126"></script>
+<script src="js/engine_axes.js?v=2026-08-05-r126"></script>
+<script src="js/grammar_engine.js?v=2026-08-05-r126"></script>
+<script src="js/translation_stub.js?v=2026-08-05-r126"></script>
+<script src="js/translation_marker.js?v=2026-08-05-r126"></script>
 <script>
 (function () {
   "use strict";
@@ -95,6 +95,12 @@
   async function run() {
     // ---------------------------------------------------------------- data
     let vocab = null, menu = null, surface = null, tense = null, accent = null, manifest = null;
+    let cssText = "";
+    let appText = "";
+    // app.js is deliberately NOT loaded on this page (it boots the whole UI),
+    // so the two source-level contracts below are checked by reading it.
+    try { const cr = await fetch("css/style.css", { cache: "no-store" }); if (cr.ok) cssText = await cr.text(); } catch (e) { cssText = ""; }
+    try { const ar = await fetch("js/app.js", { cache: "no-store" }); if (ar.ok) appText = await ar.text(); } catch (e) { appText = ""; }
     try {
       [manifest, vocab, menu, surface, tense, accent] = await Promise.all([
         jget("../data/manifest.json"),
@@ -397,6 +403,45 @@
         return (a === true && b === false) ? true : ("registry=" + a + " pseudo=" + b); });
 
     // -------------------------------------------------------------- render
+    // ------------- layout containment (style.css, r126)
+    const g4g = group("Panel containment (style.css)"); groups.push(g4g);
+    const cssBlock = (sel) => {
+      if (!cssText) return null;
+      const i = cssText.indexOf(sel + " {");
+      if (i < 0) return null;
+      const j = cssText.indexOf("}", i);
+      return j < 0 ? null : cssText.slice(i, j);
+    };
+    const boxed = (sel) => () => {
+      const b = cssBlock(sel);
+      if (b === null) return "could not read css/style.css (this page must be SERVED)";
+      const missing = ["position: sticky", "overflow-y: auto", "max-height:"].filter(k => b.indexOf(k) < 0);
+      return missing.length ? ("missing " + missing.join(", ")) : true;
+    };
+    T(g4g, "the VOCAB axes panel is an independent scrollbox",
+      "unbounded, this panel (~990 frequency dots + the flanking blocks + the gender and theme axes) makes the vocab page several screens tall with a short question card floating at the top, so any scroll nudge from any source strands the question above the viewport and the learner scrolls back up. Reported ~15 times and patched five times at the level of individual scroll calls before anyone bounded the panel. The gender, spelling, accent and stress drills all render into the card beside it and share the fault",
+      boxed("#vocab-axes-host"));
+    T(g4g, "the GRAMMAR stats aside is an independent scrollbox",
+      "the same contract on the other strand, where it has held for months. The asymmetry between the two panels is the whole reason this read as a vocab-only bug",
+      boxed("#live-stats"));
+    T(g4g, "the axes-panel reveal moves scrollTop and nothing else",
+      "scrollIntoView walks EVERY scrollable ancestor including the window - it is the mechanism r126 exists to remove, so the in-panel reveal must never reach for it",
+      () => {
+        if (!appText) return "could not read js/app.js (this page must be SERVED)";
+        const i = appText.indexOf("function revealInAxisPanel");
+        if (i < 0) return "revealInAxisPanel is gone from app.js";
+        const body = appText.slice(i, appText.indexOf("\n  }", i));
+        return (body.indexOf("scrollIntoView") < 0 && body.indexOf("scrollTop") >= 0)
+          ? true : "revealInAxisPanel no longer scrolls its own box only";
+      });
+    T(g4g, "nothing on the vocab mark path focuses without preventScroll",
+      "a bare .focus() makes the browser scroll to reveal the focus ring, which is how the gender drill used to nudge the page down after every answer (r99 fixed five such sites)",
+      () => {
+        if (!appText) return "could not read js/app.js (this page must be SERVED)";
+        const bare = (appText.match(/\.focus\(\s*\)/g) || []).length;
+        return bare === 0 ? true : (bare + " bare .focus() call(s) remain");
+      });
+
     const g5 = group("Content the renderers depend on"); groups.push(g5);
     T(g5, "every translation item declares its direction",
       "without target_lang the direction is guessed from accented characters, and the accent bar is attached on the wrong side",
