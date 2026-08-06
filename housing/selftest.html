@@ -56,12 +56,12 @@
 <div id="summary">Loading content…</div>
 <div id="out"></div>
 
-<script src="js/norm.js?v=2026-08-06-r140"></script>
-<script src="js/store.js?v=2026-08-06-r140"></script>
-<script src="js/engine_axes.js?v=2026-08-06-r140"></script>
-<script src="js/grammar_engine.js?v=2026-08-06-r140"></script>
-<script src="js/translation_stub.js?v=2026-08-06-r140"></script>
-<script src="js/translation_marker.js?v=2026-08-06-r140"></script>
+<script src="js/norm.js?v=2026-08-06-r141"></script>
+<script src="js/store.js?v=2026-08-06-r141"></script>
+<script src="js/engine_axes.js?v=2026-08-06-r141"></script>
+<script src="js/grammar_engine.js?v=2026-08-06-r141"></script>
+<script src="js/translation_stub.js?v=2026-08-06-r141"></script>
+<script src="js/translation_marker.js?v=2026-08-06-r141"></script>
 <script>
 (function () {
   "use strict";
@@ -381,6 +381,26 @@
         const t = "Complete: 'I tuoi ____ sono italiani?' (amico)";
         return strip(t) === t ? true : ("changed -> " + strip(t));
       });
+
+    // ------------- layout arithmetic (style.css + app.js, r141)
+    const g4i = group("Vocab layout arithmetic (style.css / app.js)"); groups.push(g4i);
+    T(g4i, "the frequency square's height is DERIVED from the dot size, not a constant",
+      "VOCAB_FOCUS_HEIGHT_PX = 335 was hard-coded and the flanking bars were built in JS to match it, so shrinking the dots in CSS shrank only the middle block. Measured live: dots 9px->6px moved the square 403px->400px. Smith asked three times for this square to shrink; this constant is why it never did",
+      () => (/const VOCAB_FOCUS_HEIGHT_PX/.test(appText))
+        ? "the 335 constant is back - the flanking bars will disagree with the dots again"
+        : (/vocabFocusHeightPx\(\)/.test(appText) ? true : "vocabFocusHeightPx() not found in app.js"));
+    T(g4i, "#vocab-body keeps a DEFINITE height",
+      "the heatmap row is a 1fr share, and a share of an auto-height grid resolves to CONTENT size: measured, height:auto blew the square to 3198px and the page to 3091px of overflow. min-height alone is not enough",
+      () => (/#vocab-body\s*\{[^}]*height:\s*calc\(100dvh/.test(cssText)) ? true
+        : "no definite height: calc(100dvh - ...) on #vocab-body");
+    T(g4i, "the frequency square SCROLLS what it cannot show, never clips it",
+      "overflow:hidden meant 177px of the heatmap was silently amputated with no scrollbar to say so. Smith's rule: scrolling beats clipping, every time",
+      () => (/\.vocab-axis-freq[^}]*overflow-y:\s*auto/.test(cssText)) ? true
+        : ".vocab-axis-freq is not set to overflow-y: auto");
+    T(g4i, "the empty axes header collapses",
+      "it rendered as an empty white bordered box costing ~30px with its gap - Smith: \"What's that little bar above the frequency?\"",
+      () => (/\.vocab-axes-header:empty\s*\{[^}]*display:\s*none/.test(cssText)) ? true
+        : "no :empty collapse rule for .vocab-axes-header");
 
     // ------------- gender flash honesty (engine_axes, r140)
     const g4h = group("Gender flash fires on evidence, not on part of speech"); groups.push(g4h);

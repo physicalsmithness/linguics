@@ -14,6 +14,45 @@ rewrite target in 3 that would have silently killed 129 references. Use this ver
 
 ---
 
+## STATUS as of 2026-08-06 01:xx (Architecture) — READ THIS FIRST
+
+QoderWork ran jobs 1, 2 and 3 between 00:27 and 00:49, i.e. **before** the corrections lower down
+this file were written (01:07). Current state:
+
+| job | state | what remains |
+|---|---|---|
+| **1** equivalence classes | ran the UNCORRECTED spec | **Do not re-run.** Filtered output already produced by Architecture at `data/equivalence_class_proposals_2026-08_FILTERED.json`. See the note below — the sweep surfaced a data problem that matters more than the classes. |
+| **2** expected_buckets | **DONE and healthy** | nothing. 899/899 items, mean 5.8 expected buckets vs 1.4 required, required_buckets byte-identical |
+| **3** gender bare-ids | ran, 18 rewrites in 3 files, manifest untouched | one loose end: `vocabulary.it.medico.gender.active` was written in a different shape from the other 17 |
+| **4** code fixes | not started | Housing |
+| **5** morph-it grammar tagging | **UNBLOCKED — job 2 has landed** | run it |
+| **6** noun classes | not started | Vocab or another agent |
+
+**What job 2 actually emitted, since it is worth knowing before running job 5:**
+
+| kind | count |
+|---|---|
+| `vocabulary.*.translation` | 2,896 |
+| `vocabulary.*.gender` | 228 |
+| `orthography.spelling.*` (7 classes) | 1,785 |
+| `orthography.accent.italian` | 264 |
+| **grammar families** | **0** |
+
+Zero grammar buckets is **correct and by design** — tier 1 is string-derivable surface only. It also
+means the thing the marker is actually bad at is still undeclared, and **job 5 is the one that fixes
+that.** Items went from 1.4 declared skills to about 7.2, but every one added so far is vocabulary or
+spelling.
+
+**Finding from the job 1 filtering, which outranks the classes themselves.** The rule kept proposing
+`prendere` / `badare` / `cavare` / `mediare` as one class. The rule is right; the data is wrong.
+`badare`, `cavare` and `mediare` are each glossed with the bare string `'take'` — truncations of "take
+care of", "take out", and so on. Those glosses are wrong in the live vocabulary file, which means a
+learner can be asked "what's the Italian for take?" and shown `mediare`. **A truncated-gloss audit is
+now worth more than the equivalence sweep it came out of**, and it should be a job of its own before
+job 1's proposals are ratified.
+
+---
+
 ## ASSIGNMENT (Smith, 2026-08-05)
 
 **Jobs 1, 2, 3 and 5 → QoderWork**, which has direct access to the live folder.

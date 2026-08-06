@@ -88,6 +88,27 @@ code) and an `esbuild` piped into `tail`, so the shell read *tail's* exit status
 **REWRITTEN 2026-08-05 at the end of the r124-r139 session.** The seat is NOT empty
 and the section below (from 08-03) is now history, kept for its routing.
 
+### THE GOLDEN RULE, corrected by Smith 2026-08-06
+
+**No-scrolling was never the rule.** It was a symptom, and chasing it as a rule is
+what starved the card. His words: *"I don't mind if it scrolls. Scrolling is better
+than clipping off things so you can't see them — way better."* The real rules:
+
+1. **The card and its feedback must be usable.** *"That is the absolute number one
+   thing... it's unusable as it is. It's broken."*
+2. **Don't make the page taller than a normal screen.**
+
+Where they fight, the card wins and the page scrolls.
+
+### YOU CAN MEASURE THE LIVE PAGE — do it before you theorise
+
+No headless browser installs in the sandbox (no root, chromium download off-
+allowlist), **but the Claude-in-Chrome MCP drives Smith's own browser.** Navigate to
+the live site, inject candidate CSS with a `<style>` tag, and read
+`getBoundingClientRect()` / `scrollHeight`. One pass found four faults that three
+sessions of reading had missed — including a 335px constant in `app.js` that had
+been quietly defeating every "shrink the frequency square" request.
+
 ### r140 (2026-08-06) changed the rules on two of these
 
 **The top-bar arithmetic is over.** `#vocab-body` no longer carries a hard-coded

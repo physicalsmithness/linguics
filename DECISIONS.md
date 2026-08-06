@@ -2615,3 +2615,38 @@ re-implements `entryBucketId` and compares byte-for-byte rather than eyeballing.
 542 to a residue file), 6b split `invariable_accented_final` into `accented_a_fem` and
 `accented_other`, 6c propose the 644 loanword genders without writing them. For Vocab or another
 agent; the panel's two-taxonomy merge stays with Housing.
+
+
+## Audit of QoderWork's returned jobs; two Architecture errors, one reverted (2026-08-06)
+
+**Two mistakes of mine first, both corrected.** (1) I told Smith nothing had run. Jobs 1, 2 and 3 had
+already been delivered (00:27-00:49) and my work-order corrections landed at 01:07, forty minutes too
+late to reach them. (2) On finding Job 3's rewritten ids I asserted it had killed 129 references,
+"repaired" 834 of them across 36 files, then checked the premise and found it false — the 5-segment
+form parses correctly in `parseVocabBucketId` (aspect found by name, direction simply empty), so it
+is not dead for per-lemma statistics. **Reverted from backup; 36 files restored, 0 parse failures,
+segment profile back to 159 four-segment + 1,062 five-segment.** Lesson, and it is the standing one:
+I verified the fix and not the diagnosis.
+
+**Job 2 (`expected_buckets`) — LANDED, healthy.** 899/899 items carry the field; mean 5.8, median 6,
+against the 1.4 mean of `required_buckets`. `required_buckets` byte-identical across all 899 items
+versus backup. Both namespaces emitted (3,124 vocabulary, 2,049 orthography), so the bad validation
+test I had written did not bite. This was the important one and it is in.
+
+**Job 1 (equivalence classes) — ran the UNCORRECTED spec; output needs filtering, not re-running.**
+1,126 proposals, no `oversized` array, largest group 336 members, 693 occurrences of `[skip]`, and
+`prendere`+`badare` grouped as `bear_verb` — every failure predicted in the audit. The good pairs are
+also present: `sebbene`+`benché` as `albeit_conj`, `secco`+`asciutto` as `arid_adj`, and
+`tv`/`televisione` correctly absent. Apply the tightened gates (containment 1.0, max gloss set 3,
+cap 4 members, drop `[skip]` and single-character lemmas) as a filter over the existing file.
+
+**Job 3 (gender bare-ids) — did 18 rewrites in 3 files, manifest untouched.** Modest and within
+spec-as-written. One inconsistency in its own output: `vocabulary.it.medico.gender.active` was added
+with no pos segment while the other 17 took the pos and no `.active`.
+
+**Real finding, to be decided deliberately and NOT at 1am:** authors write
+`vocabulary.it.<lemma>.<pos>.gender` (1,062 references estate-wide, long predating Job 3) while the
+engine composes `vocabulary.it.<lemma>.<pos>.gender.active` via `entryBucketId`. **Two id forms for
+the same fact, so a grammar item's gender markpoint and a gender-drill event do not aggregate.** That
+is worth fixing, but as a considered migration with a behaviour test, not as a side-effect of a
+repair. Recorded, not acted on.

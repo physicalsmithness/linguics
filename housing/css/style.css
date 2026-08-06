@@ -51,16 +51,29 @@ header {
 /* r140 THE THIRD BAND. Brand row and tab row are now ONE row: brand hard left,
    tabs and filters to the right of it, everything bottom-aligned so the active
    tab still meets the header's bottom border like a folder tab. */
-.header-row2 { display: flex; align-items: flex-end; gap: 18px; flex-wrap: wrap; }
+.header-row2 { display: flex; align-items: flex-end; gap: 6px 18px; flex-wrap: wrap; }
 .header-row2 .brand-row { margin: 0; flex: 0 0 auto; align-self: center; }
-#header-filter-slot { flex: 1 1 auto; min-width: 0; display: flex; justify-content: flex-end; }
+/* r141 MY OWN REGRESSION, measured: the identity chip wrapped to a line of its
+   own (top 90 vs the nav's 14), so r140 removed one band and handed one back -
+   the header measured 133px on vocab, not the 49px I claimed. Smith spotted it:
+   "Smith test has gone to a funny place now... it's just wrapped itself round."
+   Cause: #header-filter-slot took flex:1 and pushed identity off the end. The
+   identity chip is SHORT and belongs beside the brand, so it goes there with an
+   auto margin, and the wide filter bar is the thing allowed to take a second
+   line - it is the only item that genuinely cannot share one. */
+#identity-box { order: 1; margin-left: auto; }
+#header-filter-slot { order: 2; flex: 1 1 100%; min-width: 0; display: flex; justify-content: flex-end; }
 /* r137: the filter bar carries `position: sticky; top: 110px` from when it lived
    in the page. Inside the header - which is ITSELF sticky - that makes it detach
    and float over the content below, which is the text-on-top-of-text in Smith's
    screenshots and a large part of why the top eats so much room. Static here. */
+/* r141: measured at 121px total header on vocab, of which the filter bar is two
+   wrapped lines (drill chips, then Direction / Restrict to / Sub-band). Tighter
+   leading and gaps buy back most of a line without hiding any control. */
 #header-filter-slot .filter-bar { position: static; top: auto; z-index: auto;
-  margin: 0 0 4px; padding: 2px 0; border: none; background: transparent;
-  flex-wrap: wrap; justify-content: flex-end; gap: 6px 12px; font-size: 13px; }
+  margin: 0; padding: 0; border: none; background: transparent;
+  flex-wrap: wrap; justify-content: flex-end; align-items: center;
+  gap: 3px 10px; font-size: 12.5px; line-height: 1.25; }
 #header-filter-slot .filter-bar select { font-size: 13px; padding: 2px 5px; }
 #header-filter-slot .filter-mode-chip { padding: 2px 9px; font-size: 12px; }
 #header-filter-slot .filter-mode-row { display: inline-flex; }
@@ -171,10 +184,21 @@ main {
 .filter-mode-chip.active { background: var(--accent); color: #fff; border-color: var(--accent); font-weight: 600; }
 
 /* Translation session score: olive shade, no threshold.  QoderWork 2026-07-22 */
+/* r141: quiet type over a thin progress rule, replacing the olive slab whose
+   darkness encoded the score (Smith: "the dark green's so out of place").
+   The bar uses the house partial-green, and only the RULE carries the shade -
+   the figures stay legible ink at every score. */
 .translation-session-score {
   margin-left: auto; font-size: 12px; color: var(--muted); white-space: nowrap;
-  padding: 2px 8px; border-radius: 4px;
-  transition: background 0.4s ease, color 0.4s ease;
+  padding: 2px 0 4px; border-radius: 0; background: none;
+  position: relative;
+}
+.translation-session-score.has-score::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
+  border-radius: 1px;
+  background: linear-gradient(to right,
+    var(--green-partial, #5d9a77) 0, var(--green-partial, #5d9a77) var(--sess-pct, 0%),
+    var(--line) var(--sess-pct, 0%), var(--line) 100%);
 }
 .session-reset-btn {
   font: inherit; font-size: 11px; padding: 1px 6px; margin-left: 4px;
@@ -327,6 +351,9 @@ main {
 .intent-bar label { color: var(--muted); }
 .intent-bar select { padding: 2px 6px; font-family: inherit; font-size: 13px; }
 .intent-bar .annotation-bar { margin: 0 0 0 6px; padding-left: 10px; border-left: 1px solid var(--line); }
+/* r141: the live consequence of the Intent setting, in words, next to it. */
+.intent-why { color: var(--faint); font-style: italic; font-size: 12px; min-width: 0;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .annotation-bar { display: flex; gap: 6px; margin-top: 6px; }
 .annotation-bar button {
   padding: 3px 8px;
@@ -910,18 +937,25 @@ main {
 
 footer {
   border-top: 1px solid var(--line);
-  padding: 10px 28px;
+  padding: 7px 28px;
   display: flex;
-  /* r140: align-items + a real gap. The streak carried its own margin-top, so it
-     sat lower than everything else on the line and read as lumped on top of the
-     build id rather than beside it (Smith). */
+  /* r140 gave the streak and build id a shared baseline; r141 stops the whole
+     bar wrapping to three lines to do it. MY REGRESSION, measured: the footer
+     went to 85px over 3 lines, and Smith saw the build id fall onto its own
+     row. flex-wrap:wrap was the cause. Now: one line, nothing allowed to wrap,
+     and the long middle status text is the piece that ellipsises if the window
+     is narrow - it is the least load-bearing thing on the bar. */
   align-items: center;
-  gap: 6px 16px;
-  flex-wrap: wrap;
+  gap: 14px;
+  flex-wrap: nowrap;
+  overflow: hidden;
   justify-content: space-between;
   font-size: 12px;
+  line-height: 1.35;
   color: var(--muted);
 }
+footer > span { white-space: nowrap; flex: 0 0 auto; }
+footer > #content-status { flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
 
 /* Narrow viewports: fold the live panel below */
 @media (max-width: 1080px) {
@@ -969,7 +1003,29 @@ footer {
   /* r139: the frequency square shrinks, on Smith's instruction ("feel free to
      shrink the frequency thing... there's no way you're going to get it all in
      unless you do"). Question keeps its 330; the heatmap takes a smaller floor. */
-  grid-template-rows: 330px auto minmax(84px, 0.8fr) 132px;
+  /* ==========================================================================
+     r141 THE RULE CHANGED, and I had it wrong. Smith, 2026-08-06:
+       "I don't mind if it scrolls. Why it's scrolling is better. Scrolling is
+        better than clipping off things so you can't see them - way better."
+       "we must have sufficient room for the card. That is the absolute number
+        one thing... it's unusable as it is. It's broken."
+     So no-scrolling was never the rule - it was a SYMPTOM of the real rule,
+     which is: don't make the page taller than a normal screen, and never buy
+     that by cutting the card. Where those fight, the card wins and the page
+     scrolls.
+     Measured on the live r140 page at a 791px viewport, which is how these
+     numbers stopped being guesses:
+       - the result box was 58px. Two lines. That is the "unusable".
+       - the frequency square held 403px of content in a 226px box with
+         overflow:hidden - 177px of the heatmap silently CUT OFF. It was never
+         failing to shrink; it was being clipped.
+       - 132px of grid was reserved for a gender strip that is not rendered at
+         all on Italian->English, so an eighth of the page was held for nothing.
+       - the axes header was an EMPTY white box costing 30px with its gap.
+     Card row 330 -> 430. The strip and header rows collapse to nothing when
+     empty (auto, not a fixed track), and the heatmap takes what is left.
+     ========================================================================== */
+  grid-template-rows: 430px auto minmax(0, 1fr) auto;
   grid-template-areas:
     "question themes"
     "axeshead themes"
@@ -993,8 +1049,15 @@ footer {
      on resize, so this stays true whatever the top bar does next.
      The old `min-height: 460px` is GONE: a min-height is a promise the viewport
      may not be able to keep, and when it cannot, the page scrolls. */
+  /* r141: BOTH, and the pair is the point.
+     `height` stays DEFINITE, because the heatmap's row is a 1fr share and a
+     share of an auto-height grid resolves to content size - measured: dropping
+     to height:auto blew the frequency square out to 3,198px and the page to
+     3,091px of overflow. That is the "bigger than a normal screen" failure.
+     `min-height` then guarantees the card its 430px and the heatmap a floor, so
+     on a short viewport the page SCROLLS rather than crushing the card. */
   height: calc(100dvh - var(--chrome-h, 232px));
-  min-height: 0;
+  min-height: 580px;
 }
 /* The card fills its quadrant and never scrolls as a whole: the question, the
    input and the buttons are always on screen. Only the result region moves. */
@@ -1002,8 +1065,20 @@ footer {
 #vocab-host > .qcard { display: flex; flex-direction: column; min-height: 0; flex: 1 1 auto; }
 #vocab-host .card-result { flex: 1 1 auto; min-height: 0; overflow-y: auto; }
 #vocab-axes-host { display: contents; }
+/* r141: Smith - "What's that little bar above the frequency?" It was an EMPTY
+   white bordered box: no content, but 8px of padding top and bottom, a border
+   and a 12px grid gap, so ~30px of the page spent on nothing. It collapses when
+   it has no children; when it does have some it looks as before. */
 .vocab-axes-header { grid-area: axeshead; min-width: 0; }
-.vocab-axis-freq   { grid-area: freq;   min-width: 0; min-height: 0; overflow: hidden; }
+.vocab-axes-header:empty { display: none; padding: 0; border: none; }
+/* r141 THE FREQUENCY SQUARE. `overflow: hidden` meant the box did not shrink the
+   heatmap, it AMPUTATED it - 990 dots wanting 403px inside a 226px box, with the
+   bottom 177px simply gone and no scrollbar to say so. Two fixes, because either
+   alone is wrong: the dots now scale from a variable so the square genuinely
+   gets smaller, AND what still does not fit scrolls instead of vanishing. */
+.vocab-axis-freq   { grid-area: freq;   min-width: 0; min-height: 0; overflow-y: auto; overflow-x: hidden; }
+/* --freq-dot drives every dimension in the heatmap, so one number resizes it. */
+#vocab-body { --freq-dot: 6px; }
 .vocab-axis-themes { grid-area: themes; min-width: 0; min-height: 0; overflow-y: auto; padding-right: 4px; }
 .vocab-axis-gender { grid-area: strip;  min-width: 0; min-height: 0; overflow-y: auto; }
 /* Expanded (Smith 2026-08-05): it keeps its own strip and grows UPWARDS,
@@ -1164,22 +1239,24 @@ body.strand-vocab-active #live-stats { display: none; }
   display: grid;
   grid-template-columns: repeat(10, auto);
   grid-template-rows: repeat(11, auto);
-  /* Bigger horizontal gap than vertical so 3x3 blocks read as columns. */
-  column-gap: 7px;
-  row-gap: 3px;
+  /* Bigger horizontal gap than vertical so 3x3 blocks read as columns.
+     r141: gaps scale with the dot so the square shrinks as a whole picture
+     rather than becoming widely-spaced specks. */
+  column-gap: calc(var(--freq-dot, 9px) * 0.78);
+  row-gap: calc(var(--freq-dot, 9px) * 0.33);
   background: rgba(0,0,0,0.05);
   padding: 4px;
   border-radius: 3px;
 }
 .freq-focused-box {
   display: grid;
-  grid-template-columns: repeat(3, 9px);
-  grid-template-rows: repeat(3, 9px);
+  grid-template-columns: repeat(3, var(--freq-dot, 9px));
+  grid-template-rows: repeat(3, var(--freq-dot, 9px));
   gap: 0;
 }
 .freq-dot {
-  width: 9px;
-  height: 9px;
+  width: var(--freq-dot, 9px);
+  height: var(--freq-dot, 9px);
   background: rgb(236, 229, 210);
   border-radius: 0;
   cursor: default;
@@ -1610,7 +1687,13 @@ body.strand-vocab-active #live-stats { display: none; }
 /* Quiet 30-day practice grid (Smith 2026-07-20): 6x5, one cell per day,
    newest bottom-right; today gets a faint ring. Deliberately undemonstrative. */
 #streak-host { display: inline-flex; align-items: center; gap: 8px; margin-left: 12px; }
-.streak-grid { display: grid; grid-template-columns: repeat(6, 6px); grid-auto-rows: 6px; gap: 2px; }
+/* r141: the streak's little grid was 6px cells over as many rows as it needed,
+   which made it 38px tall - it, alone, was setting the footer's height and it is
+   what Smith saw as the streak "lumped on top of" the build id. Nothing else on
+   that bar is over 19px. 4px cells, and the grid is capped so a long history
+   cannot grow the footer. */
+.streak-grid { display: grid; grid-template-columns: repeat(6, 4px); grid-auto-rows: 4px; gap: 1.5px;
+  max-height: 18px; overflow: hidden; align-content: center; }
 .streak-day { background: #e9e5d8; border-radius: 1.5px; }
 .streak-day.did { background: var(--accent); opacity: 0.55; }
 .streak-day.today { box-shadow: 0 0 0 1px var(--accent); }
@@ -1636,7 +1719,7 @@ body.strand-vocab-active #live-stats { display: none; }
    positioned overlay. The overlay only worked while the header had a spare band
    above the tabs; with one band it sat on top of the filter bar. */
 #identity-box { display: flex; align-items: center; justify-content: flex-end; gap: 8px; font-size: 12px; background: transparent;
-  flex: 0 0 auto; align-self: center; margin-left: 4px; }
+  flex: 0 0 auto; align-self: center; white-space: nowrap; }
 .identity-who { color: var(--ink); }
 .identity-signin, .identity-save { border: 1px solid var(--accent); background: var(--accent-soft); border-radius: 6px; padding: 4px 12px; cursor: pointer; font-size: 13px; }
 .identity-name { width: 120px; font-size: 13px; padding: 3px 6px; }
@@ -1893,6 +1976,13 @@ body.strand-vocab-active #live-stats { display: none; }
 /* ==================== entry / welcome screen ==================== */
 .entry-screen[hidden] { display: none; }
 body.entry-active nav#strand-nav { display: none; }
+/* r141 (Smith: the front page "says a lot of other rubbish"). The strand's
+   filter bar - drill chips, Direction, Restrict to, Sub-band, the 13993-of-18048
+   count - lives in the header, so the ENTRY screen was wearing the controls of a
+   session that has not started. You choose all of that on the entry screen
+   itself, a few centimetres below. It belongs to a running session only.
+   Identity STAYS - the front door is exactly where you would change user. */
+body.entry-active #header-filter-slot { display: none; }
 body.entry-active main { display: block; }
 body.entry-active .content,
 body.entry-active #live-stats { display: none; }

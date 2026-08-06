@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-08-06-r140";
+  const LL_BUILD = "2026-08-06-r141";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -779,10 +779,18 @@
     if (ep !== null) _parts.push(`elements ${translationSession.hits}/${translationSession.shown} (${ep}%)`);
     if (ipct !== null) _parts.push(`impressionistic ${ipct}%`);
     scoreEl.textContent = _parts.length ? "Session · " + _parts.join(" · ") : "Session: —";
+    // r141 THE OLIVE SLAB IS GONE. Smith: "I hate the session thing... I don't
+    // want that colour. The dark green's so out of place." He is right and the
+    // reason is worth keeping: a solid fill whose DARKNESS encodes the score
+    // reads as an alert, not a score - a good session went darkest and shoutiest,
+    // and the colour was not in the house palette at all. Nor can it go red:
+    // a running session total is not a verdict on an answer.
+    // Now it is quiet type with a thin progress rule underneath, so the number
+    // is read as a number and the shade only tints the rule.
     const shade = (ipct !== null) ? ipct : ep;
     if (shade !== null) {
-      scoreEl.style.background = `rgba(61, 74, 28, ${shade / 100})`;
-      if (shade > 55) scoreEl.style.color = "#fff";
+      scoreEl.style.setProperty("--sess-pct", shade + "%");
+      scoreEl.classList.add("has-score");
     }
     const resetBtn = document.createElement("button");
     resetBtn.type = "button";
@@ -2333,9 +2341,14 @@
 
     const textarea = document.createElement("textarea");
     const hasHelps = it.vocab_help && it.vocab_help.length;
+    // r141 (Smith: "total rubbish. What is it? Enter to what? Shift plus enter
+    // for a line break. Who needs that?"). The placeholder was a keyboard manual
+    // sitting where the answer goes - and it named the <g>/<s>/<f> tags, which
+    // have had BUTTONS under the box since long before. The keys are already
+    // spelled out beside Mark. The placeholder now says one thing: what to type.
     textarea.placeholder = hasHelps
-      ? "Your translation. / for vocab help. Enter to mark; Shift+Enter for a line break."
-      : "Your translation. Enter to mark; Shift+Enter for a line break. Wrap with <g>...</g>, <s>...</s>, <f>...</f> for annotations.";
+      ? "Your translation.  ( / for vocab help )"
+      : "Your translation.";
     card.appendChild(textarea);
     translationTextareaRef = textarea;
     const helpBar = buildVocabHelpBar(it, vocabHelpsUsed);   // QoderWork 2026-07-22: above accents
@@ -2346,15 +2359,37 @@
 
     attachVocabSlashMenu(textarea, it, vocabHelpsUsed);
 
+    // r141 SAY WHAT THIS DOES. Smith did not know Intent was live - "I'm so
+    // pleased it's working, I didn't realise it did. We need to highlight it
+    // more, a bit of hover text somewhere." It is not decoration: the value is
+    // posted to the marker and the prompt acts on it. An unexplained control
+    // that silently changes how you are marked is worse than no control.
+    const INTENT_HELP = "Tells the marker what kind of answer this is meant to be, and it marks accordingly. "
+      + "literal = a close rendering. guess = you are unsure, so near-misses are read charitably. "
+      + "sense = you translated the meaning, so a non-literal choice is not penalised.";
+    const INTENT_WHY = {
+      literal: "literal - mark me on a close rendering of the original",
+      guess:   "guess - I am unsure; read a near-miss charitably",
+      sense:   "sense - I went for the meaning; do not penalise a non-literal choice"
+    };
     const intentBar = document.createElement("div");
     intentBar.className = "intent-bar";
-    intentBar.innerHTML = '<label>Intent:</label>';
+    intentBar.innerHTML = '<label title="' + INTENT_HELP.replace(/"/g, "&quot;") + '">Intent:</label>';
     const intentSel = document.createElement("select");
+    intentSel.title = INTENT_HELP;
     for (const v of ["literal", "guess", "sense"]) {
       const o = document.createElement("option"); o.value = v; o.textContent = v;
+      o.title = INTENT_WHY[v] || v;
       intentSel.appendChild(o);
     }
+    const intentWhy = document.createElement("span");
+    intentWhy.className = "intent-why";
+    intentWhy.textContent = INTENT_WHY.literal.replace(/^literal - /, "");
+    intentSel.addEventListener("change", () => {
+      intentWhy.textContent = (INTENT_WHY[intentSel.value] || "").replace(/^\w+ - /, "");
+    });
     intentBar.appendChild(intentSel);
+    intentBar.appendChild(intentWhy);
 
     // The annotation buttons join the intent row rather than costing a band of
     // their own. They belong together anyway - both tell the marker what kind of
@@ -4368,9 +4403,22 @@
   let vocabFreqFocusStart = 0;
   const VOCAB_FREQ_WINDOW = 10;
   // Height of the focused dot-grid in px; flanking blocks match this height.
-  // 11 rows of boxes x 3 dots x 9px + 10 row-gaps x 3px + 2 x 4px padding
-  // = 297 + 30 + 8 = 335.
-  const VOCAB_FOCUS_HEIGHT_PX = 335;
+  //
+  // r141: THIS is why "shrink the frequency square" never worked, three times of
+  // asking. 335 was a constant - 11 rows x 3 dots x 9px + 10 row-gaps x 3px +
+  // 2 x 4px padding - and the flanking columns were built to match it in JS. So
+  // shrinking the dots in CSS shrank only the middle block: measured live, the
+  // dots went 9px -> 6px and the square went 403px -> 400px, because the
+  // flanking bars either side still stood at their hard-coded 352. The number
+  // has to come from the SAME place the dots do, or the two halves disagree.
+  const VOCAB_FOCUS_ROWS = 11, VOCAB_FOCUS_PAD_PX = 8;
+  function vocabFocusHeightPx() {
+    const host = document.getElementById("vocab-body");
+    const raw = host ? getComputedStyle(host).getPropertyValue("--freq-dot") : "";
+    const dot = parseFloat(raw) || 9;
+    const rowGap = dot * 0.33;                       // matches .freq-focused row-gap
+    return Math.round(VOCAB_FOCUS_ROWS * 3 * dot + (VOCAB_FOCUS_ROWS - 1) * rowGap + VOCAB_FOCUS_PAD_PX);
+  }
 
   // Build a band -> [lemma] index lazily from vocabEntries.
   let _bandLemmasCache = null;
@@ -5134,7 +5182,7 @@
       if (bi === focusBlockIdx) {
         block = renderFocusedDotGrid(blockStart, byRank, activeDir);
       } else {
-        block = renderFlankingStripes(blockStart, blockEnd, byRank, distance, activeDir, VOCAB_FOCUS_HEIGHT_PX);
+        block = renderFlankingStripes(blockStart, blockEnd, byRank, distance, activeDir, vocabFocusHeightPx());
         // Block-level click: filter deck to this thousand-range AND refocus.
         block.addEventListener("click", (ev) => {
           if (ev.target && ev.target.classList.contains("freq-flank-cell")) return;
