@@ -2650,3 +2650,31 @@ engine composes `vocabulary.it.<lemma>.<pos>.gender.active` via `entryBucketId`.
 the same fact, so a grammar item's gender markpoint and a gender-drill event do not aggregate.** That
 is worth fixing, but as a considered migration with a behaviour test, not as a side-effect of a
 repair. Recorded, not acted on.
+
+
+## Gloss field: display and acceptance separated; three faults found (2026-08-06)
+
+Third and fourth screenshots in one evening. *"What's the Italian for mistress, lady, owner, hostess,
+landlady, employer, boss, flagship of a naval squadron?"* — and the learner who answered `maestra` was
+told **"that means [skip]"**. Job 7 written.
+
+**RULED: `translation_en` is doing two jobs and they separate. Cap the PROMPT at 3 senses; keep the
+whole list for ACCEPTANCE.** Nothing is lost — the other senses still mark correct, they were only
+ever needed to judge the answer, not to ask the question. Third time this week the same principle has
+been needed (`required` vs `expected_buckets`; "one way to say it" vs the marked reference): **what we
+present and what we accept are different sets.** Scale: 857 entries at 5+ glosses, 293 at 7+, 103 at
+9+, worst `tosto` at 18. Render change, no migration.
+
+**`[skip]` explained and its leak located.** It is an existing convention for corpus artefacts: 694
+entries, all `translation_source: corpus_artefact`, mostly tokenisation junk (the, l, c, s, d). The
+filter exists in three places in app.js and is **missing on the "you wrote X — that means Y" feedback
+path**, which is the leak Smith saw. One guard.
+
+**Two data faults behind it.** (i) Real words mis-flagged: `maestra` is a genuine noun at rank 4606
+carrying `[skip]`; 29 of the 694 are in the top 2000 and none of the 694 has a usable `gloss_en` to
+fall back on. (ii) Phrasal-verb truncation: `badare`, `cavare`, `mediare`, `decollare`, `tardare` all
+glossed bare `'take'` — the particle stripped in import; matching cluster on `'back'`; six entries
+glossed `'?'`. **Worse than the dry/TV cases**: there the stored answer was one valid option among
+several, here it is simply wrong, and a learner can be asked "the Italian for take" and shown
+`mediare`. Signature is a single-token gloss shared by 4+ same-pos entries; find mechanically, fix by
+hand, no bulk writes.

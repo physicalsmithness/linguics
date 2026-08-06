@@ -27,6 +27,7 @@ this file were written (01:07). Current state:
 | **4** code fixes | not started | Housing |
 | **5** morph-it grammar tagging | **UNBLOCKED — job 2 has landed** | run it |
 | **6** noun classes | not started | Vocab or another agent |
+| **7** gloss audit | not started | **do before ratifying job 1** |
 
 **What job 2 actually emitted, since it is worth knowing before running job 5:**
 
@@ -555,6 +556,78 @@ Housing**, not here. Do not change `GENDER_CLASSES`.
 2. After 6a, unclassified nouns = 542, and every one of them is in the residue file.
 3. After 6b, `accented_a_fem` count is ~268 and every member's lemma ends in `-à`.
 4. Every file parses; entry count unchanged at 18,048.
+
+---
+
+## JOB 7 — The gloss audit. Three faults, all live on screen.
+
+**For:** Vocab, or a capable AI. 7a and 7b are mechanical. 7c needs judgement and can be proposed.
+**Do this before ratifying Job 1's class proposals** — classes built on broken glosses encode the
+breakage.
+**Thread:** `inter_chat/Architecture_Vocab_marker_semantics.md` (at v10).
+
+### Why
+
+`translation_en` is doing two different jobs at once and failing at both. It is **what we show the
+learner as the prompt** and **what we accept as a correct answer**. Three screenshots in one evening:
+
+- *"What's the Italian for dry?"* → learner wrote `secco`, marked wrong against `asciutto`.
+- *"What's the Italian for TV?"* → learner wrote `la televisione`, marked wrong against `tv`.
+- *"What's the Italian for **mistress, lady, owner, hostess, landlady, employer, boss, flagship of a
+  naval squadron**?"* → an unanswerable question, and when the learner wrote `maestra` the feedback
+  read **"that means [skip]"**.
+
+### 7a — RULING first: display and acceptance are different lists
+
+**Cap the prompt at 3 senses. Keep the whole list for acceptance.** A learner shown three senses can
+answer; a learner shown eight is being handed a dictionary entry. Nothing is lost, because the
+remaining senses still count as correct — they were never needed to *ask* the question, only to
+*mark* it.
+
+This is the same split ruled twice already this week: `required_buckets` vs `expected_buckets`, and
+"one way to say it" vs the marked reference. Same principle each time — **what we present and what we
+accept are not the same set.**
+
+Scale: **857 entries carry 5+ glosses, 293 carry 7+, 103 carry 9+.** The worst is `tosto` with 18.
+The cap is a render change (Housing) and needs no data migration.
+
+### 7b — The `[skip]` leak (mechanical, small, do this)
+
+`[skip]` is an existing convention meaning *corpus artefact, never serve this*: 694 entries, every one
+with `translation_source: corpus_artefact`, mostly tokenisation junk (`the`, `l`, `c`, `s`, `d`).
+
+The filter is applied in three places in `housing/js/app.js` (~2862, ~9419, ~9447) and **not on the
+"you wrote X — that means Y" feedback path**, which is why a learner saw `[skip]` on screen. One
+guard, same test as the other three.
+
+### 7c — Two data faults behind it (propose, do not bulk-write)
+
+**Real words wrongly flagged as artefacts.** `maestra` is a genuine Italian noun at rank 4606, flagged
+`[skip]` with `translation_source: corpus_artefact`. It is not junk. 29 of the 694 sit in the top 2000
+by rank, which is where contamination is most likely and most damaging. Review those 29 first, then
+the rest; every one that is a real word needs a real gloss, and **none of the 694 has a usable
+`gloss_en` to fall back on** (checked: zero).
+
+**Truncated glosses on phrasal verbs.** `badare`, `cavare`, `mediare`, `decollare` and `tardare` are
+each glossed with the bare string `'take'` — "take care of", "take out", "take off", "take long" with
+the particle stripped somewhere in the import. There is a matching cluster on `'back'`
+(`schiena`, `appoggiare`, `posteriore`, `laterale`) and six entries whose entire gloss is `'?'`.
+
+This one is live and wrong, not merely untidy: a learner can be asked *"what's the Italian for take?"*
+and shown `mediare`. Unlike the *dry* and *TV* cases, where the stored answer was one valid option
+among several, here the stored answer is simply incorrect.
+
+**Find them mechanically, fix them by hand.** The signature is a single-token gloss shared by four or
+more entries of the same pos. Emit the candidates to `data/gloss_audit_<date>.json` with lemma, rank,
+pos and current gloss. Do not bulk-write replacements.
+
+### Acceptance tests
+
+1. Zero entries render `[skip]` anywhere a learner can see it.
+2. The 29 top-2000 `[skip]` entries are individually reviewed and listed with a verdict.
+3. Every single-token gloss shared by 4+ same-pos entries appears in the audit file.
+4. No entry's `lemma`, `pos`, `gender` or `rank` changes. Only `translation_en`, `gloss_en` and
+   `translation_source` may move, and only where the job says so.
 
 ---
 

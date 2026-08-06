@@ -514,6 +514,19 @@ main {
   border-bottom: 1px solid var(--line);
 }
 .result .overall .score { font-size: 22px; font-weight: 600; }
+/* r142: on the VOCAB card the score and "You wrote:" each took a full row with
+   its own rule under it - 47px for about eleven characters of information
+   (Smith: "why are we saying zero of one on one line, you wrote on one line").
+   They share a line here, with one rule under the pair. Grammar and translation
+   keep the roomier treatment: their answers are sentences, not one word. */
+#vocab-host .result .overall {
+  margin-bottom: 0; padding-bottom: 6px; border-bottom: none;
+  flex-wrap: wrap; row-gap: 2px;
+}
+#vocab-host .result .overall .score { font-size: 17px; }
+#vocab-host .result-you-wrote {
+  margin: 0 0 8px; padding: 0 0 8px; font-size: 13.5px;
+}
 .markpoint {
   display: flex;
   align-items: flex-start;
@@ -1064,6 +1077,21 @@ footer > #content-status { flex: 0 1 auto; min-width: 0; overflow: hidden; text-
 #vocab-host { grid-area: question; min-width: 0; min-height: 0; overflow: hidden; display: flex; flex-direction: column; }
 #vocab-host > .qcard { display: flex; flex-direction: column; min-height: 0; flex: 1 1 auto; }
 #vocab-host .card-result { flex: 1 1 auto; min-height: 0; overflow-y: auto; }
+/* ============================================================================
+   r142 THE CARD'S OWN SPACE. Smith: "look at the space... it's just a mess",
+   "there is so much space saving in that space... have it so big that there's
+   never going to be a scroll". Measured on r141, the 408px card spent 66px on
+   NOTHING - a 33px prompt line carried 40px of margin, the meta line 14 more,
+   the buttons 12 - and 41px sat empty below the result while the result itself
+   scrolled by 113px. Space was being held by the furniture and denied to the
+   only part that carries meaning.
+   The card's own margin-bottom (22px) also went unspent inside a fixed track.
+   ============================================================================ */
+#vocab-host > .qcard { margin-bottom: 0; }
+#vocab-host .qcard .meta { margin-bottom: 4px; font-size: 11.5px; }
+#vocab-host .qcard .prompt { margin: 6px 0 10px; }
+#vocab-host .qcard input[type=text] { margin-bottom: 2px; }
+#vocab-host .qcard .actions { margin-top: 8px; }
 #vocab-axes-host { display: contents; }
 /* r141: Smith - "What's that little bar above the frequency?" It was an EMPTY
    white bordered box: no content, but 8px of padding top and bottom, a border
@@ -1692,8 +1720,14 @@ body.strand-vocab-active #live-stats { display: none; }
    what Smith saw as the streak "lumped on top of" the build id. Nothing else on
    that bar is over 19px. 4px cells, and the grid is capped so a long history
    cannot grow the footer. */
-.streak-grid { display: grid; grid-template-columns: repeat(6, 4px); grid-auto-rows: 4px; gap: 1.5px;
-  max-height: 18px; overflow: hidden; align-content: center; }
+/* r142: r141 shrank this to 4px to stop it setting the footer's height, and it
+   went too far - Smith: "it's so small... the streak thing has completely gone
+   wrong, it just needs a little more room". So it gets its room back at 5px AND
+   goes hard right, past the build id, where nothing else competes for the space.
+   Capping the height is what stops it dictating the bar; shrinking it was never
+   the necessary part. */
+.streak-grid { display: grid; grid-template-columns: repeat(7, 5px); grid-auto-rows: 5px; gap: 1.5px;
+  max-height: 20px; overflow: hidden; align-content: center; }
 .streak-day { background: #e9e5d8; border-radius: 1.5px; }
 .streak-day.did { background: var(--accent); opacity: 0.55; }
 .streak-day.today { box-shadow: 0 0 0 1px var(--accent); }
@@ -2557,6 +2591,20 @@ h1, h2, h3, .wordmark, .coverage-title, .analysis-section-title { font-family: F
 /* Direction lens on every analysis panel (r136). Quiet, but always present -
    it names WHICH statistic you are reading, and the panels must never differ
    in how they say it. */
+/* r142 (Smith): the direction lens "just blended in as the same colour of the
+   background... at least have it with a white background, but maybe dark blue",
+   and he wants it sitting CLOSE to the title rather than adrift at the far end
+   of the row. It is the label that says which of two different skills these
+   numbers measure, so reading as background texture is the wrong weight
+   entirely. Navy on a tinted chip, tucked up beside the heading. */
+.vocab-axis-title .vocab-axis-lens {
+  margin-left: 10px; margin-right: auto;
+  color: var(--navy, #3a4f8a); background: #eef1f8;
+  border: 1px solid #d6dcee; border-radius: 3px;
+  padding: 1px 7px; font-style: normal; font-size: 11px;
+  white-space: nowrap;
+}
+.vocab-axis-title .vocab-axis-lens::before { content: none; }
 .vocab-axis-lens { margin-left: 9px; font-size: 11.5px; font-style: italic;
   color: var(--muted); white-space: nowrap; cursor: help; }
 .vocab-axis-lens::before { content: "\00b7"; margin-right: 8px; color: var(--line); font-style: normal; }
@@ -2568,18 +2616,36 @@ h1, h2, h3, .wordmark, .coverage-title, .analysis-section-title { font-family: F
    the heading text (Smith: "things go behind it"). An opaque background is not
    enough on its own - the title must also span the full scroll width and stop
    the content at its edge, hence the negative margins and the rule beneath. */
+/* r142: STILL see-through, and now I know why. `--bg` is the page cream, but the
+   panel behind these headings is WHITE, and the sticky bar sat at `top: 0` in a
+   box whose 4px of padding sits ABOVE that origin - so a sliver of row showed
+   through over the title (Smith: "there's a little transparent bit so you can
+   see it... it's still hanging behind the themes"). Three fixes together: an
+   opaque WHITE ground, negative top so the bar covers the padding it sits in,
+   and the frequency title made sticky too - it scrolled away entirely once the
+   heatmap became a scrollbox, which is why "Most frequently used Italian words"
+   vanished and the panel read as broken. */
 .vocab-axis-themes .vocab-axis-title,
-.vocab-axis-gender .vocab-axis-title {
-  position: sticky; top: 0; z-index: 4;
-  background: var(--bg);
-  margin: 0 -6px; padding: 4px 6px 5px;
+.vocab-axis-gender .vocab-axis-title,
+.vocab-axis-freq .vocab-axis-title {
+  position: sticky; top: -1px; z-index: 6;
+  background: #fff;
+  margin: -6px -8px 6px; padding: 8px 8px 6px;
   border-bottom: 1px solid var(--line);
-  box-shadow: 0 3px 6px -4px rgba(0,0,0,0.18);
+  box-shadow: 0 4px 7px -5px rgba(0,0,0,0.22);
 }
 /* The footer must never be see-through: content scrolling under it was drawing
    straight through the text in Smith's shots. */
 footer { background: var(--bg); position: relative; z-index: 20; }
 
 /* r139 footer order (Smith): build to the left, streak pushed hard right so it
-   is not lost in the middle of the status line. */
-#streak-host { margin-left: auto; }
+   is not lost in the middle of the status line.
+   r142: the STREAK goes furthest right of all, past the build id, because the
+   feedback widget floats over that corner and was covering the build number
+   ("we can't see the build number, the feedback covers it up"). The streak is a
+   picture and survives a partial overlap; a version string does not. So the
+   streak takes the corner and the build id steps left of it, clear of the
+   widget - and the whole bar keeps a right margin the widget cannot reach. */
+#build-version { order: 8; margin-left: auto; }
+#streak-host { order: 9; margin-left: 14px; }
+footer { padding-right: 150px; }
