@@ -88,6 +88,22 @@ code) and an `esbuild` piped into `tail`, so the shell read *tail's* exit status
 **REWRITTEN 2026-08-05 at the end of the r124-r139 session.** The seat is NOT empty
 and the section below (from 08-03) is now history, kept for its routing.
 
+### r140 (2026-08-06) changed the rules on two of these
+
+**The top-bar arithmetic is over.** `#vocab-body` no longer carries a hard-coded
+subtrahend. `measureChrome()` writes `--chrome-h` from the real header + footer +
+main padding on load, resize, `fonts.ready` and every strand change. If you move a
+band, change nothing else. The old `min-height: 460px` is gone with it.
+
+**Never guess a pixel height in prose.** There is no headless browser in the
+sandbox — no chromium, no playwright, no puppeteer — so any height you state is an
+estimate from font sizes and padding. Say so, or make the browser measure it.
+
+**Smith's prose rule (2026-08-06):** label every paragraph as *problem*, *current
+behaviour* or *proposal*. He could not tell which was which and said so. And end
+each round with a list of **the things you are not sure appear**, so he knows what
+to look for; the previous seat did not supply one.
+
 ### Read these three first
 
 1. **The vocab page still scrolls.** It must not. Everything else in the layout is

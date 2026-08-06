@@ -42,16 +42,20 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&family=Lora:wght@400..600&display=swap" rel="stylesheet">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/style.css?v=2026-08-05-r139">
+  <link rel="stylesheet" href="css/style.css?v=2026-08-06-r140">
 </head>
 <body>
   <header>
-    <div class="brand-row">
-      <span class="brand-logo" aria-hidden="true"><i class="m"></i><i class="e"></i><i class="e"></i><i class="d"></i><i class="e"></i><i class="e"></i><i class="d"></i><i class="m"></i><i class="l"></i></span>
-      <h1 class="wordmark">lingu<span class="wm-ics">ics</span></h1>
-      <p class="tagline">Language learning, atomised. <span class="tagline-scope">(Currently just Italian.)</span></p>
-    </div>
+    <!-- ONE BAND. The brand row and the tab row were two full-width bands; they
+         are now one. The tagline is the front-door line: it shows on the entry
+         screen, where it is doing a job, and stands down once you are working,
+         which is where the vertical space is actually needed. -->
     <div class="header-row2">
+      <div class="brand-row">
+        <span class="brand-logo" aria-hidden="true"><i class="m"></i><i class="e"></i><i class="e"></i><i class="d"></i><i class="e"></i><i class="e"></i><i class="d"></i><i class="m"></i><i class="l"></i></span>
+        <h1 class="wordmark">lingu<span class="wm-ics">ics</span></h1>
+      </div>
+      <p class="tagline">Language learning, atomised. <span class="tagline-scope">(Currently just Italian.)</span></p>
       <nav id="strand-nav">
         <button data-strand="grammar" class="active">Grammar</button>
         <button data-strand="translation">Translation</button>
@@ -151,14 +155,14 @@
   <script src="data/sample_grammar_questions.js"></script>
   <script src="data/sample_translation_items.js"></script>
 
-  <script src="js/norm.js?v=2026-08-05-r139"></script>
-  <script src="js/grammar_engine.js?v=2026-08-05-r139"></script>
-  <script src="js/translation_stub.js?v=2026-08-05-r139"></script>
-  <script src="js/translation_marker.js?v=2026-08-05-r139"></script>
-  <script src="js/pulse.js?v=2026-08-05-r139"></script>
-  <script src="js/store.js?v=2026-08-05-r139"></script>
-  <script src="js/engine_axes.js?v=2026-08-05-r139"></script>
-  <script src="js/app.js?v=2026-08-05-r139"></script>
+  <script src="js/norm.js?v=2026-08-06-r140"></script>
+  <script src="js/grammar_engine.js?v=2026-08-06-r140"></script>
+  <script src="js/translation_stub.js?v=2026-08-06-r140"></script>
+  <script src="js/translation_marker.js?v=2026-08-06-r140"></script>
+  <script src="js/pulse.js?v=2026-08-06-r140"></script>
+  <script src="js/store.js?v=2026-08-06-r140"></script>
+  <script src="js/engine_axes.js?v=2026-08-06-r140"></script>
+  <script src="js/app.js?v=2026-08-06-r140"></script>
 
   <!-- Estate feedback widget (WEB_KIT standard; canonical source
        MetaProject\web_kit\feedback.js, copied verbatim - do not fork).
@@ -178,7 +182,7 @@
       }
     };
   </script>
-  <script src="js/feedback.js?v=2026-08-05-r139"></script>
+  <script src="js/feedback.js?v=2026-08-06-r140"></script>
 
   <!-- Auto-populate the feedback name field with the signed-in display name.
        feedback.js is the WEB_KIT standard widget (copy verbatim, do not fork),

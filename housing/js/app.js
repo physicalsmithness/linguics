@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-08-05-r139";
+  const LL_BUILD = "2026-08-06-r140";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -1240,6 +1240,10 @@
       if (bar && bar.parentNode !== slot) slot.appendChild(bar);
       Array.from(slot.children).forEach(c => { c.hidden = (c.id !== name + "-filter-bar"); });
     }
+    // The header's height changes with the filter bar it is now hosting, and
+    // the tagline stands down outside the entry screen - so the chrome must be
+    // re-measured here or #vocab-body sizes itself against the previous strand.
+    if (typeof LL.measureChrome === "function") LL.measureChrome();
     if (name === "buckets") renderBucketsBrowse();
     if (name === "grammar") focusGrammarInput();
     if (name === "translation") focusTranslationInput();
@@ -2351,17 +2355,21 @@
       intentSel.appendChild(o);
     }
     intentBar.appendChild(intentSel);
-    card.appendChild(intentBar);
 
+    // The annotation buttons join the intent row rather than costing a band of
+    // their own. They belong together anyway - both tell the marker what kind of
+    // answer this is meant to be.
     const annoBar = document.createElement("div");
     annoBar.className = "annotation-bar";
     [["g", "Guess"], ["s", "Sense"], ["f", "Flair"]].forEach(([tag, label]) => {
       const b = document.createElement("button");
       b.type = "button"; b.textContent = label;
+      b.title = "Wrap the selected words so the marker treats them as " + label.toLowerCase();
       b.addEventListener("click", () => wrapSelection(textarea, tag));
       annoBar.appendChild(b);
     });
-    card.appendChild(annoBar);
+    intentBar.appendChild(annoBar);
+    card.appendChild(intentBar);
 
     const actions = document.createElement("div");
     actions.className = "actions";
@@ -4299,7 +4307,7 @@
       // EVERY mark (the slowness) and left flanking cells reading as
       // untouched (the "practised skill flashed then vanished" bug). Then flash.
       recolourAxisCellsFor(entry);
-      flashAxisCellsFor(entry, result.overall && result.overall.marks_awarded >= result.overall.marks_possible);
+      flashAxisCellsFor(entry, result.overall && result.overall.marks_awarded >= result.overall.marks_possible, recentlyChangedBuckets);
       nextBtn.textContent = "Next";
       nextBtn.title = "Advance to the next word";
       markBtn.disabled = true;                    // say it, do not just refuse it
@@ -4852,7 +4860,7 @@
   // `isHit` (boolean) drives the visual: hits get the richer success pulse
   // (.flash-hit), other outcomes get the neutral .flash. See inter_chat/
   // Architecture_Housing_vocab_success_animation.md.
-  function flashAxisCellsFor(entry, isHit) {
+  function flashAxisCellsFor(entry, isHit, changedBuckets) {
     if (!entry) return;
     const host = document.getElementById("vocab-axes-host");
     if (!host) return;
@@ -4866,8 +4874,22 @@
       const dot = host.querySelector('.freq-dot[data-rank="' + entry.rank + '"]');
       if (dot) targets.push(dot);
     }
-    // Gender axis cell (nouns only).
-    if (entry.pos === "noun") {
+    // Gender axis cell. THE TEST IS "did this answer record a gender?", not
+    // "is this word a noun?" (Smith 2026-08-05: an Italian->English card for
+    // `racconto` flashed the regular -o class, and `playlist` flashed invariable
+    // loanword - neither card asked for a gender at all, so nothing was
+    // recorded and nothing should have lit up). Recognition cards ask what a
+    // word MEANS; the gender markpoint is written only on production, and only
+    // on an unambiguous signal. Flashing on `pos === "noun"` announced a
+    // measurement that was never taken.
+    //
+    // `changedBuckets` is the caller's set of buckets this attempt actually
+    // wrote. Absent (drill panels, re-renders) we fall back to the old test, so
+    // no caller loses its flash by not having been updated.
+    const genderRecorded = changedBuckets
+      ? LL.attemptRecordedGender(changedBuckets)
+      : entry.pos === "noun";
+    if (genderRecorded) {
       const cls = entry.noun_class || nounClassFallback(entry);   // QoderWork 2026-07-22
       const gCell = host.querySelector('.vocab-cell[data-axis="gender"][data-key="' + cssEscape(cls) + '"]');
       if (gCell) targets.push(gCell);
@@ -8785,9 +8807,16 @@
       box.id = "identity-box";
       // r131 (Smith): was inserted ABOVE the header, which cost a full-width
       // band of its own AND scrolled away while the sticky header stayed - the
-      // worst of both. Now it lives inside the header, pinned top-right, so it
-      // costs no vertical space and stays put with everything else.
-      header.appendChild(box);
+      // worst of both. Now it lives inside the header, so it costs no vertical
+      // space and stays put with everything else.
+      //
+      // r140: it used to be ABSOLUTELY positioned at the header's top-right.
+      // That was free space when the header had a brand band above the tabs;
+      // with one band it is exactly where the filter bar now sits, and the two
+      // would have drawn over each other. So it joins the row as its last item
+      // and the flex layout keeps them apart by construction.
+      const row = header.querySelector(".header-row2") || header;
+      row.appendChild(box);
     }
     box.innerHTML = "";
     const id = LL.pulse.identity();
@@ -10923,6 +10952,38 @@
     if (logo) logo.title = line;
     if (mark) mark.title = line;
   })();
+
+  // MEASURE THE CHROME, do not guess it.
+  //
+  // #vocab-body sized itself with `calc(100dvh - 232px)`. 232 was measured once,
+  // against a three-band header, and every layout change since has silently made
+  // it a lie - too big and the card is crushed, too small and the page scrolls.
+  // Both faults have shipped, twice each. So the number is now derived from the
+  // elements themselves: header + footer + main's own vertical padding, read at
+  // load and on every resize. A future band added or removed needs no arithmetic
+  // here at all.
+  //
+  // Deliberately NOT a ResizeObserver on the header: the header's height depends
+  // on the filter bar it hosts, which is re-rendered constantly, and observing it
+  // would re-enter layout on every render. Load + resize + strand change is
+  // enough, because those are the only things that change the band count.
+  function measureChrome() {
+    const header = document.querySelector("header");
+    const footer = document.querySelector("footer");
+    const main = document.querySelector("main");
+    if (!header || !footer || !main) return;
+    const cs = getComputedStyle(main);
+    const pad = (parseFloat(cs.paddingTop) || 0) + (parseFloat(cs.paddingBottom) || 0);
+    const h = Math.round(header.offsetHeight + footer.offsetHeight + pad);
+    // A nonsense measurement (hidden page, fonts not in) must not shrink the body
+    // to nothing - keep the last good value instead.
+    if (h > 40 && h < 600) document.documentElement.style.setProperty("--chrome-h", h + "px");
+  }
+  LL.measureChrome = measureChrome;
+  window.addEventListener("resize", measureChrome);
+  // Fonts land after first paint and change the header's height; measure again.
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(measureChrome);
+  measureChrome();
 
   // -------------------- bootstrap --------------------
   // Render the build identifier in the footer. Useful for spotting cross-tab

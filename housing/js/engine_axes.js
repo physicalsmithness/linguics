@@ -336,6 +336,26 @@
   }
   LL.stripSelectAllChrome = stripSelectAllChrome;
 
+  // Did this attempt actually record a gender?
+  //
+  // The vocab heatmap used to flash a gender class cell whenever the word was a
+  // noun. But gender is only written on PRODUCTION (English->Italian) and only
+  // on an unambiguous signal - an explicit (m)/(f) or an unambiguous article. On
+  // a recognition card the learner is asked what the word MEANS, so no gender is
+  // demonstrated and none is recorded - yet the cell lit up, announcing a
+  // measurement that had not been taken (Smith: `racconto` flashed the -o class,
+  // `playlist` flashed invariable loanword).
+  //
+  // So the display asks the event log, not the dictionary. Pure, and here rather
+  // than in app.js so the self-test can reach it without a DOM.
+  function attemptRecordedGender(buckets) {
+    if (!buckets) return false;
+    const list = (typeof buckets.forEach === "function" && !Array.isArray(buckets))
+      ? Array.from(buckets) : [].concat(buckets);
+    return list.some(b => String(b || "").indexOf(".gender") >= 0);
+  }
+  LL.attemptRecordedGender = attemptRecordedGender;
+
   LL.applyAccentAxes = applyAccentAxes;
   LL.accentDiff = accentDiff;
   LL.accentOutcomeClass = accentOutcomeClass;

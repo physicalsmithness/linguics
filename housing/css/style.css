@@ -41,14 +41,18 @@ header {
   position: sticky; top: 0; z-index: 40; background: var(--bg);   /* Linguics permanently there (Smith) */
   border-bottom: 1px solid var(--line);
   padding: 14px 28px 0 28px;
-  /* sticky is itself a positioned element, so #identity-box below can anchor to
-     it absolutely without needing a separate position:relative. */
+  /* (r140: #identity-box no longer anchors here - it is a flex item in the
+     single header row. The note is kept so nobody re-adds the overlay.) */
 }
 /* r131 FREE THE TOP. The page was spending four full-width bands before any
    content: identity strip, brand row, tab row, filter bar. The identity strip
    is now pinned inside the header (no band, and it stops scrolling away while
    the header stays), and the filter bar shares the tab row. Two bands back. */
+/* r140 THE THIRD BAND. Brand row and tab row are now ONE row: brand hard left,
+   tabs and filters to the right of it, everything bottom-aligned so the active
+   tab still meets the header's bottom border like a folder tab. */
 .header-row2 { display: flex; align-items: flex-end; gap: 18px; flex-wrap: wrap; }
+.header-row2 .brand-row { margin: 0; flex: 0 0 auto; align-self: center; }
 #header-filter-slot { flex: 1 1 auto; min-width: 0; display: flex; justify-content: flex-end; }
 /* r137: the filter bar carries `position: sticky; top: 110px` from when it lived
    in the page. Inside the header - which is ITSELF sticky - that makes it detach
@@ -62,8 +66,14 @@ header {
 #header-filter-slot .filter-mode-row { display: inline-flex; }
 .tagline-scope { color: var(--faint); font-style: italic; font-size: 0.9em; }   /* italic like 'atomised' (Smith) */
 
-header h1 { margin: 0 0 4px; font-size: 22px; font-weight: 600; }
-.tagline { margin: 0 0 12px; color: var(--muted); font-style: italic; font-size: 14px; }
+header h1 { margin: 0; font-size: 22px; font-weight: 600; }
+/* THE SHRINK. In a working session the tagline stands down - it is the line a
+   new visitor needs, not the line a learner mid-answer needs, and it was the
+   single biggest consumer of the band it lived in. It returns in full on the
+   entry screen. */
+.tagline { margin: 0; color: var(--muted); font-style: italic; font-size: 14px;
+  align-self: center; flex: 0 1 auto; min-width: 0; display: none; }
+body.entry-active .tagline, body.coverage-active .tagline { display: block; }
 
 nav#strand-nav { display: flex; gap: 6px; margin-bottom: -1px; }
 nav#strand-nav button {
@@ -306,9 +316,17 @@ main {
   align-self: center;
 }
 
-.intent-bar { margin-top: 10px; display: flex; gap: 8px; align-items: center; font-size: 13px; }
+/* r140 ONE ROW, NOT TWO. Smith asked whether Intent/Guess/Sense/Flair could be
+   killed outright to give the result room. They cannot: `intent` is posted to
+   the marker and the prompt acts on it ("if intent is sense, don't penalise
+   non-literal mappings"), and <g>/<s>/<f> license stylistic reach. Deleting
+   them would change how answers are marked. So they are COMPRESSED instead -
+   the two bars share one line and give the band back anyway. */
+.intent-bar { margin-top: 8px; display: flex; gap: 8px; align-items: center; font-size: 13px;
+  flex-wrap: wrap; }
 .intent-bar label { color: var(--muted); }
-.intent-bar select { padding: 3px 6px; font-family: inherit; font-size: 13px; }
+.intent-bar select { padding: 2px 6px; font-family: inherit; font-size: 13px; }
+.intent-bar .annotation-bar { margin: 0 0 0 6px; padding-left: 10px; border-left: 1px solid var(--line); }
 .annotation-bar { display: flex; gap: 6px; margin-top: 6px; }
 .annotation-bar button {
   padding: 3px 8px;
@@ -892,8 +910,14 @@ main {
 
 footer {
   border-top: 1px solid var(--line);
-  padding: 12px 28px;
+  padding: 10px 28px;
   display: flex;
+  /* r140: align-items + a real gap. The streak carried its own margin-top, so it
+     sat lower than everything else on the line and read as lumped on top of the
+     build id rather than beside it (Smith). */
+  align-items: center;
+  gap: 6px 16px;
+  flex-wrap: wrap;
   justify-content: space-between;
   font-size: 12px;
   color: var(--muted);
@@ -961,9 +985,16 @@ footer {
      the viewport could not give 700px the body took it anyway and everything
      below ran off. The grid must fit what there is, or the promise that nothing
      scrolls is not a promise. */
-  height: calc(100dvh - 232px);
+  /* r140: THE SUBTRAHEND IS NO LONGER GUESSED. 232px was measured against the
+     three-band header; removing a band makes any hard-coded number wrong the
+     same day, and re-tuning it after every layout change is exactly the loop
+     that produced the jumping and then the scrolling. --chrome-h is written by
+     measureChrome() from the real header + footer + main padding, on load and
+     on resize, so this stays true whatever the top bar does next.
+     The old `min-height: 460px` is GONE: a min-height is a promise the viewport
+     may not be able to keep, and when it cannot, the page scrolls. */
+  height: calc(100dvh - var(--chrome-h, 232px));
   min-height: 0;
-  min-height: 460px;
 }
 /* The card fills its quadrant and never scrolls as a whole: the question, the
    input and the buttons are always on screen. Only the result region moves. */
@@ -1578,7 +1609,7 @@ body.strand-vocab-active #live-stats { display: none; }
 
 /* Quiet 30-day practice grid (Smith 2026-07-20): 6x5, one cell per day,
    newest bottom-right; today gets a faint ring. Deliberately undemonstrative. */
-#streak-host { display: inline-flex; align-items: center; gap: 8px; margin-left: 12px; margin-top: 4px; }
+#streak-host { display: inline-flex; align-items: center; gap: 8px; margin-left: 12px; }
 .streak-grid { display: grid; grid-template-columns: repeat(6, 6px); grid-auto-rows: 6px; gap: 2px; }
 .streak-day { background: #e9e5d8; border-radius: 1.5px; }
 .streak-day.did { background: var(--accent); opacity: 0.55; }
@@ -1601,7 +1632,11 @@ body.strand-vocab-active #live-stats { display: none; }
    header; the pill says whether pulses are reaching the class sheet. */
 /* r131: pinned inside the header, top right. Costs no vertical band of its own
    and no longer scrolls away while the sticky header stays put. */
-#identity-box { position: absolute; top: 6px; right: 28px; display: flex; align-items: center; justify-content: flex-end; gap: 8px; font-size: 12px; background: transparent; }
+/* r140: a flex item at the end of the single header row, not an absolutely
+   positioned overlay. The overlay only worked while the header had a spare band
+   above the tabs; with one band it sat on top of the filter bar. */
+#identity-box { display: flex; align-items: center; justify-content: flex-end; gap: 8px; font-size: 12px; background: transparent;
+  flex: 0 0 auto; align-self: center; margin-left: 4px; }
 .identity-who { color: var(--ink); }
 .identity-signin, .identity-save { border: 1px solid var(--accent); background: var(--accent-soft); border-radius: 6px; padding: 4px 12px; cursor: pointer; font-size: 13px; }
 .identity-name { width: 120px; font-size: 13px; padding: 3px 6px; }

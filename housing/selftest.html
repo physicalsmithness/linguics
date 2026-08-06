@@ -56,12 +56,12 @@
 <div id="summary">Loading content…</div>
 <div id="out"></div>
 
-<script src="js/norm.js?v=2026-08-05-r139"></script>
-<script src="js/store.js?v=2026-08-05-r139"></script>
-<script src="js/engine_axes.js?v=2026-08-05-r139"></script>
-<script src="js/grammar_engine.js?v=2026-08-05-r139"></script>
-<script src="js/translation_stub.js?v=2026-08-05-r139"></script>
-<script src="js/translation_marker.js?v=2026-08-05-r139"></script>
+<script src="js/norm.js?v=2026-08-06-r140"></script>
+<script src="js/store.js?v=2026-08-06-r140"></script>
+<script src="js/engine_axes.js?v=2026-08-06-r140"></script>
+<script src="js/grammar_engine.js?v=2026-08-06-r140"></script>
+<script src="js/translation_stub.js?v=2026-08-06-r140"></script>
+<script src="js/translation_marker.js?v=2026-08-06-r140"></script>
 <script>
 (function () {
   "use strict";
@@ -381,6 +381,23 @@
         const t = "Complete: 'I tuoi ____ sono italiani?' (amico)";
         return strip(t) === t ? true : ("changed -> " + strip(t));
       });
+
+    // ------------- gender flash honesty (engine_axes, r140)
+    const g4h = group("Gender flash fires on evidence, not on part of speech"); groups.push(g4h);
+    T(g4h, "a recognition attempt on a noun flashes NO gender cell",
+      "Smith, live: an Italian->English card for `racconto` flashed the regular -o class and `playlist` flashed invariable loanword. Neither card asked for a gender, so none was recorded - the heatmap was announcing a measurement nobody took",
+      () => eq(LL.attemptRecordedGender(new Set([
+        "vocabulary.it.racconto.noun.meaning.passive"
+      ])), false));
+    T(g4h, "a production attempt that DID record a gender still flashes",
+      "the fix must not silence the real case: EN->IT with an unambiguous article writes the gender bucket, and that cell has earned its flash",
+      () => eq(LL.attemptRecordedGender(new Set([
+        "vocabulary.it.racconto.noun.meaning.active",
+        "vocabulary.it.racconto.noun.gender.active"
+      ])), true));
+    T(g4h, "an empty or missing event set flashes nothing",
+      "a skipped or unrecorded attempt must not light a class; guarding on falsy input is what stops the old pos-based test leaking back in",
+      () => eq(LL.attemptRecordedGender(new Set()) === false && LL.attemptRecordedGender(null) === false, true));
 
     // ------------- shared predicates (engine_axes, r119-r121)
     const g4e = group("Coverage + registry predicates (engine_axes.js)"); groups.push(g4e);
