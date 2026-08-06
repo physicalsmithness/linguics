@@ -1087,7 +1087,8 @@ footer > #content-status { flex: 0 1 auto; min-width: 0; overflow: hidden; text-
    only part that carries meaning.
    The card's own margin-bottom (22px) also went unspent inside a fixed track.
    ============================================================================ */
-#vocab-host > .qcard { margin-bottom: 0; }
+#vocab-host > .qcard { margin-bottom: 0; padding: 16px 20px 10px; }
+#vocab-host .result .markpoint { margin: 4px 0 2px; padding: 6px 8px; }
 #vocab-host .qcard .meta { margin-bottom: 4px; font-size: 11.5px; }
 #vocab-host .qcard .prompt { margin: 6px 0 10px; }
 #vocab-host .qcard input[type=text] { margin-bottom: 2px; }
@@ -2025,6 +2026,27 @@ body.entry-active #live-stats { display: none; }
 .entry-col { max-width: 468px; margin: 0 auto; }
 .entry-greeting { font-size: 24px; font-weight: 600; margin: 24px 0 4px; }
 .entry-subhead { margin: 0 0 20px; color: var(--muted); }
+/* ============================================================================
+   r142 THE FRONT DOOR SHOULD NOT NEED SCROLLING. Smith: "this start isn't very
+   good... having to start at the bottom and just scroll down. It's not a great
+   front page." Measured: the entry column is capped at 468px inside a 1,424px
+   page - 956px of unused width - so everything stacks vertically and the
+   direction chips fall off the bottom of his screen.
+   Nothing is redesigned. On a wide screen the two shortcuts sit side by side
+   and the three strand cards become a row of three; on a narrow one it stacks
+   exactly as before. Height comes down by roughly the two rows that were
+   pushing the fold.
+   ============================================================================ */
+@media (min-width: 900px) {
+  .entry-col { max-width: 880px; }
+  .entry-quickstarts { flex-direction: row; }
+  .entry-quickstarts > * { flex: 1 1 0; min-width: 0; }
+  .entry-cards { flex-direction: row; align-items: stretch; }
+  .entry-cards > .entry-card { flex: 1 1 0; min-width: 0; }
+  /* Stacked inside each card so three fit across without squeezing the text. */
+  .entry-cards > .entry-card { flex-direction: column; align-items: flex-start; gap: 8px; text-align: left; }
+  .entry-coverage-link { display: inline-block; margin-right: 18px; }
+}
 
 .entry-cards { display: flex; flex-direction: column; gap: 10px; }
 .entry-card {

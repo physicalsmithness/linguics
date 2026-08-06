@@ -120,10 +120,15 @@ band, change nothing else. The old `min-height: 460px` is gone with it.
 sandbox — no chromium, no playwright, no puppeteer — so any height you state is an
 estimate from font sizes and padding. Say so, or make the browser measure it.
 
-**Smith's prose rule (2026-08-06):** label every paragraph as *problem*, *current
-behaviour* or *proposal*. He could not tell which was which and said so. And end
-each round with a list of **the things you are not sure appear**, so he knows what
-to look for; the previous seat did not supply one.
+**Smith's prose rules (2026-08-06), all three:**
+
+1. **Name the build number at the top of every report.** This reverses the older
+   "never cite a build number at him" note — he needs both: the id stated plainly
+   so he knows which one he is looking at, and the check-list in plain words.
+2. Label every paragraph as *problem*, *current behaviour* or *proposal*. He could
+   not tell which was which and said so.
+3. End each round with a list of **the things you are not sure appear**, and with
+   anything he was asked to check and has not yet.
 
 ### Read these three first
 
