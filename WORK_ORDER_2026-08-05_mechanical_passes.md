@@ -5,8 +5,12 @@ possibly not Claude). Smith is out of credits and is handing these out to be fin
 few days.
 
 **Every job below is self-contained.** Copy ONE job into a fresh session, with this preamble. Do not
-assume the AI has read the rest of the file. Jobs 1-3 are independent and can run in parallel. Job 4
-is code and belongs to whoever runs Housing. Job 5 is the big one and needs the most capable model.
+assume the AI has read the rest of the file. Jobs 1, 2, 3 and 6 are independent and can run in parallel. Job 4 is code and belongs to whoever runs
+Housing. Job 5 is the big one and needs the most capable model.
+
+**Jobs 1, 2 and 3 were audited on 2026-08-05 after a dry run and three defects were corrected** — a
+runaway output in 1, a validation test in 2 that would have rejected every id it generated, and a
+rewrite target in 3 that would have silently killed 129 references. Use this version, not any earlier copy.
 
 ---
 
@@ -15,6 +19,8 @@ is code and belongs to whoever runs Housing. Job 5 is the big one and needs the 
 **Jobs 1, 2, 3 and 5 → QoderWork**, which has direct access to the live folder.
 **Job 4 stays with Housing.** Do not hand 4 to QoderWork without asking Smith; it is code in
 `housing/js/` and Housing owns that surface.
+**Job 6 → Vocab, or another agent.** Independent of everything else; 6a alone is the single biggest
+visible improvement on this list.
 
 Since one agent is taking four jobs rather than four agents taking one each, three things change:
 
@@ -84,16 +90,35 @@ Entries sharing a class id are treated as interchangeable. **It currently covers
 `lemma`, `pos`, `rank`, `translation_en` (comma-separated English glosses), `gloss_en`,
 `equivalence_class` (usually absent).
 
-### The rule (ratified 2026-05-28, do not invent your own)
+### The rule (ratified 2026-05-28, tightened 2026-08-05 after a dry run — do not invent your own)
 
-Two entries are candidates for one class when:
+Normalise each `translation_en` into a token set: lowercase, trim, split on comma, drop leading
+"to " on verbs and "a/an/the" on nouns.
 
-1. they have the **same `pos`**, AND
-2. their `translation_en` gloss sets **share at least one token** after normalising (lowercase, trim,
-   split on comma, drop leading "to " on verbs and "a/an/the" on nouns).
+**Build PAIRS, not token groups.** Two entries pair when:
 
-Score each candidate pair by **overlap over target**: `|A ∩ B| / min(|A|, |B|)`. A score of 1.0 means
-the gloss sets are nested or identical, which the May ruling treats as "truly interchangeable".
+1. same `pos`, AND
+2. **overlap over target = 1.0**, i.e. `|A ∩ B| / min(|A|,|B|) == 1.0` — one gloss set is contained in
+   the other, AND
+3. `min(|A|,|B|) >= 1` and **`max(|A|,|B|) <= 3`**.
+
+Then transitively close pairs into classes.
+
+**Why the extra gates.** A dry run of the loose "shares any token" rule produced **4,186 groups
+touching 7,638 entries** — not a reviewable artefact. Worse, it produced groups that are not classes
+at all: fifteen verbs share the token "take" (`prendere`, `cogliere`, `reggere`, `levare`, `staccare`,
+`badare`), which share *one English sense among many* and are in no way interchangeable. Containment
+plus a small-set cap is what separates *sebbene/benché* from *that*.
+
+### Exclusions — apply BEFORE anything else
+
+- **Drop entries whose `translation_en` contains `[skip]`.** It is a literal placeholder in the data,
+  not a gloss: 336 nouns, 195 adjectives and 160 verbs carry it, and they would form three enormous
+  bogus classes.
+- **Drop single-character lemmas** (`l`, `c`, `s`, `d`, `n`, `m`, `x`). Junk rows.
+- **Cap class size at 4 members.** Anything larger goes to a separate `oversized` array in the output
+  for human review, never into `proposals` — a five-way "equivalence" is almost always a gloss that is
+  too generic.
 
 ### Output
 
@@ -138,7 +163,12 @@ and most-used come first for review. Put anything scoring **1.0** in `members`; 
 3. `tv` and `televisione` do **NOT** appear together. Their glosses are "TV" and "television", which
    share no token. This is expected and correct: that pair is Job 5's. If your output pairs them, your
    normaliser is doing fuzzy matching and must be made stricter.
-4. Report: total proposals, how many at score 1.0, how many entries covered.
+4. **`prendere` and `badare` do NOT appear together.** Both carry "take" but neither gloss set is
+   contained in the other. If they pair, your containment test is wrong.
+5. **No proposal contains `[skip]`.** Grep the output for it; expect zero.
+6. Report: total proposals, total entries covered, and the size of the `oversized` array. **If
+   `proposals` exceeds ~400, stop and report rather than delivering** — it means a gate is not
+   biting, and a file nobody can review is worse than no file.
 
 ### One extra, small
 
@@ -196,9 +226,11 @@ where direction is `active` when the learner is producing Italian (`target_lang:
 when they are reading it. Skip function words below a rank cutoff of your choosing — say the top 50 —
 and **report the cutoff you used**.
 
-**(b) Noun gender.** For each noun found in (a) that appears with an article in the text, emit
+**(b) Noun gender.** For each noun found in (a) whose token in the text is **immediately preceded by
+an article** (`il lo la l' i gli le un uno una un'`, or an articulated preposition `del dello della
+dei degli delle al allo alla nel nella sul sulla dal dalla`), emit
 `vocabulary.it.<lemma>.<pos>[.<gender>].gender.active`. **Only for `target_lang: it` items** — gender
-is production-only.
+is production-only. No article, no emission: without one the answer does not demonstrate gender.
 
 **(c) Accents.** If the Italian text contains any accented character (àèéìòù), emit
 `orthography.accent.italian`. Do not attempt to guess the sub-class.
@@ -238,7 +270,17 @@ down for a construction they simply did not use.
 ### DO NOT
 
 - Do not modify `required_buckets`, `source_text`, `reference_translations`, or any other existing key.
-- Do not emit a bucket id that does not exist in `data/buckets/*.json`. Validate every one.
+- **Validate ids, but by the right test for each kind — this is the one that will trip you up.**
+  The bucket trees hold 780 ids, and the only `vocabulary.*` ones are **frequency bands**
+  (`vocabulary.it.freq_12601_12700`). Per-lemma ids like
+  `vocabulary.it.casa.noun.f.translation.active` are **composed at runtime and are NOT in the trees**.
+  So:
+  - **non-vocabulary ids** (`orthography.*`, grammar families) → must exist in `data/buckets/*.json`.
+  - **vocabulary ids** → validate by composition instead: the lemma resolves to exactly one entry of
+    that pos; the gender segment appears only if that lemma+pos is gender-split; the number segment
+    only if number-split; the direction suffix is present and correct.
+  A blanket tree check will reject every vocabulary id you generate. If you find yourself dropping all
+  of them, this is why.
 - Do not attempt grammar buckets (tense, mood, prepositions, clitics, agreement). That is Job 5 and it
   needs morphological tagging. Guessing them from string patterns will produce confident nonsense.
 
@@ -277,9 +319,24 @@ multi-entry lemma must name the part of speech.**
    `data/grammar_questions_possessive.json`, `data/translation_items_possessive.json`,
    `data/vocab_bucket_references_adjective_agreement.json`. Ignore `.bak` files.
 2. For each, check `data/vocabulary_it_frequency.json`: does the lemma have more than one entry?
-3. **Where it has more than one, rewrite the reference to name the POS**, e.g.
-   `vocabulary.it.gemello.gender` → `vocabulary.it.gemello.noun.gender`. Gender and article_form are
-   noun properties, so the noun entry is always the right target.
+3. **Where it has more than one, rewrite the reference to the FULLY COMPOSED id — not merely a
+   POS-qualified one.** This is the part it is easy to get wrong and it would silently kill every
+   reference you touch.
+
+   `resolveVocabVariant` (housing/js/translation_marker.js ~449) reads
+   `if (segs.length !== 4) return bucketId;` — **anything that is not exactly four dot-segments is
+   passed through untouched.** So `vocabulary.it.gemello.noun.gender` would never be resolved, never
+   gain its `.active` suffix, and never match what the marker actually writes. The reference would go
+   dead without any error.
+
+   Write the full form that `LL.entryBucketId` composes:
+   `vocabulary.it.<lemma>.<pos>[.<gender>][.<number>].<aspect>.active`
+   — the gender segment only when that lemma+pos is gender-split, the number segment only when
+   number-split, and **`.active` always**, because gender and article_form are production-only.
+
+   `vocabulary.it.gemello.gender` → `vocabulary.it.gemello.noun.gender.active`
+
+   Gender and article_form are noun properties, so the noun entry is always the right target.
 4. Where the lemma has exactly one entry, **leave it alone**. The short form is unambiguous there.
 5. Produce a report of every rewrite, and separately list any lemma where **no noun entry exists** —
    stop and flag those rather than guessing.
@@ -293,7 +350,10 @@ never loads? **Do not add it to the manifest.**
 
 ### Acceptance tests
 
-1. Every rewritten id resolves to exactly one noun entry.
+1. Every rewritten id is **byte-identical to what `LL.entryBucketId(entry, aspect, {})` would
+   produce** for that entry. Re-implement that composition in your script and compare; do not
+   eyeball it.
+2. Every rewritten id resolves to exactly one noun entry.
 2. No file's item count changes; every file parses.
 3. Report the before/after count of ambiguous references. Known cases that must be caught:
    `gemello` and `mobile` (both currently resolve to the adjective). `collega` is masculine at rank
@@ -377,6 +437,85 @@ Clitic placement is a clitic adjacent to a verb.
 - A false positive here is expensive: it puts a bucket in front of the marker that the sentence does
   not contain, and the marker will try to mark it. **Under-propose rather than over-propose**, and
   give every proposal a confidence you can explain.
+
+---
+
+## JOB 6 — Noun-class classifier: finish it, and split one misnamed class
+
+**For:** the Vocab chat, or any competent AI. Mostly mechanical; the last part needs judgement and can
+be left.
+**Size:** one session for the mechanical part.
+**Thread to append to:** `inter_chat/Architecture_Vocab_noun_class_taxonomy.md` (at v1 — read it, it
+has all the counts).
+
+### Why
+
+Nouns carry a `noun_class` field saying how you can tell their gender from their form
+(`regular_o_masc`, `regular_a_fem`, `e_ambiguous`, `greek_ma_masc`, `ista_common_gender`,
+`invariable_loanword`, `invariable_accented_final`, `gender_shift_plural`, `irregular_gender`). The
+coverage panel renders one tile per class. Smith looked at it on 2026-08-05 and found it incoherent.
+He was right on every point.
+
+### 6a — Fill the 1,809 unclassified nouns (mechanical, do this)
+
+**1,809 noun entries have no `noun_class` at all**, and they are not the hard residue you would expect.
+A sample: *via, battaglia, edificio, desiderio, teoria, tecnologia, domenica, vittoria, fiducia,
+traccia, pomeriggio, laboratorio* — all textbook regular.
+
+- **1,267 (70%) are trivially classifiable**: lemma ends `-o` and gender is `m` → `regular_o_masc`;
+  ends `-a` and gender is `f` → `regular_a_fem`. Write those.
+- **0 end in `-e`**, so none are `e_ambiguous`. If your count says otherwise, check your filter.
+- **542 remain.** Do NOT guess these. Emit them to
+  `data/noun_class_residue_<date>.json` with lemma, gender, plural and ending, for review.
+
+This is a classifier that stopped, not a taxonomy problem. Highest value and lowest risk on the whole
+work order.
+
+### 6b — Split `invariable_accented_final` (mechanical, do this)
+
+The class is named after the plural behaviour and hides a strong gender cue. 296 entries, by final
+vowel:
+
+| ending | count | genders |
+|---|---|---|
+| **-à** | **268** | **259 f**, 1 m, 8 ambiguous |
+| -è | 10 | 4 m, 6 ambiguous |
+| -ì | 8 | 7 m, 1 f |
+| -ù | 5 | 3 f, 2 m |
+| -é | 4 | 3 m, 1 ambiguous |
+| -ò | 1 | 1 ambiguous |
+
+**-à is 97% feminine** (*città, libertà, università, qualità, verità*) — a rule a learner can use
+immediately. Split into `accented_a_fem` (the -à words) and `accented_other` (the rest, ~28, mixed).
+
+The invariable-plural fact is not lost; it belongs on the **number** axis, not the gender one. Do not
+delete it — if there is nowhere to put it yet, note that in your thread entry and leave a marker.
+
+### 6c — The 644 loanwords with no recorded gender (judgement — propose only)
+
+`invariable_loanword` is 1,131 entries: 399 m, 72 f, 16 mf, **644 `ambiguous`**. So for 57% of the
+class the data does not say what gender the word is, which makes the tile useless as a cue.
+
+**Propose, do not write.** Most consonant-final loans are masculine (*il film, il computer, lo sport*)
+but "most" is not a licence to bulk-write, and where usage genuinely varies (*email*, *app*) the honest
+value is `mf`, not a guess. Output to `data/loanword_gender_proposals_<date>.json`.
+
+**Check first and report:** can the gender drill currently serve one of those 644? If it can, there is
+no correct button for the learner to press, and that is a live bug rather than untidy data.
+
+### Not in this job
+
+The panel merges two different taxonomies — `noun_class` (a form-cue axis: how can you tell) and
+`GENDER_CLASSES` in app.js (an answer axis: Masculine, Feminine, M-or-F-by-person). "Masculine" is a
+fine answer for the drill and a useless group to study. **That is a render fix and belongs to
+Housing**, not here. Do not change `GENDER_CLASSES`.
+
+### Acceptance tests
+
+1. No entry's `gender` value changes. Only `noun_class` is written. Prove it with a diff.
+2. After 6a, unclassified nouns = 542, and every one of them is in the residue file.
+3. After 6b, `accented_a_fem` count is ~268 and every member's lemma ends in `-à`.
+4. Every file parses; entry count unchanged at 18,048.
 
 ---
 

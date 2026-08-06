@@ -2582,3 +2582,36 @@ varies (email, app) the honest value is `mf`.
 
 No new field needed. Both fields exist and are the right shape; they are unfinished, and one class is
 named after the wrong axis.
+
+
+## Work order audited before dispatch; three defects found in my own spec (2026-08-05, eighteenth pass)
+
+Smith asked for jobs 1-3 to be checked before QoderWork runs them. Dry-ran each spec against the data
+rather than re-reading it. All three were wrong, one dangerously.
+
+**Job 1 would have produced an unreviewable file and some non-classes.** The loose "same pos + shares
+a gloss token" rule yields **4,186 groups over 7,638 entries**. It also groups fifteen verbs on the
+token "take" (prendere, cogliere, reggere, levare, staccare, badare) which share one English sense
+among many and are not interchangeable. And `[skip]` is a literal placeholder in `translation_en` —
+336 nouns, 195 adjectives, 160 verbs — which would have formed three enormous bogus classes.
+Tightened: build PAIRS at containment score 1.0 with max gloss-set size 3, transitively close, cap
+classes at 4 members, exclude `[skip]` and single-character lemmas, and stop-and-report if proposals
+exceed ~400.
+
+**Job 2's validation test would have rejected every id it generated.** I had said validate every
+emitted bucket against `data/buckets/*.json`. The trees hold 780 ids and the only `vocabulary.*` ones
+are frequency bands; per-lemma ids are composed at runtime and are not in the trees. Split the test:
+non-vocabulary ids against the tree, vocabulary ids by re-composition. Also specified the article list
+for the gender emission, which was hand-waved.
+
+**Job 3 would have silently killed 129 references.** `resolveVocabVariant` returns unchanged anything
+that is not exactly four dot-segments, so my instruction to rewrite `vocabulary.it.gemello.gender` to
+`vocabulary.it.gemello.noun.gender` would have produced an id that is never resolved, never gains its
+`.active` suffix, and never matches what the marker writes — dead, with no error. Corrected to the
+fully composed form `vocabulary.it.gemello.noun.gender.active`, with an acceptance test that
+re-implements `entryBucketId` and compares byte-for-byte rather than eyeballing.
+
+**Job 6 added** from the noun-class findings: 6a fill the 1,809 unclassified nouns (1,267 mechanical,
+542 to a residue file), 6b split `invariable_accented_final` into `accented_a_fem` and
+`accented_other`, 6c propose the 644 loanword genders without writing them. For Vocab or another
+agent; the panel's two-taxonomy merge stays with Housing.
