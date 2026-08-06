@@ -25,8 +25,8 @@ this file were written (01:07). Current state:
 | **2** expected_buckets | **DONE and healthy** | nothing. 899/899 items, mean 5.8 expected buckets vs 1.4 required, required_buckets byte-identical |
 | **3** gender bare-ids | ran, 18 rewrites in 3 files, manifest untouched | one loose end: `vocabulary.it.medico.gender.active` was written in a different shape from the other 17 |
 | **4** code fixes | not started | Housing |
-| **5** morph-it grammar tagging | **UNBLOCKED — job 2 has landed** | run it |
-| **6** noun classes | not started | Vocab or another agent |
+| **5** morph-it grammar tagging | **DONE** 897/899 items, 95 buckets | REVIEW NEEDED: `article.definite` proposed on 571 of 899 items (max 779). A bucket that fires on two-thirds of the corpus is noise in a fire-list. Needs a frequency floor before merge. |
+| **6** noun classes | **DONE and clean** | unclassified 1,809 -> 542; accented_a_fem 268 (all -à), accented_other 28. Residue file for the 542. |
 | **7** gloss audit | not started | **do before ratifying job 1** |
 
 **What job 2 actually emitted, since it is worth knowing before running job 5:**
@@ -620,6 +620,79 @@ among several, here the stored answer is simply incorrect.
 **Find them mechanically, fix them by hand.** The signature is a single-token gloss shared by four or
 more entries of the same pos. Emit the candidates to `data/gloss_audit_<date>.json` with lemma, rank,
 pos and current gloss. Do not bulk-write replacements.
+
+
+### 7d — Derived-form noun entries: a marking bug, not a data bug (CORRECTED)
+
+Fifth screenshot, and a different fault from 7a-c. *"What's the Italian for **length** (as a noun)?"*
+— the learner wrote `lunghezza`, which is the Italian for length, and was marked **wrong** against
+`lungo`, which is an adjective meaning "long".
+
+`lungo` has three entries: adjective r286 "long", preposition r301 "along", and **noun r10950
+"length"**. That third one is not a word; it is the corpus tagger having seen nominalised uses and the
+import having minted an entry and glossed it by rule. `lunghezza` (noun, r3306, "length") is the real
+answer and it is right there in the file.
+
+**Signature: a lemma that exists as an adjective at a good rank AND as a much rarer noun.** 557
+entries have a rank gap of 3,000 or more. The tell is in the glosses:
+
+| lemma | adjective | noun |
+|---|---|---|
+| possibile | r239 "possible" | r10947 **"possible"** |
+| umano | r345 "human" | r11029 **"human"** |
+| importante | r241 "important" | r10936 **gloss is null** |
+| ampio | r1591 "wide, ample" | r12469 **gloss is null** |
+| lungo | r286 "long" | r10950 "length" |
+
+Noun entries glossed identically to their adjective, or not glossed at all. **Some are genuine** —
+`stretto` really is "strait", `sportivo` really is "sportsman" — so this is review, not deletion.
+
+**CORRECTED 2026-08-06 by Smith. My first answer here was wrong and is withdrawn.**
+
+I proposed a selection filter: stop serving production questions on derived-form entries when a
+commoner entry of the same lemma exists. Smith rejected it, and he is right.
+
+> *"Part of the joy of this thing is that you can learn all the words in the language… it's supposed
+> to click that you've got lunghezza. And if you never say lungo, then you never get a little green
+> dot — so what? You don't just say that it didn't exist. It exists."*
+
+Two things follow, and both are better than what I proposed.
+
+**The entry stays servable.** Completeness is the product. `lungo` as a noun is attested, it is in the
+corpus, and a learner deliberately grinding the 10,000-11,000 band should meet it. Suppressing entries
+to avoid a marking bug is fixing the wrong layer.
+
+**An entry nobody ever produces simply never lights up, and that is fine — it is information.** A
+permanently untouched dot tells you which entries are never reached, which is a more honest signal
+than hiding them.
+
+**The actual bug is that a correct answer was marked wrong**, and it is already ruled: the production
+rule of `Architecture_Vocab_marker_semantics` v10 — *credit the lemma they produced; the asked-for
+lemma is blank, not wrong*. `lunghezza` is glossed "length", "length" is what was asked, so it takes
+the credit and `lungo` takes no event. I failed to connect my own ruling from that morning to this
+screenshot and reached for a filter instead.
+
+**Acceptance test, added to v10's list:** prompt "length (as a noun)", answer `lunghezza` → **1/1**,
+credit on `vocabulary.it.lunghezza.noun.f.translation.active`, `lungo` untouched.
+
+**What survives of this section.** Only one thing, and it is small: **entries with a null gloss cannot
+be rendered as a question at all** — `importante` (noun, r10936) and `ampio` (noun, r12469) have no
+`translation_en`, so "What's the Italian for ___?" has nothing to put in the blank. Find those and
+gloss them. The identically-glossed ones (`possibile` noun "possible", `umano` noun "human") are NOT
+broken: a learner asked for the noun "possible" types `possibile` and is right.
+
+The 557-entry audit is **not** wanted as a retirement list. If it runs at all it runs as a gloss-quality
+pass under 7c, where `lungo` noun glossed "length" is a bad gloss for a nominalised adjective, not an
+entry to delete.
+
+### Root cause behind all of 7a-7d, worth stating once
+
+The vocabulary file was built from a corpus frequency list. The entry-splitting step created a POS
+entry wherever the tagger saw a POS, then glossed it by rule. That single decision produces every
+fault in this job: glosses truncated to a particle-stripped stem (7c), real words flagged as artefacts
+(7c), dictionary dumps of every sense (7a), and derived forms minted as headwords (7d). Fixing them
+one screenshot at a time will work but will take a long time; a single reconciliation pass over the
+entry-splitting output would find most of them at once.
 
 ### Acceptance tests
 

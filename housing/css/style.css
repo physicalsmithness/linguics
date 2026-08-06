@@ -1230,6 +1230,18 @@ body.strand-vocab-active #live-stats { display: none; }
   font-size: 12px;
 }
 .vocab-filter-status-label { color: var(--accent); font-weight: 600; }
+/* r143: in the filter bar it is one chip on the same line as Direction /
+   Restrict to / Sub-band, not a full-width band with a dashed rule over it.
+   The rule and the 100% basis were right for a strip of its own; up here they
+   would put the bar onto a second line, which is the band we just removed. */
+.vocab-filter-status-hoisted {
+  flex-basis: auto; border-top: none; padding: 1px 4px 1px 9px; margin: 0;
+  border: 1px solid var(--accent); border-radius: 12px;
+  background: var(--accent-soft, #fff); gap: 7px;
+}
+.vocab-filter-status-hoisted .vocab-back-all {
+  border: none; background: none; padding: 2px 6px; text-decoration: underline;
+}
 .vocab-back-all {
   padding: 3px 10px;
   border: 1px solid var(--accent);

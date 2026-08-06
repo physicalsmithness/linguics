@@ -464,9 +464,22 @@
         // it's the only deterministic fallback. Authoring chats can
         // explicitly disambiguate via .pos[.gender] in their bucket
         // references if they want to bypass this.
-        entry = list.slice().sort((a, b) => {
+        const byRank = list.slice().sort((a, b) => {
           return (a.merged_rank || a.rank || 9e9) - (b.merged_rank || b.rank || 9e9);
-        })[0];
+        });
+        // r143 (selection_policy §12.1): gender and article_form are NOUN
+        // properties, so resolving them onto a non-noun entry is provably
+        // wrong and needs no judgement call. 16 of the 129 referenced lemmas
+        // are multi-entry; for `gemello` the adjective @4688 outranks the noun
+        // @5227, and for `mobile` the adjective @1792 outranks noun.m @1821 -
+        // so gender credit was being recorded against ADJECTIVE entries,
+        // lighting the wrong dot and counting as coverage of a word the
+        // learner was never asked about. Same family as today's other two:
+        // a similarity heuristic standing in for identity.
+        const nounFirst = (aspectSeg === "gender" || aspectSeg === "article_form")
+          ? byRank.filter(e => e && e.pos === "noun")
+          : [];
+        entry = nounFirst.length ? nounFirst[0] : byRank[0];
       }
     }
     if (!entry) {

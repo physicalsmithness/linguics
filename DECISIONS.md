@@ -2678,3 +2678,89 @@ glossed `'?'`. **Worse than the dry/TV cases**: there the stored answer was one 
 several, here it is simply wrong, and a learner can be asked "the Italian for take" and shown
 `mediare`. Signature is a single-token gloss shared by 4+ same-pos entries; find mechanically, fix by
 hand, no bulk writes.
+
+
+## Jobs 5 and 6 audited; a fifth vocab fault and its root cause (2026-08-06)
+
+**Job 6 DONE and clean.** Unclassified nouns 1,809 -> 542 exactly as predicted; `regular_o_masc`
+2,363 -> 3,018 and `regular_a_fem` 1,644 -> 2,256; `accented_a_fem` 268 with every member ending -à,
+`accented_other` 28. All acceptance tests pass.
+
+**Job 5 DONE, one review point before merge.** 897 of 899 items, 95 buckets, grouped per-bucket as
+specified. But `article.definite` is proposed on **571 of 899 items** and the largest group is 779. A
+bucket that fires on two-thirds of the corpus carries no information and would dilute the fire-list it
+is meant to focus. Needs a frequency floor. The opposite problem also shows: only 95 of ~440 buckets
+received any proposal, so the tail is thin while the head is saturated.
+
+**Fifth screenshot, and a fault distinct from the previous four.** *"What's the Italian for length (as
+a noun)?"* — learner wrote `lunghezza` (correct), marked wrong against `lungo`, an adjective meaning
+"long". `lungo` carries a third entry: noun r10950 "length", which is not a word. **557 entries have
+this shape** (lemma is an adjective at a good rank and a much rarer noun), and the glosses give it
+away: `possibile` noun r10947 glossed "possible", `umano` noun r11029 glossed "human", `importante`
+and `ampio` noun entries with null glosses. Some are genuine (`stretto` = strait), so review not
+deletion. Added as Job 7d, with a cheap mitigation that needs no migration: **do not serve a
+production question on a derived-form entry when a commoner entry of the same lemma exists** — rank is
+the tell, and that alone would have prevented the screenshot.
+
+**Root cause named, covering all five screenshots.** The vocabulary file was built from a corpus
+frequency list; the entry-splitting step minted a POS entry wherever the tagger saw a POS and glossed
+it by rule. That one decision produces every fault seen this week: particle-stripped glosses
+(`mediare` = "take"), real words flagged `[skip]` (`maestra`), dictionary dumps (`padrona`, eight
+senses), and derived forms minted as headwords (`lungo` = "length"). Fixing them one screenshot at a
+time works but is slow; one reconciliation pass over the entry-splitting output would find most at
+once.
+
+
+## 7d WITHDRAWN: completeness is the product (2026-08-06, Smith)
+
+I proposed suppressing production questions on derived-form entries when a commoner entry of the same
+lemma exists. **Smith rejected it and he is right.** *"Part of the joy is that you can learn all the
+words in the language… if you never say lungo, then you never get a little green dot — so what? You
+don't just say that it didn't exist. It exists."*
+
+**Ruled:** the entry stays servable. Completeness is the product, `lungo`-as-noun is attested, and a
+learner grinding the 10,000-11,000 band should meet it. **An entry nobody ever produces simply never
+lights up, and that is information** — a permanently untouched dot says which entries are never
+reached, which is more honest than hiding them.
+
+**The actual bug was already ruled that morning and I failed to connect it.** The production rule
+(marker_semantics v10) — credit the lemma produced, blank the asked-for one — covers `lunghezza`
+exactly. I reached for a selection filter to fix a marking fault. Second acceptance test added to v10,
+with the note that this case is **cross-lemma** rather than a sister sense, so it is the one most
+likely to be missed in implementation: the marker's cross-sense path was built for sisters of one
+lemma.
+
+**What survives:** only null-gloss entries (`importante` noun r10936, `ampio` noun r12469 have no
+`translation_en` at all, so the question cannot render). Identically-glossed ones are fine — asked for
+the noun "possible", a learner types `possibile` and is right. The 557 list is not a retirement list;
+if it runs it runs as gloss-quality work under 7c.
+
+
+## Job 7 in flight: nothing deleted; one bad class found (2026-08-06)
+
+Smith asked urgently whether the corrections reached Job 7 before it ran, and said he did not want
+entries removed. **Checked against git HEAD: nothing has been deleted.** 18,048 entries before and
+after, zero removed, zero added, **zero glosses trimmed** — `padrona` still carries all eight senses.
+(My earlier reading of "four senses" was my own print statement truncating at 30 characters, not a
+data change.)
+
+**7a and 7b landed in the CODE, exactly as ruled.** The app.js diff caps the prompt at three senses
+with an ellipsis and carries the comment *"Acceptance keeps the whole list — this is a render cap
+only"*; the `[skip]` guard is added on the display path and on the "you wrote X — that means Y" path.
+Display and acceptance stayed separate, which was the whole point of the ruling.
+
+**The equivalence classes that appeared in live data are NOT last night's Job 1 output.** 1,564
+entries across 741 classes, and every one carries a note stamped
+`[eq-class-tier1-ratified-2026-08-03]` — a previously ratified set being applied, not unratified
+proposals being written. Quality is good on inspection: `solo/soltanto/solamente`,
+`televisione/televisore`, `non/no`, no single-member classes.
+
+**One defect, and it is the exact failure I warned about.** `class_noun` has eight members:
+`classe`, `lezione`, `ceto` (fair) plus `ricordo`, `intenzione`, `muro`, `materiale`, `risorsa` —
+which are memory, intention, wall, material and resource. All five are entries whose entire gloss is
+the string `'?'`. **Broken glosses produced a broken class**, which is why Job 7 must finish before
+any further class application. Two `[skip]` entries also received classes. Fix: strike the five
+`'?'`-glossed members from `class_noun`.
+
+**Still unfixed:** `sebbene`/`benché` and `secco`/`asciutto` did not receive classes, so both
+screenshot cases remain live.

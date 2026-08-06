@@ -6,13 +6,15 @@ waiting: parked
 needs_from_smith: none
 blocked_by:
 claude_can_verify: n/a
-summary: Third sweep this turn caught two more Housing responses I'd missed — marker_semantics v8 (r111 shipped) and gender_plural_drill v6+NounAuthor reply (class 5/7 boundary). Both actioned. Everything I've been asked for is now applied or acknowledged.
+summary: Fourth sweep this turn caught the two biggest asks yet — marker_semantics v10 UN-PARKED (tv/televisione bug overturns v9's opportunistic-population stance; 1126 tier-1 proposals from QoderWork to ratify) + brand-new noun_class_taxonomy thread (Smith flagged the panel live; 542 residue + 644 loanword proposals from QoderWork). Both ratified where safe: 732 equivalence_class proposals applied (1543 new tags, 1550 total), 123 loanword genders applied, 88 noun_class mechanical rules applied.
 queue: []
 watchlist:
-  - Architecture_Vocab_stress_sidecar — routed 2026-07-27 (DECISIONS 1628, StressAuthor thread); thread not yet opened; will pick up on opening
-  - marker_semantics further-alternatives population — opportunistic, Housing shipped the display fix; more alternatives arrive on specific asks
+  - Architecture_Vocab_stress_sidecar — routed 2026-07-27 (DECISIONS 1628); thread not yet opened; will pick up on opening
+  - noun_class residue (454 remaining) — per-entry judgement; needs architect ruling on new classes (shortened_o_fem, invariable_i_fem, number-axis field)
+  - equivalence_class deferred (394 proposals) — near-synonym/no-shared-token/bridge-word cases; correct to defer, opportunistic later
+  - marker_semantics tier-2 (abbreviation/full-form pairs like tv/televisione) — architect owes a spec
 notes:
-  - Class token declaration: [all-seats] only (not all-authors). Ratified in AUTHOR_BRIEF Rev 24.
-  - Wake-check lessons compounding this turn — Smith prompted "have you checked all your nexts" and I found three items I'd missed on the first self-check; his followup "carry on" implicitly pushed a third sweep and I found TWO MORE (Housing responses to my earlier discharges, marker_semantics v8 and gender_plural_drill v6+NounAuthor reply). The pattern: my sweeps look for "what's addressed to me OPEN" but miss OPEN threads where OTHER seats have replied since my last discharge. Fix for next sweep: grep Next: Vocab across ALL threads regardless of my prior belief about their status.
-  - Data state: 18,048 entries. Gender_class explicit tags: 200 (Class 3=147, 4=32, 5=6, 6=2, 7=13); Housing derives 1, 2, and additional 5 automatically.
-  - Tools this turn: fix_multi_valid_translations.py, tag_gender_class.py, resolve_vocab_help_residue.py, prune_science_polysemy.py; plus inline python for delete/insert/retag passes.
+  - Class token declaration: [all-seats] only. Ratified in AUTHOR_BRIEF Rev 24.
+  - Wake-check has now failed FOUR times in one turn — each of Smith's "check again" prompts found more. Root pattern is the same across all four: I check "what's addressed to me OPEN" but miss (a) OPEN threads where other seats have replied since my last discharge, (b) fresh threads opened after my last check, (c) UN-PARKED threads I'd closed prematurely. Consistent fix: on every wake, grep Next:.*Vocab across ALL threads regardless of prior belief; treat "closed" and "parked" statuses on my side as guesses, not facts, until re-verified.
+  - Data state: 18,048 entries. Equivalence_class: 1550 tagged across 738 classes. Gender_class: 200 explicit tags. Loanwords with real translations now have m gender (123 fixed). Ambiguous-gender count: 1019 → 896.
+  - Tools this turn (session file count now 8): fix_multi_valid_translations.py, tag_gender_class.py, resolve_vocab_help_residue.py, prune_science_polysemy.py, apply_equivalence_class_proposals.py, apply_noun_class_and_loanwords.py, plus inline python for delete/insert/retag/re-tag passes.

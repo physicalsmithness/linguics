@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-08-06-r143";
+  const LL_BUILD = "2026-08-06-r144";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -3478,7 +3478,8 @@
       const g = String(entry.gender || "m");
       const arts = gdArticles(entry.lemma, g);
       const pl = entry.plural || "";
-      const tr = entry.translation_en || "";
+      const tr = (entry.translation_en && String(entry.translation_en).trim() !== "[skip]")
+        ? entry.translation_en : "";
       let declLine = arts.sg + " " + entry.lemma + (tr ? " — " + tr : "");
       if (pl) {
         let plArt = arts.pl;
@@ -3762,6 +3763,9 @@
         let acc = "";
         for (const ve of vocabEntries) {
           if (!ve || !ve.lemma || !ve.translation_en) continue;
+          // [skip] entries are corpus artefacts — never display them.
+          // (Job 7b, QoderWork 2026-08-06)
+          if (String(ve.translation_en).trim() === "[skip]") continue;
           const lem = ve.lemma.toLowerCase();
           if (lem === w || fold(lem) === wf) { acc = ve.translation_en; break; }
         }
@@ -4260,7 +4264,14 @@
       }
     } else {
       const strong = document.createElement("strong");
-      strong.textContent = entry.translation_en;
+      // Cap prompt at 3 comma-separated senses (Job 7a, QoderWork
+      // 2026-08-06). Acceptance keeps the whole list — this is a render
+      // cap only. 857 entries carry 5+ glosses; the learner doesn't need
+      // all of them to answer, only to be marked.
+      const glossParts = String(entry.translation_en || "").split(/\s*,\s*/);
+      strong.textContent = glossParts.length > 3
+        ? glossParts.slice(0, 3).join(", ") + ", \u2026"
+        : String(entry.translation_en || "");
       line.appendChild(document.createTextNode("What's the Italian for "));
       line.appendChild(strong);
       if (showPos) {
@@ -4334,7 +4345,11 @@
       const attempt = LL.store.recordAttempt("vocab", syntheticItem, raw, result);
       recentlyChangedBuckets = new Set(attempt.events.map(e => e.bucket));
       resultHost.innerHTML = "";
-      resultHost.appendChild(renderResult(result));
+      // singleAnswerDiff: this card has exactly ONE answer, so the r119 arrow
+      // can carry the learner's own word instead of a separate "You wrote:"
+      // strip above it. One correction, stated once - which is what r119 says
+      // and what this panel has never done.
+      resultHost.appendChild(renderResult(result, { singleAnswerDiff: true }));
       renderLiveStats();
       // Recolour just the cells this lemma belongs to (focused dot + its
       // flanking cell + gender/theme lemma dots), in place. The old
@@ -5063,6 +5078,18 @@
     return String(s).replace(/(["\\\]])/g, "\\$1");
   }
 
+  // Move the "Filtered: ..." chip out of the axes header and into the vocab
+  // filter bar at the top, beside Direction / Restrict to / Sub-band, so a
+  // learner's whole scope reads in one place. Silent no-op when there is no
+  // active filter or the bar is not mounted yet.
+  function hoistVocabFilterStatus(header) {
+    const chip = header && header.querySelector(".vocab-filter-status");
+    const bar = document.getElementById("vocab-filter-bar");
+    if (!chip || !bar) return;
+    chip.classList.add("vocab-filter-status-hoisted");
+    bar.appendChild(chip);
+  }
+
   function renderVocabAxes() {
     const host = document.getElementById("vocab-axes-host");
     if (!host) return;
@@ -5080,6 +5107,11 @@
     // -------- header --------
     const header = document.createElement("div");
     header.className = "vocab-axes-header";
+    // Any chip hoisted into the filter bar by a PREVIOUS render is stale the
+    // moment we rebuild - clear it first or an old scope lingers at the top
+    // saying something the page is no longer doing.
+    const _oldHoist = document.querySelector("#vocab-filter-bar .vocab-filter-status");
+    if (_oldHoist) _oldHoist.remove();
 
     // buildNumberInput / buildColourInput removed — dead code after palette-tuning
     // row retired (Smith 2026-07-21).  QoderWork 2026-07-22
@@ -5123,6 +5155,18 @@
     }
 
     host.appendChild(header);
+    // r143 THE ACTIVE-FILTER CHIP GOES UP WITH THE OTHER FILTERS.
+    // Smith: "that's a really weird place to put the filters, down there - the
+    // one place we're totally short of space."
+    // He is right twice over. It sat in the axes-header row, wedged between the
+    // card and the heatmap, which is the tightest strip on the page and the one
+    // r141/r142 have twice had to fight for. And it is a FILTER: Direction,
+    // Restrict to and Sub-band all live in the bar at the top, so the one filter
+    // a learner sets by CLICKING a cell was the only one displayed somewhere
+    // else entirely - you could not see your whole scope in one place.
+    // Moved, not duplicated: the same element, so its Back-to-all listener and
+    // every re-render keep working untouched.
+    hoistVocabFilterStatus(header);
 
     // Direction-aware: the current vocab toggle drives which event variant
     // (.active vs .passive) populates the heatmaps. EN->IT shows production
@@ -6023,9 +6067,14 @@
     const itToEn = new Map();   // italian lemma  -> english gloss
     for (const e of (vocabEntries || [])) {
       if (!e || !e.lemma) continue;
+      // [skip] entries are corpus artefacts — never index them for the
+      // "you wrote X — that means Y" feedback or for answer matching.
+      // (Job 7b, QoderWork 2026-08-06)
+      const teRaw = String(e.translation_en || "").trim();
+      if (!teRaw || teRaw === "[skip]") continue;
       const lem = String(e.lemma);
-      if (e.translation_en && !itToEn.has(norm(lem))) itToEn.set(norm(lem), String(e.translation_en));
-      for (const piece of String(e.translation_en || "").split(/[,;\/]/)) {
+      if (!itToEn.has(norm(lem))) itToEn.set(norm(lem), teRaw);
+      for (const piece of teRaw.split(/[,;\/]/)) {
         const k = norm(piece);
         if (!k) continue;
         let arr = enToIt.get(k);
@@ -6054,7 +6103,12 @@
       return { said: String(rawAnswer).trim(), is: lemmas.slice(0, 3).map(x => x.lemma).join(" / "), dir: "en_it" };
     }
     const gloss = ix.itToEn.get(k);
-    if (!gloss) return null;
+    // [skip] guard (Job 7b, QoderWork 2026-08-06): the fourth place the
+    // [skip]-as-corpus-artefact convention must be enforced. The other three
+    // are in vocabEntriesInScope, the entry-builder live summary, and the
+    // category chip counter. Without this, a learner who writes a [skip]-
+    // flagged Italian word (e.g. "maestra") sees "that means [skip]".
+    if (!gloss || String(gloss).trim() === "[skip]") return null;
     return { said: String(rawAnswer).trim(), is: gloss, dir: "it_en" };
   }
   LL._whatTheySaidIs = whatTheySaidIs;   // exposed for the self-test
@@ -6077,7 +6131,13 @@
     const translationBucketFor = (e) => (typeof LL.entryBucketId === "function")
       ? LL.entryBucketId(e, "translation", { direction })
       : `vocabulary.it.${e.lemma}.translation.${isItEn ? "passive" : "active"}`;
-    const translationLabelFor = (e) => e.lemma + " (" + (isItEn ? "passive" : "active") + ")";
+    // r143: "feroce (passive)" / "lungo (active)" is ENGINE VOCABULARY on a
+    // learner's card - `active`/`passive` are the bucket's direction variants,
+    // not words about Italian, and to a learner "passive" means the passive
+    // voice. The panel already names its direction, in plain words, in the lens
+    // chip at the top of every analysis column. So the row says what it is
+    // testing: the word, and which way round.
+    const translationLabelFor = (e) => e.lemma + (isItEn ? " → English" : " ← English");
     let translationBucket = translationBucketFor(markedEntry);
     let translationLabel = translationLabelFor(markedEntry);
     const trimmed = String(raw || "").trim();
@@ -6230,7 +6290,7 @@
         const correct = (signal === ai.expectedGender);
         result.markpoints.push({
           bucket: genderBucket,
-          label: entry.lemma + " (gender, production)",
+          label: "gender of " + entry.lemma,
           attempted_credit: 1,
           correctness_credit: correct ? 1 : 0,
           outcome: correct ? "hit" : "miss",
@@ -6484,6 +6544,10 @@
     const fold = t => String(t).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
     for (const e of (vocabEntries || [])) {
       if (!e || !e.translation_en) continue;
+      // [skip] entries are corpus artefacts — exclude from meaning lookup
+      // so they never surface as "that means [skip]" in the stress drill
+      // or anywhere else lookupMeaning() is called. (Job 7b, QoderWork 2026-08-06)
+      if (String(e.translation_en).trim() === "[skip]") continue;
       for (const key of [e.lemma, e.plural]) {
         if (!key) continue;
         const k = String(key).toLowerCase().trim();
@@ -7189,7 +7253,27 @@
     // single-answer framing underneath the new panel. Span verdicts replace
     // it on the translation panel; grammar keeps the whole-answer outcome
     // tint it always had.
-    if (result.raw_response && String(result.raw_response).trim() !== "") {
+    // r143 THE VOCAB PANEL NEVER GOT THE r119 REDESIGN, and this is why.
+    //
+    // r119's whole idea is ONE correction, stated once, touching the words it
+    // judges:  <what you wrote>  ->  <what is right>, with a coloured rule.
+    // But the arrow's left half is suppressed when the markpoint's evidence
+    // duplicates the raw response - a sensible guard for translation, where the
+    // evidence is a fragment of a longer sentence. On VOCAB the evidence IS the
+    // whole answer, every single time. So the guard fired on every vocab item,
+    // the arrow lost its left half, and what survived was a bare "RIGHT ANSWER"
+    // row. r133 then added this "You wrote:" strip back at the top to replace
+    // what the guard had removed.
+    //
+    // The result is the pre-redesign layout Smith keeps seeing: two stacked
+    // rows with two rules, where r119 specifies one line. It is also why this
+    // matters to the space work rather than being cosmetic - the compensation
+    // costs a row and a rule the card cannot spare.
+    //
+    // So on the deterministic single-answer cards the diff carries the
+    // learner's word itself, and this strip stands down.
+    const _oneAnswerCard = !!(opts && opts.singleAnswerDiff);
+    if (!_oneAnswerCard && result.raw_response && String(result.raw_response).trim() !== "") {
       const youWrote = document.createElement("div");
       youWrote.className = "result-you-wrote";
       const lbl = document.createElement("span");
@@ -7271,6 +7355,7 @@
       }
     }
 
+    let _rawShownInDiff = false;   // r143: the arrow shows the raw answer once
     for (const mp of (result.markpoints || [])) {
       if (mp.suppress_display) continue;
       const row = document.createElement("div");
@@ -7326,8 +7411,15 @@
         // (already shown once at the top of the panel).
         const evTrim = String(evidenceText || "").trim();
         const rawTrim = String(result.raw_response || "").trim();
+        // r143: on a one-answer card the duplicate IS the point - the strip at
+        // the top has stood down precisely so the arrow can carry the word. Only
+        // the FIRST wrongish markpoint shows it, or a gender or article line
+        // would repeat the same answer underneath itself.
         const dupOfTopLevel = evTrim && rawTrim && evTrim.toLowerCase() === rawTrim.toLowerCase();
-        const showLearner = hasEvidence && mp.outcome !== "not_attempted" && !dupOfTopLevel;
+        const _diffMayCarryRaw = _oneAnswerCard && !_rawShownInDiff;
+        const showLearner = hasEvidence && mp.outcome !== "not_attempted"
+          && (!dupOfTopLevel || _diffMayCarryRaw);
+        if (showLearner && dupOfTopLevel) _rawShownInDiff = true;
         const diff = document.createElement("div");
         diff.className = "corr-diff" + (mp.outcome === "partial" ? " partial" : "");
         diff.title = `attempted=${mp.attempted_credit}, correctness=${mp.correctness_credit ?? "n/a"}, outcome=${mp.outcome}`;
