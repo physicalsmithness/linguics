@@ -56,12 +56,12 @@
 <div id="summary">Loading content…</div>
 <div id="out"></div>
 
-<script src="js/norm.js?v=2026-08-06-r142"></script>
-<script src="js/store.js?v=2026-08-06-r142"></script>
-<script src="js/engine_axes.js?v=2026-08-06-r142"></script>
-<script src="js/grammar_engine.js?v=2026-08-06-r142"></script>
-<script src="js/translation_stub.js?v=2026-08-06-r142"></script>
-<script src="js/translation_marker.js?v=2026-08-06-r142"></script>
+<script src="js/norm.js?v=2026-08-06-r143"></script>
+<script src="js/store.js?v=2026-08-06-r143"></script>
+<script src="js/engine_axes.js?v=2026-08-06-r143"></script>
+<script src="js/grammar_engine.js?v=2026-08-06-r143"></script>
+<script src="js/translation_stub.js?v=2026-08-06-r143"></script>
+<script src="js/translation_marker.js?v=2026-08-06-r143"></script>
 <script>
 (function () {
   "use strict";
@@ -381,6 +381,17 @@
         const t = "Complete: 'I tuoi ____ sono italiani?' (amico)";
         return strip(t) === t ? true : ("changed -> " + strip(t));
       });
+
+    // ------------- gender attribution (app.js, r143)
+    const g4j = group("Gender is only marked on a noun the learner reached"); groups.push(g4j);
+    T(g4j, "the gender side-channel is gated on the noun's own outcome",
+      "Smith, live: asked for 'heat, warmth' (caldo, m) the learner wrote 'la caldezza' and was marked wrong on the noun AND wrong on CALDO'S gender - but 'la' belonged to caldezza, a word of their own. His ruling: \"you can only get the gender wrong if you got the noun right, otherwise the gender doesn't fire.\" Without the gate this is a double punishment for one mistake, and it writes gender evidence for a word that was never produced",
+      () => /const nounWasReached\s*=\s*\(outcome === "hit" \|\| outcome === "partial"\)/.test(appText)
+        ? true : "the nounWasReached gate is missing from markVocab");
+    T(g4j, "a DOCKED noun still counts as reached",
+      "an accent or spelling slip means the learner did get to the right lemma, so their article genuinely is a claim about THAT lemma and must still be marked. Gating on 'hit' alone would silently stop marking gender for every learner who mistypes an accent",
+      () => /nounWasReached[\s\S]{0,80}partial/.test(appText)
+        ? true : "partial is not accepted by the gate");
 
     // ------------- layout arithmetic (style.css + app.js, r141)
     const g4i = group("Vocab layout arithmetic (style.css / app.js)"); groups.push(g4i);

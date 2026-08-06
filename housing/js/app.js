@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-08-06-r142";
+  const LL_BUILD = "2026-08-06-r143";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -6194,7 +6194,27 @@
     // ARTICLE-FORM fires whenever an article was provided. It checks whether
     // the article matches the expected forms for this lemma's actual gender
     // and phonology (lo zaino, l'amico, un'arancia, etc.).
-    const ai = judgment.articleInfo;
+    // r143 THE GENDER SIDE-CHANNEL IS PARASITIC ON THE NOUN BEING RIGHT.
+    // Smith's ruling, 2026-08-06: "You can only get the gender wrong if you got
+    // the noun right. Otherwise the gender doesn't fire."
+    //
+    // The case that found it: asked for "heat, warmth" (caldo, m), the learner
+    // wrote "la caldezza". They were marked wrong on the noun AND wrong on
+    // CALDO'S gender - but "la" was the article they put in front of
+    // *caldezza*, a word of their own. They never made a claim about caldo's
+    // gender at all, so scoring one against them is attributing an error to a
+    // word they did not produce. Exactly the family as the r140 flash bug: a
+    // measurement announced where none was taken.
+    //
+    // It also punishes twice for one mistake, which is its own unfairness: the
+    // noun is already marked wrong, and a learner who invents a feminine-looking
+    // noun will naturally give it a feminine article. That is one error, not two.
+    //
+    // Deliberately gated on a HIT and not on partial credit: a docked accent or
+    // spelling slip still means they reached the right lemma, and the gender
+    // claim is then genuinely about that lemma. `outcome` carries that.
+    const nounWasReached = (outcome === "hit" || outcome === "partial");
+    const ai = nounWasReached ? judgment.articleInfo : null;
     if (ai && ai.expectedGender) {
       // Build the gender and article_form bucket ids via the per-entry
       // resolver so they carry POS (and gender-qualifier for gender-split
