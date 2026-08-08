@@ -2764,3 +2764,67 @@ any further class application. Two `[skip]` entries also received classes. Fix: 
 
 **Still unfixed:** `sebbene`/`benché` and `secco`/`asciutto` did not receive classes, so both
 screenshot cases remain live.
+
+
+## Job 7 delivered; Vocab fixed the bad class. What is still open. (2026-08-06)
+
+**Job 7 is spec-compliant and finished.** 7a and 7b live in the code, not the data: the prompt is
+capped at three senses with an ellipsis while acceptance keeps the whole list, and the `[skip]` guard
+covers both the display path and the "you wrote X — that means Y" path. 7c produced
+`data/gloss_audit_2026-08-06.json` and **wrote no fixes**, exactly as instructed: 694 `[skip]` entries
+(29 in the top 2000), and 34 truncated glosses in 8 groups. 7d needed nothing after its withdrawal.
+
+**Vocab fixed the defect I flagged, and committed it.** `equivalence_class` now covers 1,550 entries
+across 738 classes with **zero singletons**; `class_noun` is gone and no `[skip]` entry carries a
+class. The `'?'`-glossed contamination (ricordo, intenzione, muro, materiale, risorsa) is out.
+
+**Still open, and it is all hand work by design.** The audit finds; a human fixes. 694 `[skip]`
+glosses including `maestra` (a real noun at rank 4606); 34 truncated glosses including the five verbs
+glossed bare `'take'`; 6 entries glossed `'?'`; null glosses on derived nouns (`importante` r10936,
+`ampio` r12469).
+
+**Both of Smith's screenshot cases remain live.** `sebbene`/`benché` and `secco`/`asciutto` did not
+receive classes — the set that landed is the ratified 2026-08-03 tier-1 body, and neither pair is in
+it. They sit in `data/equivalence_class_proposals_2026-08_FILTERED.json` awaiting ratification. Worth
+one Vocab judgement rather than a sweep: `sebbene`/`benché` are gloss-identical and safe;
+`secco`/`asciutto` are both correct answers to "the Italian for dry" but are not freely
+interchangeable in use (`vino secco`, `panni asciutti`), so whether they are one class or merely
+mutually acceptable answers is a real distinction and Vocab's to make.
+
+Housekeeping: several job outputs are uncommitted, along with one backup file of mine from the
+reverted repair.
+
+
+## Vocab's ratification accepted; subset-retry recovers Smith's case (2026-08-06)
+
+Vocab v13 applied 732 of the 1,126 tier-1 proposals behind its own safety heuristics, deferred 394,
+and untagged three bad classes after a spot-check. **Ratified as it stands** — 1,550 entries, 738
+classes, zero singletons, `alternatives` confirmed retired. Its filter was rightly stricter than the
+rule I wrote.
+
+**Its `mole_noun` catch generalises and I am adopting it as a rule.** It untagged a class that had
+conflated `neo` (skin mole), `mole` (bulk) and `talpa` (the animal) on a shared English gloss. **A
+shared English gloss is not evidence of equivalence when the English word is itself a homograph** —
+the overlap test measures the English, so English ambiguity passes straight through. `class_noun` was
+the same shape via `'?'` skeletons. This must be a first-class part of the tier-2 algorithm, not a
+post-hoc spot-check, because abbreviation and near-synonym matching is looser and will hit homographs
+harder.
+
+**Answered Vocab's direct question: S3 (same POS) stands; `orange_colour` does not need to cross POS.**
+The data settles it — `arancio` (noun, r9844) and `arancione` (noun, r10948) both gloss "orange (the
+colour)" and are a same-POS class needing no bent filter; the adjective `arancione` is a harmless
+singleton; and `arancia` is **the fruit**, which a cross-POS sweep is exactly the mechanism that would
+have swallowed. The prompt already disambiguates by POS, so crediting a noun against an adjective
+prompt would undo that.
+
+**One recoverable loss, and it is Smith's screenshot.** `sebbene`/`benché` are gloss-identical and were
+deferred: the proposal carried a third member, `malgrado` ("although"), and S4b tests the class as a
+whole, so the shared set collapsed to `{although}` — 1 of 3 for `sebbene` — and the strongest pair in
+the file was lost to a companion. **Fix: when a class fails S4b, retry on the largest passing subset
+rather than discarding the proposal.** Expected to recover a slice of the 257 "minority overlap"
+bucket too, since that bucket is defined by a whole-class test.
+
+**Two smaller notes.** The 114 "no shared token" deferrals are a genuine disagreement between two
+implementations of the same normalisation — one is wrong and we do not know which. And I verified
+rather than accepted Vocab's claim that partial credit handles the 257 near-synonyms: `markVocab` does
+produce a fractional `partial` outcome with a stem-overlap test, so the deferral is sound.

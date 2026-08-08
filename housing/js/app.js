@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-08-06-r144";
+  const LL_BUILD = "2026-08-06-r146";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -6215,6 +6215,22 @@
     } else {
       result.overall.summary = "Wrong";
     }
+    // r145 THE ARROW WAS SAYING EVERYTHING TWICE (Smith: "it's just completely
+    // badly written... it's just all so mad").
+    //   measures -> harvest, reaping, wheat, corn, crop
+    //   Also accepted: harvest, reaping, wheat, corn, crop
+    // `expected` was the WHOLE comma-joined gloss while `alternatives` is the
+    // SPLIT list, so the renderer's de-dupe - which drops any alternative equal
+    // to `expected` - could never match a single one of them. Every sense
+    // printed twice, and on `quindicina` that is a two-line definition printed
+    // twice.
+    // It read fine on `calvario -> ordeal` and that is the whole tell: one
+    // sense, nothing to repeat. The fault only appears with several senses.
+    // Fix at source: the arrow names ONE answer - the first listed sense, which
+    // is the dictionary's own primary - and "Also accepted" carries the rest.
+    const _headline = (acceptableList && acceptableList.length)
+      ? String(acceptableList[0]).trim()
+      : (cleanedExpected || target);
     result.markpoints.push({
       bucket: translationBucket,
       label: translationLabel,
@@ -6222,7 +6238,7 @@
       correctness_credit: credit,
       outcome: outcome,
       evidence: raw,
-      expected: cleanedExpected || target,
+      expected: _headline,
       alternatives: acceptableList,
       explanation: reason || undefined
     });
@@ -7355,7 +7371,6 @@
       }
     }
 
-    let _rawShownInDiff = false;   // r143: the arrow shows the raw answer once
     for (const mp of (result.markpoints || [])) {
       if (mp.suppress_display) continue;
       const row = document.createElement("div");
@@ -7416,10 +7431,26 @@
         // the FIRST wrongish markpoint shows it, or a gender or article line
         // would repeat the same answer underneath itself.
         const dupOfTopLevel = evTrim && rawTrim && evTrim.toLowerCase() === rawTrim.toLowerCase();
-        const _diffMayCarryRaw = _oneAnswerCard && !_rawShownInDiff;
+        // r146 THE ARROW IS CORRECTION NOTATION, AND A VOCAB MISS IS NOT A
+        // CORRECTION. Smith, overturning r143/r144: "the arrow notation is all
+        // wrong for a one-word question. Fine if you've given a sentence and you
+        // should have said harvest instead of measures. But `measures becomes
+        // harvest`? Unreadable and uninterpretable."
+        //
+        // He is right and the distinction is real. X -> Y says "where you wrote
+        // X, Y belonged" - it presumes the two occupy the same slot in something
+        // longer. On a translation that holds. On a one-word lookup the learner
+        // did not mis-render a slot; they named a DIFFERENT WORD. `measures`
+        // does not become `harvest`; `messe` means harvest, and `measures` was
+        // simply not it. The arrow asserts a relation between the two words that
+        // does not exist.
+        //
+        // So on a one-answer card: no arrow, and no echo of what they typed.
+        // Their answer is still on screen - the input keeps it, read-only, three
+        // lines above - so echoing it is redundant as well as misleading. Just
+        // the answer, labelled.
         const showLearner = hasEvidence && mp.outcome !== "not_attempted"
-          && (!dupOfTopLevel || _diffMayCarryRaw);
-        if (showLearner && dupOfTopLevel) _rawShownInDiff = true;
+          && !dupOfTopLevel && !_oneAnswerCard;
         const diff = document.createElement("div");
         diff.className = "corr-diff" + (mp.outcome === "partial" ? " partial" : "");
         diff.title = `attempted=${mp.attempted_credit}, correctness=${mp.correctness_credit ?? "n/a"}, outcome=${mp.outcome}`;
