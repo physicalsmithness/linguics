@@ -1407,28 +1407,15 @@ body.strand-vocab-active #live-stats { display: none; }
 .retrieval-help-reveal { font-weight:600; padding:5px 14px; border:1px solid #3a6bbf; border-radius:6px; background:#3a6bbf; color:#fff; cursor:pointer; }
 .retrieval-help-reveal.revealed { background:#fff; color:#25406b; border-style:dashed; cursor:default; font-style:italic; }
 
-/* Tick row */
-.freq-tick-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 4px;
-  margin-top: 4px;
-  font-size: 9.5px;
-  color: var(--muted);
-  font-variant-numeric: tabular-nums;
-}
-.freq-tick.focused {
-  flex: 0 0 auto;
-  /* width matches .freq-focused: 10 boxes of (3*9) + 9 column-gaps*7 + 2*4 padding = 270 + 63 + 8 = 341 */
-  width: 341px;
-  text-align: right;
-  padding-right: 2px;
-}
-.freq-tick.flanking {
-  flex: 0 0 auto;
-  text-align: center;
-  font-size: 8.5px;
-}
+/* r148: the old .freq-tick-row block lived here and is DELETED. Nothing has
+   built a .freq-tick-row since the heatmap became per-block columns, but
+   `.freq-tick.focused { width: 341px }` still matched the live tick - and a
+   .freq-block-col is as wide as its widest child, so the 1-990 column was
+   341px wide to hold a 30px label under a ~230px grid. 111px of nothing,
+   which is the "<1000 bit takes up space it shouldn't" Smith reported. The
+   341 was computed for 9px dots and r141 made the dot a variable, so it had
+   been a lie since. The live tick styling is .freq-block-col .freq-tick,
+   above; the tick now sizes to its text and centres under its own block. */
 
 .vocab-axis {
   border: 1px solid var(--line);
@@ -1747,7 +1734,7 @@ body.strand-vocab-active #live-stats { display: none; }
 
 /* Quiet 30-day practice grid (Smith 2026-07-20): 6x5, one cell per day,
    newest bottom-right; today gets a faint ring. Deliberately undemonstrative. */
-#streak-host { display: inline-flex; align-items: center; gap: 8px; margin-left: 12px; }
+#streak-host { display: inline-flex; align-items: center; gap: 8px; margin-left: 12px; height: 20px; }
 /* r141: the streak's little grid was 6px cells over as many rows as it needed,
    which made it 38px tall - it, alone, was setting the footer's height and it is
    what Smith saw as the streak "lumped on top of" the build id. Nothing else on
@@ -1759,12 +1746,27 @@ body.strand-vocab-active #live-stats { display: none; }
    goes hard right, past the build id, where nothing else competes for the space.
    Capping the height is what stops it dictating the bar; shrinking it was never
    the necessary part. */
-.streak-grid { display: grid; grid-template-columns: repeat(7, 5px); grid-auto-rows: 5px; gap: 1.5px;
-  max-height: 20px; overflow: hidden; align-content: center; }
+/* r148, Smith ("last 30 grid looks like last 21; prefer 5x6 than 3x7"). It
+   WAS last 21: 7 columns of 30 cells is 5 rows, and max-height:20px with
+   align-content:center showed the middle 3 rows and clipped the rest - the
+   newest days among them. Now 6 columns x 5 rows = exactly 30, nothing
+   hidden. The height cap moves to the HOST instead, so the grid can be its
+   full 31px and still not set the footer's height (r141's real finding);
+   it overflows into the footer's own 7px padding, which was empty. */
+.streak-grid { display: grid; grid-template-columns: repeat(6, 5px); grid-auto-rows: 5px; gap: 1.5px;
+  align-content: center; }
 .streak-day { background: #e9e5d8; border-radius: 1.5px; }
 .streak-day.did { background: var(--accent); opacity: 0.55; }
 .streak-day.today { box-shadow: 0 0 0 1px var(--accent); }
 .streak-label { font-size: 10px; color: var(--muted); white-space: nowrap; }
+
+/* r148: a scope control that has been overridden by the other one. Dimmed,
+   not disabled - see the comment at its use site. */
+/* r150, Smith: "just a light dimming would do it". r148 went to 0.4/0.45,
+   which reads as disabled rather than as standing down - and it is not
+   disabled, you can still click straight into it. */
+.filter-bar-topn-label.scope-off { opacity: 0.62; }
+.filter-bar-topn.scope-off { opacity: 0.68; }
 
 /* Inline segment lines (live_round2 ask 2): operand quotes flow with their
    instruction; the italian styling still marks them out within the line. */
@@ -2637,6 +2639,10 @@ h1, h2, h3, .wordmark, .coverage-title, .analysis-section-title { font-family: F
 .their-answer-lead, .their-answer-mid { color: var(--muted); font-size: 13px; }
 .their-answer-said { font-style: italic; }
 .their-answer-is { font-weight: 700; color: #25406b; }
+/* r150: the honest empty case. Deliberately NOT blue - blue is content,
+   and this is a note about the limits of our own word list. */
+.their-answer.their-answer-blank { background: transparent; border-left-color: var(--line);
+  color: var(--muted); font-size: 13px; font-style: italic; }
 
 /* Footer streak (r135). Quiet - it is a fact about the learner, not a nag. */
 #streak-host { color: var(--muted); cursor: help; }

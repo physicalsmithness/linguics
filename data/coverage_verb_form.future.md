@@ -138,3 +138,9 @@ Carried on to the last gap: added **7 compound-future items** (avere + essere-wi
 
 **Every future formation leaf is now two-for-green across all six persons** — the whole branch (3 regular classes, 4 irregular leaves, 2 orthographic, and futuro anteriore) is at the fluency floor. The essere items add cross-tree reps on the PP participle-agreement buckets (masc sg/pl). Marker replica over all 137 items: 0 guard false-credits, every guard a live miss, every correct answer a hit strict + folded, marks balanced, person on all, all buckets resolve, no dup ids.
 
+## Translation-side volume (2026-08-03)
+
+Carried on past the grammar volume to give production-in-context reps: added **15 EN->IT translation items** (all production, since only EN->IT exercises the direction:production formation buckets), roughly doubling the translation formation coverage (19 -> 34; every class now 2-5, weighted to the regular classes and core irregulars). Translation file now **42** (34 formation + 8 usage). Each carries a `common_errors` guard in the migrated schema (the formation slip: guardaremo, vendranno, esseremo, ferai, the futuro-anteriore-vs-simple-future contrast...). Buckets all resolve; EN->IT throughout; no dup ids.
+
+**One pipeline dependency:** the new items do NOT carry the auto-derived `expected_buckets` field (orthography.* + vocabulary.*.active) that the central pipeline added to the existing items; they need that backfill pass to match. Flagged to Architecture.
+

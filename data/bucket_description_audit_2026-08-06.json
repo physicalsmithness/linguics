@@ -1,528 +1,88 @@
 {
-  "audit_date": "2026-08-06",
-  "work_order": "WORK_ORDER_2026-08-05_mechanical_passes.md Job 8",
-  "total_flagged": 49,
-  "false_positives_exempted": [
-    "pronominal_verbs.meaning.core_set",
-    "verb_form.imperfect.discrimination.modals.dovere",
-    "pronominal_verbs",
-    "tense_choice.future_vs_present.present_for_near_future"
-  ],
-  "by_category": {
-    "deprecated": 9,
-    "stub": 13,
-    "internal_language": 27
+ "date": "2026-08-11",
+ "candidates_found": 15,
+ "moved": 9,
+ "flagged": 6,
+ "entries": [
+  {
+   "id": "connective.purpose.affinche_perche_subj",
+   "action": "moved to scope_note",
+   "moved_text": "Cross-credits tense_choice.indicative_vs_subjunctive where the answer produces the subjunctive (Rev 27)."
   },
-  "entries": [
-    {
-      "id": "orthography.accent.italian.placement",
-      "file": "orthography.json",
-      "markers": [
-        "branch_leaf"
-      ],
-      "current_description": "Aggregate for the placement-class axis: WHERE in the language written accents (or their absence) do their work. Second lens over the same slip/drill events as the error-mode leaves (.missing/.added/.wrong_mark): error mode says what happened, placement class says where in the system it happened. Events tag both; Rev 27 cross-credit makes the double event legal.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "orthography.spelling",
-      "file": "orthography.json",
-      "markers": [
-        "branch_leaf"
-      ],
-      "current_description": "Aggregate for non-accent Italian orthography: phonemic and sound-preserving spelling. Sibling axis of orthography.accent (AccentAuthor owns the accent MARK; this seat owns everything orthographic that is not the mark). Children are error-CLASS leaves. Every drill item is index-scored MCQ discrimination, so the apostrophe/accent fold in the grammar marker's norm() never bites (that fold is exactly why typed spelling is not deterministically gradable and MCQ is the correct instrument).",
-      "current_scope_note": ""
-    },
-    {
-      "id": "pronoun.discrimination",
-      "file": "pronoun.json",
-      "markers": [
-        "authoring_verb",
-        "branch_leaf"
-      ],
-      "current_description": "Choosing between clitic strategies where more than one is grammatical, or judging which of several orderings are legal. Minted 2026-07-21 with one leaf (clitic_ordering, the multi-select battery); further discrimination leaves join here rather than scattering.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "pronoun.discrimination.clitic_ordering",
-      "file": "pronoun.json",
-      "markers": [
-        "branch_leaf"
-      ],
-      "current_description": "Which of these render X? Multi-select items testing cluster fusion, indirect object pronoun-before-direct object pronoun order, vowel changes, and enclitic/climbing choice points. Umbrella leaf under which multi-select items live; individual answers also credit their form-specific leaves under combined.* and position.* per Rev 27.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.present_or_future.dare",
-      "file": "tense_choice.json",
-      "markers": [
-        "authoring_verb"
-      ],
-      "current_description": "Union bucket for question frames where dai and darai are both natural; the diagnostic is producing dare correctly at all, not the tense choice. Ratified 2026-05-28 (pronoun granularity thread).",
-      "current_scope_note": ""
-    },
-    {
-      "id": "tense_choice.indicative_vs_subjunctive.free_choice_triggers",
-      "file": "tense_choice.json",
-      "markers": [
-        "wave_batch"
-      ],
-      "current_description": "Free-choice indefinites (chiunque, qualunque/qualsiasi cosa, dovunque/ovunque) force the subjunctive. The WORDS live in indefinite.free_choice; this leaf is the mood cross-credit target (Rev 27): an item authored by IndefiniteAuthor credits both indefinite.free_choice AND this leaf. Resolves the free-choice-subjunctive seam that was owned by nobody. Consistent with the purpose-connective ruling.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.condizionale.formation",
-      "file": "verb_form.condizionale.json",
-      "markers": [
-        "authoring_verb",
-        "branch_leaf",
-        "dispatch"
-      ],
-      "current_description": "Building the conditional: the future stem plus the conditional endings (-ei, -esti, -ebbe, -emmo, -este, -ebbero). Every stem decision is identical to the future (the -are a-to-e shift, the orthographic h-insertion and i-drop, the syncopated and double-r irregulars, the dare/stare/fare exception that keeps -ar-); only the endings change. The signature conditional spelling is the doubled consonants: the 1pl -emmo (two m's, against the future's single-m -emo) and the 3sg/3pl -ebbe / -ebbero. This branch is what the ConditionalFormation dispatch authors; usage and discrimination are separate stubs.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.condizionale.usage",
-      "file": "verb_form.condizionale.json",
-      "markers": [
-        "stub",
-        "branch_leaf",
-        "dispatch"
-      ],
-      "current_description": "STUB. When the conditional is the right choice and what it conveys: politeness and softened requests (vorrei, potresti, mi piacerebbe), the apodosis (main clause) of a hypothetical period (se avessi tempo, verrei), advice and opinion (dovresti, sarebbe meglio), the reported future-in-the-past (ha detto che sarebbe venuto), and unconfirmed or attributed news (il presidente sarebbe arrivato ieri). Left at stub level for a later ConditionalUsage dispatch; no usage leaves are authored in the ConditionalFormation dispatch.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.condizionale.discrimination",
-      "file": "verb_form.condizionale.json",
-      "markers": [
-        "authoring_verb",
-        "stub",
-        "wave_batch"
-      ],
-      "current_description": "STUB. Choosing the conditional over a competing form. The main contrast is the counterfactual one: the prescriptive conditional-in-the-apodosis (se avessi tempo, verrei) versus the colloquial imperfect-for-conditional (se avevo tempo, venivo). The stub leaf below is its structural home, paired with the tense_choice tree's counterfactual buckets. Items are authored by TenseChoice, not the ConditionalFormation author; these buckets exist so cross-tree citations resolve.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.condizionale.discrimination.vs_imperfect_counterfactual",
-      "file": "verb_form.condizionale.json",
-      "markers": [
-        "deprecated",
-        "authoring_verb",
-        "stub",
-        "wave_batch"
-      ],
-      "current_description": "DEPRECATED AS AUTHORING TARGET (2026-06-09). Canonical home: tense_choice.conditional_vs_imperfect_counterfactual. Kept as a cross-reference pointer so cross-tree prerequisites and citations still resolve; do not author items here. STUB. The prescriptive conditional in the main clause of an if-sentence (verrei) versus the colloquial spoken imperfect (venivo). Mirrors the tense_choice tree's conditional_vs_imperfect_counterfactual. Authored by TenseChoice; this leaf is its structural home.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.condizionale.usage.polite",
-      "file": "verb_form.condizionale.json",
-      "markers": [
-        "dispatch"
-      ],
-      "current_description": "vorrei, potresti, mi piacerebbe: the softening conditional. Stub until the ConditionalUsage dispatch.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.condizionale.usage.hypothetical_apodosis",
-      "file": "verb_form.condizionale.json",
-      "markers": [
-        "dispatch"
-      ],
-      "current_description": "The main clause of se + congiuntivo periods (se avessi tempo, VERREI). The prescriptive-vs-colloquial choice itself belongs to tense_choice. Stub until the ConditionalUsage dispatch.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.condizionale.usage.reported_future_in_past",
-      "file": "verb_form.condizionale.json",
-      "markers": [
-        "dispatch"
-      ],
-      "current_description": "Ha detto che SAREBBE VENUTO: the compound conditional where English keeps would. Cited by the imperfect and reported_speech batches. Stub until the ConditionalUsage dispatch.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.congiuntivo.formation",
-      "file": "verb_form.congiuntivo.json",
-      "markers": [
-        "authoring_verb",
-        "branch_leaf",
-        "dispatch"
-      ],
-      "current_description": "Building the four subjunctive forms. The present (regular -i / -a endings, the -isc- class, orthographic adjustments, the large from-the-1sg-present irregular group, and the five suppletive irregulars sia / abbia / sappia / dia / stia); the imperfect (regular -assi / -essi / -issi plus essere fossi and the stem-expansion irregulars); and the two compounds (passato with the present subjunctive of the auxiliary, trapassato with the imperfect subjunctive of the auxiliary). This branch is what the Congiuntivo dispatch authors, in three waves; usage and discrimination are separate stubs.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.congiuntivo.formation.presente",
-      "file": "verb_form.congiuntivo.json",
-      "markers": [
-        "dispatch"
-      ],
-      "current_description": "The present subjunctive. Endings: -are takes -i (parli, parli, parli, parliamo, parliate, parlino); -ere and -ire take -a (prenda / dorma ... prendano / dormano). The three singular persons are identical (che io parli, che tu parli, che lui parli), which is why subject pronouns or context are needed to disambiguate. The 1pl is -iamo throughout, shared with the present indicative. Wave 1 of the dispatch.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.congiuntivo.formation.imperfetto",
-      "file": "verb_form.congiuntivo.json",
-      "markers": [
-        "dispatch"
-      ],
-      "current_description": "The imperfect subjunctive, highly regular: -are gives -assi / -assi / -asse / -assimo / -aste / -assero (parlassi); -ere gives -essi (prendessi); -ire gives -issi (dormissi). The irregular set is small: essere gives fossi, and a stem-expansion group (fare gives facessi, dare gives dessi, stare gives stessi, dire gives dicessi, bere gives bevessi) uses the same expanded stem as the imperfect indicative. Wave 2 of the dispatch.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.congiuntivo.formation.passato",
-      "file": "verb_form.congiuntivo.json",
-      "markers": [
-        "dispatch"
-      ],
-      "current_description": "The compound past subjunctive: the PRESENT subjunctive of the auxiliary (abbia or sia) plus the past participle (che io abbia parlato, che lei sia andata). Used in a subjunctive-triggering subordinate clause whose action is past relative to a present main clause ('Penso che sia gia partito'). Reuses the passato prossimo's auxiliary choice and participle agreement (with sia the participle agrees with the subject). Wave 3 of the dispatch. B2.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.congiuntivo.formation.trapassato",
-      "file": "verb_form.congiuntivo.json",
-      "markers": [
-        "dispatch"
-      ],
-      "current_description": "The compound pluperfect subjunctive: the IMPERFECT subjunctive of the auxiliary (avessi or fossi) plus the past participle (che io avessi parlato, che lei fosse andata). Used in the protasis of an impossible/past counterfactual ('Se avessi saputo, sarei venuto') and in subjunctive subordinates past relative to a past main clause ('Pensavo che fosse gia partito'). Reuses the passato prossimo's participle machinery. Wave 3 of the dispatch. B2-C1.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.congiuntivo.usage",
-      "file": "verb_form.congiuntivo.json",
-      "markers": [
-        "branch_leaf",
-        "dispatch"
-      ],
-      "current_description": "When the subjunctive is required and which of its four tenses to use: the triggers (verbs of opinion / doubt / will / emotion, impersonal expressions like e importante che, conjunctions like benche / affinche / prima che, relative superlatives, indefinite antecedents), and the sequence-of-tenses rule (concordanza dei tempi) that selects presente / passato / imperfetto / trapassato by the main-clause tense and the time relationship. Left at stub level for a later CongiuntivoUsage dispatch; the indicative-vs-subjunctive choice itself is the tense_choice tree's territory. No usage leaves are authored in the formation dispatch.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.congiuntivo.discrimination",
-      "file": "verb_form.congiuntivo.json",
-      "markers": [
-        "stub",
-        "wave_batch"
-      ],
-      "current_description": "STUB. Choosing the subjunctive over the indicative where a subordinate clause could take either (penso che sia, subjunctive of opinion, versus so che e, indicative of fact). The stub leaf below is its structural home, paired with the tense_choice tree's indicative_vs_subjunctive buckets. Authored by TenseChoice; these buckets exist so cross-tree citations resolve.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.congiuntivo.discrimination.vs_indicative",
-      "file": "verb_form.congiuntivo.json",
-      "markers": [
-        "deprecated",
-        "authoring_verb",
-        "stub",
-        "wave_batch"
-      ],
-      "current_description": "DEPRECATED AS AUTHORING TARGET (2026-06-09). Canonical home: tense_choice.indicative_vs_subjunctive. Kept as a cross-reference pointer so cross-tree prerequisites and citations still resolve; do not author items here. STUB. When a subordinate clause takes the subjunctive (opinion, doubt, will, emotion, certain conjunctions) versus the indicative (fact, certainty, so che / e vero che). Mirrors the tense_choice tree's indicative_vs_subjunctive. Authored by TenseChoice; this leaf is its structural home.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.future.formation",
-      "file": "verb_form.future.json",
-      "markers": [
-        "authoring_verb",
-        "branch_leaf",
-        "dispatch"
-      ],
-      "current_description": "Building the future. The stem is the infinitive minus its final -e, with the -are theme vowel shifting a to e; the endings (-ò, -ai, -à, -emo, -ete, -anno) are the same for every verb. On top sit the orthographic adjustments (-care/-gare add h, -ciare/-giare drop the i) that surface across the whole future stem, the closed irregular-stem set (syncopated avrò/andrò, double-r vorrò/verrò, the unique sarò, and the dare/stare/fare verbs that keep -ar-), and the compound futuro anteriore. This branch is what the FutureFormation dispatch authors; usage and discrimination are separate stubs.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.future.formation.regular_ere",
-      "file": "verb_form.future.json",
-      "markers": [
-        "branch_leaf"
-      ],
-      "current_description": "The -ere class drops the final -e of the infinitive and adds the endings, keeping the e: prendere gives prender-, then prenderò, prenderai, prenderà, prenderemo, prenderete, prenderanno. No theme-vowel shift (unlike -are). Many -ere verbs that are irregular elsewhere are regular in the future, but several high-frequency ones are NOT (vedere gives vedrò, not vederò) and live in the irregular branch.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.future.formation.regular_ire",
-      "file": "verb_form.future.json",
-      "markers": [
-        "branch_leaf"
-      ],
-      "current_description": "The -ire class drops the final -e and adds the endings, keeping the i: dormire gives dormir-, then dormirò, dormirai, dormirà, dormiremo, dormirete, dormiranno. The -isc- of the present (capisco) does NOT appear in the future: capire is capirò, not capiscirò. Venire and a few others are irregular (verrò) and live in the irregular branch.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.future.usage",
-      "file": "verb_form.future.json",
-      "markers": [
-        "branch_leaf",
-        "dispatch",
-        "wave_batch"
-      ],
-      "current_description": "When the future is the right choice and what it conveys, beyond plain prediction and scheduling. Three authored leaves: the future of probability (a guess about the present: Saranno le tre; Avrà vent'anni), the emphatic / promissory future (Ti prometto che verrò; Non ucciderai), and the future required in temporal subordinates after quando / appena / finché (Quando arriverai, ti chiamerò). The present-for-future scheduling overlap is tense_choice's; temporal-subordinate items co-credit tense_choice.future_vs_present per Rev 27. Wave-2 usage dispatch delivered 2026-07-18; leaves registered 2026-07-19.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.future.discrimination",
-      "file": "verb_form.future.json",
-      "markers": [
-        "authoring_verb",
-        "stub",
-        "dispatch",
-        "wave_batch"
-      ],
-      "current_description": "STUB. Choosing the morphological future over a competing option where both are possible. The main contrast is future vs the present-for-future ('Parto domani' vs 'Partirò domani'); the stub leaf below is its structural home, mirroring the present tree's discrimination.vs_future. The future-of-probability reading is a usage of the future, not a tense-choice, so it lives under usage rather than here. Items that test these contrasts are authored by the TenseChoice dispatch, not the FutureFormation author; these buckets exist so cross-tree citations resolve.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.future.discrimination.vs_present",
-      "file": "verb_form.future.json",
-      "markers": [
-        "deprecated",
-        "authoring_verb",
-        "stub",
-        "wave_batch"
-      ],
-      "current_description": "DEPRECATED AS AUTHORING TARGET (2026-06-09). Canonical home: tense_choice.future_vs_present. Kept as a cross-reference pointer so cross-tree prerequisites and citations still resolve; do not author items here. STUB. When Italian uses the morphological future versus the plain present for a scheduled or near-certain future event. The mirror of the present tree's discrimination.vs_future. Authored by TenseChoice; this leaf is its structural home.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.gerundio.usage",
-      "file": "verb_form.gerundio.json",
-      "markers": [
-        "branch_leaf",
-        "wave_batch"
-      ],
-      "current_description": "When the bare (non-progressive) gerund is the right choice and what it conveys: the adverbial gerund of manner, means, time, cause, or condition (camminando, by/while walking; sbagliando si impara, one learns by making mistakes), and the same-subject constraint (the gerund's implicit subject must match the main clause, so 'vedendo Maria, l'ho salutata' means I saw her, not she saw me). Two authored leaves: manner/means (B1) and time/cause/condition incl. pur-concession (B2). Wave-2 usage batch accepted 2026-07-19.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.gerundio.discrimination",
-      "file": "verb_form.gerundio.json",
-      "markers": [
-        "stub",
-        "wave_batch"
-      ],
-      "current_description": "STUB. Choosing the progressive (stare + gerund) over the plain present where both are possible. Italian uses the plain present far more than English uses the simple, so 'mangio' often covers 'I am eating'; the progressive 'sto mangiando' is reserved for action in progress right now. The stub leaf below is its structural home, mirroring the tense_choice tree's progressive_vs_simple. Authored by TenseChoice; these buckets exist so cross-tree citations resolve.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.gerundio.discrimination.vs_simple_present",
-      "file": "verb_form.gerundio.json",
-      "markers": [
-        "deprecated",
-        "authoring_verb",
-        "stub",
-        "wave_batch"
-      ],
-      "current_description": "DEPRECATED AS AUTHORING TARGET (2026-06-09). Canonical home: tense_choice.progressive_vs_simple. Kept as a cross-reference pointer so cross-tree prerequisites and citations still resolve; do not author items here. STUB. When to use stare + gerund (action in progress right now) versus the plain present (which already covers most habitual and ongoing meaning in Italian). Mirrors the tense_choice tree's progressive_vs_simple. Authored by TenseChoice; this leaf is its structural home.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.imperativo.formation",
-      "file": "verb_form.imperativo.json",
-      "markers": [
-        "authoring_verb",
-        "branch_leaf",
-        "dispatch"
-      ],
-      "current_description": "Building the imperative: the informal affirmative (tu / noi / voi), the informal negative (the non + infinitive tu rule), the apocopated irregular tu forms, and the formal Lei (which borrows the present subjunctive). This branch is what the Imperativo dispatch authors; usage and the register choice are stubs. Clitic placement and consonant doubling (dammi, fallo) belong to the pronoun tree and are cross-referenced.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.imperativo.usage",
-      "file": "verb_form.imperativo.json",
-      "markers": [
-        "branch_leaf",
-        "wave_batch"
-      ],
-      "current_description": "The imperative's layers beyond plain command formation. Two authored leaves: the PRAGMATIC layer (frozen markers senti/guarda/dai and the pure softener: entri pure, mi dica pure) and the IMPERSONAL INFINITIVE of recipes and signs (Spingere; Non fumare; Mescolare bene). Direct instructions live in present_indicative.usage.instructions; the tu/Lei choice is the register discrimination leaf. Narrowed from the pre-wave-2 prose 2026-07-19; wave-2 batch accepted same day.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.imperativo.discrimination",
-      "file": "verb_form.imperativo.json",
-      "markers": [
-        "stub",
-        "wave_batch"
-      ],
-      "current_description": "STUB. Choosing the informal (tu) versus the formal (Lei) imperative for the social context, a register choice. The stub leaf below is its structural home, related to the cross-cutting register family. Authored by TenseChoice / a register pass; this bucket exists so cross-tree citations resolve.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.imperativo.discrimination.register_informal_vs_formal",
-      "file": "verb_form.imperativo.json",
-      "markers": [
-        "stub"
-      ],
-      "current_description": "STUB. When the social context calls for the informal tu imperative (parla!) versus the formal Lei imperative (parli!). A register choice driven by the addressee. Authored later; this leaf is its structural home.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.passato_remoto.formation",
-      "file": "verb_form.passato_remoto.json",
-      "markers": [
-        "authoring_verb",
-        "branch_leaf",
-        "dispatch"
-      ],
-      "current_description": "Building the passato remoto. The regular classes (-are -ai/-asti/-o/-ammo/-aste/-arono; -ere with the dual -ei/-etti endings; -ire -ii/-isti/-i/-immo/-iste/-irono), the large 1-3-3 strong-stem irregular -ere class (presi / prese / presero with regular middle persons), the suppletive irregulars (essere fui, avere ebbi, fare feci, dare diedi, stare stetti, dire dissi), and the rare compound trapassato remoto. This branch is what the PassatoRemoto dispatch authors; usage and discrimination are stubs.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.passato_remoto.usage",
-      "file": "verb_form.passato_remoto.json",
-      "markers": [
-        "stub",
-        "branch_leaf",
-        "dispatch"
-      ],
-      "current_description": "STUB. When the passato remoto is used: completed past events in literary narrative and formal written Italian, the default spoken past in much of the south, and historical / biographical statement ('Dante nacque nel 1265'). The dominant real-world skill is RECOGNITION (reading it in literature and understanding it maps to a simple completed past), more than production. Left at stub level for a later PassatoRemotoUsage dispatch; no usage leaves are authored in the formation dispatch.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.passato_remoto.discrimination",
-      "file": "verb_form.passato_remoto.json",
-      "markers": [
-        "stub",
-        "wave_batch"
-      ],
-      "current_description": "STUB. Choosing the passato remoto over the passato prossimo for a completed past, a choice governed by register and region (literary / formal / southern remote past versus everyday northern passato prossimo) more than by a hard grammatical rule. The stub leaf below is its structural home. Authored by TenseChoice; this bucket exists so cross-tree citations resolve.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.passato_remoto.discrimination.vs_passato_prossimo",
-      "file": "verb_form.passato_remoto.json",
-      "markers": [
-        "deprecated",
-        "authoring_verb",
-        "stub",
-        "wave_batch"
-      ],
-      "current_description": "DEPRECATED AS AUTHORING TARGET (2026-06-09). Canonical home: tense_choice.passato_remoto_vs_passato_prossimo. Kept as a cross-reference pointer so cross-tree prerequisites and citations still resolve; do not author items here. STUB. When a completed past takes the passato remoto (literary, formal, distant, southern) versus the passato prossimo (everyday, recent, northern). A register / regional choice rather than a strict rule. Authored by TenseChoice; this leaf is its structural home.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.present_indicative.formation",
-      "file": "verb_form.present_indicative.json",
-      "markers": [
-        "authoring_verb",
-        "branch_leaf",
-        "dispatch"
-      ],
-      "current_description": "Building the present-tense form. Three regular classes (-are, -ere, -ire), with -ire split into a plain pattern (dormo) and the larger -isc- inserting pattern (capisco). On top sit orthographic adjustments that keep spelling consistent with sound (-care/-gare add h, -ciare/-giare drop the i), a heavily irregular high-frequency core (essere, avere, the contracted monosyllables, the -go verbs, the stem-vowel/dittongo shifts), the three modal verbs, and the assembly of reflexive forms (pronoun plus verb). This branch is what the PresentFormation dispatch authors; usage and discrimination are separate branches left as stubs.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.present_indicative.formation.irregular",
-      "file": "verb_form.present_indicative.json",
-      "markers": [
-        "branch_leaf"
-      ],
-      "current_description": "Unlike the imperfect, the Italian present has a large, high-frequency irregular core, because the most-used verbs are the most irregular. This branch covers essere and avere (the two most frequent verbs), the heavily contracted monosyllabic group (andare, dare, stare, sapere, fare), the contracted dire, the stem-expanding bere, the -go class (vengo, tengo, salgo), and the stem-vowel/dittongo shifts (esco, siedo, muoio). The modal verbs and reflexive assembly sit in their own sibling branches.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.present_indicative.usage",
-      "file": "verb_form.present_indicative.json",
-      "markers": [
-        "stub",
-        "branch_leaf",
-        "dispatch"
-      ],
-      "current_description": "STUB. When the present form is the right choice and what it conveys: habitual action, general and gnomic truths, action happening now (Italian often uses the plain present where English uses the progressive), the present-for-near-future ('Domani parto'), historic/narrative present, polite and performative uses, and the stare + gerundio progressive (which cross-references the gerundio tree). Impersonal 'si' constructions (si dice, si mangia) also live here rather than in formation. Left at stub level for a later PresentUsage dispatch; no usage leaves are authored in the PresentFormation dispatch. Note: the choice-based present uses (near-future, da-durative-since, historical present) live in the tense_choice tree, not here; this branch is the single-tense uses.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.present_indicative.discrimination",
-      "file": "verb_form.present_indicative.json",
-      "markers": [
-        "authoring_verb",
-        "stub",
-        "branch_leaf",
-        "dispatch",
-        "wave_batch"
-      ],
-      "current_description": "STUB. Choosing the present over a competing tense where both are formally possible. Three contrasts have stub leaves so other trees and the tense-choice dispatch can cite them: present vs imperfect, present vs future, present vs passato prossimo. Items that test these contrasts are authored by the TenseChoice dispatch (and any cross-cutting tense-choice work), not by the PresentFormation author; these buckets are the structural home for those items, kept here so cross-tree prerequisites and citations resolve.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.present_indicative.discrimination.vs_imperfect",
-      "file": "verb_form.present_indicative.json",
-      "markers": [
-        "deprecated",
-        "authoring_verb",
-        "stub",
-        "branch_leaf",
-        "wave_batch"
-      ],
-      "current_description": "DEPRECATED AS AUTHORING TARGET (2026-06-09). Canonical home: tense_choice.present_vs_imperfect. Kept as a cross-reference pointer so cross-tree prerequisites and citations still resolve; do not author items here. STUB. Distinguishing a present-time state or habit from a past-time one, the mirror of the imperfect tree's own discrimination branch. Authored by TenseChoice; this leaf is its structural home.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.present_indicative.discrimination.vs_future",
-      "file": "verb_form.present_indicative.json",
-      "markers": [
-        "deprecated",
-        "authoring_verb",
-        "stub",
-        "dispatch",
-        "wave_batch"
-      ],
-      "current_description": "DEPRECATED AS AUTHORING TARGET (2026-06-09). Canonical home: tense_choice.future_vs_present. Kept as a cross-reference pointer so cross-tree prerequisites and citations still resolve; do not author items here. STUB. When Italian uses the plain present for a scheduled or near-certain future ('Parto domani') versus when the morphological future is preferred. Authored by TenseChoice; this leaf is its structural home. The prerequisite future tree does not exist yet (the FutureAuthor dispatch is next); the forward reference is intentional.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.present_indicative.discrimination.vs_passato_prossimo",
-      "file": "verb_form.present_indicative.json",
-      "markers": [
-        "deprecated",
-        "authoring_verb",
-        "stub",
-        "wave_batch"
-      ],
-      "current_description": "DEPRECATED AS AUTHORING TARGET (2026-06-09). Canonical home: tense_choice.present_vs_passato_prossimo. Kept as a cross-reference pointer so cross-tree prerequisites and citations still resolve; do not author items here. STUB. Choosing the present for an ongoing situation versus the passato prossimo for a completed one, including the 'da + time' case where Italian uses the present ('Vivo qui da due anni') against an English perfect. Authored by TenseChoice; this leaf is its structural home.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.trapassato_prossimo.formation",
-      "file": "verb_form.trapassato_prossimo.json",
-      "markers": [
-        "branch_leaf"
-      ],
-      "current_description": "Building the pluperfect: the imperfect of the auxiliary plus the past participle. Two leaves by auxiliary: avere (avevo + participle, no agreement unless a preceding direct-object pronoun) and essere (ero + participle, agreeing with the subject). The distinguishing skill from the passato prossimo is using the imperfect auxiliary (avevo, not ho); everything else (which auxiliary, which participle, agreement) follows the passato prossimo's rules and is cross-referenced there. The auxiliary's own imperfect conjugation (avevo, ero) is owned by the imperfect tree.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.trapassato_prossimo.usage",
-      "file": "verb_form.trapassato_prossimo.json",
-      "markers": [
-        "stub",
-        "branch_leaf",
-        "dispatch"
-      ],
-      "current_description": "STUB. When the pluperfect is the right choice: an action completed before another past point ('Quando sono arrivato, lui era gia partito'; 'Avevo gia mangiato quando mi hai chiamato'), and the backshift in reported speech ('Disse che era gia partito'). Left at stub level for a later TrapassatoUsage dispatch; no usage leaves are authored in the formation dispatch.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.trapassato_prossimo.discrimination",
-      "file": "verb_form.trapassato_prossimo.json",
-      "markers": [
-        "stub",
-        "wave_batch"
-      ],
-      "current_description": "STUB. Choosing the pluperfect over a competing past where both are formally possible: the past-before-past (era partito) versus a simple past (the passato prossimo e partito or the imperfect partiva) when the sequence-of-events reading is at stake. The stub leaf below is its structural home, paired with the tense_choice tree's trapassato_vs_imperfect buckets. Authored by TenseChoice; these buckets exist so cross-tree citations resolve.",
-      "current_scope_note": ""
-    },
-    {
-      "id": "verb_form.trapassato_prossimo.discrimination.vs_imperfect_pp",
-      "file": "verb_form.trapassato_prossimo.json",
-      "markers": [
-        "deprecated",
-        "authoring_verb",
-        "stub",
-        "wave_batch"
-      ],
-      "current_description": "DEPRECATED AS AUTHORING TARGET (2026-06-09). Canonical home: tense_choice.trapassato_vs_imperfect. Kept as a cross-reference pointer so cross-tree prerequisites and citations still resolve; do not author items here. STUB. When a past event needs the past-before-past reading (era gia partito) rather than a plain past (e partito / partiva). Mirrors the tense_choice tree's trapassato_vs_imperfect. Authored by TenseChoice; this leaf is its structural home.",
-      "current_scope_note": ""
-    }
-  ]
+  {
+   "id": "orthography.accent.italian",
+   "action": "moved to scope_note",
+   "moved_text": "Aggregate; the engine logs to a child when it can classify the slip, and falls back to this node when it cannot."
+  },
+  {
+   "id": "pronoun.ci_locative.existential",
+   "action": "moved to scope_note",
+   "moved_text": "ExistentialAuthor merged them (op_cil_exist_03 -> existential.form.past, _04 -> .negative, _01 and _02 retired as duplicates), IDs preserved because pulse history keys on item_id."
+  },
+  {
+   "id": "tense_choice",
+   "action": "moved to scope_note",
+   "moved_text": "Items dispatched to this topic deliberately do NOT cite formation buckets so the signal stays pure."
+  },
+  {
+   "id": "tense_choice.periodo_ipotetico",
+   "action": "moved to scope_note",
+   "moved_text": "Integrated LEAF (Smith 2026-07-21): one item cross-credits the component buckets it evidences per Rev 27 (condizionale.usage.hypothetical_apodosis, congiuntivo, the counterfactual tense_choice nodes) rather than duplicating them."
+  },
+  {
+   "id": "verb_form.congiuntivo",
+   "action": "moved to scope_note",
+   "moved_text": "This tree is authored in three waves: presente, then imperfetto, then the two compounds."
+  },
+  {
+   "id": "verb_form.future.usage.temporal_subordinate",
+   "action": "moved to scope_note",
+   "moved_text": "This is a standalone grammatical requirement (a function), and it ALSO evidences the future-over-present choice; items credit both this leaf and tense_choice.future_vs_present per Rev 27."
+  },
+  {
+   "id": "verb_form",
+   "action": "numeral corrected",
+   "note": "listed ten, said eleven"
+  },
+  {
+   "id": "vocabulary",
+   "action": "moved to scope_note",
+   "moved_text": "Per-word and per-aspect buckets are not pre-registered; the housing aggregates them dynamically under the language-level group as events come in."
+  },
+  {
+   "id": "word_formation.relational_adjectives",
+   "action": "moved to scope_note",
+   "moved_text": "Stubbed: authored later, possibly with the adjective topic."
+  },
+  {
+   "id": "negation.core.concord",
+   "action": "FLAGGED for judgement",
+   "note": "navigational and useful to a learner; \"this leaf owns\" is the only jargon - reword, do not move"
+  },
+  {
+   "id": "orthography.accent.italian.placement.no_accent",
+   "action": "FLAGGED for judgement",
+   "note": "FALSE POSITIVE - \"analogy is the engine\" is a metaphor, not our software"
+  },
+  {
+   "id": "preposition.articulated.formation",
+   "action": "FLAGGED for judgement",
+   "note": "first clause (con/per/tra/fra do not contract) is learner content; rest is internal - needs a mid-sentence editorial split"
+  },
+  {
+   "id": "verb_form.condizionale.formation.irregular.double_r",
+   "action": "FLAGGED for judgement",
+   "note": "\"so this leaf is high-value\" is authoring rationale but harmless - reword"
+  },
+  {
+   "id": "verb_form.gerundio.formation.progressive_assembly",
+   "action": "FLAGGED for judgement",
+   "note": "navigational and useful; \"owned by\"/\"this leaf\" is the jargon - reword"
+  },
+  {
+   "id": "verb_form",
+   "action": "FLAGGED for judgement",
+   "note": "list is useful; \"this node\" is jargon. SEPARATE BUG: says \"Eleven families\" then lists ten - fixed in this pass"
+  }
+ ]
 }

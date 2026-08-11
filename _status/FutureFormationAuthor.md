@@ -5,7 +5,8 @@ updated: 2026-08-03
 waiting: parked
 needs_from_smith: none
 blocked_by: none
-claude_can_verify: yes (replica over all 137 items clean; entire formation branch two-for-green)
-summary: Entire future FORMATION branch now two-for-green (all 10 leaves x 6 persons, futuro anteriore included). Grammar file 137 (122 formation + 15 usage). Formation, usage, crit-21 retrofit and the full volume programme delivered and accepted; nothing owed.
+claude_can_verify: partial (items verified from disk; the expected_buckets backfill is a central-pipeline step only Architecture runs)
+summary: Future topic saturated on both instruments — grammar formation two-for-green (all 10 leaves x 6 persons, 137 items), usage delivered, translation formation roughly doubled (42 items). All delivered; awaiting Architecture spot-verify + the expected_buckets backfill on 15 new translation items.
 queue:
-  - orthographic +12 and futuro-anteriore +7 top-ups: delivered, awaiting Architecture spot-verify   [inter_chat/Architecture_FutureFormationAuthor_volume_formation.md, Next: Architecture]
+  - volume top-ups (orthographic +12, futuro anteriore +7) + translation volume (+15): delivered, awaiting Architecture spot-verify   [inter_chat/Architecture_FutureFormationAuthor_volume_formation.md, Next: Architecture]
+  - expected_buckets backfill needed on the 15 new translation items (central pipeline)   [same thread]

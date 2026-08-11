@@ -1,0 +1,471 @@
+[
+  {
+    "id": "orthography.accent.italian",
+    "parent_id": null,
+    "language_code": "it",
+    "label": "Italian accent slip",
+    "description": "Accent errors caught when the accent-folded fallback rescued an otherwise-correct answer. Aggregate; the engine logs to a child when it can classify the slip, and falls back to this node when it cannot.",
+    "cefr_importance": {
+      "A1": "review",
+      "A2": "review",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "diagnostic_only": true,
+      "topic_short": "accents"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "orthography.accent.italian.missing",
+    "parent_id": "orthography.accent.italian",
+    "language_code": "it",
+    "label": "accent dropped",
+    "description": "Target has an accent the attempt lacks (parlo for parlò, perche for perché). With the apostrophe live-rewriter available, a dropped accent is a knowledge signal, not an input-method artefact.",
+    "cefr_importance": {
+      "A1": "review",
+      "A2": "review",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "diagnostic_only": true,
+      "canonical_example": "parlo for parlò"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "orthography.accent.italian.added",
+    "parent_id": "orthography.accent.italian",
+    "language_code": "it",
+    "label": "accent added (hypercorrection)",
+    "description": "Attempt carries an accent the target lacks (hò for ho, fù for fu, stò for sto). A systematic habit, not a typo; distinct misconception family from dropping accents.",
+    "cefr_importance": {
+      "A1": "review",
+      "A2": "review",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "diagnostic_only": true,
+      "canonical_example": "hò for ho",
+      "common_miss": "hypercorrection on avere and monosyllables"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "orthography.accent.italian.wrong_mark",
+    "parent_id": "orthography.accent.italian",
+    "language_code": "it",
+    "label": "wrong accent mark",
+    "description": "Accent present on the right letter but the wrong mark (perchè for perché, é for è): the grave/acute distinction.",
+    "cefr_importance": {
+      "A1": "review",
+      "A2": "review",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "diagnostic_only": true,
+      "canonical_example": "perchè for perché"
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "orthography.accent.italian.placement",
+    "parent_id": "orthography.accent.italian",
+    "language_code": "it",
+    "label": "Where accents live",
+    "description": "Aggregate for the placement-class axis: WHERE in the language written accents (or their absence) do their work.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "topic_short": "accents",
+      "note": "Children are word-classes, not error-modes. Every accented (or temptingly accentable) word in the drill corpus belongs to exactly ONE placement class."
+    },
+    "active": true,
+    "version": 1,
+    "scope_note": "Second lens over the same slip/drill events as the error-mode leaves (.missing/.added/.wrong_mark): error mode says what happened, placement class says where in the system it happened. Events tag both; Rev 27 cross-credit makes the double event legal."
+  },
+  {
+    "id": "orthography.accent.italian.placement.meaning_pair",
+    "parent_id": "orthography.accent.italian.placement",
+    "language_code": "it",
+    "label": "Same word, different meaning (e / è)",
+    "description": "The accent separates two different LEXEMES: an unaccented twin exists and means something else. Monosyllables e/è, da/dà, la/là, li/lì, ne/né, se/sé, si/sì, te/tè, di/dì(day), do/dò(tolerated); polysyllables papa/papà, meta/metà, casino/casinò. Omission and insertion both produce a real other word, so this is the highest-stakes class in both directions.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "è (is) vs e (and); papà (dad) vs papa (pope)",
+      "common_miss": "e for è; dà for the preposition da (insertion direction)",
+      "pron_effect": "stress_shift on polysyllables; minimal on monosyllables",
+      "members_closed_set": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "orthography.accent.italian.placement.tense_bearing",
+    "parent_id": "orthography.accent.italian.placement",
+    "language_code": "it",
+    "label": "Accent carries the tense (parlo / parlò)",
+    "description": "The accent separates FORMS OF THE SAME VERB (or the twin is another live verb form): remoto 3sg parlò/parlo, credé/crede, partì/parti; futuro 1sg/3sg parlerò/parlerà, sarà, avrò. Dropping it changes tense or person, not just spelling — Smith: 'a change of tense, quite major'. Includes the acute remoto -é (credé, poté): the one tense-bearing wrong-kind site.",
+    "cefr_importance": {
+      "A1": "review",
+      "A2": "core",
+      "B1": "core",
+      "B2": "core",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "parlò (he spoke, remoto) vs parlo (I speak)",
+      "common_miss": "parlo for parlò; parlero for parlerò",
+      "pron_effect": "stress_shift",
+      "note": "Criterion-19 territory inside grammar topics stays with their authors; this class is the DRILL's coverage of the same ground, index-scored so accent_load_bearing mechanics never arise."
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "orthography.accent.italian.placement.che_compound",
+    "parent_id": "orthography.accent.italian.placement",
+    "language_code": "it",
+    "label": "The -ché family (perché)",
+    "description": "Polysyllabic -ché conjunctions/compounds, always ACUTE: perché, poiché, finché, benché, affinché, sicché, giacché, nonché, anziché, purché, cosicché, dopodiché, granché, macché. THE wrong-kind hotspot: perchè* is common even in native print (Italian keyboards give è a dedicated key; é needs a modifier). Distinct from c'è, whose accent belongs to the meaning-bearing è (Smith's dictation).",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "perché, poiché, finché",
+      "common_miss": "perchè (grave for acute)",
+      "pron_effect": "vowel_quality",
+      "members_closed_set": true,
+      "note": "né and sé are acute but file under meaning_pair (the twin is what defines them); their wrong-kind outcomes still land on .wrong_mark via the outcome axis."
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "orthography.accent.italian.placement.lexical_final",
+    "parent_id": "orthography.accent.italian.placement",
+    "language_code": "it",
+    "label": "Fixed final stress (città, caffè, lunedì)",
+    "description": "Oxytones whose final accent is lexically fixed: no twin, no tense — the accent just IS the spelling. Subfamilies worth surfacing in items: -tà/-tù abstract nouns (città, università, virtù — invariable in the plural, a vocab tie-in), the -dì weekdays (lunedì...venerdì), vowel-cluster monosyllables (già, giù, più, può, ciò), and loan/lexical stragglers (caffè, però, perciò, così, laggiù, ragù, menù).",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "città, caffè, lunedì, più",
+      "common_miss": "citta, piu (omission); cittá (acute on a non-e vowel, wrong-kind by keyboard)",
+      "pron_effect": "stress_shift",
+      "subfamilies": [
+        "ita_tu_nouns",
+        "di_weekdays",
+        "vowel_cluster_monosyllables",
+        "lexical_other"
+      ],
+      "members_closed_set": false
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "orthography.accent.italian.placement.no_accent",
+    "parent_id": "orthography.accent.italian.placement",
+    "language_code": "it",
+    "label": "No accent belongs here (qui, sta, fu)",
+    "description": "Words learners are TEMPTED to accent where standard orthography forbids it — the insertion-slice class. Analogy is the engine: qui/qua pulled by là/lì; sta/fa/va/do/so/sto pulled by dà/è; su pulled by giù; blu, tre, re, no. The existing .added leaf's canonical examples (hò, fù, stò) all live here.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "qui (never quì), sta, fu, su, blu",
+      "common_miss": "quì, quà, stò, fù, sù",
+      "pron_effect": "none",
+      "members_closed_set": true,
+      "note": "Only two outcomes exist here: correct (left bare) and inserted. Judgement items on this class credit the accent TYPE of the mark under temptation (quì -> ì row), per the tagging contract."
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "orthography.accent.italian.placement.apostrophe_not_accent",
+    "parent_id": "orthography.accent.italian.placement",
+    "language_code": "it",
+    "label": "Apostrophe, not accent (po', va')",
+    "description": "Truncation apostrophes learners replace with accents: po' (never pò), and the imperatives va'/fa'/sta'/da'/di'. The di' triple (di' say-imperative / dì day / di preposition) is the corpus's densest single teaching site. BOUNDARY FLAG: arguably orthography.apostrophe territory, not .accent — proposed here because the ERROR surfaces as an accent (pò is an accent typed where an apostrophe belongs) and the drill's options can hold apostrophe vs accent vs bare side by side, index-scored, which the substring marker never could (norm() folds apostrophes).",
+    "cefr_importance": {
+      "A1": "review",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "un po' (never un pò); va' / dà / da",
+      "common_miss": "pò for po'; và for va'",
+      "pron_effect": "none",
+      "members_closed_set": true,
+      "placement_uncertain": true
+    },
+    "active": true,
+    "version": 1
+  },
+  {
+    "id": "orthography.spelling",
+    "parent_id": null,
+    "language_code": "it",
+    "label": "Italian spelling slip",
+    "description": "Aggregate for non-accent Italian orthography: phonemic and sound-preserving spelling. Every drill item is index-scored MCQ discrimination, so the apostrophe/accent fold in the grammar marker's norm() never bites (that fold is exactly why typed spelling is not deterministically gradable and MCQ is the correct instrument).",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "is_aggregate": true,
+      "topic_short": "sp",
+      "note": "ID-FORM FLAG for Architecture: the accent sibling is orthography.accent.italian.* (carries a language segment); DISPATCH_spelling.md writes orthography.spelling.<class>, which I have followed here and in all 141 item markpoints. If you want strict parallelism, rename root -> orthography.spelling.italian and each leaf -> orthography.spelling.italian.<class>; it is a mechanical find-replace across this file + grammar_questions_orthography.json. Your call — I did not want to diverge from the dispatch unilaterally."
+    },
+    "scope_note": "Sibling axis of orthography.accent (AccentAuthor owns the accent MARK; this seat owns everything orthographic that is not the mark). Children are error-CLASS leaves."
+  },
+  {
+    "id": "orthography.spelling.doubling",
+    "parent_id": "orthography.spelling",
+    "language_code": "it",
+    "label": "Double consonants (le doppie)",
+    "description": "Phonemic geminate consonants written single (bellissimo -> bellisimo, cappello -> capello) OR a spurious double added where none belongs (dopo -> doppo, sabato -> sabbato). Italian's single biggest spelling-error source, and frequently meaning-bearing: cappello/capello (hat/hair), penna/pena (pen/pain), nonno/nono (grandfather/ninth), sette/sete (seven/thirst), cane/canne (dog/reeds), donna/dona.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "cappello (hat) vs capello (hair)",
+      "common_miss": "geminate written single (bellisimo); spurious double (doppo)",
+      "members_closed_set": false,
+      "registry": "gemination.geminate_simplified (existing); gemination.spurious_double (PROPOSED — the add-a-double direction has no specific yet)"
+    }
+  },
+  {
+    "id": "orthography.spelling.digraph",
+    "parent_id": "orthography.spelling",
+    "language_code": "it",
+    "label": "Digraphs (gl, gn, sc)",
+    "description": "The consonant digraphs/trigraph: gl(i) = /ly/ (famiglia, figlio), gn = /ny/ (bagno, sogno), sc + e/i = /sh/ (pesce, sciare, scienza). The error reduces the digraph to a plain letter (famiglia -> familia, bagno -> banio) or mis-selects it (pesce/pesche, where sce=/she/ vs sche=/ske/ separates fish from peaches).",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "famiglia (not familia); bagno (not banio)",
+      "common_miss": "digraph spelled out with a plain letter + i",
+      "members_closed_set": false,
+      "registry": "orthography.digraph_reduced (PROPOSED — no digraph specific in the registry yet)"
+    }
+  },
+  {
+    "id": "orthography.spelling.c_g_softening",
+    "parent_id": "orthography.spelling",
+    "language_code": "it",
+    "label": "Hard vs soft c / g",
+    "description": "Keeping the hard or soft value of c/g across inflection. Plurals: amica -> amiche (h keeps hard c) vs the soft exceptions amico -> amici, medico -> medici, biologo -> biologi; adjectives lungo -> lunghi / lunga -> lunghe. Verbs: -care/-gare insert h before e/i (cerchi, cercherò, paghi, paghiamo) while -ciare/-giare do NOT (mangiamo). Silent-i plurals cia/gia: drop after a consonant (arance) vs keep after a vowel (camicie). Lexical -cie- (cielo, scienza, efficiente).",
+    "cefr_importance": {
+      "A1": "review",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "amiche (h) vs amici (soft exception); cerchi (-care h)",
+      "common_miss": "amichi (over-hardening); cerci (dropped h); efficente (dropped i)",
+      "members_closed_set": false,
+      "registry": "orthography.cg_plural_stress_misapplied, orthography.omitted_h_hard_cg, orthography.cia_gia_plural_i, orthography.double_i_retained (ALL existing) — this class is already well-served",
+      "note": "Deliberate cross-tie: these forms are also produced under verb-formation and adjective/noun agreement. Per Rev 27 an item may carry a second markpoint on the owning grammar leaf where it genuinely evidences both; wave-1 items keep a single spelling markpoint (the drill's job is the spelling discrimination, index-scored)."
+    }
+  },
+  {
+    "id": "orthography.spelling.qu_cu_cqu",
+    "parent_id": "orthography.spelling",
+    "language_code": "it",
+    "label": "qu / cu / cqu",
+    "description": "The three ways Italian writes /kw/-ish sequences: default qu (quando, quale, cinque); cu in a closed lexical set (cuore, scuola, cui, innocuo); and the very small cqu family (acqua, acquisto, nacque, piacque). Errors: squola for scuola, quore for cuore (qu-overreach), aqua/acua for acqua (cqu reduced), and the over-correction aquila -> acquila.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "acqua (cqu); scuola (cu); quando (qu)",
+      "common_miss": "squola; quore; aqua; acquila (over-correction)",
+      "members_closed_set": false,
+      "registry": "orthography.qu_cu_confusion, orthography.cqu_error (both PROPOSED)"
+    }
+  },
+  {
+    "id": "orthography.spelling.silent_h",
+    "parent_id": "orthography.spelling",
+    "language_code": "it",
+    "label": "Silent h (avere)",
+    "description": "The silent, non-etymological h that distinguishes four present-tense forms of avere from ordinary words: ho/hai/ha/hanno vs o (or) / ai (to the) / a (to,at) / anno (year). Both directions: dropping the h (ho -> o) and adding it where it does not belong (anno -> hanno, a -> ha). Exclamative ah/oh sit here too.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "review",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "ha (has) vs a (to); hanno (they have) vs anno (year)",
+      "common_miss": "a for ha (dropped); hanno for anno (added/hypercorrection)",
+      "members_closed_set": true,
+      "registry": "accent_silent_letter.silent_h_omitted (existing); accent_silent_letter.silent_h_added (PROPOSED — the add-direction)",
+      "note": "Registry family is accent_silent_letter (shared with AccentAuthor); the h is not an accent but the family already groups 'silent letters'. Boundary is clean: I own the h, AccentAuthor owns the accent mark."
+    }
+  },
+  {
+    "id": "orthography.spelling.apostrophe_elision",
+    "parent_id": "orthography.spelling",
+    "language_code": "it",
+    "label": "Apostrophe and elision",
+    "description": "The elision apostrophe: lo/la + vowel -> l' (l'acqua, l'uomo), una + vowel -> un' (un'amica) BUT masculine un takes NO apostrophe (un amico, un esame); di -> d' (d'accordo), preposition+article (all'una, dell'acqua), mezz'ora, senz'altro, Sant'Antonio, anch'io. Plus the truncation po' (poco) and the no-apostrophe qual è (qual'e is the error). The gender split (un' feminine vs un masculine) is the highest-value contrast.",
+    "cefr_importance": {
+      "A1": "core",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "un'amica (f) vs un amico (m); qual è (no apostrophe)",
+      "common_miss": "un'amico (apostrophe on masculine); una amica (unelided); qual'è (spurious)",
+      "members_closed_set": false,
+      "registry": "orthography.failed_elision (existing — scope currently 'clitic not elided'; PROPOSE widening to cover un-elided articles); orthography.elision_gender_error, orthography.spurious_apostrophe (both PROPOSED)",
+      "boundary": "po'/va' truncation apostrophes are ALSO claimed by AccentAuthor's proposed orthography.accent.italian.placement.apostrophe_not_accent. Smith 2026-07-21: 'author away for apostrophes ... doesn't matter who makes the qs' — so I have authored the elision set (incl. one po' item) here; Architecture to decide final placement / de-dupe. No double coverage intended."
+    }
+  },
+  {
+    "id": "orthography.spelling.capitalization",
+    "parent_id": "orthography.spelling",
+    "language_code": "it",
+    "label": "Capitalisation",
+    "description": "Italian lower-cases what English capitalises: weekdays (lunedì), months (gennaio), languages and nationalities whether adjective or noun (italiano, gli italiani, l'inglese), and courtesy titles (signor Rossi). The error is English-transfer over-capitalisation mid-sentence.",
+    "cefr_importance": {
+      "A1": "review",
+      "A2": "core",
+      "B1": "core",
+      "B2": "review",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "lunedì, gennaio, italiano (all lower case mid-sentence)",
+      "common_miss": "Lunedì / Gennaio / Italiano (English-habit capitals)",
+      "members_closed_set": false,
+      "registry": "orthography.overcapitalization (PROPOSED)",
+      "note": "Items are whole-sentence choices differing only in one word's case, and the target word is placed MID-sentence so lower case is unambiguously correct (sentence-initial capitals are legitimate)."
+    }
+  },
+  {
+    "id": "orthography.spelling.vowel_confusion",
+    "parent_id": "orthography.spelling",
+    "language_code": "it",
+    "label": "Vowel confusion (i/e, o/u)",
+    "description": "Lexical confusion of unstressed vowels: i/e (difficile not difficele, dicembre not decembre, minuto not menuto) and o/u (comprare not cumprare, novembre not nuvembre). Minor and item-specific rather than rule-governed; lower priority than the phonemic classes above.",
+    "cefr_importance": {
+      "A1": "review",
+      "A2": "review",
+      "B1": "review",
+      "B2": "fluency",
+      "C1": "fluency",
+      "C2": "fluency"
+    },
+    "prerequisites": [],
+    "attributes": {
+      "canonical_example": "difficile (not difficele); dicembre (not decembre)",
+      "common_miss": "unstressed i heard/written as e; o as u",
+      "members_closed_set": false,
+      "registry": "orthography.vowel_confusion (PROPOSED — the existing io_plural_i_count and i_retention_error are narrower morphological cases, not this lexical one)"
+    }
+  }
+]

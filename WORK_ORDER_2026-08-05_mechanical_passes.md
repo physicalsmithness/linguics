@@ -28,7 +28,7 @@ this file were written (01:07). Current state:
 | **5** morph-it grammar tagging | **DONE** 897/899 items, 95 buckets | REVIEW NEEDED: `article.definite` proposed on 571 of 899 items (max 779). A bucket that fires on two-thirds of the corpus is noise in a fire-list. Needs a frequency floor before merge. |
 | **6** noun classes | **DONE and clean** | unclassified 1,809 -> 542; accented_a_fem 268 (all -à), accented_other 28. Residue file for the 542. |
 | **7** gloss audit | **DONE** (audit only, no writes, as specified) | hand-fixing of 694 [skip] + 34 truncated + 6 '?' glosses remains, by design |
-| **8** bucket descriptions | not started | 62 of 780 leak internal authoring language to learners |
+| **8** bucket descriptions | **DONE by Architecture** | my "62" was wrong (loose pattern): real count 15 candidates. 9 moved, 6 flagged for judgement, 1 numeral bug fixed. `scope_note` already existed. |
 
 **What job 2 actually emitted, since it is worth knowing before running job 5:**
 
@@ -723,10 +723,14 @@ Smith read this on screen, in a learner-facing description:
 "Branch", "dispatch", "GerundioFormation", "stubs" — that is estate-internal language about who
 authors what, shown to someone trying to learn Italian.
 
-**62 of 780 bucket descriptions carry internal markers**: 38 use authoring verbs (authors, minted,
-ratified, deferred), 33 say "stub", 27 talk about branches and leaves and sibling nodes, 24 mention a
-dispatch, 7 cite a brief revision or criterion number, 4 name a `<Topic>Author`, and one says
-"pending".
+**CORRECTED 2026-08-06: my first count of 62 was wrong.** It came from a loose pattern counted
+per-marker over whole descriptions, which caught ordinary words used ordinarily. A sentence-level pass
+finds **15 candidate sentences in 15 buckets**, and even those need judgement — one is a plain false
+positive ("analogy is the engine" is a metaphor, not our software).
+
+**And `scope_note` already exists.** 49 buckets carry it, it is already used for exactly this purpose,
+and Housing never renders it. So this was never a schema change or a Housing job: the convention was
+already there and 15 descriptions simply did not follow it.
 
 ### 8a — RULING: split the field, do not delete the text
 

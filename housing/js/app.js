@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-08-06-r147";
+  const LL_BUILD = "2026-08-11-r150";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -3129,7 +3129,7 @@
     // Top-N cutoff: restricts the entire universe (axes + deck).
     const topLbl = document.createElement("label");
     topLbl.className = "filter-bar-topn-label";
-    topLbl.textContent = "Restrict to:";
+    topLbl.textContent = "Restrict to most common:";
     host.appendChild(topLbl);
     const topSel = document.createElement("select");
     topSel.className = "filter-bar-topn";
@@ -3137,10 +3137,11 @@
     // VOCAB_SUBBANDS so the two stay in sync. Each option means "all
     // lemmas with rank <= this sub-band's end", which lets the learner
     // dial scope sub-band by sub-band rather than level by level.
-    // The Sub-band dropdown (below) handles "only this one sub-band".
+    // The band dropdown (below) handles "only this one sub-band", and from
+    // r148 the two are mutually exclusive - setting either clears the other.
     const topOptions = [[0, "all (~14k curated)"]];
     VOCAB_SUBBANDS.forEach(s => {
-      topOptions.push([s.end, "≤ " + s.id + " (1-" + s.end + ")"]);
+      topOptions.push([s.end, "Top " + s.end + " (" + s.id + ")"]);
     });
     topOptions.forEach(([val, label]) => {
       const o = document.createElement("option");
@@ -3151,17 +3152,23 @@
     });
     topSel.addEventListener("change", () => {
       vocabFilter.topN = parseInt(topSel.value, 10) || 0;
+      // r148: the two scope controls are EITHER/OR, not both. They were ANDed,
+      // and because a sub-band IS a rank range, intersecting it with a top-N
+      // cap gives you either the band again or nothing - so the pair could
+      // silently produce an empty deck and neither control looked wrong.
+      if (vocabFilter.topN) vocabFilter.subBand = "";
       invalidateVocabCaches();
       vocabDeck = []; vocabIndex = 0;
       renderVocab();
     });
     host.appendChild(topSel);
 
-    // Sub-band dropdown — pick a specific CEFR sub-band (overlapping ranges
-    // per the vocab chat's mapping). Coexists with the cumulative top-N.
+    // Band dropdown - pick a specific CEFR sub-band (overlapping ranges per
+    // the vocab chat's mapping). r148: no longer coexists with the top-N cap;
+    // it REPLACES it, and the label says "Or band:" to make that readable.
     const subLbl = document.createElement("label");
     subLbl.className = "filter-bar-topn-label";
-    subLbl.textContent = "Sub-band:";
+    subLbl.textContent = "Or band:";
     host.appendChild(subLbl);
     const subSel = document.createElement("select");
     subSel.className = "filter-bar-topn";
@@ -3178,11 +3185,27 @@
     });
     subSel.addEventListener("change", () => {
       vocabFilter.subBand = subSel.value;
+      if (vocabFilter.subBand) vocabFilter.topN = 0;   // r148: either/or
       invalidateVocabCaches();
       vocabDeck = []; vocabIndex = 0;
       renderVocab();
     });
     host.appendChild(subSel);
+
+    // r148, Smith: "need some visual to show that one overrides other?" The
+    // control that is NOT in force is dimmed and says why on hover. It stays
+    // ENABLED - disabling it would make you clear the winner first just to
+    // switch, which is two clicks to express one choice.
+    const OFF = "scope-off";
+    const standDown = (lbl, sel, why) => {
+      lbl.classList.add(OFF); sel.classList.add(OFF);
+      lbl.title = why; sel.title = why;
+    };
+    if (vocabFilter.subBand) {
+      standDown(topLbl, topSel, "Not in force: a band is chosen. Setting a Top cut here clears the band.");
+    } else if (vocabFilter.topN) {
+      standDown(subLbl, subSel, "Not in force: a Top cut is chosen. Choosing a band here clears the cut.");
+    }
 
     // Count
     const filtered = filteredVocabEntries();
@@ -6086,8 +6109,24 @@
     const norm = t => String(t || "").trim().toLowerCase()
       .replace(/\([^)]*\)/g, "").replace(/\[[^\]]*\]/g, "")
       .replace(/^(the|a|an|to)\s+/, "").replace(/\s+/g, " ").trim();
+    // r149: norm() above strips ENGLISH articles only, and that single
+    // asymmetry is why this whole feature looked like a one-direction one.
+    // On the EN->IT card the learner is INVITED to supply the Italian article
+    // (it is how the gender markpoint fires at all), and this index is keyed
+    // on bare lemmas - so measured over 4,000 noun answers typed with their
+    // article, ZERO could resolve, against 4,000 of 4,000 once the article
+    // comes off. Nothing was wrong with the data or the renderer.
+    const IT_ARTICLE = /^(?:il|lo|la|i|gli|le|un|uno|una)\s+|^(?:l|un)['\u2019]\s*/;
+    const ART_GENDER = { il: "m", lo: "m", i: "m", gli: "m", un: "m", uno: "m",
+                         la: "f", le: "f", una: "f" };
+    const stripArticle = str => {
+      const m = String(str || "").match(IT_ARTICLE);
+      if (!m) return { rest: String(str || ""), gender: "" };
+      const word = m[0].replace(/[\s'\u2019]+$/, "");
+      return { rest: String(str).slice(m[0].length).trim(), gender: ART_GENDER[word] || "" };
+    };
     const enToIt = new Map();   // english sense -> [italian lemmas]
-    const itToEn = new Map();   // italian lemma  -> english gloss
+    const itToEn = new Map();   // italian lemma  -> [{lemma, gloss, gender, rank}]
     for (const e of (vocabEntries || [])) {
       if (!e || !e.lemma) continue;
       // [skip] entries are corpus artefacts — never index them for the
@@ -6096,7 +6135,14 @@
       const teRaw = String(e.translation_en || "").trim();
       if (!teRaw || teRaw === "[skip]") continue;
       const lem = String(e.lemma);
-      if (!itToEn.has(norm(lem))) itToEn.set(norm(lem), teRaw);
+      // Every entry at this key, not just the first. A bare lemma can be two
+      // words of different gender (fine.m vs fine.f); when the learner has
+      // supplied an article we can then honour it instead of guessing.
+      const ik = norm(lem);
+      let iarr = itToEn.get(ik);
+      if (!iarr) { iarr = []; itToEn.set(ik, iarr); }
+      iarr.push({ lemma: lem, gloss: teRaw, gender: e.gender || "",
+                  rank: (typeof e.rank === "number") ? e.rank : 1e9 });
       for (const piece of teRaw.split(/[,;\/]/)) {
         const k = norm(piece);
         if (!k) continue;
@@ -6109,7 +6155,8 @@
     // the everyday word before the literary one (background -> sfondo, not
     // retaggio, which is what an unsorted list happened to lead with).
     for (const arr of enToIt.values()) arr.sort((a, b) => a.rank - b.rank);
-    _reverseIdx = { enToIt, itToEn, norm };
+    for (const arr of itToEn.values()) arr.sort((a, b) => a.rank - b.rank);
+    _reverseIdx = { enToIt, itToEn, norm, stripArticle };
     return _reverseIdx;
   }
   // Returns {said, is} to show beside a miss, or null when we cannot say
@@ -6125,14 +6172,52 @@
       if (!lemmas || !lemmas.length) return null;
       return { said: String(rawAnswer).trim(), is: lemmas.slice(0, 3).map(x => x.lemma).join(" / "), dir: "en_it" };
     }
-    const gloss = ix.itToEn.get(k);
+    // EN->IT: the learner typed Italian. THREE resolutions, every one of them
+    // an exact lookup in a real table. The r104 phantom-lemmatiser ban is on
+    // GUESSING a lemma, not on reading a curated one, so this stays inside it.
+    //   1. the word exactly as typed
+    //   2. the word with a leading Italian article taken off  (see IT_ARTICLE)
+    //   3. that bare form through data/it_surface_to_lemma.json, which turns an
+    //      inflected surface into its lemma. The file was already loaded and
+    //      simply never consulted here: 99 of its 427 surfaces resolved before,
+    //      423 of 427 after.
+    const st = ix.stripArticle(k);
+    const bare = ix.norm(st.rest);
+    // Suppression, article-aware: "il caldo" on a caldo card is the answer, not
+    // a different word, and the diff already covers it.
+    if (bare && bare === ix.norm(ix.stripArticle(ix.norm(targetText)).rest)) return null;
+    const s2l = (LL.surfaceToLemma && typeof LL.surfaceToLemma === "object") ? LL.surfaceToLemma : null;
+    let viaSurface = "";
+    if (!ix.itToEn.has(k) && !ix.itToEn.has(bare) && s2l) {
+      viaSurface = ix.norm(s2l[bare] || s2l[k] || "");
+    }
+    const key = ix.itToEn.has(k) ? k
+              : (ix.itToEn.has(bare) ? bare
+              : (viaSurface && ix.itToEn.has(viaSurface) ? viaSurface : ""));
+    if (!key) return null;
+    const cands = ix.itToEn.get(key) || [];
+    // If they told us the gender by writing the article, believe them.
+    let pick = cands[0];
+    if (st.gender) {
+      const g = cands.find(c => c.gender === st.gender);
+      if (g) pick = g;
+    }
+    if (!pick) return null;
+    const gloss = String(pick.gloss || "").trim();
     // [skip] guard (Job 7b, QoderWork 2026-08-06): the fourth place the
     // [skip]-as-corpus-artefact convention must be enforced. The other three
     // are in vocabEntriesInScope, the entry-builder live summary, and the
     // category chip counter. Without this, a learner who writes a [skip]-
     // flagged Italian word (e.g. "maestra") sees "that means [skip]".
-    if (!gloss || String(gloss).trim() === "[skip]") return null;
-    return { said: String(rawAnswer).trim(), is: gloss, dir: "it_en" };
+    if (!gloss || gloss === "[skip]") return null;
+    // Say so when we reached the word through its inflection, rather than
+    // silently glossing a form the learner did not write.
+    const inflected = !!viaSurface && key === viaSurface;
+    return {
+      said: String(rawAnswer).trim(),
+      is: inflected ? ("a form of " + pick.lemma + ", " + gloss) : gloss,
+      dir: "it_en"
+    };
   }
   LL._whatTheySaidIs = whatTheySaidIs;   // exposed for the self-test
 
@@ -6270,6 +6355,18 @@
     if (outcome !== "hit" && trimmed) {
       const said = whatTheySaidIs(trimmed, isItEn, cleanedExpected || target);
       if (said) result.overall.their_answer = said;
+      // r150, Smith: he wrote "disconnect" for scommettere and got NOTHING, and
+      // could not tell whether the feature was broken or simply had nothing to
+      // say. Measured: no entry in all 18,042 glosses to "disconnect", so the
+      // silence was correct - and unreadable. Same argument as the streak's
+      // "no streak yet" zero-state (r139): a legible nothing tells you the
+      // plumbing works, an illegible one tells you nothing at all.
+      else if (String(trimmed).trim().length >= 2) {
+        result.overall.their_answer_blank = {
+          said: String(trimmed).trim(),
+          looked_for: isItEn ? "italian" : "meaning"
+        };
+      }
     }
     if (markedEntry.band) {
       result.markpoints.push({
@@ -7673,6 +7770,18 @@
       is.className = "their-answer-is";
       is.textContent = ta.is;
       box.appendChild(lead); box.appendChild(said); box.appendChild(mid); box.appendChild(is);
+      root.appendChild(box);
+    }
+    // r150: the same row, in the same place, when we have nothing to put in it.
+    // Muted rather than blue, because it is a fact about OUR word list, not
+    // about the learner or about Italian.
+    else if (result.overall && result.overall.their_answer_blank) {
+      const tb = result.overall.their_answer_blank;
+      const box = document.createElement("div");
+      box.className = "their-answer their-answer-blank";
+      box.textContent = (tb.looked_for === "italian")
+        ? ("No Italian word in our list means \u201c" + tb.said + "\u201d.")
+        : ("\u201c" + tb.said + "\u201d is not in our list of Italian words.");
       root.appendChild(box);
     }
     if (result.overall.explanation) {

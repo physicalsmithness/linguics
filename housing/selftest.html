@@ -56,12 +56,12 @@
 <div id="summary">Loading content…</div>
 <div id="out"></div>
 
-<script src="js/norm.js?v=2026-08-06-r147"></script>
-<script src="js/store.js?v=2026-08-06-r147"></script>
-<script src="js/engine_axes.js?v=2026-08-06-r147"></script>
-<script src="js/grammar_engine.js?v=2026-08-06-r147"></script>
-<script src="js/translation_stub.js?v=2026-08-06-r147"></script>
-<script src="js/translation_marker.js?v=2026-08-06-r147"></script>
+<script src="js/norm.js?v=2026-08-11-r150"></script>
+<script src="js/store.js?v=2026-08-11-r150"></script>
+<script src="js/engine_axes.js?v=2026-08-11-r150"></script>
+<script src="js/grammar_engine.js?v=2026-08-11-r150"></script>
+<script src="js/translation_stub.js?v=2026-08-11-r150"></script>
+<script src="js/translation_marker.js?v=2026-08-11-r150"></script>
 <script>
 (function () {
   "use strict";
@@ -392,6 +392,30 @@
       "an accent or spelling slip means the learner did get to the right lemma, so their article genuinely is a claim about THAT lemma and must still be marked. Gating on 'hit' alone would silently stop marking gender for every learner who mistypes an accent",
       () => /nounWasReached[\s\S]{0,80}partial/.test(appText)
         ? true : "partial is not accepted by the gate");
+
+    // ------------- "what your guess actually is" (app.js, r149)
+    const g4k = group("Naming the learner's own word back to them"); groups.push(g4k);
+    T(g4k, "an Italian article is taken off before the lookup",
+      "Smith, live: \"only seems to work in one direction on vocab\". The index is keyed on bare lemmas and its norm() stripped ENGLISH articles only - but the EN->IT card INVITES an Italian article, because supplying it is how the gender markpoint fires. Measured over 4,000 noun answers typed with their article: 0 resolved before, 4,000 after. The data and the renderer were both fine",
+      () => /const IT_ARTICLE\s*=/.test(appText) && /ix\.stripArticle/.test(appText)
+        ? true : "the article stripper is missing from the EN->IT lookup");
+    T(g4k, "an inflected form resolves through the surface table",
+      "data/it_surface_to_lemma.json was loaded at boot and never consulted here, so a learner writing 'mangiato' got silence. 99 of its 427 surfaces resolved before, 423 after. It is a curated table, not a guess, so it stays inside the r104 phantom-lemmatiser ban",
+      () => /LL\.surfaceToLemma[\s\S]{0,400}itToEn\.has/.test(appText)
+        ? true : "whatTheySaidIs does not consult LL.surfaceToLemma");
+    T(g4k, "the surface table and the gloss table actually meet",
+      "the source contract above is satisfied by code that resolves into an EMPTY index; this checks the two real files agree, so the feature cannot pass its own test on data that cannot serve it",
+      () => {
+        if (!surface || !vocab) return "content not loaded";
+        const gloss = new Set(vocab.filter(e => e && e.lemma && e.translation_en && e.translation_en !== "[skip]")
+                                   .map(e => String(e.lemma).toLowerCase()));
+        const reach = Object.values(surface).filter(l => gloss.has(String(l).toLowerCase())).length;
+        return reach > 300 ? true : "only " + reach + " of " + Object.keys(surface).length + " surfaces reach a glossed lemma";
+      });
+    T(g4k, "an article on the RIGHT answer stays silent",
+      "'il caldo' on a caldo card is the answer, not a different word - the diff already covers it. The suppression compares stripped-to-stripped, or the line would tell the learner their own correct answer means what it means",
+      () => /bare === ix\.norm\(ix\.stripArticle/.test(appText)
+        ? true : "the suppression is not article-aware");
 
     // ------------- layout arithmetic (style.css + app.js, r141)
     const g4i = group("Vocab layout arithmetic (style.css / app.js)"); groups.push(g4i);

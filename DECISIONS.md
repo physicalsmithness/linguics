@@ -2857,3 +2857,38 @@ learner-facing prose too and have had no house-style treatment at all.
 `verb_form.gerundio.formation` rewritten by Architecture as the worked exemplar (every original word
 preserved across the two fields), and Job 8 written with a mechanical acceptance test —
 `description + scope_note` must still contain every word the original had.
+
+
+## Job 8 executed, with my own count corrected twice over (2026-08-06)
+
+**Two corrections to yesterday's write-up, both mine.**
+
+**(1) The "62 of 780" figure was wrong.** It came from a loose regex counted per-marker across whole
+descriptions, so ordinary words used ordinarily were caught. A sentence-level pass finds **15
+candidate sentences in 15 buckets**. Third over-claim of the session; the pattern is that I quantify
+before I check what the matches actually say.
+
+**(2) `scope_note` already existed.** 49 buckets already carry it, already for exactly this purpose,
+and `grep` finds no reference to it anywhere in `housing/js` — so it is already an internal-only
+field. My "add a new field" ruling was really "there is already a field for this, and 15 descriptions
+put the content in the wrong one." No schema change, no Housing work.
+
+**Executed:** 9 sentences moved from `description` to `scope_note`, each through a **word-preservation
+gate** — `description + scope_note` must contain exactly the multiset of words the original had, and a
+mismatch reverts that bucket. Zero failures, 780 buckets intact, all files parse. Backups in
+`outputs/backup_job8_2026-08-06/`.
+
+**6 flagged for judgement rather than moved**, because a blanket move would have destroyed real
+learner content: `orthography.accent.italian.placement.no_accent` is a **false positive** ("analogy is
+the engine" is a metaphor); `negation.core.concord` and
+`verb_form.gerundio.formation.progressive_assembly` are genuinely navigational ("the words themselves
+live under indefinites") and want rewording, not removal; `preposition.articulated.formation` mixes
+learner content and internal note **inside one sentence** and needs an editorial split.
+
+**Separate bug found and fixed while in there:** `verb_form`'s description read *"Eleven families sit
+under this node"* and then listed **ten**, with tense_choice named separately as explicitly not a
+family. The tree has ten families plus tense_choice. Corrected to "Ten families". That description was
+written by me this morning, and the error survived because I counted the children and not the prose.
+
+Audit at `data/bucket_description_audit_2026-08-06.json`. The wider bulleting pass (descriptions never
+received the 08-03 house-style sweep, which covered explanations only) remains open and is editorial.
