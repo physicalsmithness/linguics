@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-08-06-r146";
+  const LL_BUILD = "2026-08-06-r147";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -1783,6 +1783,17 @@
   function renderGrammar() {
     const host = document.getElementById("grammar-host");
     host.innerHTML = "";
+    // r147: a deck that is not what the learner asked for must SAY so, once, at
+    // the top of the deck it actually dealt. Consumed on render so it appears
+    // for this session and does not follow them around afterwards.
+    const _notice = LL.pendingStrandNotice;
+    LL.pendingStrandNotice = null;
+    if (_notice && _notice.text) {
+      const n = document.createElement("div");
+      n.className = "strand-notice";
+      n.textContent = _notice.text;
+      host.appendChild(n);
+    }
     if (!grammarQuestions.length) { host.textContent = "No grammar questions loaded."; return; }
     ensureGrammarDeck();
     if (!grammarDeck.length) {
@@ -5184,14 +5195,26 @@
     if (typeof window.__vocabFocusRankStart === "undefined") window.__vocabFocusRankStart = 1;
     const focusStart = window.__vocabFocusRankStart;
     const focusEnd = focusStart + 989;
-    const isTopThousand = focusStart === 1;
-    ft.textContent = isTopThousand
-      ? "Most frequently used Italian words"
-      : ("Italian words by frequency, ranks " + focusStart + "-" + focusEnd);
+    // r147 ONE PLACE SAYS THE RANGE, and the title is now permanent.
+    //
+    // Two jobs, one fix. (a) Smith: the "(ranks 1-990)" label "is a bit of an
+    // overhang" - and it was, because the title ALREADY carried the range in
+    // the scrubbed case ("Italian words by frequency, ranks 2001-2990") and
+    // then this span repeated it verbatim. (b) A new learner cannot tell that
+    // this square is the commonest words in Italian at all; the title said so
+    // only while you were looking at the top thousand, and stopped saying it
+    // the moment you moved. So the TITLE names the corpus, always, and the
+    // sub-label carries the window - which is the honest division: the corpus
+    // does not change, the window does.
+    ft.textContent = "Most frequently used Italian words";
     freqTitle.appendChild(ft);
     const focusInfo = document.createElement("span");
     focusInfo.className = "vocab-axis-focus";
-    focusInfo.textContent = "(ranks " + focusStart + "-" + focusEnd + ")";
+    const _corpusN = (vocabEntries && vocabEntries.length) ? vocabEntries.length : 0;
+    focusInfo.textContent = "showing ranks " + focusStart.toLocaleString() + "–" + focusEnd.toLocaleString()
+      + (_corpusN ? (" of " + _corpusN.toLocaleString()) : "");
+    focusInfo.title = "The whole corpus is ranked by how often each word appears in Italian. "
+      + "This square shows one window of it; the columns to the right are the rest.";
     freqTitle.appendChild(focusInfo);
     freqTitle.appendChild(buildLensTag());
     freqAxis.appendChild(freqTitle);
@@ -8726,6 +8749,7 @@
       desc.style.marginLeft = "22px";
       desc.style.fontSize = "12px";
       desc.style.color = "var(--muted)";
+      desc.style.whiteSpace = "pre-line"; /* Job 8c QoderWork 2026-08-06: bullets */
       desc.textContent = node.description;
       div.appendChild(desc);
     }
@@ -9987,16 +10011,38 @@
   function startMistakesSession() {
     const stats = LL.store.allBucketStats();
     const weak = Object.values(stats)
-      .filter(s => s.n > 0 && s.correctness < 1)
+      // r147 (selection_policy §4.2): NEVER-ATTEMPTED WAS SORTING AS WEAKEST.
+      // correctness = attempted > 0 ? correct/attempted : 0, so a bucket with
+      // events but ZERO attempted credit - a markpoint the learner's answer
+      // never engaged - scored 0 and LED the "weakest" ranking. The deck was
+      // fronted by material they had not attempted, not material they got
+      // wrong. Not-attempted and wrong are different facts about a learner and
+      // this ranking fused them.
+      .filter(s => s.n > 0 && s.attempted > 0 && s.correctness < 1)
       .sort((a, b) => a.combined - b.combined)
       .map(s => s.bucket)
       .slice(0, 10);
     const clause = weak.length ? [{ bucketPaths: weak }] : null;
-    // Prefer grammar items touching the weak buckets; fall back to all grammar
-    // if none match (e.g. the misses are all vocab-side in this early build).
     track("session_start", { strand: "grammar", source: "mistakes" });
     const test = applyFilter(grammarQuestions, { clauses: clause });
+    // r147 (selection_policy §4.3): THE FALLBACK WAS SILENT, and it is the best
+    // candidate for what the learner actually experienced. If no grammar item
+    // touches the weak buckets - very likely when the weaknesses are vocab-side
+    // - the filter was dropped and the learner got the ENTIRE unfiltered
+    // grammar deck with nothing said. They asked for their weak spots and were
+    // handed everything, with no way to know. Say it instead.
+    const _fellBack = !!clause && !test.length;
     grammarFilter.clauses = test.length ? clause : null;
+    if (_fellBack || !clause) {
+      LL.pendingStrandNotice = {
+        text: clause
+          ? "We couldn't find grammar questions on your weak spots yet - so this is the whole grammar deck. Your weakest areas are mostly vocabulary; try the Vocabulary tab for those."
+          : "You haven't got enough marked answers yet for us to tell where you're weakest - so this is the whole grammar deck.",
+        tone: "info"
+      };
+    } else {
+      LL.pendingStrandNotice = null;
+    }
     grammarFilter.cefrRange = null;
     grammarFilter.topic = ""; grammarFilter.cefr = ""; grammarFilter.bucketPath = "";
     grammarDeck = []; grammarIndex = 0;

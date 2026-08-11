@@ -2828,3 +2828,32 @@ bucket too, since that bucket is defined by a whole-class test.
 implementations of the same normalisation — one is wrong and we do not know which. And I verified
 rather than accepted Vocab's claim that partial credit handles the 257 near-synonyms: `markVocab` does
 produce a fractional `partial` outcome with a stem-overlap test, so the deferral is sound.
+
+
+## Bucket descriptions leak authoring notes to learners; field split (2026-08-06)
+
+Smith read this on screen, in a learner-facing description: *"This branch is what the
+GerundioFormation dispatch authors; usage (the adverbial gerund) and discrimination (progressive vs
+simple) are separate stubs."* Derived: **62 of 780 bucket descriptions carry internal markers** — 38
+authoring verbs, 33 "stub", 27 branch/leaf/node talk, 24 "dispatch", 7 brief-revision or criterion
+citations, 4 `<Topic>Author` names, 1 "pending".
+
+**RULED: split the field, do not delete the text.** `description` has been doing two jobs — explaining
+the bucket to a learner and briefing an author on scope — so the author's half reaches the screen. New
+`scope_note` takes the internal sentences; `description` becomes learner-facing only. The internal text
+is kept, not cut: it records who owns a branch and what is deliberately excluded, which is real
+information.
+
+**This is the fourth instance of one pattern this week** and it is worth naming as a habit:
+`translation_en` doing display and acceptance; `required_buckets` doing "must test" and "happens to
+show"; the reference translation doing "example" and "answer"; `description` doing learner and author.
+**When one field serves two audiences, the wrong one eventually reaches the screen.**
+
+**Bullets sanctioned here** — the paragraph carries a genuine list of four formation routes buried in
+prose, so bullets structure existing sentences without dropping a word, which is the blessed test.
+Also noted: the 08-03 re-paragraph sweep covered **explanations only**; bucket descriptions are
+learner-facing prose too and have had no house-style treatment at all.
+
+`verb_form.gerundio.formation` rewritten by Architecture as the worked exemplar (every original word
+preserved across the two fields), and Job 8 written with a mechanical acceptance test —
+`description + scope_note` must still contain every word the original had.

@@ -30,7 +30,7 @@
     "parent_id": "verb_form.condizionale",
     "language_code": "it",
     "label": "Formation",
-    "description": "Building the conditional: the future stem plus the conditional endings (-ei, -esti, -ebbe, -emmo, -este, -ebbero). Every stem decision is identical to the future (the -are a-to-e shift, the orthographic h-insertion and i-drop, the syncopated and double-r irregulars, the dare/stare/fare exception that keeps -ar-); only the endings change. The signature conditional spelling is the doubled consonants: the 1pl -emmo (two m's, against the future's single-m -emo) and the 3sg/3pl -ebbe / -ebbero. This branch is what the ConditionalFormation dispatch authors; usage and discrimination are separate stubs.",
+    "description": "Building the conditional: the future stem plus the conditional endings (-ei, -esti, -ebbe, -emmo, -este, -ebbero). Every stem decision is identical to the future (the -are a-to-e shift, the orthographic h-insertion and i-drop, the syncopated and double-r irregulars, the dare/stare/fare exception that keeps -ar-); only the endings change. The signature conditional spelling is the doubled consonants: the 1pl -emmo (two m's, against the future's single-m -emo) and the 3sg/3pl -ebbe / -ebbero.",
     "cefr_importance": {
       "A1": "arcane",
       "A2": "preview",
@@ -45,7 +45,8 @@
       "direction": "production"
     },
     "active": true,
-    "version": 1
+    "version": 1,
+    "scope_note": "This branch is what the ConditionalFormation dispatch authors; usage and discrimination are separate stubs."
   },
   {
     "id": "verb_form.condizionale.formation.regular_are",
@@ -332,7 +333,7 @@
     "parent_id": "verb_form.condizionale",
     "language_code": "it",
     "label": "Usage",
-    "description": "STUB. When the conditional is the right choice and what it conveys: politeness and softened requests (vorrei, potresti, mi piacerebbe), the apodosis (main clause) of a hypothetical period (se avessi tempo, verrei), advice and opinion (dovresti, sarebbe meglio), the reported future-in-the-past (ha detto che sarebbe venuto), and unconfirmed or attributed news (il presidente sarebbe arrivato ieri). Left at stub level for a later ConditionalUsage dispatch; no usage leaves are authored in the ConditionalFormation dispatch.",
+    "description": "When the conditional is the right choice and what it conveys: politeness and softened requests (vorrei, potresti, mi piacerebbe), the apodosis (main clause) of a hypothetical period (se avessi tempo, verrei), advice and opinion (dovresti, sarebbe meglio), the reported future-in-the-past (ha detto che sarebbe venuto), and unconfirmed or attributed news (il presidente sarebbe arrivato ieri).",
     "cefr_importance": {
       "A1": "arcane",
       "A2": "preview",
@@ -347,14 +348,15 @@
       "direction": "bidirectional"
     },
     "active": true,
-    "version": 1
+    "version": 1,
+    "scope_note": "Left at stub level for a later ConditionalUsage dispatch; no usage leaves are authored in the ConditionalFormation dispatch."
   },
   {
     "id": "verb_form.condizionale.discrimination",
     "parent_id": "verb_form.condizionale",
     "language_code": "it",
     "label": "Discrimination",
-    "description": "STUB. Choosing the conditional over a competing form. The main contrast is the counterfactual one: the prescriptive conditional-in-the-apodosis (se avessi tempo, verrei) versus the colloquial imperfect-for-conditional (se avevo tempo, venivo). The stub leaf below is its structural home, paired with the tense_choice tree's counterfactual buckets. Items are authored by TenseChoice, not the ConditionalFormation author; these buckets exist so cross-tree citations resolve.",
+    "description": "Choosing the conditional over a competing form. The main contrast is the counterfactual one: the prescriptive conditional-in-the-apodosis (se avessi tempo, verrei) versus the colloquial imperfect-for-conditional (se avevo tempo, venivo).",
     "cefr_importance": {
       "A1": "arcane",
       "A2": "arcane",
@@ -371,14 +373,15 @@
     },
     "active": false,
     "version": 1,
-    "superseded_by": "tense_choice"
+    "superseded_by": "tense_choice",
+    "scope_note": "The stub leaf below is its structural home, paired with the tense_choice tree's counterfactual buckets. Items are authored by TenseChoice, not the ConditionalFormation author; these buckets exist so cross-tree citations resolve."
   },
   {
     "id": "verb_form.condizionale.discrimination.vs_imperfect_counterfactual",
     "parent_id": "verb_form.condizionale.discrimination",
     "language_code": "it",
     "label": "Conditional vs imperfect in counterfactuals",
-    "description": "DEPRECATED AS AUTHORING TARGET (2026-06-09). Canonical home: tense_choice.conditional_vs_imperfect_counterfactual. Kept as a cross-reference pointer so cross-tree prerequisites and citations still resolve; do not author items here. STUB. The prescriptive conditional in the main clause of an if-sentence (verrei) versus the colloquial spoken imperfect (venivo). Mirrors the tense_choice tree's conditional_vs_imperfect_counterfactual. Authored by TenseChoice; this leaf is its structural home.",
+    "description": "The prescriptive conditional in the main clause of an if-sentence (verrei) versus the colloquial spoken imperfect (venivo). Mirrors the tense_choice tree's conditional_vs_imperfect_counterfactual.",
     "cefr_importance": {
       "A1": "arcane",
       "A2": "arcane",
@@ -398,14 +401,15 @@
     },
     "active": false,
     "version": 1,
-    "superseded_by": "tense_choice.conditional_vs_imperfect_counterfactual"
+    "superseded_by": "tense_choice.conditional_vs_imperfect_counterfactual",
+    "scope_note": "DEPRECATED AS AUTHORING TARGET (2026-06-09). Canonical home: tense_choice.conditional_vs_imperfect_counterfactual. Kept as a cross-reference pointer so cross-tree prerequisites and citations still resolve; do not author items here.. Authored by TenseChoice; this leaf is its structural home."
   },
   {
     "id": "verb_form.condizionale.usage.polite",
     "parent_id": "verb_form.condizionale.usage",
     "language_code": "it",
     "label": "Polite requests and wishes",
-    "description": "vorrei, potresti, mi piacerebbe: the softening conditional. Stub until the ConditionalUsage dispatch.",
+    "description": "vorrei, potresti, mi piacerebbe: the softening conditional.",
     "cefr_importance": {
       "A1": "arcane",
       "A2": "preview",
@@ -420,14 +424,15 @@
       "direction": "bidirectional"
     },
     "active": true,
-    "version": 2
+    "version": 2,
+    "scope_note": "Stub until the ConditionalUsage dispatch."
   },
   {
     "id": "verb_form.condizionale.usage.hypothetical_apodosis",
     "parent_id": "verb_form.condizionale.usage",
     "language_code": "it",
     "label": "Apodosis of a hypothetical",
-    "description": "The main clause of se + congiuntivo periods (se avessi tempo, VERREI). The prescriptive-vs-colloquial choice itself belongs to tense_choice. Stub until the ConditionalUsage dispatch.",
+    "description": "The main clause of se + congiuntivo periods (se avessi tempo, VERREI). The prescriptive-vs-colloquial choice itself belongs to tense_choice.",
     "cefr_importance": {
       "A2": "arcane",
       "B1": "preview",
@@ -441,14 +446,15 @@
       "direction": "bidirectional"
     },
     "active": true,
-    "version": 2
+    "version": 2,
+    "scope_note": "Stub until the ConditionalUsage dispatch."
   },
   {
     "id": "verb_form.condizionale.usage.reported_future_in_past",
     "parent_id": "verb_form.condizionale.usage",
     "language_code": "it",
     "label": "Reported future-in-the-past",
-    "description": "Ha detto che SAREBBE VENUTO: the compound conditional where English keeps would. Cited by the imperfect and reported_speech batches. Stub until the ConditionalUsage dispatch.",
+    "description": "Ha detto che SAREBBE VENUTO: the compound conditional where English keeps would. Cited by the imperfect and reported_speech batches.",
     "cefr_importance": {
       "A2": "arcane",
       "B1": "preview",
@@ -462,6 +468,7 @@
       "direction": "bidirectional"
     },
     "active": true,
-    "version": 2
+    "version": 2,
+    "scope_note": "Stub until the ConditionalUsage dispatch."
   }
 ]

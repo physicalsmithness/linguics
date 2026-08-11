@@ -642,7 +642,7 @@
     "parent_id": "tense_choice.future_vs_present",
     "language_code": "it",
     "label": "Dare: present or future both fine",
-    "description": "Union bucket for question frames where dai and darai are both natural; the diagnostic is producing dare correctly at all, not the tense choice. Ratified 2026-05-28 (pronoun granularity thread).",
+    "description": "Union bucket for question frames where dai and darai are both natural; the diagnostic is producing dare correctly at all, not the tense choice.",
     "cefr_importance": {
       "A2": "core",
       "B1": "review",
@@ -657,7 +657,8 @@
       "is_aggregate": false
     },
     "active": true,
-    "version": 2
+    "version": 2,
+    "scope_note": "Ratified 2026-05-28 (pronoun granularity thread)."
   },
   {
     "id": "tense_choice.periodo_ipotetico",
@@ -685,7 +686,7 @@
     "parent_id": "tense_choice.indicative_vs_subjunctive",
     "language_code": "it",
     "label": "Free-choice triggers (chiunque, qualunque, dovunque + subjunctive)",
-    "description": "Free-choice indefinites (chiunque, qualunque/qualsiasi cosa, dovunque/ovunque) force the subjunctive. The WORDS live in indefinite.free_choice; this leaf is the mood cross-credit target (Rev 27): an item authored by IndefiniteAuthor credits both indefinite.free_choice AND this leaf. Resolves the free-choice-subjunctive seam that was owned by nobody. Consistent with the purpose-connective ruling.",
+    "description": "Free-choice indefinites (chiunque, qualunque/qualsiasi cosa, dovunque/ovunque) force the subjunctive. Resolves the free-choice-subjunctive seam that was owned by nobody. Consistent with the purpose-connective ruling.",
     "cefr_importance": {
       "B1": "preview",
       "B2": "core",
@@ -695,6 +696,7 @@
     "prerequisites": [],
     "attributes": {},
     "active": true,
-    "version": 1
+    "version": 1,
+    "scope_note": "The WORDS live in indefinite.free_choice; this leaf is the mood cross-credit target (Rev 27): an item authored by IndefiniteAuthor credits both indefinite.free_choice AND this leaf."
   }
 ]

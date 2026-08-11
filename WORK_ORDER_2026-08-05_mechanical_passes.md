@@ -27,7 +27,8 @@ this file were written (01:07). Current state:
 | **4** code fixes | not started | Housing |
 | **5** morph-it grammar tagging | **DONE** 897/899 items, 95 buckets | REVIEW NEEDED: `article.definite` proposed on 571 of 899 items (max 779). A bucket that fires on two-thirds of the corpus is noise in a fire-list. Needs a frequency floor before merge. |
 | **6** noun classes | **DONE and clean** | unclassified 1,809 -> 542; accented_a_fem 268 (all -à), accented_other 28. Residue file for the 542. |
-| **7** gloss audit | not started | **do before ratifying job 1** |
+| **7** gloss audit | **DONE** (audit only, no writes, as specified) | hand-fixing of 694 [skip] + 34 truncated + 6 '?' glosses remains, by design |
+| **8** bucket descriptions | not started | 62 of 780 leak internal authoring language to learners |
 
 **What job 2 actually emitted, since it is worth knowing before running job 5:**
 
@@ -701,6 +702,91 @@ entry-splitting output would find most of them at once.
 3. Every single-token gloss shared by 4+ same-pos entries appears in the audit file.
 4. No entry's `lemma`, `pos`, `gender` or `rank` changes. Only `translation_en`, `gloss_en` and
    `translation_source` may move, and only where the job says so.
+
+---
+
+## JOB 8 — Bucket descriptions: the authoring notes are leaking to learners
+
+**For:** Architecture normally owns the bucket trees, so **check with Smith before handing this out.**
+The mechanical half (schema + renderer + the audit list) is safe for anyone; the rewriting is
+editorial.
+**Size:** the audit is minutes; the 62 rewrites are an hour or two of careful editing.
+**Thread:** new — `inter_chat/Architecture_Housing_bucket_description_split.md`.
+
+### Why
+
+Smith read this on screen, in a learner-facing description:
+
+> *"This branch is what the GerundioFormation dispatch authors; usage (the adverbial gerund) and
+> discrimination (progressive vs simple) are separate stubs."*
+
+"Branch", "dispatch", "GerundioFormation", "stubs" — that is estate-internal language about who
+authors what, shown to someone trying to learn Italian.
+
+**62 of 780 bucket descriptions carry internal markers**: 38 use authoring verbs (authors, minted,
+ratified, deferred), 33 say "stub", 27 talk about branches and leaves and sibling nodes, 24 mention a
+dispatch, 7 cite a brief revision or criterion number, 4 name a `<Topic>Author`, and one says
+"pending".
+
+### 8a — RULING: split the field, do not delete the text
+
+`description` is doing two jobs — explaining the bucket to a **learner**, and briefing an **author**
+on what is in scope. Same field, two audiences, so the author's half ends up on screen.
+
+**Add `scope_note`. `description` becomes learner-facing only; the internal sentences move across,
+they are not deleted.** They are genuinely useful — they record who owns a branch and what is
+deliberately excluded — and deleting them would lose real information while fixing a display bug.
+
+This is the **fourth** time this week the same shape has come up: `translation_en` doing display and
+acceptance; `required_buckets` doing "must test" and "happens to show"; the reference translation
+doing "example" and "answer"; now `description` doing learner and author. **When one field serves two
+audiences, the wrong one eventually reaches the screen.** Worth watching for elsewhere.
+
+### 8b — Bullets are sanctioned here, and descriptions were never swept
+
+Smith: *"this could be bullet-pointed."* Correct, and it is the case the blessed rule already allows —
+the paragraph carries a genuine list of four formation routes buried in prose, so bullets structure
+existing sentences **without dropping a word**, which is the test.
+
+Note that the 2026-08-03 re-paragraph sweep covered **explanations only**. Bucket descriptions are
+learner-facing prose too and have had no house-style treatment at all. They should get the same rule:
+paragraph the long ones, bullet where a list is genuinely present, never lose wording.
+
+### Worked exemplar, already done — copy this pattern
+
+`verb_form.gerundio.formation` in `data/buckets/verb_form.gerundio.json` has been rewritten by
+Architecture as the pattern:
+
+```
+description: "Building the gerund and its constructions.
+              • Regular forms: -are gives -ando; -ere and -ire give -endo.
+              • The small stem-expansion irregular set: facendo, dicendo, bevendo, ponendo, traducendo.
+              • The compound gerundio passato: avendo or essendo plus the participle.
+              • The progressive assembly: stare conjugated in any tense, plus the gerund."
+
+scope_note:  "This branch is what the GerundioFormation dispatch authors; usage (the adverbial
+              gerund) and discrimination (progressive vs simple) are separate stubs."
+```
+
+Every word of the original survives. Nothing was invented.
+
+### Task
+
+1. Emit the 62 to `data/bucket_description_audit_<date>.json` with id, file, current description, and
+   which marker matched.
+2. For each, move the internal sentences to `scope_note` and leave the learner-facing text in
+   `description`. **Wording is preserved on both sides** — this is a move, not a rewrite.
+3. Bullet where a genuine list is present. Never convert prose into a list by trimming it.
+4. **Housing:** render `description` only. `scope_note` never reaches a learner. Also apply the
+   `white-space: pre-line` treatment that explanations got, or the bullets render as one run-on line.
+
+### Acceptance tests
+
+1. Zero descriptions match the marker patterns after the pass.
+2. For every edited bucket, `description + scope_note` contains every word the original description
+   had. Diff it mechanically; a dropped clause is a failure.
+3. All 780 buckets still present, every file parses, no ids changed.
+4. Spot-render three edited buckets in the UI and confirm no internal wording is visible.
 
 ---
 

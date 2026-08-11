@@ -29,7 +29,7 @@
     "parent_id": "verb_form.future",
     "language_code": "it",
     "label": "Formation",
-    "description": "Building the future. The stem is the infinitive minus its final -e, with the -are theme vowel shifting a to e; the endings (-ò, -ai, -à, -emo, -ete, -anno) are the same for every verb. On top sit the orthographic adjustments (-care/-gare add h, -ciare/-giare drop the i) that surface across the whole future stem, the closed irregular-stem set (syncopated avrò/andrò, double-r vorrò/verrò, the unique sarò, and the dare/stare/fare verbs that keep -ar-), and the compound futuro anteriore. This branch is what the FutureFormation dispatch authors; usage and discrimination are separate stubs.",
+    "description": "Building the future. The stem is the infinitive minus its final -e, with the -are theme vowel shifting a to e; the endings (-ò, -ai, -à, -emo, -ete, -anno) are the same for every verb. On top sit the orthographic adjustments (-care/-gare add h, -ciare/-giare drop the i) that surface across the whole future stem, the closed irregular-stem set (syncopated avrò/andrò, double-r vorrò/verrò, the unique sarò, and the dare/stare/fare verbs that keep -ar-), and the compound futuro anteriore.",
     "cefr_importance": {
       "A1": "arcane",
       "A2": "core",
@@ -44,7 +44,8 @@
       "direction": "production"
     },
     "active": true,
-    "version": 1
+    "version": 1,
+    "scope_note": "This branch is what the FutureFormation dispatch authors; usage and discrimination are separate stubs."
   },
   {
     "id": "verb_form.future.formation.regular_are",
@@ -74,7 +75,7 @@
     "parent_id": "verb_form.future.formation",
     "language_code": "it",
     "label": "Regular -ere: prenderò / prenderai / prenderà / prenderemo / prenderete / prenderanno",
-    "description": "The -ere class drops the final -e of the infinitive and adds the endings, keeping the e: prendere gives prender-, then prenderò, prenderai, prenderà, prenderemo, prenderete, prenderanno. No theme-vowel shift (unlike -are). Many -ere verbs that are irregular elsewhere are regular in the future, but several high-frequency ones are NOT (vedere gives vedrò, not vederò) and live in the irregular branch.",
+    "description": "The -ere class drops the final -e of the infinitive and adds the endings, keeping the e: prendere gives prender-, then prenderò, prenderai, prenderà, prenderemo, prenderete, prenderanno. No theme-vowel shift (unlike -are).",
     "cefr_importance": {
       "A1": "arcane",
       "A2": "core",
@@ -90,14 +91,15 @@
       "direction": "production"
     },
     "active": true,
-    "version": 1
+    "version": 1,
+    "scope_note": "Many -ere verbs that are irregular elsewhere are regular in the future, but several high-frequency ones are NOT (vedere gives vedrò, not vederò) and live in the irregular branch."
   },
   {
     "id": "verb_form.future.formation.regular_ire",
     "parent_id": "verb_form.future.formation",
     "language_code": "it",
     "label": "Regular -ire: dormirò / dormirai / dormirà / dormiremo / dormirete / dormiranno",
-    "description": "The -ire class drops the final -e and adds the endings, keeping the i: dormire gives dormir-, then dormirò, dormirai, dormirà, dormiremo, dormirete, dormiranno. The -isc- of the present (capisco) does NOT appear in the future: capire is capirò, not capiscirò. Venire and a few others are irregular (verrò) and live in the irregular branch.",
+    "description": "The -ire class drops the final -e and adds the endings, keeping the i: dormire gives dormir-, then dormirò, dormirai, dormirà, dormiremo, dormirete, dormiranno. The -isc- of the present (capisco) does NOT appear in the future: capire is capirò, not capiscirò.",
     "cefr_importance": {
       "A1": "arcane",
       "A2": "core",
@@ -113,7 +115,8 @@
       "direction": "production"
     },
     "active": true,
-    "version": 1
+    "version": 1,
+    "scope_note": "Venire and a few others are irregular (verrò) and live in the irregular branch."
   },
   {
     "id": "verb_form.future.formation.orthographic",
@@ -331,7 +334,7 @@
     "parent_id": "verb_form.future",
     "language_code": "it",
     "label": "Usage",
-    "description": "When the future is the right choice and what it conveys, beyond plain prediction and scheduling. Three authored leaves: the future of probability (a guess about the present: Saranno le tre; Avrà vent'anni), the emphatic / promissory future (Ti prometto che verrò; Non ucciderai), and the future required in temporal subordinates after quando / appena / finché (Quando arriverai, ti chiamerò). The present-for-future scheduling overlap is tense_choice's; temporal-subordinate items co-credit tense_choice.future_vs_present per Rev 27. Wave-2 usage dispatch delivered 2026-07-18; leaves registered 2026-07-19.",
+    "description": "When the future is the right choice and what it conveys, beyond plain prediction and scheduling.",
     "cefr_importance": {
       "A1": "arcane",
       "A2": "core",
@@ -346,7 +349,8 @@
       "direction": "bidirectional"
     },
     "active": true,
-    "version": 2
+    "version": 2,
+    "scope_note": "Three authored leaves: the future of probability (a guess about the present: Saranno le tre; Avrà vent'anni), the emphatic / promissory future (Ti prometto che verrò; Non ucciderai), and the future required in temporal subordinates after quando / appena / finché (Quando arriverai, ti chiamerò). The present-for-future scheduling overlap is tense_choice's; temporal-subordinate items co-credit tense_choice.future_vs_present per Rev 27. Wave-2 usage dispatch delivered 2026-07-18; leaves registered 2026-07-19."
   },
   {
     "id": "verb_form.future.usage.probability",
@@ -430,7 +434,7 @@
     "parent_id": "verb_form.future",
     "language_code": "it",
     "label": "Discrimination",
-    "description": "STUB. Choosing the morphological future over a competing option where both are possible. The main contrast is future vs the present-for-future ('Parto domani' vs 'Partirò domani'); the stub leaf below is its structural home, mirroring the present tree's discrimination.vs_future. The future-of-probability reading is a usage of the future, not a tense-choice, so it lives under usage rather than here. Items that test these contrasts are authored by the TenseChoice dispatch, not the FutureFormation author; these buckets exist so cross-tree citations resolve.",
+    "description": "Choosing the morphological future over a competing option where both are possible. The future-of-probability reading is a usage of the future, not a tense-choice, so it lives under usage rather than here.",
     "cefr_importance": {
       "A1": "arcane",
       "A2": "preview",
@@ -447,14 +451,15 @@
     },
     "active": false,
     "version": 1,
-    "superseded_by": "tense_choice"
+    "superseded_by": "tense_choice",
+    "scope_note": "The main contrast is future vs the present-for-future ('Parto domani' vs 'Partirò domani'); the stub leaf below is its structural home, mirroring the present tree's discrimination.vs_future. Items that test these contrasts are authored by the TenseChoice dispatch, not the FutureFormation author; these buckets exist so cross-tree citations resolve."
   },
   {
     "id": "verb_form.future.discrimination.vs_present",
     "parent_id": "verb_form.future.discrimination",
     "language_code": "it",
     "label": "Future vs present-for-future",
-    "description": "DEPRECATED AS AUTHORING TARGET (2026-06-09). Canonical home: tense_choice.future_vs_present. Kept as a cross-reference pointer so cross-tree prerequisites and citations still resolve; do not author items here. STUB. When Italian uses the morphological future versus the plain present for a scheduled or near-certain future event. The mirror of the present tree's discrimination.vs_future. Authored by TenseChoice; this leaf is its structural home.",
+    "description": "When Italian uses the morphological future versus the plain present for a scheduled or near-certain future event. The mirror of the present tree's discrimination.vs_future.",
     "cefr_importance": {
       "A1": "arcane",
       "A2": "preview",
@@ -474,6 +479,7 @@
     },
     "active": false,
     "version": 1,
-    "superseded_by": "tense_choice.future_vs_present"
+    "superseded_by": "tense_choice.future_vs_present",
+    "scope_note": "DEPRECATED AS AUTHORING TARGET (2026-06-09). Canonical home: tense_choice.future_vs_present. Kept as a cross-reference pointer so cross-tree prerequisites and citations still resolve; do not author items here.. Authored by TenseChoice; this leaf is its structural home."
   }
 ]

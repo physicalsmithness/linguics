@@ -165,10 +165,27 @@ main {
   padding: 3px 6px;
   font-family: inherit;
   font-size: 13px;
-  border: 1px solid var(--line);
+  /* r147 (Smith: "I know that will get missed... it's coloured cream and just
+     makes it hide"). It was painted in var(--bg) - the PAGE'S OWN GROUND - so a
+     control sat on a surface of exactly its own colour and read as text. A
+     dropdown has to look like something you can open. White field, a firmer
+     rule, and the navy accent on hover and focus. */
+  border: 1px solid var(--rule, #cfc7b5);
   border-radius: 3px;
-  background: var(--bg);
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
 }
+/* r147: the deck you got is not the deck you asked for, said plainly and once.
+   Informational, so it takes the accent rule rather than the red one - nothing
+   has gone wrong, the app simply could not honour the request. */
+.strand-notice {
+  margin: 0 0 12px; padding: 9px 13px; font-size: 13.5px;
+  background: var(--accent-soft, #f2f0fa); border-left: 3px solid var(--accent);
+  border-radius: 0 4px 4px 0; color: var(--ink);
+}
+.filter-bar select:hover { border-color: var(--accent); }
+.filter-bar select:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 .filter-bar .filter-count {
   margin-left: auto;
   color: var(--faint);
@@ -575,6 +592,9 @@ main {
   font-style: italic;
   margin-top: 3px;
   line-height: 1.35;
+  /* Job 8c (QoderWork 2026-08-06): descriptions now carry authored bullets
+     (\u2022 + newline); pre-line renders them without collapsing to one line. */
+  white-space: pre-line;
 }
 
 .result-you-wrote {

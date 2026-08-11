@@ -29,7 +29,7 @@
     "parent_id": "verb_form.imperativo",
     "language_code": "it",
     "label": "Formation",
-    "description": "Building the imperative: the informal affirmative (tu / noi / voi), the informal negative (the non + infinitive tu rule), the apocopated irregular tu forms, and the formal Lei (which borrows the present subjunctive). This branch is what the Imperativo dispatch authors; usage and the register choice are stubs. Clitic placement and consonant doubling (dammi, fallo) belong to the pronoun tree and are cross-referenced.",
+    "description": "Building the imperative: the informal affirmative (tu / noi / voi), the informal negative (the non + infinitive tu rule), the apocopated irregular tu forms, and the formal Lei (which borrows the present subjunctive). Clitic placement and consonant doubling (dammi, fallo) belong to the pronoun tree and are cross-referenced.",
     "cefr_importance": {
       "A1": "arcane",
       "A2": "core",
@@ -44,7 +44,8 @@
       "direction": "production"
     },
     "active": true,
-    "version": 1
+    "version": 1,
+    "scope_note": "This branch is what the Imperativo dispatch authors; usage and the register choice are stubs."
   },
   {
     "id": "verb_form.imperativo.formation.informal_affirmative",
@@ -147,7 +148,7 @@
     "parent_id": "verb_form.imperativo",
     "language_code": "it",
     "label": "Usage",
-    "description": "The imperative's layers beyond plain command formation. Two authored leaves: the PRAGMATIC layer (frozen markers senti/guarda/dai and the pure softener: entri pure, mi dica pure) and the IMPERSONAL INFINITIVE of recipes and signs (Spingere; Non fumare; Mescolare bene). Direct instructions live in present_indicative.usage.instructions; the tu/Lei choice is the register discrimination leaf. Narrowed from the pre-wave-2 prose 2026-07-19; wave-2 batch accepted same day.",
+    "description": "The imperative's layers beyond plain command formation. Direct instructions live in present_indicative.usage.instructions; the tu/Lei choice is the register discrimination leaf.",
     "cefr_importance": {
       "A1": "arcane",
       "A2": "core",
@@ -162,7 +163,8 @@
       "direction": "bidirectional"
     },
     "active": true,
-    "version": 2
+    "version": 2,
+    "scope_note": "Two authored leaves: the PRAGMATIC layer (frozen markers senti/guarda/dai and the pure softener: entri pure, mi dica pure) and the IMPERSONAL INFINITIVE of recipes and signs (Spingere; Non fumare; Mescolare bene). Narrowed from the pre-wave-2 prose 2026-07-19; wave-2 batch accepted same day."
   },
   {
     "id": "verb_form.imperativo.usage.pragmatic_softening",
@@ -221,7 +223,7 @@
     "parent_id": "verb_form.imperativo",
     "language_code": "it",
     "label": "Discrimination",
-    "description": "STUB. Choosing the informal (tu) versus the formal (Lei) imperative for the social context, a register choice. The stub leaf below is its structural home, related to the cross-cutting register family. Authored by TenseChoice / a register pass; this bucket exists so cross-tree citations resolve.",
+    "description": "Choosing the informal (tu) versus the formal (Lei) imperative for the social context, a register choice.",
     "cefr_importance": {
       "A1": "arcane",
       "A2": "preview",
@@ -236,14 +238,15 @@
       "direction": "bidirectional"
     },
     "active": true,
-    "version": 2
+    "version": 2,
+    "scope_note": "The stub leaf below is its structural home, related to the cross-cutting register family. Authored by TenseChoice / a register pass; this bucket exists so cross-tree citations resolve."
   },
   {
     "id": "verb_form.imperativo.discrimination.register_informal_vs_formal",
     "parent_id": "verb_form.imperativo.discrimination",
     "language_code": "it",
     "label": "Informal (tu) vs formal (Lei) imperative",
-    "description": "STUB. When the social context calls for the informal tu imperative (parla!) versus the formal Lei imperative (parli!). A register choice driven by the addressee. Authored later; this leaf is its structural home.",
+    "description": "When the social context calls for the informal tu imperative (parla!) versus the formal Lei imperative (parli!). A register choice driven by the addressee.",
     "cefr_importance": {
       "A1": "arcane",
       "A2": "preview",
@@ -259,6 +262,7 @@
       "direction": "bidirectional"
     },
     "active": true,
-    "version": 2
+    "version": 2,
+    "scope_note": "Authored later; this leaf is its structural home."
   }
 ]

@@ -29,7 +29,7 @@
     "parent_id": "verb_form.gerundio",
     "language_code": "it",
     "label": "Formation",
-    "description": "Building the gerund and its constructions.\n• Regular forms: -are gives -ando; -ere and -ire give -endo.\n• The small stem-expansion irregular set: facendo, dicendo, bevendo, ponendo, traducendo.\n• The compound gerundio passato: avendo or essendo plus the participle.\n• The progressive assembly: stare conjugated in any tense, plus the gerund.",
+    "description": "Building the gerund and its constructions. The regular forms (-are gives -ando, -ere/-ire give -endo), the small stem-expansion irregular set (facendo, dicendo, bevendo, ponendo, traducendo), the compound gerundio passato (avendo / essendo + participle), and the progressive assembly (stare conjugated in any tense + the gerund). This branch is what the GerundioFormation dispatch authors; usage (the adverbial gerund) and discrimination (progressive vs simple) are separate stubs.",
     "cefr_importance": {
       "A1": "arcane",
       "A2": "core",
@@ -44,8 +44,7 @@
       "direction": "production"
     },
     "active": true,
-    "version": 1,
-    "scope_note": "This branch is what the GerundioFormation dispatch authors; usage (the adverbial gerund) and discrimination (progressive vs simple) are separate stubs."
+    "version": 1
   },
   {
     "id": "verb_form.gerundio.formation.regular_ando",
@@ -174,7 +173,7 @@
     "parent_id": "verb_form.gerundio",
     "language_code": "it",
     "label": "Usage",
-    "description": "When the bare (non-progressive) gerund is the right choice and what it conveys: the adverbial gerund of manner, means, time, cause, or condition (camminando, by/while walking; sbagliando si impara, one learns by making mistakes), and the same-subject constraint (the gerund's implicit subject must match the main clause, so 'vedendo Maria, l'ho salutata' means I saw her, not she saw me). pur-concession (B2).",
+    "description": "When the bare (non-progressive) gerund is the right choice and what it conveys: the adverbial gerund of manner, means, time, cause, or condition (camminando, by/while walking; sbagliando si impara, one learns by making mistakes), and the same-subject constraint (the gerund's implicit subject must match the main clause, so 'vedendo Maria, l'ho salutata' means I saw her, not she saw me). Two authored leaves: manner/means (B1) and time/cause/condition incl. pur-concession (B2). Wave-2 usage batch accepted 2026-07-19.",
     "cefr_importance": {
       "A1": "arcane",
       "A2": "preview",
@@ -189,8 +188,7 @@
       "direction": "bidirectional"
     },
     "active": true,
-    "version": 2,
-    "scope_note": "Two authored leaves: manner/means (B1) and time/cause/condition incl. Wave-2 usage batch accepted 2026-07-19."
+    "version": 2
   },
   {
     "id": "verb_form.gerundio.usage.modal_means",
@@ -250,7 +248,7 @@
     "parent_id": "verb_form.gerundio",
     "language_code": "it",
     "label": "Discrimination",
-    "description": "Choosing the progressive (stare + gerund) over the plain present where both are possible. Italian uses the plain present far more than English uses the simple, so 'mangio' often covers 'I am eating'; the progressive 'sto mangiando' is reserved for action in progress right now.",
+    "description": "STUB. Choosing the progressive (stare + gerund) over the plain present where both are possible. Italian uses the plain present far more than English uses the simple, so 'mangio' often covers 'I am eating'; the progressive 'sto mangiando' is reserved for action in progress right now. The stub leaf below is its structural home, mirroring the tense_choice tree's progressive_vs_simple. Authored by TenseChoice; these buckets exist so cross-tree citations resolve.",
     "cefr_importance": {
       "A1": "arcane",
       "A2": "preview",
@@ -267,15 +265,14 @@
     },
     "active": false,
     "version": 1,
-    "superseded_by": "tense_choice",
-    "scope_note": "The stub leaf below is its structural home, mirroring the tense_choice tree's progressive_vs_simple. Authored by TenseChoice; these buckets exist so cross-tree citations resolve."
+    "superseded_by": "tense_choice"
   },
   {
     "id": "verb_form.gerundio.discrimination.vs_simple_present",
     "parent_id": "verb_form.gerundio.discrimination",
     "language_code": "it",
     "label": "Progressive vs simple present",
-    "description": "When to use stare + gerund (action in progress right now) versus the plain present (which already covers most habitual and ongoing meaning in Italian). Mirrors the tense_choice tree's progressive_vs_simple.",
+    "description": "DEPRECATED AS AUTHORING TARGET (2026-06-09). Canonical home: tense_choice.progressive_vs_simple. Kept as a cross-reference pointer so cross-tree prerequisites and citations still resolve; do not author items here. STUB. When to use stare + gerund (action in progress right now) versus the plain present (which already covers most habitual and ongoing meaning in Italian). Mirrors the tense_choice tree's progressive_vs_simple. Authored by TenseChoice; this leaf is its structural home.",
     "cefr_importance": {
       "A1": "arcane",
       "A2": "preview",
@@ -295,7 +292,6 @@
     },
     "active": false,
     "version": 1,
-    "superseded_by": "tense_choice.progressive_vs_simple",
-    "scope_note": "DEPRECATED AS AUTHORING TARGET (2026-06-09). Canonical home: tense_choice.progressive_vs_simple. Kept as a cross-reference pointer so cross-tree prerequisites and citations still resolve; do not author items here.. Authored by TenseChoice; this leaf is its structural home."
+    "superseded_by": "tense_choice.progressive_vs_simple"
   }
 ]
