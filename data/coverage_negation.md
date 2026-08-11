@@ -51,6 +51,11 @@ The 17 remaining "must_not inside correct" hits are all the dropped-non guards (
 - **20(iii) instruction-pinned guards**: no guard here false-flags a compliant answer, so the mitigation is unused.
 - **§3 explicit `credit` on references** (previously undocumented to me): applied. Four references now carry `credit: 0.9` with steering notes rather than leaving the AI marker to infer from prose.
 
+## Cue-notation + finché Why (2026-08-03)
+
+- **cue_notation (ALLAUTHORS retrofit, negation uncensused):** 15 English glosses moved from (parens) to [brackets] — they were rendering as "Use you never drink coffee". Italian triggers (piovere/essere/abitare) stay in parens. Zero residue, zero marking impact. Caught via the class-token self-check (negation wasn't on the routing table; the census undercounts multi-word glosses).
+- **finché Why expansion:** neg_finche_01/02/03 explanations expanded to teach the ALTERNATIVE reading and the reversal minimal pair (per Smith's live-round ruling), not just verdict the item. Content-only.
+
 ## False-miss packet remediated (2026-08-03, from live learners)
 
 Four findings from live learner data (correct Italian scored 0), all fixed; replica-verified no new false credit:

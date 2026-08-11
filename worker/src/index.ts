@@ -43,6 +43,9 @@ interface TranslationItem {
   target_language?: "en" | "it";
   references?: Array<{ text: string; polarity?: "positive" | "negative"; note?: string } | string>;
   required_buckets?: string[];
+  /** What the reference answer HAPPENS to demonstrate. Judged only if the learner
+   *  engaged it; absence is never a miss. See translation_crosstopic_marking v24 s1. */
+  expected_buckets?: string[];
   optional_buckets?: string[];
   vocab_help?: any[];
   cefr_level_target?: string;
@@ -240,6 +243,10 @@ CANDIDATE BUCKETS
 
 The bucket_context object lists ALL buckets you may fire as regular hits/misses (with bucket_proposed: false or omitted). The list has already been filtered to the buckets relevant to this item's direction. You MUST NOT fire a bucket that isn't in bucket_context as a regular hit, with EXACTLY ONE sanctioned exception: the \`vocabulary.\` namespace on en_it items, described under VOCABULARY PRODUCTION below. That namespace is dynamic - its buckets aggregate on arrival and are never pre-registered - so vocabulary ids are legitimate even when absent from bucket_context. Every GRAMMAR bucket still has to be in bucket_context. Specifically: on it_en items, do NOT fire grammar production buckets like adverb_placement, auxiliary choice, participle agreement, pronoun position, or adjective agreement — these have been filtered out because the learner isn't producing Italian.
 
+EXPECTED BUCKETS - the item fire-list. item.expected_buckets lists what the reference answer happens to demonstrate. It is INFORMATION, not instruction: it tells you what is likely to be in play so you are not hunting for it in a long menu. Judge each entry ONLY if the learner engaged it. Engaged and right is a hit. Engaged and wrong is a real miss and it costs marks. Not engaged at all is attempted_credit 0, no correctness event, no penalty - a learner who wrote a good answer by another route has failed nothing on this list. required_buckets are different and remain mandatory as described above. The fire-list is a shortlist, never a limit: fire anything else you see that is in bucket_context, exactly as before.
+
+WHEN YOU CANNOT PLACE SOMETHING. You are a fluent reader of both languages and you will sometimes notice something real that no bucket fits. Put it in "unattributable" rather than forcing it into a bucket that nearly fits or dropping it. Each entry is the learner words you are looking at, what you noticed in plain English, and whether it was correct. If their answer was good, still give the marks - noticing something we cannot file is our gap, not their error.
+
 BREADTH (cross-topic marking, task 41): a translation evidences MANY skills at once (article, preposition, agreement, tense, adverb, vocabulary). Beyond the mandatory required_buckets, actively tag EVERY grammar element you detect in the answer that matches a bucket_context entry - fire it hit/miss/partial with a short evidence span - so the learner accumulates cross-topic signal. required_buckets are the FLOOR, not the ceiling. Still never fire a bucket that isn't in bucket_context. This breadth is REQUIRED, not optional: a mostly-correct answer MUST come back mostly HITS. Returning only the failed buckets makes the learner see 0/N with no credit for what they got right — a marking failure, not leniency. Every correct article, preposition, verb form, agreement, adverb and vocabulary word that matches a bucket_context entry gets its OWN hit markpoint, alongside the one or two genuine misses. WORKED EXAMPLE (breadth is mandatory): source "I have no friends here in this city", learner "non ho nadie amiche in questa città". Two words are wrong — "nadie" (should be nessun/amici) and "amiche" (should be amico) — but the learner got the whole FRAME right, so you MUST fire HITS on the negation "non ho", the demonstrative "questa", the noun "città" and the preposition "in", giving ~4 hits + 2 misses, mostly green. Returning ONLY the misses plus the one required hit (1 of 3) is a MARKING FAILURE — it discards everything the learner got right and reads as if they know almost nothing.
 
 VOCABULARY PRODUCTION (en_it)
@@ -296,6 +303,9 @@ OUTPUT SCHEMA (strict JSON; no markdown, no commentary)
       // ... or true with proposed_parent_id, proposed_label, proposed_rationale
     }
   ],
+  "unattributable": [
+    { "evidence": "<the learner's words>", "what": "<what you noticed, plain English>", "correct": true }
+  ],
   "notes": [
     { "kind": "false_friend" | "register_drift" | "alternative_correct" | "accent" | "other", "text": "<short observation>" }
   ]
@@ -331,6 +341,7 @@ function buildUserMessage(item: any, cleanedRaw: string, intent: string, annotat
       references: item.references || item.reference_translations || [],
       common_errors: item.common_errors || [],
       required_buckets: item.required_buckets || [],
+      expected_buckets: item.expected_buckets || [],
       optional_buckets: item.optional_buckets || [],
       cefr_level_target: item.cefr_level_target,
       notes: item.notes,

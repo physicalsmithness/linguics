@@ -81,3 +81,8 @@ Reworked 16 form items after Smith's live catch on `ex_form_q_02` (thread `Archi
 
 - **false-miss packet.** `ex_form_neg_02`: the idiomatic reply "nessun problema" scored 0. Added it as a graded any_phrase (0.9, Rev-17 sidestep, steering note); full existential stays 1.0. Required collapsing neg_02's Rev-27 cross-credit to a single negative markpoint (a graded sidestep can't cross a 0.5/0.5 split when it evidences only one bucket) — flagged to Architecture as a Rev-27/Rev-17 tension.
 - **op_cil_exist merge** (Architecture ruling: "home follows the skill the markpoint scores"). The four `op_cil_exist_01..04` relocated from `pronoun.ci_locative.existential` into existential.form.{singular,plural,past,negative}, ids preserved (pulse history). _03 got Rev 32 (both-language formation cue); _04's variants consolidated; all four suppressed; two unsafe bare-copula guards dropped. Per Smith, `op_cil_exist_01/02` (plain singular/plural duplicates) were then RETIRED and `_03/_04` kept, so existential grammar is now 45 items; `pronoun.ci_locative.existential` is empty and flagged to Architecture to retire.
+
+
+## ALLAUTHORS class-token sweep (2026-08-12)
+
+Checked existential against the three `ALLAUTHORS` threads that bind all-authors by class token (invisible to a name-grep). item_shape (cue-is-answer) and answer_leak: zero exposure, verified from disk (answers transform the cue; no answer string appears in its own prompt). cue_notation (English meaning must be in [brackets], never (parens)): 2 items had English-in-parens, both migrated in from the pronoun tree after the central gate ran — `op_cil_exist_04` fixed to brackets, `op_cil_exist_03` reformatted to the canonical Rev-32 formation cue. Zero remaining. Grammar still 45 items.

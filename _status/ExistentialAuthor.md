@@ -1,12 +1,12 @@
 seat: ExistentialAuthor
 classes: [all-seats, all-authors]   # I originate grammar + translation ITEMS (markpoints, cues, must_not, explanations) — the all-authors test.
 project: Linguics
-updated: 2026-08-03
+updated: 2026-08-12
 waiting: closed
 needs_from_smith: none
 blocked_by: none
 claude_can_verify: self-check re-grepped across the six surfaces + class tokens; nothing carries Next: ExistentialAuthor that is not already discharged
-summary: Nothing owed. All ExistentialAuthor threads are CLOSED/stamped or sit at Next: Architecture (their stamp, not my action). Existential = 45 grammar + 21 translation.
+summary: Ran the ALLAUTHORS class-token sweep (3 threads that bind all-authors invisibly to a name-grep). Fixed 2 English-in-parens cues that migrated in from pronoun (cue_notation ruling); item_shape + answer_leak zero-exposure. Otherwise nothing owed. Existential = 45 grammar + 21 translation.
 queue: []   # empty — verified from disk, not remembered
 resolved_recently:
   - false_miss_packet: CLOSED, 1/1 stamped (neg_02 nessun problema credited at 0.9; Rev27/Rev17 tension flagged)

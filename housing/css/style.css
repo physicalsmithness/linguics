@@ -2641,6 +2641,15 @@ h1, h2, h3, .wordmark, .coverage-title, .analysis-section-title { font-family: F
 .their-answer-is { font-weight: 700; color: #25406b; }
 /* r150: the honest empty case. Deliberately NOT blue - blue is content,
    and this is a note about the limits of our own word list. */
+/* r152: the "we noticed it and cannot file it yet" panel. Quiet, growing
+   register - never failing, never suspicious of the answer, never a mark. */
+.result-growing { margin-top: 10px; padding: 8px 12px; border-left: 3px solid var(--line);
+  background: rgba(0,0,0,0.02); border-radius: 0 4px 4px 0; font-size: 13px; }
+.result-growing-head { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--muted); margin-bottom: 3px; }
+.result-growing-line { color: var(--ink, inherit); }
+.result-growing-foot { color: var(--muted); font-style: italic; margin-top: 3px; font-size: 12px; }
+
 .their-answer.their-answer-blank { background: transparent; border-left-color: var(--line);
   color: var(--muted); font-size: 13px; font-style: italic; }
 

@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-08-11-r151";
+  const LL_BUILD = "2026-08-12-r152";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -7789,6 +7789,31 @@
       ex.className = "result-explanation";
       ex.innerHTML = `<strong>Why:</strong> ${annotateWithGlossary(result.overall.explanation)}`;
       root.appendChild(ex);
+    }
+    // r152: what the marker noticed but could not file. Smith's framing, and it
+    // is the whole point of the register: "It can just say, look, I got this
+    // wrong, but there was nowhere in this list for me to give it... We'll get
+    // that fixed within a few days. Linguics gets better every night." It never
+    // reduces the marks - a hole in our tree is our gap, not the learner's error.
+    if (Array.isArray(result.unattributable) && result.unattributable.length) {
+      const g = document.createElement("div");
+      g.className = "result-growing";
+      const head = document.createElement("div");
+      head.className = "result-growing-head";
+      head.textContent = "Still learning to mark this";
+      g.appendChild(head);
+      for (const u of result.unattributable) {
+        if (!u || !u.what) continue;
+        const line = document.createElement("div");
+        line.className = "result-growing-line";
+        line.textContent = (u.evidence ? "\u201c" + u.evidence + "\u201d \u2014 " : "") + u.what;
+        g.appendChild(line);
+      }
+      const foot = document.createElement("div");
+      foot.className = "result-growing-foot";
+      foot.textContent = "We have not got a place to record this yet. Linguics gets better every night.";
+      g.appendChild(foot);
+      root.appendChild(g);
     }
     if (Array.isArray(result.notes) && result.notes.length) {
       const notes = document.createElement("div");

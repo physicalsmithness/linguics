@@ -2632,11 +2632,14 @@
           {
             "phrase": "avrà perso",
             "match_at": "word"
+          },
+          {
+            "phrase": "avrà perduto",
+            "match_at": "word"
           }
         ],
         "must_not_include": [
-          "ha perso",
-          "avrà perduto"
+          "ha perso"
         ]
       },
       {
@@ -2647,6 +2650,10 @@
         "any_phrases": [
           {
             "phrase": "avrà perso",
+            "match_at": "word"
+          },
+          {
+            "phrase": "avrà perduto",
             "match_at": "word"
           }
         ],
@@ -2677,8 +2684,8 @@
         }
       }
     ],
-    "explanation": "'He must have missed the train': Non è ancora arrivato: avrà perso il treno.\n\nJust as the simple future guesses about the present, the futuro anteriore guesses about the PAST: 'avrà perso il treno' means 'he's probably missed the train'. The plain passato prossimo 'ha perso' would state it as known; the compound future carries the supposition about a completed action.\n\nTwo skills sit here: choosing the future-of-probability for a past guess, and building the futuro anteriore (avrà + perso).",
-    "examiner_note": "Two markpoints per Rev 27: the probability USAGE and the futuro anteriore FORMATION both fire full on the one correct answer, weighted 0.5 each so item marks stay 1. Suppressed (the probability breadcrumb leaks). 'ha perso' is the wrong-tense catch; 'perderà' is the simple-future miss.",
+    "explanation": "'He must have missed the train': Non è ancora arrivato: avrà perso il treno.\n\nJust as the simple future guesses about the present, the futuro anteriore guesses about the PAST: 'avrà perso il treno' means 'he's probably missed the train'. The plain passato prossimo 'ha perso' would state it as known; the compound future carries the supposition about a completed action. Perduto is a correct, if less common, participle of perdere, so avrà perduto is accepted too.\n\nTwo skills sit here: choosing the future-of-probability for a past guess, and building the futuro anteriore (avrà + perso).",
+    "examiner_note": "Two markpoints per Rev 27: the probability USAGE and the futuro anteriore FORMATION both fire full on the one correct answer, weighted 0.5 each so item marks stay 1. Suppressed (the probability breadcrumb leaks). 'ha perso' is the wrong-tense catch; 'perderà' is the simple-future miss. avrà perduto (variant participle) is accepted, not guarded (per the standard-variant policy; perduto is fully standard, so credited at par).",
     "version": 1,
     "person": "3sg"
   },
@@ -3068,7 +3075,7 @@
     "subtopic": "usage.temporal_subordinate",
     "difficulty": 3,
     "cefr_level_target": "B1",
-    "prompt": "Completa: 'Aspetteremo qui finché non ____ il temporale.' (finire, esso)",
+    "prompt": "Completa: 'Aspetteremo qui finché non ____ il temporale.' (finire)",
     "type": "short",
     "marks": 1,
     "candidate_tenses": [
@@ -3541,7 +3548,7 @@
     "subtopic": "formation.regular_ere",
     "difficulty": 2,
     "cefr_level_target": "A2",
-    "prompt": "Completa: 'Domani ____ un vestito elegante.' (mettere, io, futuro)",
+    "prompt": "Completa: 'Domani ____ i documenti sulla scrivania.' (mettere, io, futuro)",
     "type": "short",
     "marks": 1,
     "wrong_answer_is_form_error_only": true,
@@ -3574,7 +3581,7 @@
         }
       }
     ],
-    "explanation": "'Tomorrow I'll put on an elegant outfit': Domani metterò un vestito elegante. A regular -ere verb keeps its theme vowel e (no a-to-e shift) and adds -ò: metterò. Don't syncopate a regular -ere verb (mettrò).",
+    "explanation": "'Tomorrow I'll put the documents on the desk': Domani metterò i documenti sulla scrivania. A regular -ere verb keeps its theme vowel e (no a-to-e shift) and adds -ò: metterò. Don't syncopate a regular -ere verb (mettrò).",
     "version": 1
   },
   {
@@ -3887,7 +3894,7 @@
     "subtopic": "formation.regular_ire",
     "difficulty": 2,
     "cefr_level_target": "A2",
-    "prompt": "Completa: 'Ti ____ domani per telefono.' (sentire, io, futuro)",
+    "prompt": "Completa: 'Con questo rumore non ____ bene il telefono.' (sentire, io, futuro)",
     "type": "short",
     "marks": 1,
     "wrong_answer_is_form_error_only": true,
@@ -3920,7 +3927,7 @@
         }
       }
     ],
-    "explanation": "'I'll call you tomorrow' (lit. hear you): Ti sentirò domani per telefono. A regular -ire verb keeps its i and takes -ò: sentirò. No theme-vowel shift in the -ire class.",
+    "explanation": "'With this noise I won't hear the phone well': Con questo rumore non sentirò bene il telefono. A regular -ire verb keeps its i and takes -ò: sentirò. No theme-vowel shift in the -ire class.",
     "version": 1
   },
   {

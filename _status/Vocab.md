@@ -1,25 +1,30 @@
 seat: Vocab
 classes: [all-seats]
 project: Linguics
-updated: 2026-08-06
+updated: 2026-08-12
 waiting: parked
 needs_from_smith: none
 blocked_by:
+  - Architecture: homograph-guard spec for eq-class subset-retry (marker_semantics v16 §1 — 4 options offered)
+  - Architecture: schema call on shortened_o_fem, invariable_i_fem, number-axis field (noun_class_taxonomy v3)
+  - Architecture: tier-2 spec for abbreviation/full-form + morphological pairs (marker_semantics v15 §5)
 claude_can_verify: n/a
-summary: Sixth touch-up: applied 2 hand-classes the FILTERED-reconcile dropped (sebbene/benché as albeit_conj — architect-ratified 2026-08-06; secco/asciutto as curt_adje — my judgement call: both correct at prompt level, collocation split noted in entries). Total eq-classes now 826 in 386 classes, still zero singletons. Fixed the 29 remaining truncated glosses (audit's 8 groups × ~4 each): 25 widened, 3 deleted as gap-fill artefacts (English-lemma 'dark', casco-f duplicate-with-wrong-gender, talpa-m duplicate-with-wrong-gender). Fixed 7 '?' glosses (ricordo/intenzione/muro/dolce/materiale/risorsa/sito) and killed 3 more junk: senza-as-interjection (duplicate of preposition 150), importante-as-noun and ampio-as-noun (grammatical substantivisations, not lexemes).
+summary: Wake sweep 2026-08-12 picked up three new-since-last-touch inter_chat items (theme_axes v1/v2, marker_semantics v14/v15) plus one I'd already actioned (noun_class_taxonomy v3). Actioned the safe wins: deleted 7 gap-fill artefacts (6 [skip] "real words" that turned out to be POS/gender-tag duplicates + alcuno-3589 nominalisation); applied arancio+arancione as orange_colour_noun eq-class per v15 §2; fixed the stale v13 date per v15 §5. Ran the subset-retry reconcile per v15 §3 and REVERTED it same session — sampling found ~15% homograph-bridge false positives (bat=bat, arch=bow, ear=ear-of-grain, testament=free-will, spring=season, ...); posted v16 to Architecture with four homograph-guard implementation options.
 queue: []
 watchlist:
+  - Architecture reply on homograph guard — subset-retry re-run pending
+  - Architecture ruling on new noun classes + number-axis field
+  - Architecture tier-2 spec (abbreviation/full-form pairs)
   - Architecture_Vocab_stress_sidecar — routed 2026-07-27 (DECISIONS 1628); thread not yet opened
   - StressAuthor -ere lemma list — StressAuthor produces first; I merge if any lemma-level consequence
-  - noun_class residue 454 remaining — needs architect ruling on new classes (shortened_o_fem, invariable_i_fem, number-axis field)
-  - equivalence_class deferred proposals (in FILTERED file) — 524 with member score <1.0 skipped per S2 safety; opportunistic later
+  - noun_class residue 454 remaining — needs architect ruling on new classes
+  - Theme_axes sayability+focus+membership test over the 85 proposed sub-themes — measure actual membership counts (QoderWork's estimates were off 6× on abstract_relation), apply Smith's two tests, mint or engine-only per §7's rule
   - marker_semantics tier-2 (abbreviation/full-form pairs like tv/televisione) — architect owes a spec
-  - [skip] entries — 694 total (29 in top 2000). Architecture flagged for hand-review; maestra is one. Not in scope for opportunistic sweeps — needs a dedicated pass with per-entry judgement (delete vs re-gloss vs merge).
+  - [skip] entries — now 687 total after this sweep's 7 deletes (was 694). Not for opportunistic sweeps; needs a dedicated pass with per-entry judgement (delete-as-duplicate vs re-gloss vs merge).
+  - 3,361 null-translation entries — data quality flag from v14; needs a dedicated pass
 notes:
-  - Class token declaration: [all-seats] only. Ratified in AUTHOR_BRIEF Rev 24.
-  - Reconcile filter caveat: my `score == 1.0` gate in reconcile_equivalence_class_filtered.py False's on the FILTERED file (which strips scores because the filter IS the ratification). Any future filtered-file proposal that isn't already applied via the unfiltered wave needs a hand-apply. Two live cases handled 2026-08-06.
-  - Data state: 18,042 entries (was 18,048; -6 from this touch-up: dark-adj, casco-f, talpa-m, senza-interj, importante-noun, ampio-noun). Equivalence_class: 826 in 386 classes. Noun_class: 11,367 tagged, 454 residue. Gender_class: 200 explicit tags. 0 '?'-glosses remaining.
-  - Tools this turn (12 total across the seat's life): + apply_two_hand_classes_2026-08-06, fix_truncated_glosses_2026-08-06, fix_question_glosses_2026-08-06.
-  - Backup files noted: /data/*.merged.bak files are OTHER seats' work (future/present/gerundio/imperativo/pronoun) — not Vocab territory. Left untouched.
-  - PENDING COMMIT: 6 files STAGED (git add succeeded) but `git commit` blocked by stale .git/index.lock the sandbox can't unlink (Windows-vs-Linux perms quirk on this mount). Files staged: _status/Vocab.md, data/vocabulary_it_frequency.json, tools/vocab_chat/{apply_two_hand_classes_2026-08-06,fix_question_glosses_2026-08-06,fix_truncated_glosses_2026-08-06,reconcile_equivalence_class_filtered}.py. Smith: please `del .git\\index.lock` then `git commit` from PowerShell — commit message queued below.
-  - COMMIT MSG (queued): "Vocab: architect audit hand-work — 2 eq-classes, 32 gloss fixes, 6 junk deletes. sebbene/benché + secco/asciutto as equivalence classes; 25 truncated + 7 '?' glosses widened; 6 gap-fill artefacts deleted (dark-adj-english, casco-f-dup, talpa-m-dup, senza-interj-dup, importante-noun-substantiv, ampio-noun-substantiv). Reconcile-filter caveat documented. Data now 18,042 entries; eq-class 826/386/0-singletons; 0 '?'-glosses."
+  - Class token declaration: [all-seats] only. Ratified in AUTHOR_BRIEF Rev 24. The ALLAUTHORS item-shape thread binds all-authors + specific paradigm sets — not my territory.
+  - Data state: 18,035 entries (was 18,042; -7 from this sweep). Equivalence_class: 827 in 387 classes (added orange_colour_noun; no net change from subset-retry after revert). Noun_class: 11,367 tagged, 454 residue. Gender_class: 200 explicit tags. Top-2000 [skip]: 23 (was 29).
+  - Subset-retry lesson: v15 §1's homograph rule needs to be IN the algorithm, not a post-hoc spot-check. The 322 full-class applies that would have shipped via lifting v1's score gate showed the same homograph pattern as the 28 subset-retry recoveries — so this isn't a subset-retry defect specifically, it's what happens when the FILTERED file's proposals are applied without a bridge-word check. See marker_semantics v16 for the four guard options offered.
+  - Tools this turn (14 total): + wake_20260812_touchup, reconcile_v2_subset_retry_2026-08-12, revert_subset_retry_v2_2026-08-12. Audit file `data/eqclass_subset_retry_audit_2026-08-12.json` left on disk for future re-apply.
+  - PENDING COMMIT (from previous turn): 6 files staged, `git commit` blocked by stale .git/index.lock the sandbox can't unlink (mount perms). This turn's 5 new files (wake_20260812_touchup.py, reconcile_v2_subset_retry_2026-08-12.py, revert_subset_retry_v2_2026-08-12.py, updated vocabulary_it_frequency.json, updated marker_semantics.md) also queued. Smith: please `del .git\\index.lock` then `git add -A && git commit -m "Vocab: wake sweep 2026-08-12"` from PowerShell.

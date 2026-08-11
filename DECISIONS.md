@@ -2965,3 +2965,39 @@ would ask for*.
 **Job 8 counts reconciled:** QoderWork edited 49 on 08-10; my 08-11 pass found 15 and moved 9. Mine
 was the residue after its pass, not a competing count — which is also why I found 49 pre-existing
 `scope_note` fields and wrongly took them for a long-standing convention. 59 now carry the field.
+
+
+## Frequency floor withdrawn; tier-2 review dispatched to 26 seats (2026-08-11)
+
+**WITHDRAWN: my "frequency floor" on the tier-2 proposals.** I called `article.definite` firing on 571
+of 899 items noise. Smith: *"The definite article is not wrong… you're demonstrating knowledge. I
+wanted to say 10 out of 12 correct, because even when somebody has got the two things it was designed
+for wrong, it's a recognition that they're making progress and they can speak the language."* I
+applied an **information** criterion to a system whose purpose is **evidence**: a common bucket is not
+uninformative, it is the most-demonstrated skill, and 571 correct definite articles are 571 pieces of
+proof. **Ruled: never prune a bucket for being common; prune only what is wrong.** The allowed nuance
+is display — a mastered skill may be de-emphasised in the panel — which is render, not firing. Sixth
+display-versus-record split this week.
+
+**Two more corrections of mine.** The worker URL is `linguics_marker_url` in localStorage, **set per
+person per browser** — I read a thread's Next line as a system-wide blocker and wrongly said the AI
+marker was not running at all. And Smith asked whether Housing had been told the vocab production
+rule: **it had not.** It was ruled 08-05 and lived only on an Architecture-Vocab thread whose Next
+line names Housing, which is not a dispatch. Now at
+`inter_chat/Architecture_Housing_vocab_production_rule.md` with the three screenshots it fixes and the
+warning that the `lunghezza` case is cross-lemma rather than a sister sense.
+
+**RULED (Housing's §1c): the `vocabulary.` namespace is exempt from tree validation.** 1,180 of 1,188
+ids the tier-1 deriver emits are per-lemma buckets generated at runtime by design. Validate those by
+composition; populating 18,042 lemma nodes into static trees would create a second source of truth.
+
+**The critical path was mine and had not moved.** v24 §3 ruled per-bucket review on 08-05 and nothing
+dispatched it. **26 packets now written** to `data/review_packets_tier2/`, all 6,566 item-bucket
+pairs, one per seat — verb_form split into ten because it has no single owner. Each row carries the
+item, its topic, the reference translation, the morph-it evidence token and reason, and an empty
+verdict. Each packet leads with the judged-only-if-engaged semantics (**a generous list is safe, a
+wrong list is not**) and with Smith's rule that a frequent bucket must never be struck for frequency.
+Nothing writes to any item until a packet returns.
+
+**Housing's counts supersede mine:** 914 items on disk not 899 (15 newer never derived, backfill owed
+by Architecture), and excluding vocabulary the mean is 2.28, every one accent or spelling.
