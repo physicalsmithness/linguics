@@ -158,6 +158,7 @@
     <input type="text" id="temp" class="runs" value="0" title="0 = deterministic grading. The worker default is now 0; 1 was the old implicit value and is what produced the huge spread.">
     <button id="run" disabled>Mark</button>
     <button id="runAll" class="ghost" disabled>Run every menu mode</button>
+    <button id="exp" class="ghost">Export log</button>
     <button id="clear" class="ghost">Clear log</button>
   </div>
   <div class="err" id="err"></div>
@@ -312,6 +313,27 @@
   }
 
   /* ----------------------------------------------------------- run + log */
+  // r151, Smith: "gather all the bench cases that were used before". There is
+  // nothing to gather from the repo - every run this tool has ever done lives
+  // ONLY in this browser's localStorage, capped at 24 and silently dropped to 8
+  // when storage is tight. So the history is being overwritten as we use it,
+  // and no case set has ever existed on disk. This button gets what survives
+  // OUT before any more of it is lost. It is a rescue, not the harness.
+  function exportLog() {
+    const l = readLog();
+    const payload = {
+      exported: new Date().toISOString(),
+      build: (window.LL && LL.build) || "",
+      note: "Bench runs rescued from localStorage. Each row is one CALL, not yet a case with an expectation attached.",
+      runs: l
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "bench_log_" + new Date().toISOString().slice(0, 10) + ".json";
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  }
   function readLog() {
     try { return JSON.parse(localStorage.getItem(LOG_KEY) || "[]"); } catch (e) { return []; }
   }
@@ -643,7 +665,8 @@
   $("cap").addEventListener("input", refreshSize);
   $("run").addEventListener("click", () => go([$("mode").value]));
   $("runAll").addEventListener("click", () => go(LL.MARKER_MENU_MODES.map(m => m.id)));
-  $("clear").addEventListener("click", () => { writeLog([]); render(); });
+    $("exp").addEventListener("click", exportLog);
+$("clear").addEventListener("click", () => { writeLog([]); render(); });
 
   render();
   boot().catch(e => {
