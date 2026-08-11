@@ -2892,3 +2892,42 @@ written by me this morning, and the error survived because I counted the childre
 
 Audit at `data/bucket_description_audit_2026-08-06.json`. The wider bulleting pass (descriptions never
 received the 08-03 house-style sweep, which covered explanations only) remains open and is editorial.
+
+
+## Categorisation audit: 6 entries deleted, 2 of them real words (2026-08-06)
+
+Smith asked whether I had checked all of QoderWork's categorisation work. Honest answer: I had checked
+the **noun classes** (Job 6, clean) and **not** the themes. Checked both now, and found a deletion I
+had missed entirely because I was diffing against the wrong baseline.
+
+**SIX ENTRIES WERE DELETED and committed** (between HEAD~5 and HEAD~3, commit `0bd3dc0`, 21:48). The
+current file holds 18,042, not 18,048. My earlier "nothing has been deleted" reassurance to Smith was
+true against `HEAD` — but `HEAD` had already absorbed the deletion. **Diffing against a moving
+baseline is not a check.**
+
+| entry | verdict |
+|---|---|
+| `casco` noun r8773 "helmet" (apertium) | **WRONG — real word.** *Il casco* is a helmet. |
+| `talpa` noun r8866 "mole" (apertium) | **WRONG — real word.** *La talpa* is the animal. |
+| `ampio` noun r12469, gloss null | against Smith's ruling: gloss it, do not delete it |
+| `importante` noun r10936, gloss null | same |
+| `dark` adjective r6851 (wiktionary) | defensible junk |
+| `senza` interjection r152 (vocab_chat) | defensible — a bad POS split on a common preposition |
+
+**`talpa` is the tell.** It was one of the three members of the `mole_noun` class that Vocab untagged
+for conflating `neo`, `mole` and `talpa` on the English homograph "mole". The class was fixed by
+untagging — and then the *word* was deleted. **A bad class was resolved by removing a word from the
+language.** That is the same failure as my own reverted repair earlier tonight: fixing the artefact
+rather than the diagnosis.
+
+Recommend restoring `casco` and `talpa` verbatim from `HEAD~5`, and `ampio`/`importante` per Smith's
+explicit ruling ("You don't just say that it didn't exist. It exists."). All four are recoverable
+exactly. Not done unilaterally — the deletion was deliberate and committed by another hand.
+
+**Themes audit: the axis is top-heavy to the point of not working.** 149 themes over 18,042 entries,
+only 30 entries untagged — coverage is fine. But **`noun_abstract` (4,920), `adjective_quality`
+(3,922) and `verb_action_general` (1,744) hold 59% of the vocabulary between them.** A "theme" of
+4,920 abstract nouns is not a category a learner can study; it is the residue with a name. This is the
+smell in Smith's screenshot, where "Quality adjectives" sat at 2,716 words next to "Size adjectives" at
+34. The fine-grained themes are the useful ones and they are drowned. Needs a splitting pass on the
+three catch-alls before themes are offered as a browsing axis.
