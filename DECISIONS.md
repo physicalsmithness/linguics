@@ -2931,3 +2931,37 @@ only 30 entries untagged — coverage is fine. But **`noun_abstract` (4,920), `a
 smell in Smith's screenshot, where "Quality adjectives" sat at 2,716 words next to "Size adjectives" at
 34. The fine-grained themes are the useful ones and they are drowned. Needs a splitting pass on the
 three catch-alls before themes are offered as a browsing axis.
+
+
+## Theme axes ruled: two navigations, never one list (2026-08-11)
+
+Smith's question — *"you get grouped by meaning then pos, then by pos then meaning… I don't know if
+that's a problem"* — answered. **Two axes is not the problem; two axes rendered as one list is.**
+Meaning and word-type are different questions and a word legitimately answers both: *rosso* is a
+colour and an adjective, and a learner arriving by either route should find it. The failure is that
+the learning page runs "Body parts" and "Semantic sub-category for adverb lemmas" in one flat list, so
+the learner cannot tell which question a tile answers. Ruled: **two navigations, both first-class,
+visibly separate** — which is also what QoderWork's survey of seven learner-facing resources found.
+
+**Root cause: the `kind` field carries both axes** (`semantic_concrete`/`semantic_abstract` are
+meaning; `verb_subtype`/`adjective_subtype`/`adverb_subtype` are word-type), so any renderer iterating
+`kind` produces the mixed list **by construction**. **Fifth instance this week** of one field serving
+two purposes — after `translation_en`, `required_buckets`, the reference translation, and bucket
+`description`. Minimum fix is a separate `axis` field; `parent_id` already exists.
+
+**RULED: render fix before data pass.** 64 of 148 themes already declare a `parent_id` and the
+learning page ignores it, so the subdivisions Smith saw on the front page exist in the data and simply
+are not drawn. Minting 85 new sub-themes first would add 85 invisible things. Also: the jargon labels
+are the JSON's internal `kind` strings leaking to screen — the same leak as the bucket descriptions,
+and they become "Verbs", "Adjectives", "Adverbs".
+
+**RULED, adopting Smith's own test: the limit on word-type groups is SAYABILITY.** *"A group is worth
+surfacing when a learner would plausibly say 'I want to learn the ___'."* The colours, the
+conjunctions, the parts of the body, the modal verbs — yes. The nouns, the abstract relations — no.
+Apply before minting any of the 85. Failing the test means **engine-only, not deleted**, which answers
+QoderWork's open question: the test is not *is this a real category* but *is this a category a learner
+would ask for*.
+
+**Job 8 counts reconciled:** QoderWork edited 49 on 08-10; my 08-11 pass found 15 and moved 9. Mine
+was the residue after its pass, not a competing count — which is also why I found 49 pre-existing
+`scope_note` fields and wrongly took them for a long-standing convention. 59 now carry the field.

@@ -1,0 +1,108 @@
+{
+  "$comment": "Marker expectation suite. This file is a JUDGING INSTRUMENT, not marker input. Nothing in it is ever sent to a model: it is what the RUNNER compares a model's output against, so we can say which models are good enough to use. Smith 2026-08-11: 'What you're suggesting is a way of judging different models for how well they pass tests. If that's all you mean, that's fine, but if we're putting it in their information, then less so.' It is only the former. Seeded from the 24 bench runs rescued from localStorage 2026-08-11.",
+  "version": 1,
+  "cases": [
+    {
+      "item": "trans_op_en_it_48",
+      "direction": "en_it",
+      "source_text": "Anna wants to wash her hands, but she never washes them properly.",
+      "answer": "Anna vuole lavarsi le mani, ma non se le lava mai giustamente.",
+      "note": "One real error (giustamente for bene) inside an otherwise correct clitic cluster. Seeded from 12 rescued runs which agreed on the marks and disagreed on where the error belonged.",
+      "expect_verdict": {
+        "pronoun.reflexive.with_object": "hit",
+        "pronoun.reflexive.si_sg": "hit",
+        "pronoun.direct_object.le": "hit",
+        "pronoun.combined.vowel_changes": "hit",
+        "pronoun.position.pre_finite_verb": "hit",
+        "vocabulary.it.bene.translation.active": "miss"
+      },
+      "expect_absent": [
+        "adverb.usage",
+        "vocabulary.it.giustamente.translation",
+        "vocabulary.it.lava.translation.active",
+        "vocabulary.it.lava.gender.active",
+        "vocabulary.it.anna.translation.active"
+      ],
+      "absent_reasons": {
+        "adverb.usage": "Seen in 2 of 12 runs. The error is a word choice, not a fact about adverb usage. NEEDS RULING - it is defensible and Architecture owns the call.",
+        "vocabulary.it.giustamente.translation": "Seen in 1 of 12 runs. It marks the word the learner DID write as a miss rather than the word they should have written, which files the failure under a lemma they arguably know.",
+        "vocabulary.it.lava.translation.active": "DATA FAULT in the item's own expected_buckets: `lava` here is a form of lavare (she washes), not the noun lava. The tier-1 deriver mis-lemmatised it.",
+        "vocabulary.it.lava.gender.active": "Same data fault, and worse: it invites the marker to judge the gender of a noun that is not in the sentence.",
+        "vocabulary.it.anna.translation.active": "A proper noun. Excluded by the v19 ruling 3 the worker prompt already carries, but the tier-1 deriver emitted it anyway."
+      },
+      "needs_ruling": [
+        "adverb.usage vs vocabulary.it.bene.translation.active as the home for a word-choice error"
+      ]
+    },
+    {
+      "item": "trans_imp_it_en_disc_pot_01",
+      "direction": "it_en",
+      "source_text": "Da giovane potevo lavorare dodici ore di fila senza problemi.",
+      "answer": "From youths I could work for twelve gold in a row without problems.",
+      "note": "The unstable one. Across 12 rescued runs the SAME answer scored anywhere from 1/3 to 6/7. This case exists to pin it.",
+      "expect_verdict": {
+        "verb_form.imperfect.discrimination.modals.potere": "hit",
+        "vocabulary.it.giovane.translation.passive": "miss",
+        "vocabulary.it.lavorare.translation.passive": "hit",
+        "vocabulary.it.dodici.translation.passive": "hit",
+        "vocabulary.it.ora.translation.passive": "miss",
+        "vocabulary.it.senza.translation.passive": "hit",
+        "vocabulary.it.problema.translation.passive": "hit"
+      },
+      "expect_absent": [
+        "vocabulary.it.orecchio.translation.passive",
+        "vocabulary.it.proprio.translation.passive",
+        "vocabulary.it.filare.translation.passive",
+        "vocabulary.it.potere.translation.passive"
+      ],
+      "absent_reasons": {
+        "vocabulary.it.orecchio.translation.passive": "PHANTOM LEMMA, and the clearest single vindication of the fire-list plan in this whole log. `ore` (hours) was lemmatised to `orecchio` (ear) in the old bucket context. It was sent on full and labels modes to BOTH models, and gpt-4o-mini scored it a miss with evidence 'gold' - marking the learner on a word about ears. The NEW expected_buckets has `ora`, correctly. The plan already fixes this.",
+        "vocabulary.it.proprio.translation.passive": "Same class: `problemi` was lemmatised to `proprio`. On full/gpt-4o-mini it was scored a HIT with evidence 'problems' - a false positive feeding coverage for a lemma not in the sentence. The new expected_buckets has `problema`, correctly.",
+        "vocabulary.it.filare.translation.passive": "NEW data fault, introduced by the tier-1 deriver itself: `fila` (row, queue) lemmatised to `filare` (to spin). Same class of error as the two it fixed. Needs correcting in the item.",
+        "vocabulary.it.potere.translation.passive": "Double-counting: the modal is already judged by the required bucket verb_form.imperfect.discrimination.modals.potere. Runs that fired both marked one fact twice. NEEDS RULING."
+      },
+      "needs_ruling": [
+        "is 'could' a hit or a partial on the imperfect modal? The rescued runs returned hit, partial 0.5 and miss for the identical string",
+        "is 'in a row' acceptable for 'di fila'? Marked hit in some runs and miss in others, and it moves the mark",
+        "may a vocabulary bucket and a grammar bucket both judge the same word"
+      ]
+    },
+    {
+      "item": "trans_fut_en_it_irr_rr_02",
+      "direction": "en_it",
+      "source_text": "I will want to know the whole truth.",
+      "reference": "Vorrò sapere tutta la verità.",
+      "answer": "Vorrò sapere tutto il verità.",
+      "note": "Smith, live 2026-08-11: 'they said it as if verita was a masculine word. That was actually the only mistake... In fact, they should get credit for making it agree, and I wouldn't say that they have to. I don't think I really mind if it misses, but it shouldn't.' The learner holds ONE wrong belief - that verità is masculine - and then executes agreement flawlessly on it, twice. Agreement and lexical gender are different skills and the marking must not fuse them. Sibling of the r143 ruling that gender only fires on a noun the learner reached.",
+      "expect_verdict": {
+        "verb_form.future.formation.irregular.double_r": "hit"
+      },
+      "expect_absent": [],
+      "principle": "Executing agreement correctly on a wrongly-gendered noun is a DEMONSTRATED skill, not an error. At most one thing is wrong here: the gender of verità. Any run that marks the agreement itself down, or that marks the same single belief twice (once on tutto and once on il), fails this case. And the item's own required bucket - vorrò, the irregular future - is untouched by the mistake and must still be a hit.",
+      "needs_ruling": [
+        "should the gender error fire at all here? Smith: 'I don't really mind if it misses, but it shouldn't' - i.e. silence is acceptable, a penalty on the agreement is not",
+        "if it does fire, once or twice? tutto and il are two surface agreements of one belief"
+      ]
+    }
+  ],
+  "runner_checks": [
+    {
+      "id": "evidence_from_the_answer",
+      "rule": "Every markpoint's `evidence` must be a substring of the LEARNER'S answer, not of the source text or the reference.",
+      "why": "Observed live: on trans_imp_it_en_disc_pot_01 (an IT->EN item, so the learner writes English) two runs cited `dodici` as evidence, which is the Italian source word. A marker quoting the question back as proof of the answer can score a hit on something the learner never wrote, and nothing in the summary table shows it.",
+      "applied": "by the runner, to the model's output. Never sent to the model."
+    },
+    {
+      "id": "label_matches_id",
+      "rule": "The returned label must be the label of the returned bucket id.",
+      "why": "Observed live: agg_labels/gpt-4o-mini returned the label 'potere (translation, passive)' attached to the id `verb_form.imperfect.discrimination.modals.potere`. The learner sees one thing and the event files under another.",
+      "applied": "by the runner, to the model's output. Never sent to the model."
+    },
+    {
+      "id": "attribution_is_part_of_the_verdict",
+      "rule": "A case passes only if the right bucket carries the right outcome. Matching totals are not a pass.",
+      "why": "The single most important thing in the rescued log. On trans_op_en_it_48 all twelve runs returned 6 skills and 5.0 credit, so the summary table reads as perfect agreement between two models across six menu modes. They attributed the SAME error to THREE different buckets. Coverage is built from attribution, so the table's agreement is an illusion.",
+      "applied": "by the runner, to the model's output. Never sent to the model."
+    }
+  ]
+}

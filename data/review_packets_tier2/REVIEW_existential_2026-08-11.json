@@ -1,0 +1,78 @@
+{
+ "generated": "2026-08-11",
+ "family": "existential",
+ "owner": "ExistentialAuthor",
+ "instruction": "For each bucket: set verdict to 'keep' or 'strike' on every row, and list any item you know demonstrates your construction that I missed. These are machine proposals from morph-it tagging of the reference translation. UNRATIFIED - nothing is written to any item until you return this packet.",
+ "semantics": "expected_buckets is judged ONLY if the learner's answer engages it. Engaged and right = hit. Engaged and wrong = a real miss. Not engaged = blank, no penalty. So a GENEROUS list is safe; a WRONG list is not, because the marker will try to mark it.",
+ "do_not_prune_common": "A bucket that fires on most items is NOT noise. Smith, 2026-08-11: the purpose is demonstrating knowledge - getting the definite article right 571 times is 571 pieces of evidence, and the learner should see 10 out of 12 correct even when the two the item was built for are wrong. Strike only what is WRONG, never what is merely frequent.",
+ "buckets": [
+  {
+   "bucket_id": "existential",
+   "confidence": 0.8,
+   "item_count": 3,
+   "items": [
+    {
+     "item_id": "trans_prem_en_it_trap_02",
+     "topic": "verb_form.passato_remoto",
+     "reference_text": "Dopo che fu partito, ci pentimmo della lite.",
+     "evidence": "ci + fu",
+     "reason": "existential construction",
+     "proposal_confidence": 0.8,
+     "verdict": ""
+    },
+    {
+     "item_id": "trans_pv_en_it_sela_02",
+     "topic": "pronominal_verbs",
+     "reference_text": "Ce l'abbiamo fatta! Non è stato facile.",
+     "evidence": "ci + è",
+     "reason": "existential construction",
+     "proposal_confidence": 0.8,
+     "verdict": ""
+    },
+    {
+     "item_id": "trans_pv_it_en_ft_01",
+     "topic": "pronominal_verbs",
+     "reference_text": "Ce l'ha messa tutta, ma alla fine non è bastato.",
+     "evidence": "ci + è",
+     "reason": "existential construction",
+     "proposal_confidence": 0.8,
+     "verdict": ""
+    }
+   ]
+  },
+  {
+   "bucket_id": "existential.form.singular",
+   "confidence": 0.8,
+   "item_count": 3,
+   "items": [
+    {
+     "item_id": "trans_prem_en_it_trap_02",
+     "topic": "verb_form.passato_remoto",
+     "reference_text": "Dopo che fu partito, ci pentimmo della lite.",
+     "evidence": "ci + fu (essere)",
+     "reason": "ci + essere = existential construction",
+     "proposal_confidence": 0.8,
+     "verdict": ""
+    },
+    {
+     "item_id": "trans_pv_en_it_sela_02",
+     "topic": "pronominal_verbs",
+     "reference_text": "Ce l'abbiamo fatta! Non è stato facile.",
+     "evidence": "ci + è (essere)",
+     "reason": "ci + essere = existential construction",
+     "proposal_confidence": 0.8,
+     "verdict": ""
+    },
+    {
+     "item_id": "trans_pv_it_en_ft_01",
+     "topic": "pronominal_verbs",
+     "reference_text": "Ce l'ha messa tutta, ma alla fine non è bastato.",
+     "evidence": "ci + è (essere)",
+     "reason": "ci + essere = existential construction",
+     "proposal_confidence": 0.8,
+     "verdict": ""
+    }
+   ]
+  }
+ ]
+}
