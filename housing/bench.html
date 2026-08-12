@@ -158,18 +158,20 @@
     <input type="text" id="temp" class="runs" value="0" title="0 = deterministic grading. The worker default is now 0; 1 was the old implicit value and is what produced the huge spread.">
     <button id="run" disabled>Mark</button>
     <button id="runAll" class="ghost" disabled>Run every menu mode</button>
+    <button id="suite" class="ghost" disabled>Run expectation suite</button>
     <button id="exp" class="ghost">Export log</button>
     <button id="clear" class="ghost">Clear log</button>
   </div>
   <div class="err" id="err"></div>
+  <div id="suiteOut"></div>
 </div>
 
 <div id="log"></div>
 
-<script src="js/norm.js?v=2026-08-12-r152"></script>
-<script src="js/store.js?v=2026-08-12-r152"></script>
-<script src="js/translation_stub.js?v=2026-08-12-r152"></script>
-<script src="js/translation_marker.js?v=2026-08-12-r152"></script>
+<script src="js/norm.js?v=2026-08-12-r153"></script>
+<script src="js/store.js?v=2026-08-12-r153"></script>
+<script src="js/translation_stub.js?v=2026-08-12-r153"></script>
+<script src="js/translation_marker.js?v=2026-08-12-r153"></script>
 <script>
 (function () {
   "use strict";
@@ -219,6 +221,13 @@
     byId = LL.store.indexBuckets(buckets).byId;
     try { LL.markerMenu = await jget("translation_marker_bucket_menu.json"); } catch (e) {}
     try { LL.vocabEntries = await jget("vocabulary_it_frequency.json"); } catch (e) {}
+    try {
+      cases = await jget("marker_expectation_cases.json");
+      if (cases && Array.isArray(cases.cases) && cases.cases.length) {
+        $("suite").disabled = false;
+        $("suite").textContent = "Run expectation suite (" + cases.cases.length + ")";
+      }
+    } catch (e) { cases = null; }
     $("status").innerHTML = items.length + " translation items and " +
       Object.keys(byId).length + " buckets loaded — type a word from the sentence below.";
     $("q").disabled = false;
@@ -325,7 +334,8 @@
       exported: new Date().toISOString(),
       build: (window.LL && LL.build) || "",
       note: "Bench runs rescued from localStorage. Each row is one CALL, not yet a case with an expectation attached.",
-      runs: l
+      runs: l,
+      suite_results: readSuite()
     };
     const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
     const a = document.createElement("a");
@@ -342,15 +352,20 @@
     catch (e) { try { localStorage.setItem(LOG_KEY, JSON.stringify(l.slice(0, 8))); } catch (e2) {} }
   }
 
-  async function runOnce(mode) {
-    if (!chosen) return;
-    const answer = $("ans").value;
-    localStorage.setItem(ANS_KEY, answer);
-    const ctx = LL.buildBucketContext(chosen, byId, { menuMode: mode });
+  // r153: itemOverride/answerOverride let the expectation suite drive this
+  // exact path. Duplicating the call would have let the two drift, and the
+  // suite's whole value is that it measures the SAME thing the bench does.
+  async function runOnce(mode, itemOverride, answerOverride) {
+    const it = itemOverride || chosen;
+    if (!it) return;
+    const answer = (answerOverride !== undefined && answerOverride !== null)
+      ? answerOverride : $("ans").value;
+    if (!itemOverride) localStorage.setItem(ANS_KEY, answer);
+    const ctx = LL.buildBucketContext(it, byId, { menuMode: mode });
     const t0 = Date.now();
     let temp = parseFloat($("temp").value);
     if (!(temp >= 0)) temp = 0;
-    const payload = await LL.markTranslationLive(chosen, answer, "literal", {
+    const payload = await LL.markTranslationLive(it, answer, "literal", {
       url: $("url").value.trim() || undefined,
       model: $("model").value || undefined,
       temperature: temp,
@@ -371,7 +386,7 @@
       mode: mode,
       temp: temp,
       model: payload.model_used || $("model").value || "default",
-      item: itemId(chosen),
+      item: itemId(it),
       answer: answer,
       ctxBuckets: Object.keys(ctx).length,
       ctxChars: JSON.stringify(ctx).length,
@@ -398,6 +413,108 @@
       })),
       raw: r,
     };
+  }
+
+  // ------------------------------------------------------------------ suite
+  // The expectation suite. Cases live in data/marker_expectation_cases.json and
+  // are NEVER sent to a model - this is the instrument that JUDGES models, so
+  // we can decide which ones are good enough to use. Smith, 2026-08-11: "if
+  // it's not in terms of the model not being intelligent enough, is that we
+  // don't use that model."
+  let cases = null;
+  const SUITE_KEY = "ll_suite_results_v1";
+
+  function norm(t) { return String(t || "").toLowerCase().replace(/\s+/g, " ").trim(); }
+
+  function judgeCase(c, run) {
+    const mps = run.mps || [];
+    const found = {};
+    for (const m of mps) found[m.b] = m;
+    const missing = [], wrong = [], invented = [], checks = [];
+
+    for (const b of Object.keys(c.expect_verdict || {})) {
+      const want = c.expect_verdict[b];
+      const got = found[b];
+      if (!got) missing.push(b + " (wanted " + want + ")");
+      else if (got.v !== want) wrong.push(b + ": got " + got.v + ", wanted " + want);
+    }
+    for (const b of (c.expect_absent || [])) {
+      if (found[b]) invented.push(b + " (claimed " + found[b].v + ")");
+    }
+    // runner_checks, applied to output only
+    const ans = norm(c.answer);
+    for (const m of mps) {
+      if (m.e && m.v !== "not_attempted" && ans.indexOf(norm(m.e)) < 0) {
+        checks.push("evidence not in the learner's answer: " + m.b + " cited \u201c" + m.e + "\u201d");
+      }
+      const def = byId[m.b];
+      if (def && def.label && m.lab && norm(def.label) !== norm(m.lab)) {
+        checks.push("label does not match id: " + m.b + " returned \u201c" + m.lab + "\u201d");
+      }
+    }
+    return {
+      item: c.item, missing, wrong, invented, checks,
+      pass: !missing.length && !wrong.length && !invented.length && !checks.length,
+      marks: run.marks, n: run.n, cost: run.cost, ms: run.ms
+    };
+  }
+
+  async function runSuite() {
+    $("err").textContent = "";
+    if (!cases) { $("err").textContent = "No case file loaded (data/marker_expectation_cases.json)."; return; }
+    const btns = ["run", "runAll", "suite"];
+    btns.forEach(b => { if ($(b)) $(b).disabled = true; });
+    const mode = $("mode").value;
+    const model = $("model").value || "default";
+    const out = { when: new Date().toISOString(), model: model, mode: mode, results: [] };
+    try {
+      for (const c of cases.cases) {
+        const it = byId_item(c.item);
+        if (!it) { out.results.push({ item: c.item, pass: false, missing: ["ITEM NOT FOUND in the loaded corpus"], wrong: [], invented: [], checks: [] }); continue; }
+        try {
+          const run = await runOnce(mode, it, c.answer);
+          out.results.push(judgeCase(c, run));
+        } catch (e) {
+          out.results.push({ item: c.item, pass: false, missing: ["call failed: " + e.message], wrong: [], invented: [], checks: [] });
+        }
+      }
+      const prev = readSuite();
+      prev.unshift(out);
+      try { localStorage.setItem(SUITE_KEY, JSON.stringify(prev.slice(0, 12))); } catch (e) {}
+      renderSuite();
+    } finally {
+      btns.forEach(b => { if ($(b)) $(b).disabled = false; });
+    }
+  }
+  function byId_item(extId) {
+    for (const it of items) if (itemId(it) === extId) return it;
+    return null;
+  }
+  function readSuite() {
+    try { return JSON.parse(localStorage.getItem(SUITE_KEY) || "[]"); } catch (e) { return []; }
+  }
+  function renderSuite() {
+    const host = $("suiteOut");
+    if (!host) return;
+    const all = readSuite();
+    if (!all.length) { host.innerHTML = ""; return; }
+    host.innerHTML = all.map(function (r) {
+      const passed = r.results.filter(x => x.pass).length;
+      const rows = r.results.map(function (x) {
+        const faults = []
+          .concat(x.missing.map(t => ["not fired", t]))
+          .concat(x.wrong.map(t => ["wrong verdict", t]))
+          .concat(x.invented.map(t => ["should not appear", t]))
+          .concat(x.checks.map(t => ["check", t]));
+        return '<tr><td><code>' + esc(x.item) + '</code></td>' +
+          '<td>' + (x.pass ? '<b style="color:#2f7d43">pass</b>' : '<b style="color:#a33">fail</b>') + '</td>' +
+          '<td>' + (faults.length ? faults.map(f => '<div><span class="mode">' + f[0] + '</span> ' + esc(f[1]) + '</div>').join("") : '<span class="muted">\u2014</span>') + '</td></tr>';
+      }).join("");
+      return '<div class="panel"><h2>' + esc(r.model) + ' \u00b7 ' + esc(r.mode) + '</h2>' +
+        '<div class="note">' + passed + ' of ' + r.results.length + ' cases passed \u00b7 ' + esc(r.when.slice(0, 16).replace("T", " ")) + '</div>' +
+        '<table><thead><tr><th>case</th><th>result</th><th>what went wrong</th></tr></thead><tbody>' +
+        rows + '</tbody></table></div>';
+    }).join("");
   }
 
   async function go(modes) {
@@ -431,6 +548,7 @@
     }
     $("run").disabled = $("runAll").disabled = false;
     render();
+    renderSuite();
   }
 
   /* House-style shading: smooth two-tone, WHITE anchored at true zero (never at
@@ -665,7 +783,8 @@
   $("cap").addEventListener("input", refreshSize);
   $("run").addEventListener("click", () => go([$("mode").value]));
   $("runAll").addEventListener("click", () => go(LL.MARKER_MENU_MODES.map(m => m.id)));
-    $("exp").addEventListener("click", exportLog);
+    $("suite").addEventListener("click", runSuite);
+  $("exp").addEventListener("click", exportLog);
 $("clear").addEventListener("click", () => { writeLog([]); render(); });
 
   render();

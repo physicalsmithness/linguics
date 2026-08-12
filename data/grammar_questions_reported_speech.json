@@ -2627,50 +2627,48 @@
     "subtopic": "tense_shift.optional_no_shift_persisting_fact",
     "difficulty": 3,
     "cefr_level_target": "B2",
-    "prompt": "Trasforma in discorso indiretto: Marco ha detto: 'Sono stanco.' (La stanchezza non gli è ancora passata.) → Marco ha detto che ____ stanco.",
-    "type": "short",
+    "prompt": "Marco ha detto: 'Sono stanco.' (La stanchezza non gli è ancora passata.) Quali frasi riportano correttamente le sue parole? (Seleziona tutte quelle corrette.)",
+    "type": "multi_select",
     "marks": 1,
-    "wrong_answer_is_form_error_only": false,
-    "markpoints": [
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "wrong_answer_is_form_error_only": true,
+    "choices": [
       {
-        "order_index": 0,
-        "credit": 1.0,
-        "bucket": "reported_speech.tense_shift.optional_no_shift_persisting_fact",
-        "label": "Present kept or backshifted (both valid)",
-        "any_phrases": [
-          {
-            "phrase": "è",
-            "match_at": "word"
-          },
-          {
-            "phrase": "era",
-            "match_at": "word"
-          }
-        ],
-        "must_not_include": [
-          {
-            "phrase": "sia",
-            "match_at": "word",
-            "note": "reported speech does not force the subjunctive here; the indicative is what shifts or stays"
-          }
+        "text": "Marco ha detto che è stanco.",
+        "correct": true,
+        "note": "Present kept: the fact still holds, so the present is faithful.",
+        "buckets": [
+          "reported_speech.tense_shift.optional_no_shift_persisting_fact"
         ]
-      }
-    ],
-    "vocab_help": [
+      },
       {
-        "lemma": "stanco",
-        "language": "it",
-        "aspects": {
-          "translation": {
-            "reveal": "stanco - tired",
-            "bucket": "vocabulary.it.stanco.adjective.translation"
-          }
-        }
+        "text": "Marco ha detto che era stanco.",
+        "correct": true,
+        "note": "Imperfect backshift: the neutral report, equally correct.",
+        "buckets": [
+          "reported_speech.tense_shift.optional_no_shift_persisting_fact"
+        ]
+      },
+      {
+        "text": "Marco ha detto che sarà stanco.",
+        "correct": false,
+        "note": "Future - reports something not yet true, not what he said."
+      },
+      {
+        "text": "Marco ha detto che fosse stanco.",
+        "correct": false,
+        "note": "Subjunctive - reported speech does not force it; the indicative is what stays or shifts."
       }
     ],
-    "explanation": "'Marco ha detto che è stanco' — or 'era stanco' — both mean 'Marco said he was tired.'\n\nWhen the reported fact still holds at the moment of reporting, Italian lets you keep the present or backshift to the imperfect. The tiredness has not passed, so 'è' (presenting it as still the case) and 'era' (the neutral backshift) are both faithful.\n\nThat optionality is exactly what a still-true state licenses and a lapsed one does not.",
-    "examiner_note": "Accept-both, not a discrimination, so no candidate_tenses (thread v4 ruling 4). The parenthetical establishes persistence so BOTH readings are valid — the inverse of the criterion-10a context on the present_to_imperfect items.",
-    "version": 1
+    "correct_indices": [
+      0,
+      1
+    ],
+    "vocab_help": [],
+    "explanation": "Both 'Marco ha detto che è stanco' and 'era stanco' mean 'Marco said he was tired.' Because the tiredness still holds, Italian lets the present stay OR backshift to the imperfect - both are faithful. The skill is recognising that both are valid: a learner who ticks only 'era' has over-generalised the backshift; only 'sarà' (future) and 'fosse' (subjunctive) are actually wrong.",
+    "examiner_note": "Converted short->multi_select per answer_leak_dispatch section 5: accept-both is untestable as a typed blank (any single right answer scores full and 'e' sat in the parenthetical). Both correct choices index-score the persisting-fact leaf; copying one form now floors at 0.5. Matches the op_dop_vi_you_03 precedent + Rev 31 supplied-choice + Housing r82.",
+    "version": 2
   },
   {
     "external_id": "rep_persist_02",
@@ -2679,38 +2677,48 @@
     "subtopic": "tense_shift.optional_no_shift_persisting_fact",
     "difficulty": 3,
     "cefr_level_target": "B1",
-    "prompt": "Trasforma in discorso indiretto: Anna ha detto: 'Sono di Napoli.' → Anna ha detto che ____ di Napoli.",
-    "type": "short",
+    "prompt": "Anna ha detto: 'Sono di Napoli.' Quali frasi riportano correttamente le sue parole? (Seleziona tutte quelle corrette.)",
+    "type": "multi_select",
     "marks": 1,
-    "wrong_answer_is_form_error_only": false,
-    "markpoints": [
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "wrong_answer_is_form_error_only": true,
+    "choices": [
       {
-        "order_index": 0,
-        "credit": 1.0,
-        "bucket": "reported_speech.tense_shift.optional_no_shift_persisting_fact",
-        "label": "Present kept or backshifted (both valid)",
-        "any_phrases": [
-          {
-            "phrase": "è",
-            "match_at": "word"
-          },
-          {
-            "phrase": "era",
-            "match_at": "word"
-          }
-        ],
-        "must_not_include": [
-          {
-            "phrase": "sia",
-            "match_at": "word",
-            "note": "the indicative is what stays or shifts; the subjunctive is an over-correction"
-          }
+        "text": "Anna ha detto che è di Napoli.",
+        "correct": true,
+        "note": "Present kept: origin is permanent, so it still holds.",
+        "buckets": [
+          "reported_speech.tense_shift.optional_no_shift_persisting_fact"
         ]
+      },
+      {
+        "text": "Anna ha detto che era di Napoli.",
+        "correct": true,
+        "note": "Imperfect backshift: the neutral report, equally correct.",
+        "buckets": [
+          "reported_speech.tense_shift.optional_no_shift_persisting_fact"
+        ]
+      },
+      {
+        "text": "Anna ha detto che sarà di Napoli.",
+        "correct": false,
+        "note": "Future - misreports a permanent fact as not yet true."
+      },
+      {
+        "text": "Anna ha detto che sia di Napoli.",
+        "correct": false,
+        "note": "Subjunctive - the indicative is what stays or shifts."
       }
     ],
+    "correct_indices": [
+      0,
+      1
+    ],
     "vocab_help": [],
-    "explanation": "'Anna ha detto che è di Napoli' — or 'era di Napoli' — both mean 'Anna said she was from Naples.' Where someone is from does not change, so the fact still holds: Italian accepts the present 'è' (it is still true) and the backshifted 'era' (the neutral report) equally. A permanent fact is the clearest case of the optional shift.",
-    "version": 1
+    "explanation": "Both 'Anna ha detto che è di Napoli' and 'era di Napoli' mean 'Anna said she was from Naples.' Where someone is from does not change, so the fact still holds and either tense reports it: the present presents it as still true, the imperfect is the neutral backshift. Ticking only one misses that the other is equally correct.",
+    "examiner_note": "Converted for instrument consistency; not gate-flagged (answer does not echo in the source) but the same accept-both class as 01/03. index-scored, persisting-fact leaf on both correct choices.",
+    "version": 2
   },
   {
     "external_id": "rep_persist_03",
@@ -2719,49 +2727,48 @@
     "subtopic": "tense_shift.optional_no_shift_persisting_fact",
     "difficulty": 3,
     "cefr_level_target": "B2",
-    "prompt": "Trasforma in discorso indiretto: L'insegnante ha spiegato: 'La Terra è rotonda.' → L'insegnante ha spiegato che la Terra ____ rotonda.",
-    "type": "short",
+    "prompt": "L'insegnante ha spiegato: 'La Terra è rotonda.' Quali frasi riportano correttamente le sue parole? (Seleziona tutte quelle corrette.)",
+    "type": "multi_select",
     "marks": 1,
-    "wrong_answer_is_form_error_only": false,
-    "markpoints": [
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "wrong_answer_is_form_error_only": true,
+    "choices": [
       {
-        "order_index": 0,
-        "credit": 1.0,
-        "bucket": "reported_speech.tense_shift.optional_no_shift_persisting_fact",
-        "label": "Present kept or backshifted (both valid)",
-        "any_phrases": [
-          {
-            "phrase": "è",
-            "match_at": "word"
-          },
-          {
-            "phrase": "era",
-            "match_at": "word"
-          }
-        ],
-        "must_not_include": [
-          {
-            "phrase": "fosse",
-            "match_at": "word",
-            "note": "a timeless truth takes the indicative, not the subjunctive"
-          }
+        "text": "L'insegnante ha spiegato che la Terra è rotonda.",
+        "correct": true,
+        "note": "Present kept: a timeless truth still holds, so the present is natural and often preferred.",
+        "buckets": [
+          "reported_speech.tense_shift.optional_no_shift_persisting_fact"
         ]
-      }
-    ],
-    "vocab_help": [
+      },
       {
-        "lemma": "rotondo",
-        "language": "it",
-        "aspects": {
-          "translation": {
-            "reveal": "rotondo - round",
-            "bucket": "vocabulary.it.rotondo.adjective.translation"
-          }
-        }
+        "text": "L'insegnante ha spiegato che la Terra era rotonda.",
+        "correct": true,
+        "note": "Imperfect backshift: grammatical and neutral.",
+        "buckets": [
+          "reported_speech.tense_shift.optional_no_shift_persisting_fact"
+        ]
+      },
+      {
+        "text": "L'insegnante ha spiegato che la Terra sarà rotonda.",
+        "correct": false,
+        "note": "Future - misreports a timeless truth."
+      },
+      {
+        "text": "L'insegnante ha spiegato che la Terra fosse rotonda.",
+        "correct": false,
+        "note": "Subjunctive - not licensed for a plain reported statement."
       }
     ],
-    "explanation": "'L'insegnante ha spiegato che la Terra è rotonda' — or 'era rotonda' — both mean 'The teacher explained that the Earth is round.' A timeless truth still holds whenever it is reported, so the present 'è' is natural and often preferred, while the backshifted 'era' remains grammatical. Both are accepted because the fact has not lapsed.",
-    "version": 1
+    "correct_indices": [
+      0,
+      1
+    ],
+    "vocab_help": [],
+    "explanation": "Both 'la Terra è rotonda' and 'era rotonda' mean 'the teacher explained that the Earth is round.' A timeless truth holds whenever it is reported, so the present is natural and the backshifted imperfect remains grammatical. The point is that both score - a learner who forces the backshift and rejects the present has misunderstood the optionality.",
+    "examiner_note": "Converted short->multi_select per answer_leak_dispatch section 5: the accepted 'e' sat verbatim in the quoted source ('La Terra e rotonda'), so a copier scored full on a typed blank. Now index-scored; copying one form floors at 0.5.",
+    "version": 2
   },
   {
     "external_id": "rep_persist_04",
@@ -2770,49 +2777,48 @@
     "subtopic": "tense_shift.optional_no_shift_persisting_fact",
     "difficulty": 3,
     "cefr_level_target": "B1",
-    "prompt": "Trasforma in discorso indiretto: Luca ha detto: 'Abito a Roma.' (Non si è mai trasferito.) → Luca ha detto che ____ a Roma.",
-    "type": "short",
+    "prompt": "Luca ha detto: 'Abito a Roma.' (Non si è mai trasferito.) Quali frasi riportano correttamente le sue parole? (Seleziona tutte quelle corrette.)",
+    "type": "multi_select",
     "marks": 1,
-    "wrong_answer_is_form_error_only": false,
-    "markpoints": [
+    "prompt_supplies_base_form": false,
+    "info_display": "suppress",
+    "wrong_answer_is_form_error_only": true,
+    "choices": [
       {
-        "order_index": 0,
-        "credit": 1.0,
-        "bucket": "reported_speech.tense_shift.optional_no_shift_persisting_fact",
-        "label": "Present kept or backshifted (both valid)",
-        "any_phrases": [
-          {
-            "phrase": "abita",
-            "match_at": "word"
-          },
-          {
-            "phrase": "abitava",
-            "match_at": "word"
-          }
-        ],
-        "must_not_include": [
-          {
-            "phrase": "abitasse",
-            "match_at": "word",
-            "note": "the indicative is what stays or shifts; the subjunctive is an over-correction"
-          }
+        "text": "Luca ha detto che abita a Roma.",
+        "correct": true,
+        "note": "Present kept: he has not moved, so it still holds.",
+        "buckets": [
+          "reported_speech.tense_shift.optional_no_shift_persisting_fact"
         ]
-      }
-    ],
-    "vocab_help": [
+      },
       {
-        "lemma": "abitare",
-        "language": "it",
-        "aspects": {
-          "translation": {
-            "reveal": "to live / reside - abitare",
-            "bucket": "vocabulary.it.abitare.verb.translation"
-          }
-        }
+        "text": "Luca ha detto che abitava a Roma.",
+        "correct": true,
+        "note": "Imperfect backshift: the neutral report, equally correct.",
+        "buckets": [
+          "reported_speech.tense_shift.optional_no_shift_persisting_fact"
+        ]
+      },
+      {
+        "text": "Luca ha detto che abiterà a Roma.",
+        "correct": false,
+        "note": "Future - reports a move not stated."
+      },
+      {
+        "text": "Luca ha detto che abitasse a Roma.",
+        "correct": false,
+        "note": "Subjunctive - the indicative is what stays or shifts."
       }
     ],
-    "explanation": "'Luca ha detto che abita a Roma' — or 'abitava a Roma' — both mean 'Luca said he lives in Rome.' He has not moved, so the fact still holds and either tense reports it faithfully: the present 'abita' presents it as ongoing, the imperfect 'abitava' is the neutral backshift. Contrast rep_pres_imp_03, where Anna has since left Rome and only the imperfect fits.",
-    "version": 1
+    "correct_indices": [
+      0,
+      1
+    ],
+    "vocab_help": [],
+    "explanation": "Both 'Luca ha detto che abita a Roma' and 'abitava a Roma' mean 'Luca said he lives in Rome.' He has not moved, so the fact still holds and either tense is faithful. Contrast rep_pres_imp_03, where Anna has since left Rome and only the imperfect fits - there the shift is forced, here it is optional.",
+    "examiner_note": "Converted for instrument consistency; same accept-both class as 01/03. index-scored, persisting-fact leaf on both correct choices.",
+    "version": 2
   },
   {
     "external_id": "rep_futcond_08",

@@ -6,7 +6,7 @@
 
 | Leaf (label) | id | Grammar | Translation |
 |---|---|---:|---:|
-| Possessive + article, agreeing | `possessive.adjective.forms` | 20 | 7 |
+| Possessive + article, agreeing | `possessive.adjective.forms` | 25 | 7 |
 | Family nouns drop the article | `possessive.adjective.family_exception` | 15 | 7 |
 | Possessive pronouns | `possessive.pronoun` | 8 | 4 |
 | suo: his, her, your (formal) | `possessive.discrimination.suo` | 5 | 8 |
@@ -43,3 +43,7 @@ Patterns worth an entry: owner-agreement (suo/sua by owner not noun); spurious a
 1. **Cue conversions came to 36, not the architect's 29.** I took the full principled set by §2.20; if a narrower 29 was intended, say which and I revert the surplus.
 2. **Predicate and postposed are MCQ-heavy** for the same marker reason as the family leaf. Free-text would need an engine change.
 3. **proprio guards suo as WRONG** (not a 0.9 dodge), because suo-for-proprio is the leaf's named miss (Rev 20(i)). Colloquial Italian does use suo here, so if you'd rather it score a graded 0.7-0.8 with a steering note, that's a one-line change per item.
+
+## Paradigm fill (2026-08-03)
+
+Architecture's paradigm band flagged five untested cells in the forms bucket (tuoi, nostri, nostre, vostro, vostre); authored one item each (poss_forms_21-25), so all 21 slots are now covered. Batch is on the migrated item schema (wrong_answer_is_form_error_only, slot fields); the field migration and slot materialisation were done centrally by Architecture, not in-seat.

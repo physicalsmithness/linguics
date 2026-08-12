@@ -1759,8 +1759,7 @@
   "difficulty": 2,
   "cefr_level_target": "A1",
   "prompt": "Complete with the indefinite article ('a/an'): \"____ amica\".",
-  "type": "short",
-  "wrong_answer_is_form_error_only": true,
+  "type": "mcq",
   "markpoints": [
    {
     "order_index": 0,
@@ -1768,20 +1767,12 @@
     "bucket": "article.indefinite.forms",
     "label": "un' before a vowel (fem)",
     "any_phrases": [
-     {
-      "phrase": "un",
-      "match_at": "word"
-     }
+     "un'"
     ],
     "must_not_include": [
-     {
-      "phrase": "una",
-      "match_at": "word"
-     },
-     {
-      "phrase": "uno",
-      "match_at": "word"
-     }
+     "un",
+     "una",
+     "uno"
     ]
    }
   ],
@@ -1802,12 +1793,20 @@
    }
   ],
   "explanation": "\"un'amica\" means 'a (female) friend'. The feminine una elides before a vowel and takes an apostrophe: una + amica becomes un'amica. This apostrophe is the feminine's alone; the masculine stays un amico.",
-  "examiner_note": "Apostrophe un' vs un is not deterministically markable (norm folds it); the catchable errors here are una amica / uno amica.",
+  "examiner_note": "MCQ index-scored: an index-scored choice never runs through norm(), so the apostrophe survives and un' vs the masculine un is now graded. Reworked from short-answer per Architecture_ArticleAuthor_apostrophe_fold_false_credit v1 (the fold made un amica score identically to un'amica). slot un' kept.",
   "language_code": "it",
   "topic": "article",
   "marks": 1,
-  "version": 1,
-  "slot": "un'"
+  "version": 2,
+  "slot": "un'",
+  "choices": [
+   "un",
+   "un'",
+   "uno",
+   "una"
+  ],
+  "answer_index": 1,
+  "answer_shown_by_design": "mcq_choices"
  },
  {
   "external_id": "art_iform_13",
@@ -1815,8 +1814,7 @@
   "difficulty": 2,
   "cefr_level_target": "A2",
   "prompt": "Complete with the indefinite article ('a/an'): \"____ ora\".",
-  "type": "short",
-  "wrong_answer_is_form_error_only": true,
+  "type": "mcq",
   "markpoints": [
    {
     "order_index": 0,
@@ -1824,20 +1822,12 @@
     "bucket": "article.indefinite.forms",
     "label": "un' before a vowel (fem)",
     "any_phrases": [
-     {
-      "phrase": "un",
-      "match_at": "word"
-     }
+     "un'"
     ],
     "must_not_include": [
-     {
-      "phrase": "una",
-      "match_at": "word"
-     },
-     {
-      "phrase": "uno",
-      "match_at": "word"
-     }
+     "un",
+     "una",
+     "uno"
     ]
    }
   ],
@@ -1861,8 +1851,17 @@
   "language_code": "it",
   "topic": "article",
   "marks": 1,
-  "version": 1,
-  "slot": "un'"
+  "version": 2,
+  "slot": "un'",
+  "choices": [
+   "uno",
+   "una",
+   "un",
+   "un'"
+  ],
+  "answer_index": 3,
+  "answer_shown_by_design": "mcq_choices",
+  "examiner_note": "MCQ index-scored: an index-scored choice never runs through norm(), so the apostrophe survives and un' vs the masculine un is now graded. Reworked from short-answer per Architecture_ArticleAuthor_apostrophe_fold_false_credit v1 (the fold made un amica score identically to un'amica). slot un' kept."
  },
  {
   "external_id": "art_iform_14",
@@ -1870,8 +1869,7 @@
   "difficulty": 2,
   "cefr_level_target": "A2",
   "prompt": "Complete with the indefinite article ('a/an'): \"____ isola\".",
-  "type": "short",
-  "wrong_answer_is_form_error_only": true,
+  "type": "mcq",
   "markpoints": [
    {
     "order_index": 0,
@@ -1879,20 +1877,12 @@
     "bucket": "article.indefinite.forms",
     "label": "un' before a vowel (fem)",
     "any_phrases": [
-     {
-      "phrase": "un",
-      "match_at": "word"
-     }
+     "un'"
     ],
     "must_not_include": [
-     {
-      "phrase": "una",
-      "match_at": "word"
-     },
-     {
-      "phrase": "uno",
-      "match_at": "word"
-     }
+     "un",
+     "una",
+     "uno"
     ]
    }
   ],
@@ -1916,8 +1906,17 @@
   "language_code": "it",
   "topic": "article",
   "marks": 1,
-  "version": 1,
-  "slot": "un'"
+  "version": 2,
+  "slot": "un'",
+  "choices": [
+   "una",
+   "un",
+   "un'",
+   "uno"
+  ],
+  "answer_index": 2,
+  "answer_shown_by_design": "mcq_choices",
+  "examiner_note": "MCQ index-scored: an index-scored choice never runs through norm(), so the apostrophe survives and un' vs the masculine un is now graded. Reworked from short-answer per Architecture_ArticleAuthor_apostrophe_fold_false_credit v1 (the fold made un amica score identically to un'amica). slot un' kept."
  },
  {
   "external_id": "art_duse_01",

@@ -1,16 +1,18 @@
 seat: DemonstrativeAuthor
-classes: [all-seats, all-authors]   # ratified 2026-07-21 (class_retrofit_audits v3)
+classes: [all-seats, all-authors]
 project: Linguics
-updated: 2026-08-03
-waiting: parked
+updated: 2026-08-12
+waiting: blocked
 needs_from_smith: none
-blocked_by: Housing (:227 membership test + clickable English cue) before the item-shape cue-drop can ship; Architecture convention still open
+blocked_by: Housing (instrument-A clickable English cue, retrieval_help v5 — NOT the r90 help-bar) + Architecture (author candidate_forms on the ~23 form-changing questo/quello items for the uniform cue-drop)
 claude_can_verify: n/a
-summary: Demonstrative batch (44 grammar + 20 translation) live, current to brief Rev 32. Reacted to both item-shape dispatches: demonstratives are class A, 8 no-change items confirmed from disk, fix is a uniform subtractive cue-drop once Housing lands the pieces. live_round v3 accepted everything (no mint needed; vocab_help migration is Architecture's).
+summary: Demonstrative batch live, current to brief Rev 33. item_shape RATIFIED (v8); candidate_forms authored onto my 8 (verified on disk). cue_notation: verified compliant from disk (zero English-in-parens). Holding the uniform cue-drop for the instrument-A UI + candidate_forms on the changing items.
 queue:
-  - React on item_shape / answer_leak convention: DONE (item_shape v5, answer_leak v3). Await convention close + Housing :227 + clickable cue, then uniform cue-drop on questo/quello items.   [Next: Architecture/Housing]
-  # resolved, no action owed:
-  - live_round v3: POS-segmented vocab id ruled canonical (mine right); vocab buckets dynamic (no mint); foto decline + weights 0.5/0.5 accepted; vocab_help legacy-id migration is Architecture's central job, NOT mine
-  - class_retrofit_audits CLOSED: cio ruled (a); crit-13/Rev-25/Rev-19 stamped; classes [all-seats, all-authors] ratified
-  # available when conventions settle (not urgent, offered):
-  - C2 register tail top-up (costui/costoro, colui/coloro, medesimo, literary questi/quegli) — would need proposed buckets
+  - Ship the uniform instrument-A cue-drop (drop Italian cue, bracket+clickable English gloss, normalise the 31 prose glosses) WHEN Housing lands the clickable cue AND candidate_forms exist on the ~23 changing items   [item_shape v9, Next: Housing/Architecture]
+  # resolved / no action owed:
+  - item_shape convention: RATIFIED v8; my plan + candidate_forms in
+  - cue_notation (binds all-authors): off-table, verified 0 English-in-parens; will normalise 31 prose glosses to [brackets] as part of the cue-drop
+  - answer_leak: reacted v3; Architecture v6 excludes me; cleared the 08-12 stale re-paste
+  - live_round / class_retrofit: closed, everything accepted/ratified
+  # available when conventions settle:
+  - C2 register tail (costui/costoro, colui/coloro, medesimo, literary questi/quegli)

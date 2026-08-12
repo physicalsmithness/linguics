@@ -100,3 +100,9 @@ Batch grew 39 -> 45 grammar on the v4 ruling (thread `Architecture_ReportedSpeec
 **Suppression flip.** Architecture shortened the four leaking labels at source, so the 15 commands/questions/deixis items suppressed ONLY for the leak are now visible (Rev 19: over-suppression is itself a fault). **`rep_deixis_05` held suppressed** — it co-fires `demonstrative.quello` ("quello (that, far)"), the one item where a shown breadcrumb could hint the travel target beyond the prompt. The 23 tense-shift discrimination items stay suppressed (candidate_tenses, Rev 10/15).
 
 **Standing-criteria reconciliation (all clean, evidence in the thread v5):** uniform per-phrase `match_at: "word"` (crit 18); dead-guard engine-sim 0/45; crit-13 chip audit 0 rule-naming cues; Rev-25 cue-level audit 0 citation-form cues (prompt_supplies_base_form false on all 45); crit-19 no-op by carve-out. Batch now: 45 grammar, 20 translation, 0 dead guards, all anchored.
+
+---
+
+## Addendum — answer-leak react (2026-08-12)
+
+`Architecture_ALLAUTHORS_answer_leak_dispatch` section 5 flagged the persisting-fact items as non-measuring (accept-both + the accepted `è` visible in the prompt = copying scores full). **All four persist items converted short → `multi_select`** ("which reports are correct? select all"), the kept present and the backshift both `correct`, index-scored to the leaf, with future/subjunctive distractors. This makes the leaf's coverage claim real: the item now tests *recognition that both tenses are valid* (the actual skill), copying one form floors at 0.5, and forcing the backshift scores 0.5. Same instrument as PronounAuthor's `op_dop_vi_you_03`. Batch instrument mix is now 41 short + 4 multi_select; totals unchanged at 45 grammar / 20 translation.

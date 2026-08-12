@@ -20,7 +20,7 @@ Outputs: `grammar_questions_word_formation.json` (39), `translation_items_word_f
 | Relational adjectives | (stub, ruled to stay) | — | — |
 | **Total** | | **39** | **11** |
 
-Rendering: 18 `short` (production) + 21 `mcq` (closed two-label choices). 24 items suppressed, 3 carry `candidate_forms`.
+Rendering: 15 `short` (production) + 24 `mcq` (closed two-label choices). 24 items suppressed. **candidate_forms: none** — the 3 meaning-pair items (wf_dim_03/05, wf_pej_03) were converted short->mcq on 2026-08-03 after the estate-net gate v2 named wf_pej_03 a genuine supplied-choice leak; index-scoring removes the typed-copy vector, matching the PronounAuthor/verdict-item precedent. Marking unchanged.
 
 ## Second pass (approved at thread v5)
 

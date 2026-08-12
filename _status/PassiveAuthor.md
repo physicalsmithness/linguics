@@ -1,17 +1,16 @@
 seat: PassiveAuthor
-classes: [all-seats, all-authors]   # I author grammar + translation ITEMS; criteria 13-21/25 bind me
+classes: [all-seats, all-authors]
 project: Linguics
-updated: 2026-08-03
-waiting: closed
+updated: 2026-08-12
+waiting: parked
 needs_from_smith: none
-claude_can_verify: yes — all claims below re-derived from disk this turn
-summary: Passive tree COMPLETE (45 grammar + 19 translation: formation + usage + person bands). Nothing owed. All four delivery threads resolved; the one still-open item is Architecture's, not mine.
-queue: []          # empty — verified by name+class grep this turn
-resolved_since_last:
-  - volume_person_bands thread CLOSED 2026-07-21 (ACCEPTED + STAMPED; person convention RATIFIED as estate standard)
-  - retrofit_compliance thread CLOSED (crit 25 stamped; crit 13 was discharged centrally 2026-07-17)
-  - usage_branch_delivery thread CLOSED 2026-08-02 (si-parity cross-tree RATIFIED + generalised estate-wide; nested-guard exemption already in brief L337); condition (a) provenance already satisfied in my examiner_notes
-not_mine_but_watching:
-  - Architecture_PassiveAuthor_criterion20_cue_leak: both my recs ADOPTED; Architecture owns the gate rewrite + estate re-run; the 2026-07-22 estate pass (2,916 items) is FROZEN until re-run. Nothing owed by me.
-retrofit_status: [13 discharged-central, 15 standing, 16 discharged, 17 not-passive, 18 discharged, 19 discharged, 21 zero passive items in the audit]
-next_if_wanted: passive is ready for the MisconceptionAnalyst Phase-3 harvest (common_miss on all 6 leaves populated); that is the analyst's seat, not mine, so flagged not filled.
+claude_can_verify: yes
+summary: Passive COMPLETE (45 grammar + 19 translation). 'check chats' surfaced two ALLAUTHORS class-token threads; both handled from disk this turn.
+queue: []
+handled_this_turn:
+  - ALLAUTHORS item_shape_no_change_forms: ZERO exposure (all answers transform the cue / index-scored); recorded off-routing
+  - ALLAUTHORS cue_notation_renders_use_english: 2 English-in-parens -> brackets (pas_and_02, pas_use_reg_06), 0 residue, display-only; 4 Italian meta-directives flagged out-of-scope; awaiting Architecture stamp
+awaiting_architecture_stamp:
+  - cue_notation conversion (proposed stamp in thread)
+not_mine: [criterion20 gate rewrite (Architecture owns; 07-22 estate pass frozen)]
+retrofit_status: [13/16/18/19 discharged, 15 standing, 17 not-passive, 21 zero passive items, 25 clean-reported, item_shape immune, cue_notation converted]

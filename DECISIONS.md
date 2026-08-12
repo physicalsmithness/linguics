@@ -3001,3 +3001,40 @@ Nothing writes to any item until a packet returns.
 
 **Housing's counts supersede mine:** 914 items on disk not 899 (15 newer never derived, backfill owed
 by Architecture), and excluding vocabulary the mean is 2.28, every one accent or spelling.
+
+
+## Prompt review: half the fire-list is unfireable (2026-08-11)
+
+Tier-1 backfill done — the 15 items Housing found were all in the future-formation delivery that
+landed after the pass ran; **914 of 914 now carry `expected_buckets`**.
+
+**The prompt review found a direct instruction conflict.** `CANDIDATE BUCKETS` forbids firing any
+bucket absent from `bucket_context`, with one exception: the `vocabulary.` namespace **on en_it
+only**. `bucket_context` = the item's required/optional plus `translation_marker_bucket_menu.json`,
+which holds 581 ids whose only orthography entries are the 11 `orthography.accent.*` and which
+contains **no vocabulary ids at all**. Against that, `expected_buckets` asks the model to judge 1,800
+`orthography.spelling.*` entries and 1,012 `vocabulary.*` entries on it_en items. **~2,812 entries are
+simultaneously "judge this" and "you must not fire this"** — more than half the derived fire-list, and
+the model will resolve it differently run to run, which is exactly the erratic marking that motivated
+the whole plan.
+
+**Ruled:** add `orthography.spelling.*` to the marker menu, and extend the vocabulary exception to
+it_en (on recognition items a vocabulary bucket asks *did they translate this word* — a real skill the
+prompt's own direction block already describes). Under Smith's evidence principle, if we derive it we
+must let it fire. Alternative if either is unwanted: stop deriving that class. What must not stand is
+deriving what the prompt forbids.
+
+**Four smaller prompt findings.** The single most important instruction — *a mostly-correct answer
+MUST come back mostly HITS* — sits mid-paragraph near the end, after fourteen numbered rules;
+attention weights beginnings and ends, so BREADTH moves up. The accent policy runs four rules and
+longer than the vocabulary/grammar distinction, and **rule 11 is an anti-hallucination guard against
+the model inventing accent errors — a symptom of over-weighting caused by the section's own length**;
+compress to two. Cut the "house coherence, for your calibration only" parenthetical: it describes two
+other graders' policies the model cannot act on and invites it to reconcile three. And rule 7
+hard-codes partial = 0.5 as the only fractional value while the estate uses 0.9 and 0.5 for different
+things.
+
+**Expectation cases accepted as Architecture's**, with the shape stated: not sentence-to-buckets (the
+deriver does that) but **learner answer to `expect_fire` + `expect_absent`**, because the observed
+failures are false positives — an invented accent, a gender fired on the wrong entry — as often as
+misses.

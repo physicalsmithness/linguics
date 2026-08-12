@@ -25,6 +25,12 @@ Criterion 19 re-run AFTER the gloss change per the Rev 23 clause, not before: no
 
 **Leaf shape now:** 10 MCQ (invariable_vs_adjective) + 36 short = 46 grammar. The bene/buono leaf stays free-text short (its discrimination is answerable from the visible forms-named breadcrumb, not a copy fault).
 
+## Touch 4: 2026-08-12 (cue-notation brackets + psbf re-fix)
+
+**Cue-notation retrofit discharged** (`Architecture_ALLAUTHORS_cue_notation_renders_use_english.md` v11). Six English meaning-glosses moved from `(parens)` to `[brackets]` so they render as prose, not a "Use early" instruction chip: adv_prim_01/02/04/06/07 and adv_bb_08. The 7th census item, adv_prim_05's `(in inglese)`, was Italian meta, folded inline instead. Zero English-in-parens residue across 46 prompts; display-only, no marking impact.
+
+**psbf re-fix.** The `prompt_supplies_base_form` restoration from touch 3 did not persist (the mount served a cached view and reverted it); re-applied with sync and an independent delayed re-read to confirm. 36 short items now carry it (16 true / 20 false); the 10 MCQ carry none. Mount write-instability noted in `_status/AdverbAuthor.md` for Housing/Code.
+
 ## Coverage by leaf
 
 Counts read from the output files, not memory. "Grammar" is items whose markpoint cites that leaf; "Translation" is items whose `required_buckets` cite it.

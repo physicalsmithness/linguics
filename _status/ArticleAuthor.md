@@ -1,15 +1,20 @@
 seat: ArticleAuthor
 classes: [all-seats, all-authors]
 project: Linguics
-updated: 2026-07-20
+updated: 2026-08-12
 waiting: parked
-needs_from_smith: none
+needs_from_smith: decision
 blocked_by: none
-claude_can_verify: yes — every discharge is stamped on disk; art_disc_05 edit verified (marking 143/143)
-summary: All prior retrofits discharged (pos-migration stamped, crit-13 central, crit-20 stamped). Rev 26/27/28 add no article obligation. Applied crit-16 option A: art_disc_05 now carries candidate_forms/correct_form. Only remaining item = whether the 4 MCQ discrimination items also need candidate_forms — narrowed and parked with Architecture (discrimination_candidate_forms v2). Nothing else owed.
+claude_can_verify: yes — edits verified on disk (validator clean, marker replica 128/128)
+summary: Checked chat. Reworked the 3 apostrophe-fold false-credit items (art_iform_12/13/14) to index-scored MCQ per Architecture's recommendation — un' now graded, the fold can no longer credit "un amica". Flagged the MIRROR case (art_iform_03/04, masculine un, credits the spurious-apostrophe "un'amico") for an A/B ruling. crit-16 discrimination_candidate_forms was ruled A and closed, matching what I'd applied. No other article obligation from Rev 29-33 or the two ALLAUTHORS threads.
 queue:
-  - (awaiting Architecture — not my move) do the 4 MCQ discrimination items need candidate_forms? -> Architecture_ArticleAuthor_discrimination_candidate_forms v2. If yes, one-line add per item.
+  - (awaiting Architecture/Smith) ratify art_iform_12/13/14 MCQ rework + rule A/B on art_iform_03/04 mirror exposure -> Architecture_ArticleAuthor_apostrophe_fold_false_credit v2. Rec = A (convert). One pass to apply.
 done_this_pass:
-  - crit-16 option A applied: art_disc_05 (short, suppressed) now carries candidate_forms [l'influenza, influenza] + correct_form; only short discrimination item; marking unaffected.
+  - art_iform_12/13/14 -> index-scored MCQ [un,un',uno,una], answer un' rotated, answer_shown_by_design mcq_choices, slot un' kept, version bumped; validator clean, replica 128/128
+  - crit-16 art_disc_05 candidate_forms ratified (discrimination_candidate_forms ruled A + closed)
 not_owed:
-  - pos-migration STAMPED/closed; crit-13 central; crit-20 stamped; crit-21 (Rev28) N/A (article not a formation topic); crit-27 standing; banned-words central (files clean); crit-15/17/18/19 unchanged.
+  - Rev 33 (binds all-authors): lr-anchoring N/A; common_errors optional; person field verb-formation-only; item-shape law — article forms lawfully stay free-text (answer differs from cue), apostrophe items correctly MCQ
+  - answer_leak ALLAUTHORS: article not on routing list; zero net-gate exposure (copying the noun-cue never yields the article)
+  - item_shape ALLAUTHORS: binds invariable paradigm sets, not article
+  - translation anti-anchors: migrated into common_errors by Architecture 2026-07-21 (16/19 items), not lost; not my action
+  - pos-migration / crit-13 / crit-20 / crit-21: discharged as before

@@ -1,19 +1,15 @@
 seat: PossessiveAuthor
 classes: [all-seats, all-authors]
 project: Linguics
-updated: 2026-07-18
+updated: 2026-08-03
 waiting: parked
 needs_from_smith: none
 blocked_by: none
 claude_can_verify: yes
-summary: Wave-2 delivered + content re-audit done. Clean baseline validated 0/0. Found the batch is behind the current item schema (stale-brief root cause); flagged, not hand-migrated (central job).
+summary: All prior threads accepted/closed by Architecture. Latest commission (5 empty paradigm cells) delivered; forms bucket now 21/21 slots. Queue empty.
 queue: []
-delivered_this_pass:
-  - 3 leaves (predicate/postposed/proprio) 15g+9t; cue conversion (36); candidate_forms on 5 suo   [edge_patterns v3, suo_leaf v3]
-  - homograph vocab fix piacere/dovere/diritto -> .noun (all other lemmas plain, rule 8)
-open_for_architecture:
-  - class_retrofit_audits v1  - crit-20 conversion + clean 13/17/18/19, awaiting stamps
-  - schema_currency v1        - batch behind wrong_answer_is_form_error_only / common_errors / universal anchoring; ROOT CAUSE stale brief §2; fold into central migration or give me a spec
-  - edge_patterns v3          - accept + clear 3 stubs
-  - suo_leaf v3               - candidate_forms done, ready to close
-note: an audit subagent over-wrote item fields with unverified values this pass; reverted to clean authored baseline (0/0).
+delivered_latest:
+  - forms_empty_cells: poss_forms_21-25 (tuoi/nostri/nostre/vostro/vostre), authored to migrated schema; 68 grammar total, forms 25/25 slots covered; 0/0 validation   [forms_empty_cells v2, awaiting accept]
+closed_by_architecture:
+  - edge_patterns v4 (accepted, 3 stubs cleared); suo_leaf v4 (accepted); class_retrofit_audits v2 (discharges stamped); schema_currency v3 (folded into central migration, stamped, closed)
+totals: 68 grammar (43 short, 25 MCQ) + 35 translation across 7 leaves; on migrated schema (wrong_answer_is_form_error_only, slots)
