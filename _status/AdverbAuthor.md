@@ -2,7 +2,7 @@ seat: AdverbAuthor
 classes: [all-seats, all-authors]
 project: Linguics
 updated: 2026-08-12
-waiting: parked
+waiting: active
 needs_from_smith: confirm
 claude_can_verify: no (your preference call on the 6-vs-10 tradeoff)
 summary: Both live ALLAUTHORS obligations discharged this wake (no-change-forms MCQ + cue-notation brackets). One confirm owed on the 6-vs-10 leaf call; one Architecture ruling still open on my side; psbf bug found and fixed (twice, mount reverted it once).
@@ -20,3 +20,6 @@ awaiting_architecture:
 notes:
   - MOUNT INSTABILITY observed: a bash write to grammar_questions_adverb.json did not persist between two sessions (psbf reverted). Mitigation used: os.replace + sync + independent re-read after a delay. Flagging for Housing/Code if others hit lost writes.
   - adverb.locuzioni_avverbiali registered but unauthored; no clause binds me; available if Smith commissions a B1 pass.
+
+queue:
+  - TIER-2 REVIEW PACKET WAITING (2026-08-12): data/review_packets_tier2/REVIEW_adverb_2026-08-11.json — 36 pairs. Thread: inter_chat/Architecture_AdverbAuthor_tier2_review_packet.md  [not blocked]

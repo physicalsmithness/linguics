@@ -3,8 +3,8 @@ classes: [all-seats, all-authors]   # originates grammar + translation ITEMS (ma
                                     # must_not_include, explanations); criteria 13-21 bind all-authors and
                                     # name nobody, so this must be declared or every one goes invisible.
 project: Linguics
-updated: 2026-08-03 (2nd sweep)
-waiting: closed
+updated: 2026-08-12
+waiting: active
 needs_from_smith: none
 blocked_by:
 claude_can_verify: yes — every claim below is a re-runnable grep/replica over data/*_comparison.* and the audit files.
@@ -34,3 +34,6 @@ parked_with_architecture:   # their turn, not mine
 
 optional_not_owed:   # offered to Smith as a choice, NOT self-assigned (standing rules are never queue)
   - Rev 27 co-credit: the 5 -issimo spelling items test BOTH -issimo formation (my bucket) AND the stem-change spelling (adjective_agreement.stem_changes), currently cross-cited only in prose. Rev 27 blesses a second co-crediting markpoint (0.5+0.5 weight, both buckets record full correctness). Would add real per-bucket attribution. Standing principle, so not owed; offered if Smith wants it.
+
+queue:
+  - TIER-2 REVIEW PACKET WAITING (2026-08-12): data/review_packets_tier2/REVIEW_comparison_2026-08-11.json — 10 pairs. Thread: inter_chat/Architecture_ComparisonAuthor_tier2_review_packet.md  [not blocked]

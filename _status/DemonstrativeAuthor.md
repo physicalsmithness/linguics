@@ -2,12 +2,13 @@ seat: DemonstrativeAuthor
 classes: [all-seats, all-authors]
 project: Linguics
 updated: 2026-08-12
-waiting: blocked
+waiting: active
 needs_from_smith: none
 blocked_by: Housing (instrument-A clickable English cue, retrieval_help v5 — NOT the r90 help-bar) + Architecture (author candidate_forms on the ~23 form-changing questo/quello items for the uniform cue-drop)
 claude_can_verify: n/a
 summary: Demonstrative batch live, current to brief Rev 33. item_shape RATIFIED (v8); candidate_forms authored onto my 8 (verified on disk). cue_notation: verified compliant from disk (zero English-in-parens). Holding the uniform cue-drop for the instrument-A UI + candidate_forms on the changing items.
 queue:
+  - TIER-2 REVIEW PACKET WAITING (2026-08-12): data/review_packets_tier2/REVIEW_demonstrative_2026-08-11.json — 167 pairs. Thread: inter_chat/Architecture_DemonstrativeAuthor_tier2_review_packet.md  [not blocked]
   - Ship the uniform instrument-A cue-drop (drop Italian cue, bracket+clickable English gloss, normalise the 31 prose glosses) WHEN Housing lands the clickable cue AND candidate_forms exist on the ~23 changing items   [item_shape v9, Next: Housing/Architecture]
   # resolved / no action owed:
   - item_shape convention: RATIFIED v8; my plan + candidate_forms in

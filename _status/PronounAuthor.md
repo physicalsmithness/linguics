@@ -1,13 +1,14 @@
 seat: PronounAuthor
 classes: [all-seats, all-authors]
 project: Linguics
-updated: 2026-08-11
-waiting: parked
+updated: 2026-08-12
+waiting: active
 needs_from_smith: none
 blocked_by:
 claude_can_verify: yes (226 grammar + 68 translation; tier-2 packet returned 230 keep / 373 strike of 603 rows; verdict scan on disk)
 summary: Tier-2 review packet REVIEW_pronoun_2026-08-11.json (603 rows, 13 buckets) verdicted this pass — 62% struck. Morph-it had massive false-positive rates on la/le/lo article-vs-clitic homographs. All strikes documented in the packet + summary thread.
 queue:
+  - TIER-2 REVIEW PACKET WAITING (2026-08-12): data/review_packets_tier2/REVIEW_pronoun_2026-08-11.json — 603 pairs. Thread: inter_chat/Architecture_PronounAuthor_tier2_review_packet.md  [not blocked]
 awaiting_architect_stamp:
   - tier2_review_packet v1 (this pass)   [603 rows verdicted]
   - cue_notation v5   [132 English-in-parens conversions - proposed 2026-08-03]

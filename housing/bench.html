@@ -119,7 +119,7 @@
 <body>
 
 <h1>Marker bench</h1>
-<div class="sub">Same item, same answer, one variable at a time. Client-side only — a push reaches it, no worker deploy.</div>
+<div class="sub">Same item, same answer, one variable at a time. Client-side only — a push reaches it, no worker deploy.<br><b>Naming list</b> = the skill names the marker is allowed to use. <b>Fire-list</b> = what we expect this sentence to exercise. Different jobs.</div>
 
 <div class="panel">
   <h2>Backend</h2>
@@ -133,7 +133,7 @@
       <select id="model"></select>
     </div>
     <div>
-      <label for="mode">Menu mode <span style="opacity:.7">(the variable under test)</span></label>
+      <label for="mode">Naming list <span style="opacity:.7">(how many skill names the marker is given \u2014 the variable under test)</span></label>
       <select id="mode"></select>
     </div>
   </div>
@@ -157,7 +157,7 @@
     <input type="text" id="cap" class="runs" value="0.03" title="Per-call ceiling sent to the worker. The learner-path default is 0.03; the worker clamps any request to a hard 0.25.">
     <input type="text" id="temp" class="runs" value="0" title="0 = deterministic grading. The worker default is now 0; 1 was the old implicit value and is what produced the huge spread.">
     <button id="run" disabled>Mark</button>
-    <button id="runAll" class="ghost" disabled>Run every menu mode</button>
+    <button id="runAll" class="ghost" disabled>Run every naming list</button>
     <button id="suite" class="ghost" disabled>Run expectation suite</button>
     <button id="exp" class="ghost">Export log</button>
     <button id="clear" class="ghost">Clear log</button>
@@ -168,10 +168,10 @@
 
 <div id="log"></div>
 
-<script src="js/norm.js?v=2026-08-12-r155"></script>
-<script src="js/store.js?v=2026-08-12-r155"></script>
-<script src="js/translation_stub.js?v=2026-08-12-r155"></script>
-<script src="js/translation_marker.js?v=2026-08-12-r155"></script>
+<script src="js/norm.js?v=2026-08-12-r160"></script>
+<script src="js/store.js?v=2026-08-12-r160"></script>
+<script src="js/translation_stub.js?v=2026-08-12-r160"></script>
+<script src="js/translation_marker.js?v=2026-08-12-r160"></script>
 <script>
 (function () {
   "use strict";
@@ -623,7 +623,7 @@
       tables.push('<div class="panel"><h2>' + esc(bits[0]) + '</h2>' +
         '<div class="note" style="margin:-6px 0 10px">answer: \u201c' + esc(bits[1]) + '\u201d</div>' +
         '<table class="agg">' +
-        '<tr><th>Menu mode</th><th>model</th><th>temp</th><th>runs</th><th>skills<br>returned</th>' +
+        '<tr><th>Naming list</th><th>model</th><th>temp</th><th>runs</th><th>skills<br>returned</th>' +
         '<th>credit<br>earned</th><th>vocab<br>markpoints</th><th>spread<br>(max\u2212min)</th>' +
         '<th>input<br>tokens</th><th>cost<br>US$</th><th>seconds</th></tr>' +
         rows.map(r =>
@@ -669,7 +669,7 @@
     if (!tables.length) return session + spendBox;
     return session + tables.join("") + spendBox +
       '<div class="note" style="margin:-6px 0 14px">One table per item+answer \u2014 rows within a table ' +
-      'differ ONLY in menu mode, model and temperature. Shaded two-tone, white at zero, one hue per class ' +
+      'differ ONLY in naming list, model and temperature. Shaded two-tone, white at zero, one hue per class ' +
       '(navy = breadth, green = credit, amber = cost, grey = latency). <b>Spread</b> is how far the skill ' +
       'count moved across identical runs; if it is close to the gap between rows, those rows are not ' +
       'distinguishable yet \u2014 run more, or drop the temperature.</div>';
@@ -732,7 +732,7 @@
   /* ------------------------------------------------------------- wiring */
   // A stale CACHED js/translation_marker.js has no menu-mode API. Before r91
   // that threw here and aborted the whole IIFE, so boot() never ran and the
-  // page sat on "Loading content..." forever with an empty Menu mode box.
+  // page sat on "Loading content..." forever with an empty naming-list box.
   // Fail loudly and specifically instead.
   if (!LL || typeof LL.markerMenuMode !== "function" || !LL.MARKER_MENU_MODES) {
     $("status").innerHTML =

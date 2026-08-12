@@ -6,13 +6,14 @@ classes: [all-seats, all-authors]
 #   not what it touches, so criteria 13-20 all bind me. I am not in the Vocab/Cr17Sweep non-author class.
 project: Linguics
 updated: 2026-08-12
-waiting: parked
+waiting: active
 needs_from_smith: none
 blocked_by:
 claude_can_verify:
 note_2026-07-20: Rev 26-28 caught up — Rev 27 cross-credit split neg_ameno_01/02 (congiuntivo now full-credited); Rev 26 nothing owed; Rev 28 N/A. resp_02 piacere dual-cite flagged.
 summary: Cleared two items my stale status had hidden: cue_notation ALLAUTHORS retrofit (15 English-in-parens→brackets, class-token catch, was uncensused) and finché Why expansion (Smith's live ruling), both content-only awaiting stamp. False-miss packet CLOSED+stamped. Misconception 19 guards await MisconceptionAnalyst minting the 7 families. Nothing else owed.
 queue:
+  - TIER-2 REVIEW PACKET WAITING (2026-08-12): data/review_packets_tier2/REVIEW_negation_2026-08-11.json — 268 pairs. Thread: inter_chat/Architecture_NegationAuthor_tier2_review_packet.md  [not blocked]
   - Architecture_ALLAUTHORS_cue_notation_renders_use_english.md v10 — 15 converted, Next: Architecture (verify+stamp). [uncensused; class-token catch]
   - Architecture_NegationAuthor_finche_non_explanation.md v2 — 3 Whys expanded, Next: Architecture (verify+stamp).
   - Architecture_NegationAuthor_misconception_coverage.md — Next: MisconceptionAnalyst→mint→me (tag 19); not my turn.

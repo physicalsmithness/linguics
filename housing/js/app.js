@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-08-12-r155";
+  const LL_BUILD = "2026-08-12-r160";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -6784,7 +6784,7 @@
     if (!t) return { kind: "drop", label: "", value: "", spec: "" };
     if (CUE_TRIGGER.test(t)) return { kind: "drop", label: "", value: "", spec: "" };
     if (CUE_POS_LABEL.test(t)) return { kind: "label", label: "", value: t, spec: "" };
-    if (/^=/.test(t)) return { kind: "gloss", label: "Meaning: ", value: t.replace(/^=\s*/, ""), spec: "" };
+    if (/^=/.test(t)) return { kind: "gloss", label: "in this sentence, that means ", value: t.replace(/^=\s*/, ""), spec: "" };
     // A cued lemma is CONTEXT, not the operand, when the blank wants something
     // else about it - the auxiliary, the agreement. v2 of the thread.
     // NARROW. A first cut matched /auxiliary|agreement/, which also matches
@@ -6809,7 +6809,11 @@
     }
     // A full English sentence is context for the learner to read, not a cue.
     if (/[.!?]$/.test(t) && words.length > 2) return { kind: "context", label: "", value: t, spec: "" };
-    return { kind: "gloss", label: "Meaning: ", value: t, spec: "" };
+    // r156, Smith on the live card: "what's with MEANING... a little (in this
+    // sentence take 'them' to mean 'the keys') would be fine." A bare label and
+    // a chip reads as engine furniture bolted onto a sentence; the gloss is an
+    // aside TO the learner and should be phrased as one.
+    return { kind: "gloss", label: "in this sentence, that means ", value: t, spec: "" };
   }
   LL._classifyCue = classifyCue;   // exposed for the harness
 
@@ -9980,7 +9984,13 @@
       row.appendChild(entryChip("Any", !w.grammarPoint,
         () => { w.grammarPoint = ""; renderEntryScreen(); }));
       for (const tp of topics) {
-        row.appendChild(entryChip(tenseLabel(tp), w.grammarPoint === tp,
+        // r156, Smith: "this words need to be changed into nice forms". These
+        // chips showed raw ids - adjective_agreement, pronominal_verbs,
+        // verb_form.condizionale - because tenseLabel only knows the verb_form
+        // and tense_choice families and everything else fell through unchanged.
+        // friendlyTopicLabel handles all of them and already existed two
+        // hundred lines away, used by the topic dropdown.
+        row.appendChild(entryChip(friendlyTopicLabel(tp), w.grammarPoint === tp,
           () => { w.grammarPoint = tp; renderEntryScreen(); }));
       }
       panel.appendChild(row);

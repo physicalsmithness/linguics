@@ -2,12 +2,13 @@ seat: ArticleAuthor
 classes: [all-seats, all-authors]
 project: Linguics
 updated: 2026-08-12
-waiting: parked
+waiting: active
 needs_from_smith: none
 blocked_by: none
 claude_can_verify: yes — edits verified on disk (validator clean, marker replica 128/128)
 summary: (2026-08-12, Smith routed the art_iform_03/04 A/B to Architecture — not awaiting me or Smith.) Checked chat. Reworked the 3 apostrophe-fold false-credit items (art_iform_12/13/14) to index-scored MCQ per Architecture's recommendation — un' now graded, the fold can no longer credit "un amica". Flagged the MIRROR case (art_iform_03/04, masculine un, credits the spurious-apostrophe "un'amico") for an A/B ruling. crit-16 discrimination_candidate_forms was ruled A and closed, matching what I'd applied. No other article obligation from Rev 29-33 or the two ALLAUTHORS threads.
 queue:
+  - TIER-2 REVIEW PACKET WAITING (2026-08-12): data/review_packets_tier2/REVIEW_article_2026-08-11.json — 1142 pairs. Thread: inter_chat/Architecture_ArticleAuthor_tier2_review_packet.md  [not blocked]
   - (awaiting Architecture) ratify art_iform_12/13/14 MCQ rework + rule A/B on art_iform_03/04 (Smith routed this to Architecture 2026-08-12). Rec = A (convert). One pass to apply on their word. -> apostrophe_fold_false_credit v2
 done_this_pass:
   - art_iform_12/13/14 -> index-scored MCQ [un,un',uno,una], answer un' rotated, answer_shown_by_design mcq_choices, slot un' kept, version bumped; validator clean, replica 128/128

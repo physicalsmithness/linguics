@@ -1,13 +1,14 @@
 seat: CongiuntivoFormationAuthor
 classes: [all-seats, all-authors]
 project: Linguics
-updated: 2026-08-03
-waiting: parked
+updated: 2026-08-12
+waiting: active
 needs_from_smith: review
 blocked_by:
 claude_can_verify: yes — 75/75 items award full marks on their correct answer under housing/js engine; all guards reject; every formation leaf covered, zero zero-coverage
-summary: 2026-08-03: executed the fixed_formula fix (GO given) — 3 self-answering fixed_concessive grammar items removed, 2 translation added; 133 grammar + 35 translation, engine-green (387 guards 0 false-credit). Compound re-audit DONE (16 flipped visible). Cleared answer_leak_dispatch owe-list + confirmed zero cue-notation exposure. Nothing owed.
+summary: 2026-08-12: RETURNED the tier-2 review packet (86 pairs -> 77 keep / 9 strike / 5 added) to review_packets_tier2/returned/; flagged morph-it's homograph blind spot (parli/cerchi/sia read as indicative/conjunction) as an estate-wide under-tagging gap. Earlier: fixed_formula fix executed, compound re-audit done. 133 grammar + 35 translation. Nothing owed.
 queue:
+  - TIER-2 REVIEW PACKET RETURNED 2026-08-12 [tier2_review_packet v2, Next: Architecture to merge] — 77 keep / 9 strike / 5 added; systematic homograph gap flagged
   - (nothing to author)
   - VOLUME wave delivered 2026-07-21 [Architecture_CongiuntivoFormationAuthor_volume_wave v1, Next: Architecture] — +44 items, two-for-green, 401 guards/0 false-credit
   - person-migration PARSER BUG flagged (same thread): central migration parsed '1sg' leaf-token as person on 12 from_1sg items; I fixed mine, Architecture to audit other topics

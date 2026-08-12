@@ -3067,3 +3067,29 @@ mechanism**, not telemetry as v24 §5 had it. (4) **Auto-promotion when unambigu
 single POS, single sense may promote without review; anything polysemous or homographic waits, which
 is the test `mole_noun` and `class_noun` already taught us. (5) The tolerance is explicit: a miss is a
 day's data, not a defect to design out in advance.
+
+
+## Lemmatiser rebuilt; morph-it found incomplete on irregular participles (2026-08-12)
+
+Housing ruled correctly that with the 581-name list removed the fire-list is the only thing the marker
+receives, so its quality IS the marking quality — and it rested on a **427-entry stub** missing
+`date`/`dati` and mis-resolving `detto`→*dettare*, `visto`→*vistare*. Confirmed on disk.
+
+**Rebuilt to 1,450 entries** (`data/it_surface_to_lemma_morphit.json`) from morph-it over every Italian
+surface form in the corpus, with ambiguity resolved by a stated rule — prefer the lemma we teach, by
+frequency rank, with a bonus for verb-form-to-infinitive — rather than first match.
+
+**Finding beyond the diagnosis: morph-it itself lacks the irregular past participles.** `visto` exists
+only as *vistare* and as a noun; the participle of *vedere* is not in the lexicon. So that error was
+morph-it's, not the stub's, and a naive re-derivation would have reproduced it. Since irregular
+participles are exactly the high-frequency forms, an explicit 47-entry override table now sits on top.
+
+**Measured, same method both sides:** mean vocabulary lemmas per item **1.12 → 3.39**; items with no
+verb at all on their fire-list **45% → 26%**.
+
+**Recorded against over-claiming:** 3.39 remains far below the 10-20 expected, and the gap is probably
+not all lemmatiser — *"Stasera guarderemo un film insieme"* has four content words. The 10-20 figure
+needs settling before 3.39 is read as failure. The residual 26%-with-no-verb is the better target.
+
+Re-derivation across all 914 items deliberately held until the map is blessed: it is a
+whole-corpus write and should follow the ruling, not accompany it.

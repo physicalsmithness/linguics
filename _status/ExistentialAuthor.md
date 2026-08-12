@@ -2,7 +2,7 @@ seat: ExistentialAuthor
 classes: [all-seats, all-authors]   # I originate grammar + translation ITEMS (markpoints, cues, must_not, explanations) — the all-authors test.
 project: Linguics
 updated: 2026-08-12
-waiting: closed
+waiting: active
 needs_from_smith: none
 blocked_by: none
 claude_can_verify: self-check re-grepped across the six surfaces + class tokens; nothing carries Next: ExistentialAuthor that is not already discharged
@@ -15,3 +15,6 @@ resolved_recently:
 awaiting_others_not_me:
   - Architecture: retire the empty pronoun.ci_locative.existential leaf; stamp the handoff
   - Smith: cue_placement thread — after the 1,665-item field migration deploys, confirm a clean console (no tripwire); my neg_01 already carries the new field
+
+queue:
+  - TIER-2 REVIEW PACKET WAITING (2026-08-12): data/review_packets_tier2/REVIEW_existential_2026-08-11.json — 6 pairs. Thread: inter_chat/Architecture_ExistentialAuthor_tier2_review_packet.md  [not blocked]

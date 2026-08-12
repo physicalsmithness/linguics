@@ -1,0 +1,576 @@
+{
+  "generated": "2026-08-11",
+  "family": "verb_form.trapassato_prossimo",
+  "owner": "PluperfectAuthor",
+  "instruction": "For each bucket: set verdict to 'keep' or 'strike' on every row, and list any item you know demonstrates your construction that I missed. These are machine proposals from morph-it tagging of the reference translation. UNRATIFIED - nothing is written to any item until you return this packet.",
+  "semantics": "expected_buckets is judged ONLY if the learner's answer engages it. Engaged and right = hit. Engaged and wrong = a real miss. Not engaged = blank, no penalty. So a GENEROUS list is safe; a WRONG list is not, because the marker will try to mark it.",
+  "do_not_prune_common": "A bucket that fires on most items is NOT noise. Smith, 2026-08-11: the purpose is demonstrating knowledge - getting the definite article right 571 times is 571 pieces of evidence, and the learner should see 10 out of 12 correct even when the two the item was built for are wrong. Strike only what is WRONG, never what is merely frequent.",
+  "buckets": [
+    {
+      "bucket_id": "verb_form.trapassato_prossimo",
+      "confidence": 0.95,
+      "item_count": 29,
+      "items": [
+        {
+          "item_id": "trans_aa_en_it_15",
+          "topic": "adjective_agreement",
+          "reference_text": "Aveva un vestito blu marino.",
+          "evidence": "Aveva vestito (avere impf + vestire)",
+          "reason": "compound: auxiliary (imperfect) + past participle = trapassato prossimo",
+          "proposal_confidence": 0.95,
+          "verdict": "strike",
+          "reviewer_note": "'Aveva un vestito blu marino' = 'had a navy-blue suit'. aveva is the main verb (possession) and vestito is the noun 'suit', not the participle of vestire. The 'un' between them confirms it. No compound tense."
+        },
+        {
+          "item_id": "trans_conn_en_it_cons_01",
+          "topic": "connective",
+          "reference_text": "Ero stanco, quindi sono andato a letto presto.",
+          "evidence": "Ero andato (essere impf + andare)",
+          "reason": "compound: auxiliary (imperfect) + past participle = trapassato prossimo",
+          "proposal_confidence": 0.95,
+          "verdict": "strike",
+          "reviewer_note": "'Ero stanco, quindi sono andato a letto' = 'I was tired, so I went to bed'. ero belongs to the copula 'ero stanco'; andato to the passato prossimo 'sono andato' in a separate clause. The tagger stitched 'ero andato' across clauses; it is not in the sentence."
+        },
+        {
+          "item_id": "trans_conn_it_en_ca_03",
+          "topic": "connective",
+          "reference_text": "Ero stanco, ma sono venuto comunque.",
+          "evidence": "Ero venuto (essere impf + venire)",
+          "reason": "compound: auxiliary (imperfect) + past participle = trapassato prossimo",
+          "proposal_confidence": 0.95,
+          "verdict": "strike",
+          "reviewer_note": "Same cross-clause stitch: 'Ero stanco' (imperfect copula) + 'sono venuto' (passato prossimo). No 'ero venuto' unit exists."
+        },
+        {
+          "item_id": "trans_conn_it_en_cons_01",
+          "topic": "connective",
+          "reference_text": "Aveva dimenticato il portafoglio, perciò è tornato indietro.",
+          "evidence": "Aveva dimenticato (avere impf + dimenticare)",
+          "reason": "compound: auxiliary (imperfect) + past participle = trapassato prossimo",
+          "proposal_confidence": 0.95,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_conn_it_en_reg_01",
+          "topic": "connective",
+          "reference_text": "Visto che eri d'accordo, abbiamo firmato il contratto.",
+          "evidence": "eri firmato (essere impf + firmare)",
+          "reason": "compound: auxiliary (imperfect) + past participle = trapassato prossimo",
+          "proposal_confidence": 0.95,
+          "verdict": "strike",
+          "reviewer_note": "'Visto che eri d'accordo, abbiamo firmato'. 'eri d'accordo' is a copula phrase and 'abbiamo firmato' a passato prossimo; 'eri firmato' is a fabricated cross-clause parse. ('Visto che' is also a fixed conjunction, not a participle.)"
+        },
+        {
+          "item_id": "trans_ex_it_en_past_03",
+          "topic": "existential",
+          "reference_text": "C'era una volta un piccolo villaggio in montagna.",
+          "evidence": "era volta (essere impf + volgere)",
+          "reason": "compound: auxiliary (imperfect) + past participle = trapassato prossimo",
+          "proposal_confidence": 0.95,
+          "verdict": "strike",
+          "reviewer_note": "'C'era una volta' = 'Once upon a time'. era is the existential imperfect and volta is the noun 'time/occasion', not a participle of volgere. Fixed idiom, no trapassato."
+        },
+        {
+          "item_id": "trans_ger_it_en_use_tc_causal_01",
+          "topic": "verb_form.gerundio",
+          "reference_text": "Essendo domenica, i negozi erano chiusi.",
+          "evidence": "erano chiusi (essere impf + chiudere)",
+          "reason": "compound: auxiliary (imperfect) + past participle = trapassato prossimo",
+          "proposal_confidence": 0.95,
+          "verdict": "strike",
+          "reviewer_note": "'i negozi erano chiusi' = 'the shops were closed' — imperfect copula + predicative adjective describing a STATE. The pluperfect would be 'erano stati chiusi'. Not a trapassato."
+        },
+        {
+          "item_id": "trans_rep_en_it_presimp_02",
+          "topic": "reported_speech",
+          "reference_text": "Luca mi ha scritto che era affamato.",
+          "evidence": "era affamato (essere impf + affamare)",
+          "reason": "compound: auxiliary (imperfect) + past participle = trapassato prossimo",
+          "proposal_confidence": 0.95,
+          "verdict": "strike",
+          "reviewer_note": "'era affamato' = 'was hungry/famished' — imperfect copula + adjective (state), not a compound pluperfect."
+        },
+        {
+          "item_id": "trans_rep_en_it_trap_01",
+          "topic": "reported_speech",
+          "reference_text": "Marco ha detto che aveva già mangiato.",
+          "evidence": "aveva mangiato (avere impf + mangiare)",
+          "reason": "compound: auxiliary (imperfect) + past participle = trapassato prossimo",
+          "proposal_confidence": 0.95,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_rep_en_it_trap_02",
+          "topic": "reported_speech",
+          "reference_text": "Anna ha detto che era arrivata la sera prima.",
+          "evidence": "era arrivata (essere impf + arrivare)",
+          "reason": "compound: auxiliary (imperfect) + past participle = trapassato prossimo",
+          "proposal_confidence": 0.95,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_rep_it_en_deixis_01",
+          "topic": "reported_speech",
+          "reference_text": "Mi disse che aveva finito il lavoro il giorno prima.",
+          "evidence": "aveva finito (avere impf + finire)",
+          "reason": "compound: auxiliary (imperfect) + past participle = trapassato prossimo",
+          "proposal_confidence": 0.95,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_tc_imp_pp_con_it_en_01",
+          "topic": "tense_choice",
+          "reference_text": "Conoscevo Anna già da molto tempo prima del matrimonio: eravamo cresciute insieme.",
+          "evidence": "eravamo cresciute (essere impf + crescere)",
+          "reason": "compound: auxiliary (imperfect) + past participle = trapassato prossimo",
+          "proposal_confidence": 0.95,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_tc_imp_pp_vol_it_en_01",
+          "topic": "tense_choice",
+          "reference_text": "Ho voluto pagare il conto io, anche se i miei amici avevano insistito per dividere.",
+          "evidence": "avevano insistito (avere impf + insistere)",
+          "reason": "compound: auxiliary (imperfect) + past participle = trapassato prossimo",
+          "proposal_confidence": 0.95,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_tc_trap_compl_en_it_01",
+          "topic": "tense_choice",
+          "reference_text": "Quando sono arrivato al ristorante, gli altri avevano già mangiato, così mi sono unito a loro solo per il dolce.",
+          "evidence": "avevano mangiato (avere impf + mangiare)",
+          "reason": "compound: auxiliary (imperfect) + past participle = trapassato prossimo",
+          "proposal_confidence": 0.95,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_tc_trap_compl_it_en_01",
+          "topic": "tense_choice",
+          "reference_text": "Era furioso perché qualcuno aveva preso il suo nuovo libro dalla scrivania senza chiedere.",
+          "evidence": "aveva preso (avere impf + prendere)",
+          "reason": "compound: auxiliary (imperfect) + past participle = trapassato prossimo",
+          "proposal_confidence": 0.95,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_tpp_en_it_av_01",
+          "topic": "verb_form.trapassato_prossimo",
+          "reference_text": "Non avevo fame perché avevo mangiato prima.",
+          "evidence": "avevo mangiato (avere impf + mangiare)",
+          "reason": "compound: auxiliary (imperfect) + past participle = trapassato prossimo",
+          "proposal_confidence": 0.95,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_tpp_en_it_av_02",
+          "topic": "verb_form.trapassato_prossimo",
+          "reference_text": "Aveva già finito i compiti quando ho chiamato.",
+          "evidence": "Aveva finito (avere impf + finire)",
+          "reason": "compound: auxiliary (imperfect) + past participle = trapassato prossimo",
+          "proposal_confidence": 0.95,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_tpp_en_it_av_03",
+          "topic": "verb_form.trapassato_prossimo",
+          "reference_text": "Avevano lavorato tutto il giorno, quindi erano molto stanchi.",
+          "evidence": "Avevano lavorato (avere impf + lavorare)",
+          "reason": "compound: auxiliary (imperfect) + past participle = trapassato prossimo",
+          "proposal_confidence": 0.95,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_tpp_en_it_av_06",
+          "topic": "verb_form.trapassato_prossimo",
+          "reference_text": "Avevi letto il libro prima dell'esame?",
+          "evidence": "Avevi letto (avere impf + leggere)",
+          "reason": "compound: auxiliary (imperfect) + past participle = trapassato prossimo",
+          "proposal_confidence": 0.95,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_tpp_en_it_av_dop_01",
+          "topic": "verb_form.trapassato_prossimo",
+          "reference_text": "Le chiavi? Le avevo lasciate sul tavolo.",
+          "evidence": "avevo lasciate (avere impf + lasciare)",
+          "reason": "compound: auxiliary (imperfect) + past participle = trapassato prossimo",
+          "proposal_confidence": 0.95,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_tpp_en_it_es_01",
+          "topic": "verb_form.trapassato_prossimo",
+          "reference_text": "Quando sono arrivato alla stazione, il treno era già partito.",
+          "evidence": "era partito (essere impf + partire)",
+          "reason": "compound: auxiliary (imperfect) + past participle = trapassato prossimo",
+          "proposal_confidence": 0.95,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_tpp_en_it_es_02",
+          "topic": "verb_form.trapassato_prossimo",
+          "reference_text": "Era andata a casa prima della fine della festa.",
+          "evidence": "Era andata (essere impf + andare)",
+          "reason": "compound: auxiliary (imperfect) + past participle = trapassato prossimo",
+          "proposal_confidence": 0.95,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_tpp_en_it_es_03",
+          "topic": "verb_form.trapassato_prossimo",
+          "reference_text": "Noi ragazze eravamo arrivate tardi.",
+          "evidence": "eravamo arrivate (essere impf + arrivare)",
+          "reason": "compound: auxiliary (imperfect) + past participle = trapassato prossimo",
+          "proposal_confidence": 0.95,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_tpp_en_it_es_04",
+          "topic": "verb_form.trapassato_prossimo",
+          "reference_text": "I bambini erano già andati a letto.",
+          "evidence": "erano andati (essere impf + andare)",
+          "reason": "compound: auxiliary (imperfect) + past participle = trapassato prossimo",
+          "proposal_confidence": 0.95,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_tpp_en_it_es_06",
+          "topic": "verb_form.trapassato_prossimo",
+          "reference_text": "Le donne erano uscite prima di mezzogiorno.",
+          "evidence": "erano uscite (essere impf + uscire)",
+          "reason": "compound: auxiliary (imperfect) + past participle = trapassato prossimo",
+          "proposal_confidence": 0.95,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_tpp_en_it_es_mixed_01",
+          "topic": "verb_form.trapassato_prossimo",
+          "reference_text": "Marco e Lucia erano già partiti quando abbiamo telefonato.",
+          "evidence": "erano partiti (essere impf + partire)",
+          "reason": "compound: auxiliary (imperfect) + past participle = trapassato prossimo",
+          "proposal_confidence": 0.95,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_tpp_en_it_av_04",
+          "topic": "verb_form.trapassato_prossimo",
+          "reference_text": "Avevamo già visto quel film prima.",
+          "evidence": "author addition (Avevamo visto = avere pluperfect)",
+          "reason": "author-known demonstration missed by the morph tagger",
+          "proposal_confidence": 1.0,
+          "verdict": "keep",
+          "reviewer_added": true
+        },
+        {
+          "item_id": "trans_tpp_en_it_av_05",
+          "topic": "verb_form.trapassato_prossimo",
+          "reference_text": "Aveva detto la verità, ma nessuno gli credette.",
+          "evidence": "author addition (Aveva detto = avere pluperfect)",
+          "reason": "author-known demonstration missed by the morph tagger",
+          "proposal_confidence": 1.0,
+          "verdict": "keep",
+          "reviewer_added": true
+        },
+        {
+          "item_id": "trans_tpp_en_it_es_05",
+          "topic": "verb_form.trapassato_prossimo",
+          "reference_text": "Mio nonno era nato in un piccolo paese.",
+          "evidence": "author addition (era nato = essere pluperfect)",
+          "reason": "author-known demonstration missed by the morph tagger",
+          "proposal_confidence": 1.0,
+          "verdict": "keep",
+          "reviewer_added": true
+        }
+      ]
+    },
+    {
+      "bucket_id": "verb_form.trapassato_prossimo.formation.essere",
+      "confidence": 0.9,
+      "item_count": 15,
+      "items": [
+        {
+          "item_id": "trans_conn_en_it_cons_01",
+          "topic": "connective",
+          "reference_text": "Ero stanco, quindi sono andato a letto presto.",
+          "evidence": "Ero andato",
+          "reason": "trapassato prossimo with essere",
+          "proposal_confidence": 0.9,
+          "verdict": "strike",
+          "reviewer_note": "'Ero stanco, quindi sono andato a letto' = 'I was tired, so I went to bed'. ero belongs to the copula 'ero stanco'; andato to the passato prossimo 'sono andato' in a separate clause. The tagger stitched 'ero andato' across clauses; it is not in the sentence."
+        },
+        {
+          "item_id": "trans_conn_it_en_ca_03",
+          "topic": "connective",
+          "reference_text": "Ero stanco, ma sono venuto comunque.",
+          "evidence": "Ero venuto",
+          "reason": "trapassato prossimo with essere",
+          "proposal_confidence": 0.9,
+          "verdict": "strike",
+          "reviewer_note": "Same cross-clause stitch: 'Ero stanco' (imperfect copula) + 'sono venuto' (passato prossimo). No 'ero venuto' unit exists."
+        },
+        {
+          "item_id": "trans_conn_it_en_reg_01",
+          "topic": "connective",
+          "reference_text": "Visto che eri d'accordo, abbiamo firmato il contratto.",
+          "evidence": "eri firmato",
+          "reason": "trapassato prossimo with essere",
+          "proposal_confidence": 0.9,
+          "verdict": "strike",
+          "reviewer_note": "'Visto che eri d'accordo, abbiamo firmato'. 'eri d'accordo' is a copula phrase and 'abbiamo firmato' a passato prossimo; 'eri firmato' is a fabricated cross-clause parse. ('Visto che' is also a fixed conjunction, not a participle.)"
+        },
+        {
+          "item_id": "trans_ex_it_en_past_03",
+          "topic": "existential",
+          "reference_text": "C'era una volta un piccolo villaggio in montagna.",
+          "evidence": "era volta",
+          "reason": "trapassato prossimo with essere",
+          "proposal_confidence": 0.9,
+          "verdict": "strike",
+          "reviewer_note": "'C'era una volta' = 'Once upon a time'. era is the existential imperfect and volta is the noun 'time/occasion', not a participle of volgere. Fixed idiom, no trapassato."
+        },
+        {
+          "item_id": "trans_ger_it_en_use_tc_causal_01",
+          "topic": "verb_form.gerundio",
+          "reference_text": "Essendo domenica, i negozi erano chiusi.",
+          "evidence": "erano chiusi",
+          "reason": "trapassato prossimo with essere",
+          "proposal_confidence": 0.9,
+          "verdict": "strike",
+          "reviewer_note": "'i negozi erano chiusi' = 'the shops were closed' — imperfect copula + predicative adjective describing a STATE. The pluperfect would be 'erano stati chiusi'. Not a trapassato."
+        },
+        {
+          "item_id": "trans_rep_en_it_presimp_02",
+          "topic": "reported_speech",
+          "reference_text": "Luca mi ha scritto che era affamato.",
+          "evidence": "era affamato",
+          "reason": "trapassato prossimo with essere",
+          "proposal_confidence": 0.9,
+          "verdict": "strike",
+          "reviewer_note": "'era affamato' = 'was hungry/famished' — imperfect copula + adjective (state), not a compound pluperfect."
+        },
+        {
+          "item_id": "trans_rep_en_it_trap_02",
+          "topic": "reported_speech",
+          "reference_text": "Anna ha detto che era arrivata la sera prima.",
+          "evidence": "era arrivata",
+          "reason": "trapassato prossimo with essere",
+          "proposal_confidence": 0.9,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_tc_imp_pp_con_it_en_01",
+          "topic": "tense_choice",
+          "reference_text": "Conoscevo Anna già da molto tempo prima del matrimonio: eravamo cresciute insieme.",
+          "evidence": "eravamo cresciute",
+          "reason": "trapassato prossimo with essere",
+          "proposal_confidence": 0.9,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_tpp_en_it_es_01",
+          "topic": "verb_form.trapassato_prossimo",
+          "reference_text": "Quando sono arrivato alla stazione, il treno era già partito.",
+          "evidence": "era partito",
+          "reason": "trapassato prossimo with essere",
+          "proposal_confidence": 0.9,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_tpp_en_it_es_02",
+          "topic": "verb_form.trapassato_prossimo",
+          "reference_text": "Era andata a casa prima della fine della festa.",
+          "evidence": "Era andata",
+          "reason": "trapassato prossimo with essere",
+          "proposal_confidence": 0.9,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_tpp_en_it_es_03",
+          "topic": "verb_form.trapassato_prossimo",
+          "reference_text": "Noi ragazze eravamo arrivate tardi.",
+          "evidence": "eravamo arrivate",
+          "reason": "trapassato prossimo with essere",
+          "proposal_confidence": 0.9,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_tpp_en_it_es_04",
+          "topic": "verb_form.trapassato_prossimo",
+          "reference_text": "I bambini erano già andati a letto.",
+          "evidence": "erano andati",
+          "reason": "trapassato prossimo with essere",
+          "proposal_confidence": 0.9,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_tpp_en_it_es_06",
+          "topic": "verb_form.trapassato_prossimo",
+          "reference_text": "Le donne erano uscite prima di mezzogiorno.",
+          "evidence": "erano uscite",
+          "reason": "trapassato prossimo with essere",
+          "proposal_confidence": 0.9,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_tpp_en_it_es_mixed_01",
+          "topic": "verb_form.trapassato_prossimo",
+          "reference_text": "Marco e Lucia erano già partiti quando abbiamo telefonato.",
+          "evidence": "erano partiti",
+          "reason": "trapassato prossimo with essere",
+          "proposal_confidence": 0.9,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_tpp_en_it_es_05",
+          "topic": "verb_form.trapassato_prossimo",
+          "reference_text": "Mio nonno era nato in un piccolo paese.",
+          "evidence": "author addition (era nato)",
+          "reason": "author-known demonstration missed by the morph tagger",
+          "proposal_confidence": 1.0,
+          "verdict": "keep",
+          "reviewer_added": true
+        }
+      ]
+    },
+    {
+      "bucket_id": "verb_form.trapassato_prossimo.formation.avere",
+      "confidence": 0.9,
+      "item_count": 14,
+      "items": [
+        {
+          "item_id": "trans_aa_en_it_15",
+          "topic": "adjective_agreement",
+          "reference_text": "Aveva un vestito blu marino.",
+          "evidence": "Aveva vestito",
+          "reason": "trapassato prossimo with avere",
+          "proposal_confidence": 0.9,
+          "verdict": "strike",
+          "reviewer_note": "'Aveva un vestito blu marino' = 'had a navy-blue suit'. aveva is the main verb (possession) and vestito is the noun 'suit', not the participle of vestire. The 'un' between them confirms it. No compound tense."
+        },
+        {
+          "item_id": "trans_conn_it_en_cons_01",
+          "topic": "connective",
+          "reference_text": "Aveva dimenticato il portafoglio, perciò è tornato indietro.",
+          "evidence": "Aveva dimenticato",
+          "reason": "trapassato prossimo with avere",
+          "proposal_confidence": 0.9,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_rep_en_it_trap_01",
+          "topic": "reported_speech",
+          "reference_text": "Marco ha detto che aveva già mangiato.",
+          "evidence": "aveva mangiato",
+          "reason": "trapassato prossimo with avere",
+          "proposal_confidence": 0.9,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_rep_it_en_deixis_01",
+          "topic": "reported_speech",
+          "reference_text": "Mi disse che aveva finito il lavoro il giorno prima.",
+          "evidence": "aveva finito",
+          "reason": "trapassato prossimo with avere",
+          "proposal_confidence": 0.9,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_tc_imp_pp_vol_it_en_01",
+          "topic": "tense_choice",
+          "reference_text": "Ho voluto pagare il conto io, anche se i miei amici avevano insistito per dividere.",
+          "evidence": "avevano insistito",
+          "reason": "trapassato prossimo with avere",
+          "proposal_confidence": 0.9,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_tc_trap_compl_en_it_01",
+          "topic": "tense_choice",
+          "reference_text": "Quando sono arrivato al ristorante, gli altri avevano già mangiato, così mi sono unito a loro solo per il dolce.",
+          "evidence": "avevano mangiato",
+          "reason": "trapassato prossimo with avere",
+          "proposal_confidence": 0.9,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_tc_trap_compl_it_en_01",
+          "topic": "tense_choice",
+          "reference_text": "Era furioso perché qualcuno aveva preso il suo nuovo libro dalla scrivania senza chiedere.",
+          "evidence": "aveva preso",
+          "reason": "trapassato prossimo with avere",
+          "proposal_confidence": 0.9,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_tpp_en_it_av_01",
+          "topic": "verb_form.trapassato_prossimo",
+          "reference_text": "Non avevo fame perché avevo mangiato prima.",
+          "evidence": "avevo mangiato",
+          "reason": "trapassato prossimo with avere",
+          "proposal_confidence": 0.9,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_tpp_en_it_av_02",
+          "topic": "verb_form.trapassato_prossimo",
+          "reference_text": "Aveva già finito i compiti quando ho chiamato.",
+          "evidence": "Aveva finito",
+          "reason": "trapassato prossimo with avere",
+          "proposal_confidence": 0.9,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_tpp_en_it_av_03",
+          "topic": "verb_form.trapassato_prossimo",
+          "reference_text": "Avevano lavorato tutto il giorno, quindi erano molto stanchi.",
+          "evidence": "Avevano lavorato",
+          "reason": "trapassato prossimo with avere",
+          "proposal_confidence": 0.9,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_tpp_en_it_av_06",
+          "topic": "verb_form.trapassato_prossimo",
+          "reference_text": "Avevi letto il libro prima dell'esame?",
+          "evidence": "Avevi letto",
+          "reason": "trapassato prossimo with avere",
+          "proposal_confidence": 0.9,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_tpp_en_it_av_dop_01",
+          "topic": "verb_form.trapassato_prossimo",
+          "reference_text": "Le chiavi? Le avevo lasciate sul tavolo.",
+          "evidence": "avevo lasciate",
+          "reason": "trapassato prossimo with avere",
+          "proposal_confidence": 0.9,
+          "verdict": "keep"
+        },
+        {
+          "item_id": "trans_tpp_en_it_av_04",
+          "topic": "verb_form.trapassato_prossimo",
+          "reference_text": "Avevamo già visto quel film prima.",
+          "evidence": "author addition (Avevamo visto)",
+          "reason": "author-known demonstration missed by the morph tagger",
+          "proposal_confidence": 1.0,
+          "verdict": "keep",
+          "reviewer_added": true
+        },
+        {
+          "item_id": "trans_tpp_en_it_av_05",
+          "topic": "verb_form.trapassato_prossimo",
+          "reference_text": "Aveva detto la verità, ma nessuno gli credette.",
+          "evidence": "author addition (Aveva detto)",
+          "reason": "author-known demonstration missed by the morph tagger",
+          "proposal_confidence": 1.0,
+          "verdict": "keep",
+          "reviewer_added": true
+        }
+      ]
+    }
+  ],
+  "reviewed_by": "PluperfectAuthor",
+  "reviewed_on": "2026-08-12",
+  "review_summary": "38 keep, 14 strike, 6 author-added. Strikes are all morph-only false positives: aveva/ero as main-verb/copula (had a suit, was tired, once upon a time, shops were closed, was hungry) or cross-clause token stitching (ero...andato), none containing a genuine imperfect-aux + verbal-participle pluperfect."
+}

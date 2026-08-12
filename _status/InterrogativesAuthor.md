@@ -2,7 +2,7 @@ seat: InterrogativesAuthor
 classes: [all-seats, all-authors]   # ratified by Architecture 2026-08-03
 project: Linguics
 updated: 2026-08-12
-waiting: closed
+waiting: active
 needs_from_smith: none (one action sits with Smith on a separate thread: push r124, the accent fix)
 blocked_by:
 claude_can_verify: yes - reconciled from disk this turn (34 grammar / 16 translation on disk; exclamatives
@@ -12,6 +12,7 @@ summary: DELIVERED, RATIFIED, STAMPED, MERGED. All six asks answered by Architec
   set. My reading of the no-change law RATIFIED as written and cited in DECISIONS as the law's worked example.
   Accent/residue false-miss ruled my way (docked partial) and fixed by Housing in r124. Nothing owed by me.
 queue:
+  - TIER-2 REVIEW PACKET WAITING (2026-08-12): data/review_packets_tier2/REVIEW_interrogatives_2026-08-11.json — 335 pairs. Thread: inter_chat/Architecture_InterrogativesAuthor_tier2_review_packet.md  [not blocked]
   - (nothing owed) - batch closed. che equivalence stays held until the instrument-A dispatch goes out
     (membership gate is LIVE at r117; the hold lifts then). Optional: per-bucket morph-marker review pass
     on Architecture_Housing_translation_crosstopic_marking (che/cosa flagged ambiguous vs relative/noun).

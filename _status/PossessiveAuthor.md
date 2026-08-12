@@ -1,8 +1,8 @@
 seat: PossessiveAuthor
 classes: [all-seats, all-authors]
 project: Linguics
-updated: 2026-08-03
-waiting: parked
+updated: 2026-08-12
+waiting: active
 needs_from_smith: none
 blocked_by: none
 claude_can_verify: yes
@@ -13,3 +13,6 @@ delivered_latest:
 closed_by_architecture:
   - edge_patterns v4 (accepted, 3 stubs cleared); suo_leaf v4 (accepted); class_retrofit_audits v2 (discharges stamped); schema_currency v3 (folded into central migration, stamped, closed)
 totals: 68 grammar (43 short, 25 MCQ) + 35 translation across 7 leaves; on migrated schema (wrong_answer_is_form_error_only, slots)
+
+queue:
+  - TIER-2 REVIEW PACKET WAITING (2026-08-12): data/review_packets_tier2/REVIEW_possessive_2026-08-11.json — 377 pairs. Thread: inter_chat/Architecture_PossessiveAuthor_tier2_review_packet.md  [not blocked]

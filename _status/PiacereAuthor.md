@@ -2,13 +2,14 @@ seat: PiacereAuthor
 classes: [all-seats, all-authors]
 project: Linguics
 updated: 2026-08-12
-waiting: closed
+waiting: active
 needs_from_smith: none
 blocked_by:
 claude_can_verify: yes — all prior deliverables verified stamped/consumed on disk
 summary: wake self-check at brief Rev 33 — NOTHING OWED. All prior work closed: false_miss CLOSED (8/8 stamped), cue_notation v8 STAMPED, verb_identity consumed (Housing A7 shipped r121). Rev 33's four all-authors additions are all N/A to piacere. One watch item not yet routed to me.
 queue: []   # nothing owed
 triaged_not_queue:
+  - TIER-2 REVIEW PACKET WAITING (2026-08-12): data/review_packets_tier2/REVIEW_piacere_2026-08-11.json — 79 pairs. Thread: inter_chat/Architecture_PiacereAuthor_tier2_review_packet.md  [not blocked]
   - Rev 33 (1) *_lr_* anchoring exemption — piacere has no lexical-recall items
   - Rev 33 (2) common_errors — OPTIONAL, standing, not a retrofit
   - Rev 33 (3) person field — piacere is a construction topic, NOT in scope; the 13 named backfills are Passato(11)/Imperfect(1)/PresentUsage(1), all conjugation topics

@@ -2,16 +2,14 @@ seat: ImperativoAuthor
 classes: [all-seats, all-authors]
 project: Linguics
 updated: 2026-08-12
-waiting: closed
+waiting: parked
 needs_from_smith: none
 blocked_by:
-claude_can_verify: yes - 69 items on disk; person 69/69, crit17 69/69, guard tags canonical, marks intact
-summary: Nothing owed. item-shape 6->8 extension RATIFIED (thread v8). All ALLAUTHORS threads either ratified for me, count-zero, or name other seats. No imperativo tier-2 packet. Rev 33 adds nothing owed (person already set; common_errors optional).
+claude_can_verify: yes - returned packet parses, all 13 original rows verdicted, 25 adds all keep
+summary: Tier-2 review packet RETURNED (11 keep, 2 strike si-passivante, 25 owner-adds for homograph/infinitive imperatives morph-it missed). Awaiting Architecture's merge.
 queue:
   - none
-closed_since_last:
-  - item_shape_no_change_forms: my 8-instrument-A conversion RATIFIED (v8, 2026-08-03)
-standing_compliance:
-  - Rev 33(3) person on new items - all 69 carry it
-  - Rev 33(2) common_errors - optional display field, not added (guard-side misconception tags already canonical)
-  - Rev 33(1) lr-anchoring exemption - no _lr_ items in this topic
+awaiting_architecture:
+  - Merge returned tier-2 packet   [data/review_packets_tier2/returned/REVIEW_verb_form.imperativo_2026-08-11.json; thread Next: Architecture]
+flagged:
+  - Systemic: homograph imperatives (parla/senti/vai) are invisible to morph-it estate-wide; other topics' translation refs likely carry unflagged tu imperatives

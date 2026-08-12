@@ -44,15 +44,43 @@
   /* ----------------------------------------------------------------- */
   const MENU_MODE_KEY = "ll_marker_menu_mode";
   LL.MARKER_MENU_MODES = [
-    { id: "full",       label: "Full 581 + descriptions (v9, default)" },
-    { id: "labels",     label: "Full 581, labels only" },
-    { id: "aggregates", label: "Aggregates only (depth<=1) + descriptions" },
-    { id: "agg_labels", label: "Aggregates only, labels only" },
-    { id: "retrieved",  label: "Aggregates + this item's own subtrees" },
-    { id: "none",       label: "No menu (required_buckets floor only)" },
+    // r158, Smith 2026-08-12: "It should never be called a menu. I've discussed
+    // this with you, really." He is right and the word has done real damage: a
+    // MENU is a list you choose FROM, and this is a list the marker is
+    // RESTRICTED TO - the names it may use, so its verdicts can be filed. The
+    // word made it sound optional and replaceable, and led Smith to believe the
+    // fire-list had replaced it. It had not, and could not: strip the naming
+    // list and the marker can only ever name what we predicted, which kills the
+    // can't-credit channel the whole plan now runs on.
+    //
+    // The two lists, kept straight: THE NAMING LIST is every skill name the
+    // marker may use. THE FIRE-LIST (item.expected_buckets) is what we expect
+    // this sentence to exercise. One is the vocabulary; the other is the brief.
+    { id: "full",       label: "All 581 names, with descriptions (default)" },
+    { id: "labels",     label: "All 581 names, no descriptions" },
+    { id: "aggregates", label: "Top-level names only, with descriptions" },
+    { id: "agg_labels", label: "Top-level names only, no descriptions" },
+    { id: "retrieved",  label: "Top-level names + this item's own branches" },
+    { id: "none",       label: "No naming list (this item's own buckets only)" },
   ];
   LL.markerMenuMode = function () {
-    try { return localStorage.getItem(MENU_MODE_KEY) || "full"; }
+    // r159, SMITH'S RULING 2026-08-12. The default was "full": all 581 names
+    // WITH their descriptions, ~45,000 tokens, which cannot fit the cheapest
+    // provider's 32,768 window at all - so the default could not physically
+    // work. He has ruled the other way entirely, and the reasoning is his:
+    // "from my experience ais are good at just doing things if you give them
+    // the freedom... check vocab & grammar against these. either
+    // hit/miss/irrelevant. then let us know if there's any other vocab or any
+    // other grammar that you think is relevant that's not listed. tell us. end
+    // of." So the marker now gets THIS ITEM'S OWN buckets plus its fire-list,
+    // and nothing else, and anything it notices beyond them comes back as
+    // prose through the can't-credit channel.
+    //
+    // His stated bet, recorded so it can be checked rather than assumed:
+    // cheaper (definitely), faster (probably), better or the same (probably),
+    // possibly worse - let's find out. The expectation suite is the instrument
+    // and both regimes are still selectable on the bench.
+    try { return localStorage.getItem(MENU_MODE_KEY) || "none"; }
     catch (e) { return "full"; }
   };
   LL.setMarkerMenuMode = function (m) {
@@ -194,6 +222,51 @@
     // This is a RUNTIME GUARD at the only place that knows the menu and the
     // direction; it becomes a no-op once Architecture strips the unfireable
     // classes from the data, and it is cheap insurance if a class comes back.
+    // r157, LIVE OUTAGE. Smith's screenshots on r153 AND r155 both show the same
+    // upstream refusal: "The sum of prompt length (56039.0)... should not exceed
+    // max_num_tokens (32768)". The default menu is `full` - 581 buckets WITH
+    // descriptions, about 45,000 tokens - and DeepSeek V3 through DeepInfra
+    // caps the whole call at 32,768. So every full-menu mark has been failing
+    // upstream and falling back to the word-overlap stub. Not intermittent:
+    // 55,556 and 56,039 both refused. The AI marker has effectively been
+    // offline on the live path.
+    //
+    // The guard is a FIT CHECK, not a new default: estimate the packet, and if
+    // it cannot fit, step down through the menu until it does. Picking a menu
+    // size by fiat is Architecture's call; refusing to send a call that cannot
+    // possibly succeed is not. It also lands the right way round with the
+    // fire-list plan - the whole point of expected_buckets is that the model no
+    // longer needs the giant menu to know what to look for.
+    const MODEL_CONTEXT = { "deepseek/deepseek-chat": 32768, "deepseek/deepseek-chat-v3": 32768 };
+    let menuStepNote = "";
+    (function fitMenu() {
+      const limit = MODEL_CONTEXT[model] || 0;
+      if (!limit) return;                       // unknown model: leave it alone
+      const approx = t => Math.ceil(String(t || "").length / 4);
+      const overhead = approx(JSON.stringify(markerItem)) + approx(raw) + 1200;
+      const approxCtx = c => approx(JSON.stringify(c || {}));
+      let ctx = options.bucketContext || {};
+      if (approxCtx(ctx) + overhead < limit * 0.8) return;
+      // Step 1: drop the descriptions. That alone is the difference between the
+      // `full` menu and `labels` - about 45,000 tokens down to about 12,000 -
+      // and it keeps every bucket ID available to fire.
+      const stripped = {};
+      for (const k of Object.keys(ctx)) stripped[k] = { label: (ctx[k] && ctx[k].label) || k };
+      if (approxCtx(stripped) + overhead < limit * 0.8) {
+        options = Object.assign({}, options, { bucketContext: stripped });
+        menuStepNote = "menu descriptions dropped to fit " + model;
+        return;
+      }
+      // Step 2: keep only this item's own buckets. Breadth is worth less than
+      // a marker that answers at all.
+      const own = {};
+      const keep = [].concat(markerItem.required_buckets || [], markerItem.expected_buckets || [],
+                             markerItem.optional_buckets || []);
+      for (const k of keep) if (stripped[k]) own[k] = stripped[k];
+      options = Object.assign({}, options, { bucketContext: own });
+      menuStepNote = "menu cut to this item's own buckets to fit " + model;
+    })();
+
     const ctxForFilter = options.bucketContext || {};
     const isItEn = (item && (item.source_lang === "it" || item.source_language === "it"));
     const rawExpected = (markerItem && Array.isArray(markerItem.expected_buckets))
