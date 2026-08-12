@@ -6,20 +6,17 @@ waiting: parked
 needs_from_smith: none
 blocked_by:
 claude_can_verify: n/a
-summary: Batch was already accepted+committed 2026-07-21 (I wastefully re-derived it against a stale Rev 25 brief; live is Rev 32 — no harm, byte-identical). Real owed work, all now done: (1) ind_nn_06 false-miss; (2) free-choice cross-credit items for the zero-coverage mood leaf; (3) Architecture RETURNED the nn_06 fix 2026-08-02 (cue = answer) — reworked, and fixed 2 siblings of the same class (nn_03, oc_06). All reported, Next: Architecture.
+summary: Caught up on chat. Tier-2 review packet WORKED (243 rows, 182 keep / 61 strike, returned). dovunque leaf (minted zero-coverage) now has 3 grammar + 1 translation. Both earlier threads (false_miss, seam) were CLOSED+STAMPED by Architecture. Nothing owed; everything now Next: Architecture.
 queue:
-  - Architecture_IndefiniteAuthor_false_miss_packet.md v4  [Next: Architecture — verify+stamp the cue rework + nn_03/oc_06 siblings]
-  - Architecture_IndefiniteAuthor_free_choice_mood_seam.md v3  [Next: Architecture — accept 6+3 cross-credit items; ratify 3 design calls; execute dovunque mint + ogni note]
+  - Architecture_IndefiniteAuthor_tier2_review_packet.md v1  [Next: Architecture — accept verdicts + apply, or challenge strikes]
 delivered_this_touch:
-  - ind_nn_06: blank-only 'nessuno' positive (2026-07-27) + cue dropped (2026-08-03, per false_miss v3)
-  - ind_nn_03: cue (nessuno) dropped — sibling of the same cue-gives-answer defect
-  - ind_oc_06: converted to MCQ — sibling; dropping the cue alone would admit 'ogni studente' (crit 10a)
-  - 6 grammar + 3 translation free-choice cross-credit items (ind_fc_*, trans_*_fc_*): mood leaf 0 -> 6+2req+1opt, Rev 27 dual-credit
-  - full file re-verified: 67 grammar + 28 translation, 74 markpoints, 0 findings
-lesson:
-  - Read the LIVE brief off disk (Rev 32), never a served/cached copy (I got a stale Rev 25). Rev 30 was my own prior finding already ratified.
-  - A fix that satisfies the marker can still destroy the item (Architecture's nn_06 return). When closing a false-miss remedy, verify against what the item is FOR, not just the guard list. And fix the CLASS, not the named item: nn_06's cue defect had 2 siblings the audit never named.
+  - tier-2 review packet REVIEW_indefinite_2026-08-11: 243 rows verdicted. Two strike classes, both in indefinite.core: 52 adverbial molto/troppo/tanto (agreement is the tell), 8 sibling-subtree mis-attributions (nessuno/qualsiasi/ciascuno belong to pronouns/free_choice, all already in their sibling packet). Proposed a generic_quantifiers leaf (molto/tanto/poco/troppo/altri, ~40 rows, no leaf today).
+  - dovunque leaf: ind_dov_01/02 (cross-credit + mood), ind_dov_03 (MCQ), trans_ind_en_it_dov_01. Leaf 0 -> 3 grammar + 1 translation.
+  - full file re-verified: 70 grammar + 29 translation, 79 markpoints, 0 findings.
+history_this_seat:
+  - Batch already accepted+committed 2026-07-21; I once re-derived it against a stale Rev 25 brief (live Rev 32) - byte-identical, no harm.
+  - ind_nn_06 false-miss + cue-gives-answer rework (nn_06/nn_03 cue dropped, oc_06 -> MCQ): CLOSED+STAMPED (false_miss v5).
+  - free-choice cross-credit items + dovunque mint + ogni note: seam CLOSED (v5 executed, v6 dovunque coverage).
 notes:
-  - Defect class recorded: a trailing (lemma) cue whose lemma == the answer's LONG form before s+cons/z (= citation form) gives the answer away even though the word inflects. Offered as a Rev 30 refinement.
-  - Still Architecture's to execute (seam v2): mint indefinite.free_choice.dovunque; add ogni+numeral note. I authored no dovunque items (leaf not minted).
-  - Misconception tagging for indefinite still not possible (no tag-list). Cross-credit mood guards carry discrimination.indicative_for_subjunctive_choice (registered).
+  - Structural proposal open to Architecture: indefinite.core.generic_quantifiers leaf (molto/tanto/poco/troppo/parecchio + agreement). Flagged, not minted.
+  - Misconception tagging for indefinite still has no tag-list; cross-credit + dovunque mood guards carry discrimination.indicative_for_subjunctive_choice (registered).
