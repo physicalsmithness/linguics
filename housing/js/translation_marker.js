@@ -179,6 +179,35 @@
       markerItem = Object.assign({}, item);
       markerItem.source_text = item.source_text.replace(/\s*\[[^\]]*\]\s*/g, " ").replace(/\s+/g, " ").trim();
     }
+    // r154, Architecture v3 after Smith reversed v2 s5.1. THE FIRE-LIST IS THE
+    // CONFIRMED SET, not a prediction: "We don't want to be sending thousands of
+    // things. We send whatever has been fired before... If it doesn't hit, it
+    // says 'I couldn't hit these'." So an entry that the prompt FORBIDS the
+    // model to fire must not be sent at all - roughly 2,812 of them were both
+    // "judge this" and "you must not fire this", which is a contradiction the
+    // model resolves differently run to run and is a live candidate for the
+    // erratic marking that started this whole plan.
+    //
+    // Fireable means: present in bucket_context (the menu plus this item's own
+    // buckets), OR a vocabulary id on an en_it item, which is the prompt's one
+    // sanctioned exception. Everything else waits until something confirms it.
+    // This is a RUNTIME GUARD at the only place that knows the menu and the
+    // direction; it becomes a no-op once Architecture strips the unfireable
+    // classes from the data, and it is cheap insurance if a class comes back.
+    const ctxForFilter = options.bucketContext || {};
+    const isItEn = (item && (item.source_lang === "it" || item.source_language === "it"));
+    const rawExpected = (markerItem && Array.isArray(markerItem.expected_buckets))
+      ? markerItem.expected_buckets : null;
+    if (rawExpected) {
+      const keep = rawExpected.filter(function (b) {
+        if (Object.prototype.hasOwnProperty.call(ctxForFilter, b)) return true;
+        return !isItEn && String(b).indexOf("vocabulary.") === 0;
+      });
+      if (keep.length !== rawExpected.length) {
+        if (markerItem === item) markerItem = Object.assign({}, item);
+        markerItem.expected_buckets = keep;
+      }
+    }
     const body = {
       item: markerItem,
       raw,
@@ -625,6 +654,45 @@
       if (!labelsOnly) entry.description = (mb && mb.description) || "";
       ctx[mid] = entry;
     }
+    // r155, Architecture v4 s6 (Smith: "we should add all the vocabulary that we
+    // expect to fire... and it could be some alternatives"). THE ITEM'S OWN
+    // CONFIRMED VOCABULARY IS INJECTED FIRST, in BOTH directions, which does
+    // three things at once:
+    //
+    //  1. it makes those ids fireable, so the r154 send-filter keeps them -
+    //     without this an equivalence-class alternative (tv / televisione)
+    //     would be confirmed by Architecture and then silently dropped by my
+    //     own guard on the way out, and the learner could not be credited;
+    //  2. it replaces GUESSWORK with a confirmed list on every derived item.
+    //     The block below lemmatises the source text and is where ORECCHIO
+    //     (ear) came from for "ore" and PROPRIO for "problemi" - both seen
+    //     live, one of them SCORED A HIT. The fire-list has `ora` and
+    //     `problema`, correctly;
+    //  3. it keeps the old path as a fallback for any item with no derived
+    //     vocabulary, so nothing regresses on undelivered items.
+    const fireList = (item && Array.isArray(item.expected_buckets)) ? item.expected_buckets : [];
+    let injectedFromFireList = 0;
+    for (const b of fireList) {
+      if (String(b).indexOf("vocabulary.") !== 0) continue;   // grammar comes from the menu
+      if (ctx[b]) continue;
+      const parsed = (typeof LL.parseVocabBucketId === "function") ? LL.parseVocabBucketId(b) : null;
+      const lemma = parsed && parsed.lemma ? parsed.lemma : (String(b).split(".")[2] || "");
+      if (!lemma) continue;
+      let gloss = "";
+      if (Array.isArray(LL.vocabEntries)) {
+        for (const e of LL.vocabEntries) {
+          if (e && String(e.lemma || "").toLowerCase() === lemma.toLowerCase()) { gloss = e.translation_en || ""; break; }
+        }
+      }
+      ctx[b] = {
+        label: lemma + (gloss ? " (" + gloss + ")" : ""),
+        description: (direction === "it_en")
+          ? "Did the learner convey the meaning of " + lemma + "?"
+          : "Did the learner produce " + lemma + " (or an accepted alternative)?"
+      };
+      injectedFromFireList++;
+    }
+
     // For IT→EN items, inject vocabulary recognition buckets based on the
     // source text. The chats authored these items without listing vocab
     // buckets in required_buckets (they assumed vocab was production-only),
@@ -632,7 +700,7 @@
     // that signal. Match each significant word in the source_text against
     // the known vocab list. Conjugated/inflected forms (dirò, vedo, glie)
     // need accent-stripped stem matching, not just exact lemma lookup.  QoderWork 2026-07-22
-    if (direction === "it_en" && Array.isArray(LL.vocabEntries) && LL.vocabEntries.length) {
+    if (direction === "it_en" && !injectedFromFireList && Array.isArray(LL.vocabEntries) && LL.vocabEntries.length) {
       // Inject vocabulary buckets for the SOURCE words, so an it_en answer can
       // be credited for recognition. The items were authored without vocab in
       // required_buckets (the chats assumed vocab was production-only).

@@ -135,6 +135,41 @@
       events,
       timestamp: new Date().toISOString()
     };
+    // r154: the can't-credit reports are the INTAKE for the confirmed set, not
+    // telemetry (Architecture v3, consequence 3: "Everything on the confirmed
+    // list arrives through it or through a seat"). Rendering them and throwing
+    // them away would leave the growth mechanism with nothing to read. They
+    // ride on the attempt, so they reach the sheet with everything else and
+    // satisfy the standing rule that an attempt's whole record is recorded.
+    //
+    // `unambiguous` pre-computes Smith's auto-promotion test - "if it's a simple
+    // word with one derivation, with one clear thing, then there's a chance that
+    // that hits automatically" - so the nightly pass does not have to redo it.
+    // A vocabulary suggestion is unambiguous only when exactly ONE entry in the
+    // corpus carries that lemma. Anything polysemous or POS-split waits for a
+    // person, which is what the mole_noun and class_noun failures taught.
+    if (Array.isArray(result.unattributable) && result.unattributable.length) {
+      attempt.unattributable = result.unattributable.map(function (u) {
+        const out = {
+          evidence: u.evidence || "",
+          what: u.what || "",
+          correct: !!u.correct,
+          suggest: u.suggest || null,
+          unambiguous: false
+        };
+        const m = /^vocabulary\.it\.([^.]+)\./.exec(String(out.suggest || ""));
+        if (m && Array.isArray(LL.vocabEntries)) {
+          const lem = m[1].toLowerCase();
+          let n = 0;
+          for (const e of LL.vocabEntries) {
+            if (e && String(e.lemma || "").toLowerCase() === lem) n++;
+            if (n > 1) break;
+          }
+          out.unambiguous = (n === 1);
+        }
+        return out;
+      });
+    }
     // candidate_tenses metadata (AUTHOR_BRIEF criterion 16, Phase 1; see
     // inter_chat/Architecture_Housing_candidate_tenses_tick.md). Recorded when
     // the item declares its candidate set, to feed per-context discrimination

@@ -1,21 +1,16 @@
 seat: PassatoRemotoAuthor
 classes: [all-seats, all-authors]
 project: Linguics
-updated: 2026-08-03
-waiting: closed            # every thread terminal; nothing owed, nothing blocked
+updated: 2026-08-12
+waiting: parked            # one small flag open to Architecture (trapassato English gloss); everything else closed; not blocked
 needs_from_smith: none
 blocked_by:
-claude_can_verify: yes     # verified from disk this turn: 6 threads closed, 2 estate audits show zero exposure, batch parses
-summary: All work accepted. crit-21 retrofit + false-miss CLOSED/ACCEPTED; volume wave ACCEPTED+STAMPED; 4 grading/level calls ruled status-quo (my recommendations). Batch 68 grammar + 13 translation, live. Nothing owed.
-queue: []                  # empty — derived from name-grep + class-token grep, re-read 2026-08-03, minus discharged
-closed_this_check:
-  - grading_and_level_calls: CLOSED v2 — all four ruled status-quo (dare diede/dette equal; -ei/-etti equal 1.0; hold C1; archaic left out). No item changes.
-  - formation_trigger_retrofit (crit 21, 35 items): CLOSED/ACCEPTED — confirmed by the estate-wide guard-verdict harness (2426 items, 0 new false-credit).
-  - false_miss_packet (partire): CLOSED/ACCEPTED, same harness.
-  - volume_wave (+29 -> 68): ACCEPTED + STAMPED.
-class_token_check_2026-08-03:  # the greps that find rulings binding nobody by name
-  - Brief now Rev 32 (was 28). Reviewed the all-authors register + 2026-08-02 rulings.
-  - ALLAUTHORS no_change_forms proposal: NOT binding (proposal), not routed to me, 0/68 items have answer==cue -> structurally immune (passato remoto conjugates; cue is the infinitive).
-  - dead_vocab_help audit (225 central strips): zero prem_ entries; my vocab_help is the non-defect class (IT infinitive in cue, EN gloss absent from prompt). Retrofit runs centrally regardless.
-  - estate-net leak gate v2: zero prem_/passato_remoto hits.
-  - No all-authors retrofit is open + undischarged for this seat; all such retrofits (13/16/17/18/19/dead-help) run centrally.
+claude_can_verify: yes
+summary: Chat-check 2026-08-12. Clear on both all-authors threads (answer-leak: not named + verified 0 leaks across 68; cue-notation: centrally done). Caught + fixed a 3-item trapassato English-gloss error from the central task-7 retrofit; flagged the friendly-label gap to Architecture.
+queue:
+  - trapassato_english_gloss v1: 3 cues fixed my side; awaiting Architecture to add trapassato_remoto -> "Past anterior" to the candidate-tense label map   [not blocked]
+closed_confirmed_this_check:
+  - answer_leak_dispatch: PassatoRemoto NOT named; re-verified from disk — 0/68 items echo an accepted any_phrase in their own prompt (causes 1/2), 0 supplied markpoints (cause 4).
+  - cue_notation_renders_use_english (all-authors retrofit): passato_remoto not in owing list; task-7 already appended the English tense term to all 64 cues centrally.
+  - grading/level calls, crit-21 retrofit, false-miss, volume wave: all CLOSED/ACCEPTED/STAMPED (headers on 3 threads are stale-OPEN but content is Architecture-closed; not reopened).
+batch: 68 grammar + 13 translation; 1 accent flag (credé); 35 suppress; all anchored; all cues carry English tense term.

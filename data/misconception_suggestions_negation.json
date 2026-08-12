@@ -1,0 +1,56 @@
+{
+  "$note": "MisconceptionAnalyst 2026-08-12: evaluation of NegationAuthor's seven proposed families (their coverage thread v1), reconciled against the 106-registry. I propose canonical forms; Architecture mints; NegationAuthor tags its 19 in one pass. 5 mint cleanly now; 2 are reading-side (gated on the comprehension-arm question); 1 folds to piacere.",
+  "proposals": [
+    {
+      "nounauthor_shape": "discrimination.pleonastic_non_as_negation (5)",
+      "verdict": "MINT under discrimination, but READING-ARM GATED",
+      "id": "discrimination.pleonastic_non_as_negation",
+      "label": "Pleonastic/expletive non read as a real negation",
+      "desc": "Reading the non-negating non of finche non and restrictive non...che as an actual negation (comprehension miss).",
+      "flag": "Reading-side comprehension miss, like modal_aspect_reading and narrative_imperfect_reading. Gated on the open comprehension-arm question (v15). Mint now if the arm is adopted; else park with the deferred comprehension set."
+    },
+    {
+      "nounauthor_shape": "paradigm_confusion.bipartite_particle (3)",
+      "verdict": "MINT AS PROPOSED - clean",
+      "id": "paradigm_confusion.bipartite_particle",
+      "label": "Wrong member of the bipartite negative",
+      "desc": "piu/ancora/mai swapped under non (non fumo ancora for non fumo piu): the no-longer vs not-yet flip. Wrong member of a closed set - textbook paradigm_confusion."
+    },
+    {
+      "nounauthor_shape": "transfer.disjunction_for_correlative_negation (3)",
+      "verdict": "MINT, shorter id",
+      "id": "transfer.disjunction_for_correlative",
+      "label": "o...o (or e) calqued for ne...ne",
+      "desc": "English either...or mapped onto a negated correlative (non bevo o caffe o te for non bevo ne caffe ne te)."
+    },
+    {
+      "nounauthor_shape": "paradigm_confusion.additive_echo_polarity (3)",
+      "verdict": "MINT AS PROPOSED - clean",
+      "id": "paradigm_confusion.additive_echo_polarity",
+      "label": "Additive echo wrong for polarity",
+      "desc": "Anch'io/Anche a me answering a negative that needs neanche: wrong member of the additive-echo set by polarity."
+    },
+    {
+      "nounauthor_shape": "transfer.positive_indefinite_for_negative (2)",
+      "verdict": "MINT, flag family",
+      "id": "transfer.positive_indefinite_for_negative",
+      "label": "Positive indefinite where the negative is required",
+      "desc": "qualcosa/qualcuno where niente/nessuno is required under negation (non voglio qualcosa) - the English 'anything' calque.",
+      "flag": "Driver is transfer (English anything), so transfer fits; but the WORD choice (positive vs negative indefinite) is indefinites' territory per the negation/indefinites carve-out, and could sit as paradigm_confusion (wrong polarity member) with a transfer co-tag. Your call on primary family."
+    },
+    {
+      "nounauthor_shape": "paradigm_confusion.mica_function (2)",
+      "verdict": "RE-HOME to reading-arm (reconcile with #1)",
+      "id": "discrimination.mica_function_misread",
+      "label": "mica's function misread",
+      "desc": "mica taken as forse, or as a forceful denial in a suppositional question: misreading its function, not choosing a wrong member. A comprehension miss, so discrimination (reading-arm), NOT paradigm_confusion.",
+      "flag": "Reading-side, gated on the comprehension-arm question - same gate as pleonastic_non. If the arm is declined, both park."
+    },
+    {
+      "nounauthor_shape": "dative-echo frame (1)",
+      "verdict": "DO NOT MINT negation-side - FOLD",
+      "resolution": "Neanch'io where piacere needs Neanche a me is the piacere agreeing-responses pattern (a-me dative echo). Architecture's lean confirmed. Tag it on the piacere side (paradigm_confusion.clitic_vs_stressed: stressed io/anch'io where the a-me dative is required, OR the piacere bucket's own agreeing-responses). No negation-side mint."
+    }
+  ],
+  "net": "5 new specifics (2 paradigm_confusion, 2 transfer, 1 discrimination-clean) mintable now; 2 reading-side (pleonastic_non, mica) gated on the comprehension arm; 1 folded to piacere. NegationAuthor tags all 19 once the non-gated ones land."
+}

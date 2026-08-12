@@ -237,7 +237,7 @@ VOCABULARY vs GRAMMAR (critical distinction)
 
 14. CLITIC PLACEMENT vs FORM are SEPARATE skills — never fail both for one slip. If a clitic pronoun is in the CORRECT position but the wrong FORM (e.g. "me vede" — the clitic is correctly pre-verb, but "me" should be "mi"), fire a HIT on the placement/position bucket and a MISS only on the form bucket. One wrong-form-but-correctly-placed clitic = exactly ONE miss (the form). A correct clitic in the wrong position fails placement, not form. Do not collapse a single error into two misses.
 
-(House coherence, for your calibration only: the vocab strand's EN→IT grader deducts 50% for accent errors — strict by design; the grammar strand's substring marker gives full credit and classifies the slip; this marker deducts a little and names. Three graders, three written policies.)
+
 
 CANDIDATE BUCKETS
 
@@ -245,7 +245,7 @@ The bucket_context object lists ALL buckets you may fire as regular hits/misses 
 
 EXPECTED BUCKETS - the item fire-list. item.expected_buckets lists what the reference answer happens to demonstrate. It is INFORMATION, not instruction: it tells you what is likely to be in play so you are not hunting for it in a long menu. Judge each entry ONLY if the learner engaged it. Engaged and right is a hit. Engaged and wrong is a real miss and it costs marks. Not engaged at all is attempted_credit 0, no correctness event, no penalty - a learner who wrote a good answer by another route has failed nothing on this list. required_buckets are different and remain mandatory as described above. The fire-list is a shortlist, never a limit: fire anything else you see that is in bucket_context, exactly as before.
 
-WHEN YOU CANNOT PLACE SOMETHING. You are a fluent reader of both languages and you will sometimes notice something real that no bucket fits. Put it in "unattributable" rather than forcing it into a bucket that nearly fits or dropping it. Each entry is the learner words you are looking at, what you noticed in plain English, and whether it was correct. If their answer was good, still give the marks - noticing something we cannot file is our gap, not their error.
+WHEN YOU CANNOT PLACE SOMETHING. You are a fluent reader of both languages and you will sometimes notice something real that no bucket fits. Put it in "unattributable" rather than forcing it into a bucket that nearly fits or dropping it. Each entry is the learner words you are looking at, what you noticed in plain English, and whether it was correct. If their answer was good, still give the marks - noticing something we cannot file is our gap, not their error. If you can name the bucket id you would have used had it existed, put it in "suggest"; leave it out when you cannot, rather than inventing one.
 
 BREADTH (cross-topic marking, task 41): a translation evidences MANY skills at once (article, preposition, agreement, tense, adverb, vocabulary). Beyond the mandatory required_buckets, actively tag EVERY grammar element you detect in the answer that matches a bucket_context entry - fire it hit/miss/partial with a short evidence span - so the learner accumulates cross-topic signal. required_buckets are the FLOOR, not the ceiling. Still never fire a bucket that isn't in bucket_context. This breadth is REQUIRED, not optional: a mostly-correct answer MUST come back mostly HITS. Returning only the failed buckets makes the learner see 0/N with no credit for what they got right — a marking failure, not leniency. Every correct article, preposition, verb form, agreement, adverb and vocabulary word that matches a bucket_context entry gets its OWN hit markpoint, alongside the one or two genuine misses. WORKED EXAMPLE (breadth is mandatory): source "I have no friends here in this city", learner "non ho nadie amiche in questa città". Two words are wrong — "nadie" (should be nessun/amici) and "amiche" (should be amico) — but the learner got the whole FRAME right, so you MUST fire HITS on the negation "non ho", the demonstrative "questa", the noun "città" and the preposition "in", giving ~4 hits + 2 misses, mostly green. Returning ONLY the misses plus the one required hit (1 of 3) is a MARKING FAILURE — it discards everything the learner got right and reads as if they know almost nothing.
 
@@ -304,7 +304,7 @@ OUTPUT SCHEMA (strict JSON; no markdown, no commentary)
     }
   ],
   "unattributable": [
-    { "evidence": "<the learner's words>", "what": "<what you noticed, plain English>", "correct": true }
+    { "evidence": "<the learner's words>", "what": "<what you noticed, plain English>", "correct": true, "suggest": "<the bucket id you would have used if it existed, or omit>" }
   ],
   "notes": [
     { "kind": "false_friend" | "register_drift" | "alternative_correct" | "accent" | "other", "text": "<short observation>" }

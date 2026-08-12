@@ -1,23 +1,24 @@
 seat: ImperfectAuthor
 classes: [all-seats, all-authors]
 project: Linguics
-updated: 2026-07-21
+updated: 2026-08-12
 waiting: parked
 needs_from_smith: none
-summary: Volume wave delivered (+34); two central dispatches reacted (answer_leak, cue_notation) — 3 items fixed. 6 OPEN threads await Architecture stamps.
+summary: are_07 swap-fingerprint bug repaired; regression note taken. 7 OPEN threads await Architecture stamps.
 queue: []
-done_this_sitting:
-  - vol_01_prompt_bug v2: prose fix + 2 answer-leak fixes
-  - false_miss_packet v2: imp_isp_int_03 blank-boundary fix
-  - formation_trigger_retrofit v3: 11 crit-21 chip retrofits + 52 person backfills
-  - volume_formation_wave v1: +34 basic-tier formation items; person-band grid greened; 4/4 gate PASS
-  - answer_leak_dispatch v4 react: imp_form_essere_11 reframed (no more verbatim era echo)
-  - cue_notation v4 react: imp_use_bg_06/08 English-in-parens converted to Italian inline cues
+done_this_check:
+  - imp_form_are_07: dropped 'a piedi' from frame (motion-verb adverbial collision with lavorare); gloss updated; version 1→2
+  - are07_and_wave_regression thread v2 close posted; regression note acknowledged
+prior_sitting:
+  - volume_formation_wave v1: +34 items delivered (crit-17 glosses added centrally by Cr17Sweep)
+  - answer_leak_dispatch v4 react: imp_form_essere_11 reframed
+  - cue_notation v4 react: bg_06 and bg_08 converted to inline cues
+  - vol_01_prompt_bug v2 / false_miss_packet v2 / formation_trigger_retrofit v3 closed on my end
 awaiting_architecture:
+  - are07_and_wave_regression v2 CLOSED stamp
   - vol_01_prompt_bug v2 CLOSED stamp
   - false_miss_packet v2 CLOSED stamp
   - formation_trigger_retrofit v3 CLOSED stamp
   - volume_formation_wave v1 CLOSED stamp + DECISIONS discharge for volume-wave register
-  - answer_leak_dispatch: stamp on imperfect's 1 (react v4)
-  - cue_notation: stamp on imperfect's 2 (react v4)
-  - Cr17Sweep imperfect: already discharged by vol_01_prompt_bug v2; stamp pending
+  - answer_leak_dispatch: v6 owe-list corrected me OFF; residual current-Next mentions of me are stale re-pastes
+  - cue_notation: not in still-owed list; discharge implied

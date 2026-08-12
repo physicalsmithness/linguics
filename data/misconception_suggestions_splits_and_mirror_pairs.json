@@ -1,0 +1,161 @@
+{
+  "$note": "MisconceptionAnalyst 2026-08-12: executes the four direction-merged splits ruled at harvest v21, and marks ALL mirror_of pairs (existing over/under + the new splits). I PROPOSE canonical ids; Architecture mints. Two splits are clean 2-way; modal + counterfactual carry flagged judgment calls.",
+  "splits": [
+    {
+      "retire": "discrimination.future_present_mismatch",
+      "into": [
+        {
+          "id": "discrimination.present_for_future",
+          "label": "Present used where the future is required",
+          "desc": "Present chosen for a distant, uncertain or probabilistic future the morphological future owns.",
+          "bucket": "tense_choice.future_vs_present.future_for_unambiguous_future",
+          "mirror_of": "discrimination.future_for_present"
+        },
+        {
+          "id": "discrimination.future_for_present",
+          "label": "Future over-applied where a present-for-future is natural",
+          "desc": "Morphological future used where Italian's present-for-near-future is idiomatic.",
+          "bucket": "tense_choice.future_vs_present.present_for_near_future",
+          "mirror_of": "discrimination.present_for_future"
+        }
+      ],
+      "note": "Clean 2-way; the two tense_choice buckets ARE the two directions."
+    },
+    {
+      "retire": "discrimination.trapassato_imperfect_choice",
+      "into": [
+        {
+          "id": "discrimination.imperfect_for_trapassato",
+          "label": "Imperfect used for a completed prior-to-prior event",
+          "desc": "mangiava for 'had eaten': imperfect where the trapassato's completed-anteriority is required.",
+          "bucket": "tense_choice.trapassato_vs_imperfect.completed_prior_to_prior",
+          "mirror_of": "discrimination.trapassato_for_imperfect"
+        },
+        {
+          "id": "discrimination.trapassato_for_imperfect",
+          "label": "Trapassato used for an ongoing background state",
+          "desc": "avevo mangiato quando sei entrato read as finished where an ongoing state was meant.",
+          "bucket": "tense_choice.trapassato_vs_imperfect.ongoing_background",
+          "mirror_of": "discrimination.imperfect_for_trapassato"
+        }
+      ],
+      "note": "Clean 2-way."
+    },
+    {
+      "retire": "discrimination.modal_stative_aspect",
+      "into": [
+        {
+          "id": "discrimination.modal_aspect_prod_imperfect_for_event",
+          "label": "Modal/stative: imperfect where the bounded-event pp is meant",
+          "desc": "Production side (sapere/potere): sapevo for seppi 'found out', potevo for potei 'managed'.",
+          "bucket": "verb_form.imperfect.discrimination.modals.sapere/potere",
+          "mirror_of": "discrimination.modal_aspect_prod_event_for_state"
+        },
+        {
+          "id": "discrimination.modal_aspect_prod_event_for_state",
+          "label": "Modal/stative: pp where the ongoing-state imperfect is meant",
+          "desc": "Production side, the reverse: the bounded pp where the ongoing ability/state imperfect was intended.",
+          "bucket": "verb_form.imperfect.discrimination.modals.*",
+          "mirror_of": "discrimination.modal_aspect_prod_imperfect_for_event"
+        },
+        {
+          "id": "discrimination.modal_aspect_reading",
+          "label": "Modal/stative aspect misread (comprehension)",
+          "desc": "Reading side (conoscere/volere/usage.polite): translating pp conoscere as 'knew' not 'met'; missing volli 'insisted' vs volevo; the polite-imperfect reading. Direction-neutral by design (a comprehension miss).",
+          "bucket": "verb_form.imperfect.discrimination.modals.conoscere/volere + usage.polite",
+          "mirror_of": null,
+          "FLAG": "READING-SIDE: gated on the open comprehension-arm question (v15). If the reading arm is declined, this half stays untagged like the other 16 deferred comprehension entries."
+        }
+      ],
+      "note": "Split TWICE per doctrine: production (bidirectional -> a mirror pair) vs reading (one, comprehension-gated). The messiest of the four; Architecture may collapse the production pair if live data doesn't separate the directions."
+    },
+    {
+      "retire": "discrimination.counterfactual_construction",
+      "into": [
+        {
+          "id": "discrimination.counterfactual_realis_for_irrealis",
+          "label": "Real-condition pattern used for a counterfactual",
+          "desc": "present indicative + future ('se ho tempo, verro') where the counterfactual imperfect-subjunctive + conditional is required. The genuine production error.",
+          "bucket": "tense_choice.conditional_vs_imperfect_counterfactual.prescriptive_conditional",
+          "mirror_of": null
+        }
+      ],
+      "note": "Only ONE real specific. The other half (colloquial double-imperfect counterfactual, bucket colloquial_imperfect) is ACCEPTED variation in speech, NOT a learner error - same shape as NegationAuthor's neg_corr_06 that Architecture declined to guard. Do NOT mint it as a misconception; if the pattern matters it surfaces via the surface-lens over GRADED slips, not a misconception id. So counterfactual 'splits' into 1 error + 1 non-error."
+    }
+  ],
+  "mirror_of_pairs_to_mark": {
+    "$note": "Write mirror_of on each side. Symmetry-enforced per the ratified rule.",
+    "existing_clean_pairs": [
+      [
+        "stem_change.isc_over_extension",
+        "stem_change.isc_under_application"
+      ],
+      [
+        "stem_change.g_over_extension",
+        "stem_change.g_under_application"
+      ],
+      [
+        "stem_change.dittongo_over_extension",
+        "stem_change.dittongo_under_application"
+      ],
+      [
+        "stem_change.future_syncope_over_extension",
+        "stem_change.future_syncope_under_application"
+      ],
+      [
+        "conjugation_class.ano_for_ono",
+        "conjugation_class.ono_for_ano"
+      ],
+      [
+        "auxiliary_choice.avere_for_essere",
+        "auxiliary_choice.essere_for_avere"
+      ],
+      [
+        "discrimination.pp_for_imperfect",
+        "discrimination.imperfect_for_pp"
+      ],
+      [
+        "discrimination.progressive_overuse",
+        "discrimination.progressive_underuse"
+      ],
+      [
+        "discrimination.perfect_for_durative_da",
+        "discrimination.durative_present_over_extension"
+      ],
+      [
+        "transfer.negative_imperative_finite",
+        "transfer.negative_imperative_infinitive_over_extension"
+      ]
+    ],
+    "pairs_to_confirm_semantically": [
+      {
+        "pair": [
+          "discrimination.no_backshift_over_extension",
+          "discrimination.sequence_of_tenses"
+        ],
+        "note": "no-backshift (over-applies backshift after a present reporter) is the mirror of sequence_of_tenses (fails to backshift after a past reporter). Confirm you want these paired."
+      },
+      {
+        "pair": [
+          "agreement.participle_preceding_dop",
+          "agreement.participle_overagreement"
+        ],
+        "note": "fails-to-agree-with-preceding-DOP vs over-agrees-when-no-DOP: the over/under of avere-participle agreement. Semantic mirror; confirm."
+      }
+    ],
+    "new_pairs_from_splits": [
+      [
+        "discrimination.present_for_future",
+        "discrimination.future_for_present"
+      ],
+      [
+        "discrimination.imperfect_for_trapassato",
+        "discrimination.trapassato_for_imperfect"
+      ],
+      [
+        "discrimination.modal_aspect_prod_imperfect_for_event",
+        "discrimination.modal_aspect_prod_event_for_state"
+      ]
+    ]
+  }
+}

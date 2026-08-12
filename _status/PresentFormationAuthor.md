@@ -1,17 +1,19 @@
 seat: PresentFormationAuthor
 classes: [all-seats, all-authors]
 project: Linguics
-updated: 2026-07-21
+updated: 2026-08-12
 waiting: parked
-needs_from_smith: none
+needs_from_smith: decision
 blocked_by:
 claude_can_verify: yes
-summary: Volume dispatch COMPLETE for present_indicative - 3 waves, formation 91->168 (1.85x), every person-band populated + orthographic hypercorrection catchers. Wave 1 accepted; waves 2/3 awaiting the central harness. Nothing owed to Smith.
+summary: Wake self-check (6 surfaces + class tokens, brief now Rev 33). Nothing owed - all all-authors retrofits discharged/standing/other-seats; my items anchored, glossed, person-tagged, crit-21 clean; lr vocab stems are Rev-33 EXEMPT so the estate-net TIER C flags are not-to-fix. Pilot fully UNBLOCKED (help r90 + credit-only engine r117 shipped) and its prompts were cleaned centrally. One open decision for Smith.
 queue:
-  - VOLUME WAVE (approved) COMPLETE: waves 1(accepted)/2/3 delivered, 168 formation items. Awaiting
-    Architecture harness on waves 2-3. [inter_chat/Architecture_PresentFormationAuthor_volume_wave.md v4]
-  - lemma-retrieval pilot: parallel strand, blocked on Housing (loud help + credit-only formation engine
-    mandate; Smith's vocab-ping confirmation recorded). Smith A/B fork still open, low priority.
-  - FLAGGED to Architecture (not mine to implement): Smith's spelling-asymmetry - orthography buckets
-    should be miss-weighted (correct spelling shouldn't inflate mastery). Bucket-semantics/Housing call.
-  - all retrofit stamps CLOSED. Nothing owed.
+  - DECISION (Smith): the pilot's "convert existing formation items to the retrieval shape" (approved
+    2026-07-21) is now UNBLOCKED (engine live r117, help r90). But it's in tension with the volume
+    dispatch's fast-standard fluency intent (168 items delivered + accepted in standard shape). Do you
+    want the existing items converted to retrieval, or keep them fast-standard with retrieval as the
+    richer parallel/new-items strand? [inter_chat/Architecture_PresentFormationAuthor_lemma_retrieval_pilot.md]
+  - NOTHING else owed. Verified against Rev 33 binding register: crit 13/16/18/19/20 discharged centrally
+    or other-seats; crit 17 done (Cr17Sweep); crit 21 done (CLOSED); Rev 29-33 are standing (new items) or
+    name other seats. lr vocab stems Rev-33-exempt. person set on all finite items.
+  - volume dispatch COMPLETE (91->168, 1.85x); wave 1 accepted, waves 2/3 awaiting harness (not blocked).

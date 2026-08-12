@@ -1,22 +1,22 @@
 seat: PassatoAuthor
 classes: [all-seats, all-authors]   # reasoning: this seat originates grammar and translation items — markpoints, must_not_include guards, prompts, item explanations, vocab_help. That is what all-authors is defined as. Criteria 13-20 all reach me. Architect to ratify.
 project: Linguics
-updated: 2026-07-21
+updated: 2026-08-12
 waiting: parked
 needs_from_smith: none
 blocked_by:
 claude_can_verify:
-summary: Volume-formation wave delivered (32 new items → 135 total). Person×class grid now at 2-for-green floor on all 18 cells. Four threads awaiting Architecture stamps.
+summary: Slot-count v4 central retrofit verified (agreement leaves consolidated, subtopic preserved, match_at:word universal); 11 person backfills applied. 135 items total, 0 missing person. Five threads awaiting Architecture stamps.
 queue:
+  - Architecture_PassatoAuthor_slot_count_collapse v5 — verify + 11 backfills done, ack requested [Next: Architecture]
   - Architecture_PassatoAuthor_volume_wave v1 — stamp crit-21 register + dispatch delivery [Next: Architecture]
   - Architecture_PassatoAuthor_formation_trigger_retrofit v3 — stamp crit-21 register row [Next: Architecture]
   - Architecture_PassatoAuthor_criteria_13_17_discharge v2 — stamp crit-17 (crit-13 line withdrawn) [Next: Architecture]
   - Architecture_PassatoAuthor_status_file_misfiled v1 — informational, close on read [Next: Architecture]
 notes:
-  - 2026-07-21 volume wave: 27 regular formation items (all 3 classes × 6 persons at 2/cell) + 5 irregular formation items on top-HF verbs (fare, dire, essere_stato, venire, prendere). Every new item complies with dispatch's 7 quality gates (crit 18, 21, 13, 20, Rev 29/30, person, Rev 27 cross-credit); imperfetto competitor guards verified against replica.
-  - 2026-07-21 crit-21 retrofit: 22 items reframed (21 cue-name mechanism (a), 1 frame rework on pp_reg_ere_04 — Smith's live type case).
-  - 2026-07-21 person backfill: 70 items got the field set.
-  - Same day: 2026-07-15 rev-5/8/9/13/15 catch-up (documented in coverage doc under brief-revision entries).
-  - Irregular residual flagged, not authored: 10 verbs (aprire, bere, chiudere, leggere, mettere, morire, nascere, scrivere, vedere; also dire/fare have 2 bands but many empty) still at 1 person-band. ~10 more items would round them out if Architecture calls it.
-  - Optional pending: imperfetto attribution guards on the 22 retrofit items (crit-21 rider 2). The 32 wave items already carry them; the 22 retrofits kept the earlier lighter guards. Say if worth back-fitting.
-  - Prior closed threads: prompt_leak (v2), slot_count_collapse (v3), nul_attribution (v2). Historical Housing mention in atomic_write_nul_padding CLOSED.
+  - 2026-08-12 slot-count v5: Architecture ran a central agreement-bucket consolidation on my file 2026-08-03 (16 markpoint re-points + 33 primary slots); verified cold from disk, no inconsistencies. 11 person backfills applied (7 × 3pl mixed-gender/plural essere frames, 2 × 1sg preceding-DOP-la Q&A pairs, 2 × 1sg adverb-placement pinned by "masc sg" parenthetical).
+  - Estate-wide person completeness on PP: 125 items with 1sg..3pl, 10 null (form-only fragments), 0 missing.
+  - All 3 recent ALLAUTHORS threads scanned (answer_leak_dispatch, cue_notation_renders_use_english, item_shape_no_change_forms). No PP items named in any of them; nothing owed on this seat from the class-token retrofit lists.
+  - Prior work still open at Architecture-side: crit-21 formation-trigger retrofit v3 (2026-07-21), crit-17 discharge v2, volume-wave v1, status-file-misfiled v1. All Next: Architecture.
+  - Prior closed threads: prompt_leak (v2), nul_attribution (v2). Historical Housing mention in atomic_write_nul_padding CLOSED.
+  - Batch state: 135 grammar + 50 translation items. Person×class formation grid at 2-for-green floor across all 18 cells; 5 top-HF irregulars have a second person-band; 10 lower-HF irregulars still at one band each (flagged not owed).

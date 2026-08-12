@@ -3038,3 +3038,32 @@ things.
 deriver does that) but **learner answer to `expect_fire` + `expect_absent`**, because the observed
 failures are false positives — an invented accent, a gender fired on the wrong entry — as often as
 misses.
+
+
+## The fire-list is EARNED, not predicted — my §5.1 reversed by Smith (2026-08-11)
+
+I found that 2,812 `expected_buckets` entries are forbidden by the prompt's own rule and ruled: widen
+what may fire (add 1,800 spelling classes to the menu, extend the vocabulary exception to it_en).
+**Smith took the other branch and he is right.** *"We don't want to be sending thousands of things. We
+send whatever has been fired before… whatever has been confirmed as having been suggested by the
+nightly one… If it's a simple word with one derivation, with one clear thing, there's a chance that
+hits automatically. Otherwise, so what? We fix it, and it gets better."*
+
+**Ruled: the fire-list is the CONFIRMED set** — entries that have actually fired, or that the nightly
+harvest has confirmed — **not a prediction of everything a reference answer demonstrates.** It starts
+small and grows from what happens.
+
+Mine was backwards: it enlarged the fireable surface to justify a guess. His list can never hold an
+unfireable entry, because everything on it arrived **by firing**. The contradiction does not get
+resolved; it disappears.
+
+**Corrections to work already done.** (1) §5.1's two changes withdrawn — do NOT add
+`orthography.spelling.*` to the menu, do NOT extend the vocabulary exception; instead **stop deriving
+the class that cannot fire** (1,800 spelling + 1,012 it_en vocabulary entries come out). (2) The
+derived tier-1/tier-2 sets are a **seed, not the list** — the 26 review packets stand, because a seat
+confirming a bucket IS a confirmation and is the fastest seeding route; what changes is that
+unreviewed entries wait rather than being sent. (3) The can't-credit channel is the **intake
+mechanism**, not telemetry as v24 §5 had it. (4) **Auto-promotion when unambiguous** — a single lemma,
+single POS, single sense may promote without review; anything polysemous or homographic waits, which
+is the test `mole_noun` and `class_noun` already taught us. (5) The tolerance is explicit: a miss is a
+day's data, not a defect to design out in advance.

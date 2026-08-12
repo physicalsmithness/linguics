@@ -106,6 +106,18 @@ All three keep `wrong_answer_is_form_error_only: true`, now honest. Criterion-17
 
 **Smith review, 2026-07-20.** Two refinements after Smith read the reworked items in chat: (1) `tpp_es_sorelle_partite_01` was reframed again to a discovery frame ("Ho scoperto che le mie sorelle erano partite per Roma il giorno prima." / "I found out that my sisters had left for Rome the day before."), because the previous "when I looked for them at home" read oddly in English. (2) `tpp_av_lui_02`'s cue now names the tense in English as well as Italian, "(credere, trapassato prossimo / pluperfect)", because prompts are not glossary-wrapped (criterion 12), so an Italian-only tense name in a cue is opaque to a learner who knows the tense as the pluperfect. Marking re-simulated unchanged. The general policy point (English tense names in cues, estate-wide) is raised for Architecture in `inter_chat/Architecture_PluperfectAuthor_cue_tense_language.md`.
 
+## Answer-leak reframe (2026-08-12, PluperfectAuthor)
+
+The rebuilt estate-net gate (`AUDIT_estate_net_gate_v2_2026-08-02.txt`) flagged 5 essere items under section 2 of `inter_chat/Architecture_ALLAUTHORS_answer_leak_dispatch.md`: the answer's auxiliary (`era` / `erano` / `eravamo`) sat verbatim in the sentence frame, so a learner could copy half the answer off the screen for a free aux mark. Fixed by **reframing** each frame to drop the echo (Architecture's recommendation over the 22-July merge proposal, which would have destroyed the aux/participle diagnostic split and the avere-for-essere guards):
+
+- `tpp_es_lui_andato_01`: "Quando sono arrivato, Marco non c'era più" → "Al mio arrivo, non ho trovato Marco".
+- `tpp_es_noi_venuti_01`: "eravamo stanchi" → "avevamo molta fame".
+- `tpp_es_loro_uscite_01`: "Le ragazze non c'erano" → "Ho bussato a lungo, ma le ragazze non hanno risposto".
+- `tpp_es_caduto_01`: "C'era acqua per terra" → "Ho visto dell'acqua per terra".
+- `tpp_es_entrato_01`: "La casa era silenziosa" → "La casa sembrava vuota".
+
+Verified: no accepted `any_phrase` token appears in any of the five frames; both markpoints retained on every item; the trapassato is still forced (each keeps a past reference point the completed action precedes); crit-17 glosses rewritten; crit-19 stays N/A; marking re-simulated unchanged (5 × 2/2). Awaiting Architecture's section-2 stamp.
+
 ## Suggestions
 
 - **bucket_suggestions:** none. The two formation leaves were sufficient; nothing needed a new bucket. (Empty array shipped.)

@@ -408,3 +408,19 @@ Two central-audit dispatches touched imperfect items; both reacted in the same s
 - Marks/credit mismatches: 0
 - Items with version 2: 3 (imp_form_essere_11, imp_use_bg_06, imp_use_bg_08)
 - Dispatches with imperfect reacts landed: answer_leak_dispatch v4, cue_notation_renders_use_english v4
+
+
+---
+
+## Update 2026-08-12: are_07 repair (post-sweep bug catch)
+
+Cr17Sweep caught a swap-fingerprint bug on `imp_form_are_07` — the frame `Quando abitava in centro, mio padre ____ in ufficio a piedi` combined lavorare (worked) with `a piedi` (a motion-verb adverbial). Repaired per Architecture's option 1 (drop `a piedi`):
+
+- OLD: `Quando abitava in centro, mio padre ____ in ufficio a piedi.`
+- NEW: `Quando abitava in centro, mio padre ____ in ufficio.`
+
+Gloss line also updated (`worked in an office`). Answer unchanged; marker replica clean. Version 1 → 2.
+
+**Regression note:** the +34 volume wave shipped with no criterion-17 glosses (bare-gloss); Cr17Sweep added them centrally with zero marking delta. Root cause was that my authoring replica did not include a crit-17 gate — I read the dispatch's rail list (which didn't name crit-17) rather than re-reading the brief. Fixed on my end: brief-reread before authoring is now the standing pre-wave step.
+
+**State after fix:** grammar 152 items (unchanged), 0 marks/credit mismatches, 4 items now version 2 (imp_form_essere_11, imp_use_bg_06, imp_use_bg_08, imp_form_are_07). All 34 wave items carry crit-17 gloss on disk (via sweep).

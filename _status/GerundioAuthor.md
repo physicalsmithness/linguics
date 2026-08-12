@@ -1,17 +1,19 @@
 seat: GerundioAuthor
-classes: [all-seats, all-authors]
-# I ORIGINATE grammar+translation items -> all-authors. Awaiting architect ratification (selfcheck thread).
+classes: [all-seats, all-authors]   # ratified by Architecture 2026-07-21
 project: Linguics
-updated: 2026-07-19
+updated: 2026-08-03
 waiting: closed
 needs_from_smith: none
 blocked_by:
 claude_can_verify: yes
-summary: Nothing owed. Both branches ACCEPTED. Usage delivery accepted+merged 2026-07-19 (gerundio now 51+26; my 16+12 folded in, 2 leaves minted+destubbed, glossary v9, dual-cite verified on disk post-merge). Formation accepted earlier; flag retrofit 21->12 stamped. Only open thread is Architecture's turn.
+summary: Nothing owed. Both branches delivered, accepted, merged; both my threads CLOSED and fully stamped. Self-check across the six surfaces + class tokens (all-authors/all-seats) at brief Rev 33 = no undischarged retrofit reaches gerundio.
 queue:
   - nothing owed
-awaiting_architecture:            # their turn (Next: Architecture), not mine
-  - selfcheck_discharge: porre/tradurre B1 cue ruling under Rev 25 (explicitly still owed per usage thread v2); criterion 13 stamp; ratify classes [all-seats, all-authors]
-accepted:
-  - usage branch (adverbial gerund): 16 grammar + 12 translation, 2 leaves, thread CLOSED v2, DECISIONS-stamped
-  - formation branch: 35 grammar + 14 translation, thread CLOSED v3, flags 21->12 stamped
+selfcheck_2026-08-03:
+  - Both threads CLOSED+stamped — usage_delivery (v2, accepted, merged; gerundio now 51+26) and selfcheck_discharge (v2 2026-07-21: 21->12, crit-13, Rev-25(a) porre/tradurre, classes all stamped)
+  - Rev 28 (crit-21 formation-forces-target): gerundio explicitly CLEAN in the central audit (prompts structurally pin the target) — n/a
+  - Rev 29/30/31/32 (crit 20/13 gloss/invariable/supplied-choice/tense-naming): standing or exemptions; my cues are transformable infinitive operands, no invariable-word or tense-named cues — n/a
+  - Rev 33(1) lr-anchoring exemption: no *_lr_* items — n/a
+  - Rev 33(2) common_errors spec: my 12 items carry the central-migration {text,note} shape (uniform across all 30 topics). Reshape to {surface,gloss} is CENTRAL and explicitly "do not hand-apply" (Architecture_PossessiveAuthor_schema_currency CLOSED 2026-08-03) — NOT my task
+  - Rev 33(3) person field: all 51 gerundio items null; defensible by-right (non-finite topic; progressive's stare-person owned by stare's tense tree). Central migration output — no action
+  - Rev 33(4) ITEM_SHAPE_no_change_forms: standing; usage items are construction/transform blanks, not copy-invariant — compliant

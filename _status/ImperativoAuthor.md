@@ -1,18 +1,17 @@
 seat: ImperativoAuthor
 classes: [all-seats, all-authors]
 project: Linguics
-updated: 2026-08-03
-waiting: parked
+updated: 2026-08-12
+waiting: closed
 needs_from_smith: none
 blocked_by:
-claude_can_verify: yes - all 69 items on disk; 0 no-change faults, 0 english-in-parens, marks intact
-summary: Reacted+complied on the item-shape (no-change) dispatch - 8 impersonal-infinitive items reshaped to instrument A (English [bracket] gloss, Italian answer-cue removed), extended from the gate's 6 to all 8 for uniformity. All other new estate work checked and not-owed.
+claude_can_verify: yes - 69 items on disk; person 69/69, crit17 69/69, guard tags canonical, marks intact
+summary: Nothing owed. item-shape 6->8 extension RATIFIED (thread v8). All ALLAUTHORS threads either ratified for me, count-zero, or name other seats. No imperativo tier-2 packet. Rev 33 adds nothing owed (person already set; common_errors optional).
 queue:
   - none
-awaiting_architecture:
-  - Item-shape react: confirm the 6->8 uniformity extension; author candidate_forms on surviving classes   [Architecture_ALLAUTHORS_item_shape_no_change_forms.md, Next names AdjectiveAuthor/AdverbAuthor/DemonstrativeAuthor]
-checked_not_owed:
-  - answer_leak_dispatch: names 9 seats, imperativo not among them
-  - cue_notation_renders_use_english (all-authors): imperativo 0 english-in-parens, verified on merged file
-  - Rev 29-32: refinements, no imperativo retrofit (Rev 30 reinforces the english-gloss choice)
-  - person backfill (28) + discharges (4 clauses) + wave-2 delivery: all CLOSED/stamped/accepted
+closed_since_last:
+  - item_shape_no_change_forms: my 8-instrument-A conversion RATIFIED (v8, 2026-08-03)
+standing_compliance:
+  - Rev 33(3) person on new items - all 69 carry it
+  - Rev 33(2) common_errors - optional display field, not added (guard-side misconception tags already canonical)
+  - Rev 33(1) lr-anchoring exemption - no _lr_ items in this topic

@@ -3,12 +3,12 @@ classes: [all-seats, all-authors]
 project: Linguics
 updated: 2026-08-12
 waiting: parked
-needs_from_smith: decision
+needs_from_smith: none
 blocked_by: none
 claude_can_verify: yes — edits verified on disk (validator clean, marker replica 128/128)
-summary: Checked chat. Reworked the 3 apostrophe-fold false-credit items (art_iform_12/13/14) to index-scored MCQ per Architecture's recommendation — un' now graded, the fold can no longer credit "un amica". Flagged the MIRROR case (art_iform_03/04, masculine un, credits the spurious-apostrophe "un'amico") for an A/B ruling. crit-16 discrimination_candidate_forms was ruled A and closed, matching what I'd applied. No other article obligation from Rev 29-33 or the two ALLAUTHORS threads.
+summary: (2026-08-12, Smith routed the art_iform_03/04 A/B to Architecture — not awaiting me or Smith.) Checked chat. Reworked the 3 apostrophe-fold false-credit items (art_iform_12/13/14) to index-scored MCQ per Architecture's recommendation — un' now graded, the fold can no longer credit "un amica". Flagged the MIRROR case (art_iform_03/04, masculine un, credits the spurious-apostrophe "un'amico") for an A/B ruling. crit-16 discrimination_candidate_forms was ruled A and closed, matching what I'd applied. No other article obligation from Rev 29-33 or the two ALLAUTHORS threads.
 queue:
-  - (awaiting Architecture/Smith) ratify art_iform_12/13/14 MCQ rework + rule A/B on art_iform_03/04 mirror exposure -> Architecture_ArticleAuthor_apostrophe_fold_false_credit v2. Rec = A (convert). One pass to apply.
+  - (awaiting Architecture) ratify art_iform_12/13/14 MCQ rework + rule A/B on art_iform_03/04 (Smith routed this to Architecture 2026-08-12). Rec = A (convert). One pass to apply on their word. -> apostrophe_fold_false_credit v2
 done_this_pass:
   - art_iform_12/13/14 -> index-scored MCQ [un,un',uno,una], answer un' rotated, answer_shown_by_design mcq_choices, slot un' kept, version bumped; validator clean, replica 128/128
   - crit-16 art_disc_05 candidate_forms ratified (discrimination_candidate_forms ruled A + closed)

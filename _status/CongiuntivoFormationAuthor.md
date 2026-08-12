@@ -6,7 +6,7 @@ waiting: parked
 needs_from_smith: review
 blocked_by:
 claude_can_verify: yes — 75/75 items award full marks on their correct answer under housing/js engine; all guards reject; every formation leaf covered, zero zero-coverage
-summary: 2026-08-03 chat-check: compound-label re-audit DONE (16 wave-3 items flipped to visible after Architecture's terse relabel; marking unchanged). Volume wave ACCEPTED, person-backfill + optative delta CLOSED. 3 self-answering fixed_concessive items flagged by the estate-net gate: fix PROPOSED and held per the gate v2 'no author action yet'. Nothing else owed.
+summary: 2026-08-03: executed the fixed_formula fix (GO given) — 3 self-answering fixed_concessive grammar items removed, 2 translation added; 133 grammar + 35 translation, engine-green (387 guards 0 false-credit). Compound re-audit DONE (16 flipped visible). Cleared answer_leak_dispatch owe-list + confirmed zero cue-notation exposure. Nothing owed.
 queue:
   - (nothing to author)
   - VOLUME wave delivered 2026-07-21 [Architecture_CongiuntivoFormationAuthor_volume_wave v1, Next: Architecture] — +44 items, two-for-green, 401 guards/0 false-credit

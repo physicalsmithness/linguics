@@ -1,23 +1,23 @@
 seat: MisconceptionAnalyst
 classes: [all-seats]
 project: Linguics
-updated: 2026-07-27 (v19 — un-stuck; big fold done)
-editor: Claude 2026-07-27
-waiting: COMPLETE + HEALTHY (v22 registry-health audit clean: 103/106 used, 0 defects). Standing residual = Architecture rulings only.
-needs_from_smith: nothing
-blocked_by: nothing (the 'block' was stale — extension was already ratified)
-claude_can_verify: yes — all counts are greps
-summary: v21 QA of the LIVE applied tags found 21 non-registry pseudo-ids firing ~30,500x (stress-drill confusion-matrix cells + accent-drill event-contract, all in the choice_tags misconception field) - would swamp the drill-down (top real id has 73 events vs piana_as_tronca 10,058). Flagged to Architecture for a namespace ruling (misconception field = registry ids only; matrix cells are descriptors, per my gender-drill ruling). Earlier v20 - QA'd the merge (394 buckets, 0 dups/bad) + coverage analysis (392/466 cited covered) + harvested the last untouched topic (interrogatives -> 35 topics/399 buckets). Residual = 4 small Architecture calls. Earlier: CORRECTION of my own stale v17/v18: the pass-1 extension was already ratified (registry now 18 families / 106 specifics). Did the fold that was 'blocked': merged 183 pass-2 entries into misconception_tag_lists.json (34 topics / 394 buckets, all ids valid); updated misconception_lenses.json to 9 lenses (added word_building; choosing_the_right_form gained the ratified preposition/relative/connective choices). Phase-3 tag-list is now substantially complete estate-wide.
-queue:
-  - (none active). Fold future rulings as they land.
-residue_for_architecture (small, v20):
-  1. 16 comprehension-DEFERRED tag entries - gated on v15 reading-arm question.
-  2. Capitalisation direction (courtesy-under-cap La) - 1-line home or fold.
-  3. Mint discrimination.adjective_position_meaning (4 entries).
-  4. Mint paradigm_confusion.interrogative_choice (misconception_suggestions_interrogatives.json).
-  5. v21 NAMESPACE RULING: stress/accent drills write ~30.5k non-registry confusion-cell pseudo-ids into the misconception field; move them to a descriptor (pref) or mint a matrix-only namespace. Accent accent.* also needs reconciling to accent_silent_letter.*/orthography.accent.*.
-  - Elsewhere: mirror_of (reporting_prisms), MCQ choice_tags schema (Housing).
-lesson:
-  - I asserted a stale blocker across v17+v18 by trusting a 4-day-old summary + a specifics COUNT without checking WHICH ids. Caught it via the family-description audit. Re-verify ids-on-disk before asserting registry state, including against my own prior claims.
-delivered_live:
-  - misconception_tag_lists.json (34/394), misconception_lenses.json (9 lenses), canvas catalogue, bespoke grid specs, mirror_of proposal, noun addendum.
+updated: 2026-08-12 (v24: executed the splits/pairs/negation queue)
+editor: Claude
+waiting: parked - Architecture to mint from the two proposal files
+needs_from_smith: nothing (the comprehension-arm question is worth a ruling - it gates 3 items)
+blocked_by: Architecture (mint the splits + mirror pairs + 5 negation specifics)
+claude_can_verify: yes
+summary: Checked chats, found + worked 4 live Next:me items (harvest v24). Executed the four direction-merged SPLITS (2 clean 2-way, modal->3 incl a reading-arm one, counterfactual->1 real + 1 non-error), marked ALL mirror_of pairs (10 existing + 3 new + 2 to-confirm), evaluated NegationAuthor's SEVEN (5 mint now / 2 reading-arm-gated / 1 fold to piacere), and the v23 items (adverb_vs_adjective confirmed; quantifier inverse; interrogatives). Two proposal files for Architecture to mint from.
+deliverables_this_pass:
+  - data/misconception_suggestions_splits_and_mirror_pairs.json
+  - data/misconception_suggestions_negation.json
+  - replies: harvest v24, NegationAuthor coverage thread
+queue (mine, next):
+  - selection_policy §9 friendly labels: curate learner-facing labels for the 106 specifics + 9 lenses for the weakness panel. NOT blocking; take next.
+  - gender surface-lens (gender_plural_drill v6): light confirm; the live open items are Vocab's (class 5/7 on uovo/dito), agreement lens already covers gender.
+with_architecture:
+  - mint the splits + mirror pairs (2 pairs need semantic confirm: no_backshift<->sequence_of_tenses; participle_preceding_dop<->participle_overagreement) -> then Housing builds B6.
+  - mint the 5 clean negation specifics; rule positive_indefinite family (transfer vs paradigm).
+  - THE PIVOT: rule the comprehension-arm question (v15) - gates modal_aspect_reading + pleonastic_non + mica_function; one ruling frees all three.
+  - tiny: invariable_noun merge candidate (v22/v23); interrogative_choice + adjective_position_meaning mints; caps direction.
+  - phantom-id fix ruled option (a) registry-pure (v22) - Housing/stress/accent execute.

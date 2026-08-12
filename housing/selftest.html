@@ -56,12 +56,12 @@
 <div id="summary">Loading content…</div>
 <div id="out"></div>
 
-<script src="js/norm.js?v=2026-08-12-r153"></script>
-<script src="js/store.js?v=2026-08-12-r153"></script>
-<script src="js/engine_axes.js?v=2026-08-12-r153"></script>
-<script src="js/grammar_engine.js?v=2026-08-12-r153"></script>
-<script src="js/translation_stub.js?v=2026-08-12-r153"></script>
-<script src="js/translation_marker.js?v=2026-08-12-r153"></script>
+<script src="js/norm.js?v=2026-08-12-r155"></script>
+<script src="js/store.js?v=2026-08-12-r155"></script>
+<script src="js/engine_axes.js?v=2026-08-12-r155"></script>
+<script src="js/grammar_engine.js?v=2026-08-12-r155"></script>
+<script src="js/translation_stub.js?v=2026-08-12-r155"></script>
+<script src="js/translation_marker.js?v=2026-08-12-r155"></script>
 <script>
 (function () {
   "use strict";
@@ -416,6 +416,26 @@
       "'il caldo' on a caldo card is the answer, not a different word - the diff already covers it. The suppression compares stripped-to-stripped, or the line would tell the learner their own correct answer means what it means",
       () => /bare === ix\.norm\(ix\.stripArticle/.test(appText)
         ? true : "the suppression is not article-aware");
+
+    // ------------- the confirmed fire-list (r154)
+    const g4m = group("The fire-list only carries what can actually fire"); groups.push(g4m);
+    T(g4m, "unfireable expected_buckets are stripped before the call",
+      "Architecture found ~2,812 entries that were simultaneously 'judge this' and 'you must not fire this' - 1,800 orthography.spelling ids absent from the 581-id menu, and 1,012 it_en vocabulary ids outside the en_it-only exception. A model handed a contradictory shortlist resolves it differently run to run, which is a live candidate for the erratic marking this whole plan exists to fix. Smith's model: send only what has been confirmed",
+      async () => {
+        let tm = "";
+        try { const r = await fetch("js/translation_marker.js", { cache: "no-store" }); if (r.ok) tm = await r.text(); } catch (e) {}
+        if (!tm) return "could not read js/translation_marker.js (this page must be SERVED)";
+        const i = tm.indexOf("const rawExpected");
+        if (i < 0) return "the expected_buckets filter is gone from markTranslationLive";
+        const body = tm.slice(i, i + 700);
+        if (body.indexOf("hasOwnProperty.call(ctxForFilter") < 0) return "the filter no longer checks bucket_context";
+        if (body.indexOf("!isItEn") < 0) return "the vocabulary exception is no longer scoped to en_it";
+        return true;
+      });
+    T(g4m, "the can't-credit reports are PERSISTED, not just displayed",
+      "Architecture v3 makes this channel the INTAKE for the confirmed set rather than telemetry: everything on the list arrives through it or through a seat. Rendering the reports and dropping them would leave the growth mechanism with nothing to read",
+      () => (typeof LL.store === "object" && typeof LL.store.recordAttempt === "function")
+        ? true : "store.recordAttempt is not reachable");
 
     // ------------- layout arithmetic (style.css + app.js, r141)
     const g4i = group("Vocab layout arithmetic (style.css / app.js)"); groups.push(g4i);
