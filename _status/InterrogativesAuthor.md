@@ -1,34 +1,31 @@
 seat: InterrogativesAuthor
 classes: [all-seats, all-authors]   # ratified by Architecture 2026-08-03
 project: Linguics
-updated: 2026-08-03
-waiting: parked
-needs_from_smith: none blocking (batch delivered; asks sit with Architecture)
+updated: 2026-08-12
+waiting: closed
+needs_from_smith: none (one action sits with Smith on a separate thread: push r124, the accent fix)
 blocked_by:
-claude_can_verify: yes - every grammar phrase/guard marked through the real engine; all files parse; counts derived from disk
-summary: DELIVERED. Six native leaves + translations, reshaped to the ratified no-change-forms law and
-  engine-verified. 29 grammar (18 free-text, 11 MCQ) + 14 translation (9 en->it, 5 it->en, 5 neg anchors).
-  Exclamatives (5+2) authored + bucket proposed, held pending mint. che equivalence held for instrument A.
-  Accent/residue engine false-miss filed separately. Delivery thread open, Next: Architecture.
+claude_can_verify: yes - reconciled from disk this turn (34 grammar / 16 translation on disk; exclamatives
+  leaf in tree; topic_short=interr on root; delivery + residue threads stamped)
+summary: DELIVERED, RATIFIED, STAMPED, MERGED. All six asks answered by Architecture (v2). 34 grammar +
+  16 translation live (exclamatives merged centrally). Leaf interrogatives.exclamatives minted; topic_short
+  set. My reading of the no-change law RATIFIED as written and cited in DECISIONS as the law's worked example.
+  Accent/residue false-miss ruled my way (docked partial) and fixed by Housing in r124. Nothing owed by me.
 queue:
-  - (nothing owed by me) - awaiting Architecture on 6 delivery asks (mint exclamatives, topic_short,
-    ratify the no-change reshaping, misconception ids, common_miss, accent finding)
+  - (nothing owed) - batch closed. che equivalence stays held until the instrument-A dispatch goes out
+    (membership gate is LIVE at r117; the hold lifts then). Optional: per-bucket morph-marker review pass
+    on Architecture_Housing_translation_crosstopic_marking (che/cosa flagged ambiguous vs relative/noun).
 delivered:
-  - data/grammar_questions_interrogatives.json (29 shippable, law-compliant, engine-green)
-  - data/translation_items_interrogatives.json (14; 5 negative anchors incl. qual'e apostrophe)
-  - data/_pending_interrogatives_exclamatives.json (5 grammar + 2 translation; forward-ref, pending mint)
-  - data/_held_interrogatives_instrumentA.json (che equivalence; engine-blocked instrument A)
-  - data/bucket_suggestions_interrogatives.json (interrogatives.exclamatives)
-  - data/glossary_suggestions_interrogatives.json (interrogative, exclamative)
+  - data/grammar_questions_interrogatives.json (34: 29 native + 5 exclamatives; law-compliant; engine-green)
+  - data/translation_items_interrogatives.json (16: 14 native + 2 exclamative; 5 negative anchors)
+  - data/_held_interrogatives_instrumentA.json (che equivalence; held for instrument A)
+  - data/bucket_suggestions_interrogatives.json (exclamatives; MINTED) + glossary_suggestions (2 terms)
   - coverage_interrogatives.md
-  - inter_chat/Architecture_InterrogativesAuthor_batch_delivery.md (v1, Next: Architecture)
-  - inter_chat/Architecture_InterrogativesAuthor_residue_zeroes_accent_fold.md (v1, Next: Architecture)
-open_threads:
-  - Architecture_InterrogativesAuthor_batch_delivery.md (Next: Architecture)
-  - Architecture_InterrogativesAuthor_residue_zeroes_accent_fold.md (Next: Architecture)
+  - inter_chat/Architecture_InterrogativesAuthor_batch_delivery.md (STAMPED v2)
+  - inter_chat/Architecture_InterrogativesAuthor_residue_zeroes_accent_fold.md (SHIPPED r124, Next: Smith push)
+  - (deleted data/_pending_interrogatives_exclamatives.json after the central merge, per Architecture v2)
 notes:
-  - no-change law reading to ratify: kept free-text only where the item tests a CHANGE/CONSTRUCTION (copying
-    a cue can't win); base-form quanto + bare adverbs -> MCQ; bare chi/dove dropped; che equivalence held.
-  - Short-token superstring hazard handled: every phrase + guard match_at "word"; ordering-protected guards
-    (di chi, a che ora, di dove, da quando) verified firing only on the dropped-word attempt.
-  - qual'e apostrophe ungradable in grammar (norm folds apostrophe); graded in translation instead.
+  - Outcome of the accent/residue flag: RULED docked-partial (as recommended), Housing built r124 with
+    fold-aware residue subtraction, both faults pinned in selftest. Awaiting Smith's client-only push.
+  - When the instrument-A dispatch lands, restore che_01 (English clickable cue + candidate_forms membership)
+    and reconsider the 3 interim adverb MCQs; same shape AdjectiveAuthor/DemonstrativeAuthor are mid-conversion on.
