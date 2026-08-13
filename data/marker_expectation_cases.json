@@ -83,6 +83,27 @@
         "should the gender error fire at all here? Smith: 'I don't really mind if it misses, but it shouldn't' - i.e. silence is acceptable, a penalty on the agreement is not",
         "if it does fire, once or twice? tutto and il are two surface agreements of one belief"
       ]
+    },
+    {
+      "item": "trans_ger_en_it_prog_ando_02",
+      "direction": "en_it",
+      "source_text": "We are working on a new project this week.",
+      "reference": "Questa settimana stiamo lavorando a un nuovo progetto.",
+      "answer": "lavoriamo su un nuove projetto questa settimana",
+      "note": "First case taken from a LIVE r160 mark, and the first under the lean regime (4,948 input tokens and $0.0021, against ~56,000 tokens before). The marker got the two real grammar faults right - present for progressive, and nuove for nuovo - and reported `su` and `questa` through the can't-credit channel, which is the channel working as designed. It also scored a MISSPELLED WORD as a clean hit, which is the fault this case exists for. Smith: 'note projetto accepted.'",
+      "expect_verdict": {
+        "verb_form.gerundio.formation.progressive_assembly": "miss",
+        "verb_form.gerundio.formation.regular_ando": "miss",
+        "vocabulary.it.nuovo.translation.active": "miss",
+        "vocabulary.it.settimana.translation.active": "hit",
+        "vocabulary.it.progetto.translation.active": "partial"
+      },
+      "expect_absent": [],
+      "principle": "A MISSPELLING IS NOT A CLEAN HIT. The learner wrote `projetto` for `progetto` and it came back ticked. They have shown they know the word, so a miss would be unfair and wrong - but a full tick tells them the spelling was right when it was not, and it writes clean evidence into their coverage for a form they cannot yet produce. The estate already has the shape for this everywhere else: a spelling slip is PARTIAL, credited but docked, which is what 'Half right - spelling slip' means on the vocab card. Same family as the r143 ruling that a docked accent still counts as reaching the lemma.",
+      "needs_ruling": [
+        "is a misspelling partial, or a hit with an orthography.spelling event fired alongside it? The item's own fire-list carries three spelling classes and NONE of them fired on projetto - which is arguably the deeper fault, since g/j is exactly a c_g_softening question",
+        "does `su` for `a` in `lavorare a un progetto` count as correct? The marker credited it via the can't-credit channel; `lavorare su` is defensible Italian, so this may be right, but it was decided by the model rather than by us"
+      ]
     }
   ],
   "runner_checks": [

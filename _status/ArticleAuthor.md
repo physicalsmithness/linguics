@@ -2,20 +2,15 @@ seat: ArticleAuthor
 classes: [all-seats, all-authors]
 project: Linguics
 updated: 2026-08-12
-waiting: active
+waiting: parked
 needs_from_smith: none
 blocked_by: none
-claude_can_verify: yes — edits verified on disk (validator clean, marker replica 128/128)
-summary: (2026-08-12, Smith routed the art_iform_03/04 A/B to Architecture — not awaiting me or Smith.) Checked chat. Reworked the 3 apostrophe-fold false-credit items (art_iform_12/13/14) to index-scored MCQ per Architecture's recommendation — un' now graded, the fold can no longer credit "un amica". Flagged the MIRROR case (art_iform_03/04, masculine un, credits the spurious-apostrophe "un'amico") for an A/B ruling. crit-16 discrimination_candidate_forms was ruled A and closed, matching what I'd applied. No other article obligation from Rev 29-33 or the two ALLAUTHORS threads.
+claude_can_verify: yes — returned packet verified (594 rows/bucket, all have verdict, buckets identical, source untouched)
+summary: Tier-2 article review packet REVIEWED and RETURNED (data/review_packets_tier2/returned/). Per bucket: KEEP 485, STRIKE 109 (78 indefinite/bare + 31 clitic-only), +23 en->it additions morph-it missed. Hand-read every strike and every ambiguous lo/la/le/gli/l' row. Two judgment calls flagged to Architecture (articulated-preposition keep; it->en inert keep). Apostrophe rework (art_iform_12/13/14 MCQ) done earlier; art_iform_03/04 A/B still with Architecture.
 queue:
-  - TIER-2 REVIEW PACKET WAITING (2026-08-12): data/review_packets_tier2/REVIEW_article_2026-08-11.json — 1142 pairs. Thread: inter_chat/Architecture_ArticleAuthor_tier2_review_packet.md  [not blocked]
-  - (awaiting Architecture) ratify art_iform_12/13/14 MCQ rework + rule A/B on art_iform_03/04 (Smith routed this to Architecture 2026-08-12). Rec = A (convert). One pass to apply on their word. -> apostrophe_fold_false_credit v2
+  - (awaiting Architecture) merge the returned tier-2 packet -> Architecture_ArticleAuthor_tier2_review_packet v2
+  - (awaiting Architecture) ratify art_iform_12/13/14 MCQ + rule A/B on art_iform_03/04 -> apostrophe_fold_false_credit v2
 done_this_pass:
-  - art_iform_12/13/14 -> index-scored MCQ [un,un',uno,una], answer un' rotated, answer_shown_by_design mcq_choices, slot un' kept, version bumped; validator clean, replica 128/128
-  - crit-16 art_disc_05 candidate_forms ratified (discrimination_candidate_forms ruled A + closed)
+  - tier-2 packet: 1142 rows judged; strikes = clitic-pronoun + indefinite false positives; 23 genuine additions; returned atomically, original left intact
 not_owed:
-  - Rev 33 (binds all-authors): lr-anchoring N/A; common_errors optional; person field verb-formation-only; item-shape law — article forms lawfully stay free-text (answer differs from cue), apostrophe items correctly MCQ
-  - answer_leak ALLAUTHORS: article not on routing list; zero net-gate exposure (copying the noun-cue never yields the article)
-  - item_shape ALLAUTHORS: binds invariable paradigm sets, not article
-  - translation anti-anchors: migrated into common_errors by Architecture 2026-07-21 (16/19 items), not lost; not my action
-  - pos-migration / crit-13 / crit-20 / crit-21: discharged as before
+  - crit-16 (ruled A, closed); pos-migration/crit-13/crit-20/crit-21; Rev 33 (nothing for article); answer_leak/item_shape ALLAUTHORS (article not named)

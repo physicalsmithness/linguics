@@ -3093,3 +3093,35 @@ needs settling before 3.39 is read as failure. The residual 26%-with-no-verb is 
 
 Re-derivation across all 914 items deliberately held until the map is blessed: it is a
 whole-corpus write and should follow the ruling, not accompany it.
+
+
+## Prompt pass delivered as a structure, not a draft (2026-08-12)
+
+Housing asked Architecture to draft the single deliberate prompt pass. **Delivered as an ordering
+principle plus a specific cut list rather than verbatim text**, because `worker/src/index.ts` moved at
+22:58 and r160 landed between my reading it and writing — a verbatim draft against a stale snapshot
+would repeat the two stale readings I already handed back today. The structure survives Housing's
+concurrent edits.
+
+Measured current state: 18,468 characters, ~4,600 tokens, 18 numbered rules.
+
+**Ordering principle: everything that changes what the model DOES goes before everything that
+constrains how it writes it down**, and rules that fire on every item before rules that fire on some.
+Proposed order: the job in Smith's three steps; **breadth** (currently near the bottom, and *"a
+mostly-correct answer MUST come back mostly HITS"* is the most consequential sentence in the file);
+direction awareness; vocabulary-vs-grammar; fire-list semantics; accents; per-case rules; output shape.
+
+**Cuts, four and specific.** Accents from four rules to two, with the anti-hallucination guard folded
+in as a clause — and noted that a model inventing errors in a category is a symptom of over-weighting,
+so shortening the section is itself part of the fix. The "house coherence, for your calibration only"
+parenthetical cut entirely: it describes two other graders' policies the model cannot act on. **CANDIDATE
+BUCKETS reduced to one sentence** — it exists to police the 581-name menu r159 removed, and this is what
+makes the v2 §5.1 contradiction *disappear* rather than get resolved, which is the outcome Smith pointed
+at. And rule 7's hard-coded 0.5 as the only fractional value.
+
+**Explicit do-not-cut list**, because a length pass over-reaches: the direction block, the
+vocabulary/grammar distinction, clitic placement-vs-form, the anti-hallucination clause, the worked
+example. Each was written against an observed fault. **The fault is structure and length, not content.**
+
+**Success test is not length** but the expectation suite run both regimes before and after: no case that
+fired correctly before may stop firing. That is what `expect_absent` cases are for.

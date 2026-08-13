@@ -5,18 +5,22 @@ classes: [all-authors, all-seats]
 # index-scored means crit-19 accent_load_bearing never arises; crit-21 is for formation drills) or
 # already met (crit-17 English meaning in every explanation). No retrofit outstanding.
 project: Linguics
-updated: 2026-07-21
-waiting: Housing (1-line error_id deck-filter add); Smith/Architecture (typed-doubling decision)
+updated: 2026-08-13
+waiting: Architecture (tier-2 exclusion confirm); Housing (1-line error_id deck-filter add); Smith/Architecture (typed-doubling decision)
 needs_from_smith: decision (typed-doubling: build a free-text drill mode or leave it — my lean: leave)
 blocked_by: none for authoring
-claude_can_verify: yes - ran invariant + minted-bucket + registry + error_id-render checks this turn (217 items, 0 errors)
-summary: Wave-1 (141 MCQ) ACCEPTED + leaves/registry/glossary merged (Architecture v2). Wave-2
-  delivered 2026-07-21 on Smith's "carry on" - +76 items (59 fresh-vocab MCQ + 17 error_id "find the
-  misspelling") -> grammar_questions_orthography.json now 217 items, 0 validation errors. choice_tags
-  reader is now BUILT (QoderWork), so all tags fire; corrected 75 stale proposed-flags post-merge.
-  Thread Architecture_SpellingAuthor_batch_delivery.md at v3.
+claude_can_verify: yes - re-derived the bank this turn (252 items, 235 MCQ + 17 error_id, 0 errors); confirmed NO tier-2 packet exists for orthography (find empty; on the excluded-8 list)
+summary: Bank = 252 items (235 MCQ + 17 error_id), 0 errors. Wave-1 (141) ACCEPTED + leaves/registry/
+  glossary merged; wave-2 (+76: fresh MCQ + error_id); wave-3 (+30 doubling, hardest cases) + v5 erratum
+  (fixed 9 false English-cognate explanations Smith caught, +5 genuine cognates). choice_tags reader BUILT.
+  2026-08-13: Smith routed me to a tier-2 review packet — NONE EXISTS for orthography (systematic:
+  on the excluded-8 list; tier-2 targets under-bucketed TRANSLATION items, and spelling has none by design).
+  Did NOT fabricate a review. Opened Architecture_SpellingAuthor_tier2_exclusion.md (confirm deliberate).
 queue:
-  - (authoring empty) two open items are on OTHER seats: Housing (error_id filter), Smith (typed call).
+  - tier-2 exclusion: confirm thread opened, Next: Architecture. Recommend (a) deliberate/stand down.
+    Genuine alternative if they want spelling in translation marking = the crosstopic-marking hook
+    (dispatch job #1: supply the AI marker's spelling error-class taxonomy), NOT a review packet.
+  - (authoring empty) other open items on OTHER seats: Housing (error_id filter), Smith (typed call).
 decision:
   question: Typed-doubling production bank. The spelling drill QoderWork built is index-scored
     (MCQ + error_id); it has no free-text input path. A typed bank needs a new drill mode + the

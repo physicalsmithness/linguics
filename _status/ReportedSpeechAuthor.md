@@ -3,7 +3,7 @@ classes: [all-seats, all-authors]   # originates grammar + translation items; Re
 project: Linguics
 updated: 2026-08-12
 waiting: parked
-needs_from_smith: external-action   # (1) route Architecture to answer_leak_dispatch to verify+stamp section 5; (2) optional: confirm reported_speech's tier-2 exclusion is by design
+needs_from_smith: external-action   # route Architecture to: (1) answer_leak_dispatch section 5 stamp; (2) tier2_exclusion v1 (confirm deliberate, or send a packet)
 blocked_by:
 claude_can_verify: yes - all evidence regenerates from disk
 summary: checked for a tier-2 review packet at Smith's prompt (22:45 and 22:52) - NONE on disk for this seat, neither a thread nor a data/review_packets_tier2/ JSON. reported_speech is one of 8 manifest topics excluded from the 27-topic wave; my translation items already average 1.85 required_buckets vs the 1.4 the pass targets, so exclusion looks deliberate not missed. Nothing owed. Prior live obligation (answer_leak section 5) already discharged: 4 persist items -> multi_select.

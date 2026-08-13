@@ -1,9 +1,9 @@
 seat: PronominalVerbsAuthor
 classes: [all-seats, all-authors]
 project: Linguics
-updated: 2026-08-12
+updated: 2026-08-12 (tier-2 check)
 waiting: parked            # everything I owe is delivered; three threads sit with Architecture to verify/stamp
-needs_from_smith: none
+needs_from_smith: none  # tier-2: no packet exists for my seat; filed an exclusion-confirm, Architecture's call
 blocked_by:
 claude_can_verify: yes     # queue re-derived from a fresh six-surface + class-token grep THIS turn (not from memory)
 summary: Fresh self-check (brief now Rev 33). No new owed work beyond housekeeping. Remediation packets already fixed (false-miss v2, answer-leak v5). Rev-32 tense-cue rule is now ratified/all-authors with a central retrofit (task 7); its one caveat bit my single discrimination cue pv_disc_vvm_05 (removed 'passato' today, English gloss pins the past); my 7 formation tense-cues await the central English-term pass. cue_notation English-in-parens retrofit: pronominal_verbs not in table, self-audit clean (only the standard multi_select rubric), reacted to confirm.
@@ -20,3 +20,6 @@ parked:
   - ce l'ho mechanics pronoun-tree home — architecture call
   - open asks on false-miss v2: grade flat 'ho una penna' 0.7?; wrong_answer_is_form_error_only on pure-form items?
 process_note: queue re-derived from disk this turn; the 2026-08-03 "nothing owed" error (asserting from a stale sweep) not repeated.
+tier2_review:
+  - NO packet for this seat: named thread does not exist, no REVIEW_pronominal_verbs json. pronominal_verbs is 1 of 8 topics the wave excluded (per ReportedSpeechAuthor_tier2_exclusion). Did NOT fabricate a review.
+  - Filed Architecture_PronominalVerbsAuthor_tier2_exclusion v1 (confirm deliberate vs cut-a-packet). Evidence: translation 1.04 required_buckets (under the 1.4 the pass targets) BUT 1.7 incl optional; grammar 25% cross-tree. Effective recall already above threshold; Architecture's call.
