@@ -52,6 +52,8 @@
       }
     ],
     "expected_buckets": [
+      "connective.cause",
+      "negation.core.non_position",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "vocabulary.it.fame.noun.translation.active",
@@ -109,10 +111,14 @@
     "explanation": "Finishing the homework precedes the phone call, so the earlier action takes the trapassato prossimo: aveva finito, the imperfect of avere plus the participle. già (already) reinforces the before relationship.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.qu_cu_cqu",
       "orthography.spelling.silent_h",
+      "verb_form.imperfect",
+      "verb_form.passato_prossimo.auxiliary.avere_default",
+      "verb_form.present_indicative",
       "vocabulary.it.chiamare.verb.translation.active",
       "vocabulary.it.compito.noun.gender.active",
       "vocabulary.it.compito.noun.translation.active",
@@ -173,6 +179,9 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
+      "connective.result.quindi_percio",
+      "indefinite.core.tutto",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
@@ -238,6 +247,7 @@
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.qu_cu_cqu",
+      "verb_form.imperfect",
       "vocabulary.it.film.noun.translation.active",
       "vocabulary.it.pellicola.noun.translation.active",
       "vocabulary.it.prima.adverb.translation.active",
@@ -294,9 +304,14 @@
     "explanation": "Telling the truth precedes the disbelief, so the earlier action takes the trapassato prossimo: aveva detto, the imperfect of avere plus the irregular participle detto. The imperfect auxiliary (aveva) is what marks it as prior, not the present (ha).",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
+      "connective.contrast",
+      "indefinite.pronouns.nessuno_niente",
       "orthography.accent.italian",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
+      "verb_form.imperfect",
+      "verb_form.passato_remoto",
       "vocabulary.it.credere.verb.translation.active",
       "vocabulary.it.nessuno.determiner.translation.active"
     ]
@@ -351,8 +366,12 @@
     "explanation": "The reading is asked about as prior to the exam, so the trapassato prossimo: avevi letto, the imperfect of avere plus the irregular participle letto. The question keeps the imperfect auxiliary (avevi), not the present (hai).",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
+      "connective.time",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.doubling",
+      "preposition.articulated.formation",
+      "verb_form.imperfect",
       "vocabulary.it.leggere.verb.translation.active",
       "vocabulary.it.libro.noun.gender.active",
       "vocabulary.it.libro.noun.translation.active",
@@ -411,8 +430,11 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
+      "preposition.articulated.formation",
+      "verb_form.imperfect",
       "vocabulary.it.chiave.noun.gender.active",
       "vocabulary.it.chiave.noun.translation.active",
       "vocabulary.it.lasciare.verb.translation.active",
@@ -487,10 +509,16 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
+      "preposition.articulated.formation",
+      "verb_form.imperfect",
+      "verb_form.passato_prossimo.auxiliary.essere_motion_intransitive",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
+      "verb_form.present_indicative",
       "vocabulary.it.arrivare.verb.translation.active",
       "vocabulary.it.partire.verb.translation.active",
       "vocabulary.it.quando.adverb.translation.active",
@@ -555,7 +583,12 @@
     "explanation": "Going home is prior to the end of the party, so the trapassato prossimo: the imperfect of essere plus the agreeing participle. The feminine singular subject gives era andata. The imperfect auxiliary (era), not the present (è), marks the action as earlier.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
+      "connective.time",
       "orthography.spelling.doubling",
+      "preposition.articulated.formation",
+      "preposition.simple.forms",
+      "verb_form.imperfect",
       "vocabulary.it.casa.noun.translation.active",
       "vocabulary.it.festa.noun.gender.active",
       "vocabulary.it.festa.noun.translation.active",
@@ -620,6 +653,7 @@
     "version": 1,
     "expected_buckets": [
       "orthography.spelling.doubling",
+      "verb_form.imperfect",
       "vocabulary.it.arrivare.verb.translation.active",
       "vocabulary.it.noi.pronoun.translation.active",
       "vocabulary.it.ragazza.noun.translation.active",
@@ -681,9 +715,12 @@
     "explanation": "Going to bed is prior to a later past moment, so the trapassato prossimo: the imperfect of essere plus the agreeing participle. The masculine plural subject gives erano andati. The imperfect auxiliary (erano), not the present (sono), marks the earlier action.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
+      "verb_form.imperfect",
       "vocabulary.it.bambino.noun.gender.active",
       "vocabulary.it.bambino.noun.translation.active",
       "vocabulary.it.leggere.verb.translation.active"
@@ -755,6 +792,8 @@
     "version": 1,
     "expected_buckets": [
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
+      "verb_form.imperfect",
       "vocabulary.it.nascere.verb.translation.active",
       "vocabulary.it.nonno.noun.translation.active",
       "vocabulary.it.paese.noun.translation.active",
@@ -817,9 +856,13 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
+      "connective.time",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
+      "verb_form.imperfect",
       "vocabulary.it.donna.noun.gender.active",
       "vocabulary.it.donna.noun.translation.active",
       "vocabulary.it.mezzogiorno.noun.translation.active",
@@ -877,6 +920,8 @@
       "orthography.spelling.capitalization",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
+      "verb_form.imperfect",
+      "verb_form.present_indicative",
       "vocabulary.it.marcare.verb.translation.active",
       "vocabulary.it.partire.verb.translation.active",
       "vocabulary.it.quando.adverb.translation.active",

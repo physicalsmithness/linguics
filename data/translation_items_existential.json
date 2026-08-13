@@ -54,6 +54,8 @@
       "orthography.accent.italian",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.bar.noun.gender.active",
       "vocabulary.it.bar.noun.translation.active",
       "vocabulary.it.piazza.noun.translation.active"
@@ -115,7 +117,11 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
+      "preposition.articulated.formation",
+      "pronoun.ci_locative",
+      "verb_form.present_indicative",
       "vocabulary.it.frigo.noun.gender.active",
       "vocabulary.it.frigo.noun.translation.active",
       "vocabulary.it.frigorifero.noun.translation.active",
@@ -179,7 +185,11 @@
       }
     ],
     "expected_buckets": [
+      "indefinite.core",
       "orthography.spelling.c_g_softening",
+      "preposition.simple.forms",
+      "pronoun.ci_locative",
+      "verb_form.present_indicative",
       "vocabulary.it.agosto.noun.translation.active",
       "vocabulary.it.molto.adverb.translation.active",
       "vocabulary.it.turista.noun.m.translation.active"
@@ -225,8 +235,11 @@
     "explanation": "'Non c'è tempo' negates the existential by putting non in front of the whole cluster. The ci stays attached: non c'è, not non è.",
     "version": 1,
     "expected_buckets": [
+      "negation.core.bipartite",
+      "negation.core.non_position",
       "orthography.accent.italian",
       "orthography.spelling.apostrophe_elision",
+      "verb_form.present_indicative",
       "vocabulary.it.tempo.noun.translation.active"
     ]
   },
@@ -286,10 +299,14 @@
       }
     ],
     "expected_buckets": [
+      "indefinite.pronouns.nessuno_niente",
+      "negation.core.non_position",
       "orthography.accent.italian",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.nessuno.determiner.translation.active",
       "vocabulary.it.ufficio.noun.translation.active"
     ]
@@ -336,7 +353,11 @@
     "explanation": "'Ci sono domande?' asks about plural things, so the existential is plural ci sono. A common slip is c'è domande, which fails the number agreement.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
+      "preposition.articulated.formation",
+      "pronoun.ci_locative",
+      "verb_form.present_indicative",
       "vocabulary.it.domanda.noun.translation.active"
     ]
   },
@@ -383,6 +404,8 @@
     "expected_buckets": [
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
+      "verb_form.imperfect",
       "vocabulary.it.due.numeral.translation.active",
       "vocabulary.it.lettera.noun.translation.active",
       "vocabulary.it.te.pronoun.translation.active"
@@ -445,6 +468,10 @@
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.qu_cu_cqu",
+      "preposition.simple.forms",
+      "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
+      "verb_form.present_indicative",
       "vocabulary.it.ieri.adverb.translation.active",
       "vocabulary.it.incidente.noun.gender.active",
       "vocabulary.it.incidente.noun.translation.active",
@@ -505,6 +532,8 @@
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
+      "verb_form.imperfect",
       "vocabulary.it.montagna.noun.translation.passive",
       "vocabulary.it.piccolo.adjective.translation.passive",
       "vocabulary.it.villaggio.noun.translation.passive",
@@ -569,8 +598,11 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.apostrophe_elision",
+      "preposition.articulated.formation",
+      "verb_form.present_indicative",
       "vocabulary.it.libro.noun.gender.active",
       "vocabulary.it.libro.noun.translation.active",
       "vocabulary.it.sul.preposition.translation.active",
@@ -631,7 +663,10 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.accent.italian",
+      "preposition.articulated.formation",
+      "verb_form.present_indicative",
       "vocabulary.it.libro.noun.gender.active",
       "vocabulary.it.libro.noun.translation.active",
       "vocabulary.it.sul.preposition.translation.active",
@@ -687,10 +722,13 @@
     "explanation": "The two sentences show the whole contrast. Introducing the pharmacy for the first time (indefinite una farmacia) takes the existential c'è; once it is known (definite la farmacia), locating it takes plain è.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.capitalization",
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.centrare.verb.translation.active",
       "vocabulary.it.farmacia.noun.gender.active",
       "vocabulary.it.farmacia.noun.translation.active",
@@ -752,8 +790,12 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.articulated.formation",
+      "pronoun.ci_locative",
+      "verb_form.present_indicative",
       "vocabulary.it.due.numeral.translation.active",
       "vocabulary.it.errore.noun.translation.active",
       "vocabulary.it.testare.verb.translation.active"
@@ -809,10 +851,12 @@
     "explanation": "C'è introduces a new, indefinite thing (una fermata), so English is 'there is'. Reading it as the existential, not 'it is', keeps the sense of presenting something new.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
+      "verb_form.present_indicative",
       "vocabulary.it.autobus.noun.translation.passive",
       "vocabulary.it.bus.noun.translation.passive",
       "vocabulary.it.davanti.adverb.translation.passive",
@@ -868,8 +912,11 @@
     "explanation": "La stazione is known and definite, so Italian uses plain è to locate it, and English is plainly 'is', not 'there is'. This is the è-side of the c'è vs è contrast.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
+      "preposition.articulated.formation",
+      "verb_form.present_indicative",
       "vocabulary.it.centrare.verb.translation.passive",
       "vocabulary.it.stazione.noun.translation.passive",
       "vocabulary.it.vicino.adverb.translation.passive"
@@ -921,8 +968,10 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
       "vocabulary.it.ecco.adverb.translation.active",
       "vocabulary.it.tuo.determiner.translation.active"
     ]
@@ -969,10 +1018,15 @@
     "explanation": "C'è states that something exists or is regularly available (a train every half hour), so English is 'there's'. Ecco would be wrong here: it points at a train arriving now, not a timetable fact.",
     "version": 1,
     "expected_buckets": [
+      "indefinite.core.ogni",
+      "negation.core.non_position",
       "orthography.accent.italian",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
+      "pronoun.direct_object.ti",
+      "pronoun.indirect_object.ti",
+      "verb_form.present_indicative",
       "vocabulary.it.ogni.determiner.translation.passive",
       "vocabulary.it.preoccupare.verb.translation.passive",
       "vocabulary.it.treno.noun.translation.passive"
@@ -1018,10 +1072,13 @@
     "explanation": "Che c'è? looks like 'what is there?' but as a fixed expression it means 'what's wrong / what's up'. Reading it literally misses the everyday sense.",
     "version": 1,
     "expected_buckets": [
+      "interrogatives.che_cosa",
       "orthography.accent.italian",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "pronoun.direct_object.ti",
+      "verb_form.present_indicative",
       "vocabulary.it.preoccupare.verb.translation.passive",
       "vocabulary.it.vedere.verb.translation.passive"
     ]
@@ -1066,10 +1123,13 @@
     "explanation": "Non c'è di che is a fixed reply to grazie, 'don't mention it / you're welcome'. It is built on esserci but cannot be taken apart literally.",
     "version": 1,
     "expected_buckets": [
+      "negation.core.non_position",
       "orthography.accent.italian",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.aiutare.verb.translation.passive",
       "vocabulary.it.grazia.noun.translation.passive",
       "vocabulary.it.mille.numeral.translation.passive"
@@ -1118,6 +1178,9 @@
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "pronoun.ci_locative",
+      "pronoun.indirect_object.ti",
+      "verb_form.present_indicative",
       "vocabulary.it.iniziare.verb.translation.passive"
     ]
   },
@@ -1172,9 +1235,13 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.articulated.formation",
+      "pronoun.ci_locative",
+      "verb_form.present_indicative",
       "vocabulary.it.cappuccino.noun.gender.active",
       "vocabulary.it.cappuccino.noun.translation.active",
       "vocabulary.it.latte.noun.translation.active"

@@ -76,10 +76,15 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
+      "existential.form.past",
+      "indefinite.core",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
+      "preposition.articulated.formation",
+      "preposition.simple.forms",
       "vocabulary.it.bambino.noun.translation.active",
       "vocabulary.it.gatto.noun.translation.active",
       "vocabulary.it.giardino.noun.translation.active",
@@ -171,7 +176,9 @@
     "explanation": "Both clauses describe how things were, so Italian uses the imperfect indicative for both. Essere 3sg era for the singular subject, 3pl erano for the plural. The agreement of 'piene' is f.pl to match 'le stanze'.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
+      "preposition.simple.forms",
       "vocabulary.it.casa.noun.gender.active",
       "vocabulary.it.casa.noun.translation.active",
       "vocabulary.it.grande.adjective.translation.active",
@@ -277,11 +284,15 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
+      "indefinite.core.ogni",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.capitalization",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
+      "preposition.articulated.formation",
+      "preposition.simple.forms",
       "vocabulary.it.bere.verb.translation.passive",
       "vocabulary.it.casa.noun.translation.passive",
       "vocabulary.it.cena.noun.translation.passive",
@@ -375,8 +386,10 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
       "vocabulary.it.nonno.noun.gender.active",
       "vocabulary.it.nonno.noun.translation.active",
       "vocabulary.it.sempre.adverb.translation.active",
@@ -468,8 +481,10 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
       "vocabulary.it.campagna.noun.translation.active",
       "vocabulary.it.domenica.noun.gender.active",
       "vocabulary.it.domenica.noun.translation.active",
@@ -544,9 +559,11 @@
       }
     ],
     "expected_buckets": [
+      "indefinite.core.ogni",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
       "vocabulary.it.giocare.verb.translation.active",
       "vocabulary.it.giovane.noun.m.translation.active",
       "vocabulary.it.ogni.determiner.translation.active",
@@ -614,8 +631,12 @@
     "explanation": "English habitual 'would' (when it doesn't mean conditional 'would') maps to Italian imperfect. The 3pl of andare in the imperfect is andavano. Note the articulated preposition al = a + il.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
+      "indefinite.core.ogni",
+      "indefinite.core.tutto",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
+      "preposition.articulated.formation",
       "vocabulary.it.mattina.noun.gender.active",
       "vocabulary.it.mattina.noun.translation.active",
       "vocabulary.it.mercato.noun.gender.active",
@@ -711,8 +732,11 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
+      "connective.time",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.articulated.formation",
       "vocabulary.it.balcone.noun.translation.passive",
       "vocabulary.it.cena.noun.translation.passive",
       "vocabulary.it.dopo.adverb.translation.passive",
@@ -789,6 +813,11 @@
     "explanation": "Both clauses are past states (weather, descriptive condition). Italian uses the imperfect indicative for both. Pioveva is the impersonal 3sg of piovere; erano is the 3pl of essere agreeing with le strade.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
+      "existential.form.past",
+      "indefinite.pronouns.nessuno_niente",
+      "negation.core.non_position",
+      "preposition.simple.forms",
       "vocabulary.it.piovere.verb.translation.active",
       "vocabulary.it.strada.noun.gender.active",
       "vocabulary.it.strada.noun.translation.active",
@@ -873,6 +902,7 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.doubling",
       "vocabulary.it.alto.adjective.translation.active",
       "vocabulary.it.capello.noun.gender.active",
@@ -952,8 +982,10 @@
     "explanation": "The imperfect dormiva describes an ongoing past state. English's natural rendering is past progressive 'was sleeping'; bare 'slept' also works but is less explicit about the in-progress reading.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
+      "preposition.articulated.formation",
       "vocabulary.it.bambino.noun.translation.passive",
       "vocabulary.it.dormire.verb.translation.passive",
       "vocabulary.it.lettino.noun.translation.passive",
@@ -1047,8 +1079,14 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
+      "connective.time.mentre_appena",
       "orthography.accent.italian",
       "orthography.spelling.capitalization",
+      "verb_form.gerundio",
+      "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
+      "verb_form.present_indicative",
       "vocabulary.it.guardare.verb.translation.active",
       "vocabulary.it.mentre.conjunction.translation.active",
       "vocabulary.it.suonare.verb.translation.active",
@@ -1127,8 +1165,12 @@
     "explanation": "Weather state (pioveva) sets the background; arrival (siamo arrivati) is the foregrounded event. Italian uses imperfect for the state and passato prossimo for the event. Arrivare takes essere as a motion-intransitive, with participle agreement on the subject (1pl: siamo arrivati).",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
+      "preposition.articulated.formation",
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.albergo.noun.translation.active",
       "vocabulary.it.arrivare.verb.translation.active",
       "vocabulary.it.hotel.noun.translation.active",
@@ -1218,11 +1260,17 @@
     "examiner_note": "Marker should accept either Italian idiom; both render English 'the lights went out' naturally.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
+      "preposition.articulated.formation",
+      "verb_form.gerundio",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_plural",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_singular",
+      "verb_form.present_indicative",
       "vocabulary.it.improvvisare.verb.translation.active",
       "vocabulary.it.leggere.verb.translation.active",
       "vocabulary.it.libro.noun.gender.active",
@@ -1309,10 +1357,15 @@
     "explanation": "The mentre-clause is the ongoing background (imperfect → English past progressive); the main clause is the foregrounded event (PP → English simple past). 'Mentre cenavamo, qualcuno ha bussato' = 'While we were having dinner, someone knocked'.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
+      "connective.time.mentre_appena",
+      "indefinite.pronouns.qualcuno_qualcosa",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
       "orthography.spelling.silent_h",
+      "preposition.articulated.formation",
+      "verb_form.present_indicative",
       "vocabulary.it.bussare.verb.translation.passive",
       "vocabulary.it.cenare.verb.translation.passive",
       "vocabulary.it.mentre.conjunction.translation.passive",
@@ -1411,9 +1464,13 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
+      "preposition.simple.forms",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
+      "verb_form.present_indicative",
       "vocabulary.it.arrivare.verb.translation.active",
       "vocabulary.it.aspettare.verb.translation.active",
       "vocabulary.it.due.numeral.translation.active",
@@ -1485,8 +1542,12 @@
     "explanation": "The reverse direction: Italian imperfect + da → English past perfect continuous. 'Studiavo italiano da sei mesi' = 'I had been studying Italian for six months'. The 'when' clause anchors the reference point (the going-to-Italy event).",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.capitalization",
       "orthography.spelling.qu_cu_cqu",
+      "preposition.simple.forms",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
+      "verb_form.present_indicative",
       "vocabulary.it.italia.verb.translation.passive",
       "vocabulary.it.italiano.adjective.translation.passive",
       "vocabulary.it.mese.noun.translation.passive",
@@ -1573,12 +1634,18 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.capitalization",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
+      "preposition.simple.forms",
+      "pronoun.ci_locative",
+      "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_singular",
+      "verb_form.present_indicative",
       "vocabulary.it.annata.noun.translation.active",
       "vocabulary.it.anno.noun.translation.active",
       "vocabulary.it.dodici.numeral.translation.active",
@@ -1654,8 +1721,11 @@
     "explanation": "Two age_time_weather idioms in one sentence: 'erano le tre' for time of day (plural verb agreeing with plural hours) and 'faceva caldo' for weather (idiom with fare, which here uses the expanded stem fac- + ev + a = faceva). Both take the imperfect indicative because they describe past states, not events.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.articulated.formation",
+      "preposition.simple.forms",
       "vocabulary.it.caldo.adverb.translation.active",
       "vocabulary.it.molto.adverb.translation.active",
       "vocabulary.it.pomeriggio.noun.gender.active",
@@ -1724,7 +1794,11 @@
     "explanation": "Both clauses describe past states: weather (nevicava) and the resulting condition of not being able to see (non si vedeva). Italian uses the imperfect indicative for both. 'Si vedeva' is the impersonal-si construction, equivalent to English 'one could see' or 'you could see'.",
     "version": 1,
     "expected_buckets": [
+      "indefinite.pronouns.nessuno_niente",
+      "negation.core.non_position",
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
+      "si_constructions.impersonal.basic",
       "vocabulary.it.forte.adjective.translation.active",
       "vocabulary.it.nevicare.verb.translation.active",
       "vocabulary.it.nullo.adjective.translation.active",
@@ -1807,10 +1881,13 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
+      "preposition.articulated.formation",
+      "preposition.simple.forms",
       "vocabulary.it.centrare.verb.translation.passive",
       "vocabulary.it.lavorare.verb.translation.passive",
       "vocabulary.it.libreria.noun.translation.passive",
@@ -1871,6 +1948,7 @@
     "version": 1,
     "expected_buckets": [
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
       "vocabulary.it.esprimere.verb.translation.active",
       "vocabulary.it.favore.noun.translation.active"
     ]
@@ -2022,9 +2100,13 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
+      "indefinite.core.ogni",
+      "indefinite.core.tutto",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
+      "preposition.simple.forms",
       "vocabulary.it.giornata.noun.translation.active",
       "vocabulary.it.giorno.noun.gender.active",
       "vocabulary.it.giorno.noun.translation.active",
@@ -2092,6 +2174,13 @@
     "version": 1,
     "expected_buckets": [
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
+      "pronoun.direct_object.mi",
+      "verb_form.passato_prossimo.auxiliary.essere_motion_intransitive",
+      "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_singular",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
+      "verb_form.present_indicative",
       "vocabulary.it.ieri.adverb.translation.active",
       "vocabulary.it.leggere.verb.translation.active",
       "vocabulary.it.molto.adverb.translation.active",
@@ -2161,11 +2250,17 @@
     "examiner_note": "Doubly diagnostic: tests both the conoscere shift and the imperfect-duration with 'da anni'.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
+      "connective.contrast",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.capitalization",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "preposition.articulated.formation",
+      "preposition.simple.forms",
+      "verb_form.passato_prossimo.auxiliary.avere_default",
+      "verb_form.present_indicative",
       "vocabulary.it.annata.noun.translation.active",
       "vocabulary.it.anno.noun.translation.active",
       "vocabulary.it.conoscere.verb.translation.active",
@@ -2241,8 +2336,11 @@
     "explanation": "Italian imperfect for childhood habit → English 'used to / would' or bare simple past. Marker should credit any of the three habitual renderings.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
+      "indefinite.core.ogni",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
       "vocabulary.it.animare.verb.translation.passive",
       "vocabulary.it.cartone.noun.translation.passive",
       "vocabulary.it.guardare.verb.translation.passive",
@@ -2298,6 +2396,10 @@
     "examiner_note": "Counter-example to the imperfect: the marker fires the discrimination bucket because the sentence is in the imperfect/PP contrast zone but the right choice here is PP. Negative example item.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
+      "preposition.simple.forms",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
+      "verb_form.present_indicative",
       "vocabulary.it.mese.noun.translation.passive",
       "vocabulary.it.palestra.noun.translation.passive",
       "vocabulary.it.scorso.adjective.translation.passive",
@@ -2358,10 +2460,13 @@
     "explanation": "'Found out' is the textbook English for the PP of sapere. 'Solo questa mattina' pinpoints the moment of learning. Abbiamo saputo + dell'incidente (di + l'incidente articulated).",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
+      "preposition.articulated.formation",
+      "verb_form.present_indicative",
       "vocabulary.it.incidente.noun.gender.active",
       "vocabulary.it.incidente.noun.translation.active",
       "vocabulary.it.mattina.noun.translation.active"
@@ -2418,10 +2523,14 @@
     "explanation": "Sapevo = ongoing state of knowing → 'knew' in English. The PP 'ho accettato' for the discrete decision-event.",
     "version": 1,
     "expected_buckets": [
+      "connective.contrast.comunque_anzi",
+      "negation.core.non_position",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
       "orthography.spelling.silent_h",
+      "verb_form.passato_prossimo.auxiliary.avere_default",
+      "verb_form.present_indicative",
       "vocabulary.it.accettare.verb.translation.passive",
       "vocabulary.it.buono.adverb.translation.passive",
       "vocabulary.it.comunque.adverb.translation.passive",
@@ -2480,9 +2589,16 @@
     "examiner_note": "Touches conoscere modal-discrimination + duration + subjunctive in 'prima che'. Rich item.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
+      "connective.time.prima_dopo",
+      "interrogatives.adverbs",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
+      "pronoun.direct_object.lo",
+      "pronoun.indirect_object.mi",
+      "verb_form.congiuntivo.formation.imperfetto",
       "vocabulary.it.annata.noun.translation.active",
       "vocabulary.it.anno.noun.translation.active",
       "vocabulary.it.conoscere.verb.translation.active",
@@ -2541,8 +2657,12 @@
     "explanation": "English 'had to' with implied completion → PP of dovere in Italian. Ho dovuto lavorare per finire = had to work to finish.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
+      "indefinite.core.tutto",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.finire.verb.translation.active",
       "vocabulary.it.lavorare.verb.translation.active",
       "vocabulary.it.relazione.noun.gender.active",
@@ -2608,8 +2728,14 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
+      "connective.contrast",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
+      "preposition.simple.forms",
+      "verb_form.passato_prossimo.auxiliary.essere_motion_intransitive",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
+      "verb_form.present_indicative",
       "vocabulary.it.amico.noun.translation.passive",
       "vocabulary.it.studiare.verb.translation.passive",
       "vocabulary.it.uscire.verb.translation.passive"
@@ -2669,8 +2795,16 @@
     "explanation": "English 'were supposed to' maps directly to the imperfect of dovere. The follow-up clause confirms non-fulfilment, anchoring the imperfect reading.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
+      "connective.contrast",
+      "negation.core.non_position",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
+      "preposition.articulated.formation",
+      "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_plural",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
+      "verb_form.present_indicative",
       "vocabulary.it.partire.verb.translation.active",
       "vocabulary.it.sentire.verb.translation.active",
       "vocabulary.it.svegliare.verb.translation.active"
@@ -2731,8 +2865,13 @@
     "examiner_note": "Both forms count for the discrimination bucket. The dispatch's hot-spot is the potere PP reading.",
     "version": 1,
     "expected_buckets": [
+      "connective.time",
+      "indefinite.core",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
+      "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
+      "verb_form.present_indicative",
       "vocabulary.it.dopo.adverb.translation.active",
       "vocabulary.it.finalmente.adverb.translation.active",
       "vocabulary.it.molto.adverb.translation.active",
@@ -2829,8 +2968,11 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.articulated.formation",
+      "si_constructions.impersonal.basic",
       "vocabulary.it.annata.noun.translation.active",
       "vocabulary.it.anno.noun.translation.active",
       "vocabulary.it.bambino.noun.gender.active",
@@ -2894,6 +3036,7 @@
     "version": 1,
     "expected_buckets": [
       "orthography.spelling.c_g_softening",
+      "preposition.simple.forms",
       "vocabulary.it.dodici.numeral.translation.passive",
       "vocabulary.it.filo.noun.translation.passive",
       "vocabulary.it.giovane.noun.m.translation.passive",
@@ -2963,6 +3106,7 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
@@ -3029,8 +3173,12 @@
     "explanation": "English 'insisted on' maps to the PP of volere when the insistence prevailed. 'Ha voluto pagare il conto lui stesso' carries the strong-will, got-his-way reading specifically.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "preposition.simple.forms",
+      "verb_form.passato_prossimo.auxiliary.avere_default",
+      "verb_form.present_indicative",
       "vocabulary.it.contare.verb.translation.active",
       "vocabulary.it.lui.pronoun.translation.active",
       "vocabulary.it.pagare.verb.translation.active",
@@ -3100,10 +3248,16 @@
     "explanation": "Volevo (imperfect) = wanted (but didn't follow through). English 'wanted' captures the same ambiguity. The 'ma non ne ho avuto' clause makes the non-fulfilment explicit.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
+      "connective.contrast",
+      "negation.core.non_position",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "pronoun.ne.partitive_quantity",
+      "verb_form.passato_prossimo.auxiliary.avere_default",
+      "verb_form.present_indicative",
       "vocabulary.it.coraggio.interjection.translation.passive",
       "vocabulary.it.ne.adverb.translation.passive"
     ]
@@ -3159,9 +3313,11 @@
     "examiner_note": "Triggers imperfect subjunctive in the subordinate, which crosses into territory beyond imperfect indicative. Acceptable since it's required for the natural translation.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "verb_form.congiuntivo.formation.imperfetto",
       "vocabulary.it.nonna.noun.translation.active",
       "vocabulary.it.sempre.adverb.translation.active"
     ]
@@ -3220,12 +3376,16 @@
     "explanation": "English 'met (and got to know)' → PP of conoscere, the canonical first-meeting event reading. 'Ho conosciuto mio marito' is the textbook 'I met my husband'.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "preposition.articulated.formation",
+      "verb_form.passato_prossimo.auxiliary.avere_default",
+      "verb_form.present_indicative",
       "vocabulary.it.conoscere.verb.translation.active",
       "vocabulary.it.marito.noun.translation.active"
     ]
@@ -3294,10 +3454,13 @@
     "explanation": "Imperfect conoscevo = state of acquaintance with a place. English 'knew' or 'was familiar with' both work. The 'già prima di trasferirmi' (already before moving) reinforces the prior-state reading.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
+      "connective.time.prima_dopo",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
       "orthography.spelling.qu_cu_cqu",
+      "preposition.simple.forms",
       "vocabulary.it.conoscere.verb.translation.passive",
       "vocabulary.it.prima.adverb.translation.passive",
       "vocabulary.it.qua.adverb.translation.passive",
@@ -3356,10 +3519,12 @@
     "explanation": "English past perfect 'had known' for a sustained prior state maps to Italian imperfect conosceva. The 'since X' phrase fin dall'infanzia anchors the duration. Note the contrast with PP ha conosciuto (met for the first time), which doesn't fit.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
+      "preposition.articulated.formation",
       "vocabulary.it.conoscere.verb.translation.active",
       "vocabulary.it.famiglia.noun.gender.active",
       "vocabulary.it.famiglia.noun.translation.active",
@@ -3428,6 +3593,9 @@
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "preposition.simple.forms",
+      "verb_form.passato_remoto",
+      "verb_form.present_indicative",
       "vocabulary.it.casa.noun.translation.active",
       "vocabulary.it.stanco.adjective.translation.active"
     ]
@@ -3500,6 +3668,10 @@
       "orthography.spelling.capitalization",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "preposition.simple.forms",
+      "pronoun.direct_object.mi",
+      "pronoun.indirect_object.mi",
+      "verb_form.present_indicative",
       "vocabulary.it.argine.noun.translation.passive",
       "vocabulary.it.banca.noun.translation.passive",
       "vocabulary.it.chiamare.verb.translation.passive",
@@ -3569,6 +3741,9 @@
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "preposition.simple.forms",
+      "verb_form.passato_prossimo.auxiliary.avere_default",
+      "verb_form.present_indicative",
       "vocabulary.it.richiamare.verb.translation.active",
       "vocabulary.it.tardo.adverb.translation.active"
     ]
@@ -3627,6 +3802,9 @@
       "orthography.spelling.capitalization",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "preposition.simple.forms",
+      "verb_form.passato_prossimo.auxiliary.avere_default",
+      "verb_form.present_indicative",
       "vocabulary.it.annunciare.verb.translation.passive",
       "vocabulary.it.partire.verb.translation.passive",
       "vocabulary.it.roma.noun.translation.passive"
@@ -3699,9 +3877,12 @@
     "examiner_note": "A trickier translation because the stylistic effect is hard to render in English. Marker should credit the simple-past rendering as the natural choice and the past-progressive as a defensible alternative.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
+      "preposition.articulated.formation",
+      "preposition.simple.forms",
       "vocabulary.it.aspettare.verb.translation.passive",
       "vocabulary.it.banchina.noun.translation.passive",
       "vocabulary.it.due.numeral.translation.passive",
@@ -3786,8 +3967,16 @@
     "examiner_note": "Demonstrates that Italian's stylistic-counterfactual collapse doesn't have an English analogue; the translation must expand to the standard conditional structure.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
+      "connective.contrast",
+      "indefinite.core.tutto",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
+      "pronoun.direct_object.ti",
+      "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
+      "verb_form.present_indicative",
       "vocabulary.it.chiamare.verb.translation.passive",
       "vocabulary.it.pomeriggio.noun.translation.passive",
       "vocabulary.it.riunione.noun.translation.passive",
@@ -3853,6 +4042,7 @@
     "version": 1,
     "expected_buckets": [
       "orthography.spelling.c_g_softening",
+      "verb_form.congiuntivo.formation.imperfetto",
       "vocabulary.it.me.pronoun.translation.active",
       "vocabulary.it.mi.pronoun.translation.active",
       "vocabulary.it.prima.adverb.translation.active",
@@ -3923,6 +4113,7 @@
     "expected_buckets": [
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
       "vocabulary.it.buongiorno.interjection.translation.active",
       "vocabulary.it.cappuccino.noun.gender.active",
       "vocabulary.it.cappuccino.noun.translation.active",
@@ -4049,6 +4240,7 @@
     "expected_buckets": [
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.c_g_softening",
+      "preposition.simple.forms",
       "vocabulary.it.buongiorno.interjection.translation.active",
       "vocabulary.it.favore.noun.translation.active"
     ]

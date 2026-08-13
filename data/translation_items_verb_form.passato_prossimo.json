@@ -31,8 +31,10 @@
     "explanation": "Mangiare acts on a direct object (la pasta), so it's a transitive verb and takes avere. 1pl abbiamo. Past participle mangiato. With avere and the direct object following the verb, the past participle stays invariable in -o. Working: abbiamo mangiato la pasta.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "verb_form.present_indicative",
       "vocabulary.it.ieri.adverb.translation.active",
       "vocabulary.it.mangiare.verb.translation.active",
       "vocabulary.it.pasta.noun.gender.active",
@@ -71,9 +73,11 @@
     "explanation": "Vendere is a transitive verb in the regular second-conjugation pattern: -ere → -uto, so venduto. Transitives take avere; 3pl hanno. Working: hanno venduto la macchina.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "verb_form.present_indicative",
       "vocabulary.it.loro.pronoun.translation.active",
       "vocabulary.it.macchina.noun.translation.active",
       "vocabulary.it.mese.noun.gender.active",
@@ -115,6 +119,7 @@
     "expected_buckets": [
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "verb_form.present_indicative",
       "vocabulary.it.dormire.verb.translation.active",
       "vocabulary.it.ieri.adverb.translation.active",
       "vocabulary.it.notte.noun.translation.active",
@@ -149,6 +154,8 @@
     "expected_buckets": [
       "orthography.accent.italian",
       "orthography.spelling.doubling",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
+      "verb_form.present_indicative",
       "vocabulary.it.arrivare.verb.translation.active",
       "vocabulary.it.marcare.verb.translation.active",
       "vocabulary.it.molto.adverb.translation.active",
@@ -188,6 +195,9 @@
     "expected_buckets": [
       "orthography.accent.italian",
       "orthography.spelling.capitalization",
+      "preposition.simple.forms",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_singular",
+      "verb_form.present_indicative",
       "vocabulary.it.domenica.noun.translation.active",
       "vocabulary.it.roma.noun.translation.active",
       "vocabulary.it.tornare.verb.translation.active"
@@ -226,7 +236,12 @@
     "examiner_note": "Common miss: 'sono partiti' (default-masc plural over-application).",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.doubling",
+      "preposition.articulated.formation",
+      "preposition.simple.forms",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_plural",
+      "verb_form.present_indicative",
       "vocabulary.it.mattina.noun.translation.active",
       "vocabulary.it.partire.verb.translation.active",
       "vocabulary.it.ragazza.noun.gender.active",
@@ -272,6 +287,12 @@
     "version": 1,
     "expected_buckets": [
       "orthography.spelling.doubling",
+      "pronoun.direct_object.mi",
+      "pronoun.indirect_object.mi",
+      "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_singular",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
+      "verb_form.present_indicative",
       "vocabulary.it.alzare.verb.translation.active",
       "vocabulary.it.presto.adverb.translation.active",
       "vocabulary.it.stamattina.adverb.translation.active"
@@ -309,7 +330,12 @@
     "explanation": "Divertirsi means enjoying oneself, so it's a reflexive verb and takes essere. With essere, the past participle has to show participle agreement with the subject. 'Le donne' is f.pl, so the participle takes -e: divertite. Working: si sono divertite.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.doubling",
+      "preposition.articulated.formation",
+      "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_plural",
+      "verb_form.present_indicative",
       "vocabulary.it.divertire.verb.translation.active",
       "vocabulary.it.donna.noun.gender.active",
       "vocabulary.it.donna.noun.translation.active",
@@ -347,8 +373,11 @@
     "explanation": "Fare is a transitive verb that takes avere. The past participle is the irregular fatto. 3sg ha; the subject pronoun lui is usually dropped. Working: ha fatto tutto da solo.",
     "version": 1,
     "expected_buckets": [
+      "indefinite.core.tutto",
       "orthography.spelling.doubling",
-      "orthography.spelling.silent_h"
+      "orthography.spelling.silent_h",
+      "preposition.simple.forms",
+      "verb_form.present_indicative"
     ]
   },
   {
@@ -383,7 +412,10 @@
     "examiner_note": "Common over-regularisation: 'abbiamo prenduto'.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.doubling",
+      "preposition.articulated.formation",
+      "verb_form.present_indicative",
       "vocabulary.it.otto.numeral.translation.active",
       "vocabulary.it.prendere.verb.translation.active",
       "vocabulary.it.stamattina.adverb.translation.active",
@@ -423,6 +455,7 @@
     "version": 1,
     "expected_buckets": [
       "orthography.spelling.silent_h",
+      "verb_form.present_indicative",
       "vocabulary.it.bel.adjective.translation.active",
       "vocabulary.it.film.noun.translation.active",
       "vocabulary.it.ieri.adverb.translation.active",
@@ -463,8 +496,14 @@
     "examiner_note": "Common miss: 'hai piaciuto il film' (Anglophone direct translation).",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
+      "piacere.form.agreement",
+      "pronoun.direct_object.ti",
+      "pronoun.indirect_object.ti",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
+      "verb_form.present_indicative",
       "vocabulary.it.film.noun.gender.active",
       "vocabulary.it.film.noun.translation.active",
       "vocabulary.it.ieri.adverb.translation.active",
@@ -504,9 +543,12 @@
     "explanation": "Two rules combine here. Negation placement puts non before the auxiliary. Adverb placement puts ancora between the auxiliary and the past participle. Leggere has the irregular participle letto. Working: non ho ancora letto.",
     "version": 1,
     "expected_buckets": [
+      "negation.core.bipartite",
+      "negation.core.non_position",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
       "orthography.spelling.silent_h",
+      "verb_form.present_indicative",
       "vocabulary.it.ancora.adverb.translation.active",
       "vocabulary.it.leggere.verb.translation.active",
       "vocabulary.it.libro.noun.translation.active"
@@ -545,9 +587,12 @@
     "examiner_note": "The contrast within one item is deliberate: the same verb, two different agreement outcomes.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.capitalization",
       "orthography.spelling.silent_h",
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.foto.noun.gender.active",
       "vocabulary.it.foto.noun.translation.active",
       "vocabulary.it.ieri.adverb.translation.active",
@@ -587,9 +632,13 @@
     "examiner_note": "Anglophones often standardise on 'ha' for both clauses; tracking this distinguishes a true mastery of auxiliary choice.",
     "version": 1,
     "expected_buckets": [
+      "connective.discourse",
       "orthography.accent.italian",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "preposition.simple.forms",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
+      "verb_form.present_indicative",
       "vocabulary.it.leggere.verb.translation.active",
       "vocabulary.it.libro.noun.gender.active",
       "vocabulary.it.libro.noun.translation.active",
@@ -632,9 +681,12 @@
     "examiner_note": "Tests learner sensitivity to the PP-vs-English-tense mapping: PP + definite past adverb → simple past.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.direttore.noun.translation.passive",
       "vocabulary.it.ieri.adverb.translation.passive",
       "vocabulary.it.parlare.verb.translation.passive",
@@ -673,9 +725,13 @@
     "explanation": "Andare is a verb of motion and takes essere. Marco (m) and Anna (f) form a mixed-gender plural subject; Italian's mixed-gender default is m.pl agreement on the past participle, so andati. English collapses all of this onto a single 'went'.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.capitalization",
       "orthography.spelling.doubling",
+      "preposition.articulated.formation",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_plural",
+      "verb_form.present_indicative",
       "vocabulary.it.anna.verb.translation.passive",
       "vocabulary.it.cinema.noun.translation.passive",
       "vocabulary.it.insieme.adverb.translation.passive",
@@ -713,8 +769,12 @@
     "examiner_note": "Anglophone learners sometimes literally render 'themselves woke up' — flag it.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
+      "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_plural",
+      "verb_form.present_indicative",
       "vocabulary.it.molto.adverb.translation.passive",
       "vocabulary.it.ragazzo.noun.translation.passive",
       "vocabulary.it.stamattina.adverb.translation.passive",
@@ -753,8 +813,11 @@
     "explanation": "Scrivere has the irregular past participle scritto and takes avere. Because the source has no definite past-time adverb, the tense mapping into English allows either simple past ('wrote') or present perfect ('has written'). Both are accepted.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "preposition.articulated.formation",
+      "verb_form.present_indicative",
       "vocabulary.it.capo.noun.translation.passive",
       "vocabulary.it.email.noun.translation.passive",
       "vocabulary.it.lungo.adjective.translation.passive",
@@ -792,9 +855,12 @@
     "explanation": "Mettere is a transitive verb that takes avere. The past participle is the irregular messo. The translation tests recognition of the irregular form. 3sg ha. Working: ha messo le chiavi sul tavolo.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "preposition.articulated.formation",
+      "verb_form.present_indicative",
       "vocabulary.it.chiave.noun.translation.passive",
       "vocabulary.it.lui.pronoun.translation.passive",
       "vocabulary.it.mettere.verb.translation.passive",
@@ -830,9 +896,15 @@
     "examiner_note": "The cross-language structural difference is the test: Italian uses active intransitive where English uses passive.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.capitalization",
       "orthography.spelling.doubling",
+      "preposition.articulated.formation",
+      "preposition.simple.forms",
+      "verb_form.passato_prossimo.auxiliary.essere_motion_intransitive",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_singular",
+      "verb_form.present_indicative",
       "vocabulary.it.napoli.adjective.translation.passive",
       "vocabulary.it.nascere.verb.translation.passive",
       "vocabulary.it.nonna.noun.translation.passive"
@@ -869,8 +941,14 @@
     "explanation": "Piacere takes essere; the grammatical subject is the thing liked, here 'i tuoi disegni' (m.pl), so the past participle agrees: piaciuti. The English 'I' is the Italian indirect object pronoun mi. Working: mi sono piaciuti i tuoi disegni.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
+      "piacere.form.agreement",
+      "pronoun.direct_object.mi",
+      "pronoun.indirect_object.mi",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_plural",
+      "verb_form.present_indicative",
       "vocabulary.it.disegnare.verb.translation.passive",
       "vocabulary.it.molto.adverb.translation.passive",
       "vocabulary.it.piacere.verb.translation.passive",
@@ -910,8 +988,14 @@
     "examiner_note": "Tests recognition that the same verb (correre) can take either auxiliary depending on use.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
+      "connective.time.mentre_appena",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "preposition.simple.forms",
+      "verb_form.passato_prossimo.auxiliary.essere_motion_intransitive",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
+      "verb_form.present_indicative",
       "vocabulary.it.appena.adverb.translation.passive",
       "vocabulary.it.casa.noun.translation.passive",
       "vocabulary.it.correre.verb.translation.passive",
@@ -954,9 +1038,12 @@
     "explanation": "Three rules combine. Negation placement puts non before the auxiliary. Adverb placement puts mai between auxiliary and past participle. The tense mapping into English picks present perfect because mai is up-to-now. Working: non ho mai visto → have never seen.",
     "version": 1,
     "expected_buckets": [
+      "negation.core.bipartite",
+      "negation.core.non_position",
       "orthography.accent.italian",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "verb_form.present_indicative",
       "vocabulary.it.bello.adjective.translation.passive",
       "vocabulary.it.film.noun.translation.passive",
       "vocabulary.it.mai.adverb.translation.passive",
@@ -996,10 +1083,12 @@
     "explanation": "Same verb-tense, two agreement outcomes. First clause: avere with the direct object (i biglietti) following, so the participle stays invariable: comprato. Second clause: the preceding DOP li (m.pl, referring to biglietti) forces participle agreement: presi.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "verb_form.present_indicative",
       "vocabulary.it.biglietto.noun.translation.passive",
       "vocabulary.it.comprare.verb.translation.passive",
       "vocabulary.it.li.pronoun.translation.passive",
@@ -1040,8 +1129,11 @@
     "examiner_note": "Useful contrast with the la-form question (l'ho vista) where the -a agreement is visible.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.silent_h",
+      "preposition.articulated.formation",
+      "verb_form.present_indicative",
       "vocabulary.it.bar.noun.translation.passive",
       "vocabulary.it.ieri.adverb.translation.passive",
       "vocabulary.it.sera.noun.translation.passive",
@@ -1086,6 +1178,9 @@
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "preposition.simple.forms",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_singular",
+      "verb_form.present_indicative",
       "vocabulary.it.arrivare.verb.translation.passive",
       "vocabulary.it.cucina.noun.translation.passive",
       "vocabulary.it.mangiare.verb.translation.passive",
@@ -1122,9 +1217,12 @@
     "explanation": "Bere is a transitive verb that takes avere. The past participle bevuto shows stem expansion: bere comes from older bevere, and the older stem reappears in the participle. 3pl hanno. Working: hanno bevuto troppa cioccolata.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
+      "indefinite.core",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "verb_form.present_indicative",
       "vocabulary.it.bambino.noun.translation.passive",
       "vocabulary.it.bere.verb.translation.passive",
       "vocabulary.it.cioccolata.noun.translation.passive",
@@ -1164,9 +1262,12 @@
     "examiner_note": "Dense skill load in one short sentence; useful diagnostic.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.silent_h",
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.aprire.verb.translation.passive",
       "vocabulary.it.chiudere.verb.translation.passive",
       "vocabulary.it.finestra.noun.translation.passive",
@@ -1211,9 +1312,14 @@
     "examiner_note": "Tests the essere/stare shared-participle bucket plus the PP↔English-tense mapping rule.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.capitalization",
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
+      "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
+      "verb_form.present_indicative",
       "vocabulary.it.annata.noun.translation.passive",
       "vocabulary.it.anno.noun.translation.passive",
       "vocabulary.it.roma.noun.translation.passive",
@@ -1281,6 +1387,7 @@
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.silent_h",
+      "verb_form.present_indicative",
       "vocabulary.it.mangiare.verb.translation.active"
     ]
   },
@@ -1344,6 +1451,9 @@
     "version": 1,
     "expected_buckets": [
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_plural",
+      "verb_form.present_indicative",
       "vocabulary.it.appena.adverb.translation.passive",
       "vocabulary.it.casa.noun.translation.passive",
       "vocabulary.it.tornare.verb.translation.passive"
@@ -1421,8 +1531,11 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.silent_h",
+      "preposition.articulated.formation",
+      "verb_form.present_indicative",
       "vocabulary.it.bel.adjective.translation.passive",
       "vocabulary.it.cinema.noun.translation.passive",
       "vocabulary.it.film.noun.translation.passive",
@@ -1497,6 +1610,9 @@
       "orthography.accent.italian",
       "orthography.spelling.capitalization",
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_singular",
+      "verb_form.present_indicative",
       "vocabulary.it.due.numeral.translation.passive",
       "vocabulary.it.roma.noun.translation.passive",
       "vocabulary.it.settimana.noun.translation.passive"
@@ -1581,6 +1697,7 @@
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "verb_form.present_indicative",
       "vocabulary.it.annata.noun.translation.passive",
       "vocabulary.it.anno.noun.translation.passive",
       "vocabulary.it.cambiare.verb.translation.passive",
@@ -1662,7 +1779,10 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.doubling",
+      "preposition.articulated.formation",
+      "verb_form.present_indicative",
       "vocabulary.it.otto.numeral.translation.passive",
       "vocabulary.it.prendere.verb.translation.passive",
       "vocabulary.it.stamattina.adverb.translation.passive",
@@ -1738,10 +1858,12 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "verb_form.present_indicative",
       "vocabulary.it.compito.noun.translation.passive"
     ]
   },
@@ -1808,7 +1930,11 @@
     "explanation": "Non...ancora (= not yet) is the classic up-to-now construction, so the tense mapping into English picks present perfect: 'haven't finished yet'. Italian's adverb placement puts ancora between the auxiliary and the past participle; English moves 'yet' to the end of the sentence.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
+      "negation.core.non_position",
       "orthography.spelling.silent_h",
+      "verb_form.passato_prossimo.auxiliary.avere_default",
+      "verb_form.present_indicative",
       "vocabulary.it.ancora.adverb.translation.passive",
       "vocabulary.it.finire.verb.translation.passive",
       "vocabulary.it.libro.noun.translation.passive"
@@ -1873,8 +1999,12 @@
     "explanation": "Mai in non...mai (= never) is an up-to-now adverb, so the tense mapping into English picks present perfect: 'I've never eaten'. Italian uses a definite article on category nouns (il sushi); English drops it.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
+      "negation.core.bipartite",
+      "negation.core.non_position",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.silent_h",
+      "verb_form.present_indicative",
       "vocabulary.it.mai.adverb.translation.passive",
       "vocabulary.it.mangiare.verb.translation.passive",
       "vocabulary.it.sushi.noun.translation.passive"
@@ -1955,6 +2085,8 @@
     "expected_buckets": [
       "orthography.accent.italian",
       "orthography.spelling.doubling",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_singular",
+      "verb_form.present_indicative",
       "vocabulary.it.appena.adverb.translation.passive",
       "vocabulary.it.arrivare.verb.translation.passive",
       "vocabulary.it.sorella.noun.translation.passive"
@@ -2024,6 +2156,8 @@
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
       "orthography.spelling.silent_h",
+      "pronoun.ne.partitive_quantity",
+      "verb_form.present_indicative",
       "vocabulary.it.leggere.verb.translation.active",
       "vocabulary.it.libro.noun.translation.active",
       "vocabulary.it.ne.adverb.translation.active",
@@ -2113,8 +2247,12 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.articulated.formation",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_plural",
+      "verb_form.present_indicative",
       "vocabulary.it.anna.verb.translation.active",
       "vocabulary.it.cinema.noun.gender.active",
       "vocabulary.it.cinema.noun.translation.active",
@@ -2186,6 +2324,7 @@
     "expected_buckets": [
       "orthography.accent.italian",
       "orthography.spelling.capitalization",
+      "verb_form.present_indicative",
       "vocabulary.it.ieri.adverb.translation.active",
       "vocabulary.it.partire.verb.translation.active",
       "vocabulary.it.presto.adverb.translation.active"
@@ -2253,6 +2392,8 @@
     "explanation": "Potere is a modal verb governing partire. Partire is a verb of motion, so by modal auxiliary inheritance potere takes essere too: siamo potuti partire. The participle is in m.pl agreement with the implied noi. English renders modality + past as 'were able to' or 'could'.",
     "version": 1,
     "expected_buckets": [
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.grazia.noun.translation.passive",
       "vocabulary.it.orario.noun.translation.passive",
       "vocabulary.it.partire.verb.translation.passive",
@@ -2336,9 +2477,11 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "verb_form.present_indicative",
       "vocabulary.it.biglietto.noun.gender.active",
       "vocabulary.it.biglietto.noun.translation.active",
       "vocabulary.it.comprare.verb.translation.active",
@@ -2412,7 +2555,9 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.capitalization",
+      "verb_form.present_indicative",
       "vocabulary.it.film.noun.gender.active",
       "vocabulary.it.film.noun.translation.active",
       "vocabulary.it.ieri.adverb.translation.active",
@@ -2491,11 +2636,14 @@
     "explanation": "Dire is a transitive verb that takes avere; the past participle is the irregular detto (a stem expansion verb, from older dicere). Tense mapping: ieri is a definite past-time adverb, so English picks simple past 'told'. Working: ha detto la verità.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.capitalization",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "preposition.articulated.formation",
+      "verb_form.present_indicative",
       "vocabulary.it.genitore.noun.translation.active",
       "vocabulary.it.ieri.adverb.translation.active",
       "vocabulary.it.marcare.verb.translation.active"
@@ -2564,8 +2712,12 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.doubling",
+      "verb_form.passato_prossimo.auxiliary.essere_motion_intransitive",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
+      "verb_form.present_indicative",
       "vocabulary.it.gatto.noun.translation.passive",
       "vocabulary.it.loro.pronoun.translation.passive",
       "vocabulary.it.morire.verb.translation.passive",
@@ -2651,10 +2803,15 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.capitalization",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
+      "preposition.articulated.formation",
+      "preposition.simple.forms",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_plural",
+      "verb_form.present_indicative",
       "vocabulary.it.amico.noun.gender.active",
       "vocabulary.it.amico.noun.translation.active",
       "vocabulary.it.anna.verb.translation.active",
@@ -2729,10 +2886,12 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "verb_form.present_indicative",
       "vocabulary.it.lettera.noun.gender.active",
       "vocabulary.it.lettera.noun.translation.active",
       "vocabulary.it.scrivere.verb.translation.active",

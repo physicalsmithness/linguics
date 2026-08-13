@@ -41,6 +41,7 @@
     ],
     "expected_buckets": [
       "orthography.spelling.c_g_softening",
+      "verb_form.present_indicative",
       "vocabulary.it.bene.adverb.translation.active",
       "vocabulary.it.cucina.noun.translation.active",
       "vocabulary.it.molto.adverb.translation.active"
@@ -84,6 +85,7 @@
       "orthography.accent.italian",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
+      "verb_form.present_indicative",
       "vocabulary.it.buono.adverb.translation.active",
       "vocabulary.it.davvero.adverb.translation.active"
     ]
@@ -123,6 +125,8 @@
       }
     ],
     "expected_buckets": [
+      "interrogatives.adverbs",
+      "verb_form.present_indicative",
       "vocabulary.it.bene.adverb.translation.active",
       "vocabulary.it.grazia.noun.translation.active"
     ]
@@ -157,6 +161,7 @@
     "version": 1,
     "expected_buckets": [
       "orthography.spelling.apostrophe_elision",
+      "verb_form.present_indicative",
       "vocabulary.it.bene.adverb.translation.passive",
       "vocabulary.it.italiano.adjective.translation.passive",
       "vocabulary.it.parlare.verb.translation.passive"
@@ -200,6 +205,9 @@
     ],
     "expected_buckets": [
       "orthography.accent.italian",
+      "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_singular",
+      "verb_form.present_indicative",
       "vocabulary.it.buono.adverb.translation.active",
       "vocabulary.it.idea.noun.translation.active"
     ]
@@ -247,8 +255,10 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "verb_form.present_indicative",
       "vocabulary.it.molto.adverb.translation.active",
       "vocabulary.it.ragazza.noun.gender.active",
       "vocabulary.it.ragazza.noun.translation.active",
@@ -286,9 +296,14 @@
     "explanation": "Here troppo counts a noun (cars), so it agrees: macchine is feminine plural, hence troppe. Beside a verb it would stay troppo.",
     "version": 1,
     "expected_buckets": [
+      "existential.form.plural",
+      "indefinite.core",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
+      "pronoun.ci_locative",
+      "verb_form.present_indicative",
       "vocabulary.it.macchina.noun.translation.active",
       "vocabulary.it.troppo.adverb.translation.active"
     ]
@@ -322,9 +337,11 @@
     "explanation": "Poco counts a noun here (friends), so it agrees: amici is masculine plural, hence pochi. Before an adjective it would stay poco.",
     "version": 1,
     "expected_buckets": [
+      "indefinite.core",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.qu_cu_cqu",
       "orthography.spelling.silent_h",
+      "verb_form.present_indicative",
       "vocabulary.it.amico.noun.translation.active",
       "vocabulary.it.poco.adverb.translation.active",
       "vocabulary.it.qua.adverb.translation.active",
@@ -360,6 +377,8 @@
     "explanation": "Beside verbs, molto and poco are adverbs (how much you study or sleep) and stay invariable: studia molto, dorme poco.",
     "version": 1,
     "expected_buckets": [
+      "connective.contrast",
+      "verb_form.present_indicative",
       "vocabulary.it.dormire.verb.translation.passive",
       "vocabulary.it.molto.adverb.translation.passive",
       "vocabulary.it.poco.adverb.translation.passive",
@@ -395,6 +414,7 @@
     "explanation": "The manner adverb is built with -mente on the feminine of lento: lenta + mente = lentamente.",
     "version": 1,
     "expected_buckets": [
+      "preposition.simple.forms",
       "vocabulary.it.favore.noun.translation.active",
       "vocabulary.it.guidare.verb.translation.active",
       "vocabulary.it.lentamente.adverb.translation.active"
@@ -433,6 +453,11 @@
     "expected_buckets": [
       "orthography.spelling.c_g_softening",
       "orthography.spelling.silent_h",
+      "preposition.simple.forms",
+      "pronoun.direct_object.mi",
+      "pronoun.indirect_object.mi",
+      "verb_form.passato_prossimo.auxiliary.avere_default",
+      "verb_form.present_indicative",
       "vocabulary.it.molto.adverb.translation.active",
       "vocabulary.it.rispondere.verb.translation.active"
     ]
@@ -467,6 +492,7 @@
     "version": 1,
     "expected_buckets": [
       "orthography.spelling.c_g_softening",
+      "verb_form.present_indicative",
       "vocabulary.it.parlare.verb.translation.passive",
       "vocabulary.it.velocemente.adverb.translation.passive"
     ]
@@ -500,6 +526,8 @@
     "explanation": "Volentieri is a ready-made adverb (gladly); it takes no -mente and never agrees.",
     "version": 1,
     "expected_buckets": [
+      "verb_form.future",
+      "verb_form.present_indicative",
       "vocabulary.it.stasera.adverb.translation.active",
       "vocabulary.it.venire.verb.translation.active",
       "vocabulary.it.volentieri.adverb.translation.active"
@@ -534,6 +562,7 @@
     "explanation": "Presto (early) and sempre (always) are primary adverbs: whole words with no -mente and no agreement.",
     "version": 1,
     "expected_buckets": [
+      "verb_form.present_indicative",
       "vocabulary.it.alzare.verb.translation.passive",
       "vocabulary.it.presto.adverb.translation.passive",
       "vocabulary.it.sempre.adverb.translation.passive"
@@ -575,6 +604,8 @@
     ],
     "expected_buckets": [
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.arrivare.verb.translation.active",
       "vocabulary.it.ritardare.verb.translation.active",
       "vocabulary.it.sempre.adverb.translation.active"
@@ -615,6 +646,8 @@
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.silent_h",
+      "verb_form.passato_prossimo.auxiliary.avere_default",
+      "verb_form.present_indicative",
       "vocabulary.it.mangiare.verb.translation.active"
     ]
   }

@@ -44,8 +44,10 @@
     "explanation": "Casa is feminine singular, so the possessive adjective and its definite article agree: la mia casa. Casa is not a family noun, so the article stays.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.qu_cu_cqu",
+      "verb_form.present_indicative",
       "vocabulary.it.casa.noun.translation.active"
     ]
   },
@@ -96,8 +98,10 @@
     "explanation": "Suo agrees with the thing owned, not the owner: macchina is feminine, so la sua macchina, even though Marco is male.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "verb_form.present_indicative",
       "vocabulary.it.amare.verb.translation.active",
       "vocabulary.it.macchina.noun.translation.active",
       "vocabulary.it.marcare.verb.translation.active"
@@ -147,7 +151,9 @@
     "explanation": "I miei is the masculine plural of mio with its article; simpatici agrees with the masculine plural amici.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
+      "verb_form.present_indicative",
       "vocabulary.it.amico.noun.translation.passive",
       "vocabulary.it.molto.adverb.translation.passive",
       "vocabulary.it.simpatico.adjective.translation.passive"
@@ -192,7 +198,9 @@
     "explanation": "Loro is invariable, so it never inflects; the article agrees with casa (feminine singular): la loro casa.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.accent.italian",
+      "verb_form.present_indicative",
       "vocabulary.it.casa.noun.translation.active",
       "vocabulary.it.grande.adjective.translation.active",
       "vocabulary.it.loro.pronoun.translation.active",
@@ -243,7 +251,10 @@
     "explanation": "Chiavi is feminine plural, so le tue: article and possessive both feminine plural.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
+      "interrogatives.adverbs",
       "orthography.spelling.c_g_softening",
+      "verb_form.present_indicative",
       "vocabulary.it.chiave.noun.translation.active",
       "vocabulary.it.dove.adverb.translation.active",
       "vocabulary.it.tuo.determiner.translation.active"
@@ -305,8 +316,10 @@
     "explanation": "Il suo agrees with cane (masculine); with Anna as owner the natural reading is 'her dog'. Italian suo would look identical for a male owner.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "verb_form.present_indicative",
       "vocabulary.it.anna.verb.translation.passive",
       "vocabulary.it.cane.noun.translation.passive",
       "vocabulary.it.cercare.verb.translation.passive"
@@ -357,6 +370,7 @@
     "version": 1,
     "expected_buckets": [
       "orthography.spelling.qu_cu_cqu",
+      "verb_form.present_indicative",
       "vocabulary.it.amico.noun.translation.active",
       "vocabulary.it.lavorare.verb.translation.active",
       "vocabulary.it.qua.adverb.translation.active",
@@ -409,6 +423,8 @@
     "version": 1,
     "expected_buckets": [
       "orthography.spelling.capitalization",
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.lavorare.verb.translation.active",
       "vocabulary.it.madre.noun.translation.active",
       "vocabulary.it.roma.noun.translation.active"
@@ -464,7 +480,9 @@
     "explanation": "Mio fratello drops the article (singular family noun). 'Fa il medico' states a profession; that article belongs to medico, not to the possessive.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.doubling",
+      "verb_form.present_indicative",
       "vocabulary.it.confratello.noun.translation.active",
       "vocabulary.it.fratello.noun.translation.active",
       "vocabulary.it.medico.noun.gender.active",
@@ -516,8 +534,11 @@
     "explanation": "In the plural the exception lapses: i miei fratelli, article restored.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.doubling",
+      "preposition.articulated.formation",
+      "verb_form.present_indicative",
       "vocabulary.it.confratello.noun.translation.active",
       "vocabulary.it.fratello.noun.translation.active",
       "vocabulary.it.vivere.verb.translation.active"
@@ -572,6 +593,7 @@
     "expected_buckets": [
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "verb_form.present_indicative",
       "vocabulary.it.francese.adjective.translation.active",
       "vocabulary.it.parlare.verb.translation.active",
       "vocabulary.it.sorella.noun.translation.active"
@@ -622,9 +644,11 @@
     "explanation": "With loro the article never drops, even for a singular family noun: il loro padre.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
+      "verb_form.present_indicative",
       "vocabulary.it.ingegnere.noun.gender.active",
       "vocabulary.it.ingegnere.noun.translation.active",
       "vocabulary.it.loro.pronoun.translation.active",
@@ -676,9 +700,11 @@
     "explanation": "The diminutive sorellina counts as altered, so the article returns: la mia sorellina, unlike bare mia sorella.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.capitalization",
       "orthography.spelling.doubling",
+      "verb_form.present_indicative",
       "vocabulary.it.chiamare.verb.translation.active",
       "vocabulary.it.sofia.noun.translation.active",
       "vocabulary.it.sorellina.noun.translation.active"
@@ -734,6 +760,8 @@
     "version": 1,
     "expected_buckets": [
       "orthography.spelling.capitalization",
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.abitare.verb.translation.passive",
       "vocabulary.it.napoli.adjective.translation.passive",
       "vocabulary.it.nostro.determiner.translation.passive",
@@ -787,9 +815,11 @@
     "explanation": "Standalone la tua keeps the article and agrees with the understood macchina (feminine singular).",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "verb_form.present_indicative",
       "vocabulary.it.macchina.noun.translation.active",
       "vocabulary.it.nuovo.adjective.translation.active",
       "vocabulary.it.tuo.determiner.translation.active",
@@ -837,8 +867,11 @@
     "explanation": "Il mio stands alone for 'mine', keeping its article and agreeing with libro (masculine singular).",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.qu_cu_cqu",
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.casa.noun.translation.active",
       "vocabulary.it.libro.noun.translation.active",
       "vocabulary.it.qua.adverb.translation.active",
@@ -881,7 +914,11 @@
     "explanation": "I nostri and i vostri are standalone possessives with the article; the noun is recovered from context.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.doubling",
+      "verb_form.passato_prossimo.auxiliary.essere_motion_intransitive",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_plural",
+      "verb_form.present_indicative",
       "vocabulary.it.arrivare.verb.translation.passive",
       "vocabulary.it.no.adverb.translation.passive",
       "vocabulary.it.nostro.determiner.translation.passive",
@@ -929,7 +966,9 @@
     "explanation": "I nostri stands alone for 'ours', article kept; i loro shows loro invariable with its article.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.doubling",
+      "verb_form.present_indicative",
       "vocabulary.it.libero.adjective.translation.active",
       "vocabulary.it.loro.pronoun.translation.active",
       "vocabulary.it.nostro.determiner.translation.active",
@@ -988,6 +1027,8 @@
     "explanation": "Suo here is 'his' (owner Marco); sua agrees with madre (feminine). Sua madre drops the article (family noun).",
     "version": 1,
     "expected_buckets": [
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.madre.noun.translation.passive",
       "vocabulary.it.marcare.verb.translation.passive",
       "vocabulary.it.parlare.verb.translation.passive"
@@ -1048,8 +1089,11 @@
     "explanation": "Suo agrees with fratello (masculine), so suo not sua; the owner Giulia makes it 'her brother'. Suo fratello drops the article.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.articulated.formation",
+      "verb_form.present_indicative",
       "vocabulary.it.confratello.noun.translation.passive",
       "vocabulary.it.festa.noun.translation.passive",
       "vocabulary.it.fratello.noun.translation.passive",
@@ -1114,9 +1158,12 @@
     "explanation": "Le sue agrees with chiavi (feminine plural); the owner's gender is unspecified, so 'his' or 'her keys' are both correct. Italian suo carries no owner-gender.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "verb_form.passato_prossimo.auxiliary.avere_default",
+      "verb_form.present_indicative",
       "vocabulary.it.chiave.noun.translation.passive",
       "vocabulary.it.direttore.noun.translation.passive",
       "vocabulary.it.perdere.verb.translation.passive"
@@ -1171,7 +1218,9 @@
     "explanation": "I suoi agrees with gatti (masculine plural); owner Laura, so 'her cats'. Suoi is 'her' here.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.doubling",
+      "verb_form.present_indicative",
       "vocabulary.it.adorare.verb.translation.passive",
       "vocabulary.it.gatto.noun.translation.passive"
     ]
@@ -1229,6 +1278,7 @@
     "version": 1,
     "expected_buckets": [
       "orthography.spelling.c_g_softening",
+      "verb_form.present_indicative",
       "vocabulary.it.cercare.verb.translation.active",
       "vocabulary.it.marito.noun.translation.active"
     ]
@@ -1285,7 +1335,9 @@
     "explanation": "His -> sue, agreeing with sorelle (feminine plural). Plural restores the article: le sue sorelle.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.doubling",
+      "verb_form.present_indicative",
       "vocabulary.it.amare.verb.translation.active",
       "vocabulary.it.sorella.noun.translation.active"
     ]
@@ -1329,6 +1381,7 @@
     "explanation": "Capitalised Suo is the formal 'your' (Lei); il Suo posto agrees with posto (masculine singular).",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.capitalization",
       "orthography.spelling.doubling",
       "vocabulary.it.ecco.adverb.translation.passive",
@@ -1390,6 +1443,8 @@
     "expected_buckets": [
       "orthography.spelling.capitalization",
       "orthography.spelling.digraph",
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.moglie.noun.translation.passive",
       "vocabulary.it.paolo.adjective.translation.passive",
       "vocabulary.it.vivere.verb.translation.passive"
@@ -1440,10 +1495,13 @@
     "explanation": "After essere for plain ownership the possessive drops the article: è mia (agreeing with penna, feminine). È la mia is the article-bearing pronoun, a different meaning.",
     "version": 1,
     "expected_buckets": [
+      "interrogatives.chi",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.chi.pronoun.translation.active",
       "vocabulary.it.penna.noun.translation.active"
     ]
@@ -1487,8 +1545,10 @@
     "explanation": "Ownership after essere is article-less: non è tua, è nostra, each agreeing with casa (feminine singular).",
     "version": 1,
     "expected_buckets": [
+      "negation.core.non_position",
       "orthography.accent.italian",
       "orthography.spelling.qu_cu_cqu",
+      "verb_form.present_indicative",
       "vocabulary.it.casa.noun.translation.active",
       "vocabulary.it.nostro.determiner.translation.active",
       "vocabulary.it.tuo.determiner.translation.active"
@@ -1541,6 +1601,7 @@
     "version": 1,
     "expected_buckets": [
       "orthography.spelling.qu_cu_cqu",
+      "verb_form.present_indicative",
       "vocabulary.it.guanto.noun.translation.passive"
     ]
   },
@@ -1589,6 +1650,8 @@
     "explanation": "The fixed pattern a casa mia is postposed with no article: word order carries the idiom. Alla mia casa is a calque of the English order.",
     "version": 1,
     "expected_buckets": [
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.casa.noun.translation.active",
       "vocabulary.it.stasera.adverb.translation.active",
       "vocabulary.it.venire.verb.translation.active"
@@ -1633,7 +1696,9 @@
     "explanation": "The set expression colpa mia puts the possessive after the noun with no article: non è colpa mia.",
     "version": 1,
     "expected_buckets": [
+      "negation.core.non_position",
       "orthography.accent.italian",
+      "verb_form.present_indicative",
       "vocabulary.it.colpa.noun.translation.active"
     ]
   },
@@ -1676,6 +1741,8 @@
     "explanation": "A casa nostra is the postposed fixed pattern, article-less; rendered 'at our place / at our house'.",
     "version": 1,
     "expected_buckets": [
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.casa.noun.translation.passive",
       "vocabulary.it.nostro.determiner.translation.passive",
       "vocabulary.it.restare.verb.translation.passive",
@@ -1727,6 +1794,9 @@
     "explanation": "With an impersonal subject (ognuno) the reflexive proprio is required: il proprio dovere. Suo would point at a specific person.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
+      "indefinite.pronouns.ognuno_ciascuno",
+      "verb_form.present_indicative",
       "vocabulary.it.ciascuno.pronoun.translation.active",
       "vocabulary.it.ognuno.pronoun.translation.active",
       "vocabulary.it.proprio.adverb.translation.active"
@@ -1771,7 +1841,9 @@
     "explanation": "The impersonal bisogna calls for the reflexive proprio: i propri diritti, plural so the article stays.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.doubling",
+      "verb_form.present_indicative",
       "vocabulary.it.bisognare.verb.translation.active",
       "vocabulary.it.difendere.verb.translation.active",
       "vocabulary.it.diritto.noun.translation.active",
@@ -1817,8 +1889,11 @@
     "explanation": "Ciascuno is impersonal, so proprio: le proprie idee. English renders it 'their own ideas'.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
+      "indefinite.pronouns.ognuno_ciascuno",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.silent_h",
+      "verb_form.present_indicative",
       "vocabulary.it.ciascuno.pronoun.translation.passive",
       "vocabulary.it.idea.noun.translation.passive",
       "vocabulary.it.ognuno.pronoun.translation.passive",

@@ -39,7 +39,12 @@
     "explanation": "'I really miss my little sister' becomes 'Sento molto la mancanza della mia sorellina.' The diminutivo -ina on sorella is affectionate here, not a claim about height; the alterato does the emotional work that English carries with 'little'.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.doubling",
+      "piacere",
+      "preposition.articulated.formation",
+      "pronoun.indirect_object.mi",
+      "verb_form.present_indicative",
       "vocabulary.it.mancanza.noun.gender.active",
       "vocabulary.it.mancanza.noun.translation.active",
       "vocabulary.it.molto.adverb.translation.active",
@@ -89,6 +94,7 @@
     "expected_buckets": [
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
+      "verb_form.present_indicative",
       "vocabulary.it.aspettare.verb.translation.active",
       "vocabulary.it.pronto.adjective.translation.active",
       "vocabulary.it.quasi.adverb.translation.active"
@@ -140,9 +146,13 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "preposition.articulated.formation",
+      "verb_form.passato_prossimo.auxiliary.avere_default",
+      "verb_form.present_indicative",
       "vocabulary.it.chiudere.verb.translation.active",
       "vocabulary.it.finalmente.adverb.translation.active",
       "vocabulary.it.palazzo.noun.gender.active",
@@ -191,8 +201,13 @@
     "explanation": "'What awful weather' is 'Che tempaccio!' The peggiorativo -accio on tempo marks bad quality, not size, which is exactly the sense of English 'awful' here.",
     "version": 1,
     "expected_buckets": [
+      "interrogatives.exclamatives",
+      "negation.core.bipartite",
+      "negation.core.non_position",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.mai.adverb.translation.active",
       "vocabulary.it.oggi.adverb.translation.active",
       "vocabulary.it.piovere.verb.translation.active",
@@ -239,9 +254,12 @@
     "explanation": "'Ha detto una parolaccia' means 'He said a swear word.' Reading the peggiorativo -accia as 'a big word' (parolona) would miss it: -accia marks the word as bad, not large.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "preposition.articulated.formation",
+      "verb_form.present_indicative",
       "vocabulary.it.davanti.adverb.translation.passive",
       "vocabulary.it.maestro.noun.translation.passive",
       "vocabulary.it.parolaccia.noun.translation.passive"
@@ -287,10 +305,14 @@
     "explanation": "'Sul cavalletto' means 'on the easel.' Cavalletto is a falso alterato: despite the shape cavallo + -etto, it does not mean 'small horse'. Rendering it 'little horse' is the trap the item guards against.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "preposition.articulated.formation",
+      "verb_form.passato_prossimo.auxiliary.avere_default",
+      "verb_form.present_indicative",
       "vocabulary.it.cavalletto.noun.translation.passive",
       "vocabulary.it.lasciare.verb.translation.passive",
       "vocabulary.it.pittore.noun.translation.passive",
@@ -338,8 +360,11 @@
     "explanation": "'La focaccia' is simply focaccia, a flatbread. It looks like foca + -accia but is a falso alterato: the base foca (seal) has nothing to do with the meaning, so you keep the word as focaccia.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.colazione.noun.translation.passive",
       "vocabulary.it.focaccia.noun.translation.passive",
       "vocabulary.it.mangiare.verb.translation.passive",
@@ -388,7 +413,9 @@
     "explanation": "'Absolutely packed' is strapieno: the prefisso intensivo stra- pushes pieno to its limit, working like pienissimo. It attaches straight to the adjective, so no separate 'molto' is needed.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.doubling",
+      "verb_form.imperfect",
       "vocabulary.it.stamattina.adverb.translation.active",
       "vocabulary.it.treno.noun.gender.active",
       "vocabulary.it.treno.noun.translation.active"
@@ -439,6 +466,8 @@
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.discussione.noun.translation.passive"
     ]
   },
@@ -482,8 +511,12 @@
     "explanation": "'The new graduates' is i neolaureati: the prefisso neo- means 'newly', so neo- + laureati = those who have just graduated. It packs English 'new(ly) graduated' into one word.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
+      "existential.form.singular",
       "orthography.accent.italian",
       "orthography.spelling.apostrophe_elision",
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.festa.noun.gender.active",
       "vocabulary.it.festa.noun.translation.active"
     ]
@@ -528,8 +561,12 @@
     "explanation": "'La mia ex moglie' means 'my ex-wife.' Ex means 'former' and stands as a separate word before moglie; it points to the past, the opposite of neo- ('new').",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.digraph",
       "orthography.spelling.silent_h",
+      "preposition.articulated.formation",
+      "verb_form.passato_prossimo.auxiliary.avere_default",
+      "verb_form.present_indicative",
       "vocabulary.it.ex.adjective.translation.passive",
       "vocabulary.it.incontrare.verb.translation.passive",
       "vocabulary.it.mercato.noun.translation.passive",

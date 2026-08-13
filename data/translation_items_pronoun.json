@@ -60,8 +60,12 @@
     "explanation": "Vedere is transitive (no preposition), so 'me' is the direct object. The 1sg DOP is mi, in pre-verb position. Stack: mi + vede. The 'at the bar' uses the articulated preposition al = a + il.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
+      "indefinite.core.ogni",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
+      "preposition.articulated.formation",
+      "verb_form.present_indicative",
       "vocabulary.it.bar.noun.gender.active",
       "vocabulary.it.bar.noun.translation.active",
       "vocabulary.it.marcare.verb.translation.active",
@@ -139,10 +143,13 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "preposition.articulated.formation",
+      "verb_form.present_indicative",
       "vocabulary.it.anna.verb.translation.active",
       "vocabulary.it.cinema.noun.gender.active",
       "vocabulary.it.cinema.noun.translation.active",
@@ -191,7 +198,10 @@
     "explanation": "Italian aspettare is transitive: there's no preposition like English 'wait FOR'. The informal 2sg DOP is ti, in pre-verb position.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.doubling",
+      "preposition.articulated.formation",
+      "verb_form.present_indicative",
       "vocabulary.it.aspettare.verb.translation.active",
       "vocabulary.it.bar.noun.gender.active",
       "vocabulary.it.bar.noun.translation.active",
@@ -244,6 +254,9 @@
     "expected_buckets": [
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
+      "pronoun.direct_object.la",
+      "verb_form.future",
+      "verb_form.present_indicative",
       "vocabulary.it.domani.adverb.translation.active",
       "vocabulary.it.signora.noun.translation.active"
     ]
@@ -301,7 +314,11 @@
     "explanation": "Dare opens an a-phrase for the recipient: dare qualcosa a qualcuno. The person given to is the indirect object, so 'to Anna' becomes the IOP le (f.sg). The participle stays invariable because the DO (il libro) is post-verb and overt, so there's no preceding-DOP trigger.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.silent_h",
+      "preposition.simple.forms",
+      "verb_form.passato_prossimo.auxiliary.avere_default",
+      "verb_form.present_indicative",
       "vocabulary.it.dare.verb.translation.active",
       "vocabulary.it.ieri.adverb.translation.active",
       "vocabulary.it.libro.noun.gender.active",
@@ -362,7 +379,10 @@
     "explanation": "Italian telefonare takes 'a + person' (you phone TO someone), not a plain direct object as in English. The person phoned is the indirect object, so 'his mother' becomes the f.sg IOP le.",
     "version": 1,
     "expected_buckets": [
+      "indefinite.core.ogni",
       "orthography.spelling.digraph",
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.domenica.noun.translation.active",
       "vocabulary.it.marcare.verb.translation.active",
       "vocabulary.it.ogni.determiner.translation.active",
@@ -424,8 +444,12 @@
     "explanation": "Italian piacere inverts the English-style mapping: the thing liked is the grammatical subject and the experiencer is the IOP. 'I like X' is literally 'X is pleasing to me'. The 1sg IOP mi names the experiencer; the verb agrees with the Italian subject, here plural 'i film' → piacciono.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "piacere.form.agreement",
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.film.noun.gender.active",
       "vocabulary.it.film.noun.translation.active",
       "vocabulary.it.italiano.adjective.translation.active",
@@ -490,10 +514,12 @@
     "explanation": "Mancare belongs to the piacere family: the one missed is the grammatical subject and the misser is the IOP. 'Anna missed her friends' is literally 'her friends were missing to Anna'. The IOP is f.sg le (or stressed 'ad Anna' for emphasis); the verb is imperfect mancavano, agreeing with the plural subject 'le sue amiche'.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.capitalization",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
+      "preposition.simple.forms",
       "vocabulary.it.amico.noun.translation.active",
       "vocabulary.it.anna.verb.translation.active",
       "vocabulary.it.mancare.verb.translation.active",
@@ -541,8 +567,12 @@
     "explanation": "Italian uses a reflexive verb for routine actions the subject does to itself. Getting up is alzarsi; 3sg → si alza. The clitic stays in pre-verb position.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
+      "indefinite.core.ogni",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
+      "preposition.articulated.formation",
+      "verb_form.present_indicative",
       "vocabulary.it.alzare.verb.translation.active",
       "vocabulary.it.marcare.verb.translation.active",
       "vocabulary.it.mattina.noun.translation.active",
@@ -612,8 +642,15 @@
     "explanation": "Two clauses with different auxiliaries. Alzarsi is reflexive → essere as auxiliary, with the participle agreeing with the subject (alzato/alzata for masc/fem speaker). Perdere is plain transitive → avere as auxiliary, participle invariable: perso.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "pronoun.direct_object.mi",
+      "pronoun.indirect_object.mi",
+      "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_singular",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
+      "verb_form.present_indicative",
       "vocabulary.it.alzare.verb.translation.active",
       "vocabulary.it.ieri.adverb.translation.active",
       "vocabulary.it.mattina.noun.translation.active",
@@ -666,6 +703,8 @@
     "expected_buckets": [
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.digraph",
+      "verb_form.passato_prossimo.auxiliary.avere_default",
+      "verb_form.present_indicative",
       "vocabulary.it.dare.verb.translation.active",
       "vocabulary.it.ieri.adverb.translation.active",
       "vocabulary.it.marcare.verb.translation.active"
@@ -721,6 +760,7 @@
     "explanation": "Italian's clitic cluster puts the IOP first, then the DOP. When the IOP is mi, ti, ci, or vi, the i shifts to e before the DOP: mi + lo → me lo (separated, pre-verb) or attached to the infinitive as one word (prestarmelo).",
     "version": 1,
     "expected_buckets": [
+      "verb_form.present_indicative",
       "vocabulary.it.me.pronoun.translation.active",
       "vocabulary.it.mi.pronoun.translation.active",
       "vocabulary.it.presto.adverb.translation.active"
@@ -766,9 +806,11 @@
     "explanation": "When a noun gets dropped after a quantifier (a number, un po', molti), Italian requires the partitive ne to resume it. The number stays, the noun goes, ne does the work: 'Ho tre' alone isn't grammatical; standard is 'Ne ho tre'.",
     "version": 1,
     "expected_buckets": [
+      "interrogatives.quanto",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
       "orthography.spelling.silent_h",
+      "verb_form.present_indicative",
       "vocabulary.it.confratello.noun.translation.active",
       "vocabulary.it.fratello.noun.translation.active",
       "vocabulary.it.ne.adverb.translation.active",
@@ -828,9 +870,13 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.silent_h",
+      "pronoun.ne.partitive_quantity",
+      "verb_form.passato_prossimo.auxiliary.avere_default",
+      "verb_form.present_indicative",
       "vocabulary.it.mangiare.verb.translation.active",
       "vocabulary.it.mela.noun.gender.active",
       "vocabulary.it.mela.noun.translation.active",
@@ -893,7 +939,10 @@
     "explanation": "Italian pensare DI means 'have an opinion about', distinct from pensare A (think of, daydream-style). When the di-phrase is pronominalised, the pronominal ne does the resumption. 'Cosa ne pensi?' is the stock conversational frame.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.doubling",
+      "preposition.articulated.formation",
+      "verb_form.present_indicative",
       "vocabulary.it.idea.noun.translation.active",
       "vocabulary.it.ne.adverb.translation.active",
       "vocabulary.it.pensare.verb.translation.active"
@@ -940,6 +989,7 @@
     "version": 1,
     "expected_buckets": [
       "orthography.spelling.c_g_softening",
+      "verb_form.present_indicative",
       "vocabulary.it.sabato.noun.translation.active"
     ]
   },
@@ -993,9 +1043,13 @@
     "explanation": "Italian's existential frame ('there is / there are') uses the existential ci plus essere, agreeing with the noun. Plural 'persone' → ci sono; singular collective 'gente' → c'è. Both renderings are everyday.",
     "version": 1,
     "expected_buckets": [
+      "existential.form.plural",
+      "indefinite.core",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.persona.noun.translation.active",
       "vocabulary.it.stanza.noun.translation.active",
       "vocabulary.it.troppo.adverb.translation.active"
@@ -1051,8 +1105,12 @@
     "explanation": "Italian has a small group of verbs where ci is lexicalised: farcela ('to manage / make it') is one. The ce + la travel with the verb as built-in clitics, regardless of whether anything specific is being referred to. The 1sg form is non ce la faccio. The alternative is riuscire a + infinitive.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
+      "negation.core.non_position",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.ce.adverb.translation.active",
       "vocabulary.it.finire.verb.translation.active",
       "vocabulary.it.lavorare.verb.translation.active",
@@ -1110,8 +1168,14 @@
     "explanation": "On a tu imperative the clitic takes the attached position. The five monosyllabic imperatives (da', di', fa', va', sta') trigger consonant doubling on the attaching clitic. Stack: di' + mi → dimmi (note the double -m-).",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
+      "pronoun.direct_object.ti",
+      "pronoun.indirect_object.ti",
+      "verb_form.imperativo",
+      "verb_form.present_indicative",
       "vocabulary.it.dimmi.verb.translation.active",
       "vocabulary.it.favore.noun.translation.active"
     ]
@@ -1160,6 +1224,8 @@
     "explanation": "Italian's formal address takes a different imperative pattern. The formal Lei imperative uses the subjunctive form (dia from dare) and keeps the clitic cluster in pre-verb position. Stack: me + lo + dia. The tu form would be 'dammelo' (attached, doubled).",
     "version": 1,
     "expected_buckets": [
+      "preposition.simple.forms",
+      "verb_form.congiuntivo.formation.presente",
       "vocabulary.it.dare.verb.translation.active",
       "vocabulary.it.favore.noun.translation.active",
       "vocabulary.it.me.pronoun.translation.active",
@@ -1210,6 +1276,7 @@
     "explanation": "The negative tu imperative uses non + infinitive (not the positive imperative form). The neuter lo resumes the 'it' (an implicit clause: the secret/news); combined with the IOP gli it gives the glielo cluster. Cluster has two positions: attached to the infinitive (non dirglielo) or pre-verb (non glielo dire).",
     "version": 1,
     "expected_buckets": [
+      "negation.core.non_position",
       "orthography.spelling.digraph"
     ]
   },
@@ -1262,6 +1329,9 @@
     "version": 1,
     "expected_buckets": [
       "orthography.spelling.doubling",
+      "pronoun.ne.partitive_quantity",
+      "verb_form.gerundio",
+      "verb_form.present_indicative",
       "vocabulary.it.adesso.adverb.translation.active",
       "vocabulary.it.me.pronoun.translation.active",
       "vocabulary.it.mi.pronoun.translation.active",
@@ -1308,7 +1378,9 @@
         "note": "WRONG (or at best very marked): the lo is obligatory as resumption."
       }
     ],
-    "expected_buckets": []
+    "expected_buckets": [
+      "verb_form.present_indicative"
+    ]
   },
   {
     "external_id": "trans_op_en_it_24",
@@ -1354,6 +1426,7 @@
     "version": 1,
     "expected_buckets": [
       "orthography.spelling.digraph",
+      "verb_form.present_indicative",
       "vocabulary.it.domani.adverb.translation.active",
       "vocabulary.it.vedere.verb.translation.active"
     ]
@@ -1401,6 +1474,7 @@
     "version": 1,
     "expected_buckets": [
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
       "vocabulary.it.annata.noun.translation.passive",
       "vocabulary.it.anno.noun.translation.passive",
       "vocabulary.it.conoscere.verb.translation.passive"
@@ -1449,6 +1523,10 @@
     "explanation": "Italian's clitic cluster puts the IOP before the DOP. The IOP mi shifts to me before another clitic. Stack: me + lo + dai = 'will you give it to me'.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
+      "preposition.articulated.formation",
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.dare.verb.translation.passive",
       "vocabulary.it.favore.noun.translation.passive",
       "vocabulary.it.me.pronoun.translation.passive",
@@ -1499,6 +1577,9 @@
       "orthography.spelling.capitalization",
       "orthography.spelling.digraph",
       "orthography.spelling.silent_h",
+      "preposition.simple.forms",
+      "verb_form.passato_prossimo.auxiliary.avere_default",
+      "verb_form.present_indicative",
       "vocabulary.it.ieri.adverb.translation.passive",
       "vocabulary.it.marcare.verb.translation.passive",
       "vocabulary.it.parlare.verb.translation.passive",
@@ -1550,8 +1631,10 @@
     "explanation": "Three pronoun rules fold into three words. The existential ci ('there are') meets the partitive ne ('of them'); ci shifts to ce before another clitic. The quantifier troppi agrees with the implicit antecedent. Stack: ce + ne + sono + troppi.",
     "version": 1,
     "expected_buckets": [
+      "indefinite.core",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "verb_form.present_indicative",
       "vocabulary.it.ce.adverb.translation.passive",
       "vocabulary.it.ne.adverb.translation.passive",
       "vocabulary.it.troppo.adverb.translation.passive"
@@ -1604,6 +1687,8 @@
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "verb_form.passato_prossimo.auxiliary.avere_default",
+      "verb_form.present_indicative",
       "vocabulary.it.glieli.pronoun.translation.passive",
       "vocabulary.it.portare.verb.translation.passive",
       "vocabulary.it.stamattina.adverb.translation.passive"
@@ -1650,6 +1735,7 @@
     "version": 1,
     "expected_buckets": [
       "orthography.spelling.c_g_softening",
+      "verb_form.present_indicative",
       "vocabulary.it.pensare.verb.translation.passive"
     ]
   },
@@ -1704,7 +1790,14 @@
     "explanation": "Italian accorgersi is reflexive where English 'realise/notice' is plain transitive. The reflexive verb takes essere as auxiliary, and the participle agrees with the subject (accorto for masc speaker, accorta for fem). The thing realised takes 'di' → 'del mio errore'.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.doubling",
+      "preposition.articulated.formation",
+      "pronoun.direct_object.mi",
+      "pronoun.indirect_object.mi",
+      "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
+      "verb_form.present_indicative",
       "vocabulary.it.accorgere.verb.translation.passive",
       "vocabulary.it.errore.noun.translation.passive",
       "vocabulary.it.tardo.adverb.translation.passive",
@@ -1752,9 +1845,11 @@
     "explanation": "The 'it' here refers back to a whole clause (the thing not yet told); that's neuter lo. Combined with the IOP gli or le it gives the glielo cluster (one word). Elision to gliel' before ho. Stack: non + gliel' + ho + ancora + detto.",
     "version": 1,
     "expected_buckets": [
+      "negation.core.non_position",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
+      "verb_form.present_indicative",
       "vocabulary.it.ancora.adverb.translation.passive"
     ]
   },
@@ -1812,8 +1907,11 @@
     "examiner_note": "Ambiguity acknowledged; both renderings credited.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "piacere.form.agreement",
+      "verb_form.present_indicative",
       "vocabulary.it.fiore.noun.translation.passive",
       "vocabulary.it.molto.adverb.translation.passive",
       "vocabulary.it.piacere.verb.translation.passive"
@@ -1870,8 +1968,14 @@
     "explanation": "Italian uses the reflexive lavarsi for washing-a-part-of-oneself, paired with the definite article ('le mani'), where English uses a plain transitive verb with a possessive ('his hands'). The reflexive takes essere as auxiliary; the participle agrees with the subject (m.sg → lavato).",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
+      "connective.time",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
+      "preposition.simple.forms",
+      "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
+      "verb_form.present_indicative",
       "vocabulary.it.cena.noun.translation.passive",
       "vocabulary.it.lavare.verb.translation.passive",
       "vocabulary.it.mano.noun.translation.passive",
@@ -1910,6 +2014,9 @@
     "version": 1,
     "expected_buckets": [
       "orthography.spelling.doubling",
+      "pronoun.position.post_imperative_tu_attached",
+      "verb_form.imperativo",
+      "verb_form.present_indicative",
       "vocabulary.it.dimmi.verb.translation.passive",
       "vocabulary.it.ne.adverb.translation.passive",
       "vocabulary.it.pensare.verb.translation.passive"
@@ -1957,6 +2064,7 @@
     "version": 1,
     "expected_buckets": [
       "orthography.spelling.doubling",
+      "verb_form.present_indicative",
       "vocabulary.it.accomodare.verb.translation.passive",
       "vocabulary.it.pregare.verb.translation.passive"
     ]
@@ -2005,6 +2113,8 @@
       "orthography.spelling.capitalization",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.arrivare.verb.translation.passive",
       "vocabulary.it.ora.noun.translation.passive",
       "vocabulary.it.roma.noun.translation.passive",
@@ -2056,6 +2166,9 @@
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
       "orthography.spelling.silent_h",
+      "preposition.simple.forms",
+      "verb_form.passato_prossimo.auxiliary.avere_default",
+      "verb_form.present_indicative",
       "vocabulary.it.gliene.pronoun.translation.active",
       "vocabulary.it.parlare.verb.translation.active"
     ]
@@ -2111,8 +2224,12 @@
     "explanation": "Italian uses the reflexive form to express reciprocal 'each other' actions. The reflexive ci (1pl) here means 'we [saw] each other'. Aux essere; participle agrees with the subject's gender: masc/mixed → visti, all-female → viste.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.articulated.formation",
+      "pronoun.ci_locative",
+      "verb_form.present_indicative",
       "vocabulary.it.convegno.noun.gender.active",
       "vocabulary.it.convegno.noun.translation.active",
       "vocabulary.it.scorrere.verb.translation.active",
@@ -2166,6 +2283,7 @@
     "expected_buckets": [
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "verb_form.present_indicative",
       "vocabulary.it.anna.verb.translation.active",
       "vocabulary.it.chiamare.verb.translation.active",
       "vocabulary.it.stasera.adverb.translation.active"
@@ -2216,6 +2334,8 @@
     "version": 1,
     "expected_buckets": [
       "orthography.spelling.silent_h",
+      "verb_form.passato_prossimo.auxiliary.avere_default",
+      "verb_form.present_indicative",
       "vocabulary.it.dare.verb.translation.active",
       "vocabulary.it.ieri.adverb.translation.active",
       "vocabulary.it.me.pronoun.translation.active",
@@ -2264,7 +2384,10 @@
     ],
     "explanation": "The negative tu imperative uses non + infinitive. The pronominal verb andarsene carries reflexive ti (shifting to te before ne) plus ne. The cluster has two positions: attached to the infinitive (non andartene) or pre-verb (non te ne andare).",
     "version": 1,
-    "expected_buckets": []
+    "expected_buckets": [
+      "negation.core.non_position",
+      "pronoun.ne.partitive_quantity"
+    ]
   },
   {
     "external_id": "trans_op_en_it_30",
@@ -2318,9 +2441,11 @@
     "explanation": "The partitive ne carries the antecedent's gender and number through to participle agreement. The implicit antecedent 'cookies' is i biscotti (m.pl) → mangiati. Stack: ne + abbiamo + già + mangiati + alcuni.",
     "version": 1,
     "expected_buckets": [
+      "indefinite.core.alcuni",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "verb_form.present_indicative",
       "vocabulary.it.mangiare.verb.translation.active",
       "vocabulary.it.ne.adverb.translation.active"
     ]
@@ -2357,9 +2482,12 @@
     "explanation": "Two clitics in two clauses. In the main clause the cluster glielo combines IOP gli/le with neuter lo (the thing told). In the temporal clause 'as soon as I see him', the m.sg DOP lo stands for the person seen. The two lo's reference different things (a fact vs a person).",
     "version": 1,
     "expected_buckets": [
+      "connective.time.mentre_appena",
       "orthography.accent.italian",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
+      "verb_form.future",
+      "verb_form.present_indicative",
       "vocabulary.it.appena.adverb.translation.passive",
       "vocabulary.it.glielo.pronoun.translation.passive",
       "vocabulary.it.vedere.verb.translation.passive"
@@ -2409,6 +2537,10 @@
     "explanation": "The pronominal verb andarsene carries reflexive si plus ne. 3pl: si shifts to se before ne. The reflexive triggers essere as auxiliary; the participle agrees with the (m.pl) subject → andati. Stack: se + ne + sono + andati.",
     "version": 1,
     "expected_buckets": [
+      "pronoun.ne.partitive_quantity",
+      "verb_form.passato_prossimo.auxiliary.essere_motion_intransitive",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_plural",
+      "verb_form.present_indicative",
       "vocabulary.it.ne.adverb.translation.passive",
       "vocabulary.it.salutare.verb.translation.passive",
       "vocabulary.it.senza.preposition.translation.passive"
@@ -2447,6 +2579,7 @@
     "version": 1,
     "expected_buckets": [
       "orthography.spelling.doubling",
+      "verb_form.present_indicative",
       "vocabulary.it.momento.noun.translation.passive",
       "vocabulary.it.parlare.verb.translation.passive"
     ]
@@ -2528,6 +2661,8 @@
     "explanation": "The formal Lei imperative uses the subjunctive form (mandi/invii) and keeps the clitic cluster in pre-verb position. The vowel change gives me (from mi) before lo. Stack: me + lo + mandi. The tu form would attach: 'mandamelo'.",
     "version": 1,
     "expected_buckets": [
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.favore.noun.translation.active",
       "vocabulary.it.mandare.verb.translation.active",
       "vocabulary.it.me.pronoun.translation.active",
@@ -2575,8 +2710,12 @@
     "explanation": "Italian avere bisogno takes 'di + thing needed'. The pronominal ne resumes the di-phrase. With the negative quantifier nessuno the partitive sense surfaces too: 'none of them'. Servire is an alternative verb in the piacere family; both renderings work.",
     "version": 1,
     "expected_buckets": [
+      "indefinite.pronouns.nessuno_niente",
+      "negation.core.non_position",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.bisognare.verb.translation.active",
       "vocabulary.it.ne.adverb.translation.active",
       "vocabulary.it.nessuno.determiner.translation.active"
@@ -2634,7 +2773,13 @@
     "examiner_note": "Critical diagnostic: agreement is with subject when DO is post-verb, not with the DO. The opposite happens when the DO is replaced by a clitic and precedes (see op_refl_with_obj_06).",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
+      "connective.time.prima_dopo",
       "orthography.accent.italian",
+      "preposition.simple.forms",
+      "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
+      "verb_form.present_indicative",
       "vocabulary.it.entrare.verb.translation.active",
       "vocabulary.it.marcare.verb.translation.active",
       "vocabulary.it.prima.adverb.translation.active",
@@ -2686,6 +2831,9 @@
     "expected_buckets": [
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
+      "preposition.simple.forms",
+      "verb_form.gerundio",
+      "verb_form.present_indicative",
       "vocabulary.it.lei.pronoun.translation.active",
       "vocabulary.it.pensare.verb.translation.active"
     ]
@@ -2723,10 +2871,13 @@
     "examiner_note": "Tests dislocation-with-agreement in the it→en direction.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
+      "negation.core.non_position",
       "orthography.accent.italian",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
+      "verb_form.present_indicative",
       "vocabulary.it.ancora.adverb.translation.passive"
     ]
   },
@@ -2772,6 +2923,9 @@
     "expected_buckets": [
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "pronoun.direct_object.ti",
+      "pronoun.indirect_object.ti",
+      "verb_form.present_indicative",
       "vocabulary.it.pregare.verb.translation.passive",
       "vocabulary.it.vicino.adverb.translation.passive"
     ]
@@ -2821,6 +2975,8 @@
     "explanation": "Italian's essere sicuro takes 'di + thing one is sure of'. The pronominal ne stands in for the di-complement, exactly as it does with verbal di-complements (parlare di, pensare di). The adjective itself agrees with the subject's gender: sicuro (masc) or sicura (fem).",
     "version": 1,
     "expected_buckets": [
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.ne.adverb.translation.active",
       "vocabulary.it.sicuro.adverb.translation.active"
     ]
@@ -2869,7 +3025,9 @@
     "explanation": "The verb is the reflexive preoccuparsi DI ('to worry about'); the di-phrase pronominalises to ne. The negative tu imperative uses non + infinitive. The reflexive ti shifts to te before ne. Cluster has two positions: attached to the infinitive (non preoccupartene) or pre-verb (non te ne preoccupare).",
     "version": 1,
     "expected_buckets": [
-      "orthography.spelling.doubling"
+      "negation.core.non_position",
+      "orthography.spelling.doubling",
+      "pronoun.ne.partitive_quantity"
     ]
   },
   {
@@ -2912,7 +3070,10 @@
     "explanation": "For strong contrastive emphasis, Italian uses the stressed pronoun post-verb. The clitic mi can't carry contrast; the stressed me in 'Chiama sempre me, non lui' does. No clitic doubling needed. The cleft 'È me che chiama...' is a more marked alternative.",
     "version": 1,
     "expected_buckets": [
+      "negation.core.non_position",
       "orthography.spelling.c_g_softening",
+      "relative_pronoun.che",
+      "verb_form.present_indicative",
       "vocabulary.it.chiamare.verb.translation.active",
       "vocabulary.it.lui.pronoun.translation.active",
       "vocabulary.it.me.pronoun.translation.active",
@@ -2973,9 +3134,12 @@
     "explanation": "Conoscere is transitive, so 'us' is the direct object. The 1pl direct-object pronoun is ci, which sits pre-verb in a finite tense. Stack: ci + conosce. The 'has known ... since' present-perfect maps to Italian present + da (dalle = da + le).",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
+      "preposition.articulated.formation",
+      "pronoun.ci_locative",
       "vocabulary.it.conoscere.verb.translation.active",
       "vocabulary.it.dalla.preposition.translation.active",
       "vocabulary.it.marcare.verb.translation.active",
@@ -3035,6 +3199,7 @@
     "explanation": "Vedere is transitive, so 'you (all)' is the direct object. The 2pl direct-object pronoun is vi, sitting pre-verb in a finite tense. Stack: vi + vedra'. The future 3sg of vedere is vedra' (irregular stem vedr-).",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.doubling",
@@ -3102,6 +3267,9 @@
       "orthography.spelling.c_g_softening",
       "orthography.spelling.capitalization",
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
+      "pronoun.ci_locative",
+      "verb_form.present_indicative",
       "vocabulary.it.scrivere.verb.translation.active",
       "vocabulary.it.spesso.adverb.translation.active",
       "vocabulary.it.zia.noun.translation.active"
@@ -3166,9 +3334,13 @@
     "explanation": "Dare takes a direct object (the thing given) and an indirect object (the recipient). For 3pl 'to them' modern Italian uses gli pre-verb; the traditional 'loro' sits post-verb and reads as more formal. Stack: gli + ho + dato. The participle stays m.sg dato because it is the direct object 'le chiavi' that follows, not precedes, and IOPs never trigger PP agreement.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
       "orthography.spelling.silent_h",
+      "preposition.simple.forms",
+      "verb_form.passato_prossimo.auxiliary.avere_default",
+      "verb_form.present_indicative",
       "vocabulary.it.chiave.noun.gender.active",
       "vocabulary.it.chiave.noun.translation.active",
       "vocabulary.it.dare.verb.translation.active",
@@ -3238,8 +3410,11 @@
     "explanation": "Scrivere a qualcuno takes an indirect object, so 'to you' is the indirect object. The 2sg indirect-object pronoun is ti (identical in shape to 2sg DOP; frame disambiguates). Stack: ti + ha + scritto. The participle stays m.sg scritto because IOPs never trigger PP participle agreement.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "pronoun.direct_object.ti",
+      "verb_form.present_indicative",
       "vocabulary.it.lettera.noun.translation.active",
       "vocabulary.it.lungo.adjective.translation.active",
       "vocabulary.it.sara.verb.translation.active",
@@ -3309,8 +3484,11 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.c_g_softening",
+      "piacere.form.agreement",
+      "pronoun.direct_object.ti",
       "vocabulary.it.film.noun.gender.active",
       "vocabulary.it.film.noun.translation.active",
       "vocabulary.it.pellicola.noun.translation.active",
@@ -3381,9 +3559,11 @@
     "explanation": "Telefonare a qualcuno takes an indirect object, so 'to you (all)' is the indirect object. The 2pl indirect-object pronoun is vi, pre-verb. Stack: vi + telefonera'. Chiamare would fit the English 'call' too, but chiamare is transitive and would exercise vi as DOP, not IOP.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.articulated.formation",
       "vocabulary.it.direttore.noun.gender.active",
       "vocabulary.it.direttore.noun.translation.active",
       "vocabulary.it.pomeriggio.noun.gender.active",
@@ -3439,6 +3619,12 @@
     "explanation": "English 'not care about it' becomes a pronominal-idiomatic verb in Italian where the 'about it' is packed into the clitic ne. Idiomatic pronominal verbs like importarsene and fregarsene lexicalise the reflexive-plus-ne cluster: the reflexive changes person to match the experiencer (mi -> me before another clitic) and the verb stays 3sg impersonal. Stack: non + me + ne + importa + niente.",
     "version": 1,
     "expected_buckets": [
+      "indefinite.pronouns.nessuno_niente",
+      "negation.core.non_position",
+      "pronoun.direct_object.mi",
+      "pronoun.indirect_object.mi",
+      "pronoun.ne.partitive_quantity",
+      "verb_form.present_indicative",
       "vocabulary.it.importare.verb.translation.active",
       "vocabulary.it.me.pronoun.translation.active",
       "vocabulary.it.mi.pronoun.translation.active",
@@ -3512,6 +3698,10 @@
     "expected_buckets": [
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "preposition.simple.forms",
+      "verb_form.gerundio",
+      "verb_form.passato_prossimo.auxiliary.avere_default",
+      "verb_form.present_indicative",
       "vocabulary.it.immediatamente.adverb.translation.passive",
       "vocabulary.it.li.pronoun.translation.passive",
       "vocabulary.it.piazza.noun.translation.passive",
@@ -3583,6 +3773,7 @@
     "explanation": "Alzarsi is reflexive: the action returns to the subject. The 2pl reflexive pronoun is vi, matching a 2pl subject and sitting pre-verb in a finite tense. Stack: vi + alzate. The definite article on 'il sabato' turns a weekday into a habitual 'on Saturdays'.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.doubling",
       "vocabulary.it.alzare.verb.translation.active",
       "vocabulary.it.presto.adverb.translation.active",
@@ -3652,7 +3843,13 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
+      "connective.contrast",
+      "negation.core.bipartite",
+      "negation.core.non_position",
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.anna.verb.translation.active",
       "vocabulary.it.bene.adverb.translation.active",
       "vocabulary.it.lavare.verb.translation.active",
@@ -3721,10 +3918,14 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
+      "indefinite.core.tutto",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "verb_form.passato_prossimo.auxiliary.avere_default",
+      "verb_form.present_indicative",
       "vocabulary.it.leggere.verb.translation.active",
       "vocabulary.it.lettera.noun.gender.active",
       "vocabulary.it.lettera.noun.translation.active"

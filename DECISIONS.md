@@ -3150,3 +3150,64 @@ soft), and direction (1).
 what the suite exists to catch — a reorganisation that quietly drops one behaviour while improving
 three. Run both regimes on the identical set so r159 is measured rather than argued, and so the v8
 prompt pass is checked against behaviour rather than judged by length.
+
+
+---
+
+## 2026-08-13 — Architecture: the tier-2 wave merged, and what merging it exposed
+
+**21 packets, 6,145 verdicts, merged.** 18 came back to `data/review_packets_tier2/returned/`; three
+(PronounAuthor 603, IndefiniteAuthor 243, RelativePronounAuthor 139 — 985 verdicts) were written in
+place in the dispatch directory and never copied. A merge reading only the documented path would have
+skipped a sixth of the wave in silence and reported success. `tools/merge_tier2_packets.py` reads both
+directories for good; the return convention now has no silent-failure mode.
+
+### RULING 1 — store the most specific claim; ancestors are derived, never stored
+
+Where a seat kept both an aggregate and one of its own descendants on the same item —
+`article.definite` beside `article.definite.forms`, `preposition.simple` beside
+`preposition.simple.forms` — only the leaf is stored. Coverage already walks the chain
+(`housing/js/app.js:8051`: "an item counts for every ancestor of every bucket it cites"), so the
+aggregate buys no coverage it would not already get, and costs one more fire-list entry for the marker
+to judge separately. 1,819 of 4,516 candidate additions dropped on this rule. Where the aggregate was
+the seat's only claim on an item, it stayed.
+
+This settles a real disagreement rather than inventing one: ConnectiveAuthor struck 39 rows itself as
+"parent-dup-of-kept-leaf" while PrepositionAuthor deliberately kept both and said so. Both were fair
+readings of a brief that never said. It says now, and it belongs in the next AUTHOR_BRIEF revision.
+
+### FINDING — every strike on the estate was already satisfied, by an accident of timing
+
+All 1,434 strikes merged as no-ops. Job 9 re-derived `expected_buckets` on 08-12, the day AFTER the
+packets were cut, from orthography and vocabulary signals only; it emits no grammar ids at all
+(`job9_rederive_expected_buckets.py:445` asserts `expected` ∩ `required` = ∅ and the deriver produces
+nothing else). So when the merge ran, not one of the 89 grammar buckets the packets judged was present
+in the field to be removed. 26 seats spent a day judging a field that had been rebuilt underneath them.
+
+Nothing was lost — the grammar ids had never been written there, so the re-derivation destroyed no
+work — and the strikes are not wasted, since they are the ratified record of what must NOT be
+re-derived. But it means Codex's headline "mean `expected_buckets` 1.4 → 6.27" was orthography and
+vocabulary alone, with not one grammar bucket among it. The cross-topic grammar credit that the whole
+tier-2 exercise exists to provide reached the live data today, not on 08-12.
+
+### HAZARD — Job 9 is a replace, not a merge, and will wipe this on its next run
+
+`--apply` regenerates `expected_buckets` wholesale. Re-running it as it stands deletes all 2,697
+ratified grammar buckets without a warning, because its validation gate checks shape (sorted, deduped,
+disjoint from required) and never asks whether anything ratified went missing. **Standing order: Job 9
+must not be re-run until it preserves ratified grammar ids, and its gate must fail on any drop of a
+bucket that arrived from a returned packet.** Until that lands, treat the script as unsafe.
+
+The general lesson, which is the third instance this month: a derivation that overwrites a field which
+humans also write is a merge problem wearing a pipeline's clothes. Provenance has to be in the data —
+which id is machine-derived and which is ratified — or every re-derivation is a coin toss.
+
+### Numbers, all derived post-write
+
+2,697 grammar buckets added across 879 of 913 items. Mean `expected_buckets` 6.27 → 9.23, median 9,
+max 27. Gates green: `required_buckets` byte-digest unchanged, 913 items, 32 files parse, all 74
+non-vocabulary ids resolve in `data/buckets/`, `expected` ∩ `required` = 0, sorted and deduped, and no
+stored id is an ancestor of another stored id on the same item. Backup: `outputs/backup_tier2_merge_2026-08-13/`.
+
+Five packets are still out with their authors (Adverb 36 rows, Comparison 10, Demonstrative 167,
+Passive 18, Possessive 377). Four seats await one central exclusion ruling.

@@ -1,0 +1,771 @@
+[
+  {
+    "external_id": "trans_interr_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Who are you going to the cinema with?",
+    "reference_translations": [
+      {
+        "text": "Con chi vai al cinema?",
+        "register": "neutral",
+        "notes": "Preposition fronted, as Italian requires."
+      },
+      {
+        "text": "Chi vai al cinema con?",
+        "register": "neutral",
+        "notes": "Stranded preposition, as in English.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "interrogatives",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "interrogatives.chi"
+    ],
+    "optional_buckets": [
+      "preposition.simple.con"
+    ],
+    "explanation": "Who are you going to the cinema with? = Con chi vai al cinema? Italian fronts the preposition (con) with its question word and never strands it at the end.",
+    "version": 1,
+    "vocab_help": [
+      {
+        "lemma": "cinema",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "cinema - cinema",
+            "bucket": "vocabulary.it.cinema.noun.translation"
+          }
+        }
+      }
+    ],
+    "expected_buckets": [
+      "orthography.spelling.c_g_softening",
+      "vocabulary.it.chi.pronoun.translation.active",
+      "vocabulary.it.cinema.noun.gender.active",
+      "vocabulary.it.cinema.noun.translation.active"
+    ]
+  },
+  {
+    "external_id": "trans_interr_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Whose keys are these?",
+    "reference_translations": [
+      {
+        "text": "Di chi sono queste chiavi?",
+        "register": "neutral",
+        "notes": "'Whose' is di chi; the verb agrees with the plural chiavi (sono)."
+      },
+      {
+        "text": "Chi sono queste chiavi?",
+        "register": "neutral",
+        "notes": "Missing di, so it reads 'who are these keys?'.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "interrogatives",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "interrogatives.chi"
+    ],
+    "optional_buckets": [],
+    "explanation": "Whose keys are these? = Di chi sono queste chiavi? Italian builds 'whose' from di + chi; drop the di and the possessive sense is lost.",
+    "version": 1,
+    "vocab_help": [
+      {
+        "lemma": "keys",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "key - chiave",
+            "bucket": "vocabulary.it.chiave.noun.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.chiave.noun.gender"
+          }
+        }
+      }
+    ],
+    "expected_buckets": [
+      "orthography.spelling.c_g_softening",
+      "orthography.spelling.qu_cu_cqu",
+      "vocabulary.it.chi.pronoun.translation.active",
+      "vocabulary.it.chiave.noun.translation.active"
+    ]
+  },
+  {
+    "external_id": "trans_interr_03",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "What are you eating?",
+    "reference_translations": [
+      {
+        "text": "Che cosa mangi?",
+        "register": "neutral",
+        "notes": "Full form."
+      },
+      {
+        "text": "Cosa mangi?",
+        "register": "neutral",
+        "notes": "Short form, very common."
+      },
+      {
+        "text": "Che mangi?",
+        "register": "neutral",
+        "notes": "Short form, also fine."
+      }
+    ],
+    "topic": "interrogatives",
+    "register": "neutral",
+    "difficulty": 1,
+    "cefr_level_target": "A1",
+    "required_buckets": [
+      "interrogatives.che_cosa"
+    ],
+    "optional_buckets": [],
+    "explanation": "What are you eating? = Che cosa mangi? All three forms (che cosa, cosa, che) are interchangeable for 'what'.",
+    "version": 1,
+    "vocab_help": [
+      {
+        "lemma": "eating",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to eat - mangiare",
+            "bucket": "vocabulary.it.mangiare.verb.translation"
+          }
+        }
+      }
+    ],
+    "expected_buckets": [
+      "orthography.spelling.c_g_softening",
+      "vocabulary.it.mangiare.verb.translation.active"
+    ]
+  },
+  {
+    "external_id": "trans_interr_04",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "What is your phone number?",
+    "reference_translations": [
+      {
+        "text": "Qual è il tuo numero di telefono?",
+        "register": "neutral",
+        "notes": "qual è: quale drops its -e before è, with NO apostrophe."
+      },
+      {
+        "text": "Qual'è il tuo numero di telefono?",
+        "register": "neutral",
+        "notes": "Spurious apostrophe on qual è.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "interrogatives",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "interrogatives.quale"
+    ],
+    "optional_buckets": [],
+    "explanation": "What is your phone number? = Qual è il tuo numero di telefono? Before è, quale becomes qual with no apostrophe; qual'è is a spelling mistake, and here (unlike the substring grammar drill) the marker can see it.",
+    "version": 1,
+    "vocab_help": [
+      {
+        "lemma": "number",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "number - numero",
+            "bucket": "vocabulary.it.numero.noun.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.numero.noun.gender"
+          }
+        }
+      }
+    ],
+    "expected_buckets": [
+      "orthography.accent.italian",
+      "orthography.spelling.qu_cu_cqu",
+      "vocabulary.it.numero.noun.translation.active",
+      "vocabulary.it.qual.adjective.translation.active",
+      "vocabulary.it.telefonare.verb.translation.active",
+      "vocabulary.it.tuo.determiner.translation.active"
+    ]
+  },
+  {
+    "external_id": "trans_interr_05",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Which of these two dresses do you prefer?",
+    "reference_translations": [
+      {
+        "text": "Quale di questi due vestiti preferisci?",
+        "register": "neutral",
+        "notes": "Selection from a set of two: quale."
+      },
+      {
+        "text": "Quali di questi due vestiti preferisci?",
+        "register": "neutral",
+        "notes": "Quale stays singular when one item is being chosen.",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "interrogatives",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "interrogatives.quale"
+    ],
+    "optional_buckets": [],
+    "explanation": "Which of these two dresses do you prefer? = Quale di questi due vestiti preferisci? Choosing one from a set takes the singular quale.",
+    "version": 1,
+    "vocab_help": [
+      {
+        "lemma": "dresses",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "dress - vestito",
+            "bucket": "vocabulary.it.vestito.noun.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.vestito.noun.gender"
+          }
+        }
+      }
+    ],
+    "expected_buckets": [
+      "orthography.spelling.c_g_softening",
+      "orthography.spelling.digraph",
+      "orthography.spelling.qu_cu_cqu",
+      "vocabulary.it.due.numeral.translation.active",
+      "vocabulary.it.preferire.verb.translation.active",
+      "vocabulary.it.quale.adverb.translation.active",
+      "vocabulary.it.vestire.verb.translation.active"
+    ]
+  },
+  {
+    "external_id": "trans_interr_06",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "How old is your brother?",
+    "reference_translations": [
+      {
+        "text": "Quanti anni ha tuo fratello?",
+        "register": "neutral",
+        "notes": "Age is counted in years: quanti anni (m pl agreement), literally 'how many years has'."
+      }
+    ],
+    "topic": "interrogatives",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "interrogatives.quanto"
+    ],
+    "optional_buckets": [],
+    "explanation": "How old is your brother? = Quanti anni ha tuo fratello? Italian counts years; quanto agrees with anni (masculine plural) as quanti.",
+    "version": 1,
+    "vocab_help": [
+      {
+        "lemma": "brother",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "brother - fratello",
+            "bucket": "vocabulary.it.fratello.noun.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.fratello.noun.gender"
+          }
+        }
+      }
+    ],
+    "expected_buckets": [
+      "orthography.spelling.doubling",
+      "orthography.spelling.qu_cu_cqu",
+      "orthography.spelling.silent_h",
+      "vocabulary.it.annata.noun.translation.active",
+      "vocabulary.it.anno.noun.translation.active",
+      "vocabulary.it.confratello.noun.translation.active",
+      "vocabulary.it.fratello.noun.translation.active",
+      "vocabulary.it.quanto.adverb.translation.active",
+      "vocabulary.it.tuo.determiner.translation.active"
+    ]
+  },
+  {
+    "external_id": "trans_interr_07",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "How much does a coffee cost here?",
+    "reference_translations": [
+      {
+        "text": "Quanto costa un caffè qui?",
+        "register": "neutral",
+        "notes": "Invariable adverbial quanto with costare."
+      }
+    ],
+    "topic": "interrogatives",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "interrogatives.quanto"
+    ],
+    "optional_buckets": [],
+    "explanation": "How much does a coffee cost here? = Quanto costa un caffè qui? With costare, quanto is an invariable adverb and does not agree.",
+    "version": 1,
+    "vocab_help": [
+      {
+        "lemma": "coffee",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "coffee - caffè",
+            "bucket": "vocabulary.it.caffè.noun.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.caffè.noun.gender"
+          }
+        }
+      }
+    ],
+    "expected_buckets": [
+      "orthography.accent.italian",
+      "orthography.spelling.doubling",
+      "orthography.spelling.qu_cu_cqu",
+      "vocabulary.it.costare.verb.translation.active",
+      "vocabulary.it.qua.adverb.translation.active",
+      "vocabulary.it.quanto.adverb.translation.active",
+      "vocabulary.it.qui.adverb.translation.active"
+    ]
+  },
+  {
+    "external_id": "trans_interr_08",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "Where are you from?",
+    "reference_translations": [
+      {
+        "text": "Di dove sei?",
+        "register": "neutral",
+        "notes": "Origin: di dove."
+      },
+      {
+        "text": "Da dove vieni?",
+        "register": "neutral",
+        "notes": "Alternative with venire: 'where do you come from?'."
+      },
+      {
+        "text": "Dove sei?",
+        "register": "neutral",
+        "notes": "Missing di/da, so it reads 'where are you?' (location).",
+        "polarity": "negative"
+      }
+    ],
+    "topic": "interrogatives",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "interrogatives.adverbs"
+    ],
+    "optional_buckets": [],
+    "explanation": "Where are you from? = Di dove sei? Origin uses di dove (or da dove vieni); bare dove asks location, not origin.",
+    "version": 1,
+    "expected_buckets": [
+      "vocabulary.it.dove.adverb.translation.active"
+    ]
+  },
+  {
+    "external_id": "trans_interr_09",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "How come you didn't answer?",
+    "reference_translations": [
+      {
+        "text": "Come mai non hai risposto?",
+        "register": "neutral",
+        "notes": "come mai: 'how come', with a note of surprise."
+      },
+      {
+        "text": "Perché non hai risposto?",
+        "register": "neutral",
+        "notes": "Plain 'why', also correct."
+      }
+    ],
+    "topic": "interrogatives",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "interrogatives.adverbs"
+    ],
+    "optional_buckets": [],
+    "explanation": "How come you didn't answer? = Come mai non hai risposto? Come mai asks 'how come' with a hint of surprise; plain perché also works.",
+    "version": 1,
+    "vocab_help": [
+      {
+        "lemma": "answer",
+        "language": "en",
+        "aspects": {
+          "translation": {
+            "reveal": "to answer - rispondere",
+            "bucket": "vocabulary.it.rispondere.verb.translation"
+          }
+        }
+      }
+    ],
+    "expected_buckets": [
+      "orthography.spelling.silent_h",
+      "vocabulary.it.mai.adverb.translation.active",
+      "vocabulary.it.rispondere.verb.translation.active"
+    ]
+  },
+  {
+    "external_id": "trans_interr_10",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Perché studi l'italiano?",
+    "reference_translations": [
+      {
+        "text": "Why do you study Italian?",
+        "register": "neutral",
+        "notes": "perché = why (in a question)."
+      },
+      {
+        "text": "Why are you studying Italian?",
+        "register": "neutral",
+        "notes": "Progressive reading, also fine."
+      }
+    ],
+    "topic": "interrogatives",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "interrogatives.adverbs"
+    ],
+    "optional_buckets": [],
+    "explanation": "Perché studi l'italiano? = Why do you study Italian? Perché is the reason question word; the same word means 'because' in the reply.",
+    "version": 1,
+    "expected_buckets": [
+      "orthography.accent.italian",
+      "orthography.spelling.apostrophe_elision",
+      "orthography.spelling.c_g_softening",
+      "vocabulary.it.italiano.adjective.translation.passive",
+      "vocabulary.it.studiare.verb.translation.passive"
+    ]
+  },
+  {
+    "external_id": "trans_interr_11",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Quante lingue parli?",
+    "reference_translations": [
+      {
+        "text": "How many languages do you speak?",
+        "register": "neutral",
+        "notes": "quante agrees with lingue (f pl)."
+      }
+    ],
+    "topic": "interrogatives",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "interrogatives.quanto"
+    ],
+    "optional_buckets": [],
+    "explanation": "Quante lingue parli? = How many languages do you speak? Quanto agrees with lingue (feminine plural) as quante.",
+    "version": 1,
+    "vocab_help": [
+      {
+        "lemma": "lingue",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "language - lingua",
+            "bucket": "vocabulary.it.lingua.noun.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.lingua.noun.gender"
+          }
+        }
+      }
+    ],
+    "expected_buckets": [
+      "orthography.spelling.qu_cu_cqu",
+      "vocabulary.it.lingua.noun.translation.passive",
+      "vocabulary.it.parlare.verb.translation.passive",
+      "vocabulary.it.quanto.adverb.translation.passive"
+    ]
+  },
+  {
+    "external_id": "trans_interr_12",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Chi ha vinto la partita?",
+    "reference_translations": [
+      {
+        "text": "Who won the match?",
+        "register": "neutral",
+        "notes": "chi = who, subject."
+      },
+      {
+        "text": "Who won the game?",
+        "register": "neutral",
+        "notes": "'game' also fine for partita."
+      }
+    ],
+    "topic": "interrogatives",
+    "register": "neutral",
+    "difficulty": 1,
+    "cefr_level_target": "A1",
+    "required_buckets": [
+      "interrogatives.chi"
+    ],
+    "optional_buckets": [],
+    "explanation": "Chi ha vinto la partita? = Who won the match? Chi asks about a person as the subject.",
+    "version": 1,
+    "vocab_help": [
+      {
+        "lemma": "partita",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "match / game - partita",
+            "bucket": "vocabulary.it.partita.noun.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.partita.noun.gender"
+          }
+        }
+      }
+    ],
+    "expected_buckets": [
+      "orthography.spelling.c_g_softening",
+      "orthography.spelling.silent_h",
+      "vocabulary.it.chi.pronoun.translation.passive",
+      "vocabulary.it.partire.verb.translation.passive",
+      "vocabulary.it.vincere.verb.translation.passive"
+    ]
+  },
+  {
+    "external_id": "trans_interr_13",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Che cosa vuoi per il tuo compleanno?",
+    "reference_translations": [
+      {
+        "text": "What do you want for your birthday?",
+        "register": "neutral",
+        "notes": "che cosa = what."
+      }
+    ],
+    "topic": "interrogatives",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "interrogatives.che_cosa"
+    ],
+    "optional_buckets": [],
+    "explanation": "Che cosa vuoi per il tuo compleanno? = What do you want for your birthday? Che cosa (also cosa or che) asks 'what'.",
+    "version": 1,
+    "vocab_help": [
+      {
+        "lemma": "compleanno",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "birthday - compleanno",
+            "bucket": "vocabulary.it.compleanno.noun.translation"
+          },
+          "gender": {
+            "reveal": "masculine (m)",
+            "bucket": "vocabulary.it.compleanno.noun.gender"
+          }
+        }
+      }
+    ],
+    "expected_buckets": [
+      "orthography.spelling.c_g_softening",
+      "orthography.spelling.doubling",
+      "vocabulary.it.compleanno.noun.translation.passive",
+      "vocabulary.it.natalizio.noun.translation.passive",
+      "vocabulary.it.tuo.determiner.translation.passive"
+    ]
+  },
+  {
+    "external_id": "trans_interr_14",
+    "source_lang": "it",
+    "target_lang": "en",
+    "source_text": "Qual è la tua materia preferita?",
+    "reference_translations": [
+      {
+        "text": "What is your favourite subject?",
+        "register": "neutral",
+        "notes": "qual è, no apostrophe; English says 'what' though Italian uses quale."
+      }
+    ],
+    "topic": "interrogatives",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "interrogatives.quale"
+    ],
+    "optional_buckets": [],
+    "explanation": "Qual è la tua materia preferita? = What is your favourite subject? Note qual è (no apostrophe); Italian uses quale where English says 'what' asking to pick from a field.",
+    "version": 1,
+    "vocab_help": [
+      {
+        "lemma": "materia",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "subject - materia",
+            "bucket": "vocabulary.it.materia.noun.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.materia.noun.gender"
+          }
+        }
+      }
+    ],
+    "expected_buckets": [
+      "orthography.accent.italian",
+      "orthography.spelling.qu_cu_cqu",
+      "vocabulary.it.materia.noun.translation.passive",
+      "vocabulary.it.preferire.verb.translation.passive",
+      "vocabulary.it.qual.adjective.translation.passive",
+      "vocabulary.it.tuo.determiner.translation.passive"
+    ]
+  },
+  {
+    "external_id": "trans_interr_exc_01",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "What a beautiful day!",
+    "reference_translations": [
+      {
+        "text": "Che bella giornata!",
+        "register": "neutral",
+        "notes": "che + noun; the adjective bella agrees with giornata (f sg)."
+      },
+      {
+        "text": "Che giornata bella!",
+        "register": "neutral",
+        "notes": "Adjective postposed, also fine."
+      },
+      {
+        "text": "Come bella giornata!",
+        "register": "neutral",
+        "polarity": "negative",
+        "notes": "WRONG: come cannot introduce a bare noun; a verb would be needed."
+      }
+    ],
+    "topic": "interrogatives",
+    "register": "neutral",
+    "difficulty": 2,
+    "cefr_level_target": "A2",
+    "required_buckets": [
+      "interrogatives.exclamatives"
+    ],
+    "optional_buckets": [
+      "adjective_agreement.o_class.feminine_singular"
+    ],
+    "vocab_help": [
+      {
+        "lemma": "day",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "day - giornata",
+            "bucket": "vocabulary.it.giornata.noun.translation"
+          },
+          "gender": {
+            "reveal": "feminine (f)",
+            "bucket": "vocabulary.it.giornata.noun.gender"
+          }
+        }
+      }
+    ],
+    "explanation": "What a beautiful day! = Che bella giornata! A bare-noun exclamation takes che, and the adjective bella agrees with the feminine singular giornata.",
+    "version": 1,
+    "expected_buckets": [
+      "orthography.spelling.c_g_softening",
+      "orthography.spelling.doubling",
+      "vocabulary.it.bello.adjective.translation.active",
+      "vocabulary.it.giornata.noun.translation.active",
+      "vocabulary.it.giorno.noun.translation.active"
+    ]
+  },
+  {
+    "external_id": "trans_interr_exc_02",
+    "source_lang": "en",
+    "target_lang": "it",
+    "source_text": "How well you sing!",
+    "reference_translations": [
+      {
+        "text": "Come canti bene!",
+        "register": "neutral",
+        "notes": "come + verb (canti); manner exclamation."
+      },
+      {
+        "text": "Come sei bravo a cantare!",
+        "register": "neutral",
+        "notes": "Alternative with essere + adjective."
+      },
+      {
+        "text": "Che canti bene!",
+        "register": "neutral",
+        "polarity": "negative",
+        "notes": "WRONG: che does not introduce a verb clause here; use come."
+      }
+    ],
+    "topic": "interrogatives",
+    "register": "neutral",
+    "difficulty": 3,
+    "cefr_level_target": "B1",
+    "required_buckets": [
+      "interrogatives.exclamatives"
+    ],
+    "optional_buckets": [],
+    "vocab_help": [
+      {
+        "lemma": "sing",
+        "language": "it",
+        "aspects": {
+          "translation": {
+            "reveal": "to sing - cantare",
+            "bucket": "vocabulary.it.cantare.verb.translation"
+          }
+        }
+      }
+    ],
+    "explanation": "How well you sing! = Come canti bene! With a verb (canti), the manner exclamation takes come, not che.",
+    "version": 1,
+    "expected_buckets": [
+      "vocabulary.it.bene.adverb.translation.active",
+      "vocabulary.it.cantare.verb.translation.active"
+    ]
+  }
+]

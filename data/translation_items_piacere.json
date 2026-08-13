@@ -40,9 +40,12 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
+      "pronoun.indirect_object.mi",
+      "verb_form.present_indicative",
       "vocabulary.it.piacere.verb.translation.active",
       "vocabulary.it.spaghetto.noun.gender.active",
       "vocabulary.it.spaghetto.noun.translation.active"
@@ -89,10 +92,13 @@
     "explanation": "'Anna likes the mountains' becomes 'Ad Anna piacciono le montagne.' Anna is a named liker, so she takes the a-phrase (ad Anna, with the euphonic d before the vowel). The liked thing is plural, so the verb is piacciono.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.capitalization",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.anna.verb.translation.active",
       "vocabulary.it.montagna.noun.gender.active",
       "vocabulary.it.montagna.noun.translation.active",
@@ -139,7 +145,13 @@
     "explanation": "'I don't like cabbage. Me neither.' becomes 'Non mi piace il cavolo. Neanche a me.' Agreeing with a negative keeps the a-phrase and uses neanche (or nemmeno) a me, never anch'io.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
+      "negation.core.non_position",
       "orthography.spelling.c_g_softening",
+      "piacere.form.agreement",
+      "preposition.simple.forms",
+      "pronoun.indirect_object.mi",
+      "verb_form.present_indicative",
       "vocabulary.it.cavolo.noun.gender.active",
       "vocabulary.it.cavolo.noun.translation.active",
       "vocabulary.it.me.pronoun.translation.active",
@@ -191,8 +203,11 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.capitalization",
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.calciare.verb.translation.active",
       "vocabulary.it.marcare.verb.translation.active",
       "vocabulary.it.piacere.verb.translation.active"
@@ -240,8 +255,12 @@
     "explanation": "'She likes jazz' becomes 'Le piace il jazz.' The liker 'she' is the indirect object le ('to her'); the liked thing (il jazz) is singular, so the verb is piace. Do not confuse le (to her) with gli (to him).",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "piacere.form.agreement",
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.jazz.noun.gender.active",
       "vocabulary.it.jazz.noun.translation.active",
       "vocabulary.it.piacere.verb.translation.active"
@@ -287,7 +306,10 @@
     "explanation": "'Would you mind closing the door?' becomes 'Ti dispiace chiudere la porta?' A request built on dispiacere plus an infinitive is the polite 'would you mind'; the formal version swaps ti for Le.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
+      "pronoun.indirect_object.ti",
+      "verb_form.present_indicative",
       "vocabulary.it.chiudere.verb.translation.active",
       "vocabulary.it.dispiacere.verb.translation.active",
       "vocabulary.it.portare.verb.translation.active"
@@ -324,6 +346,8 @@
     ],
     "expected_buckets": [
       "orthography.spelling.c_g_softening",
+      "pronoun.indirect_object.mi",
+      "verb_form.present_indicative",
       "vocabulary.it.mancare.verb.translation.active"
     ]
   },
@@ -373,7 +397,12 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
+      "piacere.form.agreement",
+      "preposition.simple.forms",
+      "pronoun.indirect_object.mi",
+      "verb_form.present_indicative",
       "vocabulary.it.mare.noun.gender.active",
       "vocabulary.it.mare.noun.translation.active",
       "vocabulary.it.piacere.verb.translation.active"
@@ -430,8 +459,13 @@
     "explanation": "'My parents like classical music' becomes 'Ai miei genitori piace la musica classica.' The likers are named, so they take the a-phrase (ai miei genitori) rather than a clitic, and the liked thing (la musica classica, singular) makes the verb singular piace.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "piacere.form.agreement",
+      "preposition.articulated.formation",
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.classico.adjective.translation.active",
       "vocabulary.it.genitore.noun.translation.active",
       "vocabulary.it.musica.noun.gender.active",
@@ -483,6 +517,9 @@
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
+      "preposition.simple.forms",
+      "pronoun.ci_locative",
+      "verb_form.present_indicative",
       "vocabulary.it.piacere.verb.translation.active",
       "vocabulary.it.quadro.noun.translation.active"
     ]
@@ -530,8 +567,11 @@
     "explanation": "'Do you like Italian films?' becomes 'Ti piacciono i film italiani?' 'You' is the indirect object ti, and the plural liked thing (i film italiani) makes the verb plural piacciono.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "pronoun.indirect_object.ti",
+      "verb_form.present_indicative",
       "vocabulary.it.film.noun.gender.active",
       "vocabulary.it.film.noun.translation.active",
       "vocabulary.it.italiano.adjective.translation.active",
@@ -581,6 +621,10 @@
     "expected_buckets": [
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "piacere.form.agreement",
+      "preposition.simple.forms",
+      "pronoun.indirect_object.mi",
+      "verb_form.present_indicative",
       "vocabulary.it.piacere.verb.translation.active",
       "vocabulary.it.viaggiare.verb.translation.active"
     ]
@@ -631,8 +675,15 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
+      "piacere.form.agreement",
+      "pronoun.direct_object.ti",
+      "pronoun.indirect_object.ti",
+      "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
+      "verb_form.present_indicative",
       "vocabulary.it.film.noun.gender.active",
       "vocabulary.it.film.noun.translation.active",
       "vocabulary.it.pellicola.noun.translation.active",
@@ -685,7 +736,15 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
+      "negation.core.non_position",
       "orthography.spelling.c_g_softening",
+      "piacere.form.agreement",
+      "pronoun.direct_object.mi",
+      "pronoun.indirect_object.mi",
+      "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_plural",
+      "verb_form.present_indicative",
       "vocabulary.it.piacere.verb.translation.active",
       "vocabulary.it.scarpa.noun.gender.active",
       "vocabulary.it.scarpa.noun.translation.active"
@@ -726,7 +785,12 @@
     "explanation": "'Mi piace il gelato. Anche a me!' means 'I like ice cream. Me too!' Reading it correctly means recognising that anche a me, literally 'also to me', is how Italian says 'me too' for likes.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
+      "piacere.form.agreement",
+      "preposition.simple.forms",
+      "pronoun.indirect_object.mi",
+      "verb_form.present_indicative",
       "vocabulary.it.anche.adverb.translation.passive",
       "vocabulary.it.gelare.verb.translation.passive",
       "vocabulary.it.me.pronoun.translation.passive",
@@ -778,8 +842,11 @@
     "explanation": "'Questo vino non mi dispiace' means 'I quite like this wine.' Non mi dispiace is understatement: saying it does not displease you is a mild way of saying you rather like it, not that you feel neutral about it.",
     "version": 1,
     "expected_buckets": [
+      "negation.core.non_position",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.qu_cu_cqu",
+      "pronoun.indirect_object.mi",
+      "verb_form.present_indicative",
       "vocabulary.it.dispiacere.verb.translation.passive",
       "vocabulary.it.vino.noun.translation.passive"
     ]
@@ -819,7 +886,10 @@
     "explanation": "'Mi mancano i miei amici' means 'I miss my friends.' My friends are the subject, so the verb is plural mancano, and mi is the one who misses them. English makes 'I' the subject; Italian makes the missed people the subject.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
+      "pronoun.indirect_object.mi",
+      "verb_form.present_indicative",
       "vocabulary.it.amico.noun.translation.passive",
       "vocabulary.it.mancare.verb.translation.passive"
     ]
@@ -861,9 +931,12 @@
     "explanation": "'A Giulia piacciono i cani' means 'Giulia likes dogs.' Reading it correctly means seeing that Giulia, in the a-phrase, is the liker, and the dogs are the grammatical subject driving the plural piacciono.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.capitalization",
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.cane.noun.translation.passive",
       "vocabulary.it.piacere.verb.translation.passive"
     ]
@@ -900,6 +973,9 @@
     "version": 1,
     "expected_buckets": [
       "orthography.spelling.c_g_softening",
+      "piacere.form.agreement",
+      "pronoun.indirect_object.mi",
+      "verb_form.present_indicative",
       "vocabulary.it.piacere.verb.translation.passive"
     ]
   },
@@ -936,6 +1012,8 @@
     "expected_buckets": [
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
+      "piacere.form.agreement",
+      "verb_form.present_indicative",
       "vocabulary.it.me.pronoun.translation.passive",
       "vocabulary.it.mi.pronoun.translation.passive",
       "vocabulary.it.piacere.verb.translation.passive",

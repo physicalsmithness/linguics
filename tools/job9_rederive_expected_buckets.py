@@ -1,4 +1,18 @@
 #!/usr/bin/env python3
+"""DO NOT RUN --apply AS IT STANDS.  Architecture, 2026-08-13.
+
+This script REPLACES ``expected_buckets`` wholesale.  On 2026-08-13 the 21 returned
+tier-2 review packets were merged into that field: 2,697 grammar bucket ids, ratified
+one by one by the author seats.  This deriver emits only orthography.* and vocabulary.*
+ids, so re-running it with --apply deletes every one of them silently -- the validation
+gate checks shape (sorted, deduped, disjoint from required) and never asks whether an
+id that a human ratified has gone missing.
+
+Before this is safe: carry ratified ids through the rebuild, and make the gate FAIL on
+the disappearance of any bucket that arrived from a returned packet.  See DECISIONS.md
+2026-08-13 and tools/merge_tier2_packets.py.
+"""
+
 """CODEX 2026-08-13 — execute Job 9's deterministic fire-list rebuild.
 
 The script is deliberately conservative:

@@ -56,9 +56,15 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.capitalization",
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
+      "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_singular",
+      "verb_form.passato_remoto",
+      "verb_form.present_indicative",
       "vocabulary.it.inventare.verb.translation.active",
       "vocabulary.it.napoli.adjective.translation.active",
       "vocabulary.it.pizza.noun.gender.active",
@@ -118,10 +124,15 @@
     "explanation": "Case is feminine plural, so both participles take -e: sono state costruite. Either the passato prossimo (sono state costruite) or the passato remoto (furono costruite) fits a historical statement.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.capitalization",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
+      "preposition.articulated.formation",
+      "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_plural",
+      "verb_form.present_indicative",
       "vocabulary.it.casa.noun.translation.active",
       "vocabulary.it.costruire.verb.translation.active",
       "vocabulary.it.quattrocento.noun.gender.active",
@@ -178,7 +189,9 @@
     "explanation": "A future passive: sarà punito = will be punished. English mirrors it with 'will be' plus the participle.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.accent.italian",
+      "verb_form.future",
       "vocabulary.it.castigare.verb.translation.passive",
       "vocabulary.it.colpevole.adjective.translation.passive",
       "vocabulary.it.punire.verb.translation.passive"
@@ -241,10 +254,16 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.capitalization",
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
+      "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
+      "verb_form.passato_remoto",
+      "verb_form.present_indicative",
       "vocabulary.it.dipingere.verb.translation.active",
       "vocabulary.it.ritrarre.verb.translation.active"
     ]
@@ -301,9 +320,15 @@
     "explanation": "The agent with a plural article contracts: da + i = dai deputati. Legge is feminine singular, so the participle is approvata.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.articulated.formation",
+      "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.feminine_singular",
+      "verb_form.passato_remoto",
+      "verb_form.present_indicative",
       "vocabulary.it.approvare.verb.translation.active",
       "vocabulary.it.dare.verb.translation.active",
       "vocabulary.it.delegare.verb.translation.active",
@@ -363,8 +388,13 @@
     "explanation": "A repeated action reads well with venire: vengono controllati (get checked). Biglietti is masculine plural, so controllati. The essere version sono controllati is also fine.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
+      "indefinite.core.ogni",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
+      "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_plural",
+      "verb_form.present_indicative",
       "vocabulary.it.biglietto.noun.gender.active",
       "vocabulary.it.biglietto.noun.translation.active",
       "vocabulary.it.controllare.verb.translation.active",
@@ -425,8 +455,11 @@
     "explanation": "venne chiusa is the venire passive in the passato remoto (a simple tense, where venire is allowed). chiudere a chiave, literally 'close with a key', is English 'to lock'.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
+      "verb_form.passato_remoto",
       "vocabulary.it.chiave.noun.translation.passive",
       "vocabulary.it.chiudere.verb.translation.passive",
       "vocabulary.it.portare.verb.translation.passive",
@@ -489,8 +522,11 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.medicina.noun.translation.passive",
       "vocabulary.it.pieno.adjective.translation.passive",
       "vocabulary.it.prendere.verb.translation.passive",
@@ -549,6 +585,8 @@
     "expected_buckets": [
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
+      "preposition.simple.forms",
+      "verb_form.present_indicative",
       "vocabulary.it.compilare.verb.translation.active",
       "vocabulary.it.modulare.verb.translation.active"
     ]
@@ -610,10 +648,14 @@
     "explanation": "The recurring-process sense suits venire: viene fatto. Everyday Italian would often reach for the si construction instead (si fa il pane); both are offered.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
+      "indefinite.core.ogni",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
+      "si_constructions.impersonal.basic",
+      "verb_form.present_indicative",
       "vocabulary.it.giornata.noun.translation.active",
       "vocabulary.it.giorno.noun.translation.active",
       "vocabulary.it.ogni.determiner.translation.active",
@@ -676,9 +718,12 @@
     "explanation": "veniva celebrata is the venire passive in the imperfect, for a repeated past action; English uses 'was celebrated' or the habitual 'would be celebrated'.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
+      "indefinite.core.ogni",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
+      "preposition.simple.forms",
       "vocabulary.it.celebrare.verb.translation.passive",
       "vocabulary.it.domenica.noun.translation.passive",
       "vocabulary.it.latino.adjective.translation.passive",
@@ -728,8 +773,13 @@
     "explanation": "English passives map onto either an Italian passive or an active with an unspecified 'they'; the register decides. In a bulletin the passive is right; at the bar the active is.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.doubling",
+      "verb_form.passato_prossimo.auxiliary.avere_default",
+      "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
+      "verb_form.present_indicative",
       "vocabulary.it.eleggere.verb.translation.active",
       "vocabulary.it.ieri.adverb.translation.active",
       "vocabulary.it.presidente.noun.m.gender.active",
@@ -778,10 +828,16 @@
     "explanation": "A formal Italian passive lands as a formal English passive: the register matches on both sides. Note this is a statement, not an obligation; 'va presentato' would be the obligation version.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
+      "indefinite.core.ogni",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
+      "preposition.articulated.formation",
+      "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
+      "verb_form.present_indicative",
       "vocabulary.it.annata.noun.translation.passive",
       "vocabulary.it.anno.noun.translation.passive",
       "vocabulary.it.bilanciare.verb.translation.passive",
@@ -847,7 +903,11 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.qu_cu_cqu",
+      "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_plural",
+      "verb_form.present_indicative",
       "vocabulary.it.libro.noun.translation.active",
       "vocabulary.it.qua.adverb.translation.active",
       "vocabulary.it.qui.adverb.translation.active",
@@ -900,8 +960,13 @@
       }
     ],
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.spelling.capitalization",
       "orthography.spelling.doubling",
+      "preposition.articulated.formation",
+      "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_plural",
+      "verb_form.present_indicative",
       "vocabulary.it.dalla.preposition.translation.active",
       "vocabulary.it.libreria.noun.gender.active",
       "vocabulary.it.libreria.noun.translation.active",
@@ -954,6 +1019,7 @@
     "expected_buckets": [
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
+      "verb_form.present_indicative",
       "vocabulary.it.affittare.verb.translation.passive",
       "vocabulary.it.camera.noun.translation.passive",
       "vocabulary.it.qua.adverb.translation.passive",
@@ -1002,6 +1068,8 @@
     "expected_buckets": [
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "verb_form.passato_prossimo.auxiliary.avere_default",
+      "verb_form.present_indicative",
       "vocabulary.it.arrestare.verb.translation.passive",
       "vocabulary.it.due.numeral.translation.passive",
       "vocabulary.it.uomo.noun.translation.passive"
@@ -1048,9 +1116,15 @@
     "explanation": "An airport notice keeps the doer invisible, so the passive fits; between passengers the active is more natural. Same content, different register.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.articulated.formation",
+      "verb_form.passato_prossimo.auxiliary.avere_default",
+      "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
+      "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
+      "verb_form.present_indicative",
       "vocabulary.it.cancellare.verb.translation.active",
       "vocabulary.it.volare.verb.translation.active"
     ]
@@ -1097,9 +1171,13 @@
     "explanation": "For what generally happens, everyday Italian reaches for si rather than the full passive. Both are offered because the register line here is soft, not sharp.",
     "version": 1,
     "expected_buckets": [
+      "article.definite.forms",
+      "indefinite.core.ogni",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
       "orthography.spelling.qu_cu_cqu",
+      "si_constructions.impersonal.basic",
+      "verb_form.present_indicative",
       "vocabulary.it.giornata.noun.translation.active",
       "vocabulary.it.giorno.noun.translation.active",
       "vocabulary.it.ogni.determiner.translation.active",
