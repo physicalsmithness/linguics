@@ -3125,3 +3125,28 @@ example. Each was written against an observed fault. **The fault is structure an
 
 **Success test is not length** but the expectation suite run both regimes before and after: no case that
 fired correctly before may stop firing. That is what `expect_absent` cases are for.
+
+
+## Expectation suite tranche 1 delivered (2026-08-12)
+
+`data/marker_expectation_suite_tranche1.json` — **14 cases, 13 carrying `expect_absent`**, each
+anchored on a real translation item with an authored learner answer. Fewer than the 20-40 asked for and
+said so rather than padded: these are the ones justifiable from a ruling or an observed fault; the rest
+should come from live faults, which are Housing's and are the more valuable half.
+
+**The design point:** every case states what must fire AND what must not, because our observed failures
+are false positives as often as misses — an accent invented on a correctly-spelled word, a gender
+markpoint on an entry the learner never wrote, a lemma reached by stem-guessing. A suite of
+`expect_fire` alone passes all three.
+
+Coverage: breadth (3, including the product-critical *mostly-correct must come back mostly hits*),
+vocabulary-vs-grammar both directions (2), the three observed false positives (3), a valid alternative
+marked wrong (1 — three of Smith's five screenshots), tense-choice-not-formation (1), clitic
+placement-vs-form (1), the fire-list contract as a defining pair (2 — *not engaged* is a blank,
+*engaged and wrong* is a real miss, and without the second the field is credit-only and marking goes
+soft), and direction (1).
+
+**Run instruction that matters: report per case, never as an aggregate.** An aggregate hides exactly
+what the suite exists to catch — a reorganisation that quietly drops one behaviour while improving
+three. Run both regimes on the identical set so r159 is measured rather than argued, and so the v8
+prompt pass is checked against behaviour rather than judged by length.

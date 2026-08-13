@@ -518,6 +518,15 @@ export default {
         body: JSON.stringify({
           model,
           max_tokens: MAX_OUTPUT_TOKENS,
+          // r164: Qwen 3.7 Plus came back empty on the bench with
+          // finish_reason=length and "model returned reasoning but no
+          // content". A reasoning model spends the output budget thinking and
+          // then has nothing left to answer with, so the call costs full price
+          // and returns zero. We do not want its reasoning - we want the JSON -
+          // so ask the provider not to bill us for thinking we discard.
+          // OpenRouter ignores this for models that do not reason, so it is
+          // safe across the whole list.
+          reasoning: { exclude: true },
           temperature: (typeof body.temperature === "number") ? body.temperature : DEFAULT_TEMPERATURE,
           ...(typeof body.seed === "number" ? { seed: body.seed } : {}),
           response_format: { type: "json_object" },

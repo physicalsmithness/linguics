@@ -2,18 +2,16 @@ seat: PiacereAuthor
 classes: [all-seats, all-authors]
 project: Linguics
 updated: 2026-08-12
-waiting: active
+waiting: parked
 needs_from_smith: none
 blocked_by:
-claude_can_verify: yes — all prior deliverables verified stamped/consumed on disk
-summary: wake self-check at brief Rev 33 — NOTHING OWED. All prior work closed: false_miss CLOSED (8/8 stamped), cue_notation v8 STAMPED, verb_identity consumed (Housing A7 shipped r121). Rev 33's four all-authors additions are all N/A to piacere. One watch item not yet routed to me.
-queue: []   # nothing owed
+claude_can_verify: yes — returned packet on disk; merge is Architecture's
+summary: tier-2 review packet RETURNED (79 rows verdicted: root 34keep/2strike, agreement 27keep/9strike, dispiacere 7keep; +5 family items added). Flagged two absent buckets (form.past, usage.family_verbs). Everything else this session closed/stamped.
+queue: []
 triaged_not_queue:
-  - TIER-2 REVIEW PACKET WAITING (2026-08-12): data/review_packets_tier2/REVIEW_piacere_2026-08-11.json — 79 pairs. Thread: inter_chat/Architecture_PiacereAuthor_tier2_review_packet.md  [not blocked]
-  - Rev 33 (1) *_lr_* anchoring exemption — piacere has no lexical-recall items
-  - Rev 33 (2) common_errors — OPTIONAL, standing, not a retrofit
-  - Rev 33 (3) person field — piacere is a construction topic, NOT in scope; the 13 named backfills are Passato(11)/Imperfect(1)/PresentUsage(1), all conjugation topics
-  - Rev 33 (4) ITEM_SHAPE_no_change_forms — piacere not named; my answers never copy an invariant cued form (piace != piacere, clitics English-cued), standing compliance
-  - crit 13/16/18/19/20/21 discharged or 0 piacere; crit 17 pre-Rev-13 (my items born post-Rev-13, glossed)
-watch:
-  - Translation cross-topic marking (Architecture_Housing_translation_crosstopic_marking): names piacere experiencer/subject-flip as TIER-3 human-authored; tier-2 proposal delivered 2026-08-06 but thread Next is Architecture/Housing, NOT yet dispatched to authors. When routed, I owe a real cross-topic required/optional bucket pass on the 20 piacere translation items (all currently cross-topic=none), per Rev 27 (credit every bucket evidenced). Not started: not my turn.
+  - tier-2 review packet: RETURNED to review_packets_tier2/returned/, Architecture merges on next wake  [Architecture_PiacereAuthor_tier2_review_packet v2]
+  - prior: false_miss CLOSED, cue_notation STAMPED, verb_identity consumed (A7 r121); Rev 33 all N/A to piacere
+flags_to_architecture:
+  - add piacere.form.past bucket to the translation cross-topic scope (6 past items currently held on form.agreement)
+  - add piacere.usage.family_verbs (5 family items held on root); morph-it misses family verbs (no piacere token)
+  - tagger/audit re-run: read it->en Italian off source_text, not reference_translations

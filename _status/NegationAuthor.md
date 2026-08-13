@@ -11,8 +11,9 @@ needs_from_smith: none
 blocked_by:
 claude_can_verify:
 note_2026-07-20: Rev 26-28 caught up — Rev 27 cross-credit split neg_ameno_01/02 (congiuntivo now full-credited); Rev 26 nothing owed; Rev 28 N/A. resp_02 piacere dual-cite flagged.
-summary: Cleared two items my stale status had hidden: cue_notation ALLAUTHORS retrofit (15 English-in-parens→brackets, class-token catch, was uncensused) and finché Why expansion (Smith's live ruling), both content-only awaiting stamp. False-miss packet CLOSED+stamped. Misconception 19 guards await MisconceptionAnalyst minting the 7 families. Nothing else owed.
+summary: Tier-2 review packet RETURNED (268 rows judged +6 missed items added; key finding: tagger conflated concord/responses into bipartite and missed all non-più/ancora/affatto; flagged 5 negation buckets absent from the packet). cue_notation + finché-Why await stamp; misconception 19 guards await analyst minting. Nothing owed by me.
 queue:
+  - Architecture_NegationAuthor_tier2_review_packet.md v2 — RETURNED, Next: Architecture (merge). Missed-bucket flag: concord/responses/restrictive/pleonastic/correlative absent.
   - TIER-2 REVIEW PACKET WAITING (2026-08-12): data/review_packets_tier2/REVIEW_negation_2026-08-11.json — 268 pairs. Thread: inter_chat/Architecture_NegationAuthor_tier2_review_packet.md  [not blocked]
   - Architecture_ALLAUTHORS_cue_notation_renders_use_english.md v10 — 15 converted, Next: Architecture (verify+stamp). [uncensused; class-token catch]
   - Architecture_NegationAuthor_finche_non_explanation.md v2 — 3 Whys expanded, Next: Architecture (verify+stamp).

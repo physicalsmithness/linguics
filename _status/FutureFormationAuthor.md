@@ -2,12 +2,12 @@ seat: FutureFormationAuthor
 classes: [all-seats, all-authors]
 project: Linguics
 updated: 2026-08-12
-waiting: active
+waiting: parked
 needs_from_smith: none
 blocked_by: none
-claude_can_verify: yes (perduto fix + observations verified on the replica; full-file gate clean at 137)
-summary: Cleared the Cr17 future-wave findings (perduto false-guard fixed + credited at par; pipeline "suspicion" diagnosed as manual accent omission in 3 explanation glosses, already repaired, no script; 3 observations actioned). Attested future compliant on the cue-notation retrofit (zero English-in-parens). Flagged two central-pipeline schema items (expected_buckets backfill + Rev 33 common_errors shape) on the volume thread. Future topic remains fully delivered.
+claude_can_verify: yes (packet verdicts derived by a future-vs-conditional morphology check; adds cross-scanned from all translation files)
+summary: Tier-2 review packet RETURNED (data/review_packets_tier2/returned/) — 41/41 keep (all genuine futures, none mis-tagged), 13 items added that the morph-it pass missed, 1 passato-remoto false-positive rejected. Future topic otherwise fully delivered.
 queue:
-  - TIER-2 REVIEW PACKET WAITING (2026-08-12): data/review_packets_tier2/REVIEW_verb_form.future_2026-08-11.json — 41 pairs. Thread: inter_chat/Architecture_FutureFormationAuthor_tier2_review_packet.md  [not blocked]
-  - central pipeline (Architecture): expected_buckets backfill + common_errors {surface,gloss} re-migration on 42 translation items   [inter_chat/Architecture_FutureFormationAuthor_volume_formation.md]
-  - awaiting Architecture stamps on the volume top-ups and the perduto/findings fix   [volume_formation + future_wave_cr17_findings threads]
+  - tier-2 packet: returned, awaiting Architecture merge   [inter_chat/Architecture_FutureFormationAuthor_tier2_review_packet.md, Next: Architecture]
+  - central pipeline (Architecture): expected_buckets backfill + Rev 33 common_errors {surface,gloss} re-migration on 42 translation items   [volume_formation thread]
+  - awaiting Architecture stamps on the volume top-ups + perduto/findings fix

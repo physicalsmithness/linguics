@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-08-12-r161";
+  const LL_BUILD = "2026-08-12-r164";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -5156,17 +5156,44 @@
 
     // Palette report button retired from the learner page (Smith 2026-07-20).
 
-    if (vocabFilter.band || vocabFilter.theme || vocabFilter.genderClass || vocabFilter.rankRange) {
+    // r163: THE ROOT OF "MY FILTER VANISHED". This strip described FOUR fields -
+    // band, theme, genderClass, rankRange - all of them set by CLICKING A CELL.
+    // Everything the ENTRY SCREEN sets is written to different fields entirely
+    // (rankRanges plural, catLabel, cefr, and the drill flags), so a scope
+    // chosen on the way in filtered the deck and then appeared NOWHERE, and
+    // "Back to all" could not clear it because it did not know it existed.
+    // Both halves of Smith's complaint are the same missing join: you set
+    // something and cannot see it, then you clear it and it does not go.
+    //
+    // This is the honest minimum of the unified-filter job: one description of
+    // the WHOLE scope, and a clear that clears all of it. The provenance half -
+    // showing WHICH screen set each part - is still to come, and wants Design.
+    const scopeBits = [];
+    if (vocabFilter.band) scopeBits.push("band " + bandFriendly(vocabFilter.band));
+    if (vocabFilter.rankRange) scopeBits.push("ranks " + vocabFilter.rankRange.start + "-" + vocabFilter.rankRange.end);
+    if (Array.isArray(vocabFilter.rankRanges) && vocabFilter.rankRanges.length) {
+      scopeBits.push(vocabFilter.rankRanges.map(r => "ranks " + r.start + "-" + r.end).join(" + "));
+    }
+    if (vocabFilter.topN) scopeBits.push("top " + vocabFilter.topN);
+    if (vocabFilter.subBand) scopeBits.push("band " + vocabFilter.subBand);
+    if (vocabFilter.theme) scopeBits.push("theme " + (function (id) {
+      // Friendly label, never the dotted id (standing house rule).
+      const tax = LL.themesTaxonomy;
+      if (tax && Array.isArray(tax.themes)) {
+        const t = tax.themes.find(x => x && x.id === id);
+        if (t && t.label) return t.label;
+      }
+      return id;
+    })(vocabFilter.theme));
+    if (vocabFilter.catLabel) scopeBits.push(vocabFilter.catLabel);
+    if (vocabFilter.cefr) scopeBits.push(vocabFilter.cefr);
+    if (vocabFilter.genderClass) scopeBits.push("gender-class " + (GENDER_CLASS_LABELS[vocabFilter.genderClass] || vocabFilter.genderClass));
+    if (scopeBits.length) {
       const filtRow = document.createElement("div");
       filtRow.className = "vocab-filter-status";
       const lbl = document.createElement("span");
       lbl.className = "vocab-filter-status-label";
-      let descr = "Filtered: ";
-      if (vocabFilter.band) descr += "band " + bandFriendly(vocabFilter.band);
-      if (vocabFilter.rankRange) descr += "ranks " + vocabFilter.rankRange.start + "-" + vocabFilter.rankRange.end;
-      if (vocabFilter.theme) descr += "theme " + vocabFilter.theme;
-      if (vocabFilter.genderClass) descr += "gender-class " + (GENDER_CLASS_LABELS[vocabFilter.genderClass] || vocabFilter.genderClass);
-      lbl.textContent = descr;
+      lbl.textContent = "Filtered: " + scopeBits.join(" \u00b7 ");
       filtRow.appendChild(lbl);
       const back = document.createElement("button");
       back.type = "button";
@@ -5178,7 +5205,17 @@
         vocabFilter.genderClass = "";
         vocabFilter.rankRange = null;
         vocabFilter.drillLevel = null;
-        // topN is preserved - it's set via the dropdown, not via cells.
+        // r163: and now everything the ENTRY SCREEN set, which was previously
+        // unreachable from here. "Back to all" that leaves half the scope in
+        // place is the bug, not a safeguard. topN and subBand stay, because
+        // those two are set by a visible dropdown the learner can see and undo
+        // themselves - clearing a control's value from somewhere else is its
+        // own kind of vanishing.
+        vocabFilter.rankRanges = null;
+        vocabFilter.catLabel = "";
+        vocabFilter.catSel = null;
+        vocabFilter.catIds = null;
+        vocabFilter.cefr = "";
         vocabExpandedThemes.clear();
         vocabExpandedGenders.clear();
         vocabDeck = []; vocabIndex = 0;

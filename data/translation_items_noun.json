@@ -76,11 +76,12 @@
     ],
     "expected_buckets": [
       "orthography.accent.italian",
-      "vocabulary.it.casa.gender.active",
-      "vocabulary.it.casa.translation.active",
-      "vocabulary.it.grande.translation.active",
-      "vocabulary.it.librare.translation.active",
-      "vocabulary.it.nuovo.translation.active"
+      "vocabulary.it.casa.noun.gender.active",
+      "vocabulary.it.casa.noun.translation.active",
+      "vocabulary.it.grande.adjective.translation.active",
+      "vocabulary.it.libro.noun.gender.active",
+      "vocabulary.it.libro.noun.translation.active",
+      "vocabulary.it.nuovo.adjective.translation.active"
     ]
   },
   {
@@ -146,11 +147,12 @@
     "expected_buckets": [
       "orthography.accent.italian",
       "orthography.spelling.doubling",
-      "vocabulary.it.fiore.gender.active",
-      "vocabulary.it.fiore.translation.active",
-      "vocabulary.it.rosso.translation.active",
-      "vocabulary.it.sul.translation.active",
-      "vocabulary.it.tavolo.translation.active"
+      "vocabulary.it.fiore.noun.gender.active",
+      "vocabulary.it.fiore.noun.translation.active",
+      "vocabulary.it.rosso.adjective.translation.active",
+      "vocabulary.it.sul.preposition.translation.active",
+      "vocabulary.it.tavolo.noun.gender.active",
+      "vocabulary.it.tavolo.noun.translation.active"
     ]
   },
   {
@@ -215,9 +217,9 @@
     "expected_buckets": [
       "orthography.accent.italian",
       "orthography.spelling.doubling",
-      "vocabulary.it.inverno.translation.passive",
-      "vocabulary.it.lungo.translation.passive",
-      "vocabulary.it.notte.translation.passive"
+      "vocabulary.it.inverno.noun.translation.passive",
+      "vocabulary.it.lungo.adjective.translation.passive",
+      "vocabulary.it.notte.noun.translation.passive"
     ]
   },
   {
@@ -283,11 +285,12 @@
     "expected_buckets": [
       "orthography.accent.italian",
       "orthography.spelling.doubling",
-      "vocabulary.it.problema.gender.active",
-      "vocabulary.it.problema.translation.active",
-      "vocabulary.it.programma.gender.active",
-      "vocabulary.it.programma.translation.active",
-      "vocabulary.it.serio.translation.active"
+      "vocabulary.it.funzionare.verb.translation.active",
+      "vocabulary.it.problema.noun.gender.active",
+      "vocabulary.it.problema.noun.translation.active",
+      "vocabulary.it.programma.noun.gender.active",
+      "vocabulary.it.programma.noun.translation.active",
+      "vocabulary.it.serio.adjective.translation.active"
     ]
   },
   {
@@ -349,9 +352,10 @@
     ],
     "expected_buckets": [
       "orthography.spelling.doubling",
-      "vocabulary.it.lavorare.translation.active",
-      "vocabulary.it.malo.translation.active",
-      "vocabulary.it.mano.translation.active"
+      "vocabulary.it.lavorare.verb.translation.active",
+      "vocabulary.it.male.adverb.translation.active",
+      "vocabulary.it.mano.noun.gender.active",
+      "vocabulary.it.mano.noun.translation.active"
     ]
   },
   {
@@ -414,9 +418,9 @@
     "explanation": "'Ti mando la foto domani' means 'I'll send you the photo tomorrow.' Foto is feminine (short for fotografia), hence la foto even though it ends in -o.",
     "version": 1,
     "expected_buckets": [
-      "vocabulary.it.domani.translation.passive",
-      "vocabulary.it.foto.translation.passive",
-      "vocabulary.it.mandare.translation.passive"
+      "vocabulary.it.domani.adverb.translation.passive",
+      "vocabulary.it.foto.noun.translation.passive",
+      "vocabulary.it.mandare.verb.translation.passive"
     ]
   },
   {
@@ -472,7 +476,10 @@
       }
     ],
     "expected_buckets": [
-      "vocabulary.it.librare.translation.active"
+      "vocabulary.it.libro.noun.gender.active",
+      "vocabulary.it.libro.noun.translation.active",
+      "vocabulary.it.sul.preposition.translation.active",
+      "vocabulary.it.tavolo.noun.translation.active"
     ]
   },
   {
@@ -528,9 +535,9 @@
     "expected_buckets": [
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
-      "vocabulary.it.gatto.translation.active",
-      "vocabulary.it.sorella.translation.active",
-      "vocabulary.it.tre.translation.active"
+      "vocabulary.it.gatto.noun.translation.active",
+      "vocabulary.it.sorella.noun.translation.active",
+      "vocabulary.it.tre.numeral.translation.active"
     ]
   },
   {
@@ -593,9 +600,9 @@
     "explanation": "'Le case nuove sono care' means 'The new houses are expensive.' Casa to case is the -a to -e plural, and nuove and care agree feminine plural.",
     "version": 1,
     "expected_buckets": [
-      "vocabulary.it.caro.translation.passive",
-      "vocabulary.it.casa.translation.passive",
-      "vocabulary.it.nuovo.translation.passive"
+      "vocabulary.it.caro.adjective.translation.passive",
+      "vocabulary.it.casa.noun.translation.passive",
+      "vocabulary.it.nuovo.adjective.translation.passive"
     ]
   },
   {
@@ -661,8 +668,10 @@
     "expected_buckets": [
       "orthography.spelling.c_g_softening",
       "orthography.spelling.silent_h",
-      "vocabulary.it.comprare.translation.active",
-      "vocabulary.it.due.translation.active"
+      "vocabulary.it.arancia.noun.translation.active",
+      "vocabulary.it.chilo.noun.translation.active",
+      "vocabulary.it.comprare.verb.translation.active",
+      "vocabulary.it.due.numeral.translation.active"
     ]
   },
   {
@@ -717,7 +726,8 @@
     ],
     "expected_buckets": [
       "orthography.spelling.c_g_softening",
-      "vocabulary.it.amico.translation.active"
+      "vocabulary.it.amico.noun.translation.active",
+      "vocabulary.it.greco.adjective.translation.active"
     ]
   },
   {
@@ -782,9 +792,9 @@
     "expected_buckets": [
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
-      "vocabulary.it.bella.translation.passive",
-      "vocabulary.it.italiana.translation.passive",
-      "vocabulary.it.spiaggia.translation.passive"
+      "vocabulary.it.bello.adjective.translation.passive",
+      "vocabulary.it.italiano.adjective.translation.passive",
+      "vocabulary.it.spiaggia.noun.translation.passive"
     ]
   },
   {
@@ -850,7 +860,10 @@
     "expected_buckets": [
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
-      "vocabulary.it.montagna.translation.active"
+      "vocabulary.it.freddo.adjective.translation.active",
+      "vocabulary.it.lago.noun.gender.active",
+      "vocabulary.it.lago.noun.translation.active",
+      "vocabulary.it.montagna.noun.translation.active"
     ]
   },
   {
@@ -907,10 +920,8 @@
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
-      "vocabulary.it.bella.translation.active",
-      "vocabulary.it.città.gender.active",
-      "vocabulary.it.città.translation.active",
-      "vocabulary.it.italiana.translation.active"
+      "vocabulary.it.bello.adjective.translation.active",
+      "vocabulary.it.italiano.adjective.translation.active"
     ]
   },
   {
@@ -974,12 +985,14 @@
     "version": 1,
     "expected_buckets": [
       "orthography.spelling.silent_h",
-      "vocabulary.it.beare.translation.passive",
-      "vocabulary.it.due.translation.passive",
-      "vocabulary.it.film.translation.passive",
-      "vocabulary.it.ieri.translation.passive",
-      "vocabulary.it.sera.translation.passive",
-      "vocabulary.it.vistare.translation.passive"
+      "vocabulary.it.bello.adjective.translation.passive",
+      "vocabulary.it.due.numeral.translation.passive",
+      "vocabulary.it.film.noun.translation.passive",
+      "vocabulary.it.ieri.adverb.translation.passive",
+      "vocabulary.it.pellicola.noun.translation.passive",
+      "vocabulary.it.sera.noun.translation.passive",
+      "vocabulary.it.serata.noun.translation.passive",
+      "vocabulary.it.vedere.verb.translation.passive"
     ]
   },
   {
@@ -1035,8 +1048,10 @@
     "expected_buckets": [
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
-      "vocabulary.it.colazione.translation.active",
-      "vocabulary.it.mangiare.translation.active"
+      "vocabulary.it.colazione.noun.translation.active",
+      "vocabulary.it.mangiare.verb.translation.active",
+      "vocabulary.it.uovo.noun.gender.active",
+      "vocabulary.it.uovo.noun.translation.active"
     ]
   },
   {
@@ -1098,8 +1113,9 @@
     ],
     "expected_buckets": [
       "orthography.spelling.silent_h",
-      "vocabulary.it.mano.gender.active",
-      "vocabulary.it.mano.translation.active"
+      "vocabulary.it.forte.adjective.translation.active",
+      "vocabulary.it.mano.noun.gender.active",
+      "vocabulary.it.mano.noun.translation.active"
     ]
   },
   {
@@ -1144,8 +1160,8 @@
     "expected_buckets": [
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
-      "vocabulary.it.braccio.translation.passive",
-      "vocabulary.it.malo.translation.passive"
+      "vocabulary.it.braccio.noun.translation.passive",
+      "vocabulary.it.male.adverb.translation.passive"
     ]
   },
   {
@@ -1201,8 +1217,9 @@
     "expected_buckets": [
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
-      "vocabulary.it.piazzare.translation.active",
-      "vocabulary.it.uomo.translation.active"
+      "vocabulary.it.molto.adverb.translation.active",
+      "vocabulary.it.piazza.noun.translation.active",
+      "vocabulary.it.uomo.noun.translation.active"
     ]
   },
   {
@@ -1247,8 +1264,9 @@
     ],
     "expected_buckets": [
       "orthography.spelling.c_g_softening",
-      "vocabulary.it.due.translation.active",
-      "vocabulary.it.portachiavi.translation.active"
+      "vocabulary.it.due.numeral.translation.active",
+      "vocabulary.it.portachiavi.noun.translation.active",
+      "vocabulary.it.servire.verb.translation.active"
     ]
   },
   {
@@ -1289,9 +1307,9 @@
       "orthography.spelling.c_g_softening",
       "orthography.spelling.capitalization",
       "orthography.spelling.silent_h",
-      "vocabulary.it.amico.translation.passive",
-      "vocabulary.it.due.translation.passive",
-      "vocabulary.it.roma.translation.passive"
+      "vocabulary.it.amico.noun.translation.passive",
+      "vocabulary.it.due.numeral.translation.passive",
+      "vocabulary.it.roma.noun.translation.passive"
     ]
   },
   {
@@ -1361,11 +1379,11 @@
     "expected_buckets": [
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
-      "vocabulary.it.chiave.translation.passive",
-      "vocabulary.it.fresco.translation.passive",
-      "vocabulary.it.pane.translation.passive",
-      "vocabulary.it.sul.translation.passive",
-      "vocabulary.it.tavolo.translation.passive"
+      "vocabulary.it.chiave.noun.translation.passive",
+      "vocabulary.it.fresco.adjective.translation.passive",
+      "vocabulary.it.pane.noun.translation.passive",
+      "vocabulary.it.sul.preposition.translation.passive",
+      "vocabulary.it.tavolo.noun.translation.passive"
     ]
   }
 ]

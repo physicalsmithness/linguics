@@ -745,8 +745,29 @@
     //     vocabulary, so nothing regresses on undelivered items.
     const fireList = (item && Array.isArray(item.expected_buckets)) ? item.expected_buckets : [];
     let injectedFromFireList = 0;
+    // r162: the fire-list's ORTHOGRAPHY ids get the same treatment, and the
+    // reason is a live fault. Smith wrote `projetto` for `progetto` and it came
+    // back ticked. Measured: the nine orthography.spelling buckets exist in the
+    // tree and NONE of them is in the 581-name list, so they were never
+    // nameable - and r154 then dropped them from the fire-list on the way out
+    // for exactly that reason. Three spelling classes were derived onto that
+    // item and not one could ever have fired. So the marker was handed a
+    // spelling question with no way to answer it.
+    //
+    // Anything on the fire-list that resolves to a REAL bucket is injected;
+    // per-lemma vocabulary keeps its own path below because it is generated at
+    // runtime and is in no tree.
     for (const b of fireList) {
-      if (String(b).indexOf("vocabulary.") !== 0) continue;   // grammar comes from the menu
+      if (String(b).indexOf("vocabulary.") !== 0) {
+        if (ctx[b]) continue;
+        const def = bucketById && bucketById[b];
+        if (!def) continue;                     // not a real bucket: leave it out
+        ctx[b] = { label: def.label || b, description: "" };
+        continue;   // deliberately does NOT count: injectedFromFireList gates
+                    // the it_en vocabulary fallback below, and an item with
+                    // only spelling on its list must still get that fallback
+
+      }
       if (ctx[b]) continue;
       const parsed = (typeof LL.parseVocabBucketId === "function") ? LL.parseVocabBucketId(b) : null;
       const lemma = parsed && parsed.lemma ? parsed.lemma : (String(b).split(".")[2] || "");

@@ -1,0 +1,309 @@
+{
+ "generated": "2026-08-13",
+ "author": "Architecture",
+ "purpose": "Pass/fail expectation suite for the translation marker. Every case carries expect_fire AND expect_absent: the observed failures are false POSITIVES (an invented accent, a gender on the wrong entry, a stem-guessed lemma) as often as misses, and a suite without expect_absent misses half of them.",
+ "how_to_run": "Send the item and learner_answer to the worker. A case PASSES when every expect_fire entry appears with the stated outcome AND no expect_absent rule is violated. Report per-case, never an aggregate score.",
+ "regimes": "Run both marker regimes (with and without the 581-name menu) on the identical set, so the r159 change is measured rather than argued.",
+ "note": "Tranche 1, authored not harvested. The more valuable half is the cases drawn from live faults, which are Housing\\u2019s to add as they occur.",
+ "cases": [
+  {
+   "case_id": "breadth_01",
+   "item_id": "trans_pp_en_it_01",
+   "learner_answer": "Abbiamo mangiato la pasta ieri sera.",
+   "expect_fire": [
+    {
+     "bucket": "verb_form.passato_prossimo.auxiliary.avere_default",
+     "outcome": "hit"
+    },
+    {
+     "bucket": "verb_form.passato_prossimo.participle_form.regular.are_ato",
+     "outcome": "hit"
+    },
+    {
+     "bucket": "verb_form.passato_prossimo.participle_agreement.with_avere.no_preceding_dop",
+     "outcome": "hit"
+    }
+   ],
+   "expect_absent": [
+    {
+     "rule": "no markpoint may have outcome miss"
+    },
+    {
+     "rule": "no note of kind accent"
+    }
+   ],
+   "why": "A verbatim-correct answer. Every required bucket fires as a hit and nothing misses. If this one is not clean nothing below is interpretable.",
+   "origin": "architecture"
+  },
+  {
+   "case_id": "breadth_02",
+   "item_id": "trans_neg_en_it_nonpos_01",
+   "learner_answer": "Non capisco niente.",
+   "expect_fire": [
+    {
+     "bucket": "negation.core.non_position",
+     "outcome": "hit"
+    }
+   ],
+   "expect_absent": [
+    {
+     "rule": "no miss on negation.core.non_position",
+     "why": "the extra word is not a negation-placement fault"
+    }
+   ],
+   "why": "Learner adds a word the reference does not have. The tested skill is still demonstrated correctly, so it is a hit; any extra observation goes to the can\\u2019t-credit channel, not to a miss on the required bucket.",
+   "origin": "architecture"
+  },
+  {
+   "case_id": "breadth_03",
+   "item_id": "trans_aa_en_it_02",
+   "learner_answer": "Ho due gatti nere.",
+   "expect_fire": [
+    {
+     "bucket": "adjective_agreement.o_class.masculine_plural",
+     "outcome": "miss"
+    },
+    {
+     "bucket": "adjective_agreement.position.post_noun_default",
+     "outcome": "hit"
+    }
+   ],
+   "expect_absent": [
+    {
+     "rule": "no miss on adjective_agreement.position.post_noun_default",
+     "why": "position was correct; one error must not fail two buckets"
+    }
+   ],
+   "why": "One error, one miss. Gender agreement is wrong, position is right. The prompt rule against collapsing a single slip into two misses.",
+   "origin": "architecture"
+  },
+  {
+   "case_id": "vocab_grammar_01",
+   "item_id": "trans_aa_en_it_01",
+   "learner_answer": "La casa \\u00e8 azzurra.",
+   "expect_fire": [
+    {
+     "bucket": "adjective_agreement.o_class.feminine_singular",
+     "outcome": "hit",
+     "why": "azzurra is correctly agreed"
+    }
+   ],
+   "expect_absent": [
+    {
+     "rule": "no miss on any adjective_agreement bucket",
+     "why": "the fault is lexical, not agreement"
+    }
+   ],
+   "why": "Wrong word, right form. Prompt rule 12: wrong word is a vocabulary error and must never fire an agreement miss.",
+   "origin": "architecture"
+  },
+  {
+   "case_id": "vocab_grammar_02",
+   "item_id": "trans_pp_en_it_02",
+   "learner_answer": "Hanno vendere la loro macchina vecchia il mese scorso.",
+   "expect_fire": [
+    {
+     "bucket": "verb_form.passato_prossimo.participle_form.regular.ere_uto",
+     "outcome": "miss"
+    },
+    {
+     "bucket": "vocabulary.it.vendere.verb.translation.active",
+     "outcome": "hit",
+     "why": "right word, mis-formed"
+    }
+   ],
+   "expect_absent": [
+    {
+     "rule": "vocabulary.it.vendere.* must not be a miss",
+     "why": "they knew the word and mis-formed it; that is a grammar fault"
+    }
+   ],
+   "why": "The mirror of the case above: right word, wrong form. Vocabulary hits, grammar misses.",
+   "origin": "architecture"
+  },
+  {
+   "case_id": "false_pos_lemma_01",
+   "item_id": "trans_tc_imp_pp_gen_en_it_02",
+   "learner_answer": "Ieri mattina ho incontrato Marco al supermercato mentre facevo la spesa.",
+   "expect_fire": [
+    {
+     "bucket": "verb_form.imperfect.discrimination.vs_passato_prossimo_general",
+     "outcome": "hit"
+    }
+   ],
+   "expect_absent": [
+    {
+     "rule": "no bucket for vocabulary.it.orecchio.*"
+    },
+    {
+     "rule": "no bucket for vocabulary.it.proprio.*"
+    },
+    {
+     "rule": "no vocabulary bucket for Marco",
+     "why": "proper nouns earn no vocabulary bucket, Architecture ruling 3"
+    }
+   ],
+   "why": "Smith caught the live version of this: \"ore\" prefix-matched orecchio and \"problemi\" stem-matched proprio, writing vocabulary events against words the learner never saw. Any recurrence of stem-guessing shows up here.",
+   "origin": "smith_live_2026-07"
+  },
+  {
+   "case_id": "false_pos_accent_01",
+   "item_id": "trans_op_en_it_01",
+   "learner_answer": "Marco mi vede al bar ogni mattina.",
+   "expect_fire": [
+    {
+     "bucket": "pronoun.direct_object.mi",
+     "outcome": "hit"
+    },
+    {
+     "bucket": "pronoun.position.pre_finite_verb",
+     "outcome": "hit"
+    }
+   ],
+   "expect_absent": [
+    {
+     "rule": "no note of kind accent"
+    },
+    {
+     "rule": "overall.marks_awarded must not be multiplied by 0.9"
+    }
+   ],
+   "why": "Spelling matches the reference exactly. The anti-hallucination guard: an invented accent error damages trust more than a missed one.",
+   "origin": "prompt_rule_11"
+  },
+  {
+   "case_id": "false_pos_gender_01",
+   "item_id": "trans_art_en_it_forms_01",
+   "learner_answer": "Lo studente ha uno zaino.",
+   "expect_fire": [
+    {
+     "bucket": "article.definite.forms",
+     "outcome": "hit"
+    },
+    {
+     "bucket": "article.indefinite.forms",
+     "outcome": "hit"
+    }
+   ],
+   "expect_absent": [
+    {
+     "rule": "no gender markpoint on an entry the learner did not write",
+     "why": "the gemello/mobile resolver defect fired gender against an adjective entry"
+    }
+   ],
+   "why": "Gender must follow the entry actually credited. The bare-id resolver picked the lowest-rank entry and landed gender on adjectives.",
+   "origin": "architecture_2026-08-06"
+  },
+  {
+   "case_id": "alternative_01",
+   "item_id": "trans_prep_en_it_vg_02",
+   "learner_answer": "Ha smesso di fumare l\\u2019anno passato.",
+   "expect_fire": [
+    {
+     "bucket": "preposition.usage.verb_governed",
+     "outcome": "hit"
+    }
+   ],
+   "expect_absent": [
+    {
+     "rule": "no miss caused by passato instead of scorso",
+     "why": "a valid alternative rendering"
+    }
+   ],
+   "why": "The learner uses a different but correct word. Under the no-single-correct-version ruling this costs nothing; the tested skill is untouched.",
+   "origin": "architecture"
+  },
+  {
+   "case_id": "tense_choice_01",
+   "item_id": "trans_tc_imp_pp_gen_en_it_01",
+   "learner_answer": "Sono andato a scuola a piedi ogni mattina prima di trasferirmi in un\\u2019altra citt\\u00e0.",
+   "expect_fire": [
+    {
+     "bucket": "verb_form.imperfect.discrimination.vs_passato_prossimo_general",
+     "outcome": "miss"
+    }
+   ],
+   "expect_absent": [
+    {
+     "rule": "no miss on any verb_form.passato_prossimo.participle_form.* bucket",
+     "why": "the participle is correctly formed; the fault is tense CHOICE"
+    }
+   ],
+   "why": "Prompt rule 5. The learner picked the wrong tense and spelled it correctly. That is one miss on choice, not a formation miss as well.",
+   "origin": "prompt_rule_5"
+  },
+  {
+   "case_id": "clitic_01",
+   "item_id": "trans_op_en_it_01",
+   "learner_answer": "Marco me vede al bar ogni mattina.",
+   "expect_fire": [
+    {
+     "bucket": "pronoun.direct_object.mi",
+     "outcome": "miss"
+    },
+    {
+     "bucket": "pronoun.position.pre_finite_verb",
+     "outcome": "hit"
+    }
+   ],
+   "expect_absent": [
+    {
+     "rule": "no miss on pronoun.position.pre_finite_verb",
+     "why": "correctly placed, wrong form"
+    }
+   ],
+   "why": "Prompt rule 14, stated as a test. One wrong-form-but-correctly-placed clitic is exactly one miss.",
+   "origin": "prompt_rule_14"
+  },
+  {
+   "case_id": "firelist_blank_01",
+   "item_id": "trans_pp_en_it_01",
+   "learner_answer": "Abbiamo mangiato la pasta.",
+   "expect_fire": [
+    {
+     "bucket": "verb_form.passato_prossimo.auxiliary.avere_default",
+     "outcome": "hit"
+    }
+   ],
+   "expect_absent": [
+    {
+     "rule": "no miss on any expected_buckets entry the answer does not engage",
+     "why": "ieri sera is dropped; buckets tied to it are blanks, attempted_credit 0"
+    }
+   ],
+   "why": "The defining test of the expected_buckets contract. A shorter but correct answer must not be penalised for the buckets it simply did not reach.",
+   "origin": "architecture_2026-08-06"
+  },
+  {
+   "case_id": "firelist_wrong_01",
+   "item_id": "trans_pia_en_it_agr_01",
+   "learner_answer": "Mi piace gli spaghetti.",
+   "expect_fire": [
+    {
+     "bucket": "piacere.form.agreement",
+     "outcome": "miss"
+    }
+   ],
+   "expect_absent": [],
+   "why": "The other half of the contract: engaged and wrong is a REAL miss. Without this case expected_buckets would be credit-only and marking would go soft.",
+   "origin": "architecture_2026-08-06"
+  },
+  {
+   "case_id": "direction_01",
+   "item_id": "trans_op_en_it_02",
+   "learner_answer": "Anna saw him at the cinema yesterday.",
+   "expect_fire": [],
+   "expect_absent": [
+    {
+     "rule": "no hit on any bucket",
+     "why": "an English answer on an en_it item is not attempted"
+    },
+    {
+     "rule": "overall must be not_attempted, not a set of misses"
+    }
+   ],
+   "why": "Direction awareness. The learner answered in the wrong language; that is one overall verdict, not a sweep of grammar misses.",
+   "origin": "prompt_direction"
+  }
+ ]
+}
