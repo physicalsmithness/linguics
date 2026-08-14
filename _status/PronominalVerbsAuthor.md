@@ -1,7 +1,7 @@
 seat: PronominalVerbsAuthor
 classes: [all-seats, all-authors]
 project: Linguics
-updated: 2026-08-12 (tier-2 check)
+updated: 2026-08-14
 waiting: parked            # everything I owe is delivered; three threads sit with Architecture to verify/stamp
 needs_from_smith: none  # tier-2: no packet exists for my seat; filed an exclusion-confirm, Architecture's call
 blocked_by:
@@ -23,3 +23,7 @@ process_note: queue re-derived from disk this turn; the 2026-08-03 "nothing owed
 tier2_review:
   - NO packet for this seat: named thread does not exist, no REVIEW_pronominal_verbs json. pronominal_verbs is 1 of 8 topics the wave excluded (per ReportedSpeechAuthor_tier2_exclusion). Did NOT fabricate a review.
   - Filed Architecture_PronominalVerbsAuthor_tier2_exclusion v1 (confirm deliberate vs cut-a-packet). Evidence: translation 1.04 required_buckets (under the 1.4 the pass targets) BUT 1.7 incl optional; grammar 25% cross-tree. Effective recall already above threshold; Architecture's call.
+tier2_search_DONE_2026-08-14:
+  - Ruled IN (exclusion reversed). Searched 913 translations, returned 69 findings to review_packets_tier2/returned/. 6 genuine cross-topic recoveries (andarsene/fregarsene in pronoun + trapassato items, 4/6 in the ALT reference only); rest = ancestor-chain enrichment.
+  - Claimed the ancestor chain per thread v2's reverted ruling, NOT the packet's stale store_the_most_specific field (flagged the conflict). Now Architecture's turn to merge/verify.
+  - false_miss_packet closed my side: celho_01 instruction-pinned, celho_02 flagged (both v3).

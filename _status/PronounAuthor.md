@@ -1,27 +1,25 @@
 seat: PronounAuthor
 classes: [all-seats, all-authors]
 project: Linguics
-updated: 2026-08-12
-waiting: active
+updated: 2026-08-14
+waiting: parked
 needs_from_smith: none
 blocked_by:
-claude_can_verify: yes (226 grammar + 68 translation; tier-2 packet returned 230 keep / 373 strike of 603 rows; verdict scan on disk)
-summary: Tier-2 review packet REVIEW_pronoun_2026-08-11.json (603 rows, 13 buckets) verdicted this pass — 62% struck. Morph-it had massive false-positive rates on la/le/lo article-vs-clitic homographs. All strikes documented in the packet + summary thread.
+claude_can_verify: yes (tier2 packet merged; 180 keeps live; 32 ancestor keeps restored; v4 argues aggregate convention)
+summary: Tier-2 packet CLOSED (v2 merged, v3 retracted ancestor-drop). Reopened at v4 to argue that aggregate `pronoun.ne` should stay alongside `pronoun.ne.partitive_quantity` (20 items). Proposed convention: aggregates keep when distinct diagnostic dimension, drop when purely organisational.
 queue:
-  - TIER-2 REVIEW PACKET WAITING (2026-08-12): data/review_packets_tier2/REVIEW_pronoun_2026-08-11.json — 603 pairs. Thread: inter_chat/Architecture_PronounAuthor_tier2_review_packet.md  [not blocked]
 awaiting_architect_stamp:
-  - tier2_review_packet v1 (this pass)   [603 rows verdicted]
-  - cue_notation v5   [132 English-in-parens conversions - proposed 2026-08-03]
-  - answer_leak_dispatch v4   [op_dop_vi_you_03 -> multi_select]
+  - tier2_review_packet v4 (aggregate convention argument)   [awaiting ruling]
+  - cue_notation v5   [132 conversions - proposed 2026-08-03, verify still pending in Next line]
+  - answer_leak_dispatch v4   [op_dop_vi_you_03 multi_select - proposed 2026-08-03, verify still pending]
   - criterion13_chip_audit v2   [4 trims + 1 held]
-  - false_miss_packet v3   [5 remediations + op_ne_motion_01 tightening]
+  - false_miss_packet v3   [5 remediations + tightening]
   - order_imagination_battery v2   [6 items + leaf proposal]
   - aspettare_class_referents v3   [7 seeds]
   - cr17_gate_dispositions v1   [5 reworks + 1 gate-exempt candidate]
-  - rev19_audit thread closure   [v8]
-  - fcap two-item retrofit ask   [DECISIONS.md line 888]
-  - three routed items reframe   [DECISIONS.md line 996]
-  - criterion 17 gloss for pronoun   [Cr17Sweep_sequencing]
 next_touch_deferrals:
   - op_dop_mi_03 (Rev 29 one-to-one gloss)
-  - op_refl_essere_02/03 chip "(auxiliary + participle)" — awaits architect ruling on brackets-vs-parens for English structure-naming
+  - op_refl_essere_02/03 chip "(auxiliary + participle)" - awaits architect on English structure-naming brackets convention
+noted_conventions:
+  - Return tier-2 packets to data/review_packets_tier2/returned/, not in place (silent-failure risk flagged)
+  - Job 9 hazard: standing order says do not re-run until preserves ratified grammar ids

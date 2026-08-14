@@ -1,0 +1,591 @@
+"""V2: tighter rules based on spot-check.
+
+Fixes:
+- Drop amico from Class I lexicon (overwhelmingly a noun; adj use rare)
+- Specials (bello/buono/quello/santo) only fire when followed by a noun-like token
+  (attributive/pre-noun position — the article-like allomorph rule is defined pre-noun)
+- Class-slot leaf claim only fires when the token is in adjective context
+  (attributive adjacency to a noun OR predicative after a linking verb)
+- Position claims only fire on true attributive uses
+"""
+import json, re
+from collections import defaultdict
+
+# ============================================================
+# Simple Italian POS heuristics
+# ============================================================
+DETERMINERS = {'il','lo','la','i','gli','le',"l'","un","una","uno","un'",
+               'del','della','dello','dei','degli','delle','al','alla','allo',
+               'ai','agli','alle','dal','dalla','dallo','dai','dagli','dalle',
+               'nel','nella','nello','nei','negli','nelle','sul','sulla',
+               'sullo','sui','sugli','sulle','col','colla','cogli','coi',
+               'questo','questa','questi','queste','quel','quello','quella',
+               "quell'",'quei','quegli','quelle','mio','mia','miei','mie','tuo','tua',
+               'tuoi','tue','suo','sua','suoi','sue','nostro','nostra','nostri',
+               'nostre','vostro','vostra','vostri','vostre','loro',
+               'ogni','qualche','qualsiasi','qualunque','tutti','tutte','tutto','tutta'}
+
+# Linking verbs (essere / stare / sembrare / diventare / parere) — forms
+LINK_VERB = {
+    'sono','sei','è','siamo','siete',
+    'ero','eri','era','eravamo','eravate','erano',
+    'fui','fosti','fu','fummo','foste','furono',
+    'sarò','sarai','sarà','saremo','sarete','saranno',
+    'sarei','saresti','sarebbe','saremmo','sareste','sarebbero',
+    'sia','siate','siano','fossi','fosse','fossimo','fossero',
+    'stato','stata','stati','state','essendo',
+    'sto','stai','sta','stiamo','state','stanno',
+    'stavo','stavi','stava','stavamo','stavate','stavano',
+    'sembra','sembrano','sembrava','sembravano','sembrò','sembrarono',
+    'diventa','diventano','diventò','diventarono','diventerà','diventeranno',
+    'pare','paiono','pareva','parevano','parve','parvero',
+    'appare','appaiono','apparve','apparvero',
+    'rimane','rimangono','rimase','rimasero',
+    'resta','restano','restò','restarono',
+    'risulta','risultano','risultava',
+}
+
+COMMON_NONNOUNS = {'e','o','ma','però','anche','non','più','meno','molto','poco','tanto','troppo','così','qui','là',
+                   'sempre','mai','ancora','già','ora','adesso','oggi','ieri','domani','sopra','sotto','dentro','fuori','vicino','lontano',
+                   'in','a','di','da','per','con','su','tra','fra','che','chi','cui','se','quando','mentre','dopo','prima','durante','senza','contro','verso',
+                   'ci','vi','ne','mi','ti','si','lo','la','li','le','gli',
+                   'come','quanto','quale','quali','dove','perché','poi','ancora',
+                   'come','sia','ne','ho','hai','ha','abbiamo','avete','hanno','avevo','avevi','aveva','avevamo','avevate','avevano',
+                   'faccio','fai','fa','facciamo','fate','fanno','vado','vai','va','andiamo','andate','vanno',
+                   'volere','potere','dovere','sapere','vedere','sentire',
+                   'anziché','oltre','presso','entro','durante','circa','malgrado','nonostante',
+                   'benché','sebbene','affinché','purché','affinché','qualora','poiché','giacché','affinché',
+                   'talora','talvolta','forse','magari','forse','circa','proprio',
+                   'io','tu','lui','lei','noi','voi','essi','esse','loro',
+                   'me','te','lui','lei','noi','voi','loro',
+                   'questa','questo','questi','queste','quella','quello','quelli','quelle',
+                   'del','della','dello','dei','degli','delle',
+                   'ha','ho','hai','hanno','abbiamo','avete',
+                   'ne','se','pure','poi','pur','ma','and','the','of','no','sì','si',
+                   'come','quali','dove','ecco',
+                   'mi','ti','ci','vi','si','lo','la','le','gli','ne',
+                   'volevo','vorrei','volli','vollero',
+                   'devo','deve','dovrei','dovrò','dovranno',
+                   'posso','può','possa','potrò','potrei',
+                   'so','sappi','sappia','saprei','saprò',
+                   'grazie','prego','scusa','scusi',
+}
+COMMON_NONNOUNS |= LINK_VERB
+COMMON_NONNOUNS |= DETERMINERS
+
+def is_noun_like(tok):
+    """Heuristic: is this token likely a noun (rather than a verb/particle)?"""
+    if not tok: return False
+    w = tok.lower().rstrip(".,;:!?'")
+    if not w or not w.isalpha(): return False
+    if w in COMMON_NONNOUNS: return False
+    if w in LINK_VERB: return False
+    if w in DETERMINERS: return False
+    # exclude common verb endings? nah, too risky.
+    return True
+
+FEM_ENDINGS = ('a','à','ione','trice','tà','tù','ie','esi')
+FEM_NOUN_HINTS = {'mano','moto','foto','radio','ala','arma','crisi','oasi','tesi',
+                  'analisi','ipotesi','sintesi','città','università','virtù',
+                  'carne','pelle','sete','pace','luce','notte','morte','arte',
+                  'nave','chiave','madre','sorella','moglie','regina','signora',
+                  'donna','ragazza','bambina','cugina','nonna','zia','amica',
+                  'canzone','stagione','regione','stazione','condizione','soluzione',
+                  'attenzione','educazione','conversazione','tradizione','decisione',
+                  'discussione','impressione','emozione','depressione','professione',
+                  'lezione','pensione','religione','ragione','opinione',
+                  'lettrice','attrice','pittrice','dottoressa','professoressa',
+                  'società','realtà','possibilità','opportunità','felicità','verità',
+                  'gioventù','servitù',
+                  'serie','specie','superficie',
+                  'giornata','settimana','ora','sera','mattina','notte','giornata',
+                  'idea','vacanza','strada','porta','finestra','tavola',
+                  }
+
+def is_fem_noun(word):
+    if not word: return False
+    w = word.lower().rstrip(".,;:!?'")
+    if w in FEM_NOUN_HINTS: return True
+    if any(w.endswith(e) for e in FEM_ENDINGS): return True
+    return False
+
+# ============================================================
+# LEXICON
+# ============================================================
+def build_lexicon():
+    lex = defaultdict(list)
+
+    def _add(form, e):
+        lex[form].append(e)
+
+    # Class I lemmas (removed amico — noun-dominant)
+    # Format: (lemma, {stem_change_key or special}, extras dict)
+    CLASS_I = [
+        ('rosso', {}), ('nero', {}), ('giallo', {}),
+        ('grigio', {'stem_gio_gi':True}),
+        ('bianco', {'stem_co_chi':True}),
+        ('alto', {}), ('basso', {}),
+        ('nuovo', {}), ('vecchio', {'stem_cio_ci':True, 'semantic_shift':'vecchio'}),
+        ('cattivo', {}),
+        ('italiano', {}), ('americano', {}), ('tedesco', {'stem_co_chi':True}),
+        ('spagnolo', {}), ('russo', {}),
+        ('lungo', {'stem_go_ghi':True}),
+        ('largo', {'stem_go_ghi':True}),
+        ('corto', {}),
+        ('simpatico', {'stem_co_ci_stress':True}),
+        ('antipatico', {'stem_co_ci_stress':True}),
+        ('noioso', {}), ('carino', {}),
+        ('stanco', {'stem_co_chi':True}),
+        ('affamato', {}), ('contento', {}),
+        ('piccolo', {}),
+        ('bravo', {}),
+        ('saggio', {'stem_gio_gi':True}),
+        ('greco', {'stem_irregular_greco':True}),
+        ('pratico', {'stem_co_ci_stress':True}),
+        ('politico', {'stem_co_ci_stress':True}),
+        ('storico', {'stem_co_ci_stress':True}),
+        ('pubblico', {'stem_co_ci_stress':True}),
+        ('fantastico', {'stem_co_ci_stress':True}),
+        ('magnifico', {'stem_co_ci_stress':True}),
+        ('unico', {'stem_co_ci_stress':True}),
+        ('artistico', {'stem_co_ci_stress':True}),
+        ('povero', {'semantic_shift':'povero'}),
+        ('ricco', {'stem_co_chi':True}),
+        ('pieno', {}), ('vuoto', {}),
+        ('chiuso', {}), ('aperto', {}),
+        ('caro', {}),
+        ('freddo', {}), ('caldo', {}),
+        ('tranquillo', {}), ('silenzioso', {}), ('rumoroso', {}),
+        ('sporco', {'stem_co_chi':True}),
+        ('pulito', {}),
+        ('lento', {}),
+        ('curioso', {}), ('geloso', {}),
+        ('generoso', {}), ('numeroso', {}),
+        ('famoso', {}),
+        ('pericoloso', {}),
+        ('meraviglioso', {}),
+        ('luminoso', {}), ('doloroso', {}),
+        ('serio', {}), ('malato', {}),
+        ('sano', {}), ('salato', {}),
+        ('pigro', {}), ('coraggioso', {}),
+        ('sicuro', {}),
+        ('preciso', {}),
+        ('libero', {}),
+        ('occupato', {}),
+        ('completo', {}),
+        ('vasto', {}),
+        ('stretto', {}),
+        ('leggero', {}),
+        ('cotto', {}),
+        ('crudo', {}),
+        ('dorato', {}),
+        ('acido', {}),
+        ('amaro', {}),
+        ('splendido', {}),
+        ('brutto', {}),
+        ('gigantesco', {'stem_co_chi':True}),
+        ('scemo', {}),
+        ('sveglio', {'stem_gio_gi':True}),
+        ('addormentato', {}),
+        ('anziano', {}),
+        ('vero', {}),
+        ('falso', {}),
+        ('perfetto', {}),
+        ('lieto', {}),
+        ('duro', {}), ('morbido', {}),
+        ('grosso', {}),
+        ('robusto', {}),
+        ('romantico', {'stem_co_ci_stress':True}),
+        ('dinamico', {'stem_co_ci_stress':True}),
+        ('automatico', {'stem_co_ci_stress':True}),
+        ('turistico', {'stem_co_ci_stress':True}),
+        ('tipico', {'stem_co_ci_stress':True}),
+        ('economico', {'stem_co_ci_stress':True}),
+        ('logico', {'stem_co_ci_stress':True}),
+        ('critico', {'stem_co_ci_stress':True}),
+        ('classico', {'stem_co_ci_stress':True}),
+        ('chimico', {'stem_co_ci_stress':True}),
+        ('barbaro', {}),
+        ('scarso', {}),
+        ('antico', {'stem_irregular_antico':True}),
+        ('poco', {'stem_co_chi':True}),
+        ('nostro', {}), ('vostro', {}), ('mio', {}), ('tuo', {}), ('suo', {}),
+        ('primo', {}), ('secondo', {}), ('terzo', {}), ('quarto', {}), ('quinto', {}),
+        ('ultimo', {}), ('ottimo', {}),
+        ('proprio', {}),
+        ('sinistro', {}), ('destro', {}),
+        ('rotondo', {}), ('quadrato', {}),
+        ('vivo', {}), ('morto', {}), ('nato', {}),
+        ('normale_NO', {}),  # Class II
+        # buono/bello/quello/santo/mezzo — handled separately with special flag
+        ('buono', {'special':'buono'}),
+        ('bello', {'special':'bello'}),
+        ('quello', {'special':'quello'}),
+        ('santo', {'special':'santo'}),
+        ('mezzo', {'special':'mezzo'}),
+    ]
+
+    CLASS_II = [
+        'intelligente', 'felice', 'verde', 'gentile', 'difficile', 'facile',
+        'importante', 'interessante', 'triste', 'forte', 'debole', 'giovane',
+        'francese', 'inglese', 'olandese', 'portoghese', 'cinese', 'giapponese',
+        'dolce', 'pesante', 'gigante', 'elegante', 'presente', 'assente',
+        'semplice', 'sagace', 'veloce', 'indipendente', 'dipendente',
+        'seguente', 'precedente', 'corrente', 'sufficiente', 'urgente',
+        'comune', 'breve', 'celeste', 'agile', 'utile', 'notevole',
+        'possibile', 'impossibile', 'probabile', 'terribile', 'orribile',
+        'sensibile', 'visibile', 'invisibile', 'incredibile', 'divertente',
+        'affascinante', 'preoccupante', 'stancante', 'sorprendente',
+        'commovente', 'brillante', 'attraente', 'convincente',
+        'accettabile', 'ragionevole', 'stabile',
+        'mobile', 'nobile', 'abile', 'inutile',
+        'salutare', 'sottile', 'agrodolce', 'evidente',
+        'normale', 'speciale', 'principale', 'generale', 'centrale',
+        'naturale', 'nazionale', 'internazionale', 'locale', 'globale',
+        'sociale', 'personale', 'professionale',
+        'grande',  # Class II with special
+    ]
+
+    for lem_key, extras in CLASS_I:
+        lem = lem_key
+        if lem.endswith('_NO'):
+            continue
+        # Handle specials separately for forms — some forms map to different slots
+        special = extras.get('special')
+        if special == 'buono':
+            for f, s in [('buono','msg'),('buona','fsg'),('buoni','mpl'),('buone','fpl')]:
+                lex[f].append({'lemma':'buono','cat':'class_I','slot':s,'special':'buono'})
+            lex['buon'].append({'lemma':'buono','cat':'class_I','slot':'msg_apocope','special':'buono'})
+            lex["buon'"].append({'lemma':'buono','cat':'class_I','slot':'fsg_elision','special':'buono'})
+            continue
+        if special == 'bello':
+            for f, s in [('bello','msg'),('bella','fsg'),('belle','fpl')]:
+                lex[f].append({'lemma':'bello','cat':'class_I','slot':s,'special':'bello'})
+            lex['bel'].append({'lemma':'bello','cat':'class_I','slot':'msg_apocope','special':'bello'})
+            lex["bell'"].append({'lemma':'bello','cat':'class_I','slot':'msg_elision','special':'bello'})
+            lex['bei'].append({'lemma':'bello','cat':'class_I','slot':'mpl','special':'bello'})
+            lex['begli'].append({'lemma':'bello','cat':'class_I','slot':'mpl_gli','special':'bello'})
+            continue
+        if special == 'quello':
+            for f, s in [('quello','msg'),('quella','fsg'),('quelle','fpl')]:
+                lex[f].append({'lemma':'quello','cat':'class_I','slot':s,'special':'quello'})
+            lex['quel'].append({'lemma':'quello','cat':'class_I','slot':'msg_apocope','special':'quello'})
+            lex["quell'"].append({'lemma':'quello','cat':'class_I','slot':'msg_elision','special':'quello'})
+            lex['quei'].append({'lemma':'quello','cat':'class_I','slot':'mpl','special':'quello'})
+            lex['quegli'].append({'lemma':'quello','cat':'class_I','slot':'mpl_gli','special':'quello'})
+            continue
+        if special == 'santo':
+            lex['santo'].append({'lemma':'santo','cat':'class_I','slot':'msg','special':'santo'})
+            lex['santa'].append({'lemma':'santo','cat':'class_I','slot':'fsg','special':'santo'})
+            lex['san'].append({'lemma':'santo','cat':'class_I','slot':'msg_apocope','special':'santo'})
+            lex["sant'"].append({'lemma':'santo','cat':'class_I','slot':'sg_elision','special':'santo'})
+            continue
+        if special == 'mezzo':
+            for f, s in [('mezzo','msg'),('mezza','fsg'),('mezzi','mpl'),('mezze','fpl')]:
+                lex[f].append({'lemma':'mezzo','cat':'class_I','slot':s,'special':'mezzo'})
+            continue
+
+        # Standard Class I
+        stem = lem[:-1]  # drop -o
+        # msg = stem + 'o'
+        lex[stem + 'o'].append({'lemma':lem,'cat':'class_I','slot':'msg', **({'semantic_shift':extras['semantic_shift']} if 'semantic_shift' in extras else {})})
+        lex[stem + 'a'].append({'lemma':lem,'cat':'class_I','slot':'fsg', **({'semantic_shift':extras['semantic_shift']} if 'semantic_shift' in extras else {})})
+        # plurals — depend on stem
+        if extras.get('stem_co_chi'):
+            lex[stem[:-1] + 'chi'].append({'lemma':lem,'cat':'class_I','slot':'mpl','stem_change':'predictable.co_chi'})
+            lex[stem[:-1] + 'che'].append({'lemma':lem,'cat':'class_I','slot':'fpl','stem_change':'predictable.ca_che'})
+        elif extras.get('stem_go_ghi'):
+            lex[stem[:-1] + 'ghi'].append({'lemma':lem,'cat':'class_I','slot':'mpl','stem_change':'predictable.go_ghi'})
+            lex[stem[:-1] + 'ghe'].append({'lemma':lem,'cat':'class_I','slot':'fpl','stem_change':'predictable.ga_ghe'})
+        elif extras.get('stem_co_ci_stress'):
+            lex[stem[:-1] + 'ci'].append({'lemma':lem,'cat':'class_I','slot':'mpl','stem_change':'harder.co_ci_vs_chi_stress'})
+            lex[stem[:-1] + 'che'].append({'lemma':lem,'cat':'class_I','slot':'fpl','stem_change':'predictable.ca_che'})
+        elif extras.get('stem_cio_ci'):
+            lex[stem[:-2] + 'ci'].append({'lemma':lem,'cat':'class_I','slot':'mpl','stem_change':'predictable.cio_ci','semantic_shift':extras.get('semantic_shift')})
+            lex[stem[:-2] + 'ce'].append({'lemma':lem,'cat':'class_I','slot':'fpl','stem_change':'predictable.cia_ce'})
+        elif extras.get('stem_gio_gi'):
+            lex[stem[:-2] + 'gi'].append({'lemma':lem,'cat':'class_I','slot':'mpl','stem_change':'predictable.gio_gi'})
+            lex[stem[:-2] + 'ge'].append({'lemma':lem,'cat':'class_I','slot':'fpl','stem_change':'predictable.gia_ge'})
+        elif extras.get('stem_irregular_greco'):
+            lex['greci'].append({'lemma':'greco','cat':'class_I','slot':'mpl','stem_change':'irregular.greco_greci'})
+            lex['greche'].append({'lemma':'greco','cat':'class_I','slot':'fpl','stem_change':'predictable.ca_che'})
+        elif extras.get('stem_irregular_antico'):
+            lex['antichi'].append({'lemma':'antico','cat':'class_I','slot':'mpl','stem_change':'irregular.antico_antichi'})
+            lex['antiche'].append({'lemma':'antico','cat':'class_I','slot':'fpl','stem_change':'predictable.ca_che'})
+        else:
+            lex[stem + 'i'].append({'lemma':lem,'cat':'class_I','slot':'mpl'})
+            lex[stem + 'e'].append({'lemma':lem,'cat':'class_I','slot':'fpl'})
+
+    for lem in CLASS_II:
+        # sg and pl
+        if lem == 'grande':
+            lex['grande'].append({'lemma':'grande','cat':'class_II','slot':'sg','special':'grande','semantic_shift':'grande'})
+            lex['grandi'].append({'lemma':'grande','cat':'class_II','slot':'pl','special':'grande'})
+            lex['gran'].append({'lemma':'grande','cat':'class_II','slot':'sg_apocope','special':'grande_prenominal','semantic_shift':'grande'})
+            continue
+        lex[lem].append({'lemma':lem,'cat':'class_II','slot':'sg'})
+        lex[lem[:-1] + 'i'].append({'lemma':lem,'cat':'class_II','slot':'pl'})
+
+    # Invariables
+    for lem in ['blu','rosa','viola','marrone','beige','lilla','indaco','ocra','kaki']:
+        lex[lem].append({'lemma':lem,'cat':'inv_colour_noun','slot':'any'})
+    for lem in ['pari','dispari','impari']:
+        lex[lem].append({'lemma':lem,'cat':'inv_pari','slot':'any'})
+
+    return dict(lex)
+
+LEXICON = build_lexicon()
+
+# ============================================================
+# BUCKET MAPPING
+# ============================================================
+CLASS_I_SLOT_TO_BUCKET = {
+    'msg': 'adjective_agreement.o_class.masculine_singular',
+    'msg_apocope': 'adjective_agreement.o_class.masculine_singular',
+    'msg_elision': 'adjective_agreement.o_class.masculine_singular',
+    'sg_elision': None,  # sant' — could be m or f; resolve by name context
+    'fsg': 'adjective_agreement.o_class.feminine_singular',
+    'fsg_elision': 'adjective_agreement.o_class.feminine_singular',
+    'mpl': 'adjective_agreement.o_class.masculine_plural',
+    'mpl_gli': 'adjective_agreement.o_class.masculine_plural',
+    'fpl': 'adjective_agreement.o_class.feminine_plural',
+}
+SPECIAL_TO_BUCKET = {
+    'bello': 'adjective_agreement.special.bello',
+    'buono': 'adjective_agreement.special.buono',
+    'grande': None,  # only grande_prenominal claims special
+    'grande_prenominal': 'adjective_agreement.special.grande_prenominal',
+    'mezzo': 'adjective_agreement.special.mezzo',
+    'quello': 'adjective_agreement.special.quello',
+    'santo': 'adjective_agreement.special.santo_san',
+}
+INV_CAT_TO_BUCKET = {
+    'inv_colour_noun': 'adjective_agreement.invariable.colour_from_noun',
+    'inv_pari': 'adjective_agreement.invariable.pari_family',
+}
+SEMSHIFT_TO_BUCKET = {
+    'grande': 'adjective_agreement.position.semantic_shift.grande',
+    'povero': 'adjective_agreement.position.semantic_shift.povero',
+    'vecchio': 'adjective_agreement.position.semantic_shift.vecchio',
+}
+STEM_TO_BUCKET = {
+    'predictable.co_chi': 'adjective_agreement.stem_changes.predictable.co_chi',
+    'predictable.ca_che': 'adjective_agreement.stem_changes.predictable.ca_che',
+    'predictable.go_ghi': 'adjective_agreement.stem_changes.predictable.go_ghi',
+    'predictable.ga_ghe': 'adjective_agreement.stem_changes.predictable.ga_ghe',
+    'predictable.cio_ci': 'adjective_agreement.stem_changes.predictable.cio_ci',
+    'predictable.cia_ce': 'adjective_agreement.stem_changes.predictable.cia_ce',
+    'predictable.gio_gi': 'adjective_agreement.stem_changes.predictable.gio_gi',
+    'predictable.gia_ge': 'adjective_agreement.stem_changes.predictable.gia_ge',
+    'harder.co_ci_vs_chi_stress': 'adjective_agreement.stem_changes.harder.co_ci_vs_chi_stress',
+    'irregular.amico_amici': 'adjective_agreement.stem_changes.irregular.amico_amici',
+    'irregular.antico_antichi': 'adjective_agreement.stem_changes.irregular.antico_antichi',
+    'irregular.greco_greci': 'adjective_agreement.stem_changes.irregular.greco_greci',
+}
+
+def tokenize(text):
+    text = text.replace('’', "'")
+    words = re.findall(r"[A-Za-zÀ-ÿ]+(?:'[A-Za-zÀ-ÿ]+)?", text)
+    out = []
+    for w in words:
+        if "'" in w:
+            head, tail = w.split("'", 1)
+            out.append(head + "'")
+            out.append(tail)
+        else:
+            out.append(w)
+    return out
+
+# ============================================================
+# Adjective context detection
+# ============================================================
+CANONICAL_PRE_NOUN = {'bello','brutto','buono','cattivo','grande','piccolo','nuovo','vecchio','giovane','bravo','lungo','breve'}
+
+def next_is_noun(tokens, lowers, i):
+    """Is the token at i+1 likely a noun (attributive right-of-adj position)?"""
+    if i+1 >= len(tokens): return False
+    t = lowers[i+1]
+    return is_noun_like(t)
+
+def prev_is_noun(tokens, lowers, i):
+    """Is the token at i-1 likely a noun (post-noun position)?"""
+    if i <= 0: return False
+    t = lowers[i-1]
+    return is_noun_like(t)
+
+def prev_is_link_verb(tokens, lowers, i):
+    """Is the previous token or one before a linking verb?"""
+    for j in [i-1, i-2]:
+        if j < 0: continue
+        if lowers[j] in LINK_VERB: return True
+        # 'stato/stata/stati/state' as auxiliary
+        if lowers[j] in {'stato','stata','stati','state'}:
+            return True
+    return False
+
+def prev_is_intensifier(tokens, lowers, i):
+    """'molto', 'poco', 'più', 'meno', 'tanto', 'troppo', 'davvero', 'proprio' before an adj"""
+    if i <= 0: return False
+    return lowers[i-1] in {'molto','poco','più','meno','tanto','troppo','davvero','proprio','abbastanza','assai','così','tale','veramente','così','veramente','tutto','pure','anche','solo','sempre','ancora','già','mai','anche','pure','veramente'}
+
+def is_adjective_context(tokens, lowers, i):
+    """Emit adjective claim only if the token is in adjective context.
+    True if: adjacent to a noun (either side), OR preceded by a linking verb,
+    OR preceded by an intensifier that itself follows a link-verb pattern."""
+    if next_is_noun(tokens, lowers, i): return True
+    if prev_is_noun(tokens, lowers, i): return True
+    if prev_is_link_verb(tokens, lowers, i): return True
+    if prev_is_intensifier(tokens, lowers, i):
+        # e.g. "molto bello" — likely adjective
+        return True
+    return False
+
+# ============================================================
+# Compound colours (bigrams)
+# ============================================================
+INV_COMPOUNDS_BIGRAM = {
+    'verde scuro', 'verde chiaro', 'verde acqua',
+    'blu marino', 'blu notte', 'blu scuro', 'blu chiaro',
+    'giallo limone', 'giallo oro',
+    'rosso fuoco', 'rosso vino',
+    'grigio topo', 'grigio chiaro', 'grigio scuro',
+    'marrone chiaro', 'marrone scuro',
+}
+
+def analyse(text):
+    tokens = tokenize(text)
+    lowers = [t.lower() for t in tokens]
+    claims = []
+    consumed = set()
+
+    # Pass 1: compound colours
+    for i in range(len(tokens)-1):
+        bg = f'{lowers[i]} {lowers[i+1]}'
+        if bg in INV_COMPOUNDS_BIGRAM:
+            claims.append({'bucket_id':'adjective_agreement.invariable.compound_colour','evidence':f'{tokens[i]} {tokens[i+1]}'})
+            consumed.add(i); consumed.add(i+1)
+
+    # Pass 2: single tokens
+    for i, tok in enumerate(lowers):
+        if i in consumed: continue
+        entries = LEXICON.get(tok)
+        if not entries: continue
+        # Take first entry (most specific); many tokens have only one
+        entry = entries[0]
+        cat = entry['cat']; slot = entry.get('slot'); lem = entry['lemma']
+
+        # Adjective context check — required for class-leaf claims
+        if not is_adjective_context(tokens, lowers, i):
+            # Even so, invariables might be in noun context (e.g. "il rosa" as noun colour); still skip
+            continue
+
+        # Class-leaf bucket
+        leaf = None
+        if cat == 'class_I':
+            leaf = CLASS_I_SLOT_TO_BUCKET.get(slot)
+            # sg_elision (sant') — resolve by name gender: if next token starts with capital and ends in 'a', probably feminine
+            if slot == 'sg_elision':
+                if i+1 < len(tokens):
+                    nxt = tokens[i+1]
+                    if nxt[:1].isupper() and (nxt.lower().rstrip(".,;:!?").endswith('a') or nxt.lower().rstrip(".,;:!?") in {'anna','elena','maria','sara','francesca'}):
+                        leaf = 'adjective_agreement.o_class.feminine_singular'
+                    else:
+                        leaf = 'adjective_agreement.o_class.masculine_singular'
+        elif cat == 'class_II':
+            # gender from adjacent noun
+            neighbour = None
+            if next_is_noun(tokens, lowers, i):
+                neighbour = lowers[i+1]
+            elif prev_is_noun(tokens, lowers, i):
+                neighbour = lowers[i-1]
+            fem = is_fem_noun(neighbour) if neighbour else False
+            if slot == 'sg':
+                leaf = 'adjective_agreement.e_class.feminine_singular' if fem else 'adjective_agreement.e_class.masculine_singular'
+            elif slot == 'pl':
+                leaf = 'adjective_agreement.e_class.feminine_plural' if fem else 'adjective_agreement.e_class.masculine_plural'
+            elif slot == 'sg_apocope':
+                # gran + m.sg noun
+                leaf = 'adjective_agreement.e_class.masculine_singular'
+        elif cat.startswith('inv_'):
+            leaf = INV_CAT_TO_BUCKET.get(cat)
+
+        if leaf:
+            claims.append({'bucket_id':leaf, 'evidence':tokens[i]})
+
+        # Special bucket — only fires when the adjective is PRE-NOUN (attributive right-of-adj)
+        sp = entry.get('special')
+        if sp:
+            sb = SPECIAL_TO_BUCKET.get(sp)
+            if sb:
+                # Requires next-is-noun for the article-like allomorph rule to be exercised
+                if sp == 'mezzo':
+                    # mezzo's variable-agreement rule fires whenever it agrees; keep permissive
+                    if next_is_noun(tokens, lowers, i) or prev_is_noun(tokens, lowers, i):
+                        claims.append({'bucket_id':sb,'evidence':tokens[i]})
+                elif sp == 'grande_prenominal':
+                    # gran is always pre-noun by construction
+                    claims.append({'bucket_id':sb,'evidence':tokens[i]})
+                else:
+                    # bello/buono/quello/santo: pre-noun attributive only
+                    if next_is_noun(tokens, lowers, i):
+                        claims.append({'bucket_id':sb,'evidence':tokens[i]})
+
+        # Stem-change bucket
+        sc = entry.get('stem_change')
+        if sc:
+            sb = STEM_TO_BUCKET.get(sc)
+            if sb:
+                claims.append({'bucket_id':sb,'evidence':tokens[i]})
+
+        # Position bucket
+        # pre_noun_canonical: adjective in canonical-pre-noun set, before a noun
+        if lem in CANONICAL_PRE_NOUN and next_is_noun(tokens, lowers, i):
+            claims.append({'bucket_id':'adjective_agreement.position.pre_noun_canonical','evidence':tokens[i]})
+        # post_noun_default: adjective after a noun
+        elif prev_is_noun(tokens, lowers, i) and not next_is_noun(tokens, lowers, i):
+            # skip if adjective is in canonical pre-noun set placed post-noun (still counts?)
+            # Actually per bucket description: "Most descriptive adjectives follow the noun"
+            # post_noun_default demonstrates the default; it's true for any post-noun adj
+            claims.append({'bucket_id':'adjective_agreement.position.post_noun_default','evidence':tokens[i]})
+
+        # Semantic shift — only fires when position is determined
+        ss = entry.get('semantic_shift')
+        if ss:
+            pre = next_is_noun(tokens, lowers, i) and (not prev_is_noun(tokens, lowers, i))
+            post = prev_is_noun(tokens, lowers, i) and (not next_is_noun(tokens, lowers, i))
+            if pre or post:
+                claims.append({'bucket_id':SEMSHIFT_TO_BUCKET[ss],'evidence':tokens[i]})
+
+    return claims
+
+def main():
+    p = json.load(open('data/review_packets_tier2/SEARCH_adjective_agreement_2026-08-13.json'))
+    corpus = p['corpus']
+    findings = []
+    per_bucket = defaultdict(int)
+    for c in corpus:
+        text = c['reference_text']
+        if not text: continue
+        claims = analyse(text)
+        seen = set()
+        for cl in claims:
+            key = (cl['bucket_id'], cl['evidence'].lower())
+            if key in seen: continue
+            seen.add(key)
+            findings.append({
+                'item_id': c['item_id'],
+                'bucket_id': cl['bucket_id'],
+                'evidence': cl['evidence'],
+                'verdict': 'keep'
+            })
+            per_bucket[cl['bucket_id']] += 1
+    print(f'Total findings: {len(findings)}')
+    for b, n in sorted(per_bucket.items(), key=lambda x:-x[1]):
+        print(f'  {n:5d}  {b}')
+    p['findings'] = findings
+    with open('outputs/SEARCH_adjective_agreement_returned_v2.json','w') as f:
+        json.dump(p, f, indent=2, ensure_ascii=False)
+    print('\nSaved to outputs/SEARCH_adjective_agreement_returned_v2.json')
+
+if __name__ == '__main__':
+    main()

@@ -1,7 +1,7 @@
 seat: WordFormationAuthor
 classes: [all-seats, all-authors]   # ratified 2026-07-21 (discharge_and_class v2)
 project: Linguics
-updated: 2026-08-12 (tier-2 checked)
+updated: 2026-08-13 (tier-2 returned)
 waiting: parked
 needs_from_smith: none   # route Architecture to verify+stamp the 5 (now all mcq) when convenient
 blocked_by:
@@ -11,11 +11,11 @@ summary: Batch complete/ACCEPTED. Self-check after the estate gap (brief Rev 31-
 queue: []   # tier-2 review packet: none on disk for word_formation (checked 2026-08-12)
 
 tier2_packet:
-  status: ABSENT — no REVIEW_word_formation_*.json (generated or returned) and no announcing thread.
-  likely: skip is defensible — scanned every other topic's reference translations, ~zero genuine alterati/prefix
-          cross-topic demonstrations (only lexicalised look-alikes: supermercato, strada). A packet would be near-empty.
-          Wave is mid-run (adjective_agreement/tense_choice/pronominal_verbs/present_usage also absent), so it may be pending.
-  action: flagged to Architecture in inter_chat/Architecture_WordFormationAuthor_tier2_review_packet.md v1 — confirm (a) skipped or (b) send it.
+  status: RETURNED 2026-08-13. Smith ruled the exclusion away; Architecture cut a SEARCH packet (inverted: I find, not judge).
+  return: data/review_packets_tier2/returned/SEARCH_word_formation_2026-08-13.json — 6 rows across 2 items (sorellina, paesino),
+          both transparent diminutives, claimed leaf + alterati + word_formation (claim-both per thread v2).
+          Excluded lexicalised look-alikes (campanello/cappuccino/cornetto/accendino/maglione/stampatello) with reasons; campanello flagged borderline.
+          Answered the aggregate-vs-leaf open question (claim both, with PrepositionAuthor). Awaiting Architecture merge.
 
 done_this_turn:
   - wf_dim_03, wf_dim_05, wf_pej_03: short -> mcq (index-scored, candidate_forms dropped, suppress kept, markpoint retained). Marking unchanged, re-validated (39 items, 15 short + 24 mcq, 0 leaks, 0 errors).

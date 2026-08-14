@@ -1,0 +1,208 @@
+{
+  "generated": "2026-08-11",
+  "family": "comparison",
+  "owner": "ComparisonAuthor",
+  "instruction": "For each bucket: set verdict to 'keep' or 'strike' on every row, and list any item you know demonstrates your construction that I missed. These are machine proposals from morph-it tagging of the reference translation. UNRATIFIED - nothing is written to any item until you return this packet.",
+  "semantics": "expected_buckets is judged ONLY if the learner's answer engages it. Engaged and right = hit. Engaged and wrong = a real miss. Not engaged = blank, no penalty. So a GENEROUS list is safe; a WRONG list is not, because the marker will try to mark it.",
+  "do_not_prune_common": "A bucket that fires on most items is NOT noise. Smith, 2026-08-11: the purpose is demonstrating knowledge - getting the definite article right 571 times is 571 pieces of evidence, and the learner should see 10 out of 12 correct even when the two the item was built for are wrong. Strike only what is WRONG, never what is merely frequent.",
+  "buckets": [
+    {
+      "bucket_id": "comparison.superlative.absolute",
+      "confidence": 0.8,
+      "item_count": 9,
+      "items": [
+        {
+          "item_id": "trans_adv_bb_en_it_04",
+          "topic": "adverb",
+          "reference_text": "È stata un'ottima idea.",
+          "evidence": "ottima (buono, superlative f s)",
+          "reason": "morph-it: superlative adjective form",
+          "proposal_confidence": 0.8,
+          "verdict": "keep",
+          "reviewer_note": "'ottima' is the IRREGULAR absolute superlative of buono, not an -issimo form, so it really evidences .irregular (added below). Kept in .absolute too: the English 'excellent idea' also licenses 'buonissima', which would engage -issimo. Judged only if engaged, so keeping costs nothing."
+        },
+        {
+          "item_id": "trans_art_en_it_iuse_02",
+          "topic": "article",
+          "reference_text": "È una bravissima insegnante.",
+          "evidence": "bravissima (bravo, superlative f s)",
+          "reason": "morph-it: superlative adjective form",
+          "proposal_confidence": 0.8,
+          "verdict": "keep",
+          "reviewer_note": "true -issimo: bravissima = bravo + -issima, agreeing f sg. Correct."
+        },
+        {
+          "item_id": "trans_art_it_en_use_04",
+          "topic": "article",
+          "reference_text": "L'Italia è un paese bellissimo.",
+          "evidence": "bellissimo (bello, superlative m s)",
+          "reason": "morph-it: superlative adjective form",
+          "proposal_confidence": 0.8,
+          "verdict": "strike",
+          "reviewer_note": "direction: this is an IT->EN item (target_lang=en). The -issimo (bellissimo) is in the Italian SOURCE; the learner produces English, so no Italian absolute superlative is demonstrated by the answer. Morph-it read the source, not the target."
+        },
+        {
+          "item_id": "trans_cmp_en_it_abs_01",
+          "topic": "comparison",
+          "reference_text": "Dopo la gara eravamo tutti stanchissimi.",
+          "evidence": "stanchissimi (stanco, superlative m p)",
+          "reason": "morph-it: superlative adjective form",
+          "proposal_confidence": 0.8,
+          "verdict": "keep",
+          "reviewer_note": "true -issimo, agreeing m pl (stanchissimi), keeps the hard c. Correct; my own item."
+        },
+        {
+          "item_id": "trans_cmp_en_it_abs_02",
+          "topic": "comparison",
+          "reference_text": "Il film che abbiamo visto ieri era bellissimo.",
+          "evidence": "bellissimo (bello, superlative m s)",
+          "reason": "morph-it: superlative adjective form",
+          "proposal_confidence": 0.8,
+          "verdict": "keep",
+          "reviewer_note": "true -issimo (bellissimo). Correct; my own item."
+        },
+        {
+          "item_id": "trans_cmp_en_it_supirr_01",
+          "topic": "comparison",
+          "reference_text": "Che ottima idea, grazie mille!",
+          "evidence": "ottima (buono, superlative f s)",
+          "reason": "morph-it: superlative adjective form",
+          "proposal_confidence": 0.8,
+          "verdict": "keep",
+          "reviewer_note": "'ottima' is irregular (my own item; required_bucket already .irregular). Kept in .absolute for the 'buonissima' alternative; also tagged .irregular below for the expected-buckets layer."
+        },
+        {
+          "item_id": "trans_pp_en_it_08",
+          "topic": "verb_form.passato_prossimo",
+          "reference_text": "Le donne si sono divertite tantissimo alla festa.",
+          "evidence": "tantissimo (tanto, superlative m s)",
+          "reason": "morph-it: superlative adjective form",
+          "proposal_confidence": 0.8,
+          "verdict": "strike",
+          "reviewer_note": "'tantissimo' here is an ADVERB ('si sono divertite tantissimo' = enjoyed themselves very much), invariable, modifying the verb. The .absolute leaf is the ADJECTIVAL absolute superlative that agrees with a noun. This is adverbial intensification (adverb tree's territory), not my construction."
+        },
+        {
+          "item_id": "trans_pp_en_it_11",
+          "topic": "verb_form.passato_prossimo",
+          "reference_text": "Ieri ho visto un film bellissimo.",
+          "evidence": "bellissimo (bello, superlative m s)",
+          "reason": "morph-it: superlative adjective form",
+          "proposal_confidence": 0.8,
+          "verdict": "keep",
+          "reviewer_note": "true adjectival -issimo: 'un film bellissimo'. Correct."
+        },
+        {
+          "item_id": "trans_wf_en_it_dim_01",
+          "topic": "word_formation",
+          "reference_text": "Mi manca tantissimo la mia sorellina.",
+          "evidence": "tantissimo (tanto, superlative m s)",
+          "reason": "morph-it: superlative adjective form",
+          "proposal_confidence": 0.8,
+          "verdict": "strike",
+          "reviewer_note": "'tantissimo' adverbial again ('mi manca tantissimo' = I miss it very much), modifying the verb, invariable. Not the adjectival absolute superlative."
+        }
+      ]
+    },
+    {
+      "bucket_id": "comparison.comparative",
+      "confidence": 0.7,
+      "item_count": 1,
+      "items": [
+        {
+          "item_id": "trans_cmp_en_it_irr_02",
+          "topic": "comparison",
+          "reference_text": "Mio fratello maggiore abita a Roma con la sua famiglia.",
+          "evidence": "maggiore (grande, comparative f s)",
+          "reason": "morph-it: comparative adjective form",
+          "proposal_confidence": 0.7,
+          "verdict": "keep",
+          "reviewer_note": "'maggiore' is the irregular comparative of grande (fratello maggiore). Genuine comparative; my own item. Aggregate tag is fine; precise leaf is .irregular_adjectives."
+        }
+      ]
+    },
+    {
+      "bucket_id": "comparison.comparative.piu_meno_di",
+      "confidence": 1.0,
+      "item_count": 1,
+      "items": [
+        {
+          "item_id": "trans_prep_en_it_di_01",
+          "topic": "preposition",
+          "reference_text": "La macchina di Anna è più veloce di quella di Marco.",
+          "evidence": "più veloce di",
+          "reason": "Textbook analytic comparative (più + adjective + di): 'Anna's car is faster than Marco's'. Morph-it reads single-word morphology, so a three-word comparison has no surface signature for it to catch. This is exactly the class the packet flagged as missed.",
+          "proposal_confidence": 1.0,
+          "verdict": "keep",
+          "added_by_reviewer": true
+        }
+      ]
+    },
+    {
+      "bucket_id": "comparison.comparative.migliore_vs_meglio",
+      "confidence": 0.9,
+      "item_count": 3,
+      "items": [
+        {
+          "item_id": "trans_cond_en_it_ire_01",
+          "topic": "verb_form.condizionale",
+          "reference_text": "Con un po' di calma, capirei meglio la lezione.",
+          "evidence": "meglio (comparative adverb)",
+          "reason": "Comparative adverb 'meglio' modifying capire ('understand better'). If a learner writes 'migliore' here it is a real migliore/meglio miss, so the tag earns its keep. Suppletive, but morph-it did not route it to my family.",
+          "proposal_confidence": 1.0,
+          "verdict": "keep",
+          "added_by_reviewer": true
+        },
+        {
+          "item_id": "trans_cong_en_it_imp_irr_03",
+          "topic": "verb_form.congiuntivo",
+          "reference_text": "Speravo che tuo padre stesse meglio.",
+          "evidence": "meglio (comparative adverb, stare meglio)",
+          "reason": "'stare meglio' (to be better, health). Comparative adverb meglio; the migliore/meglio discrimination is engaged if the learner reaches for 'migliore'.",
+          "proposal_confidence": 1.0,
+          "verdict": "keep",
+          "added_by_reviewer": true
+        },
+        {
+          "item_id": "trans_cong_en_it_supp_03",
+          "topic": "verb_form.congiuntivo",
+          "reference_text": "Spero che tuo padre stia meglio adesso.",
+          "evidence": "meglio (comparative adverb, stare meglio)",
+          "reason": "Same construction as imp_irr_03; correct meglio is evidence for the skill, 'migliore' would be a real miss.",
+          "proposal_confidence": 1.0,
+          "verdict": "keep",
+          "added_by_reviewer": true
+        }
+      ]
+    },
+    {
+      "bucket_id": "comparison.superlative.irregular",
+      "confidence": 1.0,
+      "item_count": 2,
+      "items": [
+        {
+          "item_id": "trans_adv_bb_en_it_04",
+          "topic": "adverb",
+          "reference_text": "È stata un'ottima idea.",
+          "evidence": "ottima (irregular abs. superlative of buono)",
+          "reason": "The reference form 'ottima' IS the irregular absolute superlative. Morph-it folded it into .absolute; it belongs here in .irregular. Both leaves now tagged so whichever form the learner reaches for (ottima / buonissima) is credited.",
+          "proposal_confidence": 1.0,
+          "verdict": "keep",
+          "added_by_reviewer": true
+        },
+        {
+          "item_id": "trans_cmp_en_it_supirr_01",
+          "topic": "comparison",
+          "reference_text": "Che ottima idea, grazie mille!",
+          "evidence": "ottima",
+          "reason": "My own item; required_bucket already .irregular. Adding it to the expected-buckets layer so the cross-topic marker has it on the menu too.",
+          "proposal_confidence": 1.0,
+          "verdict": "keep",
+          "added_by_reviewer": true
+        }
+      ]
+    }
+  ],
+  "reviewer": "ComparisonAuthor",
+  "reviewed": "2026-08-14",
+  "review_summary": "10 rows reviewed: 7 keep, 3 strike. Strikes: trans_art_it_en_use_04 (IT->EN — the -issimo is in the source, learner outputs English), and trans_pp_en_it_08 + trans_wf_en_it_dim_01 (both 'tantissimo' ADVERBIAL, invariable, modifying a verb — not the adjectival absolute superlative the leaf teaches; adverb tree's, not mine). Kept both 'ottima' rows in .absolute for the buonissima alternative AND added them to a new .irregular bucket, since 'ottima' itself is the suppletive irregular superlative the tagger could not distinguish. Added 4 items the morph-only pass missed because the construction has no single-word signature: 1 analytic più+adj+di (trans_prep_en_it_di_01, 'più veloce di'), 3 comparative-adverb meglio in condizionale/congiuntivo items. Excluded false positives NOT added: 'più tempo' / 'di più' / 'molto di più' (quantity/adverbial 'more', not a comparison of two things against a quality), and 'a meno che non piova' (fixed conjunction 'unless', not meno...che). required_buckets untouched."
+}

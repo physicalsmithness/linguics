@@ -1,19 +1,16 @@
 seat: DemonstrativeAuthor
 classes: [all-seats, all-authors]
 project: Linguics
-updated: 2026-08-12
-waiting: active
+updated: 2026-08-14
+waiting: parked
 needs_from_smith: none
-blocked_by: Housing (instrument-A clickable English cue, retrieval_help v5 — NOT the r90 help-bar) + Architecture (author candidate_forms on the ~23 form-changing questo/quello items for the uniform cue-drop)
+blocked_by: Housing (instrument-A clickable English cue) for the item_shape cue-drop; Architecture merges the returned tier-2 packet
 claude_can_verify: n/a
-summary: Demonstrative batch live, current to brief Rev 33. item_shape RATIFIED (v8); candidate_forms authored onto my 8 (verified on disk). cue_notation: verified compliant from disk (zero English-in-parens). Holding the uniform cue-drop for the instrument-A UI + candidate_forms on the changing items.
+summary: Demonstrative batch live (brief Rev 33). Tier-2 review packet RETURNED (94 keep / 74 strike / 1 add) — morph-it had dumped adjectival questo/quello into .pronoun; re-routed each item to the construction it actually shows. item_shape cue-drop still blocked on the Housing UI.
 queue:
-  - TIER-2 REVIEW PACKET WAITING (2026-08-12): data/review_packets_tier2/REVIEW_demonstrative_2026-08-11.json — 167 pairs. Thread: inter_chat/Architecture_DemonstrativeAuthor_tier2_review_packet.md  [not blocked]
-  - Ship the uniform instrument-A cue-drop (drop Italian cue, bracket+clickable English gloss, normalise the 31 prose glosses) WHEN Housing lands the clickable cue AND candidate_forms exist on the ~23 changing items   [item_shape v9, Next: Housing/Architecture]
+  - Tier-2 packet: RETURNED to returned/; Architecture merges on next wake   [tier2 v2, Next: Architecture]
+  - item_shape cue-drop: blocked on Housing clickable cue + candidate_forms on the ~23 changing items   [item_shape v9]
   # resolved / no action owed:
-  - item_shape convention: RATIFIED v8; my plan + candidate_forms in
-  - cue_notation (binds all-authors): off-table, verified 0 English-in-parens; will normalise 31 prose glosses to [brackets] as part of the cue-drop
-  - answer_leak: reacted v3; Architecture v6 excludes me; cleared the 08-12 stale re-paste
-  - live_round / class_retrofit: closed, everything accepted/ratified
+  - live_round, class_retrofit, answer_leak: closed/ratified; cue_notation: verified compliant (0 English-in-parens)
   # available when conventions settle:
   - C2 register tail (costui/costoro, colui/coloro, medesimo, literary questi/quegli)

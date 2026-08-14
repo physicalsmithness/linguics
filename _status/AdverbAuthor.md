@@ -2,24 +2,18 @@ seat: AdverbAuthor
 classes: [all-seats, all-authors]
 project: Linguics
 updated: 2026-08-12
-waiting: active
-needs_from_smith: confirm
-claude_can_verify: no (your preference call on the 6-vs-10 tradeoff)
-summary: Both live ALLAUTHORS obligations discharged this wake (no-change-forms MCQ + cue-notation brackets). One confirm owed on the 6-vs-10 leaf call; one Architecture ruling still open on my side; psbf bug found and fixed (twice, mount reverted it once).
+waiting: closed
+needs_from_smith: none
+summary: Tier-2 review packet returned. Both prior ALLAUTHORS items resolved from disk this wake: the no-change-forms all-10 MCQ is RATIFIED, and my cue-notation 7 are done and verified (later "still owe" lines were stale re-pastes). Nothing owed.
 queue: []
 done_this_sitting:
-  - cue_notation thread (binds all-authors, itemised 7 for adverb): DISCHARGED. 6 English meaning-glosses (early/gladly/often/badly/well/behave) moved from (parens) to [brackets]; the 7th, (in inglese), was Italian meta and was folded inline. Zero English-in-parens residue across 46 prompts. Display-only. Stamp proposed at v11.
-  - no-change-forms thread: all 10 invariable_vs_adjective items converted to MCQ (instrument B); reacted v5. 6-vs-10 uniformity expansion flagged, ruling open on Architecture's side.
-  - BUG: prompt_supplies_base_form had been dropped from all 46 items by my Rev-19 key-reorder. Restored on the 36 short items (16 true / 20 false). NOTE: the mount reverted this fix once between writes (cached view); re-applied with sync + independent delayed re-read to confirm persistence.
-confirm_owed:
-  - DISCRETE CHOICE for Smith on the no-change-forms leaf: (a) KEEP all 10 invariable items as MCQ (my default; uniform instrument, no cue-tell); or (b) REVERT the 4 agreeing items (adv_inv_02/04/06/08) to cued free-text, keeping production difficulty and accepting the within-leaf tell. I recommend (a).
+  - Tier-2 review packet RETURNED (data/review_packets_tier2/returned/REVIEW_adverb_2026-08-11.json). adverb.formation aggregate 18 keep +1 added (gentilmente); mente_regular 14 keep / 4 strike. The 4 strikes are the finalmente items: finalmente is from finale (-le), so it is mente_le_re not the feminine-stem regular class; struck as wrong sub-class per reminder 1, never for frequency. Routing notes left for the mente_le_re bucket (outside my packet) and a deferred primary-adverb sweep.
+  - Verified on disk (not memory): no-change-forms thread line 296 "AdverbAuthor's all-10 is RATIFIED, not reverted" - my 6-vs-10 uniformity expansion accepted, revert lever unpulled.
+  - Verified on disk: my cue-notation v11 conversions persisted (residue zero). Later PassiveAuthor/DemonstrativeAuthor reacts re-pasted the pre-v11 owers list; posted a routing correction dropping AdverbAuthor.
 awaiting_architecture:
-  - no-change-forms: rule the 6-vs-10 uniformity expansion (open on their side per that thread's latest Next)
-  - cue_notation: verify + apply my v11 stamp
-  - MisconceptionAnalyst: confirm the adverb_vs_adjective distractor mapping on the 6 invariable MCQs; consider minting the inverse "invariable quantifier failed to agree" id for the 4 agreeing items
+  - merge my returned tier-2 packet (their next wake)
+  - verify + apply my cue_notation v11 stamp
+  - MisconceptionAnalyst: confirm the adverb_vs_adjective distractor mapping on the 6 invariable MCQs; consider the inverse "invariable quantifier failed to agree" id
 notes:
-  - MOUNT INSTABILITY observed: a bash write to grammar_questions_adverb.json did not persist between two sessions (psbf reverted). Mitigation used: os.replace + sync + independent re-read after a delay. Flagging for Housing/Code if others hit lost writes.
+  - MOUNT INSTABILITY still live: re-verify every write from disk after a delay; a psbf write reverted once last wake.
   - adverb.locuzioni_avverbiali registered but unauthored; no clause binds me; available if Smith commissions a B1 pass.
-
-queue:
-  - TIER-2 REVIEW PACKET WAITING (2026-08-12): data/review_packets_tier2/REVIEW_adverb_2026-08-11.json — 36 pairs. Thread: inter_chat/Architecture_AdverbAuthor_tier2_review_packet.md  [not blocked]

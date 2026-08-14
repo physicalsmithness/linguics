@@ -1,1575 +1,1657 @@
 {
- "version": 1,
- "description": "Misconception registry for Linguics. A misconception is an ERROR PATTERN, the structured abstraction above a set of surface wrong-forms (capisciamo, finisciamo, preferisciamo all embody one misconception: stem_change.isc_over_extension). Misconceptions are ORTHOGONAL to the skill buckets: one misconception spans many buckets (over-extending a stem change appears in ire_isc, go_verbs, dittongo), and one bucket can be failed by several misconceptions. They are tagged at the point of detection: a grammar item's must_not_include entry (in object form) carries an optional `misconception` field naming an id from this registry; when that wrong form fires, the housing records the usual bucket miss AND a misconception event. Misconception events aggregate on their own axis, surfaced in a SEPARATE drill-down stats view (never inline during questions, so tagging carries no leak risk). The marquee long-term value is the CROSS-KIND families (agreement, accent, regularisation): the same misconception observed across adjectives, participles, articles, pronouns, and verbs. Governance mirrors the glossary and themes registries: architecture-owned and canonical; authors tag against it and propose additions via misconception_suggestions_<topic>.json; architecture ratifies. This v1 seed is populated from the present-indicative formation work plus the general families; it is designed to grow as every topic comes online. Many specifics here can be bootstrapped from the `common_miss` prose attributes already authored across the bucket trees.",
- "families": {
-  "agreement": {
-   "label": "Agreement",
-   "description": "Wrong gender, number, or person where two elements must agree. The flagship cross-kind family: will be populated by adjectives (rossa/rosso), past participles (andata/andato), articles (il/la), pronouns (lo/la), demonstratives, and subject-verb agreement.",
-   "cross_kind": true
-  },
-  "regularisation": {
-   "label": "Regularisation",
-   "description": "Treating an irregular form as if it followed the regular pattern. Cross-kind: irregular verbs, irregular plurals, irregular comparatives.",
-   "cross_kind": true
-  },
-  "orthography": {
-   "label": "Orthography (sound-preserving spelling)",
-   "description": "Spelling adjustments whose job is to keep the written form consistent with the sound. Cross-kind: verb endings (cerco/cerchi), plural spelling, and similar.",
-   "cross_kind": true
-  },
-  "accent_silent_letter": {
-   "label": "Accents and silent letters",
-   "description": "Written accents and silent letters that are obligatory and often meaning-bearing. Cross-kind: appears anywhere accented or h-bearing forms occur.",
-   "cross_kind": true
-  },
-  "stress": {
-   "label": "Word stress",
-   "description": "Misplaced spoken or written stress. Cross-kind, and links to the proposed word-stress vocabulary dimension (see OPEN_QUESTIONS).",
-   "cross_kind": true
-  },
-  "stem_change": {
-   "label": "Stem change (over / under application)",
-   "description": "Over-applying or under-applying a conditioned stem change. Mostly verb morphology, but the over/under-application shape recurs elsewhere.",
-   "cross_kind": false
-  },
-  "conjugation_class": {
-   "label": "Conjugation-class confusion",
-   "description": "Applying one conjugation class's ending or pattern to a verb of another class.",
-   "cross_kind": false
-  },
-  "word_order": {
-   "label": "Word order",
-   "description": "Reserved cross-kind family (adjective position, clitic position, etc.). No specifics seeded yet; populated as those topics come online.",
-   "cross_kind": true
-  },
-  "register": {
-   "label": "Register",
-   "description": "Reserved cross-kind family: errors whose CONTENT is the register choice itself (tu/Lei address, formal/informal lexis). Where register is merely the CUE for an error of another shape - the passato remoto chosen in conversation is a tense choice cued by register - the misconception is filed by the error's shape, not its cue: see discrimination.remoto_register_mismatch (ruled 2026-07-16).",
-   "cross_kind": true
-  },
-  "false_friend": {
-   "label": "False friend",
-   "description": "Reserved cross-kind (vocab) family. No specifics seeded yet; populated by the vocab side later.",
-   "cross_kind": true
-  },
-  "auxiliary_choice": {
-   "label": "Auxiliary choice",
-   "description": "Errors in the compound-tense auxiliary: choosing essere vs avere (avere_for_essere, essere_for_avere), and choosing the wrong tense of the auxiliary itself (wrong_auxiliary_tense, e.g. trapassato avevo fatto vs passato prossimo ho fatto). Cross-kind: the same essere/avere split governs passato prossimo, trapassato, futuro anteriore, and the compound subjunctive / conditional.",
-   "cross_kind": true
-  },
-  "transfer": {
-   "label": "Transfer (L1 interference)",
-   "description": "Errors imported from English or another L1: calques, English-style structures, omissions where English omits. A SECONDARY OVERLAY tag that co-occurs with a structural family rather than replacing it (an English-fronting error is both word_order and transfer). Added 2026-06-09. [BROADENED 2026-07-27: L1 or prior-language interference generally, not English alone.]",
-   "cross_kind": true
-  },
-  "paradigm_confusion": {
-   "label": "Paradigm confusion (wrong member selected)",
-   "description": "Selecting the wrong member of a closed grammatical paradigm where the form produced is itself a valid word but wrong for the role: DOP for IOP (lo for gli), clitic for stressed (mi for me), ci for ne. Distinct from conjugation_class, which is misapplied morphology producing a non-word. Added 2026-06-09.",
-   "cross_kind": true
-  },
-  "clitic_cluster": {
-   "label": "Clitic cluster morphophonology",
-   "description": "Errors assembling pronoun clusters: the vowel change (mi + lo to me lo), the glie- fusion (glielo), and joined-when-should-be-separate (melo for me lo). Morphophonological assembly, not sound-preserving spelling (which is orthography). Added 2026-06-09.",
-   "cross_kind": false
-  },
-  "discrimination": {
-   "label": "Discrimination (wrong tense / aspect / mood selected)",
-   "description": "Choosing the wrong tense, aspect, or mood among grammatically available options: pp_for_imperfect (the dominant aspect error), modal stative-vs-event aspect, progressive overuse, future/present-for-future mismatch, counterfactual construction, trapassato-vs-imperfect, sequence of tenses, indicative-for-subjunctive CHOICE (the trigger demanded the subjunctive). The selection counterpart to the formation families; fires from the .discrimination bucket branches and tense_choice. Includes a flagged recognition-direction specific (narrative_imperfect_reading) that is comprehension, not production. Added 2026-06-09.",
-   "cross_kind": true
-  },
-  "mood": {
-   "label": "Mood (wrong mood form built)",
-   "description": "Producing the wrong mood's FORM where another mood was required: indicative_for_subjunctive_form (built the indicative where the subjunctive was needed, in congiuntivo and the formal imperative), subjunctive over-application, conditional/subjunctive form confusion. Distinct from the SELECTION error (discrimination.indicative_for_subjunctive_choice = didn't know the trigger demanded it) and from paradigm_confusion (wrong member of a closed paradigm). Added 2026-06-09.",
-   "cross_kind": false
-  },
-  "gemination": {
-   "label": "Gemination (double consonant)",
-   "description": "A phonemic geminate written single (or vice versa): geminate_simplified (vorrò to vorò, parlassi to parlasi, parlammo to parlamo) and enclitic_doubling (dammi to dami). A sound error, not sound-preserving spelling (which is orthography), hence its own family. Recurs across verbs, enclitics, and vocab. Added 2026-06-09.",
-   "cross_kind": true
-  },
-  "derivation": {
-   "label": "Word formation / derivation",
-   "description": "Errors in building a word from another word: evaluative suffixes (alterati), derivational prefixes, and the -mente adverb. Distinct from inflection (agreement, conjugation_class, regularisation), which varies a word within its paradigm; derivation makes a NEW lexeme. The word_formation topic and the adverb tree's -mente formation have no home in the current 17.",
-   "cross_kind": true
-  }
- },
- "misconceptions": [
-  {
-   "id": "accent_silent_letter.accent_omitted",
-   "family": "accent_silent_letter",
-   "label": "Written accent omitted",
-   "description": "Omitting an obligatory written accent, often producing a different word (e for è) or an unmarked vowel (puo for può, da for dà). Strongly cross-cutting.",
-   "examples": [
-    "e (for è)",
-    "puo (for può)",
-    "da (for dà)"
-   ],
-   "topics": [
-    "verb_form.future",
-    "verb_form.passato_remoto",
-    "verb_form.present_indicative"
-   ]
-  },
-  {
-   "id": "accent_silent_letter.silent_h_omitted",
-   "family": "accent_silent_letter",
-   "label": "Silent h dropped on avere",
-   "description": "Dropping the obligatory silent h on the present forms of avere, producing a different real word (o, ai, a, anno).",
-   "examples": [
-    "o (for ho)",
-    "a (for ha)",
-    "anno (for hanno)"
-   ],
-   "topics": [
-    "verb_form.present_indicative"
-   ]
-  },
-  {
-   "id": "agreement.adjective_noun",
-   "family": "agreement",
-   "label": "Adjective fails to agree with its noun",
-   "description": "Leaving an adjective in the wrong gender or number for the noun it modifies, where the adjective is of the right inflection class.",
-   "examples": [
-    "casa rosso (for rossa)",
-    "case rossi (for rosse)",
-    "libri grande (for grandi)",
-    "grigia (for grige/grigie, no plural marking)"
-   ],
-   "topics": [
-    "adjective_agreement"
-   ]
-  },
-  {
-   "id": "agreement.auxiliary_person",
-   "family": "agreement",
-   "label": "Auxiliary in the wrong person/number for the subject",
-   "description": "Conjugating the compound-tense auxiliary for the wrong person or number relative to the subject (subject-verb agreement failure on the auxiliary).",
-   "examples": [
-    "Marco hanno parlato (for Marco ha parlato)"
-   ],
-   "topics": [
-    "verb_form.gerundio",
-    "verb_form.passato_prossimo"
-   ]
-  },
-  {
-   "id": "agreement.clitic_gender_number",
-   "family": "agreement",
-   "label": "Object clitic in the wrong gender or number",
-   "description": "Choosing a clitic of the wrong gender/number for its referent, where function (DOP/IOP) is correct.",
-   "examples": [
-    "li (for le, fem pl)",
-    "la (for le, gender slip on an IOP)"
-   ],
-   "topics": [
-    "pronoun"
-   ]
-  },
-  {
-   "id": "agreement.mixed_gender_default",
-   "family": "agreement",
-   "label": "Mixed-gender plural not defaulted to masculine",
-   "description": "With a mixed-gender plural group, agreeing with the nearest noun instead of using the masculine-plural default.",
-   "examples": [
-    "i ragazzi e le ragazze sono italiane (for italiani)"
-   ],
-   "topics": [
-    "adjective_agreement"
-   ]
-  },
-  {
-   "id": "agreement.participle_essere_subject",
-   "family": "agreement",
-   "label": "essere-participle fails to agree with the subject",
-   "description": "With essere as auxiliary, leaving the participle in the masculine-singular default instead of agreeing in gender and number with the subject.",
-   "examples": [
-    "è andato (for è andata)",
-    "sono andati (for a feminine group, sono andate)"
-   ],
-   "topics": [
-    "verb_form.condizionale",
-    "verb_form.congiuntivo",
-    "verb_form.future",
-    "verb_form.gerundio",
-    "verb_form.passato_prossimo",
-    "verb_form.trapassato_prossimo"
-   ]
-  },
-  {
-   "id": "agreement.participle_overagreement",
-   "family": "agreement",
-   "label": "avere-participle wrongly agreed with the subject",
-   "description": "Agreeing the participle with the subject when avere is the auxiliary and there is no preceding DOP, where it must stay invariable. The over-application (hyper-correction) error.",
-   "examples": [
-    "ho mangiata (for ho mangiato, female speaker)"
-   ],
-   "topics": [
-    "verb_form.passato_prossimo"
-   ]
-  },
-  {
-   "id": "agreement.participle_preceding_dop",
-   "family": "agreement",
-   "label": "avere-participle fails to agree with a preceding direct-object clitic",
-   "description": "With avere as auxiliary and a preceding 3rd-person DOP (lo/la/li/le) or partitive ne, leaving the participle invariable instead of agreeing with that object.",
-   "examples": [
-    "l'ho visto (for l'ho vista)",
-    "le ho visti / le ho visto (for le ho viste)",
-    "ne ho mangiato tre (for ne ho mangiate tre)"
-   ],
-   "topics": [
-    "verb_form.passato_prossimo"
-   ]
-  },
-  {
-   "id": "agreement.prenominal_allomorph",
-   "family": "agreement",
-   "label": "Wrong allomorph of a pre-nominal form (bello/buono/quello)",
-   "description": "Any pre-nominal form whose allomorph is selected by the FOLLOWING SOUND: definite/indefinite articles (il studente, un'amico, una amica), demonstratives (quello libro, quei studenti), the adjectives (bel/bello, buon/buono, san/santo, gran/grande), and articulated prepositions (al stadio for allo stadio, dello pane for del pane, dei uccelli for degli uccelli).",
-   "examples": [
-    "bello libro (for bel libro)",
-    "buono libro (for buon libro)"
-   ],
-   "topics": [
-    "adjective_agreement"
-   ]
-  },
-  {
-   "id": "agreement.reflexive_pronoun_person",
-   "family": "agreement",
-   "label": "Reflexive pronoun wrong for the subject",
-   "description": "Using a reflexive pronoun that doesn't agree with the subject's person (mi lavi for ti lavi). A subject-agreement error; the first foothold of the agreement family on the verb side.",
-   "examples": [
-    "mi lavi (for ti lavi)",
-    "si lavo (for mi lavo)"
-   ],
-   "topics": [
-    "verb_form.present_indicative"
-   ]
-  },
-  {
-   "id": "auxiliary_choice.avere_for_essere",
-   "family": "auxiliary_choice",
-   "label": "avere used where essere is required",
-   "description": "Selecting avere as the compound-tense auxiliary for a verb that takes essere: motion/change intransitives, reflexives, and the piacere family.",
-   "examples": [
-    "ho andato (for sono andato)",
-    "Mi ho lavato (for mi sono lavato)",
-    "Le ha piaciuto (for le è piaciuto)"
-   ],
-   "topics": [
-    "verb_form.condizionale",
-    "verb_form.future",
-    "verb_form.gerundio",
-    "verb_form.passato_prossimo",
-    "verb_form.trapassato_prossimo"
-   ]
-  },
-  {
-   "id": "auxiliary_choice.essere_for_avere",
-   "family": "auxiliary_choice",
-   "label": "essere used where avere is required",
-   "description": "Selecting essere for a transitive or avere-taking verb, the rarer reverse of the default-avere error, often a hyper-correction.",
-   "examples": [
-    "sono mangiato la pasta (for ho mangiato la pasta)"
-   ],
-   "topics": [
-    "verb_form.passato_prossimo"
-   ]
-  },
-  {
-   "id": "auxiliary_choice.wrong_auxiliary_tense",
-   "family": "auxiliary_choice",
-   "label": "Wrong tense of the auxiliary in a compound tense",
-   "description": "Using the wrong tense of the (correct) auxiliary: the present 'ho/sono' where the trapassato needs the imperfect 'avevo/ero', or a different past where another compound tense needs its specific auxiliary tense.",
-   "examples": [
-    "ho parlato (for avevo parlato)",
-    "sono andato (for ero andato)"
-   ],
-   "topics": [
-    "verb_form.passato_remoto",
-    "verb_form.trapassato_prossimo"
-   ]
-  },
-  {
-   "id": "clitic_cluster.form_change",
-   "family": "clitic_cluster",
-   "label": "Clitic cluster fails its obligatory form change",
-   "description": "Not applying the obligatory changes when clitics combine: mi/ti/ci/vi to me/te/ce/ve before lo/la/li/le/ne, and gli/le + lo/la to glielo/gliela (written attached).",
-   "examples": [
-    "mi lo dai (for me lo dai)",
-    "Mi le lavo (for me le lavo)",
-    "gli lo dico / le lo dico (for glielo dico)"
-   ],
-   "topics": [
-    "pronoun"
-   ]
-  },
-  {
-   "id": "conjugation_class.ano_for_ono",
-   "family": "conjugation_class",
-   "label": "-ano 3pl on an -ere/-ire verb",
-   "description": "Using the -are 3pl ending -ano on an -ere or -ire verb, which takes -ono.",
-   "examples": [
-    "prendano (for prendono)",
-    "dormano (for dormono)"
-   ],
-   "topics": [
-    "verb_form.present_indicative"
-   ]
-  },
-  {
-   "id": "conjugation_class.gerund_ando_endo",
-   "family": "conjugation_class",
-   "label": "Wrong-class gerund ending (-ando/-endo)",
-   "description": "Using -endo on an -are verb or -ando on an -ere/-ire verb (and the malformed -iendo).",
-   "examples": [
-    "parlendo (for parlando)",
-    "prendando (for prendendo)",
-    "capiendo (for prendendo-pattern -endo)"
-   ],
-   "topics": [
-    "verb_form.gerundio"
-   ]
-  },
-  {
-   "id": "conjugation_class.ono_for_ano",
-   "family": "conjugation_class",
-   "label": "-ono 3pl on an -are verb",
-   "description": "Using the -ere/-ire 3pl ending -ono on an -are verb, which takes -ano.",
-   "examples": [
-    "parlono (for parlano)",
-    "mangiono (for mangiano)"
-   ],
-   "topics": [
-    "verb_form.present_indicative"
-   ]
-  },
-  {
-   "id": "conjugation_class.wrong_theme_vowel",
-   "family": "conjugation_class",
-   "label": "Another class's theme vowel borrowed",
-   "description": "Using one conjugation class's theme vowel/ending on a verb of another class (beyond the existing 3pl -ano/-ono specifics).",
-   "examples": [
-    "prendi (the -are subjunctive ending on an -ere verb)",
-    "parlessi (the -ere imperfect-subjunctive vowel on an -are verb, for parlassi)"
-   ],
-   "topics": [
-    "verb_form.congiuntivo"
-   ]
-  },
-  {
-   "id": "discrimination.aspect_swap_background",
-   "family": "discrimination",
-   "label": "Background and foreground tenses swapped",
-   "description": "Reversing the imperfect-background / passato-prossimo-event pairing, putting the completed event in the imperfect and the ongoing frame in the passato prossimo.",
-   "examples": [
-    "ho dormito mentre bussava (for dormivo mentre ha bussato / bussava)"
-   ],
-   "topics": [
-    "verb_form.imperfect"
-   ]
-  },
-  {
-   "id": "discrimination.counterfactual_construction",
-   "family": "discrimination",
-   "label": "Wrong tense/mood combination for a counterfactual",
-   "description": "Mis-selecting the verb forms of a counterfactual conditional: using present indicative + future (a real-condition pattern) for a counterfactual, or judging the accepted colloquial double-imperfect as wrong.",
-   "examples": [
-    "se ho tempo, verro' (real-condition pattern) for a counterfactual",
-    "treating the colloquial imperfect counterfactual as an error"
-   ],
-   "topics": [
-    "tense_choice",
-    "verb_form.imperfect"
-   ]
-  },
-  {
-   "id": "discrimination.durative_present_over_extension",
-   "family": "discrimination",
-   "label": "Durative present extended to a stretch that has ended",
-   "description": "The mirror of discrimination.perfect_for_durative_da: the da-present applied where the stretch is closed and the past is required ('ho studiato per due anni'). Typically appears once the da-rule has been learnt and is then over-applied to per and to completed periods.",
-   "examples": [
-    "studio italiano per due anni (a finished course) for ho studiato",
-    "abito qui per tre anni (no longer) for ho abitato"
-   ],
-   "topics": [
-    "tense_choice"
-   ]
-  },
-  {
-   "id": "discrimination.future_present_mismatch",
-   "family": "discrimination",
-   "label": "Future vs present-for-future mismatch",
-   "description": "Choosing the morphological future where a present-for-future is natural, or the present where the future is required (distant, uncertain, probabilistic).",
-   "examples": [
-    "present where future required (distant/uncertain)",
-    "morphological future where present-for-future is more natural"
-   ],
-   "topics": [
-    "tense_choice"
-   ]
-  },
-  {
-   "id": "discrimination.habitual_frame_mismatch",
-   "family": "discrimination",
-   "label": "Habitual routine placed in the wrong time frame",
-   "description": "A habitual routine expressed in the wrong time frame: the present for a past habit, or a past habitual for a present routine. Minted on Smith's ruling 2026-07-16 over the authoring seat's 'weak diagnostic' doubt; watch its live stats for separability from the general aspect errors (pp_for_imperfect / imperfect_for_pp) and retire or sharpen if they blur. Direction-neutral by design; one id both ways.",
-   "examples": [
-    "ogni estate vado al mare (for a childhood past routine) for andavo",
-    "da bambino gioco a calcio for giocavo"
-   ],
-   "topics": [
-    "tense_choice"
-   ]
-  },
-  {
-   "id": "discrimination.imperfect_for_pp",
-   "family": "discrimination",
-   "label": "Imperfect used where the passato prossimo's aspect is required",
-   "description": "Choosing the imperfect for a context the passato prossimo owns: a single completed, bounded event, especially one that interrupts a background state. The mirror of discrimination.pp_for_imperfect; tag on the direction the ITEM's wrong form takes, never on the bucket's own id.",
-   "examples": [
-    "ieri mangiavo una pizza for ho mangiato (single completed event)",
-    "mentre leggevo, entrava for e' entrato (the interrupting event)",
-    "l'anno scorso andavo a Roma due volte for sono andato"
-   ],
-   "topics": [
-    "tense_choice",
-    "verb_form.imperfect"
-   ]
-  },
-  {
-   "id": "discrimination.indicative_for_subjunctive_choice",
-   "family": "discrimination",
-   "label": "Indicative chosen where a trigger requires the subjunctive",
-   "description": "Leaving the verb in the indicative after a trigger that requires the subjunctive (opinion, emotion, hypothetical conjunctions, negation). The SELECTION error, distinct from mis-forming the subjunctive (see mood.indicative_for_subjunctive_form).",
-   "examples": [
-    "penso che e' (for penso che sia)",
-    "sono contento che sei qui (for che tu sia qui)"
-   ],
-   "topics": [
-    "tense_choice"
-   ]
-  },
-  {
-   "id": "discrimination.modal_stative_aspect",
-   "family": "discrimination",
-   "label": "Modal/stative verb: wrong past tense for the intended reading",
-   "description": "Missing the meaning shift that aspect forces on modal and stative verbs (sapere, dovere, potere, volere, conoscere): the imperfect = ongoing state/ability, the passato prossimo = a bounded event (found out, managed, insisted, met).",
-   "examples": [
-    "imperfect sapevo for the event 'seppi/ho saputo' (found out)",
-    "conobbi/ho conosciuto = 'met', not 'knew'",
-    "volevo (wish) vs ho voluto (insisted)"
-   ],
-   "topics": [
-    "verb_form.imperfect"
-   ]
-  },
-  {
-   "id": "discrimination.narrative_imperfect_reading",
-   "family": "discrimination",
-   "label": "Narrative imperfect misread as habitual",
-   "description": "On the comprehension side, reading a single-event narrative imperfect as if it were habitual/repeated.",
-   "examples": [
-    "reading 'moriva' (narrative) as 'used to die' rather than the single dramatic event"
-   ],
-   "topics": [
-    "verb_form.imperfect"
-   ]
-  },
-  {
-   "id": "discrimination.perfect_for_durative_da",
-   "family": "discrimination",
-   "label": "Passato prossimo used for a stretch that is still running (da + time)",
-   "description": "Choosing the passato prossimo for an action begun in the past and STILL going at speech time, where Italian takes the present with da ('studio italiano da due anni'). English's 'I have studied for two years' is the transfer source. The conditioning factor is the preposition: da leaves the stretch open, per closes it.",
-   "examples": [
-    "ho studiato italiano da due anni for studio da due anni",
-    "ho abitato qui da marzo for abito qui da marzo"
-   ],
-   "topics": [
-    "tense_choice"
-   ]
-  },
-  {
-   "id": "discrimination.pp_for_imperfect",
-   "family": "discrimination",
-   "label": "Passato prossimo used where the imperfect's aspect is required",
-   "description": "Choosing the passato prossimo for a context the imperfect owns: habitual action, ongoing state/description, duration, and age/time/weather states. The dominant aspect error of the past tenses. The da-durative case (ho aspettato da venti minuti) moved to discrimination.perfect_for_durative_da at Rev 21: its conditioning factor is the preposition, not aspect.",
-   "examples": [
-    "ho giocato for giocavo (habitual)",
-    "e' stata stanca for era stanca (state)",
-    "ho avuto dieci anni / ha fatto freddo for avevo/faceva"
-   ],
-   "topics": [
-    "verb_form.imperfect"
-   ]
-  },
-  {
-   "id": "discrimination.progressive_overuse",
-   "family": "discrimination",
-   "label": "Progressive over-used for the simple tense",
-   "description": "Using the stare + gerundio progressive where the simple present/imperfect is the natural choice, typically by mapping every English -ing form onto a progressive.",
-   "examples": [
-    "sto mangiando for the habitual mangio",
-    "stavo mangiando for the descriptive mangiavo"
-   ],
-   "topics": [
-    "tense_choice"
-   ]
-  },
-  {
-   "id": "discrimination.progressive_underuse",
-   "family": "discrimination",
-   "label": "Simple tense used where the in-progress reading is required",
-   "description": "Choosing the simple present or imperfect where the context insists the action is under way at the reference moment (stare + gerundio). The mirror of discrimination.progressive_overuse: the Italian-side error rather than the English-transfer one.",
-   "examples": [
-    "che fai? - mangio, for sto mangiando (right this second)",
-    "quando ha chiamato, cucinavo for stavo cucinando"
-   ],
-   "topics": [
-    "tense_choice",
-    "verb_form.gerundio"
-   ]
-  },
-  {
-   "id": "discrimination.remoto_register_mismatch",
-   "family": "discrimination",
-   "label": "Passato remoto and passato prossimo swapped by register",
-   "description": "Choosing the passato remoto in conversational register, or the passato prossimo in literary or historical narration, where the chosen form is itself correctly built. Direction-neutral by construction, so one id covers both leaves. Filed under discrimination rather than register because the family axis classifies the ERROR's shape (a tense choice), not the cue that was missed - the same logic that puts modal_stative_aspect here though its cue is lexical aspect.",
-   "examples": [
-    "ieri andai al cinema (spoken) for sono andato",
-    "Garibaldi e' sbarcato a Marsala (history textbook) for sbarco'"
-   ],
-   "topics": [
-    "tense_choice",
-    "verb_form.passato_remoto"
-   ]
-  },
-  {
-   "id": "discrimination.sequence_of_tenses",
-   "family": "discrimination",
-   "label": "Embedded-clause tense not back-shifted in reported speech",
-   "description": "Failing to back-shift the embedded clause after a past reporting verb: leaving the present, or using the future where the conditional (future-in-the-past) is required.",
-   "examples": [
-    "ha detto che e' stanco (for che era stanco)",
-    "ha detto che andra' (for che sarebbe andato)"
-   ],
-   "topics": [
-    "verb_form.imperfect"
-   ]
-  },
-  {
-   "id": "discrimination.trapassato_imperfect_choice",
-   "family": "discrimination",
-   "label": "Trapassato vs imperfect mis-selected",
-   "description": "Using the imperfect for a clearly completed prior-to-prior event, or the trapassato for an ongoing background state.",
-   "examples": [
-    "mangiava for 'had eaten'",
-    "avevo mangiato quando sei entrato (implies finished) where ongoing was meant"
-   ],
-   "topics": [
-    "tense_choice"
-   ]
-  },
-  {
-   "id": "gemination.enclitic_doubling",
-   "family": "gemination",
-   "label": "Consonant not doubled on a monosyllabic imperative + clitic",
-   "description": "Failing to double the initial consonant of a clitic attached to a monosyllabic tu imperative (dammi, dimmelo, fammelo).",
-   "examples": [
-    "dami (for dammi)",
-    "dimmilo (for dimmelo)",
-    "dami lo (for dammelo)"
-   ],
-   "topics": [
-    "pronoun"
-   ]
-  },
-  {
-   "id": "gemination.geminate_simplified",
-   "family": "gemination",
-   "label": "Obligatory double consonant written single",
-   "description": "Writing a single consonant where Italian has a phonemic geminate: the assimilated -rr- of syncopated futures/conditionals, the -ss- of the imperfect subjunctive, the -mm-/-mm of passato-remoto/conditional 1pl.",
-   "examples": [
-    "vorò/verò/terò (for vorrò/verrò/terrò)"
-   ],
-   "topics": [
-    "verb_form.condizionale",
-    "verb_form.congiuntivo",
-    "verb_form.future",
-    "verb_form.passato_remoto"
-   ]
-  },
-  {
-   "id": "mood.indicative_for_subjunctive_form",
-   "family": "mood",
-   "label": "Indicative form built where the subjunctive is required",
-   "description": "Producing the indicative ending/auxiliary when the subjunctive is called for: -ano for -ino, indicative 3pl for the subjunctive 3pl, present/imperfect indicative auxiliary for the subjunctive one.",
-   "examples": [
-    "parlano/parla (for parlino)",
-    "vengono (for vengano)",
-    "ha parlato (for abbia parlato)",
-    "aveva parlato (for avessi parlato)"
-   ],
-   "topics": [
-    "verb_form.congiuntivo",
-    "verb_form.imperativo"
-   ]
-  },
-  {
-   "id": "orthography.cg_plural_stress_misapplied",
-   "family": "orthography",
-   "label": "Wrong -chi/-ci (or -ghi/-gi) by stress or irregularity",
-   "description": "Misapplying the -co plural split (-chi hard vs -ci soft, by stress and lexical irregularity): over-applying one where the other is required.",
-   "examples": [
-    "simpatichi (for simpatici)",
-    "amichi (for amici)",
-    "grechi (for greci)",
-    "antici (for antichi)"
-   ],
-   "topics": [
-    "adjective_agreement"
-   ]
-  },
-  {
-   "id": "orthography.cia_gia_plural_i",
-   "family": "orthography",
-   "label": "-cia/-gia plural i kept or dropped wrongly",
-   "description": "The noun-plural i-retention split: vowel before -cia/-gia keeps the i (ciliegie, valigie, camicie), consonant before drops it (arance, facce, piogge). Misses in both directions: arancie, camice."
-  },
-  {
-   "id": "orthography.double_i_retained",
-   "family": "orthography",
-   "label": "Redundant i kept on -ciare/-giare",
-   "description": "Keeping a stem i before an ending that already begins with i, producing a wrong double i. Appears in -ciare/-giare verb endings (cominci, not *cominci-i) and in -cia/-gia noun and adjective plurals (grigie/grige, camicie).",
-   "examples": [
-    "mangii (for mangi)",
-    "comincii (for cominci)"
-   ],
-   "topics": [
-    "adjective_agreement",
-    "verb_form.condizionale",
-    "verb_form.congiuntivo",
-    "verb_form.future",
-    "verb_form.present_indicative"
-   ]
-  },
-  {
-   "id": "orthography.failed_elision",
-   "family": "orthography",
-   "label": "Clitic not elided before a vowel",
-   "description": "Failing to elide lo/la to l' before a vowel, or eliding wrongly. [WIDENED 2026-07-27: article OR clitic not elided before a vowel - una amica -> un'amica included.]",
-   "examples": [
-    "lo ho visto (for l'ho visto)",
-    "li' (incorrect elision of li)"
-   ],
-   "topics": [
-    "pronoun"
-   ]
-  },
-  {
-   "id": "orthography.i_retention_error",
-   "family": "orthography",
-   "label": "Wrong i-retention on -iare by stress",
-   "description": "Mishandling the stress-governed i of -iare verbs: keeping it when unstressed (studii) or dropping it when stressed (invi).",
-   "examples": [
-    "studii (for studi)",
-    "invi (for invii)"
-   ],
-   "topics": [
-    "verb_form.present_indicative"
-   ]
-  },
-  {
-   "id": "orthography.omitted_h_hard_cg",
-   "family": "orthography",
-   "label": "h omitted on -care/-gare",
-   "description": "Dropping the h that keeps c/g hard before a front vowel, changing the consonant sound. Appears in -care/-gare verb endings (cerchi, paghi) and in -co/-go noun and adjective plurals (bianchi, lunghi).",
-   "examples": [
-    "ceri (for cerchi)",
-    "pagiamo (for paghiamo)",
-    "giochi written as gioci"
-   ],
-   "topics": [
-    "adjective_agreement",
-    "verb_form.condizionale",
-    "verb_form.congiuntivo",
-    "verb_form.future",
-    "verb_form.present_indicative"
-   ]
-  },
-  {
-   "id": "paradigm_confusion.ci_vs_ne",
-   "family": "paradigm_confusion",
-   "label": "ci and ne confused (a- vs di-)",
-   "description": "Choosing ci for a di-referent or ne for an a-referent, mis-mapping the preposition the clitic stands in for.",
-   "examples": [
-    "ne penso (for ci penso, 'pensare a')"
-   ],
-   "topics": [
-    "pronoun"
-   ]
-  },
-  {
-   "id": "paradigm_confusion.clitic_vs_stressed",
-   "family": "paradigm_confusion",
-   "label": "Clitic and stressed pronoun confused",
-   "description": "Using a stressed pronoun where the unmarked clitic is wanted, or a clitic where emphasis needs the stressed form; also article/subject pronoun for an object clitic.",
-   "examples": [
-    "Marco vede me (for Marco mi vede)",
-    "lui / il (for lo)",
-    "Mi piace (where 'a me piace' emphasis is wanted)"
-   ],
-   "topics": [
-    "pronoun"
-   ]
-  },
-  {
-   "id": "paradigm_confusion.dop_iop",
-   "family": "paradigm_confusion",
-   "label": "Direct- and indirect-object clitic confused",
-   "description": "Using a DOP where an IOP is required or vice versa (li for gli): a real word, wrong role.",
-   "examples": [
-    "li ho detto (for gli ho detto)",
-    "gli vedo (for li vedo)"
-   ],
-   "topics": [
-    "pronoun"
-   ]
-  },
-  {
-   "id": "paradigm_confusion.future_for_conditional_1pl",
-   "family": "paradigm_confusion",
-   "label": "Future 1pl written for the conditional 1pl",
-   "description": "Writing the single-m future 1pl (-emo) where the double-m conditional (-emmo) is required, the two differing only by the geminate.",
-   "examples": [
-    "parleremo (for parleremmo)",
-    "prenderemo (for prenderemmo)",
-    "avremo (for avremmo)",
-    "saremo (for saremmo)"
-   ],
-   "topics": [
-    "verb_form.condizionale"
-   ]
-  },
-  {
-   "id": "paradigm_confusion.wrong_person_as_imperative",
-   "family": "paradigm_confusion",
-   "label": "Wrong present-tense cell used as the imperative",
-   "description": "Using a valid present-indicative person as the tu imperative: the 2sg -i for the -are imperative (which is the 3sg -a), or the wrong vowel on -ere/-ire.",
-   "examples": [
-    "parli! (for parla!)",
-    "prenda! (for prendi!)"
-   ],
-   "topics": [
-    "verb_form.imperativo"
-   ]
-  },
-  {
-   "id": "register.tu_lei_mismatch",
-   "family": "register",
-   "label": "tu and Lei forms mixed",
-   "description": "Mixing the informal tu system with the formal Lei system: an informal clitic for the formal La, or an informal imperative where the formal (subjunctive-based) one is required.",
-   "examples": [
-    "ti ringrazio, signor Bianchi (for La ringrazio)",
-    "Dicami (for the formal Mi dica)",
-    "Non mi parla (register slip in a negative imperative)"
-   ],
-   "topics": [
-    "pronoun",
-    "verb_form.imperativo"
-   ]
-  },
-  {
-   "id": "regularisation.adjective_class",
-   "family": "regularisation",
-   "label": "Class II (-e) adjective inflected as Class I (-o/-a)",
-   "description": "Treating an -e-class adjective (grande) as if it took the dominant -o/-a Class I pattern.",
-   "examples": [
-    "un libro grando (for grande)",
-    "una casa granda (for grande)"
-   ],
-   "topics": [
-    "adjective_agreement"
-   ]
-  },
-  {
-   "id": "regularisation.invariable_adjective",
-   "family": "regularisation",
-   "label": "Invariable adjective wrongly inflected",
-   "description": "Any invariable word wrongly inflected: nouns (le citta's, i films italianised, filmi), adverbs (molte stanche - agreement leaking onto the adverb), indefinites (nessuni, ciascuni, qualunqui, ogni inflected as ogna/ognie).",
-   "examples": [
-    "le case rose (for rosa)",
-    "le pareti verdi scure / verde scure (for verde scuro)"
-   ],
-   "topics": [
-    "adjective_agreement"
-   ]
-  },
-  {
-   "id": "regularisation.irregular_participle",
-   "family": "regularisation",
-   "label": "Irregular past participle regularised",
-   "description": "Forming an irregular past participle by the regular -ato/-uto/-ito rule instead of the suppletive/contracted form.",
-   "examples": [
-    "fato (for fatto)",
-    "dito (for detto)",
-    "prenduto (for preso)",
-    "scrivuto (for scritto)",
-    "leggito (for letto)",
-    "aprito (for aperto)"
-   ],
-   "topics": [
-    "verb_form.passato_prossimo"
-   ]
-  },
-  {
-   "id": "regularisation.irregular_verb",
-   "family": "regularisation",
-   "label": "Irregular verb regularised",
-   "description": "Conjugating an irregular verb as if it were regular, ignoring the suppletive or contracted paradigm. Recurs in every tense.",
-   "examples": [
-    "sapo (for so)",
-    "volo (for voglio)",
-    "ando (for vado)",
-    "poto (for posso)"
-   ],
-   "topics": [
-    "verb_form.condizionale",
-    "verb_form.congiuntivo",
-    "verb_form.future",
-    "verb_form.gerundio",
-    "verb_form.imperativo",
-    "verb_form.imperfect",
-    "verb_form.passato_remoto",
-    "verb_form.present_indicative"
-   ],
-   "unreachable_notes": [
-    "imperativo irregular_tu: norm() folds the apostrophe, so a regularised bare 'va' scores as correct va' and no guard can catch it. Empty imperativo stats here do NOT mean learners never regularise apocopated forms - they may do it constantly at full marks. (2026-07-15)"
-   ]
-  },
-  {
-   "id": "stem_change.dittongo_over_extension",
-   "family": "stem_change",
-   "label": "Diphthong kept in noi/voi",
-   "description": "Keeping the stressed-stem diphthong in the 1pl/2pl, where stress moves to the ending and the plain stem returns.",
-   "examples": [
-    "esciamo (for usciamo)",
-    "siediamo (for sediamo)"
-   ],
-   "topics": [
-    "verb_form.present_indicative"
-   ]
-  },
-  {
-   "id": "stem_change.dittongo_under_application",
-   "family": "stem_change",
-   "label": "Diphthong lost in the singular",
-   "description": "Failing to diphthongise the stressed stem vowel in the singular or 3pl.",
-   "examples": [
-    "uscio (for esco)",
-    "sedo (for siedo)",
-    "morio (for muoio)"
-   ],
-   "topics": [
-    "verb_form.present_indicative"
-   ]
-  },
-  {
-   "id": "stem_change.future_are_to_e",
-   "family": "stem_change",
-   "label": "-are→-er future/conditional stem shift mishandled",
-   "description": "Failing to shift the -are theme vowel to -er- in the future/conditional stem, or over-applying that shift to verbs (dare/stare/fare) that keep -ar-.",
-   "examples": [
-    "parlarò (for parlerò)",
-    "derò/ferò/sterò (for darò/farò/starò)"
-   ],
-   "topics": [
-    "verb_form.condizionale",
-    "verb_form.future"
-   ]
-  },
-  {
-   "id": "stem_change.future_syncope_over_extension",
-   "family": "stem_change",
-   "label": "Future/conditional stem over-syncopated",
-   "description": "Syncopating a regular stem by false analogy with the irregular syncopated futures.",
-   "examples": [
-    "scrivrò (for scriverò)"
-   ],
-   "topics": [
-    "verb_form.future"
-   ]
-  },
-  {
-   "id": "stem_change.future_syncope_under_application",
-   "family": "stem_change",
-   "label": "Irregular future/conditional stem not syncopated",
-   "description": "Keeping the theme vowel where the irregular future/conditional stem syncopates (avr-, andr-, potr-).",
-   "examples": [
-    "avero/andero/potero (for avrò/andrò/potrò)"
-   ],
-   "topics": [
-    "verb_form.condizionale",
-    "verb_form.future"
-   ]
-  },
-  {
-   "id": "stem_change.g_over_extension",
-   "family": "stem_change",
-   "label": "-g- inserted in the wrong person",
-   "description": "Carrying the inserted -g- of a -go verb into a person that should not have it (the 1pl/2pl, or a regular-stem form).",
-   "examples": [
-    "vengiamo (for veniamo)",
-    "tengiamo (for teniamo)"
-   ],
-   "topics": [
-    "verb_form.present_indicative"
-   ]
-  },
-  {
-   "id": "stem_change.g_under_application",
-   "family": "stem_change",
-   "label": "-g- omitted where required",
-   "description": "Failing to insert the -g- in the 1sg/3pl of a -go verb.",
-   "examples": [
-    "veno (for vengo)",
-    "teno (for tengo)",
-    "salgono written as salono"
-   ],
-   "topics": [
-    "verb_form.present_indicative"
-   ]
-  },
-  {
-   "id": "stem_change.isc_over_extension",
-   "family": "stem_change",
-   "label": "-isc- added in noi/voi",
-   "description": "Over-extending the -isc- infix beyond where it belongs: into the present (and present-subjunctive) 1pl/2pl where it never appears, or into tenses built on the plain stem (future/conditional finirò not *finiscerò, gerund finendo not *finiscendo). The infix is present-system only.",
-   "examples": [
-    "capisciamo (for capiamo)",
-    "finisciamo (for finiamo)",
-    "preferisciamo (for preferiamo)"
-   ],
-   "topics": [
-    "verb_form.condizionale",
-    "verb_form.congiuntivo",
-    "verb_form.future",
-    "verb_form.gerundio",
-    "verb_form.imperfect",
-    "verb_form.passato_remoto",
-    "verb_form.present_indicative"
-   ]
-  },
-  {
-   "id": "stem_change.isc_under_application",
-   "family": "stem_change",
-   "label": "-isc- omitted where required",
-   "description": "Failing to insert -isc- in the singular or 3pl of an -isc- verb.",
-   "examples": [
-    "capo / capio (for capisco)",
-    "finono (for finiscono)"
-   ],
-   "topics": [
-    "verb_form.congiuntivo",
-    "verb_form.present_indicative"
-   ]
-  },
-  {
-   "id": "stem_change.passato_remoto_strong_over_extension",
-   "family": "stem_change",
-   "label": "Strong passato-remoto stem used in the weak persons",
-   "description": "Carrying the strong (rhizotonic) stem into the 2sg/1pl/2pl, which take the regular weak stem and endings.",
-   "examples": [
-    "presesti (for prendesti)",
-    "fecesti (for facesti)"
-   ],
-   "topics": [
-    "verb_form.passato_remoto"
-   ]
-  },
-  {
-   "id": "stress.antepenult_3pl",
-   "family": "stress",
-   "label": "3pl stressed on the penult",
-   "description": "Misplacing the 3pl stress onto the penult (parlAno) instead of the antepenult (pArlano). Prosodic; links to the proposed word-stress vocab dimension.",
-   "examples": [
-    "parlAno (for pArlano)",
-    "prendOno mis-stressed"
-   ],
-   "topics": [
-    "verb_form.present_indicative"
-   ]
-  },
-  {
-   "id": "stress.thematic_1pl_2pl",
-   "family": "stress",
-   "label": "1pl/2pl stress misplaced",
-   "description": "Mis-stressing the 1pl/2pl, where the stress falls on the ending, by analogy with the stem-stressed singular.",
-   "examples": [
-    "mis-stressed imperfect 1pl/2pl (parlaVAmo region)"
-   ],
-   "topics": [
-    "verb_form.imperfect"
-   ]
-  },
-  {
-   "id": "transfer.calque_argument_structure",
-   "family": "transfer",
-   "label": "English argument structure calqued",
-   "description": "Mapping English subject/object roles or prepositions onto Italian, especially experiencer verbs (piacere) and overly literal prepositional phrases.",
-   "examples": [
-    "Io piaccio la pizza (for Mi piace la pizza)",
-    "Parliamo di esso (for Ne parliamo)"
-   ],
-   "topics": [
-    "pronoun"
-   ]
-  },
-  {
-   "id": "transfer.clitic_omission",
-   "family": "transfer",
-   "label": "Required clitic omitted (English has no equivalent)",
-   "description": "Failing to use a clitic Italian requires because English expresses the meaning without one: partitive/pronominal ne, locative/topic/existential ci, neuter lo, lexicalised clusters (farcela).",
-   "examples": [
-    "Ho tre (for Ne ho tre)",
-    "Vado la' (for Ci vado)",
-    "E' un problema (for C'e' un problema)",
-    "Penso a questo (for Ci penso)",
-    "So questo (for Lo so)",
-    "Non lo faccio (for Non ce la faccio)"
-   ],
-   "topics": [
-    "pronoun"
-   ]
-  },
-  {
-   "id": "transfer.construction_nonfinite",
-   "family": "transfer",
-   "label": "Infinitive used where a non-finite Italian form is required",
-   "description": "Calquing an English structure by pairing stare with an infinitive instead of a gerund (the progressive), an L1-driven construction error.",
-   "examples": [
-    "sto parlare (for sto parlando)"
-   ],
-   "topics": [
-    "verb_form.gerundio"
-   ]
-  },
-  {
-   "id": "transfer.negative_imperative_finite",
-   "family": "transfer",
-   "label": "Finite form negated instead of non + infinitive",
-   "description": "Negating the positive tu imperative directly (English 'don't speak') instead of the Italian non + infinitive.",
-   "examples": [
-    "non parla! (for non parlare!)"
-   ],
-   "topics": [
-    "verb_form.imperativo"
-   ]
-  },
-  {
-   "id": "transfer.negative_imperative_infinitive_over_extension",
-   "label": "non + infinitive over-extended beyond tu",
-   "description": "The tu negative imperative's non + infinitive rule applied where it does not belong: noi/voi negatives (non parlare! for non parliamo! / non aspettare! for non aspettate!), or the bare infinitive reached for as an affirmative imperative (dire! for di'!). The learner has LEARNT the tu rule and is over-applying it - a more advanced error than never having the rule, and diagnostically the mirror of transfer.negative_imperative_finite.",
-   "family": "transfer",
-   "examples": [
-    "non parlare! (noi intended: non parliamo!)",
-    "non aspettare! (voi intended: non aspettate!)",
-    "dire! (tu affirmative intended: di'!)"
-   ],
-   "topics": [
-    "verb_form.imperativo"
-   ]
-  },
-  {
-   "id": "word_order.adjective_position",
-   "family": "word_order",
-   "label": "Adjective placed before the noun where post-nominal is default",
-   "description": "Fronting a descriptive adjective on the English pattern, where Italian's unmarked order is post-nominal.",
-   "examples": [
-    "la rossa casa (for la casa rossa)"
-   ],
-   "topics": [
-    "adjective_agreement"
-   ]
-  },
-  {
-   "id": "word_order.adverb_aux_participle",
-   "family": "word_order",
-   "label": "Adverb or negation misplaced around aux + participle",
-   "description": "Breaking the fixed aux-then-participle block: putting negation or a frequency/time adverb (già, ancora, mai, sempre, appena) outside the slot between auxiliary and participle.",
-   "examples": [
-    "ho non mangiato (for non ho mangiato)",
-    "ho mangiato già (for ho già mangiato)"
-   ],
-   "topics": [
-    "verb_form.passato_prossimo"
-   ]
-  },
-  {
-   "id": "word_order.clitic_cluster_order",
-   "family": "word_order",
-   "label": "Clitic cluster in the wrong internal order",
-   "description": "Ordering a two-clitic cluster wrongly, chiefly DOP before IOP.",
-   "examples": [
-    "Lo mi dai? (for Me lo dai?)"
-   ],
-   "topics": [
-    "pronoun"
-   ]
-  },
-  {
-   "id": "word_order.clitic_position",
-   "family": "word_order",
-   "label": "Clitic in the wrong position relative to the verb",
-   "description": "Misplacing a clitic: after a finite verb, detached from an infinitive/gerund/imperative that requires attachment, or attached to a formal Lei imperative where it must precede.",
-   "examples": [
-    "Vedo lo (for Lo vedo)",
-    "Voglio lo vedere (for Voglio vederlo)",
-    "Vedendo lo (for vedendolo)",
-    "Dicami (for Mi dica)"
-   ],
-   "topics": [
-    "pronoun"
-   ]
-  },
-  {
-   "id": "transfer.dop_iop_confusion",
-   "family": "transfer",
-   "label": "Indirect pronoun where the verb takes a direct object",
-   "description": "English 'wait FOR / look FOR / listen TO / pay FOR' suggests a preposition and hence an indirect object; the Italian verbs (aspettare, cercare, guardare, ascoltare, pagare) are plain transitives taking lo/la/li/le. The error is picking gli/le (IOP) where the verb wants a DOP — visible only with third-person referents.",
-   "examples": [
-    "gli aspetto (for lo aspetto)",
-    "le cerco 'I look for her' misread as dative (for la cerco)",
-    "aspetto per lui (preposition transferred wholesale)"
-   ],
-   "topics": [
-    "pronoun"
-   ]
-  },
-  {
-   "id": "transfer.partitive_for_bare_noun",
-   "family": "transfer",
-   "label": "Partitive/quantifier where Italian takes a bare noun",
-   "description": "English 'any/some' over-translated as delle/dei/del/alcune/qualche where Italian uses the bare zero-determiner noun.",
-   "examples": [
-    "Ci sono delle domande? (for Ci sono domande?)",
-    "Non c'e del tempo (for Non c'e tempo)"
-   ],
-   "topics": [
-    "existential"
-   ]
-  },
-  {
-   "id": "orthography.io_plural_i_count",
-   "family": "orthography",
-   "label": "-io plural i-count wrong (doubled or dropped)",
-   "description": "Plural of -io nouns takes the wrong number of i: unstressed -io wrongly doubled, or stressed -io wrongly single.",
-   "examples": [
-    "figlii (for figli)",
-    "zi (for zii)"
-   ],
-   "topics": [
-    "noun"
-   ]
-  },
-  {
-   "id": "regularisation.irregular_plural",
-   "family": "regularisation",
-   "label": "Irregular plural formed by the regular rule",
-   "description": "An irregular noun plural produced with the regular -i/-e ending (uovi for uova, braccie for braccia).",
-   "examples": [
-    "uovi (for uova)",
-    "braccie (for braccia)"
-   ],
-   "topics": [
-    "noun"
-   ]
-  },
-  {
-   "id": "regularisation.irregular_comparative",
-   "family": "regularisation",
-   "label": "Irregular comparative made periphrastic/double",
-   "description": "The periphrastic or double comparative where the synthetic irregular is required (piu migliore; piu buono in the abstract sense).",
-   "examples": [
-    "piu migliore (for migliore)",
-    "piu buono (abstract sense, for migliore)"
-   ],
-   "topics": [
-    "comparison"
-   ]
-  },
-  {
-   "id": "regularisation.invariable_noun",
-   "family": "regularisation",
-   "label": "Invariable noun given a plural ending",
-   "description": "An invariable noun wrongly inflected for plural (cittadi for citta).",
-   "examples": [
-    "cittadi (for citta)",
-    "universitadi (for universita)"
-   ],
-   "topics": [
-    "noun"
-   ]
-  },
-  {
-   "id": "agreement.subject_verb_finite",
-   "family": "agreement",
-   "label": "Finite verb not agreeing with its subject",
-   "description": "A finite main verb conjugated for the wrong person/number relative to its grammatical subject. Distinct from agreement.auxiliary_person, which its description scopes to the auxiliary only.",
-   "examples": [
-    "mi piace i libri / mi piacciono la pizza",
-    "c'e due camere (existential)",
-    "si vende libri (si passivante)",
-    "ci vuole due ore (volerci)",
-    "plural verb after qualcuno / ognuno / chiunque"
-   ],
-   "topics": [
-    "existential",
-    "indefinite",
-    "piacere",
-    "pronominal_verbs",
-    "si_constructions"
-   ]
-  },
-  {
-   "id": "paradigm_confusion.preposition_choice",
-   "family": "paradigm_confusion",
-   "label": "Wrong preposition chosen",
-   "description": "Selecting the wrong member of the closed preposition set for the role: place, motion, time, means/manner, and the di/da/che contrasts. The chosen preposition is a real word, wrong for the job — the paradigm_confusion shape.",
-   "examples": [
-    "in Roma (for a Roma); a Italia (for in Italia)",
-    "da for destination; a for origin",
-    "con treno (for in treno); in piedi (for a piedi)",
-    "piu alto che Luca (for di Luca)",
-    "da for possession (for di)"
-   ],
-   "topics": [
-    "comparison",
-    "preposition"
-   ]
-  },
-  {
-   "id": "paradigm_confusion.preposition_verb_governed",
-   "family": "paradigm_confusion",
-   "label": "Wrong preposition after a governing verb",
-   "description": "The preposition a verb lexically governs, got wrong (di studiare for a studiare). Kept separate from preposition_choice because it is a different learner state: memorised per-verb, not derivable from a rule, so the drill-down should not blur it with the rule-governed cases.",
-   "examples": [
-    "di studiare (for a studiare)",
-    "a lavorare (for di lavorare)",
-    "mi ha detto venire (missing di)"
-   ],
-   "topics": [
-    "preposition",
-    "reported_speech"
-   ]
-  },
-  {
-   "id": "paradigm_confusion.relative_choice",
-   "family": "paradigm_confusion",
-   "label": "Wrong relative pronoun chosen",
-   "description": "Selecting the wrong member of the relative paradigm: che/cui/il quale/chi/dove.",
-   "examples": [
-    "cui for a direct object",
-    "che used after a preposition",
-    "che for a place instead of dove/in cui",
-    "che for chi"
-   ],
-   "topics": [
-    "relative_pronoun"
-   ]
-  },
-  {
-   "id": "paradigm_confusion.connective_choice",
-   "family": "paradigm_confusion",
-   "label": "Wrong connective chosen",
-   "description": "Selecting the wrong member of the connective set, including direction flips (quindi where a cause is meant) and register mismatches within the set.",
-   "examples": [
-    "quindi where a cause is being given",
-    "invece for plain objection",
-    "infine for allora",
-    "poiche in casual speech"
-   ],
-   "topics": [
-    "connective"
-   ]
-  },
-  {
-   "id": "paradigm_confusion.adverb_vs_adjective",
-   "family": "paradigm_confusion",
-   "label": "Adjective used where the adverb is required",
-   "description": "Reaching for the adjective form where Italian needs the adverb (or the reverse), chiefly bene/buono.",
-   "examples": [
-    "cucina buono (for cucina bene)",
-    "parlo italiano molto buono",
-    "sto buono (means 'I behave')"
-   ],
-   "topics": [
-    "adverb"
-   ]
-  },
-  {
-   "id": "regularisation.noun_class_plural",
-   "family": "regularisation",
-   "label": "Noun pluralised on the wrong class",
-   "description": "Applying another declension class's plural ending (casi for case, libre for libri, fiore for fiori).",
-   "examples": [
-    "casi (for case)",
-    "libre (for libri)",
-    "studentes / fiores"
-   ],
-   "topics": [
-    "noun"
-   ]
-  },
-  {
-   "id": "transfer.foreign_s_plural",
-   "family": "transfer",
-   "label": "Plural formed with -s",
-   "description": "Forming an Italian plural by adding -s, from English/Spanish. Depends on the transfer broadening above (Spanish-shaped, not English).",
-   "examples": [
-    "libros / casas / amicos / uomos",
-    "citta's / films / res / cittas"
-   ],
-   "topics": [
-    "noun"
-   ]
-  },
-  {
-   "id": "agreement.noun_gender_lexical",
-   "family": "agreement",
-   "label": "Wrong lexical gender assigned to the noun",
-   "description": "Assigning the noun the wrong gender - typically misled by its ending - after which the article and adjectives agree correctly with the WRONG gender. The error is lexical knowledge, not the agreement operation.",
-   "examples": [
-    "la problema / il mano / la tema",
-    "la libro / il casa",
-    "assuming every -e noun is feminine"
-   ],
-   "topics": [
-    "noun"
-   ]
-  },
-  {
-   "id": "discrimination.no_backshift_over_extension",
-   "family": "discrimination",
-   "label": "Backshift applied where none is needed",
-   "description": "Back-shifting the embedded clause after a PRESENT reporting verb, where the original tense should stand. The mirror of discrimination.sequence_of_tenses; the learner has learnt the rule and over-applies it.",
-   "examples": [
-    "dice che era stanco (for dice che e stanco)"
-   ],
-   "topics": [
-    "reported_speech"
-   ]
-  },
-  {
-   "id": "discrimination.deixis_not_shifted",
-   "family": "discrimination",
-   "label": "Deictics not shifted inside a report",
-   "description": "Leaving time/place/person deictics anchored to the original utterance inside a report made later.",
-   "examples": [
-    "domani left in place inside a report anchored days later",
-    "possessives failing to shift person"
-   ],
-   "topics": [
-    "reported_speech"
-   ]
-  },
-  {
-   "id": "word_order.negation_elements",
-   "family": "word_order",
-   "label": "Negation elements misplaced",
-   "description": "Misplacing non or its partner: clitic before non, English adverb order, dropping non in the bipartite frame, or keeping non with a preverbal negative.",
-   "examples": [
-    "Lo non vedo (clitic before non)",
-    "bevo mai (non dropped) / mai bevo (English order)",
-    "Non nessuno e venuto",
-    "c'e non tempo",
-    "mica before the verb with non"
-   ],
-   "topics": [
-    "existential",
-    "negation"
-   ]
-  },
-  {
-   "id": "word_order.adverb_position",
-   "family": "word_order",
-   "label": "Adverb misplaced relative to the verb",
-   "description": "English-style pre-verb adverb placement, and adverb wedged between verb and direct object.",
-   "examples": [
-    "lei bene parla (for lei parla bene)"
-   ],
-   "topics": [
-    "adverb"
-   ]
-  },
-  {
-   "id": "derivation.mente_formation",
-   "family": "derivation",
-   "label": "-mente adverb built on the wrong base",
-   "description": "Building the -mente adverb on the masculine rather than the feminine adjective, failing to drop the final -e of -le/-re adjectives, or inventing -mente forms where none exists.",
-   "examples": [
-    "lentomente (masculine base)",
-    "facilemente / regolaremente (undropped e)",
-    "benemente (invented)"
-   ],
-   "topics": [
-    "adverb"
-   ]
-  },
-  {
-   "id": "derivation.alterato_misuse",
-   "family": "derivation",
-   "label": "Evaluative suffix misused or misread",
-   "description": "Free-generating alterato suffixes on nouns that do not take them, missing the gender shift, or reading a lexicalised form as an alterato.",
-   "examples": [
-    "free-generating diminutives on any noun",
-    "la portona (missed gender shift to il portone)",
-    "reading every -etto/-accia as an alterato",
-    "-accio read as size rather than pejorative"
-   ],
-   "topics": [
-    "word_formation"
-   ]
-  },
-  {
-   "id": "derivation.prefix_misuse",
-   "family": "derivation",
-   "label": "Derivational prefix misused or misread",
-   "description": "Applying an intensifier prefix where it does not go, or misreading a prefix's contribution.",
-   "examples": [
-    "stra- on verbs/nouns where it does not go",
-    "missing that arcistufo IS a superlative",
-    "neo- read as a meaning change rather than newness"
-   ],
-   "topics": [
-    "word_formation"
-   ]
-  },
-  {
-   "id": "gemination.spurious_double",
-   "family": "gemination",
-   "label": "Spurious double consonant",
-   "description": "A single consonant wrongly written double (dopo -> doppo, sabato -> sabbato, camera -> cammera, capitale -> cappitale). The mirror of geminate_simplified: over-application of the doppie rather than under-application. Together they make doubling a two-way discrimination.",
-   "examples": [
-    "doppo (for dopo)",
-    "sabbato (for sabato)",
-    "cammera (for camera)"
-   ],
-   "topics": [
-    "orthography"
-   ]
-  },
-  {
-   "id": "orthography.digraph_reduced",
-   "family": "orthography",
-   "label": "Digraph reduced to a plain letter",
-   "description": "Spelling a gl / gn / sc digraph as a single letter or letter + i, losing its /ly/, /ny/ or /sh/ value: famiglia -> familia, figlio -> filio, bagno -> banio, prosciutto -> prociutto. Systematic L1 transfer where the reader's language has no such digraph.",
-   "examples": [
-    "familia (for famiglia)",
-    "banio (for bagno)",
-    "prociutto (for prosciutto)"
-   ],
-   "topics": [
-    "orthography"
-   ]
-  },
-  {
-   "id": "orthography.qu_cu_confusion",
-   "family": "orthography",
-   "label": "qu / cu confusion",
-   "description": "Writing qu for cu or cu for qu in the /kw/-family: scuola -> squola, cuore -> quore, and the qui (here) / cui (whom) swap. The /kw/ sound is spelt qu by default but cu in a closed lexical set.",
-   "examples": [
-    "squola (for scuola)",
-    "quore (for cuore)",
-    "cui (for qui)"
-   ],
-   "topics": [
-    "orthography"
-   ]
-  },
-  {
-   "id": "orthography.cqu_error",
-   "family": "orthography",
-   "label": "cqu family mis-spelled",
-   "description": "Reducing or mis-forming the small cqu cluster (acqua -> aqua / acua, acquisto -> aquisto, nacque -> naque) OR over-extending it to a plain-qu word (aquila -> acquila). cqu is a near-closed set: acqua and derivatives, plus a handful of passato-remoto forms (nacque, piacque, tacque).",
-   "examples": [
-    "aqua (for acqua)",
-    "naque (for nacque)",
-    "acquila (for aquila, over-correction)"
-   ],
-   "topics": [
-    "orthography"
-   ]
-  },
-  {
-   "id": "accent_silent_letter.silent_h_added",
-   "family": "accent_silent_letter",
-   "label": "Silent h added (hypercorrection)",
-   "description": "Adding avere's silent h to a word that has none: anno (year) -> hanno, a (to) -> ha, o (or) -> ho. The insertion mirror of the existing silent_h_omitted; both directions are live because each avere form has a real homophone.",
-   "examples": [
-    "hanno (for anno)",
-    "ha Roma (for a Roma)",
-    "un hanno fa (for un anno fa)"
-   ],
-   "topics": [
-    "orthography"
-   ]
-  },
-  {
-   "id": "orthography.elision_gender_error",
-   "family": "orthography",
-   "label": "Elision apostrophe on the wrong gender",
-   "description": "Putting the un' apostrophe on a masculine noun (un'amico, un'esame) or omitting it on a feminine one (un amica). The apostrophe marks feminine una-elision only; masculine un is a troncamento (truncation) that takes no apostrophe. The single sharpest article-spelling contrast.",
-   "examples": [
-    "un'amico (for un amico)",
-    "un'esame (for un esame)",
-    "un amica (for un'amica)"
-   ],
-   "topics": [
-    "orthography",
-    "article"
-   ]
-  },
-  {
-   "id": "orthography.spurious_apostrophe",
-   "family": "orthography",
-   "label": "Spurious apostrophe",
-   "description": "An apostrophe written where standard orthography has none. The flagship is qual'è for qual è: qual is a troncamento (not an elision), so nothing is dropped and no apostrophe belongs. Also covers writing po' as an apostrophe'd form correctly but adding stray apostrophes to truncated words that don't take one.",
-   "examples": [
-    "qual'è (for qual è)"
-   ],
-   "topics": [
-    "orthography"
-   ]
-  },
-  {
-   "id": "orthography.overcapitalization",
-   "family": "orthography",
-   "label": "Over-capitalisation (English transfer)",
-   "description": "Capitalising mid-sentence what Italian lower-cases: weekdays (Lunedì), months (Gennaio), languages and nationalities as adjective or noun (Italiano, gli Italiani), and courtesy titles (Signor Rossi). Pure L1-transfer from English capitalisation habits.",
-   "examples": [
-    "Lunedì (mid-sentence)",
-    "Parlo Italiano",
-    "il Signor Rossi"
-   ],
-   "topics": [
-    "orthography"
-   ]
-  },
-  {
-   "id": "orthography.vowel_confusion",
-   "family": "orthography",
-   "label": "Unstressed vowel confusion",
-   "description": "Lexical substitution of unstressed vowels: i/e (difficile -> difficele, dicembre -> decembre, minuto -> menuto) and o/u (comprare -> cumprare, novembre -> nuvembre). Item-specific rather than rule-governed; distinct from the morphological io_plural_i_count and i_retention_error already in the registry.",
-   "examples": [
-    "difficele (for difficile)",
-    "decembre (for dicembre)",
-    "cumprare (for comprare)"
-   ],
-   "topics": [
-    "orthography"
-   ]
-  }
- ]
+  "version": 2,
+  "description": "Misconception registry for Linguics. A misconception is an ERROR PATTERN, the structured abstraction above a set of surface wrong-forms (capisciamo, finisciamo, preferisciamo all embody one misconception: stem_change.isc_over_extension). Misconceptions are ORTHOGONAL to the skill buckets: one misconception spans many buckets (over-extending a stem change appears in ire_isc, go_verbs, dittongo), and one bucket can be failed by several misconceptions. They are tagged at the point of detection: a grammar item's must_not_include entry (in object form) carries an optional `misconception` field naming an id from this registry; when that wrong form fires, the housing records the usual bucket miss AND a misconception event. Misconception events aggregate on their own axis, surfaced in a SEPARATE drill-down stats view (never inline during questions, so tagging carries no leak risk). The marquee long-term value is the CROSS-KIND families (agreement, accent, regularisation): the same misconception observed across adjectives, participles, articles, pronouns, and verbs. Governance mirrors the glossary and themes registries: architecture-owned and canonical; authors tag against it and propose additions via misconception_suggestions_<topic>.json; architecture ratifies. This v1 seed is populated from the present-indicative formation work plus the general families; it is designed to grow as every topic comes online. Many specifics here can be bootstrapped from the `common_miss` prose attributes already authored across the bucket trees.\n\nDIRECTION (Architecture, 2026-08-13). A specific may carry `direction: \"reading\"` when the error is a comprehension miss — the learner understood the Italian wrongly — rather than a production error. Absence of the field means production, so the 105 existing entries are untouched. Reading misses are NOT a separate family: the same knowledge is failing in the other direction, and splitting them into a parallel taxonomy would break the mirror_of pairing. Adopted because 264 of the 913 translation items (29%) are it→en, so comprehension is not a hypothetical arm — it is nearly a third of what the estate already marks, and a registry that cannot name a reading miss is blind to it.",
+  "families": {
+    "agreement": {
+      "label": "Agreement",
+      "description": "Wrong gender, number, or person where two elements must agree. The flagship cross-kind family: will be populated by adjectives (rossa/rosso), past participles (andata/andato), articles (il/la), pronouns (lo/la), demonstratives, and subject-verb agreement.",
+      "cross_kind": true
+    },
+    "regularisation": {
+      "label": "Regularisation",
+      "description": "Treating an irregular form as if it followed the regular pattern. Cross-kind: irregular verbs, irregular plurals, irregular comparatives.",
+      "cross_kind": true
+    },
+    "orthography": {
+      "label": "Orthography (sound-preserving spelling)",
+      "description": "Spelling adjustments whose job is to keep the written form consistent with the sound. Cross-kind: verb endings (cerco/cerchi), plural spelling, and similar.",
+      "cross_kind": true
+    },
+    "accent_silent_letter": {
+      "label": "Accents and silent letters",
+      "description": "Written accents and silent letters that are obligatory and often meaning-bearing. Cross-kind: appears anywhere accented or h-bearing forms occur.",
+      "cross_kind": true
+    },
+    "stress": {
+      "label": "Word stress",
+      "description": "Misplaced spoken or written stress. Cross-kind, and links to the proposed word-stress vocabulary dimension (see OPEN_QUESTIONS).",
+      "cross_kind": true
+    },
+    "stem_change": {
+      "label": "Stem change (over / under application)",
+      "description": "Over-applying or under-applying a conditioned stem change. Mostly verb morphology, but the over/under-application shape recurs elsewhere.",
+      "cross_kind": false
+    },
+    "conjugation_class": {
+      "label": "Conjugation-class confusion",
+      "description": "Applying one conjugation class's ending or pattern to a verb of another class.",
+      "cross_kind": false
+    },
+    "word_order": {
+      "label": "Word order",
+      "description": "Reserved cross-kind family (adjective position, clitic position, etc.). No specifics seeded yet; populated as those topics come online.",
+      "cross_kind": true
+    },
+    "register": {
+      "label": "Register",
+      "description": "Reserved cross-kind family: errors whose CONTENT is the register choice itself (tu/Lei address, formal/informal lexis). Where register is merely the CUE for an error of another shape - the passato remoto chosen in conversation is a tense choice cued by register - the misconception is filed by the error's shape, not its cue: see discrimination.remoto_register_mismatch (ruled 2026-07-16).",
+      "cross_kind": true
+    },
+    "false_friend": {
+      "label": "False friend",
+      "description": "Reserved cross-kind (vocab) family. No specifics seeded yet; populated by the vocab side later.",
+      "cross_kind": true
+    },
+    "auxiliary_choice": {
+      "label": "Auxiliary choice",
+      "description": "Errors in the compound-tense auxiliary: choosing essere vs avere (avere_for_essere, essere_for_avere), and choosing the wrong tense of the auxiliary itself (wrong_auxiliary_tense, e.g. trapassato avevo fatto vs passato prossimo ho fatto). Cross-kind: the same essere/avere split governs passato prossimo, trapassato, futuro anteriore, and the compound subjunctive / conditional.",
+      "cross_kind": true
+    },
+    "transfer": {
+      "label": "Transfer (L1 interference)",
+      "description": "Errors imported from English or another L1: calques, English-style structures, omissions where English omits. A SECONDARY OVERLAY tag that co-occurs with a structural family rather than replacing it (an English-fronting error is both word_order and transfer). Added 2026-06-09. [BROADENED 2026-07-27: L1 or prior-language interference generally, not English alone.]",
+      "cross_kind": true
+    },
+    "paradigm_confusion": {
+      "label": "Paradigm confusion (wrong member selected)",
+      "description": "Selecting the wrong member of a closed grammatical paradigm where the form produced is itself a valid word but wrong for the role: DOP for IOP (lo for gli), clitic for stressed (mi for me), ci for ne. Distinct from conjugation_class, which is misapplied morphology producing a non-word. Added 2026-06-09.",
+      "cross_kind": true
+    },
+    "clitic_cluster": {
+      "label": "Clitic cluster morphophonology",
+      "description": "Errors assembling pronoun clusters: the vowel change (mi + lo to me lo), the glie- fusion (glielo), and joined-when-should-be-separate (melo for me lo). Morphophonological assembly, not sound-preserving spelling (which is orthography). Added 2026-06-09.",
+      "cross_kind": false
+    },
+    "discrimination": {
+      "label": "Discrimination (wrong tense / aspect / mood selected)",
+      "description": "Choosing the wrong tense, aspect, or mood among grammatically available options: pp_for_imperfect (the dominant aspect error), modal stative-vs-event aspect, progressive overuse, future/present-for-future mismatch, counterfactual construction, trapassato-vs-imperfect, sequence of tenses, indicative-for-subjunctive CHOICE (the trigger demanded the subjunctive). The selection counterpart to the formation families; fires from the .discrimination bucket branches and tense_choice. Includes a flagged recognition-direction specific (narrative_imperfect_reading) that is comprehension, not production. Added 2026-06-09.",
+      "cross_kind": true
+    },
+    "mood": {
+      "label": "Mood (wrong mood form built)",
+      "description": "Producing the wrong mood's FORM where another mood was required: indicative_for_subjunctive_form (built the indicative where the subjunctive was needed, in congiuntivo and the formal imperative), subjunctive over-application, conditional/subjunctive form confusion. Distinct from the SELECTION error (discrimination.indicative_for_subjunctive_choice = didn't know the trigger demanded it) and from paradigm_confusion (wrong member of a closed paradigm). Added 2026-06-09.",
+      "cross_kind": false
+    },
+    "gemination": {
+      "label": "Gemination (double consonant)",
+      "description": "A phonemic geminate written single (or vice versa): geminate_simplified (vorrò to vorò, parlassi to parlasi, parlammo to parlamo) and enclitic_doubling (dammi to dami). A sound error, not sound-preserving spelling (which is orthography), hence its own family. Recurs across verbs, enclitics, and vocab. Added 2026-06-09.",
+      "cross_kind": true
+    },
+    "derivation": {
+      "label": "Word formation / derivation",
+      "description": "Errors in building a word from another word: evaluative suffixes (alterati), derivational prefixes, and the -mente adverb. Distinct from inflection (agreement, conjugation_class, regularisation), which varies a word within its paradigm; derivation makes a NEW lexeme. The word_formation topic and the adverb tree's -mente formation have no home in the current 17.",
+      "cross_kind": true
+    }
+  },
+  "misconceptions": [
+    {
+      "id": "accent_silent_letter.accent_omitted",
+      "family": "accent_silent_letter",
+      "label": "Written accent omitted",
+      "description": "Omitting an obligatory written accent, often producing a different word (e for è) or an unmarked vowel (puo for può, da for dà). Strongly cross-cutting.",
+      "examples": [
+        "e (for è)",
+        "puo (for può)",
+        "da (for dà)"
+      ],
+      "topics": [
+        "verb_form.future",
+        "verb_form.passato_remoto",
+        "verb_form.present_indicative"
+      ]
+    },
+    {
+      "id": "accent_silent_letter.silent_h_omitted",
+      "family": "accent_silent_letter",
+      "label": "Silent h dropped on avere",
+      "description": "Dropping the obligatory silent h on the present forms of avere, producing a different real word (o, ai, a, anno).",
+      "examples": [
+        "o (for ho)",
+        "a (for ha)",
+        "anno (for hanno)"
+      ],
+      "topics": [
+        "verb_form.present_indicative"
+      ]
+    },
+    {
+      "id": "agreement.adjective_noun",
+      "family": "agreement",
+      "label": "Adjective fails to agree with its noun",
+      "description": "Leaving an adjective in the wrong gender or number for the noun it modifies, where the adjective is of the right inflection class.",
+      "examples": [
+        "casa rosso (for rossa)",
+        "case rossi (for rosse)",
+        "libri grande (for grandi)",
+        "grigia (for grige/grigie, no plural marking)"
+      ],
+      "topics": [
+        "adjective_agreement"
+      ]
+    },
+    {
+      "id": "agreement.auxiliary_person",
+      "family": "agreement",
+      "label": "Auxiliary in the wrong person/number for the subject",
+      "description": "Conjugating the compound-tense auxiliary for the wrong person or number relative to the subject (subject-verb agreement failure on the auxiliary).",
+      "examples": [
+        "Marco hanno parlato (for Marco ha parlato)"
+      ],
+      "topics": [
+        "verb_form.gerundio",
+        "verb_form.passato_prossimo"
+      ]
+    },
+    {
+      "id": "agreement.clitic_gender_number",
+      "family": "agreement",
+      "label": "Object clitic in the wrong gender or number",
+      "description": "Choosing a clitic of the wrong gender/number for its referent, where function (DOP/IOP) is correct.",
+      "examples": [
+        "li (for le, fem pl)",
+        "la (for le, gender slip on an IOP)"
+      ],
+      "topics": [
+        "pronoun"
+      ]
+    },
+    {
+      "id": "agreement.mixed_gender_default",
+      "family": "agreement",
+      "label": "Mixed-gender plural not defaulted to masculine",
+      "description": "With a mixed-gender plural group, agreeing with the nearest noun instead of using the masculine-plural default.",
+      "examples": [
+        "i ragazzi e le ragazze sono italiane (for italiani)"
+      ],
+      "topics": [
+        "adjective_agreement"
+      ]
+    },
+    {
+      "id": "agreement.participle_essere_subject",
+      "family": "agreement",
+      "label": "essere-participle fails to agree with the subject",
+      "description": "With essere as auxiliary, leaving the participle in the masculine-singular default instead of agreeing in gender and number with the subject.",
+      "examples": [
+        "è andato (for è andata)",
+        "sono andati (for a feminine group, sono andate)"
+      ],
+      "topics": [
+        "verb_form.condizionale",
+        "verb_form.congiuntivo",
+        "verb_form.future",
+        "verb_form.gerundio",
+        "verb_form.passato_prossimo",
+        "verb_form.trapassato_prossimo"
+      ]
+    },
+    {
+      "id": "agreement.participle_overagreement",
+      "family": "agreement",
+      "label": "avere-participle wrongly agreed with the subject",
+      "description": "Agreeing the participle with the subject when avere is the auxiliary and there is no preceding DOP, where it must stay invariable. The over-application (hyper-correction) error.",
+      "examples": [
+        "ho mangiata (for ho mangiato, female speaker)"
+      ],
+      "topics": [
+        "verb_form.passato_prossimo"
+      ]
+    },
+    {
+      "id": "agreement.participle_preceding_dop",
+      "family": "agreement",
+      "label": "avere-participle fails to agree with a preceding direct-object clitic",
+      "description": "With avere as auxiliary and a preceding 3rd-person DOP (lo/la/li/le) or partitive ne, leaving the participle invariable instead of agreeing with that object.",
+      "examples": [
+        "l'ho visto (for l'ho vista)",
+        "le ho visti / le ho visto (for le ho viste)",
+        "ne ho mangiato tre (for ne ho mangiate tre)"
+      ],
+      "topics": [
+        "verb_form.passato_prossimo"
+      ]
+    },
+    {
+      "id": "agreement.prenominal_allomorph",
+      "family": "agreement",
+      "label": "Wrong allomorph of a pre-nominal form (bello/buono/quello)",
+      "description": "Any pre-nominal form whose allomorph is selected by the FOLLOWING SOUND: definite/indefinite articles (il studente, un'amico, una amica), demonstratives (quello libro, quei studenti), the adjectives (bel/bello, buon/buono, san/santo, gran/grande), and articulated prepositions (al stadio for allo stadio, dello pane for del pane, dei uccelli for degli uccelli).",
+      "examples": [
+        "bello libro (for bel libro)",
+        "buono libro (for buon libro)"
+      ],
+      "topics": [
+        "adjective_agreement"
+      ]
+    },
+    {
+      "id": "agreement.reflexive_pronoun_person",
+      "family": "agreement",
+      "label": "Reflexive pronoun wrong for the subject",
+      "description": "Using a reflexive pronoun that doesn't agree with the subject's person (mi lavi for ti lavi). A subject-agreement error; the first foothold of the agreement family on the verb side.",
+      "examples": [
+        "mi lavi (for ti lavi)",
+        "si lavo (for mi lavo)"
+      ],
+      "topics": [
+        "verb_form.present_indicative"
+      ]
+    },
+    {
+      "id": "auxiliary_choice.avere_for_essere",
+      "family": "auxiliary_choice",
+      "label": "avere used where essere is required",
+      "description": "Selecting avere as the compound-tense auxiliary for a verb that takes essere: motion/change intransitives, reflexives, and the piacere family.",
+      "examples": [
+        "ho andato (for sono andato)",
+        "Mi ho lavato (for mi sono lavato)",
+        "Le ha piaciuto (for le è piaciuto)"
+      ],
+      "topics": [
+        "verb_form.condizionale",
+        "verb_form.future",
+        "verb_form.gerundio",
+        "verb_form.passato_prossimo",
+        "verb_form.trapassato_prossimo"
+      ]
+    },
+    {
+      "id": "auxiliary_choice.essere_for_avere",
+      "family": "auxiliary_choice",
+      "label": "essere used where avere is required",
+      "description": "Selecting essere for a transitive or avere-taking verb, the rarer reverse of the default-avere error, often a hyper-correction.",
+      "examples": [
+        "sono mangiato la pasta (for ho mangiato la pasta)"
+      ],
+      "topics": [
+        "verb_form.passato_prossimo"
+      ]
+    },
+    {
+      "id": "auxiliary_choice.wrong_auxiliary_tense",
+      "family": "auxiliary_choice",
+      "label": "Wrong tense of the auxiliary in a compound tense",
+      "description": "Using the wrong tense of the (correct) auxiliary: the present 'ho/sono' where the trapassato needs the imperfect 'avevo/ero', or a different past where another compound tense needs its specific auxiliary tense.",
+      "examples": [
+        "ho parlato (for avevo parlato)",
+        "sono andato (for ero andato)"
+      ],
+      "topics": [
+        "verb_form.passato_remoto",
+        "verb_form.trapassato_prossimo"
+      ]
+    },
+    {
+      "id": "clitic_cluster.form_change",
+      "family": "clitic_cluster",
+      "label": "Clitic cluster fails its obligatory form change",
+      "description": "Not applying the obligatory changes when clitics combine: mi/ti/ci/vi to me/te/ce/ve before lo/la/li/le/ne, and gli/le + lo/la to glielo/gliela (written attached).",
+      "examples": [
+        "mi lo dai (for me lo dai)",
+        "Mi le lavo (for me le lavo)",
+        "gli lo dico / le lo dico (for glielo dico)"
+      ],
+      "topics": [
+        "pronoun"
+      ]
+    },
+    {
+      "id": "conjugation_class.ano_for_ono",
+      "family": "conjugation_class",
+      "label": "-ano 3pl on an -ere/-ire verb",
+      "description": "Using the -are 3pl ending -ano on an -ere or -ire verb, which takes -ono.",
+      "examples": [
+        "prendano (for prendono)",
+        "dormano (for dormono)"
+      ],
+      "topics": [
+        "verb_form.present_indicative"
+      ]
+    },
+    {
+      "id": "conjugation_class.gerund_ando_endo",
+      "family": "conjugation_class",
+      "label": "Wrong-class gerund ending (-ando/-endo)",
+      "description": "Using -endo on an -are verb or -ando on an -ere/-ire verb (and the malformed -iendo).",
+      "examples": [
+        "parlendo (for parlando)",
+        "prendando (for prendendo)",
+        "capiendo (for prendendo-pattern -endo)"
+      ],
+      "topics": [
+        "verb_form.gerundio"
+      ]
+    },
+    {
+      "id": "conjugation_class.ono_for_ano",
+      "family": "conjugation_class",
+      "label": "-ono 3pl on an -are verb",
+      "description": "Using the -ere/-ire 3pl ending -ono on an -are verb, which takes -ano.",
+      "examples": [
+        "parlono (for parlano)",
+        "mangiono (for mangiano)"
+      ],
+      "topics": [
+        "verb_form.present_indicative"
+      ]
+    },
+    {
+      "id": "conjugation_class.wrong_theme_vowel",
+      "family": "conjugation_class",
+      "label": "Another class's theme vowel borrowed",
+      "description": "Using one conjugation class's theme vowel/ending on a verb of another class (beyond the existing 3pl -ano/-ono specifics).",
+      "examples": [
+        "prendi (the -are subjunctive ending on an -ere verb)",
+        "parlessi (the -ere imperfect-subjunctive vowel on an -are verb, for parlassi)"
+      ],
+      "topics": [
+        "verb_form.congiuntivo"
+      ]
+    },
+    {
+      "id": "discrimination.aspect_swap_background",
+      "family": "discrimination",
+      "label": "Background and foreground tenses swapped",
+      "description": "Reversing the imperfect-background / passato-prossimo-event pairing, putting the completed event in the imperfect and the ongoing frame in the passato prossimo.",
+      "examples": [
+        "ho dormito mentre bussava (for dormivo mentre ha bussato / bussava)"
+      ],
+      "topics": [
+        "verb_form.imperfect"
+      ]
+    },
+    {
+      "id": "discrimination.counterfactual_construction",
+      "family": "discrimination",
+      "label": "Wrong tense/mood combination for a counterfactual",
+      "description": "Mis-selecting the verb forms of a counterfactual conditional: using present indicative + future (a real-condition pattern) for a counterfactual, or judging the accepted colloquial double-imperfect as wrong.",
+      "examples": [
+        "se ho tempo, verro' (real-condition pattern) for a counterfactual",
+        "treating the colloquial imperfect counterfactual as an error"
+      ],
+      "topics": [
+        "tense_choice",
+        "verb_form.imperfect"
+      ]
+    },
+    {
+      "id": "discrimination.durative_present_over_extension",
+      "family": "discrimination",
+      "label": "Durative present extended to a stretch that has ended",
+      "description": "The mirror of discrimination.perfect_for_durative_da: the da-present applied where the stretch is closed and the past is required ('ho studiato per due anni'). Typically appears once the da-rule has been learnt and is then over-applied to per and to completed periods.",
+      "examples": [
+        "studio italiano per due anni (a finished course) for ho studiato",
+        "abito qui per tre anni (no longer) for ho abitato"
+      ],
+      "topics": [
+        "tense_choice"
+      ]
+    },
+    {
+      "id": "discrimination.future_present_mismatch",
+      "family": "discrimination",
+      "label": "Future vs present-for-future mismatch",
+      "description": "Choosing the morphological future where a present-for-future is natural, or the present where the future is required (distant, uncertain, probabilistic).",
+      "examples": [
+        "present where future required (distant/uncertain)",
+        "morphological future where present-for-future is more natural"
+      ],
+      "topics": [
+        "tense_choice"
+      ]
+    },
+    {
+      "id": "discrimination.habitual_frame_mismatch",
+      "family": "discrimination",
+      "label": "Habitual routine placed in the wrong time frame",
+      "description": "A habitual routine expressed in the wrong time frame: the present for a past habit, or a past habitual for a present routine. Minted on Smith's ruling 2026-07-16 over the authoring seat's 'weak diagnostic' doubt; watch its live stats for separability from the general aspect errors (pp_for_imperfect / imperfect_for_pp) and retire or sharpen if they blur. Direction-neutral by design; one id both ways.",
+      "examples": [
+        "ogni estate vado al mare (for a childhood past routine) for andavo",
+        "da bambino gioco a calcio for giocavo"
+      ],
+      "topics": [
+        "tense_choice"
+      ]
+    },
+    {
+      "id": "discrimination.imperfect_for_pp",
+      "family": "discrimination",
+      "label": "Imperfect used where the passato prossimo's aspect is required",
+      "description": "Choosing the imperfect for a context the passato prossimo owns: a single completed, bounded event, especially one that interrupts a background state. The mirror of discrimination.pp_for_imperfect; tag on the direction the ITEM's wrong form takes, never on the bucket's own id.",
+      "examples": [
+        "ieri mangiavo una pizza for ho mangiato (single completed event)",
+        "mentre leggevo, entrava for e' entrato (the interrupting event)",
+        "l'anno scorso andavo a Roma due volte for sono andato"
+      ],
+      "topics": [
+        "tense_choice",
+        "verb_form.imperfect"
+      ]
+    },
+    {
+      "id": "discrimination.indicative_for_subjunctive_choice",
+      "family": "discrimination",
+      "label": "Indicative chosen where a trigger requires the subjunctive",
+      "description": "Leaving the verb in the indicative after a trigger that requires the subjunctive (opinion, emotion, hypothetical conjunctions, negation). The SELECTION error, distinct from mis-forming the subjunctive (see mood.indicative_for_subjunctive_form).",
+      "examples": [
+        "penso che e' (for penso che sia)",
+        "sono contento che sei qui (for che tu sia qui)"
+      ],
+      "topics": [
+        "tense_choice"
+      ]
+    },
+    {
+      "id": "discrimination.modal_stative_aspect",
+      "family": "discrimination",
+      "label": "Modal/stative verb: wrong past tense for the intended reading",
+      "description": "Missing the meaning shift that aspect forces on modal and stative verbs (sapere, dovere, potere, volere, conoscere): the imperfect = ongoing state/ability, the passato prossimo = a bounded event (found out, managed, insisted, met).",
+      "examples": [
+        "imperfect sapevo for the event 'seppi/ho saputo' (found out)",
+        "conobbi/ho conosciuto = 'met', not 'knew'",
+        "volevo (wish) vs ho voluto (insisted)"
+      ],
+      "topics": [
+        "verb_form.imperfect"
+      ]
+    },
+    {
+      "id": "discrimination.narrative_imperfect_reading",
+      "family": "discrimination",
+      "label": "Narrative imperfect misread as habitual",
+      "description": "On the comprehension side, reading a single-event narrative imperfect as if it were habitual/repeated.",
+      "examples": [
+        "reading 'moriva' (narrative) as 'used to die' rather than the single dramatic event"
+      ],
+      "topics": [
+        "verb_form.imperfect"
+      ],
+      "direction": "reading"
+    },
+    {
+      "id": "discrimination.perfect_for_durative_da",
+      "family": "discrimination",
+      "label": "Passato prossimo used for a stretch that is still running (da + time)",
+      "description": "Choosing the passato prossimo for an action begun in the past and STILL going at speech time, where Italian takes the present with da ('studio italiano da due anni'). English's 'I have studied for two years' is the transfer source. The conditioning factor is the preposition: da leaves the stretch open, per closes it.",
+      "examples": [
+        "ho studiato italiano da due anni for studio da due anni",
+        "ho abitato qui da marzo for abito qui da marzo"
+      ],
+      "topics": [
+        "tense_choice"
+      ]
+    },
+    {
+      "id": "discrimination.pp_for_imperfect",
+      "family": "discrimination",
+      "label": "Passato prossimo used where the imperfect's aspect is required",
+      "description": "Choosing the passato prossimo for a context the imperfect owns: habitual action, ongoing state/description, duration, and age/time/weather states. The dominant aspect error of the past tenses. The da-durative case (ho aspettato da venti minuti) moved to discrimination.perfect_for_durative_da at Rev 21: its conditioning factor is the preposition, not aspect.",
+      "examples": [
+        "ho giocato for giocavo (habitual)",
+        "e' stata stanca for era stanca (state)",
+        "ho avuto dieci anni / ha fatto freddo for avevo/faceva"
+      ],
+      "topics": [
+        "verb_form.imperfect"
+      ]
+    },
+    {
+      "id": "discrimination.progressive_overuse",
+      "family": "discrimination",
+      "label": "Progressive over-used for the simple tense",
+      "description": "Using the stare + gerundio progressive where the simple present/imperfect is the natural choice, typically by mapping every English -ing form onto a progressive.",
+      "examples": [
+        "sto mangiando for the habitual mangio",
+        "stavo mangiando for the descriptive mangiavo"
+      ],
+      "topics": [
+        "tense_choice"
+      ]
+    },
+    {
+      "id": "discrimination.progressive_underuse",
+      "family": "discrimination",
+      "label": "Simple tense used where the in-progress reading is required",
+      "description": "Choosing the simple present or imperfect where the context insists the action is under way at the reference moment (stare + gerundio). The mirror of discrimination.progressive_overuse: the Italian-side error rather than the English-transfer one.",
+      "examples": [
+        "che fai? - mangio, for sto mangiando (right this second)",
+        "quando ha chiamato, cucinavo for stavo cucinando"
+      ],
+      "topics": [
+        "tense_choice",
+        "verb_form.gerundio"
+      ]
+    },
+    {
+      "id": "discrimination.remoto_register_mismatch",
+      "family": "discrimination",
+      "label": "Passato remoto and passato prossimo swapped by register",
+      "description": "Choosing the passato remoto in conversational register, or the passato prossimo in literary or historical narration, where the chosen form is itself correctly built. Direction-neutral by construction, so one id covers both leaves. Filed under discrimination rather than register because the family axis classifies the ERROR's shape (a tense choice), not the cue that was missed - the same logic that puts modal_stative_aspect here though its cue is lexical aspect.",
+      "examples": [
+        "ieri andai al cinema (spoken) for sono andato",
+        "Garibaldi e' sbarcato a Marsala (history textbook) for sbarco'"
+      ],
+      "topics": [
+        "tense_choice",
+        "verb_form.passato_remoto"
+      ]
+    },
+    {
+      "id": "discrimination.sequence_of_tenses",
+      "family": "discrimination",
+      "label": "Embedded-clause tense not back-shifted in reported speech",
+      "description": "Failing to back-shift the embedded clause after a past reporting verb: leaving the present, or using the future where the conditional (future-in-the-past) is required.",
+      "examples": [
+        "ha detto che e' stanco (for che era stanco)",
+        "ha detto che andra' (for che sarebbe andato)"
+      ],
+      "topics": [
+        "verb_form.imperfect"
+      ]
+    },
+    {
+      "id": "discrimination.trapassato_imperfect_choice",
+      "family": "discrimination",
+      "label": "Trapassato vs imperfect mis-selected",
+      "description": "Using the imperfect for a clearly completed prior-to-prior event, or the trapassato for an ongoing background state.",
+      "examples": [
+        "mangiava for 'had eaten'",
+        "avevo mangiato quando sei entrato (implies finished) where ongoing was meant"
+      ],
+      "topics": [
+        "tense_choice"
+      ]
+    },
+    {
+      "id": "gemination.enclitic_doubling",
+      "family": "gemination",
+      "label": "Consonant not doubled on a monosyllabic imperative + clitic",
+      "description": "Failing to double the initial consonant of a clitic attached to a monosyllabic tu imperative (dammi, dimmelo, fammelo).",
+      "examples": [
+        "dami (for dammi)",
+        "dimmilo (for dimmelo)",
+        "dami lo (for dammelo)"
+      ],
+      "topics": [
+        "pronoun"
+      ]
+    },
+    {
+      "id": "gemination.geminate_simplified",
+      "family": "gemination",
+      "label": "Obligatory double consonant written single",
+      "description": "Writing a single consonant where Italian has a phonemic geminate: the assimilated -rr- of syncopated futures/conditionals, the -ss- of the imperfect subjunctive, the -mm-/-mm of passato-remoto/conditional 1pl.",
+      "examples": [
+        "vorò/verò/terò (for vorrò/verrò/terrò)"
+      ],
+      "topics": [
+        "verb_form.condizionale",
+        "verb_form.congiuntivo",
+        "verb_form.future",
+        "verb_form.passato_remoto"
+      ]
+    },
+    {
+      "id": "mood.indicative_for_subjunctive_form",
+      "family": "mood",
+      "label": "Indicative form built where the subjunctive is required",
+      "description": "Producing the indicative ending/auxiliary when the subjunctive is called for: -ano for -ino, indicative 3pl for the subjunctive 3pl, present/imperfect indicative auxiliary for the subjunctive one.",
+      "examples": [
+        "parlano/parla (for parlino)",
+        "vengono (for vengano)",
+        "ha parlato (for abbia parlato)",
+        "aveva parlato (for avessi parlato)"
+      ],
+      "topics": [
+        "verb_form.congiuntivo",
+        "verb_form.imperativo"
+      ]
+    },
+    {
+      "id": "orthography.cg_plural_stress_misapplied",
+      "family": "orthography",
+      "label": "Wrong -chi/-ci (or -ghi/-gi) by stress or irregularity",
+      "description": "Misapplying the -co plural split (-chi hard vs -ci soft, by stress and lexical irregularity): over-applying one where the other is required.",
+      "examples": [
+        "simpatichi (for simpatici)",
+        "amichi (for amici)",
+        "grechi (for greci)",
+        "antici (for antichi)"
+      ],
+      "topics": [
+        "adjective_agreement"
+      ]
+    },
+    {
+      "id": "orthography.cia_gia_plural_i",
+      "family": "orthography",
+      "label": "-cia/-gia plural i kept or dropped wrongly",
+      "description": "The noun-plural i-retention split: vowel before -cia/-gia keeps the i (ciliegie, valigie, camicie), consonant before drops it (arance, facce, piogge). Misses in both directions: arancie, camice."
+    },
+    {
+      "id": "orthography.double_i_retained",
+      "family": "orthography",
+      "label": "Redundant i kept on -ciare/-giare",
+      "description": "Keeping a stem i before an ending that already begins with i, producing a wrong double i. Appears in -ciare/-giare verb endings (cominci, not *cominci-i) and in -cia/-gia noun and adjective plurals (grigie/grige, camicie).",
+      "examples": [
+        "mangii (for mangi)",
+        "comincii (for cominci)"
+      ],
+      "topics": [
+        "adjective_agreement",
+        "verb_form.condizionale",
+        "verb_form.congiuntivo",
+        "verb_form.future",
+        "verb_form.present_indicative"
+      ]
+    },
+    {
+      "id": "orthography.failed_elision",
+      "family": "orthography",
+      "label": "Clitic not elided before a vowel",
+      "description": "Failing to elide lo/la to l' before a vowel, or eliding wrongly. [WIDENED 2026-07-27: article OR clitic not elided before a vowel - una amica -> un'amica included.]",
+      "examples": [
+        "lo ho visto (for l'ho visto)",
+        "li' (incorrect elision of li)"
+      ],
+      "topics": [
+        "pronoun"
+      ]
+    },
+    {
+      "id": "orthography.i_retention_error",
+      "family": "orthography",
+      "label": "Wrong i-retention on -iare by stress",
+      "description": "Mishandling the stress-governed i of -iare verbs: keeping it when unstressed (studii) or dropping it when stressed (invi).",
+      "examples": [
+        "studii (for studi)",
+        "invi (for invii)"
+      ],
+      "topics": [
+        "verb_form.present_indicative"
+      ]
+    },
+    {
+      "id": "orthography.omitted_h_hard_cg",
+      "family": "orthography",
+      "label": "h omitted on -care/-gare",
+      "description": "Dropping the h that keeps c/g hard before a front vowel, changing the consonant sound. Appears in -care/-gare verb endings (cerchi, paghi) and in -co/-go noun and adjective plurals (bianchi, lunghi).",
+      "examples": [
+        "ceri (for cerchi)",
+        "pagiamo (for paghiamo)",
+        "giochi written as gioci"
+      ],
+      "topics": [
+        "adjective_agreement",
+        "verb_form.condizionale",
+        "verb_form.congiuntivo",
+        "verb_form.future",
+        "verb_form.present_indicative"
+      ]
+    },
+    {
+      "id": "paradigm_confusion.ci_vs_ne",
+      "family": "paradigm_confusion",
+      "label": "ci and ne confused (a- vs di-)",
+      "description": "Choosing ci for a di-referent or ne for an a-referent, mis-mapping the preposition the clitic stands in for.",
+      "examples": [
+        "ne penso (for ci penso, 'pensare a')"
+      ],
+      "topics": [
+        "pronoun"
+      ]
+    },
+    {
+      "id": "paradigm_confusion.clitic_vs_stressed",
+      "family": "paradigm_confusion",
+      "label": "Clitic and stressed pronoun confused",
+      "description": "Using a stressed pronoun where the unmarked clitic is wanted, or a clitic where emphasis needs the stressed form; also article/subject pronoun for an object clitic.",
+      "examples": [
+        "Marco vede me (for Marco mi vede)",
+        "lui / il (for lo)",
+        "Mi piace (where 'a me piace' emphasis is wanted)"
+      ],
+      "topics": [
+        "pronoun"
+      ]
+    },
+    {
+      "id": "paradigm_confusion.dop_iop",
+      "family": "paradigm_confusion",
+      "label": "Direct- and indirect-object clitic confused",
+      "description": "Using a DOP where an IOP is required or vice versa (li for gli): a real word, wrong role.",
+      "examples": [
+        "li ho detto (for gli ho detto)",
+        "gli vedo (for li vedo)"
+      ],
+      "topics": [
+        "pronoun"
+      ]
+    },
+    {
+      "id": "paradigm_confusion.future_for_conditional_1pl",
+      "family": "paradigm_confusion",
+      "label": "Future 1pl written for the conditional 1pl",
+      "description": "Writing the single-m future 1pl (-emo) where the double-m conditional (-emmo) is required, the two differing only by the geminate.",
+      "examples": [
+        "parleremo (for parleremmo)",
+        "prenderemo (for prenderemmo)",
+        "avremo (for avremmo)",
+        "saremo (for saremmo)"
+      ],
+      "topics": [
+        "verb_form.condizionale"
+      ]
+    },
+    {
+      "id": "paradigm_confusion.wrong_person_as_imperative",
+      "family": "paradigm_confusion",
+      "label": "Wrong present-tense cell used as the imperative",
+      "description": "Using a valid present-indicative person as the tu imperative: the 2sg -i for the -are imperative (which is the 3sg -a), or the wrong vowel on -ere/-ire.",
+      "examples": [
+        "parli! (for parla!)",
+        "prenda! (for prendi!)"
+      ],
+      "topics": [
+        "verb_form.imperativo"
+      ]
+    },
+    {
+      "id": "register.tu_lei_mismatch",
+      "family": "register",
+      "label": "tu and Lei forms mixed",
+      "description": "Mixing the informal tu system with the formal Lei system: an informal clitic for the formal La, or an informal imperative where the formal (subjunctive-based) one is required.",
+      "examples": [
+        "ti ringrazio, signor Bianchi (for La ringrazio)",
+        "Dicami (for the formal Mi dica)",
+        "Non mi parla (register slip in a negative imperative)"
+      ],
+      "topics": [
+        "pronoun",
+        "verb_form.imperativo"
+      ]
+    },
+    {
+      "id": "regularisation.adjective_class",
+      "family": "regularisation",
+      "label": "Class II (-e) adjective inflected as Class I (-o/-a)",
+      "description": "Treating an -e-class adjective (grande) as if it took the dominant -o/-a Class I pattern.",
+      "examples": [
+        "un libro grando (for grande)",
+        "una casa granda (for grande)"
+      ],
+      "topics": [
+        "adjective_agreement"
+      ]
+    },
+    {
+      "id": "regularisation.invariable_adjective",
+      "family": "regularisation",
+      "label": "Invariable adjective wrongly inflected",
+      "description": "Any invariable word wrongly inflected: nouns (le citta's, i films italianised, filmi), adverbs (molte stanche - agreement leaking onto the adverb), indefinites (nessuni, ciascuni, qualunqui, ogni inflected as ogna/ognie).",
+      "examples": [
+        "le case rose (for rosa)",
+        "le pareti verdi scure / verde scure (for verde scuro)"
+      ],
+      "topics": [
+        "adjective_agreement"
+      ]
+    },
+    {
+      "id": "regularisation.irregular_participle",
+      "family": "regularisation",
+      "label": "Irregular past participle regularised",
+      "description": "Forming an irregular past participle by the regular -ato/-uto/-ito rule instead of the suppletive/contracted form.",
+      "examples": [
+        "fato (for fatto)",
+        "dito (for detto)",
+        "prenduto (for preso)",
+        "scrivuto (for scritto)",
+        "leggito (for letto)",
+        "aprito (for aperto)"
+      ],
+      "topics": [
+        "verb_form.passato_prossimo"
+      ]
+    },
+    {
+      "id": "regularisation.irregular_verb",
+      "family": "regularisation",
+      "label": "Irregular verb regularised",
+      "description": "Conjugating an irregular verb as if it were regular, ignoring the suppletive or contracted paradigm. Recurs in every tense.",
+      "examples": [
+        "sapo (for so)",
+        "volo (for voglio)",
+        "ando (for vado)",
+        "poto (for posso)"
+      ],
+      "topics": [
+        "verb_form.condizionale",
+        "verb_form.congiuntivo",
+        "verb_form.future",
+        "verb_form.gerundio",
+        "verb_form.imperativo",
+        "verb_form.imperfect",
+        "verb_form.passato_remoto",
+        "verb_form.present_indicative"
+      ],
+      "unreachable_notes": [
+        "imperativo irregular_tu: norm() folds the apostrophe, so a regularised bare 'va' scores as correct va' and no guard can catch it. Empty imperativo stats here do NOT mean learners never regularise apocopated forms - they may do it constantly at full marks. (2026-07-15)"
+      ]
+    },
+    {
+      "id": "stem_change.dittongo_over_extension",
+      "family": "stem_change",
+      "label": "Diphthong kept in noi/voi",
+      "description": "Keeping the stressed-stem diphthong in the 1pl/2pl, where stress moves to the ending and the plain stem returns.",
+      "examples": [
+        "esciamo (for usciamo)",
+        "siediamo (for sediamo)"
+      ],
+      "topics": [
+        "verb_form.present_indicative"
+      ]
+    },
+    {
+      "id": "stem_change.dittongo_under_application",
+      "family": "stem_change",
+      "label": "Diphthong lost in the singular",
+      "description": "Failing to diphthongise the stressed stem vowel in the singular or 3pl.",
+      "examples": [
+        "uscio (for esco)",
+        "sedo (for siedo)",
+        "morio (for muoio)"
+      ],
+      "topics": [
+        "verb_form.present_indicative"
+      ]
+    },
+    {
+      "id": "stem_change.future_are_to_e",
+      "family": "stem_change",
+      "label": "-are→-er future/conditional stem shift mishandled",
+      "description": "Failing to shift the -are theme vowel to -er- in the future/conditional stem, or over-applying that shift to verbs (dare/stare/fare) that keep -ar-.",
+      "examples": [
+        "parlarò (for parlerò)",
+        "derò/ferò/sterò (for darò/farò/starò)"
+      ],
+      "topics": [
+        "verb_form.condizionale",
+        "verb_form.future"
+      ]
+    },
+    {
+      "id": "stem_change.future_syncope_over_extension",
+      "family": "stem_change",
+      "label": "Future/conditional stem over-syncopated",
+      "description": "Syncopating a regular stem by false analogy with the irregular syncopated futures.",
+      "examples": [
+        "scrivrò (for scriverò)"
+      ],
+      "topics": [
+        "verb_form.future"
+      ]
+    },
+    {
+      "id": "stem_change.future_syncope_under_application",
+      "family": "stem_change",
+      "label": "Irregular future/conditional stem not syncopated",
+      "description": "Keeping the theme vowel where the irregular future/conditional stem syncopates (avr-, andr-, potr-).",
+      "examples": [
+        "avero/andero/potero (for avrò/andrò/potrò)"
+      ],
+      "topics": [
+        "verb_form.condizionale",
+        "verb_form.future"
+      ]
+    },
+    {
+      "id": "stem_change.g_over_extension",
+      "family": "stem_change",
+      "label": "-g- inserted in the wrong person",
+      "description": "Carrying the inserted -g- of a -go verb into a person that should not have it (the 1pl/2pl, or a regular-stem form).",
+      "examples": [
+        "vengiamo (for veniamo)",
+        "tengiamo (for teniamo)"
+      ],
+      "topics": [
+        "verb_form.present_indicative"
+      ]
+    },
+    {
+      "id": "stem_change.g_under_application",
+      "family": "stem_change",
+      "label": "-g- omitted where required",
+      "description": "Failing to insert the -g- in the 1sg/3pl of a -go verb.",
+      "examples": [
+        "veno (for vengo)",
+        "teno (for tengo)",
+        "salgono written as salono"
+      ],
+      "topics": [
+        "verb_form.present_indicative"
+      ]
+    },
+    {
+      "id": "stem_change.isc_over_extension",
+      "family": "stem_change",
+      "label": "-isc- added in noi/voi",
+      "description": "Over-extending the -isc- infix beyond where it belongs: into the present (and present-subjunctive) 1pl/2pl where it never appears, or into tenses built on the plain stem (future/conditional finirò not *finiscerò, gerund finendo not *finiscendo). The infix is present-system only.",
+      "examples": [
+        "capisciamo (for capiamo)",
+        "finisciamo (for finiamo)",
+        "preferisciamo (for preferiamo)"
+      ],
+      "topics": [
+        "verb_form.condizionale",
+        "verb_form.congiuntivo",
+        "verb_form.future",
+        "verb_form.gerundio",
+        "verb_form.imperfect",
+        "verb_form.passato_remoto",
+        "verb_form.present_indicative"
+      ]
+    },
+    {
+      "id": "stem_change.isc_under_application",
+      "family": "stem_change",
+      "label": "-isc- omitted where required",
+      "description": "Failing to insert -isc- in the singular or 3pl of an -isc- verb.",
+      "examples": [
+        "capo / capio (for capisco)",
+        "finono (for finiscono)"
+      ],
+      "topics": [
+        "verb_form.congiuntivo",
+        "verb_form.present_indicative"
+      ]
+    },
+    {
+      "id": "stem_change.passato_remoto_strong_over_extension",
+      "family": "stem_change",
+      "label": "Strong passato-remoto stem used in the weak persons",
+      "description": "Carrying the strong (rhizotonic) stem into the 2sg/1pl/2pl, which take the regular weak stem and endings.",
+      "examples": [
+        "presesti (for prendesti)",
+        "fecesti (for facesti)"
+      ],
+      "topics": [
+        "verb_form.passato_remoto"
+      ]
+    },
+    {
+      "id": "stress.antepenult_3pl",
+      "family": "stress",
+      "label": "3pl stressed on the penult",
+      "description": "Misplacing the 3pl stress onto the penult (parlAno) instead of the antepenult (pArlano). Prosodic; links to the proposed word-stress vocab dimension.",
+      "examples": [
+        "parlAno (for pArlano)",
+        "prendOno mis-stressed"
+      ],
+      "topics": [
+        "verb_form.present_indicative"
+      ]
+    },
+    {
+      "id": "stress.thematic_1pl_2pl",
+      "family": "stress",
+      "label": "1pl/2pl stress misplaced",
+      "description": "Mis-stressing the 1pl/2pl, where the stress falls on the ending, by analogy with the stem-stressed singular.",
+      "examples": [
+        "mis-stressed imperfect 1pl/2pl (parlaVAmo region)"
+      ],
+      "topics": [
+        "verb_form.imperfect"
+      ]
+    },
+    {
+      "id": "transfer.calque_argument_structure",
+      "family": "transfer",
+      "label": "English argument structure calqued",
+      "description": "Mapping English subject/object roles or prepositions onto Italian, especially experiencer verbs (piacere) and overly literal prepositional phrases.",
+      "examples": [
+        "Io piaccio la pizza (for Mi piace la pizza)",
+        "Parliamo di esso (for Ne parliamo)"
+      ],
+      "topics": [
+        "pronoun"
+      ]
+    },
+    {
+      "id": "transfer.clitic_omission",
+      "family": "transfer",
+      "label": "Required clitic omitted (English has no equivalent)",
+      "description": "Failing to use a clitic Italian requires because English expresses the meaning without one: partitive/pronominal ne, locative/topic/existential ci, neuter lo, lexicalised clusters (farcela).",
+      "examples": [
+        "Ho tre (for Ne ho tre)",
+        "Vado la' (for Ci vado)",
+        "E' un problema (for C'e' un problema)",
+        "Penso a questo (for Ci penso)",
+        "So questo (for Lo so)",
+        "Non lo faccio (for Non ce la faccio)"
+      ],
+      "topics": [
+        "pronoun"
+      ]
+    },
+    {
+      "id": "transfer.construction_nonfinite",
+      "family": "transfer",
+      "label": "Infinitive used where a non-finite Italian form is required",
+      "description": "Calquing an English structure by pairing stare with an infinitive instead of a gerund (the progressive), an L1-driven construction error.",
+      "examples": [
+        "sto parlare (for sto parlando)"
+      ],
+      "topics": [
+        "verb_form.gerundio"
+      ]
+    },
+    {
+      "id": "transfer.negative_imperative_finite",
+      "family": "transfer",
+      "label": "Finite form negated instead of non + infinitive",
+      "description": "Negating the positive tu imperative directly (English 'don't speak') instead of the Italian non + infinitive.",
+      "examples": [
+        "non parla! (for non parlare!)"
+      ],
+      "topics": [
+        "verb_form.imperativo"
+      ]
+    },
+    {
+      "id": "transfer.negative_imperative_infinitive_over_extension",
+      "label": "non + infinitive over-extended beyond tu",
+      "description": "The tu negative imperative's non + infinitive rule applied where it does not belong: noi/voi negatives (non parlare! for non parliamo! / non aspettare! for non aspettate!), or the bare infinitive reached for as an affirmative imperative (dire! for di'!). The learner has LEARNT the tu rule and is over-applying it - a more advanced error than never having the rule, and diagnostically the mirror of transfer.negative_imperative_finite.",
+      "family": "transfer",
+      "examples": [
+        "non parlare! (noi intended: non parliamo!)",
+        "non aspettare! (voi intended: non aspettate!)",
+        "dire! (tu affirmative intended: di'!)"
+      ],
+      "topics": [
+        "verb_form.imperativo"
+      ]
+    },
+    {
+      "id": "word_order.adjective_position",
+      "family": "word_order",
+      "label": "Adjective placed before the noun where post-nominal is default",
+      "description": "Fronting a descriptive adjective on the English pattern, where Italian's unmarked order is post-nominal.",
+      "examples": [
+        "la rossa casa (for la casa rossa)"
+      ],
+      "topics": [
+        "adjective_agreement"
+      ]
+    },
+    {
+      "id": "word_order.adverb_aux_participle",
+      "family": "word_order",
+      "label": "Adverb or negation misplaced around aux + participle",
+      "description": "Breaking the fixed aux-then-participle block: putting negation or a frequency/time adverb (già, ancora, mai, sempre, appena) outside the slot between auxiliary and participle.",
+      "examples": [
+        "ho non mangiato (for non ho mangiato)",
+        "ho mangiato già (for ho già mangiato)"
+      ],
+      "topics": [
+        "verb_form.passato_prossimo"
+      ]
+    },
+    {
+      "id": "word_order.clitic_cluster_order",
+      "family": "word_order",
+      "label": "Clitic cluster in the wrong internal order",
+      "description": "Ordering a two-clitic cluster wrongly, chiefly DOP before IOP.",
+      "examples": [
+        "Lo mi dai? (for Me lo dai?)"
+      ],
+      "topics": [
+        "pronoun"
+      ]
+    },
+    {
+      "id": "word_order.clitic_position",
+      "family": "word_order",
+      "label": "Clitic in the wrong position relative to the verb",
+      "description": "Misplacing a clitic: after a finite verb, detached from an infinitive/gerund/imperative that requires attachment, or attached to a formal Lei imperative where it must precede.",
+      "examples": [
+        "Vedo lo (for Lo vedo)",
+        "Voglio lo vedere (for Voglio vederlo)",
+        "Vedendo lo (for vedendolo)",
+        "Dicami (for Mi dica)"
+      ],
+      "topics": [
+        "pronoun"
+      ]
+    },
+    {
+      "id": "transfer.dop_iop_confusion",
+      "family": "transfer",
+      "label": "Indirect pronoun where the verb takes a direct object",
+      "description": "English 'wait FOR / look FOR / listen TO / pay FOR' suggests a preposition and hence an indirect object; the Italian verbs (aspettare, cercare, guardare, ascoltare, pagare) are plain transitives taking lo/la/li/le. The error is picking gli/le (IOP) where the verb wants a DOP — visible only with third-person referents.",
+      "examples": [
+        "gli aspetto (for lo aspetto)",
+        "le cerco 'I look for her' misread as dative (for la cerco)",
+        "aspetto per lui (preposition transferred wholesale)"
+      ],
+      "topics": [
+        "pronoun"
+      ]
+    },
+    {
+      "id": "transfer.partitive_for_bare_noun",
+      "family": "transfer",
+      "label": "Partitive/quantifier where Italian takes a bare noun",
+      "description": "English 'any/some' over-translated as delle/dei/del/alcune/qualche where Italian uses the bare zero-determiner noun.",
+      "examples": [
+        "Ci sono delle domande? (for Ci sono domande?)",
+        "Non c'e del tempo (for Non c'e tempo)"
+      ],
+      "topics": [
+        "existential"
+      ]
+    },
+    {
+      "id": "orthography.io_plural_i_count",
+      "family": "orthography",
+      "label": "-io plural i-count wrong (doubled or dropped)",
+      "description": "Plural of -io nouns takes the wrong number of i: unstressed -io wrongly doubled, or stressed -io wrongly single.",
+      "examples": [
+        "figlii (for figli)",
+        "zi (for zii)"
+      ],
+      "topics": [
+        "noun"
+      ]
+    },
+    {
+      "id": "regularisation.irregular_plural",
+      "family": "regularisation",
+      "label": "Irregular plural formed by the regular rule",
+      "description": "An irregular noun plural produced with the regular -i/-e ending (uovi for uova, braccie for braccia).",
+      "examples": [
+        "uovi (for uova)",
+        "braccie (for braccia)"
+      ],
+      "topics": [
+        "noun"
+      ]
+    },
+    {
+      "id": "regularisation.irregular_comparative",
+      "family": "regularisation",
+      "label": "Irregular comparative made periphrastic/double",
+      "description": "The periphrastic or double comparative where the synthetic irregular is required (piu migliore; piu buono in the abstract sense).",
+      "examples": [
+        "piu migliore (for migliore)",
+        "piu buono (abstract sense, for migliore)"
+      ],
+      "topics": [
+        "comparison"
+      ]
+    },
+    {
+      "id": "regularisation.invariable_noun",
+      "family": "regularisation",
+      "label": "Invariable noun given a plural ending",
+      "description": "An invariable noun wrongly inflected for plural (cittadi for citta).",
+      "examples": [
+        "cittadi (for citta)",
+        "universitadi (for universita)"
+      ],
+      "topics": [
+        "noun"
+      ]
+    },
+    {
+      "id": "agreement.subject_verb_finite",
+      "family": "agreement",
+      "label": "Finite verb not agreeing with its subject",
+      "description": "A finite main verb conjugated for the wrong person/number relative to its grammatical subject. Distinct from agreement.auxiliary_person, which its description scopes to the auxiliary only.",
+      "examples": [
+        "mi piace i libri / mi piacciono la pizza",
+        "c'e due camere (existential)",
+        "si vende libri (si passivante)",
+        "ci vuole due ore (volerci)",
+        "plural verb after qualcuno / ognuno / chiunque"
+      ],
+      "topics": [
+        "existential",
+        "indefinite",
+        "piacere",
+        "pronominal_verbs",
+        "si_constructions"
+      ]
+    },
+    {
+      "id": "paradigm_confusion.preposition_choice",
+      "family": "paradigm_confusion",
+      "label": "Wrong preposition chosen",
+      "description": "Selecting the wrong member of the closed preposition set for the role: place, motion, time, means/manner, and the di/da/che contrasts. The chosen preposition is a real word, wrong for the job — the paradigm_confusion shape.",
+      "examples": [
+        "in Roma (for a Roma); a Italia (for in Italia)",
+        "da for destination; a for origin",
+        "con treno (for in treno); in piedi (for a piedi)",
+        "piu alto che Luca (for di Luca)",
+        "da for possession (for di)"
+      ],
+      "topics": [
+        "comparison",
+        "preposition"
+      ]
+    },
+    {
+      "id": "paradigm_confusion.preposition_verb_governed",
+      "family": "paradigm_confusion",
+      "label": "Wrong preposition after a governing verb",
+      "description": "The preposition a verb lexically governs, got wrong (di studiare for a studiare). Kept separate from preposition_choice because it is a different learner state: memorised per-verb, not derivable from a rule, so the drill-down should not blur it with the rule-governed cases.",
+      "examples": [
+        "di studiare (for a studiare)",
+        "a lavorare (for di lavorare)",
+        "mi ha detto venire (missing di)"
+      ],
+      "topics": [
+        "preposition",
+        "reported_speech"
+      ]
+    },
+    {
+      "id": "paradigm_confusion.relative_choice",
+      "family": "paradigm_confusion",
+      "label": "Wrong relative pronoun chosen",
+      "description": "Selecting the wrong member of the relative paradigm: che/cui/il quale/chi/dove.",
+      "examples": [
+        "cui for a direct object",
+        "che used after a preposition",
+        "che for a place instead of dove/in cui",
+        "che for chi"
+      ],
+      "topics": [
+        "relative_pronoun"
+      ]
+    },
+    {
+      "id": "paradigm_confusion.connective_choice",
+      "family": "paradigm_confusion",
+      "label": "Wrong connective chosen",
+      "description": "Selecting the wrong member of the connective set, including direction flips (quindi where a cause is meant) and register mismatches within the set.",
+      "examples": [
+        "quindi where a cause is being given",
+        "invece for plain objection",
+        "infine for allora",
+        "poiche in casual speech"
+      ],
+      "topics": [
+        "connective"
+      ]
+    },
+    {
+      "id": "paradigm_confusion.adverb_vs_adjective",
+      "family": "paradigm_confusion",
+      "label": "Adjective used where the adverb is required",
+      "description": "Reaching for the adjective form where Italian needs the adverb (or the reverse), chiefly bene/buono.",
+      "examples": [
+        "cucina buono (for cucina bene)",
+        "parlo italiano molto buono",
+        "sto buono (means 'I behave')"
+      ],
+      "topics": [
+        "adverb"
+      ]
+    },
+    {
+      "id": "regularisation.noun_class_plural",
+      "family": "regularisation",
+      "label": "Noun pluralised on the wrong class",
+      "description": "Applying another declension class's plural ending (casi for case, libre for libri, fiore for fiori).",
+      "examples": [
+        "casi (for case)",
+        "libre (for libri)",
+        "studentes / fiores"
+      ],
+      "topics": [
+        "noun"
+      ]
+    },
+    {
+      "id": "transfer.foreign_s_plural",
+      "family": "transfer",
+      "label": "Plural formed with -s",
+      "description": "Forming an Italian plural by adding -s, from English/Spanish. Depends on the transfer broadening above (Spanish-shaped, not English).",
+      "examples": [
+        "libros / casas / amicos / uomos",
+        "citta's / films / res / cittas"
+      ],
+      "topics": [
+        "noun"
+      ]
+    },
+    {
+      "id": "agreement.noun_gender_lexical",
+      "family": "agreement",
+      "label": "Wrong lexical gender assigned to the noun",
+      "description": "Assigning the noun the wrong gender - typically misled by its ending - after which the article and adjectives agree correctly with the WRONG gender. The error is lexical knowledge, not the agreement operation.",
+      "examples": [
+        "la problema / il mano / la tema",
+        "la libro / il casa",
+        "assuming every -e noun is feminine"
+      ],
+      "topics": [
+        "noun"
+      ]
+    },
+    {
+      "id": "discrimination.no_backshift_over_extension",
+      "family": "discrimination",
+      "label": "Backshift applied where none is needed",
+      "description": "Back-shifting the embedded clause after a PRESENT reporting verb, where the original tense should stand. The mirror of discrimination.sequence_of_tenses; the learner has learnt the rule and over-applies it.",
+      "examples": [
+        "dice che era stanco (for dice che e stanco)"
+      ],
+      "topics": [
+        "reported_speech"
+      ]
+    },
+    {
+      "id": "discrimination.deixis_not_shifted",
+      "family": "discrimination",
+      "label": "Deictics not shifted inside a report",
+      "description": "Leaving time/place/person deictics anchored to the original utterance inside a report made later.",
+      "examples": [
+        "domani left in place inside a report anchored days later",
+        "possessives failing to shift person"
+      ],
+      "topics": [
+        "reported_speech"
+      ]
+    },
+    {
+      "id": "word_order.negation_elements",
+      "family": "word_order",
+      "label": "Negation elements misplaced",
+      "description": "Misplacing non or its partner: clitic before non, English adverb order, dropping non in the bipartite frame, or keeping non with a preverbal negative.",
+      "examples": [
+        "Lo non vedo (clitic before non)",
+        "bevo mai (non dropped) / mai bevo (English order)",
+        "Non nessuno e venuto",
+        "c'e non tempo",
+        "mica before the verb with non"
+      ],
+      "topics": [
+        "existential",
+        "negation"
+      ]
+    },
+    {
+      "id": "word_order.adverb_position",
+      "family": "word_order",
+      "label": "Adverb misplaced relative to the verb",
+      "description": "English-style pre-verb adverb placement, and adverb wedged between verb and direct object.",
+      "examples": [
+        "lei bene parla (for lei parla bene)"
+      ],
+      "topics": [
+        "adverb"
+      ]
+    },
+    {
+      "id": "derivation.mente_formation",
+      "family": "derivation",
+      "label": "-mente adverb built on the wrong base",
+      "description": "Building the -mente adverb on the masculine rather than the feminine adjective, failing to drop the final -e of -le/-re adjectives, or inventing -mente forms where none exists.",
+      "examples": [
+        "lentomente (masculine base)",
+        "facilemente / regolaremente (undropped e)",
+        "benemente (invented)"
+      ],
+      "topics": [
+        "adverb"
+      ]
+    },
+    {
+      "id": "derivation.alterato_misuse",
+      "family": "derivation",
+      "label": "Evaluative suffix misused or misread",
+      "description": "Free-generating alterato suffixes on nouns that do not take them, missing the gender shift, or reading a lexicalised form as an alterato.",
+      "examples": [
+        "free-generating diminutives on any noun",
+        "la portona (missed gender shift to il portone)",
+        "reading every -etto/-accia as an alterato",
+        "-accio read as size rather than pejorative"
+      ],
+      "topics": [
+        "word_formation"
+      ]
+    },
+    {
+      "id": "derivation.prefix_misuse",
+      "family": "derivation",
+      "label": "Derivational prefix misused or misread",
+      "description": "Applying an intensifier prefix where it does not go, or misreading a prefix's contribution.",
+      "examples": [
+        "stra- on verbs/nouns where it does not go",
+        "missing that arcistufo IS a superlative",
+        "neo- read as a meaning change rather than newness"
+      ],
+      "topics": [
+        "word_formation"
+      ]
+    },
+    {
+      "id": "gemination.spurious_double",
+      "family": "gemination",
+      "label": "Spurious double consonant",
+      "description": "A single consonant wrongly written double (dopo -> doppo, sabato -> sabbato, camera -> cammera, capitale -> cappitale). The mirror of geminate_simplified: over-application of the doppie rather than under-application. Together they make doubling a two-way discrimination.",
+      "examples": [
+        "doppo (for dopo)",
+        "sabbato (for sabato)",
+        "cammera (for camera)"
+      ],
+      "topics": [
+        "orthography"
+      ]
+    },
+    {
+      "id": "orthography.digraph_reduced",
+      "family": "orthography",
+      "label": "Digraph reduced to a plain letter",
+      "description": "Spelling a gl / gn / sc digraph as a single letter or letter + i, losing its /ly/, /ny/ or /sh/ value: famiglia -> familia, figlio -> filio, bagno -> banio, prosciutto -> prociutto. Systematic L1 transfer where the reader's language has no such digraph.",
+      "examples": [
+        "familia (for famiglia)",
+        "banio (for bagno)",
+        "prociutto (for prosciutto)"
+      ],
+      "topics": [
+        "orthography"
+      ]
+    },
+    {
+      "id": "orthography.qu_cu_confusion",
+      "family": "orthography",
+      "label": "qu / cu confusion",
+      "description": "Writing qu for cu or cu for qu in the /kw/-family: scuola -> squola, cuore -> quore, and the qui (here) / cui (whom) swap. The /kw/ sound is spelt qu by default but cu in a closed lexical set.",
+      "examples": [
+        "squola (for scuola)",
+        "quore (for cuore)",
+        "cui (for qui)"
+      ],
+      "topics": [
+        "orthography"
+      ]
+    },
+    {
+      "id": "orthography.cqu_error",
+      "family": "orthography",
+      "label": "cqu family mis-spelled",
+      "description": "Reducing or mis-forming the small cqu cluster (acqua -> aqua / acua, acquisto -> aquisto, nacque -> naque) OR over-extending it to a plain-qu word (aquila -> acquila). cqu is a near-closed set: acqua and derivatives, plus a handful of passato-remoto forms (nacque, piacque, tacque).",
+      "examples": [
+        "aqua (for acqua)",
+        "naque (for nacque)",
+        "acquila (for aquila, over-correction)"
+      ],
+      "topics": [
+        "orthography"
+      ]
+    },
+    {
+      "id": "accent_silent_letter.silent_h_added",
+      "family": "accent_silent_letter",
+      "label": "Silent h added (hypercorrection)",
+      "description": "Adding avere's silent h to a word that has none: anno (year) -> hanno, a (to) -> ha, o (or) -> ho. The insertion mirror of the existing silent_h_omitted; both directions are live because each avere form has a real homophone.",
+      "examples": [
+        "hanno (for anno)",
+        "ha Roma (for a Roma)",
+        "un hanno fa (for un anno fa)"
+      ],
+      "topics": [
+        "orthography"
+      ]
+    },
+    {
+      "id": "orthography.elision_gender_error",
+      "family": "orthography",
+      "label": "Elision apostrophe on the wrong gender",
+      "description": "Putting the un' apostrophe on a masculine noun (un'amico, un'esame) or omitting it on a feminine one (un amica). The apostrophe marks feminine una-elision only; masculine un is a troncamento (truncation) that takes no apostrophe. The single sharpest article-spelling contrast.",
+      "examples": [
+        "un'amico (for un amico)",
+        "un'esame (for un esame)",
+        "un amica (for un'amica)"
+      ],
+      "topics": [
+        "orthography",
+        "article"
+      ]
+    },
+    {
+      "id": "orthography.spurious_apostrophe",
+      "family": "orthography",
+      "label": "Spurious apostrophe",
+      "description": "An apostrophe written where standard orthography has none. The flagship is qual'è for qual è: qual is a troncamento (not an elision), so nothing is dropped and no apostrophe belongs. Also covers writing po' as an apostrophe'd form correctly but adding stray apostrophes to truncated words that don't take one.",
+      "examples": [
+        "qual'è (for qual è)"
+      ],
+      "topics": [
+        "orthography"
+      ]
+    },
+    {
+      "id": "orthography.overcapitalization",
+      "family": "orthography",
+      "label": "Over-capitalisation (English transfer)",
+      "description": "Capitalising mid-sentence what Italian lower-cases: weekdays (Lunedì), months (Gennaio), languages and nationalities as adjective or noun (Italiano, gli Italiani), and courtesy titles (Signor Rossi). Pure L1-transfer from English capitalisation habits.",
+      "examples": [
+        "Lunedì (mid-sentence)",
+        "Parlo Italiano",
+        "il Signor Rossi"
+      ],
+      "topics": [
+        "orthography"
+      ]
+    },
+    {
+      "id": "orthography.vowel_confusion",
+      "family": "orthography",
+      "label": "Unstressed vowel confusion",
+      "description": "Lexical substitution of unstressed vowels: i/e (difficile -> difficele, dicembre -> decembre, minuto -> menuto) and o/u (comprare -> cumprare, novembre -> nuvembre). Item-specific rather than rule-governed; distinct from the morphological io_plural_i_count and i_retention_error already in the registry.",
+      "examples": [
+        "difficele (for difficile)",
+        "decembre (for dicembre)",
+        "cumprare (for comprare)"
+      ],
+      "topics": [
+        "orthography"
+      ]
+    },
+    {
+      "id": "paradigm_confusion.bipartite_particle",
+      "family": "paradigm_confusion",
+      "label": "Wrong member of the bipartite negative",
+      "description": "più / ancora / mai swapped under non — the no-longer versus not-yet flip. A wrong member of a small closed set, which is what paradigm_confusion is for.",
+      "examples": [
+        "non fumo ancora for non fumo più (still doesn't smoke vs doesn't smoke any more)",
+        "la cena non è più pronta for non è ancora pronta"
+      ],
+      "topics": [
+        "negation"
+      ]
+    },
+    {
+      "id": "transfer.disjunction_for_correlative",
+      "family": "transfer",
+      "label": "o…o (or bare e) calqued for né…né",
+      "description": "English either…or mapped onto a negated correlative, so the negative conjunction never appears.",
+      "examples": [
+        "non bevo o caffè o tè for non bevo né caffè né tè",
+        "non ho visto Luca e Maria for né Luca né Maria"
+      ],
+      "topics": [
+        "negation"
+      ]
+    },
+    {
+      "id": "paradigm_confusion.additive_echo_polarity",
+      "family": "paradigm_confusion",
+      "label": "Additive echo wrong for polarity",
+      "description": "Anch'io / Anche a me / Anche noi used to agree with a NEGATIVE statement, where the negative echo neanche/nemmeno is required. Wrong member of the additive-echo set, selected on polarity.",
+      "examples": [
+        "— Non mi piace. — Anche a me. (needs Neanche a me)",
+        "— Non ci vado. — Anch'io. (needs Neanch'io)"
+      ],
+      "topics": [
+        "negation"
+      ]
+    },
+    {
+      "id": "transfer.positive_indefinite_for_negative",
+      "family": "transfer",
+      "label": "Positive indefinite where the negative is required",
+      "description": "qualcosa / qualcuno under a negation where niente / nessuno is required — the English negative-polarity 'anything / anybody' calque. Filed under transfer because the driver is the English pattern, not ignorance of the Italian set; see the ruling note on the alternative reading.",
+      "examples": [
+        "non voglio qualcosa for non voglio niente",
+        "non ho visto qualcuno for non ho visto nessuno"
+      ],
+      "topics": [
+        "negation",
+        "indefinite"
+      ]
+    },
+    {
+      "id": "discrimination.pleonastic_non_as_negation",
+      "family": "discrimination",
+      "direction": "reading",
+      "label": "Pleonastic non read as a real negation",
+      "description": "Reading the non-negating non of finché non and restrictive non…che as though it negated the clause, so the sentence is understood as its own opposite. A comprehension miss: the learner's Italian is not wrong, their reading of it is.",
+      "examples": [
+        "finché non torno read as 'as long as I don't come back' rather than 'until I come back'",
+        "Non ho che dieci euro read as 'I don't have ten euros' rather than 'I have only ten euros'"
+      ],
+      "topics": [
+        "negation"
+      ]
+    },
+    {
+      "id": "discrimination.mica_function_misread",
+      "family": "discrimination",
+      "direction": "reading",
+      "label": "mica's function misread",
+      "description": "mica taken as forse, or read as a forceful denial inside a suppositional question. A misreading of what the particle does, not a wrong choice from a set — which is why it sits in discrimination rather than paradigm_confusion.",
+      "examples": [
+        "Non è mica vero read as 'it's perhaps not true'",
+        "Mica sei stanco? read as a flat denial rather than a tentative question"
+      ],
+      "topics": [
+        "negation"
+      ]
+    }
+  ]
 }

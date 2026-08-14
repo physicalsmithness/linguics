@@ -1,19 +1,15 @@
 seat: PassiveAuthor
 classes: [all-seats, all-authors]
 project: Linguics
-updated: 2026-08-12
-waiting: active
+updated: 2026-08-14
+waiting: parked
 needs_from_smith: none
 claude_can_verify: yes
-summary: Passive COMPLETE (45 grammar + 19 translation). 'check chats' surfaced two ALLAUTHORS class-token threads; both handled from disk this turn.
+summary: Passive COMPLETE (45 grammar + 19 translation). 'check chats' this turn: returned my tier-2 review packet (the substantive task) and cleared two class-token threads from disk.
 queue: []
 handled_this_turn:
-  - ALLAUTHORS item_shape_no_change_forms: ZERO exposure (all answers transform the cue / index-scored); recorded off-routing
-  - ALLAUTHORS cue_notation_renders_use_english: 2 English-in-parens -> brackets (pas_and_02, pas_use_reg_06), 0 residue, display-only; 4 Italian meta-directives flagged out-of-scope; awaiting Architecture stamp
-awaiting_architecture_stamp:
-  - cue_notation conversion (proposed stamp in thread)
-not_mine: [criterion20 gate rewrite (Architecture owns; 07-22 estate pass frozen)]
-retrofit_status: [13/16/18/19 discharged, 15 standing, 17 not-passive, 21 zero passive items, 25 clean-reported, item_shape immune, cue_notation converted]
-
-queue:
-  - TIER-2 REVIEW PACKET WAITING (2026-08-12): data/review_packets_tier2/REVIEW_passive_2026-08-11.json — 18 pairs. Thread: inter_chat/Architecture_PassiveAuthor_tier2_review_packet.md  [not blocked]
+  - tier-2 review packet RETURNED (data/review_packets_tier2/returned/REVIEW_passive_2026-08-11.json): 16 keep, 2 strike (venivo=motion false positive in passive + venire), +9 essere items to root, +2 NEW buckets (passive.formation.essere 10, agent_da 3) that morph-it could not see. Awaiting Architecture merge.
+  - ALLAUTHORS answer_leak_dispatch: zero real exposure; the one Tier-C advisory hit (pas_agt_04) is a substring false-positive neutralised by match_at word. Recorded off-routing.
+key_finding: morph-it is BLIND to the essere passive (è/sono/fu + participle = passato-prossimo morphology), so the commonest passive form was tagged ZERO times estate-wide-relevant; recommended an essere-passive heuristic for the morph pass.
+awaiting_architecture: [merge my returned packet; stamp cue_notation conversion (prior turn)]
+retrofit_status: all discharged/standing/immune; nothing owed

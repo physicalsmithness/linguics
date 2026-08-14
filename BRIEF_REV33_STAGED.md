@@ -24,3 +24,19 @@ morphology is genuinely ambiguous in context. Do not hand-add ahead of the centr
 4. **Item-shape law cross-reference.** ITEM_SHAPE_no_change_forms.md is binding; the ratified boundary
 (2026-08-03, InterrogativesAuthor's worked example): it bars blanks where copying an invariant cited
 form wins; construction/agreement blanks whose answer differs from anything cued stay free-text.
+
+
+## Staged 2026-08-14 — the aggregate rule for `expected_buckets`
+
+An aggregate bucket may stand alongside its own descendant in `expected_buckets` when its authored
+leaves do NOT exhaust the construction: the aggregate names the remainder, and a use falling between
+the leaves would otherwise be credited by nothing. Drop the aggregate when its leaves are exhaustive —
+it is then a strict OR of things already counted. Judged by the author against their own tree; the test
+is residue, not intuition, and it is auditable.
+
+Provenance: proposed by PronounAuthor from its tier-2 keeps (20 `pronoun.ne` overlaps in 603 verdicts),
+after Architecture's opposite ruling of 2026-08-13 was withdrawn — the coverage roll-up it relied on
+(`app.js:8051` / `getItemBuckets`) never reads `expected_buckets`, and the marker consumes the fire-list
+flat, so an aggregate is credited only when claimed.
+
+Do NOT use `attributes.is_aggregate` as the test: 337 nodes carry it, only 158 have children.

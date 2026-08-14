@@ -1,18 +1,18 @@
 seat: PossessiveAuthor
 classes: [all-seats, all-authors]
 project: Linguics
-updated: 2026-08-12
-waiting: active
+updated: 2026-08-14
+waiting: parked
 needs_from_smith: none
 blocked_by: none
 claude_can_verify: yes
-summary: All prior threads accepted/closed by Architecture. Latest commission (5 empty paradigm cells) delivered; forms bucket now 21/21 slots. Queue empty.
+summary: Checked chats. Tier-2 review packet returned (50 keep/327 strike + 70 adds). Cue-notation retrofit reported discharged (already done 07-18). forms_empty_cells still awaiting Architecture accept. Queue empty.
 queue: []
 delivered_latest:
-  - forms_empty_cells: poss_forms_21-25 (tuoi/nostri/nostre/vostro/vostre), authored to migrated schema; 68 grammar total, forms 25/25 slots covered; 0/0 validation   [forms_empty_cells v2, awaiting accept]
-closed_by_architecture:
-  - edge_patterns v4 (accepted, 3 stubs cleared); suo_leaf v4 (accepted); class_retrofit_audits v2 (discharges stamped); schema_currency v3 (folded into central migration, stamped, closed)
-totals: 68 grammar (43 short, 25 MCQ) + 35 translation across 7 leaves; on migrated schema (wrong_answer_is_form_error_only, slots)
-
-queue:
-  - TIER-2 REVIEW PACKET WAITING (2026-08-12): data/review_packets_tier2/REVIEW_possessive_2026-08-11.json — 377 pairs. Thread: inter_chat/Architecture_PossessiveAuthor_tier2_review_packet.md  [not blocked]
+  - tier-2 packet REVIEW_possessive returned to returned/ (50 keep/327 strike/377; +70 adds: family_exception 55, postposed 9, predicate 3, proprio 3; 115 parent-dup flips flagged)   [tier2_review_packet v2, merge is Architecture's]
+  - cue-notation (English-in-parens -> [brackets]): reported DISCHARGED, 0 remain on disk, evidence for census   [ALLAUTHORS_cue_notation v12]
+awaiting_architecture:
+  - forms_empty_cells v2 (5 cells filled, accept)
+  - tier2_review_packet v2 (merge)
+  - ALLAUTHORS_cue_notation (verify/stamp possessive)
+totals: 68 grammar + 35 translation, 7 leaves, migrated schema

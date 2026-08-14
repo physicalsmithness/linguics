@@ -1,7 +1,7 @@
 seat: Vocab
 classes: [all-seats]
 project: Linguics
-updated: 2026-08-12
+updated: 2026-08-14
 waiting: parked
 needs_from_smith: none
 blocked_by:
@@ -9,7 +9,7 @@ blocked_by:
   - Architecture: schema call on shortened_o_fem, invariable_i_fem, number-axis field (noun_class_taxonomy v3)
   - Architecture: tier-2 spec for abbreviation/full-form + morphological pairs (marker_semantics v15 §5)
 claude_can_verify: n/a
-summary: Wake sweep 2026-08-12 picked up three new-since-last-touch inter_chat items (theme_axes v1/v2, marker_semantics v14/v15) plus one I'd already actioned (noun_class_taxonomy v3). Actioned the safe wins: deleted 7 gap-fill artefacts (6 [skip] "real words" that turned out to be POS/gender-tag duplicates + alcuno-3589 nominalisation); applied arancio+arancione as orange_colour_noun eq-class per v15 §2; fixed the stale v13 date per v15 §5. Ran the subset-retry reconcile per v15 §3 and REVERTED it same session — sampling found ~15% homograph-bridge false positives (bat=bat, arch=bow, ear=ear-of-grain, testament=free-will, spring=season, ...); posted v16 to Architecture with four homograph-guard implementation options. Then delivered theme_axes v3: measured all 85 proposed sub-themes (QoderWork's estimates were 3–20× too high across 82/85), applied Smith's sayability+focus tests, ruled 21 MINT / 43 ENGINE-ONLY / 21 DROP with per-subtheme table. Nothing minted yet — data pass awaits Housing's renderer per §3 sequence.
+summary: 2026-08-14 wake found Architecture_Vocab_tier2_search_packet.md (cut 2026-08-13) — Vocab is IN wave 2 after Smith reversed the exclusion. Searched all 913 reference translations against my 180 freq-bands + 3 aggregates; emitted 8,677 findings across 118 distinct buckets (912/913 items touched — the one miss is `Digliene!` with a stacked clitic my stripper doesn't resolve). Applied the live rule per inter_chat v1 §3 (claim leaf + parent, coverage doesn't walk ancestors). Filtered [skip]/null-gloss/'?' entries before lookup to keep gap-fill artefacts from firing spurious bands. Returned to data/review_packets_tier2/returned/. Also this session (2026-08-12 sweep): deleted 7 gap-fill artefacts, applied orange_colour_noun eq-class, fixed stale v13 date; ran+reverted subset-retry reconcile (homograph-guard needed per v16 §1); delivered theme_axes v3 (21 MINT / 43 ENGINE-ONLY / 21 DROP verdict).
 queue: []
 watchlist:
   - Architecture reply on homograph guard — subset-retry re-run pending

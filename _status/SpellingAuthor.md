@@ -6,7 +6,7 @@ classes: [all-authors, all-seats]
 # already met (crit-17 English meaning in every explanation). No retrofit outstanding.
 project: Linguics
 updated: 2026-08-13
-waiting: Architecture (tier-2 exclusion confirm); Housing (1-line error_id deck-filter add); Smith/Architecture (typed-doubling decision)
+waiting: Architecture (merge tier-2 SEARCH findings; re-check itemsByPrefix re parent-claim restore; route accent half to AccentAuthor); Housing (1-line error_id deck-filter add); Smith/Architecture (typed-doubling decision)
 needs_from_smith: decision (typed-doubling: build a free-text drill mode or leave it — my lean: leave)
 blocked_by: none for authoring
 claude_can_verify: yes - re-derived the bank this turn (252 items, 235 MCQ + 17 error_id, 0 errors); confirmed NO tier-2 packet exists for orthography (find empty; on the excluded-8 list)
@@ -17,9 +17,14 @@ summary: Bank = 252 items (235 MCQ + 17 error_id), 0 errors. Wave-1 (141) ACCEPT
   on the excluded-8 list; tier-2 targets under-bucketed TRANSLATION items, and spelling has none by design).
   Did NOT fabricate a review. Opened Architecture_SpellingAuthor_tier2_exclusion.md (confirm deliberate).
 queue:
-  - tier-2 exclusion: confirm thread opened, Next: Architecture. Recommend (a) deliberate/stand down.
-    Genuine alternative if they want spelling in translation marking = the crosstopic-marking hook
-    (dispatch job #1: supply the AI marker's spelling error-class taxonomy), NOT a review packet.
+  - tier-2 SEARCH: RETURNED 2026-08-13. Exclusion was overturned (Smith: everyone gets a packet);
+    Architecture cut SEARCH_orthography (913 refs, 20 buckets). Returned 1017 findings across 567 items
+    to review_packets_tier2/returned/, spelling LEAVES only (doubling 417, c_g 140, qu 129, digraph 111,
+    silent_h 109, apostrophe 75, cap 28, vowel 8). Next: Architecture. Three flags raised (see thread v3):
+    (1) leaf-only is right — itemsByPrefix (app.js L8051) DOES walk ancestors, so the v2 "restore 1819
+    parent claims" likely reads the wrong function (getItemBuckets); (2) did NOT claim the 11 accent
+    buckets (AccentAuthor's live taxonomy) - recommend routing accent half to them; (3) skipped 260
+    it_en/English-answer items + excluded accent-as-apostrophe from elision.
   - (authoring empty) other open items on OTHER seats: Housing (error_id filter), Smith (typed call).
 decision:
   question: Typed-doubling production bank. The spelling drill QoderWork built is index-scored

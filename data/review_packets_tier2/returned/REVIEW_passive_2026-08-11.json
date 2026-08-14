@@ -1,0 +1,487 @@
+{
+  "generated": "2026-08-11",
+  "family": "passive",
+  "owner": "PassiveAuthor",
+  "instruction": "For each bucket: set verdict to 'keep' or 'strike' on every row, and list any item you know demonstrates your construction that I missed. These are machine proposals from morph-it tagging of the reference translation. UNRATIFIED - nothing is written to any item until you return this packet.",
+  "semantics": "expected_buckets is judged ONLY if the learner's answer engages it. Engaged and right = hit. Engaged and wrong = a real miss. Not engaged = blank, no penalty. So a GENEROUS list is safe; a WRONG list is not, because the marker will try to mark it.",
+  "do_not_prune_common": "A bucket that fires on most items is NOT noise. Smith, 2026-08-11: the purpose is demonstrating knowledge - getting the definite article right 571 times is 571 pieces of evidence, and the learner should see 10 out of 12 correct even when the two the item was built for are wrong. Strike only what is WRONG, never what is merely frequent.",
+  "buckets": [
+    {
+      "bucket_id": "passive",
+      "confidence": 0.85,
+      "item_count": 18,
+      "items": [
+        {
+          "item_id": "trans_pas_en_it_and_02",
+          "topic": "passive",
+          "reference_text": "Questo modulo va compilato in stampatello.",
+          "evidence": "va compilato",
+          "reason": "passive construction detected",
+          "proposal_confidence": 0.85,
+          "verdict": "keep",
+          "review_note": "kept: the Italian side genuinely builds the passive with this auxiliary."
+        },
+        {
+          "item_id": "trans_pas_en_it_ess_01",
+          "topic": "passive",
+          "reference_text": "La pizza venne inventata a Napoli.",
+          "evidence": "venne inventata",
+          "reason": "passive construction detected",
+          "proposal_confidence": 0.85,
+          "verdict": "keep",
+          "review_note": "kept: the Italian side genuinely builds the passive with this auxiliary."
+        },
+        {
+          "item_id": "trans_pas_en_it_ven_01",
+          "topic": "passive",
+          "reference_text": "I biglietti vengono controllati ogni mattina.",
+          "evidence": "vengono controllati",
+          "reason": "passive construction detected",
+          "proposal_confidence": 0.85,
+          "verdict": "keep",
+          "review_note": "kept: the Italian side genuinely builds the passive with this auxiliary."
+        },
+        {
+          "item_id": "trans_pas_en_it_ven_03",
+          "topic": "passive",
+          "reference_text": "Qui il pane viene fatto ogni giorno.",
+          "evidence": "viene fatto",
+          "reason": "passive construction detected",
+          "proposal_confidence": 0.85,
+          "verdict": "keep",
+          "review_note": "kept: the Italian side genuinely builds the passive with this auxiliary."
+        },
+        {
+          "item_id": "trans_pas_en_it_vsi_04",
+          "topic": "passive",
+          "reference_text": "Qui il pane viene fatto ogni giorno.",
+          "evidence": "viene fatto",
+          "reason": "passive construction detected",
+          "proposal_confidence": 0.85,
+          "verdict": "keep",
+          "review_note": "kept: the Italian side genuinely builds the passive with this auxiliary."
+        },
+        {
+          "item_id": "trans_pas_it_en_and_01",
+          "topic": "passive",
+          "reference_text": "Le medicine vanno prese a stomaco pieno.",
+          "evidence": "vanno prese",
+          "reason": "passive construction detected",
+          "proposal_confidence": 0.85,
+          "verdict": "keep",
+          "review_note": "kept: the Italian side genuinely builds the passive with this auxiliary."
+        },
+        {
+          "item_id": "trans_pas_it_en_ess_04",
+          "topic": "passive",
+          "reference_text": "Ogni domenica la messa veniva celebrata in latino.",
+          "evidence": "veniva celebrata",
+          "reason": "passive construction detected",
+          "proposal_confidence": 0.85,
+          "verdict": "keep",
+          "review_note": "kept: the Italian side genuinely builds the passive with this auxiliary."
+        },
+        {
+          "item_id": "trans_pas_it_en_ven_02",
+          "topic": "passive",
+          "reference_text": "La porta venne chiusa a chiave.",
+          "evidence": "venne chiusa",
+          "reason": "passive construction detected",
+          "proposal_confidence": 0.85,
+          "verdict": "keep",
+          "review_note": "kept: the Italian side genuinely builds the passive with this auxiliary."
+        },
+        {
+          "item_id": "trans_tc_cf_coll_en_it_01",
+          "topic": "tense_choice",
+          "reference_text": "Se sapevo prima, venivo subito ad aiutare.",
+          "evidence": "venivo subito",
+          "reason": "passive construction detected",
+          "proposal_confidence": 0.85,
+          "verdict": "strike",
+          "review_note": "STRIKE: 'venivo subito ad aiutare' is venire as the MOTION verb (I would come), in a colloquial se+imperfect counterfactual. No participle, no passive. The morph tagger keyed on the venire form and could not see it is motion, not auxiliary. Not a passive item and not mine (tense_choice)."
+        },
+        {
+          "item_id": "trans_pas_en_it_ess_02",
+          "topic": "passive",
+          "reference_text": "Queste case sono state costruite nel Quattrocento.",
+          "evidence": "author addition",
+          "reason": "author-known demonstration missed by the morph tagger (no surface signature)",
+          "proposal_confidence": 1.0,
+          "added_by_reviewer": true,
+          "verdict": "keep",
+          "review_note": "added: essere-passive (è/sono/fu/sarà + participle) demonstrates the passive; invisible to morph-it because it shares passato-prossimo morphology."
+        },
+        {
+          "item_id": "trans_pas_it_en_ess_03",
+          "topic": "passive",
+          "reference_text": "Il colpevole sarà punito.",
+          "evidence": "author addition",
+          "reason": "author-known demonstration missed by the morph tagger (no surface signature)",
+          "proposal_confidence": 1.0,
+          "added_by_reviewer": true,
+          "verdict": "keep",
+          "review_note": "added: essere-passive (è/sono/fu/sarà + participle) demonstrates the passive; invisible to morph-it because it shares passato-prossimo morphology."
+        },
+        {
+          "item_id": "trans_pas_en_it_agt_01",
+          "topic": "passive",
+          "reference_text": "Il ritratto è stato dipinto da Caravaggio.",
+          "evidence": "author addition",
+          "reason": "author-known demonstration missed by the morph tagger (no surface signature)",
+          "proposal_confidence": 1.0,
+          "added_by_reviewer": true,
+          "verdict": "keep",
+          "review_note": "added: essere-passive (è/sono/fu/sarà + participle) demonstrates the passive; invisible to morph-it because it shares passato-prossimo morphology."
+        },
+        {
+          "item_id": "trans_pas_en_it_agt_02",
+          "topic": "passive",
+          "reference_text": "La legge è stata approvata dai deputati.",
+          "evidence": "author addition",
+          "reason": "author-known demonstration missed by the morph tagger (no surface signature)",
+          "proposal_confidence": 1.0,
+          "added_by_reviewer": true,
+          "verdict": "keep",
+          "review_note": "added: essere-passive (è/sono/fu/sarà + participle) demonstrates the passive; invisible to morph-it because it shares passato-prossimo morphology."
+        },
+        {
+          "item_id": "trans_pas_en_it_use_01",
+          "topic": "passive",
+          "reference_text": "Il presidente è stato eletto ieri.",
+          "evidence": "author addition",
+          "reason": "author-known demonstration missed by the morph tagger (no surface signature)",
+          "proposal_confidence": 1.0,
+          "added_by_reviewer": true,
+          "verdict": "keep",
+          "review_note": "added: essere-passive (è/sono/fu/sarà + participle) demonstrates the passive; invisible to morph-it because it shares passato-prossimo morphology."
+        },
+        {
+          "item_id": "trans_pas_it_en_use_02",
+          "topic": "passive",
+          "reference_text": "Il bilancio è presentato ogni anno ai finanziatori.",
+          "evidence": "author addition",
+          "reason": "author-known demonstration missed by the morph tagger (no surface signature)",
+          "proposal_confidence": 1.0,
+          "added_by_reviewer": true,
+          "verdict": "keep",
+          "review_note": "added: essere-passive (è/sono/fu/sarà + participle) demonstrates the passive; invisible to morph-it because it shares passato-prossimo morphology."
+        },
+        {
+          "item_id": "trans_pas_en_it_use_04",
+          "topic": "passive",
+          "reference_text": "Il volo delle 18 è stato cancellato.",
+          "evidence": "author addition",
+          "reason": "author-known demonstration missed by the morph tagger (no surface signature)",
+          "proposal_confidence": 1.0,
+          "added_by_reviewer": true,
+          "verdict": "keep",
+          "review_note": "added: essere-passive (è/sono/fu/sarà + participle) demonstrates the passive; invisible to morph-it because it shares passato-prossimo morphology."
+        },
+        {
+          "item_id": "trans_pas_en_it_vsi_01",
+          "topic": "passive",
+          "reference_text": "Qui si vendono libri usati.",
+          "evidence": "author addition",
+          "reason": "author-known demonstration missed by the morph tagger (no surface signature)",
+          "proposal_confidence": 1.0,
+          "added_by_reviewer": true,
+          "verdict": "keep",
+          "review_note": "added: essere-passive (è/sono/fu/sarà + participle) demonstrates the passive; invisible to morph-it because it shares passato-prossimo morphology."
+        },
+        {
+          "item_id": "trans_pas_en_it_vsi_02",
+          "topic": "passive",
+          "reference_text": "I libri sono venduti dalla libreria Feltrinelli.",
+          "evidence": "author addition",
+          "reason": "author-known demonstration missed by the morph tagger (no surface signature)",
+          "proposal_confidence": 1.0,
+          "added_by_reviewer": true,
+          "verdict": "keep",
+          "review_note": "added: essere-passive (è/sono/fu/sarà + participle) demonstrates the passive; invisible to morph-it because it shares passato-prossimo morphology."
+        }
+      ]
+    },
+    {
+      "bucket_id": "passive.formation.venire",
+      "confidence": 0.85,
+      "item_count": 7,
+      "items": [
+        {
+          "item_id": "trans_pas_en_it_ess_01",
+          "topic": "passive",
+          "reference_text": "La pizza venne inventata a Napoli.",
+          "evidence": "venne inventata",
+          "reason": "venire + past participle = passive",
+          "proposal_confidence": 0.85,
+          "verdict": "keep",
+          "review_note": "kept: the Italian side genuinely builds the passive with this auxiliary."
+        },
+        {
+          "item_id": "trans_pas_en_it_ven_01",
+          "topic": "passive",
+          "reference_text": "I biglietti vengono controllati ogni mattina.",
+          "evidence": "vengono controllati",
+          "reason": "venire + past participle = passive",
+          "proposal_confidence": 0.85,
+          "verdict": "keep",
+          "review_note": "kept: the Italian side genuinely builds the passive with this auxiliary."
+        },
+        {
+          "item_id": "trans_pas_en_it_ven_03",
+          "topic": "passive",
+          "reference_text": "Qui il pane viene fatto ogni giorno.",
+          "evidence": "viene fatto",
+          "reason": "venire + past participle = passive",
+          "proposal_confidence": 0.85,
+          "verdict": "keep",
+          "review_note": "kept: the Italian side genuinely builds the passive with this auxiliary."
+        },
+        {
+          "item_id": "trans_pas_en_it_vsi_04",
+          "topic": "passive",
+          "reference_text": "Qui il pane viene fatto ogni giorno.",
+          "evidence": "viene fatto",
+          "reason": "venire + past participle = passive",
+          "proposal_confidence": 0.85,
+          "verdict": "keep",
+          "review_note": "kept: the Italian side genuinely builds the passive with this auxiliary."
+        },
+        {
+          "item_id": "trans_pas_it_en_ess_04",
+          "topic": "passive",
+          "reference_text": "Ogni domenica la messa veniva celebrata in latino.",
+          "evidence": "veniva celebrata",
+          "reason": "venire + past participle = passive",
+          "proposal_confidence": 0.85,
+          "verdict": "keep",
+          "review_note": "kept: the Italian side genuinely builds the passive with this auxiliary."
+        },
+        {
+          "item_id": "trans_pas_it_en_ven_02",
+          "topic": "passive",
+          "reference_text": "La porta venne chiusa a chiave.",
+          "evidence": "venne chiusa",
+          "reason": "venire + past participle = passive",
+          "proposal_confidence": 0.85,
+          "verdict": "keep",
+          "review_note": "kept: the Italian side genuinely builds the passive with this auxiliary."
+        },
+        {
+          "item_id": "trans_tc_cf_coll_en_it_01",
+          "topic": "tense_choice",
+          "reference_text": "Se sapevo prima, venivo subito ad aiutare.",
+          "evidence": "venivo subito",
+          "reason": "venire + past participle = passive",
+          "proposal_confidence": 0.85,
+          "verdict": "strike",
+          "review_note": "STRIKE: 'venivo subito ad aiutare' is venire as the MOTION verb (I would come), in a colloquial se+imperfect counterfactual. No participle, no passive. The morph tagger keyed on the venire form and could not see it is motion, not auxiliary. Not a passive item and not mine (tense_choice)."
+        }
+      ]
+    },
+    {
+      "bucket_id": "passive.formation.andare",
+      "confidence": 0.85,
+      "item_count": 2,
+      "items": [
+        {
+          "item_id": "trans_pas_en_it_and_02",
+          "topic": "passive",
+          "reference_text": "Questo modulo va compilato in stampatello.",
+          "evidence": "va compilato",
+          "reason": "andare + past participle = passive (deontic)",
+          "proposal_confidence": 0.85,
+          "verdict": "keep",
+          "review_note": "kept: the Italian side genuinely builds the passive with this auxiliary."
+        },
+        {
+          "item_id": "trans_pas_it_en_and_01",
+          "topic": "passive",
+          "reference_text": "Le medicine vanno prese a stomaco pieno.",
+          "evidence": "vanno prese",
+          "reason": "andare + past participle = passive (deontic)",
+          "proposal_confidence": 0.85,
+          "verdict": "keep",
+          "review_note": "kept: the Italian side genuinely builds the passive with this auxiliary."
+        }
+      ]
+    },
+    {
+      "bucket_id": "passive.formation.essere",
+      "confidence": 1.0,
+      "item_count": 10,
+      "added_by_reviewer": true,
+      "bucket_note": "MISSING FROM THE PACKET ENTIRELY. The essere passive is the main construction, but è/sono/fu/furono/sarà + participle is morphologically identical to an ordinary passato prossimo, so morph-it tagged none. These 10 are every translation item whose Italian side builds the passive on essere.",
+      "items": [
+        {
+          "item_id": "trans_pas_en_it_ess_01",
+          "topic": "passive",
+          "reference_text": "La pizza è stata inventata a Napoli.",
+          "evidence": "author addition",
+          "reason": "author-known demonstration missed by the morph tagger (no surface signature)",
+          "proposal_confidence": 1.0,
+          "added_by_reviewer": true,
+          "verdict": "keep",
+          "review_note": "essere passive on the Italian side."
+        },
+        {
+          "item_id": "trans_pas_en_it_ess_02",
+          "topic": "passive",
+          "reference_text": "Queste case sono state costruite nel Quattrocento.",
+          "evidence": "author addition",
+          "reason": "author-known demonstration missed by the morph tagger (no surface signature)",
+          "proposal_confidence": 1.0,
+          "added_by_reviewer": true,
+          "verdict": "keep",
+          "review_note": "essere passive on the Italian side."
+        },
+        {
+          "item_id": "trans_pas_it_en_ess_03",
+          "topic": "passive",
+          "reference_text": "Il colpevole sarà punito.",
+          "evidence": "author addition",
+          "reason": "author-known demonstration missed by the morph tagger (no surface signature)",
+          "proposal_confidence": 1.0,
+          "added_by_reviewer": true,
+          "verdict": "keep",
+          "review_note": "essere passive on the Italian side."
+        },
+        {
+          "item_id": "trans_pas_en_it_agt_01",
+          "topic": "passive",
+          "reference_text": "Il ritratto è stato dipinto da Caravaggio.",
+          "evidence": "author addition",
+          "reason": "author-known demonstration missed by the morph tagger (no surface signature)",
+          "proposal_confidence": 1.0,
+          "added_by_reviewer": true,
+          "verdict": "keep",
+          "review_note": "essere passive on the Italian side."
+        },
+        {
+          "item_id": "trans_pas_en_it_agt_02",
+          "topic": "passive",
+          "reference_text": "La legge è stata approvata dai deputati.",
+          "evidence": "author addition",
+          "reason": "author-known demonstration missed by the morph tagger (no surface signature)",
+          "proposal_confidence": 1.0,
+          "added_by_reviewer": true,
+          "verdict": "keep",
+          "review_note": "essere passive on the Italian side."
+        },
+        {
+          "item_id": "trans_pas_en_it_use_01",
+          "topic": "passive",
+          "reference_text": "Il presidente è stato eletto ieri.",
+          "evidence": "author addition",
+          "reason": "author-known demonstration missed by the morph tagger (no surface signature)",
+          "proposal_confidence": 1.0,
+          "added_by_reviewer": true,
+          "verdict": "keep",
+          "review_note": "essere passive on the Italian side."
+        },
+        {
+          "item_id": "trans_pas_it_en_use_02",
+          "topic": "passive",
+          "reference_text": "Il bilancio è presentato ogni anno ai finanziatori.",
+          "evidence": "author addition",
+          "reason": "author-known demonstration missed by the morph tagger (no surface signature)",
+          "proposal_confidence": 1.0,
+          "added_by_reviewer": true,
+          "verdict": "keep",
+          "review_note": "essere passive on the Italian side."
+        },
+        {
+          "item_id": "trans_pas_en_it_use_04",
+          "topic": "passive",
+          "reference_text": "Il volo delle 18 è stato cancellato.",
+          "evidence": "author addition",
+          "reason": "author-known demonstration missed by the morph tagger (no surface signature)",
+          "proposal_confidence": 1.0,
+          "added_by_reviewer": true,
+          "verdict": "keep",
+          "review_note": "essere passive on the Italian side."
+        },
+        {
+          "item_id": "trans_pas_en_it_vsi_01",
+          "topic": "passive",
+          "reference_text": "Qui si vendono libri usati.",
+          "evidence": "author addition",
+          "reason": "author-known demonstration missed by the morph tagger (no surface signature)",
+          "proposal_confidence": 1.0,
+          "added_by_reviewer": true,
+          "verdict": "keep",
+          "review_note": "essere passive on the Italian side."
+        },
+        {
+          "item_id": "trans_pas_en_it_vsi_02",
+          "topic": "passive",
+          "reference_text": "I libri sono venduti dalla libreria Feltrinelli.",
+          "evidence": "author addition",
+          "reason": "author-known demonstration missed by the morph tagger (no surface signature)",
+          "proposal_confidence": 1.0,
+          "added_by_reviewer": true,
+          "verdict": "keep",
+          "review_note": "essere passive on the Italian side."
+        }
+      ]
+    },
+    {
+      "bucket_id": "passive.formation.agent_da",
+      "confidence": 1.0,
+      "item_count": 3,
+      "added_by_reviewer": true,
+      "bucket_note": "Also absent. The da-agent (da/dal/dai + doer) has no distinctive single-token morphology the tagger flags. These 3 name the agent after the passive.",
+      "items": [
+        {
+          "item_id": "trans_pas_en_it_agt_01",
+          "topic": "passive",
+          "reference_text": "Il ritratto è stato dipinto da Caravaggio.",
+          "evidence": "author addition",
+          "reason": "author-known demonstration missed by the morph tagger (no surface signature)",
+          "proposal_confidence": 1.0,
+          "added_by_reviewer": true,
+          "verdict": "keep",
+          "review_note": "names the passive agent with da/dal/dai."
+        },
+        {
+          "item_id": "trans_pas_en_it_agt_02",
+          "topic": "passive",
+          "reference_text": "La legge è stata approvata dai deputati.",
+          "evidence": "author addition",
+          "reason": "author-known demonstration missed by the morph tagger (no surface signature)",
+          "proposal_confidence": 1.0,
+          "added_by_reviewer": true,
+          "verdict": "keep",
+          "review_note": "names the passive agent with da/dal/dai."
+        },
+        {
+          "item_id": "trans_pas_en_it_vsi_02",
+          "topic": "passive",
+          "reference_text": "I libri sono venduti dalla libreria Feltrinelli.",
+          "evidence": "author addition",
+          "reason": "author-known demonstration missed by the morph tagger (no surface signature)",
+          "proposal_confidence": 1.0,
+          "added_by_reviewer": true,
+          "verdict": "keep",
+          "review_note": "names the passive agent with da/dal/dai."
+        }
+      ]
+    }
+  ],
+  "review_summary": {
+    "reviewer": "PassiveAuthor",
+    "reviewed": "2026-08-14",
+    "original_rows": 18,
+    "kept": 16,
+    "struck": 2,
+    "added_buckets": [
+      "passive.formation.essere (10)",
+      "passive.formation.agent_da (3)"
+    ],
+    "added_rows_to_root": 9,
+    "headline": "Morph-it is blind to the essere passive. è/sono/fu + participle = ordinary passato-prossimo morphology, so the commonest passive form was tagged ZERO times: the whole essere leaf (10 items) and the agent-da leaf (3) were missing from the packet, not merely under-tagged. Added both, with item lists, for the merge.",
+    "one_strike": "trans_tc_cf_coll_en_it_01 struck from BOTH passive and passive.formation.venire: 'venivo subito ad aiutare' is venire-as-motion in a counterfactual, not the passive auxiliary. The single morph false positive in the packet.",
+    "not_added_and_why": "trans_pas_it_en_use_03 (Italian is active 'hanno arrestato') and trans_pas_it_en_vsi_03 (pure si passivante 'si affittano camere') do NOT build the passive on the Italian side, so they stay out. The si-vs-passive items whose alternative reference IS a full passive (vsi_01 sono venduti, vsi_02 sono venduti dalla libreria) are added, since the learner CAN engage the passive there and an unengaged bucket is a harmless blank.",
+    "note_to_architecture": "passive.formation.essere and .agent_da are existing tree leaves; I am supplying which items demonstrate them, not minting buckets. Merge writes the expected_buckets. Recommend the morph pass, estate-wide, add an essere-passive heuristic (essere-aux + past participle agreeing with subject + optional da-phrase), or every topic that leans on the essere passive will have the same hole."
+  }
+}

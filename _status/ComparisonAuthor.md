@@ -8,8 +8,9 @@ waiting: active
 needs_from_smith: none
 blocked_by:
 claude_can_verify: yes — every claim below is a re-runnable grep/replica over data/*_comparison.* and the audit files.
-summary: Nothing owed. False-miss packet CLOSED + stamped by Architecture (3 fixes verified). Answer-leak gate scanned the estate and found 0 comparison items. Brief 28->32 checked: Revs 29-32 all bind all-authors but none retrofits comparison; Rev 29 (no one-to-one gloss) already satisfied because di/che is ambiguous under "than". Queue empty.
-queue: none — name-grep + class tokens MINUS discharged = 0.
+summary: Tier-2 review packet RETURNED (7 keep / 3 strike, +6 tagger-missed additions), awaiting Architecture merge. Otherwise nothing owed. False-miss packet CLOSED + stamped by Architecture (3 fixes verified). Answer-leak gate scanned the estate and found 0 comparison items. Brief 28->32 checked: Revs 29-32 all bind all-authors but none retrofits comparison; Rev 29 (no one-to-one gloss) already satisfied because di/che is ambiguous under "than". Queue empty.
+queue:
+  - tier-2 review packet: RETURNED to returned/, awaiting Architecture merge (their deliverable, not blocked on me)   [Architecture_ComparisonAuthor_tier2_review_packet v2]
 
 architecture_housekeeping_not_mine:
   - false-miss packet: substantively CLOSED at v3 (Architecture: "Accepted/stamped; three fixes verified"), but the file's top **Status:** line still reads OPEN v2 and **Next:** Architecture. Their thread, their header to bump; noted so the board's false-open is explained, not mine to edit.

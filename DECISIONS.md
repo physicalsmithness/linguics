@@ -3211,3 +3211,13 @@ stored id is an ancestor of another stored id on the same item. Backup: `outputs
 
 Five packets are still out with their authors (Adverb 36 rows, Comparison 10, Demonstrative 167,
 Passive 18, Possessive 377). Four seats await one central exclusion ruling.
+
+## Architect queue batch, 2026-08-12 — three verify-and-stamps
+
+Re-derived the genuine architect queue (Next names Architecture AND newest version by a seat) and
+cleared three, each spot-audited on disk first: **ImperfectAuthor** are_07 repair (motion-verb frame
+collision removed by subtraction; Cr17 gloss stamp confirmed intact — a gloss tracking a corrected
+prompt is not a delta); **NegationAuthor** finché-non explanations (three Whys expanded to house style,
+content-only, the strand Smith flagged); **PossessiveAuthor** empty-cell fill (poss_forms_21..25,
+paradigm 21/21). All CLOSED. Date corrected to 2026-08-12 (prior session writes were mis-dated 08-03;
+noted to Smith).

@@ -1440,7 +1440,7 @@
   "subtopic": "meaning.ce_lho_possession",
   "difficulty": 1,
   "cefr_level_target": "A2",
-  "prompt": "'Hai una penna?' 'Sì, ____.' (avere, rispondi)",
+  "prompt": "'Hai una penna?' 'Sì, ____.' (avere; rispondi con un pronome, senza ripetere il nome)",
   "type": "short",
   "marks": 1,
   "wrong_answer_is_form_error_only": true,
@@ -1489,8 +1489,8 @@
    }
   ],
   "explanation": "'Sì, ce l'ho' means 'Yes, I've got one.' To say you have something, everyday Italian says ce l'ho, not the bare l'ho (which sounds unfinished). With an indefinite thing like 'una penna', 'ne ho una' (I have one of them) is equally natural and scores nearly full -- the drill here is the ce-l'ho possession answer.",
-  "examiner_note": "False-miss fix 2026-08-03 (packet v1): for the indefinite antecedent 'una penna', 'ne ho una' is textbook-correct and was scoring 0. Added at 0.9 with a steering note (Rev 17; not the bucket's named common_miss, which is bare l'ho). Left flat 'ho una penna' uncredited as a bare restatement -- flagged to Architecture.",
-  "version": 2
+  "examiner_note": "False-miss fix 2026-08-03 (packet v1): for the indefinite antecedent 'una penna', 'ne ho una' is textbook-correct and was scoring 0. Added at 0.9 with a steering note (Rev 17; not the bucket's named common_miss, which is bare l'ho). Left flat 'ho una penna' uncredited as a bare restatement -- flagged to Architecture. | Instruction-pin 2026-08-14 (packet v3, Rev 20iii): prompt now asks for a pronoun without repeating the noun, so flat 'ho una penna' is non-compliant rather than a silent zero on correct Italian. ce l'ho full credit; ne ho una 0.9 stands.",
+  "version": 3
  },
  {
   "external_id": "pv_celho_02",
@@ -1542,8 +1542,8 @@
    }
   ],
   "explanation": "'No, non ce l'ho' means 'No, I haven't got it.' The negative simply wraps non around the same fixed pattern: non ce l'ho. Dropping to 'non l'ho' is the usual slip.",
-  "version": 2,
-  "examiner_note": "False-miss fix 2026-08-03 (packet v1): positives were 'non ce l'ho', duplicating the prompt-printed 'non', so the natural blank fill 'ce l'ho' scored 0. Re-anchored to blank content; guards blank-relative (bare l'ho protected by else-if gating)."
+  "version": 3,
+  "examiner_note": "False-miss fix 2026-08-03 (packet v1): positives were 'non ce l'ho', duplicating the prompt-printed 'non', so the natural blank fill 'ce l'ho' scored 0. Re-anchored to blank content; guards blank-relative (bare l'ho protected by else-if gating). | wrong_answer_is_form_error_only:true set 2026-08-14 per packet v3 (pure-form miss: l'ho vs ce l'ho); false stays on 01/03."
  },
  {
   "external_id": "pv_celho_03",

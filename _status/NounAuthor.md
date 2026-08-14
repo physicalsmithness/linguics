@@ -1,18 +1,18 @@
 seat: NounAuthor
-classes: [all-seats, all-authors]   # originates grammar+translation ITEMS; criteria 13-21 bind me per Rev 24's "what a seat ORIGINATES" test.
+classes: [all-seats, all-authors]
 project: Linguics
-updated: 2026-08-03
+updated: 2026-08-14
 waiting: parked
-needs_from_smith: external-action   # route Architecture to my two thread replies + bucket_suggestions_noun.json
+needs_from_smith: external-action   # route Architecture to merge the tier-2 return + stamp the leak fix + the 3 replies
 blocked_by:
-claude_can_verify: yes - all claims on disk (patched item file + harness reproduce; thread replies filed)
-summary: woke into fresh work after disposition CLOSED v3 (io_plural_i_count minted, prior residuals stamped). Tagged figlii/zi with the new id; confirmed Housing's 7-class gender classifier maps to noun buckets (5/7 land, 2 gaps proposed) and caught uovo mis-tagged class-7; reacted to the no-change-forms proposal (my 7 items stay under Smith's plural-drill carve-out). Nothing owed once Architecture mints the 2 buckets.
+claude_can_verify: yes - return file, patched item, and detector all on disk and reproducible
+summary: full-queue wake. Tier-2 SEARCH returned (648 findings, vocab-validated, blind audit 0 FPs). Answer-leak item noun_gen_e_09 fixed. Noun-class taxonomy weigh-in filed (caught mano mis-grouped, brindisi tail, two missing classes). Rev 33 no-op for noun. Nothing owed once Architecture merges + stamps.
 queue:
-  - gender/plural drill class-set confirm: DONE (reply on Architecture_Housing_gender_plural_drill); Next Architecture (mint noun.gender.common + noun.gender.meaning_split; broaden plural.irregular desc) + Vocab (uovo -> class 5)
-  - capitale pair re-point noun.gender.e_ending -> noun.gender.meaning_split: PENDING the mint, then a one-line item edit
-  - no-change-forms react: DONE (reply v3); my 7 invariable/compound items leave as-is, no engine dependency
-  - figlii/zi io_plural_i_count tags: DONE inline (11 misconception tags total on disk)
+  - tier-2 search: DONE, data/review_packets_tier2/returned/SEARCH_noun_2026-08-13_returned.json (648 findings); Next Architecture (merge). Claim policy = leaf + skill-aggregate, NOT root noun (my call, documented, one-line override either way)
+  - noun_gen_e_09 answer-leak: FIXED (downstream "il denaro" stripped, marking intact); Next Architecture stamp   [answer_leak_dispatch v6]
+  - noun-class taxonomy weigh-in: DONE   [Architecture_Vocab_noun_class_taxonomy reply]
+  - capitale pair re-point e_ending -> meaning_split: still PENDING (noun.gender.meaning_split not yet minted); one-line edit on mint
 not_queue:
-  - brief Rev 29 (no 1:1-gloss cues) / Rev 31 (supplied-choice exempt) / Rev 32 (tense-naming): no-op for noun (no tense axis, no English-gloss cues)
-  - Rev 30 (invariable cue hands answer): governed here by the later ITEM_SHAPE plural-drill carve-out; reconciled in the thread
-  - crit 13 centrally discharged; disposition v2 residuals stamped/discharged 2026-07-21
+  - gender_plural_drill: my 7-class confirm done; Vocab actioned my uovo catch (class 5); waiting on Architecture to mint the 2 buckets
+  - no-change-forms: my 7 items stay under the plural-drill carve-out (thread v3)
+  - Rev 33 (lr exemption / common_errors optional / person / 4th): no-op or optional for noun - no _lr_ items, no person field, common_errors optional
