@@ -159,6 +159,7 @@
     <button id="run" disabled>Mark</button>
     <button id="runAll" class="ghost" disabled>Run every naming list</button>
     <button id="suite" class="ghost" disabled>Run expectation suite</button>
+    <button id="suiteAll" class="ghost" disabled>Run suite on EVERY model</button>
     <button id="exp" class="ghost">Export log</button>
     <button id="clear" class="ghost">Clear log</button>
   </div>
@@ -168,10 +169,10 @@
 
 <div id="log"></div>
 
-<script src="js/norm.js?v=2026-08-12-r164"></script>
-<script src="js/store.js?v=2026-08-12-r164"></script>
-<script src="js/translation_stub.js?v=2026-08-12-r164"></script>
-<script src="js/translation_marker.js?v=2026-08-12-r164"></script>
+<script src="js/norm.js?v=2026-08-13-r165"></script>
+<script src="js/store.js?v=2026-08-13-r165"></script>
+<script src="js/translation_stub.js?v=2026-08-13-r165"></script>
+<script src="js/translation_marker.js?v=2026-08-13-r165"></script>
 <script>
 (function () {
   "use strict";
@@ -225,7 +226,10 @@
       cases = await jget("marker_expectation_cases.json");
       if (cases && Array.isArray(cases.cases) && cases.cases.length) {
         $("suite").disabled = false;
+        $("suiteAll").disabled = false;
         $("suite").textContent = "Run expectation suite (" + cases.cases.length + ")";
+        $("suiteAll").textContent = "Run suite on EVERY model (" +
+          ((LL.AVAILABLE_MODELS || []).length) + " models \u00d7 " + cases.cases.length + ")";
       }
     } catch (e) { cases = null; }
     $("status").innerHTML = items.length + " translation items and " +
@@ -355,7 +359,7 @@
   // r153: itemOverride/answerOverride let the expectation suite drive this
   // exact path. Duplicating the call would have let the two drift, and the
   // suite's whole value is that it measures the SAME thing the bench does.
-  async function runOnce(mode, itemOverride, answerOverride) {
+  async function runOnce(mode, itemOverride, answerOverride, modelOverride) {
     const it = itemOverride || chosen;
     if (!it) return;
     const answer = (answerOverride !== undefined && answerOverride !== null)
@@ -367,7 +371,7 @@
     if (!(temp >= 0)) temp = 0;
     const payload = await LL.markTranslationLive(it, answer, "literal", {
       url: $("url").value.trim() || undefined,
-      model: $("model").value || undefined,
+      model: modelOverride || $("model").value || undefined,
       temperature: temp,
       maxCostUsd: (function () { const v = parseFloat($("cap").value); return (v > 0) ? v : undefined; })(),
       bucketContext: ctx,
@@ -459,20 +463,20 @@
     };
   }
 
-  async function runSuite() {
+  async function runSuite(modelOverride, quiet) {
     $("err").textContent = "";
     if (!cases) { $("err").textContent = "No case file loaded (data/marker_expectation_cases.json)."; return; }
-    const btns = ["run", "runAll", "suite"];
-    btns.forEach(b => { if ($(b)) $(b).disabled = true; });
+    const btns = ["run", "runAll", "suite", "suiteAll"];
+    if (!quiet) btns.forEach(b => { if ($(b)) $(b).disabled = true; });
     const mode = $("mode").value;
-    const model = $("model").value || "default";
+    const model = modelOverride || $("model").value || "default";
     const out = { when: new Date().toISOString(), model: model, mode: mode, results: [] };
     try {
       for (const c of cases.cases) {
         const it = byId_item(c.item);
         if (!it) { out.results.push({ item: c.item, pass: false, missing: ["ITEM NOT FOUND in the loaded corpus"], wrong: [], invented: [], checks: [] }); continue; }
         try {
-          const run = await runOnce(mode, it, c.answer);
+          const run = await runOnce(mode, it, c.answer, modelOverride);
           out.results.push(judgeCase(c, run));
         } catch (e) {
           out.results.push({ item: c.item, pass: false, missing: ["call failed: " + e.message], wrong: [], invented: [], checks: [] });
@@ -481,6 +485,31 @@
       const prev = readSuite();
       prev.unshift(out);
       try { localStorage.setItem(SUITE_KEY, JSON.stringify(prev.slice(0, 12))); } catch (e) {}
+      if (!quiet) renderSuite();
+      return out;
+    } finally {
+      if (!quiet) btns.forEach(b => { if ($(b)) $(b).disabled = false; });
+    }
+  }
+
+  // r165, Smith: "what would be really good would be one file... all the models,
+  // all twenty of the models". One pass of the whole suite per model, one table,
+  // models as rows. This is the question the bench was never able to answer -
+  // the old table could only say the models DIFFERED, never which was right.
+  async function runSuiteAllModels() {
+    if (!cases) { $("err").textContent = "No case file loaded."; return; }
+    const models = (LL.AVAILABLE_MODELS || []).map(m => m.id || m).filter(Boolean);
+    if (!models.length) { $("err").textContent = "No model list available."; return; }
+    const btns = ["run", "runAll", "suite", "suiteAll"];
+    btns.forEach(b => { if ($(b)) $(b).disabled = true; });
+    const host = $("suiteOut");
+    try {
+      for (let i = 0; i < models.length; i++) {
+        if (host) host.insertAdjacentHTML("afterbegin",
+          '<div class="note" id="sweepnote">running ' + esc(models[i]) + ' \u2014 ' + (i + 1) + ' of ' + models.length + '\u2026</div>');
+        await runSuite(models[i], true);
+        const n = document.getElementById("sweepnote"); if (n) n.remove();
+      }
       renderSuite();
     } finally {
       btns.forEach(b => { if ($(b)) $(b).disabled = false; });
@@ -498,7 +527,32 @@
     if (!host) return;
     const all = readSuite();
     if (!all.length) { host.innerHTML = ""; return; }
-    host.innerHTML = all.map(function (r) {
+    // One row per model, newest run of each. The comparison Smith asked for.
+    const seen = {}, league = [];
+    for (const r of all) {
+      const k = r.model + "\u0000" + r.mode;
+      if (seen[k]) continue;
+      seen[k] = 1;
+      const passed = r.results.filter(x => x.pass).length;
+      const failedCall = r.results.filter(x => (x.missing || []).some(m => /call failed/.test(m))).length;
+      league.push({ model: r.model, mode: r.mode, passed: passed, n: r.results.length,
+                    dead: failedCall,
+                    cost: r.results.reduce((a, x) => a + (x.cost || 0), 0),
+                    secs: r.results.reduce((a, x) => a + (x.ms || 0), 0) / 1000, when: r.when });
+    }
+    league.sort((a, b) => (b.passed / (b.n || 1)) - (a.passed / (a.n || 1)));
+    const leagueHtml = league.length < 2 ? "" :
+      '<div class="panel"><h2>Every model, same cases</h2>' +
+      '<table><thead><tr><th>model</th><th>naming list</th><th>passed</th><th>calls that returned nothing</th>' +
+      '<th>total cost US$</th><th>total seconds</th></tr></thead><tbody>' +
+      league.map(function (x) {
+        return '<tr><td><code>' + esc(x.model) + '</code></td><td>' + esc(x.mode) + '</td>' +
+          '<td><b>' + x.passed + ' of ' + x.n + '</b></td>' +
+          '<td>' + (x.dead ? '<b style="color:#a33">' + x.dead + '</b>' : '\u2014') + '</td>' +
+          '<td>$' + x.cost.toFixed(4) + '</td><td>' + x.secs.toFixed(1) + '</td></tr>';
+      }).join("") + '</tbody></table>' +
+      '<div class="note">A model that returned nothing is not a bad marker \u2014 it is a call that never happened. Fix that before reading its score.</div></div>';
+    host.innerHTML = leagueHtml + all.map(function (r) {
       const passed = r.results.filter(x => x.pass).length;
       const rows = r.results.map(function (x) {
         const faults = []
@@ -783,7 +837,8 @@
   $("cap").addEventListener("input", refreshSize);
   $("run").addEventListener("click", () => go([$("mode").value]));
   $("runAll").addEventListener("click", () => go(LL.MARKER_MENU_MODES.map(m => m.id)));
-    $("suite").addEventListener("click", runSuite);
+    $("suite").addEventListener("click", () => runSuite());
+  $("suiteAll").addEventListener("click", runSuiteAllModels);
   $("exp").addEventListener("click", exportLog);
 $("clear").addEventListener("click", () => { writeLog([]); render(); });
 
