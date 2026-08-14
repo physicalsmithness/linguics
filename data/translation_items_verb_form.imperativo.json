@@ -51,7 +51,9 @@
     ],
     "expected_buckets": [
       "orthography.accent.italian",
+      "preposition.simple",
       "preposition.simple.forms",
+      "verb_form.imperativo",
       "vocabulary.it.favore.noun.translation.active",
       "vocabulary.it.lentamente.adverb.translation.active",
       "vocabulary.it.marcare.verb.translation.active",
@@ -108,9 +110,11 @@
     "explanation": "Anna's name marks the informal tu. The informal tu command of an -ire verb ends in -i: aprire gives apri. Note this is the opposite vowel from the -are verbs (parla).",
     "version": 1,
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
+      "verb_form.imperativo",
       "verb_form.present_indicative",
       "vocabulary.it.anna.verb.translation.active",
       "vocabulary.it.aprire.verb.translation.active",
@@ -163,7 +167,9 @@
     "expected_buckets": [
       "orthography.accent.italian",
       "orthography.spelling.doubling",
+      "preposition.simple",
       "preposition.simple.forms",
+      "verb_form.imperativo",
       "verb_form.present_indicative",
       "vocabulary.it.adesso.adverb.translation.active",
       "vocabulary.it.casa.noun.translation.active",
@@ -222,6 +228,7 @@
     "expected_buckets": [
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
+      "verb_form.imperativo",
       "verb_form.present_indicative",
       "vocabulary.it.aspettare.verb.translation.active",
       "vocabulary.it.bambino.noun.translation.active",
@@ -282,11 +289,14 @@
     "explanation": "Luca's name marks the informal tu. Finire is an -isc- verb, so its informal tu command inserts -isc- before the ending: finisci. The plain -i of the -ire verbs still applies, with -isc- in front.",
     "version": 1,
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
       "connective.time",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
+      "preposition.simple",
       "preposition.simple.forms",
+      "verb_form.imperativo",
       "vocabulary.it.cena.noun.translation.active",
       "vocabulary.it.compito.noun.gender.active",
       "vocabulary.it.compito.noun.translation.active",
@@ -346,11 +356,15 @@
       }
     ],
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
+      "negation.core",
       "negation.core.non_position",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.simple",
       "preposition.simple.forms",
+      "verb_form.imperativo",
       "vocabulary.it.bocca.noun.gender.active",
       "vocabulary.it.bocca.noun.translation.active",
       "vocabulary.it.foce.noun.translation.active",
@@ -410,11 +424,15 @@
     "explanation": "A negative tu command is non plus the infinitive: non aprire, 'don't open'. The infinitive aprire carries the command; non apri (negating the present) would be the typical mistake.",
     "version": 1,
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
+      "negation.core",
       "negation.core.non_position",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
+      "preposition.articulated",
       "preposition.articulated.formation",
+      "verb_form.imperativo",
       "vocabulary.it.aprire.verb.translation.active",
       "vocabulary.it.portare.verb.translation.active",
       "vocabulary.it.sconoscere.verb.translation.active"
@@ -470,8 +488,11 @@
     "explanation": "Even verbs with an irregular positive command obey the negative rule. Fare's positive tu is the short fa', but the negative tu is the plain infinitive: non fare. The irregular short form disappears under negation.",
     "version": 1,
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
+      "negation.core",
       "negation.core.non_position",
+      "verb_form.imperativo",
       "verb_form.present_indicative",
       "vocabulary.it.bambino.noun.gender.active",
       "vocabulary.it.bambino.noun.translation.active",
@@ -531,11 +552,14 @@
     "explanation": "Addressing a group ('kids', informal voi), the negative command is simply non plus the affirmative: dimenticare gives the positive voi dimenticate, so 'don't forget' is non dimenticate. Only the tu form uses non + infinitive; voi negates its normal command.",
     "version": 1,
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
+      "negation.core",
       "negation.core.non_position",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "pronoun.position.post_imperative_tu_attached",
+      "verb_form.imperativo",
       "vocabulary.it.chiave.noun.gender.active",
       "vocabulary.it.chiave.noun.translation.active",
       "vocabulary.it.dimenticare.verb.translation.active",
@@ -585,7 +609,9 @@
       "orthography.accent.italian",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.c_g_softening",
+      "preposition.simple",
       "preposition.simple.forms",
+      "verb_form.imperativo",
       "verb_form.present_indicative",
       "vocabulary.it.casa.noun.translation.active",
       "vocabulary.it.piero.noun.translation.active",
@@ -643,9 +669,11 @@
     "explanation": "Marta's name marks the informal tu. Dire has the shortest command, di' ('say/tell'), and unlike va'/vai it has no long alternative. The present-tense dici is not a command.",
     "version": 1,
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.apostrophe_elision",
+      "verb_form.imperativo",
       "verb_form.present_indicative",
       "vocabulary.it.importante.adjective.translation.active",
       "vocabulary.it.marta.noun.translation.active"
@@ -701,10 +729,13 @@
     "explanation": "Sara's name marks the informal tu. Avere has the irregular command abbi, as in abbi pazienza ('be patient'). It is a form to learn rather than a clipped one; the present-tense hai is different.",
     "version": 1,
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.doubling",
+      "preposition.simple",
       "preposition.simple.forms",
+      "verb_form.imperativo",
       "verb_form.present_indicative",
       "vocabulary.it.arrivare.verb.translation.active",
       "vocabulary.it.autobus.noun.gender.active",
@@ -765,11 +796,14 @@
     "explanation": "Tommaso's name marks the informal tu. Essere has the irregular command sii, 'be!', as in sii bravo ('be good'). Don't confuse it with the present-tense sei.",
     "version": 1,
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
+      "preposition.simple",
       "preposition.simple.forms",
+      "verb_form.imperativo",
       "vocabulary.it.bravo.interjection.translation.active",
       "vocabulary.it.oggi.adverb.translation.active",
       "vocabulary.it.scuola.noun.translation.active"
@@ -826,7 +860,9 @@
     "version": 1,
     "expected_buckets": [
       "orthography.accent.italian",
+      "preposition.simple",
       "preposition.simple.forms",
+      "verb_form.imperativo",
       "vocabulary.it.favore.noun.translation.active",
       "vocabulary.it.lentamente.adverb.translation.active",
       "vocabulary.it.parlare.verb.translation.active",
@@ -877,6 +913,7 @@
     "expected_buckets": [
       "orthography.spelling.doubling",
       "verb_form.congiuntivo.formation.presente",
+      "verb_form.imperativo",
       "verb_form.present_indicative",
       "vocabulary.it.accomodare.verb.translation.active",
       "vocabulary.it.pregare.verb.translation.active",
@@ -936,10 +973,13 @@
     "explanation": "Giving directions to 'sir' (signore) calls for the formal Lei. The Lei command uses the present subjunctive: andare gives vada, 'go'. The informal short va' would be wrong for this respectful register.",
     "version": 1,
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
       "orthography.spelling.doubling",
+      "preposition.articulated",
       "preposition.articulated.formation",
       "verb_form.congiuntivo.formation.presente",
+      "verb_form.imperativo",
       "vocabulary.it.dritto.adverb.translation.active",
       "vocabulary.it.fino.adverb.translation.active",
       "vocabulary.it.semaforo.noun.gender.active",
@@ -977,9 +1017,12 @@
     "explanation": "'Dai!' (or 'Forza!') is the frozen marker for 'come on', pure encouragement with no literal 'give' left in it.",
     "version": 1,
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
       "orthography.spelling.c_g_softening",
+      "preposition.articulated",
       "preposition.articulated.formation",
+      "verb_form.imperativo",
       "verb_form.present_indicative",
       "vocabulary.it.ce.adverb.translation.active",
       "vocabulary.it.dare.verb.translation.active"
@@ -1014,12 +1057,14 @@
     "explanation": "'Senta, scusi...' opens a request to a stranger: senta is the formal frozen 'listen' that gets attention politely.",
     "version": 1,
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.apostrophe_elision",
       "pronoun.direct_object.mi",
       "pronoun.indirect_object.mi",
       "verb_form.congiuntivo.formation.presente",
+      "verb_form.imperativo",
       "verb_form.present_indicative",
       "vocabulary.it.perdonare.verb.translation.active",
       "vocabulary.it.scusare.verb.translation.active",
@@ -1060,6 +1105,7 @@
     "version": 1,
     "expected_buckets": [
       "verb_form.congiuntivo.formation.presente",
+      "verb_form.imperativo",
       "vocabulary.it.prendere.verb.translation.active",
       "vocabulary.it.puro.adjective.translation.active",
       "vocabulary.it.sedia.noun.gender.active",
@@ -1097,6 +1143,7 @@
     "expected_buckets": [
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
+      "verb_form.imperativo",
       "verb_form.present_indicative",
       "vocabulary.it.giurare.verb.translation.active",
       "vocabulary.it.guardare.verb.translation.active",
@@ -1135,11 +1182,15 @@
     "explanation": "'Su!' (or 'Dai!') chivvies people along; here it frames the noi command andiamo ('let's go').",
     "version": 1,
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.doubling",
+      "preposition.articulated",
       "preposition.articulated.formation",
+      "preposition.simple",
       "preposition.simple.forms",
+      "verb_form.imperativo",
       "verb_form.present_indicative",
       "vocabulary.it.ragazzo.noun.translation.active",
       "vocabulary.it.su.adverb.translation.active",
@@ -1177,10 +1228,12 @@
     "explanation": "'Mi dica pure' is the gentle formal prompt: dica (Lei) with pure inviting them to speak freely.",
     "version": 1,
     "expected_buckets": [
+      "indefinite.core",
       "indefinite.core.tutto",
       "orthography.spelling.doubling",
       "pronoun.indirect_object.mi",
       "verb_form.congiuntivo.formation.presente",
+      "verb_form.imperativo",
       "verb_form.present_indicative",
       "vocabulary.it.puro.adjective.translation.active"
     ]
@@ -1215,8 +1268,10 @@
       }
     ],
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
       "orthography.spelling.digraph",
+      "verb_form.imperativo",
       "vocabulary.it.bene.adverb.translation.active",
       "vocabulary.it.ingrediente.noun.gender.active",
       "vocabulary.it.ingrediente.noun.translation.active",
@@ -1251,7 +1306,9 @@
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
+      "preposition.simple",
       "preposition.simple.forms",
+      "verb_form.imperativo",
       "vocabulary.it.asciutto.adjective.translation.active",
       "vocabulary.it.conservare.verb.translation.active",
       "vocabulary.it.fresco.adjective.translation.active",
@@ -1288,7 +1345,9 @@
     "explanation": "A public sign uses non + the bare infinitive: Non fumare, the impersonal prohibition form.",
     "version": 1,
     "expected_buckets": [
+      "negation.core",
       "negation.core.non_position",
+      "verb_form.imperativo",
       "vocabulary.it.fumare.verb.translation.active",
       "vocabulary.it.pipare.verb.translation.active"
     ]
@@ -1317,11 +1376,15 @@
     "explanation": "Like 'Non fumare', a museum prohibition uses non + the infinitive, addressing every visitor impersonally.",
     "version": 1,
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
+      "negation.core",
       "negation.core.non_position",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.doubling",
+      "preposition.simple",
       "preposition.simple.forms",
+      "verb_form.imperativo",
       "vocabulary.it.opera.noun.gender.active",
       "vocabulary.it.opera.noun.translation.active",
       "vocabulary.it.toccare.verb.translation.active"
@@ -1359,7 +1422,9 @@
     ],
     "expected_buckets": [
       "orthography.accent.italian",
+      "preposition.simple",
       "preposition.simple.forms",
+      "verb_form.imperativo",
       "vocabulary.it.favore.noun.translation.active",
       "vocabulary.it.lentamente.adverb.translation.active",
       "vocabulary.it.parlare.verb.translation.active",
@@ -1398,6 +1463,7 @@
     ],
     "expected_buckets": [
       "orthography.accent.italian",
+      "verb_form.imperativo",
       "vocabulary.it.lentamente.adverb.translation.active",
       "vocabulary.it.marcare.verb.translation.active",
       "vocabulary.it.parlare.verb.translation.active"
@@ -1434,12 +1500,15 @@
       }
     ],
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
       "orthography.spelling.doubling",
+      "preposition.articulated",
       "preposition.articulated.formation",
       "pronoun.direct_object.mi",
       "pronoun.indirect_object.mi",
       "verb_form.congiuntivo.formation.presente",
+      "verb_form.imperativo",
       "vocabulary.it.dritto.adverb.translation.active",
       "vocabulary.it.fino.adverb.translation.active",
       "vocabulary.it.perdonare.verb.translation.active",
@@ -1481,6 +1550,7 @@
     ],
     "expected_buckets": [
       "orthography.spelling.doubling",
+      "verb_form.imperativo",
       "vocabulary.it.anna.verb.translation.active",
       "vocabulary.it.pazienza.noun.translation.active"
     ]
@@ -1518,8 +1588,10 @@
     "expected_buckets": [
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.simple",
       "preposition.simple.forms",
       "verb_form.congiuntivo.formation.presente",
+      "verb_form.imperativo",
       "vocabulary.it.dottore.noun.translation.active",
       "vocabulary.it.favore.noun.translation.active",
       "vocabulary.it.gentile.adjective.translation.active"
@@ -1560,6 +1632,7 @@
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
       "pronoun.position.post_imperative_tu_attached",
+      "verb_form.imperativo",
       "vocabulary.it.aspettare.verb.translation.active",
       "vocabulary.it.nonno.noun.translation.active",
       "vocabulary.it.qua.adverb.translation.active",

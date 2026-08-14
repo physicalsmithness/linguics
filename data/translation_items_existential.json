@@ -54,6 +54,7 @@
       "orthography.accent.italian",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.doubling",
+      "preposition.simple",
       "preposition.simple.forms",
       "verb_form.present_indicative",
       "vocabulary.it.bar.noun.gender.active",
@@ -117,8 +118,10 @@
       }
     ],
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
       "orthography.spelling.c_g_softening",
+      "preposition.articulated",
       "preposition.articulated.formation",
       "pronoun.ci_locative",
       "verb_form.present_indicative",
@@ -187,6 +190,7 @@
     "expected_buckets": [
       "indefinite.core",
       "orthography.spelling.c_g_softening",
+      "preposition.simple",
       "preposition.simple.forms",
       "pronoun.ci_locative",
       "verb_form.present_indicative",
@@ -235,6 +239,7 @@
     "explanation": "'Non c'è tempo' negates the existential by putting non in front of the whole cluster. The ci stays attached: non c'è, not non è.",
     "version": 1,
     "expected_buckets": [
+      "negation.core",
       "negation.core.bipartite",
       "negation.core.non_position",
       "orthography.accent.italian",
@@ -300,11 +305,13 @@
     ],
     "expected_buckets": [
       "indefinite.pronouns.nessuno_niente",
+      "negation.core",
       "negation.core.non_position",
       "orthography.accent.italian",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.simple",
       "preposition.simple.forms",
       "verb_form.present_indicative",
       "vocabulary.it.nessuno.determiner.translation.active",
@@ -353,8 +360,10 @@
     "explanation": "'Ci sono domande?' asks about plural things, so the existential is plural ci sono. A common slip is c'è domande, which fails the number agreement.",
     "version": 1,
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
       "orthography.spelling.c_g_softening",
+      "preposition.articulated",
       "preposition.articulated.formation",
       "pronoun.ci_locative",
       "verb_form.present_indicative",
@@ -404,6 +413,7 @@
     "expected_buckets": [
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.doubling",
+      "preposition.simple",
       "preposition.simple.forms",
       "verb_form.imperfect",
       "vocabulary.it.due.numeral.translation.active",
@@ -468,6 +478,7 @@
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.qu_cu_cqu",
+      "preposition.simple",
       "preposition.simple.forms",
       "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
       "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
@@ -532,6 +543,7 @@
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.simple",
       "preposition.simple.forms",
       "verb_form.imperfect",
       "vocabulary.it.montagna.noun.translation.passive",
@@ -598,9 +610,11 @@
       }
     ],
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.apostrophe_elision",
+      "preposition.articulated",
       "preposition.articulated.formation",
       "verb_form.present_indicative",
       "vocabulary.it.libro.noun.gender.active",
@@ -665,6 +679,7 @@
     "expected_buckets": [
       "article.definite.forms",
       "orthography.accent.italian",
+      "preposition.articulated",
       "preposition.articulated.formation",
       "verb_form.present_indicative",
       "vocabulary.it.libro.noun.gender.active",
@@ -727,6 +742,7 @@
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.capitalization",
+      "preposition.simple",
       "preposition.simple.forms",
       "verb_form.present_indicative",
       "vocabulary.it.centrare.verb.translation.active",
@@ -790,9 +806,11 @@
       }
     ],
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.articulated",
       "preposition.articulated.formation",
       "pronoun.ci_locative",
       "verb_form.present_indicative",
@@ -851,6 +869,7 @@
     "explanation": "C'è introduces a new, indefinite thing (una fermata), so English is 'there is'. Reading it as the existential, not 'it is', keeps the sense of presenting something new.",
     "version": 1,
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.apostrophe_elision",
@@ -912,9 +931,11 @@
     "explanation": "La stazione is known and definite, so Italian uses plain è to locate it, and English is plainly 'is', not 'there is'. This is the è-side of the c'è vs è contrast.",
     "version": 1,
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
+      "preposition.articulated",
       "preposition.articulated.formation",
       "verb_form.present_indicative",
       "vocabulary.it.centrare.verb.translation.passive",
@@ -968,9 +989,11 @@
       }
     ],
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.doubling",
+      "preposition.simple",
       "preposition.simple.forms",
       "vocabulary.it.ecco.adverb.translation.active",
       "vocabulary.it.tuo.determiner.translation.active"
@@ -1018,7 +1041,9 @@
     "explanation": "C'è states that something exists or is regularly available (a train every half hour), so English is 'there's'. Ecco would be wrong here: it points at a train arriving now, not a timetable fact.",
     "version": 1,
     "expected_buckets": [
+      "indefinite.core",
       "indefinite.core.ogni",
+      "negation.core",
       "negation.core.non_position",
       "orthography.accent.italian",
       "orthography.spelling.apostrophe_elision",
@@ -1072,6 +1097,7 @@
     "explanation": "Che c'è? looks like 'what is there?' but as a fixed expression it means 'what's wrong / what's up'. Reading it literally misses the everyday sense.",
     "version": 1,
     "expected_buckets": [
+      "interrogatives",
       "interrogatives.che_cosa",
       "orthography.accent.italian",
       "orthography.spelling.apostrophe_elision",
@@ -1123,11 +1149,13 @@
     "explanation": "Non c'è di che is a fixed reply to grazie, 'don't mention it / you're welcome'. It is built on esserci but cannot be taken apart literally.",
     "version": 1,
     "expected_buckets": [
+      "negation.core",
       "negation.core.non_position",
       "orthography.accent.italian",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.simple",
       "preposition.simple.forms",
       "verb_form.present_indicative",
       "vocabulary.it.aiutare.verb.translation.passive",
@@ -1235,10 +1263,12 @@
       }
     ],
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.articulated",
       "preposition.articulated.formation",
       "pronoun.ci_locative",
       "verb_form.present_indicative",

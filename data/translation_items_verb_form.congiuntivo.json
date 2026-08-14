@@ -58,6 +58,7 @@
       "orthography.spelling.c_g_softening",
       "orthography.spelling.capitalization",
       "orthography.spelling.doubling",
+      "verb_form.congiuntivo.formation.presente",
       "verb_form.present_indicative",
       "vocabulary.it.parlare.verb.translation.active",
       "vocabulary.it.pensare.verb.translation.active",
@@ -106,7 +107,9 @@
     "expected_buckets": [
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
+      "preposition.simple",
       "preposition.simple.forms",
+      "verb_form.congiuntivo.formation.presente",
       "verb_form.present_indicative",
       "vocabulary.it.importante.adjective.translation.active",
       "vocabulary.it.lavorare.verb.translation.active",
@@ -164,7 +167,9 @@
     "version": 1,
     "expected_buckets": [
       "orthography.spelling.c_g_softening",
+      "pronoun.ne",
       "pronoun.ne.partitive_quantity",
+      "verb_form.congiuntivo.formation.presente",
       "verb_form.present_indicative",
       "vocabulary.it.domani.adverb.translation.active",
       "vocabulary.it.partire.verb.translation.active",
@@ -226,8 +231,10 @@
     "explanation": "dubito che (doubt) requires the subjunctive. aprire is a plain -ire verb with no -isc-, so the 3rd-person singular subjunctive is apra, not the indicative apre.",
     "version": 1,
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
       "orthography.spelling.c_g_softening",
+      "verb_form.congiuntivo.formation.presente",
       "verb_form.present_indicative",
       "vocabulary.it.aprire.verb.translation.active",
       "vocabulary.it.domenica.noun.gender.active",
@@ -297,9 +304,12 @@
       }
     ],
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
+      "negation.core",
       "negation.core.non_position",
       "orthography.spelling.c_g_softening",
+      "verb_form.congiuntivo.formation.presente",
       "verb_form.present_indicative",
       "vocabulary.it.capire.verb.translation.active",
       "vocabulary.it.credere.verb.translation.active",
@@ -361,9 +371,11 @@
     "explanation": "The -isc- insert appears in the singular and 3rd-person plural but never in noi/voi. The voi subjunctive of finire is finiate; finisciate (carrying the insert in) is the over-extension to avoid.",
     "version": 1,
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "verb_form.congiuntivo.formation.presente",
       "verb_form.present_indicative",
       "vocabulary.it.bisognare.verb.translation.active",
       "vocabulary.it.finire.verb.translation.active",
@@ -428,6 +440,7 @@
     "expected_buckets": [
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
+      "verb_form.congiuntivo.formation.presente",
       "verb_form.present_indicative",
       "vocabulary.it.cercare.verb.translation.active",
       "vocabulary.it.soluzione.noun.gender.active",
@@ -489,10 +502,13 @@
     "explanation": "è giusto che is an impersonal evaluation trigger requiring the subjunctive. pagare ends in -gare, so it adds an h before the -ino ending: paghino, not pagano (indicative) or pagino (missing h).",
     "version": 1,
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
+      "preposition.simple",
       "preposition.simple.forms",
+      "verb_form.congiuntivo.formation.presente",
       "verb_form.present_indicative",
       "vocabulary.it.contare.verb.translation.active",
       "vocabulary.it.giusto.adverb.translation.active",
@@ -559,11 +575,14 @@
       }
     ],
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.capitalization",
       "orthography.spelling.doubling",
+      "preposition.articulated",
       "preposition.articulated.formation",
+      "verb_form.congiuntivo.formation.presente",
       "verb_form.present_indicative",
       "vocabulary.it.festa.noun.gender.active",
       "vocabulary.it.festa.noun.translation.active",
@@ -613,10 +632,13 @@
     "explanation": "andare builds the subjunctive from vado: the 3rd-person plural is vadano, not the indicative vanno. penso che triggers the subjunctive.",
     "version": 1,
     "expected_buckets": [
+      "indefinite.core",
       "indefinite.core.tutto",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "pronoun.ne",
       "pronoun.ne.partitive_quantity",
+      "verb_form.congiuntivo.formation.presente",
       "verb_form.present_indicative",
       "vocabulary.it.pensare.verb.translation.active",
       "vocabulary.it.stasera.adverb.translation.active",
@@ -666,7 +688,9 @@
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
+      "preposition.simple",
       "preposition.simple.forms",
+      "verb_form.congiuntivo.formation.presente",
       "verb_form.present_indicative",
       "vocabulary.it.attenzione.noun.translation.active",
       "vocabulary.it.classe.noun.translation.active",
@@ -734,6 +758,7 @@
     ],
     "expected_buckets": [
       "orthography.spelling.c_g_softening",
+      "verb_form.congiuntivo.formation.presente",
       "verb_form.present_indicative",
       "vocabulary.it.buono.adverb.translation.active",
       "vocabulary.it.idea.noun.translation.active",
@@ -780,9 +805,11 @@
     "explanation": "Italian says avere ragione (to have reason) for 'to be right'. avere has the suppletive subjunctive abbia, with a double b and no h. non credo che favours the subjunctive over the indicative ha.",
     "version": 1,
     "expected_buckets": [
+      "negation.core",
       "negation.core.non_position",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "verb_form.congiuntivo.formation.presente",
       "verb_form.present_indicative",
       "vocabulary.it.credere.verb.translation.active",
       "vocabulary.it.ragione.noun.translation.active"
@@ -845,6 +872,7 @@
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
+      "verb_form.congiuntivo.formation.presente",
       "verb_form.present_indicative",
       "vocabulary.it.adesso.adverb.translation.active",
       "vocabulary.it.meglio.adverb.translation.active",
@@ -901,6 +929,7 @@
     "expected_buckets": [
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "verb_form.congiuntivo.formation.imperfetto",
       "verb_form.imperfect",
       "vocabulary.it.parlare.verb.translation.active",
       "vocabulary.it.pensare.verb.translation.active",
@@ -959,6 +988,7 @@
     "expected_buckets": [
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "verb_form.congiuntivo.formation.imperfetto",
       "verb_form.imperfect",
       "vocabulary.it.decisione.noun.gender.active",
       "vocabulary.it.decisione.noun.translation.active",
@@ -1025,8 +1055,10 @@
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.simple",
       "preposition.simple.forms",
       "verb_form.condizionale",
+      "verb_form.congiuntivo.formation.imperfetto",
       "vocabulary.it.leggere.verb.translation.active",
       "vocabulary.it.tempo.noun.translation.active"
     ]
@@ -1090,7 +1122,9 @@
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.simple",
       "preposition.simple.forms",
+      "verb_form.congiuntivo.formation.imperfetto",
       "verb_form.imperfect",
       "vocabulary.it.casa.noun.translation.active",
       "vocabulary.it.sperare.verb.translation.active"
@@ -1146,9 +1180,11 @@
     "explanation": "Fare expands to the longer fac- stem, the same one behind the imperfect indicative facevo: fac- + -esse gives facesse. If you know facevo, you know facesse.",
     "version": 1,
     "expected_buckets": [
+      "negation.core",
       "negation.core.non_position",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "verb_form.congiuntivo.formation.imperfetto",
       "verb_form.imperfect",
       "vocabulary.it.appostare.verb.translation.active",
       "vocabulary.it.pensare.verb.translation.active"
@@ -1207,6 +1243,7 @@
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
+      "verb_form.congiuntivo.formation.imperfetto",
       "verb_form.imperfect",
       "vocabulary.it.meglio.adverb.translation.active",
       "vocabulary.it.padre.noun.translation.active",
@@ -1264,6 +1301,7 @@
       "orthography.spelling.c_g_softening",
       "orthography.spelling.capitalization",
       "orthography.spelling.doubling",
+      "preposition.simple",
       "preposition.simple.forms",
       "verb_form.congiuntivo.formation.presente",
       "verb_form.present_indicative",
@@ -1329,9 +1367,11 @@
       }
     ],
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.simple",
       "preposition.simple.forms",
       "verb_form.congiuntivo.formation.presente",
       "verb_form.present_indicative",
@@ -1392,10 +1432,13 @@
     "explanation": "An emotion trigger (mi dispiace che) takes the subjunctive; because the action is past relative to a present main clause, it is the compound past subjunctive: abbia potuto.",
     "version": 1,
     "expected_buckets": [
+      "negation.core",
       "negation.core.non_position",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "piacere",
       "piacere.usage.dispiacere",
+      "preposition.simple",
       "preposition.simple.forms",
       "pronoun.indirect_object.mi",
       "verb_form.congiuntivo.formation.presente",
@@ -1525,11 +1568,13 @@
       }
     ],
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.capitalization",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
+      "preposition.simple",
       "preposition.simple.forms",
       "verb_form.congiuntivo.formation.imperfetto",
       "verb_form.imperfect",
@@ -1589,7 +1634,9 @@
     "explanation": "The auxiliary takes the imperfect subjunctive (avessero), not the imperfect indicative (avevano). With avere the participle stays invariable: finito.",
     "version": 1,
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
+      "negation.core",
       "negation.core.non_position",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
@@ -1649,7 +1696,9 @@
     "expected_buckets": [
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.simple",
       "preposition.simple.forms",
+      "verb_form.congiuntivo.formation.presente",
       "vocabulary.it.allora.adverb.translation.active",
       "vocabulary.it.lui.pronoun.translation.active"
     ]
@@ -1696,8 +1745,10 @@
     "explanation": "The exhortative extends to the plural: che + third-person plural subjunctive, prendano. loro after the verb marks the subject as focus.",
     "version": 1,
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
       "orthography.spelling.c_g_softening",
+      "verb_form.congiuntivo.formation.presente",
       "vocabulary.it.decisione.noun.gender.active",
       "vocabulary.it.decisione.noun.translation.active",
       "vocabulary.it.loro.pronoun.translation.active",
@@ -1753,6 +1804,7 @@
     ],
     "expected_buckets": [
       "orthography.spelling.doubling",
+      "verb_form.congiuntivo.formation.imperfetto",
       "vocabulary.it.magari.adverb.translation.active",
       "vocabulary.it.vero.adjective.translation.active"
     ]
@@ -1801,6 +1853,7 @@
     "expected_buckets": [
       "orthography.accent.italian",
       "orthography.spelling.doubling",
+      "verb_form.congiuntivo.formation.imperfetto",
       "vocabulary.it.libero.adjective.translation.active",
       "vocabulary.it.magari.adverb.translation.active",
       "vocabulary.it.tempo.noun.translation.active"
@@ -1904,12 +1957,17 @@
     "explanation": "'As far as I know' is the frozen che io sappia, always with the subjunctive sappia. The main clause stays indicative (è chiuso).",
     "version": 1,
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "preposition.simple",
       "preposition.simple.forms",
+      "pronoun.ne",
       "pronoun.ne.partitive_quantity",
+      "verb_form.congiuntivo.formation.presente",
+      "verb_form.passato_prossimo",
       "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
       "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
       "verb_form.present_indicative",
@@ -1971,7 +2029,9 @@
       "indefinite.free_choice.qualunque_qualsiasi",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.qu_cu_cqu",
+      "preposition.simple",
       "preposition.simple.forms",
+      "verb_form.congiuntivo.formation.presente",
       "verb_form.future",
       "vocabulary.it.costare.verb.translation.active",
       "vocabulary.it.finire.verb.translation.active"
@@ -2025,6 +2085,7 @@
       }
     ],
     "expected_buckets": [
+      "verb_form.congiuntivo.formation.presente",
       "verb_form.future",
       "vocabulary.it.avanti.adverb.translation.active"
     ]
@@ -2088,6 +2149,7 @@
     ],
     "expected_buckets": [
       "orthography.spelling.doubling",
+      "verb_form.congiuntivo.formation.presente",
       "vocabulary.it.arrendere.verb.translation.active"
     ]
   }

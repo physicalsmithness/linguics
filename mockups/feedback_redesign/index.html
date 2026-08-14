@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- ============================================================
+       WEB_KIT analytics (estate standard). Automated / data-only edits
+       to index.html must NEVER touch this <head> block, so the tags
+       survive file rewrites. GA4 property G-WKYGJYERSR (shared estate);
+       Microsoft Clarity xdr2tsc688 (physicalsmithness.github.io).
+       Canonical GA4/Clarity snippets; align to the estate head verbatim
+       when the reusable drop-in gets a canonical home.
+       ============================================================ -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WKYGJYERSR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-WKYGJYERSR');
+  </script>
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window, document, "clarity", "script", "xdr2tsc688");
+  </script>
+  <script>
+    // Delegated click-tracker: one document-level listener emitting a GA4
+    // site_click event carrying the actioned element's id / class / label.
+    // Auto-captures buttons, links, tabs and the entry-screen controls.
+    document.addEventListener('click', function(e){
+      var el = e.target && e.target.closest && e.target.closest('button, a, [role="button"], input[type="button"], input[type="submit"], .entry-card, .entry-chip, .entry-level-cell, nav#strand-nav button');
+      if (!el || typeof window.gtag !== 'function') return;
+      var cls = (typeof el.className === 'string') ? el.className : '';
+      var label = (el.getAttribute && el.getAttribute('aria-label')) || el.textContent || '';
+      window.gtag('event', 'site_click', {
+        element_id: el.id || '',
+        element_class: cls,
+        element_label: String(label).trim().slice(0, 100)
+      });
+    }, true);
+  </script>
+  <title>Linguics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&family=Lora:wght@400..600&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <div class="brand-row">
+      <span class="brand-logo" aria-hidden="true"><i class="m"></i><i class="e"></i><i class="e"></i><i class="d"></i><i class="e"></i><i class="e"></i><i class="d"></i><i class="m"></i><i class="l"></i></span>
+      <h1 class="wordmark">lingu<span class="wm-ics">ics</span></h1>
+      <p class="tagline">Italian, atomised.</p>
+    </div>
+    <nav id="strand-nav">
+      <button data-strand="grammar" class="active">Grammar</button>
+      <button data-strand="translation">Translation</button>
+      <button data-strand="vocab">Vocabulary</button>
+    </nav>
+  </header>
+
+  <nav id="mobile-tabs" aria-label="Sections">
+    <button data-mtab="grammar"><span class="mtab-ic">G</span>Grammar</button>
+    <button data-mtab="translation"><span class="mtab-ic">T</span>Translate</button>
+    <button data-mtab="vocab"><span class="mtab-ic">V</span>Vocab</button>
+    <button data-mtab="analysis"><span class="mtab-ic">A</span>Analysis</button>
+  </nav>
+
+  <main>
+    <section id="entry-screen" class="entry-screen" hidden></section>
+    <section id="coverage-view" class="coverage-view" hidden></section>
+    <div id="load-failure-banner" class="load-failure-banner" hidden></div>
+    <div class="content">
+      <section id="strand-grammar" class="strand">
+        <h2>Grammar practice</h2>
+        <p class="note">Enter to mark. Enter again to advance.</p>
+        <div id="grammar-filter-bar" class="filter-bar"></div>
+        <div id="grammar-host">Loading...</div>
+      </section>
+
+      <section id="strand-translation" class="strand" hidden>
+        <p class="note">Enter to mark; Shift+Enter for a line break. Enter again to advance.</p>
+        <div id="translation-filter-bar" class="filter-bar"></div>
+        <div id="translation-host">Loading...</div>
+      </section>
+
+      <section id="strand-vocab" class="strand" hidden>
+        <div id="vocab-filter-bar" class="filter-bar"></div>
+        <div id="vocab-body">
+          <div id="vocab-host">Loading...</div>
+          <div id="vocab-axes-host"></div>
+        </div>
+      </section>
+
+      <section id="strand-buckets" class="strand" hidden>
+        <h2>Bucket tree</h2>
+        <p class="note">Browse the full taxonomy with descriptions. CEFR-importance bands shown as colour pips.</p>
+        <div id="buckets-host">Loading...</div>
+      </section>
+    </div>
+
+    <aside id="live-stats">
+      <div class="live-header">
+        <h3>Live stats</h3>
+        <div class="live-controls">
+          <!-- 'only touched' toggle removed 2026-07-21 (Smith: it did nothing) -->
+        </div>
+      </div>
+      <div id="live-overview" class="live-overview"></div>
+      <div id="live-stats-content"></div>
+      <div class="legend">
+        <div class="legend-row">
+          <span class="legend-cell demo-green-full"></span>
+          <span class="legend-cell demo-green-half"></span>
+          <span>green: correct of attempted (intensity)</span>
+        </div>
+        <div class="legend-row">
+          <span class="legend-cell demo-blue-full"></span>
+          <span class="legend-cell demo-blue-half"></span>
+          <span>blue: correct of total (intensity)</span>
+        </div>
+        <div class="legend-row">
+          <span class="last-n" style="width:auto;flex:0 0 auto">
+            <span class="mark hit">&check;</span><span class="mark hit">&check;</span><span class="mark miss">&times;</span><span class="mark hit">&check;</span>
+          </span>
+          <span>last N events</span>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <footer>
+    <span id="user-cefr-host"></span>
+    <span id="marker-config-host"></span>
+    <span id="session-cost-host" class="muted"></span>
+    <span id="content-status" class="muted"></span>
+    <span class="muted">prototype &middot; localStorage only</span>
+    <span id="build-version" class="muted" title="Build identifier. Useful for spotting when two tabs are on different versions."></span>
+    <!-- WEB_KIT feedback widget: mounted via js/feedback.js (see the script
+         block below the app scripts). The widget renders its own button and
+         panel; nothing needs to live in this footer. -->
+  </footer>
+
+  <script src="data/sample_buckets.js"></script>
+  <script src="data/sample_grammar_questions.js"></script>
+  <script src="data/sample_translation_items.js"></script>
+
+  <script src="js/norm.js"></script>
+  <script src="js/grammar_engine.js"></script>
+  <script src="js/translation_stub.js"></script>
+  <script src="js/translation_marker.js"></script>
+  <script src="js/pulse.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/app.js"></script>
+
+  <!-- Estate feedback widget (WEB_KIT standard; canonical source
+       MetaProject\web_kit\feedback.js, copied verbatim - do not fork).
+       Mounted per Architecture_Housing_webkit_ga4_feedback_clarity v5.
+       Fails soft until the shared Apps Script endpoint is deployed. -->
+  <script>
+    window.FEEDBACK_CONFIG = {
+      project: 'linguics-housing',
+      context: function () {
+        // Called at submit time; must not throw. Build id and strand are read
+        // live so the values are always current, never baked.
+        var strandBtn = document.querySelector('#strand-nav button.active');
+        return {
+          strand: (strandBtn && strandBtn.dataset && strandBtn.dataset.strand) || 'welcome',
+          build: (window.LL && window.LL.build) || 'unknown'
+        };
+      }
+    };
+  </script>
+  <script src="js/feedback.js"></script>
+
+  <!-- Auto-populate the feedback name field with the signed-in display name.
+       feedback.js is the WEB_KIT standard widget (copy verbatim, do not fork),
+       so instead of editing it we watch its panel: open() rebuilds the form via
+       innerHTML on every open, so we fill the freshly-created name input from
+       the shared estate identity (the name entered at the sign-in gate).
+       Reads the name fresh each fill (survives sign-out/in), only fills when
+       the field is empty, and fails soft.  QoderWork 2026-07-23 -->
+  <script>
+    (function () {
+      'use strict';
+      function signedInName() {
+        try {
+          var raw = localStorage.getItem('smithics_fields_identity_v1');
+          var obj = raw ? JSON.parse(raw) : null;
+          return (obj && typeof obj.display_name === 'string') ? obj.display_name.trim() : '';
+        } catch (e) { return ''; }
+      }
+      function fillIfEmpty(panel) {
+        var nameInput = panel.querySelector('#wk-fb-name');
+        if (nameInput && !nameInput.value) {
+          var n = signedInName();
+          if (n) nameInput.value = n;
+        }
+      }
+      function watchPanel(panel) {
+        fillIfEmpty(panel);                       // cover an already-mounted form
+        if (window.MutationObserver) {
+          // open() rebuilds the form via innerHTML on every open; refill each time.
+          new MutationObserver(function () { fillIfEmpty(panel); })
+            .observe(panel, { childList: true });
+        }
+      }
+      function init() {
+        var panel = document.getElementById('wk-fb-panel');
+        if (panel) { watchPanel(panel); return; }
+        // feedback.js mounts on DOMContentLoaded; wait for the panel to appear.
+        if (window.MutationObserver) {
+          var mo = new MutationObserver(function () {
+            var p = document.getElementById('wk-fb-panel');
+            if (p) { mo.disconnect(); watchPanel(p); }
+          });
+          mo.observe(document.documentElement, { childList: true, subtree: true });
+        }
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+  </script>
+</body>
+</html>

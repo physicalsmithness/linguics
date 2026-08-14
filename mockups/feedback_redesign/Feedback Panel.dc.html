@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #f2efe7; font-family: Lora, Georgia, "Times New Roman", serif; color: #1c1c1c; line-height: 1.55; }
+  a { color: #8f2b45; text-decoration: underline; text-underline-offset: 2px; }
+  a:hover { color: #6d1f34; }
+</style>
+</helmet>
+
+<section style="--tone: {{ tone }}; display: flex; flex-direction: column; gap: 20px; padding: 40px 44px 20px">
+
+  <div style="max-width: 820px; display: flex; flex-direction: column; gap: 8px">
+    <div style="font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: #8f2b45; font-weight: 600">Turn 7 &middot; Where we landed</div>
+    <h1 style="margin: 0; font-size: 28px; font-weight: 600; letter-spacing: -.01em">Every decision, in one place</h1>
+    <p style="margin: 0; font-size: 14.5px; color: #6b6b6b; line-height: 1.6; text-wrap: pretty">Oxblood, the deepened green, the Why as a marker&rsquo;s note, and <a href="#6d">6d</a>&rsquo;s rule with <a href="#6b">6b</a>&rsquo;s arrow &mdash; applied across all four surfaces. Everything above this is the working-out.</p>
+  </div>
+
+  <div id="7a" style="display: flex; flex-direction: column; gap: 20px">
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 9px">
+      <div style="background: #fdfaf4; border: 1px solid #e6e1d6; border-top: 3px solid #235c3c; border-radius: 4px; padding: 11px 13px">
+        <div style="font-size: 13.5px; font-weight: 600">Right</div>
+        <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: #6b6b6b; margin: 2px 0 6px">#235c3c</div>
+        <div style="font-size: 11.5px; color: #6b6b6b; line-height: 1.45">Deepened from #2e7d4f. Correct spans, got-it rules, ticks.</div>
+      </div>
+      <div style="background: #fdfaf4; border: 1px solid #e6e1d6; border-top: 3px solid #b58a00; border-radius: 4px; padding: 11px 13px">
+        <div style="font-size: 13.5px; font-weight: 600">Half right</div>
+        <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: #6b6b6b; margin: 2px 0 6px">#b58a00</div>
+        <div style="font-size: 11.5px; color: #6b6b6b; line-height: 1.45">Untouched &mdash; it already meant partial. Accent slips, <em>.markpoint.partial</em>.</div>
+      </div>
+      <div style="background: #fdfaf4; border: 1px solid #e6e1d6; border-top: 3px solid var(--tone, #7f2a24); border-radius: 4px; padding: 11px 13px">
+        <div style="font-size: 13.5px; font-weight: 600">Needs changing</div>
+        <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: #6b6b6b; margin: 2px 0 6px">#7f2a24</div>
+        <div style="font-size: 11.5px; color: #6b6b6b; line-height: 1.45">Oxblood. Darker than every logo tint, so it stays a mark. Once per error.</div>
+      </div>
+      <div style="background: #fdfaf4; border: 1px solid #e6e1d6; border-top: 3px solid #4a89c7; border-radius: 4px; padding: 11px 13px">
+        <div style="font-size: 13.5px; font-weight: 600">Practised</div>
+        <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: #6b6b6b; margin: 2px 0 6px">#4a89c7</div>
+        <div style="font-size: 11.5px; color: #6b6b6b; line-height: 1.45">New job for an existing blue. Tried, not yet right &mdash; coverage only.</div>
+      </div>
+      <div style="background: #fdfaf4; border: 1px solid #e6e1d6; border-top: 3px solid #8f2b45; border-radius: 4px; padding: 11px 13px">
+        <div style="font-size: 13.5px; font-weight: 600">Brand</div>
+        <div style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: #6b6b6b; margin: 2px 0 6px">#8f2b45</div>
+        <div style="font-size: 11.5px; color: #6b6b6b; line-height: 1.45">Wordmark and section labels. Never a verdict &mdash; that was half the problem.</div>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 18px; align-items: flex-start">
+
+      <div style="flex: 1 1 480px; min-width: 440px; max-width: 620px; background: #fdfaf4; border: 1px solid #e6e1d6; border-radius: 6px; overflow: hidden">
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 11px 18px; background: #f6f2e8; border-bottom: 1px solid #e6e1d6">
+          <div style="display: flex; align-items: center; gap: 11px; flex-wrap: wrap">
+            <span aria-hidden="true" style="display: grid; grid-template-columns: repeat(3, 8px); grid-auto-rows: 8px; gap: 1.5px">
+              <i style="border-radius: 1px; background: #b06b76"></i><i style="border-radius: 1px; background: #ece7db"></i><i style="border-radius: 1px; background: #ece7db"></i><i style="border-radius: 1px; background: #8f3a44"></i><i style="border-radius: 1px; background: #ece7db"></i><i style="border-radius: 1px; background: #ece7db"></i><i style="border-radius: 1px; background: #8f3a44"></i><i style="border-radius: 1px; background: #b06b76"></i><i style="border-radius: 1px; background: #d6aab0"></i>
+            </span>
+            <span style="font-family: Fraunces, Georgia, serif; font-weight: 550; letter-spacing: -.01em; font-size: 19px; color: #1c1c1c">lingu<span style="color: #8f2b45">ics</span></span>
+            <span style="font-size: 13px; color: #6b6b6b; font-style: italic">Italian, atomised.</span>
+          </div>
+          <sc-if value="{{ showScore }}" hint-placeholder-val="{{ true }}"><span style="font-size: 12.5px; color: #6b6b6b; font-variant-numeric: tabular-nums; white-space: nowrap">1 / 3</span></sc-if>
+        </div>
+
+        <div style="padding: 16px 18px 18px">
+          <div style="font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: #6b6b6b; font-weight: 600; margin-bottom: 7px">Marker&rsquo;s note</div>
+          <div style="background: #f6f2e8; border-left: 3px solid #d8d2c2; border-radius: 0 3px 3px 0; padding: 10px 13px; font-size: 13px; font-style: italic; line-height: 1.55; color: #4a4a4a; text-wrap: pretty">The learner attempted the sentence but made errors in vocabulary and grammar. The correct form uses &lsquo;nessun&rsquo; and &lsquo;amico&rsquo; is singular.</div>
+
+          <div style="margin-top: 16px">
+            <div style="font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: #6b6b6b; margin-bottom: 7px">Your sentence</div>
+            <div style="font-size: 20px; line-height: 1.6">
+              <span style="text-decoration: underline; text-decoration-color: #235c3c; text-decoration-thickness: 2px; text-underline-offset: 4px">non ho</span>
+              <span style="text-decoration: underline; text-decoration-color: var(--tone, #7f2a24); text-decoration-thickness: 2px; text-underline-offset: 4px">nadie</span>
+              <span style="text-decoration: underline; text-decoration-color: var(--tone, #7f2a24); text-decoration-thickness: 2px; text-underline-offset: 4px">amiche</span>
+              <span aria-hidden="true" style="display: inline-block; width: 0; border-left: 2px solid var(--tone, #7f2a24); height: 19px; vertical-align: -3px; margin: 0 5px"></span>
+              <span style="text-decoration: underline; text-decoration-color: #235c3c; text-decoration-thickness: 2px; text-underline-offset: 4px">in questa citt&agrave;</span>.
+            </div>
+            <div style="display: flex; gap: 15px; margin-top: 9px; font-size: 11.5px; color: #6b6b6b; flex-wrap: wrap">
+              <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 15px; height: 2px; background: #235c3c; display: inline-block"></span>right</span>
+              <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 15px; height: 2px; background: var(--tone, #7f2a24); display: inline-block"></span>needs a change</span>
+              <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 2px; height: 12px; background: var(--tone, #7f2a24); display: inline-block"></span>something missing</span>
+            </div>
+          </div>
+
+          <div style="margin-top: 15px; padding-top: 13px; border-top: 1px solid #e6e1d6">
+            <div style="font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: #8f2b45; font-weight: 600; margin-bottom: 6px">A good translation</div>
+            <div style="font-size: 20px; line-height: 1.5">Non ho nessun amico qui in questa citt&agrave;.</div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 7px; margin-top: 16px">
+            <div style="background: #fff; border: 1px solid #e6e1d6; border-radius: 3px; padding: 10px 12px; display: grid; grid-template-columns: 1fr 150px; gap: 12px; align-items: center">
+              <div>
+                <div style="font-size: 13.5px; font-weight: 600">Double negation is the norm</div>
+                <sc-if value="{{ showLeafNotes }}" hint-placeholder-val="{{ true }}"><div style="font-size: 11.5px; color: #6b6b6b; font-style: italic; line-height: 1.45; margin-top: 3px; text-wrap: pretty">Negative concord: after the verb they keep <em>non</em>; before it they drop it.</div></sc-if>
+              </div>
+              <div style="border-left: 2px solid #235c3c; padding-left: 10px; font-size: 15.5px; font-weight: 600; color: #235c3c">non ho &#10003;</div>
+            </div>
+            <div style="background: #fff; border: 1px solid #e6e1d6; border-radius: 3px; padding: 10px 12px; display: grid; grid-template-columns: 1fr 150px; gap: 12px; align-items: center">
+              <div>
+                <div style="font-size: 13.5px; font-weight: 600">Nessuno, niente, nulla</div>
+                <sc-if value="{{ showLeafNotes }}" hint-placeholder-val="{{ true }}"><div style="font-size: 11.5px; color: #6b6b6b; font-style: italic; line-height: 1.45; margin-top: 3px; text-wrap: pretty">Uno-like endings as an adjective: nessun amico, nessuno zaino, nessuna casa.</div></sc-if>
+              </div>
+              <div style="border-left: 2px solid var(--tone, #7f2a24); padding-left: 10px; display: flex; align-items: baseline; gap: 7px">
+                <span style="font-size: 15.5px; color: #6b6b6b; text-decoration: underline; text-decoration-color: var(--tone, #7f2a24); text-decoration-thickness: 2px; text-underline-offset: 3px">nadie</span>
+                <span style="font-size: 14px; color: var(--tone, #7f2a24)">&rarr;</span>
+                <span style="font-size: 15.5px; font-weight: 600">nessun</span>
+              </div>
+            </div>
+            <div style="background: #fff; border: 1px solid #e6e1d6; border-radius: 3px; padding: 10px 12px; display: grid; grid-template-columns: 1fr 150px; gap: 12px; align-items: center">
+              <div>
+                <div style="font-size: 13.5px; font-weight: 600">Plural</div>
+                <sc-if value="{{ showLeafNotes }}" hint-placeholder-val="{{ true }}"><div style="font-size: 11.5px; color: #6b6b6b; font-style: italic; line-height: 1.45; margin-top: 3px; text-wrap: pretty">Spelling shifts and irregulars &mdash; and when the singular is required.</div></sc-if>
+              </div>
+              <div style="border-left: 2px solid var(--tone, #7f2a24); padding-left: 10px; display: flex; align-items: baseline; gap: 7px">
+                <span style="font-size: 15.5px; color: #6b6b6b; text-decoration: underline; text-decoration-color: var(--tone, #7f2a24); text-decoration-thickness: 2px; text-underline-offset: 3px">amiche</span>
+                <span style="font-size: 14px; color: var(--tone, #7f2a24)">&rarr;</span>
+                <span style="font-size: 15.5px; font-weight: 600">amico</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="flex: 1 1 320px; min-width: 300px; max-width: 400px; display: flex; flex-direction: column; gap: 12px">
+
+        <div style="background: #fdfaf4; border: 1px solid #e6e1d6; border-radius: 6px; padding: 14px 16px">
+          <div style="font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: #8f2b45; font-weight: 600; margin-bottom: 9px">Grammar</div>
+          <div style="display: flex; flex-direction: column; gap: 5px">
+            <div style="display: flex; align-items: center; gap: 8px; padding: 7px 11px; font-size: 13.5px; background: #f8e7e4; border: 1px solid var(--tone, #7f2a24); border-radius: 5px"><span style="flex: 1">andavo</span><span style="font-size: 11px; color: var(--tone, #7f2a24)">your pick</span></div>
+            <div style="display: flex; align-items: center; gap: 8px; padding: 7px 11px; font-size: 13.5px; background: #e4eee7; border: 1px solid #235c3c; border-radius: 5px"><span style="flex: 1; font-weight: 600">sono andato</span><span style="color: #235c3c; font-size: 12.5px">&#10003;</span></div>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 5px; margin-top: 11px">
+            <span style="font-size: 13.5px; padding: 4px 8px; background: #fff; border: 1px solid #e6e1d6; border-radius: 4px">Le</span>
+            <span style="font-size: 13.5px; padding: 4px 8px; background: #f8e7e4; border: 1px solid var(--tone, #7f2a24); border-radius: 4px">ragazze</span>
+            <span style="font-size: 13.5px; padding: 4px 8px; background: #e4eee7; border: 1px solid #235c3c; border-radius: 4px; font-weight: 600">&egrave;</span>
+            <span style="font-size: 13.5px; padding: 4px 8px; background: #fff; border: 1px solid #e6e1d6; border-radius: 4px">arrivate</span>
+          </div>
+          <div style="font-size: 11px; color: #6b6b6b; margin-top: 7px; line-height: 1.45">No strikethrough on your pick &mdash; you still have to read the word.</div>
+        </div>
+
+        <div style="background: #fdfaf4; border: 1px solid #e6e1d6; border-radius: 6px; padding: 14px 16px">
+          <div style="font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: #8f2b45; font-weight: 600; margin-bottom: 9px">Vocabulary</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px">
+            <div style="padding: 6px 10px; font-size: 13px; background: #e4eee7; border: 1px solid #235c3c; border-radius: 4px; font-weight: 600">il &nbsp;<span style="color: #235c3c">&#10003;</span></div>
+            <div style="padding: 6px 10px; font-size: 13px; background: #f8e7e4; border: 1px solid var(--tone, #7f2a24); border-radius: 4px">la</div>
+            <div style="padding: 6px 10px; font-size: 13px; background: #fff; border: 1px solid #e6e1d6; border-radius: 4px">lo</div>
+            <div style="padding: 6px 10px; font-size: 13px; background: #fff; border: 1px solid #e6e1d6; border-radius: 4px">l&rsquo;</div>
+          </div>
+          <div style="display: flex; align-items: baseline; gap: 9px; padding: 8px 11px; background: #f8efd5; border-left: 4px solid #b58a00; border-radius: 4px; margin-top: 9px">
+            <span style="font-size: 10px; text-transform: uppercase; letter-spacing: .07em; color: #6b5400; font-weight: 600">Accent</span>
+            <span style="font-size: 14px">perch<span style="text-decoration: underline; text-decoration-color: #b58a00; text-decoration-thickness: 2px; text-underline-offset: 3px">e</span> &rarr; perch<strong style="font-weight: 600">&eacute;</strong></span>
+          </div>
+          <div style="font-size: 11px; color: #6b6b6b; margin-top: 7px; line-height: 1.45">Amber kept &mdash; an accent slip <em>is</em> half right.</div>
+        </div>
+
+        <div style="background: #fdfaf4; border: 1px solid #e6e1d6; border-radius: 6px; padding: 14px 16px">
+          <div style="font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: #8f2b45; font-weight: 600; margin-bottom: 9px">Coverage</div>
+          <div style="display: flex; align-items: center; gap: 9px">
+            <span style="font-size: 12.5px; font-weight: 600; flex: 1">Passato prossimo</span>
+            <span style="display: flex; gap: 3px; font-size: 13px; font-weight: 700">
+              <span style="color: #235c3c">&#10003;</span><span style="color: #235c3c">&#10003;</span><span style="color: var(--tone, #7f2a24)">&#10007;</span><span style="color: #235c3c">&#10003;</span><span style="color: #b58a00">&#8776;</span><span style="color: #235c3c">&#10003;</span><span style="color: var(--tone, #7f2a24)">&#10007;</span><span style="color: #235c3c">&#10003;</span>
+            </span>
+          </div>
+          <div style="display: flex; gap: 16px; align-items: flex-start; margin-top: 12px; padding-top: 11px; border-top: 1px solid #e6e1d6">
+            <div style="display: grid; grid-template-columns: repeat(4, 15px); gap: 3px">
+              <span style="height: 15px; background: #235c3c; border-radius: 2px"></span><span style="height: 15px; background: #235c3c; border-radius: 2px"></span><span style="height: 15px; background: #e9e3cf; border-radius: 2px; box-shadow: inset 0 0 0 1.5px #4a89c7"></span><span style="height: 15px; background: #e9e3cf; border-radius: 2px"></span>
+              <span style="height: 15px; background: #235c3c; border-radius: 2px"></span><span style="height: 15px; background: #e9e3cf; border-radius: 2px; box-shadow: inset 0 0 0 1.5px #4a89c7"></span><span style="height: 15px; background: #e9e3cf; border-radius: 2px"></span><span style="height: 15px; background: #d9d6cc; border-radius: 2px"></span>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 4px; font-size: 11px; color: #6b6b6b">
+              <span style="display: flex; align-items: center; gap: 6px"><span style="width: 11px; height: 11px; background: #235c3c; border-radius: 2px; flex: 0 0 11px"></span>got it right</span>
+              <span style="display: flex; align-items: center; gap: 6px"><span style="width: 11px; height: 11px; background: #e9e3cf; border-radius: 2px; box-shadow: inset 0 0 0 1.5px #4a89c7; flex: 0 0 11px"></span>tried, not yet right</span>
+              <span style="display: flex; align-items: center; gap: 6px"><span style="width: 11px; height: 11px; background: #e9e3cf; border-radius: 2px; flex: 0 0 11px"></span>yet to get</span>
+              <span style="display: flex; align-items: center; gap: 6px"><span style="width: 11px; height: 11px; background: #d9d6cc; border-radius: 2px; flex: 0 0 11px"></span>not achievable</span>
+            </div>
+          </div>
+          <div style="font-size: 11px; color: #6b6b6b; margin-top: 8px; line-height: 1.45">Practice moved off green, so green means <em>right</em> and nothing else.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div style="background: #f4f1e8; border: 1px solid #e0dbcd; border-radius: 6px; padding: 17px 19px; display: flex; flex-wrap: wrap; gap: 22px">
+      <div style="flex: 1 1 300px; min-width: 280px">
+        <div style="font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: #8f2b45; font-weight: 600; margin-bottom: 9px">Order of work</div>
+        <ol style="margin: 0; padding-left: 19px; font-size: 12.5px; line-height: 1.65; color: #1c1c1c">
+          <li>Retune <em>--green</em> to #235c3c and <em>--red</em> to #7f2a24; add <em>--touched</em> #4a89c7.</li>
+          <li>Reduce each wrong state to <strong style="font-weight: 600">one</strong> red signal &mdash; drop the doubled fill and outline.</li>
+          <li>Move the topic-card rule inside, beside the correction; make the pair an arrow diff.</li>
+          <li>Remove the line-through and the word &ldquo;Wrong.&rdquo;</li>
+          <li>Move <em>Why:</em> to the top, relabel as the marker&rsquo;s note, delete the footer copy.</li>
+          <li>Add the good-translation line.</li>
+          <li>Per-span marking on the learner&rsquo;s sentence and in the cards.</li>
+          <li>Coverage to <em>--touched</em>; add <em>.mark.partial</em> for half-right.</li>
+        </ol>
+        <div style="font-size: 11.5px; color: #6b6b6b; margin-top: 9px; line-height: 1.5">Steps 1&ndash;4 are mechanical and land most of the change. Full spec with class mappings in <em>notes/handoff.md</em>.</div>
+      </div>
+      <div style="flex: 1 1 250px; min-width: 240px">
+        <div style="font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: #8f2b45; font-weight: 600; margin-bottom: 9px">Before it can ship</div>
+        <div style="display: flex; flex-direction: column; gap: 10px; font-size: 12.5px; line-height: 1.5">
+          <div style="padding-left: 11px; border-left: 2px solid var(--tone, #7f2a24)"><strong style="font-weight: 600">One data dependency.</strong> <span style="color: #6b6b6b">&ldquo;A good translation&rdquo; needs a model rendering in the marker payload. Per-span verdicts already come back, so the marking itself is buildable today.</span></div>
+          <div style="padding-left: 11px; border-left: 2px solid #d8d2c2"><strong style="font-weight: 600">One judgement call.</strong> <span style="color: #6b6b6b">The marker&rsquo;s note is third-person AI copy you don&rsquo;t control. Boxing and attributing it is the hedge &mdash; if you later constrain the prompt to second person, the box can go.</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 18px; padding: 26px 44px 20px; border-top: 1px solid #dbd6ca">
+
+  <div style="max-width: 800px; display: flex; flex-direction: column; gap: 8px">
+    <div style="font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: #8f2b45; font-weight: 600">Turn 6 &middot; Carrying the mistake rightwards</div>
+    <h1 style="margin: 0; font-size: 26px; font-weight: 600; letter-spacing: -.01em">Mark the word, not the card</h1>
+    <p style="margin: 0; font-size: 14.5px; color: #6b6b6b; line-height: 1.6; text-wrap: pretty">You&rsquo;re right, and it&rsquo;s an inconsistency rather than a weight problem: in the sentence above, <em>nadie</em> carries a red underline &mdash; in the card, the same word sits in plain grey. The rule on the far left is judging a word four inches away. Four ways to close that gap, all in oxblood.</p>
+  </div>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 18px; align-items: flex-start">
+
+    <div id="6a" style="flex: 1 1 240px; min-width: 235px; max-width: 300px; display: flex; flex-direction: column; gap: 8px">
+      <div style="display: flex; align-items: baseline; gap: 8px">
+        <span style="font-family: ui-monospace, Menlo, monospace; font-size: 10px; font-weight: 700; letter-spacing: .09em; background: #8f2b45; color: #fff; padding: 3px 7px; border-radius: 3px">6A</span>
+        <span style="font-size: 14px; font-weight: 600">Mark what you wrote</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <div style="background: #fff; border: 1px solid #e6e1d6; border-left: 3px solid #c08d87; border-radius: 3px; padding: 10px 12px">
+          <div style="font-size: 13px; font-weight: 600; color: #1c1c1c; margin-bottom: 5px">Nessuno, niente, nulla</div>
+          <div style="font-size: 15.5px; font-weight: 600">nessun</div>
+          <div style="font-size: 11.5px; color: #6b6b6b; margin-top: 2px">you wrote <em style="text-decoration: underline; text-decoration-color: #7f2a24; text-decoration-thickness: 2px; text-underline-offset: 2px; color: #1c1c1c">nadie</em></div>
+        </div>
+        <div style="background: #fff; border: 1px solid #e6e1d6; border-left: 3px solid #235c3c; border-radius: 3px; padding: 10px 12px">
+          <div style="font-size: 13px; font-weight: 600; color: #1c1c1c; margin-bottom: 5px">Double negation is the norm</div>
+          <div style="font-size: 15.5px; font-weight: 600; color: #235c3c">non ho &#10003;</div>
+        </div>
+      </div>
+      <p style="margin: 0; font-size: 11.5px; color: #6b6b6b; font-style: italic; line-height: 1.5; text-wrap: pretty">The same mark the sentence uses, on the same word. One new red per card, and the system stops contradicting itself.</p>
+    </div>
+
+    <div id="6b" style="flex: 1 1 240px; min-width: 235px; max-width: 300px; display: flex; flex-direction: column; gap: 8px">
+      <div style="display: flex; align-items: baseline; gap: 8px">
+        <span style="font-family: ui-monospace, Menlo, monospace; font-size: 10px; font-weight: 700; letter-spacing: .09em; background: #8f2b45; color: #fff; padding: 3px 7px; border-radius: 3px">6B</span>
+        <span style="font-size: 14px; font-weight: 600">Show the change</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <div style="background: #fff; border: 1px solid #e6e1d6; border-left: 3px solid #c08d87; border-radius: 3px; padding: 10px 12px">
+          <div style="font-size: 13px; font-weight: 600; color: #1c1c1c; margin-bottom: 6px">Nessuno, niente, nulla</div>
+          <div style="display: flex; align-items: baseline; gap: 8px; font-size: 15.5px">
+            <span style="text-decoration: underline; text-decoration-color: #7f2a24; text-decoration-thickness: 2px; text-underline-offset: 3px; color: #6b6b6b">nadie</span>
+            <span style="color: #7f2a24; font-size: 14px">&rarr;</span>
+            <span style="font-weight: 600">nessun</span>
+          </div>
+        </div>
+        <div style="background: #fff; border: 1px solid #e6e1d6; border-left: 3px solid #235c3c; border-radius: 3px; padding: 10px 12px">
+          <div style="font-size: 13px; font-weight: 600; color: #1c1c1c; margin-bottom: 6px">Double negation is the norm</div>
+          <div style="font-size: 15.5px; font-weight: 600; color: #235c3c">non ho &#10003;</div>
+        </div>
+      </div>
+      <p style="margin: 0; font-size: 11.5px; color: #6b6b6b; font-style: italic; line-height: 1.5; text-wrap: pretty">An arrow states that something changed, which no colour can. Loses the words &ldquo;you wrote&rdquo; &mdash; the arrow implies them. Tightest of the four.</p>
+    </div>
+
+    <div id="6c" style="flex: 1 1 240px; min-width: 235px; max-width: 300px; display: flex; flex-direction: column; gap: 8px">
+      <div style="display: flex; align-items: baseline; gap: 8px">
+        <span style="font-family: ui-monospace, Menlo, monospace; font-size: 10px; font-weight: 700; letter-spacing: .09em; background: #8f2b45; color: #fff; padding: 3px 7px; border-radius: 3px">6C</span>
+        <span style="font-size: 14px; font-weight: 600">Both verdicts</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <div style="background: #fff; border: 1px solid #e6e1d6; border-left: 3px solid #c08d87; border-radius: 3px; padding: 10px 12px">
+          <div style="font-size: 13px; font-weight: 600; color: #1c1c1c; margin-bottom: 5px">Nessuno, niente, nulla</div>
+          <div style="font-size: 15.5px; font-weight: 600; color: #235c3c">nessun</div>
+          <div style="font-size: 11.5px; color: #6b6b6b; margin-top: 2px">you wrote <em style="text-decoration: underline; text-decoration-color: #7f2a24; text-decoration-thickness: 2px; text-underline-offset: 2px; color: #1c1c1c">nadie</em></div>
+        </div>
+        <div style="background: #fff; border: 1px solid #e6e1d6; border-left: 3px solid #235c3c; border-radius: 3px; padding: 10px 12px">
+          <div style="font-size: 13px; font-weight: 600; color: #1c1c1c; margin-bottom: 5px">Double negation is the norm</div>
+          <div style="font-size: 15.5px; font-weight: 600; color: #235c3c">non ho &#10003;</div>
+        </div>
+      </div>
+      <p style="margin: 0; font-size: 11.5px; color: #6b6b6b; font-style: italic; line-height: 1.5; text-wrap: pretty">Correction in green as well. Reads clearly, but green now means both &ldquo;you got it&rdquo; and &ldquo;this is the answer&rdquo; &mdash; the overload we just removed from coverage.</p>
+    </div>
+
+    <div id="6d" style="flex: 1 1 240px; min-width: 235px; max-width: 300px; display: flex; flex-direction: column; gap: 8px">
+      <div style="display: flex; align-items: baseline; gap: 8px">
+        <span style="font-family: ui-monospace, Menlo, monospace; font-size: 10px; font-weight: 700; letter-spacing: .09em; background: #8f2b45; color: #fff; padding: 3px 7px; border-radius: 3px">6D</span>
+        <span style="font-size: 14px; font-weight: 600">Rule beside the words</span>
+        <span style="font-size: 10px; text-transform: uppercase; letter-spacing: .07em; color: #235c3c; font-weight: 600">&#10003; chosen</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <div style="background: #fff; border: 1px solid #e6e1d6; border-radius: 3px; padding: 10px 12px">
+          <div style="font-size: 13px; font-weight: 600; color: #1c1c1c; margin-bottom: 6px">Nessuno, niente, nulla</div>
+          <div style="border-left: 2px solid #7f2a24; padding-left: 9px; display: flex; align-items: baseline; gap: 7px">
+            <span style="font-size: 15.5px; color: #6b6b6b; text-decoration: underline; text-decoration-color: #7f2a24; text-decoration-thickness: 2px; text-underline-offset: 3px">nadie</span>
+            <span style="font-size: 14px; color: #7f2a24">&rarr;</span>
+            <span style="font-size: 15.5px; font-weight: 600">nessun</span>
+          </div>
+        </div>
+        <div style="background: #fff; border: 1px solid #e6e1d6; border-radius: 3px; padding: 10px 12px">
+          <div style="font-size: 13px; font-weight: 600; color: #1c1c1c; margin-bottom: 6px">Double negation is the norm</div>
+          <div style="border-left: 2px solid #235c3c; padding-left: 9px">
+            <div style="font-size: 15.5px; font-weight: 600; color: #235c3c">non ho &#10003;</div>
+          </div>
+        </div>
+      </div>
+      <p style="margin: 0; font-size: 11.5px; color: #6b6b6b; font-style: italic; line-height: 1.5; text-wrap: pretty">The rule leaves the card edge and moves next to what it judges. Full-strength red, but touching only two words &mdash; so it reads as annotation, not a flagged row. Now carrying <a href="#6b">6b</a>&rsquo;s arrow, and rolled into the panel above.</p>
+    </div>
+
+  </div>
+
+  <p style="margin: 0; max-width: 800px; font-size: 13px; color: #6b6b6b; line-height: 1.55; text-wrap: pretty">Your pick &mdash; <strong style="font-weight: 600; color: #1c1c1c"><a href="#6d">6d</a></strong>&rsquo;s rule with <strong style="font-weight: 600; color: #1c1c1c"><a href="#6b">6b</a></strong>&rsquo;s arrow &mdash; is now live in <a href="#2a">2a</a> and <a href="#5a">5a</a>. Card edges are plain; the red sits against the two words it judges, and the arrow states the change. Each card is a line shorter for it.</p>
+
+</section>
+
+<section style="--r: {{ r }}; --rw: {{ rw }}; --rh: {{ rh }}; display: flex; flex-direction: column; gap: 16px; padding: 26px 44px 20px; border-top: 1px solid #dbd6ca">
+
+  <div style="max-width: 780px; display: flex; flex-direction: column; gap: 8px">
+    <div style="font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: #8f2b45; font-weight: 600">Turn 5 &middot; In situ, switchable</div>
+    <h1 style="margin: 0; font-size: 26px; font-weight: 600; letter-spacing: -.01em">The same panel, five reds</h1>
+    <p style="margin: 0; font-size: 14.5px; color: #6b6b6b; line-height: 1.6; text-wrap: pretty">Your real brand marks are in place &mdash; the nine-cell atom in its three wine tints, the two-tone wordmark, the tagline, the section labels. Switch, and watch the logo: its tints are where a candidate red stops looking like a mark.</p>
+  </div>
+
+  <div id="5a" style="display: flex; flex-direction: column; gap: 14px; max-width: 660px">
+
+    <div style="display: flex; flex-wrap: wrap; gap: 7px; align-items: center">
+      <sc-for list="{{ reds }}" as="red" hint-placeholder-count="5">
+        <button onClick="{{ red.pick }}" style="font-family: inherit; display: flex; align-items: center; gap: 7px; padding: 5px 13px 5px 8px; background: {{ red.bg }}; border: 1.5px solid {{ red.edge }}; border-radius: 999px; cursor: pointer; font-size: 12.5px; font-weight: {{ red.weight }}; color: #1c1c1c">
+          <span style="width: 15px; height: 15px; border-radius: 50%; background: {{ red.hex }}"></span>{{ red.name }}
+        </button>
+      </sc-for>
+    </div>
+
+    <div style="background: #fdfaf4; border: 1px solid #e6e1d6; border-radius: 6px; overflow: hidden">
+
+      <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 14px; padding: 11px 18px; background: #f6f2e8; border-bottom: 1px solid #e6e1d6">
+        <div style="display: flex; align-items: center; gap: 11px; flex-wrap: wrap">
+          <span aria-hidden="true" style="display: grid; grid-template-columns: repeat(3, 8px); grid-auto-rows: 8px; gap: 1.5px">
+            <i style="border-radius: 1px; background: #b06b76"></i><i style="border-radius: 1px; background: #ece7db"></i><i style="border-radius: 1px; background: #ece7db"></i><i style="border-radius: 1px; background: #8f3a44"></i><i style="border-radius: 1px; background: #ece7db"></i><i style="border-radius: 1px; background: #ece7db"></i><i style="border-radius: 1px; background: #8f3a44"></i><i style="border-radius: 1px; background: #b06b76"></i><i style="border-radius: 1px; background: #d6aab0"></i>
+          </span>
+          <span style="font-family: Fraunces, Georgia, serif; font-weight: 550; letter-spacing: -.01em; font-size: 19px; color: #1c1c1c">lingu<span style="color: #8f2b45">ics</span></span>
+          <span style="font-size: 13px; color: #6b6b6b; font-style: italic">Italian, atomised.</span>
+        </div>
+        <span style="font-size: 12px; color: #6b6b6b; font-variant-numeric: tabular-nums">1 / 3</span>
+      </div>
+
+      <div style="padding: 15px 18px 17px">
+
+        <div style="font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: #6b6b6b; font-weight: 600; margin-bottom: 7px">Marker&rsquo;s note</div>
+        <div style="background: #f6f2e8; border-left: 3px solid #d8d2c2; border-radius: 0 3px 3px 0; padding: 10px 13px; font-size: 13px; font-style: italic; line-height: 1.55; color: #4a4a4a; text-wrap: pretty">The learner attempted the sentence but made errors in vocabulary and grammar. The correct form uses &lsquo;nessun&rsquo; and &lsquo;amico&rsquo; is singular.</div>
+
+        <div style="margin-top: 15px">
+          <div style="font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: #6b6b6b; margin-bottom: 6px">Your sentence</div>
+          <div style="font-size: 19px; line-height: 1.6">
+            <span style="text-decoration: underline; text-decoration-color: #235c3c; text-decoration-thickness: 2px; text-underline-offset: 4px">non ho</span>
+            <span style="text-decoration: underline; text-decoration-color: var(--r, #7f2a24); text-decoration-thickness: 2px; text-underline-offset: 4px">nadie</span>
+            <span style="text-decoration: underline; text-decoration-color: var(--r, #7f2a24); text-decoration-thickness: 2px; text-underline-offset: 4px">amiche</span>
+            <span aria-hidden="true" style="display: inline-block; width: 0; border-left: 2px solid var(--r, #7f2a24); height: 18px; vertical-align: -3px; margin: 0 5px"></span>
+            <span style="text-decoration: underline; text-decoration-color: #235c3c; text-decoration-thickness: 2px; text-underline-offset: 4px">in questa citt&agrave;</span>.
+          </div>
+        </div>
+
+        <div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid #e6e1d6">
+          <div style="font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: #8f2b45; font-weight: 600; margin-bottom: 6px">A good translation</div>
+          <div style="font-size: 19px; line-height: 1.5">Non ho nessun amico qui in questa citt&agrave;.</div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 7px; margin-top: 15px">
+          <div style="background: #fff; border: 1px solid #e6e1d6; border-radius: 3px; padding: 10px 12px; display: grid; grid-template-columns: 1fr 150px; gap: 12px; align-items: center">
+            <div style="font-size: 13.5px; font-weight: 600; color: #1c1c1c">Double negation is the norm</div>
+            <div style="border-left: 2px solid #235c3c; padding-left: 10px; font-size: 15.5px; font-weight: 600; color: #235c3c">non ho &#10003;</div>
+          </div>
+          <div style="background: #fff; border: 1px solid #e6e1d6; border-radius: 3px; padding: 10px 12px; display: grid; grid-template-columns: 1fr 150px; gap: 12px; align-items: center">
+            <div style="font-size: 13.5px; font-weight: 600; color: #1c1c1c">Nessuno, niente, nulla</div>
+            <div style="border-left: 2px solid var(--r, #7f2a24); padding-left: 10px; display: flex; align-items: baseline; gap: 7px">
+              <span style="font-size: 15.5px; color: #6b6b6b; text-decoration: underline; text-decoration-color: var(--r, #7f2a24); text-decoration-thickness: 2px; text-underline-offset: 3px">nadie</span>
+              <span style="font-size: 14px; color: var(--r, #7f2a24)">&rarr;</span>
+              <span style="font-size: 15.5px; font-weight: 600">nessun</span>
+            </div>
+          </div>
+          <div style="background: #fff; border: 1px solid #e6e1d6; border-radius: 3px; padding: 10px 12px; display: grid; grid-template-columns: 1fr 150px; gap: 12px; align-items: center">
+            <div style="font-size: 13.5px; font-weight: 600; color: #1c1c1c">Plural</div>
+            <div style="border-left: 2px solid var(--r, #7f2a24); padding-left: 10px; display: flex; align-items: baseline; gap: 7px">
+              <span style="font-size: 15.5px; color: #6b6b6b; text-decoration: underline; text-decoration-color: var(--r, #7f2a24); text-decoration-thickness: 2px; text-underline-offset: 3px">amiche</span>
+              <span style="font-size: 14px; color: var(--r, #7f2a24)">&rarr;</span>
+              <span style="font-size: 15.5px; font-weight: 600">amico</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 16px; padding-top: 13px; border-top: 1px solid #e6e1d6; display: grid; grid-template-columns: 1fr 1fr; gap: 18px">
+          <div>
+            <div style="font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: #6b6b6b; font-weight: 600; margin-bottom: 7px">Next, in grammar</div>
+            <div style="display: flex; flex-direction: column; gap: 5px">
+              <div style="display: flex; align-items: center; gap: 8px; padding: 7px 11px; font-size: 13.5px; background: var(--rw, #f8e7e4); border: 1px solid var(--r, #7f2a24); border-radius: 5px"><span style="flex: 1">andavo</span><span style="font-size: 11px; color: var(--r, #7f2a24)">your pick</span></div>
+              <div style="display: flex; align-items: center; gap: 8px; padding: 7px 11px; font-size: 13.5px; background: #e4eee7; border: 1px solid #235c3c; border-radius: 5px"><span style="flex: 1; font-weight: 600">sono andato</span><span style="color: #235c3c; font-size: 12.5px">&#10003;</span></div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: #6b6b6b; font-weight: 600; margin-bottom: 7px">Last ten</div>
+            <div style="display: flex; align-items: center; gap: 9px">
+              <span style="font-size: 12.5px; color: #8f2b45; font-weight: 600; flex: 1">Passato prossimo</span>
+              <span style="display: flex; gap: 3px; font-size: 13px; font-weight: 700">
+                <span style="color: #235c3c">&#10003;</span><span style="color: #235c3c">&#10003;</span><span style="color: var(--r, #7f2a24)">&#10007;</span><span style="color: #235c3c">&#10003;</span><span style="color: #b58a00">&#8776;</span><span style="color: #235c3c">&#10003;</span><span style="color: var(--r, #7f2a24)">&#10007;</span><span style="color: #235c3c">&#10003;</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <p style="margin: 0; font-size: 12.5px; color: #6b6b6b; line-height: 1.55; text-wrap: pretty">Showing <strong style="font-weight: 600; color: #1c1c1c">{{ redName }}</strong>. Header lifted from your source: the nine-cell atom in <em>#8f3a44 / #b06b76 / #d6aab0</em> and the two-tone wordmark with <em>ics</em> in the accent. Rose is the one to watch &mdash; it lands within a step or two of the logo&rsquo;s mid tint <em>#b06b76</em> sitting an inch away, so a verdict starts looking like brand furniture.</p>
+
+  </div>
+
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 18px; padding: 26px 44px 20px; border-top: 1px solid #dbd6ca">
+
+  <div style="max-width: 780px; display: flex; flex-direction: column; gap: 8px">
+    <div style="font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: #8f2b45; font-weight: 600">Turn 4 &middot; Reds to try</div>
+    <h1 style="margin: 0; font-size: 26px; font-weight: 600; letter-spacing: -.01em">Five candidates, in situ</h1>
+    <p style="margin: 0; font-size: 14.5px; color: #6b6b6b; line-height: 1.6; text-wrap: pretty">The same wrong-pick row and the same card hairline in each. Judged on cream, next to the deepened green &mdash; a red that looks fine alone can still fight #235c3c.</p>
+  </div>
+
+  <div id="4a" style="display: flex; flex-direction: column; gap: 0; background: #fdfaf4; border: 1px solid #e6e1d6; border-radius: 6px; overflow: hidden; max-width: 1000px">
+
+    <div style="display: grid; grid-template-columns: 152px 1fr 190px 1fr; gap: 16px; align-items: center; padding: 9px 16px; background: #f4f1e8; border-bottom: 1px solid #e6e1d6; font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: #6b6b6b; font-weight: 600">
+      <span>Red</span><span>Wrong pick</span><span>Card hairline</span><span>Note</span>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 152px 1fr 190px 1fr; gap: 16px; align-items: center; padding: 12px 16px; border-bottom: 1px solid #eeeade">
+      <div style="display: flex; align-items: center; gap: 9px"><span style="width: 26px; height: 26px; border-radius: 3px; background: #b03030; flex: 0 0 26px"></span><div><div style="font-size: 12.5px; font-weight: 600">Current</div><div style="font-size: 11px; color: #6b6b6b; font-family: ui-monospace, Menlo, monospace">#b03030</div></div></div>
+      <div style="display: flex; align-items: center; gap: 9px; padding: 7px 11px; font-size: 14px; background: #fdecec; border: 1px solid #b03030; border-radius: 5px"><span style="flex: 1">andavo</span><span style="font-size: 11.5px; color: #b03030">your pick</span></div>
+      <div style="background: #fff; border: 1px solid #e6e1d6; border-left: 3px solid #d18b8b; border-radius: 3px; padding: 7px 10px; font-size: 12.5px">Plural</div>
+      <div style="font-size: 11.5px; color: #6b6b6b; line-height: 1.45">Cool and bright. Reads as a system alert rather than a marker&rsquo;s pen.</div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 152px 1fr 190px 1fr; gap: 16px; align-items: center; padding: 12px 16px; border-bottom: 1px solid #eeeade">
+      <div style="display: flex; align-items: center; gap: 9px"><span style="width: 26px; height: 26px; border-radius: 3px; background: #a8503c; flex: 0 0 26px"></span><div><div style="font-size: 12.5px; font-weight: 600">Terracotta</div><div style="font-size: 11px; color: #6b6b6b; font-family: ui-monospace, Menlo, monospace">#a8503c</div></div></div>
+      <div style="display: flex; align-items: center; gap: 9px; padding: 7px 11px; font-size: 14px; background: #fbeae4; border: 1px solid #a8503c; border-radius: 5px"><span style="flex: 1">andavo</span><span style="font-size: 11.5px; color: #a8503c">your pick</span></div>
+      <div style="background: #fff; border: 1px solid #e6e1d6; border-left: 3px solid #d9a394; border-radius: 3px; padding: 7px 10px; font-size: 12.5px">Plural</div>
+      <div style="font-size: 11.5px; color: #6b6b6b; line-height: 1.45">Warm, earthy, at home on cream. Furthest from alarm without going pink.</div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 152px 1fr 190px 1fr; gap: 16px; align-items: center; padding: 12px 16px; border-bottom: 1px solid #eeeade">
+      <div style="display: flex; align-items: center; gap: 9px"><span style="width: 26px; height: 26px; border-radius: 3px; background: #9e3b2c; flex: 0 0 26px"></span><div><div style="font-size: 12.5px; font-weight: 600">Brick</div><div style="font-size: 11px; color: #6b6b6b; font-family: ui-monospace, Menlo, monospace">#9e3b2c</div></div></div>
+      <div style="display: flex; align-items: center; gap: 9px; padding: 7px 11px; font-size: 14px; background: #fbe8e3; border: 1px solid #9e3b2c; border-radius: 5px"><span style="flex: 1">andavo</span><span style="font-size: 11.5px; color: #9e3b2c">your pick</span></div>
+      <div style="background: #fff; border: 1px solid #e6e1d6; border-left: 3px solid #d19a8d; border-radius: 3px; padding: 7px 10px; font-size: 12.5px">Plural</div>
+      <div style="font-size: 11.5px; color: #6b6b6b; line-height: 1.45">Still unmistakably red, just fired at lower temperature. Safe middle.</div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 152px 1fr 190px 1fr; gap: 16px; align-items: center; padding: 12px 16px; border-bottom: 1px solid #eeeade">
+      <div style="display: flex; align-items: center; gap: 9px"><span style="width: 26px; height: 26px; border-radius: 3px; background: #7f2a24; flex: 0 0 26px"></span><div><div style="font-size: 12.5px; font-weight: 600">Oxblood</div><div style="font-size: 11px; color: #6b6b6b; font-family: ui-monospace, Menlo, monospace">#7f2a24</div></div></div>
+      <div style="display: flex; align-items: center; gap: 9px; padding: 7px 11px; font-size: 14px; background: #f8e7e4; border: 1px solid #7f2a24; border-radius: 5px"><span style="flex: 1">andavo</span><span style="font-size: 11.5px; color: #7f2a24">your pick</span></div>
+      <div style="background: #fff; border: 1px solid #e6e1d6; border-left: 3px solid #c08d87; border-radius: 3px; padding: 7px 10px; font-size: 12.5px">Plural</div>
+      <div style="font-size: 11.5px; color: #6b6b6b; line-height: 1.45">Matches the new green for depth &mdash; the most even pairing here. Darker than every logo tint, so it stays a mark.</div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 152px 1fr 190px 1fr; gap: 16px; align-items: center; padding: 12px 16px">
+      <div style="display: flex; align-items: center; gap: 9px"><span style="width: 26px; height: 26px; border-radius: 3px; background: #b0616e; flex: 0 0 26px"></span><div><div style="font-size: 12.5px; font-weight: 600">Rose</div><div style="font-size: 11px; color: #6b6b6b; font-family: ui-monospace, Menlo, monospace">#b0616e</div></div></div>
+      <div style="display: flex; align-items: center; gap: 9px; padding: 7px 11px; font-size: 14px; background: #fdecef; border: 1px solid #b0616e; border-radius: 5px"><span style="flex: 1">andavo</span><span style="font-size: 11.5px; color: #b0616e">your pick</span></div>
+      <div style="background: #fff; border: 1px solid #e6e1d6; border-left: 3px solid #ddb4bc; border-radius: 3px; padding: 7px 10px; font-size: 12.5px">Plural</div>
+      <div style="font-size: 11.5px; color: #6b6b6b; line-height: 1.45">Your <em>--preview</em>, tried earlier. Rules itself out: it is a near match for the logo&rsquo;s mid tint <em>#b06b76</em>, so a mark and a brand cell read alike.</div>
+    </div>
+
+  </div>
+
+  <p style="margin: 0; max-width: 780px; font-size: 13px; color: #6b6b6b; line-height: 1.55; text-wrap: pretty">My pick is <strong style="font-weight: 600; color: #1c1c1c">oxblood #7f2a24</strong> &mdash; now that green has dropped to #235c3c, the bright red is the only thing left shouting. Terracotta is the choice if you want the panel to feel warmer rather than more serious. Say which and I&rsquo;ll set it across all strands.</p>
+
+</section>
+
+<section style="--tone: {{ tone }}; display: flex; flex-direction: column; gap: 20px; padding: 26px 44px 20px; border-top: 1px solid #dbd6ca">
+
+  <div style="max-width: 780px; display: flex; flex-direction: column; gap: 8px">
+    <div style="font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: #8f2b45; font-weight: 600">Turn 3 &middot; The other strands</div>
+    <h1 style="margin: 0; font-size: 26px; font-weight: 600; letter-spacing: -.01em">Same four states, everywhere else</h1>
+    <p style="margin: 0; font-size: 14.5px; color: #6b6b6b; line-height: 1.6; text-wrap: pretty">Grammar and vocab already use green for right, so most of the work is reducing how often red fires &mdash; once per error, not four times over. The coverage panel is the one place that needs a real decision.</p>
+  </div>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 22px; align-items: flex-start">
+
+    <div id="3a" style="flex: 1 1 420px; min-width: 400px; max-width: 470px; display: flex; flex-direction: column; gap: 9px">
+      <div style="display: flex; align-items: baseline; gap: 9px">
+        <span style="font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10.5px; font-weight: 700; letter-spacing: .09em; background: #8f2b45; color: #fff; padding: 3px 8px; border-radius: 3px">3A</span>
+        <span style="font-size: 15.5px; font-weight: 600">Grammar</span>
+      </div>
+      <p style="margin: 0 0 3px; font-size: 12.5px; color: #6b6b6b; font-style: italic; line-height: 1.5; text-wrap: pretty">Green already meant right here. Only the wrong end changes &mdash; and the error-ID words lose their strikethrough.</p>
+
+      <div style="background: #fdfaf4; border: 1px solid #e6e1d6; border-radius: 6px; padding: 15px 17px 16px; display: flex; flex-direction: column; gap: 15px">
+
+        <div>
+          <div style="font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: #6b6b6b; font-weight: 600; margin-bottom: 8px">Multiple choice</div>
+          <div style="font-size: 15px; margin-bottom: 9px">Ieri <em>__</em> al cinema con Marco.</div>
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <div style="display: flex; align-items: center; gap: 9px; padding: 8px 12px; font-size: 14px; background: #fff; border: 1px solid #e6e1d6; border-radius: 5px"><span style="font-size: 11px; color: #6b6b6b; min-width: 12px">1</span>vado</div>
+            <div style="display: flex; align-items: center; gap: 9px; padding: 8px 12px; font-size: 14px; background: #fdecec; border: 1px solid var(--tone, #b03030); border-radius: 5px"><span style="font-size: 11px; color: #6b6b6b; min-width: 12px">2</span><span style="flex: 1">andavo</span><span style="font-size: 11.5px; color: var(--tone, #b03030)">your pick</span></div>
+            <div style="display: flex; align-items: center; gap: 9px; padding: 8px 12px; font-size: 14px; background: #e4eee7; border: 1px solid #235c3c; border-radius: 5px"><span style="font-size: 11px; color: #6b6b6b; min-width: 12px">3</span><span style="flex: 1; font-weight: 600">sono andato</span><span style="color: #235c3c; font-size: 13px">&#10003;</span></div>
+            <div style="display: flex; align-items: center; gap: 9px; padding: 8px 12px; font-size: 14px; background: #fff; border: 1px solid #e6e1d6; border-radius: 5px"><span style="font-size: 11px; color: #6b6b6b; min-width: 12px">4</span>andr&ograve;</div>
+          </div>
+        </div>
+
+        <div style="padding-top: 13px; border-top: 1px solid #e6e1d6">
+          <div style="font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: #6b6b6b; font-weight: 600; margin-bottom: 8px">Find the error</div>
+          <div style="display: flex; flex-wrap: wrap; gap: 6px; align-items: baseline">
+            <span style="font-size: 15px; padding: 4px 9px; background: #fff; border: 1px solid #e6e1d6; border-radius: 5px">Le</span>
+            <span style="font-size: 15px; padding: 4px 9px; background: #fdecec; border: 1px solid var(--tone, #b03030); border-radius: 5px">ragazze</span>
+            <span style="font-size: 15px; padding: 4px 9px; background: #e4eee7; border: 1px solid #235c3c; border-radius: 5px; font-weight: 600">&egrave;</span>
+            <span style="font-size: 15px; padding: 4px 9px; background: #fff; border: 1px solid #e6e1d6; border-radius: 5px">arrivate</span>
+          </div>
+          <div style="display: flex; gap: 15px; margin-top: 9px; font-size: 11.5px; color: #6b6b6b; flex-wrap: wrap">
+            <span>you picked <em>ragazze</em></span>
+            <span style="color: #235c3c">the error was <em>&egrave;</em></span>
+          </div>
+          <p style="margin: 9px 0 0; font-size: 11.5px; color: #6b6b6b; font-style: italic; line-height: 1.5; text-wrap: pretty">Today the wrong pick is red <em>and</em> struck through. The strikethrough goes: it says the same thing a second time, and it damages a word the learner still has to read.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="3b" style="flex: 1 1 420px; min-width: 400px; max-width: 470px; display: flex; flex-direction: column; gap: 9px">
+      <div style="display: flex; align-items: baseline; gap: 9px">
+        <span style="font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10.5px; font-weight: 700; letter-spacing: .09em; background: #8f2b45; color: #fff; padding: 3px 8px; border-radius: 3px">3B</span>
+        <span style="font-size: 15.5px; font-weight: 600">Vocabulary</span>
+      </div>
+      <p style="margin: 0 0 3px; font-size: 12.5px; color: #6b6b6b; font-style: italic; line-height: 1.5; text-wrap: pretty">Same swap in the gender and spelling drills. The accent slip is the interesting one &mdash; it chose amber precisely to sit outside right and wrong.</p>
+
+      <div style="background: #fdfaf4; border: 1px solid #e6e1d6; border-radius: 6px; padding: 15px 17px 16px; display: flex; flex-direction: column; gap: 15px">
+
+        <div>
+          <div style="font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: #6b6b6b; font-weight: 600; margin-bottom: 8px">Gender</div>
+          <div style="font-size: 17px; color: #8f2b45; font-weight: 600; margin-bottom: 9px">problema</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5px">
+            <div style="padding: 7px 10px; font-size: 13px; background: #e4eee7; border: 1px solid #235c3c; border-radius: 5px; font-weight: 600">il &nbsp;<span style="color: #235c3c">&#10003;</span></div>
+            <div style="padding: 7px 10px; font-size: 13px; background: #fdecec; border: 1px solid var(--tone, #b03030); border-radius: 5px">la</div>
+            <div style="padding: 7px 10px; font-size: 13px; background: #fff; border: 1px solid #e6e1d6; border-radius: 5px">lo</div>
+            <div style="padding: 7px 10px; font-size: 13px; background: #fff; border: 1px solid #e6e1d6; border-radius: 5px">l&rsquo;</div>
+          </div>
+        </div>
+
+        <div style="padding-top: 13px; border-top: 1px solid #e6e1d6">
+          <div style="font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: #6b6b6b; font-weight: 600; margin-bottom: 8px">Accent slip &mdash; now genuinely half-right</div>
+          <div style="display: flex; align-items: baseline; gap: 10px; padding: 9px 12px; background: #f8efd5; border-left: 4px solid #b58a00; border-radius: 4px">
+            <span style="font-size: 10px; text-transform: uppercase; letter-spacing: .07em; color: #6b5400; font-weight: 600">Accent</span>
+            <span style="font-size: 15px; color: #1c1c1c">perch<span style="text-decoration: underline; text-decoration-color: #b58a00; text-decoration-thickness: 2px; text-underline-offset: 3px">e</span> &rarr; perch<strong style="font-weight: 600">&eacute;</strong></span>
+          </div>
+          <p style="margin: 9px 0 0; font-size: 11.5px; color: #6b6b6b; font-style: italic; line-height: 1.5; text-wrap: pretty">Your CSS comment says amber was picked to be &ldquo;distinct from right/wrong colouring.&rdquo; Under the settled scale it isn&rsquo;t outside the scale any more &mdash; it <em>is</em> half-right, which is exactly what an accent slip is. The banner keeps its colour and gains a reason for it.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="3c" style="flex: 1 1 420px; min-width: 400px; max-width: 470px; display: flex; flex-direction: column; gap: 9px">
+      <div style="display: flex; align-items: baseline; gap: 9px">
+        <span style="font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10.5px; font-weight: 700; letter-spacing: .09em; background: #8f2b45; color: #fff; padding: 3px 8px; border-radius: 3px">3C</span>
+        <span style="font-size: 15.5px; font-weight: 600">Coverage &mdash; the real decision</span>
+      </div>
+      <p style="margin: 0 0 3px; font-size: 12.5px; color: #6b6b6b; font-style: italic; line-height: 1.5; text-wrap: pretty">Here green means <em>practised</em>, not <em>right</em>. Two meanings, one hue, side by side on the same screen.</p>
+
+      <div style="background: #fdfaf4; border: 1px solid #e6e1d6; border-radius: 6px; padding: 15px 17px 16px; display: flex; flex-direction: column; gap: 15px">
+
+        <div>
+          <div style="font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: #6b6b6b; font-weight: 600; margin-bottom: 8px">Last ten, in a topic row</div>
+          <div style="display: flex; align-items: center; gap: 9px">
+            <span style="font-size: 13px; color: #8f2b45; font-weight: 600; flex: 1">Passato prossimo</span>
+            <span style="display: flex; gap: 3px; font-size: 13px; font-weight: 700">
+              <span style="color: #235c3c">&#10003;</span><span style="color: #235c3c">&#10003;</span><span style="color: var(--tone, #b03030)">&#10007;</span><span style="color: #235c3c">&#10003;</span><span style="color: #b58a00">&#8776;</span><span style="color: #235c3c">&#10003;</span><span style="color: var(--tone, #b03030)">&#10007;</span><span style="color: #235c3c">&#10003;</span>
+            </span>
+          </div>
+          <p style="margin: 8px 0 0; font-size: 11.5px; color: #6b6b6b; font-style: italic; line-height: 1.5">All three verdicts fit the run without a new shape &mdash; half-right gets its own mark instead of rounding to a miss.</p>
+        </div>
+
+        <div style="padding-top: 13px; border-top: 1px solid #e6e1d6">
+          <div style="font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: #6b6b6b; font-weight: 600; margin-bottom: 9px">Practised, moved off green</div>
+          <div style="display: flex; gap: 18px; align-items: flex-start">
+            <div>
+              <div style="display: grid; grid-template-columns: repeat(4, 15px); gap: 3px">
+                <span style="height: 15px; background: #235c3c; border-radius: 2px"></span>
+                <span style="height: 15px; background: #235c3c; border-radius: 2px"></span>
+                <span style="height: 15px; background: #e9e3cf; border-radius: 2px; box-shadow: inset 0 0 0 1.5px #4a89c7"></span>
+                <span style="height: 15px; background: #e9e3cf; border-radius: 2px"></span>
+                <span style="height: 15px; background: #235c3c; border-radius: 2px"></span>
+                <span style="height: 15px; background: #e9e3cf; border-radius: 2px; box-shadow: inset 0 0 0 1.5px #4a89c7"></span>
+                <span style="height: 15px; background: #e9e3cf; border-radius: 2px"></span>
+                <span style="height: 15px; background: #d9d6cc; border-radius: 2px"></span>
+              </div>
+              <div style="font-size: 10.5px; color: #6b6b6b; margin-top: 6px">one topic&rsquo;s leaves</div>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 6px; font-size: 11.5px; color: #6b6b6b">
+              <span style="display: flex; align-items: center; gap: 7px"><span style="width: 12px; height: 12px; background: #235c3c; border-radius: 2px; flex: 0 0 12px"></span>got it right</span>
+              <span style="display: flex; align-items: center; gap: 7px"><span style="width: 12px; height: 12px; background: #e9e3cf; border-radius: 2px; box-shadow: inset 0 0 0 1.5px #4a89c7; flex: 0 0 12px"></span>tried, not yet right</span>
+              <span style="display: flex; align-items: center; gap: 7px"><span style="width: 12px; height: 12px; background: #e9e3cf; border-radius: 2px; flex: 0 0 12px"></span>yet to get</span>
+              <span style="display: flex; align-items: center; gap: 7px"><span style="width: 12px; height: 12px; background: #d9d6cc; border-radius: 2px; flex: 0 0 12px"></span>not achievable</span>
+            </div>
+          </div>
+          <p style="margin: 10px 0 0; font-size: 11.5px; color: #6b6b6b; font-style: italic; line-height: 1.5; text-wrap: pretty"><em>.has-practice</em> currently rings a cell green whether or not you got it right, so a topic you keep failing looks like a topic you have. Blue is the honest signal &mdash; it says <em>touched</em>, and your coverage panel already speaks blue.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<section style="--tone: {{ tone }}; display: flex; flex-direction: column; gap: 20px; padding: 26px 44px 20px; border-top: 1px solid #dbd6ca">
+
+  <div style="max-width: 780px; display: flex; flex-direction: column; gap: 8px">
+    <div style="font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: #8f2b45; font-weight: 600">Turn 2 &middot; Why leads, machine-safe</div>
+    <h1 style="margin: 0; font-size: 26px; font-weight: 600; letter-spacing: -.01em">Right gets a colour too</h1>
+    <p style="margin: 0; font-size: 14.5px; color: #6b6b6b; line-height: 1.6; text-wrap: pretty">Takes the <a href="#1c">1c</a> frame and the <a href="#1a">1a</a> itemised slugs, and answers the two things you raised: green now marks what you got <em>right</em>, and the Why is built to hold AI copy you don&rsquo;t control.</p>
+  </div>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 22px; align-items: flex-start">
+
+    <div id="2a" style="flex: 1 1 500px; min-width: 460px; max-width: 560px; display: flex; flex-direction: column; gap: 9px">
+      <div style="display: flex; align-items: baseline; gap: 9px">
+        <span style="font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10.5px; font-weight: 700; letter-spacing: .09em; background: #8f2b45; color: #fff; padding: 3px 8px; border-radius: 3px">2A</span>
+        <span style="font-size: 15.5px; font-weight: 600">Marker&rsquo;s note on top, slugs below</span>
+      </div>
+      <p style="margin: 0 0 3px; font-size: 12.5px; color: #6b6b6b; font-style: italic; line-height: 1.5; text-wrap: pretty">The Why keeps its place at the top but is attributed and boxed as a machine note, so its tone is the marker&rsquo;s, not the app&rsquo;s. Everything under it is deterministic and always reads well.</p>
+
+      <div style="background: #fdfaf4; border: 1px solid #e6e1d6; border-radius: 6px; padding: 16px 18px 17px">
+
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin-bottom: 8px">
+          <div style="font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: #6b6b6b; font-weight: 600">Marker&rsquo;s note</div>
+          <sc-if value="{{ showScore }}" hint-placeholder-val="{{ true }}"><div style="font-size: 13px; color: #6b6b6b; font-variant-numeric: tabular-nums; white-space: nowrap">1<span style="color: #6b6b6b"> / </span>3</div></sc-if>
+        </div>
+        <div style="background: #f6f2e8; border-left: 3px solid #d8d2c2; border-radius: 0 3px 3px 0; padding: 10px 13px; font-size: 13.5px; font-style: italic; line-height: 1.55; color: #4a4a4a; text-wrap: pretty">The learner attempted to translate the sentence but made errors in vocabulary and grammar. The correct form uses &lsquo;nessun&rsquo; for &lsquo;no&rsquo; and &lsquo;amico&rsquo; is singular. The attempts are noted and partial credit is awarded.</div>
+
+        <div style="margin-top: 16px">
+          <div style="font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: #6b6b6b; margin-bottom: 7px">Your sentence</div>
+          <div style="font-size: 19px; line-height: 1.65">
+            <span style="text-decoration: underline; text-decoration-color: #235c3c; text-decoration-thickness: 2px; text-underline-offset: 4px">non ho</span>
+            <span style="text-decoration: underline; text-decoration-color: var(--tone, #b03030); text-decoration-thickness: 2px; text-underline-offset: 4px">nadie</span>
+            <span style="text-decoration: underline; text-decoration-color: var(--tone, #b03030); text-decoration-thickness: 2px; text-underline-offset: 4px">amiche</span>
+            <span aria-hidden="true" title="a word is missing here" style="display: inline-block; width: 0; border-left: 2px solid var(--tone, #b03030); height: 18px; vertical-align: -3px; margin: 0 5px"></span>
+            <span style="text-decoration: underline; text-decoration-color: #235c3c; text-decoration-thickness: 2px; text-underline-offset: 4px">in questa citt&agrave;</span>.
+          </div>
+          <div style="display: flex; gap: 16px; margin-top: 9px; font-size: 11.5px; color: #6b6b6b; flex-wrap: wrap">
+            <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 15px; height: 2px; background: #235c3c; display: inline-block"></span>right</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 15px; height: 2px; background: var(--tone, #b03030); display: inline-block"></span>needs a change</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 2px; height: 12px; background: var(--tone, #b03030); display: inline-block"></span>something missing</span>
+          </div>
+        </div>
+
+        <div style="margin-top: 15px; padding-top: 13px; border-top: 1px solid #e6e1d6">
+          <div style="font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: #8f2b45; font-weight: 600; margin-bottom: 6px">A good translation</div>
+          <div style="font-size: 19px; line-height: 1.5">Non ho nessun amico qui in questa citt&agrave;.</div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 7px; margin-top: 15px">
+
+          <div style="background: #fff; border: 1px solid #e6e1d6; border-radius: 3px; padding: 10px 12px; display: grid; grid-template-columns: 1fr 150px; gap: 12px; align-items: center">
+            <div>
+              <div style="font-size: 13.5px; font-weight: 600; color: #1c1c1c">Double negation is the norm</div>
+              <sc-if value="{{ showLeafNotes }}" hint-placeholder-val="{{ true }}"><div style="font-size: 11.5px; color: #6b6b6b; font-style: italic; line-height: 1.45; margin-top: 3px; text-wrap: pretty">Negative concord: <em>nessuno, niente, nulla</em> after the verb keep <em>non</em>. Moved before the verb they drop it.</div></sc-if>
+            </div>
+            <div style="border-left: 2px solid #235c3c; padding-left: 10px">
+              <div style="font-size: 15.5px; font-weight: 600; color: #235c3c">non ho &#10003;</div>
+            </div>
+          </div>
+
+          <div style="background: #fff; border: 1px solid #e6e1d6; border-radius: 3px; padding: 10px 12px; display: grid; grid-template-columns: 1fr 150px; gap: 12px; align-items: center">
+            <div>
+              <div style="font-size: 13.5px; font-weight: 600; color: #1c1c1c">Nessuno, niente, nulla</div>
+              <sc-if value="{{ showLeafNotes }}" hint-placeholder-val="{{ true }}"><div style="font-size: 11.5px; color: #6b6b6b; font-style: italic; line-height: 1.45; margin-top: 3px; text-wrap: pretty">Negative indefinites. <em>Nessuno</em> also works as an adjective with uno-like endings: nessun amico, nessuno zaino, nessuna casa.</div></sc-if>
+            </div>
+            <div style="border-left: 2px solid var(--tone, #7f2a24); padding-left: 10px; display: flex; align-items: baseline; gap: 7px">
+              <span style="font-size: 15.5px; color: #6b6b6b; text-decoration: underline; text-decoration-color: var(--tone, #7f2a24); text-decoration-thickness: 2px; text-underline-offset: 3px">nadie</span>
+              <span style="font-size: 14px; color: var(--tone, #7f2a24)">&rarr;</span>
+              <span style="font-size: 15.5px; font-weight: 600">nessun</span>
+            </div>
+          </div>
+
+          <div style="background: #fff; border: 1px solid #e6e1d6; border-radius: 3px; padding: 10px 12px; display: grid; grid-template-columns: 1fr 150px; gap: 12px; align-items: center">
+            <div>
+              <div style="font-size: 13.5px; font-weight: 600; color: #1c1c1c">Plural</div>
+              <sc-if value="{{ showLeafNotes }}" hint-placeholder-val="{{ true }}"><div style="font-size: 11.5px; color: #6b6b6b; font-style: italic; line-height: 1.45; margin-top: 3px; text-wrap: pretty">Forming the plural, with its spelling shifts and irregulars. <em>Nessun</em> takes the singular.</div></sc-if>
+            </div>
+            <div style="border-left: 2px solid var(--tone, #7f2a24); padding-left: 10px; display: flex; align-items: baseline; gap: 7px">
+              <span style="font-size: 15.5px; color: #6b6b6b; text-decoration: underline; text-decoration-color: var(--tone, #7f2a24); text-decoration-thickness: 2px; text-underline-offset: 3px">amiche</span>
+              <span style="font-size: 14px; color: var(--tone, #7f2a24)">&rarr;</span>
+              <span style="font-size: 15.5px; font-weight: 600">amico</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="2b" style="flex: 1 1 380px; min-width: 340px; max-width: 430px; display: flex; flex-direction: column; gap: 9px">
+      <div style="display: flex; align-items: baseline; gap: 9px">
+        <span style="font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10.5px; font-weight: 700; letter-spacing: .09em; background: #8f2b45; color: #fff; padding: 3px 8px; border-radius: 3px">2B</span>
+        <span style="font-size: 15.5px; font-weight: 600">The mark, as a system</span>
+      </div>
+      <p style="margin: 0 0 3px; font-size: 12.5px; color: #6b6b6b; font-style: italic; line-height: 1.5; text-wrap: pretty">One mark, three verdicts &mdash; the scale your app already has, so the same language works in translation, grammar and vocab without inventing a new treatment.</p>
+
+      <div style="background: #fdfaf4; border: 1px solid #e6e1d6; border-radius: 6px; padding: 16px 18px 17px; display: flex; flex-direction: column; gap: 14px">
+
+        <div>
+          <div style="font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: #6b6b6b; font-weight: 600; margin-bottom: 8px">Rule</div>
+          <p style="margin: 0; font-size: 13px; line-height: 1.6; color: #1c1c1c; text-wrap: pretty">A 2px underline under the span it judges. Hue carries the verdict; nothing is filled, boxed or shouted. Wine stays reserved for topic names and brand, so it never competes with a verdict.</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 10px; padding-top: 12px; border-top: 1px solid #e6e1d6">
+          <div style="display: flex; align-items: baseline; gap: 11px">
+            <span style="font-size: 16px; text-decoration: underline; text-decoration-color: #235c3c; text-decoration-thickness: 2px; text-underline-offset: 4px; flex: 0 0 92px">non ho</span>
+            <span style="font-size: 12.5px; color: #6b6b6b; line-height: 1.45">Right &mdash; and said so. Green appears wherever the learner was correct, across every strand.</span>
+          </div>
+          <div style="display: flex; align-items: baseline; gap: 11px">
+            <span style="font-size: 16px; text-decoration: underline; text-decoration-color: var(--tone, #b03030); text-decoration-thickness: 2px; text-underline-offset: 4px; flex: 0 0 92px">nadie</span>
+            <span style="font-size: 12.5px; color: #6b6b6b; line-height: 1.45">Needs a change. Your existing red, used once &mdash; a note in the margin, not a rejection.</span>
+          </div>
+          <div style="display: flex; align-items: baseline; gap: 11px">
+            <span style="font-size: 16px; text-decoration: underline; text-decoration-color: #b58a00; text-decoration-thickness: 2px; text-underline-offset: 4px; flex: 0 0 92px">amiche</span>
+            <span style="font-size: 12.5px; color: #6b6b6b; line-height: 1.45">Half right. Amber, untouched &mdash; it already carries partial credit in <em>.markpoint.partial</em>, so it stays where it is.</span>
+          </div>
+          <div style="display: flex; align-items: baseline; gap: 11px">
+            <span style="flex: 0 0 92px; font-size: 16px"><span aria-hidden="true" style="display: inline-block; width: 0; border-left: 2px solid var(--tone, #b03030); height: 16px; vertical-align: -3px; margin-left: 22px"></span></span>
+            <span style="font-size: 12.5px; color: #6b6b6b; line-height: 1.45">Something missing. A tick in the gap where a word should have been.</span>
+          </div>
+          <div style="display: flex; align-items: baseline; gap: 11px">
+            <span style="font-size: 16px; color: #1c1c1c; font-weight: 600; flex: 0 0 92px">Plural</span>
+            <span style="font-size: 12.5px; color: #6b6b6b; line-height: 1.45">A topic name. Ink, not wine &mdash; stacked three deep beside red marks, wine read as a third verdict. Wine keeps the small section labels and the brand.</span>
+          </div>
+        </div>
+
+        <div style="padding-top: 12px; border-top: 1px solid #e6e1d6">
+          <div style="font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: #6b6b6b; font-weight: 600; margin-bottom: 7px">One thing to settle</div>
+          <p style="margin: 0 0 12px; font-size: 12.5px; line-height: 1.55; color: #6b6b6b; text-wrap: pretty">Green is doing two jobs. In the drills it means <em>you got it right</em>; in the coverage grid <em>.has-practice</em> rings a cell green for having been practised at all, right or wrong. Same hue, two meanings, both on screen at once. Coverage should move to a neutral or to blue, which the panel already uses.</p>
+          <div style="font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: #6b6b6b; font-weight: 600; margin-bottom: 7px">On the AI note</div>
+          <p style="margin: 0; font-size: 12.5px; line-height: 1.55; color: #6b6b6b; text-wrap: pretty">The note above is your marker&rsquo;s real output, third person and all &mdash; dropped in unedited to prove the frame holds it. Attributing and boxing it means a clumsy sentence reads as one marker&rsquo;s remark, not as the app&rsquo;s voice. The slugs below it are yours and deterministic, so the panel still teaches even on a bad generation.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<section style="--tone: {{ tone }}; display: flex; flex-direction: column; gap: 20px; padding: 26px 44px 56px; border-top: 1px solid #dbd6ca">
+
+  <div style="max-width: 760px; display: flex; flex-direction: column; gap: 8px">
+    <div style="font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: #8f2b45; font-weight: 600">Turn 1 &middot; Translation feedback</div>
+    <h1 style="margin: 0; font-size: 26px; font-weight: 600; letter-spacing: -.01em">Three ways to mark a translation</h1>
+    <p style="margin: 0; font-size: 14.5px; color: #6b6b6b; line-height: 1.6; text-wrap: pretty">All three demote red to a single mark, delete the word &ldquo;Wrong,&rdquo; and add a good translation the current panel never shows. They differ in what leads: the correction (<a href="#1a">1a</a>), the sentence alone (<a href="#1b">1b</a>), or the explanation (<a href="#1c">1c</a>).</p>
+    <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-top: 6px; font-size: 12.5px; color: #6b6b6b; font-style: italic">
+      <span>Prompt: &ldquo;I have no friends here in this city.&rdquo;</span>
+      <span>&middot;</span>
+      <span>Learner: &ldquo;non ho nadie amiche in questa citt&agrave;.&rdquo;</span>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 22px; align-items: flex-start">
+
+    <div id="1a" style="flex: 1 1 450px; min-width: 420px; max-width: 520px; display: flex; flex-direction: column; gap: 9px">
+      <div style="display: flex; align-items: baseline; gap: 9px">
+        <span style="font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10.5px; font-weight: 700; letter-spacing: .09em; background: #8f2b45; color: #fff; padding: 3px 8px; border-radius: 3px">1A</span>
+        <span style="font-size: 15.5px; font-weight: 600">Correction first</span>
+      </div>
+      <p style="margin: 0 0 3px; font-size: 12.5px; color: #6b6b6b; font-style: italic; line-height: 1.5; text-wrap: pretty">The right answer is the headline. Your version is demoted to a quiet second line, and each error appears once &mdash; small, under its fix.</p>
+
+      <div style="background: #fdfaf4; border: 1px solid #e6e1d6; border-radius: 6px; padding: 16px 18px 17px">
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 14px; padding-bottom: 11px; border-bottom: 1px solid #e6e1d6">
+          <div style="font-size: 13.5px; line-height: 1.5">Two words to fix. The negation itself is right.</div>
+          <sc-if value="{{ showScore }}" hint-placeholder-val="{{ true }}"><div style="font-size: 13px; color: #6b6b6b; font-variant-numeric: tabular-nums; white-space: nowrap">1<span style="color: #6b6b6b"> / </span>3</div></sc-if>
+        </div>
+
+        <div style="margin-top: 14px">
+          <div style="font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: #8f2b45; font-weight: 600; margin-bottom: 6px">A good translation</div>
+          <div style="font-size: 21px; line-height: 1.5">Non ho nessun amico qui in questa citt&agrave;.</div>
+        </div>
+
+        <div style="margin-top: 13px; padding-top: 12px; border-top: 1px dashed #e6e1d6">
+          <div style="font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: #6b6b6b; margin-bottom: 6px">You wrote</div>
+          <div style="font-size: 15px; line-height: 1.55; color: #6b6b6b">non ho <span style="color: #1c1c1c; text-decoration: underline; text-decoration-color: var(--tone, #b03030); text-decoration-thickness: 2px; text-underline-offset: 3px">nadie</span> <span style="color: #1c1c1c; text-decoration: underline; text-decoration-color: var(--tone, #b03030); text-decoration-thickness: 2px; text-underline-offset: 3px">amiche</span><span aria-hidden="true" title="a word is missing here" style="display: inline-block; width: 0; border-left: 2px solid var(--tone, #b03030); height: 15px; vertical-align: -2px; margin: 0 5px"></span> in questa citt&agrave;.</div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 7px; margin-top: 15px">
+
+          <div style="background: #fff; border: 1px solid #e6e1d6; border-left: 3px solid var(--tone, #b03030); border-radius: 3px; padding: 10px 12px; display: grid; grid-template-columns: 1fr 132px; gap: 12px; align-items: start">
+            <div>
+              <div style="font-size: 13.5px; font-weight: 600; color: #8f2b45">Nessuno, niente, nulla</div>
+              <sc-if value="{{ showLeafNotes }}" hint-placeholder-val="{{ true }}"><div style="font-size: 11.5px; color: #6b6b6b; font-style: italic; line-height: 1.45; margin-top: 3px; text-wrap: pretty">Negative indefinites. <em>Nessuno</em> also works as an adjective with uno-like endings: nessun amico, nessuno zaino, nessuna casa.</div></sc-if>
+            </div>
+            <div style="text-align: right">
+              <div style="font-size: 16px; font-weight: 600">nessun</div>
+              <div style="font-size: 11.5px; color: #6b6b6b; margin-top: 2px">you wrote <em>nadie</em></div>
+            </div>
+          </div>
+
+          <div style="background: #fff; border: 1px solid #e6e1d6; border-left: 3px solid var(--tone, #b03030); border-radius: 3px; padding: 10px 12px; display: grid; grid-template-columns: 1fr 132px; gap: 12px; align-items: start">
+            <div>
+              <div style="font-size: 13.5px; font-weight: 600; color: #8f2b45">Plural</div>
+              <sc-if value="{{ showLeafNotes }}" hint-placeholder-val="{{ true }}"><div style="font-size: 11.5px; color: #6b6b6b; font-style: italic; line-height: 1.45; margin-top: 3px; text-wrap: pretty">Forming the plural, with its spelling shifts and irregulars. <em>Nessun</em> takes the singular.</div></sc-if>
+            </div>
+            <div style="text-align: right">
+              <div style="font-size: 16px; font-weight: 600">amico</div>
+              <div style="font-size: 11.5px; color: #6b6b6b; margin-top: 2px">you wrote <em>amiche</em></div>
+            </div>
+          </div>
+
+          <div style="background: #fff; border: 1px solid #e6e1d6; border-left: 3px solid #cddcd2; border-radius: 3px; padding: 10px 12px; display: grid; grid-template-columns: 1fr 132px; gap: 12px; align-items: start">
+            <div>
+              <div style="font-size: 13.5px; font-weight: 600; color: #8f2b45">Double negation is the norm</div>
+              <sc-if value="{{ showLeafNotes }}" hint-placeholder-val="{{ true }}"><div style="font-size: 11.5px; color: #6b6b6b; font-style: italic; line-height: 1.45; margin-top: 3px; text-wrap: pretty">Negative concord: <em>nessuno, niente, nulla</em> after the verb keep <em>non</em>. Moved before the verb they drop it.</div></sc-if>
+            </div>
+            <div style="text-align: right; display: flex; align-items: baseline; gap: 6px; justify-content: flex-end">
+              <span style="color: #235c3c; font-size: 13px">&#10003;</span>
+              <span style="font-size: 13.5px; color: #6b6b6b">non ho</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="1b" style="flex: 1 1 450px; min-width: 420px; max-width: 520px; display: flex; flex-direction: column; gap: 9px">
+      <div style="display: flex; align-items: baseline; gap: 9px">
+        <span style="font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10.5px; font-weight: 700; letter-spacing: .09em; background: #8f2b45; color: #fff; padding: 3px 8px; border-radius: 3px">1B</span>
+        <span style="font-size: 15.5px; font-weight: 600">One sentence, layered</span>
+      </div>
+      <p style="margin: 0 0 3px; font-size: 12.5px; color: #6b6b6b; font-style: italic; line-height: 1.5; text-wrap: pretty">Nothing wrong is shown until asked for. One correct sentence; tap an underlined word to see what you put. The grammar sits folded underneath.</p>
+
+      <div style="background: #fdfaf4; border: 1px solid #e6e1d6; border-radius: 6px; padding: 18px 18px 17px">
+        <div style="font-size: 22px; line-height: 1.6">Non ho
+          <span onClick="{{ onNessun }}" style="cursor: pointer; text-decoration: underline; text-decoration-color: var(--tone, #b03030); text-decoration-thickness: 2px; text-underline-offset: 4px" style-hover="background: #fdecec; border-radius: 2px">nessun</span><sc-if value="{{ revNessun }}" hint-placeholder-val="{{ true }}"><span style="font-size: 13px; color: #6b6b6b; white-space: nowrap">&nbsp;(you put <em>nadie</em>)</span></sc-if>
+          <span onClick="{{ onAmico }}" style="cursor: pointer; text-decoration: underline; text-decoration-color: var(--tone, #b03030); text-decoration-thickness: 2px; text-underline-offset: 4px" style-hover="background: #fdecec; border-radius: 2px">amico</span><sc-if value="{{ revAmico }}" hint-placeholder-val="{{ true }}"><span style="font-size: 13px; color: #6b6b6b; white-space: nowrap">&nbsp;(you put <em>amiche</em>)</span></sc-if>
+          <span onClick="{{ onQui }}" style="cursor: pointer; text-decoration: underline; text-decoration-color: var(--tone, #b03030); text-decoration-thickness: 2px; text-underline-offset: 4px" style-hover="background: #fdecec; border-radius: 2px">qui</span><sc-if value="{{ revQui }}" hint-placeholder-val="{{ true }}"><span style="font-size: 13px; color: #6b6b6b; white-space: nowrap">&nbsp;(you left this out)</span></sc-if>
+          in questa citt&agrave;.
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 14px; padding-top: 12px; border-top: 1px solid #e6e1d6">
+          <button onClick="{{ onShowAll }}" style="font-family: inherit; font-size: 12.5px; color: #8f2b45; background: transparent; border: 1px solid #e6e1d6; border-radius: 999px; padding: 5px 13px; cursor: pointer" style-hover="border-color: #8f2b45; background: #fdecec">
+            <sc-if value="{{ showAll }}" hint-placeholder-val="{{ true }}">Hide what I wrote</sc-if>
+            <sc-if value="{{ notShowAll }}" hint-placeholder-val="{{ true }}">Show what I wrote</sc-if>
+          </button>
+          <sc-if value="{{ showScore }}" hint-placeholder-val="{{ true }}"><div style="font-size: 13px; color: #6b6b6b; font-variant-numeric: tabular-nums">1<span style="color: #6b6b6b"> / </span>3</div></sc-if>
+        </div>
+
+        <div style="display: flex; flex-direction: column; margin-top: 6px">
+          <div onClick="{{ onLeaf0 }}" style="cursor: pointer; padding: 9px 0; border-bottom: 1px solid #eeeade; display: flex; align-items: baseline; gap: 9px" style-hover="background: #f7f3e9">
+            <span style="width: 3px; align-self: stretch; background: var(--tone, #b03030); border-radius: 2px; flex: 0 0 3px"></span>
+            <span style="font-size: 13.5px; font-weight: 600; color: #8f2b45; flex: 1">Nessuno, niente, nulla</span>
+            <span style="font-size: 11.5px; color: #6b6b6b">nessun</span>
+          </div>
+          <sc-if value="{{ open0 }}" hint-placeholder-val="{{ true }}"><div style="font-size: 12px; color: #6b6b6b; font-style: italic; line-height: 1.5; padding: 9px 0 10px 12px; border-bottom: 1px solid #eeeade; text-wrap: pretty">Negative indefinites. <em>Nessuno</em> also works as an adjective with uno-like endings: nessun amico, nessuno zaino, nessuna casa. <em>Nadie</em> is Spanish.</div></sc-if>
+
+          <div onClick="{{ onLeaf1 }}" style="cursor: pointer; padding: 9px 0; border-bottom: 1px solid #eeeade; display: flex; align-items: baseline; gap: 9px" style-hover="background: #f7f3e9">
+            <span style="width: 3px; align-self: stretch; background: var(--tone, #b03030); border-radius: 2px; flex: 0 0 3px"></span>
+            <span style="font-size: 13.5px; font-weight: 600; color: #8f2b45; flex: 1">Plural</span>
+            <span style="font-size: 11.5px; color: #6b6b6b">amico</span>
+          </div>
+          <sc-if value="{{ open1 }}" hint-placeholder-val="{{ true }}"><div style="font-size: 12px; color: #6b6b6b; font-style: italic; line-height: 1.5; padding: 9px 0 10px 12px; border-bottom: 1px solid #eeeade; text-wrap: pretty">Forming the plural, with its spelling shifts and irregulars. After <em>nessun</em> the noun stays singular.</div></sc-if>
+
+          <div onClick="{{ onLeaf2 }}" style="cursor: pointer; padding: 9px 0; display: flex; align-items: baseline; gap: 9px" style-hover="background: #f7f3e9">
+            <span style="width: 3px; align-self: stretch; background: #cddcd2; border-radius: 2px; flex: 0 0 3px"></span>
+            <span style="font-size: 13.5px; font-weight: 600; color: #8f2b45; flex: 1">Double negation is the norm</span>
+            <span style="font-size: 12.5px; color: #235c3c">&#10003;</span>
+          </div>
+          <sc-if value="{{ open2 }}" hint-placeholder-val="{{ true }}"><div style="font-size: 12px; color: #6b6b6b; font-style: italic; line-height: 1.5; padding: 9px 0 2px 12px; text-wrap: pretty">Negative concord: <em>nessuno, niente, nulla</em> after the verb keep <em>non</em>. Moved before the verb they drop it.</div></sc-if>
+        </div>
+      </div>
+    </div>
+
+    <div id="1c" style="flex: 1 1 450px; min-width: 420px; max-width: 520px; display: flex; flex-direction: column; gap: 9px">
+      <div style="display: flex; align-items: baseline; gap: 9px">
+        <span style="font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10.5px; font-weight: 700; letter-spacing: .09em; background: #8f2b45; color: #fff; padding: 3px 8px; border-radius: 3px">1C</span>
+        <span style="font-size: 15.5px; font-weight: 600">Why leads</span>
+      </div>
+      <p style="margin: 0 0 3px; font-size: 12.5px; color: #6b6b6b; font-style: italic; line-height: 1.5; text-wrap: pretty">The Why moves to the top and becomes the verdict, absorbing the summary line. Rewritten to address you, not to report on &ldquo;the learner.&rdquo; Everything below is evidence for it.</p>
+
+      <div style="background: #fdfaf4; border: 1px solid #e6e1d6; border-radius: 6px; padding: 17px 18px">
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin-bottom: 9px">
+          <div style="font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: #8f2b45; font-weight: 600">What happened</div>
+          <sc-if value="{{ showScore }}" hint-placeholder-val="{{ true }}"><div style="font-size: 13px; color: #6b6b6b; font-variant-numeric: tabular-nums">1<span style="color: #6b6b6b"> / </span>3</div></sc-if>
+        </div>
+        <p style="margin: 0; font-size: 15.5px; line-height: 1.62; text-wrap: pretty">You&rsquo;ve got the hard part right &mdash; <em>non</em> plus a negative word is exactly how Italian handles this. Two things: it&rsquo;s <strong style="font-weight: 600">nessun</strong>, not <em>nadie</em>, which is Spanish; and <em>nessun</em> takes a singular noun, so <strong style="font-weight: 600">amico</strong>. You also dropped <em>here</em>.</p>
+
+        <div style="margin-top: 15px; padding-top: 14px; border-top: 1px solid #e6e1d6">
+          <div style="font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: #6b6b6b; margin-bottom: 6px">So the sentence reads</div>
+          <div style="font-size: 19.5px; line-height: 1.5">Non ho nessun amico qui in questa citt&agrave;.</div>
+          <div style="font-size: 13px; color: #6b6b6b; margin-top: 8px; line-height: 1.5">You wrote <em>non ho nadie amiche in questa citt&agrave;.</em></div>
+        </div>
+
+        <div style="margin-top: 15px; padding-top: 13px; border-top: 1px solid #e6e1d6">
+          <div style="font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; color: #6b6b6b; margin-bottom: 8px">Topics touched</div>
+          <div style="display: flex; flex-direction: column; gap: 8px">
+            <div style="display: flex; align-items: baseline; gap: 9px">
+              <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--tone, #b03030); flex: 0 0 6px; transform: translateY(-1px)"></span>
+              <div style="flex: 1">
+                <span style="font-size: 13.5px; font-weight: 600; color: #8f2b45">Nessuno, niente, nulla</span>
+                <sc-if value="{{ showLeafNotes }}" hint-placeholder-val="{{ true }}"><div style="font-size: 11.5px; color: #6b6b6b; font-style: italic; line-height: 1.45; margin-top: 2px; text-wrap: pretty">Uno-like endings as an adjective: nessun amico, nessuno zaino, nessuna casa.</div></sc-if>
+              </div>
+            </div>
+            <div style="display: flex; align-items: baseline; gap: 9px">
+              <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--tone, #b03030); flex: 0 0 6px; transform: translateY(-1px)"></span>
+              <div style="flex: 1">
+                <span style="font-size: 13.5px; font-weight: 600; color: #8f2b45">Plural</span>
+                <sc-if value="{{ showLeafNotes }}" hint-placeholder-val="{{ true }}"><div style="font-size: 11.5px; color: #6b6b6b; font-style: italic; line-height: 1.45; margin-top: 2px; text-wrap: pretty">Spelling shifts and irregulars &mdash; and when the singular is required.</div></sc-if>
+              </div>
+            </div>
+            <div style="display: flex; align-items: baseline; gap: 9px">
+              <span style="width: 6px; height: 6px; border-radius: 50%; background: #235c3c; flex: 0 0 6px; transform: translateY(-1px)"></span>
+              <div style="flex: 1">
+                <span style="font-size: 13.5px; font-weight: 600; color: #8f2b45">Double negation is the norm</span>
+                <span style="font-size: 11.5px; color: #235c3c">&nbsp;&mdash; got it</span>
+                <sc-if value="{{ showLeafNotes }}" hint-placeholder-val="{{ true }}"><div style="font-size: 11.5px; color: #6b6b6b; font-style: italic; line-height: 1.45; margin-top: 2px; text-wrap: pretty">Negative concord: after the verb they keep <em>non</em>; before it they drop it.</div></sc-if>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="max-width: 760px; margin-top: 6px; padding: 14px 16px; background: #f4f1e8; border: 1px solid #e0dbcd; border-radius: 5px">
+    <div style="font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: #6b6b6b; font-weight: 600; margin-bottom: 7px">What changed in all three</div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px 22px; font-size: 12.5px; line-height: 1.5; color: #1c1c1c">
+      <div><strong style="font-weight: 600">Red, used once.</strong> <span style="color: #6b6b6b">Red is kept but demoted &mdash; one 2px underline, never a fill plus an outline plus a strikethrough plus the word itself. Amber is left alone; it already means half-right.</span></div>
+      <div><strong style="font-weight: 600">The word &ldquo;Wrong&rdquo; is gone.</strong> <span style="color: #6b6b6b">The label said it a third time after the two chips already had. The fix is stated once.</span></div>
+      <div><strong style="font-weight: 600">A good translation added.</strong> <span style="color: #6b6b6b">The panel never showed one. It also now catches the word you left out &mdash; <em>qui</em> &mdash; which the old diff missed entirely.</span></div>
+      <div><strong style="font-weight: 600">Right sits apart from wrong.</strong> <span style="color: #6b6b6b">No more green chip beside a pink one. Your version is smaller, greyer, and underneath.</span></div>
+    </div>
+  </div>
+
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;errorTone&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#7f2a24&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#7f2a24&quot;,&quot;#9e3b2c&quot;,&quot;#a8503c&quot;,&quot;#b03030&quot;],&quot;section&quot;:&quot;Correctness colour&quot;},&quot;showScore&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;showLeafNotes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Content&quot;}}">
+class Component extends DCLogic {
+  state = { showAll: false, rev: {}, open: null, red: 3 };
+
+  static REDS = [
+    { name: 'Current',    hex: '#b03030', wash: '#fdecec', hair: '#d18b8b' },
+    { name: 'Terracotta', hex: '#a8503c', wash: '#fbeae4', hair: '#d9a394' },
+    { name: 'Brick',      hex: '#9e3b2c', wash: '#fbe8e3', hair: '#d19a8d' },
+    { name: 'Oxblood',    hex: '#7f2a24', wash: '#f8e7e4', hair: '#c08d87' },
+    { name: 'Rose',       hex: '#b0616e', wash: '#fdecef', hair: '#ddb4bc' }
+  ];
+
+  toggleRev(k) {
+    this.setState(s => ({ rev: Object.assign({}, s.rev, { [k]: !s.rev[k] }) }));
+  }
+
+  toggleLeaf(i) {
+    this.setState(s => ({ open: s.open === i ? null : i }));
+  }
+
+  renderVals() {
+    const { showAll, rev, open, red } = this.state;
+    const R = Component.REDS;
+    const sel = R[red];
+    return {
+      r: sel.hex, rw: sel.wash, rh: sel.hair, redName: sel.name,
+      reds: R.map((c, i) => ({
+        name: c.name, hex: c.hex,
+        edge: i === red ? c.hex : '#e6e1d6',
+        bg: i === red ? c.wash : '#fff',
+        weight: i === red ? '600' : '400',
+        pick: () => this.setState({ red: i })
+      })),
+      tone: this.props.errorTone ?? '#7f2a24',
+      showScore: this.props.showScore ?? true,
+      showLeafNotes: this.props.showLeafNotes ?? true,
+      showAll,
+      notShowAll: !showAll,
+      revNessun: showAll || !!rev.nessun,
+      revAmico: showAll || !!rev.amico,
+      revQui: showAll || !!rev.qui,
+      onNessun: () => this.toggleRev('nessun'),
+      onAmico: () => this.toggleRev('amico'),
+      onQui: () => this.toggleRev('qui'),
+      onShowAll: () => this.setState(s => ({ showAll: !s.showAll, rev: {} })),
+      open0: open === 0,
+      open1: open === 1,
+      open2: open === 2,
+      onLeaf0: () => this.toggleLeaf(0),
+      onLeaf1: () => this.toggleLeaf(1),
+      onLeaf2: () => this.toggleLeaf(2)
+    };
+  }
+}
+
+</script>
+</body>
+</html>

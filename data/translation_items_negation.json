@@ -39,6 +39,7 @@
     "explanation": "Non goes directly before the verb: Non capisco. Italian usually drops the subject pronoun.",
     "version": 1,
     "expected_buckets": [
+      "negation.core",
       "verb_form.present_indicative",
       "vocabulary.it.capire.verb.translation.active"
     ]
@@ -84,7 +85,9 @@
       }
     ],
     "expected_buckets": [
+      "negation.core",
       "orthography.spelling.c_g_softening",
+      "piacere",
       "piacere.form.agreement",
       "pronoun.indirect_object.mi",
       "verb_form.present_indicative",
@@ -138,11 +141,14 @@
       }
     ],
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
       "indefinite.pronouns.nessuno_niente",
+      "negation.core",
       "negation.core.non_position",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "preposition.articulated",
       "preposition.articulated.formation",
       "verb_form.present_indicative",
       "vocabulary.it.nessuno.determiner.translation.active",
@@ -232,6 +238,7 @@
     ],
     "expected_buckets": [
       "indefinite.pronouns.nessuno_niente",
+      "negation.core",
       "negation.core.non_position",
       "orthography.spelling.digraph",
       "verb_form.present_indicative",
@@ -270,9 +277,11 @@
     "version": 1,
     "expected_buckets": [
       "indefinite.pronouns.nessuno_niente",
+      "negation.core",
       "negation.core.non_position",
       "orthography.accent.italian",
       "orthography.spelling.apostrophe_elision",
+      "preposition.simple",
       "preposition.simple.forms",
       "verb_form.present_indicative",
       "vocabulary.it.niente.adverb.translation.passive"
@@ -319,7 +328,9 @@
       }
     ],
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
+      "negation.core",
       "negation.core.non_position",
       "orthography.accent.italian",
       "orthography.spelling.doubling",
@@ -361,6 +372,7 @@
       }
     ],
     "expected_buckets": [
+      "negation.core",
       "negation.core.non_position",
       "orthography.accent.italian",
       "orthography.spelling.qu_cu_cqu",
@@ -402,7 +414,9 @@
       }
     ],
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
+      "negation.core",
       "negation.core.non_position",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
@@ -448,6 +462,7 @@
       }
     ],
     "expected_buckets": [
+      "negation.core",
       "negation.core.non_position",
       "orthography.accent.italian",
       "verb_form.present_indicative",
@@ -503,11 +518,15 @@
       }
     ],
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
+      "negation.core",
       "negation.core.non_position",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
+      "piacere",
       "piacere.form.agreement",
+      "preposition.simple",
       "preposition.simple.forms",
       "pronoun.indirect_object.mi",
       "verb_form.present_indicative",
@@ -550,11 +569,13 @@
     "explanation": "'Neanch'io' echoes a negative statement: 'Me neither / Nor have I.' The non ... mai in the first clause is the standard 'never' frame.",
     "version": 1,
     "expected_buckets": [
+      "negation.core",
       "negation.core.non_position",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.capitalization",
       "pronoun.ci_locative",
+      "verb_form.passato_prossimo",
       "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
       "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
       "verb_form.present_indicative",
@@ -590,6 +611,7 @@
     "explanation": "'I don't have even one euro': Non ho nemmeno un euro. Used inside a clause, neanche/nemmeno/neppure mean 'not even' and keep non before the verb.",
     "version": 1,
     "expected_buckets": [
+      "negation.core",
       "negation.core.non_position",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
@@ -727,6 +749,7 @@
     "expected_buckets": [
       "negation.core.non_position",
       "orthography.spelling.c_g_softening",
+      "preposition.simple",
       "preposition.simple.forms",
       "verb_form.congiuntivo.formation.presente",
       "verb_form.future",
@@ -819,11 +842,13 @@
     "explanation": "'I didn't say that at all!': Non ho mica detto questo! After the verb (here after the auxiliary ho), mica reinforces non with a colloquial, slightly indignant 'at all'.",
     "version": 1,
     "expected_buckets": [
+      "negation.core",
       "negation.core.bipartite",
       "negation.core.non_position",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
       "orthography.spelling.silent_h",
+      "preposition.simple",
       "preposition.simple.forms",
       "verb_form.present_indicative",
       "vocabulary.it.mica.adverb.translation.active"
@@ -876,6 +901,7 @@
       }
     ],
     "expected_buckets": [
+      "negation.core",
       "negation.core.non_position",
       "orthography.accent.italian",
       "orthography.spelling.doubling",
@@ -925,10 +951,12 @@
     "explanation": "'Né Marco né Luca sono venuti' = 'Neither Marco nor Luca came.' The pair sits before the verb, so there is no non; Italian also keeps the verb plural where English hears a singular.",
     "version": 1,
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.capitalization",
       "orthography.spelling.doubling",
+      "preposition.articulated",
       "preposition.articulated.formation",
       "verb_form.passato_prossimo.auxiliary.essere_motion_intransitive",
       "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_plural",
@@ -982,6 +1010,7 @@
     "expected_buckets": [
       "indefinite.pronouns.nessuno_niente",
       "interrogatives",
+      "negation.core",
       "negation.core.non_position",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.capitalization",
@@ -1032,15 +1061,19 @@
       }
     ],
     "expected_buckets": [
+      "article.definite",
       "article.definite.forms",
       "indefinite.pronouns.nessuno_niente",
       "interrogatives.chi",
+      "negation.core",
       "negation.core.non_position",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.capitalization",
       "orthography.spelling.doubling",
+      "preposition.articulated",
       "preposition.articulated.formation",
+      "verb_form.passato_prossimo",
       "verb_form.passato_prossimo.auxiliary.essere_motion_intransitive",
       "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
       "verb_form.present_indicative",
