@@ -61,11 +61,15 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
       "article.definite",
       "article.definite.forms",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.accent.italian",
       "orthography.spelling.capitalization",
       "orthography.spelling.doubling",
+      "possessive.adjective.family_exception",
       "preposition.articulated.formation",
       "verb_form.present_indicative",
       "vocabulary.it.alto.adjective.translation.active",
@@ -126,8 +130,16 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
+      "adjective_agreement.position.post_noun_default",
+      "adjective_agreement.special.quello",
+      "demonstrative.pronoun",
+      "demonstrative.questo",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
+      "orthography.spelling.capitalization",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
       "preposition.simple",
@@ -196,6 +208,8 @@
       "article.definite.forms",
       "existential",
       "existential.form.past",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.accent.italian",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.doubling",
@@ -269,6 +283,7 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.e_class.masculine_singular",
       "article.definite",
       "article.definite.forms",
       "indefinite.core",
@@ -341,6 +356,9 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.o_class.feminine_singular",
+      "adjective_agreement.position.pre_noun_canonical",
+      "demonstrative.questo",
       "existential",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
@@ -411,6 +429,10 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
+      "demonstrative.questo",
+      "noun.gender",
+      "noun.gender.e_ending",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
@@ -476,11 +498,13 @@
     "explanation": "'Il nostro nuovo vicino è più simpatico che intelligente' means 'Our new neighbour is more likeable than intelligent.' The che (not di) is the signal that both qualities belong to the same person: he is not being compared with somebody else.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
       "article.definite",
       "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "possessive.adjective.forms",
       "verb_form.present_indicative",
       "vocabulary.it.intelligente.adjective.translation.passive",
       "vocabulary.it.nostro.determiner.translation.passive",
@@ -533,6 +557,7 @@
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "possessive.adjective.forms",
       "preposition.articulated",
       "preposition.articulated.formation",
       "pronoun.ci_locative",
@@ -648,9 +673,13 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.o_class.feminine_singular",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "possessive.adjective.family_exception",
       "verb_form.present_indicative",
       "vocabulary.it.alto.adjective.translation.active",
       "vocabulary.it.me.pronoun.translation.active",
@@ -705,6 +734,10 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
+      "demonstrative.questo",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.accent.italian",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
@@ -776,8 +809,14 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
       "article.definite",
       "article.definite.forms",
+      "demonstrative.pronoun",
+      "demonstrative.questo",
+      "noun.gender",
+      "noun.gender.e_ending",
+      "noun.gender.regular",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
@@ -856,8 +895,15 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.e_class.feminine_singular",
+      "adjective_agreement.position.pre_noun_canonical",
+      "adjective_agreement.position.semantic_shift.grande",
+      "adjective_agreement.special.grande_prenominal",
       "article.definite",
       "article.definite.forms",
+      "comparison.comparative",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.capitalization",
       "orthography.spelling.digraph",
@@ -984,9 +1030,12 @@
     "expected_buckets": [
       "article.definite",
       "article.definite.forms",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.accent.italian",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
+      "possessive.adjective.forms",
       "preposition.articulated.formation",
       "verb_form.present_indicative",
       "vocabulary.it.idea.noun.translation.active",
@@ -1116,6 +1165,8 @@
     "version": 1,
     "expected_buckets": [
       "connective.contrast",
+      "demonstrative.pronoun",
+      "demonstrative.questo",
       "orthography.accent.italian",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
@@ -1179,6 +1230,9 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.o_class.feminine_singular",
+      "adjective_agreement.position.pre_noun_canonical",
+      "adjective_agreement.special.bello",
       "article.definite.forms",
       "indefinite.core",
       "indefinite.core.tutto",
@@ -1240,11 +1294,15 @@
     "explanation": "Article + noun + più + adjective, with the group introduced by di, contracted here to dell' before anno.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
+      "adjective_agreement.position.pre_noun_canonical",
       "article.definite",
       "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.c_g_softening",
+      "orthography.spelling.capitalization",
+      "orthography.spelling.digraph",
       "orthography.spelling.doubling",
       "preposition.articulated.formation",
       "verb_form.present_indicative",
@@ -1327,6 +1385,8 @@
       "connective.time",
       "indefinite.core",
       "indefinite.core.tutto",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "verb_form.imperfect",
@@ -1386,6 +1446,10 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
+      "adjective_agreement.position.post_noun_default",
+      "adjective_agreement.position.pre_noun_canonical",
+      "adjective_agreement.special.bello",
       "article.definite",
       "article.definite.forms",
       "orthography.spelling.c_g_softening",
@@ -1461,6 +1525,8 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.o_class.feminine_singular",
+      "comparison.superlative.absolute",
       "interrogatives.exclamatives",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
@@ -1524,8 +1590,11 @@
     "explanation": "'Il servizio in quel ristorante era davvero pessimo' means 'The service in that restaurant was really dreadful.' Pessimo is the inherited absolute superlative of cattivo, the mirror of ottimo, so English needs a strong word (dreadful, awful), not merely 'bad'.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
+      "adjective_agreement.special.quello",
       "article.definite",
       "article.definite.forms",
+      "demonstrative.quello",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
       "preposition.simple",

@@ -2057,7 +2057,7 @@ body.entry-active .content,
 body.entry-active #live-stats { display: none; }
 
 .entry-screen { padding: 8px 16px 40px; }
-.entry-col { max-width: 468px; margin: 0 auto; }
+.entry-col { max-width: 468px; margin: 0 auto; padding-bottom: 8px; }
 .entry-greeting { font-size: 24px; font-weight: 600; margin: 24px 0 4px; }
 .entry-subhead { margin: 0 0 20px; color: var(--muted); }
 /* ============================================================================
@@ -2137,7 +2137,24 @@ body.entry-active #live-stats { display: none; }
 .entry-chip:hover { border-color: var(--preview); }
 .entry-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
 
-.entry-start-wrap { margin-top: 22px; }
+/* r166, Smith: "we also want an intro page... stop it going down a page. keep
+   start on the home page." Start was sticky ONLY under 600px - on every desktop
+   it sat at the bottom of a column of configuration, so the front door required
+   scrolling to find its own front door. r142 widened the layout and helped, but
+   the config grows (drills, classes, levels, themes) and any fix that depends on
+   the content staying short is a fix that expires.
+   Sticky at ALL widths instead: Start is pinned to the bottom of the viewport
+   while the entry screen is open, so it is reachable at any scroll position and
+   at any amount of configuration. The gradient keeps the content readable as it
+   passes underneath rather than being cut off by a hard edge. */
+.entry-start-wrap {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+  margin-top: 22px;
+  padding: 14px 0 12px;
+  background: linear-gradient(to top, var(--bg) 70%, rgba(253,250,244,0));
+}
 .entry-start {
   width: 100%; background: var(--accent); color: #fff; border: none; border-radius: 10px;
   padding: 15px; font-family: inherit; font-size: 17px; font-weight: 600; cursor: pointer;
@@ -2171,7 +2188,7 @@ body.entry-active #live-stats { display: none; }
 @media (max-width: 600px) {
   .entry-screen { padding: 4px 12px 96px; }
   .entry-greeting { font-size: 22px; }
-  .entry-start-wrap { position: sticky; bottom: 0; background: linear-gradient(to top, var(--bg) 72%, rgba(253,250,244,0)); padding: 12px 0 10px; margin-top: 16px; }
+  .entry-start-wrap { margin-top: 16px; }   /* r166: stickiness is now global */
   .entry-start { padding: 16px; font-size: 18px; }
 }
 

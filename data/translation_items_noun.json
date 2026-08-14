@@ -75,8 +75,11 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.e_class.feminine_singular",
+      "adjective_agreement.o_class.masculine_singular",
       "article.definite",
       "article.definite.forms",
+      "noun.gender",
       "orthography.accent.italian",
       "verb_form.present_indicative",
       "vocabulary.it.casa.noun.gender.active",
@@ -148,8 +151,11 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
       "article.definite",
       "article.definite.forms",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.accent.italian",
       "orthography.spelling.doubling",
       "preposition.articulated",
@@ -223,6 +229,7 @@
     "explanation": "'La notte è lunga in inverno' means 'The night is long in winter.' Notte is a feminine -e noun (la notte), and lunga shows the feminine agreement.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.feminine_singular",
       "article.definite",
       "article.definite.forms",
       "orthography.accent.italian",
@@ -296,9 +303,12 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
       "article.definite",
       "article.definite.forms",
       "connective.contrast",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.accent.italian",
       "orthography.spelling.doubling",
       "verb_form.present_indicative",
@@ -370,6 +380,8 @@
     "expected_buckets": [
       "article.definite",
       "article.definite.forms",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.spelling.doubling",
       "preposition.articulated",
       "preposition.articulated.formation",
@@ -506,6 +518,7 @@
     "expected_buckets": [
       "article.definite",
       "article.definite.forms",
+      "noun.plural",
       "preposition.articulated",
       "preposition.articulated.formation",
       "verb_form.present_indicative",
@@ -568,8 +581,10 @@
     "expected_buckets": [
       "article.definite",
       "article.definite.forms",
+      "noun.plural",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "possessive.adjective.family_exception",
       "verb_form.present_indicative",
       "vocabulary.it.gatto.noun.translation.active",
       "vocabulary.it.sorella.noun.translation.active",
@@ -636,6 +651,8 @@
     "explanation": "'Le case nuove sono care' means 'The new houses are expensive.' Casa to case is the -a to -e plural, and nuove and care agree feminine plural.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.feminine_plural",
+      "adjective_agreement.position.post_noun_default",
       "article.definite",
       "article.definite.forms",
       "verb_form.present_indicative",
@@ -769,9 +786,13 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_plural",
+      "adjective_agreement.stem_changes.irregular.greco_greci",
       "article.definite",
       "article.definite.forms",
+      "noun.plural",
       "orthography.spelling.c_g_softening",
+      "possessive.adjective.forms",
       "verb_form.present_indicative",
       "vocabulary.it.amico.noun.translation.active",
       "vocabulary.it.greco.adjective.translation.active"
@@ -837,6 +858,8 @@
     "explanation": "'Le spiagge italiane sono belle' means 'Italian beaches are beautiful.' Spiaggia has a consonant before -gia, so the plural drops the i: spiagge.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.feminine_plural",
+      "adjective_agreement.position.post_noun_default",
       "article.definite",
       "article.definite.forms",
       "orthography.spelling.c_g_softening",
@@ -908,9 +931,11 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_plural",
       "article.definite",
       "article.definite.forms",
       "orthography.spelling.c_g_softening",
+      "orthography.spelling.digraph",
       "orthography.spelling.doubling",
       "preposition.simple",
       "preposition.simple.forms",
@@ -972,10 +997,14 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.o_class.feminine_plural",
+      "adjective_agreement.position.post_noun_default",
       "article.definite",
       "article.definite.forms",
+      "noun.plural",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
+      "orthography.spelling.capitalization",
       "orthography.spelling.doubling",
       "verb_form.present_indicative",
       "vocabulary.it.bello.adjective.translation.active",
@@ -1042,6 +1071,9 @@
     "explanation": "'Ho visto due bei film ieri sera' means 'I saw two good films last night.' Film is a borrowed word and stays the same in the plural: due film, not due filmi.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_plural",
+      "adjective_agreement.position.pre_noun_canonical",
+      "adjective_agreement.special.bello",
       "orthography.spelling.silent_h",
       "verb_form.present_indicative",
       "vocabulary.it.bello.adjective.translation.passive",
@@ -1107,6 +1139,7 @@
     "expected_buckets": [
       "article.definite",
       "article.definite.forms",
+      "noun.plural",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "preposition.simple",
@@ -1176,8 +1209,11 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.e_class.feminine_plural",
+      "adjective_agreement.position.post_noun_default",
       "article.definite",
       "article.definite.forms",
+      "noun.plural",
       "orthography.spelling.silent_h",
       "verb_form.present_indicative",
       "vocabulary.it.forte.adjective.translation.active",
@@ -1386,6 +1422,9 @@
     "explanation": "'Ho due amici a Roma' means 'I have two friends in Rome.' Amico takes the soft -ci plural, amici (no h).",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_plural",
+      "adjective_agreement.position.post_noun_default",
+      "adjective_agreement.stem_changes.irregular.amico_amici",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.capitalization",
       "orthography.spelling.silent_h",

@@ -60,6 +60,8 @@
     ],
     "expected_buckets": [
       "article.definite",
+      "noun.gender",
+      "noun.gender.e_ending",
       "orthography.spelling.silent_h",
       "verb_form.present_indicative",
       "vocabulary.it.studente.noun.gender.active",
@@ -314,6 +316,8 @@
     "expected_buckets": [
       "article.definite",
       "article.definite.forms",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
@@ -381,6 +385,7 @@
       "article.definite",
       "article.definite.forms",
       "orthography.accent.italian",
+      "orthography.spelling.capitalization",
       "preposition.simple",
       "preposition.simple.forms",
       "verb_form.present_indicative",
@@ -439,10 +444,14 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.e_class.masculine_singular",
+      "adjective_agreement.o_class.masculine_singular",
+      "adjective_agreement.position.post_noun_default",
       "article.definite",
       "article.definite.forms",
       "connective.contrast",
       "orthography.spelling.apostrophe_elision",
+      "orthography.spelling.capitalization",
       "orthography.spelling.digraph",
       "verb_form.present_indicative",
       "vocabulary.it.inglese.adjective.translation.active",
@@ -641,6 +650,8 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.o_class.feminine_plural",
+      "adjective_agreement.stem_changes.predictable.ca_che",
       "article.definite",
       "article.definite.forms",
       "orthography.spelling.c_g_softening",
@@ -714,6 +725,9 @@
       }
     ],
     "expected_buckets": [
+      "noun.gender",
+      "noun.gender.e_ending",
+      "noun.gender.regular",
       "orthography.accent.italian",
       "verb_form.present_indicative",
       "vocabulary.it.medico.noun.translation.active",
@@ -775,8 +789,13 @@
     "explanation": "\"È un'insegnante molto brava.\" A bare role drops the article (è insegnante), but once you qualify it the indefinite article comes back - and before the vowel of insegnante the feminine una elides to un'.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.feminine_singular",
+      "comparison.superlative.absolute",
+      "noun.gender",
+      "noun.gender.e_ending",
       "orthography.accent.italian",
       "orthography.spelling.apostrophe_elision",
+      "orthography.spelling.digraph",
       "verb_form.present_indicative",
       "vocabulary.it.bravo.interjection.translation.active",
       "vocabulary.it.molto.adverb.translation.active"
@@ -1238,6 +1257,8 @@
       "article.definite",
       "article.definite.forms",
       "connective.time",
+      "noun.gender",
+      "noun.gender.e_ending",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",

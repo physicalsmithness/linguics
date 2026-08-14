@@ -51,6 +51,8 @@
     "version": 1,
     "expected_buckets": [
       "article.definite.forms",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.accent.italian",
       "orthography.spelling.doubling",
       "verb_form.present_indicative",
@@ -188,6 +190,8 @@
     "expected_buckets": [
       "article.definite",
       "article.definite.forms",
+      "noun.plural",
+      "noun.plural.regular",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "verb_form.present_indicative",
@@ -271,8 +275,12 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.o_class.feminine_plural",
+      "adjective_agreement.o_class.masculine_plural",
       "article.definite",
       "article.definite.forms",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "preposition.articulated",
@@ -342,10 +350,12 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_plural",
       "article.definite",
       "article.definite.forms",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "possessive.adjective.forms",
       "verb_form.present_indicative",
       "vocabulary.it.collegare.verb.translation.active",
       "vocabulary.it.molto.adverb.translation.active",
@@ -409,6 +419,7 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_plural",
       "indefinite.core",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.capitalization",
@@ -492,8 +503,12 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_plural",
       "article.definite",
       "article.definite.forms",
+      "noun.plural",
+      "noun.plural.regular",
+      "orthography.spelling.capitalization",
       "orthography.spelling.doubling",
       "verb_form.present_indicative",
       "vocabulary.it.italiano.adjective.translation.active",
@@ -566,8 +581,11 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.position.post_noun_default",
       "article.definite",
       "article.definite.forms",
+      "noun.plural",
+      "noun.plural.regular",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
       "preposition.articulated",
@@ -650,6 +668,8 @@
       }
     ],
     "expected_buckets": [
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
@@ -721,9 +741,15 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
+      "adjective_agreement.position.post_noun_default",
+      "adjective_agreement.position.semantic_shift.vecchio",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "possessive.adjective.forms",
       "verb_form.present_indicative",
       "vocabulary.it.amico.noun.translation.active",
       "vocabulary.it.vecchio.adjective.translation.active"
@@ -793,6 +819,9 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.e_class.masculine_singular",
+      "adjective_agreement.position.pre_noun_canonical",
+      "adjective_agreement.position.semantic_shift.grande",
       "orthography.accent.italian",
       "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
       "verb_form.passato_prossimo.participle_agreement.with_essere.masculine_singular",
@@ -859,6 +888,7 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
       "interrogatives.exclamatives",
       "orthography.spelling.c_g_softening",
       "vocabulary.it.bel.adjective.translation.active",
@@ -922,6 +952,9 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.o_class.feminine_singular",
+      "adjective_agreement.o_class.masculine_singular",
+      "adjective_agreement.position.pre_noun_canonical",
       "orthography.spelling.c_g_softening",
       "vocabulary.it.buono.adverb.translation.active",
       "vocabulary.it.giornata.noun.translation.active",
@@ -984,6 +1017,10 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_plural",
+      "demonstrative.quello",
+      "noun.plural",
+      "noun.plural.regular",
       "orthography.spelling.digraph",
       "orthography.spelling.qu_cu_cqu",
       "verb_form.present_indicative",
@@ -1055,6 +1092,8 @@
       }
     ],
     "expected_buckets": [
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.spelling.doubling",
       "vocabulary.it.blu.adjective.translation.active",
       "vocabulary.it.indossare.verb.translation.active",
@@ -1146,6 +1185,7 @@
     "explanation": "Mele is f.pl. Rosso is a Class I adjective; f.pl takes -e, giving rosse. So le mele rosse: 'the red apples'.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.position.post_noun_default",
       "article.definite",
       "article.definite.forms",
       "orthography.spelling.c_g_softening",
@@ -1223,6 +1263,7 @@
     "explanation": "Persona is f.sg. Gentile is a Class II adjective: same form for both genders in the singular. Class II is invariable for gender in the singular, so still gentile.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.position.post_noun_default",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
@@ -1290,6 +1331,8 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
+      "adjective_agreement.position.post_noun_default",
       "orthography.accent.italian",
       "verb_form.present_indicative",
       "vocabulary.it.amico.noun.translation.passive",
@@ -1353,6 +1396,7 @@
     "explanation": "Lilla, borrowed from the flower name, is an invariable adjective: it stays lilla in singular and plural alike. I fiori lilla = 'the lilac flowers'.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.position.post_noun_default",
       "article.definite",
       "article.definite.forms",
       "orthography.spelling.c_g_softening",
@@ -1445,6 +1489,8 @@
     "explanation": "Begli is the m.pl form of pre-noun bello before nouns taking gli. Zaini begins with z, so the article would be gli zaini and the agreeing adjective is begli zaini.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_plural",
+      "adjective_agreement.position.pre_noun_canonical",
       "article.definite",
       "article.definite.forms",
       "orthography.spelling.digraph",
@@ -1526,6 +1572,8 @@
     "explanation": "Antico is a counter-irregular: despite antepenult stress (an-ti-co), the m.pl is antichi with h-insertion, not antici as the stress rule would predict. Compare simpatici, which does follow the stress rule.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_plural",
+      "adjective_agreement.position.post_noun_default",
       "article.definite",
       "article.definite.forms",
       "orthography.spelling.c_g_softening",
@@ -1592,8 +1640,10 @@
     "explanation": "Strade is f.pl. Lungo is a -go adjective: stem change inserts h to preserve the hard g-sound in the f.pl, giving lunghe.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.feminine_plural",
       "article.definite",
       "article.definite.forms",
+      "demonstrative.questo",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.qu_cu_cqu",
       "preposition.simple",
@@ -1683,6 +1733,8 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
+      "adjective_agreement.position.semantic_shift.povero",
       "article.definite",
       "article.definite.forms",
       "orthography.accent.italian",
@@ -1752,6 +1804,7 @@
     "explanation": "In Italian time expressions, mezza is the f.sg form of mezzo, agreeing with an implicit 'ora' (hour). Sono le sei e mezza = 'it's half past six'.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.feminine_singular",
       "article.definite",
       "article.definite.forms",
       "orthography.spelling.doubling",
@@ -1829,11 +1882,13 @@
     "explanation": "Two rules combine: mixed-gender plural defaults to m.pl, and stanco's -co stem takes h-insertion in the m.pl. Both give stanchi.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_plural",
       "article.definite",
       "article.definite.forms",
       "connective.time",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "possessive.adjective.forms",
       "verb_form.present_indicative",
       "vocabulary.it.collega.noun.m.translation.passive",
       "vocabulary.it.collegare.verb.translation.passive",
@@ -1907,6 +1962,7 @@
     "explanation": "Pre-noun santo elides before a vowel-initial male saint's name: sant'Antonio. This is elision, parallel to the il → l' shift in the article system.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
       "article.definite",
       "article.definite.forms",
       "orthography.accent.italian",
@@ -2003,6 +2059,8 @@
     "explanation": "Both -gio and -cio adjectives drop the unstressed -i in the m.pl. Grigio → grigi (gio_gi rule), liscio → lisci (cio_ci rule). Same underlying stem change applied to two adjective patterns.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_plural",
+      "adjective_agreement.position.post_noun_default",
       "article.definite",
       "article.definite.forms",
       "orthography.spelling.c_g_softening",
@@ -2085,9 +2143,12 @@
     "explanation": "Quella is the f.sg form of pre-noun quello before a consonant, parallel to la casa. Nuovo in post-noun position gives the literal reading: recently built or acquired, not 'another'.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.position.post_noun_default",
+      "demonstrative.quello",
       "orthography.accent.italian",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
+      "possessive.adjective.family_exception",
       "preposition.simple",
       "preposition.simple.forms",
       "verb_form.present_indicative",
@@ -2175,11 +2236,15 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
+      "adjective_agreement.position.post_noun_default",
+      "adjective_agreement.position.pre_noun_canonical",
       "article.definite",
       "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "possessive.adjective.forms",
       "verb_form.present_indicative",
       "vocabulary.it.amico.noun.translation.passive",
       "vocabulary.it.professore.noun.translation.passive",
@@ -2251,6 +2316,8 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.e_class.masculine_singular",
+      "adjective_agreement.position.pre_noun_canonical",
       "orthography.accent.italian",
       "orthography.spelling.doubling",
       "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
@@ -2338,6 +2405,7 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.o_class.feminine_singular",
       "article.definite",
       "article.definite.forms",
       "orthography.spelling.c_g_softening",

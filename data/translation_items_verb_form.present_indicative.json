@@ -39,6 +39,9 @@
     "explanation": "Parlare is a regular -are verb; the noi form is parl- + -iamo: parliamo. Italian normally drops the subject pronoun, so 'parliamo' alone already means 'we speak'.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
+      "adjective_agreement.position.post_noun_default",
+      "orthography.spelling.capitalization",
       "preposition.simple",
       "preposition.simple.forms",
       "verb_form.present_indicative",
@@ -114,6 +117,8 @@
     "expected_buckets": [
       "article.definite",
       "article.definite.forms",
+      "noun.gender",
+      "noun.gender.e_ending",
       "orthography.spelling.c_g_softening",
       "preposition.simple",
       "preposition.simple.forms",
@@ -261,7 +266,12 @@
     "expected_buckets": [
       "article.definite",
       "article.definite.forms",
+      "noun.gender",
+      "noun.gender.regular",
+      "noun.plural",
+      "noun.plural.regular",
       "orthography.spelling.doubling",
+      "possessive.adjective.family_exception",
       "preposition.articulated",
       "preposition.articulated.formation",
       "verb_form.present_indicative",
@@ -391,8 +401,11 @@
       }
     ],
     "expected_buckets": [
+      "demonstrative.questo",
       "negation.core",
       "negation.core.non_position",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.spelling.qu_cu_cqu",
       "verb_form.present_indicative",
       "vocabulary.it.capire.verb.translation.active",
@@ -530,6 +543,11 @@
     "explanation": "Costruire is an -isc- verb; the loro form is costru- + -isc- + -ono: costruiscono. Italian usually renders the English progressive 'are building' with the plain present.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.feminine_singular",
+      "adjective_agreement.position.pre_noun_canonical",
+      "noun.gender",
+      "noun.gender.regular",
+      "orthography.spelling.digraph",
       "preposition.simple",
       "preposition.simple.forms",
       "verb_form.gerundio",
@@ -613,9 +631,14 @@
       }
     ],
     "expected_buckets": [
+      "noun.gender",
+      "noun.gender.e_ending",
+      "noun.gender.regular",
       "orthography.accent.italian",
       "orthography.spelling.apostrophe_elision",
+      "orthography.spelling.digraph",
       "orthography.spelling.doubling",
+      "possessive.adjective.family_exception",
       "verb_form.present_indicative",
       "vocabulary.it.sorella.noun.translation.active",
       "vocabulary.it.studentessa.noun.gender.active",
@@ -744,6 +767,8 @@
       }
     ],
     "expected_buckets": [
+      "noun.gender",
+      "noun.gender.e_ending",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
@@ -934,6 +959,8 @@
       "article.definite.forms",
       "indefinite.core",
       "indefinite.core.ogni",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
       "preposition.articulated",
@@ -1008,6 +1035,8 @@
     "expected_buckets": [
       "indefinite.core",
       "indefinite.core.ogni",
+      "noun.gender",
+      "noun.gender.irregular",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
@@ -1076,7 +1105,10 @@
     "expected_buckets": [
       "article.definite",
       "article.definite.forms",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.spelling.c_g_softening",
+      "orthography.spelling.capitalization",
       "orthography.spelling.doubling",
       "verb_form.present_indicative",
       "vocabulary.it.sabato.noun.gender.active",
@@ -1328,6 +1360,10 @@
     "expected_buckets": [
       "article.definite",
       "article.definite.forms",
+      "noun.gender",
+      "noun.gender.e_ending",
+      "noun.gender.regular",
+      "orthography.spelling.capitalization",
       "orthography.spelling.digraph",
       "preposition.articulated",
       "preposition.articulated.formation",
@@ -1470,6 +1506,8 @@
     "expected_buckets": [
       "article.definite",
       "article.definite.forms",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
@@ -1539,6 +1577,7 @@
       "article.definite.forms",
       "connective.contrast",
       "orthography.spelling.capitalization",
+      "orthography.spelling.digraph",
       "orthography.spelling.doubling",
       "preposition.articulated",
       "preposition.articulated.formation",
@@ -1653,6 +1692,10 @@
     "expected_buckets": [
       "article.definite",
       "article.definite.forms",
+      "noun.gender",
+      "noun.gender.regular",
+      "noun.plural",
+      "noun.plural.spelling",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
       "preposition.simple",
@@ -1781,6 +1824,10 @@
     "expected_buckets": [
       "article.definite",
       "article.definite.forms",
+      "noun.gender",
+      "noun.gender.regular",
+      "noun.plural",
+      "noun.plural.regular",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "verb_form.present_indicative",
@@ -1891,6 +1938,8 @@
     "expected_buckets": [
       "indefinite.core",
       "indefinite.core.ogni",
+      "noun.plural",
+      "noun.plural.invariable",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
       "verb_form.present_indicative",
@@ -2046,6 +2095,8 @@
       "article.definite",
       "article.definite.forms",
       "connective.time",
+      "noun.plural",
+      "noun.plural.irregular",
       "orthography.spelling.c_g_softening",
       "preposition.simple",
       "preposition.simple.forms",
@@ -2711,6 +2762,7 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
       "article.definite",
       "article.definite.forms",
       "connective.time",
@@ -2781,8 +2833,11 @@
       }
     ],
     "expected_buckets": [
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "possessive.adjective.family_exception",
       "verb_form.present_indicative",
       "vocabulary.it.annata.noun.translation.active",
       "vocabulary.it.anno.noun.translation.active",
@@ -3075,6 +3130,7 @@
     "explanation": "Oggi fa molto caldo: andiamo in spiaggia ('It's very hot today: let's go to the beach'). Weather in Italian is what the world DOES, so the formula is impersonal fare in the plain present: fa caldo, literally 'it makes hot'. The English 'it is' must not be copied with essere, since è caldo says a thing (a coffee, a plate) is hot to the touch. The vocab help gives caldo, not the formula: reaching for fare is exactly what the item tests.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
       "article.definite",
       "article.definite.forms",
       "orthography.spelling.c_g_softening",
@@ -3148,6 +3204,7 @@
     "explanation": "D'inverno fa freddo e piove spesso ('In winter it's cold and it often rains'). Two impersonal weather patterns side by side: fare plus a weather word for the ambient state (fa freddo), and a bare weather verb with no subject at all for the event (piove). Both sit in the plain present because in winter and often mark standing habits of the season. Neither English 'it' survives the crossing: Italian says the weather with no subject anywhere.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.doubling",
       "preposition.simple",
@@ -3224,6 +3281,9 @@
     "explanation": "Che tempo fa oggi? Fa bel tempo, ma tira vento means 'What's the weather like today? The weather's nice, but it's windy.' The fare formula runs the whole exchange: che tempo fa asks the question, fa bel tempo answers it, and neither can cross into English word-for-word, since 'what weather does it make' is nonsense. Tira vento ('the wind is blowing') is another impersonal weather idiom; English renders it as 'it's windy'. Translate the formula's MEANING, never its verbs.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
+      "adjective_agreement.position.pre_noun_canonical",
+      "adjective_agreement.special.bello",
       "connective.contrast",
       "interrogatives",
       "interrogatives.che_cosa",
@@ -3296,6 +3356,9 @@
     "explanation": "Non usciamo stasera: piove e fa un freddo terribile means 'We're not going out tonight: it's raining and it's terribly cold.' The Italian plain present piove is doing happening-now work, so English must say 'it's raining'; 'it rains' would turn tonight's rain into a climate report. And fa un freddo terribile is the fare weather formula with an intensifier folded in: English renders the meaning ('it's terribly cold', 'it's freezing'), never the verb ('it makes a cold').",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.e_class.masculine_singular",
+      "adjective_agreement.o_class.masculine_singular",
+      "adjective_agreement.position.post_noun_default",
       "negation.core",
       "negation.core.non_position",
       "orthography.spelling.c_g_softening",

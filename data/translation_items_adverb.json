@@ -82,6 +82,9 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
+      "adjective_agreement.position.post_noun_default",
+      "demonstrative.questo",
       "orthography.accent.italian",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
@@ -160,6 +163,8 @@
     "explanation": "'Parli bene l'italiano' means 'You speak Italian well.' Bene is the adverb describing how you speak, not an adjective on the language.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
+      "adjective_agreement.position.post_noun_default",
       "orthography.spelling.apostrophe_elision",
       "verb_form.present_indicative",
       "vocabulary.it.bene.adverb.translation.passive",
@@ -204,6 +209,12 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.position.pre_noun_canonical",
+      "adjective_agreement.special.buono",
+      "comparison.superlative.absolute",
+      "comparison.superlative.irregular",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.accent.italian",
       "verb_form.passato_prossimo",
       "verb_form.passato_prossimo.auxiliary.essere_other_intransitive",
@@ -256,8 +267,11 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.stem_changes.predictable.ca_che",
       "article.definite",
       "article.definite.forms",
+      "noun.plural",
+      "noun.plural.regular",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "verb_form.present_indicative",
@@ -301,6 +315,8 @@
       "existential",
       "existential.form.plural",
       "indefinite.core",
+      "noun.plural",
+      "noun.plural.invariable",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
@@ -341,7 +357,13 @@
     "explanation": "Poco counts a noun here (friends), so it agrees: amici is masculine plural, hence pochi. Before an adjective it would stay poco.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_plural",
+      "adjective_agreement.position.post_noun_default",
+      "adjective_agreement.stem_changes.irregular.amico_amici",
+      "adjective_agreement.stem_changes.predictable.co_chi",
       "indefinite.core",
+      "noun.plural",
+      "noun.plural.spelling",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.qu_cu_cqu",
       "orthography.spelling.silent_h",
@@ -381,6 +403,8 @@
     "explanation": "Beside verbs, molto and poco are adverbs (how much you study or sleep) and stay invariable: studia molto, dorme poco.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
+      "adjective_agreement.position.post_noun_default",
       "connective.contrast",
       "verb_form.present_indicative",
       "vocabulary.it.dormire.verb.translation.passive",
@@ -418,6 +442,7 @@
     "explanation": "The manner adverb is built with -mente on the feminine of lento: lenta + mente = lentamente.",
     "version": 1,
     "expected_buckets": [
+      "adverb.formation",
       "preposition.simple",
       "preposition.simple.forms",
       "vocabulary.it.favore.noun.translation.active",
@@ -456,6 +481,8 @@
     "explanation": "Gentile ends in -le, so it drops the e before -mente: gentilmente. Molto before an adverb stays invariable.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.e_class.masculine_singular",
+      "adverb.formation",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.silent_h",
       "preposition.simple",
@@ -498,6 +525,7 @@
     "explanation": "Veloce ends in -e, so the adverb is velocemente (quickly). There is no feminine step for -e adjectives.",
     "version": 1,
     "expected_buckets": [
+      "adverb.formation",
       "orthography.spelling.c_g_softening",
       "verb_form.present_indicative",
       "vocabulary.it.parlare.verb.translation.passive",

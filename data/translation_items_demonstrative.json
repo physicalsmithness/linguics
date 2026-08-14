@@ -48,6 +48,9 @@
     "explanation": "Questo agrees with the masculine singular libro: questo libro.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.e_class.masculine_singular",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.accent.italian",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
@@ -112,6 +115,10 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
+      "adjective_agreement.special.quello",
+      "noun.gender",
+      "noun.gender.e_ending",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
       "verb_form.present_indicative",
@@ -172,6 +179,9 @@
     "explanation": "Feminine plural: quelle case. The predicate adjective also agrees as feminine plural, vecchie.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.special.quello",
+      "noun.plural",
+      "noun.plural.regular",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
@@ -237,6 +247,8 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
+      "adjective_agreement.position.post_noun_default",
       "negation.core",
       "negation.core.non_position",
       "orthography.accent.italian",
@@ -307,8 +319,12 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
+      "adjective_agreement.special.quello",
       "article.definite",
       "article.definite.forms",
+      "noun.gender",
+      "noun.gender.e_ending",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
@@ -373,10 +389,15 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_plural",
+      "adjective_agreement.special.quello",
       "article.definite",
       "article.definite.forms",
+      "noun.plural",
+      "noun.plural.regular",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
+      "possessive.adjective.forms",
       "verb_form.present_indicative",
       "vocabulary.it.ragazzo.noun.translation.active",
       "vocabulary.it.studente.noun.translation.active"
@@ -432,6 +453,7 @@
     "explanation": "'What' meaning 'the thing that' is the neuter ciò (or quello che in everyday speech): ciò che dici.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
       "negation.core",
       "negation.core.non_position",
       "orthography.accent.italian",
@@ -495,6 +517,8 @@
       }
     ],
     "expected_buckets": [
+      "noun.plural",
+      "noun.plural.spelling",
       "orthography.spelling.capitalization",
       "orthography.spelling.digraph",
       "orthography.spelling.qu_cu_cqu",
@@ -552,6 +576,7 @@
     "explanation": "Standing alone, the masculine plurals are questi and quelli; quei/quegli would need a following noun.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_plural",
       "connective.contrast",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
@@ -604,8 +629,12 @@
     "explanation": "'Over there' forces the far quel for the book; 'this one' standing alone is the near pronoun questo.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
+      "adjective_agreement.special.quello",
       "negation.core",
       "negation.core.non_position",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.accent.italian",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
@@ -664,6 +693,8 @@
     "explanation": "Quegli is the masculine plural before s + consonant (gli studenti, quegli studenti): 'those students'.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_plural",
+      "adjective_agreement.special.quello",
       "article.definite",
       "article.definite.forms",
       "orthography.spelling.digraph",
@@ -789,11 +820,14 @@
     "explanation": "Quel is the far demonstrative before the plain consonant of signore: 'that gentleman'.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
+      "adjective_agreement.special.quello",
       "article.definite",
       "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.qu_cu_cqu",
+      "possessive.adjective.forms",
       "verb_form.present_indicative",
       "vocabulary.it.nostro.determiner.translation.passive",
       "vocabulary.it.signore.noun.translation.passive",
@@ -946,6 +980,7 @@
       "article.definite.forms",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
+      "possessive.adjective.family_exception",
       "verb_form.present_indicative",
       "vocabulary.it.sorella.noun.translation.passive"
     ]
@@ -1045,6 +1080,8 @@
     "explanation": "Quelle is the feminine plural far demonstrative: 'those girls'.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.feminine_plural",
+      "adjective_agreement.special.quello",
       "orthography.accent.italian",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.doubling",
@@ -1162,6 +1199,10 @@
     "explanation": "Quegli is the masculine plural before z (gli zaini, quegli zaini): 'those rucksacks'.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.e_class.masculine_plural",
+      "adjective_agreement.o_class.masculine_plural",
+      "adjective_agreement.o_class.masculine_singular",
+      "adjective_agreement.special.quello",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",

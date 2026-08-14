@@ -44,6 +44,8 @@
     "expected_buckets": [
       "article.definite",
       "article.definite.forms",
+      "noun.gender",
+      "noun.gender.irregular",
       "orthography.spelling.c_g_softening",
       "preposition.articulated",
       "preposition.articulated.formation",
@@ -100,6 +102,9 @@
       }
     ],
     "expected_buckets": [
+      "demonstrative.questo",
+      "noun.plural",
+      "noun.plural.regular",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.qu_cu_cqu",
       "preposition.simple",
@@ -207,8 +212,11 @@
     "expected_buckets": [
       "article.definite",
       "article.definite.forms",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.accent.italian",
       "orthography.spelling.qu_cu_cqu",
+      "possessive.adjective.forms",
       "preposition.simple",
       "preposition.simple.forms",
       "verb_form.present_indicative",
@@ -263,6 +271,7 @@
       }
     ],
     "expected_buckets": [
+      "demonstrative.questo",
       "interrogatives",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
@@ -316,9 +325,12 @@
     ],
     "expected_buckets": [
       "interrogatives",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
       "orthography.spelling.silent_h",
+      "possessive.adjective.family_exception",
       "verb_form.present_indicative",
       "vocabulary.it.annata.noun.translation.active",
       "vocabulary.it.anno.noun.translation.active",
@@ -497,6 +509,8 @@
     "explanation": "Perché studi l'italiano? = Why do you study Italian? Perché is the reason question word; the same word means 'because' in the reply.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
+      "adjective_agreement.position.post_noun_default",
       "orthography.accent.italian",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.c_g_softening",
@@ -652,6 +666,7 @@
       "interrogatives",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
+      "possessive.adjective.forms",
       "preposition.simple",
       "preposition.simple.forms",
       "verb_form.present_indicative",
@@ -703,6 +718,7 @@
       "article.definite.forms",
       "orthography.accent.italian",
       "orthography.spelling.qu_cu_cqu",
+      "possessive.adjective.forms",
       "verb_form.present_indicative",
       "vocabulary.it.materia.noun.translation.passive",
       "vocabulary.it.preferire.verb.translation.passive",
@@ -762,6 +778,9 @@
     "explanation": "What a beautiful day! = Che bella giornata! A bare-noun exclamation takes che, and the adjective bella agrees with the feminine singular giornata.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.position.post_noun_default",
+      "adjective_agreement.position.pre_noun_canonical",
+      "adjective_agreement.special.bello",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "vocabulary.it.bello.adjective.translation.active",
@@ -815,6 +834,7 @@
     "explanation": "How well you sing! = Come canti bene! With a verb (canti), the manner exclamation takes come, not che.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
       "preposition.simple",
       "preposition.simple.forms",
       "verb_form.present_indicative",

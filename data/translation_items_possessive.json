@@ -46,6 +46,9 @@
     "expected_buckets": [
       "article.definite",
       "article.definite.forms",
+      "demonstrative.pronoun",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.accent.italian",
       "orthography.spelling.qu_cu_cqu",
       "verb_form.present_indicative",
@@ -101,6 +104,8 @@
     "expected_buckets": [
       "article.definite",
       "article.definite.forms",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "verb_form.present_indicative",
@@ -153,6 +158,8 @@
     "explanation": "I miei is the masculine plural of mio with its article; simpatici agrees with the masculine plural amici.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_plural",
+      "adjective_agreement.stem_changes.harder.co_ci_vs_chi_stress",
       "article.definite",
       "article.definite.forms",
       "orthography.spelling.c_g_softening",
@@ -201,8 +208,11 @@
     "explanation": "Loro is invariable, so it never inflects; the article agrees with casa (feminine singular): la loro casa.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.e_class.feminine_singular",
       "article.definite",
       "article.definite.forms",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.accent.italian",
       "verb_form.present_indicative",
       "vocabulary.it.casa.noun.translation.active",
@@ -258,6 +268,8 @@
       "article.definite",
       "article.definite.forms",
       "interrogatives.adverbs",
+      "noun.plural",
+      "noun.plural.regular",
       "orthography.spelling.c_g_softening",
       "verb_form.present_indicative",
       "vocabulary.it.chiave.noun.translation.active",
@@ -375,6 +387,10 @@
     "explanation": "Indefinite article + possessive: un mio amico, 'a friend of mine'. The possessive sits between un and amico.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.feminine_singular",
+      "adjective_agreement.o_class.masculine_singular",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.spelling.qu_cu_cqu",
       "verb_form.present_indicative",
       "vocabulary.it.amico.noun.translation.active",
@@ -428,6 +444,8 @@
     "explanation": "Madre is a singular family noun, so no article: mia madre. La mia madre is the classic error.",
     "version": 1,
     "expected_buckets": [
+      "noun.gender",
+      "noun.gender.e_ending",
       "orthography.spelling.capitalization",
       "preposition.simple",
       "preposition.simple.forms",
@@ -489,6 +507,8 @@
     "expected_buckets": [
       "article.definite",
       "article.definite.forms",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.spelling.doubling",
       "verb_form.present_indicative",
       "vocabulary.it.confratello.noun.translation.active",
@@ -544,6 +564,8 @@
     "expected_buckets": [
       "article.definite",
       "article.definite.forms",
+      "noun.plural",
+      "noun.plural.regular",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.doubling",
       "preposition.articulated",
@@ -601,7 +623,12 @@
     "explanation": "Sorella is a singular family noun, so sua sorella with no article. Sua is 'his' here, agreeing with sorella (feminine).",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.e_class.feminine_singular",
+      "adjective_agreement.position.post_noun_default",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.spelling.c_g_softening",
+      "orthography.spelling.capitalization",
       "orthography.spelling.doubling",
       "verb_form.present_indicative",
       "vocabulary.it.francese.adjective.translation.active",
@@ -656,6 +683,8 @@
     "expected_buckets": [
       "article.definite",
       "article.definite.forms",
+      "noun.gender",
+      "noun.gender.e_ending",
       "orthography.spelling.apostrophe_elision",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
@@ -713,13 +742,18 @@
     "expected_buckets": [
       "article.definite",
       "article.definite.forms",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.capitalization",
       "orthography.spelling.doubling",
       "verb_form.present_indicative",
       "vocabulary.it.chiamare.verb.translation.active",
       "vocabulary.it.sofia.noun.translation.active",
-      "vocabulary.it.sorellina.noun.translation.active"
+      "vocabulary.it.sorellina.noun.translation.active",
+      "word_formation",
+      "word_formation.alterati",
+      "word_formation.alterati.diminutives"
     ]
   },
   {
@@ -828,8 +862,11 @@
     "explanation": "Standalone la tua keeps the article and agrees with the understood macchina (feminine singular).",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.feminine_singular",
       "article.definite",
       "article.definite.forms",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
@@ -883,6 +920,8 @@
     "expected_buckets": [
       "article.definite",
       "article.definite.forms",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.accent.italian",
       "orthography.spelling.qu_cu_cqu",
       "preposition.simple",
@@ -984,8 +1023,11 @@
     "explanation": "I nostri stands alone for 'ours', article kept; i loro shows loro invariable with its article.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_plural",
       "article.definite",
       "article.definite.forms",
+      "noun.plural",
+      "noun.plural.regular",
       "orthography.spelling.doubling",
       "verb_form.present_indicative",
       "vocabulary.it.libero.adjective.translation.active",
@@ -1185,6 +1227,7 @@
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
+      "possessive.adjective.forms",
       "verb_form.passato_prossimo",
       "verb_form.passato_prossimo.auxiliary.avere_default",
       "verb_form.present_indicative",
@@ -1245,6 +1288,7 @@
       "article.definite",
       "article.definite.forms",
       "orthography.spelling.doubling",
+      "possessive.adjective.forms",
       "verb_form.present_indicative",
       "vocabulary.it.adorare.verb.translation.passive",
       "vocabulary.it.gatto.noun.translation.passive"
@@ -1302,6 +1346,8 @@
     "explanation": "Her -> suo, agreeing with marito (masculine). Marito is a singular family noun, so suo marito, no article.",
     "version": 1,
     "expected_buckets": [
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.spelling.c_g_softening",
       "verb_form.present_indicative",
       "vocabulary.it.cercare.verb.translation.active",
@@ -1362,6 +1408,8 @@
     "expected_buckets": [
       "article.definite",
       "article.definite.forms",
+      "noun.plural",
+      "noun.plural.regular",
       "orthography.spelling.doubling",
       "verb_form.present_indicative",
       "vocabulary.it.amare.verb.translation.active",
@@ -1411,6 +1459,7 @@
       "article.definite.forms",
       "orthography.spelling.capitalization",
       "orthography.spelling.doubling",
+      "possessive.adjective.forms",
       "vocabulary.it.ecco.adverb.translation.passive",
       "vocabulary.it.nero.adjective.translation.passive",
       "vocabulary.it.posto.noun.translation.passive",
@@ -1523,7 +1572,10 @@
     "explanation": "After essere for plain ownership the possessive drops the article: è mia (agreeing with penna, feminine). È la mia is the article-bearing pronoun, a different meaning.",
     "version": 1,
     "expected_buckets": [
+      "demonstrative.questo",
       "interrogatives.chi",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.accent.italian",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
@@ -1574,8 +1626,11 @@
     "explanation": "Ownership after essere is article-less: non è tua, è nostra, each agreeing with casa (feminine singular).",
     "version": 1,
     "expected_buckets": [
+      "demonstrative.questo",
       "negation.core",
       "negation.core.non_position",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.accent.italian",
       "orthography.spelling.qu_cu_cqu",
       "verb_form.present_indicative",
@@ -1630,6 +1685,7 @@
     "explanation": "Sono suoi is the predicate of ownership, no article; suoi agrees with guanti (masculine plural). His or hers both fit, since suo does not encode the owner.",
     "version": 1,
     "expected_buckets": [
+      "demonstrative.questo",
       "orthography.spelling.qu_cu_cqu",
       "verb_form.present_indicative",
       "vocabulary.it.guanto.noun.translation.passive"
@@ -1830,6 +1886,7 @@
       "article.definite",
       "article.definite.forms",
       "indefinite.pronouns.ognuno_ciascuno",
+      "orthography.spelling.digraph",
       "verb_form.present_indicative",
       "vocabulary.it.ciascuno.pronoun.translation.active",
       "vocabulary.it.ognuno.pronoun.translation.active",
@@ -1877,6 +1934,9 @@
     "expected_buckets": [
       "article.definite",
       "article.definite.forms",
+      "noun.plural",
+      "noun.plural.regular",
+      "orthography.spelling.digraph",
       "orthography.spelling.doubling",
       "verb_form.present_indicative",
       "vocabulary.it.bisognare.verb.translation.active",

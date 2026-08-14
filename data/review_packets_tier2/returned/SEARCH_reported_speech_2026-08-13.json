@@ -7,7 +7,6 @@
  "why_you_were_left_out": "You were excluded from wave 1 because the tagger reads morphology, not meaning, and could not see your construction. Smith's ruling of 2026-08-13: everyone contributed translation items and everyone has something to search for, so everyone gets a packet. Absence of a machine trigger is not absence of the skill.",
  "semantics": "expected_buckets is judged ONLY if the learner's answer engages it. Engaged and right = a hit. Engaged and wrong = a real miss. Not engaged = a blank, no penalty. So a GENEROUS list is safe and a WRONG list is not.",
  "do_not_prune_common": "A bucket that fires on most items is the most-demonstrated skill, not noise. Smith 2026-08-11: getting the definite article right 571 times is 571 pieces of evidence. Claim what is TRUE, never what is rare.",
- "store_the_most_specific_claim": "Architecture 2026-08-13: coverage walks the ancestor chain automatically, so cite the LEAF, never the leaf and its parent together. If only the aggregate is true of an item, cite the aggregate alone.",
  "your_buckets": [
   {
    "id": "reported_speech",
@@ -21625,5 +21624,6 @@
   "own_items_already_declaring": 20,
   "aggregate_policy": "claim full true-ancestor set (leaf + reported_speech.tense_shift where applicable + reported_speech root), because coverage does not walk the ancestor chain (Architecture verified 2026-08-13); siding with PrepositionAuthor's keep-parents over ConnectiveAuthor's strike-duplicates",
   "notes": "Anchored every hit on a reporting verb, never bare 'che'. Dropped 2 false positives on read (non-so indirect Q; colloquial future-in-past imperfetto misread as reported-present). One recall save via clitic-after-che (si chiamava). 5 English 'told/if' flags correctly excluded as hypotheticals or dire+object."
- }
+ },
+ "aggregates_and_leaves": "Architecture 2026-08-14 (REPLACES the `store_the_most_specific_claim` rule this packet shipped with): an aggregate bucket MAY stand alongside its own descendant when the authored leaves do NOT exhaust the construction — the aggregate then names the remainder, and a use falling between the leaves is credited by nothing else. Drop the aggregate only when its leaves are exhaustive. The earlier rule ('cite the leaf alone, coverage walks the chain') was WRONG and is withdrawn: coverage's roll-up never reads expected_buckets and the marker consumes the fire-list flat, so an aggregate is credited only when claimed."
 }

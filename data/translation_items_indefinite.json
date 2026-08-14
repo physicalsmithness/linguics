@@ -148,6 +148,8 @@
       "article.definite",
       "article.definite.forms",
       "indefinite.core",
+      "noun.plural",
+      "noun.plural.regular",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
@@ -313,7 +315,11 @@
       "article.definite",
       "article.definite.forms",
       "indefinite.core",
+      "noun.gender",
+      "noun.gender.e_ending",
+      "noun.gender.regular",
       "orthography.accent.italian",
+      "orthography.spelling.capitalization",
       "orthography.spelling.doubling",
       "preposition.articulated",
       "preposition.articulated.formation",
@@ -365,6 +371,7 @@
       }
     ],
     "expected_buckets": [
+      "demonstrative.questo",
       "existential",
       "existential.form.singular",
       "orthography.accent.italian",
@@ -471,6 +478,9 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
+      "adjective_agreement.position.post_noun_default",
+      "demonstrative.questo",
       "negation.core",
       "negation.core.non_position",
       "orthography.accent.italian",
@@ -581,6 +591,8 @@
     "expected_buckets": [
       "article.definite",
       "article.definite.forms",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.spelling.doubling",
       "orthography.spelling.silent_h",
       "verb_form.passato_prossimo",
@@ -688,6 +700,9 @@
       }
     ],
     "expected_buckets": [
+      "noun.gender",
+      "noun.gender.regular",
+      "orthography.spelling.digraph",
       "orthography.spelling.silent_h",
       "preposition.simple",
       "preposition.simple.forms",
@@ -744,7 +759,12 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.e_class.masculine_singular",
+      "adjective_agreement.position.pre_noun_canonical",
+      "adjective_agreement.position.semantic_shift.grande",
+      "adjective_agreement.special.grande_prenominal",
       "orthography.spelling.c_g_softening",
+      "orthography.spelling.digraph",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
       "preposition.simple",
@@ -799,6 +819,8 @@
       }
     ],
     "expected_buckets": [
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.accent.italian",
       "orthography.spelling.digraph",
       "orthography.spelling.doubling",
@@ -894,6 +916,9 @@
     "explanation": "Alcuni dicono che il film è bello, altri no means 'Some say the film is good, others don't.' Here alcuni has no noun to lean on and stands as a pronoun in its own right, meaning some people. The pairing with altri is what signals it. Qualche could never do this: it always needs a noun.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
+      "adjective_agreement.position.pre_noun_canonical",
+      "adjective_agreement.special.bello",
       "article.definite",
       "article.definite.forms",
       "indefinite.core",
@@ -936,6 +961,8 @@
     "explanation": "Ogni volta che lo vedo, mi saluta calorosamente means 'Every time I see him, he greets me warmly.' Ogni volta is fixed and singular, and English matches it here with a singular 'every time', which makes this the easy direction. The hard direction is the other one.",
     "version": 1,
     "expected_buckets": [
+      "adverb.formation",
+      "adverb.formation.mente_regular",
       "indefinite.core",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.digraph",
@@ -1210,6 +1237,8 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.e_class.masculine_singular",
+      "adjective_agreement.position.post_noun_default",
       "negation.core",
       "negation.core.non_position",
       "orthography.accent.italian",
@@ -1258,6 +1287,7 @@
       }
     ],
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
       "orthography.spelling.c_g_softening",
       "orthography.spelling.doubling",
       "orthography.spelling.qu_cu_cqu",
@@ -1447,6 +1477,11 @@
     "examiner_note": "Cross-credit (Rev 27): both buckets required. Negative anchor pins the indicative error.",
     "version": 1,
     "expected_buckets": [
+      "adjective_agreement.o_class.masculine_singular",
+      "adjective_agreement.position.pre_noun_canonical",
+      "adjective_agreement.special.buono",
+      "noun.gender",
+      "noun.gender.regular",
       "orthography.spelling.qu_cu_cqu",
       "preposition.simple",
       "preposition.simple.forms",
