@@ -3221,3 +3221,78 @@ prompt is not a delta); **NegationAuthor** finché-non explanations (three Whys 
 content-only, the strand Smith flagged); **PossessiveAuthor** empty-cell fill (poss_forms_21..25,
 paradigm 21/21). All CLOSED. Date corrected to 2026-08-12 (prior session writes were mis-dated 08-03;
 noted to Smith).
+
+
+---
+
+## 2026-08-14 — Architecture: the aggregate rule, the reading arm, atoms, and a guard on Job 9
+
+### WITHDRAWN — yesterday's "ancestors are derived, never stored"
+
+It rested on `housing/js/app.js:8051` ("an item counts for every ancestor of every bucket it cites").
+That roll-up runs through `getItemBuckets`, which reads `markpoints` and `required_buckets` and **never
+reads `expected_buckets`**; the marker consumes the fire-list flat, one bucket at a time; and
+`bucketUnder` is used only in deck filtering. So an aggregate is credited only when it is claimed. I
+dropped 1,819 seat-ratified claims on a misreading of one line and have restored every one.
+
+### RULING — an aggregate earns its place by RESIDUE
+
+> An aggregate bucket may stand alongside its own descendant in `expected_buckets` when its authored
+> leaves do NOT exhaust the construction — the aggregate then names the remainder, and a use falling
+> between the leaves is credited by nothing else. Drop it when the leaves are exhaustive, because it is
+> then a strict OR of things already counted.
+
+Proposed by PronounAuthor from its own 603 verdicts (20 overlaps, every one `pronoun.ne`, against 25
+keeps on that aggregate — verified). Its formulation was "distinct diagnostic dimension vs purely
+organisational"; the residue test is my amendment, because the original cannot be checked and every node
+has a learner-facing label, so a seat can always answer yes. `attributes.is_aggregate` is NOT available
+as a mechanical substitute: 337 nodes carry it and only 158 have children. Staged to Rev 33.
+
+The sharper reason it is not double-counting: on a partitive item the aggregate and the leaf agree
+anyway, so the aggregate earns its keep precisely on items where **no leaf fires**.
+
+### RULING — the comprehension arm is ADOPTED, as a field
+
+Open since harvest v15, gating 16 DEFERRED entries. Decided on a count, not a taxonomy: **264 of the 913
+translation items are it→en — 29% of what the estate already marks is comprehension.** A registry that
+cannot name a reading miss is blind to a third of the marking. A specific may carry
+`direction: "reading"`; absence means production, so all 105 pre-existing entries are untouched. NOT a
+separate family — a reading miss is the same knowledge failing the other way, and a parallel taxonomy
+would double every two-directional id and break the `mirror_of` pairing. Registry now v2, 112 entries,
+including six negation specifics and both previously-gated reading ids.
+
+### RULING — phonology is IN coverage, counted as ATOMS
+
+Smith, 2026-08-13: **coverage counts what has been covered, not how many questions exist**, and an atom
+is the unit such that two items testing it are the same question. The 12,446 stress items cite 31
+buckets, so stress reads "22 of 31 patterns" beside "61 of 89 grammar buckets" and nothing drowns. My
+proposed separate denominator was the tail wagging the dog and is withdrawn. StressAuthor owes labels
+for the 30 rule atoms; `lexical_simple` (6,413 items) is flagged as arguably not one atom at all —
+knowing *uno* tells you nothing about *telefono* — and is put back to the seat rather than ruled.
+
+The precept generalises and has already caught a second case the same day: Vocab's frequency bands
+(`freq_1_100`, 4,365 claims) are 100 facts under one label, and the per-lemma ids Job 9 derives are the
+real atoms. Vocab's 8,677 findings are HELD pending its view.
+
+### EXECUTED — Job 9 is guarded, and the guard is tested
+
+`tools/build_ratified_expected_buckets.py` derives the seat-ratified set from the returned packets
+(7,260 pairs, 912 items) into `data/expected_buckets_ratified.json`. Job 9 unions it into every derived
+item and GATE 0 fails the run if one pair goes missing; a missing sidecar is a hard stop, not an empty
+default. Measured: **without the carry-through a re-run would drop 6,243 grammar claims**, which is what
+happened on 08-13. Dry run green — 11,708 occurrences, 0 failures.
+
+The general lesson, third instance this month: a derivation that overwrites a field humans also write is
+a merge problem wearing a pipeline's clothes. Provenance belongs in the data.
+
+### EXECUTED — the wave, and the nine reflexives
+
+32 packets merged in total (21 + 5 late wave-1 + 6 search). Mean `expected_buckets` 6.27 → **12.82**.
+Vocab held. All eight search packets shipped carrying the withdrawn ancestor rule and have been corrected
+in place, with an aggregate top-up invited from every seat.
+
+Nine reflexive verbs restored verbatim from `c720ee9`, lost to the truncated write of 2026-05-26 and
+invisible to every audit since because they predate the May-27 baseline. Smith's ruling: predictability
+of FORM does not settle it — wash, wash yourself, and wash someone else are three things a learner must
+distinguish, and that is the classic English-speaker leak. 18,044 entries. Eight of the nine sit at their
+base verb's rank; flagged to Vocab, not decided here.

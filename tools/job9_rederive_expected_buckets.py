@@ -8,12 +8,16 @@ ids, so re-running it with --apply deletes every one of them silently -- the val
 gate checks shape (sorted, deduped, disjoint from required) and never asks whether an
 id that a human ratified has gone missing.
 
-Before this is safe: carry ratified ids through the rebuild, and make the gate FAIL on
-the disappearance of any bucket that arrived from a returned packet.  See DECISIONS.md
-2026-08-13 and tools/merge_tier2_packets.py.
-"""
+GUARDED 2026-08-14.  Both halves of that fix are now in: `load_ratified()` reads
+data/expected_buckets_ratified.json (built by tools/build_ratified_expected_buckets.py
+from the returned packets), every derived item unions its ratified ids back in, and
+GATE 0 in validate_generated FAILS the run if any ratified pair went missing.  A missing
+sidecar is a hard stop, not an empty default.  7,260 pairs across 912 items are protected
+at time of writing.  See DECISIONS.md 2026-08-13/14.
 
-"""CODEX 2026-08-13 — execute Job 9's deterministic fire-list rebuild.
+--- original header ---
+
+CODEX 2026-08-13 — execute Job 9's deterministic fire-list rebuild.
 
 The script is deliberately conservative:
 
@@ -415,6 +419,26 @@ def percentile(values: list[int], fraction: float) -> int:
     return ordered[index]
 
 
+def load_ratified() -> dict[str, list[str]]:
+    """Seat-ratified (item -> buckets) from the returned tier-2 packets.
+
+    Built by tools/build_ratified_expected_buckets.py. Absent file is a hard stop rather
+    than an empty default: silently treating "no ratified set" as "nothing to preserve" is
+    the failure this whole mechanism exists to prevent.
+    """
+    path = ROOT / "data" / "expected_buckets_ratified.json"
+    if not path.exists():
+        raise SystemExit(
+            "REFUSING TO RUN: data/expected_buckets_ratified.json is missing. "
+            "Regenerate it with tools/build_ratified_expected_buckets.py first. "
+            "Without it this script would delete every seat-ratified grammar bucket."
+        )
+    return json.loads(path.read_text(encoding="utf-8"))["ratified"]
+
+
+RATIFIED: dict[str, list[str]] = {}
+
+
 def validate_generated(
     original_by_file: dict[str, list[dict]],
     generated_by_file: dict[str, list[dict]],
@@ -423,6 +447,23 @@ def validate_generated(
     by_lemma_pos: dict[tuple[str, str], list[dict]],
 ) -> dict:
     failures: list[str] = []
+
+    # GATE 0 -- nothing a seat ratified may vanish in a rebuild.
+    _dropped = []
+    for _items in generated_by_file.values():
+        for _new in _items:
+            _iid = _new.get("external_id") or _new.get("id")
+            _have = set(_new.get("expected_buckets") or []) | set(
+                _new.get("required_buckets") or []
+            ) | set(_new.get("optional_buckets") or [])
+            for _b in RATIFIED.get(_iid) or []:
+                if _b not in _have:
+                    _dropped.append(f"{_iid}:{_b}")
+    if _dropped:
+        failures.append(
+            f"RATIFIED BUCKETS DROPPED ({len(_dropped)}): {_dropped[:10]}"
+            " -- a seat judged these and the rebuild lost them. Do not apply."
+        )
     emitted_occurrences = 0
     unique_ids: set[str] = set()
     vocab_occurrences = 0
@@ -639,6 +680,13 @@ def main() -> int:
     )
     args = parser.parse_args()
 
+    global RATIFIED
+    RATIFIED = load_ratified()
+    print(
+        f"ratified carry-through: {sum(len(v) for v in RATIFIED.values())} pairs "
+        f"across {len(RATIFIED)} items (data/expected_buckets_ratified.json)"
+    )
+
     live_files = translation_files(DATA)
     backup_files = translation_files(BACKUP) if BACKUP.exists() else []
     if args.apply and [path.name for path in live_files] != [path.name for path in backup_files]:
@@ -682,7 +730,20 @@ def main() -> int:
                 original, new_map, by_lemma, by_lemma_pos, by_class
             )
             generated = deepcopy(original)
-            generated["expected_buckets"] = expected
+            # RATIFIED CARRY-THROUGH (Architecture 2026-08-14). This deriver emits only
+            # orthography.* and vocabulary.* ids. The grammar ids on these items were
+            # ratified one at a time by the author seats through the tier-2 packets, and a
+            # plain replace deletes all 7,260 of them without a word -- which is exactly
+            # what happened on 2026-08-13. Union them back in; the gate below then FAILS
+            # if any went missing, so the deletion cannot recur silently.
+            _carry = RATIFIED.get(original.get("external_id") or original.get("id")) or []
+            _own = set(original.get("required_buckets") or []) | set(
+                original.get("optional_buckets") or []
+            )
+            generated["expected_buckets"] = sorted(
+                set(expected) | (set(_carry) - _own)
+            )
+            expected = generated["expected_buckets"]
             generated_items.append(generated)
             analyses.append((generated, meta))
             alternatives_items += bool(meta["alternative_buckets"])
