@@ -169,10 +169,10 @@
 
 <div id="log"></div>
 
-<script src="js/norm.js?v=2026-08-13-r166"></script>
-<script src="js/store.js?v=2026-08-13-r166"></script>
-<script src="js/translation_stub.js?v=2026-08-13-r166"></script>
-<script src="js/translation_marker.js?v=2026-08-13-r166"></script>
+<script src="js/norm.js?v=r167"></script>
+<script src="js/store.js?v=r167"></script>
+<script src="js/translation_stub.js?v=r167"></script>
+<script src="js/translation_marker.js?v=r167"></script>
 <script>
 (function () {
   "use strict";
@@ -484,7 +484,7 @@
       }
       const prev = readSuite();
       prev.unshift(out);
-      try { localStorage.setItem(SUITE_KEY, JSON.stringify(prev.slice(0, 12))); } catch (e) {}
+      writeSuite(prev);
       if (!quiet) renderSuite();
       return out;
     } finally {
@@ -498,7 +498,15 @@
   // the old table could only say the models DIFFERED, never which was right.
   async function runSuiteAllModels() {
     if (!cases) { $("err").textContent = "No case file loaded."; return; }
-    const models = (LL.AVAILABLE_MODELS || []).map(m => m.id || m).filter(Boolean);
+    // r167: the first entry of AVAILABLE_MODELS is { id: "", label: "Default
+    // (DeepSeek V3)" }. Its id is the EMPTY STRING, so `m.id || m` fell through to
+    // the OBJECT, filter(Boolean) kept it, and the first sweep of every run sent an
+    // object where a model id belongs: 18 calls labelled "[object Object]", holding
+    // a slot in the capped log. By its own label it is a duplicate of
+    // deepseek/deepseek-chat, so it is dropped rather than resolved.
+    const models = (LL.AVAILABLE_MODELS || [])
+      .map(m => (m && typeof m === "object") ? m.id : m)
+      .filter(m => typeof m === "string" && m.trim().length);
     if (!models.length) { $("err").textContent = "No model list available."; return; }
     const btns = ["run", "runAll", "suite", "suiteAll"];
     btns.forEach(b => { if ($(b)) $(b).disabled = true; });
@@ -521,6 +529,27 @@
   }
   function readSuite() {
     try { return JSON.parse(localStorage.getItem(SUITE_KEY) || "[]"); } catch (e) { return []; }
+  }
+  // r167. This was `try { setItem(..., prev.slice(0, 12)) } catch (e) {}`, and both
+  // halves cost Smith most of a fifteen-model sweep. The cap of 12 silently evicted
+  // the first three models of any longer run, the live default among them. The bare
+  // catch meant a quota failure looked exactly like a successful save, which is the
+  // estate's oldest fault class: a check whose failure is indistinguishable from its
+  // success. Keep 60, step down only as far as storage forces, and say so on screen.
+  function writeSuite(list) {
+    for (const c of [60, 30, 15, 8, 4, 1]) {
+      try {
+        localStorage.setItem(SUITE_KEY, JSON.stringify(list.slice(0, c)));
+        if (list.length > c) {
+          $("err").textContent = "Storage was full: kept the newest " + c + " sweeps of " +
+            list.length + ". Export the log before running any more.";
+        }
+        return true;
+      } catch (e) { /* fall through to a smaller slice */ }
+    }
+    $("err").textContent = "COULD NOT SAVE these suite results: browser storage is full. " +
+      "Export the log now, or they are lost on reload.";
+    return false;
   }
   function renderSuite() {
     const host = $("suiteOut");
