@@ -1298,8 +1298,7 @@
   "difficulty": 2,
   "cefr_level_target": "A1",
   "prompt": "Complete with the indefinite article ('a/an'): '____ amico'.",
-  "type": "short",
-  "wrong_answer_is_form_error_only": true,
+  "type": "mcq",
   "markpoints": [
    {
     "order_index": 0,
@@ -1307,16 +1306,12 @@
     "bucket": "article.indefinite.forms",
     "label": "un before a vowel (masc, no apostrophe)",
     "any_phrases": [
-     {
-      "phrase": "un",
-      "match_at": "word"
-     }
+     "un"
     ],
     "must_not_include": [
-     {
-      "phrase": "uno",
-      "match_at": "word"
-     }
+     "un'",
+     "uno",
+     "una"
     ]
    }
   ],
@@ -1337,12 +1332,20 @@
    }
   ],
   "explanation": "'un amico' means 'a (male) friend'. Before a vowel the masculine un stays as it is, with no apostrophe: un amico, un uomo. The apostrophe (un') belongs to the feminine only.",
-  "examiner_note": "Marker cannot see the apostrophe (norm folds it), so un'amico cannot be caught deterministically; the no-apostrophe rule is taught in the explanation and drilled on the feminine un' items.",
+  "examiner_note": "MCQ index-scored: answer_index scoring bypasses norm(), so un and un' are distinguishable. Converted per Architecture ruling (A) at apostrophe_fold_false_credit v3.",
   "language_code": "it",
   "topic": "article",
   "marks": 1,
-  "version": 1,
-  "slot": "un"
+  "version": 2,
+  "slot": "un",
+  "choices": [
+   "un",
+   "un'",
+   "uno",
+   "una"
+  ],
+  "answer_index": 0,
+  "answer_shown_by_design": "mcq_choices"
  },
  {
   "external_id": "art_iform_04",
@@ -1350,8 +1353,7 @@
   "difficulty": 2,
   "cefr_level_target": "A1",
   "prompt": "Complete with the indefinite article ('a/an'): '____ uomo'.",
-  "type": "short",
-  "wrong_answer_is_form_error_only": true,
+  "type": "mcq",
   "markpoints": [
    {
     "order_index": 0,
@@ -1359,16 +1361,12 @@
     "bucket": "article.indefinite.forms",
     "label": "un before a vowel (masc, no apostrophe)",
     "any_phrases": [
-     {
-      "phrase": "un",
-      "match_at": "word"
-     }
+     "un"
     ],
     "must_not_include": [
-     {
-      "phrase": "uno",
-      "match_at": "word"
-     }
+     "un'",
+     "uno",
+     "una"
     ]
    }
   ],
@@ -1392,8 +1390,17 @@
   "language_code": "it",
   "topic": "article",
   "marks": 1,
-  "version": 1,
-  "slot": "un"
+  "version": 2,
+  "slot": "un",
+  "choices": [
+   "un'",
+   "uno",
+   "una",
+   "un"
+  ],
+  "answer_index": 3,
+  "answer_shown_by_design": "mcq_choices",
+  "examiner_note": "MCQ index-scored: answer_index scoring bypasses norm(), so un and un' are distinguishable. Converted per Architecture ruling (A) at apostrophe_fold_false_credit v3."
  },
  {
   "external_id": "art_iform_05",

@@ -150,7 +150,10 @@
     "google/gemini-2.0-flash-001": [0.10, 0.40], "openai/gpt-4o-mini": [0.15, 0.60],
     "qwen/qwen-2.5-72b-instruct": [0.30, 0.40]
   };
-  LL.MAX_OUTPUT_TOKENS = 2000;
+  // r168: kept in step with the worker's MAX_OUTPUT_TOKENS, which went 2000 -> 6000
+  // because 2000 could not hold a 13-markpoint mark and was truncating the JSON.
+  // This value only drives the client's cost ESTIMATE; the worker's is the real cap.
+  LL.MAX_OUTPUT_TOKENS = 6000;
   LL.DEFAULT_COST_CAP_USD = 0.03;
   LL.HARD_COST_CEILING_USD = 0.25;
   // Same arithmetic the Worker uses to decide, so the answer agrees.
@@ -178,7 +181,11 @@
     { id: "anthropic/claude-sonnet-5",        label: "Claude Sonnet 5 ($2.00/$10.00 — over cap on full menu)" },
     { id: "anthropic/claude-haiku-4.5",       label: "Claude Haiku 4.5 (~$0.004/call)" },
     { id: "anthropic/claude-sonnet-4.5",      label: "Claude Sonnet 4.5 (~$0.013/call)" },
-    { id: "google/gemini-2.0-flash-001",      label: "Gemini 2.0 Flash (~$0.0005/call)" },
+    // r168: google/gemini-2.0-flash-001 REMOVED. OpenRouter answers every call with
+    // 404 "No endpoints found for google/gemini-2.0-flash-001" — the id is dead
+    // upstream. It failed 18 of 18 in the 08-14 sweep at $0 cost, which also means
+    // it was scoring 0/18 in the comparison table as though it had marked badly.
+    // gemini-3.1-flash-lite above is the live Google option.
     { id: "openai/gpt-4o-mini",               label: "GPT-4o-mini (~$0.0006/call)" },
   ];
 

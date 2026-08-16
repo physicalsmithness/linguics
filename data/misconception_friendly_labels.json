@@ -1,0 +1,624 @@
+{
+  "prepared_by": "Rumpelstiltskin (QoderWork) 2025-08-15",
+  "for": "MisconceptionAnalyst",
+  "source": "selection_policy section 9 friendly label curation",
+  "methodology": "Each friendly label was crafted after reading the specific's description and examples (or the lens's learner_blurb and the_sentence). Labels target under 10 words, use second-person or neutral voice, plain English, no jargon. The tone is warm and diagnostic: a learner reading the weakness panel should recognize their own mistake pattern immediately.",
+  "specifics": {
+    "accent_silent_letter.accent_omitted": {
+      "current_label": "Written accent omitted",
+      "friendly_label": "Skipping the accent mark that changes the word",
+      "rationale": "The core pain point is that e vs è, da vs dà, puo vs può are different words. 'Skipping' is warm; 'changes the word' conveys stakes without jargon."
+    },
+    "accent_silent_letter.silent_h_omitted": {
+      "current_label": "Silent h dropped on avere",
+      "friendly_label": "Dropping the silent h on ho, ha, hai, hanno",
+      "rationale": "Naming the actual forms (ho/ha/hai/hanno) helps the learner recognise their own error. 'Silent h' is retained because it is the established Linguics term the learner will see elsewhere."
+    },
+    "accent_silent_letter.silent_h_added": {
+      "current_label": "Silent h added (hypercorrection)",
+      "friendly_label": "Adding an h where none belongs",
+      "rationale": "The hypercorrection mirror of silent_h_omitted: writing hanno for anno, ha for a. Kept short and symmetric with the omission label."
+    },
+    "agreement.adjective_noun": {
+      "current_label": "Adjective fails to agree with its noun",
+      "friendly_label": "The adjective and noun don't match in gender or number",
+      "rationale": "Plain English restatement. 'Don't match' is less clinical than 'fails to agree'. The learner sees casa rosso and recognises the pattern."
+    },
+    "agreement.auxiliary_person": {
+      "current_label": "Auxiliary in the wrong person/number for the subject",
+      "friendly_label": "The helping verb is in the wrong person",
+      "rationale": "'Helping verb' is plainer than 'auxiliary'. The error (Marco hanno parlato) is a person mismatch — the label names it simply."
+    },
+    "agreement.clitic_gender_number": {
+      "current_label": "Object clitic in the wrong gender or number",
+      "friendly_label": "The little pronoun has the wrong gender or number",
+      "rationale": "'Little pronoun' is the learner-friendly term for clitics. The error is picking li where le is needed — a gender/number slip on a tiny word."
+    },
+    "agreement.mixed_gender_default": {
+      "current_label": "Mixed-gender plural not defaulted to masculine",
+      "friendly_label": "Mixed group? Italian defaults to masculine plural",
+      "rationale": "Framed as a question-rule pair. The learner wrote italiane for a group of ragazzi e ragazze — the label tells them the rule in one line."
+    },
+    "agreement.participle_essere_subject": {
+      "current_label": "essere-participle fails to agree with the subject",
+      "friendly_label": "With essere, the ending must match who did it",
+      "rationale": "'The ending must match who did it' is a learner-friendly restatement of subject-participle agreement. Avoids 'participle' jargon in the label itself."
+    },
+    "agreement.participle_overagreement": {
+      "current_label": "avere-participle wrongly agreed with the subject",
+      "friendly_label": "Changing the -o ending when it should stay put",
+      "rationale": "The hypercorrection: writing ho mangiata because the speaker is female. 'Stay put' is warm and clear — the ending should not move."
+    },
+    "agreement.participle_preceding_dop": {
+      "current_label": "avere-participle fails to agree with a preceding direct-object clitic",
+      "friendly_label": "After lo/la/li/le, the ending must match the object",
+      "rationale": "Names the trigger (the preceding clitic) and the rule. The learner sees l'ho visto for l'ho vista and recognises the pattern."
+    },
+    "agreement.prenominal_allomorph": {
+      "current_label": "Wrong allomorph of a pre-nominal form (bello/buono/quello)",
+      "friendly_label": "bel vs bello, buon vs buono — the sound decides",
+      "rationale": "Shows the actual alternation the learner struggles with. 'The sound decides' gives the rule in five words. Avoids 'allomorph' entirely."
+    },
+    "agreement.reflexive_pronoun_person": {
+      "current_label": "Reflexive pronoun wrong for the subject",
+      "friendly_label": "The reflexive pronoun doesn't match who's doing it",
+      "rationale": "mi lavi (for ti lavi) is a person slip on the reflexive. 'Who's doing it' makes the subject reference concrete."
+    },
+    "agreement.subject_verb_finite": {
+      "current_label": "Finite verb not agreeing with its subject",
+      "friendly_label": "The verb ending doesn't match the subject",
+      "rationale": "Covers piacere, existential, si-passivante, volerci. The common thread: verb ending vs subject mismatch. Kept maximally general."
+    },
+    "agreement.noun_gender_lexical": {
+      "current_label": "Wrong lexical gender assigned to the noun",
+      "friendly_label": "Guessing the wrong gender for the noun itself",
+      "rationale": "The error is lexical: la problema, il mano. 'Guessing' is warm — the learner doesn't know the gender yet, and that's OK."
+    },
+    "auxiliary_choice.avere_for_essere": {
+      "current_label": "avere used where essere is required",
+      "friendly_label": "Using avere where the verb needs essere",
+      "rationale": "The dominant auxiliary error. Direct and clear: ho andato for sono andato. Names both auxiliaries so the learner self-diagnoses."
+    },
+    "auxiliary_choice.essere_for_avere": {
+      "current_label": "essere used where avere is required",
+      "friendly_label": "Using essere where the verb needs avere",
+      "rationale": "Mirror of the above. The rarer hypercorrection: sono mangiato for ho mangiato. Symmetric label aids the paired display."
+    },
+    "auxiliary_choice.wrong_auxiliary_tense": {
+      "current_label": "Wrong tense of the auxiliary in a compound tense",
+      "friendly_label": "Right helper verb, wrong tense of it",
+      "rationale": "The auxiliary is correct (avere or essere) but in the wrong tense (ho for avevo). 'Right helper verb, wrong tense of it' captures the nuance in 8 words."
+    },
+    "clitic_cluster.form_change": {
+      "current_label": "Clitic cluster fails its obligatory form change",
+      "friendly_label": "When two little pronouns team up, they change shape",
+      "rationale": "mi+lo becomes me lo; gli+lo becomes glielo. 'Team up' and 'change shape' are concrete metaphors a learner can grasp. Avoids 'morphophonology'."
+    },
+    "conjugation_class.ano_for_ono": {
+      "current_label": "-ano 3pl on an -ere/-ire verb",
+      "friendly_label": "Giving an -ere or -ire verb the -are they ending",
+      "rationale": "prendano for prendono. 'They ending' avoids '3pl' jargon. Names the verb classes so the learner can self-diagnose."
+    },
+    "conjugation_class.gerund_ando_endo": {
+      "current_label": "Wrong-class gerund ending (-ando/-endo)",
+      "friendly_label": "Mixing up -ando and -endo on the -ing form",
+      "rationale": "'The -ing form' maps to the learner's English intuition. parlendo for parlando is a class swap — the label names the two endings."
+    },
+    "conjugation_class.ono_for_ano": {
+      "current_label": "-ono 3pl on an -are verb",
+      "friendly_label": "Giving an -are verb the -ere/-ire they ending",
+      "rationale": "Mirror of ano_for_ono. parlono for parlano. Symmetric phrasing aids the paired display on the weakness panel."
+    },
+    "conjugation_class.wrong_theme_vowel": {
+      "current_label": "Another class's theme vowel borrowed",
+      "friendly_label": "Borrowing an ending from the wrong verb family",
+      "rationale": "parlessi for parlassi. 'Borrowing from the wrong family' is a warm metaphor that avoids 'theme vowel' jargon."
+    },
+    "discrimination.aspect_swap_background": {
+      "current_label": "Background and foreground tenses swapped",
+      "friendly_label": "Swapping which part was ongoing and which was the event",
+      "rationale": "The background/foreground pairing (imperfetto vs passato prossimo) reversed. 'Ongoing' and 'event' are plainer than 'background' and 'foreground'."
+    },
+    "discrimination.counterfactual_construction": {
+      "current_label": "Wrong tense/mood combination for a counterfactual",
+      "friendly_label": "The 'what if' recipe: mixing up the tense combo",
+      "rationale": "'What if recipe' frames the counterfactual as a formula the learner is still mastering. Warm and specific."
+    },
+    "discrimination.durative_present_over_extension": {
+      "current_label": "Durative present extended to a stretch that has ended",
+      "friendly_label": "Using the present for a period that's already over",
+      "rationale": "studio italiano per due anni (finished) vs ho studiato. The label captures the overextension in plain terms."
+    },
+    "discrimination.future_present_mismatch": {
+      "current_label": "Future vs present-for-future mismatch",
+      "friendly_label": "Present vs future — picking the wrong one for the context",
+      "rationale": "Sometimes Italian wants the morphological future, sometimes the present-for-future. The label names the choice without prescribing."
+    },
+    "discrimination.habitual_frame_mismatch": {
+      "current_label": "Habitual routine placed in the wrong time frame",
+      "friendly_label": "Putting a routine in the wrong time period",
+      "rationale": "Using present for a childhood habit, or past for a current routine. 'Routine' and 'time period' are plain English."
+    },
+    "discrimination.imperfect_for_pp": {
+      "current_label": "Imperfect used where the passato prossimo's aspect is required",
+      "friendly_label": "Using the storytelling tense for a one-off event",
+      "rationale": "The imperfect paints background; the passato prossimo reports events. 'Storytelling tense' and 'one-off event' make the aspect contrast intuitive."
+    },
+    "discrimination.indicative_for_subjunctive_choice": {
+      "current_label": "Indicative chosen where a trigger requires the subjunctive",
+      "friendly_label": "A trigger word called for the subjunctive — you used the normal tense",
+      "rationale": "penso che è for penso che sia. 'Trigger word' and 'normal tense' are plain substitutes for 'subjunctive governor' and 'indicative'."
+    },
+    "discrimination.modal_stative_aspect": {
+      "current_label": "Modal/stative verb: wrong past tense for the intended reading",
+      "friendly_label": "With verbs like sapere and dovere, the tense changes the meaning",
+      "rationale": "sapevo (knew) vs ho saputo (found out). Naming the verbs helps the learner self-diagnose. 'Tense changes the meaning' is the key insight."
+    },
+    "discrimination.narrative_imperfect_reading": {
+      "current_label": "Narrative imperfect misread as habitual",
+      "friendly_label": "Reading a dramatic one-off as though it happened regularly",
+      "rationale": "Reading-direction error: moriva as 'used to die' rather than the single narrative event. 'Dramatic one-off' captures the literary effect."
+    },
+    "discrimination.perfect_for_durative_da": {
+      "current_label": "Passato prossimo used for a stretch that is still running (da + time)",
+      "friendly_label": "Still going? Use the present with da, not the past",
+      "rationale": "ho studiato da due anni vs studio da due anni. The da-rule is one of the most transfer-driven errors; the label gives the correction."
+    },
+    "discrimination.pp_for_imperfect": {
+      "current_label": "Passato prossimo used where the imperfect's aspect is required",
+      "friendly_label": "Using the one-off tense for habits and descriptions",
+      "rationale": "The dominant aspect error. 'One-off tense' for passato prossimo, 'habits and descriptions' for the imperfect's territory. Mirror of imperfect_for_pp."
+    },
+    "discrimination.progressive_overuse": {
+      "current_label": "Progressive over-used for the simple tense",
+      "friendly_label": "Overusing the 'sto facendo' form for habits",
+      "rationale": "sto mangiando for mangio (habitual). Naming the form helps the learner recognise it. 'Habits' pinpoints the context."
+    },
+    "discrimination.progressive_underuse": {
+      "current_label": "Simple tense used where the in-progress reading is required",
+      "friendly_label": "Missing the 'sto facendo' form when it's happening right now",
+      "rationale": "mangio for sto mangiando (right this second). Mirror of progressive_overuse; 'right now' contrasts with 'habits'."
+    },
+    "discrimination.remoto_register_mismatch": {
+      "current_label": "Passato remoto and passato prossimo swapped by register",
+      "friendly_label": "Using the storybook past in conversation (or vice versa)",
+      "rationale": "ieri andai (spoken) vs sono andato. 'Storybook past' is a memorable way to characterise the passato remoto's conversational register."
+    },
+    "discrimination.sequence_of_tenses": {
+      "current_label": "Embedded-clause tense not back-shifted in reported speech",
+      "friendly_label": "In reported speech, forgetting to shift the tense back",
+      "rationale": "ha detto che è stanco for che era stanco. 'Shift the tense back' is the plain-English name for backshift. 'Reported speech' is the context."
+    },
+    "discrimination.trapassato_imperfect_choice": {
+      "current_label": "Trapassato vs imperfect mis-selected",
+      "friendly_label": "Mixing up 'had done' with 'was doing'",
+      "rationale": "The trapassato (avevo mangiato = had eaten) vs imperfect (mangiavo = was eating). English equivalents make the contrast immediate."
+    },
+    "discrimination.no_backshift_over_extension": {
+      "current_label": "Backshift applied where none is needed",
+      "friendly_label": "Shifting the tense back when the reporting verb is present",
+      "rationale": "dice che era stanco for dice che è stanco. The learner learnt the backshift rule and over-applies it. The label names the condition."
+    },
+    "discrimination.deixis_not_shifted": {
+      "current_label": "Deictics not shifted inside a report",
+      "friendly_label": "Forgetting to shift time words like 'domani' inside a report",
+      "rationale": "Leaving domani unchanged when reporting days later. 'Time words' is plain for 'deictics'. Naming domani makes it concrete."
+    },
+    "discrimination.pleonastic_non_as_negation": {
+      "current_label": "Pleonastic non read as a real negation",
+      "friendly_label": "Reading a 'dress-up non' as a real 'not'",
+      "rationale": "Reading-direction error: finché non means 'until', not 'as long as not'. 'Dress-up non' captures that this non doesn't negate."
+    },
+    "discrimination.mica_function_misread": {
+      "current_label": "mica's function misread",
+      "friendly_label": "Misreading what mica is doing in the sentence",
+      "rationale": "mica as forse, or as flat denial in a tentative question. The label is open enough that the learner wants to drill into the detail."
+    },
+    "gemination.enclitic_doubling": {
+      "current_label": "Consonant not doubled on a monosyllabic imperative + clitic",
+      "friendly_label": "Forgetting to double the consonant on dammi, dimmi, fammi",
+      "rationale": "dami for dammi. Naming the actual forms the learner knows makes the pattern instantly recognisable."
+    },
+    "gemination.geminate_simplified": {
+      "current_label": "Obligatory double consonant written single",
+      "friendly_label": "Writing one consonant where Italian needs two",
+      "rationale": "vorò for vorrò. 'One where Italian needs two' is crisp and covers futures, subjunctives, and passato remoto alike."
+    },
+    "gemination.spurious_double": {
+      "current_label": "Spurious double consonant",
+      "friendly_label": "Doubling a consonant that should stay single",
+      "rationale": "doppo for dopo, sabbato for sabato. Mirror of geminate_simplified. 'Should stay single' is the warm correction."
+    },
+    "mood.indicative_for_subjunctive_form": {
+      "current_label": "Indicative form built where the subjunctive is required",
+      "friendly_label": "Building the everyday form where the subjunctive form is needed",
+      "rationale": "parlano for parlino, ha parlato for abbia parlato. 'Everyday form' is a learner-friendly synonym for indicative."
+    },
+    "orthography.cg_plural_stress_misapplied": {
+      "current_label": "Wrong -chi/-ci (or -ghi/-gi) by stress or irregularity",
+      "friendly_label": "The -chi vs -ci plural split — stress decides",
+      "rationale": "simpatici vs antichi. 'Stress decides' gives the rule in three words. Names the actual endings."
+    },
+    "orthography.cia_gia_plural_i": {
+      "current_label": "-cia/-gia plural i kept or dropped wrongly",
+      "friendly_label": "The -cia/-gia plural: keep the i or drop it?",
+      "rationale": "ciliegie (keep) vs arance (drop). Framed as the question the learner faces. The vowel/consonant rule is for the detail pane."
+    },
+    "orthography.double_i_retained": {
+      "current_label": "Redundant i kept on -ciare/-giare",
+      "friendly_label": "Writing a double i where only one is needed",
+      "rationale": "mangii for mangi, comincii for cominci. The error is visual and the label matches: you see two i's where there should be one."
+    },
+    "orthography.failed_elision": {
+      "current_label": "Clitic not elided before a vowel",
+      "friendly_label": "Missing the apostrophe when the little word meets a vowel",
+      "rationale": "lo ho for l'ho, una amica for un'amica. 'Little word meets a vowel' is a concrete image for elision."
+    },
+    "orthography.i_retention_error": {
+      "current_label": "Wrong i-retention on -iare by stress",
+      "friendly_label": "The tricky i in -iare verbs — stress decides",
+      "rationale": "studi (drop) vs invii (keep). Names the verb class and the conditioning factor. 'Tricky' normalises the difficulty."
+    },
+    "orthography.omitted_h_hard_cg": {
+      "current_label": "h omitted on -care/-gare",
+      "friendly_label": "Dropping the h that keeps the hard c or g sound",
+      "rationale": "ceri for cerchi, pagiamo for paghiamo. Explains why the h matters (it preserves the sound) without jargon."
+    },
+    "orthography.io_plural_i_count": {
+      "current_label": "-io plural i-count wrong (doubled or dropped)",
+      "friendly_label": "Too many or too few i's in -io plurals",
+      "rationale": "figlii for figli, zi for zii. 'Too many or too few' covers both directions. Short and concrete."
+    },
+    "orthography.digraph_reduced": {
+      "current_label": "Digraph reduced to a plain letter",
+      "friendly_label": "Simplifying gl, gn, or sc to a single letter",
+      "rationale": "familia for famiglia, banio for bagno. Names the actual letter groups. 'Simplifying' is warm — the learner is reducing complexity."
+    },
+    "orthography.qu_cu_confusion": {
+      "current_label": "qu / cu confusion",
+      "friendly_label": "Mixing up qu and cu",
+      "rationale": "squola for scuola, quore for cuore. Short and direct — the error is visual and the label matches."
+    },
+    "orthography.cqu_error": {
+      "current_label": "cqu family mis-spelled",
+      "friendly_label": "The cqu spelling family — a small set to memorise",
+      "rationale": "aqua for acqua, naque for nacque. Framing it as 'a small set' is encouraging — there aren't many words."
+    },
+    "orthography.elision_gender_error": {
+      "current_label": "Elision apostrophe on the wrong gender",
+      "friendly_label": "The un' apostrophe: feminine only, never masculine",
+      "rationale": "un'amico for un amico, un amica for un'amica. The label gives the rule in one line — this is the sharpest article contrast."
+    },
+    "orthography.spurious_apostrophe": {
+      "current_label": "Spurious apostrophe",
+      "friendly_label": "Adding an apostrophe where none belongs (qual è)",
+      "rationale": "qual'è for qual è. Naming the flagship example makes it instantly recognisable. Short and direct."
+    },
+    "orthography.overcapitalization": {
+      "current_label": "Over-capitalisation (English transfer)",
+      "friendly_label": "Capitalising words Italian keeps lowercase",
+      "rationale": "Lunedì, Italiano, Signor Rossi — all lowercase in Italian. The label states the rule plainly."
+    },
+    "orthography.vowel_confusion": {
+      "current_label": "Unstressed vowel confusion",
+      "friendly_label": "Mixing up unstressed vowels inside a word",
+      "rationale": "difficele for difficile, decembre for dicembre. 'Unstressed vowels' names the locus; 'inside a word' makes it concrete."
+    },
+    "paradigm_confusion.ci_vs_ne": {
+      "current_label": "ci and ne confused (a- vs di-)",
+      "friendly_label": "Mixing up ci and ne",
+      "rationale": "ne penso for ci penso. The two little words are easily swapped. Short and direct."
+    },
+    "paradigm_confusion.clitic_vs_stressed": {
+      "current_label": "Clitic and stressed pronoun confused",
+      "friendly_label": "Using the emphasised pronoun where the light one is needed (or vice versa)",
+      "rationale": "Marco vede me for Marco mi vede. 'Emphasised' and 'light' are plain-English terms for stressed and clitic."
+    },
+    "paradigm_confusion.dop_iop": {
+      "current_label": "Direct- and indirect-object clitic confused",
+      "friendly_label": "Mixing up 'him/it' (lo/li) with 'to him' (gli)",
+      "rationale": "li ho detto for gli ho detto. Using English glosses makes the functional difference immediate."
+    },
+    "paradigm_confusion.future_for_conditional_1pl": {
+      "current_label": "Future 1pl written for the conditional 1pl",
+      "friendly_label": "One m or two? Future vs conditional 'we' form",
+      "rationale": "parleremo (future) vs parleremmo (conditional) — they differ by a single geminate. 'One m or two' names the trap precisely."
+    },
+    "paradigm_confusion.wrong_person_as_imperative": {
+      "current_label": "Wrong present-tense cell used as the imperative",
+      "friendly_label": "Using the wrong verb form as a command",
+      "rationale": "parli! for parla! The learner reaches for a present-tense form but picks the wrong person. 'Command' is plain for 'imperative'."
+    },
+    "paradigm_confusion.preposition_choice": {
+      "current_label": "Wrong preposition chosen",
+      "friendly_label": "Picking the wrong small word (a, di, da, in, con...)",
+      "rationale": "in Roma for a Roma, da for di. Naming the actual prepositions makes the scope concrete. 'Small word' is the learner term."
+    },
+    "paradigm_confusion.preposition_verb_governed": {
+      "current_label": "Wrong preposition after a governing verb",
+      "friendly_label": "The preposition that goes with a specific verb",
+      "rationale": "di studiare for a studiare. Each verb has its own preposition — it must be memorised per verb. The label frames this as a lookup task."
+    },
+    "paradigm_confusion.relative_choice": {
+      "current_label": "Wrong relative pronoun chosen",
+      "friendly_label": "Mixing up che, cui, chi, and dove",
+      "rationale": "cui for a direct object, che after a preposition. Names the actual words so the learner self-diagnoses."
+    },
+    "paradigm_confusion.connective_choice": {
+      "current_label": "Wrong connective chosen",
+      "friendly_label": "Picking the wrong linking word (quindi, invece, però...)",
+      "rationale": "quindi for a cause, infine for allora. Naming examples grounds the abstract category."
+    },
+    "paradigm_confusion.adverb_vs_adjective": {
+      "current_label": "Adjective used where the adverb is required",
+      "friendly_label": "buono vs bene — the adjective vs the adverb",
+      "rationale": "cucina buono for cucina bene. Naming the flagship pair makes the pattern instantly recognisable."
+    },
+    "paradigm_confusion.bipartite_particle": {
+      "current_label": "Wrong member of the bipartite negative",
+      "friendly_label": "Mixing up 'no longer', 'not yet', and 'never' under non",
+      "rationale": "non fumo ancora for non fumo più. The three-way contrast (più/ancora/mai) is the closed set. English glosses make it intuitive."
+    },
+    "paradigm_confusion.additive_echo_polarity": {
+      "current_label": "Additive echo wrong for polarity",
+      "friendly_label": "'Me too' when you need 'me neither'",
+      "rationale": "Anch'io for Neanch'io after a negative statement. The English parallel is perfect and instantly understood."
+    },
+    "register.tu_lei_mismatch": {
+      "current_label": "tu and Lei forms mixed",
+      "friendly_label": "Mixing informal (tu) and formal (Lei) in the same exchange",
+      "rationale": "ti ringrazio, signor Bianchi for La ringrazio. The label names both registers and the mixing."
+    },
+    "regularisation.adjective_class": {
+      "current_label": "Class II (-e) adjective inflected as Class I (-o/-a)",
+      "friendly_label": "Treating a gender-neutral adjective as if it had -o/-a forms",
+      "rationale": "grando for grande. 'Gender-neutral' is a learner-friendly way to describe -e adjectives that don't change by gender."
+    },
+    "regularisation.invariable_adjective": {
+      "current_label": "Invariable adjective wrongly inflected",
+      "friendly_label": "Adding an ending to a word that never changes",
+      "rationale": "le case rose for rosa, films for film. 'Never changes' is the plain-English definition of invariable."
+    },
+    "regularisation.irregular_participle": {
+      "current_label": "Irregular past participle regularised",
+      "friendly_label": "Building fatto, detto, scritto as if they were regular",
+      "rationale": "fato, dito, scrivuto. Naming the actual irregular forms helps the learner recognise the target."
+    },
+    "regularisation.irregular_verb": {
+      "current_label": "Irregular verb regularised",
+      "friendly_label": "Conjugating an irregular verb as if it followed the rules",
+      "rationale": "sapo for so, volo for voglio. The label names the error shape: the learner applies regular patterns to verbs that don't follow them."
+    },
+    "regularisation.irregular_plural": {
+      "current_label": "Irregular plural formed by the regular rule",
+      "friendly_label": "Pluralising an irregular noun as if it were regular",
+      "rationale": "uovi for uova, braccie for braccia. Short and diagnostic."
+    },
+    "regularisation.irregular_comparative": {
+      "current_label": "Irregular comparative made periphrastic/double",
+      "friendly_label": "Saying 'più migliore' instead of just 'migliore'",
+      "rationale": "più migliore, più buono. Naming the actual error makes it instantly recognisable and gently memorable."
+    },
+    "regularisation.invariable_noun": {
+      "current_label": "Invariable noun given a plural ending",
+      "friendly_label": "Adding a plural ending to a noun that doesn't change",
+      "rationale": "cittadi for città, universitadi for università. 'Doesn't change' is the plain definition."
+    },
+    "regularisation.noun_class_plural": {
+      "current_label": "Noun pluralised on the wrong class",
+      "friendly_label": "Using the wrong plural ending for the noun's class",
+      "rationale": "casi for case, libre for libri. The learner applies one class's rule to another class's noun."
+    },
+    "stem_change.dittongo_over_extension": {
+      "current_label": "Diphthong kept in noi/voi",
+      "friendly_label": "Keeping the vowel pair in noi/voi where it drops away",
+      "rationale": "esciamo for usciamo, siediamo for sediamo. 'Vowel pair' is plain for 'diphthong'. Names the persons."
+    },
+    "stem_change.dittongo_under_application": {
+      "current_label": "Diphthong lost in the singular",
+      "friendly_label": "Dropping the vowel pair in the singular where it's needed",
+      "rationale": "uscio for esco, sedo for siedo. Mirror of dittongo_over_extension. Symmetric phrasing."
+    },
+    "stem_change.future_are_to_e": {
+      "current_label": "-are→-er future/conditional stem shift mishandled",
+      "friendly_label": "The future stem vowel shift: -are becomes -er-",
+      "rationale": "parlarò for parlerò. Gives the rule in the label. Short enough for the panel."
+    },
+    "stem_change.future_syncope_over_extension": {
+      "current_label": "Future/conditional stem over-syncopated",
+      "friendly_label": "Shortening the future stem on a verb that doesn't shorten",
+      "rationale": "scrivrò for scriverò. 'Shortening the stem' is plain for syncope. Names the over-application."
+    },
+    "stem_change.future_syncope_under_application": {
+      "current_label": "Irregular future/conditional stem not syncopated",
+      "friendly_label": "Forgetting to shorten the stem on irregular futures",
+      "rationale": "avero for avrò, andero for andrò. Mirror of over_extension. 'Forgetting' is warm."
+    },
+    "stem_change.g_over_extension": {
+      "current_label": "-g- inserted in the wrong person",
+      "friendly_label": "Adding a -g- where it doesn't belong (veniamo, not venghiamo)",
+      "rationale": "venghiamo for veniamo. Naming the correct form alongside makes it diagnostic."
+    },
+    "stem_change.g_under_application": {
+      "current_label": "-g- omitted where required",
+      "friendly_label": "Dropping the -g- in vengo, tengo, and friends",
+      "rationale": "veno for vengo, teno for tengo. 'And friends' signals it's a small set. Mirror of g_over_extension."
+    },
+    "stem_change.isc_over_extension": {
+      "current_label": "-isc- added in noi/voi",
+      "friendly_label": "Adding -isc- in noi/voi where it never goes",
+      "rationale": "capisciamo for capiamo, finisciamo for finiamo. Names the infix and the persons. 'Never goes' is clear."
+    },
+    "stem_change.isc_under_application": {
+      "current_label": "-isc- omitted where required",
+      "friendly_label": "Forgetting -isc- in capisco, finisco, and friends",
+      "rationale": "capo for capisco, finono for finiscono. Mirror of isc_over_extension. Names the correct forms."
+    },
+    "stem_change.passato_remoto_strong_over_extension": {
+      "current_label": "Strong passato-remoto stem used in the weak persons",
+      "friendly_label": "Using the strong stem in the 'you/we' forms where it's regular",
+      "rationale": "presesti for prendesti, fecesti for facesti. 'Strong stem' and 'you/we forms' are plain-English descriptions."
+    },
+    "stress.antepenult_3pl": {
+      "current_label": "3pl stressed on the penult",
+      "friendly_label": "Stressing pArlano on the wrong syllable",
+      "rationale": "parlAno (wrong) vs pArlano (right). Using the actual word with capitalised stress makes the error audible on the page."
+    },
+    "stress.thematic_1pl_2pl": {
+      "current_label": "1pl/2pl stress misplaced",
+      "friendly_label": "Stressing the noi/voi form on the wrong syllable",
+      "rationale": "Mis-stressing parlaVAmo etc. Names the persons and the issue. Short."
+    },
+    "transfer.calque_argument_structure": {
+      "current_label": "English argument structure calqued",
+      "friendly_label": "Building the sentence the English way (piacere is the classic trap)",
+      "rationale": "Io piaccio la pizza for Mi piace la pizza. 'The English way' and naming piacere make the pattern concrete."
+    },
+    "transfer.clitic_omission": {
+      "current_label": "Required clitic omitted (English has no equivalent)",
+      "friendly_label": "Leaving out the little word Italian requires (ne, ci, lo)",
+      "rationale": "Ho tre for Ne ho tre, Vado là for Ci vado. Names the actual clitics. 'Little word' is the learner term."
+    },
+    "transfer.construction_nonfinite": {
+      "current_label": "Infinitive used where a non-finite Italian form is required",
+      "friendly_label": "Using the infinitive where Italian wants the -ndo form",
+      "rationale": "sto parlare for sto parlando. 'The -ndo form' is plain for gerund. Short and diagnostic."
+    },
+    "transfer.negative_imperative_finite": {
+      "current_label": "Finite form negated instead of non + infinitive",
+      "friendly_label": "Saying 'non parla!' where Italian wants 'non parlare!'",
+      "rationale": "The tu negative imperative uses non + infinitive, not the conjugated form. The label shows both forms."
+    },
+    "transfer.negative_imperative_infinitive_over_extension": {
+      "current_label": "non + infinitive over-extended beyond tu",
+      "friendly_label": "Using 'non + infinitive' for noi/voi too (it's only for tu)",
+      "rationale": "non parlare! for noi (should be non parliamo!). The label names the rule boundary. 'Only for tu' is the key constraint."
+    },
+    "transfer.dop_iop_confusion": {
+      "current_label": "Indirect pronoun where the verb takes a direct object",
+      "friendly_label": "English says 'wait for' — but Italian just says 'wait him'",
+      "rationale": "gli aspetto for lo aspetto. The English preposition misleads. 'Wait him' shows the Italian logic."
+    },
+    "transfer.partitive_for_bare_noun": {
+      "current_label": "Partitive/quantifier where Italian takes a bare noun",
+      "friendly_label": "Adding 'some/any' (delle, dei) where Italian just uses the noun",
+      "rationale": "Ci sono delle domande? for Ci sono domande? English 'any/some' drives the insertion. The label shows the English trigger."
+    },
+    "transfer.foreign_s_plural": {
+      "current_label": "Plural formed with -s",
+      "friendly_label": "Adding -s to make a plural (an English/Spanish habit)",
+      "rationale": "libros, casas, films. The -s plural is the clearest L1 transfer. Naming the source languages normalises it."
+    },
+    "transfer.disjunction_for_correlative": {
+      "current_label": "o...o (or bare e) calqued for né...né",
+      "friendly_label": "Using 'o...o' where Italian wants 'né...né' (neither...nor)",
+      "rationale": "non bevo o caffè o tè for né caffè né tè. Shows both forms. English 'neither...nor' anchors the meaning."
+    },
+    "transfer.positive_indefinite_for_negative": {
+      "current_label": "Positive indefinite where the negative is required",
+      "friendly_label": "Using 'qualcosa' under a negative where 'niente' is needed",
+      "rationale": "non voglio qualcosa for non voglio niente. English 'anything' calque. Names both Italian words."
+    },
+    "word_order.adjective_position": {
+      "current_label": "Adjective placed before the noun where post-nominal is default",
+      "friendly_label": "Putting the adjective before the noun (English style)",
+      "rationale": "la rossa casa for la casa rossa. 'English style' explains the transfer in two words."
+    },
+    "word_order.adverb_aux_participle": {
+      "current_label": "Adverb or negation misplaced around aux + participle",
+      "friendly_label": "Splitting the helper verb and the past participle with an adverb",
+      "rationale": "ho mangiato già for ho già mangiato. 'Splitting' captures the structural error visually."
+    },
+    "word_order.clitic_cluster_order": {
+      "current_label": "Clitic cluster in the wrong internal order",
+      "friendly_label": "Putting the two little pronouns in the wrong order",
+      "rationale": "Lo mi dai? for Me lo dai? 'Little pronouns' and 'wrong order' are concrete and warm."
+    },
+    "word_order.clitic_position": {
+      "current_label": "Clitic in the wrong position relative to the verb",
+      "friendly_label": "The little pronoun is on the wrong side of the verb",
+      "rationale": "Vedo lo for Lo vedo, Voglio lo vedere for Voglio vederlo. 'Wrong side' makes the positional error visual."
+    },
+    "word_order.negation_elements": {
+      "current_label": "Negation elements misplaced",
+      "friendly_label": "Misplacing 'non' or its partner in a negative sentence",
+      "rationale": "Lo non vedo for Non lo vedo, bevo mai for non bevo mai. Names the key word (non) and the issue."
+    },
+    "word_order.adverb_position": {
+      "current_label": "Adverb misplaced relative to the verb",
+      "friendly_label": "Putting the adverb in the English spot, not the Italian one",
+      "rationale": "lei bene parla for lei parla bene. 'English spot vs Italian spot' is the plain-English frame."
+    },
+    "derivation.mente_formation": {
+      "current_label": "-mente adverb built on the wrong base",
+      "friendly_label": "Building the -mente adverb from the wrong form",
+      "rationale": "lentomente for lentamente, facilemente for facilmente. 'Wrong form' covers masculine base, undropped -e, and invention."
+    },
+    "derivation.alterato_misuse": {
+      "current_label": "Evaluative suffix misused or misread",
+      "friendly_label": "Adding cute/big/mean endings where they don't belong",
+      "rationale": "-ino, -one, -accio, -etto are the evaluative suffixes. 'Cute/big/mean' gives the semantic flavour in plain English."
+    },
+    "derivation.prefix_misuse": {
+      "current_label": "Derivational prefix misused or misread",
+      "friendly_label": "Using intensifier prefixes (stra-,arci-,super-) in the wrong spot",
+      "rationale": "stra- on verbs where it doesn't go. Names the actual prefixes the learner encounters."
+    }
+  },
+  "lenses": {
+    "accents_silent_letters": {
+      "current_label": "Accents and silent letters",
+      "current_blurb": "the little marks that change the word",
+      "friendly_label": "The little marks that change the word",
+      "rationale": "The existing blurb is already excellent: short, warm, concrete ('little marks'), and conveys stakes ('change the word'). No improvement needed — it is the house-style benchmark."
+    },
+    "spelling_that_tracks_sound": {
+      "current_label": "Spelling that tracks sound",
+      "current_blurb": "small spelling slips where the letters follow the sound",
+      "friendly_label": "Small spelling slips where the sound leads the pen astray",
+      "rationale": "The existing blurb is close but slightly flat. 'The sound leads the pen astray' adds warmth and agency — the learner's ear is working, the spelling conventions just need tightening."
+    },
+    "word_order": {
+      "current_label": "Word order",
+      "current_blurb": "where each word goes",
+      "friendly_label": "Where each word goes",
+      "rationale": "Perfect as-is: five words, plain English, and captures the essence of the word-order lens. It is the benchmark the other labels aim to match."
+    },
+    "agreement": {
+      "current_label": "Agreement",
+      "current_blurb": "making words match in gender, number and person",
+      "friendly_label": "Making words match",
+      "rationale": "The existing blurb is clear but 9 words. 'Making words match' preserves the core insight in three words. The detail pane can list gender, number, person."
+    },
+    "building_irregular_forms": {
+      "current_label": "Building irregular forms",
+      "current_blurb": "making the awkward forms the language actually uses",
+      "friendly_label": "The irregular forms that just need memorising",
+      "rationale": "The existing blurb is charming but 8 words and slightly vague. The new label is more direct: names the category (irregular forms) and the fix (memorising, not rule-learning). Warm and honest."
+    },
+    "choosing_the_right_form": {
+      "current_label": "Choosing the right form",
+      "current_blurb": "picking the right tense, mood or word for the meaning",
+      "friendly_label": "Picking the right word when two look similar",
+      "rationale": "The existing blurb lists categories. The new label focuses on the learner's experience: two forms look alike and the wrong one was chosen. 'Look similar' covers tense, mood, preposition, and connective contrasts."
+    },
+    "l1_interference": {
+      "current_label": "English (or L1) interference",
+      "current_blurb": "when English (or Spanish, French) leaks in",
+      "friendly_label": "When your other language leaks into Italian",
+      "rationale": "The existing blurb names specific languages, which may not apply to every learner. 'Your other language' is inclusive and personal. 'Leaks' is warm and visual."
+    },
+    "pronoun_machinery": {
+      "current_label": "Pronoun machinery",
+      "current_blurb": "the little words - clitics, ci, ne, glielo",
+      "friendly_label": "All the little pronouns and how they work together",
+      "rationale": "The existing blurb lists examples but doesn't convey the 'machinery' metaphor. The new label keeps 'little pronouns' and adds 'how they work together' — the cluster/position/case interplay that defines this lens."
+    },
+    "word_building": {
+      "current_label": "Word building",
+      "current_blurb": "making new words: suffixes, prefixes, -ly",
+      "friendly_label": "Building new words from old ones",
+      "rationale": "The existing blurb lists mechanisms. 'Building new words from old ones' captures the derivational insight (a NEW lexeme, not inflection) in six plain words."
+    }
+  }
+}

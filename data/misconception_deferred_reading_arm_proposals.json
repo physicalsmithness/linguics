@@ -1,0 +1,201 @@
+{
+  "prepared_by": "Rumpelstiltskin (QoderWork) 2026-08-15",
+  "for": "MisconceptionAnalyst",
+  "source": "16 DEFERRED entries from misconception_tag_list_pass2_fill.json",
+  "architecture_ruling": "reading arm adopted at registry_harvest v25",
+  "analysis_note": "All 16 DEFERRED buckets were reviewed for genuine reading-side classification. The test: does the learner's error happen when READING Italian (it->en direction), or when WRITING Italian? All 16 pass the reading-side test: each is a comprehension miss where the learner misinterprets an Italian form they encounter, not a production error where they write the wrong form. Family assignments follow the v25 ruling that reading misses are NOT a separate family — the same knowledge is failing in the other direction — so each entry is filed under the existing family that best describes the error's shape.",
+  "proposals": [
+    {
+      "id": "paradigm_confusion.migliore_vs_meglio_reading",
+      "family": "paradigm_confusion",
+      "direction": "reading",
+      "label": "Migliore and meglio misread as each other's part of speech",
+      "description": "Reading the adjective migliore as an adverb or the adverb meglio as an adjective, misunderstanding the sentence's predication. Migliore modifies a noun (il risultato migliore = the best result); meglio modifies a verb or clause (sta meglio = she's better / it's better that way). The comprehension error is assigning the wrong syntactic role, which shifts the meaning.",
+      "examples": [
+        "e' meglio cosi' read as 'it is the best this way' (treating meglio as an adjective/superlative) rather than 'it's better this way'",
+        "il migliore dei due read as 'the best of the two' (superlative) rather than 'the better of the two' (comparative adjective)"
+      ],
+      "topics": ["comparison", "adjective", "adverb"]
+    },
+    {
+      "id": "paradigm_confusion.comunque_anzi_reading",
+      "family": "paradigm_confusion",
+      "direction": "reading",
+      "label": "Comunque and anzi misread as each other's discourse force",
+      "description": "Reading anzi (on the contrary / rather) as comunque (anyway / however), or vice versa, misunderstanding the speaker's argumentative move. Anzi introduces a counter-correction that REPLACES the prior claim; comunque concedes and moves on. Misreading the connective reverses or garbles the discourse logic.",
+      "examples": [
+        "Anzi, resto read as 'Anyway, I'm staying' (concessive) rather than 'On the contrary, I'm staying' (corrective)",
+        "Comunque, non e' colpa mia read as 'On the contrary, it's not my fault' rather than 'Anyway/Regardless, it's not my fault'"
+      ],
+      "topics": ["connective", "discourse"]
+    },
+    {
+      "id": "transfer.idiomatic_ce_reading",
+      "family": "transfer",
+      "direction": "reading",
+      "label": "Idiomatic c'e read as a literal existential",
+      "description": "Reading idiomatic c'e constructions as plain existentials ('there is'), missing the specialised meaning the construction carries. Italian uses c'e + da + infinitive, c'e + noun in fixed phrases, and c'entra (from entrarci) in ways that English's 'there is' does not map to. The L1-literal reading produces a confused or wrong interpretation.",
+      "examples": [
+        "c'e' da impazzire read as 'there is to go crazy' (literal) rather than 'it's enough to drive you crazy'",
+        "non c'entra niente read as 'there is nothing in it' rather than 'it has nothing to do with it'"
+      ],
+      "topics": ["existential", "idiom", "pronominal_verbs"]
+    },
+    {
+      "id": "discrimination.pleonastic_non_a_meno_che_reading",
+      "family": "discrimination",
+      "direction": "reading",
+      "label": "Pleonastic non in a meno che non read as real negation",
+      "description": "Reading the pleonastic non after a meno che as a true negation, flipping the conditional's polarity. The non in a meno che non is expletive — it does not negate. The learner who reads it as negation understands the opposite condition from what the speaker intended. Sibling of discrimination.pleonastic_non_as_negation.",
+      "examples": [
+        "a meno che non piova read as 'unless it doesn't rain' (i.e. only if it rains) rather than 'unless it rains' (i.e. if it doesn't rain)",
+        "verro' a meno che non sia tardi read as 'I'll come unless it isn't late' rather than 'I'll come unless it's late'"
+      ],
+      "topics": ["negation", "subordination"]
+    },
+    {
+      "id": "discrimination.pleonastic_non_finche_reading",
+      "family": "discrimination",
+      "direction": "reading",
+      "label": "Finche non read as negative ('as long as not') instead of 'until'",
+      "description": "Reading finche non as 'as long as ... not' (a negative condition) rather than 'until' (a temporal limit). The non is pleonastic — finche non torno means 'until I come back', not 'as long as I don't come back'. Sibling of discrimination.pleonastic_non_as_negation; the single most consequential pleonastic-non reading error because it flips the sentence's polarity and its temporal logic.",
+      "examples": [
+        "finche non torno, aspetta read as 'as long as I don't come back, wait' rather than 'until I come back, wait'",
+        "restate qui finche non arrivo read as 'stay here as long as I don't arrive' rather than 'stay here until I arrive'"
+      ],
+      "topics": ["negation", "subordination", "time"]
+    },
+    {
+      "id": "discrimination.restrictive_non_che_reading",
+      "family": "discrimination",
+      "direction": "reading",
+      "label": "Restrictive non...che read as full negation instead of 'only'",
+      "description": "Reading the restrictive construction non...che (meaning 'only') as a full negation. Non ho che un euro means 'I have only one euro', not 'I don't have one euro'. The non is part of a restrictor, not a negator; the learner who reads it as negation understands the opposite. Sibling of discrimination.pleonastic_non_as_negation.",
+      "examples": [
+        "non ho che dieci euro read as 'I don't have ten euros' rather than 'I have only ten euros'",
+        "non c'e' che da scegliere read as 'there isn't anything to choose' rather than 'there's nothing to do but choose / one just has to choose'"
+      ],
+      "topics": ["negation", "restrictive"]
+    },
+    {
+      "id": "discrimination.andare_passive_reading",
+      "family": "discrimination",
+      "direction": "reading",
+      "label": "Andare + past participle read as literal 'go' instead of deontic passive",
+      "description": "Reading the andare passive (va fatto, vanno letti) as a literal motion construction ('it goes done') rather than the deontic passive it actually is ('it must be done'). The andare passive carries a sense of obligation or appropriateness — va ricordato means 'it should/must be remembered', not 'it goes remembered'. A comprehension miss that produces a nonsensical interpretation.",
+      "examples": [
+        "va ricordato che... read as 'it goes remembered that...' (literal, nonsensical) rather than 'it must/should be remembered that...'",
+        "queste cose vanno fatte subito read as 'these things go done immediately' rather than 'these things must be done immediately'"
+      ],
+      "topics": ["passive", "modal"]
+    },
+    {
+      "id": "transfer.passive_appropriateness_reading",
+      "family": "transfer",
+      "direction": "reading",
+      "label": "Italian passive misread through English passive-frequency expectations",
+      "description": "Encountering an Italian passive and misreading it because English uses the passive in different contexts and frequencies. Italian uses the passive (and si passivante) more freely for agent-defocusing and in registers where English would prefer an active. The learner applies English passive-reading heuristics and misidentifies the agent, patient, or discourse function.",
+      "examples": [
+        "si e' deciso di partire read as a personal decision rather than the impersonal passive 'it was decided (by the group) that we'd leave'",
+        "la proposta e' stata rifiutata misread with the wrong agent or as an accidental event rather than a deliberate refusal"
+      ],
+      "topics": ["passive", "si_constructions"]
+    },
+    {
+      "id": "transfer.dispiacere_reading",
+      "family": "transfer",
+      "direction": "reading",
+      "label": "Dispiacere read as 'dislike' instead of 'be sorry / regret'",
+      "description": "Reading mi dispiace as 'I dislike it' (by prefixing dis- onto piacere as an English negative) rather than 'I'm sorry / I regret it'. The prefix dis- in dispiacere does not produce the opposite of piacere; it produces a verb of regret or apology. A classic L1-transfer comprehension error: English 'dislike' bleeds into the reading of the Italian cognate.",
+      "examples": [
+        "mi dispiace del risultato read as 'I dislike the result' rather than 'I'm sorry about the result'",
+        "gli dispiace tanto read as 'he dislikes it a lot' rather than 'he's very sorry'"
+      ],
+      "topics": ["piacere", "experiencer_verbs", "false_friend"]
+    },
+    {
+      "id": "transfer.piacere_direction_reading",
+      "family": "transfer",
+      "direction": "reading",
+      "label": "Mi piaci direction reversed when reading ('I like you' for 'you please me')",
+      "description": "Reading mi piaci as 'I like you' with English subject-object roles, rather than parsing the Italian literally: 'you are pleasing to me'. While the end result ('I like you') happens to be the same in simple cases, the reversed argument structure causes comprehension failures in more complex sentences — especially with pronouns, where the learner misidentifies who likes whom.",
+      "examples": [
+        "gli piaccio read as 'I like him' rather than 'he likes me' (I am pleasing to him)",
+        "non le piacciono i bambini read as 'she doesn't like the children' (correct surface reading) but failing to parse that i bambini is the grammatical subject, leading to agreement errors in follow-up"
+      ],
+      "topics": ["piacere", "experiencer_verbs", "argument_structure"]
+    },
+    {
+      "id": "paradigm_confusion.pronominal_verb_meaning_reading",
+      "family": "paradigm_confusion",
+      "direction": "reading",
+      "label": "Pronominal verb read as literal verb + pronoun instead of a distinct meaning",
+      "description": "Reading a pronominal verb (farcela, andarsene, intendersela, cavarsela) as the literal verb plus a detachable pronoun, instead of recognising the fixed idiomatic meaning the verb-pronoun assembly carries. Farcela is not 'to make it there' but 'to manage/succeed'; andarsene is not 'to go oneself from it' but 'to leave'. The comprehension error is a literal parse that misses the lexicalised meaning.",
+      "examples": [
+        "non ce la faccio read literally as 'I don't make it there' rather than 'I can't manage / I can't take it any more'",
+        "se ne sono andati read as 'they went themselves from it' rather than 'they left / they went away'"
+      ],
+      "topics": ["pronominal_verbs", "idiom"]
+    },
+    {
+      "id": "paradigm_confusion.frozen_tail_idiom_reading",
+      "family": "paradigm_confusion",
+      "direction": "reading",
+      "label": "Frozen-tail idiom read compositionally instead of as a fixed unit",
+      "description": "Parsing a frozen-tail pronominal idiom (where the clitic is fossilised and no longer refers) as though each element contributed its literal meaning. In these idioms the pronoun is a dead tail — it cannot be replaced or removed — and the whole expression has a non-compositional meaning. Reading it literally produces nonsense.",
+      "examples": [
+        "ce l'ho con te read as 'I have it with you' (literal) rather than 'I'm angry with you'",
+        "l'ho avuta vinta read as 'I had it won' rather than 'I got my way / I prevailed'"
+      ],
+      "topics": ["pronominal_verbs", "idiom"]
+    },
+    {
+      "id": "paradigm_confusion.si_sign_reading",
+      "family": "paradigm_confusion",
+      "direction": "reading",
+      "label": "Surface signs of si misread (wrong si-type identified from context cues)",
+      "description": "Misidentifying the type of si from its surface context — reading a si passivante as a si impersonale, or vice versa — and therefore assigning the wrong subject and agreement. Si vendono case is a passivante (case is the patient-subject: 'houses are sold'), not impersonale ('one sells houses'). The surface cues (verb agreement, noun position) are the same; only the syntactic analysis differs.",
+      "examples": [
+        "si vendono case read as 'one sells houses' (impersonal, case = object) rather than 'houses are sold' (passivante, case = subject)",
+        "si mangia bene qui read as 'it eats itself well here' rather than 'one eats well here / the food is good here'"
+      ],
+      "topics": ["si_constructions", "passive"]
+    },
+    {
+      "id": "paradigm_confusion.si_function_reading",
+      "family": "paradigm_confusion",
+      "direction": "reading",
+      "label": "Si function not identified when reading (reflexive / impersonal / passivante confused)",
+      "description": "Encountering si in a text and failing to identify its grammatical function, leading to a wrong parse of the sentence's argument structure. The same surface si can be reflexive (si lava = she washes herself), impersonal (si parte = one leaves / we leave), passivante (si leggono i libri = the books are read), or part of a pronominal verb (si pente = he repents). The comprehension error is choosing the wrong function.",
+      "examples": [
+        "si e' pentito read as 'one has repented' (impersonal) rather than 'he repented' (pronominal verb pentirsi)",
+        "si lavora anche il sabato read as 'one works also on Saturday' (correct impersonal) but then misapplying the same parse to 'si lavano i panni' (passivante: 'the clothes are washed')"
+      ],
+      "topics": ["si_constructions", "reflexive"]
+    },
+    {
+      "id": "discrimination.imperative_pragmatic_softening_reading",
+      "family": "discrimination",
+      "direction": "reading",
+      "label": "Imperative's pragmatic softening missed — command read as brusque order",
+      "description": "Reading an imperative at its literal directive force, missing the pragmatic softening that context, intonation cues in writing (pure, dai, su), or the speech situation supplies. Italian imperatives are routinely softened in everyday speech — dimmi is an invitation ('go on, tell me'), not a barked order ('tell me!'). The comprehension error is attributing a brusque or aggressive intent where none exists.",
+      "examples": [
+        "dimmi read as a brusque 'tell me!' (order) rather than the soft 'go on, tell me' (invitation)",
+        "vai pure read as 'go!' (command) rather than 'go ahead' (permission/encouragement)"
+      ],
+      "topics": ["imperative", "pragmatics", "register"]
+    },
+    {
+      "id": "derivation.falsi_alterati_reading",
+      "family": "derivation",
+      "direction": "reading",
+      "label": "False alterati read as evaluative forms (latticino, mattonella, etc.)",
+      "description": "Reading a word whose ending resembles an evaluative suffix (-ino, -one, -accio, -ella) as though it were an alterato of the base noun, when in fact the word is a distinct lexeme. Latticino is not a diminutive of latte (it means 'dairy product'); mattonella is not a small mattone (it means 'tile'); ragazzone may or may not be an augmentative depending on lexicalisation. The comprehension error is decomposing a lexical item into base + suffix where no productive derivation exists.",
+      "examples": [
+        "latticino read as 'little milk' (diminutive of latte) rather than 'dairy product'",
+        "mattonella read as 'small brick' (diminutive of mattone) rather than 'tile'"
+      ],
+      "topics": ["word_formation", "alterati", "lexicon"]
+    }
+  ]
+}

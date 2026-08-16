@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "r167";
+  const LL_BUILD = "2026-08-15-r168";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -7258,6 +7258,9 @@
     imperfetto_progressivo: "Imperfect progressive",
     trapassato_prossimo: "Pluperfect",
     passato_remoto: "Past historic",
+    // r168, from the suite thread v12 §4: there was no entry here, so the three
+    // prem_trap_* items were labelled "Past historic" after the post-answer tick.
+    trapassato_remoto: "Past perfect historic",
     future: "Future",
     futuro_anteriore: "Future perfect",
     condizionale: "Conditional",

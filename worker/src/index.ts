@@ -126,7 +126,19 @@ const DEFAULT_MODEL = "deepseek/deepseek-chat";
 // unlimited spend.
 const COST_CAP_PER_CALL_USD = 0.03;
 const HARD_COST_CEILING_USD = 0.25;
-const MAX_OUTPUT_TOKENS = 2000;
+// r168: was 2000, and that was the single largest cause of "failed" calls in the
+// 2026-08-14 fifteen-model suite sweep. A mark now carries ~13 markpoints (the
+// expected_buckets mean went from 6.27 to 12.82 over the tier-2 merges), each with
+// a bucket id, label, verdict, evidence string and note, plus the overall block.
+// 2000 tokens could not hold that, so answers were cut off mid-string and came back
+// as "unterminated string" or, where the model had opened a ``` fence, as a stray
+// backtick. Both read as model defects. Neither was.
+// NOTE ON COST: estimateCostUsd multiplies this by the output rate, so raising it
+// raises the pre-call estimate and expensive models are now REFUSED at the $0.03
+// default ceiling rather than truncated mid-answer. That is the honest failure of
+// the two (no money spent, and the error names the ceiling); raise the ceiling per
+// call on the bench to run them.
+const MAX_OUTPUT_TOKENS = 6000;
 // Temperature was never set, so every mark was generated at the provider
 // default of 1.0. Measured consequence (bench, 2026-08-02): three runs of the
 // SAME item with the SAME answer and a byte-identical payload returned skill
@@ -575,10 +587,17 @@ export default {
     // Parse the model's JSON output. Models (e.g. DeepSeek) often wrap the JSON
     // in a markdown code fence (```json ... ```) or add stray prose; strip the
     // fence and, failing that, extract the outermost { ... } before parsing.
+    // r168: the fence regex is anchored at BOTH ends, so a response truncated at
+    // max_tokens kept its opening ``` and failed on the backtick. That is why the
+    // bench reported a fence fault and a truncation fault as if they were two
+    // different problems: they are one, and it is ours. Strip an unclosed fence
+    // too, and consult finish_reason before blaming the model's JSON.
+    const finishReason = apiBody?.choices?.[0]?.finish_reason;
     let result: any;
     let jsonText = content.trim();
     const fence = jsonText.match(/^```(?:json)?\s*([\s\S]*?)\s*```$/i);
     if (fence) jsonText = fence[1].trim();
+    else if (/^```/.test(jsonText)) jsonText = jsonText.replace(/^```(?:json)?\s*/i, "").trim();
     try {
       result = JSON.parse(jsonText);
     } catch (e: any) {
@@ -589,8 +608,17 @@ export default {
         try { result = JSON.parse(jsonText.slice(first, last + 1)); recovered = true; } catch (e2: any) {}
       }
       if (!recovered) {
+        // An answer cut off by OUR cap is not a marking failure, and calling it
+        // malformed_json ranked several capable models below weaker ones that
+        // happened to write less. Name the real cause.
+        if (finishReason === "length") {
+          return errorResp(502, "output_truncated",
+            `The answer was cut off at max_tokens (${MAX_OUTPUT_TOKENS}), so its JSON is incomplete. ` +
+            `This is our output cap, not a marking failure. Received ${content.length} characters.`);
+        }
         return errorResp(502, "malformed_json",
-          `Model output not valid JSON: ${e.message}. First 200 chars: ${content.slice(0, 200)}`);
+          `Model output not valid JSON: ${e.message}. finish_reason=${finishReason ?? "unknown"}. ` +
+          `First 200 chars: ${content.slice(0, 200)}`);
       }
     }
 

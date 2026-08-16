@@ -169,10 +169,10 @@
 
 <div id="log"></div>
 
-<script src="js/norm.js?v=r167"></script>
-<script src="js/store.js?v=r167"></script>
-<script src="js/translation_stub.js?v=r167"></script>
-<script src="js/translation_marker.js?v=r167"></script>
+<script src="js/norm.js?v=2026-08-15-r168"></script>
+<script src="js/store.js?v=2026-08-15-r168"></script>
+<script src="js/translation_stub.js?v=2026-08-15-r168"></script>
+<script src="js/translation_marker.js?v=2026-08-15-r168"></script>
 <script>
 (function () {
   "use strict";
@@ -428,7 +428,17 @@
   let cases = null;
   const SUITE_KEY = "ll_suite_results_v1";
 
-  function norm(t) { return String(t || "").toLowerCase().replace(/\s+/g, " ").trim(); }
+  // r168. This was `toLowerCase().replace(/\s+/g," ").trim()`, its own private
+  // normaliser, and it was WRONG for the job: the engine's LL.norm also folds
+  // accents, apostrophes and hyphens. So any model quoting evidence with an accent
+  // or an apostrophe folded failed the "evidence not in the learner's answer" check
+  // on every item, and at least two suite cases were being recorded as FAIL with
+  // every stated expectation met. Use the engine's normaliser, which is what the
+  // marker's own matching uses, and fall back only if norm.js has not loaded.
+  function norm(t) {
+    if (window.LL && typeof LL.norm === "function") return LL.norm(t);
+    return String(t || "").toLowerCase().replace(/\s+/g, " ").trim();
+  }
 
   function judgeCase(c, run) {
     const mps = run.mps || [];
@@ -456,9 +466,17 @@
         checks.push("label does not match id: " + m.b + " returned \u201c" + m.lab + "\u201d");
       }
     }
+    // r168: `pass` used to require the hygiene checks to be clean as well, so a
+    // case that met EVERY expectation was recorded as a failure because the model
+    // quoted its evidence in a slightly different form. Expectations and output
+    // hygiene are different questions and are now reported separately: `pass` is
+    // the marking judgement, `hygiene` is whether the output was well-formed.
     return {
-      item: c.item, missing, wrong, invented, checks,
-      pass: !missing.length && !wrong.length && !invented.length && !checks.length,
+      item: c.item,
+      case_id: c.id || c.case_id || (c.item + "#" + (c.answer || "").slice(0, 24)),
+      missing, wrong, invented, checks,
+      pass: !missing.length && !wrong.length && !invented.length,
+      hygiene: !checks.length,
       marks: run.marks, n: run.n, cost: run.cost, ms: run.ms
     };
   }
@@ -589,8 +607,13 @@
           .concat(x.wrong.map(t => ["wrong verdict", t]))
           .concat(x.invented.map(t => ["should not appear", t]))
           .concat(x.checks.map(t => ["check", t]));
+        // r168: hygiene shown beside the verdict, not folded into it. "pass, untidy"
+        // means the marking was right and the output was merely awkwardly quoted.
+        const verdict = x.pass
+          ? '<b style="color:#2f7d43">pass</b>' + (x.hygiene === false ? '<span class="muted">, untidy</span>' : '')
+          : '<b style="color:#a33">fail</b>';
         return '<tr><td><code>' + esc(x.item) + '</code></td>' +
-          '<td>' + (x.pass ? '<b style="color:#2f7d43">pass</b>' : '<b style="color:#a33">fail</b>') + '</td>' +
+          '<td>' + verdict + '</td>' +
           '<td>' + (faults.length ? faults.map(f => '<div><span class="mode">' + f[0] + '</span> ' + esc(f[1]) + '</div>').join("") : '<span class="muted">\u2014</span>') + '</td></tr>';
       }).join("");
       return '<div class="panel"><h2>' + esc(r.model) + ' \u00b7 ' + esc(r.mode) + '</h2>' +
