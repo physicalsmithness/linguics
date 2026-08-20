@@ -164,29 +164,31 @@
   };
 
   LL.AVAILABLE_MODELS = [
-    { id: "",                                 label: "Default (DeepSeek V3)" },
-    { id: "deepseek/deepseek-chat",           label: "DeepSeek V3 (~$0.001/call)" },
+    // r171. The list is now ORDERED BY THE MEASURED SWEEP of 2026-08-20 (18 test
+    // sentences, every model), and every label carries its real numbers, so the
+    // picker states the evidence instead of hiding it. Five were removed on Smith's
+    // ruling: Sonnet 4.5 and Sonnet 5 and GPT-5.6 Luna ("these super expensive
+    // things are just not worth it" - Sonnet 5 costs 5c a mark), and Qwen 3.7 Plus
+    // and Tencent HY3 for latency ("I can't have things take 70 seconds"; they took
+    // 85s and 71s a mark). google/gemini-2.0-flash-001 went at r168, dead upstream.
+    { id: "",                                 label: "Default (whatever the worker is set to)" },
+    { id: "x-ai/grok-4.3",                    label: "Grok 4.3 — 15/18 right, 12s, ~1c per mark, cleanest quoting" },
+    { id: "anthropic/claude-haiku-4.5",       label: "Claude Haiku 4.5 — 15/18 right, 10s, ~1c per mark" },
+    { id: "~anthropic/claude-haiku-latest",   label: "Claude Haiku (latest alias) — 15/18 right, 10s, ~1.3c" },
+    { id: "openai/gpt-4o-mini",               label: "GPT-4o-mini — 13/18 right, 11s, 0.12c per mark (the value pick)" },
+    { id: "google/gemini-3.1-flash-lite",     label: "Gemini 3.1 Flash Lite — 11/18, answered 14, 3.4s (the fast one)" },
+    { id: "z-ai/glm-5.2",                     label: "GLM 5.2 — 14/18 right but 39s a mark (too slow to serve live)" },
+    { id: "minimax/minimax-m3",               label: "MiniMax M3 — 10/18, answered 14, 16s" },
+    { id: "deepseek/deepseek-chat",           label: "DeepSeek V3 — 7/18, answered only 10 (was the default until r171)" },
     // Current generation, added 2026-08-02. Latency here is driven by OUTPUT
     // tokens, not the menu size, so output price and output speed matter more
     // than input price for this grader. Must also exist in the Worker's
     // MODEL_PRICING or the call is rejected 400 model_unsupported.
-    { id: "google/gemini-3.1-flash-lite",     label: "Gemini 3.1 Flash Lite ($0.25/$1.50 per M)" },
-    { id: "minimax/minimax-m3",               label: "MiniMax M3 ($0.30/$1.20)" },
-    { id: "qwen/qwen3.7-plus",                label: "Qwen 3.7 Plus ($0.32/$1.28)" },
-    { id: "z-ai/glm-5.2",                     label: "GLM 5.2 ($0.42/$1.32)" },
-    { id: "tencent/hy3",                      label: "Tencent HY3 ($0.14/$0.58)" },
-    { id: "x-ai/grok-4.3",                    label: "Grok 4.3 ($1.25/$2.50 — cheap output)" },
-    { id: "~anthropic/claude-haiku-latest",   label: "Claude Haiku (latest alias) ($1.00/$5.00)" },
-    { id: "openai/gpt-5.6-luna",              label: "GPT-5.6 Luna ($1.00/$6.00)" },
-    { id: "anthropic/claude-sonnet-5",        label: "Claude Sonnet 5 ($2.00/$10.00 — over cap on full menu)" },
-    { id: "anthropic/claude-haiku-4.5",       label: "Claude Haiku 4.5 (~$0.004/call)" },
-    { id: "anthropic/claude-sonnet-4.5",      label: "Claude Sonnet 4.5 (~$0.013/call)" },
     // r168: google/gemini-2.0-flash-001 REMOVED. OpenRouter answers every call with
     // 404 "No endpoints found for google/gemini-2.0-flash-001" — the id is dead
     // upstream. It failed 18 of 18 in the 08-14 sweep at $0 cost, which also means
     // it was scoring 0/18 in the comparison table as though it had marked badly.
     // gemini-3.1-flash-lite above is the live Google option.
-    { id: "openai/gpt-4o-mini",               label: "GPT-4o-mini (~$0.0006/call)" },
   ];
 
   /**

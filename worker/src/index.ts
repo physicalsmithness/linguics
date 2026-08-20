@@ -112,7 +112,22 @@ const MODEL_PRICING: Record<string, [number, number]> = {
   "qwen/qwen-2.5-72b-instruct":      [0.30, 0.40],
 };
 
-const DEFAULT_MODEL = "deepseek/deepseek-chat";
+// r171: was "deepseek/deepseek-chat", which the 2026-08-20 sweep measured as the
+// WORST of the thirteen models tested - 7 of 18 marked right, and only 10 of the 18
+// answered at all. Every other model beat it, and it was the one marking learners.
+// Grok 4.3 scored joint-top (15 of 18), answered all 18, costs about a penny a mark
+// and takes ~12 seconds. It also quotes the learner's own words back most cleanly of
+// the three leaders (7 odd quotations against Haiku's 15), which is what the feedback
+// panel underlines with. Haiku 4.5 is two seconds faster at the same price if speed
+// beats evidence quality; GPT-4o-mini is a NINTH of the cost for two fewer marks.
+const DEFAULT_MODEL = "x-ai/grok-4.3";
+
+// r171: the GET health response has always named the default model, which means a
+// plain fetch of this URL says what is DEPLOYED. Nobody used it, and this estate
+// spent days unable to answer "did the deploy land". Now it also carries a build
+// string, so a deploy is verifiable in one request instead of being inferred from
+// marking behaviour. Bump this whenever the worker is changed.
+const WORKER_BUILD = "2026-08-20-r171";
 // The learner-path default. It was set when every call was DeepSeek at about a
 // tenth of a cent, and it silently blocked most of the current-generation models
 // on anything but the smallest menu - Sonnet 5 on the full menu estimates
@@ -449,7 +464,7 @@ export default {
     }
     if (req.method === "GET") {
       // Simple health check
-      return jsonResp(200, { ok: true, service: "linguics-marker", default_model: DEFAULT_MODEL });
+      return jsonResp(200, { ok: true, service: "linguics-marker", build: WORKER_BUILD, default_model: DEFAULT_MODEL });
     }
     if (req.method !== "POST") {
       return errorResp(405, "method_not_allowed", "Use POST /mark");
