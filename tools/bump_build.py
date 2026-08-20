@@ -14,7 +14,14 @@ import re, sys, datetime, pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 APP = ROOT / "housing/js/app.js"
-PAGES = [ROOT / "housing/index.html", ROOT / "housing/bench.html", ROOT / "housing/selftest.html"]
+# r173: this was a hard-coded list of three pages, and housing/record.html was
+# added without anyone thinking to extend it - so its ?v= would have frozen at
+# whatever build it was born with while every other page moved on, and the exact
+# stale-asset symptom this tool exists to abolish would have come back on one page
+# only. preflight.py already globs housing/*.html; this now matches it, so any new
+# page is versioned from the moment it exists rather than from the moment someone
+# remembers. A hard-coded list of files is a list that goes out of date.
+PAGES = sorted((ROOT / "housing").glob("*.html"))
 
 def current():
     m = re.search(r'const LL_BUILD = "([^"]+)"', APP.read_text(encoding="utf-8"))

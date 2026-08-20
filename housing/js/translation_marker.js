@@ -171,11 +171,11 @@
     // things are just not worth it" - Sonnet 5 costs 5c a mark), and Qwen 3.7 Plus
     // and Tencent HY3 for latency ("I can't have things take 70 seconds"; they took
     // 85s and 71s a mark). google/gemini-2.0-flash-001 went at r168, dead upstream.
-    { id: "",                                 label: "Default (whatever the worker is set to)" },
-    { id: "x-ai/grok-4.3",                    label: "Grok 4.3 — 15/18 right, 12s, ~1c per mark, cleanest quoting" },
-    { id: "anthropic/claude-haiku-4.5",       label: "Claude Haiku 4.5 — 15/18 right, 10s, ~1c per mark" },
-    { id: "~anthropic/claude-haiku-latest",   label: "Claude Haiku (latest alias) — 15/18 right, 10s, ~1.3c" },
-    { id: "openai/gpt-4o-mini",               label: "GPT-4o-mini — 13/18 right, 11s, 0.12c per mark (the value pick)" },
+    { id: "",                                 label: "Default — GPT-4o-mini, currently the best cheap one" },
+    { id: "openai/gpt-4o-mini",               label: "GPT-4o-mini — BEST CHEAP ONE. 13/18 right, 11s, 0.12c a mark" },
+    { id: "x-ai/grok-4.3",                    label: "Grok 4.3 — best quality: 15/18, 12s, but 1.1c a mark (9x)" },
+    { id: "anthropic/claude-haiku-4.5",       label: "Claude Haiku 4.5 — 15/18, 10s (fastest of the good ones), 1.1c" },
+    { id: "~anthropic/claude-haiku-latest",   label: "Claude Haiku (latest) — MOST EXPENSIVE HERE: 15/18, 1.3c a mark" },
     { id: "google/gemini-3.1-flash-lite",     label: "Gemini 3.1 Flash Lite — 11/18, answered 14, 3.4s (the fast one)" },
     { id: "z-ai/glm-5.2",                     label: "GLM 5.2 — 14/18 right but 39s a mark (too slow to serve live)" },
     { id: "minimax/minimax-m3",               label: "MiniMax M3 — 10/18, answered 14, 16s" },

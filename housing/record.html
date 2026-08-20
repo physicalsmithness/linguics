@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Linguics — your record</title>
+<!--
+  YOUR RECORD (Housing, r173, 2026-08-20)
+
+  Smith: "I'd just like to see it, rather than spend all the effort maybe getting
+  full coverage... let's see it work better, and then you will be excited to go up
+  and work on a different browser."
+
+  So this is deliberately a SEPARATE PAGE reading the SAME localStorage the app
+  already writes. It cannot break the app, it needs no sync, no login and no
+  server, and it exists to show whether the history is worth plugging into things
+  before anyone builds the machinery to move it between browsers.
+
+  Everything here was designed against the real data rather than guessed. Measured
+  on the author's own browser, 2026-08-20: 557 attempts, 873 skill events, 24
+  active days between 15 May and 13 August. Two facts shaped the page.
+
+  1. THE UNIT IS A SESSION, NOT A DAY. 24 active days across three months means a
+     "what did I get wrong yesterday" panel would be blank almost every time it was
+     opened. So the page leads with the LAST SESSION, whenever it was, and says the
+     date plainly.
+  2. MOST SKILLS HAVE BEEN MET EXACTLY ONCE. 366 of 501, i.e. 73%. So questions of
+     the form "did you go back and fix it" only have an answer for a quarter of the
+     record, and the page says so rather than showing a thin list as if it were the
+     whole story.
+-->
+<style>
+  :root { --cream:#fdfaf4; --ink:#2b2b2b; --navy:#3a4f8a; --rule:#e2dbcc;
+          --green:#235c3c; --red:#7f2a24; --muted:#7a7268; --wine:#8f2b45; }
+  * { box-sizing:border-box; }
+  body { margin:0; padding:26px; background:var(--cream); color:var(--ink);
+         font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+         font-size:16px; line-height:1.5; }
+  h1 { font-size:26px; margin:0 0 2px; color:var(--navy); font-weight:600; }
+  .sub { color:var(--muted); font-size:14px; margin-bottom:20px; }
+  .grp { background:#fff; border:1px solid var(--rule); border-radius:6px;
+         padding:16px 18px; margin-bottom:14px; }
+  .grp h2 { font-size:13px; text-transform:uppercase; letter-spacing:.07em;
+            color:var(--muted); margin:0 0 4px; font-weight:600; }
+  .grp .why { font-size:13.5px; color:#4a4437; margin:0 0 12px; max-width:56em; }
+  .big { font-size:30px; font-weight:600; font-variant-numeric:tabular-nums;
+         line-height:1.15; color:var(--navy); }
+  .row { display:flex; gap:10px; align-items:baseline; padding:6px 0;
+         border-bottom:1px solid #f0ebdd; font-size:15px; }
+  .row:last-child { border-bottom:none; }
+  .skill { flex:1 1 auto; }
+  .when { flex:0 0 auto; font-size:12.5px; color:var(--muted); white-space:nowrap; }
+  .wrote { display:block; font-size:13px; color:var(--muted); font-style:italic; }
+  .rule-l { border-left:3px solid var(--red); padding-left:9px; }
+  .rule-g { border-left:3px solid var(--green); padding-left:9px; }
+  .rule-a { border-left:3px solid var(--wine); padding-left:9px; }
+  table { border-collapse:collapse; margin-top:8px; }
+  th,td { border:1px solid var(--rule); padding:5px 8px; text-align:center;
+          vertical-align:middle; font-variant-numeric:tabular-nums; font-size:13.5px; }
+  th { font-size:11px; color:var(--muted); font-weight:600; max-width:64px;
+       word-wrap:break-word; line-height:1.2; vertical-align:bottom; }
+  td.d { text-align:left; white-space:nowrap; }
+  .empty { color:var(--muted); font-style:italic; font-size:14px; }
+  .more { font-size:13px; color:var(--muted); margin-top:8px; }
+</style>
+</head>
+<body>
+
+<h1>Your record</h1>
+<div class="sub">Everything below is read from this browser's own saved attempts. Nothing is sent anywhere.<br>
+Build <b>2026-08-20-r173</b></div>
+<div id="out"><div class="grp"><div class="empty">Reading your history…</div></div></div>
+
+<script src="js/store.js?v=2026-08-20-r173"></script>
+<script>
+(function () {
+  "use strict";
+  const LL = window.LL || {};
+  const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g,
+    c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+
+  // ---------------------------------------------------------------- labels
+  // A bucket id is unreadable to a learner. Tree nodes carry a `label`; the
+  // per-lemma vocabulary ids are generated at runtime and are in no tree, so
+  // they are rendered from their own parts. Prose leads with the label, never
+  // the dotted id - the house rule, and the reason this function exists.
+  let byId = {};
+  function friendly(bucket) {
+    if (!bucket) return "an unnamed skill";
+    const node = byId[bucket];
+    if (node && node.label) return node.label;
+    const v = bucket.match(/^vocabulary\.it\.([^.]+)\.(?:[^.]+\.)*?translation\.(active|passive)$/);
+    if (v) return "the word <b>" + esc(v[1]) + "</b> " +
+      (v[2] === "active" ? "(English into Italian)" : "(Italian into English)");
+    const g = bucket.match(/^vocabulary\.it\.([^.]+)\..*gender/);
+    if (g) return "the gender of <b>" + esc(g[1]) + "</b>";
+    // fall back to the last readable segment rather than the whole dotted id
+    const parts = bucket.split(".");
+    const tail = parts[parts.length - 1].replace(/_/g, " ");
+    const stem = parts[0].replace(/_/g, " ");
+    return tail === stem ? stem : (tail + " (" + stem + ")");
+  }
+
+  function niceDate(iso) {
+    const d = new Date(iso);
+    if (isNaN(d)) return iso;
+    return d.toLocaleDateString(undefined, { weekday:"long", day:"numeric", month:"long" });
+  }
+  function agoDays(iso) {
+    return Math.round((Date.now() - new Date(iso).getTime()) / 86400000);
+  }
+
+  async function loadTrees() {
+    try {
+      const man = await (await fetch("../data/manifest.json", {cache:"no-store"})).json();
+      const all = await Promise.all((man.topics || []).map(t =>
+        fetch("../data/buckets/" + t + ".json", {cache:"no-store"})
+          .then(r => r.ok ? r.json() : []).catch(() => [])));
+      for (const arr of all) for (const b of arr) if (b && b.id) byId[b.id] = b;
+    } catch (e) { /* labels degrade, the page still works */ }
+  }
+
+  function render() {
+    const state = (LL.loadState ? LL.loadState() : null) ||
+      (function(){ try { return JSON.parse(localStorage.getItem("ll_state_v1")||"{}"); }
+                   catch(e){ return {}; } })();
+    const attempts = (state.attempts || []).filter(a => a && a.timestamp)
+      .sort((a,b) => a.timestamp < b.timestamp ? -1 : 1);
+    const out = document.getElementById("out");
+
+    if (!attempts.length) {
+      out.innerHTML = '<div class="grp"><h2>Nothing here yet</h2>' +
+        '<div class="why">This browser has no saved attempts. Your history lives in the browser ' +
+        'you practised in, so if you have used Linguics elsewhere, that record is there and not here. ' +
+        'Making it follow you between browsers is a separate job and has not been built.</div></div>';
+      return;
+    }
+
+    // flatten to events, carrying their attempt's date and what was typed
+    const events = [];
+    for (const a of attempts) for (const e of (a.events || [])) {
+      if (e && typeof e.bucket === "string" && e.bucket)
+        events.push({ bucket:e.bucket, outcome:e.outcome, t:a.timestamp,
+                      wrote:a.raw_response, strand:a.strand });
+    }
+    const days = {};
+    for (const a of attempts) { const d = a.timestamp.slice(0,10); days[d] = (days[d]||0)+1; }
+    const dayList = Object.keys(days).sort();
+    const lastDay = dayList[dayList.length - 1];
+
+    const html = [];
+
+    /* ---- 1. the last session ------------------------------------------- */
+    // Leading with this rather than "yesterday" is deliberate: 24 active days
+    // over three months means a daily panel is blank almost every time.
+    const lastEvents = events.filter(e => e.t.slice(0,10) === lastDay);
+    const lastMisses = lastEvents.filter(e => e.outcome === "miss" || e.outcome === "partial");
+    const lastHits   = lastEvents.filter(e => e.outcome === "hit");
+    html.push('<div class="grp"><h2>Your last session</h2>' +
+      '<div class="why"><b>' + niceDate(lastDay) + '</b>, ' + agoDays(lastDay) + ' days ago. ' +
+      days[lastDay] + ' questions, ' + lastHits.length + ' skills right and ' +
+      lastMisses.length + ' wrong.</div>' +
+      (lastMisses.length
+        ? lastMisses.slice(0, 25).map(e =>
+            '<div class="row rule-l"><span class="skill">' + friendly(e.bucket) +
+            (e.wrote ? '<span class="wrote">you wrote: ' + esc(e.wrote) + '</span>' : '') +
+            '</span></div>').join("")
+        : '<div class="empty">Nothing wrong in that session.</div>') +
+      (lastMisses.length > 25 ? '<div class="more">and ' + (lastMisses.length-25) + ' more</div>' : '') +
+      '</div>');
+
+    /* ---- 2 and 3. turned around, and slipping --------------------------- */
+    const seen = {};
+    for (const e of events) (seen[e.bucket] = seen[e.bucket] || []).push(e);
+    const once = [], fixed = [], slipped = [];
+    for (const k in seen) {
+      const v = seen[k];
+      if (v.length === 1) { once.push(v[0]); continue; }
+      const first = v[0], last = v[v.length - 1];
+      if ((first.outcome === "miss" || first.outcome === "partial") && last.outcome === "hit")
+        fixed.push({ bucket:k, when:last.t, n:v.length });
+      else if (first.outcome === "hit" && (last.outcome === "miss" || last.outcome === "partial"))
+        slipped.push({ bucket:k, when:last.t, n:v.length });
+    }
+    const byRecent = (a,b) => a.when < b.when ? 1 : -1;
+    fixed.sort(byRecent); slipped.sort(byRecent);
+
+    html.push('<div class="grp"><h2>You went back and fixed these</h2>' +
+      '<div class="why">Got wrong the first time and right the last time. ' +
+      'The whole point of practising, and the only part of your record that shows it.</div>' +
+      '<div class="big">' + fixed.length + '</div>' +
+      fixed.slice(0, 20).map(f =>
+        '<div class="row rule-g"><span class="skill">' + friendly(f.bucket) + '</span>' +
+        '<span class="when">' + f.n + ' attempts, last ' + niceDate(f.when) + '</span></div>').join("") +
+      (fixed.length > 20 ? '<div class="more">and ' + (fixed.length-20) + ' more</div>' : '') +
+      '</div>');
+
+    html.push('<div class="grp"><h2>These have slipped</h2>' +
+      '<div class="why">Right the first time and wrong the last time. Worth a look before ' +
+      'anything you have never met, because you knew these once.</div>' +
+      '<div class="big">' + slipped.length + '</div>' +
+      slipped.slice(0, 20).map(f =>
+        '<div class="row rule-a"><span class="skill">' + friendly(f.bucket) + '</span>' +
+        '<span class="when">' + f.n + ' attempts, last ' + niceDate(f.when) + '</span></div>').join("") +
+      (slipped.length > 20 ? '<div class="more">and ' + (slipped.length-20) + ' more</div>' : '') +
+      '</div>');
+
+    /* ---- 4. met once only ---------------------------------------------- */
+    // The largest and least visible fact in the record. Stated as a share,
+    // because the number alone does not say that it is most of the story.
+    const skills = Object.keys(seen).length;
+    const pct = Math.round(100 * once.length / skills);
+    const onceMissed = once.filter(e => e.outcome === "miss" || e.outcome === "partial");
+    once.sort((a,b) => a.t < b.t ? -1 : 1);
+    html.push('<div class="grp"><h2>Met once and never again</h2>' +
+      '<div class="why"><b>' + once.length + ' of your ' + skills + ' skills (' + pct + '%)</b> ' +
+      'have come up exactly once. That is the biggest thing in your record and it is invisible ' +
+      'everywhere else: not forgetting, just never met a second time. ' + onceMissed.length +
+      ' of them you got wrong that one time, and have not seen since.</div>' +
+      onceMissed.slice(0, 20).map(e =>
+        '<div class="row rule-l"><span class="skill">' + friendly(e.bucket) + '</span>' +
+        '<span class="when">' + niceDate(e.t) + '</span></div>').join("") +
+      (onceMissed.length > 20 ? '<div class="more">and ' + (onceMissed.length-20) +
+        ' more you got wrong once and never saw again</div>' : '') +
+      '</div>');
+
+    /* ---- 5. when you practised ------------------------------------------ */
+    // House style: smooth two-tone gradient, white at zero, black text
+    // throughout, one class of quantity so one colour.
+    const maxDay = Math.max.apply(null, dayList.map(d => days[d]));
+    const shade = n => {
+      const t = Math.min(1, n / maxDay);
+      const mix = (a,b) => Math.round(a + (b-a)*t);
+      return "rgb(" + mix(255,58) + "," + mix(255,79) + "," + mix(255,138) + ")";
+    };
+    html.push('<div class="grp"><h2>When you practised</h2>' +
+      '<div class="why">' + attempts.length + ' questions over ' + dayList.length +
+      ' days, from ' + niceDate(dayList[0]) + ' to ' + niceDate(lastDay) + '. ' +
+      'Darker is a longer session.</div><table><tbody><tr>' +
+      dayList.map(d => '<td class="d">' + d.slice(5) + '</td>').join("") + '</tr><tr>' +
+      dayList.map(d => '<td style="background:' + shade(days[d]) + '">' + days[d] + '</td>').join("") +
+      '</tr></tbody></table></div>');
+
+    out.innerHTML = html.join("");
+  }
+
+  loadTrees().then(render).catch(render);
+})();
+</script>
+</body>
+</html>
