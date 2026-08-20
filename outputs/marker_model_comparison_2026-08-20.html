@@ -1,0 +1,47 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<title>Marker model comparison &mdash; 20 August 2026</title><style>
+body{margin:0;padding:28px;background:#fdfaf4;color:#2b2b2b;
+ font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-size:16px;line-height:1.5}
+h1{font-size:25px;margin:0 0 2px;color:#3a4f8a;font-weight:600}
+.sub{color:#7a7268;font-size:14px;margin-bottom:18px}
+table{border-collapse:collapse;margin:14px 0 8px;background:#fff}
+th,td{border:1px solid #e2dbcc;padding:7px 9px;text-align:center;vertical-align:middle;
+ font-variant-numeric:tabular-nums;color:#2b2b2b}
+th{font-size:12px;font-weight:600;color:#7a7268;vertical-align:bottom;max-width:76px;
+ word-wrap:break-word;line-height:1.2}
+td.m{text-align:left;font-weight:600;white-space:nowrap;background:#fff}
+.k{font-size:13.5px;color:#4a4437;max-width:60em;margin:14px 0}
+.k b{color:#2b2b2b}
+.tot{font-size:15px;margin:10px 0 0}
+</style></head><body>
+<h1>Which model should mark Linguics?</h1>
+<div class="sub">18 test sentences put to every model in turn, 20 August 2026.
+Each test says in advance which skills the marker ought to notice and which it must not invent.</div>
+<table>
+<thead><tr>
+<th>Model</th>
+<th>Marked<br>right</th>
+<th>Of the<br>ones it<br>answered</th>
+<th>Answers it<br>managed<br>(of 18)</th>
+<th>Cost for<br>all 18</th>
+<th>Cost per<br>answer</th>
+<th>Seconds<br>per<br>answer</th>
+<th>Minutes<br>in total</th>
+<th>Quoted<br>oddly</th>
+</tr></thead>
+<tbody><tr><td class="m">x-ai/grok-4.3</td><td style="background:#5b6c9e">15</td><td style="background:#5b6c9e">83%</td><td style="background:#5b7a52">18</td><td style="background:#e0d4c7">$0.190</td><td style="background:#e0d4c7">1.1&cent;</td><td style="background:#d9cbd9">12</td><td style="background:#e2d7e2">4</td><td style="background:#c1bdb9">7</td></tr><tr><td class="m">anthropic/claude-haiku-4.5</td><td style="background:#5b6c9e">15</td><td style="background:#5b6c9e">83%</td><td style="background:#5b7a52">18</td><td style="background:#e0d3c7">$0.191</td><td style="background:#e0d3c7">1.1&cent;</td><td style="background:#d1c0d1">10</td><td style="background:#dccfdc">3</td><td style="background:#7a7268">15</td></tr><tr><td class="m">~anthropic/claude-haiku-latest</td><td style="background:#5b6c9e">15</td><td style="background:#5b6c9e">83%</td><td style="background:#5b7a52">18</td><td style="background:#d8c9b9">$0.238</td><td style="background:#d8c9b9">1.3&cent;</td><td style="background:#d0bfd0">10</td><td style="background:#dbcedb">3</td><td style="background:#7a7268">15</td></tr><tr><td class="m">z-ai/glm-5.2</td><td style="background:#6676a4">14</td><td style="background:#5d6e9f">82%</td><td style="background:#64815c">17</td><td style="background:#efe8e2">$0.100</td><td style="background:#eee7e0">0.6&cent;</td><td style="background:#f3eff3">39</td><td style="background:#f6f2f6">11</td><td style="background:#b8b4ae">8</td></tr><tr><td class="m">qwen/qwen3.7-plus</td><td style="background:#6676a4">14</td><td style="background:#6676a4">78%</td><td style="background:#5b7a52">18</td><td style="background:#e8ded5">$0.144</td><td style="background:#e8ded5">0.8&cent;</td><td style="background:#faf8fa">85</td><td style="background:#fbf9fb">25</td><td style="background:#afaaa4">9</td></tr><tr><td class="m">anthropic/claude-sonnet-5</td><td style="background:#6676a4">14</td><td style="background:#3a4f8a">100%</td><td style="background:#7f9878">14</td><td style="background:#8a5a2b">$0.722</td><td style="background:#8a5a2b">5.2&cent;</td><td style="background:#f1ecf1">32</td><td style="background:#f1ecf1">8</td><td style="background:#cac7c3">6</td></tr><tr><td class="m">openai/gpt-4o-mini</td><td style="background:#7180aa">13</td><td style="background:#7180aa">72%</td><td style="background:#5b7a52">18</td><td style="background:#fcfaf9">$0.022</td><td style="background:#fcfaf9">0.1&cent;</td><td style="background:#d4c4d4">10</td><td style="background:#ded2de">3</td><td style="background:#dcd9d7">4</td></tr><tr><td class="m">openai/gpt-5.6-luna</td><td style="background:#7c8ab1">12</td><td style="background:#6b7ba7">75%</td><td style="background:#6d8965">16</td><td style="background:#cdb8a4">$0.309</td><td style="background:#c7b099">1.9&cent;</td><td style="background:#e5dbe5">17</td><td style="background:#e8e0e8">5</td><td style="background:#b8b4ae">8</td></tr><tr><td class="m">google/gemini-3.1-flash-lite</td><td style="background:#8793b8">11</td><td style="background:#6475a3">79%</td><td style="background:#7f9878">14</td><td style="background:#f9f6f3">$0.040</td><td style="background:#f7f3f0">0.3&cent;</td><td style="background:#7a4a7a">3</td><td style="background:#7a4a7a">1</td><td style="background:#dcd9d7">4</td></tr><tr><td class="m">tencent/hy3</td><td style="background:#929dbe">10</td><td style="background:#4c5f95">91%</td><td style="background:#9bae95">11</td><td style="background:#f9f7f4">$0.036</td><td style="background:#f5f2ee">0.3&cent;</td><td style="background:#f9f6f9">71</td><td style="background:#f7f4f7">13</td><td style="background:#b8b4ae">8</td></tr><tr><td class="m">minimax/minimax-m3</td><td style="background:#929dbe">10</td><td style="background:#7281ab">71%</td><td style="background:#7f9878">14</td><td style="background:#f8f5f2">$0.045</td><td style="background:#f6f2ee">0.3&cent;</td><td style="background:#e3d9e3">16</td><td style="background:#e4dae4">4</td><td style="background:#b8b4ae">8</td></tr><tr><td class="m">deepseek/deepseek-chat  (the one live now)</td><td style="background:#b2bbd2">7</td><td style="background:#7584ad">70%</td><td style="background:#a4b59f">10</td><td style="background:#fbf9f8">$0.025</td><td style="background:#f8f5f2">0.2&cent;</td><td style="background:#ece5ec">24</td><td style="background:#e5dce5">4</td><td style="background:#edeceb">2</td></tr><tr><td class="m">anthropic/claude-sonnet-4.5</td><td style="background:#ffffff">0</td><td style="background:#ffffff">&mdash;</td><td style="background:#ffffff">0</td><td style="background:#ffffff">$0.000</td><td style="background:#ffffff">&mdash;</td><td style="background:#fff">&mdash;</td><td style="background:#fff">&mdash;</td><td style="background:#ffffff">0</td></tr></tbody></table>
+<div class="tot"><b>The whole run cost $2.06</b> and the models spent 83 minutes
+answering, spread over about an hour and a half of wall clock.</div>
+<div class="k">
+<p><b>Marked right</b> is how many of the 18 sentences it judged exactly as the test said it should:
+every skill it was told to notice, noticed, and nothing invented that should not be there.</p>
+<p><b>Of the ones it answered</b> matters more than the raw score, because some models never got an
+answer back at all. A model that answers ten and gets nine right is a better marker than one that
+answers eighteen and gets ten right; it is just less reliable.</p>
+<p><b>Quoted oddly</b> is not a marking mistake. It means the marker judged correctly but, when asked to
+quote the learner's own words back as evidence, quoted something that is not literally in what the
+learner typed. It affects what the feedback panel can underline, not whether the mark is right.</p>
+<p><b>Shading:</b> each kind of number has its own colour and its own scale, white at zero. The two time
+columns are shaded on the reciprocal, because there low is good and there is no natural ceiling.</p>
+</div>
+</body></html>

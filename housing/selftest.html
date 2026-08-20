@@ -52,16 +52,22 @@
 <body>
 
 <h1>Engine self-test</h1>
-<div class="sub">Every case names the silent fault it protects against. Runs against the real modules and the real content.</div>
+<!-- r170: Smith, live: "there's no version number so can't tell if it's gone
+     through". A results page that cannot say WHICH build produced it is
+     unreadable after a push, because a stale page and a genuine failure look
+     identical. The build is written here by bump_build.py alongside the ?v= on
+     every asset, so the two can never drift. -->
+<div class="sub">Every case names the silent fault it protects against. Runs against the real modules and the real content.<br>
+Build <b id="buildid">2026-08-15-r170</b> &middot; if this is not the build you just pushed, GitHub Pages has not rebuilt yet; wait a minute and hard-reload.</div>
 <div id="summary">Loading content…</div>
 <div id="out"></div>
 
-<script src="js/norm.js?v=2026-08-15-r169"></script>
-<script src="js/store.js?v=2026-08-15-r169"></script>
-<script src="js/engine_axes.js?v=2026-08-15-r169"></script>
-<script src="js/grammar_engine.js?v=2026-08-15-r169"></script>
-<script src="js/translation_stub.js?v=2026-08-15-r169"></script>
-<script src="js/translation_marker.js?v=2026-08-15-r169"></script>
+<script src="js/norm.js?v=2026-08-15-r170"></script>
+<script src="js/store.js?v=2026-08-15-r170"></script>
+<script src="js/engine_axes.js?v=2026-08-15-r170"></script>
+<script src="js/grammar_engine.js?v=2026-08-15-r170"></script>
+<script src="js/translation_stub.js?v=2026-08-15-r170"></script>
+<script src="js/translation_marker.js?v=2026-08-15-r170"></script>
 <script>
 (function () {
   "use strict";
@@ -522,12 +528,19 @@
     // -------------------------------------------------------------- render
     // ------------- layout containment (style.css, r126)
     const g4g = group("Panel containment (style.css)"); groups.push(g4g);
+    // r170: this matched `sel + " {"` with EXACTLY one space, and style.css aligns
+    // its one-line rules with padding - `.vocab-axis-freq   {` has three. So the
+    // lookup returned null, the caller read null as "no such rule", and the panel
+    // test reported an unbounded section that has carried min-height:0 and
+    // overflow-y:auto all along. A whitespace-sensitive matcher inside a test is a
+    // test that reports on its own formatting; tolerate any run of spaces.
     const cssBlock = (sel) => {
       if (!cssText) return null;
-      const i = cssText.indexOf(sel + " {");
-      if (i < 0) return null;
-      const j = cssText.indexOf("}", i);
-      return j < 0 ? null : cssText.slice(i, j);
+      const re = new RegExp(sel.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\s*\\{");
+      const m = re.exec(cssText);
+      if (!m) return null;
+      const j = cssText.indexOf("}", m.index);
+      return j < 0 ? null : cssText.slice(m.index, j);
     };
     const boxed = (sel) => () => {
       const b = cssBlock(sel);
