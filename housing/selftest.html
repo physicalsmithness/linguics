@@ -56,12 +56,12 @@
 <div id="summary">Loading content…</div>
 <div id="out"></div>
 
-<script src="js/norm.js?v=2026-08-15-r168"></script>
-<script src="js/store.js?v=2026-08-15-r168"></script>
-<script src="js/engine_axes.js?v=2026-08-15-r168"></script>
-<script src="js/grammar_engine.js?v=2026-08-15-r168"></script>
-<script src="js/translation_stub.js?v=2026-08-15-r168"></script>
-<script src="js/translation_marker.js?v=2026-08-15-r168"></script>
+<script src="js/norm.js?v=2026-08-15-r169"></script>
+<script src="js/store.js?v=2026-08-15-r169"></script>
+<script src="js/engine_axes.js?v=2026-08-15-r169"></script>
+<script src="js/grammar_engine.js?v=2026-08-15-r169"></script>
+<script src="js/translation_stub.js?v=2026-08-15-r169"></script>
+<script src="js/translation_marker.js?v=2026-08-15-r169"></script>
 <script>
 (function () {
   "use strict";
@@ -70,10 +70,35 @@
   const group = (name) => ({ name, tests: [] });
   const groups = [];
 
+  // r169: an ASYNC case used to be compared as an object. A Promise is not true,
+  // not undefined and not null, so it fell to the else branch, recorded "fail" and
+  // printed "[object Promise]". The one async case in this file could therefore
+  // never pass, whatever the code did, and it has been sitting red on the live page
+  // ever since. A gate that always fails stops being read, which is the same fault
+  // as a gate that always passes and is why nobody noticed the fire-list filter was
+  // untested rather than broken. Thenables are now awaited before the render.
+  const pending = [];
   function T(g, what, guards, fn) {
     let state = "pass", got = "";
     try {
       const r = fn();
+      if (r && typeof r.then === "function") {
+        const entry = { what, guards, state: "pass", got: "" };
+        g.tests.push(entry);
+        results.push("pass");
+        const idx = results.length - 1;
+        pending.push(r.then(function (v) {
+          const s = (v === true || v === undefined) ? "pass" : (v === null ? "skip" : "fail");
+          entry.state = s;
+          entry.got = s === "fail" ? String(v) : (s === "skip" ? "not loaded" : "");
+          results[idx] = s;
+        }, function (e) {
+          entry.state = "fail";
+          entry.got = (e && e.message) ? e.message : String(e);
+          results[idx] = "fail";
+        }));
+        return;
+      }
       if (r === true || r === undefined) state = "pass";
       else if (r === null) { state = "skip"; got = "not loaded"; }
       else { state = "fail"; got = String(r); }
@@ -510,9 +535,28 @@
       const missing = ["position: sticky", "overflow-y: auto", "max-height:"].filter(k => b.indexOf(k) < 0);
       return missing.length ? ("missing " + missing.join(", ")) : true;
     };
-    T(g4g, "the VOCAB axes panel is an independent scrollbox",
-      "unbounded, this panel (~990 frequency dots + the flanking blocks + the gender and theme axes) makes the vocab page several screens tall with a short question card floating at the top, so any scroll nudge from any source strands the question above the viewport and the learner scrolls back up. Reported ~15 times and patched five times at the level of individual scroll calls before anyone bounded the panel. The gender, spelling, accent and stress drills all render into the card beside it and share the fault",
-      boxed("#vocab-axes-host"));
+    // r169: this asserted `boxed("#vocab-axes-host")`, and it CONTRADICTED the test
+    // twelve lines below, which requires that same host to be `display: contents`.
+    // An element with no box cannot be sticky, cannot scroll and cannot have a
+    // max-height, so the pair could never both pass and this one had been red since
+    // the quadrant layout landed. The CONTRACT is unchanged and still matters; the
+    // boxing simply moved off the host and onto its three grid children when the
+    // host became a pass-through. Assert it where it now lives: a grid child only
+    // scrolls inside its own area if it carries BOTH `min-height: 0` (without which
+    // it refuses to shrink below its content and grows the page instead) and
+    // `overflow-y: auto`. Drop either and the vocab page gets tall again, which is
+    // the fault reported ~15 times and patched five times at the level of
+    // individual scroll calls before anyone bounded the panel.
+    T(g4g, "every VOCAB axis section scrolls inside its own quadrant",
+      "unbounded, these sections (~990 frequency dots, the themes column, the gender and drill strip) make the vocab page several screens tall with a short question card floating at the top, so any scroll nudge from any source strands the question above the viewport and the learner scrolls back up. The gender, spelling, accent and stress drills all render into the card beside them and share the fault",
+      () => {
+        if (!cssText) return "could not read css/style.css (this page must be SERVED)";
+        const bad = [".vocab-axis-freq", ".vocab-axis-themes", ".vocab-axis-gender"].filter(sel => {
+          const b = cssBlock(sel);
+          return b === null || b.indexOf("min-height: 0") < 0 || b.indexOf("overflow-y: auto") < 0;
+        });
+        return bad.length ? ("unbounded, so it will grow the page: " + bad.join(", ")) : true;
+      });
     T(g4g, "the vocab quadrant grid names every area its sections claim",
       "the layout is grid-template-areas + display:contents on #vocab-axes-host. If a section claims an area the template never declares, the browser silently drops it into an implicit row and the quadrant collapses - a layout that looks merely 'wrong' rather than broken, which is how it would survive review",
       () => {
@@ -573,6 +617,8 @@
       () => (menu && Array.isArray(menu.menu) && menu.menu.length > 100) ? true : "menu missing or tiny");
 
     // -------------------------------------------------------------- render
+    // r169: async cases resolve here, before anything is counted or drawn.
+    if (pending.length) { try { await Promise.all(pending); } catch (e) {} }
     const out = document.getElementById("out");
     out.innerHTML = groups.map(g =>
       '<div class="grp"><h2>' + g.name + '</h2>' +

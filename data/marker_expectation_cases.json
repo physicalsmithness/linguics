@@ -14,14 +14,14 @@
         "pronoun.direct_object.le": "hit",
         "pronoun.combined.vowel_changes": "hit",
         "pronoun.position.pre_finite_verb": "hit",
-        "vocabulary.it.bene.translation.active": "miss"
+        "vocabulary.it.bene.adverb.translation.active": "miss"
       },
       "expect_absent": [
         "adverb.usage",
         "vocabulary.it.giustamente.translation",
         "vocabulary.it.lava.translation.active",
         "vocabulary.it.lava.gender.active",
-        "vocabulary.it.anna.translation.active"
+        "vocabulary.it.anna.verb.translation.active"
       ],
       "absent_reasons": {
         "adverb.usage": "Seen in 2 of 12 runs. The error is a word choice, not a fact about adverb usage. NEEDS RULING - it is defensible and Architecture owns the call.",
@@ -42,12 +42,12 @@
       "note": "The unstable one. Across 12 rescued runs the SAME answer scored anywhere from 1/3 to 6/7. This case exists to pin it.",
       "expect_verdict": {
         "verb_form.imperfect.discrimination.modals.potere": "hit",
-        "vocabulary.it.giovane.translation.passive": "miss",
-        "vocabulary.it.lavorare.translation.passive": "hit",
-        "vocabulary.it.dodici.translation.passive": "hit",
-        "vocabulary.it.ora.translation.passive": "miss",
-        "vocabulary.it.senza.translation.passive": "hit",
-        "vocabulary.it.problema.translation.passive": "hit"
+        "vocabulary.it.giovane.noun.m.translation.passive": "miss",
+        "vocabulary.it.lavorare.verb.translation.passive": "hit",
+        "vocabulary.it.dodici.numeral.translation.passive": "hit",
+        "vocabulary.it.ora.noun.translation.passive": "miss",
+        "vocabulary.it.senza.preposition.translation.passive": "hit",
+        "vocabulary.it.problema.noun.translation.passive": "hit"
       },
       "expect_absent": [
         "vocabulary.it.orecchio.translation.passive",
@@ -94,8 +94,8 @@
       "expect_verdict": {
         "verb_form.gerundio.formation.progressive_assembly": "miss",
         "verb_form.gerundio.formation.regular_ando": "miss",
-        "vocabulary.it.nuovo.translation.active": "miss",
-        "vocabulary.it.settimana.translation.active": "hit",
+        "vocabulary.it.nuovo.adjective.translation.active": "miss",
+        "vocabulary.it.settimana.noun.translation.active": "hit",
         "vocabulary.it.progetto.translation.active": "partial"
       },
       "expect_absent": [],
@@ -299,6 +299,15 @@
       "rule": "A case passes only if the right bucket carries the right outcome. Matching totals are not a pass.",
       "why": "The single most important thing in the rescued log. On trans_op_en_it_48 all twelve runs returned 6 skills and 5.0 credit, so the summary table reads as perfect agreement between two models across six menu modes. They attributed the SAME error to THREE different buckets. Coverage is built from attribution, so the table's agreement is an illusion.",
       "applied": "by the runner, to the model's output. Never sent to the model."
+    }
+  ],
+  "$repairs": [
+    {
+      "date": "2026-08-20",
+      "by": "Housing",
+      "what": "Restored the part-of-speech segment to vocabulary bucket ids in the tranche-1 cases.",
+      "why": "Seven models across five families failed the same three cases identically. The cases named e.g. vocabulary.it.bene.translation.active; the item's fire-list carries vocabulary.it.bene.ADVERB.translation.active. The marker was right every time and the suite was blaming it.",
+      "count": 10
     }
   ]
 }
