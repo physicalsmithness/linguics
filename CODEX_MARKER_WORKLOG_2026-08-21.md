@@ -168,6 +168,8 @@ Compact nevertheless remained worse on this sample. In `false_pos_lemma_01` it e
 
 Therefore r177 keeps all compact code and outputs but restores `legacy_v1` as the default for normal learner calls. `compact_v2` must be requested explicitly for controlled experiments until a larger run demonstrates quality parity. This avoids treating learners as the experiment while preserving the measured path to lower output cost.
 
+R177 was deployed to the existing Worker as Cloudflare version `bb93957c-2274-4f13-87c3-992e2942d846`. A free public health GET verified build `2026-08-21-r177-legacy-default`, GPT-4o-mini, `legacy_v1` as the default, both contracts supported, and the unchanged 6,000-token cap. Recorded model spend across the 36-call r175 run and 12-call r176 probe was $0.0491742 in total.
+
 ## Files deliberately left alone
 
 - The historical `DECISIONS.md` was not rewritten to claim work after the fact.
