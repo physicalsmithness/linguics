@@ -209,7 +209,13 @@ On en_it only, an unlisted produced content word may use "v:<Italian dictionary 
 Never use v:<lemma> on it_en. Evidence is always an inclusive evidence-token span, never a quotation.
 Every proposal describes an engaged skill: a is always 1 and c is numeric. Give either e or x.
 Omit x when c is 1; otherwise include it when it helps explain the correction.
-Omit the fifth m value on hits. Return only the JSON object.`;
+Omit the fifth m value on hits. Do not write null optional values; omit them.
+
+CRITICAL SERIALIZATION EXAMPLE: if the supplied legend row starts [7,"r",...], write [7,1,1,[2,2]].
+The first m value is the JSON NUMBER 7, never the supplied full_id string. Copying a supplied full_id into m is invalid.
+For a miss whose form is absent and therefore has no evidence span, write [7,1,0,null,"the expected form"].
+When attempted is 0, correctness is null: [7,0,null,null], never [7,0,0,null].
+Return only the JSON object.`;
 
 const TOKEN_RE = /[\p{L}\p{M}\p{N}]+(?:['’][\p{L}\p{M}\p{N}]+)*|[^\s]/gu;
 const NOTE_KINDS = new Set<NoteKind>([
@@ -435,7 +441,7 @@ function parseSpan(value: unknown, context: MarkerPromptContext, path: string): 
 }
 
 function parseExpected(value: unknown, path: string): string | undefined {
-  if (value === undefined) return undefined;
+  if (value === undefined || value === null) return undefined;
   return requireString(value, path, 500);
 }
 
@@ -490,8 +496,32 @@ function hydrateCompact(parsed: Record<string, unknown>, context: MarkerPromptCo
     if (!Array.isArray(row) || (row.length !== 4 && row.length !== 5)) {
       fail("compact_schema_invalid", "markpoint must have 4 values, or 5 when expected is supplied", path);
     }
-    const ref = row[0];
-    const credits = validateCredits(row[1], row[2], path);
+    let ref = row[0];
+    // GPT-4o-mini's first compact-v2 sweep followed the compact tuple shape
+    // but copied exact supplied IDs into the alias slot. That is still a
+    // deterministic reference, not a semantic ambiguity: accept only an exact
+    // legend ID (or the already-sanctioned bare en_it vocabulary shape), while
+    // continuing to reject every unknown grammar ID.
+    if (typeof ref === "string" && !ref.startsWith("v:")) {
+      const supplied = byId.get(ref);
+      if (supplied) {
+        ref = supplied.alias;
+      } else if (context.direction === "en_it" && isBareProductionVocabularyBucket(ref)) {
+        const match = DYNAMIC_BUCKET_RE.exec(ref)!;
+        ref = `v:${match[1]}`;
+      }
+    }
+    // An unlisted vocabulary row with attempted=0 is the same fire-list blank
+    // as a non-required supplied alias: no event. Do not reject a harmless
+    // serialized blank merely because dynamic vocabulary has no legend role.
+    if (typeof ref === "string" && ref.startsWith("v:") && row[1] === 0) continue;
+    const suppliedEntry = typeof ref === "number" && Number.isInteger(ref) ? byAlias.get(ref) : undefined;
+    // Fire-list blank means no event. Models sometimes serialize that blank as
+    // [alias,0,null,null]; remove it deterministically rather than exposing a
+    // not-attempted event for a non-required bucket.
+    if (suppliedEntry && suppliedEntry.role !== "r" && row[1] === 0) continue;
+    const correctness = row[1] === 0 && row[2] === 0 ? null : row[2];
+    const credits = validateCredits(row[1], correctness, path);
     const evidenceResult = parseSpan(row[3], context, `${path}[3]`);
     const expected = parseExpected(row[4], `${path}[4]`);
     const outcome = deriveOutcome(credits.a, credits.c);
@@ -568,7 +598,8 @@ function hydrateCompact(parsed: Record<string, unknown>, context: MarkerPromptCo
     const evidenceResult = parseSpan(row[0], context, `${path}[0]`);
     const what = requireString(row[1], `${path}[1]`, 1000);
     const correct = requireBoolean(row[2], `${path}[2]`);
-    const suggest = row[3] === undefined ? undefined : requireString(row[3], `${path}[3]`, 300);
+    const suggest = row[3] === undefined || row[3] === null
+      ? undefined : requireString(row[3], `${path}[3]`, 300);
     if (suggest && !plausibleBucketId(suggest)) fail("invalid_bucket_id", "suggest must be a plausible dot-separated bucket id", `${path}[3]`);
     unattributable.push({
       evidence: evidenceResult.evidence || "",
@@ -655,12 +686,17 @@ function knownLabel(bucket: string, context: MarkerPromptContext): string | unde
 function normalizeLegacyNote(value: unknown, path: string): MarkerNoteOut {
   if (!isRecord(value)) fail("legacy_schema_invalid", "note must be an object", path);
   const kind = value.kind;
-  if (typeof kind !== "string" || !NOTE_KINDS.has(kind as NoteKind)) {
-    fail("legacy_schema_invalid", "note kind is invalid", `${path}.kind`);
-  }
+  if (typeof kind !== "string") fail("legacy_schema_invalid", "note kind is invalid", `${path}.kind`);
+  const normalizedKind: NoteKind = NOTE_KINDS.has(kind as NoteKind) ? kind as NoteKind : "other";
   const rawText = typeof value.text === "string" ? value.text : value.note;
   const text = requireString(rawText, `${path}.text`, 1000);
-  return { ...value, kind: kind as NoteKind, text, note: text };
+  return {
+    ...value,
+    ...(normalizedKind !== kind ? { source_kind: kind } : {}),
+    kind: normalizedKind,
+    text,
+    note: text,
+  };
 }
 
 function normalizeLegacyResult(parsed: Record<string, unknown>, context: MarkerPromptContext): MarkerResult {
@@ -670,7 +706,9 @@ function normalizeLegacyResult(parsed: Record<string, unknown>, context: MarkerP
     const path = `result.markpoints[${index}]`;
     if (!isRecord(value)) fail("legacy_schema_invalid", "markpoint must be an object", path);
     const bucket = requireString(value.bucket, `${path}.bucket`, 300);
-    const credits = validateCredits(value.attempted_credit, value.correctness_credit, path);
+    const correctness = value.attempted_credit === 0 && value.correctness_credit === 0
+      ? null : value.correctness_credit;
+    const credits = validateCredits(value.attempted_credit, correctness, path);
     const proposed = value.bucket_proposed === true;
     const label = knownLabel(bucket, context)
       || (typeof value.label === "string" && value.label.trim() ? value.label : undefined)
@@ -686,6 +724,21 @@ function normalizeLegacyResult(parsed: Record<string, unknown>, context: MarkerP
       bucket_proposed: proposed,
     } as MarkpointOut;
   });
+
+  if (parsed.overall.attempted_overall === 0) {
+    const present = new Set(markpoints.map((markpoint) => markpoint.bucket));
+    for (const entry of context.legend) {
+      if (entry.role !== "r" || present.has(entry.id)) continue;
+      markpoints.push({
+        bucket: entry.id,
+        label: entry.label,
+        attempted_credit: 0,
+        correctness_credit: null,
+        outcome: "not_attempted",
+        bucket_proposed: false,
+      });
+    }
+  }
 
   const rawNotes = parsed.notes === undefined ? [] : parsed.notes;
   if (!Array.isArray(rawNotes)) fail("legacy_schema_invalid", "notes must be an array", "result.notes");

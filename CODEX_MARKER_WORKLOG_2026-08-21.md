@@ -9,7 +9,7 @@ I took over the translation-marker repair described in `OUTSIDE_VIEW_the_marking
 
 The main architectural change is now implemented: the model can return a compact internal response, while the worker deterministically expands it into the same browser-facing result Linguics already uses. Learner-visible outputs have not been removed. Repeated and derivable model output has been removed from the paid generation path.
 
-The compact contract is the worker default. The legacy verbose contract remains selectable in the marker bench and the reproducible Node runner as a control arm. Build identifiers and every housing cache key are synchronised at client r175 / worker `2026-08-21-r175-compact-v2`.
+The compact contract is the worker default. The legacy verbose contract remains selectable in the marker bench and the reproducible Node runner as a control arm. Housing remains client r175. The first live Worker was `2026-08-21-r175-compact-v2`; the compatibility and prompt follow-up is `2026-08-21-r176-compact-v2`.
 
 ## Which decision log is authoritative
 
@@ -117,32 +117,43 @@ Passing verification on 2026-08-21:
 - all inline HTML script syntax checks;
 - Worker esbuild bundle;
 - Worker TypeScript type-check;
-- 25 compact-contract tests;
+- 29 compact-contract tests;
 - 41 expectation-suite tests;
 - all 18 checked-in cases confirmed fireable through the actual client context and worker legend;
-- 9 offline paid-runner/capability-gate tests with zero fetches;
+- 10 offline paid-runner/capability-gate tests with zero fetches;
 - 2 suite-report accounting/provenance tests;
 - `git diff --check` (only the repository's existing LF-to-CRLF notices).
 
 `npm ci` installed the locked ignored Worker development dependencies so the real compiler could run. NPM reported 2 moderate and 4 high advisories in that locked dependency tree. I did not run `npm audit fix --force`, because that would make unrelated breaking dependency changes.
 
-## What remains to measure
+## First live paid A/B: r175
 
-No new quality/cost claim should be made until the deployed worker is tested. The minimum useful next experiment is:
+Commit `f0edeee` was pushed on branch `codex/marker-compact-v2`. Worker r175 was deployed to `https://linguics-marker.psmitheroo.workers.dev` as Cloudflare version `328a2bfc-3bab-4949-927a-74d052b6d773`.
 
-1. Deploy this worker build.
-2. Run `node tools/run_marker_paid_ab.mjs --url <deployed-url> --out <artifact.json>`; it fixes GPT-4o-mini, lean mode, temperature 0, seed, cases and all settings except the contract arm.
-3. Start with one counterbalanced repeat (36 calls); repeat only if the first result is too noisy to discriminate.
-4. Compare automatic pass rate, manual count, truncations, output tokens, recorded cost, latency and exact-evidence validity.
-5. Keep the output cap at 6,000 for this first comparison; lower it only after compact output length is observed.
+The reproducible runner then made 36 GPT-4o-mini calls: all 18 cases under both contracts, temperature 0, fixed seed, lean context, no retries. Exact raw requests, provider responses, diagnostics, usage, costs and judgements are retained in `outputs/marker_paid_ab_2026-08-21_r175_gpt4o-mini.json`.
 
-The fixed 18-case suite is suitable for this A/B because all currently unresolved policy questions are explicitly manual rather than automatic. A manual case can still record a definite automatic failure, but it cannot inflate the pass denominator. These questions should be ruled deliberately, not optimised around as if an old model score settled them.
+| Measurement | compact_v2 | legacy_v1 |
+| --- | ---: | ---: |
+| Calls | 18 | 18 |
+| Usable Worker results | 0 | 16 |
+| Output tokens | 5,917 | 11,997 |
+| Input tokens | 83,278 | 93,184 |
+| Recorded cost | $0.0160419 | $0.0211758 |
+| Mean latency | 11.518 s | 17.224 s |
+
+Total recorded spend was $0.0372177. Every provider response finished normally with `finish_reason=stop`; none was truncated. Compact output reduced generated tokens by 50.68%, recorded cost by 24.24%, and mean latency by 33.13%. It was shorter and cheaper on 17 of 18 pairs. Output-token savings produced 71.1% of the dollar saving because the recorded output rate was four times the input rate.
+
+However, all 18 compact results were rejected by r175's strict schema. The prompt still contained legacy instructions to copy full bucket ids while the compact schema required numeric aliases. Seventeen calls followed those contradictory full-id instructions; one call supplied neither evidence nor an expected form for a miss. This is a serialization failure, not evidence that the compact shape cannot carry the result, and the paid errors remain in the cost total rather than disappearing.
+
+Offline replay through the safe r176 compatibility normalizer hydrates 16 of the 18 saved compact responses. It accepts only exact supplied ids or the already-sanctioned Italian-production vocabulary form, drops only semantically empty non-required blanks, and normalizes `0/0` to `0/null`. It continues to reject the evidence-less miss and a result missing a mandatory required skill. That boundary deliberately avoids inventing learner evidence or marks.
+
+R176 also removes the contradictory compact vocabulary prose, adds the continuous learner attempt alongside its evidence-token table, keeps compact request JSON minified, gives a numeric-alias example, and retains strict requirements for evidence and mandatory skills. The paid runner now supports `--cases ID1,ID2` so a small paired confirmation can precede another full sweep without changing either arm's settings.
 
 ## Files deliberately left alone
 
 - The historical `DECISIONS.md` was not rewritten to claim work after the fact.
 - The user's existing uncommitted GPT-4o-mini default change was preserved and built upon.
 - `OUTSIDE_VIEW_the_marking_problem.md` and the pre-existing expectation-case backup were not modified.
-- At the time this implementation note was prepared, deployment and the live paid A/B had not yet run. Their exact branch, worker health, spend and result artifact will be appended after execution.
+- The r175 paid artifact is retained verbatim, including failed raw outputs and their billed usage; it was not rewritten after r176 learned to normalize safe formatting variants.
 
 — Codex (OpenAI), 2026-08-21

@@ -43,7 +43,7 @@ A simple GET to the URL returns a JSON health check:
 
 ```
 curl https://linguics-marker.<your-subdomain>.workers.dev
-{"ok":true,"service":"linguics-marker","build":"2026-08-21-r175-compact-v2","default_model":"openai/gpt-4o-mini","default_response_contract":"compact_v2","supported_response_contracts":["compact_v2","legacy_v1"],"max_output_tokens":6000}
+{"ok":true,"service":"linguics-marker","build":"2026-08-21-r176-compact-v2","default_model":"openai/gpt-4o-mini","default_response_contract":"compact_v2","supported_response_contracts":["compact_v2","legacy_v1"],"max_output_tokens":6000}
 ```
 
 To test a mark call (replace the URL):

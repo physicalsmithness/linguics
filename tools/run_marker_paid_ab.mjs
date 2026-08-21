@@ -29,7 +29,7 @@ const markerSuite = require(path.join(ROOT, "housing", "js", "marker_suite.js"))
 export const ARMS = Object.freeze(["compact_v2", "legacy_v1"]);
 export const DEFAULTS = Object.freeze({
   model: "openai/gpt-4o-mini",
-  expectedWorkerBuild: "2026-08-21-r175-compact-v2",
+  expectedWorkerBuild: "2026-08-21-r176-compact-v2",
   temperature: 0,
   seed: 20260821,
   maxCostUsd: 0.01,
@@ -55,6 +55,7 @@ Options:
   --expected-worker-build ID Refuse spend unless health reports this build
                             (default: ${DEFAULTS.expectedWorkerBuild})
   --repetitions N, --reps N Runs of each case in each arm (default: ${DEFAULTS.repetitions})
+  --cases ID1,ID2          Run only these stable case IDs, in the given order
   --concurrency N           Simultaneous calls (default: ${DEFAULTS.concurrency})
   --seed N                  Fixed provider seed (default: ${DEFAULTS.seed})
   --temperature N           Sampling temperature (default: ${DEFAULTS.temperature})
@@ -72,6 +73,7 @@ Fixed experiment settings:
   diagnostics               true
 
 Default paid size: 18 cases × 2 arms × 1 repetition = 36 calls.
+Use --cases for a smaller paired probe; both arms still run for every case.
 At the default $0.01 per-call ceiling the theoretical aggregate ceiling is
 $0.36, although actual recorded cost should be lower. Paid and unknown-cost
 errors are retained; calls are never retried automatically.
@@ -125,6 +127,7 @@ export function parseArgs(argv) {
     concurrency: DEFAULTS.concurrency,
     timeoutMs: DEFAULTS.timeoutMs,
     menuMode: DEFAULTS.menuMode,
+    caseIds: [],
     overwrite: false,
     dryRun: false,
     validateOnly: false,
@@ -138,7 +141,7 @@ export function parseArgs(argv) {
     else if (name === "--overwrite") options.overwrite = true;
     else if (name === "--dry-run") options.dryRun = true;
     else if (name === "--validate") options.validateOnly = true;
-    else if (["--url", "--out", "--model", "--expected-worker-build", "--temperature", "--seed",
+    else if (["--url", "--out", "--model", "--expected-worker-build", "--temperature", "--seed", "--cases",
       "--max-cost-usd", "--repetitions", "--reps", "--concurrency", "--timeout-ms"].includes(name)) {
       const read = readValue(argv, i, name);
       i = read.next;
@@ -146,6 +149,14 @@ export function parseArgs(argv) {
       else if (name === "--out") options.out = read.value.trim();
       else if (name === "--model") options.model = read.value.trim();
       else if (name === "--expected-worker-build") options.expectedWorkerBuild = read.value.trim();
+      else if (name === "--cases") {
+        const ids = read.value.split(",").map(value => value.trim());
+        if (!ids.length || ids.some(value => !/^[a-z0-9][a-z0-9_]*$/.test(value))) {
+          fail("--cases must be a comma-separated list of stable case IDs");
+        }
+        if (new Set(ids).size !== ids.length) fail("--cases must not contain duplicate IDs");
+        options.caseIds = ids;
+      }
       else if (name === "--temperature") options.temperature = finiteNumber(read.value, name, 0, 2);
       else if (name === "--seed") options.seed = integer(read.value, name, 0, Number.MAX_SAFE_INTEGER);
       else if (name === "--max-cost-usd") options.maxCostUsd = finiteNumber(read.value, name, 0.000001, 0.25);
@@ -441,13 +452,22 @@ export function loadFoundation(root = ROOT) {
 
 export function buildRunPlan(foundation, options) {
   const tasks = [];
+  const allCases = foundation.suite.cases.map((caseDef, caseIndex) => ({ caseDef, caseIndex }));
+  const casesById = new Map(allCases.map(entry => [entry.caseDef.case_id, entry]));
+  const selectedCases = options.caseIds && options.caseIds.length
+    ? options.caseIds.map(caseId => {
+      const entry = casesById.get(caseId);
+      if (!entry) fail("unknown --cases ID: " + caseId);
+      return entry;
+    })
+    : allCases;
   let index = 0;
   for (let repetition = 1; repetition <= options.repetitions; repetition++) {
-    for (let caseIndex = 0; caseIndex < foundation.suite.cases.length; caseIndex++) {
-      const caseDef = foundation.suite.cases[caseIndex];
+    for (let selectedIndex = 0; selectedIndex < selectedCases.length; selectedIndex++) {
+      const { caseDef, caseIndex } = selectedCases[selectedIndex];
       // Deterministic counterbalancing prevents one contract from always being
       // first while retaining adjacent pairs in the queue.
-      const armOrder = ((caseIndex + repetition) % 2 === 0)
+      const armOrder = ((selectedIndex + repetition) % 2 === 0)
         ? ARMS.slice().reverse() : ARMS.slice();
       for (const arm of armOrder) {
         tasks.push({
@@ -575,6 +595,7 @@ function buildArtifact(foundation, options, tasks) {
       repetitions: options.repetitions,
       concurrency: options.concurrency,
       timeout_ms: options.timeoutMs,
+      case_ids: options.caseIds.slice(),
       response_contracts: ARMS.slice(),
       menu_mode: DEFAULTS.menuMode,
       intent: "literal",

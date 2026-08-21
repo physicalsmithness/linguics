@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import fs from "node:fs";
 
 import {
   MarkerContractError,
@@ -79,6 +80,19 @@ test("buildMarkerPromptContext gives stable role-precedence aliases and tokens",
   assert.match(compactPromptSchemaText, /Every r bucket must occur exactly once/);
 });
 
+test("compact system prompt uses aliases consistently while legacy keeps its schema", () => {
+  const source = fs.readFileSync(new URL("../src/index.ts", import.meta.url), "utf8");
+  const start = source.indexOf("  const policy = legacyPrompt.slice");
+  const end = source.indexOf("  return policy + compactPromptSchemaText", start);
+  assert(start >= 0 && end > start);
+  const compactBuilder = source.slice(start, end);
+  assert.match(compactBuilder, /serialize it with that numeric alias/);
+  assert.match(compactBuilder, /Only for a genuinely unlisted content word, serialize it as v:<Italian dictionary lemma>/);
+  assert.match(compactBuilder, /optional fourth value is a suggested full bucket id/);
+  assert.doesNotMatch(compactBuilder, /Fire `vocabulary\.it\.<lemma>\.translation`/);
+  assert.doesNotMatch(compactBuilder, /use the id exactly as/);
+});
+
 test("preflight rejects a listed non-vocabulary bucket absent from bucketContext", () => {
   assert.throws(() => buildMarkerPromptContext({
     cleanedRaw: "ciao",
@@ -148,12 +162,13 @@ test("required not-attempted is explicit, while omitted expected is accepted", (
   assert.equal(result.markpoints.some((mp) => mp.bucket === "grammar.expected"), false);
 });
 
-test("expected, optional, and context aliases are allowed only when engaged", () => {
+test("serialized blanks for non-required aliases are deterministically omitted", () => {
   const ctx = context();
   for (const alias of [1, 2, 3]) {
-    assert.throws(() => normalizeModelResult(compact({
+    const blank = normalizeModelResult(compact({
       m: [[0, 1, 1, [0, 0]], [alias, 0, null, null]],
-    }), ctx), /only when engaged/);
+    }), ctx);
+    assert.deepEqual(blank.markpoints.map((mp) => mp.bucket), ["grammar.required"]);
   }
   const result = normalizeModelResult(compact({
     m: [[0, 1, 1, [0, 0]], [1, 1, 0.5, [3, 3], "esco"], [3, 1, 0, null, "a casa"]],
@@ -185,10 +200,42 @@ test("dynamic v:<lemma> works only for engaged en_it vocabulary", () => {
   }), context("en_it")), /must cite a learner evidence span/);
 });
 
+test("compact full IDs normalize only when supplied or sanctioned dynamic vocabulary", () => {
+  const supplied = normalizeModelResult(compact({
+    m: [["grammar.required", 1, 1, [0, 0]]],
+  }), context());
+  assert.equal(supplied.markpoints[0].bucket, "grammar.required");
+
+  const dynamic = normalizeModelResult(compact({
+    m: [["grammar.required", 1, 1, [0, 0]], ["vocabulary.it.uscire.translation", 1, 1, [3, 3]]],
+  }), context("en_it"));
+  assert.equal(dynamic.markpoints[1].bucket, "vocabulary.it.uscire.translation");
+
+  const dynamicBlank = normalizeModelResult(compact({
+    m: [["grammar.required", 1, 1, [0, 0]], ["vocabulary.it.uscire.translation", 0, 0, null]],
+  }), context("en_it"));
+  assert.deepEqual(dynamicBlank.markpoints.map((mp) => mp.bucket), ["grammar.required"]);
+
+  assert.throws(() => normalizeModelResult(compact({
+    m: [["grammar.required", 1, 1, [0, 0]], ["grammar.not_supplied", 1, 1, [3, 3]]],
+  }), context()), /numeric alias or v:<lemma>/);
+});
+
 test("attempted_credit is binary and correctness is null iff unattempted", () => {
   assert.throws(() => normalizeModelResult(compact({ m: [[0, 0.5, 0.5, [0, 0]]] }), context()), /binary/);
-  assert.throws(() => normalizeModelResult(compact({ m: [[0, 0, 0, null]] }), context()), /must be null/);
+  const normalizedBlank = normalizeModelResult(compact({ m: [[0, 0, 0, null]] }), context());
+  assert.equal(normalizedBlank.markpoints[0].correctness_credit, null);
+  assert.equal(normalizedBlank.markpoints[0].outcome, "not_attempted");
   assert.throws(() => normalizeModelResult(compact({ m: [[0, 1, null, [0, 0]]] }), context()), /finite number/);
+});
+
+test("compact optional nulls are treated as omitted, never learner-facing values", () => {
+  const result = normalizeModelResult(compact({
+    m: [[0, 1, 1, [0, 0], null]],
+    u: [[[3, 3], "A useful observation.", true, null]],
+  }), context());
+  assert.equal(result.markpoints[0].expected, undefined);
+  assert.equal(result.unattributable?.[0].suggest, undefined);
 });
 
 test("outcome derives from the two credit axes", () => {
@@ -323,6 +370,26 @@ test("legacy fallback derives outcome, restores known label, authoritative raw, 
   assert.equal(validateMarkerResult(result, context()).ok, true);
 });
 
+test("legacy compatibility preserves unknown note kinds and derives required blanks on a zero attempt", () => {
+  const base = legacy();
+  const result = normalizeModelResult(legacy({
+    overall: {
+      ...(base.overall as Record<string, unknown>),
+      marks_awarded: 0,
+      attempted_overall: 0,
+      correctness_overall: 0,
+    },
+    markpoints: [],
+    notes: [{ kind: "common_error", text: "A catalogued error." }],
+  }), context());
+  assert.equal(result.markpoints.length, 1);
+  assert.equal(result.markpoints[0].bucket, "grammar.required");
+  assert.equal(result.markpoints[0].outcome, "not_attempted");
+  assert.equal(result.notes[0].kind, "other");
+  assert.equal(result.notes[0].source_kind, "common_error");
+  assert.equal(result.notes[0].text, "A catalogued error.");
+});
+
 test("legacy fallback is strict about required buckets and exact evidence", () => {
   assert.throws(() => normalizeModelResult(legacy({ markpoints: [] }), context()), /must occur exactly once/);
   assert.throws(() => normalizeModelResult(legacy({
@@ -392,4 +459,10 @@ test("strict public validator rejects inconsistent outcomes and non-authoritativ
   const spoofed = structuredClone(result);
   spoofed.raw_response = "different";
   assert.match(validateMarkerResult(spoofed, context()).error || "", /authoritative/);
+  const inconsistentBlank = structuredClone(result);
+  inconsistentBlank.markpoints[0].attempted_credit = 0;
+  inconsistentBlank.markpoints[0].correctness_credit = 0;
+  inconsistentBlank.markpoints[0].outcome = "not_attempted";
+  delete inconsistentBlank.markpoints[0].evidence;
+  assert.match(validateMarkerResult(inconsistentBlank, context()).error || "", /must be null/);
 });

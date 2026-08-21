@@ -147,7 +147,7 @@ const DEFAULT_MODEL = "openai/gpt-4o-mini";
 // spent days unable to answer "did the deploy land". Now it also carries a build
 // string, so a deploy is verifiable in one request instead of being inferred from
 // marking behaviour. Bump this whenever the worker is changed.
-const WORKER_BUILD = "2026-08-21-r175-compact-v2";
+const WORKER_BUILD = "2026-08-21-r176-compact-v2";
 const DEFAULT_RESPONSE_CONTRACT: ResponseContract = "compact_v2";
 // The learner-path default. It was set when every call was DeepSeek at about a
 // tenth of a cent, and it silently blocked most of the current-generation models
@@ -233,7 +233,7 @@ function parseAnnotations(raw: string): { annotations: Annotation[]; cleaned: st
 /* The user message is small and varies per attempt.                          */
 /* ------------------------------------------------------------------------- */
 
-function buildSystemPrompt(responseContract: ResponseContract): string {
+export function buildSystemPrompt(responseContract: ResponseContract): string {
   const legacyPrompt = `You are an Italian-language teacher marking a student's translation attempt. Your job: return a structured JSON response that attributes each part of the student's attempt to specific skill buckets in a granular taxonomy.
 
 DIRECTION AWARENESS (critical)
@@ -394,11 +394,35 @@ Return ONLY the JSON object, no surrounding text.`;
     .split("item.expected_buckets").join("role-e entries in the buckets legend")
     .split("required_buckets").join("role-r entries")
     .split("(with bucket_proposed: false or omitted)").join("(as ordinary m rows)")
+    .split('Give the dictionary form in "suggest" - for a verb the infinitive, for a noun the singular.')
+    .join('In a u row, the optional fourth value is a suggested full bucket id; for vocabulary use vocabulary.it.<Italian dictionary lemma>.translation (infinitive for verbs, singular for nouns), or omit it.')
+    .split("the `vocabulary.` namespace on en_it items, described under VOCABULARY PRODUCTION below")
+    .join("unlisted en_it content vocabulary, represented as v:<lemma> and described under VOCABULARY PRODUCTION below")
+    .split("That namespace is dynamic - its buckets aggregate on arrival and are never pre-registered - so vocabulary ids are legitimate even when absent from buckets legend.")
+    .join("Those entries aggregate on arrival and are never pre-registered, so v:<lemma> is legitimate when that vocabulary skill is absent from the buckets legend.")
     .replace(/If you encounter an error that genuinely doesn't fit any of the provided buckets legend entries, you may propose a new bucket by setting bucket_proposed: true and providing proposed_parent_id \(one of the existing buckets in buckets legend\), proposed_label \(the friendly human-readable name\), and proposed_rationale \(one sentence on why it's worth tracking\)\./,
       "If you encounter an error that genuinely does not fit the supplied legend, you may use a p proposal entry with an existing parent alias, a safe child slug, a friendly label, and one-sentence rationale.")
     .replace("Make evidence strings short and concrete", "Use the shortest exact evidence-token span that proves the point")
     .replace('{ "kind": "accent", "text": "perché carries an acute accent; you wrote perche." }',
-      '["accent", "perché carries an acute accent; you wrote perche."]');
+      '["accent", "perché carries an acute accent; you wrote perche."]')
+    .replace(/VOCABULARY PRODUCTION \(en_it\)[\s\S]*?(?=VOCABULARY RECOGNITION \(it_en\))/, `VOCABULARY PRODUCTION (en_it)
+
+On en_it, judge every Italian CONTENT word the learner produced: nouns, verbs, adjectives, adverbs, and lexical locatives. If its vocabulary skill is supplied in the buckets legend, serialize it with that numeric alias. Only for a genuinely unlisted content word, serialize it as v:<Italian dictionary lemma>. Never put a full bucket id in an m tuple.
+
+- Correctly chosen content word: vocabulary HIT. Wrong lexical choice for the intended meaning: vocabulary MISS.
+- Right word in the wrong inflected form: vocabulary HIT plus the relevant GRAMMAR miss; lexical knowledge and formation are separate.
+- The lemma is the NFC, lower-case Italian dictionary form: infinitive for verbs, masculine singular for nouns and adjectives. Never use an English lemma.
+- Proper nouns and function words do not receive vocabulary rows.
+- Judge vocabulary even when the rest of the answer is wrong.
+
+`)
+    .replace(/VOCABULARY RECOGNITION \(it_en\)[\s\S]*?(?=DIRECTION-BOUND SUFFIX)/, `VOCABULARY RECOGNITION (it_en)
+
+On it_en, source-word vocabulary skills are supplied in the buckets legend. Use their numeric aliases: HIT when the learner conveys the meaning, MISS when they skip, misread, or substitute it. Never use v:<lemma> on it_en. Emit an unengaged row only when its legend role is r.
+
+`)
+    .replace(/DIRECTION-BOUND SUFFIX \(Architecture ruling 4, 2026-08-02\)\.[\s\S]*?\n\n(?=BUCKET PROPOSALS)/,
+      "DIRECTION-BOUND SUFFIX (Architecture ruling 4, 2026-08-02). `.passive` is recognition-only and is already encoded in an it_en legend entry. Do not construct, copy, or rewrite that full id; use its numeric alias. On en_it, v:<lemma> always means the bare production skill and never carries `.passive`.\n\n");
   return policy + compactPromptSchemaText + "\n\nReturn ONLY the JSON object, no surrounding text.";
 }
 
@@ -436,6 +460,10 @@ function buildUserMessage(
       },
       buckets: promptContext.prompt.buckets,
       learner: {
+        // Keep the natural sentence for comprehension. Token indices remain
+        // the only legal evidence output, so evidence quotations still stay
+        // out of paid generation.
+        attempt: cleanedRaw,
         evidence_tokens: promptContext.prompt.evidence_tokens,
         intent,
         annotations,

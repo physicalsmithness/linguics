@@ -33,12 +33,13 @@ console.log("paid A/B runner (no network)");
 test("paid CLI defaults are fixed and URL/output are mandatory", () => {
   const options = parseArgs(["--url", "https://example.test/mark", "--out", "result.json"]);
   assert.equal(options.model, "openai/gpt-4o-mini");
-  assert.equal(options.expectedWorkerBuild, "2026-08-21-r175-compact-v2");
+  assert.equal(options.expectedWorkerBuild, "2026-08-21-r176-compact-v2");
   assert.equal(options.temperature, 0);
   assert.equal(options.seed, 20260821);
   assert.equal(options.maxCostUsd, 0.01);
   assert.equal(options.repetitions, 1);
   assert.equal(options.concurrency, 3);
+  assert.deepEqual(options.caseIds, []);
   assert.throws(() => parseArgs(["--out", "result.json"]), /--url is required/);
   assert.throws(() => parseArgs(["--url", "https:\/\/example.test\/mark"]), /--out is required/);
 });
@@ -132,6 +133,27 @@ test("repetitions scale both arms without changing the fixed seed", () => {
   for (const task of repeated) {
     assert.equal(buildRequestBody(task, foundation, repeatedOptions).seed, DEFAULTS.seed);
   }
+});
+
+test("case filtering keeps requested order, adjacent pairs, and rejects unknown IDs", () => {
+  const filteredOptions = parseArgs([
+    "--url", "https://example.test/mark",
+    "--out", "result.json",
+    "--cases", "direction_01,breadth_01",
+  ]);
+  const filtered = buildRunPlan(foundation, filteredOptions);
+  assert.equal(filtered.length, 4);
+  assert.deepEqual(filtered.map(task => task.case_id), [
+    "direction_01", "direction_01", "breadth_01", "breadth_01",
+  ]);
+  for (let index = 0; index < filtered.length; index += 2) {
+    assert.deepEqual(new Set([filtered[index].arm, filtered[index + 1].arm]), new Set(ARMS));
+  }
+  assert.throws(() => buildRunPlan(foundation, {
+    ...filteredOptions,
+    caseIds: ["not_a_real_case"],
+  }), /unknown --cases ID/);
+  assert.throws(() => parseArgs(["--dry-run", "--cases", "breadth_01,breadth_01"]), /duplicate/);
 });
 
 test("arm summaries keep scores, paid errors, tokens, cost and latency separate", () => {
