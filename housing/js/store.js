@@ -93,6 +93,9 @@
         source: strand === "grammar" ? "engine" : "ai_stub",
         bucket_proposed: !!mp.bucket_proposed
       };
+      // Keep the marker's correction alongside the evidence. Older attempts
+      // simply lack this additive field, so existing readers remain valid.
+      if (mp.expected !== undefined) ev.expected = mp.expected;
       for (const pf of PARADIGM_FIELDS) {
         if (item_or_question && item_or_question[pf] !== undefined) ev[pf] = item_or_question[pf];
       }
@@ -150,13 +153,16 @@
     // person, which is what the mole_noun and class_noun failures taught.
     if (Array.isArray(result.unattributable) && result.unattributable.length) {
       attempt.unattributable = result.unattributable.map(function (u) {
-        const out = {
-          evidence: u.evidence || "",
-          what: u.what || "",
-          correct: !!u.correct,
-          suggest: u.suggest || null,
+        // Retain any fields added by newer marker contracts while preserving
+        // the normalised fields and local unambiguous-promotion calculation.
+        const src = (u && typeof u === "object") ? u : { what: String(u || "") };
+        const out = Object.assign({}, src, {
+          evidence: src.evidence || "",
+          what: src.what || "",
+          correct: !!src.correct,
+          suggest: src.suggest || null,
           unambiguous: false
-        };
+        });
         const m = /^vocabulary\.it\.([^.]+)\./.exec(String(out.suggest || ""));
         if (m && Array.isArray(LL.vocabEntries)) {
           const lem = m[1].toLowerCase();
@@ -168,6 +174,14 @@
           out.unambiguous = (n === 1);
         }
         return out;
+      });
+    }
+    // Live marker notes use {kind, text}; the offline legacy stub uses
+    // {kind, note}. Preserve either shape (and future additive fields) on the
+    // attempt rather than keeping notes only in the transient render result.
+    if (Array.isArray(result.notes) && result.notes.length) {
+      attempt.notes = result.notes.map(function (n) {
+        return (n && typeof n === "object") ? Object.assign({}, n) : n;
       });
     }
     // candidate_tenses metadata (AUTHOR_BRIEF criterion 16, Phase 1; see

@@ -175,8 +175,18 @@
     payload.markpoints_json = JSON.stringify((result && result.markpoints || []).map(mp => ({
       bucket: mp.bucket, outcome: mp.outcome,
       attempted: mp.attempted_credit, correctness: mp.correctness_credit,
-      evidence: mp.evidence || ""
+      evidence: mp.evidence || "", expected: mp.expected
     })));
+    // These marker outputs are part of the successful judgement too. Prefer
+    // the stored copies, with a result fallback for older recordAttempt paths.
+    const unattributable = (attempt && Array.isArray(attempt.unattributable))
+      ? attempt.unattributable
+      : ((result && Array.isArray(result.unattributable)) ? result.unattributable : []);
+    const notes = (attempt && Array.isArray(attempt.notes))
+      ? attempt.notes
+      : ((result && Array.isArray(result.notes)) ? result.notes : []);
+    payload.unattributable_json = JSON.stringify(unattributable);
+    payload.notes_json = JSON.stringify(notes);
     payload.orthography_json = JSON.stringify((result && result.orthography || []).map(o => ({
       bucket: o.bucket, expected: o.expected, written: o.written,
       accent_class: o.accent_class, accent_chars: o.accent_chars

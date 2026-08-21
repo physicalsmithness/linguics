@@ -1,6 +1,6 @@
 # Linguics translation marker (Worker)
 
-A Cloudflare Worker that proxies translation-marking requests to OpenRouter and returns structured JSON. Default model is DeepSeek V3 (cheap, ~$0.001 per attempt); model can be overridden per request for A/B comparison.
+A Cloudflare Worker that proxies translation-marking requests to OpenRouter and returns structured JSON. The default model is GPT-4o-mini; callers can override it per request for controlled comparisons.
 
 ## One-time setup
 
@@ -43,7 +43,7 @@ A simple GET to the URL returns a JSON health check:
 
 ```
 curl https://linguics-marker.<your-subdomain>.workers.dev
-{"ok":true,"service":"linguics-marker","default_model":"deepseek/deepseek-chat"}
+{"ok":true,"service":"linguics-marker","build":"2026-08-21-r175-compact-v2","default_model":"openai/gpt-4o-mini","default_response_contract":"compact_v2","supported_response_contracts":["compact_v2","legacy_v1"],"max_output_tokens":6000}
 ```
 
 To test a mark call (replace the URL):
@@ -88,9 +88,10 @@ Live-tails the Worker's console output. Useful for debugging in production.
 
 ## Cost protection
 
-- Per-call cost cap: $0.03 (refuses calls projected over this).
+- Learner-path per-call cost cap: $0.03 (refuses calls projected over this).
+- An explicit benchmark request may raise that ceiling, but the Worker hard-clamps it at $0.25 per call.
 - Rate limit: 60 requests per minute per IP (in-memory; per-edge).
-- Default model is the cheapest reliable one (DeepSeek V3 ~$0.001/call).
+- Default model is GPT-4o-mini; the Worker reports the deployed default and supported output contracts in its health response.
 - The housing's footer tracks cumulative session cost in localStorage.
 
 Constants are at the top of `src/index.ts` if you want to tune them.

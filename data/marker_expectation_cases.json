@@ -1,8 +1,9 @@
 {
   "$comment": "Marker expectation suite. This file is a JUDGING INSTRUMENT, not marker input. Nothing in it is ever sent to a model: it is what the RUNNER compares a model's output against, so we can say which models are good enough to use. Smith 2026-08-11: 'What you're suggesting is a way of judging different models for how well they pass tests. If that's all you mean, that's fine, but if we're putting it in their information, then less so.' It is only the former. Seeded from the 24 bench runs rescued from localStorage 2026-08-11. Merged 2026-08-13 with Architecture's tranche 1 (marker_expectation_suite_tranche1.json), converted to this file's shape.",
-  "version": 1,
+  "version": 2,
   "cases": [
     {
+      "case_id": "rescued_bene_attribution_01",
       "item": "trans_op_en_it_48",
       "direction": "en_it",
       "source_text": "Anna wants to wash her hands, but she never washes them properly.",
@@ -13,35 +14,36 @@
         "pronoun.reflexive.si_sg": "hit",
         "pronoun.direct_object.le": "hit",
         "pronoun.combined.vowel_changes": "hit",
-        "pronoun.position.pre_finite_verb": "hit",
-        "vocabulary.it.bene.adverb.translation.active": "miss"
+        "pronoun.position.pre_finite_verb": "hit"
       },
       "expect_absent": [
-        "adverb.usage",
-        "vocabulary.it.giustamente.translation",
         "vocabulary.it.lava.translation.active",
         "vocabulary.it.lava.gender.active",
         "vocabulary.it.anna.verb.translation.active"
       ],
       "absent_reasons": {
-        "adverb.usage": "Seen in 2 of 12 runs. The error is a word choice, not a fact about adverb usage. NEEDS RULING - it is defensible and Architecture owns the call.",
-        "vocabulary.it.giustamente.translation": "Seen in 1 of 12 runs. It marks the word the learner DID write as a miss rather than the word they should have written, which files the failure under a lemma they arguably know.",
         "vocabulary.it.lava.translation.active": "DATA FAULT in the item's own expected_buckets: `lava` here is a form of lavare (she washes), not the noun lava. The tier-1 deriver mis-lemmatised it.",
         "vocabulary.it.lava.gender.active": "Same data fault, and worse: it invites the marker to judge the gender of a noun that is not in the sentence.",
-        "vocabulary.it.anna.translation.active": "A proper noun. Excluded by the v19 ruling 3 the worker prompt already carries, but the tier-1 deriver emitted it anyway."
+        "vocabulary.it.anna.verb.translation.active": "A proper noun. Excluded by the v19 ruling 3 the worker prompt already carries, but the tier-1 deriver emitted it anyway."
       },
+      "manual_review": [
+        {
+          "id": "bene_error_attribution",
+          "text": "decide whether giustamente for bene belongs under adverb usage, the produced lemma, or the expected lemma"
+        }
+      ],
       "needs_ruling": [
         "adverb.usage vs vocabulary.it.bene.translation.active as the home for a word-choice error"
       ]
     },
     {
+      "case_id": "rescued_imperfect_vocab_01",
       "item": "trans_imp_it_en_disc_pot_01",
       "direction": "it_en",
       "source_text": "Da giovane potevo lavorare dodici ore di fila senza problemi.",
       "answer": "From youths I could work for twelve gold in a row without problems.",
       "note": "The unstable one. Across 12 rescued runs the SAME answer scored anywhere from 1/3 to 6/7. This case exists to pin it.",
       "expect_verdict": {
-        "verb_form.imperfect.discrimination.modals.potere": "hit",
         "vocabulary.it.giovane.noun.m.translation.passive": "miss",
         "vocabulary.it.lavorare.verb.translation.passive": "hit",
         "vocabulary.it.dodici.numeral.translation.passive": "hit",
@@ -51,16 +53,26 @@
       },
       "expect_absent": [
         "vocabulary.it.orecchio.translation.passive",
-        "vocabulary.it.proprio.translation.passive",
-        "vocabulary.it.filare.translation.passive",
-        "vocabulary.it.potere.translation.passive"
+        "vocabulary.it.proprio.translation.passive"
       ],
       "absent_reasons": {
         "vocabulary.it.orecchio.translation.passive": "PHANTOM LEMMA, and the clearest single vindication of the fire-list plan in this whole log. `ore` (hours) was lemmatised to `orecchio` (ear) in the old bucket context. It was sent on full and labels modes to BOTH models, and gpt-4o-mini scored it a miss with evidence 'gold' - marking the learner on a word about ears. The NEW expected_buckets has `ora`, correctly. The plan already fixes this.",
-        "vocabulary.it.proprio.translation.passive": "Same class: `problemi` was lemmatised to `proprio`. On full/gpt-4o-mini it was scored a HIT with evidence 'problems' - a false positive feeding coverage for a lemma not in the sentence. The new expected_buckets has `problema`, correctly.",
-        "vocabulary.it.filare.translation.passive": "NEW data fault, introduced by the tier-1 deriver itself: `fila` (row, queue) lemmatised to `filare` (to spin). Same class of error as the two it fixed. Needs correcting in the item.",
-        "vocabulary.it.potere.translation.passive": "Double-counting: the modal is already judged by the required bucket verb_form.imperfect.discrimination.modals.potere. Runs that fired both marked one fact twice. NEEDS RULING."
+        "vocabulary.it.proprio.translation.passive": "Same class: `problemi` was lemmatised to `proprio`. On full/gpt-4o-mini it was scored a HIT with evidence 'problems' - a false positive feeding coverage for a lemma not in the sentence. The new expected_buckets has `problema`, correctly."
       },
+      "manual_review": [
+        {
+          "id": "could_imperfect_credit",
+          "text": "decide whether could earns full or partial credit for the sustained imperfect modal"
+        },
+        {
+          "id": "di_fila_equivalence",
+          "text": "decide whether in a row fully conveys di fila"
+        },
+        {
+          "id": "potere_double_attribution",
+          "text": "decide whether the same potevo evidence may support both the grammar and vocabulary buckets"
+        }
+      ],
       "needs_ruling": [
         "is 'could' a hit or a partial on the imperfect modal? The rescued runs returned hit, partial 0.5 and miss for the identical string",
         "is 'in a row' acceptable for 'di fila'? Marked hit in some runs and miss in others, and it moves the mark",
@@ -68,6 +80,7 @@
       ]
     },
     {
+      "case_id": "gender_belief_01",
       "item": "trans_fut_en_it_irr_rr_02",
       "direction": "en_it",
       "source_text": "I will want to know the whole truth.",
@@ -79,12 +92,23 @@
       },
       "expect_absent": [],
       "principle": "Executing agreement correctly on a wrongly-gendered noun is a DEMONSTRATED skill, not an error. At most one thing is wrong here: the gender of verità. Any run that marks the agreement itself down, or that marks the same single belief twice (once on tutto and once on il), fails this case. And the item's own required bucket - vorrò, the irregular future - is untouched by the mistake and must still be a hit.",
+      "manual_review": [
+        {
+          "id": "gender_error_engagement",
+          "text": "decide whether the mistaken gender belief should fire a gender markpoint or remain silent"
+        },
+        {
+          "id": "single_gender_belief_count",
+          "text": "if gender fires, decide whether tutto and il are one underlying error or two markpoints"
+        }
+      ],
       "needs_ruling": [
         "should the gender error fire at all here? Smith: 'I don't really mind if it misses, but it shouldn't' - i.e. silence is acceptable, a penalty on the agreement is not",
         "if it does fire, once or twice? tutto and il are two surface agreements of one belief"
       ]
     },
     {
+      "case_id": "spelling_partial_01",
       "item": "trans_ger_en_it_prog_ando_02",
       "direction": "en_it",
       "source_text": "We are working on a new project this week.",
@@ -95,10 +119,19 @@
         "verb_form.gerundio.formation.progressive_assembly": "miss",
         "verb_form.gerundio.formation.regular_ando": "miss",
         "vocabulary.it.nuovo.adjective.translation.active": "miss",
-        "vocabulary.it.settimana.noun.translation.active": "hit",
-        "vocabulary.it.progetto.translation.active": "partial"
+        "vocabulary.it.settimana.noun.translation.active": "hit"
       },
       "expect_absent": [],
+      "manual_review": [
+        {
+          "id": "projetto_spelling_attribution",
+          "text": "decide whether projetto is partial vocabulary credit or a vocabulary hit plus an orthography event"
+        },
+        {
+          "id": "lavorare_preposition_alternative",
+          "text": "decide whether lavorare su un progetto is acceptable here instead of lavorare a un progetto"
+        }
+      ],
       "principle": "A MISSPELLING IS NOT A CLEAN HIT. The learner wrote `projetto` for `progetto` and it came back ticked. They have shown they know the word, so a miss would be unfair and wrong - but a full tick tells them the spelling was right when it was not, and it writes clean evidence into their coverage for a form they cannot yet produce. The estate already has the shape for this everywhere else: a spelling slip is PARTIAL, credited but docked, which is what 'Half right - spelling slip' means on the vocab card. Same family as the r143 ruling that a docked accent still counts as reaching the lemma.",
       "needs_ruling": [
         "is a misspelling partial, or a hit with an orthography.spelling event fired alongside it? The item's own fire-list carries three spelling classes and NONE of them fired on projetto - which is arguably the deeper fault, since g/j is exactly a c_g_softening question",
@@ -106,6 +139,7 @@
       ]
     },
     {
+      "case_id": "breadth_01",
       "item": "trans_pp_en_it_01",
       "answer": "Abbiamo mangiato la pasta ieri sera.",
       "note": "A verbatim-correct answer. Every required bucket fires as a hit and nothing misses. If this one is not clean nothing below is interpretable.  [case_id breadth_01, origin architecture]",
@@ -115,24 +149,35 @@
         "verb_form.passato_prossimo.participle_agreement.with_avere.no_preceding_dop": "hit"
       },
       "expect_absent": [],
-      "expect_rules": [
-        "no markpoint may have outcome miss",
-        "no note of kind accent"
+      "expect_checks": [
+        {
+          "type": "no_miss",
+          "scope": "*"
+        },
+        {
+          "type": "no_note_of_kind",
+          "kind": "accent"
+        }
       ]
     },
     {
+      "case_id": "breadth_02",
       "item": "trans_neg_en_it_nonpos_01",
       "answer": "Non capisco niente.",
-      "note": "Learner adds a word the reference does not have. The tested skill is still demonstrated correctly, so it is a hit; any extra observation goes to the can\\u2019t-credit channel, not to a miss on the required bucket.  [case_id breadth_02, origin architecture]",
+      "note": "Learner adds a word the reference does not have. The tested skill is still demonstrated correctly, so it is a hit; any extra observation goes to the can\u2019t-credit channel, not to a miss on the required bucket.  [case_id breadth_02, origin architecture]",
       "expect_verdict": {
         "negation.core.non_position": "hit"
       },
       "expect_absent": [],
-      "expect_rules": [
-        "no miss on negation.core.non_position"
+      "expect_checks": [
+        {
+          "type": "no_miss",
+          "scope": "negation.core.non_position"
+        }
       ]
     },
     {
+      "case_id": "breadth_03",
       "item": "trans_aa_en_it_02",
       "answer": "Ho due gatti nere.",
       "note": "One error, one miss. Gender agreement is wrong, position is right. The prompt rule against collapsing a single slip into two misses.  [case_id breadth_03, origin architecture]",
@@ -141,23 +186,31 @@
         "adjective_agreement.position.post_noun_default": "hit"
       },
       "expect_absent": [],
-      "expect_rules": [
-        "no miss on adjective_agreement.position.post_noun_default"
+      "expect_checks": [
+        {
+          "type": "no_miss",
+          "scope": "adjective_agreement.position.post_noun_default"
+        }
       ]
     },
     {
+      "case_id": "vocab_grammar_01",
       "item": "trans_aa_en_it_01",
-      "answer": "La casa \\u00e8 azzurra.",
+      "answer": "La casa \u00e8 azzurra.",
       "note": "Wrong word, right form. Prompt rule 12: wrong word is a vocabulary error and must never fire an agreement miss.  [case_id vocab_grammar_01, origin architecture]",
       "expect_verdict": {
         "adjective_agreement.o_class.feminine_singular": "hit"
       },
       "expect_absent": [],
-      "expect_rules": [
-        "no miss on any adjective_agreement bucket"
+      "expect_checks": [
+        {
+          "type": "no_miss",
+          "scope": "adjective_agreement.*"
+        }
       ]
     },
     {
+      "case_id": "vocab_grammar_02",
       "item": "trans_pp_en_it_02",
       "answer": "Hanno vendere la loro macchina vecchia il mese scorso.",
       "note": "The mirror of the case above: right word, wrong form. Vocabulary hits, grammar misses.  [case_id vocab_grammar_02, origin architecture]",
@@ -166,11 +219,15 @@
         "vocabulary.it.vendere.verb.translation.active": "hit"
       },
       "expect_absent": [],
-      "expect_rules": [
-        "vocabulary.it.vendere.* must not be a miss"
+      "expect_checks": [
+        {
+          "type": "no_miss",
+          "scope": "vocabulary.it.vendere.*"
+        }
       ]
     },
     {
+      "case_id": "false_pos_lemma_01",
       "item": "trans_tc_imp_pp_gen_en_it_02",
       "answer": "Ieri mattina ho incontrato Marco al supermercato mentre facevo la spesa.",
       "note": "Smith caught the live version of this: \"ore\" prefix-matched orecchio and \"problemi\" stem-matched proprio, writing vocabulary events against words the learner never saw. Any recurrence of stem-guessing shows up here.  [case_id false_pos_lemma_01, origin smith_live_2026-07]",
@@ -178,13 +235,23 @@
         "verb_form.imperfect.discrimination.vs_passato_prossimo_general": "hit"
       },
       "expect_absent": [],
-      "expect_rules": [
-        "no bucket for vocabulary.it.orecchio.*",
-        "no bucket for vocabulary.it.proprio.*",
-        "no vocabulary bucket for Marco"
+      "expect_checks": [
+        {
+          "type": "no_bucket",
+          "scope": "vocabulary.it.orecchio.*"
+        },
+        {
+          "type": "no_bucket",
+          "scope": "vocabulary.it.proprio.*"
+        },
+        {
+          "type": "no_bucket",
+          "scope": "vocabulary.it.marco.*"
+        }
       ]
     },
     {
+      "case_id": "false_pos_accent_01",
       "item": "trans_op_en_it_01",
       "answer": "Marco mi vede al bar ogni mattina.",
       "note": "Spelling matches the reference exactly. The anti-hallucination guard: an invented accent error damages trust more than a missed one.  [case_id false_pos_accent_01, origin prompt_rule_11]",
@@ -193,12 +260,21 @@
         "pronoun.position.pre_finite_verb": "hit"
       },
       "expect_absent": [],
-      "expect_rules": [
-        "no note of kind accent",
-        "overall.marks_awarded must not be multiplied by 0.9"
+      "expect_checks": [
+        {
+          "type": "no_note_of_kind",
+          "kind": "accent"
+        },
+        {
+          "type": "overall",
+          "field": "marks_awarded",
+          "op": "eq",
+          "value": 1
+        }
       ]
     },
     {
+      "case_id": "false_pos_gender_01",
       "item": "trans_art_en_it_forms_01",
       "answer": "Lo studente ha uno zaino.",
       "note": "Gender must follow the entry actually credited. The bare-id resolver picked the lowest-rank entry and landed gender on adjectives.  [case_id false_pos_gender_01, origin architecture_2026-08-06]",
@@ -207,35 +283,47 @@
         "article.indefinite.forms": "hit"
       },
       "expect_absent": [],
-      "expect_rules": [
-        "no gender markpoint on an entry the learner did not write"
+      "manual_review": [
+        {
+          "id": "gender_entry_not_written",
+          "text": "no gender markpoint on an entry the learner did not write"
+        }
       ]
     },
     {
+      "case_id": "alternative_01",
       "item": "trans_prep_en_it_vg_02",
-      "answer": "Ha smesso di fumare l\\u2019anno passato.",
+      "answer": "Ha smesso di fumare l\u2019anno passato.",
       "note": "The learner uses a different but correct word. Under the no-single-correct-version ruling this costs nothing; the tested skill is untouched.  [case_id alternative_01, origin architecture]",
       "expect_verdict": {
         "preposition.usage.verb_governed": "hit"
       },
       "expect_absent": [],
-      "expect_rules": [
-        "no miss caused by passato instead of scorso"
+      "manual_review": [
+        {
+          "id": "alternative_word_causality",
+          "text": "no miss caused by passato instead of scorso"
+        }
       ]
     },
     {
+      "case_id": "tense_choice_01",
       "item": "trans_tc_imp_pp_gen_en_it_01",
-      "answer": "Sono andato a scuola a piedi ogni mattina prima di trasferirmi in un\\u2019altra citt\\u00e0.",
+      "answer": "Sono andato a scuola a piedi ogni mattina prima di trasferirmi in un\u2019altra citt\u00e0.",
       "note": "Prompt rule 5. The learner picked the wrong tense and spelled it correctly. That is one miss on choice, not a formation miss as well.  [case_id tense_choice_01, origin prompt_rule_5]",
       "expect_verdict": {
         "verb_form.imperfect.discrimination.vs_passato_prossimo_general": "miss"
       },
       "expect_absent": [],
-      "expect_rules": [
-        "no miss on any verb_form.passato_prossimo.participle_form.* bucket"
+      "expect_checks": [
+        {
+          "type": "no_miss",
+          "scope": "verb_form.passato_prossimo.participle_form.*"
+        }
       ]
     },
     {
+      "case_id": "clitic_01",
       "item": "trans_op_en_it_01",
       "answer": "Marco me vede al bar ogni mattina.",
       "note": "Prompt rule 14, stated as a test. One wrong-form-but-correctly-placed clitic is exactly one miss.  [case_id clitic_01, origin prompt_rule_14]",
@@ -244,11 +332,15 @@
         "pronoun.position.pre_finite_verb": "hit"
       },
       "expect_absent": [],
-      "expect_rules": [
-        "no miss on pronoun.position.pre_finite_verb"
+      "expect_checks": [
+        {
+          "type": "no_miss",
+          "scope": "pronoun.position.pre_finite_verb"
+        }
       ]
     },
     {
+      "case_id": "firelist_blank_01",
       "item": "trans_pp_en_it_01",
       "answer": "Abbiamo mangiato la pasta.",
       "note": "The defining test of the expected_buckets contract. A shorter but correct answer must not be penalised for the buckets it simply did not reach.  [case_id firelist_blank_01, origin architecture_2026-08-06]",
@@ -256,11 +348,15 @@
         "verb_form.passato_prossimo.auxiliary.avere_default": "hit"
       },
       "expect_absent": [],
-      "expect_rules": [
-        "no miss on any expected_buckets entry the answer does not engage"
+      "manual_review": [
+        {
+          "id": "unengaged_expected_bucket",
+          "text": "no miss on any expected_buckets entry the answer does not engage"
+        }
       ]
     },
     {
+      "case_id": "firelist_wrong_01",
       "item": "trans_pia_en_it_agr_01",
       "answer": "Mi piace gli spaghetti.",
       "note": "The other half of the contract: engaged and wrong is a REAL miss. Without this case expected_buckets would be credit-only and marking would go soft.  [case_id firelist_wrong_01, origin architecture_2026-08-06]",
@@ -270,14 +366,37 @@
       "expect_absent": []
     },
     {
+      "case_id": "direction_01",
       "item": "trans_op_en_it_02",
       "answer": "Anna saw him at the cinema yesterday.",
       "note": "Direction awareness. The learner answered in the wrong language; that is one overall verdict, not a sweep of grammar misses.  [case_id direction_01, origin prompt_direction]",
       "expect_verdict": {},
       "expect_absent": [],
-      "expect_rules": [
-        "no hit on any bucket",
-        "overall must be not_attempted, not a set of misses"
+      "expect_checks": [
+        {
+          "type": "count_at_most",
+          "outcome": "hit",
+          "n": 0,
+          "scope": "*"
+        },
+        {
+          "type": "count_at_most",
+          "outcome": "miss",
+          "n": 0,
+          "scope": "*"
+        },
+        {
+          "type": "count_at_most",
+          "outcome": "partial",
+          "n": 0,
+          "scope": "*"
+        },
+        {
+          "type": "overall",
+          "field": "attempted_overall",
+          "op": "eq",
+          "value": 0
+        }
       ]
     }
   ],

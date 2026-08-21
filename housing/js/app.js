@@ -9,7 +9,7 @@
   // Build identifier. Bump when shipping a deploy worth distinguishing in
   // diagnostics. Surfaced in the page footer so two tabs on different builds
   // are visually distinguishable. See inter_chat/Architecture_Housing_cache_busting_and_data_load_messaging.md.
-  const LL_BUILD = "2026-08-20-r173";
+  const LL_BUILD = "2026-08-21-r175";
   LL.build = LL_BUILD;  // read by the feedback widget's context() at submit time
   // App-side context merged into every pulse row's extra_json (maximal
   // payload ruling) without coupling pulse.js to app internals.
@@ -7419,12 +7419,14 @@
     // edit retires the hedge at source. Translation only (opts.spanVerdicts);
     // grammar keeps its authored "Why:" at the foot - teaching content, not
     // an AI verdict.
+    let _overallExplanationRendered = false;
     if (opts && opts.spanVerdicts && !_isStub && result.overall.explanation) {
       const note = document.createElement("div");
       note.className = "markers-note";
       note.innerHTML = '<span class="markers-note-label">Marker\u2019s note</span>'
         + annotateWithGlossary(result.overall.explanation);
       root.appendChild(note);
+      _overallExplanationRendered = true;
     }
 
     // The learner's sentence, once, at the top. The per-word colouring
@@ -7828,7 +7830,7 @@
         : ("\u201c" + tb.said + "\u201d is not in our list of Italian words.");
       root.appendChild(box);
     }
-    if (result.overall.explanation) {
+    if (result.overall.explanation && !_overallExplanationRendered) {
       const ex = document.createElement("div");
       ex.className = "result-explanation";
       ex.innerHTML = `<strong>Why:</strong> ${annotateWithGlossary(result.overall.explanation)}`;
@@ -7859,12 +7861,16 @@
       g.appendChild(foot);
       root.appendChild(g);
     }
-    if (Array.isArray(result.notes) && result.notes.length) {
+    const markerNotes = Array.isArray(result.notes) ? result.notes.map(n => {
+      const value = (n && typeof n === "object") ? (n.text || n.note) : n;
+      return String(value || "").trim();
+    }).filter(Boolean) : [];
+    if (markerNotes.length) {
       const notes = document.createElement("div");
       notes.style.marginTop = "10px";
       notes.style.fontSize = "13px";
       notes.style.color = "var(--muted)";
-      notes.innerHTML = "<strong>Notes:</strong> " + result.notes.map(n => escapeHtml(n.note)).join(" · ");
+      notes.innerHTML = "<strong>Notes:</strong> " + markerNotes.map(escapeHtml).join(" · ");
       root.appendChild(notes);
     }
     return root;
