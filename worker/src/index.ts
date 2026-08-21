@@ -147,8 +147,13 @@ const DEFAULT_MODEL = "openai/gpt-4o-mini";
 // spent days unable to answer "did the deploy land". Now it also carries a build
 // string, so a deploy is verifiable in one request instead of being inferred from
 // marking behaviour. Bump this whenever the worker is changed.
-const WORKER_BUILD = "2026-08-21-r176-compact-v2";
-const DEFAULT_RESPONSE_CONTRACT: ResponseContract = "compact_v2";
+const WORKER_BUILD = "2026-08-21-r177-legacy-default";
+// R177 safety decision: the paid r176 probe confirmed compact-v2's cost and
+// latency win, but it still produced one invalid broad-case evidence map and
+// fewer passing judgements than legacy. Keep compact explicitly selectable for
+// controlled bench work; normal learner calls omit response_contract and stay
+// on the better-validated legacy path until compact reaches quality parity.
+const DEFAULT_RESPONSE_CONTRACT: ResponseContract = "legacy_v1";
 // The learner-path default. It was set when every call was DeepSeek at about a
 // tenth of a cent, and it silently blocked most of the current-generation models
 // on anything but the smallest menu - Sonnet 5 on the full menu estimates

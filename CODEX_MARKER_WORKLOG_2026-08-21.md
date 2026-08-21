@@ -9,7 +9,7 @@ I took over the translation-marker repair described in `OUTSIDE_VIEW_the_marking
 
 The main architectural change is now implemented: the model can return a compact internal response, while the worker deterministically expands it into the same browser-facing result Linguics already uses. Learner-visible outputs have not been removed. Repeated and derivable model output has been removed from the paid generation path.
 
-The compact contract is the worker default. The legacy verbose contract remains selectable in the marker bench and the reproducible Node runner as a control arm. Housing remains client r175. The first live Worker was `2026-08-21-r175-compact-v2`; the compatibility and prompt follow-up is `2026-08-21-r176-compact-v2`.
+The compact contract and lossless expansion are implemented and remain selectable in the marker bench and reproducible Node runner. They are not the learner-path default yet: the live default was returned to the better-validated legacy contract after the paid r176 probe found that compact had not reached quality parity. Housing remains client r175. The sequence is r175 initial compact, r176 compatibility/prompt repair, then `2026-08-21-r177-legacy-default` as the safe production setting.
 
 ## Which decision log is authoritative
 
@@ -148,6 +148,25 @@ However, all 18 compact results were rejected by r175's strict schema. The promp
 Offline replay through the safe r176 compatibility normalizer hydrates 16 of the 18 saved compact responses. It accepts only exact supplied ids or the already-sanctioned Italian-production vocabulary form, drops only semantically empty non-required blanks, and normalizes `0/0` to `0/null`. It continues to reject the evidence-less miss and a result missing a mandatory required skill. That boundary deliberately avoids inventing learner evidence or marks.
 
 R176 also removes the contradictory compact vocabulary prose, adds the continuous learner attempt alongside its evidence-token table, keeps compact request JSON minified, gives a numeric-alias example, and retains strict requirements for evidence and mandatory skills. The paid runner now supports `--cases ID1,ID2` so a small paired confirmation can precede another full sweep without changing either arm's settings.
+
+## Focused paid confirmation: r176
+
+Worker r176 was deployed as Cloudflare version `0ca142cb-6bf5-4d3a-aae0-33bc84ffe6a4`. A six-case paired probe then made 12 more GPT-4o-mini calls and retained them in `outputs/marker_paid_ab_2026-08-21_r176_probe.json`.
+
+| Measurement | compact_v2 | legacy_v1 |
+| --- | ---: | ---: |
+| Calls | 6 | 6 |
+| Pass / fail / manual / call error | 1 / 3 / 1 / 1 | 3 / 2 / 1 / 0 |
+| Input tokens | 26,657 | 31,693 |
+| Output tokens | 1,732 | 3,608 |
+| Recorded cost | $0.00503775 | $0.00691875 |
+| Mean latency | 4.236 s | 8.000 s |
+
+The probe cost $0.0119565. Compact reduced output tokens by 52.0%, recorded cost by 27.2%, and mean latency by 47.1%. The serialization repair worked: five of six compact responses hydrated, versus zero of eighteen in r175. `breadth_01` passed under both contracts and `alternative_01` reached the same intentionally manual status under both.
+
+Compact nevertheless remained worse on this sample. In `false_pos_lemma_01` it emitted invented out-of-range evidence indices across a broad 25-alias context, which the Worker correctly rejected rather than fabricating evidence. In `direction_01` its prose and markpoints said “not attempted” but its holistic attempted flag contradicted them. The two contracts shared semantic failures in the spelling and vocabulary-versus-agreement cases; those are not serialization savings.
+
+Therefore r177 keeps all compact code and outputs but restores `legacy_v1` as the default for normal learner calls. `compact_v2` must be requested explicitly for controlled experiments until a larger run demonstrates quality parity. This avoids treating learners as the experiment while preserving the measured path to lower output cost.
 
 ## Files deliberately left alone
 
