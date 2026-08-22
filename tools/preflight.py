@@ -11,9 +11,10 @@ every time, beat clever ones run once.
 
     python3 tools/preflight.py
 """
-import re, subprocess, sys, pathlib, tempfile
+import os, re, subprocess, sys, pathlib, tempfile
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
+NPX = "npx.cmd" if os.name == "nt" else "npx"
 # Unique dir per run: the old hardcoded /tmp/_pf_* names collided with
 # root-owned leftovers from a previous session, so every write failed with
 # PermissionError and the run died between the js checks and the worker
@@ -42,17 +43,35 @@ for page in sorted((ROOT / "housing").glob("*.html")):
 print("worker")
 w = ROOT / "worker/src/index.ts"
 src = w.read_text(encoding="utf-8")
-m = re.search(r"function buildSystemPrompt\(\)[^{]*\{\s*return\s+`", src)
+m = re.search(r"function buildSystemPrompt\([^)]*\)[^{]*\{\s*const\s+legacyPrompt\s*=\s*`", src)
 if m:
     body = src[m.end():src.index("`;", m.end())]
     bad_bt = len(re.findall(r"(?<!\\)`", body))
     bad_in = len(re.findall(r"(?<!\\)\$\{", body))
     ok("prompt literal has no raw backticks", bad_bt == 0, "%d raw backticks - escape them as \\`" % bad_bt)
     ok("prompt literal has no stray ${", bad_in == 0, "%d unescaped ${" % bad_in)
-r = subprocess.run(["npx", "--yes", "esbuild", str(w), "--bundle", "--format=esm", "--outfile=/dev/null"],
-                   capture_output=True, text=True, cwd=str(ROOT))
+r = subprocess.run([NPX, "--no-install", "esbuild", "src/index.ts", "--bundle", "--format=esm",
+                    "--outfile=" + str(PF_TMP / "worker.mjs")],
+                   capture_output=True, text=True, cwd=str(ROOT / "worker"))
 ok("index.ts compiles (wrangler deploy will succeed)", r.returncode == 0,
    (r.stderr or "").strip().split("\n")[0][:140])
+r = subprocess.run([NPX, "--no-install", "tsc", "-p", "tsconfig.json", "--noEmit"],
+                   capture_output=True, text=True, cwd=str(ROOT / "worker"))
+ok("worker TypeScript type-checks", r.returncode == 0,
+   (r.stderr or r.stdout or "").strip().split("\n")[0][:140])
+
+print("marker contract and suite")
+checks = [
+    ("compact marker contract", ["node", "--test", "--no-warnings", "worker/tests/marker_contract.test.ts"]),
+    ("expectation-suite predicates", ["node", "tools/test_marker_suite.js"]),
+    ("corpus fireability", ["node", "--no-warnings", "tools/test_marker_corpus_contract.mjs"]),
+    ("paid A/B runner (offline)", ["node", "tools/test_marker_paid_ab.mjs"]),
+    ("suite report accounting", [sys.executable, "-m", "unittest", "tools/test_suite_report.py"]),
+]
+for label, command in checks:
+    r = subprocess.run(command, capture_output=True, text=True, cwd=str(ROOT))
+    detail = (r.stderr or r.stdout or "").strip().split("\n")[-1][:140]
+    ok(label, r.returncode == 0, detail)
 
 print()
 if fails:

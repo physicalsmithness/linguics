@@ -196,7 +196,7 @@
    *   item: the translation item (source_text, references, required_buckets, ...)
    *   raw: the learner's answer (may contain <g> <s> <f> annotations)
    *   intent: literal | guess | sense
-   *   options: { url, model, bucketContext }
+   *   options: { url, model, bucketContext, responseContract, includeDiagnostics }
    * Returns: { result, usage, cost_usd, model_used }
    * Throws Error on failure with a user-friendly message.
    */
@@ -303,6 +303,13 @@
     if (typeof options.seed === "number") body.seed = options.seed;
     // Let the bench authorise a bigger spend than the learner-path default.
     if (typeof options.maxCostUsd === "number") body.max_cost_usd = options.maxCostUsd;
+    // The compact contract changes only the model-facing packet. The worker
+    // expands it back to the long-standing browser result shape. The bench can
+    // force either arm for a lossless A/B; normal callers use the worker default.
+    if (options.responseContract === "legacy_v1" || options.responseContract === "compact_v2") {
+      body.response_contract = options.responseContract;
+    }
+    if (options.includeDiagnostics === true) body.include_diagnostics = true;
 
     let res;
     try {
@@ -316,18 +323,46 @@
     }
 
     let payload;
+    let rawResponseText = "";
     try {
-      payload = await res.json();
+      rawResponseText = await res.text();
+      payload = JSON.parse(rawResponseText);
     } catch (e) {
-      throw new Error("Marker returned non-JSON response (HTTP " + res.status + ")");
+      const err = new Error("Marker returned non-JSON response (HTTP " + res.status + ")");
+      err.status = res.status;
+      err.code = "non_json_response";
+      err.rawResponseText = rawResponseText;
+      throw err;
     }
+    payload.client_request_meta = {
+      menu_step_note: menuStepNote,
+      effective_bucket_count: Object.keys(options.bucketContext || {}).length,
+      effective_context_chars: JSON.stringify(options.bucketContext || {}).length,
+    };
 
     if (!res.ok) {
       const code = payload.error || ("http_" + res.status);
       const detail = payload.detail || ("HTTP " + res.status);
-      throw new Error("Marker error (" + code + "): " + detail);
+      // A truncated or schema-invalid completion was still generated and may
+      // still be billed. Preserve the worker's usage/cost payload so the bench
+      // records that spend instead of making failed models look artificially
+      // cheap. The extra properties are harmless to ordinary callers.
+      trackCost(payload.cost_usd);
+      const err = new Error("Marker error (" + code + "): " + detail);
+      err.markerPayload = payload;
+      err.status = res.status;
+      err.code = code;
+      err.rawResponseText = rawResponseText;
+      throw err;
     }
-    if (!payload.result) throw new Error("Marker returned no result");
+    if (!payload.result) {
+      const err = new Error("Marker returned no result");
+      err.markerPayload = payload;
+      err.status = res.status;
+      err.code = "missing_result";
+      err.rawResponseText = rawResponseText;
+      throw err;
+    }
 
     trackCost(payload.cost_usd);
 

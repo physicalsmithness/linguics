@@ -1,3 +1,11 @@
+import {
+  MarkerContractError,
+  buildMarkerPromptContext,
+  compactPromptSchemaText,
+  normalizeModelResult,
+  type MarkerPromptContext,
+} from "./marker_contract";
+
 /**
  * Linguics translation marker — Cloudflare Worker.
  *
@@ -5,7 +13,7 @@
  * proxies to OpenRouter (https://openrouter.ai/api/v1/chat/completions).
  * Returns the structured marker output plus token usage and dollar cost.
  *
- * Defaults to DeepSeek V3 (cheap); model can be overridden per request via
+ * Defaults to GPT-4o-mini; model can be overridden per request via
  * the `model` field for A/B comparison.
  *
  * Per-call cost cap: $0.03. Calls projected over the cap are refused before
@@ -26,7 +34,7 @@ interface MarkRequest {
   intent?: "literal" | "guess" | "sense";
   /** Subset of bucket id -> { label, description } that the marker should know about. */
   bucket_context?: Record<string, { label: string; description?: string }>;
-  /** OpenRouter model identifier; defaults to DeepSeek V3. */
+  /** OpenRouter model identifier; defaults to GPT-4o-mini. */
   model?: string;
   /** Sampling temperature. Defaults to 0 - see DEFAULT_TEMPERATURE. */
   temperature?: number;
@@ -35,6 +43,10 @@ interface MarkRequest {
   /** Raise the per-call cost ceiling for this call, up to HARD_COST_CEILING_USD.
    *  The bench uses this to reach models the learner-path default excludes. */
   max_cost_usd?: number;
+  /** Model-facing response shape. Both hydrate to the same MarkerResult. */
+  response_contract?: "compact_v2" | "legacy_v1";
+  /** Bench-only: retain the exact provider text and prompt fingerprint. */
+  include_diagnostics?: boolean;
 }
 
 interface TranslationItem {
@@ -78,8 +90,11 @@ interface MarkerResult {
   };
   raw_response?: string;
   markpoints: MarkpointOut[];
-  notes?: Array<{ kind: string; text: string }>;
+  unattributable?: Array<{ evidence?: string; what: string; correct: boolean; suggest?: string }>;
+  notes?: Array<{ kind: string; text: string; note?: string }>;
 }
+
+type ResponseContract = "compact_v2" | "legacy_v1";
 
 /* ------------------------------------------------------------------------- */
 /* Model pricing                                                              */
@@ -120,14 +135,25 @@ const MODEL_PRICING: Record<string, [number, number]> = {
 // the three leaders (7 odd quotations against Haiku's 15), which is what the feedback
 // panel underlines with. Haiku 4.5 is two seconds faster at the same price if speed
 // beats evidence quality; GPT-4o-mini is a NINTH of the cost for two fewer marks.
-const DEFAULT_MODEL = "x-ai/grok-4.3";
+// SUPERSEDED WITHIN THE HOUR by Smith, who took the cost side: GPT-4o-mini scored
+// 13 of 18 against Grok's 15 and costs a NINTH as much (0.12c a mark against 1.06c).
+// A heavy learner is then ~70p a month rather than ~£5, which is the difference
+// between a product that can be sold and one that cannot. Grok stays one click away
+// for anyone who wants the extra two marks.
+const DEFAULT_MODEL = "openai/gpt-4o-mini";
 
 // r171: the GET health response has always named the default model, which means a
 // plain fetch of this URL says what is DEPLOYED. Nobody used it, and this estate
 // spent days unable to answer "did the deploy land". Now it also carries a build
 // string, so a deploy is verifiable in one request instead of being inferred from
 // marking behaviour. Bump this whenever the worker is changed.
-const WORKER_BUILD = "2026-08-20-r171";
+const WORKER_BUILD = "2026-08-21-r177-legacy-default";
+// R177 safety decision: the paid r176 probe confirmed compact-v2's cost and
+// latency win, but it still produced one invalid broad-case evidence map and
+// fewer passing judgements than legacy. Keep compact explicitly selectable for
+// controlled bench work; normal learner calls omit response_contract and stay
+// on the better-validated legacy path until compact reaches quality parity.
+const DEFAULT_RESPONSE_CONTRACT: ResponseContract = "legacy_v1";
 // The learner-path default. It was set when every call was DeepSeek at about a
 // tenth of a cent, and it silently blocked most of the current-generation models
 // on anything but the smallest menu - Sonnet 5 on the full menu estimates
@@ -212,8 +238,8 @@ function parseAnnotations(raw: string): { annotations: Annotation[]; cleaned: st
 /* The user message is small and varies per attempt.                          */
 /* ------------------------------------------------------------------------- */
 
-function buildSystemPrompt(): string {
-  return `You are an Italian-language teacher marking a student's translation attempt. Your job: return a structured JSON response that attributes each part of the student's attempt to specific skill buckets in a granular taxonomy.
+export function buildSystemPrompt(responseContract: ResponseContract): string {
+  const legacyPrompt = `You are an Italian-language teacher marking a student's translation attempt. Your job: return a structured JSON response that attributes each part of the student's attempt to specific skill buckets in a granular taxonomy.
 
 DIRECTION AWARENESS (critical)
 
@@ -349,11 +375,60 @@ OUTPUT SCHEMA (strict JSON; no markdown, no commentary)
 
 ATTRIBUTION GRAIN
 
-- attempted_credit is 1 when the learner produced a recognisable attempt at this skill, 0 when they didn't engage with it at all, fractional only in rare cases.
+- attempted_credit is binary: 1 when the learner produced a recognisable attempt at this skill, 0 when they didn't engage with it at all.
 - correctness_credit is the proportion correct of what they attempted: 1 = right, 0 = wrong, 0.5 = partly right. Use null when attempted is 0.
-- outcome is "hit" when attempted=1 and correctness=1; "miss" when attempted=1 and correctness<1; "partial" when both are between 0 and 1 in the partial range; "not_attempted" when attempted=0.
+- outcome is "hit" when attempted=1 and correctness=1; "miss" when attempted=1 and correctness=0; "partial" when attempted=1 and correctness is between 0 and 1; "not_attempted" when attempted=0.
 
 Return ONLY the JSON object, no surrounding text.`;
+
+  if (responseContract === "legacy_v1") return legacyPrompt;
+  const outputStart = legacyPrompt.indexOf("OUTPUT SCHEMA (strict JSON; no markdown, no commentary)");
+  if (outputStart < 0) throw new Error("compact prompt splice point missing");
+  // Keep the settled marking policy, but remove the verbose legacy schema and
+  // its conflicting field-by-field outcome instructions. Compact v2 speaks in
+  // aliases/tuples and the worker deterministically restores those fields.
+  const policy = legacyPrompt.slice(0, outputStart)
+    .replace(/7\. Required buckets are mandatory\.[\s\S]*?\n\nACCENT POLICY/, [
+      "7. Required buckets are mandatory. Every role-r alias in the buckets legend MUST appear exactly once in m. Use [alias,0,null,null] only when the learner did not engage it; otherwise score the attempted skill. Do not silently drop a required alias.",
+      "",
+      "ACCENT POLICY",
+    ].join("\n"))
+    .split("bucket_context object").join("buckets legend")
+    .split("bucket_context entries").join("buckets legend entries")
+    .split("bucket_context").join("buckets legend")
+    .split("item.expected_buckets").join("role-e entries in the buckets legend")
+    .split("required_buckets").join("role-r entries")
+    .split("(with bucket_proposed: false or omitted)").join("(as ordinary m rows)")
+    .split('Give the dictionary form in "suggest" - for a verb the infinitive, for a noun the singular.')
+    .join('In a u row, the optional fourth value is a suggested full bucket id; for vocabulary use vocabulary.it.<Italian dictionary lemma>.translation (infinitive for verbs, singular for nouns), or omit it.')
+    .split("the `vocabulary.` namespace on en_it items, described under VOCABULARY PRODUCTION below")
+    .join("unlisted en_it content vocabulary, represented as v:<lemma> and described under VOCABULARY PRODUCTION below")
+    .split("That namespace is dynamic - its buckets aggregate on arrival and are never pre-registered - so vocabulary ids are legitimate even when absent from buckets legend.")
+    .join("Those entries aggregate on arrival and are never pre-registered, so v:<lemma> is legitimate when that vocabulary skill is absent from the buckets legend.")
+    .replace(/If you encounter an error that genuinely doesn't fit any of the provided buckets legend entries, you may propose a new bucket by setting bucket_proposed: true and providing proposed_parent_id \(one of the existing buckets in buckets legend\), proposed_label \(the friendly human-readable name\), and proposed_rationale \(one sentence on why it's worth tracking\)\./,
+      "If you encounter an error that genuinely does not fit the supplied legend, you may use a p proposal entry with an existing parent alias, a safe child slug, a friendly label, and one-sentence rationale.")
+    .replace("Make evidence strings short and concrete", "Use the shortest exact evidence-token span that proves the point")
+    .replace('{ "kind": "accent", "text": "perché carries an acute accent; you wrote perche." }',
+      '["accent", "perché carries an acute accent; you wrote perche."]')
+    .replace(/VOCABULARY PRODUCTION \(en_it\)[\s\S]*?(?=VOCABULARY RECOGNITION \(it_en\))/, `VOCABULARY PRODUCTION (en_it)
+
+On en_it, judge every Italian CONTENT word the learner produced: nouns, verbs, adjectives, adverbs, and lexical locatives. If its vocabulary skill is supplied in the buckets legend, serialize it with that numeric alias. Only for a genuinely unlisted content word, serialize it as v:<Italian dictionary lemma>. Never put a full bucket id in an m tuple.
+
+- Correctly chosen content word: vocabulary HIT. Wrong lexical choice for the intended meaning: vocabulary MISS.
+- Right word in the wrong inflected form: vocabulary HIT plus the relevant GRAMMAR miss; lexical knowledge and formation are separate.
+- The lemma is the NFC, lower-case Italian dictionary form: infinitive for verbs, masculine singular for nouns and adjectives. Never use an English lemma.
+- Proper nouns and function words do not receive vocabulary rows.
+- Judge vocabulary even when the rest of the answer is wrong.
+
+`)
+    .replace(/VOCABULARY RECOGNITION \(it_en\)[\s\S]*?(?=DIRECTION-BOUND SUFFIX)/, `VOCABULARY RECOGNITION (it_en)
+
+On it_en, source-word vocabulary skills are supplied in the buckets legend. Use their numeric aliases: HIT when the learner conveys the meaning, MISS when they skip, misread, or substitute it. Never use v:<lemma> on it_en. Emit an unengaged row only when its legend role is r.
+
+`)
+    .replace(/DIRECTION-BOUND SUFFIX \(Architecture ruling 4, 2026-08-02\)\.[\s\S]*?\n\n(?=BUCKET PROPOSALS)/,
+      "DIRECTION-BOUND SUFFIX (Architecture ruling 4, 2026-08-02). `.passive` is recognition-only and is already encoded in an it_en legend entry. Do not construct, copy, or rewrite that full id; use its numeric alias. On en_it, v:<lemma> always means the bare production skill and never carries `.passive`.\n\n");
+  return policy + compactPromptSchemaText + "\n\nReturn ONLY the JSON object, no surrounding text.";
 }
 
 function inferDirection(item: any): "it_en" | "en_it" {
@@ -366,8 +441,40 @@ function inferDirection(item: any): "it_en" | "en_it" {
   return "en_it";
 }
 
-function buildUserMessage(item: any, cleanedRaw: string, intent: string, annotations: Annotation[], bucketContext: Record<string, { label: string; description?: string }>): string {
+function buildUserMessage(
+  item: any,
+  cleanedRaw: string,
+  intent: string,
+  annotations: Annotation[],
+  bucketContext: Record<string, { label: string; description?: string }>,
+  responseContract: ResponseContract,
+  promptContext: MarkerPromptContext,
+): string {
   const direction = inferDirection(item);
+  if (responseContract === "compact_v2") {
+    return JSON.stringify({
+      item: {
+        direction,
+        source_language: direction === "it_en" ? "it" : "en",
+        target_language: direction === "it_en" ? "en" : "it",
+        source_text: item.source_text,
+        references: item.references || item.reference_translations || [],
+        common_errors: item.common_errors || [],
+        cefr_level_target: item.cefr_level_target,
+        notes: item.notes,
+      },
+      buckets: promptContext.prompt.buckets,
+      learner: {
+        // Keep the natural sentence for comprehension. Token indices remain
+        // the only legal evidence output, so evidence quotations still stay
+        // out of paid generation.
+        attempt: cleanedRaw,
+        evidence_tokens: promptContext.prompt.evidence_tokens,
+        intent,
+        annotations,
+      },
+    });
+  }
   return JSON.stringify({
     item: {
       direction,                                          // "it_en" or "en_it"
@@ -408,30 +515,6 @@ function approxTokens(text: string): number {
 }
 
 /* ------------------------------------------------------------------------- */
-/* Schema validation                                                          */
-/* ------------------------------------------------------------------------- */
-
-function validateMarkerResult(r: any): { ok: boolean; error?: string } {
-  if (!r || typeof r !== "object") return { ok: false, error: "not an object" };
-  if (!r.overall || typeof r.overall !== "object") return { ok: false, error: "missing overall" };
-  if (typeof r.overall.marks_awarded !== "number") return { ok: false, error: "overall.marks_awarded not a number" };
-  if (typeof r.overall.marks_possible !== "number") return { ok: false, error: "overall.marks_possible not a number" };
-  if (!Array.isArray(r.markpoints)) return { ok: false, error: "missing markpoints array" };
-  for (let i = 0; i < r.markpoints.length; i++) {
-    const mp = r.markpoints[i];
-    if (typeof mp.bucket !== "string") return { ok: false, error: `markpoints[${i}].bucket not a string` };
-    if (typeof mp.attempted_credit !== "number") return { ok: false, error: `markpoints[${i}].attempted_credit not a number` };
-    if (mp.correctness_credit !== null && typeof mp.correctness_credit !== "number") {
-      return { ok: false, error: `markpoints[${i}].correctness_credit must be number or null` };
-    }
-    if (!["hit", "miss", "partial", "not_attempted"].includes(mp.outcome)) {
-      return { ok: false, error: `markpoints[${i}].outcome invalid: ${mp.outcome}` };
-    }
-  }
-  return { ok: true };
-}
-
-/* ------------------------------------------------------------------------- */
 /* Response helpers                                                           */
 /* ------------------------------------------------------------------------- */
 
@@ -449,8 +532,47 @@ function jsonResp(status: number, body: any): Response {
   });
 }
 
-function errorResp(status: number, error: string, detail: string): Response {
-  return jsonResp(status, { error, detail });
+function errorResp(status: number, error: string, detail: string, metadata?: Record<string, unknown>): Response {
+  return jsonResp(status, { error, detail, ...(metadata || {}) });
+}
+
+async function sha256Hex(text: string): Promise<string> {
+  const bytes = new TextEncoder().encode(text);
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest), b => b.toString(16).padStart(2, "0")).join("");
+}
+
+function usageMetadata(
+  apiBody: any,
+  model: string,
+  responseContract: ResponseContract,
+  promptSha256: string,
+  includeDiagnostics: boolean,
+  rawModelOutput?: string,
+): Record<string, unknown> {
+  const choice = apiBody?.choices?.[0];
+  const inputTokens = apiBody?.usage?.prompt_tokens ?? apiBody?.usage?.input_tokens ?? null;
+  const outputTokens = apiBody?.usage?.completion_tokens ?? apiBody?.usage?.output_tokens ?? null;
+  const costKnown = typeof inputTokens === "number" && Number.isFinite(inputTokens) && inputTokens >= 0 &&
+    typeof outputTokens === "number" && Number.isFinite(outputTokens) && outputTokens >= 0;
+  const metadata: Record<string, unknown> = {
+    usage: { input_tokens: inputTokens, output_tokens: outputTokens },
+    cost_usd: costKnown ? estimateCostUsd(model, inputTokens, outputTokens) : null,
+    cost_known: costKnown,
+    model_used: model,
+    worker_build: WORKER_BUILD,
+    response_contract_requested: responseContract,
+    prompt_sha256: promptSha256,
+    max_output_tokens: MAX_OUTPUT_TOKENS,
+    finish_reason: choice?.finish_reason ?? null,
+    native_finish_reason: choice?.native_finish_reason ?? null,
+  };
+  if (includeDiagnostics) {
+    metadata.diagnostics = {
+      raw_model_output: typeof rawModelOutput === "string" ? rawModelOutput : null,
+    };
+  }
+  return metadata;
 }
 
 /* ------------------------------------------------------------------------- */
@@ -464,7 +586,15 @@ export default {
     }
     if (req.method === "GET") {
       // Simple health check
-      return jsonResp(200, { ok: true, service: "linguics-marker", build: WORKER_BUILD, default_model: DEFAULT_MODEL });
+      return jsonResp(200, {
+        ok: true,
+        service: "linguics-marker",
+        build: WORKER_BUILD,
+        default_model: DEFAULT_MODEL,
+        default_response_contract: DEFAULT_RESPONSE_CONTRACT,
+        supported_response_contracts: ["compact_v2", "legacy_v1"],
+        max_output_tokens: MAX_OUTPUT_TOKENS,
+      });
     }
     if (req.method !== "POST") {
       return errorResp(405, "method_not_allowed", "Use POST /mark");
@@ -492,6 +622,11 @@ export default {
     if (!MODEL_PRICING[model]) {
       return errorResp(400, "model_unsupported", `Unknown model: ${model}. Known models: ${Object.keys(MODEL_PRICING).join(", ")}`);
     }
+    const responseContract = body.response_contract || DEFAULT_RESPONSE_CONTRACT;
+    if (responseContract !== "compact_v2" && responseContract !== "legacy_v1") {
+      return errorResp(400, "response_contract_unsupported",
+        `Unknown response_contract: ${String(body.response_contract)}. Use compact_v2 or legacy_v1.`);
+    }
 
     // Parse annotations out of the raw input
     const { annotations, cleaned } = parseAnnotations(body.raw);
@@ -499,8 +634,36 @@ export default {
     const bucketContext = body.bucket_context || {};
 
     // Build prompts
-    const systemPrompt = buildSystemPrompt();
-    const userMessage = buildUserMessage(body.item, cleaned, intent, annotations, bucketContext);
+    let promptContext: MarkerPromptContext;
+    try {
+      promptContext = buildMarkerPromptContext({
+        item: body.item,
+        cleanedRaw: cleaned,
+        bucketContext,
+        direction: inferDirection(body.item),
+      });
+    } catch (error: any) {
+      const code = error instanceof MarkerContractError ? error.code : "marker_context_invalid";
+      return errorResp(400, code, error?.message || String(error), {
+        usage: { input_tokens: 0, output_tokens: 0 },
+        cost_usd: 0,
+        cost_known: true,
+        model_used: model,
+        worker_build: WORKER_BUILD,
+        response_contract_requested: responseContract,
+      });
+    }
+    const systemPrompt = buildSystemPrompt(responseContract);
+    const userMessage = buildUserMessage(
+      body.item,
+      cleaned,
+      intent,
+      annotations,
+      bucketContext,
+      responseContract,
+      promptContext,
+    );
+    const promptSha256 = await sha256Hex(systemPrompt + "\u0000" + userMessage);
 
     // Cost cap pre-check (estimate worst-case output)
     const estInput = approxTokens(systemPrompt + userMessage);
@@ -516,7 +679,16 @@ export default {
         `Estimated $${estCost.toFixed(4)} for ${model} on ~${estInput} input tokens ` +
         `(+ up to ${MAX_OUTPUT_TOKENS} output) exceeds the $${cap.toFixed(2)} ceiling for this call. ` +
         `Send a smaller bucket_context, pick a cheaper model, or raise max_cost_usd ` +
-        `(hard ceiling $${HARD_COST_CEILING_USD.toFixed(2)}).`);
+        `(hard ceiling $${HARD_COST_CEILING_USD.toFixed(2)}).`, {
+          usage: { input_tokens: 0, output_tokens: 0 },
+          cost_usd: 0,
+          cost_known: true,
+          model_used: model,
+          worker_build: WORKER_BUILD,
+          response_contract_requested: responseContract,
+          prompt_sha256: promptSha256,
+          max_output_tokens: MAX_OUTPUT_TOKENS,
+        });
     }
 
     // Diagnostic: confirm the secret is loaded. Prints to `wrangler tail` only.
@@ -527,9 +699,16 @@ export default {
     const apiKey = (env.OPENROUTER_API_KEY || "").trim();
     if (!apiKey) {
       console.error("OPENROUTER_API_KEY is missing or empty after trim");
-      return errorResp(500, "config_error", "OPENROUTER_API_KEY secret not loaded. Run `wrangler secret put OPENROUTER_API_KEY` from the worker/ directory and redeploy.");
+      return errorResp(500, "config_error", "OPENROUTER_API_KEY secret not loaded. Run `wrangler secret put OPENROUTER_API_KEY` from the worker/ directory and redeploy.", {
+        cost_usd: 0,
+        cost_known: true,
+        model_used: model,
+        worker_build: WORKER_BUILD,
+        response_contract_requested: responseContract,
+        prompt_sha256: promptSha256,
+      });
     }
-    console.log(`Key prefix: ${apiKey.slice(0, 8)}, length: ${apiKey.length}; model: ${model}`);
+    console.log(`OpenRouter marker request; model: ${model}; contract: ${responseContract}`);
 
     // Call OpenRouter
     let apiRes: Response;
@@ -564,23 +743,53 @@ export default {
         }),
       });
     } catch (e: any) {
-      return errorResp(502, "upstream_error", `Network error to OpenRouter: ${e.message}`);
+      return errorResp(502, "upstream_error", `Network error to OpenRouter: ${e.message}`, {
+        cost_usd: null,
+        cost_known: false,
+        model_used: model,
+        worker_build: WORKER_BUILD,
+        response_contract_requested: responseContract,
+        prompt_sha256: promptSha256,
+      });
     }
 
     if (!apiRes.ok) {
       const errText = await apiRes.text();
       return errorResp(apiRes.status === 429 ? 429 : 502, "upstream_error",
-        `OpenRouter ${apiRes.status}: ${errText.slice(0, 300)}`);
+        `OpenRouter ${apiRes.status}: ${errText.slice(0, 300)}`, {
+          cost_usd: null,
+          cost_known: false,
+          model_used: model,
+          worker_build: WORKER_BUILD,
+          response_contract_requested: responseContract,
+          prompt_sha256: promptSha256,
+          upstream_http_status: apiRes.status,
+        });
     }
 
     let apiBody: any;
     try {
       apiBody = await apiRes.json();
     } catch (e) {
-      return errorResp(502, "malformed_response", "OpenRouter returned non-JSON");
+      return errorResp(502, "malformed_response", "OpenRouter returned non-JSON", {
+        cost_usd: null,
+        cost_known: false,
+        model_used: model,
+        worker_build: WORKER_BUILD,
+        response_contract_requested: responseContract,
+        prompt_sha256: promptSha256,
+      });
     }
 
     const content = apiBody?.choices?.[0]?.message?.content;
+    const usage = usageMetadata(
+      apiBody,
+      model,
+      responseContract,
+      promptSha256,
+      body.include_diagnostics === true,
+      typeof content === "string" ? content : undefined,
+    );
     if (!content || typeof content !== "string") {
       // "missing content" on its own is undebuggable. Surface whatever the
       // upstream actually said: its error object, the finish_reason (length =
@@ -596,7 +805,7 @@ export default {
         !ch ? "no choices[] in response; keys=" + Object.keys(apiBody || {}).join(",") : null,
       ].filter(Boolean);
       return errorResp(502, "malformed_response",
-        "OpenRouter response had no content" + (bits.length ? " — " + bits.join("; ") : ""));
+        "OpenRouter response had no content" + (bits.length ? " — " + bits.join("; ") : ""), usage);
     }
 
     // Parse the model's JSON output. Models (e.g. DeepSeek) often wrap the JSON
@@ -629,37 +838,30 @@ export default {
         if (finishReason === "length") {
           return errorResp(502, "output_truncated",
             `The answer was cut off at max_tokens (${MAX_OUTPUT_TOKENS}), so its JSON is incomplete. ` +
-            `This is our output cap, not a marking failure. Received ${content.length} characters.`);
+            `This is our output cap, not a marking failure. Received ${content.length} characters.`, usage);
         }
         return errorResp(502, "malformed_json",
           `Model output not valid JSON: ${e.message}. finish_reason=${finishReason ?? "unknown"}. ` +
-          `First 200 chars: ${content.slice(0, 200)}`);
+          `First 200 chars: ${content.slice(0, 200)}`, usage);
       }
     }
 
-    // Validate against our schema
-    const validation = validateMarkerResult(result);
-    if (!validation.ok) {
+    const markerFormatUsed = result && result.v === 2 ? "compact_v2" : "legacy_v1";
+    try {
+      result = normalizeModelResult(result, promptContext);
+    } catch (error: any) {
       return errorResp(502, "schema_invalid",
-        `Model output failed schema check: ${validation.error}`);
+        `Model output failed schema check: ${error?.message || String(error)}`, {
+          ...usage,
+          marker_format_used: markerFormatUsed,
+          schema_error_code: error instanceof MarkerContractError ? error.code : "schema_invalid",
+        });
     }
-
-    // Ensure raw_response is set (model might not include it; we have authoritative source)
-    if (!result.raw_response) result.raw_response = cleaned;
-
-    // Compute actual cost
-    const inputTokens = apiBody.usage?.prompt_tokens || apiBody.usage?.input_tokens || estInput;
-    const outputTokens = apiBody.usage?.completion_tokens || apiBody.usage?.output_tokens || 0;
-    const cost = estimateCostUsd(model, inputTokens, outputTokens);
 
     return jsonResp(200, {
       result,
-      usage: {
-        input_tokens: inputTokens,
-        output_tokens: outputTokens,
-      },
-      cost_usd: cost,
-      model_used: model,
+      ...usage,
+      marker_format_used: markerFormatUsed,
     });
   },
 };

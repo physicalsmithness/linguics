@@ -49,11 +49,17 @@ def main():
     print("LL_BUILD %s -> %s" % (cur, new))
     for page in PAGES:
         if not page.exists(): continue
-        t = page.read_text(encoding="utf-8")
+        original = page.read_text(encoding="utf-8")
+        # Visible build labels and any already-versioned asset URLs must move
+        # with LL_BUILD. Previously only selected asset URLs changed, leaving
+        # selftest/record visibly claiming the preceding build.
+        t = original.replace(cur, new)
+        t = re.sub(r'(Build <b(?: id="buildid")?>)\d{4}-\d{2}-\d{2}-r\d+(</b>)',
+                   lambda m: m.group(1) + new + m.group(2), t)
         # version any local js/ or css/ asset, whether or not it already has ?v=
         t2 = re.sub(r'(src|href)="((?:js|css)/[^"?]+)(\?v=[^"]*)?"',
                     lambda m: '%s="%s?v=%s"' % (m.group(1), m.group(2), new), t)
-        if t2 != t:
+        if t2 != original:
             page.write_text(t2, encoding="utf-8")
             print("  versioned", page.relative_to(ROOT))
     print("\nRemember: a stale-asset symptom is now a BUG, not an explanation. "

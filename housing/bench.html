@@ -137,6 +137,18 @@
       <select id="mode"></select>
     </div>
   </div>
+  <div class="row">
+    <div>
+      <label for="contract">Model response contract <span style="opacity:.7">(same browser result, different generated JSON)</span></label>
+      <select id="contract">
+        <option value="compact_v2" selected>compact_v2 — aliases, tuples, evidence spans</option>
+        <option value="legacy_v1">legacy_v1 — repeated ids, labels and fields</option>
+      </select>
+    </div>
+    <div class="note" style="align-self:end;margin-bottom:8px">
+      Use this for the lossless A/B. Compact is the live default; legacy remains available as the control arm.
+    </div>
+  </div>
   <div class="note" id="modeSize">—</div>
 </div>
 
@@ -169,10 +181,11 @@
 
 <div id="log"></div>
 
-<script src="js/norm.js?v=2026-08-20-r173"></script>
-<script src="js/store.js?v=2026-08-20-r173"></script>
-<script src="js/translation_stub.js?v=2026-08-20-r173"></script>
-<script src="js/translation_marker.js?v=2026-08-20-r173"></script>
+<script src="js/norm.js?v=2026-08-21-r175"></script>
+<script src="js/store.js?v=2026-08-21-r175"></script>
+<script src="js/translation_stub.js?v=2026-08-21-r175"></script>
+<script src="js/translation_marker.js?v=2026-08-21-r175"></script>
+<script src="js/marker_suite.js?v=2026-08-21-r175"></script>
 <script>
 (function () {
   "use strict";
@@ -189,6 +202,47 @@
   // Translation items key on external_id; none of the 875 carry a plain `id`
   // (pulse.js:127 already falls back the same way, so the pulse rows join fine).
   const itemId = it => (it && (it.external_id || it.id)) || "";
+
+  function suiteOptions(mode) {
+    return {
+      mode: mode || ($("mode") && $("mode").value) || "none",
+      getItem: byId_item,
+      canonicalizeBucketId: function (bucketId, context) {
+        if (typeof LL.resolveVocabVariant !== "function") return bucketId;
+        const it = context && context.item;
+        const direction = it && typeof LL.inferDirection === "function" ? LL.inferDirection(it) : "en_it";
+        return LL.resolveVocabVariant(bucketId, direction);
+      },
+      isFireableBucket: function (bucketId, context) {
+        const it = context && context.item;
+        if (!it) return "loaded item unavailable";
+        const direction = typeof LL.inferDirection === "function" ? LL.inferDirection(it) : "en_it";
+        if (direction === "en_it" && String(bucketId).indexOf("vocabulary.it.") === 0) return true;
+        const ctx = LL.buildBucketContext(it, byId, { menuMode: (context && context.mode) || "none" });
+        return Object.prototype.hasOwnProperty.call(ctx, bucketId)
+          ? true : "bucket is absent from the actual " + ((context && context.mode) || "none") + " context";
+      },
+    };
+  }
+
+  function suitePreflight(mode) {
+    if (!cases || !LL.markerSuite) return { ok: false, errors: [{ message: "marker-suite module or cases unavailable" }] };
+    return LL.markerSuite.validateSuite(cases, suiteOptions(mode));
+  }
+
+  function preflightMessage(result) {
+    return (result.errors || []).slice(0, 8).map(function (e) {
+      return (e.case_id ? e.case_id + ": " : "") + e.message;
+    }).join(" · ");
+  }
+
+  async function sha256Text(value) {
+    const bytes = new TextEncoder().encode(String(value));
+    const digest = await crypto.subtle.digest("SHA-256", bytes);
+    return Array.from(new Uint8Array(digest), function (b) {
+      return b.toString(16).padStart(2, "0");
+    }).join("");
+  }
 
   /* ------------------------------------------------------------- loading */
   function dataBase() {
@@ -220,16 +274,29 @@
       } catch (e) {}
     }));
     byId = LL.store.indexBuckets(buckets).byId;
+    // Direction filtering consults the canonical bucket attributes through
+    // this shared index. The live app sets it; the old bench did not, so IT→EN
+    // recognition grammar silently vanished and the bench exercised a
+    // different request from production.
+    LL.bucketsById = byId;
     try { LL.markerMenu = await jget("translation_marker_bucket_menu.json"); } catch (e) {}
-    try { LL.vocabEntries = await jget("vocabulary_it_frequency.json"); } catch (e) {}
+    try {
+      LL.vocabEntries = await jget("vocabulary_it_frequency.json");
+      if (typeof LL.indexEntries === "function") LL.indexEntries(LL.vocabEntries);
+    } catch (e) {}
     try {
       cases = await jget("marker_expectation_cases.json");
       if (cases && Array.isArray(cases.cases) && cases.cases.length) {
-        $("suite").disabled = false;
-        $("suiteAll").disabled = false;
-        $("suite").textContent = "Run expectation suite (" + cases.cases.length + ")";
-        $("suiteAll").textContent = "Run suite on EVERY model (" +
-          ((LL.AVAILABLE_MODELS || []).length) + " models \u00d7 " + cases.cases.length + ")";
+        const checked = suitePreflight($("mode").value);
+        if (!checked.ok) {
+          $("err").textContent = "Expectation suite is BROKEN; no model calls will be made. " + preflightMessage(checked);
+        } else {
+          $("suite").disabled = false;
+          $("suiteAll").disabled = false;
+          $("suite").textContent = "Run expectation suite (" + cases.cases.length + ")";
+          $("suiteAll").textContent = "Run suite on EVERY model (" +
+            ((LL.AVAILABLE_MODELS || []).length) + " models \u00d7 " + cases.cases.length + ")";
+        }
       }
     } catch (e) { cases = null; }
     $("status").innerHTML = items.length + " translation items and " +
@@ -366,17 +433,28 @@
       ? answerOverride : $("ans").value;
     if (!itemOverride) localStorage.setItem(ANS_KEY, answer);
     const ctx = LL.buildBucketContext(it, byId, { menuMode: mode });
+    const requestedContextSha256 = await sha256Text(JSON.stringify(ctx));
     const t0 = Date.now();
     let temp = parseFloat($("temp").value);
     if (!(temp >= 0)) temp = 0;
+    const responseContract = $("contract").value || "compact_v2";
     const payload = await LL.markTranslationLive(it, answer, "literal", {
       url: $("url").value.trim() || undefined,
       model: modelOverride || $("model").value || undefined,
       temperature: temp,
       maxCostUsd: (function () { const v = parseFloat($("cap").value); return (v > 0) ? v : undefined; })(),
       bucketContext: ctx,
+      responseContract: responseContract,
+      includeDiagnostics: true,
     });
-    const r = payload.result || {};
+    // Keep the provider/worker result intact for diagnosis, then judge the same
+    // canonical vocabulary ids that the live app persists. The old bench skipped
+    // this client post-processing and therefore tested a different system.
+    const providerResult = payload.result || {};
+    const r = JSON.parse(JSON.stringify(providerResult));
+    if (typeof LL.resolveVocabInMarkpoints === "function" && typeof LL.inferDirection === "function") {
+      r.markpoints = LL.resolveVocabInMarkpoints(r.markpoints, LL.inferDirection(it));
+    }
     const mps = (r.markpoints || []).filter(m => !m.suppress_display);
     // The worker's schema is overall.{marks_awarded,summary,explanation} +
     // markpoints[].{label,outcome,attempted_credit,correctness_credit,expected}
@@ -389,14 +467,23 @@
       when: new Date().toISOString(),
       mode: mode,
       temp: temp,
+      responseContract: responseContract,
+      markerFormatUsed: payload.marker_format_used || payload.response_contract_requested || "",
       model: payload.model_used || $("model").value || "default",
+      workerBuild: payload.worker_build || "",
+      promptSha256: payload.prompt_sha256 || "",
+      maxOutputTokens: payload.max_output_tokens || null,
+      finishReason: payload.finish_reason || null,
       item: itemId(it),
       answer: answer,
       ctxBuckets: Object.keys(ctx).length,
       ctxChars: JSON.stringify(ctx).length,
-      inTok: (payload.usage || {}).input_tokens || null,
-      outTok: (payload.usage || {}).output_tokens || null,
-      cost: payload.cost_usd || null,
+      requestedContextSha256: requestedContextSha256,
+      clientRequestMeta: payload.client_request_meta || {},
+      inTok: typeof (payload.usage || {}).input_tokens === "number" ? payload.usage.input_tokens : null,
+      outTok: typeof (payload.usage || {}).output_tokens === "number" ? payload.usage.output_tokens : null,
+      cost: typeof payload.cost_usd === "number" ? payload.cost_usd : null,
+      costKnown: payload.cost_known === true,
       ms: Date.now() - t0,
       hits: +credit.toFixed(2),
       n: mps.length,
@@ -416,6 +503,8 @@
         cc: m.correctness_credit,
       })),
       raw: r,
+      rawProvider: providerResult,
+      rawModelOutput: payload.diagnostics && payload.diagnostics.raw_model_output,
     };
   }
 
@@ -426,7 +515,7 @@
   // it's not in terms of the model not being intelligent enough, is that we
   // don't use that model."
   let cases = null;
-  const SUITE_KEY = "ll_suite_results_v1";
+  const SUITE_KEY = "ll_suite_results_v2";
 
   // r168. This was `toLowerCase().replace(/\s+/g," ").trim()`, its own private
   // normaliser, and it was WRONG for the job: the engine's LL.norm also folds
@@ -442,20 +531,14 @@
 
   function judgeCase(c, run) {
     const mps = run.mps || [];
-    const found = {};
-    for (const m of mps) found[m.b] = m;
-    const missing = [], wrong = [], invented = [], checks = [];
-
-    for (const b of Object.keys(c.expect_verdict || {})) {
-      const want = c.expect_verdict[b];
-      const got = found[b];
-      if (!got) missing.push(b + " (wanted " + want + ")");
-      else if (got.v !== want) wrong.push(b + ": got " + got.v + ", wanted " + want);
-    }
-    for (const b of (c.expect_absent || [])) {
-      if (found[b]) invented.push(b + " (claimed " + found[b].v + ")");
-    }
-    // runner_checks, applied to output only
+    const judged = LL.markerSuite.judgeCase(
+      c,
+      { marker_result_canonical: run.raw },
+      suiteOptions(run.mode)
+    );
+    const checks = [];
+    // Output hygiene is reported beside, but never folded into, the semantic
+    // verdict. Compact evidence spans should make the first check exact.
     const ans = norm(c.answer);
     for (const m of mps) {
       if (m.e && m.v !== "not_attempted" && ans.indexOf(norm(m.e)) < 0) {
@@ -471,33 +554,93 @@
     // quoted its evidence in a slightly different form. Expectations and output
     // hygiene are different questions and are now reported separately: `pass` is
     // the marking judgement, `hygiene` is whether the output was well-formed.
-    return {
-      item: c.item,
-      case_id: c.id || c.case_id || (c.item + "#" + (c.answer || "").slice(0, 24)),
-      missing, wrong, invented, checks,
-      pass: !missing.length && !wrong.length && !invented.length,
+    return Object.assign({}, judged, {
+      checks: checks,
       hygiene: !checks.length,
-      marks: run.marks, n: run.n, cost: run.cost, ms: run.ms
-    };
+      marks: run.marks, n: run.n, cost: run.cost, ms: run.ms,
+      cost_known: run.costKnown === true,
+      usage: { input_tokens: run.inTok, output_tokens: run.outTok },
+      inTok: run.inTok, outTok: run.outTok,
+      responseContract: run.responseContract,
+      markerFormatUsed: run.markerFormatUsed,
+      workerBuild: run.workerBuild,
+      promptSha256: run.promptSha256,
+      requestedContextSha256: run.requestedContextSha256,
+      clientRequestMeta: run.clientRequestMeta,
+      maxOutputTokens: run.maxOutputTokens,
+      finishReason: run.finishReason,
+      marker_result_raw: run.raw,
+      marker_result_provider: run.rawProvider,
+      raw_model_output: run.rawModelOutput,
+      notes: run.notes,
+    });
   }
 
   async function runSuite(modelOverride, quiet) {
     $("err").textContent = "";
     if (!cases) { $("err").textContent = "No case file loaded (data/marker_expectation_cases.json)."; return; }
+    const mode = $("mode").value;
+    const checked = suitePreflight(mode);
+    if (!checked.ok) {
+      $("err").textContent = "Expectation suite is BROKEN; no model calls were made. " + preflightMessage(checked);
+      return { status: "broken", preflight: checked, results: [] };
+    }
     const btns = ["run", "runAll", "suite", "suiteAll"];
     if (!quiet) btns.forEach(b => { if ($(b)) $(b).disabled = true; });
-    const mode = $("mode").value;
     const model = modelOverride || $("model").value || "default";
-    const out = { when: new Date().toISOString(), model: model, mode: mode, results: [] };
+    const responseContract = $("contract").value || "compact_v2";
+    const suiteSha256 = await sha256Text(JSON.stringify(cases));
+    const itemSnapshot = cases.cases.map(function (c) { return byId_item(c.item); });
+    const caseItemSnapshotSha256 = await sha256Text(JSON.stringify(itemSnapshot));
+    const out = {
+      when: new Date().toISOString(),
+      model: model,
+      mode: mode,
+      response_contract: responseContract,
+      temperature: (function () { const v = parseFloat($("temp").value); return v >= 0 ? v : 0; })(),
+      suite_version: cases.version || cases.$version || null,
+      suite_sha256: suiteSha256,
+      case_item_snapshot_sha256: caseItemSnapshotSha256,
+      client_build: "bench-2026-08-21-r175",
+      results: []
+    };
     try {
       for (const c of cases.cases) {
         const it = byId_item(c.item);
-        if (!it) { out.results.push({ item: c.item, pass: false, missing: ["ITEM NOT FOUND in the loaded corpus"], wrong: [], invented: [], checks: [] }); continue; }
+        if (!it) {
+          out.results.push({ item: c.item, case_id: c.case_id, status: "broken", scored: false, pass: false,
+            missing: ["ITEM NOT FOUND in the loaded corpus"], wrong: [], invented: [], checks: [] });
+          continue;
+        }
+        const callStarted = Date.now();
         try {
           const run = await runOnce(mode, it, c.answer, modelOverride);
           out.results.push(judgeCase(c, run));
         } catch (e) {
-          out.results.push({ item: c.item, pass: false, missing: ["call failed: " + e.message], wrong: [], invented: [], checks: [] });
+          const p = (e && e.markerPayload) || {};
+          out.results.push({
+            item: c.item,
+            case_id: c.case_id || c.id || (c.item + "#" + (c.answer || "").slice(0, 24)),
+            status: "call_error",
+            scored: false,
+            pass: false,
+            missing: ["call failed: " + ((e && e.message) || String(e))],
+            wrong: [], invented: [], checks: [],
+            error_code: (e && e.code) || p.error || "call_error",
+            http_status: (e && e.status) || null,
+            raw_response_text: (e && e.rawResponseText) || "",
+            usage: p.usage || null,
+            inTok: p.usage && p.usage.input_tokens,
+            outTok: p.usage && p.usage.output_tokens,
+            cost: (typeof p.cost_usd === "number") ? p.cost_usd : null,
+            cost_known: p.cost_known === true,
+            ms: Date.now() - callStarted,
+            workerBuild: p.worker_build || "",
+            promptSha256: p.prompt_sha256 || "",
+            markerFormatUsed: p.marker_format_used || p.response_contract_requested || responseContract,
+            clientRequestMeta: p.client_request_meta || {},
+            rawModelOutput: p.diagnostics && p.diagnostics.raw_model_output,
+          });
         }
       }
       const prev = readSuite();
@@ -577,47 +720,59 @@
     // One row per model, newest run of each. The comparison Smith asked for.
     const seen = {}, league = [];
     for (const r of all) {
-      const k = r.model + "\u0000" + r.mode;
+      const k = r.model + "\u0000" + r.mode + "\u0000" + (r.response_contract || "legacy_v1");
       if (seen[k]) continue;
       seen[k] = 1;
       const passed = r.results.filter(x => x.pass).length;
-      const failedCall = r.results.filter(x => (x.missing || []).some(m => /call failed/.test(m))).length;
-      league.push({ model: r.model, mode: r.mode, passed: passed, n: r.results.length,
-                    dead: failedCall,
+      const scored = r.results.filter(x => x.scored === true || x.status === "pass" || x.status === "fail").length;
+      const failedCall = r.results.filter(x => x.status === "call_error").length;
+      const manual = r.results.filter(x => x.status === "manual").length;
+      const broken = r.results.filter(x => x.status === "broken").length;
+      const unknownCost = r.results.filter(x => typeof x.cost !== "number").length;
+      league.push({ model: r.model, mode: r.mode, contract: r.response_contract || "legacy_v1", passed: passed, scored: scored,
+                    dead: failedCall, manual: manual, broken: broken, unknownCost: unknownCost,
                     cost: r.results.reduce((a, x) => a + (x.cost || 0), 0),
                     secs: r.results.reduce((a, x) => a + (x.ms || 0), 0) / 1000, when: r.when });
     }
-    league.sort((a, b) => (b.passed / (b.n || 1)) - (a.passed / (a.n || 1)));
+    league.sort((a, b) => (b.passed / (b.scored || 1)) - (a.passed / (a.scored || 1)));
     const leagueHtml = league.length < 2 ? "" :
       '<div class="panel"><h2>Every model, same cases</h2>' +
-      '<table><thead><tr><th>model</th><th>naming list</th><th>passed</th><th>calls that returned nothing</th>' +
-      '<th>total cost US$</th><th>total seconds</th></tr></thead><tbody>' +
+      '<table><thead><tr><th>model</th><th>naming list</th><th>contract</th><th>right / scored</th><th>manual</th><th>broken</th><th>calls that returned nothing</th>' +
+      '<th>recorded cost US$</th><th>unknown-cost calls</th><th>total seconds</th></tr></thead><tbody>' +
       league.map(function (x) {
         return '<tr><td><code>' + esc(x.model) + '</code></td><td>' + esc(x.mode) + '</td>' +
-          '<td><b>' + x.passed + ' of ' + x.n + '</b></td>' +
+          '<td><code>' + esc(x.contract) + '</code></td>' +
+          '<td><b>' + x.passed + ' of ' + x.scored + '</b></td>' +
+          '<td>' + (x.manual || '\u2014') + '</td><td>' + (x.broken || '\u2014') + '</td>' +
           '<td>' + (x.dead ? '<b style="color:#a33">' + x.dead + '</b>' : '\u2014') + '</td>' +
-          '<td>$' + x.cost.toFixed(4) + '</td><td>' + x.secs.toFixed(1) + '</td></tr>';
+          '<td>$' + x.cost.toFixed(4) + '</td><td>' + (x.unknownCost || '\u2014') + '</td><td>' + x.secs.toFixed(1) + '</td></tr>';
       }).join("") + '</tbody></table>' +
       '<div class="note">A model that returned nothing is not a bad marker \u2014 it is a call that never happened. Fix that before reading its score.</div></div>';
     host.innerHTML = leagueHtml + all.map(function (r) {
       const passed = r.results.filter(x => x.pass).length;
+      const scored = r.results.filter(x => x.scored === true || x.status === "pass" || x.status === "fail").length;
       const rows = r.results.map(function (x) {
         const faults = []
-          .concat(x.missing.map(t => ["not fired", t]))
-          .concat(x.wrong.map(t => ["wrong verdict", t]))
-          .concat(x.invented.map(t => ["should not appear", t]))
-          .concat(x.checks.map(t => ["check", t]));
+          .concat((x.missing || []).map(t => ["not fired", t]))
+          .concat((x.wrong || []).map(t => ["wrong verdict", t]))
+          .concat((x.invented || []).map(t => ["should not appear", t]))
+          .concat((x.rule_failures || []).map(t => ["rule", t]))
+          .concat((x.checks || []).map(t => ["hygiene", t]))
+          .concat((x.manual_review || []).map(t => ["manual", t.text || t]));
         // r168: hygiene shown beside the verdict, not folded into it. "pass, untidy"
         // means the marking was right and the output was merely awkwardly quoted.
-        const verdict = x.pass
+        const verdict = x.status === "pass"
           ? '<b style="color:#2f7d43">pass</b>' + (x.hygiene === false ? '<span class="muted">, untidy</span>' : '')
+          : x.status === "manual" ? '<b style="color:#8a5a2b">manual</b>'
+          : x.status === "broken" ? '<b style="color:#7a4a7a">broken case</b>'
+          : x.status === "call_error" ? '<b style="color:#7a7268">call error</b>'
           : '<b style="color:#a33">fail</b>';
         return '<tr><td><code>' + esc(x.item) + '</code></td>' +
           '<td>' + verdict + '</td>' +
           '<td>' + (faults.length ? faults.map(f => '<div><span class="mode">' + f[0] + '</span> ' + esc(f[1]) + '</div>').join("") : '<span class="muted">\u2014</span>') + '</td></tr>';
       }).join("");
-      return '<div class="panel"><h2>' + esc(r.model) + ' \u00b7 ' + esc(r.mode) + '</h2>' +
-        '<div class="note">' + passed + ' of ' + r.results.length + ' cases passed \u00b7 ' + esc(r.when.slice(0, 16).replace("T", " ")) + '</div>' +
+      return '<div class="panel"><h2>' + esc(r.model) + ' \u00b7 ' + esc(r.mode) + ' \u00b7 ' + esc(r.response_contract || "legacy_v1") + '</h2>' +
+        '<div class="note">' + passed + ' of ' + scored + ' automatically scored cases passed \u00b7 ' + esc(r.when.slice(0, 16).replace("T", " ")) + '</div>' +
         '<table><thead><tr><th>case</th><th>result</th><th>what went wrong</th></tr></thead><tbody>' +
         rows + '</tbody></table></div>';
     }).join("");
@@ -701,7 +856,8 @@
     for (const [ik, runs] of byItem) {
       const byCell = new Map();
       for (const r of runs) {
-        const k = r.mode + "\u0000" + (r.model || "?") + "\u0000" + (r.temp == null ? "?" : r.temp);
+        const k = r.mode + "\u0000" + (r.model || "?") + "\u0000" +
+          (r.temp == null ? "?" : r.temp) + "\u0000" + (r.responseContract || "legacy_v1");
         if (!byCell.has(k)) byCell.set(k, []);
         byCell.get(k).push(r);
       }
@@ -712,14 +868,15 @@
       const rows = order.map(k => {
         const a = byCell.get(k), parts = k.split("\u0000");
         return {
-          mode: parts[0], model: parts[1], temp: parts[2], n: a.length,
+          mode: parts[0], model: parts[1], temp: parts[2], contract: parts[3], n: a.length,
           mps: mean(a, r => r.n), hits: mean(a, r => r.hits), vocab: mean(a, r => r.vocab),
-          tok: mean(a, r => r.inTok), cost: mean(a, r => r.cost), sec: mean(a, r => r.ms / 1000),
+          tok: mean(a, r => r.inTok), out: mean(a, r => r.outTok),
+          cost: mean(a, r => r.cost), sec: mean(a, r => r.ms / 1000),
           spread: a.length > 1 ? (Math.max.apply(null, a.map(r => r.n)) - Math.min.apply(null, a.map(r => r.n))) : null,
         };
       });
       const mx = key => Math.max.apply(null, rows.map(r => r[key] || 0));
-      const M = { mps: mx("mps"), hits: mx("hits"), vocab: mx("vocab"), tok: mx("tok"),
+      const M = { mps: mx("mps"), hits: mx("hits"), vocab: mx("vocab"), tok: mx("tok"), out: mx("out"),
                   cost: mx("cost"), sec: mx("sec"), spread: mx("spread") };
       const nRows = rows.length;
       const cell = (v, key, hue, dp) =>
@@ -729,16 +886,17 @@
       tables.push('<div class="panel"><h2>' + esc(bits[0]) + '</h2>' +
         '<div class="note" style="margin:-6px 0 10px">answer: \u201c' + esc(bits[1]) + '\u201d</div>' +
         '<table class="agg">' +
-        '<tr><th>Naming list</th><th>model</th><th>temp</th><th>runs</th><th>skills<br>returned</th>' +
+        '<tr><th>Naming list</th><th>model</th><th>temp</th><th>contract</th><th>runs</th><th>skills<br>returned</th>' +
         '<th>credit<br>earned</th><th>vocab<br>markpoints</th><th>spread<br>(max\u2212min)</th>' +
-        '<th>input<br>tokens</th><th>cost<br>US$</th><th>seconds</th></tr>' +
+        '<th>input<br>tokens</th><th>output<br>tokens</th><th>cost<br>US$</th><th>seconds</th></tr>' +
         rows.map(r =>
           '<tr><td class="mode">' + esc(r.mode) + '</td>' +
           '<td style="font-size:12px">' + esc(String(r.model).replace(/^[^\/]*\//, "")) + '</td>' +
-          '<td>' + esc(r.temp) + '</td><td>' + r.n + '</td>' +
+          '<td>' + esc(r.temp) + '</td><td><code>' + esc(r.contract) + '</code></td><td>' + r.n + '</td>' +
           cell(r.mps, "mps", "breadth", 1) + cell(r.hits, "hits", "credit", 1) +
           cell(r.vocab, "vocab", "credit", 1) + cell(r.spread, "spread", "breadth", 0) +
           cell(r.tok, "tok", "cost", 0) +
+          cell(r.out, "out", "cost", 0) +
           '<td style="background:' + shade(r.cost, M.cost, "cost", nRows) + '">' +
           (r.cost == null ? "\u2014" : "$" + r.cost.toFixed(4)) + '</td>' +
           cell(r.sec, "sec", "time", 1) + '</tr>').join("") +
@@ -840,7 +998,7 @@
   // that threw here and aborted the whole IIFE, so boot() never ran and the
   // page sat on "Loading content..." forever with an empty naming-list box.
   // Fail loudly and specifically instead.
-  if (!LL || typeof LL.markerMenuMode !== "function" || !LL.MARKER_MENU_MODES) {
+  if (!LL || typeof LL.markerMenuMode !== "function" || !LL.MARKER_MENU_MODES || !LL.markerSuite) {
     $("status").innerHTML =
       "<b>The marker module on this page is older than the bench expects.</b><br>" +
       "Almost always a cached <code>js/translation_marker.js</code>. " +
@@ -884,12 +1042,21 @@
   $("url").addEventListener("change", () => {
     try { localStorage.setItem("linguics_marker_url", $("url").value.trim()); } catch (e) {}
   });
-  $("mode").addEventListener("change", () => { LL.setMarkerMenuMode($("mode").value); });
+  $("mode").addEventListener("change", () => {
+    LL.setMarkerMenuMode($("mode").value);
+    refreshSize();
+    if (cases) {
+      const checked = suitePreflight($("mode").value);
+      $("suite").disabled = !checked.ok;
+      $("suiteAll").disabled = !checked.ok;
+      $("err").textContent = checked.ok ? "" : "Expectation suite is BROKEN; no model calls will be made. " + preflightMessage(checked);
+    }
+  });
   $("model").addEventListener("change", refreshSize);
   $("cap").addEventListener("input", refreshSize);
   $("run").addEventListener("click", () => go([$("mode").value]));
   $("runAll").addEventListener("click", () => go(LL.MARKER_MENU_MODES.map(m => m.id)));
-    $("suite").addEventListener("click", () => runSuite());
+  $("suite").addEventListener("click", () => runSuite());
   $("suiteAll").addEventListener("click", runSuiteAllModels);
   $("exp").addEventListener("click", exportLog);
 $("clear").addEventListener("click", () => { writeLog([]); render(); });
