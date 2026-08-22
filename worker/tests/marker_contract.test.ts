@@ -95,6 +95,9 @@ test("buildMarkerPromptContext gives stable role-precedence aliases and tokens",
   assert.doesNotMatch(compactPromptSchemaTextV3, /facevo/);
   assert.match(compactPromptSchemaTextV3, /Build m from learner evidence, never by enumerating the legend/);
   assert.match(compactPromptSchemaTextV3, /sole exception is an omitted-form miss/);
+  assert.match(compactPromptSchemaTextV3, /surface text the learner actually wrote, never a dictionary lemma/);
+  assert.match(compactPromptSchemaTextV3, /all three numeric o values are 0/);
+  assert.match(compactPromptSchemaTextV3, /u, p and n are empty arrays/);
 });
 
 test("compact system prompt uses aliases consistently while legacy keeps its schema", () => {

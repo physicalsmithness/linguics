@@ -33,7 +33,7 @@ console.log("paid A/B runner (no network)");
 test("paid CLI defaults are fixed and URL/output are mandatory", () => {
   const options = parseArgs(["--url", "https://example.test/mark", "--out", "result.json"]);
   assert.equal(options.model, "openai/gpt-4o-mini");
-  assert.equal(options.expectedWorkerBuild, "2026-08-22-r178-compact-v3-exp");
+  assert.equal(options.expectedWorkerBuild, "2026-08-22-r179-compact-v3-smoke-fix");
   assert.equal(options.temperature, 0);
   assert.equal(options.seed, 20260821);
   assert.equal(options.maxCostUsd, 0.01);

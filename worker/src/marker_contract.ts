@@ -273,6 +273,7 @@ Every r bucket must occur exactly once in m, including [alias,0,null,null] when 
 Emit e/o/c buckets only when engaged. Use a numeric alias for every supplied bucket.
 On en_it only, an unlisted produced content word may use "v:<Italian dictionary lemma>". Never use v:<lemma> on it_en.
 Evidence must be a short EXACT CONTIGUOUS SUBSTRING copied from learner.attempt, with identical spelling, accents, apostrophes and case. Never emit token indices or invent evidence.
+Evidence is the surface text the learner actually wrote, never a dictionary lemma: if learner.attempt contains "parlato", cite "parlato", never "parlare".
 Build m from learner evidence, never by enumerating the legend. Before emitting any e/o/c row, identify the exact learner.attempt substring that proves that specific bucket; the sole exception is an omitted-form miss, which uses null evidence plus the expected correction as specified below.
 An engaged present form needs evidence. An engaged omitted form may use null evidence only when the expected correction is supplied.
 Every proposal describes an engaged skill: a is always 1 and c is numeric. Give either e or x.
@@ -283,7 +284,7 @@ CRITICAL SERIALIZATION EXAMPLE: if the supplied legend row starts [7,"r",...] an
 The first m value is the JSON NUMBER 7, never the supplied full_id string.
 For a miss whose form is absent, write [7,1,0,null,"the expected form"].
 When attempted is 0, correctness is null: [7,0,null,null], never [7,0,0,null].
-If the learner answered wholly in the wrong language, attempted_overall is 0 and every required row is [alias,0,null,null].
+If the learner answered wholly in the wrong language, all three numeric o values are 0, every required row is [alias,0,null,null], and u, p and n are empty arrays.
 Return only the JSON object.`;
 
 const TOKEN_RE = /[\p{L}\p{M}\p{N}]+(?:['’][\p{L}\p{M}\p{N}]+)*|[^\s]/gu;

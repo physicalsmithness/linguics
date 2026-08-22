@@ -50,6 +50,28 @@ The full `tools/preflight.py` run passed on 2026-08-22:
 - Suite-report accounting tests: passed.
 - Runner validation: 18 cases, 59 automatic assertions, 11 manual reviews, and lean contexts of 4 to 24 buckets.
 
+## r178 paid smoke result
+
+Artifact: `outputs/marker_paid_ab_2026-08-22_r178_v3_smoke.json`
+
+The four-call smoke completed with a fully known recorded cost of `$0.004011`:
+
+- Legacy passed both controls.
+- Compact v3 returned valid, complete JSON in both cases, but strict Worker validation rejected both calls.
+- `false_pos_lemma_01` no longer enumerated the 24-row legend. It selected eight relevant skills, avoided the forbidden `orecchio`, `proprio`, `marco`, and `marcare` buckets, and correctly hit the required tense-discrimination bucket. One vocabulary row cited the dictionary lemma `incontrare` instead of the learner's written surface form `incontrato`, so the exact-substring gate rejected it.
+- `direction_01` correctly emitted holistic `[0,0,0]` and all required rows as unattempted, but also emitted a descriptive unattributable observation. Because that observation asserts engagement while the holistic score says none, the consistency gate rejected it.
+
+The smoke therefore failed its zero-schema-error gate and the larger paid probe was not started. The failures were retained rather than repaired or hidden.
+
+## r179 narrow smoke corrections
+
+Worker build `2026-08-22-r179-compact-v3-smoke-fix` makes two prompt-only corrections supported by the retained r178 bytes:
+
+- Evidence must cite the learner's written surface form, never substitute a dictionary lemma. The neutral example is `parlato`, not a probe answer.
+- A wholly wrong-language response must keep `u`, `p`, and `n` empty as well as returning holistic zeroes and unattempted required rows.
+
+No validator was loosened. Legacy remains the default while the identical four-call gate is repeated.
+
 ## Related pull request
 
 The already-proven benchmark, persistence, output-retention, and compact-v2 foundation is isolated in draft PR #1:
