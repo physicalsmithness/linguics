@@ -1,9 +1,10 @@
 /**
  * Pure input/output contract for the translation marker.
  *
- * The language model speaks the compact v2 tuple format defined here.  The
- * worker hydrates that format into the existing, browser-facing MarkerResult
- * shape.  This module deliberately has no Worker, fetch, or OpenRouter
+ * The language model may speak either compact tuple format defined here. V2
+ * uses token-index evidence spans; experimental v3 uses exact learner
+ * substrings. The worker hydrates both into the same browser-facing
+ * MarkerResult. This module deliberately has no Worker, fetch, or OpenRouter
  * dependencies so its behaviour can be tested without a network call.
  */
 
@@ -161,6 +162,32 @@ export interface CompactMarkerV2 {
   n?: CompactNote[];
 }
 
+export type CompactEvidenceV3 = string | null;
+export type CompactMarkpointV3 = [
+  bucket: CompactBucketRef,
+  attempted: 0 | 1,
+  correctness: number | null,
+  evidence: CompactEvidenceV3,
+  expected?: string,
+];
+export type CompactUnattributableV3 = [
+  evidence: CompactEvidenceV3,
+  what: string,
+  correct: boolean,
+  suggest?: string,
+];
+export interface CompactProposalV3 extends Omit<CompactProposal, "e"> {
+  e: CompactEvidenceV3;
+}
+export interface CompactMarkerV3 {
+  v: 3;
+  o: CompactOverall;
+  m: CompactMarkpointV3[];
+  u?: CompactUnattributableV3[];
+  p?: CompactProposalV3[];
+  n?: CompactNote[];
+}
+
 export interface ValidationResult {
   ok: boolean;
   error?: string;
@@ -215,6 +242,48 @@ CRITICAL SERIALIZATION EXAMPLE: if the supplied legend row starts [7,"r",...], w
 The first m value is the JSON NUMBER 7, never the supplied full_id string. Copying a supplied full_id into m is invalid.
 For a miss whose form is absent and therefore has no evidence span, write [7,1,0,null,"the expected form"].
 When attempted is 0, correctness is null: [7,0,null,null], never [7,0,0,null].
+Return only the JSON object.`;
+
+/**
+ * V3 keeps the alias/tuple savings but removes token-index indirection. The
+ * paid r176 probe showed GPT-4o-mini inventing a cyclic index map on a broad
+ * 25-alias case even though it understood the sentence. Exact copied evidence
+ * is slightly longer, far easier for the model, and strictly verifiable as an
+ * authoritative learner-answer substring.
+ */
+export const compactPromptSchemaTextV3 = `OUTPUT FORMAT — compact v3 JSON only
+
+These serialization rules override any earlier wording about verbose object fields; the marking policy itself is unchanged.
+The user message supplies buckets as [alias, role, full_id, label, description] and learner.attempt as the exact learner answer.
+Roles are r=required, e=expected fire-list, o=optional, c=other permitted context.
+
+Return exactly this object shape:
+{
+  "v": 3,
+  "o": [marks_awarded_0_to_1, attempted_overall_0_to_1, correctness_overall_0_to_1, "one short summary", "short house-style explanation"],
+  "m": [
+    [bucket_alias_or_v_colon_lemma, attempted_0_or_1, correctness_0_to_1_or_null, "short exact substring copied from learner.attempt"_or_null, "expected correction only when useful"]
+  ],
+  "u": [ ["exact learner substring"_or_null, "unattributable observation", true_or_false, "optional suggested bucket id"] ],
+  "p": [ {"r":parent_alias,"s":"new_child_slug","l":"label","y":"rationale","a":1,"c":correctness_0_to_1,"e":"exact learner substring"_or_null,"x":"expected correction when evidence is null or result is not a hit"} ],
+  "n": [ ["accent_or_other_kind", "short note text"] ]
+}
+
+Every r bucket must occur exactly once in m, including [alias,0,null,null] when not attempted.
+Emit e/o/c buckets only when engaged. Use a numeric alias for every supplied bucket.
+On en_it only, an unlisted produced content word may use "v:<Italian dictionary lemma>". Never use v:<lemma> on it_en.
+Evidence must be a short EXACT CONTIGUOUS SUBSTRING copied from learner.attempt, with identical spelling, accents, apostrophes and case. Never emit token indices or invent evidence.
+Build m from learner evidence, never by enumerating the legend. Before emitting any e/o/c row, identify the exact learner.attempt substring that proves that specific bucket; the sole exception is an omitted-form miss, which uses null evidence plus the expected correction as specified below.
+An engaged present form needs evidence. An engaged omitted form may use null evidence only when the expected correction is supplied.
+Every proposal describes an engaged skill: a is always 1 and c is numeric. Give either e or x.
+Omit x when c is 1; otherwise include it when it helps explain the correction. Omit the fifth m value on hits.
+Do not write null optional values; omit them.
+
+CRITICAL SERIALIZATION EXAMPLE: if the supplied legend row starts [7,"r",...] and learner.attempt contains "parlo", write [7,1,1,"parlo"].
+The first m value is the JSON NUMBER 7, never the supplied full_id string.
+For a miss whose form is absent, write [7,1,0,null,"the expected form"].
+When attempted is 0, correctness is null: [7,0,null,null], never [7,0,0,null].
+If the learner answered wholly in the wrong language, attempted_overall is 0 and every required row is [alias,0,null,null].
 Return only the JSON object.`;
 
 const TOKEN_RE = /[\p{L}\p{M}\p{N}]+(?:['’][\p{L}\p{M}\p{N}]+)*|[^\s]/gu;
@@ -440,6 +509,24 @@ function parseSpan(value: unknown, context: MarkerPromptContext, path: string): 
   };
 }
 
+function parseCompactEvidence(
+  value: unknown,
+  context: MarkerPromptContext,
+  path: string,
+  version: 2 | 3,
+): { isNull: boolean; evidence?: string } {
+  if (version === 2) {
+    const parsed = parseSpan(value, context, path);
+    return { isNull: parsed.span === null, ...(parsed.evidence !== undefined ? { evidence: parsed.evidence } : {}) };
+  }
+  if (value === null) return { isNull: true };
+  const evidence = requireString(value, path, 2000);
+  if (!context.cleanedRaw.includes(evidence)) {
+    fail("invalid_evidence", "must be an exact contiguous substring of the learner answer", path);
+  }
+  return { isNull: false, evidence };
+}
+
 function parseExpected(value: unknown, path: string): string | undefined {
   if (value === undefined || value === null) return undefined;
   return requireString(value, path, 500);
@@ -469,9 +556,9 @@ function assertOnlyKeys(value: Record<string, unknown>, allowed: Set<string>, pa
   }
 }
 
-function hydrateCompact(parsed: Record<string, unknown>, context: MarkerPromptContext): MarkerResult {
+function hydrateCompact(parsed: Record<string, unknown>, context: MarkerPromptContext, version: 2 | 3): MarkerResult {
   assertOnlyKeys(parsed, ALLOWED_COMPACT_KEYS, "result");
-  if (parsed.v !== 2) fail("compact_schema_invalid", "v must be 2", "result.v");
+  if (parsed.v !== version) fail("compact_schema_invalid", `v must be ${version}`, "result.v");
   if (!Array.isArray(parsed.o) || parsed.o.length !== 5) {
     fail("compact_schema_invalid", "o must be [awarded,attempted,correctness,summary,explanation]", "result.o");
   }
@@ -522,14 +609,14 @@ function hydrateCompact(parsed: Record<string, unknown>, context: MarkerPromptCo
     if (suppliedEntry && suppliedEntry.role !== "r" && row[1] === 0) continue;
     const correctness = row[1] === 0 && row[2] === 0 ? null : row[2];
     const credits = validateCredits(row[1], correctness, path);
-    const evidenceResult = parseSpan(row[3], context, `${path}[3]`);
+    const evidenceResult = parseCompactEvidence(row[3], context, `${path}[3]`, version);
     const expected = parseExpected(row[4], `${path}[4]`);
     const outcome = deriveOutcome(credits.a, credits.c);
 
-    if (credits.a === 0 && evidenceResult.span !== null) {
+    if (credits.a === 0 && !evidenceResult.isNull) {
       fail("invalid_span", "an unattempted markpoint must have null evidence", `${path}[3]`);
     }
-    if (credits.a === 1 && evidenceResult.span === null && !expected) {
+    if (credits.a === 1 && evidenceResult.isNull && !expected) {
       fail("invalid_span", "an attempted markpoint needs evidence or an expected omitted form", `${path}[3]`);
     }
     if (outcome === "hit" && expected !== undefined) {
@@ -549,7 +636,7 @@ function hydrateCompact(parsed: Record<string, unknown>, context: MarkerPromptCo
       label = entry.label;
     } else if (typeof ref === "string" && ref.startsWith("v:")) {
       if (credits.a !== 1) fail("invalid_dynamic_vocabulary", "dynamic vocabulary must be engaged", path);
-      if (evidenceResult.span === null) {
+      if (evidenceResult.isNull) {
         fail("invalid_dynamic_vocabulary", "dynamic produced vocabulary must cite a learner evidence span", `${path}[3]`);
       }
       const dynamic = dynamicVocabulary(ref, context, `${path}[0]`);
@@ -595,7 +682,7 @@ function hydrateCompact(parsed: Record<string, unknown>, context: MarkerPromptCo
     if (!Array.isArray(row) || (row.length !== 3 && row.length !== 4)) {
       fail("compact_schema_invalid", "unattributable must have 3 values, or 4 with suggest", path);
     }
-    const evidenceResult = parseSpan(row[0], context, `${path}[0]`);
+    const evidenceResult = parseCompactEvidence(row[0], context, `${path}[0]`, version);
     const what = requireString(row[1], `${path}[1]`, 1000);
     const correct = requireBoolean(row[2], `${path}[2]`);
     const suggest = row[3] === undefined || row[3] === null
@@ -629,10 +716,10 @@ function hydrateCompact(parsed: Record<string, unknown>, context: MarkerPromptCo
     const rationale = requireString(proposal.y, `${path}.y`, 1000);
     const credits = validateCredits(proposal.a, proposal.c, path);
     if (credits.a !== 1) fail("invalid_proposal", "a proposal must describe an engaged skill", `${path}.a`);
-    const evidenceResult = parseSpan(proposal.e, context, `${path}.e`);
+    const evidenceResult = parseCompactEvidence(proposal.e, context, `${path}.e`, version);
     const expected = parseExpected(proposal.x, `${path}.x`);
     const outcome = deriveOutcome(credits.a, credits.c);
-    if (evidenceResult.span === null && !expected) {
+    if (evidenceResult.isNull && !expected) {
       fail("invalid_span", "an attempted proposal needs evidence or an expected omitted form", `${path}.e`);
     }
     if (outcome === "hit" && expected !== undefined) {
@@ -665,6 +752,27 @@ function hydrateCompact(parsed: Record<string, unknown>, context: MarkerPromptCo
     }
     const text = requireString(row[1], `${path}[1]`, 1000);
     notes.push({ kind: row[0] as NoteKind, text, note: text });
+  }
+
+  // V3 can derive the one unambiguous overall-attempt edge case instead of
+  // trusting a contradictory holistic flag. Notes are commentary, not proof
+  // that the task was attempted. When no markpoint/proposal or observation is
+  // engaged, all three holistic scores must be zero; never silently preserve
+  // impossible positive marks/correctness while normalising only attempted.
+  // Preserve model judgement in mixed/partial cases where a proportion may
+  // carry information, but reject attempted_overall=0 when explicit evidence
+  // proves that something was engaged.
+  if (version === 3) {
+    const hasEngagement = markpoints.some((markpoint) => markpoint.attempted_credit > 0)
+      || unattributable.length > 0;
+    if (!hasEngagement) {
+      if (overall.marks_awarded !== 0 || overall.correctness_overall !== 0) {
+        fail("holistic_inconsistent", "an unengaged answer must have zero marks and zero correctness", "result.o");
+      }
+      overall.attempted_overall = 0;
+    } else if (overall.attempted_overall === 0) {
+      fail("holistic_inconsistent", "an engaged answer cannot have attempted_overall 0", "result.o[1]");
+    }
   }
 
   return {
@@ -878,15 +986,21 @@ export function validateMarkerResult(result: unknown, context?: MarkerPromptCont
 }
 
 /**
- * Accept compact v2 or a legacy full MarkerResult and return the strict,
- * browser-facing shape.  A payload that declares v:2 never silently falls
- * through to legacy interpretation.
+ * Accept compact v2/v3 or a legacy full MarkerResult and return the strict,
+ * browser-facing shape. A payload that declares a compact version never
+ * silently falls through to legacy interpretation.
  */
 export function normalizeModelResult(parsed: unknown, context: MarkerPromptContext): MarkerResult {
   if (!isRecord(parsed)) fail("schema_invalid", "model result must be an object", "result");
-  const result = parsed.v === 2
-    ? hydrateCompact(parsed, context)
-    : normalizeLegacyResult(parsed, context);
+  let result: MarkerResult;
+  if (hasOwn(parsed, "v")) {
+    if (parsed.v !== 2 && parsed.v !== 3) {
+      fail("compact_schema_invalid", "v must be 2 or 3", "result.v");
+    }
+    result = hydrateCompact(parsed, context, parsed.v);
+  } else {
+    result = normalizeLegacyResult(parsed, context);
+  }
   assertMarkerResult(result, context);
   return result;
 }

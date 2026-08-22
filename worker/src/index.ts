@@ -2,6 +2,7 @@ import {
   MarkerContractError,
   buildMarkerPromptContext,
   compactPromptSchemaText,
+  compactPromptSchemaTextV3,
   normalizeModelResult,
   type MarkerPromptContext,
 } from "./marker_contract";
@@ -44,7 +45,7 @@ interface MarkRequest {
    *  The bench uses this to reach models the learner-path default excludes. */
   max_cost_usd?: number;
   /** Model-facing response shape. Both hydrate to the same MarkerResult. */
-  response_contract?: "compact_v2" | "legacy_v1";
+  response_contract?: "compact_v2" | "compact_v3" | "legacy_v1";
   /** Bench-only: retain the exact provider text and prompt fingerprint. */
   include_diagnostics?: boolean;
 }
@@ -94,7 +95,7 @@ interface MarkerResult {
   notes?: Array<{ kind: string; text: string; note?: string }>;
 }
 
-type ResponseContract = "compact_v2" | "legacy_v1";
+type ResponseContract = "compact_v2" | "compact_v3" | "legacy_v1";
 
 /* ------------------------------------------------------------------------- */
 /* Model pricing                                                              */
@@ -147,7 +148,7 @@ const DEFAULT_MODEL = "openai/gpt-4o-mini";
 // spent days unable to answer "did the deploy land". Now it also carries a build
 // string, so a deploy is verifiable in one request instead of being inferred from
 // marking behaviour. Bump this whenever the worker is changed.
-const WORKER_BUILD = "2026-08-21-r177-legacy-default";
+const WORKER_BUILD = "2026-08-22-r178-compact-v3-exp";
 // R177 safety decision: the paid r176 probe confirmed compact-v2's cost and
 // latency win, but it still produced one invalid broad-case evidence map and
 // fewer passing judgements than legacy. Keep compact explicitly selectable for
@@ -387,6 +388,9 @@ Return ONLY the JSON object, no surrounding text.`;
   // Keep the settled marking policy, but remove the verbose legacy schema and
   // its conflicting field-by-field outcome instructions. Compact v2 speaks in
   // aliases/tuples and the worker deterministically restores those fields.
+  const compactEvidenceInstruction = responseContract === "compact_v3"
+    ? "Copy the shortest exact contiguous learner.attempt substring that proves the point"
+    : "Use the shortest exact evidence-token span that proves the point";
   const policy = legacyPrompt.slice(0, outputStart)
     .replace(/7\. Required buckets are mandatory\.[\s\S]*?\n\nACCENT POLICY/, [
       "7. Required buckets are mandatory. Every role-r alias in the buckets legend MUST appear exactly once in m. Use [alias,0,null,null] only when the learner did not engage it; otherwise score the attempted skill. Do not silently drop a required alias.",
@@ -407,7 +411,7 @@ Return ONLY the JSON object, no surrounding text.`;
     .join("Those entries aggregate on arrival and are never pre-registered, so v:<lemma> is legitimate when that vocabulary skill is absent from the buckets legend.")
     .replace(/If you encounter an error that genuinely doesn't fit any of the provided buckets legend entries, you may propose a new bucket by setting bucket_proposed: true and providing proposed_parent_id \(one of the existing buckets in buckets legend\), proposed_label \(the friendly human-readable name\), and proposed_rationale \(one sentence on why it's worth tracking\)\./,
       "If you encounter an error that genuinely does not fit the supplied legend, you may use a p proposal entry with an existing parent alias, a safe child slug, a friendly label, and one-sentence rationale.")
-    .replace("Make evidence strings short and concrete", "Use the shortest exact evidence-token span that proves the point")
+    .replace("Make evidence strings short and concrete", compactEvidenceInstruction)
     .replace('{ "kind": "accent", "text": "perché carries an acute accent; you wrote perche." }',
       '["accent", "perché carries an acute accent; you wrote perche."]')
     .replace(/VOCABULARY PRODUCTION \(en_it\)[\s\S]*?(?=VOCABULARY RECOGNITION \(it_en\))/, `VOCABULARY PRODUCTION (en_it)
@@ -428,7 +432,9 @@ On it_en, source-word vocabulary skills are supplied in the buckets legend. Use 
 `)
     .replace(/DIRECTION-BOUND SUFFIX \(Architecture ruling 4, 2026-08-02\)\.[\s\S]*?\n\n(?=BUCKET PROPOSALS)/,
       "DIRECTION-BOUND SUFFIX (Architecture ruling 4, 2026-08-02). `.passive` is recognition-only and is already encoded in an it_en legend entry. Do not construct, copy, or rewrite that full id; use its numeric alias. On en_it, v:<lemma> always means the bare production skill and never carries `.passive`.\n\n");
-  return policy + compactPromptSchemaText + "\n\nReturn ONLY the JSON object, no surrounding text.";
+  const compactSchema = responseContract === "compact_v3"
+    ? compactPromptSchemaTextV3 : compactPromptSchemaText;
+  return policy + compactSchema + "\n\nReturn ONLY the JSON object, no surrounding text.";
 }
 
 function inferDirection(item: any): "it_en" | "en_it" {
@@ -451,7 +457,7 @@ function buildUserMessage(
   promptContext: MarkerPromptContext,
 ): string {
   const direction = inferDirection(item);
-  if (responseContract === "compact_v2") {
+  if (responseContract === "compact_v2" || responseContract === "compact_v3") {
     return JSON.stringify({
       item: {
         direction,
@@ -467,9 +473,11 @@ function buildUserMessage(
       learner: {
         // Keep the natural sentence for comprehension. Token indices remain
         // the only legal evidence output, so evidence quotations still stay
-        // out of paid generation.
+        // out of paid generation in v2. V3 instead copies short exact
+        // substrings and omits the confusing evidence-token index table.
         attempt: cleanedRaw,
-        evidence_tokens: promptContext.prompt.evidence_tokens,
+        ...(responseContract === "compact_v2"
+          ? { evidence_tokens: promptContext.prompt.evidence_tokens } : {}),
         intent,
         annotations,
       },
@@ -592,7 +600,7 @@ export default {
         build: WORKER_BUILD,
         default_model: DEFAULT_MODEL,
         default_response_contract: DEFAULT_RESPONSE_CONTRACT,
-        supported_response_contracts: ["compact_v2", "legacy_v1"],
+        supported_response_contracts: ["compact_v3", "compact_v2", "legacy_v1"],
         max_output_tokens: MAX_OUTPUT_TOKENS,
       });
     }
@@ -623,9 +631,9 @@ export default {
       return errorResp(400, "model_unsupported", `Unknown model: ${model}. Known models: ${Object.keys(MODEL_PRICING).join(", ")}`);
     }
     const responseContract = body.response_contract || DEFAULT_RESPONSE_CONTRACT;
-    if (responseContract !== "compact_v2" && responseContract !== "legacy_v1") {
+    if (responseContract !== "compact_v2" && responseContract !== "compact_v3" && responseContract !== "legacy_v1") {
       return errorResp(400, "response_contract_unsupported",
-        `Unknown response_contract: ${String(body.response_contract)}. Use compact_v2 or legacy_v1.`);
+        `Unknown response_contract: ${String(body.response_contract)}. Use compact_v3, compact_v2, or legacy_v1.`);
     }
 
     // Parse annotations out of the raw input
@@ -846,7 +854,8 @@ export default {
       }
     }
 
-    const markerFormatUsed = result && result.v === 2 ? "compact_v2" : "legacy_v1";
+    const markerFormatUsed = result && result.v === 3 ? "compact_v3"
+      : result && result.v === 2 ? "compact_v2" : "legacy_v1";
     try {
       result = normalizeModelResult(result, promptContext);
     } catch (error: any) {

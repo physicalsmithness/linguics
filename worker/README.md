@@ -43,7 +43,7 @@ A simple GET to the URL returns a JSON health check:
 
 ```
 curl https://linguics-marker.<your-subdomain>.workers.dev
-{"ok":true,"service":"linguics-marker","build":"2026-08-21-r177-legacy-default","default_model":"openai/gpt-4o-mini","default_response_contract":"legacy_v1","supported_response_contracts":["compact_v2","legacy_v1"],"max_output_tokens":6000}
+{"ok":true,"service":"linguics-marker","build":"2026-08-22-r178-compact-v3-exp","default_model":"openai/gpt-4o-mini","default_response_contract":"legacy_v1","supported_response_contracts":["compact_v3","compact_v2","legacy_v1"],"max_output_tokens":6000}
 ```
 
 To test a mark call (replace the URL):
@@ -93,6 +93,7 @@ Live-tails the Worker's console output. Useful for debugging in production.
 - Rate limit: 60 requests per minute per IP (in-memory; per-edge).
 - Default model is GPT-4o-mini; the Worker reports the deployed default and supported output contracts in its health response.
 - Learner calls default to `legacy_v1`. `compact_v2` remains available only when a caller explicitly requests it; the first paid probe confirmed its cost win but not yet quality parity.
+- Experimental `compact_v3` keeps aliases and tuples but replaces evidence-token indices with exact learner substrings that the Worker verifies locally. It is opt-in while paid comparison is underway.
 - The housing's footer tracks cumulative session cost in localStorage.
 
 Constants are at the top of `src/index.ts` if you want to tune them.

@@ -6,6 +6,7 @@ import {
   MarkerContractError,
   buildMarkerPromptContext,
   compactPromptSchemaText,
+  compactPromptSchemaTextV3,
   normalizeModelResult,
   validateMarkerResult,
   type MarkerPromptContext,
@@ -37,6 +38,16 @@ function compact(overrides: Record<string, unknown> = {}): Record<string, unknow
     v: 2,
     o: [1, 1, 1, "Right.", "The required form is correct."],
     m: [[0, 1, 1, [0, 1]]],
+    n: [],
+    ...overrides,
+  };
+}
+
+function compactV3(overrides: Record<string, unknown> = {}): Record<string, unknown> {
+  return {
+    v: 3,
+    o: [1, 1, 1, "Right.", "The required form is correct."],
+    m: [[0, 1, 1, "La sera"]],
     n: [],
     ...overrides,
   };
@@ -78,12 +89,18 @@ test("buildMarkerPromptContext gives stable role-precedence aliases and tokens",
     [0, "La"], [1, "sera"], [2, ","], [3, "esco"], [4, "con"], [5, "gli"], [6, "amici"], [7, "."],
   ]);
   assert.match(compactPromptSchemaText, /Every r bucket must occur exactly once/);
+  assert.match(compactPromptSchemaTextV3, /EXACT CONTIGUOUS SUBSTRING/);
+  assert.doesNotMatch(compactPromptSchemaTextV3, /evidence_tokens/);
+  assert.match(compactPromptSchemaTextV3, /contains "parlo"/);
+  assert.doesNotMatch(compactPromptSchemaTextV3, /facevo/);
+  assert.match(compactPromptSchemaTextV3, /Build m from learner evidence, never by enumerating the legend/);
+  assert.match(compactPromptSchemaTextV3, /sole exception is an omitted-form miss/);
 });
 
 test("compact system prompt uses aliases consistently while legacy keeps its schema", () => {
   const source = fs.readFileSync(new URL("../src/index.ts", import.meta.url), "utf8");
   const start = source.indexOf("  const policy = legacyPrompt.slice");
-  const end = source.indexOf("  return policy + compactPromptSchemaText", start);
+  const end = source.indexOf("  const compactSchema =", start);
   assert(start >= 0 && end > start);
   const compactBuilder = source.slice(start, end);
   assert.match(compactBuilder, /serialize it with that numeric alias/);
@@ -91,6 +108,71 @@ test("compact system prompt uses aliases consistently while legacy keeps its sch
   assert.match(compactBuilder, /optional fourth value is a suggested full bucket id/);
   assert.doesNotMatch(compactBuilder, /Fire `vocabulary\.it\.<lemma>\.translation`/);
   assert.doesNotMatch(compactBuilder, /use the id exactly as/);
+});
+
+test("compact v3 hydrates exact learner substrings without token indices", () => {
+  const result = normalizeModelResult(compactV3(), context());
+  assert.equal(result.markpoints[0].evidence, "La sera");
+  assert.equal(result.markpoints[0].bucket, "grammar.required");
+
+  assert.throws(() => normalizeModelResult(compactV3({
+    m: [[0, 1, 1, "not in the learner answer"]],
+  }), context()), (error: unknown) => error instanceof MarkerContractError
+    && error.code === "invalid_evidence"
+    && /exact contiguous substring/.test(error.message));
+  assert.throws(() => normalizeModelResult(compactV3({
+    m: [[0, 1, 1, [0, 1]]],
+  }), context()), /must be a string/);
+});
+
+test("compact v3 supports omitted forms, dynamic vocabulary, observations, and proposals", () => {
+  const result = normalizeModelResult(compactV3({
+    m: [
+      [0, 1, 0, null, "required form"],
+      ["v:uscire", 1, 1, "esco"],
+    ],
+    u: [["gli amici", "Useful lexical evidence.", true, "vocabulary.it.amico.translation"]],
+    p: [{
+      r: 3,
+      s: "new_leaf",
+      l: "New leaf",
+      y: "Worth tracking separately.",
+      a: 1,
+      c: 0,
+      e: "esco",
+      x: "vado",
+    }],
+  }), context("en_it"));
+  assert.equal(result.markpoints[0].expected, "required form");
+  assert.equal(result.markpoints[1].bucket, "vocabulary.it.uscire.translation");
+  assert.equal(result.markpoints[1].evidence, "esco");
+  assert.equal(result.markpoints[2].bucket, "grammar.context.new_leaf");
+  assert.equal(result.unattributable?.[0].evidence, "gli amici");
+});
+
+test("compact v3 derives only consistent all-unattempted holistic scores", () => {
+  const none = normalizeModelResult(compactV3({
+    o: [0, 1, 0, "Not attempted.", "The learner answered in the wrong language."],
+    m: [[0, 0, null, null]],
+    n: [["other", "The response was in the source language."]],
+  }), context());
+  assert.equal(none.overall.attempted_overall, 0);
+
+  assert.throws(() => normalizeModelResult(compactV3({
+    o: [1, 1, 1, "Right.", "Contradictory positive holistic scores."],
+    m: [[0, 0, null, null]],
+  }), context()), (error: unknown) => error instanceof MarkerContractError
+    && error.code === "holistic_inconsistent");
+
+  assert.throws(() => normalizeModelResult(compactV3({
+    o: [1, 0, 1, "Right.", "Contradictory zero attempted score."],
+  }), context()), (error: unknown) => error instanceof MarkerContractError
+    && error.code === "holistic_inconsistent");
+
+  const engaged = normalizeModelResult(compactV3({
+    o: [0.5, 0.5, 0.5, "Partial.", "Some of the response was attempted."],
+  }), context());
+  assert.equal(engaged.overall.attempted_overall, 0.5);
 });
 
 test("preflight rejects a listed non-vocabulary bucket absent from bucketContext", () => {
@@ -448,6 +530,19 @@ test("a declared but invalid v2 payload never falls through to legacy", () => {
     return error instanceof MarkerContractError
       && error.code === "unknown_field"
       && /unexpected field overall/.test(error.message);
+  });
+});
+
+test("a declared but invalid v3 or unknown compact payload never falls through to legacy", () => {
+  assert.throws(() => normalizeModelResult(legacy({ v: 3, o: "wrong", m: [] }), context()), (error: unknown) => {
+    return error instanceof MarkerContractError
+      && error.code === "unknown_field"
+      && /unexpected field overall/.test(error.message);
+  });
+  assert.throws(() => normalizeModelResult({ v: 4 }, context()), (error: unknown) => {
+    return error instanceof MarkerContractError
+      && error.code === "compact_schema_invalid"
+      && /2 or 3/.test(error.message);
   });
 });
 

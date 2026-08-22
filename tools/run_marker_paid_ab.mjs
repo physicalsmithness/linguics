@@ -2,7 +2,7 @@
 /**
  * Reproducible paid A/B runner for the Linguics marker response contracts.
  *
- * The only experimental variable is response_contract: compact_v2 versus
+ * The only experimental variable is response_contract: compact_v3 versus
  * legacy_v1. Both arms receive the same checked-in case, item, lean bucket
  * context, model, temperature, seed, and per-call cost ceiling.
  *
@@ -26,10 +26,10 @@ const ROOT = path.resolve(path.dirname(THIS_FILE), "..");
 const require = createRequire(import.meta.url);
 const markerSuite = require(path.join(ROOT, "housing", "js", "marker_suite.js"));
 
-export const ARMS = Object.freeze(["compact_v2", "legacy_v1"]);
+export const ARMS = Object.freeze(["compact_v3", "legacy_v1"]);
 export const DEFAULTS = Object.freeze({
   model: "openai/gpt-4o-mini",
-  expectedWorkerBuild: "2026-08-21-r177-legacy-default",
+  expectedWorkerBuild: "2026-08-22-r178-compact-v3-exp",
   temperature: 0,
   seed: 20260821,
   maxCostUsd: 0.01,
@@ -67,7 +67,7 @@ Options:
   --help, -h                Show this help
 
 Fixed experiment settings:
-  arms                      compact_v2 and legacy_v1
+  arms                      compact_v3 and legacy_v1
   naming-list mode          none (the live lean/item fire-list context)
   intent                    literal
   diagnostics               true
@@ -543,7 +543,7 @@ function summarizeArm(calls, arm) {
 
 export function summarizeCalls(calls) {
   const arms = Object.fromEntries(ARMS.map(arm => [arm, summarizeArm(calls, arm)]));
-  const compact = arms.compact_v2;
+  const compact = arms[ARMS[0]];
   const legacy = arms.legacy_v1;
   return {
     arms,
