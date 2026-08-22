@@ -118,10 +118,41 @@
       "expect_verdict": {
         "verb_form.gerundio.formation.progressive_assembly": "miss",
         "verb_form.gerundio.formation.regular_ando": "miss",
-        "vocabulary.it.nuovo.adjective.translation.active": "miss",
+        "adjective_agreement.o_class.masculine_singular": "miss",
+        "vocabulary.it.nuovo.adjective.translation.active": "hit",
         "vocabulary.it.settimana.noun.translation.active": "hit"
       },
       "expect_absent": [],
+      "expect_checks": [
+        {
+          "type": "evidence_one_of",
+          "bucket": "adjective_agreement.o_class.masculine_singular",
+          "values": [
+            "nuove",
+            "un nuove",
+            "nuove projetto",
+            "un nuove projetto"
+          ]
+        },
+        {
+          "type": "evidence_one_of",
+          "bucket": "vocabulary.it.nuovo.adjective.translation.active",
+          "values": [
+            "nuove",
+            "un nuove",
+            "nuove projetto",
+            "un nuove projetto"
+          ]
+        },
+        {
+          "type": "evidence_one_of",
+          "bucket": "vocabulary.it.settimana.noun.translation.active",
+          "values": [
+            "settimana",
+            "questa settimana"
+          ]
+        }
+      ],
       "manual_review": [
         {
           "id": "projetto_spelling_attribution",
@@ -157,6 +188,30 @@
         {
           "type": "no_note_of_kind",
           "kind": "accent"
+        },
+        {
+          "type": "evidence_one_of",
+          "bucket": "verb_form.passato_prossimo.auxiliary.avere_default",
+          "values": [
+            "Abbiamo",
+            "Abbiamo mangiato"
+          ]
+        },
+        {
+          "type": "evidence_one_of",
+          "bucket": "verb_form.passato_prossimo.participle_form.regular.are_ato",
+          "values": [
+            "mangiato",
+            "Abbiamo mangiato"
+          ]
+        },
+        {
+          "type": "evidence_one_of",
+          "bucket": "verb_form.passato_prossimo.participle_agreement.with_avere.no_preceding_dop",
+          "values": [
+            "mangiato",
+            "Abbiamo mangiato"
+          ]
         }
       ]
     },
@@ -206,6 +261,13 @@
         {
           "type": "no_miss",
           "scope": "adjective_agreement.*"
+        },
+        {
+          "type": "evidence_one_of",
+          "bucket": "adjective_agreement.o_class.feminine_singular",
+          "values": [
+            "azzurra"
+          ]
         }
       ]
     },
@@ -232,7 +294,9 @@
       "answer": "Ieri mattina ho incontrato Marco al supermercato mentre facevo la spesa.",
       "note": "Smith caught the live version of this: \"ore\" prefix-matched orecchio and \"problemi\" stem-matched proprio, writing vocabulary events against words the learner never saw. Any recurrence of stem-guessing shows up here.  [case_id false_pos_lemma_01, origin smith_live_2026-07]",
       "expect_verdict": {
-        "verb_form.imperfect.discrimination.vs_passato_prossimo_general": "hit"
+        "verb_form.imperfect.discrimination.vs_passato_prossimo_general": "hit",
+        "vocabulary.it.ieri.adverb.translation.active": "hit",
+        "vocabulary.it.incontrare.verb.translation.active": "hit"
       },
       "expect_absent": [],
       "expect_checks": [
@@ -251,6 +315,21 @@
         {
           "type": "no_bucket",
           "scope": "vocabulary.it.marcare.*"
+        },
+        {
+          "type": "evidence_one_of",
+          "bucket": "vocabulary.it.ieri.adverb.translation.active",
+          "values": [
+            "Ieri"
+          ]
+        },
+        {
+          "type": "evidence_one_of",
+          "bucket": "vocabulary.it.incontrare.verb.translation.active",
+          "values": [
+            "incontrato",
+            "ho incontrato"
+          ]
         }
       ]
     },
@@ -303,6 +382,16 @@
         "preposition.usage.verb_governed": "hit"
       },
       "expect_absent": [],
+      "expect_checks": [
+        {
+          "type": "evidence_one_of",
+          "bucket": "preposition.usage.verb_governed",
+          "values": [
+            "di",
+            "smesso di"
+          ]
+        }
+      ],
       "manual_review": [
         {
           "id": "alternative_word_causality",

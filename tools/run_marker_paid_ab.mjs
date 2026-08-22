@@ -2,7 +2,7 @@
 /**
  * Reproducible paid A/B runner for the Linguics marker response contracts.
  *
- * The only experimental variable is response_contract: compact_v3 versus
+ * The only experimental variable is response_contract: compact_v4 versus
  * legacy_v1. Both arms receive the same checked-in case, item, lean bucket
  * context, model, temperature, seed, and per-call cost ceiling.
  *
@@ -26,10 +26,10 @@ const ROOT = path.resolve(path.dirname(THIS_FILE), "..");
 const require = createRequire(import.meta.url);
 const markerSuite = require(path.join(ROOT, "housing", "js", "marker_suite.js"));
 
-export const ARMS = Object.freeze(["compact_v3", "legacy_v1"]);
+export const ARMS = Object.freeze(["compact_v4", "legacy_v1"]);
 export const DEFAULTS = Object.freeze({
   model: "openai/gpt-4o-mini",
-  expectedWorkerBuild: "2026-08-22-r180-compact-v3-vocab-evidence",
+  expectedWorkerBuild: "2026-08-22-r181-compact-v4-legacy-lite",
   temperature: 0,
   seed: 20260821,
   maxCostUsd: 0.01,
@@ -67,7 +67,7 @@ Options:
   --help, -h                Show this help
 
 Fixed experiment settings:
-  arms                      compact_v3 and legacy_v1
+  arms                      compact_v4 and legacy_v1
   naming-list mode          none (the live lean/item fire-list context)
   intent                    literal
   diagnostics               true
@@ -213,9 +213,12 @@ async function fetchWorkerCapability(options) {
   let response;
   let rawText = "";
   try {
-    response = await fetch(options.url, {
+    const healthUrl = new URL(options.url);
+    healthUrl.searchParams.set("build_check", options.expectedWorkerBuild);
+    response = await fetch(healthUrl, {
       method: "GET",
-      headers: { "Accept": "application/json" },
+      headers: { "Accept": "application/json", "Cache-Control": "no-cache" },
+      cache: "no-store",
       signal: controller.signal,
     });
     rawText = await response.text();
@@ -532,7 +535,7 @@ function summarizeArm(calls, arm) {
     unknown_cost_calls: rows.filter(row => row.cost_known !== true).length,
     paid_errors: rows.filter(row => row.paid_error === true).length,
     potential_paid_errors: rows.filter(row => row.potential_paid_error === true).length,
-    format_mismatches: rows.filter(row => row.marker_format_used !== arm).length,
+    format_mismatches: rows.filter(row => row.format_mismatch === true).length,
     latency_ms_total: Math.round(latencies.reduce((sum, value) => sum + value, 0)),
     latency_ms_mean: latencies.length
       ? Math.round(latencies.reduce((sum, value) => sum + value, 0) / latencies.length) : null,
@@ -639,6 +642,33 @@ function callErrorJudgement(caseDef, error) {
   return markerSuite.judgeCase(caseDef, { status: "call_error", error });
 }
 
+export function validateResponseProvenance(arm, payload, expectedWorkerBuild = "") {
+  const requested = payload && payload.response_contract_requested || "";
+  const used = payload && payload.marker_format_used || "";
+  const workerBuild = payload && payload.worker_build || "";
+  const errors = [];
+  if (requested !== arm) {
+    errors.push("response_contract_requested was " + JSON.stringify(requested) +
+      ", expected " + JSON.stringify(arm));
+  }
+  if (used !== arm) {
+    errors.push("marker_format_used was " + JSON.stringify(used) +
+      ", expected " + JSON.stringify(arm));
+  }
+  if (expectedWorkerBuild && workerBuild !== expectedWorkerBuild) {
+    errors.push("worker_build was " + JSON.stringify(workerBuild) +
+      ", expected " + JSON.stringify(expectedWorkerBuild));
+  }
+  return {
+    ok: errors.length === 0,
+    expected_arm: arm,
+    response_contract_requested: requested,
+    marker_format_used: used,
+    worker_build: workerBuild,
+    errors,
+  };
+}
+
 async function runCall(task, foundation, options) {
   const caseDef = foundation.suite.cases[task.case_index];
   const requestBody = buildRequestBody(task, foundation, options);
@@ -670,23 +700,35 @@ async function runCall(task, foundation, options) {
   let canonicalResult = null;
   let judgement;
   let processingError = null;
+  let responseProvenance = null;
+  let formatMismatch = false;
   if (response && response.ok && payload && payload.result) {
-    try {
-      canonicalResult = markerSuite.canonicalizeMarkerResult(
-        payload.result,
-        foundation.suiteOptions.canonicalizeBucketId,
-        { case_id: caseDef.case_id, case: caseDef, item: foundation.itemsById.get(caseDef.item) },
-      );
-      judgement = markerSuite.judgeCase(
-        caseDef,
-        { marker_result_canonical: canonicalResult },
-        foundation.suiteOptions,
-      );
-    } catch (error) {
-      // The provider may already have billed this response. Keep every byte and
-      // its usage metadata even if local canonicalisation/judgement itself fails.
-      processingError = errorShape(error);
-      judgement = callErrorJudgement(caseDef, { code: "local_judgement_error", ...processingError });
+    responseProvenance = validateResponseProvenance(task.arm, payload, options.expectedWorkerBuild);
+    if (!responseProvenance.ok) {
+      formatMismatch = true;
+      processingError = {
+        code: "response_provenance_mismatch",
+        message: responseProvenance.errors.join("; "),
+      };
+      judgement = callErrorJudgement(caseDef, processingError);
+    } else {
+      try {
+        canonicalResult = markerSuite.canonicalizeMarkerResult(
+          payload.result,
+          foundation.suiteOptions.canonicalizeBucketId,
+          { case_id: caseDef.case_id, case: caseDef, item: foundation.itemsById.get(caseDef.item) },
+        );
+        judgement = markerSuite.judgeCase(
+          caseDef,
+          { marker_result_canonical: canonicalResult },
+          foundation.suiteOptions,
+        );
+      } catch (error) {
+        // The provider may already have billed this response. Keep every byte and
+        // its usage metadata even if local canonicalisation/judgement itself fails.
+        processingError = errorShape(error);
+        judgement = callErrorJudgement(caseDef, { code: "local_judgement_error", ...processingError });
+      }
     }
   } else {
     const error = networkError || {
@@ -721,6 +763,8 @@ async function runCall(task, foundation, options) {
     } : null,
     network_error: networkError,
     processing_error: processingError,
+    response_provenance: responseProvenance,
+    format_mismatch: formatMismatch,
     raw_http_text: rawHttpText,
     response_payload: payload,
     raw_model_output: payload && payload.diagnostics &&
@@ -760,11 +804,11 @@ function printCallProgress(call, completed, total) {
 }
 
 export function printSummary(summary) {
-  console.log("\narm\tcalls\tpass\tfail\tmanual\tcall_error\tpaid_error\tout_tokens\tcost_usd\tunknown_cost\tmean_ms\tp95_ms");
+  console.log("\narm\tcalls\tpass\tfail\tmanual\tcall_error\tpaid_error\tformat_mismatch\tout_tokens\tcost_usd\tunknown_cost\tmean_ms\tp95_ms");
   for (const arm of ARMS) {
     const row = summary.arms[arm];
     console.log([
-      arm, row.calls, row.pass, row.fail, row.manual, row.call_error, row.paid_errors,
+      arm, row.calls, row.pass, row.fail, row.manual, row.call_error, row.paid_errors, row.format_mismatches,
       row.output_tokens, row.cost_usd.toFixed(5), row.unknown_cost_calls,
       progressValue(row.latency_ms_mean), progressValue(row.latency_ms_p95),
     ].join("\t"));

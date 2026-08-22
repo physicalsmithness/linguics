@@ -3,6 +3,7 @@ import {
   buildMarkerPromptContext,
   compactPromptSchemaText,
   compactPromptSchemaTextV3,
+  compactPromptSchemaTextV4,
   normalizeModelResult,
   type MarkerPromptContext,
 } from "./marker_contract";
@@ -45,7 +46,7 @@ interface MarkRequest {
    *  The bench uses this to reach models the learner-path default excludes. */
   max_cost_usd?: number;
   /** Model-facing response shape. Both hydrate to the same MarkerResult. */
-  response_contract?: "compact_v2" | "compact_v3" | "legacy_v1";
+  response_contract?: "compact_v2" | "compact_v3" | "compact_v4" | "legacy_v1";
   /** Bench-only: retain the exact provider text and prompt fingerprint. */
   include_diagnostics?: boolean;
 }
@@ -95,7 +96,7 @@ interface MarkerResult {
   notes?: Array<{ kind: string; text: string; note?: string }>;
 }
 
-type ResponseContract = "compact_v2" | "compact_v3" | "legacy_v1";
+type ResponseContract = "compact_v2" | "compact_v3" | "compact_v4" | "legacy_v1";
 
 /* ------------------------------------------------------------------------- */
 /* Model pricing                                                              */
@@ -148,7 +149,7 @@ const DEFAULT_MODEL = "openai/gpt-4o-mini";
 // spent days unable to answer "did the deploy land". Now it also carries a build
 // string, so a deploy is verifiable in one request instead of being inferred from
 // marking behaviour. Bump this whenever the worker is changed.
-const WORKER_BUILD = "2026-08-22-r180-compact-v3-vocab-evidence";
+const WORKER_BUILD = "2026-08-22-r181-compact-v4-legacy-lite";
 // R177 safety decision: the paid r176 probe confirmed compact-v2's cost and
 // latency win, but it still produced one invalid broad-case evidence map and
 // fewer passing judgements than legacy. Keep compact explicitly selectable for
@@ -388,12 +389,55 @@ Return ONLY the JSON object, no surrounding text.`;
   // Keep the settled marking policy, but remove the verbose legacy schema and
   // its conflicting field-by-field outcome instructions. Compact v2 speaks in
   // aliases/tuples and the worker deterministically restores those fields.
-  const compactEvidenceInstruction = responseContract === "compact_v3"
+  const fullIdRows = responseContract === "compact_v4";
+  const compactEvidenceInstruction = responseContract === "compact_v3" || responseContract === "compact_v4"
     ? "Copy the shortest exact contiguous learner.attempt substring that proves the point"
     : "Use the shortest exact evidence-token span that proves the point";
+  const requiredInstruction = fullIdRows
+    ? "7. Required buckets are mandatory. On an attempted answer, every role-r full_id in the buckets legend MUST appear exactly once as an m object. A required but unengaged skill uses evidence null, attempted 0, and correctness null. Only a wholly wrong-language answer may return m:[] as described in the output rules."
+    : "7. Required buckets are mandatory. Every role-r alias in the buckets legend MUST appear exactly once in m. Use [alias,0,null,null] only when the learner did not engage it; otherwise score the attempted skill. Do not silently drop a required alias.";
+  const dynamicVocabularyReference = fullIdRows
+    ? "unlisted en_it content vocabulary, represented as vocabulary.it.<lemma>.translation and described under VOCABULARY PRODUCTION below"
+    : "unlisted en_it content vocabulary, represented as v:<lemma> and described under VOCABULARY PRODUCTION below";
+  const dynamicVocabularyLegitimacy = fullIdRows
+    ? "Those entries aggregate on arrival and are never pre-registered, so the canonical bare vocabulary.it.<lemma>.translation id is legitimate when that vocabulary skill is absent from the buckets legend."
+    : "Those entries aggregate on arrival and are never pre-registered, so v:<lemma> is legitimate when that vocabulary skill is absent from the buckets legend.";
+  const vocabularyProductionBlock = fullIdRows ? `VOCABULARY PRODUCTION (en_it)
+
+On en_it, judge every Italian CONTENT word the learner produced: nouns, verbs, adjectives, adverbs, and lexical locatives. If its vocabulary skill is supplied in the buckets legend, copy that exact full_id into the m object's bucket field. Only for a genuinely unlisted content word, use vocabulary.it.<Italian dictionary lemma>.translation. Never put a numeric alias or v:<lemma> in an m object.
+
+- Correctly chosen content word: vocabulary HIT. Wrong lexical choice for the intended meaning: vocabulary MISS.
+- Right word in the wrong inflected form: vocabulary HIT plus the relevant GRAMMAR miss; lexical knowledge and formation are separate.
+- The bucket lemma is the NFC, lower-case Italian dictionary form: infinitive for verbs, masculine singular for nouns and adjectives. Evidence remains the exact surface text the learner wrote; never copy the bucket lemma into evidence unless it is literally present.
+- Proper nouns and function words do not receive vocabulary rows.
+- Judge vocabulary even when the rest of the answer is wrong.
+
+` : `VOCABULARY PRODUCTION (en_it)
+
+On en_it, judge every Italian CONTENT word the learner produced: nouns, verbs, adjectives, adverbs, and lexical locatives. If its vocabulary skill is supplied in the buckets legend, serialize it with that numeric alias. Only for a genuinely unlisted content word, serialize it as v:<Italian dictionary lemma>. Never put a full bucket id in an m tuple.
+
+- Correctly chosen content word: vocabulary HIT. Wrong lexical choice for the intended meaning: vocabulary MISS.
+- Right word in the wrong inflected form: vocabulary HIT plus the relevant GRAMMAR miss; lexical knowledge and formation are separate.
+- The lemma is the NFC, lower-case Italian dictionary form: infinitive for verbs, masculine singular for nouns and adjectives. Never use an English lemma.
+- Proper nouns and function words do not receive vocabulary rows.
+- Judge vocabulary even when the rest of the answer is wrong.
+
+`;
+  const vocabularyRecognitionBlock = fullIdRows ? `VOCABULARY RECOGNITION (it_en)
+
+On it_en, source-word vocabulary skills are supplied in the buckets legend. Copy their exact full_ids into m object bucket fields: HIT when the learner conveys the meaning, MISS when they skip, misread, or substitute it. Never invent dynamic vocabulary on it_en. Emit an unengaged object only when its legend role is r.
+
+` : `VOCABULARY RECOGNITION (it_en)
+
+On it_en, source-word vocabulary skills are supplied in the buckets legend. Use their numeric aliases: HIT when the learner conveys the meaning, MISS when they skip, misread, or substitute it. Never use v:<lemma> on it_en. Emit an unengaged row only when its legend role is r.
+
+`;
+  const directionSuffixInstruction = fullIdRows
+    ? "DIRECTION-BOUND SUFFIX (Architecture ruling 4, 2026-08-02). `.passive` is recognition-only and is already encoded in an it_en legend entry. Copy that exact supplied full_id into bucket. On en_it, a dynamic vocabulary id always uses the bare vocabulary.it.<lemma>.translation shape and never carries `.passive`.\n\n"
+    : "DIRECTION-BOUND SUFFIX (Architecture ruling 4, 2026-08-02). `.passive` is recognition-only and is already encoded in an it_en legend entry. Do not construct, copy, or rewrite that full id; use its numeric alias. On en_it, v:<lemma> always means the bare production skill and never carries `.passive`.\n\n";
   const policy = legacyPrompt.slice(0, outputStart)
     .replace(/7\. Required buckets are mandatory\.[\s\S]*?\n\nACCENT POLICY/, [
-      "7. Required buckets are mandatory. Every role-r alias in the buckets legend MUST appear exactly once in m. Use [alias,0,null,null] only when the learner did not engage it; otherwise score the attempted skill. Do not silently drop a required alias.",
+      requiredInstruction,
       "",
       "ACCENT POLICY",
     ].join("\n"))
@@ -406,34 +450,21 @@ Return ONLY the JSON object, no surrounding text.`;
     .split('Give the dictionary form in "suggest" - for a verb the infinitive, for a noun the singular.')
     .join('In a u row, the optional fourth value is a suggested full bucket id; for vocabulary use vocabulary.it.<Italian dictionary lemma>.translation (infinitive for verbs, singular for nouns), or omit it.')
     .split("the `vocabulary.` namespace on en_it items, described under VOCABULARY PRODUCTION below")
-    .join("unlisted en_it content vocabulary, represented as v:<lemma> and described under VOCABULARY PRODUCTION below")
+    .join(dynamicVocabularyReference)
     .split("That namespace is dynamic - its buckets aggregate on arrival and are never pre-registered - so vocabulary ids are legitimate even when absent from buckets legend.")
-    .join("Those entries aggregate on arrival and are never pre-registered, so v:<lemma> is legitimate when that vocabulary skill is absent from the buckets legend.")
+    .join(dynamicVocabularyLegitimacy)
     .replace(/If you encounter an error that genuinely doesn't fit any of the provided buckets legend entries, you may propose a new bucket by setting bucket_proposed: true and providing proposed_parent_id \(one of the existing buckets in buckets legend\), proposed_label \(the friendly human-readable name\), and proposed_rationale \(one sentence on why it's worth tracking\)\./,
       "If you encounter an error that genuinely does not fit the supplied legend, you may use a p proposal entry with an existing parent alias, a safe child slug, a friendly label, and one-sentence rationale.")
     .replace("Make evidence strings short and concrete", compactEvidenceInstruction)
     .replace('{ "kind": "accent", "text": "perché carries an acute accent; you wrote perche." }',
       '["accent", "perché carries an acute accent; you wrote perche."]')
-    .replace(/VOCABULARY PRODUCTION \(en_it\)[\s\S]*?(?=VOCABULARY RECOGNITION \(it_en\))/, `VOCABULARY PRODUCTION (en_it)
-
-On en_it, judge every Italian CONTENT word the learner produced: nouns, verbs, adjectives, adverbs, and lexical locatives. If its vocabulary skill is supplied in the buckets legend, serialize it with that numeric alias. Only for a genuinely unlisted content word, serialize it as v:<Italian dictionary lemma>. Never put a full bucket id in an m tuple.
-
-- Correctly chosen content word: vocabulary HIT. Wrong lexical choice for the intended meaning: vocabulary MISS.
-- Right word in the wrong inflected form: vocabulary HIT plus the relevant GRAMMAR miss; lexical knowledge and formation are separate.
-- The lemma is the NFC, lower-case Italian dictionary form: infinitive for verbs, masculine singular for nouns and adjectives. Never use an English lemma.
-- Proper nouns and function words do not receive vocabulary rows.
-- Judge vocabulary even when the rest of the answer is wrong.
-
-`)
-    .replace(/VOCABULARY RECOGNITION \(it_en\)[\s\S]*?(?=DIRECTION-BOUND SUFFIX)/, `VOCABULARY RECOGNITION (it_en)
-
-On it_en, source-word vocabulary skills are supplied in the buckets legend. Use their numeric aliases: HIT when the learner conveys the meaning, MISS when they skip, misread, or substitute it. Never use v:<lemma> on it_en. Emit an unengaged row only when its legend role is r.
-
-`)
+    .replace(/VOCABULARY PRODUCTION \(en_it\)[\s\S]*?(?=VOCABULARY RECOGNITION \(it_en\))/, vocabularyProductionBlock)
+    .replace(/VOCABULARY RECOGNITION \(it_en\)[\s\S]*?(?=DIRECTION-BOUND SUFFIX)/, vocabularyRecognitionBlock)
     .replace(/DIRECTION-BOUND SUFFIX \(Architecture ruling 4, 2026-08-02\)\.[\s\S]*?\n\n(?=BUCKET PROPOSALS)/,
-      "DIRECTION-BOUND SUFFIX (Architecture ruling 4, 2026-08-02). `.passive` is recognition-only and is already encoded in an it_en legend entry. Do not construct, copy, or rewrite that full id; use its numeric alias. On en_it, v:<lemma> always means the bare production skill and never carries `.passive`.\n\n");
-  const compactSchema = responseContract === "compact_v3"
-    ? compactPromptSchemaTextV3 : compactPromptSchemaText;
+      directionSuffixInstruction);
+  const compactSchema = responseContract === "compact_v4"
+    ? compactPromptSchemaTextV4
+    : responseContract === "compact_v3" ? compactPromptSchemaTextV3 : compactPromptSchemaText;
   return policy + compactSchema + "\n\nReturn ONLY the JSON object, no surrounding text.";
 }
 
@@ -457,7 +488,7 @@ function buildUserMessage(
   promptContext: MarkerPromptContext,
 ): string {
   const direction = inferDirection(item);
-  if (responseContract === "compact_v2" || responseContract === "compact_v3") {
+  if (responseContract === "compact_v2" || responseContract === "compact_v3" || responseContract === "compact_v4") {
     return JSON.stringify({
       item: {
         direction,
@@ -473,8 +504,8 @@ function buildUserMessage(
       learner: {
         // Keep the natural sentence for comprehension. Token indices remain
         // the only legal evidence output, so evidence quotations still stay
-        // out of paid generation in v2. V3 instead copies short exact
-        // substrings and omits the confusing evidence-token index table.
+        // out of paid generation in v2. V3/V4 instead copy short exact
+        // substrings and omit the confusing evidence-token index table.
         attempt: cleanedRaw,
         ...(responseContract === "compact_v2"
           ? { evidence_tokens: promptContext.prompt.evidence_tokens } : {}),
@@ -600,7 +631,7 @@ export default {
         build: WORKER_BUILD,
         default_model: DEFAULT_MODEL,
         default_response_contract: DEFAULT_RESPONSE_CONTRACT,
-        supported_response_contracts: ["compact_v3", "compact_v2", "legacy_v1"],
+        supported_response_contracts: ["compact_v4", "compact_v3", "compact_v2", "legacy_v1"],
         max_output_tokens: MAX_OUTPUT_TOKENS,
       });
     }
@@ -631,9 +662,9 @@ export default {
       return errorResp(400, "model_unsupported", `Unknown model: ${model}. Known models: ${Object.keys(MODEL_PRICING).join(", ")}`);
     }
     const responseContract = body.response_contract || DEFAULT_RESPONSE_CONTRACT;
-    if (responseContract !== "compact_v2" && responseContract !== "compact_v3" && responseContract !== "legacy_v1") {
+    if (responseContract !== "compact_v2" && responseContract !== "compact_v3" && responseContract !== "compact_v4" && responseContract !== "legacy_v1") {
       return errorResp(400, "response_contract_unsupported",
-        `Unknown response_contract: ${String(body.response_contract)}. Use compact_v3, compact_v2, or legacy_v1.`);
+        `Unknown response_contract: ${String(body.response_contract)}. Use compact_v4, compact_v3, compact_v2, or legacy_v1.`);
     }
 
     // Parse annotations out of the raw input
@@ -854,7 +885,8 @@ export default {
       }
     }
 
-    const markerFormatUsed = result && result.v === 3 ? "compact_v3"
+    const markerFormatUsed = result && result.v === 4 ? "compact_v4"
+      : result && result.v === 3 ? "compact_v3"
       : result && result.v === 2 ? "compact_v2" : "legacy_v1";
     try {
       result = normalizeModelResult(result, promptContext);

@@ -7,6 +7,7 @@ import {
   buildMarkerPromptContext,
   compactPromptSchemaText,
   compactPromptSchemaTextV3,
+  compactPromptSchemaTextV4,
   normalizeModelResult,
   validateMarkerResult,
   type MarkerPromptContext,
@@ -48,6 +49,21 @@ function compactV3(overrides: Record<string, unknown> = {}): Record<string, unkn
     v: 3,
     o: [1, 1, 1, "Right.", "The required form is correct."],
     m: [[0, 1, 1, "La sera"]],
+    n: [],
+    ...overrides,
+  };
+}
+
+function compactV4(overrides: Record<string, unknown> = {}): Record<string, unknown> {
+  return {
+    v: 4,
+    o: [1, 1, 1, "Right.", "The required form is correct."],
+    m: [{
+      evidence: "La sera",
+      bucket: "grammar.required",
+      attempted: 1,
+      correctness: 1,
+    }],
     n: [],
     ...overrides,
   };
@@ -100,6 +116,13 @@ test("buildMarkerPromptContext gives stable role-precedence aliases and tokens",
   assert.match(compactPromptSchemaTextV3, /"parlare" is the bucket lemma, not learner evidence/);
   assert.match(compactPromptSchemaTextV3, /all three numeric o values are 0/);
   assert.match(compactPromptSchemaTextV3, /u, p and n are empty arrays/);
+  assert.match(compactPromptSchemaTextV4, /evidence FIRST/);
+  assert.match(compactPromptSchemaTextV4, /exact full_id/);
+  assert.match(compactPromptSchemaTextV4, /"evidence":"parlato","bucket":"vocabulary\.it\.parlare/);
+  assert.match(compactPromptSchemaTextV4, /Worker adds required not-attempted rows deterministically/);
+  assert.match(compactPromptSchemaTextV4, /omit expected rather than writing null/);
+  assert.match(compactPromptSchemaTextV4, /correctness is null only when attempted is 0/);
+  assert.doesNotMatch(compactPromptSchemaTextV4, /evidence is the only structural field that may be null/);
 });
 
 test("compact system prompt uses aliases consistently while legacy keeps its schema", () => {
@@ -108,11 +131,118 @@ test("compact system prompt uses aliases consistently while legacy keeps its sch
   const end = source.indexOf("  const compactSchema =", start);
   assert(start >= 0 && end > start);
   const compactBuilder = source.slice(start, end);
-  assert.match(compactBuilder, /serialize it with that numeric alias/);
-  assert.match(compactBuilder, /Only for a genuinely unlisted content word, serialize it as v:<Italian dictionary lemma>/);
+  assert.match(source, /serialize it with that numeric alias/);
+  assert.match(source, /Only for a genuinely unlisted content word, serialize it as v:<Italian dictionary lemma>/);
   assert.match(compactBuilder, /optional fourth value is a suggested full bucket id/);
   assert.doesNotMatch(compactBuilder, /Fire `vocabulary\.it\.<lemma>\.translation`/);
   assert.doesNotMatch(compactBuilder, /use the id exactly as/);
+
+  assert.match(source, /const fullIdRows = responseContract === "compact_v4"/);
+  assert.match(source, /copy that exact full_id into the m object's bucket field/);
+  assert.match(source, /A required but unengaged skill uses evidence null, attempted 0, and correctness null/);
+  assert.match(source, /const vocabularyProductionBlock = fullIdRows/);
+  assert.match(source, /const vocabularyRecognitionBlock = fullIdRows/);
+});
+
+test("compact v4 hydrates evidence-first named rows with exact full IDs", () => {
+  const result = normalizeModelResult(compactV4({
+    m: [{
+      evidence: "La sera",
+      bucket: "grammar.required",
+      attempted: 1,
+      correctness: 1,
+      expected: "canonical form",
+    }],
+  }), context());
+  assert.deepEqual(result.markpoints[0], {
+    bucket: "grammar.required",
+    label: "Required skill",
+    attempted_credit: 1,
+    correctness_credit: 1,
+    outcome: "hit",
+    evidence: "La sera",
+    expected: "canonical form",
+    bucket_proposed: false,
+  });
+
+  assert.throws(() => normalizeModelResult(compactV4({
+    m: [{ evidence: "la sera", bucket: "grammar.required", attempted: 1, correctness: 1 }],
+  }), context()), (error: unknown) => error instanceof MarkerContractError
+    && error.code === "invalid_evidence");
+  assert.throws(() => normalizeModelResult(compactV4({
+    m: [{ evidence: "La sera", bucket: 0, attempted: 1, correctness: 1 }],
+  }), context()), /exact full id/);
+  assert.throws(() => normalizeModelResult(compactV4({
+    m: [{ evidence: "La sera", bucket: "grammar.not_supplied", attempted: 1, correctness: 1 }],
+  }), context()), /neither an exact supplied id nor sanctioned dynamic vocabulary/);
+  assert.throws(() => normalizeModelResult(compactV4({
+    m: [{ evidence: "La sera", bucket: "grammar.required", attempted: 1, correctness: 1, extra: true }],
+  }), context()), /unexpected field extra/);
+  assert.throws(() => normalizeModelResult(compactV4({
+    m: [
+      { evidence: "La sera", bucket: "grammar.required", attempted: 1, correctness: 1 },
+      { evidence: "invented", bucket: "grammar.expected", attempted: 0, correctness: 1 },
+    ],
+  }), context()), /only when engaged/);
+  assert.throws(() => normalizeModelResult(compactV4({
+    m: [{ evidence: null, bucket: "grammar.required", attempted: 0, correctness: 0 }],
+  }), context()), /correctness must be null/);
+  assert.throws(() => normalizeModelResult(compactV4({
+    m: [{ evidence: null, bucket: "grammar.required", attempted: 1, correctness: 1, expected: "canonical form" }],
+  }), context()), /only an omitted-form miss/);
+  assert.throws(() => normalizeModelResult(compactV4({
+    m: [{ evidence: null, bucket: "grammar.required", attempted: 1, correctness: 0.5, expected: "canonical form" }],
+  }), context()), /only an omitted-form miss/);
+  const omitted = normalizeModelResult(compactV4({
+    m: [{ evidence: null, bucket: "grammar.required", attempted: 1, correctness: 0, expected: "canonical form" }],
+  }), context());
+  assert.equal(omitted.markpoints[0].outcome, "miss");
+  assert.equal(omitted.markpoints[0].evidence, undefined);
+  assert.equal(omitted.markpoints[0].expected, "canonical form");
+});
+
+test("compact v4 supports sanctioned dynamic vocabulary and rejects tuples", () => {
+  const result = normalizeModelResult(compactV4({
+    m: [
+      { evidence: "La sera", bucket: "grammar.required", attempted: 1, correctness: 1 },
+      { evidence: "esco", bucket: "vocabulary.it.uscire.translation", attempted: 1, correctness: 1, expected: "uscire" },
+    ],
+  }), context("en_it"));
+  assert.equal(result.markpoints[1].bucket, "vocabulary.it.uscire.translation");
+  assert.equal(result.markpoints[1].evidence, "esco");
+  assert.equal(result.markpoints[1].expected, "uscire");
+
+  assert.throws(() => normalizeModelResult(compactV4({
+    m: [["La sera", "grammar.required", 1, 1]],
+  }), context()), /evidence-first object/);
+  assert.throws(() => normalizeModelResult(compactV4({
+    m: [
+      { evidence: "La sera", bucket: "grammar.required", attempted: 1, correctness: 1 },
+      { evidence: "esco", bucket: "vocabulary.it.uscire.translation", attempted: 1, correctness: 1 },
+    ],
+  }), context("it_en")), /neither an exact supplied id nor sanctioned dynamic vocabulary/);
+});
+
+test("compact v4 expands required blanks only for a wholly unattempted answer", () => {
+  const result = normalizeModelResult(compactV4({
+    o: [0, 0, 0, "Not attempted.", "The answer was wholly in the wrong language."],
+    m: [],
+  }), context());
+  assert.equal(result.markpoints.length, 1);
+  assert.equal(result.markpoints[0].bucket, "grammar.required");
+  assert.equal(result.markpoints[0].outcome, "not_attempted");
+
+  assert.throws(() => normalizeModelResult(compactV4({ m: [] }), context()), /must occur exactly once/);
+  assert.throws(() => normalizeModelResult(compactV4({
+    o: [0, 0, 0, "Not attempted.", "The answer was wholly in the wrong language."],
+    m: [],
+    n: [["other", "Wrong language."]],
+  }), context()), /empty notes array/);
+  assert.throws(() => normalizeModelResult(compactV4({
+    o: [0, 1, 0, "Not attempted.", "Contradictory attempted score."],
+    m: [{ evidence: null, bucket: "grammar.required", attempted: 0, correctness: null }],
+    n: [["other", "Wrong language."]],
+  }), context()), /empty notes array/);
 });
 
 test("compact v3 hydrates exact learner substrings without token indices", () => {
@@ -284,7 +414,7 @@ test("dynamic v:<lemma> works only for engaged en_it vocabulary", () => {
   }), context("en_it")), /unsupported characters/);
   assert.throws(() => normalizeModelResult(compact({
     m: [[0, 1, 1, [0, 0]], ["v:uscire", 1, 0, null, "uscire"]],
-  }), context("en_it")), /must cite a learner evidence span/);
+  }), context("en_it")), /must cite learner evidence/);
 });
 
 test("compact full IDs normalize only when supplied or sanctioned dynamic vocabulary", () => {
@@ -361,7 +491,7 @@ test("invalid token spans fail, while an omitted-form miss may use null plus exp
   const omitted = normalizeModelResult(compact({ m: [[0, 1, 0, null, "progetto"]] }), context());
   assert.equal(omitted.markpoints[0].evidence, undefined);
   assert.equal(omitted.markpoints[0].expected, "progetto");
-  assert.throws(() => normalizeModelResult(compact({ m: [[0, 1, 0, null]] }), context()), /needs evidence or an expected/);
+  assert.throws(() => normalizeModelResult(compact({ m: [[0, 1, 0, null]] }), context()), /only an omitted-form miss/);
 });
 
 test("hits must omit expected correction", () => {
@@ -493,7 +623,7 @@ test("legacy fallback is strict about required buckets and exact evidence", () =
       attempted_credit: 1,
       correctness_credit: 0,
     }],
-  }), context()), /needs evidence or an expected/);
+  }), context()), /only an omitted-form miss/);
   for (const bucket of [
     "vocabulary.it.Uscire.translation",
     "vocabulary.it.perche\u0301.translation",
@@ -538,16 +668,21 @@ test("a declared but invalid v2 payload never falls through to legacy", () => {
   });
 });
 
-test("a declared but invalid v3 or unknown compact payload never falls through to legacy", () => {
+test("declared invalid v3/v4 and unknown compact payloads never fall through to legacy", () => {
   assert.throws(() => normalizeModelResult(legacy({ v: 3, o: "wrong", m: [] }), context()), (error: unknown) => {
     return error instanceof MarkerContractError
       && error.code === "unknown_field"
       && /unexpected field overall/.test(error.message);
   });
-  assert.throws(() => normalizeModelResult({ v: 4 }, context()), (error: unknown) => {
+  assert.throws(() => normalizeModelResult(legacy({ v: 4, o: "wrong", m: [] }), context()), (error: unknown) => {
+    return error instanceof MarkerContractError
+      && error.code === "unknown_field"
+      && /unexpected field overall/.test(error.message);
+  });
+  assert.throws(() => normalizeModelResult({ v: 5 }, context()), (error: unknown) => {
     return error instanceof MarkerContractError
       && error.code === "compact_schema_invalid"
-      && /2 or 3/.test(error.message);
+      && /2, 3, or 4/.test(error.message);
   });
 });
 
@@ -565,4 +700,8 @@ test("strict public validator rejects inconsistent outcomes and non-authoritativ
   inconsistentBlank.markpoints[0].outcome = "not_attempted";
   delete inconsistentBlank.markpoints[0].evidence;
   assert.match(validateMarkerResult(inconsistentBlank, context()).error || "", /must be null/);
+  const evidenceEscape = normalizeModelResult(compactV4(), context());
+  delete evidenceEscape.markpoints[0].evidence;
+  evidenceEscape.markpoints[0].expected = "canonical form";
+  assert.match(validateMarkerResult(evidenceEscape, context()).error || "", /only an omitted-form miss/);
 });

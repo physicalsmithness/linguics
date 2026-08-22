@@ -1,4 +1,4 @@
-# Linguics marker compact-v3 experiment
+# Linguics marker compact-v3 and compact-v4 experiments
 
 Date: 2026-08-22
 Author: Codex (OpenAI)
@@ -7,9 +7,11 @@ Author: Codex (OpenAI)
 
 The compact-v2 paid probes established a useful cost and latency reduction, but not quality parity with the legacy response contract. In particular, the model sometimes enumerated numeric bucket aliases and attached cyclic token-index spans rather than reasoning from the learner's answer.
 
-This branch tests the smallest high-upside correction while preserving every learner-facing output: compact v3 keeps the compact tuple shape, but replaces token-index evidence with short exact substrings copied from the authoritative learner answer. The Worker still expands the model response into the existing public result shape.
+This branch first tested the smallest high-upside correction while preserving every learner-facing output: compact v3 kept the compact tuple shape, but replaced token-index evidence with short exact substrings copied from the authoritative learner answer. The paid result showed that exact strings alone were not enough: GPT-4o-mini still copied a canonical bucket lemma into the evidence position.
 
-The learner-path default remains `legacy_v1`. Compact v3 is opt-in and experimental.
+Compact v4 therefore changes the representation rather than adding another prompt-only instruction. Its markpoints use evidence-first named fields and exact allow-listed bucket IDs, borrowing the separation that worked in the legacy control while retaining deterministic expansion of redundant learner-facing fields.
+
+The learner-path default remains `legacy_v1`. Compact v3 and v4 are opt-in and experimental.
 
 ## Changes in r178
 
@@ -72,7 +74,7 @@ Worker build `2026-08-22-r179-compact-v3-smoke-fix` makes two prompt-only correc
 
 No validator was loosened. Legacy remains the default while the identical four-call gate is repeated.
 
-## r179 paid smoke result and r180 final prompt probe
+## r179 paid smoke result and the r180 stop decision
 
 Artifact: `outputs/marker_paid_ab_2026-08-22_r179_v3_smoke.json`
 
@@ -83,7 +85,44 @@ The repeated four-call gate recorded `$0.0038505` with all costs known:
 - The same vocabulary row again copied `incontrare` from the bucket lemma instead of citing the learner's written `incontrato`. Strict validation rejected the call.
 - Both legacy controls passed.
 
-Worker build `2026-08-22-r180-compact-v3-vocab-evidence` adds one final neutral worked JSON example: a `parlare` bucket over learner text `ho parlato` must cite `parlato`, never the dictionary lemma. Only `false_pos_lemma_01` will be repeated (one compact and one legacy call). If this still fails, v3 prompt tuning stops; the next experiment must change the compact reference/tuple shape rather than weaken or repair evidence validation.
+Worker build `2026-08-22-r180-compact-v3-vocab-evidence` added one final neutral worked JSON example: a `parlare` bucket over learner text `ho parlato` must cite `parlato`, never the dictionary lemma. It was deployed, but no paid r180 call was made. Re-analysis showed that r178 and r179 had produced the same 203-token compact completion despite the added instruction, and that the model was systematically copying canonical legend values into positional tuple fields. Another wording-only call was not sufficiently discriminating to justify spending money.
+
+No validator was weakened and no invalid paid result was silently repaired. Compact-v3 prompt iteration stopped.
+
+## r181 compact-v4 legacy-lite candidate
+
+Compact v4 changes only the model-facing representation. The Worker continues to expand it into the existing public result and therefore preserves the learner-visible outputs.
+
+- Each model markpoint is an evidence-first named object: `evidence`, `bucket`, `attempted`, `correctness`, and optional `expected`.
+- Supplied skills use their exact allow-listed full bucket IDs. A narrowly sanctioned dynamic vocabulary ID remains available only for a genuinely unlisted Italian production word.
+- Evidence remains an exact, case-sensitive Unicode substring of the learner answer. There is no lower-casing, lemmatisation, fuzzy matching, clamping, modulo arithmetic, or silent repair.
+- A hit may retain `expected` when that carries a useful canonical lemma; this preserves an existing output without confusing it with learner evidence.
+- Null evidence is accepted only for an unattempted required row or an engaged omitted-form miss with an expected correction. Hits and partials cannot evade the evidence rule by supplying a lemma in `expected`.
+- V4 rejects serialized blank expected/optional/context rows instead of discarding unchecked fields. If no skill or observation is engaged, notes must be empty even when the model supplied a contradictory positive attempted score that the Worker can otherwise normalise.
+- A wholly wrong-language response may return an empty model markpoint array with all holistic values zero; the Worker adds required not-attempted rows deterministically.
+- Labels, outcomes, marks possible, raw response, and proposal flags are still derived by the Worker rather than paid for repeatedly in model output.
+- `legacy_v1` remains the production default. V4 is available only through an explicit request contract.
+
+The benchmark now has an executable `evidence_one_of` predicate. Ten checks across five existing cases require the returned evidence to equal one of a small, explicitly accepted set, rather than merely containing a token. The decisive smoke case now requires the `ieri` and `incontrare` vocabulary hits with evidence `Ieri` and either `incontrato` or `ho incontrato`; quoting the whole answer, another valid answer token, or the canonical lemma `incontrare` fails. Other checks cover unambiguous evidence such as `mangiato`, `azzurra`, `nuove`, `settimana`, and `di`/`smesso di`.
+
+Two proposed evidence checks were deliberately removed because they would have encoded an ambiguous attribution: a gerund omission can legitimately use null evidence plus the expected gerund, and the tense-choice bucket can be evidenced by either side of the imperfect/passato-prossimo contrast. The stale `nuove` vocabulary expectation was corrected from miss to hit in line with the settled rule that lexical choice and inflection are independent; the separate masculine-singular agreement miss is now asserted explicitly over the same surface evidence.
+
+The paid runner now compares `compact_v4` with `legacy_v1`, verifies the exact r181 Worker build through a cache-busted health request and again on every call, preserves raw responses and usage, makes no retries, and checkpoints after every returned call. An HTTP-success response is still a call error unless both `response_contract_requested` and `marker_format_used` exactly match its experimental arm; any provenance mismatch is stored and printed rather than silently counted as a semantic pass.
+
+## r181 offline release gate
+
+The complete preflight passed before any r181 deployment or spend:
+
+- Worker contract tests: 36 passed.
+- Worker TypeScript type-check: passed.
+- Expectation-suite tests: 44 passed.
+- Executable benchmark assertions: 72, with 11 separately identified manual reviews.
+- Corpus fireability: all 18 cases passed through the real context path.
+- Paid-runner tests: 12 passed with zero fetch calls.
+- Suite-report accounting tests: passed.
+- Lean contexts: 4 to 24 buckets.
+
+The first paid r181 gate remains deliberately small: `false_pos_lemma_01` and `direction_01`, one v4 and one legacy call per case, four calls total and no retries. V4 must pass the strict schema, the existing semantic assertions, the new exact `Ieri` and `incontrato`/`ho incontrato` evidence assertions, and manual inspection of every remaining vocabulary evidence string before a larger repeated comparison is permitted.
 
 ## Related pull request
 

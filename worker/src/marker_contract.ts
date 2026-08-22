@@ -188,6 +188,24 @@ export interface CompactMarkerV3 {
   n?: CompactNote[];
 }
 
+export interface CompactMarkpointV4 {
+  /** Keep evidence first in the model-facing shape: generation starts from learner text. */
+  evidence: CompactEvidenceV3;
+  /** Exact supplied full bucket id, or a sanctioned bare en_it vocabulary id. */
+  bucket: string;
+  attempted: 0 | 1;
+  correctness: number | null;
+  expected?: string;
+}
+export interface CompactMarkerV4 {
+  v: 4;
+  o: CompactOverall;
+  m: CompactMarkpointV4[];
+  u?: CompactUnattributableV3[];
+  p?: CompactProposalV3[];
+  n?: CompactNote[];
+}
+
 export interface ValidationResult {
   ok: boolean;
   error?: string;
@@ -286,6 +304,46 @@ VOCABULARY EVIDENCE EXAMPLE: if legend row 8 names vocabulary.it.parlare.verb.tr
 For a miss whose form is absent, write [7,1,0,null,"the expected form"].
 When attempted is 0, correctness is null: [7,0,null,null], never [7,0,0,null].
 If the learner answered wholly in the wrong language, all three numeric o values are 0, every required row is [alias,0,null,null], and u, p and n are empty arrays.
+Return only the JSON object.`;
+
+/**
+ * V4 is legacy-lite: it keeps deterministic expansion, but replaces the
+ * unlabeled bucket-first tuple with evidence-first named fields and exact full
+ * bucket IDs. Paid r178/r179 showed GPT-4o-mini repeatedly copying canonical
+ * bucket lemmas (for example lower-case or infinitive forms) into the evidence
+ * slot. The legacy named-field shape did not make that error on the same case.
+ */
+export const compactPromptSchemaTextV4 = `OUTPUT FORMAT — compact v4 JSON only
+
+These serialization rules override any earlier wording about aliases or tuple rows; the marking policy itself is unchanged.
+The user message supplies buckets as [alias, role, full_id, label, description] and learner.attempt as the exact learner answer.
+Roles are r=required, e=expected fire-list, o=optional, c=other permitted context.
+
+Return exactly this object shape:
+{
+  "v": 4,
+  "o": [marks_awarded_0_to_1, attempted_overall_0_to_1, correctness_overall_0_to_1, "one short summary", "short house-style explanation"],
+  "m": [
+    {"evidence":"short exact substring copied from learner.attempt"_or_null,"bucket":"exact full_id","attempted":0_or_1,"correctness":0_to_1_or_null,"expected":"canonical form or correction when useful"}
+  ],
+  "u": [ ["exact learner substring"_or_null, "unattributable observation", true_or_false, "optional suggested bucket id"] ],
+  "p": [ {"r":parent_alias,"s":"new_child_slug","l":"label","y":"rationale","a":1,"c":correctness_0_to_1,"e":"exact learner substring"_or_null,"x":"expected correction when evidence is null or result is not a hit"} ],
+  "n": [ ["accent_or_other_kind", "short note text"] ]
+}
+
+In every m object, write evidence FIRST and derive the bucket from that learner evidence. Never enumerate the legend.
+For supplied skills, bucket is the exact full_id copied from the legend. Never put a numeric alias or v:<lemma> in an m object.
+On en_it only, a genuinely unlisted produced content word may use vocabulary.it.<Italian dictionary lemma>.translation.
+Evidence must be a short EXACT CONTIGUOUS SUBSTRING copied from learner.attempt, with identical spelling, accents, apostrophes and case. It is surface text, never a normalized dictionary lemma.
+Every r full_id must occur exactly once in m on an attempted answer. A required but unengaged skill uses evidence null, attempted 0 and correctness null.
+Emit e/o/c buckets only when engaged. An engaged present form needs evidence. An engaged omitted-form miss may use null evidence only when expected supplies the correction.
+Expected may name the canonical lemma or form even on a hit; otherwise omit expected rather than writing null. In m, evidence may be null only in the two cases above; correctness is null only when attempted is 0.
+Every proposal describes an engaged skill: a is always 1 and c is numeric. Give either e or x.
+
+CRITICAL EVIDENCE-FIRST EXAMPLE: if learner.attempt contains "ho parlato" and the legend supplies vocabulary.it.parlare.verb.translation.active, write {"evidence":"parlato","bucket":"vocabulary.it.parlare.verb.translation.active","attempted":1,"correctness":1,"expected":"parlare"}.
+The learner wrote "parlato", so evidence must not be "parlare".
+For an omitted-form miss write {"evidence":null,"bucket":"the.exact.full_id","attempted":1,"correctness":0,"expected":"the expected form"}.
+If the learner answered wholly in the wrong language, all three numeric o values are 0 and m, u, p and n are empty arrays. The Worker adds required not-attempted rows deterministically.
 Return only the JSON object.`;
 
 const TOKEN_RE = /[\p{L}\p{M}\p{N}]+(?:['’][\p{L}\p{M}\p{N}]+)*|[^\s]/gu;
@@ -515,7 +573,7 @@ function parseCompactEvidence(
   value: unknown,
   context: MarkerPromptContext,
   path: string,
-  version: 2 | 3,
+  version: 2 | 3 | 4,
 ): { isNull: boolean; evidence?: string } {
   if (version === 2) {
     const parsed = parseSpan(value, context, path);
@@ -558,7 +616,7 @@ function assertOnlyKeys(value: Record<string, unknown>, allowed: Set<string>, pa
   }
 }
 
-function hydrateCompact(parsed: Record<string, unknown>, context: MarkerPromptContext, version: 2 | 3): MarkerResult {
+function hydrateCompact(parsed: Record<string, unknown>, context: MarkerPromptContext, version: 2 | 3 | 4): MarkerResult {
   assertOnlyKeys(parsed, ALLOWED_COMPACT_KEYS, "result");
   if (parsed.v !== version) fail("compact_schema_invalid", `v must be ${version}`, "result.v");
   if (!Array.isArray(parsed.o) || parsed.o.length !== 5) {
@@ -582,16 +640,57 @@ function hydrateCompact(parsed: Record<string, unknown>, context: MarkerPromptCo
   for (let i = 0; i < parsed.m.length; i++) {
     const path = `result.m[${i}]`;
     const row = parsed.m[i];
-    if (!Array.isArray(row) || (row.length !== 4 && row.length !== 5)) {
-      fail("compact_schema_invalid", "markpoint must have 4 values, or 5 when expected is supplied", path);
+    let ref: unknown;
+    let attemptedValue: unknown;
+    let correctnessValue: unknown;
+    let evidenceValue: unknown;
+    let expectedValue: unknown;
+    let refPath: string;
+    let evidencePath: string;
+    let expectedPath: string;
+    if (version === 4) {
+      if (!isRecord(row)) fail("compact_schema_invalid", "v4 markpoint must be an evidence-first object", path);
+      assertOnlyKeys(row, new Set(["evidence", "bucket", "attempted", "correctness", "expected"]), path);
+      ref = row.bucket;
+      attemptedValue = row.attempted;
+      correctnessValue = row.correctness;
+      evidenceValue = row.evidence;
+      expectedValue = row.expected;
+      refPath = `${path}.bucket`;
+      evidencePath = `${path}.evidence`;
+      expectedPath = `${path}.expected`;
+    } else {
+      if (!Array.isArray(row) || (row.length !== 4 && row.length !== 5)) {
+        fail("compact_schema_invalid", "markpoint must have 4 values, or 5 when expected is supplied", path);
+      }
+      ref = row[0];
+      attemptedValue = row[1];
+      correctnessValue = row[2];
+      evidenceValue = row[3];
+      expectedValue = row[4];
+      refPath = `${path}[0]`;
+      evidencePath = `${path}[3]`;
+      expectedPath = `${path}[4]`;
     }
-    let ref = row[0];
     // GPT-4o-mini's first compact-v2 sweep followed the compact tuple shape
     // but copied exact supplied IDs into the alias slot. That is still a
     // deterministic reference, not a semantic ambiguity: accept only an exact
     // legend ID (or the already-sanctioned bare en_it vocabulary shape), while
     // continuing to reject every unknown grammar ID.
-    if (typeof ref === "string" && !ref.startsWith("v:")) {
+    if (version === 4) {
+      if (typeof ref !== "string") {
+        fail("unknown_bucket_id", "v4 bucket must be an exact full id", refPath);
+      }
+      const supplied = byId.get(ref);
+      if (supplied) {
+        ref = supplied.alias;
+      } else if (context.direction === "en_it" && isBareProductionVocabularyBucket(ref)) {
+        const match = DYNAMIC_BUCKET_RE.exec(ref)!;
+        ref = `v:${match[1]}`;
+      } else {
+        fail("unknown_bucket_id", "bucket is neither an exact supplied id nor sanctioned dynamic vocabulary", refPath);
+      }
+    } else if (typeof ref === "string" && !ref.startsWith("v:")) {
       const supplied = byId.get(ref);
       if (supplied) {
         ref = supplied.alias;
@@ -603,32 +702,43 @@ function hydrateCompact(parsed: Record<string, unknown>, context: MarkerPromptCo
     // An unlisted vocabulary row with attempted=0 is the same fire-list blank
     // as a non-required supplied alias: no event. Do not reject a harmless
     // serialized blank merely because dynamic vocabulary has no legend role.
-    if (typeof ref === "string" && ref.startsWith("v:") && row[1] === 0) continue;
+    if (typeof ref === "string" && ref.startsWith("v:") && attemptedValue === 0) {
+      if (version === 4) {
+        fail("unengaged_nonrequired", "v4 may emit dynamic vocabulary only when engaged", path);
+      }
+      continue;
+    }
     const suppliedEntry = typeof ref === "number" && Number.isInteger(ref) ? byAlias.get(ref) : undefined;
     // Fire-list blank means no event. Models sometimes serialize that blank as
     // [alias,0,null,null]; remove it deterministically rather than exposing a
     // not-attempted event for a non-required bucket.
-    if (suppliedEntry && suppliedEntry.role !== "r" && row[1] === 0) continue;
-    const correctness = row[1] === 0 && row[2] === 0 ? null : row[2];
-    const credits = validateCredits(row[1], correctness, path);
-    const evidenceResult = parseCompactEvidence(row[3], context, `${path}[3]`, version);
-    const expected = parseExpected(row[4], `${path}[4]`);
+    if (suppliedEntry && suppliedEntry.role !== "r" && attemptedValue === 0) {
+      if (version === 4) {
+        fail("unengaged_nonrequired", "v4 may emit expected, optional, and context buckets only when engaged", path);
+      }
+      continue;
+    }
+    const correctness = version !== 4 && attemptedValue === 0 && correctnessValue === 0
+      ? null : correctnessValue;
+    const credits = validateCredits(attemptedValue, correctness, path);
+    const evidenceResult = parseCompactEvidence(evidenceValue, context, evidencePath, version);
+    const expected = parseExpected(expectedValue, expectedPath);
     const outcome = deriveOutcome(credits.a, credits.c);
 
     if (credits.a === 0 && !evidenceResult.isNull) {
-      fail("invalid_span", "an unattempted markpoint must have null evidence", `${path}[3]`);
+      fail("invalid_evidence", "an unattempted markpoint must have null evidence", evidencePath);
     }
-    if (credits.a === 1 && evidenceResult.isNull && !expected) {
-      fail("invalid_span", "an attempted markpoint needs evidence or an expected omitted form", `${path}[3]`);
+    if (credits.a === 1 && evidenceResult.isNull && (outcome !== "miss" || !expected)) {
+      fail("invalid_evidence", "only an omitted-form miss may use null evidence plus an expected correction", evidencePath);
     }
-    if (outcome === "hit" && expected !== undefined) {
-      fail("compact_schema_invalid", "hits must omit the expected-correction value", `${path}[4]`);
+    if (version !== 4 && outcome === "hit" && expected !== undefined) {
+      fail("compact_schema_invalid", "hits must omit the expected-correction value", expectedPath);
     }
 
     let bucket: string;
     let label: string;
     if (typeof ref === "number") {
-      if (!Number.isInteger(ref) || !byAlias.has(ref)) fail("unknown_bucket_alias", "unknown numeric bucket alias", `${path}[0]`);
+      if (!Number.isInteger(ref) || !byAlias.has(ref)) fail("unknown_bucket_alias", "unknown numeric bucket alias", refPath);
       const entry = byAlias.get(ref)!;
       if (entry.role !== "r" && credits.a !== 1) {
         fail("unengaged_nonrequired", "expected, optional, and context buckets may be emitted only when engaged", path);
@@ -639,16 +749,18 @@ function hydrateCompact(parsed: Record<string, unknown>, context: MarkerPromptCo
     } else if (typeof ref === "string" && ref.startsWith("v:")) {
       if (credits.a !== 1) fail("invalid_dynamic_vocabulary", "dynamic vocabulary must be engaged", path);
       if (evidenceResult.isNull) {
-        fail("invalid_dynamic_vocabulary", "dynamic produced vocabulary must cite a learner evidence span", `${path}[3]`);
+        fail("invalid_dynamic_vocabulary", "dynamic produced vocabulary must cite learner evidence", evidencePath);
       }
-      const dynamic = dynamicVocabulary(ref, context, `${path}[0]`);
+      const dynamic = dynamicVocabulary(ref, context, refPath);
       if (byId.has(dynamic.id)) {
-        fail("invalid_dynamic_vocabulary", "a supplied vocabulary bucket must use its numeric alias", `${path}[0]`);
+        fail("invalid_dynamic_vocabulary", version === 4
+          ? "a supplied vocabulary bucket must use its exact full id"
+          : "a supplied vocabulary bucket must use its numeric alias", refPath);
       }
       bucket = dynamic.id;
       label = dynamic.label;
     } else {
-      fail("unknown_bucket_alias", "bucket must be a numeric alias or v:<lemma>", `${path}[0]`);
+      fail("unknown_bucket_alias", "bucket must be a numeric alias or v:<lemma>", refPath);
     }
 
     if (bucketIds.has(bucket)) fail("duplicate_bucket", `${bucket} occurs more than once`, path);
@@ -663,6 +775,29 @@ function hydrateCompact(parsed: Record<string, unknown>, context: MarkerPromptCo
       ...(expected !== undefined ? { expected } : {}),
       bucket_proposed: false,
     });
+  }
+
+  // V4 lets a wholly wrong-language response return m:[] rather than paying
+  // the model to repeat every required full id as a zero row. Only the fully
+  // unattempted holistic state authorizes this deterministic expansion; any
+  // attempted answer must still account for each required bucket explicitly.
+  if (version === 4 && parsed.m.length === 0
+    && overall.marks_awarded === 0
+    && overall.attempted_overall === 0
+    && overall.correctness_overall === 0) {
+    for (const entry of context.legend) {
+      if (entry.role !== "r") continue;
+      aliasCounts.set(entry.alias, 1);
+      bucketIds.add(entry.id);
+      markpoints.push({
+        bucket: entry.id,
+        label: entry.label,
+        attempted_credit: 0,
+        correctness_credit: null,
+        outcome: "not_attempted",
+        bucket_proposed: false,
+      });
+    }
   }
 
   for (const entry of context.legend) {
@@ -764,10 +899,13 @@ function hydrateCompact(parsed: Record<string, unknown>, context: MarkerPromptCo
   // Preserve model judgement in mixed/partial cases where a proportion may
   // carry information, but reject attempted_overall=0 when explicit evidence
   // proves that something was engaged.
-  if (version === 3) {
+  if (version === 3 || version === 4) {
     const hasEngagement = markpoints.some((markpoint) => markpoint.attempted_credit > 0)
       || unattributable.length > 0;
     if (!hasEngagement) {
+      if (version === 4 && notes.length > 0) {
+        fail("holistic_inconsistent", "a wholly unattempted v4 answer must have an empty notes array", "result.n");
+      }
       if (overall.marks_awarded !== 0 || overall.correctness_overall !== 0) {
         fail("holistic_inconsistent", "an unengaged answer must have zero marks and zero correctness", "result.o");
       }
@@ -901,8 +1039,9 @@ function assertMarkerResult(result: unknown, context?: MarkerPromptContext): ass
     if (credits.a === 0 && markpoint.evidence !== undefined) {
       fail("invalid_evidence", "an unattempted markpoint must not carry evidence", `${path}.evidence`);
     }
-    if (credits.a === 1 && markpoint.evidence === undefined && markpoint.expected === undefined) {
-      fail("invalid_evidence", "an attempted markpoint needs evidence or an expected omitted form", path);
+    if (credits.a === 1 && markpoint.evidence === undefined &&
+        (derived !== "miss" || markpoint.expected === undefined)) {
+      fail("invalid_evidence", "only an omitted-form miss may omit evidence and supply an expected correction", path);
     }
 
     if (markpoint.bucket_proposed === true) {
@@ -988,7 +1127,7 @@ export function validateMarkerResult(result: unknown, context?: MarkerPromptCont
 }
 
 /**
- * Accept compact v2/v3 or a legacy full MarkerResult and return the strict,
+ * Accept compact v2/v3/v4 or a legacy full MarkerResult and return the strict,
  * browser-facing shape. A payload that declares a compact version never
  * silently falls through to legacy interpretation.
  */
@@ -996,8 +1135,8 @@ export function normalizeModelResult(parsed: unknown, context: MarkerPromptConte
   if (!isRecord(parsed)) fail("schema_invalid", "model result must be an object", "result");
   let result: MarkerResult;
   if (hasOwn(parsed, "v")) {
-    if (parsed.v !== 2 && parsed.v !== 3) {
-      fail("compact_schema_invalid", "v must be 2 or 3", "result.v");
+    if (parsed.v !== 2 && parsed.v !== 3 && parsed.v !== 4) {
+      fail("compact_schema_invalid", "v must be 2, 3, or 4", "result.v");
     }
     result = hydrateCompact(parsed, context, parsed.v);
   } else {

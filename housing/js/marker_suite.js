@@ -30,6 +30,7 @@
     "no_note_of_kind",
     "count_at_most",
     "overall",
+    "evidence_one_of",
   ]);
   const OUTCOMES = Object.freeze(["hit", "miss", "partial", "not_attempted"]);
   const NOTE_KINDS = Object.freeze([
@@ -219,6 +220,29 @@
       } else if ((check.op === "gte" || check.op === "lte") && typeof check.value !== "number") {
         errors.push(issue("invalid_check_value", path + ".value",
           check.op + " requires a numeric value", caseId));
+      }
+    } else if (check.type === "evidence_one_of") {
+      rejectUnknownKeys(check, ["type", "bucket", "values"], path, errors, caseId);
+      if (!validBucketId(check.bucket)) {
+        errors.push(issue("invalid_bucket_id", path + ".bucket",
+          "evidence check bucket must be one exact bucket id", caseId));
+      }
+      if (!Array.isArray(check.values) || check.values.length === 0) {
+        errors.push(issue("invalid_evidence_values", path + ".values",
+          "evidence check values must be a non-empty array of exact learner substrings", caseId));
+      } else {
+        const seen = new Set();
+        for (let i = 0; i < check.values.length; i++) {
+          const value = check.values[i];
+          if (typeof value !== "string" || !value.trim() || value.trim() !== value) {
+            errors.push(issue("invalid_evidence_value", path + ".values[" + i + "]",
+              "accepted evidence must be a non-empty learner substring without outer whitespace", caseId));
+          } else if (seen.has(value)) {
+            errors.push(issue("duplicate_evidence_value", path + ".values[" + i + "]",
+              "accepted evidence values must be unique", caseId));
+          }
+          seen.add(value);
+        }
       }
     }
     return { ok: errors.length === 0, errors };
@@ -438,6 +462,38 @@
           case_id: caseId,
         }));
         errors.push.apply(errors, checked.errors);
+        const check = checks[i];
+        if (isObject(check) && check.type === "evidence_one_of" && validBucketId(check.bucket)) {
+          const checkPath = path + ".expect_checks[" + i + "]";
+          let canonical = check.bucket;
+          try {
+            canonical = canonicalizeBucketId(check.bucket, options.canonicalizeBucketId, {
+              source: "expect_check",
+              case_id: caseId,
+              case: caseDef,
+              item,
+            });
+            if (options.requireCanonical !== false && canonical !== check.bucket) {
+              errors.push(issue("noncanonical_bucket_id", checkPath + ".bucket",
+                "use canonical bucket id " + canonical, caseId));
+            }
+          } catch (error) {
+            errors.push(issue("canonicalizer_failed", checkPath + ".bucket",
+              error && error.message ? error.message : String(error), caseId));
+          }
+          if (!canonicalExpectedIds.includes(canonical)) {
+            errors.push(issue("orphan_evidence_check", checkPath + ".bucket",
+              "evidence check bucket must also appear in expect_verdict", caseId));
+          }
+          if (Array.isArray(check.values) && typeof caseDef.answer === "string") {
+            for (let j = 0; j < check.values.length; j++) {
+              if (typeof check.values[j] === "string" && !caseDef.answer.includes(check.values[j])) {
+                errors.push(issue("evidence_value_not_in_answer", checkPath + ".values[" + j + "]",
+                  "accepted evidence is not an exact substring of the learner answer", caseId));
+              }
+            }
+          }
+        }
       }
     }
 
@@ -585,6 +641,8 @@
           source: "marker_result",
           markpoint_index: i,
           case_id: options.case_id || "",
+          case: options.case,
+          item: options.item,
         });
       } catch (error) {
         return { ok: false, error: error && error.message ? error.message : String(error) };
@@ -658,6 +716,39 @@
         message: count + " matching " + check.outcome + " markpoint(s); maximum " + check.n,
         count,
         maximum: check.n,
+      };
+    }
+    if (check.type === "evidence_one_of") {
+      let bucket = check.bucket;
+      try {
+        bucket = canonicalizeBucketId(check.bucket, options.canonicalizeBucketId, {
+          source: "expect_check",
+          case_id: options.case_id || "",
+          case: options.case,
+          item: options.item,
+        });
+      } catch (error) {
+        return {
+          pass: false,
+          broken: true,
+          type: check.type,
+          message: error && error.message ? error.message : String(error),
+        };
+      }
+      const matches = markpoints.filter(markpoint => markpoint.bucket === bucket);
+      const evidence = matches.length === 1 && typeof matches[0].evidence === "string"
+        ? matches[0].evidence : "";
+      const pass = matches.length === 1 && check.values.includes(evidence);
+      return {
+        pass,
+        type: check.type,
+        message: pass
+          ? bucket + " evidence exactly matches an accepted value"
+          : bucket + " evidence " + JSON.stringify(evidence) + " is not one of " + JSON.stringify(check.values),
+        bucket,
+        evidence,
+        accepted_evidence: check.values.slice(),
+        match_count: matches.length,
       };
     }
     const actual = result.overall[check.field];
@@ -737,7 +828,12 @@
       return failed;
     }
 
-    const normalizeOptions = Object.assign({}, options, { case_id: caseDef.case_id });
+    const item = resolveItem(options, caseDef.item);
+    const normalizeOptions = Object.assign({}, options, {
+      case_id: caseDef.case_id,
+      case: caseDef,
+      item,
+    });
     const normalized = normalizeMarkerResult(run, normalizeOptions);
     if (!normalized.ok) {
       const failed = baseJudgement(caseDef, "call_error");
@@ -760,6 +856,7 @@
           source: "expect_verdict",
           case_id: caseDef.case_id,
           case: caseDef,
+          item,
         });
       } catch (error) {
         judgement.status = "broken";
@@ -786,6 +883,7 @@
           source: "expect_absent",
           case_id: caseDef.case_id,
           case: caseDef,
+          item,
         });
       } catch (error) {
         judgement.status = "broken";
@@ -801,7 +899,7 @@
     }
 
     for (const check of caseDef.expect_checks || []) {
-      const evaluated = evaluateValidatedCheck(check, result, options);
+      const evaluated = evaluateValidatedCheck(check, result, normalizeOptions);
       judgement.check_results.push(evaluated);
       if (!evaluated.pass) judgement.rule_failures.push(evaluated.message);
     }

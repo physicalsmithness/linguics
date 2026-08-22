@@ -85,7 +85,7 @@ test("all cases have stable unique ids and no legacy expect_rules", () => {
   }
 });
 
-test("the suite exercises all five executable predicate types", () => {
+test("the suite exercises every executable predicate type", () => {
   const types = new Set(realSuite.cases.flatMap(row =>
     (row.expect_checks || []).map(check => check.type)));
   assert.deepStrictEqual(Array.from(types).sort(), suiteApi.CHECK_TYPES.slice().sort());
@@ -214,6 +214,44 @@ test("invalid scopes, outcomes, note kinds, counts, fields and operators are rej
   for (const [check, code] of badChecks) {
     assertError(suiteApi.validateCase(caseDef({ expect_checks: [check] })), code);
   }
+});
+
+test("evidence checks require exact accepted learner strings on an expected bucket", () => {
+  const valid = caseDef({
+    answer: "Ieri ho incontrato Marco",
+    expect_checks: [{
+      type: "evidence_one_of", bucket: "grammar.one", values: ["incontrato", "ho incontrato"],
+    }],
+  });
+  assert.strictEqual(suiteApi.validateCase(valid).ok, true);
+  assertError(suiteApi.validateCase(caseDef({
+    answer: "Ieri ho incontrato Marco",
+    expect_checks: [{ type: "evidence_one_of", bucket: "grammar.*", values: ["incontrato"] }],
+  })), "invalid_bucket_id");
+  assertError(suiteApi.validateCase(caseDef({
+    answer: "Ieri ho incontrato Marco",
+    expect_checks: [{ type: "evidence_one_of", bucket: "grammar.one", values: [] }],
+  })), "invalid_evidence_values");
+  assertError(suiteApi.validateCase(caseDef({
+    answer: "Ieri ho incontrato Marco",
+    expect_checks: [{ type: "evidence_one_of", bucket: "grammar.one", values: ["   "] }],
+  })), "invalid_evidence_value");
+  assertError(suiteApi.validateCase(caseDef({
+    answer: "Ieri ho incontrato Marco",
+    expect_checks: [{ type: "evidence_one_of", bucket: "grammar.one", values: [" incontrato"] }],
+  })), "invalid_evidence_value");
+  assertError(suiteApi.validateCase(caseDef({
+    answer: "Ieri ho incontrato Marco",
+    expect_checks: [{ type: "evidence_one_of", bucket: "grammar.one", values: ["incontrato", "incontrato"] }],
+  })), "duplicate_evidence_value");
+  assertError(suiteApi.validateCase(caseDef({
+    answer: "Ieri ho incontrato Marco",
+    expect_checks: [{ type: "evidence_one_of", bucket: "grammar.two", values: ["incontrato"] }],
+  })), "orphan_evidence_check");
+  assertError(suiteApi.validateCase(caseDef({
+    answer: "Ieri ho incontrato Marco",
+    expect_checks: [{ type: "evidence_one_of", bucket: "grammar.one", values: ["Incontrato"] }],
+  })), "evidence_value_not_in_answer");
 });
 
 test("absence reason keys must agree exactly with absence assertions", () => {
@@ -355,6 +393,33 @@ test("overall implements eq, ne, gte and lte with numeric tolerance", () => {
   }, predicateResult).pass, false);
 });
 
+test("evidence_one_of is exact, case-sensitive, and rejects broad or duplicate evidence", () => {
+  const result = marker([{
+    bucket: "grammar.one", outcome: "hit", evidence: "incontrato",
+  }]);
+  assert.strictEqual(suiteApi.evaluateCheck({
+    type: "evidence_one_of", bucket: "grammar.one", values: ["incontrato", "ho incontrato"],
+  }, result).pass, true);
+  assert.strictEqual(suiteApi.evaluateCheck({
+    type: "evidence_one_of", bucket: "grammar.one", values: ["Incontrato"],
+  }, result).pass, false);
+  const broad = marker([{
+    bucket: "grammar.one", outcome: "hit", evidence: "Ieri ho incontrato Marco",
+  }]);
+  assert.strictEqual(suiteApi.evaluateCheck({
+    type: "evidence_one_of", bucket: "grammar.one", values: ["incontrato", "ho incontrato"],
+  }, broad).pass, false);
+  const duplicate = marker([
+    { bucket: "grammar.one", outcome: "hit", evidence: "incontrato" },
+    { bucket: "grammar.one", outcome: "hit", evidence: "incontrato" },
+  ]);
+  const evaluated = suiteApi.evaluateCheck({
+    type: "evidence_one_of", bucket: "grammar.one", values: ["incontrato"],
+  }, duplicate);
+  assert.strictEqual(evaluated.pass, false);
+  assert.strictEqual(evaluated.match_count, 2);
+});
+
 test("an invalid predicate is broken, never a normal failed assertion", () => {
   const evaluated = suiteApi.evaluateCheck({ type: "no_miss", scope: "bad*scope" }, predicateResult);
   assert.strictEqual(evaluated.broken, true);
@@ -437,6 +502,30 @@ test("a canonicalization hook lets raw provider ids match canonical expectations
     expect_verdict: { [canonical]: "partial" },
   }), marker([{ bucket: "vocabulary.it.progetto.translation", outcome: "partial" }]), {
     canonicalizeBucketId: hook,
+  });
+  assert.strictEqual(judged.status, "pass");
+});
+
+test("judgeCase preserves case and item context while canonicalizing evidence checks", () => {
+  const legacy = "vocabulary.it.progetto.translation";
+  const canonical = "vocabulary.it.progetto.noun.translation.active";
+  const item = { external_id: "item_01" };
+  const hook = (id, context) => {
+    if (id !== legacy) return id;
+    assert.strictEqual(context.case.case_id, "unit_01");
+    assert.strictEqual(context.item, item);
+    return canonical;
+  };
+  const judged = suiteApi.judgeCase(caseDef({
+    answer: "progetto",
+    expect_verdict: { [legacy]: "hit" },
+    expect_checks: [{ type: "evidence_one_of", bucket: legacy, values: ["progetto"] }],
+  }), marker([{
+    bucket: legacy, outcome: "hit", evidence: "progetto",
+  }]), {
+    canonicalizeBucketId: hook,
+    requireCanonical: false,
+    itemsById: { item_01: item },
   });
   assert.strictEqual(judged.status, "pass");
 });
