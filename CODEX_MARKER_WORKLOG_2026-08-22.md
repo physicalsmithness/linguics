@@ -72,6 +72,19 @@ Worker build `2026-08-22-r179-compact-v3-smoke-fix` makes two prompt-only correc
 
 No validator was loosened. Legacy remains the default while the identical four-call gate is repeated.
 
+## r179 paid smoke result and r180 final prompt probe
+
+Artifact: `outputs/marker_paid_ab_2026-08-22_r179_v3_smoke.json`
+
+The repeated four-call gate recorded `$0.0038505` with all costs known:
+
+- The wrong-language compact call passed. It returned holistic `[0,0,0]`, only unattempted required markpoints, and empty observation/proposal/note arrays.
+- The broad compact call again chose eight relevant skills, avoided every forbidden bucket, and attached sensible learner substrings to seven of them.
+- The same vocabulary row again copied `incontrare` from the bucket lemma instead of citing the learner's written `incontrato`. Strict validation rejected the call.
+- Both legacy controls passed.
+
+Worker build `2026-08-22-r180-compact-v3-vocab-evidence` adds one final neutral worked JSON example: a `parlare` bucket over learner text `ho parlato` must cite `parlato`, never the dictionary lemma. Only `false_pos_lemma_01` will be repeated (one compact and one legacy call). If this still fails, v3 prompt tuning stops; the next experiment must change the compact reference/tuple shape rather than weaken or repair evidence validation.
+
 ## Related pull request
 
 The already-proven benchmark, persistence, output-retention, and compact-v2 foundation is isolated in draft PR #1:

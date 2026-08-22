@@ -282,6 +282,7 @@ Do not write null optional values; omit them.
 
 CRITICAL SERIALIZATION EXAMPLE: if the supplied legend row starts [7,"r",...] and learner.attempt contains "parlo", write [7,1,1,"parlo"].
 The first m value is the JSON NUMBER 7, never the supplied full_id string.
+VOCABULARY EVIDENCE EXAMPLE: if legend row 8 names vocabulary.it.parlare.verb.translation.active and learner.attempt contains "ho parlato", write [8,1,1,"parlato"]. "parlare" is the bucket lemma, not learner evidence, and must not be copied into the evidence slot unless the learner actually wrote "parlare".
 For a miss whose form is absent, write [7,1,0,null,"the expected form"].
 When attempted is 0, correctness is null: [7,0,null,null], never [7,0,0,null].
 If the learner answered wholly in the wrong language, all three numeric o values are 0, every required row is [alias,0,null,null], and u, p and n are empty arrays.

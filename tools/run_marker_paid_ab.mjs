@@ -29,7 +29,7 @@ const markerSuite = require(path.join(ROOT, "housing", "js", "marker_suite.js"))
 export const ARMS = Object.freeze(["compact_v3", "legacy_v1"]);
 export const DEFAULTS = Object.freeze({
   model: "openai/gpt-4o-mini",
-  expectedWorkerBuild: "2026-08-22-r179-compact-v3-smoke-fix",
+  expectedWorkerBuild: "2026-08-22-r180-compact-v3-vocab-evidence",
   temperature: 0,
   seed: 20260821,
   maxCostUsd: 0.01,

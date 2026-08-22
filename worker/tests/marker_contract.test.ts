@@ -96,6 +96,8 @@ test("buildMarkerPromptContext gives stable role-precedence aliases and tokens",
   assert.match(compactPromptSchemaTextV3, /Build m from learner evidence, never by enumerating the legend/);
   assert.match(compactPromptSchemaTextV3, /sole exception is an omitted-form miss/);
   assert.match(compactPromptSchemaTextV3, /surface text the learner actually wrote, never a dictionary lemma/);
+  assert.match(compactPromptSchemaTextV3, /write \[8,1,1,"parlato"\]/);
+  assert.match(compactPromptSchemaTextV3, /"parlare" is the bucket lemma, not learner evidence/);
   assert.match(compactPromptSchemaTextV3, /all three numeric o values are 0/);
   assert.match(compactPromptSchemaTextV3, /u, p and n are empty arrays/);
 });

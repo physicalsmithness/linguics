@@ -148,7 +148,7 @@ const DEFAULT_MODEL = "openai/gpt-4o-mini";
 // spent days unable to answer "did the deploy land". Now it also carries a build
 // string, so a deploy is verifiable in one request instead of being inferred from
 // marking behaviour. Bump this whenever the worker is changed.
-const WORKER_BUILD = "2026-08-22-r179-compact-v3-smoke-fix";
+const WORKER_BUILD = "2026-08-22-r180-compact-v3-vocab-evidence";
 // R177 safety decision: the paid r176 probe confirmed compact-v2's cost and
 // latency win, but it still produced one invalid broad-case evidence map and
 // fewer passing judgements than legacy. Keep compact explicitly selectable for
