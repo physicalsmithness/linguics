@@ -95,7 +95,7 @@ Live-tails the Worker's console output. Useful for debugging in production.
 - Learner calls default to `legacy_v1`. `compact_v2` remains available only when a caller explicitly requests it; the first paid probe confirmed its cost win but not yet quality parity.
 - Experimental `compact_v3` keeps aliases and tuples but replaces evidence-token indices with exact learner substrings that the Worker verifies locally. It is opt-in while paid comparison is underway.
 - Experimental `compact_v4` uses evidence-first named markpoint fields and exact allow-listed bucket IDs. Its paid smoke saved substantial output but omitted required and expected skills, so it is retained for reproducibility rather than further rollout.
-- Experimental `compact_v5` is a conservative legacy-min contract: it preserves the successful legacy policy, full item context, named objects, and full bucket IDs, while the Worker reconstructs only labels, outcomes, marks-possible, raw response, and proposal flags. It remains opt-in pending paid parity.
+- Experimental `compact_v5` is a conservative legacy-min contract: it preserves the successful legacy policy, full item context, named objects, and full bucket IDs, while the Worker reconstructs only labels, outcomes, marks-possible, raw response, and proposal flags. Its paid smoke failed broad-case schema and semantic parity, so it remains opt-in for reproducibility; learner calls stay on `legacy_v1`.
 - The housing's footer tracks cumulative session cost in localStorage.
 
 Constants are at the top of `src/index.ts` if you want to tune them.

@@ -166,6 +166,27 @@ The complete repository preflight passed before any r182 deployment or spend:
 
 The assembled v5 prompt was also audited directly. The inherited required-bucket rule retains the explicit hit/miss/partial/not-attempted credit meanings while carving out one consistent wholly-unattempted empty-array form. Legacy instructions to emit `outcome` or `bucket_proposed` are removed for v5; each derived field name remains only in the final prohibition. The paid runner refuses a result unless the deployed build, requested contract, and returned format all exactly match r182/v5.
 
+## r182 paid smoke result and final compression decision
+
+Deployment: Worker build `2026-08-22-r182-compact-v5-legacy-min`, Cloudflare version `9b38c2c0-47c9-4536-8eb9-54e66e319c38`.
+
+Artifact: `outputs/marker_paid_ab_2026-08-22_r182_v5_smoke.json`
+
+The four-call smoke recorded `$0.0050928`; every call had known usage and cost, exact r182/contract provenance, complete JSON, and no retry. Legacy passed both cases. V5 passed the wholly unattempted direction case but returned a paid schema error on the broad false-positive case, so it failed the predeclared stop/go gate and no repetitions were run.
+
+| Arm | Pass | Call error | Input tokens | Output tokens | Recorded cost | Mean latency |
+|---|---:|---:|---:|---:|---:|---:|
+| `compact_v5` | 1 | 1 | 11,197 | 2,111 | `$0.00294615` | 10.967 s |
+| `legacy_v1` | 2 | 0 | 10,999 | 828 | `$0.00214665` | 4.549 s |
+
+The direction result showed that lossless derivation itself works: v5 returned the same canonical no-attempt output with 105 generated tokens versus legacy's 132, although its longer input made recorded cost effectively equal. The broad result was decisive in the other direction:
+
+- The model copied all three optional proposal fields as `null` into every regular row, despite the instruction to omit them. Strict hydration rejected the first supplied bucket because proposal metadata is legal only for an actual proposal.
+- It emitted 24 rows and 2,006 output tokens, compared with seven rows and 696 tokens for the paired legacy response. V5 was therefore larger, costlier, and slower in the case where compression mattered.
+- Even if the null proposal fields were silently stripped, the semantic result would still fail: it marked the mandatory imperfect-versus-passato-prossimo discrimination as wrong on a correct answer and fired an inapplicable present-indicative row for `incontrato`.
+
+The failure is therefore not worth repairing with a permissive parser or another prompt tweak. V2 through v5 each changed model behaviour enough to lose reliability, while the legacy controls remained sound. Response-schema compression stops here. `compact_v2` through `compact_v5` remain opt-in only for reproducibility; `legacy_v1` remains the deployed learner default. All learner-visible outputs and the diagnostic raw bytes are retained.
+
 ## Related pull request
 
 The already-proven benchmark, persistence, output-retention, and compact-v2 foundation is isolated in draft PR #1:
