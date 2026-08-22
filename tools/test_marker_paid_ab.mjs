@@ -35,7 +35,7 @@ console.log("paid A/B runner (no network)");
 test("paid CLI defaults are fixed and URL/output are mandatory", () => {
   const options = parseArgs(["--url", "https://example.test/mark", "--out", "result.json"]);
   assert.equal(options.model, "openai/gpt-4o-mini");
-  assert.equal(options.expectedWorkerBuild, "2026-08-22-r181-compact-v4-legacy-lite");
+  assert.equal(options.expectedWorkerBuild, "2026-08-22-r182-compact-v5-legacy-min");
   assert.equal(options.temperature, 0);
   assert.equal(options.seed, 20260821);
   assert.equal(options.maxCostUsd, 0.01);
@@ -61,32 +61,32 @@ test("worker capability gate requires the exact build and both contracts", () =>
 
 test("successful calls must echo the requested contract and use its exact format", () => {
   const good = {
-    response_contract_requested: "compact_v4",
-    marker_format_used: "compact_v4",
+    response_contract_requested: "compact_v5",
+    marker_format_used: "compact_v5",
     worker_build: DEFAULTS.expectedWorkerBuild,
   };
-  assert.equal(validateResponseProvenance("compact_v4", good, DEFAULTS.expectedWorkerBuild).ok, true);
-  const fallback = validateResponseProvenance("compact_v4", {
+  assert.equal(validateResponseProvenance("compact_v5", good, DEFAULTS.expectedWorkerBuild).ok, true);
+  const fallback = validateResponseProvenance("compact_v5", {
     ...good,
-    response_contract_requested: "compact_v4",
+    response_contract_requested: "compact_v5",
     marker_format_used: "legacy_v1",
   }, DEFAULTS.expectedWorkerBuild);
   assert.equal(fallback.ok, false);
   assert.match(fallback.errors.join(" "), /marker_format_used/);
-  const wrongEcho = validateResponseProvenance("compact_v4", {
+  const wrongEcho = validateResponseProvenance("compact_v5", {
     ...good,
     response_contract_requested: "legacy_v1",
-    marker_format_used: "compact_v4",
+    marker_format_used: "compact_v5",
   }, DEFAULTS.expectedWorkerBuild);
   assert.equal(wrongEcho.ok, false);
   assert.match(wrongEcho.errors.join(" "), /response_contract_requested/);
-  const wrongBuild = validateResponseProvenance("compact_v4", {
+  const wrongBuild = validateResponseProvenance("compact_v5", {
     ...good,
     worker_build: "stale",
   }, DEFAULTS.expectedWorkerBuild);
   assert.equal(wrongBuild.ok, false);
   assert.match(wrongBuild.errors.join(" "), /worker_build/);
-  assert.equal(validateResponseProvenance("compact_v4", {}, DEFAULTS.expectedWorkerBuild).ok, false);
+  assert.equal(validateResponseProvenance("compact_v5", {}, DEFAULTS.expectedWorkerBuild).ok, false);
 });
 
 test("validation and dry-run modes do not require paid coordinates", () => {
@@ -136,16 +136,16 @@ test("the default deterministic plan is 18 adjacent A/B pairs", () => {
     assert.equal(plan[i].case_id, plan[i + 1].case_id);
     assert.deepEqual(new Set([plan[i].arm, plan[i + 1].arm]), new Set(ARMS));
   }
-  assert.equal(plan.filter((task, index) => index % 2 === 0 && task.arm === "compact_v4").length, 9);
+  assert.equal(plan.filter((task, index) => index % 2 === 0 && task.arm === "compact_v5").length, 9);
   assert.equal(plan.filter((task, index) => index % 2 === 0 && task.arm === "legacy_v1").length, 9);
 });
 
 test("paired request bodies differ only in response_contract", () => {
-  const compactTask = plan.slice(0, 2).find(task => task.arm === "compact_v4");
+  const compactTask = plan.slice(0, 2).find(task => task.arm === "compact_v5");
   const legacyTask = plan.slice(0, 2).find(task => task.arm === "legacy_v1");
   const compact = buildRequestBody(compactTask, foundation, options);
   const legacy = buildRequestBody(legacyTask, foundation, options);
-  assert.equal(compact.response_contract, "compact_v4");
+  assert.equal(compact.response_contract, "compact_v5");
   assert.equal(legacy.response_contract, "legacy_v1");
   delete compact.response_contract;
   delete legacy.response_contract;
@@ -190,18 +190,18 @@ test("case filtering keeps requested order, adjacent pairs, and rejects unknown 
 
 test("arm summaries keep scores, paid errors, tokens, cost and latency separate", () => {
   const calls = [
-    { arm: "compact_v4", judgement: { status: "pass", scored: true }, usage: { input_tokens: 10, output_tokens: 20 }, cost_usd: 0.001, cost_known: true, latency_ms: 100, paid_error: false, potential_paid_error: false, format_mismatch: false },
-    { arm: "compact_v4", judgement: { status: "call_error", scored: false }, usage: { input_tokens: 10, output_tokens: 30 }, cost_usd: 0.002, cost_known: true, latency_ms: 300, paid_error: true, potential_paid_error: false, format_mismatch: false },
+    { arm: "compact_v5", judgement: { status: "pass", scored: true }, usage: { input_tokens: 10, output_tokens: 20 }, cost_usd: 0.001, cost_known: true, latency_ms: 100, paid_error: false, potential_paid_error: false, format_mismatch: false },
+    { arm: "compact_v5", judgement: { status: "call_error", scored: false }, usage: { input_tokens: 10, output_tokens: 30 }, cost_usd: 0.002, cost_known: true, latency_ms: 300, paid_error: true, potential_paid_error: false, format_mismatch: false },
     { arm: "legacy_v1", judgement: { status: "manual", scored: false }, usage: { input_tokens: 10, output_tokens: 50 }, cost_usd: 0.004, cost_known: true, latency_ms: 500, paid_error: false, potential_paid_error: false, format_mismatch: false },
     { arm: "legacy_v1", judgement: { status: "fail", scored: true }, usage: null, cost_usd: null, cost_known: false, latency_ms: 700, paid_error: false, potential_paid_error: true, format_mismatch: true },
   ];
   const summary = summarizeCalls(calls);
-  assert.equal(summary.arms.compact_v4.pass, 1);
-  assert.equal(summary.arms.compact_v4.call_error, 1);
-  assert.equal(summary.arms.compact_v4.paid_errors, 1);
-  assert.equal(summary.arms.compact_v4.output_tokens, 50);
-  assert.equal(summary.arms.compact_v4.cost_usd, 0.003);
-  assert.equal(summary.arms.compact_v4.latency_ms_mean, 200);
+  assert.equal(summary.arms.compact_v5.pass, 1);
+  assert.equal(summary.arms.compact_v5.call_error, 1);
+  assert.equal(summary.arms.compact_v5.paid_errors, 1);
+  assert.equal(summary.arms.compact_v5.output_tokens, 50);
+  assert.equal(summary.arms.compact_v5.cost_usd, 0.003);
+  assert.equal(summary.arms.compact_v5.latency_ms_mean, 200);
   assert.equal(summary.arms.legacy_v1.manual, 1);
   assert.equal(summary.arms.legacy_v1.fail, 1);
   assert.equal(summary.arms.legacy_v1.unknown_cost_calls, 1);

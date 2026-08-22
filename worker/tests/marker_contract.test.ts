@@ -8,6 +8,7 @@ import {
   compactPromptSchemaText,
   compactPromptSchemaTextV3,
   compactPromptSchemaTextV4,
+  compactPromptSchemaTextV5,
   normalizeModelResult,
   validateMarkerResult,
   type MarkerPromptContext,
@@ -69,6 +70,28 @@ function compactV4(overrides: Record<string, unknown> = {}): Record<string, unkn
   };
 }
 
+function legacyMinV5(overrides: Record<string, unknown> = {}): Record<string, unknown> {
+  return {
+    v: 5,
+    overall: {
+      marks_awarded: 1,
+      attempted_overall: 1,
+      correctness_overall: 1,
+      summary: "Right.",
+      explanation: "The required form is correct.",
+    },
+    markpoints: [{
+      bucket: "grammar.required",
+      attempted_credit: 1,
+      correctness_credit: 1,
+      evidence: "La sera",
+    }],
+    unattributable: [],
+    notes: [],
+    ...overrides,
+  };
+}
+
 function legacy(overrides: Record<string, unknown> = {}): Record<string, unknown> {
   return {
     overall: {
@@ -123,6 +146,11 @@ test("buildMarkerPromptContext gives stable role-precedence aliases and tokens",
   assert.match(compactPromptSchemaTextV4, /omit expected rather than writing null/);
   assert.match(compactPromptSchemaTextV4, /correctness is null only when attempted is 0/);
   assert.doesNotMatch(compactPromptSchemaTextV4, /evidence is the only structural field that may be null/);
+  assert.match(compactPromptSchemaTextV5, /legacy-min v5/);
+  assert.match(compactPromptSchemaTextV5, /exact full bucket id/);
+  assert.match(compactPromptSchemaTextV5, /Do not emit marks_possible, raw_response, label, outcome, or bucket_proposed/);
+  assert.match(compactPromptSchemaTextV5, /all three proposed_\* fields/);
+  assert.match(compactPromptSchemaTextV5, /empty markpoints, unattributable, and notes arrays/);
 });
 
 test("compact system prompt uses aliases consistently while legacy keeps its schema", () => {
@@ -243,6 +271,308 @@ test("compact v4 expands required blanks only for a wholly unattempted answer", 
     m: [{ evidence: null, bucket: "grammar.required", attempted: 0, correctness: null }],
     n: [["other", "Wrong language."]],
   }), context()), /empty notes array/);
+});
+
+test("legacy-min v5 derives the five omitted public fields and preserves visible output", () => {
+  const result = normalizeModelResult(legacyMinV5({
+    markpoints: [{
+      bucket: "grammar.required",
+      attempted_credit: 1,
+      correctness_credit: 1,
+      evidence: "La sera",
+      expected: "canonical form",
+    }],
+    unattributable: [{ evidence: "amici", what: "A useful extra observation.", correct: true }],
+    notes: [{ kind: "accent", text: "Keep the written accent." }],
+  }), context());
+
+  assert.equal(result.overall.marks_possible, 1);
+  assert.equal(result.raw_response, "La sera, esco con gli amici.");
+  assert.deepEqual(result.markpoints[0], {
+    bucket: "grammar.required",
+    label: "Required skill",
+    attempted_credit: 1,
+    correctness_credit: 1,
+    outcome: "hit",
+    evidence: "La sera",
+    expected: "canonical form",
+    bucket_proposed: false,
+  });
+  assert.deepEqual(result.unattributable, [{
+    evidence: "amici",
+    what: "A useful extra observation.",
+    correct: true,
+  }]);
+  assert.deepEqual(result.notes, [{
+    kind: "accent",
+    text: "Keep the written accent.",
+    note: "Keep the written accent.",
+  }]);
+});
+
+test("legacy-min v5 rejects every model-supplied derived field", () => {
+  const cases: Array<[string, (payload: Record<string, unknown>) => void]> = [
+    ["marks_possible", (payload) => {
+      (payload.overall as Record<string, unknown>).marks_possible = 1;
+    }],
+    ["raw_response", (payload) => {
+      payload.raw_response = "model-controlled";
+    }],
+    ["label", (payload) => {
+      ((payload.markpoints as Array<Record<string, unknown>>)[0]).label = "Model label";
+    }],
+    ["outcome", (payload) => {
+      ((payload.markpoints as Array<Record<string, unknown>>)[0]).outcome = "hit";
+    }],
+    ["bucket_proposed", (payload) => {
+      ((payload.markpoints as Array<Record<string, unknown>>)[0]).bucket_proposed = false;
+    }],
+  ];
+
+  for (const [field, mutate] of cases) {
+    const payload = legacyMinV5();
+    mutate(payload);
+    assert.throws(() => normalizeModelResult(payload, context()), (error: unknown) => {
+      return error instanceof MarkerContractError
+        && error.code === "unknown_field"
+        && error.message.includes(`unexpected field ${field}`);
+    }, field);
+  }
+});
+
+test("legacy-min v5 enforces exact evidence, required counts, duplicates, and explicit blank rules", () => {
+  assert.throws(() => normalizeModelResult(legacyMinV5({
+    markpoints: [{
+      bucket: "grammar.required",
+      attempted_credit: 1,
+      correctness_credit: 1,
+      evidence: "la sera",
+    }],
+  }), context()), (error: unknown) => error instanceof MarkerContractError && error.code === "invalid_evidence");
+
+  assert.throws(() => normalizeModelResult(legacyMinV5({
+    markpoints: [{ bucket: "grammar.required", attempted_credit: 1, correctness_credit: 1 }],
+  }), context()), /evidence is required/);
+
+  assert.throws(() => normalizeModelResult(legacyMinV5({
+    markpoints: [{
+      bucket: "grammar.expected",
+      attempted_credit: 1,
+      correctness_credit: 1,
+      evidence: "esco",
+    }],
+  }), context()), /must occur exactly once/);
+
+  const required = (legacyMinV5().markpoints as Array<Record<string, unknown>>)[0];
+  assert.throws(() => normalizeModelResult(legacyMinV5({
+    markpoints: [required, { ...required, evidence: "esco" }],
+  }), context()), (error: unknown) => error instanceof MarkerContractError && error.code === "duplicate_bucket");
+
+  assert.throws(() => normalizeModelResult(legacyMinV5({
+    markpoints: [required, {
+      bucket: "grammar.expected",
+      attempted_credit: 0,
+      correctness_credit: null,
+      evidence: null,
+    }],
+  }), context()), /only when engaged/);
+
+  assert.throws(() => normalizeModelResult(legacyMinV5({
+    markpoints: [{
+      bucket: "grammar.required",
+      attempted_credit: 0,
+      correctness_credit: null,
+      evidence: null,
+      expected: "must be absent",
+    }],
+  }), context()), /must omit expected/);
+
+  const omitted = normalizeModelResult(legacyMinV5({
+    overall: {
+      marks_awarded: 0,
+      attempted_overall: 1,
+      correctness_overall: 0,
+      summary: "Missing form.",
+      explanation: "The required form was omitted.",
+    },
+    markpoints: [{
+      bucket: "grammar.required",
+      attempted_credit: 1,
+      correctness_credit: 0,
+      evidence: null,
+      expected: "the required form",
+    }],
+  }), context());
+  assert.equal(omitted.markpoints[0].outcome, "miss");
+  assert.equal(omitted.markpoints[0].evidence, undefined);
+  assert.throws(() => normalizeModelResult(legacyMinV5({
+    markpoints: [{
+      bucket: "grammar.required",
+      attempted_credit: 1,
+      correctness_credit: 1,
+      evidence: null,
+      expected: "canonical form",
+    }],
+  }), context()), /only an omitted-form miss/);
+});
+
+test("legacy-min v5 permits only canonical engaged en_it dynamic vocabulary", () => {
+  const baseRequired = (legacyMinV5().markpoints as Array<Record<string, unknown>>)[0];
+  const result = normalizeModelResult(legacyMinV5({
+    markpoints: [baseRequired, {
+      bucket: "vocabulary.it.uscire.translation",
+      attempted_credit: 1,
+      correctness_credit: 1,
+      evidence: "esco",
+      expected: "uscire",
+    }],
+  }), context("en_it"));
+  assert.deepEqual(result.markpoints[1], {
+    bucket: "vocabulary.it.uscire.translation",
+    label: "uscire (translation)",
+    attempted_credit: 1,
+    correctness_credit: 1,
+    outcome: "hit",
+    evidence: "esco",
+    expected: "uscire",
+    bucket_proposed: false,
+  });
+
+  for (const bucket of [
+    "vocabulary.it.Uscire.translation",
+    "vocabulary.it.perche\u0301.translation",
+  ]) {
+    assert.throws(() => normalizeModelResult(legacyMinV5({
+      markpoints: [baseRequired, {
+        bucket,
+        attempted_credit: 1,
+        correctness_credit: 1,
+        evidence: "esco",
+      }],
+    }), context("en_it")), /neither supplied, proposed, nor legal dynamic vocabulary/);
+  }
+
+  assert.throws(() => normalizeModelResult(legacyMinV5({
+    markpoints: [baseRequired, {
+      bucket: "vocabulary.it.uscire.translation",
+      attempted_credit: 1,
+      correctness_credit: 1,
+      evidence: "esco",
+    }],
+  }), context("it_en")), /neither supplied, proposed, nor legal dynamic vocabulary/);
+
+  assert.throws(() => normalizeModelResult(legacyMinV5({
+    markpoints: [baseRequired, {
+      bucket: "vocabulary.it.uscire.translation",
+      attempted_credit: 1,
+      correctness_credit: 0,
+      evidence: null,
+      expected: "uscire",
+    }],
+  }), context("en_it")), /must be engaged and cite learner evidence/);
+});
+
+test("legacy-min v5 infers proposals only from complete safe metadata", () => {
+  const baseRequired = (legacyMinV5().markpoints as Array<Record<string, unknown>>)[0];
+  const proposed = {
+    bucket: "grammar.context.new_leaf",
+    attempted_credit: 1,
+    correctness_credit: 0.5,
+    evidence: "esco",
+    expected: "a more precise form",
+    proposed_parent_id: "grammar.context",
+    proposed_label: "New leaf",
+    proposed_rationale: "Worth tracking separately.",
+  };
+  const result = normalizeModelResult(legacyMinV5({
+    markpoints: [baseRequired, proposed],
+  }), context());
+  assert.deepEqual(result.markpoints[1], {
+    bucket: "grammar.context.new_leaf",
+    label: "New leaf",
+    attempted_credit: 1,
+    correctness_credit: 0.5,
+    outcome: "partial",
+    evidence: "esco",
+    expected: "a more precise form",
+    bucket_proposed: true,
+    proposed_parent_id: "grammar.context",
+    proposed_label: "New leaf",
+    proposed_rationale: "Worth tracking separately.",
+  });
+
+  const { proposed_rationale: _omitted, ...partialProposal } = proposed;
+  assert.throws(() => normalizeModelResult(legacyMinV5({
+    markpoints: [baseRequired, partialProposal],
+  }), context()), /must be supplied together/);
+  assert.throws(() => normalizeModelResult(legacyMinV5({
+    markpoints: [baseRequired, { ...proposed, bucket: "grammar.context.BadLeaf" }],
+  }), context()), /safe lower-case child path/);
+  assert.throws(() => normalizeModelResult(legacyMinV5({
+    markpoints: [baseRequired, { ...proposed, bucket: "grammar.context", proposed_parent_id: "grammar.required" }],
+  }), context()), /existing supplied bucket must omit proposed/);
+  assert.throws(() => normalizeModelResult(legacyMinV5({
+    markpoints: [baseRequired, {
+      bucket: "grammar.unknown",
+      attempted_credit: 1,
+      correctness_credit: 1,
+      evidence: "esco",
+    }],
+  }), context()), /neither supplied, proposed, nor legal dynamic vocabulary/);
+});
+
+test("legacy-min v5 expands only the strict zero-attempt empty-array form", () => {
+  const zeroOverall = {
+    marks_awarded: 0,
+    attempted_overall: 0,
+    correctness_overall: 0,
+    summary: "Not attempted.",
+    explanation: "The answer was wholly in the wrong language.",
+  };
+  const result = normalizeModelResult(legacyMinV5({
+    overall: zeroOverall,
+    markpoints: [],
+  }), context());
+  assert.deepEqual(result.markpoints, [{
+    bucket: "grammar.required",
+    label: "Required skill",
+    attempted_credit: 0,
+    correctness_credit: null,
+    outcome: "not_attempted",
+    bucket_proposed: false,
+  }]);
+  assert.deepEqual(result.unattributable, []);
+
+  assert.throws(() => normalizeModelResult(legacyMinV5({
+    overall: zeroOverall,
+    markpoints: [],
+    notes: [{ kind: "other", text: "Wrong language." }],
+  }), context()), /empty markpoints, unattributable, and notes arrays/);
+  assert.throws(() => normalizeModelResult(legacyMinV5({
+    overall: { ...zeroOverall, marks_awarded: 0.1 },
+    markpoints: [],
+  }), context()), /zero marks and zero correctness/);
+  assert.throws(() => normalizeModelResult(legacyMinV5({
+    overall: { ...zeroOverall, attempted_overall: 1 },
+    markpoints: [{
+      bucket: "grammar.required",
+      attempted_credit: 0,
+      correctness_credit: null,
+      evidence: null,
+    }],
+  }), context()), /must contain an engaged markpoint or unattributable observation/);
+});
+
+test("legacy-min v5 normalizes an unknown legacy note kind without exposing an invalid public kind", () => {
+  const result = normalizeModelResult(legacyMinV5({
+    notes: [{ kind: "common_error", text: "A catalogued error." }],
+  }), context());
+  assert.deepEqual(result.notes[0], {
+    kind: "other",
+    source_kind: "common_error",
+    text: "A catalogued error.",
+    note: "A catalogued error.",
+  });
 });
 
 test("compact v3 hydrates exact learner substrings without token indices", () => {
@@ -659,6 +989,36 @@ test("legacy proposals must be safe children of a supplied parent", () => {
   }), context()), /safe child path/);
 });
 
+const retainedR181Artifact = new URL("../../outputs/marker_paid_ab_2026-08-22_r181_v4_smoke.json", import.meta.url);
+
+test("legacy-min v5 hydrates both retained r181 legacy outputs to their canonical Worker results", {
+  skip: !fs.existsSync(retainedR181Artifact),
+}, () => {
+  const artifact = JSON.parse(fs.readFileSync(retainedR181Artifact, "utf8")) as { calls: any[] };
+  const legacyCalls = artifact.calls.filter((call) => call.response_contract_requested === "legacy_v1");
+  assert.equal(legacyCalls.length, 2);
+
+  for (const call of legacyCalls) {
+    const payload = structuredClone(JSON.parse(call.raw_model_output)) as Record<string, any>;
+    payload.v = 5;
+    delete payload.raw_response;
+    delete payload.overall.marks_possible;
+    for (const markpoint of payload.markpoints) {
+      delete markpoint.label;
+      delete markpoint.outcome;
+      delete markpoint.bucket_proposed;
+    }
+
+    const request = call.request_body;
+    const ctx = buildMarkerPromptContext({
+      item: request.item,
+      cleanedRaw: request.raw,
+      bucketContext: request.bucket_context,
+    });
+    assert.deepEqual(normalizeModelResult(payload, ctx), call.marker_result_canonical, call.case_id);
+  }
+});
+
 test("a declared but invalid v2 payload never falls through to legacy", () => {
   const hybrid = legacy({ v: 2, o: "wrong", m: [] });
   assert.throws(() => normalizeModelResult(hybrid, context()), (error: unknown) => {
@@ -668,7 +1028,7 @@ test("a declared but invalid v2 payload never falls through to legacy", () => {
   });
 });
 
-test("declared invalid v3/v4 and unknown compact payloads never fall through to legacy", () => {
+test("declared invalid v3/v4/v5 and unknown versioned payloads never fall through to legacy", () => {
   assert.throws(() => normalizeModelResult(legacy({ v: 3, o: "wrong", m: [] }), context()), (error: unknown) => {
     return error instanceof MarkerContractError
       && error.code === "unknown_field"
@@ -679,10 +1039,15 @@ test("declared invalid v3/v4 and unknown compact payloads never fall through to 
       && error.code === "unknown_field"
       && /unexpected field overall/.test(error.message);
   });
-  assert.throws(() => normalizeModelResult({ v: 5 }, context()), (error: unknown) => {
+  assert.throws(() => normalizeModelResult(legacy({ v: 5 }), context()), (error: unknown) => {
+    return error instanceof MarkerContractError
+      && error.code === "unknown_field"
+      && /unexpected field raw_response/.test(error.message);
+  });
+  assert.throws(() => normalizeModelResult({ v: 6 }, context()), (error: unknown) => {
     return error instanceof MarkerContractError
       && error.code === "compact_schema_invalid"
-      && /2, 3, or 4/.test(error.message);
+      && /2, 3, 4, or 5/.test(error.message);
   });
 });
 

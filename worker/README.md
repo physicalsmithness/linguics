@@ -43,7 +43,7 @@ A simple GET to the URL returns a JSON health check:
 
 ```
 curl https://linguics-marker.<your-subdomain>.workers.dev
-{"ok":true,"service":"linguics-marker","build":"2026-08-22-r181-compact-v4-legacy-lite","default_model":"openai/gpt-4o-mini","default_response_contract":"legacy_v1","supported_response_contracts":["compact_v4","compact_v3","compact_v2","legacy_v1"],"max_output_tokens":6000}
+{"ok":true,"service":"linguics-marker","build":"2026-08-22-r182-compact-v5-legacy-min","default_model":"openai/gpt-4o-mini","default_response_contract":"legacy_v1","supported_response_contracts":["compact_v5","compact_v4","compact_v3","compact_v2","legacy_v1"],"max_output_tokens":6000}
 ```
 
 To test a mark call (replace the URL):
@@ -94,7 +94,8 @@ Live-tails the Worker's console output. Useful for debugging in production.
 - Default model is GPT-4o-mini; the Worker reports the deployed default and supported output contracts in its health response.
 - Learner calls default to `legacy_v1`. `compact_v2` remains available only when a caller explicitly requests it; the first paid probe confirmed its cost win but not yet quality parity.
 - Experimental `compact_v3` keeps aliases and tuples but replaces evidence-token indices with exact learner substrings that the Worker verifies locally. It is opt-in while paid comparison is underway.
-- Experimental `compact_v4` uses evidence-first named markpoint fields and exact allow-listed bucket IDs, while the Worker still derives the public labels, outcomes, marks-possible value, raw response, and proposal flags. It remains opt-in pending paid parity.
+- Experimental `compact_v4` uses evidence-first named markpoint fields and exact allow-listed bucket IDs. Its paid smoke saved substantial output but omitted required and expected skills, so it is retained for reproducibility rather than further rollout.
+- Experimental `compact_v5` is a conservative legacy-min contract: it preserves the successful legacy policy, full item context, named objects, and full bucket IDs, while the Worker reconstructs only labels, outcomes, marks-possible, raw response, and proposal flags. It remains opt-in pending paid parity.
 - The housing's footer tracks cumulative session cost in localStorage.
 
 Constants are at the top of `src/index.ts` if you want to tune them.

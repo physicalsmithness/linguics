@@ -4,6 +4,7 @@ import {
   compactPromptSchemaText,
   compactPromptSchemaTextV3,
   compactPromptSchemaTextV4,
+  compactPromptSchemaTextV5,
   normalizeModelResult,
   type MarkerPromptContext,
 } from "./marker_contract";
@@ -46,7 +47,7 @@ interface MarkRequest {
    *  The bench uses this to reach models the learner-path default excludes. */
   max_cost_usd?: number;
   /** Model-facing response shape. Both hydrate to the same MarkerResult. */
-  response_contract?: "compact_v2" | "compact_v3" | "compact_v4" | "legacy_v1";
+  response_contract?: "compact_v2" | "compact_v3" | "compact_v4" | "compact_v5" | "legacy_v1";
   /** Bench-only: retain the exact provider text and prompt fingerprint. */
   include_diagnostics?: boolean;
 }
@@ -96,7 +97,7 @@ interface MarkerResult {
   notes?: Array<{ kind: string; text: string; note?: string }>;
 }
 
-type ResponseContract = "compact_v2" | "compact_v3" | "compact_v4" | "legacy_v1";
+type ResponseContract = "compact_v2" | "compact_v3" | "compact_v4" | "compact_v5" | "legacy_v1";
 
 /* ------------------------------------------------------------------------- */
 /* Model pricing                                                              */
@@ -149,7 +150,7 @@ const DEFAULT_MODEL = "openai/gpt-4o-mini";
 // spent days unable to answer "did the deploy land". Now it also carries a build
 // string, so a deploy is verifiable in one request instead of being inferred from
 // marking behaviour. Bump this whenever the worker is changed.
-const WORKER_BUILD = "2026-08-22-r181-compact-v4-legacy-lite";
+const WORKER_BUILD = "2026-08-22-r182-compact-v5-legacy-min";
 // R177 safety decision: the paid r176 probe confirmed compact-v2's cost and
 // latency win, but it still produced one invalid broad-case evidence map and
 // fewer passing judgements than legacy. Keep compact explicitly selectable for
@@ -386,6 +387,33 @@ Return ONLY the JSON object, no surrounding text.`;
   if (responseContract === "legacy_v1") return legacyPrompt;
   const outputStart = legacyPrompt.indexOf("OUTPUT SCHEMA (strict JSON; no markdown, no commentary)");
   if (outputStart < 0) throw new Error("compact prompt splice point missing");
+  // V5 is deliberately not another compact dialect. Preserve the complete
+  // legacy marking policy and its named/full-id representation, replacing
+  // only the output fields that the Worker can reconstruct without inference.
+  if (responseContract === "compact_v5") {
+    const legacyMinPolicy = legacyPrompt.slice(0, outputStart)
+      .replace(/7\. Required buckets are mandatory\.[\s\S]*?\n\nACCENT POLICY/, [
+        "7. Required buckets are mandatory on an attempted answer. Every bucket id in item.required_buckets MUST appear exactly once, citing that exact id. Score each required bucket as follows:",
+        "   - hit: attempted_credit 1 and correctness_credit 1",
+        "   - miss: attempted_credit 1 and correctness_credit 0",
+        "   - partial: attempted_credit 1 and correctness_credit between 0 and 1 (normally 0.5)",
+        "   - not attempted: attempted_credit 0, correctness_credit null, evidence null, and no expected field",
+        "   Only when the learner wholly did not attempt the task, including answering in the wrong language, return an empty markpoints array as the output rules below specify; the Worker adds required not-attempted rows deterministically.",
+        "",
+        "ACCENT POLICY",
+      ].join("\n"))
+      .replace("The outcome reflects what the learner demonstrated:",
+        "The attempted_credit and correctness_credit values reflect what the learner demonstrated:")
+      .replace("(with bucket_proposed: false or omitted)", "(without proposal metadata)")
+      .replace("- as not_attempted when the answer is empty or unrelated",
+        "- omit the vocabulary row when the answer is empty or unrelated; for a wholly unattempted answer follow the empty-markpoints rule below")
+      .replace(
+        "you may propose a new bucket by setting bucket_proposed: true and providing proposed_parent_id",
+        "you may propose a new bucket by providing proposed_parent_id",
+      );
+    return legacyMinPolicy + compactPromptSchemaTextV5 +
+      "\n\nReturn ONLY the JSON object, no surrounding text.";
+  }
   // Keep the settled marking policy, but remove the verbose legacy schema and
   // its conflicting field-by-field outcome instructions. Compact v2 speaks in
   // aliases/tuples and the worker deterministically restores those fields.
@@ -631,7 +659,7 @@ export default {
         build: WORKER_BUILD,
         default_model: DEFAULT_MODEL,
         default_response_contract: DEFAULT_RESPONSE_CONTRACT,
-        supported_response_contracts: ["compact_v4", "compact_v3", "compact_v2", "legacy_v1"],
+        supported_response_contracts: ["compact_v5", "compact_v4", "compact_v3", "compact_v2", "legacy_v1"],
         max_output_tokens: MAX_OUTPUT_TOKENS,
       });
     }
@@ -662,9 +690,9 @@ export default {
       return errorResp(400, "model_unsupported", `Unknown model: ${model}. Known models: ${Object.keys(MODEL_PRICING).join(", ")}`);
     }
     const responseContract = body.response_contract || DEFAULT_RESPONSE_CONTRACT;
-    if (responseContract !== "compact_v2" && responseContract !== "compact_v3" && responseContract !== "compact_v4" && responseContract !== "legacy_v1") {
+    if (responseContract !== "compact_v2" && responseContract !== "compact_v3" && responseContract !== "compact_v4" && responseContract !== "compact_v5" && responseContract !== "legacy_v1") {
       return errorResp(400, "response_contract_unsupported",
-        `Unknown response_contract: ${String(body.response_contract)}. Use compact_v4, compact_v3, compact_v2, or legacy_v1.`);
+        `Unknown response_contract: ${String(body.response_contract)}. Use compact_v5, compact_v4, compact_v3, compact_v2, or legacy_v1.`);
     }
 
     // Parse annotations out of the raw input
@@ -885,7 +913,8 @@ export default {
       }
     }
 
-    const markerFormatUsed = result && result.v === 4 ? "compact_v4"
+    const markerFormatUsed = result && result.v === 5 ? "compact_v5"
+      : result && result.v === 4 ? "compact_v4"
       : result && result.v === 3 ? "compact_v3"
       : result && result.v === 2 ? "compact_v2" : "legacy_v1";
     try {

@@ -1,4 +1,4 @@
-# Linguics marker compact-v3 and compact-v4 experiments
+# Linguics marker compact-v3 through compact-v5 experiments
 
 Date: 2026-08-22
 Author: Codex (OpenAI)
@@ -11,7 +11,7 @@ This branch first tested the smallest high-upside correction while preserving ev
 
 Compact v4 therefore changes the representation rather than adding another prompt-only instruction. Its markpoints use evidence-first named fields and exact allow-listed bucket IDs, borrowing the separation that worked in the legacy control while retaining deterministic expansion of redundant learner-facing fields.
 
-The learner-path default remains `legacy_v1`. Compact v3 and v4 are opt-in and experimental.
+The learner-path default remains `legacy_v1`. Compact v3, v4, and v5 are opt-in and experimental.
 
 ## Changes in r178
 
@@ -123,6 +123,48 @@ The complete preflight passed before any r181 deployment or spend:
 - Lean contexts: 4 to 24 buckets.
 
 The first paid r181 gate remains deliberately small: `false_pos_lemma_01` and `direction_01`, one v4 and one legacy call per case, four calls total and no retries. V4 must pass the strict schema, the existing semantic assertions, the new exact `Ieri` and `incontrato`/`ho incontrato` evidence assertions, and manual inspection of every remaining vocabulary evidence string before a larger repeated comparison is permitted.
+
+## r181 paid smoke result and the v4 stop decision
+
+Artifact: `outputs/marker_paid_ab_2026-08-22_r181_v4_smoke.json`
+
+The four-call smoke recorded `$0.0041508`; every call had known usage and cost, returned complete JSON, and stopped normally. The compact arm used 420 output tokens and `$0.00167115`; legacy used 1,383 output tokens and `$0.00247965`. Compact v4 therefore reduced generated output by 69.6%, recorded cost by 32.6%, and mean latency from 7.504 seconds to 3.361 seconds. Those savings are not usable because v4 produced two paid schema failures while both legacy controls passed.
+
+- In `direction_01`, v4 understood that the learner had not translated, but contradicted itself by setting attempted credit to one and emitting an unattributable observation. Its empty markpoint list therefore could not be expanded as a wholly unattempted answer.
+- In `false_pos_lemma_01`, v4 fixed the previous evidence-surface defect: all seven evidence strings were exact learner text and it avoided the forbidden proper-noun/false-lemma buckets. It nevertheless omitted both the mandatory imperfect-versus-passato-prossimo discrimination bucket and the expected `incontrare` vocabulary skill, assigning `ho incontrato` only to the generic passato-prossimo row.
+
+This shows that the v2-v4 positional/abridged dialect changed the model's taxonomy coverage, not merely its serialization. A fixed positional required lane would hide only the first missing required ID and would not recover the omitted vocabulary skill; it could also silently swap judgments on the 234 corpus items with multiple required buckets. Prompt-only compact iteration stops here. No failed result is repaired or counted as a pass, and `legacy_v1` remains the production default.
+
+## r182 compact-v5 legacy-min candidate
+
+V5 is the final response-compression experiment and is intentionally conservative. It preserves the complete legacy marking policy, legacy item and bucket context, named outer objects, long credit field names, and exact full bucket IDs—the representation that passed both r181 controls. It removes only five values that the Worker can reconstruct exactly:
+
+- `overall.marks_possible`, which is fixed at one;
+- `raw_response`, which comes from the authoritative cleaned learner input;
+- each supplied/dynamic bucket `label`, which comes from server context;
+- `outcome`, which is derived from attempted and correctness credits; and
+- `bucket_proposed`, which is true only when the three proposal metadata fields are present together.
+
+The Worker still returns the unchanged public `MarkerResult`, so learner-visible outputs are retained. It rejects model-supplied versions of those derived fields, partial proposal metadata, unknown IDs, duplicate or missing required rows, invented evidence, non-required blank rows, and inconsistent no-attempt output. A wholly unattempted answer may return an empty markpoint array only with zero holistic scores and empty observations/notes; required not-attempted rows are then added deterministically.
+
+Mechanically stripping only those fields from retained legacy responses predicts roughly 26% fewer output tokens across the earlier 18-case run and about 30% on the r181 pair. This is a smaller saving than v4, but it does not ask the model to learn a new reasoning or taxonomy representation.
+
+The paid stop/go gate remains the same two cases and four calls: one v5 and one legacy call for each, with no retries. All four must return HTTP 200 with exact build/contract provenance. V5 must match the two legacy semantic passes, meet the exact evidence and false-positive assertions, and survive manual inspection of every broad-case mapping. Its aggregate output must be no more than 80% of legacy and its known cost no more than 90%. Any schema error or semantic miss ends response-schema compression work; legacy remains the default. Only a clean pass permits three repetitions of the same two cases before any broader test.
+
+## r182 offline release gate
+
+The complete repository preflight passed before any r182 deployment or spend:
+
+- Worker contract tests: 44 passed, including replay of both retained r181 legacy outputs through the v5 field-stripping/hydration path with deep equality to their canonical public results.
+- Worker TypeScript type-check and Wrangler compilation: passed.
+- Expectation-suite predicates: 44 passed.
+- Executable benchmark assertions: 72, with 11 separately identified manual reviews.
+- Corpus fireability: all 18 cases passed through the real context path.
+- Paid-runner tests: 12 passed with zero fetch calls.
+- Suite-report accounting and all housing JavaScript checks: passed.
+- Lean contexts: 4 to 24 buckets.
+
+The assembled v5 prompt was also audited directly. The inherited required-bucket rule retains the explicit hit/miss/partial/not-attempted credit meanings while carving out one consistent wholly-unattempted empty-array form. Legacy instructions to emit `outcome` or `bucket_proposed` are removed for v5; each derived field name remains only in the final prohibition. The paid runner refuses a result unless the deployed build, requested contract, and returned format all exactly match r182/v5.
 
 ## Related pull request
 

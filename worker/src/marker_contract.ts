@@ -206,6 +206,50 @@ export interface CompactMarkerV4 {
   n?: CompactNote[];
 }
 
+/**
+ * V5 keeps the legacy model-facing names that performed reliably in paid
+ * probes, while omitting only fields the Worker can derive without judgement.
+ */
+export interface LegacyMinOverallV5 {
+  marks_awarded: number;
+  attempted_overall: number;
+  correctness_overall: number;
+  summary: string;
+  explanation: string;
+}
+
+export interface LegacyMinMarkpointV5 {
+  bucket: string;
+  attempted_credit: 0 | 1;
+  correctness_credit: number | null;
+  evidence: string | null;
+  expected?: string;
+  proposed_parent_id?: string;
+  proposed_label?: string;
+  proposed_rationale?: string;
+}
+
+export interface LegacyMinUnattributableV5 {
+  evidence: string;
+  what: string;
+  correct: boolean;
+  suggest?: string;
+}
+
+export interface LegacyMinNoteV5 {
+  /** Unknown legacy catalogue kinds are normalized to public kind "other". */
+  kind: string;
+  text: string;
+}
+
+export interface LegacyMinMarkerV5 {
+  v: 5;
+  overall: LegacyMinOverallV5;
+  markpoints: LegacyMinMarkpointV5[];
+  unattributable: LegacyMinUnattributableV5[];
+  notes: LegacyMinNoteV5[];
+}
+
 export interface ValidationResult {
   ok: boolean;
   error?: string;
@@ -346,6 +390,59 @@ For an omitted-form miss write {"evidence":null,"bucket":"the.exact.full_id","at
 If the learner answered wholly in the wrong language, all three numeric o values are 0 and m, u, p and n are empty arrays. The Worker adds required not-attempted rows deterministically.
 Return only the JSON object.`;
 
+/**
+ * V5 is a true legacy-min contract. It retains the successful legacy outer
+ * keys, semantic field names, exact full bucket IDs, and exact quoted learner
+ * evidence. Only five deterministically derivable fields are removed.
+ */
+export const legacyMinPromptSchemaTextV5 = `OUTPUT FORMAT — legacy-min v5 JSON only
+
+The user message supplies the exact learner answer and the permitted bucket context. Preserve the marking policy above.
+Return exactly this object shape:
+{
+  "v": 5,
+  "overall": {
+    "marks_awarded": 0_to_1,
+    "attempted_overall": 0_to_1,
+    "correctness_overall": 0_to_1,
+    "summary": "one short summary",
+    "explanation": "short house-style explanation"
+  },
+  "markpoints": [
+    {
+      "bucket": "exact full bucket id",
+      "attempted_credit": 0_or_1,
+      "correctness_credit": 0_to_1_or_null,
+      "evidence": "short exact substring copied from the learner answer"_or_null,
+      "expected": "canonical form or correction when useful",
+      "proposed_parent_id": "exact supplied parent id for a proposed bucket",
+      "proposed_label": "label for a proposed bucket",
+      "proposed_rationale": "why the proposed bucket is useful"
+    }
+  ],
+  "unattributable": [
+    {"evidence":"exact learner substring","what":"observation","correct":true_or_false,"suggest":"optional plausible full bucket id"}
+  ],
+  "notes": [
+    {"kind":"accent","text":"short note text"}
+  ]
+}
+
+Do not emit marks_possible, raw_response, label, outcome, or bucket_proposed; the Worker derives them.
+Every required bucket must occur exactly once on an attempted answer. A required but unengaged skill has attempted_credit 0, correctness_credit null, evidence null, and no expected field.
+Expected, optional, and context buckets may appear only when attempted_credit is 1.
+Evidence must be an EXACT CONTIGUOUS SUBSTRING copied from the learner answer, preserving spelling, accents, apostrophes, and case. It is the learner's surface form, never a normalized dictionary lemma.
+An attempted present form needs non-null evidence. Only an omitted-form miss may use evidence null, and it must then supply a nonempty expected correction.
+On en_it only, an unlisted produced content word may use the canonical bare id vocabulary.it.<lower-case NFC Italian dictionary lemma>.translation and must cite non-null learner evidence.
+For an existing bucket, omit all three proposed_* fields. For a new proposed child bucket, supply all three proposed_* fields; proposed_parent_id must be an exact supplied bucket id and bucket must be a safe lower-case child path beneath it.
+Use one of these note kinds: false_friend, register_drift, alternative_correct, accent, other.
+Omit optional expected and suggest fields when unused; never write null for an optional field.
+If the learner answered wholly in the wrong language or did not attempt the task, set all three overall numeric values to 0 and return empty markpoints, unattributable, and notes arrays. The Worker adds required not-attempted rows deterministically.
+Return only the JSON object.`;
+
+/** Stable integration name used by the Worker prompt selector. */
+export const compactPromptSchemaTextV5 = legacyMinPromptSchemaTextV5;
+
 const TOKEN_RE = /[\p{L}\p{M}\p{N}]+(?:['’][\p{L}\p{M}\p{N}]+)*|[^\s]/gu;
 const NOTE_KINDS = new Set<NoteKind>([
   "false_friend",
@@ -358,6 +455,26 @@ const PROPOSAL_SLUG_RE = /^[a-z0-9_]+(?:\.[a-z0-9_]+)*$/;
 const DYNAMIC_LEMMA_RE = /^[\p{L}\p{M}][\p{L}\p{M}\p{N}_'’.-]{0,63}$/u;
 const DYNAMIC_BUCKET_RE = /^vocabulary\.it\.([\p{L}\p{M}][\p{L}\p{M}\p{N}_'’-]{0,63})\.translation$/u;
 const ALLOWED_COMPACT_KEYS = new Set(["v", "o", "m", "u", "p", "n"]);
+const ALLOWED_LEGACY_MIN_V5_KEYS = new Set(["v", "overall", "markpoints", "unattributable", "notes"]);
+const ALLOWED_LEGACY_MIN_V5_OVERALL_KEYS = new Set([
+  "marks_awarded",
+  "attempted_overall",
+  "correctness_overall",
+  "summary",
+  "explanation",
+]);
+const ALLOWED_LEGACY_MIN_V5_MARKPOINT_KEYS = new Set([
+  "bucket",
+  "attempted_credit",
+  "correctness_credit",
+  "evidence",
+  "expected",
+  "proposed_parent_id",
+  "proposed_label",
+  "proposed_rationale",
+]);
+const ALLOWED_LEGACY_MIN_V5_UNATTRIBUTABLE_KEYS = new Set(["evidence", "what", "correct", "suggest"]);
+const ALLOWED_LEGACY_MIN_V5_NOTE_KEYS = new Set(["kind", "text"]);
 
 function fail(code: string, message: string, path?: string): never {
   throw new MarkerContractError(code, message, path);
@@ -924,6 +1041,206 @@ function hydrateCompact(parsed: Record<string, unknown>, context: MarkerPromptCo
   };
 }
 
+function hydrateLegacyMinV5(parsed: Record<string, unknown>, context: MarkerPromptContext): MarkerResult {
+  assertOnlyKeys(parsed, ALLOWED_LEGACY_MIN_V5_KEYS, "result");
+  if (parsed.v !== 5) fail("legacy_min_schema_invalid", "v must be 5", "result.v");
+
+  const rawOverall = parsed.overall;
+  if (!isRecord(rawOverall)) fail("legacy_min_schema_invalid", "overall must be an object", "result.overall");
+  assertOnlyKeys(rawOverall, ALLOWED_LEGACY_MIN_V5_OVERALL_KEYS, "result.overall");
+  const overall: MarkerResult["overall"] = {
+    marks_awarded: requireUnit(rawOverall.marks_awarded, "result.overall.marks_awarded"),
+    marks_possible: 1,
+    attempted_overall: requireUnit(rawOverall.attempted_overall, "result.overall.attempted_overall"),
+    correctness_overall: requireUnit(rawOverall.correctness_overall, "result.overall.correctness_overall"),
+    summary: requireString(rawOverall.summary, "result.overall.summary", 300),
+    explanation: requireString(rawOverall.explanation, "result.overall.explanation", 2000),
+  };
+
+  const rawMarkpoints = parsed.markpoints;
+  const rawUnattributable = parsed.unattributable;
+  const rawNotes = parsed.notes;
+  if (!Array.isArray(rawMarkpoints)) {
+    fail("legacy_min_schema_invalid", "markpoints must be an array", "result.markpoints");
+  }
+  if (!Array.isArray(rawUnattributable)) {
+    fail("legacy_min_schema_invalid", "unattributable must be an array", "result.unattributable");
+  }
+  if (!Array.isArray(rawNotes)) fail("legacy_min_schema_invalid", "notes must be an array", "result.notes");
+
+  const { byId } = contextIndexes(context);
+  const bucketIds = new Set<string>();
+  const requiredCounts = new Map<string, number>();
+  const markpoints: MarkpointOut[] = [];
+
+  for (let i = 0; i < rawMarkpoints.length; i++) {
+    const path = `result.markpoints[${i}]`;
+    const row = rawMarkpoints[i];
+    if (!isRecord(row)) fail("legacy_min_schema_invalid", "markpoint must be an object", path);
+    assertOnlyKeys(row, ALLOWED_LEGACY_MIN_V5_MARKPOINT_KEYS, path);
+    if (!hasOwn(row, "evidence")) {
+      fail("legacy_min_schema_invalid", "evidence is required; use null only for a permitted omitted form", `${path}.evidence`);
+    }
+
+    const bucket = requireString(row.bucket, `${path}.bucket`, 300);
+    if (bucketIds.has(bucket)) fail("duplicate_bucket", `${bucket} occurs more than once`, path);
+
+    const credits = validateCredits(row.attempted_credit, row.correctness_credit, path);
+    const evidenceResult = parseCompactEvidence(row.evidence, context, `${path}.evidence`, 3);
+    const hasExpected = hasOwn(row, "expected");
+    const expected = hasExpected ? requireString(row.expected, `${path}.expected`, 500) : undefined;
+    const outcome = deriveOutcome(credits.a, credits.c);
+
+    if (credits.a === 0) {
+      if (!evidenceResult.isNull) {
+        fail("invalid_evidence", "an unattempted markpoint must have null evidence", `${path}.evidence`);
+      }
+      if (hasExpected) {
+        fail("legacy_min_schema_invalid", "an unattempted required blank must omit expected", `${path}.expected`);
+      }
+    } else if (evidenceResult.isNull && (outcome !== "miss" || expected === undefined)) {
+      fail("invalid_evidence", "only an omitted-form miss may use null evidence plus an expected correction", `${path}.evidence`);
+    }
+
+    const proposalFields = ["proposed_parent_id", "proposed_label", "proposed_rationale"] as const;
+    const proposalFieldCount = proposalFields.filter((field) => hasOwn(row, field)).length;
+    if (proposalFieldCount !== 0 && proposalFieldCount !== proposalFields.length) {
+      fail("invalid_proposal", "proposed_parent_id, proposed_label, and proposed_rationale must be supplied together", path);
+    }
+    const proposed = proposalFieldCount === proposalFields.length;
+
+    let label: string;
+    let proposalOutput: Pick<MarkpointOut, "bucket_proposed" | "proposed_parent_id" | "proposed_label" | "proposed_rationale">;
+    const supplied = byId.get(bucket);
+    if (proposed) {
+      if (credits.a !== 1) {
+        fail("invalid_proposal", "a proposal must describe an engaged skill", `${path}.attempted_credit`);
+      }
+      if (supplied) fail("invalid_proposal", "an existing supplied bucket must omit proposed_* fields", `${path}.bucket`);
+      const parentId = requireString(row.proposed_parent_id, `${path}.proposed_parent_id`, 300);
+      const parent = byId.get(parentId);
+      if (!parent) fail("invalid_proposal", "proposed_parent_id must be an exact supplied bucket id", `${path}.proposed_parent_id`);
+      const prefix = `${parent.id}.`;
+      const slug = bucket.startsWith(prefix) ? bucket.slice(prefix.length) : "";
+      if (!slug || !PROPOSAL_SLUG_RE.test(slug)) {
+        fail("invalid_proposal", "proposed bucket must be a safe lower-case child path beneath proposed_parent_id", `${path}.bucket`);
+      }
+      label = requireString(row.proposed_label, `${path}.proposed_label`, 200);
+      const rationale = requireString(row.proposed_rationale, `${path}.proposed_rationale`, 1000);
+      proposalOutput = {
+        bucket_proposed: true,
+        proposed_parent_id: parent.id,
+        proposed_label: label,
+        proposed_rationale: rationale,
+      };
+    } else if (supplied) {
+      if (supplied.role !== "r" && credits.a !== 1) {
+        fail("unengaged_nonrequired", "expected, optional, and context buckets may be emitted only when engaged", path);
+      }
+      if (supplied.role === "r") {
+        requiredCounts.set(bucket, (requiredCounts.get(bucket) || 0) + 1);
+      }
+      label = supplied.label;
+      proposalOutput = { bucket_proposed: false };
+    } else {
+      if (context.direction !== "en_it" || !isBareProductionVocabularyBucket(bucket)) {
+        fail("unknown_bucket", "regular bucket is neither supplied, proposed, nor legal dynamic vocabulary", `${path}.bucket`);
+      }
+      if (credits.a !== 1 || evidenceResult.isNull) {
+        fail("invalid_dynamic_vocabulary", "dynamic produced vocabulary must be engaged and cite learner evidence", path);
+      }
+      const match = DYNAMIC_BUCKET_RE.exec(bucket)!;
+      label = `${match[1].replace(/_/g, ".")} (translation)`;
+      proposalOutput = { bucket_proposed: false };
+    }
+
+    bucketIds.add(bucket);
+    markpoints.push({
+      bucket,
+      label,
+      attempted_credit: credits.a,
+      correctness_credit: credits.c,
+      outcome,
+      ...(evidenceResult.evidence !== undefined ? { evidence: evidenceResult.evidence } : {}),
+      ...(expected !== undefined ? { expected } : {}),
+      ...proposalOutput,
+    });
+  }
+
+  const unattributable: UnattributableOut[] = [];
+  for (let i = 0; i < rawUnattributable.length; i++) {
+    const path = `result.unattributable[${i}]`;
+    const row = rawUnattributable[i];
+    if (!isRecord(row)) fail("legacy_min_schema_invalid", "unattributable entry must be an object", path);
+    assertOnlyKeys(row, ALLOWED_LEGACY_MIN_V5_UNATTRIBUTABLE_KEYS, path);
+    const evidence = requireString(row.evidence, `${path}.evidence`, 2000);
+    if (!context.cleanedRaw.includes(evidence)) {
+      fail("invalid_evidence", "must be an exact contiguous substring of the learner answer", `${path}.evidence`);
+    }
+    const what = requireString(row.what, `${path}.what`, 1000);
+    const correct = requireBoolean(row.correct, `${path}.correct`);
+    const suggest = hasOwn(row, "suggest")
+      ? requireString(row.suggest, `${path}.suggest`, 300) : undefined;
+    if (suggest !== undefined && !plausibleBucketId(suggest)) {
+      fail("invalid_bucket_id", "suggest must be a plausible dot-separated bucket id", `${path}.suggest`);
+    }
+    unattributable.push({ evidence, what, correct, ...(suggest !== undefined ? { suggest } : {}) });
+  }
+
+  const notes: MarkerNoteOut[] = [];
+  for (let i = 0; i < rawNotes.length; i++) {
+    const path = `result.notes[${i}]`;
+    const row = rawNotes[i];
+    if (!isRecord(row)) fail("legacy_min_schema_invalid", "note must be an object", path);
+    assertOnlyKeys(row, ALLOWED_LEGACY_MIN_V5_NOTE_KEYS, path);
+    notes.push(normalizeLegacyNote(row, path));
+  }
+
+  if (overall.attempted_overall === 0) {
+    if (overall.marks_awarded !== 0 || overall.correctness_overall !== 0) {
+      fail("holistic_inconsistent", "a wholly unattempted answer must have zero marks and zero correctness", "result.overall");
+    }
+    if (rawMarkpoints.length !== 0 || unattributable.length !== 0 || notes.length !== 0) {
+      fail("holistic_inconsistent", "a wholly unattempted v5 answer must have empty markpoints, unattributable, and notes arrays", "result");
+    }
+    for (const entry of context.legend) {
+      if (entry.role !== "r") continue;
+      requiredCounts.set(entry.id, 1);
+      bucketIds.add(entry.id);
+      markpoints.push({
+        bucket: entry.id,
+        label: entry.label,
+        attempted_credit: 0,
+        correctness_credit: null,
+        outcome: "not_attempted",
+        bucket_proposed: false,
+      });
+    }
+  } else {
+    const hasEngagement = markpoints.some((markpoint) => markpoint.attempted_credit === 1)
+      || unattributable.length > 0;
+    if (!hasEngagement) {
+      fail("holistic_inconsistent", "an attempted answer must contain an engaged markpoint or unattributable observation", "result.overall.attempted_overall");
+    }
+  }
+
+  for (const entry of context.legend) {
+    if (entry.role !== "r") continue;
+    const count = requiredCounts.get(entry.id) || 0;
+    if (count !== 1) {
+      fail("required_bucket_count", `${entry.id} must occur exactly once; found ${count}`, "result.markpoints");
+    }
+  }
+
+  return {
+    overall,
+    raw_response: context.cleanedRaw,
+    markpoints,
+    unattributable,
+    notes,
+  };
+}
+
 function knownLabel(bucket: string, context: MarkerPromptContext): string | undefined {
   const entry = context.legend.find((candidate) => candidate.id === bucket);
   if (entry) return entry.label;
@@ -1127,18 +1444,21 @@ export function validateMarkerResult(result: unknown, context?: MarkerPromptCont
 }
 
 /**
- * Accept compact v2/v3/v4 or a legacy full MarkerResult and return the strict,
- * browser-facing shape. A payload that declares a compact version never
- * silently falls through to legacy interpretation.
+ * Accept compact v2/v3/v4, legacy-min v5, or a legacy full MarkerResult and
+ * return the strict browser-facing shape. A payload that declares a version
+ * never silently falls through to legacy interpretation.
  */
 export function normalizeModelResult(parsed: unknown, context: MarkerPromptContext): MarkerResult {
   if (!isRecord(parsed)) fail("schema_invalid", "model result must be an object", "result");
   let result: MarkerResult;
   if (hasOwn(parsed, "v")) {
-    if (parsed.v !== 2 && parsed.v !== 3 && parsed.v !== 4) {
-      fail("compact_schema_invalid", "v must be 2, 3, or 4", "result.v");
+    if (parsed.v === 5) {
+      result = hydrateLegacyMinV5(parsed, context);
+    } else if (parsed.v === 2 || parsed.v === 3 || parsed.v === 4) {
+      result = hydrateCompact(parsed, context, parsed.v);
+    } else {
+      fail("compact_schema_invalid", "v must be 2, 3, 4, or 5", "result.v");
     }
-    result = hydrateCompact(parsed, context, parsed.v);
   } else {
     result = normalizeLegacyResult(parsed, context);
   }
